@@ -75,12 +75,12 @@
               id="increaseFontSizeButton"
               imageMso="FontSizeIncreaseWord"
               label="Increase Font Size"
-              onAction="ShowAboutCmd"/>
+              onAction="IncreaseFontSizeCmd"/>
             <button
               id="decreaseFontSizeButton"
               imageMso="FontSizeDecreaseWord"
               label="Decrease Font Size"
-              onAction="ShowAboutCmd"/>
+              onAction="DecreaseFontSizeCmd"/>
             <menuSeparator id="sepOther" title="Other"/>
             <button
               id="collapseButton"

@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+using System.Text;
+
 namespace River.OneMoreAddIn
 {
 	internal class CssInfo : StyleInfoBase
@@ -14,6 +16,13 @@ namespace River.OneMoreAddIn
 		public CssInfo (string css)
 		{
 			Collect(css);
+		}
+
+
+		public override string FontSize
+		{
+			get => base.FontSize;
+			set => base.FontSize = FormatSize(value);
 		}
 
 
@@ -87,6 +96,38 @@ namespace River.OneMoreAddIn
 					}
 				}
 			}
+		}
+
+		public string ToCss ()
+		{
+			var builder = new StringBuilder();
+
+			if (FontFamily != null) builder.Append("font-family:" + FontFamily + ";");
+			if (FontSize != null) builder.Append("font-size:" + FontSize + ";");
+			if (IsBold == true) builder.Append("font-weight:bold;");
+			if (IsItalic == true) builder.Append("font-style:italic;");
+
+			if (Color != null) builder.Append("color:" + Color + ";");
+			if (Highlight != null) builder.Append("background:" + Highlight + ";");
+
+			if ((IsUnderline == true) || (IsStrikethrough == true))
+			{
+				builder.Append("text-decoration:");
+				if (IsUnderline == true) builder.Append("underline");
+				if (IsStrikethrough == true) builder.Append(" line-through");
+				builder.Append(";");
+			}
+
+			if (IsSuperscript == true)
+			{
+				builder.Append("vertical-align:super;");
+			}
+			else if (IsSubscript == true)
+			{
+				builder.Append("vertical-align:sub;");
+			}
+
+			return builder.ToString();
 		}
 	}
 }

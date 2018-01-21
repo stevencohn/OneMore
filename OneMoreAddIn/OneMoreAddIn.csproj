@@ -96,6 +96,7 @@
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
     <Compile Include="Commands\AddTitleIconCommand.cs" />
+    <Compile Include="Commands\AlterSizeCommand.cs" />
     <Compile Include="Commands\CollapseCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\EditStylesCommand.cs" />

@@ -80,7 +80,7 @@ namespace OneMoreAddin.Tests
 			var styles = provider.Filter(f => f.Attributes("isHeading").Any(a => a.Value.Equals("true")));
 
 			Assert.IsNotNull(styles);
-			Assert.AreEqual(7, styles.Count());
+			Assert.AreEqual(6, styles.Count());
 
 			foreach (var style in styles)
 			{

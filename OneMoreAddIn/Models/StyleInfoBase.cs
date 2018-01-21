@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn
 		public string Index { get; set; }
 
 		public string FontFamily { get; set; }
-		public string FontSize { get; set; }
+		public virtual string FontSize { get; set; }
 		public bool? IsBold { get; set; }
 		public bool? IsItalic { get; set; }
 		public bool? IsUnderline { get; set; }

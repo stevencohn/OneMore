@@ -450,6 +450,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<CollapseCommand>().Execute();
 		}
 
+		public void DecreaseFontSizeCmd (IRibbonControl control)
+		{
+			factory.GetCommand<AlterSizeCommand>().Execute(false);
+		}
+
 		public void EditStylesCmd (IRibbonControl control)
 		{
 			factory.GetCommand<EditStylesCommand>().Execute();
@@ -460,6 +465,11 @@ namespace River.OneMoreAddIn
 		{
 			factory.GetCommand<NewStyleCommand>().Execute();
 			ribbon.Invalidate(); // TODO: only if changes?
+		}
+
+		public void IncreaseFontSizeCmd (IRibbonControl control)
+		{
+			factory.GetCommand<AlterSizeCommand>().Execute(true);
 		}
 
 		public void InsertDoubleHorizontalLineCmd (IRibbonControl control)
