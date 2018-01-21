@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<customUI
+  xmlns="http://schemas.microsoft.com/office/2006/01/customui"
+	onLoad="RibbonLoaded"
+	loadImage="GetImage">
+  <ribbon>
+    <tabs>
+      <tab idMso="TabHome">
+        <group id="OneMoreGroup0" getLabel="GetItemLabel">
+          <gallery
+            id="styleGallery" label="Custom Styles"  columns="4" showItemLabel="false" size="large" imageMso="StylesPane"
+            getItemCount="GetStyleGalleryItemCount"
+            getItemID="GetStyleGalleryItemId"
+            getItemImage="GetStyleGalleryItemImage"
+            getItemScreentip="GetStyleGalleryItemScreentip"
+            onAction="ApplyStyleCmd">
+            <button
+              id="SaveStylesButton"
+              label="Save Selection as Custom Style..."
+              imageMso="StylesPaneNewStyle"
+              onAction="NewStyleCmd"/>
+            <button
+              id="EditStylesButton"
+              label="Edit Custom Styles..."
+              imageMso="StylesModifyStyle"
+              onAction="EditStylesCmd"/>
+          </gallery>
+
+          <menu id="OneMoreMenu" label="More" size="large" getImage="GetOneMoreMenuImage">
+            <menuSeparator id="sepSpell" title="Content" />
+            <button
+              id="flagTitleButton"
+              imageMso="DataGraphicIconSet"
+              label="Add Icon to Page Title"
+              onAction="AddTitleIconCmd"/>
+            <button
+              id="insertSingleLineButton"
+              imageMso="HorizontalLineInsert"
+              label="Insert Horzontal Line"
+              getEnabled="EnsureBodyContext"
+              onAction="InsertHorizontalLineCmd"/>
+            <button
+              id="insertDoubleLineButton"
+              getImage="GetDoubleLineImage"
+              label="Insert Double Horzontal Line"
+              getEnabled="EnsureBodyContext"
+              onAction="InsertDoubleHorizontalLineCmd"/>
+            <button
+              id="tocButton"
+              imageMso="WordInsertTableOfContents2"
+              label="Insert Page TOC"
+              onAction="InsertTocCmd"/>
+            <button
+              id="noSpellCheckButton"
+              image="NoSpellCheck"
+              getLabel="GetItemLabel"
+              getScreentip="GetItemScreentip"
+              onAction="NoSpellCheckCmd"/>
+            <button
+              id="replaceButton"
+              imageMso="ReplaceDialog"
+              label="Search and Replace"/>
+            <menuSeparator id="sep1" title="Fonts"/>
+            <button
+              id="uppercaseButton"
+              imageMso="A"
+              label="To UPPERCASE"
+              onAction="ToUppercaseCmd"/>
+            <button
+              id="lowercaseButton"
+              imageMso="ChangeCase"
+              label="To lowercase"
+              onAction="ToLowercaseCmd"/>
+            <button
+              id="increaseFontSizeButton"
+              imageMso="FontSizeIncreaseWord"
+              label="Increase Font Size"
+              onAction="ShowAboutCmd"/>
+            <button
+              id="decreaseFontSizeButton"
+              imageMso="FontSizeDecreaseWord"
+              label="Decrease Font Size"
+              onAction="ShowAboutCmd"/>
+            <menuSeparator id="sepOther" title="Other"/>
+            <button
+              id="collapseButton"
+              imageMso="CollapseAll"
+              label="Collapse Pages"
+              onAction="CollapseCmd"/>
+            <button
+              id="showXmlButton"
+              imageMso="XmlSource"
+              getLabel="GetItemLabel"
+              getScreentip="GetItemScreentip"
+              onAction="ShowXmlCmd"/>
+            <button
+              id="aboutButton"
+              label="About OneMore"
+              onAction="ShowAboutCmd"/>
+          </menu>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

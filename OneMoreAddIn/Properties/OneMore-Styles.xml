@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OneMore-Addin>
+  <Styles>
+    <Style name="Heading 1" fontFamily="Calibri Light" fontSize="20" fontStyle="Regular" color="#ff464646" spaceBefore="14" />
+    <Style name="Heading 2" fontFamily="Calibri Light" fontSize="18" fontStyle="Regular" color="#ffe67832" spaceBefore="14" />
+    <Style name="Heading 3" fontFamily="Calibri Light" fontSize="16" fontStyle="Regular" color="#ff823d0a" spaceBefore="12" />
+    <Style name="Heading 4" fontFamily="Calibri Light" fontSize="14" fontStyle="Regular" color="#ffc85a14" spaceBefore="12" />
+    <Style name="Heading 5" fontFamily="Calibri Light" fontSize="12" fontStyle="Italic" color="#ff823d0a" spaceBefore="10" />
+    <Style name="Heading 6" fontFamily="Calibri Light" fontSize="12" fontStyle="Italic" color="#ffe67832" spaceBefore="10" />
+    <Style name="Page Title" fontFamily="Calibri Light" fontSize="20" fontStyle="Regular" color="#ff464646" spaceAfter="14" />
+    <Style name="Citation" fontFamily="Calibri" fontSize="9" fontStyle="Regular" color="#ff595959" />
+    <Style name="Quote" fontFamily="Calibri" fontSize="11" fontStyle="Italic" color="#ff595959" />
+    <Style name="Code" fontFamily="Lucida Console" fontSize="9" fontStyle="Regular" color="#ff000000" />
+    <Style name="Normal" fontFamily="Calibri" fontSize="11" fontStyle="Regular" color="#ff000000" />
+    <Style name="Strong" fontFamily="Calibri" fontSize="11" fontStyle="Bold" color="#ff000000" />
+    <Style name="Emphasis" fontFamily="Calibri" fontSize="11" fontStyle="Bold+Italic" color="#ff4F81BD" />
+    <Style name="Intense Emphasis" fontFamily="Calibri" fontSize="11" fontStyle="Bold+Italic" color="#ffC0504D" />
+    <Style name="Subtle Emphasis" fontFamily="Calibri" fontSize="11" fontStyle="Italic" color="#ff808080" />
+  </Styles>
+</OneMore-Addin>
