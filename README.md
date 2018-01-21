@@ -1,4 +1,4 @@
-﻿# OneMore - a OneNote Add-in
+﻿# ![logo](Screenshots/Logo.jpg "OneMore - a OneNote Add-in")
 
 A OneNote add-in with these features:
 
