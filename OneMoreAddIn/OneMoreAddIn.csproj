@@ -173,7 +173,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE.txt" />
     <Content Include="Properties\Emoji\Architecture.png" />
     <Content Include="Properties\Emoji\Bullet.png" />
     <Content Include="Properties\Emoji\Calendar.png" />
@@ -236,7 +235,6 @@
     <None Include="Properties\Images\Logo.pdn" />
     <None Include="Properties\Images\Logo.psd" />
     <None Include="Properties\Images\NoSpellCheck.psd" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

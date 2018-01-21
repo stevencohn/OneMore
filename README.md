@@ -6,7 +6,7 @@ A OneNote add-in with these features:
 * Create/edit/apply custom styles
 * Collapse the page hierarchy to see only top-level pages
 * Change selected text to UPPERCASE
-* Change selected text to LOWERCASE
+* Change selected text to lowercase
 * Insert single horizontal line
 * Insert double horizontal line
 * Increase/Decrease the font size of all content in the current page
