@@ -25,7 +25,7 @@ Custom Styles Dialog
 ![Styles Dialog](Screenshots/CustomStylesDialog.jpg)
 
 Title Icons Dialog
-![Title Icon Dialog](Screenshots/TitleIconsDialog.jpg)
+![Title Icon Dialog](Screenshots/TItleIconsDialog.jpg)
 
 XML Dialog
 ![XML Dialog](Screenshots/XmlDialog.jpg)
