@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Linq;
 	using System.Windows.Forms;
 
 
@@ -42,6 +43,7 @@ namespace River.OneMoreAddIn
 
 			Text = "New Custom Style";
 			reorderButton.Enabled = false;
+			deleteButton.Enabled = false;
 
 			this.selection = style;
 			ShowSelection();
@@ -121,6 +123,8 @@ namespace River.OneMoreAddIn
 		/// </summary>
 
 		public CustomStyle CustomStyle => selection;
+
+		public List<CustomStyle> GetStyles () => namesBox.Items.Cast<CustomStyle>().ToList();
 
 
 		private void previewBox_Paint (object sender, PaintEventArgs e)
@@ -240,7 +244,7 @@ namespace River.OneMoreAddIn
 
 		private Color SelectColor (string title, Rectangle bounds, Color color)
 		{
-			var location = PointToScreen(colorStrip.Location);
+			var location = PointToScreen(toolStrip.Location);
 
 			using (var dialog = new ColorDialogEx(title,
 				location.X + bounds.Location.X,
@@ -275,6 +279,38 @@ namespace River.OneMoreAddIn
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+
+		private void reorderButton_Click (object sender, EventArgs e)
+		{
+			using (var dialog = new ReorderDialog(namesBox.Items))
+			{
+				var result = dialog.ShowDialog(this);
+				if (result == DialogResult.OK)
+				{
+					string name = null;
+					if (namesBox.SelectedItem != null)
+					{
+						name = ((CustomStyle)namesBox.SelectedItem).Name;
+					}
+
+					var items = dialog.GetItems();
+					namesBox.Items.Clear();
+					namesBox.Items.AddRange(items);
+
+					var selected = namesBox.Items.Cast<CustomStyle>().Where(s => s.Name.Equals(name)).FirstOrDefault();
+					if (selected != null)
+					{
+						namesBox.SelectedItem = selected;
+					}
+					else
+					{
+						namesBox.SelectedIndex = 0;
+					}
+				}
+			}
+		}
+
+
 		private void deleteButton_Click (object sender, EventArgs e)
 		{
 			var result = MessageBox.Show(this, "Delete this custom style?", "Confirm",
@@ -304,6 +340,7 @@ namespace River.OneMoreAddIn
 
 			if (namesBox.Items.Count == 0)
 			{
+				reorderButton.Enabled = false;
 				deleteButton.Enabled = false;
 			}
 		}

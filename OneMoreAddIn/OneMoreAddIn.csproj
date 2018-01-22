@@ -114,6 +114,9 @@
     <Compile Include="Dialogs\ReorderDialog.Designer.cs">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ScaledToolStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Models\CssInfo.cs" />
@@ -199,12 +202,14 @@
     <Content Include="Properties\Images\Bold.png" />
     <Content Include="Properties\Images\Delete.png" />
     <Content Include="Properties\Images\DoubleLine.png" />
+    <Content Include="Properties\Images\DownArrow.png" />
     <Content Include="Properties\Images\FontColor.png" />
     <Content Include="Properties\Images\Italic.png" />
     <Content Include="Properties\Images\Logo.ico" />
     <Content Include="Properties\Images\Reorder.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />
+    <Content Include="Properties\Images\UpArrow.png" />
     <Content Include="Readme.txt" />
     <Content Include="Properties\Images\Logo.png" />
     <Content Include="Properties\Images\NoSpellCheck.png" />

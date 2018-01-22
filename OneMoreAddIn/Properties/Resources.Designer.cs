@@ -205,6 +205,16 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DownArrow {
+            get {
+                object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Envelope {
             get {
                 object obj = ResourceManager.GetObject("Envelope", resourceCulture);
@@ -370,8 +380,7 @@ namespace River.OneMoreAddIn.Properties {
         ///          &lt;gallery
         ///            id=&quot;styleGallery&quot; label=&quot;Custom Styles&quot;  columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
         ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
-        ///            getItemID=&quot;GetStyleGalleryItemId&quot;
-        ///      [rest of string was truncated]&quot;;.
+        ///            getItemID=&quot;GetStyleGalleryI [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
@@ -461,6 +470,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Underline {
             get {
                 object obj = ResourceManager.GetObject("Underline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UpArrow {
+            get {
+                object obj = ResourceManager.GetObject("UpArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
