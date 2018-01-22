@@ -108,6 +108,12 @@
     <Compile Include="Commands\ShowAboutCommand.cs" />
     <Compile Include="Commands\ApplyStyleCommand.cs" />
     <Compile Include="Commands\ToCaseCommand.cs" />
+    <Compile Include="Dialogs\ReorderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ReorderDialog.Designer.cs">
+      <DependentUpon>ReorderDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Models\CssInfo.cs" />
@@ -196,6 +202,7 @@
     <Content Include="Properties\Images\FontColor.png" />
     <Content Include="Properties\Images\Italic.png" />
     <Content Include="Properties\Images\Logo.ico" />
+    <Content Include="Properties\Images\Reorder.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />
     <Content Include="Readme.txt" />
@@ -215,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FlatToggleButton.resx">
       <DependentUpon>FlatToggleButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
+      <DependentUpon>ReorderDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\StyleDialog.resx">
       <DependentUpon>StyleDialog.cs</DependentUpon>

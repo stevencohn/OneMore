@@ -50,12 +50,17 @@
 			this.boldButton = new River.OneMoreAddIn.FlatToggleButton();
 			this.familyBox = new River.OneMoreAddIn.FontComboBox();
 			this.namesBox = new System.Windows.Forms.ComboBox();
-			this.deleteButton = new System.Windows.Forms.Button();
 			this.headingBox = new System.Windows.Forms.CheckBox();
+			this.mainTools = new System.Windows.Forms.ToolStrip();
+			this.reorderButton = new System.Windows.Forms.ToolStripButton();
+			this.deleteButton = new System.Windows.Forms.ToolStripButton();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.colorStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
+			this.mainTools.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// sizeBox
@@ -75,7 +80,7 @@
             "22",
             "24",
             "26"});
-			this.sizeBox.Location = new System.Drawing.Point(386, 82);
+			this.sizeBox.Location = new System.Drawing.Point(381, 78);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(80, 33);
 			this.sizeBox.TabIndex = 1;
@@ -84,7 +89,7 @@
 			// beforeLabel
 			// 
 			this.beforeLabel.AutoSize = true;
-			this.beforeLabel.Location = new System.Drawing.Point(21, 199);
+			this.beforeLabel.Location = new System.Drawing.Point(16, 195);
 			this.beforeLabel.Name = "beforeLabel";
 			this.beforeLabel.Size = new System.Drawing.Size(107, 20);
 			this.beforeLabel.TabIndex = 6;
@@ -93,7 +98,7 @@
 			// afterLabel
 			// 
 			this.afterLabel.AutoSize = true;
-			this.afterLabel.Location = new System.Drawing.Point(34, 236);
+			this.afterLabel.Location = new System.Drawing.Point(29, 232);
 			this.afterLabel.Name = "afterLabel";
 			this.afterLabel.Size = new System.Drawing.Size(94, 20);
 			this.afterLabel.TabIndex = 7;
@@ -102,7 +107,7 @@
 			// nameLabel
 			// 
 			this.nameLabel.AutoSize = true;
-			this.nameLabel.Location = new System.Drawing.Point(38, 34);
+			this.nameLabel.Location = new System.Drawing.Point(33, 30);
 			this.nameLabel.Name = "nameLabel";
 			this.nameLabel.Size = new System.Drawing.Size(90, 20);
 			this.nameLabel.TabIndex = 8;
@@ -111,7 +116,7 @@
 			// nameBox
 			// 
 			this.nameBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.nameBox.Location = new System.Drawing.Point(134, 27);
+			this.nameBox.Location = new System.Drawing.Point(129, 23);
 			this.nameBox.Name = "nameBox";
 			this.nameBox.Size = new System.Drawing.Size(332, 31);
 			this.nameBox.TabIndex = 9;
@@ -120,7 +125,7 @@
 			// fontLabel
 			// 
 			this.fontLabel.AutoSize = true;
-			this.fontLabel.Location = new System.Drawing.Point(86, 89);
+			this.fontLabel.Location = new System.Drawing.Point(81, 85);
 			this.fontLabel.Name = "fontLabel";
 			this.fontLabel.Size = new System.Drawing.Size(42, 20);
 			this.fontLabel.TabIndex = 10;
@@ -136,7 +141,7 @@
 			this.colorStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backColorButton,
             this.colorButton});
-			this.colorStrip.Location = new System.Drawing.Point(299, 124);
+			this.colorStrip.Location = new System.Drawing.Point(294, 120);
 			this.colorStrip.Name = "colorStrip";
 			this.colorStrip.Padding = new System.Windows.Forms.Padding(0);
 			this.colorStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -187,7 +192,7 @@
 			// spaceBeforeSpinner
 			// 
 			this.spaceBeforeSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceBeforeSpinner.Location = new System.Drawing.Point(134, 193);
+			this.spaceBeforeSpinner.Location = new System.Drawing.Point(129, 189);
 			this.spaceBeforeSpinner.Name = "spaceBeforeSpinner";
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(90, 31);
 			this.spaceBeforeSpinner.TabIndex = 16;
@@ -196,7 +201,7 @@
 			// spaceAfterSpinner
 			// 
 			this.spaceAfterSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceAfterSpinner.Location = new System.Drawing.Point(134, 230);
+			this.spaceAfterSpinner.Location = new System.Drawing.Point(129, 226);
 			this.spaceAfterSpinner.Name = "spaceAfterSpinner";
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(90, 31);
 			this.spaceAfterSpinner.TabIndex = 17;
@@ -206,7 +211,7 @@
 			// 
 			this.previewBox.BackColor = System.Drawing.Color.White;
 			this.previewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.previewBox.Location = new System.Drawing.Point(264, 193);
+			this.previewBox.Location = new System.Drawing.Point(259, 189);
 			this.previewBox.Name = "previewBox";
 			this.previewBox.Size = new System.Drawing.Size(202, 107);
 			this.previewBox.TabIndex = 18;
@@ -217,7 +222,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(355, 333);
+			this.cancelButton.Location = new System.Drawing.Point(347, 326);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(115, 38);
 			this.cancelButton.TabIndex = 19;
@@ -228,7 +233,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(234, 333);
+			this.okButton.Location = new System.Drawing.Point(226, 326);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(115, 38);
 			this.okButton.TabIndex = 20;
@@ -240,7 +245,7 @@
 			this.underlineButton.BackColor = System.Drawing.SystemColors.Control;
 			this.underlineButton.Checked = false;
 			this.underlineButton.Image = global::River.OneMoreAddIn.Properties.Resources.Underline;
-			this.underlineButton.Location = new System.Drawing.Point(246, 136);
+			this.underlineButton.Location = new System.Drawing.Point(241, 132);
 			this.underlineButton.Name = "underlineButton";
 			this.underlineButton.Padding = new System.Windows.Forms.Padding(4);
 			this.underlineButton.Size = new System.Drawing.Size(50, 34);
@@ -252,7 +257,7 @@
 			this.italicButton.BackColor = System.Drawing.SystemColors.Control;
 			this.italicButton.Checked = false;
 			this.italicButton.Image = global::River.OneMoreAddIn.Properties.Resources.Italic;
-			this.italicButton.Location = new System.Drawing.Point(190, 136);
+			this.italicButton.Location = new System.Drawing.Point(185, 132);
 			this.italicButton.Name = "italicButton";
 			this.italicButton.Padding = new System.Windows.Forms.Padding(4);
 			this.italicButton.Size = new System.Drawing.Size(50, 34);
@@ -264,7 +269,7 @@
 			this.boldButton.BackColor = System.Drawing.SystemColors.Control;
 			this.boldButton.Checked = false;
 			this.boldButton.Image = global::River.OneMoreAddIn.Properties.Resources.Bold;
-			this.boldButton.Location = new System.Drawing.Point(134, 136);
+			this.boldButton.Location = new System.Drawing.Point(129, 132);
 			this.boldButton.Name = "boldButton";
 			this.boldButton.Padding = new System.Windows.Forms.Padding(4);
 			this.boldButton.Size = new System.Drawing.Size(50, 34);
@@ -517,7 +522,7 @@
             "Yu Gothic UI Semibold",
             "Yu Gothic UI Semilight",
             "ZWAdobeF"});
-			this.familyBox.Location = new System.Drawing.Point(134, 82);
+			this.familyBox.Location = new System.Drawing.Point(129, 78);
 			this.familyBox.Name = "familyBox";
 			this.familyBox.Size = new System.Drawing.Size(246, 32);
 			this.familyBox.TabIndex = 0;
@@ -525,31 +530,21 @@
 			// 
 			// namesBox
 			// 
+			this.namesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
-			this.namesBox.Location = new System.Drawing.Point(90, 333);
+			this.namesBox.Location = new System.Drawing.Point(33, 331);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
 			this.namesBox.TabIndex = 21;
 			this.namesBox.Visible = false;
 			this.namesBox.SelectedIndexChanged += new System.EventHandler(this.namesBox_SelectedIndexChanged);
 			// 
-			// deleteButton
-			// 
-			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
-			this.deleteButton.Location = new System.Drawing.Point(33, 333);
-			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(50, 38);
-			this.deleteButton.TabIndex = 22;
-			this.deleteButton.UseVisualStyleBackColor = true;
-			this.deleteButton.Visible = false;
-			this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-			// 
 			// headingBox
 			// 
 			this.headingBox.AutoSize = true;
-			this.headingBox.Location = new System.Drawing.Point(134, 276);
+			this.headingBox.Location = new System.Drawing.Point(129, 272);
 			this.headingBox.Name = "headingBox";
 			this.headingBox.Size = new System.Drawing.Size(95, 24);
 			this.headingBox.TabIndex = 23;
@@ -557,38 +552,77 @@
 			this.headingBox.UseVisualStyleBackColor = true;
 			this.headingBox.CheckedChanged += new System.EventHandler(this.headingBox_CheckedChanged);
 			// 
+			// mainTools
+			// 
+			this.mainTools.AutoSize = false;
+			this.mainTools.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.mainTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reorderButton,
+            this.deleteButton});
+			this.mainTools.Location = new System.Drawing.Point(4, 4);
+			this.mainTools.Name = "mainTools";
+			this.mainTools.Size = new System.Drawing.Size(505, 38);
+			this.mainTools.TabIndex = 24;
+			// 
+			// reorderButton
+			// 
+			this.reorderButton.Image = global::River.OneMoreAddIn.Properties.Resources.Reorder;
+			this.reorderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.reorderButton.Name = "reorderButton";
+			this.reorderButton.Size = new System.Drawing.Size(102, 35);
+			this.reorderButton.Text = "Reorder";
+			// 
+			// deleteButton
+			// 
+			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
+			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.deleteButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
+			this.deleteButton.Name = "deleteButton";
+			this.deleteButton.Size = new System.Drawing.Size(90, 35);
+			this.deleteButton.Text = "Delete";
+			this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.nameLabel);
+			this.panel1.Controls.Add(this.familyBox);
+			this.panel1.Controls.Add(this.okButton);
+			this.panel1.Controls.Add(this.headingBox);
+			this.panel1.Controls.Add(this.cancelButton);
+			this.panel1.Controls.Add(this.sizeBox);
+			this.panel1.Controls.Add(this.beforeLabel);
+			this.panel1.Controls.Add(this.namesBox);
+			this.panel1.Controls.Add(this.afterLabel);
+			this.panel1.Controls.Add(this.nameBox);
+			this.panel1.Controls.Add(this.fontLabel);
+			this.panel1.Controls.Add(this.previewBox);
+			this.panel1.Controls.Add(this.boldButton);
+			this.panel1.Controls.Add(this.spaceAfterSpinner);
+			this.panel1.Controls.Add(this.italicButton);
+			this.panel1.Controls.Add(this.spaceBeforeSpinner);
+			this.panel1.Controls.Add(this.underlineButton);
+			this.panel1.Controls.Add(this.colorStrip);
+			this.panel1.Location = new System.Drawing.Point(7, 45);
+			this.panel1.Name = "panel1";
+			this.panel1.Padding = new System.Windows.Forms.Padding(30, 30, 30, 10);
+			this.panel1.Size = new System.Drawing.Size(495, 377);
+			this.panel1.TabIndex = 25;
+			// 
 			// StyleDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(503, 404);
-			this.Controls.Add(this.headingBox);
-			this.Controls.Add(this.deleteButton);
-			this.Controls.Add(this.namesBox);
-			this.Controls.Add(this.okButton);
-			this.Controls.Add(this.cancelButton);
-			this.Controls.Add(this.previewBox);
-			this.Controls.Add(this.spaceAfterSpinner);
-			this.Controls.Add(this.spaceBeforeSpinner);
-			this.Controls.Add(this.colorStrip);
-			this.Controls.Add(this.underlineButton);
-			this.Controls.Add(this.italicButton);
-			this.Controls.Add(this.boldButton);
-			this.Controls.Add(this.fontLabel);
-			this.Controls.Add(this.nameBox);
-			this.Controls.Add(this.nameLabel);
-			this.Controls.Add(this.afterLabel);
-			this.Controls.Add(this.beforeLabel);
-			this.Controls.Add(this.sizeBox);
-			this.Controls.Add(this.familyBox);
+			this.ClientSize = new System.Drawing.Size(509, 430);
+			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.mainTools);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "StyleDialog";
-			this.Padding = new System.Windows.Forms.Padding(30);
+			this.Padding = new System.Windows.Forms.Padding(4, 4, 0, 0);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Custom Styles";
 			this.Shown += new System.EventHandler(this.StyleDialog_Shown);
@@ -597,8 +631,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
+			this.mainTools.ResumeLayout(false);
+			this.mainTools.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -625,7 +662,10 @@
 		private System.Windows.Forms.ComboBox namesBox;
 		private System.Windows.Forms.ToolStripMenuItem transparentToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem defaultBlackToolStripMenuItem;
-		private System.Windows.Forms.Button deleteButton;
 		private System.Windows.Forms.CheckBox headingBox;
+		private System.Windows.Forms.ToolStrip mainTools;
+		private System.Windows.Forms.ToolStripButton reorderButton;
+		private System.Windows.Forms.ToolStripButton deleteButton;
+		private System.Windows.Forms.Panel panel1;
 	}
 }

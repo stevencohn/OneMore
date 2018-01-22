@@ -41,6 +41,7 @@ namespace River.OneMoreAddIn
 			updatable = true;
 
 			Text = "New Custom Style";
+			reorderButton.Enabled = false;
 
 			this.selection = style;
 			ShowSelection();
@@ -70,8 +71,6 @@ namespace River.OneMoreAddIn
 			namesBox.Size = nameBox.Size;
 			namesBox.Visible = true;
 			nameBox.Visible = false;
-
-			deleteButton.Visible = true;
 
 			namesBox.SelectedIndex = 0;
 		}

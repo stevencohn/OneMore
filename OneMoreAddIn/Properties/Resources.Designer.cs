@@ -152,10 +152,10 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;CustomStyles&gt;
         ///  &lt;Styles&gt;
-        ///    &lt;Style name=&quot;Heading 1&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;20&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff464646&quot; spaceBefore=&quot;14&quot; /&gt;
-        ///    &lt;Style name=&quot;Heading 2&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;18&quot; fontStyle=&quot;Regular&quot; color=&quot;#ffe67832&quot; spaceBefore=&quot;14&quot; /&gt;
-        ///    &lt;Style name=&quot;Heading 3&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;16&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff823d0a&quot; spaceBefore=&quot;12&quot; /&gt;
-        ///    &lt;Style name=&quot;Heading 4&quot; fontFamily=&quot;Calibri Light&quot; fon [rest of string was truncated]&quot;;.
+        ///    &lt;Style name=&quot;Heading 1&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;20&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff464646&quot; spaceBefore=&quot;14&quot; isHeading=&quot;true&quot; /&gt;
+        ///    &lt;Style name=&quot;Heading 2&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;18&quot; fontStyle=&quot;Regular&quot; color=&quot;#ffe67832&quot; spaceBefore=&quot;14&quot; isHeading=&quot;true&quot; /&gt;
+        ///    &lt;Style name=&quot;Heading 3&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;16&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff823d0a&quot; spaceBefore=&quot;12&quot; isHeading=&quot;true&quot; /&gt;
+        ///    &lt;Sty [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CustomStyles {
             get {
@@ -343,6 +343,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Pushpin {
             get {
                 object obj = ResourceManager.GetObject("Pushpin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Reorder {
+            get {
+                object obj = ResourceManager.GetObject("Reorder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
