@@ -51,8 +51,6 @@ namespace River.OneMoreAddIn
 
 		private void _Execute (char c)
 		{
-			System.Diagnostics.Debugger.Launch();
-
 			using (var manager = new ApplicationManager())
 			{
 				var page = manager.CurrentPage();
