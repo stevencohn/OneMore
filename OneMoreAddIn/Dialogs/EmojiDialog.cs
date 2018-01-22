@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn
 		{
 			InitializeComponent();
 
-			iconBox.ItemHeight = 26;
+			iconBox.ItemHeight = 22;
 			iconBox.Items.AddRange(icons.Select(e => e.name).ToArray());
 			iconBox.SelectedIndex = 0;
 		}
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn
 
 		private void iconBox_MeasureItem (object sender, MeasureItemEventArgs e)
 		{
-			e.ItemHeight = 26;
+			e.ItemHeight = 22;
 		}
 
 		private void iconBox_DrawItem (object sender, DrawItemEventArgs e)

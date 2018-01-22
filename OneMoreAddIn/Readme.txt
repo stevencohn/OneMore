@@ -28,6 +28,9 @@ https://bert-toolkit.com/imagemso-list.html
 Top-Most
 https://stackoverflow.com/questions/1309855/what-is-powerful-way-to-force-a-form-to-bring-front
 
+High DPI
+https://stackoverflow.com/questions/42838120/how-to-proper-auto-scale-toolstrip-in-net
+
 ----
 
 * OneNote -> Options -> Advanced -> Other:Show add-in user interface errors

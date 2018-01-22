@@ -152,10 +152,10 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;CustomStyles&gt;
         ///  &lt;Styles&gt;
-        ///    &lt;Style name=&quot;Heading 1&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;20&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff464646&quot; spaceBefore=&quot;14&quot; /&gt;
-        ///    &lt;Style name=&quot;Heading 2&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;18&quot; fontStyle=&quot;Regular&quot; color=&quot;#ffe67832&quot; spaceBefore=&quot;14&quot; /&gt;
-        ///    &lt;Style name=&quot;Heading 3&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;16&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff823d0a&quot; spaceBefore=&quot;12&quot; /&gt;
-        ///    &lt;Style name=&quot;Heading 4&quot; fontFamily=&quot;Calibri Light&quot; fon [rest of string was truncated]&quot;;.
+        ///    &lt;Style name=&quot;Heading 1&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;20&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff464646&quot; spaceBefore=&quot;14&quot; isHeading=&quot;true&quot; /&gt;
+        ///    &lt;Style name=&quot;Heading 2&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;18&quot; fontStyle=&quot;Regular&quot; color=&quot;#ffe67832&quot; spaceBefore=&quot;14&quot; isHeading=&quot;true&quot; /&gt;
+        ///    &lt;Style name=&quot;Heading 3&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;16&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff823d0a&quot; spaceBefore=&quot;12&quot; isHeading=&quot;true&quot; /&gt;
+        ///    &lt;Sty [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CustomStyles {
             get {
@@ -198,6 +198,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap DoubleLine {
             get {
                 object obj = ResourceManager.GetObject("DoubleLine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DownArrow {
+            get {
+                object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -348,6 +358,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Reorder {
+            get {
+                object obj = ResourceManager.GetObject("Reorder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;customUI
         ///  xmlns=&quot;http://schemas.microsoft.com/office/2006/01/customui&quot;
@@ -360,8 +380,7 @@ namespace River.OneMoreAddIn.Properties {
         ///          &lt;gallery
         ///            id=&quot;styleGallery&quot; label=&quot;Custom Styles&quot;  columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
         ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
-        ///            getItemID=&quot;GetStyleGalleryItemId&quot;
-        ///      [rest of string was truncated]&quot;;.
+        ///            getItemID=&quot;GetStyleGalleryI [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
@@ -451,6 +470,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap Underline {
             get {
                 object obj = ResourceManager.GetObject("Underline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UpArrow {
+            get {
+                object obj = ResourceManager.GetObject("UpArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

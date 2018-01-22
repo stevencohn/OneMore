@@ -24,16 +24,14 @@ namespace River.OneMoreAddIn
 			using (var dialog = new StyleDialog(styles))
 			{
 				result = dialog.ShowDialog(owner);
-			}
 
-			if (result == DialogResult.OK)
-			{
-				// strip out styles marked for deletion
-				styles.RemoveAll(s => s.Name.Length == 0);
-
-				provider.SaveStyles(styles);
-
-				ribbon.Invalidate();
+				if (result == DialogResult.OK)
+				{
+					// save styles to remove delete items and preserve ordering
+					styles = dialog.GetStyles();
+					provider.SaveStyles(styles);
+					ribbon.Invalidate();
+				}
 			}
 		}
 	}

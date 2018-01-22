@@ -21,7 +21,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B1B31BD82AB74C4249693AE57A161177"
+        "MsmKey" = "8:_6F4F15F928A4ED0AE386547AB9D0DBF7"
         "OwnerKey" = "8:_692D7E391D074D36AD2530720FB8D6C4"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,7 +40,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B1B31BD82AB74C4249693AE57A161177"
+        "OwnerKey" = "8:_6F4F15F928A4ED0AE386547AB9D0DBF7"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -170,14 +170,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B1B31BD82AB74C4249693AE57A161177"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6F4F15F928A4ED0AE386547AB9D0DBF7"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B1B31BD82AB74C4249693AE57A161177"
+                    "_6F4F15F928A4ED0AE386547AB9D0DBF7"
                     {
                     "Name" = "8:System.ValueTuple.dll"
                     "Attributes" = "3:512"
@@ -343,15 +343,15 @@
         {
         "Name" = "8:OneMoreAddIn"
         "ProductName" = "8:OneMoreAddIn"
-        "ProductCode" = "8:{27377754-4FE4-4139-B2E0-222EAC181509}"
-        "PackageCode" = "8:{7B8D02B5-5A2B-4A12-A009-97BE0D824DC1}"
+        "ProductCode" = "8:{E55D9F35-0E1D-43F1-B00D-B80DE890E6AE}"
+        "PackageCode" = "8:{6F02DE3E-1ADC-4717-9463-C16CD49DDDD3}"
         "UpgradeCode" = "8:{058F6D04-E0D0-4984-B6B7-7FE0C581680E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.5.2"
+        "ProductVersion" = "8:1.5.3"
         "Manufacturer" = "8:River"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
