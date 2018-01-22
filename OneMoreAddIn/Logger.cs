@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn
 		void WriteLine ();
 		void WriteLine (string message);
 		void WriteLine (Exception exc);
+		void WriteLine (string message, Exception exc);
 	}
 
 
@@ -181,6 +182,13 @@ namespace River.OneMoreAddIn
 				writer.Flush();
 				isNewline = true;
 			}
+		}
+
+
+		public void WriteLine (string message, Exception exc)
+		{
+			WriteLine(message);
+			WriteLine(exc);
 		}
 
 

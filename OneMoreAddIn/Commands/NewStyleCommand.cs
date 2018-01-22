@@ -26,6 +26,19 @@ namespace River.OneMoreAddIn
 
 		public void Execute ()
 		{
+			try
+			{
+				_Execute();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Error executing NewStyleCommand", exc);
+			}
+		}
+
+
+		private void _Execute ()
+		{
 			// infer contextual style
 
 			using (var manager = new ApplicationManager())
@@ -66,13 +79,16 @@ namespace River.OneMoreAddIn
 							}
 						}
 
-						GetTextStyle(selection);
+						if (selection != null)
+						{
+							GetTextStyle(selection);
 
-						// one:OE possibles::
-						// font-family:Calibri;font-size:11.0pt;color:red
-						ReadSpanStyles(selection.Parent);
+							// one:OE possibles::
+							// font-family:Calibri;font-size:11.0pt;color:red
+							ReadSpanStyles(selection.Parent);
 
-						GetQuickStyle(selection.Parent, page);
+							GetQuickStyle(selection.Parent, page);
+						}
 					}
 				}
 			}
@@ -112,7 +128,7 @@ namespace River.OneMoreAddIn
 		// font-weigth:bold;font-style:italic;text-decoration:underline;background:#000000
 		private void GetDataStyle (XElement element)
 		{
-			var cdata = element.DescendantNodes()
+			var cdata = element.DescendantNodes()?
 				.Where(e => e.NodeType == XmlNodeType.CDATA)
 				.FirstOrDefault() as XCData;
 

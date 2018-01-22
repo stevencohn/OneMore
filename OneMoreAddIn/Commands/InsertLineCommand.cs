@@ -4,9 +4,10 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
+	using System.Drawing;
 	using System.Linq;
 	using System.Xml.Linq;
-	using Microsoft.Office.Interop.OneNote;
 
 
 	internal class InsertLineCommand : Command
@@ -38,6 +39,20 @@ namespace River.OneMoreAddIn
 
 		public void Execute (char c)
 		{
+			try
+			{
+				_Execute(c);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Error executing InsertLineCommand", exc);
+			}
+		}
+
+		private void _Execute (char c)
+		{
+			System.Diagnostics.Debugger.Launch();
+
 			using (var manager = new ApplicationManager())
 			{
 				var page = manager.CurrentPage();
@@ -50,16 +65,58 @@ namespace River.OneMoreAddIn
 
 				if (current != null)
 				{
+					string line = string.Empty.PadRight(90, c);
+
+					EnsurePageWidth(page, line, (IntPtr)manager.Application.Windows.CurrentWindow.WindowHandle);
+
 					current.AddAfterSelf(
 						new XElement(ns + "OE",
 							new XElement(ns + "T",
 								new XAttribute("style", "font-family:'Courier New';font-size:10.0pt"),
-								new XCData(string.Empty.PadRight(90, c) + "<br/>")
+								new XCData(line + "<br/>")
 							)
 						));
 				}
 
 				manager.UpdatePageContent(page);
+			}
+		}
+
+
+		private void EnsurePageWidth (XElement page, string line, IntPtr handle)
+		{
+			// detect page width
+
+			var ns = page.GetNamespaceOfPrefix("one");
+
+			var sizeElement =
+				(from e in page.Descendants(ns + "T")
+				 let a = e.Ancestors(ns + "Outline").Elements(ns + "Size").FirstOrDefault()
+				 where e.Attributes("selected").Any(a => a.Value.Equals("all"))
+				 select a).FirstOrDefault();
+
+			if (sizeElement != null)
+			{
+				var widthAttribute = sizeElement.Attribute("width");
+				if (widthAttribute != null)
+				{
+					var width = double.Parse(widthAttribute.Value);
+
+					// measure line to ensure page width is sufficient
+
+					using (var g = Graphics.FromHwnd(handle))
+					{
+						using (var font = new Font("Courier New", 10f))
+						{
+							var size = g.MeasureString(line, font);
+							if (size.Width > width)
+							{
+								var points = size.Width * 72 / g.DpiX;
+								widthAttribute.Value = (points).ToString();
+							}
+						}
+					}
+				}
 			}
 		}
 	}
