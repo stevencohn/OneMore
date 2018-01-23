@@ -16,10 +16,11 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public string WhatText => whatBox.Text;
-
+		public bool MatchCase => matchBox.Checked;
 
 		public string WithText => withBox.Text;
+
+		public string WhatText => whatBox.Text;
 
 
 		private void SearchAndReplaceDialog_Shown (object sender, EventArgs e)
