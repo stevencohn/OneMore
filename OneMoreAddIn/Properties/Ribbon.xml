@@ -59,7 +59,8 @@
             <button
               id="replaceButton"
               imageMso="ReplaceDialog"
-              label="Search and Replace"/>
+              label="Search and Replace"
+              onAction="SearchAndReplaceCmd"/>
             <menuSeparator id="sep1" title="Fonts"/>
             <button
               id="uppercaseButton"
