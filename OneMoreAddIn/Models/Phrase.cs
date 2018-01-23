@@ -49,7 +49,8 @@ namespace River.OneMoreAddIn
 				return;
 
 			var data = string.Empty;
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var ctext = cdata.Value.Replace("<br>", "<br/>");
+			var wrap = XElement.Parse("<w>" + ctext + "</w>");
 			foreach (var node in wrap.Nodes())
 			{
 				if (node.NodeType == XmlNodeType.Text)
@@ -67,7 +68,8 @@ namespace River.OneMoreAddIn
 			if (IsEmpty)
 				return string.Empty;
 
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var ctext = cdata.Value.Replace("<br>", "<br/>");
+			var wrap = XElement.Parse("<w>" + ctext + "</w>");
 			var first = wrap.Nodes().First();
 
 			first.Remove();
@@ -89,7 +91,8 @@ namespace River.OneMoreAddIn
 			if (IsEmpty)
 				return string.Empty;
 
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var ctext = cdata.Value.Replace("<br>", "<br/>");
+			var wrap = XElement.Parse("<w>" + ctext + "</w>");
 			var last = wrap.Nodes().Last();
 
 			last.Remove();
@@ -112,7 +115,8 @@ namespace River.OneMoreAddIn
 			if (IsEmpty)
 				return null;
 
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var ctext = cdata.Value.Replace("<br>", "<br/>"); // ensure proper XML
+			var wrap = XElement.Parse("<w>" + ctext + "</w>");
 			var ns = wrap.GetDefaultNamespace();
 
 			CssInfo info = null;

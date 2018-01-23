@@ -7,11 +7,12 @@ A OneNote add-in with these features:
 * Collapse the page hierarchy to see only top-level pages
 * Change selected text to UPPERCASE
 * Change selected text to lowercase
+* Disable spell-check on the current page
 * Insert single horizontal line
 * Insert double horizontal line
 * Insert Table of Contents including all headers on page
 * Increase/Decrease the font size of all content in the current page
-* Disable spell-check on the current page
+* Search and replace text on the current page
 * View and edit page XML (a diagnostic, debugging, advanced-user tool)
 
 All commands are accessed by two new buttons added to the main ribbon bar.

@@ -147,7 +147,8 @@ namespace River.OneMoreAddIn
 		{
 			string data = string.Empty;
 
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var ctext = cdata.Value.Replace("<br>", "<br/>");
+			var wrap = XElement.Parse("<w>" + ctext + "</w>");
 			foreach (var node in wrap.Nodes())
 			{
 				if (node.NodeType == XmlNodeType.Text)

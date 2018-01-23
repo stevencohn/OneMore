@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn
 
 			var comparison = matchCase ? StringComparison.InvariantCulture : StringComparison.InvariantCultureIgnoreCase;
 
-			var data = cdata.Value;
+			var data = cdata.Value.Replace("<br>", "<br/>");
 			var text = XElement.Parse("<w>" + data + "</w>").Value;
 			var start = text.IndexOf(whatText, comparison);
 			if (start < 0)

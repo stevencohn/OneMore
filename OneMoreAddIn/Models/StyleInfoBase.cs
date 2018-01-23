@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn
 
 		protected string FormatColor (string color)
 		{
-			if (color == null)
+			if ((color == null) || (color == "automatic"))
 			{
 				return null;
 			}
@@ -137,12 +137,12 @@ namespace River.OneMoreAddIn
 			var i = space.IndexOf('.');
 			if (i < 0)
 			{
-				return space + ".0";
+				return int.Parse("0" + space).ToString();
 			}
 
 			if (double.TryParse(space, out var s))
 			{
-				return s.ToString("#.0");
+				return ((int)s).ToString();
 			}
 
 			return space;
