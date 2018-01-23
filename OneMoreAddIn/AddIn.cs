@@ -492,6 +492,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<NoSpellCheckCommand>().Execute();
 		}
 
+		public void SearchAndReplaceCmd (IRibbonControl control)
+		{
+			factory.GetCommand<SearchAndReplaceCommand>().Execute();
+		}
+
 		public void ShowAboutCmd (IRibbonControl control)
 		{
 			factory.GetCommand<ShowAboutCommand>().Execute();

@@ -105,6 +105,7 @@
     <Compile Include="Commands\InsertTocCommand.cs" />
     <Compile Include="Commands\NewStyleCommand.cs" />
     <Compile Include="Commands\NoSpellCheckCommand.cs" />
+    <Compile Include="Commands\SearchAndReplaceCommand.cs" />
     <Compile Include="Commands\ShowAboutCommand.cs" />
     <Compile Include="Commands\ApplyStyleCommand.cs" />
     <Compile Include="Commands\ToCaseCommand.cs" />
@@ -116,6 +117,12 @@
     </Compile>
     <Compile Include="Dialogs\ScaledToolStrip.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SearchAndReplaceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SearchAndReplaceDialog.Designer.cs">
+      <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
@@ -230,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SearchAndReplaceDialog.resx">
+      <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\StyleDialog.resx">
       <DependentUpon>StyleDialog.cs</DependentUpon>

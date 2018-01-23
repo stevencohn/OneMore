@@ -171,7 +171,7 @@ namespace River.OneMoreAddIn
 					var key = pair[0].Trim();
 					if (!attributes.ContainsKey(key))
 					{
-						attributes.Add(key, pair[1].Trim());
+						attributes.Add(key, pair[1].Replace("'", string.Empty).Trim());
 					}
 				}
 			}
