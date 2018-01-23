@@ -16,6 +16,12 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public string WhatText => whatBox.Text;
+
+
+		public string WithText => withBox.Text;
+
+
 		private void SearchAndReplaceDialog_Shown (object sender, EventArgs e)
 		{
 			UIHelper.SetForegroundWindow(this);

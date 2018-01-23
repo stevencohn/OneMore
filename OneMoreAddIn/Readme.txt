@@ -37,6 +37,20 @@ https://stackoverflow.com/questions/42838120/how-to-proper-auto-scale-toolstrip-
 
 ----
 
+Direct development:
+
+The installer registers the addin in the Regstry by pointing to
+the installation folder under %ProgramFiles(x86)%\River\OneMore
+To avoid continually copying to that folder on every compilation, manually alter the
+Registry setting to point to the project output directory, something like...
+
+	Windows Registry Editor Version 5.00
+
+	[HKEY_CLASSES_ROOT\WOW6432Node\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\InprocServer32]
+	"CodeBase"="C:\\River\\OneMore\\OneMore\\OneMoreAddIn\\bin\\x86\\Debug\\River.OneMoreAddIn.dll"
+
+----
+
 Registry usage:
 
 HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\OneNote (Load Times)

@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn
 
 			// Find all TextRanges (one:T) - each and every one!
 
-			var ranges = page.Element(ns + "Outline").Descendants(ns + "T");
+			var ranges = page.Elements(ns + "Outline")?.Descendants(ns + "T");
 			if (ranges?.Count() > 0)
 			{
 				foreach (var range in ranges)
