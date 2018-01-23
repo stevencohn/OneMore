@@ -74,12 +74,13 @@
 			this.copyLabel.Name = "copyLabel";
 			this.copyLabel.Size = new System.Drawing.Size(283, 25);
 			this.copyLabel.TabIndex = 3;
-			this.copyLabel.Text = "Copyright @ 2016 Steven M Cohn";
+			this.copyLabel.Text = "Copyright @ 2018 Steven M Cohn";
 			// 
 			// okButton
 			// 
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(412, 167);
+			this.okButton.Location = new System.Drawing.Point(454, 167);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(104, 42);
 			this.okButton.TabIndex = 4;
@@ -94,7 +95,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(528, 221);
+			this.ClientSize = new System.Drawing.Size(570, 221);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.copyLabel);
 			this.Controls.Add(this.versionLabel);

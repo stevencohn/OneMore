@@ -111,6 +111,9 @@ namespace River.OneMoreAddIn
 							{
 								var points = size.Width * 72 / g.DpiX;
 								widthAttribute.Value = (points).ToString();
+
+								// must include isSetByUser or width doesn't take effect!
+								sizeElement.Add(new XAttribute("isSetByUser", "true")); 
 							}
 						}
 					}
