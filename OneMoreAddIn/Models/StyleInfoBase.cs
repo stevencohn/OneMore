@@ -70,12 +70,19 @@ namespace River.OneMoreAddIn
 
 		protected string FormatColor (string color)
 		{
-			if ((color == null) || (color == "automatic"))
+			if (color == null)
 			{
 				return null;
 			}
 
-			if (color.Length == 9)
+			// look for "automatic" or "yellow"...
+			if (char.IsLetter(color[0]))
+			{
+				return color;
+			}
+
+			// if #rrggbb
+			if (color.Length == 7)
 			{
 				return color;
 			}
@@ -85,7 +92,7 @@ namespace River.OneMoreAddIn
 				color = color.Substring(1);
 			}
 
-			while (color.Length < 8)
+			while (color.Length < 6)
 			{
 				color = "f" + color;
 			}

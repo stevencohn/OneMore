@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn
 
 		private void Evaluate (ApplicationManager manager)
 		{
-			System.Diagnostics.Debugger.Launch();
+			//System.Diagnostics.Debugger.Launch();
 
 
 			var headings = new List<Heading>();
@@ -119,9 +119,13 @@ namespace River.OneMoreAddIn
 								}
 							}
 
+							// capture only first-level one:T text ranges, ignoring OEChildren
+							// which would represent something like a bullet list or indented child
+							var text = new XElement("x", candidate.Elements(ns + "T")).Value;
+
 							var heading = new Heading()
 							{
-								Text = ClearFormatting(candidate.Value),
+								Text = ClearFormatting(text),
 								Link = link,
 								Level = template.Level
 							};
