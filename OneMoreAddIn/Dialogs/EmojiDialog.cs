@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				e.Graphics.DrawImageUnscaled(icon.image, e.Bounds.Location.X + 1, e.Bounds.Location.Y + 1);
+				e.Graphics.DrawImage(icon.image, e.Bounds.Location.X + 1, e.Bounds.Location.Y + 1);
 				e.Graphics.DrawString(icon.name, DefaultFont, brush, e.Bounds.Location.X + 28, e.Bounds.Location.Y + 1);
 			}
 			catch
