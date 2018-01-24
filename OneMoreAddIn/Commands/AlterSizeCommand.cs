@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn
 						var delta = increase ? 1 : -1;
 						var defaultSize = ParseSize(info.FontSize) + delta;
 
-						var data = RebuildCDdata(phrase.CData, defaultSize, delta);
+						var data = Rebuild(phrase, defaultSize, delta);
 
 						range.FirstNode.ReplaceWith(new XCData(data));
 					}
@@ -143,11 +143,11 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public string RebuildCDdata (XCData cdata, int defaultSize, int delta)
+		public string Rebuild (Phrase phrase, int defaultSize, int delta)
 		{
 			string data = string.Empty;
 
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var wrap = phrase.GetSanitizedWrapper();
 			foreach (var node in wrap.Nodes())
 			{
 				if (node.NodeType == XmlNodeType.Text)
@@ -156,18 +156,18 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					var di = new CssInfo();
-					CollectFromSpan((XElement)node, di);
-					if (di.FontSize == null)
+					var info = new CssInfo();
+					CollectFromSpan((XElement)node, info);
+					if (info.FontSize == null)
 					{
-						di.FontSize = defaultSize.ToString("#.0") + "pt";
+						info.FontSize = defaultSize.ToString("#.0") + "pt";
 					}
 					else
 					{
-						di.FontSize = (ParseSize(di.FontSize) + delta).ToString("#.0") + "pt";
+						info.FontSize = (ParseSize(info.FontSize) + delta).ToString("#.0") + "pt";
 					}
 
-					data += "<span style=" + di.ToCss() + ">" + ((XElement)node).Value + "</span>";
+					data += "<span style=" + info.ToCss() + ">" + ((XElement)node).Value + "</span>";
 				}
 			}
 

@@ -46,10 +46,13 @@ namespace River.OneMoreAddIn
 		public void ClearFormatting ()
 		{
 			if (IsEmpty)
+			{
 				return;
+			}
 
 			var data = string.Empty;
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var wrap = GetSanitizedWrapper();
+
 			foreach (var node in wrap.Nodes())
 			{
 				if (node.NodeType == XmlNodeType.Text)
@@ -65,11 +68,12 @@ namespace River.OneMoreAddIn
 		public string ExtractFirstWord ()
 		{
 			if (IsEmpty)
+			{
 				return string.Empty;
+			}
 
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var wrap = GetSanitizedWrapper();
 			var first = wrap.Nodes().First();
-
 			first.Remove();
 
 			using (var reader = wrap.CreateReader())
@@ -87,11 +91,12 @@ namespace River.OneMoreAddIn
 		public string ExtractLastWord ()
 		{
 			if (IsEmpty)
+			{
 				return string.Empty;
+			}
 
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var wrap = GetSanitizedWrapper();
 			var last = wrap.Nodes().Last();
-
 			last.Remove();
 
 			using (var reader = wrap.CreateReader())
@@ -110,9 +115,11 @@ namespace River.OneMoreAddIn
 		public CssInfo GetStyleInfo ()
 		{
 			if (IsEmpty)
+			{
 				return null;
+			}
 
-			var wrap = XElement.Parse("<w>" + cdata.Value + "</w>");
+			var wrap = GetSanitizedWrapper();
 			var ns = wrap.GetDefaultNamespace();
 
 			CssInfo info = null;
@@ -141,6 +148,19 @@ namespace River.OneMoreAddIn
 			}
 
 			return info;
+		}
+
+
+		public XElement GetSanitizedWrapper ()
+		{
+			// ensure proper XML
+
+			var ctext = cdata.Value
+				.Replace("<br>", "<br/>")
+				.Replace("lang=yo", "lang=\"yo\"")
+				.Replace("&nbsp;", " ");
+
+			return XElement.Parse("<w>" + ctext + "</w>");
 		}
 	}
 }

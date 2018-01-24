@@ -75,7 +75,14 @@ namespace River.OneMoreAddIn
 				return null;
 			}
 
-			if (color.Length == 9)
+			// look for "automatic" or "yellow"...
+			if (char.IsLetter(color[0]))
+			{
+				return color;
+			}
+
+			// if #rrggbb
+			if (color.Length == 7)
 			{
 				return color;
 			}
@@ -85,7 +92,7 @@ namespace River.OneMoreAddIn
 				color = color.Substring(1);
 			}
 
-			while (color.Length < 8)
+			while (color.Length < 6)
 			{
 				color = "f" + color;
 			}
@@ -137,12 +144,12 @@ namespace River.OneMoreAddIn
 			var i = space.IndexOf('.');
 			if (i < 0)
 			{
-				return space + ".0";
+				return int.Parse("0" + space).ToString();
 			}
 
 			if (double.TryParse(space, out var s))
 			{
-				return s.ToString("#.0");
+				return ((int)s).ToString();
 			}
 
 			return space;

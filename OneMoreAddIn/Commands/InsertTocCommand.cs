@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -32,6 +33,19 @@ namespace River.OneMoreAddIn
 
 		public void Execute ()
 		{
+			try
+			{
+				_Execute();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Error executing InsertTocCommand", exc);
+			}
+		}
+
+
+		private void _Execute ()
+		{
 			using (var manager = new ApplicationManager())
 			{
 				page = manager.CurrentPage();
@@ -49,6 +63,9 @@ namespace River.OneMoreAddIn
 
 		private void Evaluate (ApplicationManager manager)
 		{
+			//System.Diagnostics.Debugger.Launch();
+
+
 			var headings = new List<Heading>();
 			var templates = GetHeadingTemplates();
 
@@ -102,9 +119,13 @@ namespace River.OneMoreAddIn
 								}
 							}
 
+							// capture only first-level one:T text ranges, ignoring OEChildren
+							// which would represent something like a bullet list or indented child
+							var text = new XElement("x", candidate.Elements(ns + "T")).Value;
+
 							var heading = new Heading()
 							{
-								Text = ClearFormatting(candidate.Value),
+								Text = ClearFormatting(text),
 								Link = link,
 								Level = template.Level
 							};
@@ -146,7 +167,7 @@ namespace River.OneMoreAddIn
 			// collect custom heading styles
 
 			var customs = new StylesProvider()
-				.Filter(e => e.Attributes("isHeading").Any(a => a.Value.Equals("true")));
+				.Filter(e => e.Attributes("isHeading").Any(a => a.Value.ToLower().Equals("true")));
 
 			if (customs?.Count() > 0)
 			{
@@ -203,7 +224,9 @@ namespace River.OneMoreAddIn
 		public string ClearFormatting (string text)
 		{
 			var clear = string.Empty;
-			var wrap = XElement.Parse("<w>" + text + "</w>");
+
+			var ctext = text.Replace("<br>", "<br/>");
+			var wrap = XElement.Parse("<w>" + ctext + "</w>");
 			foreach (var node in wrap.Nodes())
 			{
 				if (node.NodeType == XmlNodeType.Text)

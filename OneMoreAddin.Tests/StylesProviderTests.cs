@@ -77,7 +77,8 @@ namespace OneMoreAddin.Tests
 		{
 			var provider = new StylesProvider();
 
-			var styles = provider.Filter(f => f.Attributes("isHeading").Any(a => a.Value.Equals("true")));
+			var styles = provider.Filter(
+				f => f.Attributes("isHeading").Any(a => a.Value.ToLower().Equals("true")));
 
 			Assert.IsNotNull(styles);
 			Assert.AreEqual(6, styles.Count());
