@@ -112,7 +112,11 @@ namespace River.OneMoreAddIn
 
 			nameBox.Text = selection.Name;
 			familyBox.Text = selection.Font.FontFamily.Name;
-			sizeBox.Text = ((int)selection.Font.Size).ToString();
+
+			if (selection.Font.Size % 1 == 0)
+				sizeBox.Text = ((int)selection.Font.Size).ToString();
+			else
+				sizeBox.Text = selection.Font.Size.ToString("#.0");
 
 			boldButton.Checked = selection.Font.Bold;
 			italicButton.Checked = selection.Font.Italic;

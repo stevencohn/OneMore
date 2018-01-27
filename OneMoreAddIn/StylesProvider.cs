@@ -297,7 +297,7 @@ namespace River.OneMoreAddIn
 			var element = new XElement("Style",
 				new XAttribute("name", custom.Name),
 				new XAttribute("fontFamily", custom.Font.FontFamily.Name),
-				new XAttribute("fontSize", (int)custom.Font.Size),
+				new XAttribute("fontSize", custom.Font.Size.ToString("#.0")),
 				new XAttribute("fontStyle", style),
 				new XAttribute("color", "#ff" + colorHex),
 				new XAttribute("spaceBefore", custom.SpaceBefore),

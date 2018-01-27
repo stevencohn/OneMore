@@ -52,9 +52,9 @@
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.headingBox = new System.Windows.Forms.CheckBox();
 			this.mainTools = new River.OneMoreAddIn.ScaledToolStrip();
+			this.loadButton = new System.Windows.Forms.ToolStripButton();
 			this.reorderButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
-			this.loadButton = new System.Windows.Forms.ToolStripButton();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
@@ -71,8 +71,11 @@
 			this.sizeBox.Items.AddRange(new object[] {
             "8",
             "9",
+            "9.5",
             "10",
+            "10.5",
             "11",
+            "11.5",
             "12",
             "14",
             "16",
@@ -567,6 +570,15 @@
 			this.mainTools.Size = new System.Drawing.Size(504, 38);
 			this.mainTools.TabIndex = 24;
 			// 
+			// loadButton
+			// 
+			this.loadButton.Image = global::River.OneMoreAddIn.Properties.Resources.Open;
+			this.loadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.loadButton.Name = "loadButton";
+			this.loadButton.Size = new System.Drawing.Size(149, 35);
+			this.loadButton.Text = "Load Theme";
+			this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
+			// 
 			// reorderButton
 			// 
 			this.reorderButton.Image = global::River.OneMoreAddIn.Properties.Resources.Reorder;
@@ -585,15 +597,6 @@
 			this.deleteButton.Size = new System.Drawing.Size(102, 35);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-			// 
-			// loadButton
-			// 
-			this.loadButton.Image = global::River.OneMoreAddIn.Properties.Resources.Open;
-			this.loadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.loadButton.Name = "loadButton";
-			this.loadButton.Size = new System.Drawing.Size(149, 35);
-			this.loadButton.Text = "Load Theme";
-			this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
 			// 
 			// panel1
 			// 
