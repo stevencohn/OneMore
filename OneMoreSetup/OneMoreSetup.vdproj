@@ -15,14 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_692D7E391D074D36AD2530720FB8D6C4"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_0D9A7194D7E10569927892DC8B3844B8"
+        "OwnerKey" = "8:_692D7E391D074D36AD2530720FB8D6C4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B1B31BD82AB74C4249693AE57A161177"
-        "OwnerKey" = "8:_692D7E391D074D36AD2530720FB8D6C4"
+        "MsmKey" = "8:_692D7E391D074D36AD2530720FB8D6C4"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -40,7 +40,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B1B31BD82AB74C4249693AE57A161177"
+        "OwnerKey" = "8:_0D9A7194D7E10569927892DC8B3844B8"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -170,14 +170,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B1B31BD82AB74C4249693AE57A161177"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0D9A7194D7E10569927892DC8B3844B8"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B1B31BD82AB74C4249693AE57A161177"
+                    "_0D9A7194D7E10569927892DC8B3844B8"
                     {
                     "Name" = "8:System.ValueTuple.dll"
                     "Attributes" = "3:512"
@@ -343,15 +343,15 @@
         {
         "Name" = "8:OneMoreAddIn"
         "ProductName" = "8:OneMoreAddIn"
-        "ProductCode" = "8:{B9E8337F-CB4A-41B7-AD52-ACD4CEFADB91}"
-        "PackageCode" = "8:{F40453C3-3D73-42A0-994A-90A40A012F97}"
+        "ProductCode" = "8:{B12F6A5E-DF5D-4746-BF95-8AEA25622112}"
+        "PackageCode" = "8:{626CE261-2C87-406B-A0FC-952BA3EB133D}"
         "UpgradeCode" = "8:{058F6D04-E0D0-4984-B6B7-7FE0C581680E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.5.4"
+        "ProductVersion" = "8:1.5.5"
         "Manufacturer" = "8:River"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
