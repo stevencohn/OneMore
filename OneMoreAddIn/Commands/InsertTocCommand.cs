@@ -65,7 +65,6 @@ namespace River.OneMoreAddIn
 		{
 			//System.Diagnostics.Debugger.Launch();
 
-
 			var headings = new List<Heading>();
 			var templates = GetHeadingTemplates();
 
@@ -167,7 +166,8 @@ namespace River.OneMoreAddIn
 			// collect custom heading styles
 
 			var customs = new StylesProvider()
-				.Filter(e => e.Attributes("isHeading").Any(a => a.Value.ToLower().Equals("true")));
+				.Filter(e => e.Attributes("isHeading").Any(a => a.Value.ToLower()
+				.Equals("True", StringComparison.InvariantCultureIgnoreCase)));
 
 			if (customs?.Count() > 0)
 			{

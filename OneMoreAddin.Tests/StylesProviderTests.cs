@@ -4,6 +4,7 @@
 
 namespace OneMoreAddin.Tests
 {
+	using System;
 	using System.IO;
 	using System.Linq;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -78,7 +79,8 @@ namespace OneMoreAddin.Tests
 			var provider = new StylesProvider();
 
 			var styles = provider.Filter(
-				f => f.Attributes("isHeading").Any(a => a.Value.ToLower().Equals("true")));
+				f => f.Attributes("isHeading").Any(a => a.Value.ToLower()
+				.Equals("true", StringComparison.InvariantCultureIgnoreCase)));
 
 			Assert.IsNotNull(styles);
 			Assert.AreEqual(6, styles.Count());
