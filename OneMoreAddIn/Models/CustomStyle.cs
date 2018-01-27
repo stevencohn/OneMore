@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn
 			if (extended)
 			{
 				builder.Append($"font-family:{Font.FontFamily.Name};");
-				builder.Append($"font-size:{(int)Font.Size}pt;");
+				builder.Append($"font-size:{Font.Size.ToString("#.0")}pt;");
 			}
 
 			if ((Font.Style & FontStyle.Bold) > 0) builder.Append("font-weight:bold;");
