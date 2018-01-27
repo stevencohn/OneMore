@@ -108,6 +108,26 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public List<CustomStyle> LoadTheme (string path)
+		{
+			if (File.Exists(path))
+			{
+				try
+				{
+					root = XElement.Load(path);
+					return GetStyles();
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("Error loading theme " + path);
+					Logger.Current.WriteLine(exc);
+				}
+			}
+
+			return null;
+		}
+
+
 		private CustomStyle ReadStyle (XElement template, bool scaling = false)
 		{
 			float scaleFactor = 1f;

@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
 
@@ -42,6 +43,7 @@ namespace River.OneMoreAddIn
 			updatable = true;
 
 			Text = "New Custom Style";
+			loadButton.Enabled = false;
 			reorderButton.Enabled = false;
 			deleteButton.Enabled = false;
 
@@ -59,6 +61,23 @@ namespace River.OneMoreAddIn
 		{
 			Initialize();
 			updatable = true;
+			LoadStyles(styles);
+		}
+
+		private void Initialize ()
+		{
+			InitializeComponent();
+
+			spaceAfterSpinner.Value = 0;
+			spaceBeforeSpinner.Value = 0;
+			familyBox.SelectedIndex = familyBox.Items.IndexOf(DefaultFontFamily);
+			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(DefaultFontSize.ToString());
+		}
+
+
+		private void LoadStyles (List<CustomStyle> styles)
+		{
+			namesBox.Items.Clear();
 
 			if (styles.Count == 0)
 			{
@@ -75,16 +94,6 @@ namespace River.OneMoreAddIn
 			nameBox.Visible = false;
 
 			namesBox.SelectedIndex = 0;
-		}
-
-		private void Initialize ()
-		{
-			InitializeComponent();
-
-			spaceAfterSpinner.Value = 0;
-			spaceBeforeSpinner.Value = 0;
-			familyBox.SelectedIndex = familyBox.Items.IndexOf(DefaultFontFamily);
-			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(DefaultFontSize.ToString());
 		}
 
 
@@ -147,7 +156,7 @@ namespace River.OneMoreAddIn
 				{
 					using (var highBrush = new SolidBrush(selection.Background))
 					{
-						e.Graphics.FillRectangle(highBrush, 
+						e.Graphics.FillRectangle(highBrush,
 							clip.X, clip.Y, Math.Min(clip.Width, sampleSize.Width), clip.Height);
 					}
 				}
@@ -278,6 +287,45 @@ namespace River.OneMoreAddIn
 		}
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+		private void loadButton_Click (object sender, EventArgs e)
+		{
+			using (var dialog = new OpenFileDialog())
+			{
+				dialog.DefaultExt = "xml";
+				dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
+				dialog.Multiselect = false;
+				dialog.Title = "Open Style Theme";
+				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+
+				var path = PathFactory.GetAppDataPath();
+				if (Directory.Exists(path))
+				{
+					dialog.InitialDirectory = path;
+				}
+				else
+				{
+					dialog.InitialDirectory = 
+						Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+				}
+
+				var result = dialog.ShowDialog();
+				if (result == DialogResult.OK)
+				{
+					var styles = new StylesProvider().LoadTheme(dialog.FileName);
+					if (styles?.Count > 0)
+					{
+						LoadStyles(styles);
+					}
+					else
+					{
+						MessageBox.Show(this, "Could not load this theme file?", "Error",
+							MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+			}
+		}
 
 
 		private void reorderButton_Click (object sender, EventArgs e)
