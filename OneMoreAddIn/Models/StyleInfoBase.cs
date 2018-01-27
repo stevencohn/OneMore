@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+using System;
+
 namespace River.OneMoreAddIn
 {
 	internal abstract class StyleInfoBase : IStyleInfo
@@ -56,15 +58,56 @@ namespace River.OneMoreAddIn
 			if (IsBold != other.IsBold) return false;
 			if (IsItalic != other.IsItalic) return false;
 			if (IsUnderline != other.IsUnderline) return false;
-			if (Color != other.Color) return false;
-			if (Highlight != other.Highlight) return false;
-			if (SpaceAfter != other.SpaceAfter) return false;
-			if (SpaceBefore != other.SpaceBefore) return false;
-			if (IsStrikethrough != other.IsStrikethrough) return false;
-			if (IsSubscript != other.IsSubscript) return false;
-			if (IsSuperscript != other.IsSuperscript) return false;
+
+			if (!CompareColors(Color, other.Color)) return false;
+			if (!CompareColors(Highlight, other.Highlight)) return false;
+
+			if (!CompareNullables(SpaceAfter, other.SpaceAfter, "0")) return false;
+			if (!CompareNullables(SpaceBefore, other.SpaceBefore, "0")) return false;
+			if (!CompareNullables(IsStrikethrough, other.IsStrikethrough, false)) return false;
+			if (!CompareNullables(IsSubscript, other.IsSubscript, false)) return false;
+			if (!CompareNullables(IsSuperscript, other.IsSuperscript, false)) return false;
 
 			return true;
+		}
+
+
+		private bool CompareColors (string c1, string c2)
+		{
+			if (!string.IsNullOrEmpty(c1) && !string.IsNullOrEmpty(c2))
+			{
+				if (c1[0] == '#') c1 = c1.Substring(1);
+				if (c2[0] == '#') c2 = c2.Substring(1);
+
+				while (c1.Length < 6) c1 = '0' + c1;
+				while (c2.Length < 6) c2 = '0' + c2;
+
+				if (c1.Length - c2.Length != 0)
+				{
+					if (c1.Length > 6) c1 = c1.Substring(c1.Length - 6);
+					if (c2.Length > 6) c2 = c2.Substring(c2.Length - 6);
+				}
+			}
+
+			return c1 == c2;
+		}
+
+
+		private bool CompareNullables (string v1, string v2, string defaultv)
+		{
+			if (v1 == v2) return true;
+			if ((v1 == null) && (v2 == defaultv)) return true;
+			if ((v2 == null) && (v1 == defaultv)) return true;
+			return false;
+		}
+
+
+		private bool CompareNullables (bool? v1, bool? v2, bool defaultv)
+		{
+			if (v1 == v2) return true;
+			if ((v1 == null) && (v2 == defaultv)) return true;
+			if ((v2 == null) && (v1 == defaultv)) return true;
+			return false;
 		}
 
 
@@ -94,7 +137,7 @@ namespace River.OneMoreAddIn
 
 			while (color.Length < 6)
 			{
-				color = "f" + color;
+				color = "0" + color;
 			}
 
 			return "#" + color.ToLower();

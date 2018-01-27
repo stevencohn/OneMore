@@ -23,8 +23,11 @@ namespace River.OneMoreAddIn
 				if (style.Contains("Strikeout")) IsStrikethrough = true;
 			}
 
-			IsSuperscript = template.Attribute("isSuperscript")?.Value.Equals("true");
-			IsSubscript = template.Attribute("isSubscript")?.Value.Equals("true");
+			IsSuperscript = template.Attribute("isSuperscript")?.Value
+				.Equals("True", System.StringComparison.InvariantCultureIgnoreCase);
+
+			IsSubscript = template.Attribute("isSubscript")?.Value
+				.Equals("True", System.StringComparison.InvariantCultureIgnoreCase);
 
 			Color = FormatColor(template.Attribute("color")?.Value.ToLower());
 			Highlight = FormatColor(template.Attribute("background")?.Value.ToLower());
@@ -32,7 +35,8 @@ namespace River.OneMoreAddIn
 			SpaceAfter = FormatSpace(template.Attribute("spaceAfter")?.Value);
 			SpaceBefore = FormatSpace(template.Attribute("spaceBefore")?.Value);
 
-			IsHeading = template.Attribute("isHeading")?.Value.Equals("true");
+			IsHeading = template.Attribute("isHeading")?.Value
+				.Equals("True", System.StringComparison.InvariantCultureIgnoreCase);
 		}
 	}
 }

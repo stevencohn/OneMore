@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Xml.Linq;
 
 
@@ -55,7 +56,7 @@ namespace River.OneMoreAddIn
 				a = element.Attribute("bold");
 				if (a != null)
 				{
-					IsBold = a.Value.Equals("true");
+					IsBold = a.Value.Equals("True", StringComparison.InvariantCultureIgnoreCase);
 				}
 			}
 
@@ -64,7 +65,7 @@ namespace River.OneMoreAddIn
 				a = element.Attribute("italic");
 				if (a != null)
 				{
-					IsItalic = a.Value.Equals("true");
+					IsItalic = a.Value.Equals("True", StringComparison.InvariantCultureIgnoreCase);
 				}
 			}
 
@@ -73,7 +74,7 @@ namespace River.OneMoreAddIn
 				a = element.Attribute("underline");
 				if (a != null)
 				{
-					IsUnderline = a.Value.Equals("true");
+					IsUnderline = a.Value.Equals("True", StringComparison.InvariantCultureIgnoreCase);
 				}
 			}
 
@@ -82,7 +83,7 @@ namespace River.OneMoreAddIn
 				a = element.Attribute("strikethrough");
 				if (a != null)
 				{
-					IsStrikethrough = a.Value.Equals("true");
+					IsStrikethrough = a.Value.Equals("True", StringComparison.InvariantCultureIgnoreCase);
 				}
 			}
 
@@ -91,7 +92,7 @@ namespace River.OneMoreAddIn
 				a = element.Attribute("subscript");
 				if (a != null)
 				{
-					IsSubscript = a.Value.Equals("true");
+					IsSubscript = a.Value.Equals("True", StringComparison.InvariantCultureIgnoreCase);
 				}
 			}
 
@@ -100,7 +101,7 @@ namespace River.OneMoreAddIn
 				a = element.Attribute("superscript");
 				if (a != null)
 				{
-					IsSuperscript = a.Value.Equals("true");
+					IsSuperscript = a.Value.Equals("True", StringComparison.InvariantCultureIgnoreCase);
 				}
 			}
 

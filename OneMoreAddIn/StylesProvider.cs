@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn
 			var aHighColor = template.Attribute("background")?.Value ?? String.Empty;
 			var aSpaceAfter = template.Attribute("spaceAfter")?.Value ?? "0";
 			var aSpaceBefore = template.Attribute("spaceBefore")?.Value ?? "0";
-			var aHeading = template.Attribute("isHeading")?.Value ?? "false";
+			var aHeading = template.Attribute("isHeading")?.Value ?? "False";
 
 			if (!float.TryParse(aSize, out var size))
 			{
