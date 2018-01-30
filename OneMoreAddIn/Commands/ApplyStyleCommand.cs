@@ -87,10 +87,10 @@ namespace River.OneMoreAddIn
 							// cannot apply style to an empty CDATA because OneNote will
 							// strip the styling off, so instead need to apply to parent one:T instead
 
-							var span = selection.Attribute("span");
+							var span = selection.Attribute("style");
 							if (span == null)
 							{
-								selection.Add(new XAttribute("span", style.ToCss(true)));
+								selection.Add(new XAttribute("style", style.ToCss(true)));
 							}
 							else
 							{

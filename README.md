@@ -17,6 +17,12 @@ A OneNote add-in with these features:
 
 All commands are accessed by two new buttons added to the main ribbon bar.
 
+**Prerequisites**
+
+* Developed for Windows 10
+* Microsoft Visual Studio 2017, C#
+* .NET Framework 4.6.1
+
 ---
 
 **OneMore Command Menu**
