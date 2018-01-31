@@ -40,6 +40,9 @@ namespace River.OneMoreAddIn
 		public StyleDialog (CustomStyle style)
 		{
 			Initialize();
+
+			Logger.DesignMode = DesignMode;
+
 			updatable = true;
 
 			Text = "New Custom Style";

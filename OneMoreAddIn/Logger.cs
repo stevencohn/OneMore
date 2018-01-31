@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn
 	internal class Logger : ILogger
 	{
 		private static ILogger instance;
+		private static bool designMode;
 
 		private string path;
 		private bool isNewline;
@@ -40,7 +41,11 @@ namespace River.OneMoreAddIn
 
 		private Logger ()
 		{
-			path = IO.Path.Combine(IO.Path.GetTempPath(), "OneMore.log");
+			if (designMode)
+				path = IO.Path.Combine(IO.Path.GetTempPath(), "OneMore-design.log");
+			else
+				path = IO.Path.Combine(IO.Path.GetTempPath(), "OneMore.log");
+
 			writer = null;
 			isNewline = true;
 			isDisposed = false;
@@ -81,10 +86,13 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public string Path
+		public static bool DesignMode
 		{
-			get { return path; }
+			set => designMode = value;
 		}
+
+
+		public string Path => path;
 
 
 		/// <summary>
