@@ -20,35 +20,38 @@ namespace River.OneMoreAddIn
 		{
 			base.ScaleControl(factor, specified);
 
-			float dpiX;
-			float dpiY;
-
+			SizeF dpiFactor;
 			using (var g = CreateGraphics())
 			{
-				dpiX = g.DpiX;
-				dpiY = g.DpiY;
+				dpiFactor = new SizeF(g.DpiX / 96f, g.DpiY / 96f);
 			}
 
 			//Logger.Current.WriteLine($"factor:{factor} dpiX:{dpiX} dpiY:{dpiY}");
+			//Logger.Current.WriteLine($"scaling width:{ImageScalingSize.Width} height:{ImageScalingSize.Height}");
 
-			if (factor.Width > 1f)
-			{
-				ImageScalingSize = new Size(
-					(int)(ImageScalingSize.Width * factor.Width),
-					(int)(ImageScalingSize.Height * factor.Height));
+			//if (factor.Width > 1f)
+			//{
+			ImageScalingSize = new Size(
+					(int)(ImageScalingSize.Width * dpiFactor.Width),
+					(int)(ImageScalingSize.Height * dpiFactor.Height));
 
-				//Logger.Current.WriteLine($"Rescaled h:{ImageScalingSize.Height} w:{ImageScalingSize.Width}");
-			}
+			//Logger.Current.WriteLine($"Rescaled h:{ImageScalingSize.Height} w:{ImageScalingSize.Width}");
+			//}
 
 			foreach (var item in Items)
 			{
-				var host = item as ToolStripControlHost;
-				if (host != null)
+				if (item is ToolStripControlHost)
 				{
+					var host = item as ToolStripControlHost;
 					if (host.Placement == ToolStripItemPlacement.Overflow)
 					{
-						host.Control.Scale(factor);
+						host.Control.Scale(dpiFactor);
 					}
+				}
+				else if (item is ToolStripItem)
+				{
+					var host = item as ToolStripItem;
+					host.ImageScaling = ToolStripItemImageScaling.None;
 				}
 			}
 		}

@@ -14,7 +14,10 @@ namespace River.OneMoreAddIn
 		{
 			InitializeComponent();
 
+			Logger.DesignMode = DesignMode;
+
 			versionLabel.Text = "Version " + AssemblyInfo.Version;
+			logLabel.Text = ((Logger)Logger.Current).Path;
 		}
 
 
@@ -24,9 +27,14 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void okButton_Click (object sender, System.EventArgs e)
+		private void okButton_Click (object sender, EventArgs e)
 		{
 			Close();
+		}
+
+		private void logLabel_LinkClicked (object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start(logLabel.Text); // e.Link.LinkData.ToString());
 		}
 	}
 }

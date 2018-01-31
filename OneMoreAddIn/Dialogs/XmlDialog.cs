@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn
 		{
 			InitializeComponent();
 
+			Logger.DesignMode = DesignMode;
 			logger = Logger.Current;
 
 			this.Width = (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8);
