@@ -134,29 +134,60 @@ namespace River.OneMoreAddIn
 
 			if (!string.IsNullOrEmpty(cdata?.Value))
 			{
+				// XElement can't handle &nbsp; but it can handle &#160; which is the same thing
+				var clean = cdata.Value.Replace("&nbsp;", "&#160;");
+
 				// whether or not data contains XML, we're wrapping it so we can parse it as xml
-				var wrapper = XElement.Parse("<x>" + cdata.Value + "</x>");
+				var wrapper = XElement.Parse("<x>" + clean + "</x>");
 				var ns = wrapper.GetDefaultNamespace();
 
 				var spans = wrapper.Elements(ns + "span").Where(e => e.Attribute("style") != null);
 				if (spans != null)
 				{
+					string emptyColor = null;
+					string nonEmptyColor = null;
+
 					foreach (var span in spans)
 					{
-						ReadSpanStyles(span);
+						var sstyles = ReadSpanStyles(span);
+
+						if (sstyles.ContainsKey("color"))
+						{
+							if (span.Value.Trim().Length > 0)
+							{
+								nonEmptyColor = sstyles["color"];
+							}
+							else
+							{
+								emptyColor = sstyles["color"];
+							}
+						}
+					}
+
+					// TODO this logic doesn't really work. There are cases where the empty selected="all" one:T
+					// does hold the real color and the sibling one:T might hold both the global color and the
+					// local color but this logic selects the global color instead. Not sure what to do in that
+					// case!
+
+					if ((nonEmptyColor != null) && 
+						attributes.ContainsKey("color") && attributes["color"].Equals(emptyColor))
+					{
+						// prefer non-empty color over empty color when confronted by multiple spans in cdata
+						attributes["color"] = nonEmptyColor;
 					}
 				}
 			}
 		}
 
 
-		private void ReadSpanStyles (XElement element)
+		private Dictionary<string, string> ReadSpanStyles (XElement element)
 		{
-			var ns = element.GetDefaultNamespace();
+			var sstyles = new Dictionary<string, string>();
 
+			var ns = element.GetDefaultNamespace();
 			var csss = element.Attributes(ns + "style").Select(a => a.Value);
 
-			if (csss?.Count() == 0) return;
+			if (csss?.Count() == 0) return sstyles;
 
 			foreach (var css in csss.ToList())
 			{
@@ -171,10 +202,18 @@ namespace River.OneMoreAddIn
 					var key = pair[0].Trim();
 					if (!attributes.ContainsKey(key))
 					{
-						attributes.Add(key, pair[1].Replace("'", string.Empty).Trim());
+						sstyles.Add(key, pair[1].Replace("'", string.Empty).Trim());
 					}
 				}
 			}
+
+			var e = sstyles.GetEnumerator();
+			while (e.MoveNext())
+			{
+				attributes.Add(e.Current.Key, e.Current.Value);
+			}
+
+			return sstyles;
 		}
 
 
