@@ -200,6 +200,10 @@ namespace River.OneMoreAddIn
 					if (a != null && !attributes.ContainsKey("font-family"))
 						attributes.Add("font-family", a.Value);
 
+					a = quick.Attribute("fontColor");
+					if (a != null && !a.Value.Equals("automatic") && !attributes.ContainsKey("color"))
+						attributes.Add("color", a.Value);
+
 					a = quick.Attribute("fontSize");
 					if (a != null && !attributes.ContainsKey("font-size"))
 						attributes.Add("font-size", a.Value);
