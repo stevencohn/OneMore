@@ -51,6 +51,8 @@ namespace River.OneMoreAddIn
 
 		private void _Execute (char c)
 		{
+			//System.Diagnostics.Debugger.Launch();
+
 			using (var manager = new ApplicationManager())
 			{
 				var page = manager.CurrentPage();
@@ -113,12 +115,16 @@ namespace River.OneMoreAddIn
 								widthAttribute.Value = (points).ToString();
 
 								// must include isSetByUser or width doesn't take effect!
-								sizeElement.Add(new XAttribute("isSetByUser", "true")); 
+								if (sizeElement.Attribute("isSetByUser") == null)
+								{
+									sizeElement.Add(new XAttribute("isSetByUser", "true"));
+								}
 							}
 						}
 					}
 				}
 			}
-		}
+		} // EnsurePageWidth
+
 	}
 }

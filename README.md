@@ -24,6 +24,12 @@ All commands are accessed by two new buttons added to the main ribbon bar.
 * .NET Framework 4.6.1
 * Microsoft OneNote 2016 32-bit
 
+**Nuget Dependencies**
+
+* MSTest.TestAdapter
+* MSTest.TestFramework
+* System.ValueType - restore packages before building to avoid compiler errors
+
 ---
 
 **OneMore Command Menu**
