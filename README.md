@@ -20,7 +20,7 @@ All commands are accessed by two new buttons added to the main ribbon bar.
 **Prerequisites**
 
 * Developed for Windows 10
-* Microsoft Visual Studio 2017, C#
+* Microsoft Visual Studio 2017, C# 7
 * .NET Framework 4.6.1
 * Microsoft OneNote 2016 32-bit
 
