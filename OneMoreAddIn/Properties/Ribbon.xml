@@ -61,6 +61,12 @@
               imageMso="ReplaceDialog"
               label="Search and Replace"
               onAction="SearchAndReplaceCmd"/>
+            <button
+              id="trimButton"
+              imageMso="AutoTextGallery"
+              getLabel="GetItemLabel"
+              getScreentip="GetItemScreentip"
+              onAction="TrimCmd"/>
             <menuSeparator id="sep1" title="Fonts"/>
             <button
               id="uppercaseButton"

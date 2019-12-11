@@ -109,6 +109,7 @@
     <Compile Include="Commands\ShowAboutCommand.cs" />
     <Compile Include="Commands\ApplyStyleCommand.cs" />
     <Compile Include="Commands\ToCaseCommand.cs" />
+    <Compile Include="Commands\TrimCommand.cs" />
     <Compile Include="Dialogs\ReorderDialog.cs">
       <SubType>Form</SubType>
     </Compile>

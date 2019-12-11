@@ -516,5 +516,10 @@ namespace River.OneMoreAddIn
 		{
 			factory.GetCommand<ToCaseCommand>().Execute(true);
 		}
+
+		public void TrimCmd(IRibbonControl control)
+		{
+			factory.GetCommand<TrimCommand>().Execute();
+		}
 	}
 }
