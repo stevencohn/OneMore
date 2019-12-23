@@ -18,13 +18,15 @@ A OneNote add-in with these features:
 
 All commands are accessed by two new buttons added to the main ribbon bar.
 
-**Prerequisites**
+**Minimum Prerequisites**
 
 * Developed for Windows 10
 * Microsoft Visual Studio 2017, C# 7
 * Microsoft Visual Studio 2017 Installer Projects extension
 * .NET Framework 4.6.1
 * Microsoft OneNote 2016 32-bit
+
+Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 
 **Nuget Dependencies**
 
