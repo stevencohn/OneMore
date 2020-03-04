@@ -56,5 +56,32 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 
 ![XML Dialog](Screenshots/XmlDialog.jpg)
 
+---
+
+## Developing OneMore
+
+Microsoft' OneNote Developer Reference 
+[is here](https://docs.microsoft.com/en-us/office/client-developer/onenote/onenote-developer-reference).
+
+### Direct Development
+
+To avoid continually copying to the installation folder, you can modify the Registry setting to point to your project build output folder instead. You'll
+need to restart OneNote every time you want to rebuild but it's still easier. T
+The Registry key is here:
+
+    [HKEY_CLASSES_ROOT\WOW6432Node\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\InprocServer32]
+
+and the key would be something like this:
+
+	"CodeBase"="C:\\OneMore\\OneMoreAddIn\\bin\\x86\\Debug\\River.OneMoreAddIn.dll"
+
+*There are additional haphazard notes in the OneMore project folder readme.txt.*
 
 
+### Debugging
+
+To start the debugger, add this line to your code where you want a breakpoint:
+
+    System.Diagnostics.Debugger.Launch();
+
+This will cause Visual Studio to display the "attach debugger" dialog.
