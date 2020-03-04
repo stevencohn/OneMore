@@ -507,6 +507,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<ShowXmlCommand>().Execute();
 		}
 
+		public void SortCmd(IRibbonControl control)
+		{
+			factory.GetCommand<SortCommand>().Execute();
+		}
+
 		public void ToLowercaseCmd (IRibbonControl control)
 		{
 			factory.GetCommand<ToCaseCommand>().Execute(false);

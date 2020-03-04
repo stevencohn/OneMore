@@ -60,6 +60,8 @@ namespace River.OneMoreAddIn
 		// Scope methods
 		//========================================================================================
 
+		// https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote#gethierarchy-method
+
 		public XElement CurrentNotebook ()
 		{
 			string id = application.Windows.CurrentWindow?.CurrentNotebookId;
@@ -136,6 +138,8 @@ namespace River.OneMoreAddIn
 		}
 
 
+
+		// https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote#updatehierarchy-method
 
 		public void UpdateHierarchy (XElement element)
 		{

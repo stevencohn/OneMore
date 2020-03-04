@@ -40,6 +40,8 @@ namespace River.OneMoreAddIn
 			using (var dialog = new SearchAndReplaceDialog())
 			{
 				result = dialog.ShowDialog();
+				dialog.Focus();
+
 				whatText = dialog.WhatText;
 				withText = dialog.WithText;
 				matchCase = dialog.MatchCase;

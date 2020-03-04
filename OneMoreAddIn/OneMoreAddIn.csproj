@@ -108,6 +108,7 @@
     <Compile Include="Commands\SearchAndReplaceCommand.cs" />
     <Compile Include="Commands\ShowAboutCommand.cs" />
     <Compile Include="Commands\ApplyStyleCommand.cs" />
+    <Compile Include="Commands\SortCommand.cs" />
     <Compile Include="Commands\ToCaseCommand.cs" />
     <Compile Include="Commands\TrimCommand.cs" />
     <Compile Include="Dialogs\ReorderDialog.cs">
@@ -124,6 +125,12 @@
     </Compile>
     <Compile Include="Dialogs\SearchAndReplaceDialog.Designer.cs">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SortDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SortDialog.Designer.cs">
+      <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
@@ -253,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SortDialog.resx">
+      <DependentUpon>SortDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\StyleDialog.resx">
       <DependentUpon>StyleDialog.cs</DependentUpon>

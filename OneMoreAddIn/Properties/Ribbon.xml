@@ -95,6 +95,11 @@
               label="Collapse Pages"
               onAction="CollapseCmd"/>
             <button
+              id="sortButton"
+              imageMso="SortUp"
+              label="Sort..."
+              onAction="SortCmd"/>
+            <button
               id="showXmlButton"
               imageMso="XmlSource"
               getLabel="GetItemLabel"

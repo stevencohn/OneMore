@@ -1,6 +1,7 @@
 ﻿
 OneNote Developer Reference 2013
-https://msdn.microsoft.com/EN-US/library/office/jj680118.aspx
+https://docs.microsoft.com/en-us/office/client-developer/onenote/onenote-developer-reference
+https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote
 
 Developing (and Debugging!) OneNote 2010 Add-Ins
 http://www.malteahrens.com/#/blog/howto-onenote-dev/
