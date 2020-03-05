@@ -1,8 +1,9 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2019 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
+#pragma warning disable IDE1006 // Naming Styles
 
 namespace River.OneMoreAddIn
 {
@@ -90,19 +91,12 @@ namespace River.OneMoreAddIn
 
 		private void scopeBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (scopeBox.SelectedIndex == 2)
+			if (!(createdButton.Enabled = (scopeBox.SelectedIndex == 0)))
 			{
 				if (createdButton.Checked)
 				{
 					nameButton.Checked = true;
 				}
-
-				createdButton.Enabled = false;
-
-			}
-			else
-			{
-				createdButton.Enabled = true;
 			}
 		}
 	}
