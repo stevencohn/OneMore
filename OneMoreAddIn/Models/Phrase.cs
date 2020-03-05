@@ -5,7 +5,8 @@
 namespace River.OneMoreAddIn
 {
 	using System.Linq;
-	using System.Xml;
+    using System.Text.RegularExpressions;
+    using System.Xml;
 	using System.Xml.Linq;
 
 
@@ -157,8 +158,11 @@ namespace River.OneMoreAddIn
 
 			var ctext = cdata.Value
 				.Replace("<br>", "<br/>")
-				.Replace("lang=yo", "lang=\"yo\"")
 				.Replace("&nbsp;", " ");
+
+			// convert lang=yo to lang="yo"
+			var pattern = @"(\s)lang=([\w\-]+)([\s/>])";
+			ctext = Regex.Replace(ctext, pattern, "$1lang=\"$2\"$3");
 
 			return XElement.Parse("<w>" + ctext + "</w>");
 		}
