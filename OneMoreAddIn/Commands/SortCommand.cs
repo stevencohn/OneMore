@@ -189,8 +189,6 @@ namespace River.OneMoreAddIn
 
 			var ns = root.GetNamespaceOfPrefix("one");
 
-			System.Diagnostics.Debugger.Launch();
-
 			// find current notebook node; this is the one we want to edit
 			var notebook =
 				(from n in root.Elements(ns + "Notebook")
