@@ -211,7 +211,7 @@ namespace River.OneMoreAddIn
 				// reverse if descending
 				if (direction == SortDialog.Directions.Descending)
 				{
-					sections.Reverse();
+					sections = sections.Reverse();
 				}
 
 				// .Remove will remove from "sections" IEnumerable so add to new list
