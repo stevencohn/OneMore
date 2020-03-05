@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn
 		private HierarchyScope scope;
 		private SortDialog.Sortings sorting;
 		private SortDialog.Directions direction;
+		private bool pinNotes;
 
 
 		public SortCommand() : base()
@@ -47,6 +48,7 @@ namespace River.OneMoreAddIn
 				scope = dialog.Scope;
 				sorting = dialog.Soring;
 				direction = dialog.Direction;
+				pinNotes = dialog.PinNotes;
 			}
 
 			if (result == DialogResult.OK)
@@ -77,7 +79,7 @@ namespace River.OneMoreAddIn
 						else
 						{
 							// sections will include all sections for the current notebook
-							root = SortSections(root, sorting, direction);
+							root = SortSections(root, sorting, direction, pinNotes);
 						}
 					}
 
@@ -106,12 +108,6 @@ namespace River.OneMoreAddIn
 			 * can be sorted correctly. Children are not sorted.
 			 */
 
-			string keyName;
-
-			if (sorting == SortDialog.Sortings.ByCreated) keyName = "dateTime";
-			else if (sorting == SortDialog.Sortings.ByModified) keyName = "lastModifiedTime";
-			else keyName = "name";
-
 			var ns = root.GetNamespaceOfPrefix("one");
 
 			var pages = new List<PageNode>();
@@ -129,6 +125,12 @@ namespace River.OneMoreAddIn
 					pages[pages.Count - 1].Children.Add(child);
 				}
 			}
+
+			string keyName;
+
+			if (sorting == SortDialog.Sortings.ByCreated) keyName = "dateTime";
+			else if (sorting == SortDialog.Sortings.ByModified) keyName = "lastModifiedTime";
+			else keyName = "name";
 
 			// sort all parents by chosen key.
 			// regex keeps only printable characters (so we don't sort on title emoticons!)
@@ -162,7 +164,7 @@ namespace River.OneMoreAddIn
 
 
 		private XElement SortSections(
-			XElement root, SortDialog.Sortings sorting, SortDialog.Directions direction)
+			XElement root, SortDialog.Sortings sorting, SortDialog.Directions direction, bool pinNotes)
 		{
 			/*
 			 * <one:Notebooks xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote">
@@ -214,18 +216,44 @@ namespace River.OneMoreAddIn
 					sections = sections.Reverse();
 				}
 
-				// .Remove will remove from "sections" IEnumerable so add to new list
+				XElement notes = null;
+				XElement quick = null;
 				var list = new List<XElement>();
+
+				// .Remove will remove from "sections" IEnumerable so add to new list
 				foreach (var section in sections)
 				{
-					list.Insert(0, section);
+					if (pinNotes && section.Attribute("name").Value.Equals("Notes"))
+					{
+						notes = section;
+					}
+					else if (pinNotes && section.Attribute("name").Value.Equals("Quick Notes"))
+					{
+						quick = section;
+					}
+					else
+					{
+						list.Insert(0, section);
+					}
+
 					section.Remove();
 				}
 
 				// re-insert sorted sections into notebook
+
+				if (quick != null)
+				{
+					notebook.AddFirst(quick);
+				}
+
 				foreach (var section in list)
 				{
 					notebook.AddFirst(section);
+				}
+
+				if (notes != null)
+				{
+					notebook.AddFirst(notes);
 				}
 
 				return root;

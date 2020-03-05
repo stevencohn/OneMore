@@ -42,6 +42,8 @@
 			this.directionPanel = new System.Windows.Forms.Panel();
 			this.desButton = new System.Windows.Forms.RadioButton();
 			this.ascButton = new System.Windows.Forms.RadioButton();
+			this.pinNotesBox = new System.Windows.Forms.CheckBox();
+			this.quickLabel = new System.Windows.Forms.Label();
 			this.sortPanel.SuspendLayout();
 			this.directionPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -50,7 +52,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(303, 328);
+			this.cancelButton.Location = new System.Drawing.Point(303, 368);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 0;
@@ -62,7 +64,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(197, 329);
+			this.okButton.Location = new System.Drawing.Point(197, 369);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 1;
@@ -130,7 +132,7 @@
 			this.sortPanel.Controls.Add(this.nameButton);
 			this.sortPanel.Controls.Add(this.modifiedButton);
 			this.sortPanel.Controls.Add(this.createdButton);
-			this.sortPanel.Location = new System.Drawing.Point(104, 100);
+			this.sortPanel.Location = new System.Drawing.Point(104, 91);
 			this.sortPanel.Name = "sortPanel";
 			this.sortPanel.Size = new System.Drawing.Size(300, 99);
 			this.sortPanel.TabIndex = 7;
@@ -138,7 +140,7 @@
 			// sortLabel
 			// 
 			this.sortLabel.AutoSize = true;
-			this.sortLabel.Location = new System.Drawing.Point(18, 100);
+			this.sortLabel.Location = new System.Drawing.Point(18, 91);
 			this.sortLabel.Name = "sortLabel";
 			this.sortLabel.Size = new System.Drawing.Size(63, 20);
 			this.sortLabel.TabIndex = 8;
@@ -147,7 +149,7 @@
 			// directionLabel
 			// 
 			this.directionLabel.AutoSize = true;
-			this.directionLabel.Location = new System.Drawing.Point(22, 233);
+			this.directionLabel.Location = new System.Drawing.Point(22, 212);
 			this.directionLabel.Name = "directionLabel";
 			this.directionLabel.Size = new System.Drawing.Size(76, 20);
 			this.directionLabel.TabIndex = 9;
@@ -157,7 +159,7 @@
 			// 
 			this.directionPanel.Controls.Add(this.desButton);
 			this.directionPanel.Controls.Add(this.ascButton);
-			this.directionPanel.Location = new System.Drawing.Point(104, 233);
+			this.directionPanel.Location = new System.Drawing.Point(104, 212);
 			this.directionPanel.Name = "directionPanel";
 			this.directionPanel.Size = new System.Drawing.Size(300, 73);
 			this.directionPanel.TabIndex = 10;
@@ -184,13 +186,37 @@
 			this.ascButton.Text = "Ascending";
 			this.ascButton.UseVisualStyleBackColor = true;
 			// 
+			// pinNotesBox
+			// 
+			this.pinNotesBox.AutoSize = true;
+			this.pinNotesBox.Checked = true;
+			this.pinNotesBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.pinNotesBox.Location = new System.Drawing.Point(104, 298);
+			this.pinNotesBox.Name = "pinNotesBox";
+			this.pinNotesBox.Size = new System.Drawing.Size(179, 24);
+			this.pinNotesBox.TabIndex = 11;
+			this.pinNotesBox.Text = "Pin Notes to top and";
+			this.pinNotesBox.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.pinNotesBox.UseVisualStyleBackColor = true;
+			// 
+			// quickLabel
+			// 
+			this.quickLabel.AutoSize = true;
+			this.quickLabel.Location = new System.Drawing.Point(128, 325);
+			this.quickLabel.Name = "quickLabel";
+			this.quickLabel.Size = new System.Drawing.Size(167, 20);
+			this.quickLabel.TabIndex = 12;
+			this.quickLabel.Text = "Quick Notes to bottom";
+			// 
 			// SortDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(426, 379);
+			this.ClientSize = new System.Drawing.Size(426, 419);
+			this.Controls.Add(this.quickLabel);
+			this.Controls.Add(this.pinNotesBox);
 			this.Controls.Add(this.directionPanel);
 			this.Controls.Add(this.directionLabel);
 			this.Controls.Add(this.sortLabel);
@@ -231,5 +257,7 @@
 		private System.Windows.Forms.Panel directionPanel;
 		private System.Windows.Forms.RadioButton desButton;
 		private System.Windows.Forms.RadioButton ascButton;
+		private System.Windows.Forms.CheckBox pinNotesBox;
+		private System.Windows.Forms.Label quickLabel;
 	}
 }

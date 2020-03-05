@@ -61,6 +61,9 @@ namespace River.OneMoreAddIn
 			ascButton.Checked ? Directions.Ascending : Directions.Descending;
 
 
+		public bool PinNotes => pinNotesBox.Checked;
+
+
 		public Sortings Soring =>
 			nameButton.Checked ? Sortings.ByName
 			: (createdButton.Checked ? Sortings.ByCreated : Sortings.ByModified);
@@ -98,6 +101,9 @@ namespace River.OneMoreAddIn
 					nameButton.Checked = true;
 				}
 			}
+
+			pinNotesBox.Enabled = (scopeBox.SelectedIndex == 1);
+			quickLabel.Enabled = (scopeBox.SelectedIndex == 1);
 		}
 	}
 }
