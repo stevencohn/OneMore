@@ -265,6 +265,21 @@ namespace River.OneMoreAddIn
 
 		private void Save (XElement root, string path)
 		{
+			var parent = Path.GetDirectoryName(path);
+			if (!Directory.Exists(parent))
+			{
+				try
+				{
+					Directory.CreateDirectory(parent);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("Error creating " + parent);
+					Logger.Current.WriteLine(exc);
+					return;
+				}
+			}
+
 			try
 			{
 				root.Save(path, SaveOptions.None);
