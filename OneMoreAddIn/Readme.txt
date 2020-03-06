@@ -20,6 +20,9 @@ https://msdn.microsoft.com/en-us/library/ee691833.aspx?f=255&MSPPError=-21472173
 Adding Custom Galleries to the 2007 Office Fluent User Interface (2007)
 https://msdn.microsoft.com/en-us/library/bb736142%28v=office.12%29.aspx?f=255&MSPPError=-2147217396
 
+Ribbon XML Markup Specification
+https://docs.microsoft.com/en-us/openspecs/office_standards/ms-customui/d842006e-3187-4f66-a17d-0819a3cc94b5
+
 Creating Custom Ribbon Galleries in Microsoft Excel 2007
 https://msdn.microsoft.com/en-us/library/office/dd756403%28v=office.12%29.aspx?f=255&MSPPError=-2147217396
 

@@ -8,7 +8,7 @@
       <tab idMso="TabHome">
         <group id="OneMoreGroup0" getLabel="GetItemLabel">
           <gallery
-            id="styleGallery" label="Custom Styles"  columns="4" showItemLabel="false" size="large" imageMso="StylesPane"
+            id="styleGallery" label="Custom Styles" columns="4" showItemLabel="false" size="large" imageMso="StylesPane"
             getItemCount="GetStyleGalleryItemCount"
             getItemID="GetStyleGalleryItemId"
             getItemImage="GetStyleGalleryItemImage"
@@ -24,6 +24,15 @@
               label="Edit Custom Styles..."
               imageMso="StylesModifyStyle"
               onAction="EditStylesCmd"/>
+          </gallery>
+
+          <gallery
+            id="favoritesGallery" label="Favorites" showItemLabel="true"
+            columns="1" size="large" imageMso="EditLinks"
+            getItemCount="GetFavoritesCount"
+            visible="0"
+            >
+            <button id="AddFavButton" label="Add page" imageMso="AddToFavorites"/>
           </gallery>
 
           <menu id="OneMoreMenu" label="More" size="large" getImage="GetOneMoreMenuImage">

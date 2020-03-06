@@ -408,6 +408,12 @@ namespace River.OneMoreAddIn
 		}
 		#endregion Style Gallery
 
+		public int GetFavoritesCount (IRibbonControl control)
+		{
+			logger.WriteLine($"GetFavoritesCount({control.Id})");
+			return 4;
+		}
+
 		#region Menu behaviors
 
 		public bool EnsureBodyContext (IRibbonControl control)
