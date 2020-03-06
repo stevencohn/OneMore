@@ -408,14 +408,9 @@ namespace River.OneMoreAddIn
 		}
 		#endregion Style Gallery
 
-		public int GetFavoritesCount (IRibbonControl control)
-		{
-			logger.WriteLine($"GetFavoritesCount({control.Id})");
-			return 4;
-		}
-
 		public string GetFavoritesContent(IRibbonControl control)
 		{
+			logger.WriteLine($"GetFavoritesContent({control.Id})");
 			return
 @"<menu xmlns=""http://schemas.microsoft.com/office/2006/01/customui"">
   <splitButton id=""favorite1"">
@@ -431,8 +426,14 @@ namespace River.OneMoreAddIn
     </menu>
   </splitButton>
   <menuSeparator id=""favotiteSeparator"" />
-  <button id=""favoriteAddButton"" label=""Add current page"" imageMso=""AddToFavorites"" />
+  <button id=""favoriteAddButton"" label=""Add current page"" imageMso=""AddToFavorites"" onAction=""AddFavoritePage"" />
 </menu>";
+		}
+
+		public void AddFavoritePage (IRibbonControl control)
+		{
+			logger.WriteLine($"AddFavoritePage({control.Id})");
+			this.ribbon.InvalidateControl("FavoritesMenu");
 		}
 
 		#region Menu behaviors

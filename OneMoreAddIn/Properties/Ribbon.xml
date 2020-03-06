@@ -26,16 +26,8 @@
               onAction="EditStylesCmd"/>
           </gallery>
 
-          <!--gallery
-            id="favoritesGallery" label="Favorites" showItemLabel="true"
-            columns="1" size="large" imageMso="EditLinks"
-            getItemCount="GetFavoritesCount"
-            visible="0"
-            >
-            <button id="AddFavButton" label="Add page" imageMso="AddToFavorites"/>
-          </gallery-->
-
-          <dynamicMenu id="FavoritesMenu" label="Favorites" size="large" imageMso="EditLinks"
+          <dynamicMenu id="FavoritesMenu"
+            label="Favorites" size="large" imageMso="EditLinks"
             getContent="GetFavoritesContent" />
 
           <menu id="OneMoreMenu" label="More" size="large" getImage="GetOneMoreMenuImage">
