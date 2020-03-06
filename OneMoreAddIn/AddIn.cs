@@ -414,6 +414,27 @@ namespace River.OneMoreAddIn
 			return 4;
 		}
 
+		public string GetFavoritesContent(IRibbonControl control)
+		{
+			return
+@"<menu xmlns=""http://schemas.microsoft.com/office/2006/01/customui"">
+  <splitButton id=""favorite1"">
+    <button id=""favoriteLink1"" imageMso=""FileLinksToFiles"" label=""Some fancy page"" screentip=""Notebook/Section/Some fancy page long name..."" />
+    <menu id=""favoriteMenu1"" label=""Some fancy menu"" >
+      <button id=""favoriteRemove1"" label=""Remove this link"" imageMso=""HyperlinkRemove"" />
+    </menu>
+  </splitButton>
+  <splitButton id=""favorite2"">
+    <button id=""favoriteLink2"" imageMso=""FileLinksToFiles"" label=""Some fancy page"" />
+    <menu id=""favoriteMenu2"" label=""Some fancy menu"" >
+      <button id=""favoriteRemove2"" label=""Remove this link"" imageMso=""HyperlinkRemove"" />
+    </menu>
+  </splitButton>
+  <menuSeparator id=""favotiteSeparator"" />
+  <button id=""favoriteAddButton"" label=""Add current page"" imageMso=""AddToFavorites"" />
+</menu>";
+		}
+
 		#region Menu behaviors
 
 		public bool EnsureBodyContext (IRibbonControl control)
