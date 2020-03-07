@@ -12,6 +12,7 @@ A OneNote add-in with these features:
 * Insert double horizontal line
 * Insert Table of Contents including all headers on page
 * Increase/Decrease the font size of all content in the current page
+* Manage menu of Favorite pages
 * Search and replace text on the current page
 * Sort pages, sections, or notebooks
 * Trim trailing whitespace from selected text
@@ -35,26 +36,17 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 * MSTest.TestFramework
 * System.ValueType - restore packages before building to avoid compiler errors
 
----
 
-**OneMore Command Menu**
-
-![Command Menu](Screenshots/MoreMenu.jpg)
-
-**Custom Styles**
-
-![Styles](Screenshots/CustomStyles.jpg)
-
-**Custom Styles Dialog**
-
-![Styles Dialog](Screenshots/CustomStylesDialog.jpg)
-
-**Title Icons Dialog**
-
-![Title Icon Dialog](Screenshots/TItleIconsDialog.jpg)
+|                                           |    |
+| ----------------------------------------- | -- |
+| **OneMore Command Menu**                 | **Favorites Menu***   |
+| ![Command Menu](Screenshots/MoreMenu.jpg) | ![Favorites Menu](Screenshots/FavoritesMenu.jpg) | 
+| **Custom Styles**                         | **Custom Styles Dialog** |
+| ![Styles](Screenshots/CustomStyles.jpg)   | ![Styles Dialog](Screenshots/CustomStylesDialog.jpg) |
+| **Title Icons Dialog**                    | **Sort Dialog** |
+| ![Title Icon Dialog](Screenshots/TItleIconsDialog.jpg) | ![Sort Dialog](Screenshots/SortDialog.jpg) |
 
 **XML Dialog**
-
 ![XML Dialog](Screenshots/XmlDialog.jpg)
 
 ---

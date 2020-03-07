@@ -8,8 +8,8 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.IO;
 	using System.Linq;
-    using System.Windows.Forms;
-    using System.Xml.Linq;
+	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -78,16 +78,15 @@ namespace River.OneMoreAddIn
 				root = MakeMenuRoot();
 			}
 
-			if (root.Elements(ns + "splitButton").Count() == 0)
-			{
-				root.Add(new XElement(ns + "menuSeparator",
-					new XAttribute("id", "omFavoritesSeparator")
-					));
-			}
-
 			using (var manager = new ApplicationManager())
 			{
 				var info = manager.GetCurrentPageInfo();
+
+				var name = info.Name;
+				if (name.Length > 50)
+				{
+					name = name.Substring(0, 50) + "...";
+				}
 
 				// similar to mongo ObjectId, a random-enough identifier for our needs
 				var id = ((DateTimeOffset.Now.ToUnixTimeSeconds() << 32)
@@ -99,7 +98,7 @@ namespace River.OneMoreAddIn
 						new XAttribute("id", $"omFavoriteLink{id}"),
 						new XAttribute("onAction", "NavigateToFavorite"),
 						new XAttribute("imageMso", "FileLinksToFiles"),
-						new XAttribute("label", info.Name),
+						new XAttribute("label", name),
 						new XAttribute("tag", info.Link),
 						new XAttribute("screentip", info.Path)
 						),
@@ -114,6 +113,19 @@ namespace River.OneMoreAddIn
 							)
 						)
 					));
+
+				// sort by name/label
+				var items =
+					from e in root.Elements(ns + "splitButton")
+					let key = e.Element(ns + "button").Attribute("label").Value
+					orderby key
+					select e;
+
+				root = MakeMenuRoot();
+				foreach (var item in items)
+				{
+					root.Add(item);
+				}
 
 				logger.WriteLine($"Saving favorite '{info.Path}' ({info.Link})");
 			}
@@ -141,6 +153,9 @@ namespace River.OneMoreAddIn
 					new XAttribute("label", "Add current page"),
 					new XAttribute("imageMso", "AddToFavorites"),
 					new XAttribute("onAction", "AddFavoritePage")
+					),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omFavoritesSeparator")
 					)
 				);
 
@@ -148,7 +163,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void RemoveFavorite (string favoriteId)
+		public void RemoveFavorite(string favoriteId)
 		{
 			if (File.Exists(path))
 			{
@@ -156,8 +171,8 @@ namespace River.OneMoreAddIn
 
 				var element =
 					(from e in root.Elements(ns + "splitButton")
-					where e.Attribute("id").Value == favoriteId
-					select e).FirstOrDefault();
+					 where e.Attribute("id").Value == favoriteId
+					 select e).FirstOrDefault();
 
 				if (element != null)
 				{

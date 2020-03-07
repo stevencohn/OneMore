@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
     using System.IO;
+    using System.Text.RegularExpressions;
     using System.Xml.Linq;
 	using Microsoft.Office.Interop.OneNote;
 
@@ -15,6 +16,7 @@ namespace River.OneMoreAddIn
 
 		private Application application;
 		private bool disposedValue = false;
+		private ILogger logger;
 
 
 		//========================================================================================
@@ -24,6 +26,7 @@ namespace River.OneMoreAddIn
 		public ApplicationManager ()
 		{
 			application = new Application();
+			logger = Logger.Current;
 		}
 
 
@@ -105,6 +108,12 @@ namespace River.OneMoreAddIn
 			if (page != null)
 			{
 				name = page.Attribute("name")?.Value;
+
+				if (!string.IsNullOrEmpty(name))
+				{
+					// printable chars only; e.g. remove title emoticon
+					name = Regex.Replace(name, @"[^ -~]", "");
+				}
 			}
 
 			// path
@@ -177,9 +186,16 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void NavigateTo (string pageUrl)
+		public void NavigateTo (string pageTag)
 		{
-			application.NavigateToUrl(pageUrl);
+			if (pageTag.StartsWith("onenote:"))
+			{
+				application.NavigateToUrl(pageTag);
+			}
+			else
+			{
+				application.NavigateTo(pageTag);
+			}
 		}
 
 
@@ -202,8 +218,8 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("Error updating page content");
-				Logger.Current.WriteLine(exc);
+				logger.WriteLine("Error updating page content");
+				logger.WriteLine(exc);
 			}
 		}
 	}
