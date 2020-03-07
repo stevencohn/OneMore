@@ -286,4 +286,7 @@
   <data name="trimButton_Screentip" xml:space="preserve">
     <value>Trim trailing whitespace from selected text</value>
   </data>
+  <data name="FavoritesFilename" xml:space="preserve">
+    <value>Favorites.xml</value>
+  </data>
 </root>

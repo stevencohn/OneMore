@@ -26,7 +26,7 @@
               onAction="EditStylesCmd"/>
           </gallery>
 
-          <dynamicMenu id="FavoritesMenu"
+          <dynamicMenu id="OneMoreFavoritesMenu"
             label="Favorites" size="large" imageMso="EditLinks"
             getContent="GetFavoritesContent" />
 

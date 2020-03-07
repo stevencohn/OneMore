@@ -103,6 +103,7 @@
     <Compile Include="Commands\GalleryTileFactory.cs" />
     <Compile Include="Commands\InsertLineCommand.cs" />
     <Compile Include="Commands\InsertTocCommand.cs" />
+    <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Commands\NewStyleCommand.cs" />
     <Compile Include="Commands\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\SearchAndReplaceCommand.cs" />
@@ -182,7 +183,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StylesProvider.cs" />
+    <Compile Include="Providers\FavoritesProvider.cs" />
+    <Compile Include="Providers\StylesProvider.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />

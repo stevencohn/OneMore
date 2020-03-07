@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn
 
 		private ILogger logger;                     // diagnostic logger
 		private Process process;                    // current process, to kill if necessary
-		private CommandFactory factory;
+		private CommandFactory factory;  
 
 		private List<IDisposable> trash;
 
@@ -383,6 +383,32 @@ namespace River.OneMoreAddIn
 
 		#endregion Ribbon handlers
 
+		#region Menu behaviors
+
+		public bool EnsureBodyContext(IRibbonControl control)
+		{
+			return factory.GetCommand<InsertLineCommand>().IsBodyContext();
+		}
+
+		public IStream GetDoubleLineImage(IRibbonControl control)
+		{
+			logger.WriteLine($"GetDoubleLineImage({control.Id})");
+			IStream stream = null;
+			try
+			{
+				stream = ((Bitmap)Resx.ResourceManager.GetObject("DoubleLine")).GetReadOnlyStream();
+				trash.Add((IDisposable)stream);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
+			}
+
+			return stream;
+		}
+
+		#endregion Menu behaviors
+
 		#region Style Gallery
 		public int GetStyleGalleryItemCount (IRibbonControl control)
 		{
@@ -408,59 +434,38 @@ namespace River.OneMoreAddIn
 		}
 		#endregion Style Gallery
 
+		#region Favorites handlers
+
 		public string GetFavoritesContent(IRibbonControl control)
 		{
 			logger.WriteLine($"GetFavoritesContent({control.Id})");
-			return
-@"<menu xmlns=""http://schemas.microsoft.com/office/2006/01/customui"">
-  <splitButton id=""favorite1"">
-    <button id=""favoriteLink1"" imageMso=""FileLinksToFiles"" label=""Some fancy page"" screentip=""Notebook/Section/Some fancy page long name..."" />
-    <menu id=""favoriteMenu1"" label=""Some fancy menu"" >
-      <button id=""favoriteRemove1"" label=""Remove this link"" imageMso=""HyperlinkRemove"" />
-    </menu>
-  </splitButton>
-  <splitButton id=""favorite2"">
-    <button id=""favoriteLink2"" imageMso=""FileLinksToFiles"" label=""Some fancy page"" />
-    <menu id=""favoriteMenu2"" label=""Some fancy menu"" >
-      <button id=""favoriteRemove2"" label=""Remove this link"" imageMso=""HyperlinkRemove"" />
-    </menu>
-  </splitButton>
-  <menuSeparator id=""favotiteSeparator"" />
-  <button id=""favoriteAddButton"" label=""Add current page"" imageMso=""AddToFavorites"" onAction=""AddFavoritePage"" />
-</menu>";
+			return new FavoritesProvider(ribbon).GetMenuContent();
 		}
 
-		public void AddFavoritePage (IRibbonControl control)
+		public void AddFavoritePage(IRibbonControl control)
 		{
 			logger.WriteLine($"AddFavoritePage({control.Id})");
-			this.ribbon.InvalidateControl("FavoritesMenu");
+			new FavoritesProvider(ribbon).AddFavorite();
 		}
 
-		#region Menu behaviors
-
-		public bool EnsureBodyContext (IRibbonControl control)
+		public void NavigateToFavorite(IRibbonControl control)
 		{
-			return factory.GetCommand<InsertLineCommand>().IsBodyContext();
+			logger.WriteLine($"NavigateToFavorite({control.Tag})");
+			factory.GetCommand<NavigateCommand>().Execute(control.Tag);
 		}
 
-		public IStream GetDoubleLineImage (IRibbonControl control)
+		public void RemoveFavorite(IRibbonControl control)
 		{
-			logger.WriteLine($"GetDoubleLineImage({control.Id})");
-			IStream stream = null;
-			try
-			{
-				stream = ((Bitmap)Resx.ResourceManager.GetObject("DoubleLine")).GetReadOnlyStream();
-				trash.Add((IDisposable)stream);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine(exc);
-			}
-
-			return stream;
+			logger.WriteLine($"RemoveFavorite({control.Tag})");
+			new FavoritesProvider(ribbon).RemoveFavorite(control.Tag);
 		}
 
-		#endregion Menu behaviors
+		#endregion Favorites handlers
+
+
+		//========================================================================================
+		// More menu handlers
+		//========================================================================================
 
 		public void AddTitleIconCmd (IRibbonControl control)
 		{

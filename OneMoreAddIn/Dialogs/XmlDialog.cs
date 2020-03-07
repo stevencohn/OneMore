@@ -59,7 +59,14 @@ namespace River.OneMoreAddIn
 				if (page != null)
 				{
 					var xml = page.ToString(SaveOptions.None);
-					pageBox.Text = xml;
+					var pi = manager.GetCurrentPageInfo();
+
+					pageBox.Text =
+						//$"Name=[{pi.Name}]" + Environment.NewLine +
+						//$"Path=[{pi.Path}]" + Environment.NewLine +
+						//$"Link=[{pi.Link}]" + Environment.NewLine +
+						//Environment.NewLine +
+						xml;
 
 					logger.WriteLine("XmlDialog loaded page, " + xml.Length + " chars");
 				}

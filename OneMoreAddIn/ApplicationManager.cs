@@ -5,7 +5,8 @@
 namespace River.OneMoreAddIn
 {
 	using System;
-	using System.Xml.Linq;
+    using System.IO;
+    using System.Xml.Linq;
 	using Microsoft.Office.Interop.OneNote;
 
 
@@ -96,6 +97,44 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public (string Name, string Path, string Link) GetCurrentPageInfo ()
+		{
+			// name
+			string name = null;
+			var page = CurrentPage(PageInfo.piBasic);
+			if (page != null)
+			{
+				name = page.Attribute("name")?.Value;
+			}
+
+			// path
+			string path = null;
+			var section = CurrentSection();
+			if (section != null)
+			{
+				var uri = section.Attribute("path")?.Value;
+				if (!string.IsNullOrEmpty(uri))
+				{
+					path = "/" + Path.Combine(
+						Path.GetFileName(Path.GetDirectoryName(uri)),
+						Path.GetFileNameWithoutExtension(uri),
+						name
+						).Replace("\\", "/");
+				}
+			}
+
+			// link
+			var pageId = application.Windows.CurrentWindow?.CurrentPageId;
+			string link = null;
+			if (!string.IsNullOrEmpty(pageId))
+			{
+				application.GetHyperlinkToObject(pageId, "", out link);
+			}
+
+			return (name, path, link);
+		}
+
+
 		//========================================================================================
 		// Special
 		//========================================================================================
@@ -137,6 +176,11 @@ namespace River.OneMoreAddIn
 			return (backupFolder, defaultFolder, unfiledFolder);
 		}
 
+
+		public void NavigateTo (string pageUrl)
+		{
+			application.NavigateToUrl(pageUrl);
+		}
 
 
 		// https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote#updatehierarchy-method

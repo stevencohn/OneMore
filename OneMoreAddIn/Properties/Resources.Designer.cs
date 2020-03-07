@@ -243,6 +243,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Favorites.xml.
+        /// </summary>
+        internal static string FavoritesFilename {
+            get {
+                return ResourceManager.GetString("FavoritesFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Financial {
@@ -438,9 +447,9 @@ namespace River.OneMoreAddIn.Properties {
         ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
         ///        &lt;group id=&quot;OneMoreGroup0&quot; getLabel=&quot;GetItemLabel&quot;&gt;
         ///          &lt;gallery
-        ///            id=&quot;styleGallery&quot; label=&quot;Custom Styles&quot;  columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
+        ///            id=&quot;styleGallery&quot; label=&quot;Custom Styles&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
         ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
-        ///            getItemID=&quot;GetStyleGalleryI [rest of string was truncated]&quot;;.
+        ///            getItemID=&quot;GetStyleGalleryIt [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
