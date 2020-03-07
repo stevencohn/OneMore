@@ -39,7 +39,7 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 
 |                                           |    |
 | ----------------------------------------- | -- |
-| **OneMore Command Menu**                 | **Favorites Menu***   |
+| **OneMore Command Menu**                 | **Favorites Menu**   |
 | ![Command Menu](Screenshots/MoreMenu.jpg) | ![Favorites Menu](Screenshots/FavoritesMenu.jpg) | 
 | **Custom Styles**                         | **Custom Styles Dialog** |
 | ![Styles](Screenshots/CustomStyles.jpg)   | ![Styles Dialog](Screenshots/CustomStylesDialog.jpg) |
