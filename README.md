@@ -47,6 +47,7 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 | ![Title Icon Dialog](Screenshots/TItleIconsDialog.jpg) | ![Sort Dialog](Screenshots/SortDialog.jpg) |
 
 **XML Dialog**
+
 ![XML Dialog](Screenshots/XmlDialog.jpg)
 
 ---
