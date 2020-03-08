@@ -36,15 +36,14 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 * MSTest.TestFramework
 * System.ValueType - restore packages before building to avoid compiler errors
 
-
-|                                           |    |
-| ----------------------------------------- | -- |
-| **OneMore Command Menu**                 | **Favorites Menu**   |
-| ![Command Menu](Screenshots/MoreMenu.jpg) | ![Favorites Menu](Screenshots/FavoritesMenu.jpg) | 
-| **Custom Styles**                         | **Custom Styles Dialog** |
-| ![Styles](Screenshots/CustomStyles.jpg)   | ![Styles Dialog](Screenshots/CustomStylesDialog.jpg) |
-| **Title Icons Dialog**                    | **Sort Dialog** |
-| ![Title Icon Dialog](Screenshots/TItleIconsDialog.jpg) | ![Sort Dialog](Screenshots/SortDialog.jpg) |
+|                                                        |                                                      |
+| ------------------------------------------------------ | ---------------------------------------------------- |
+| **OneMore Command Menu**                               | **Favorites Menu**                                   |
+| ![Command Menu](Screenshots/MoreMenu.jpg)              | ![Favorites Menu](Screenshots/FavoritesMenu.jpg)     | 
+| **Custom Styles**                                      | **Custom Styles Dialog**                             |
+| ![Styles](Screenshots/CustomStyles.jpg)                | ![Styles Dialog](Screenshots/CustomStylesDialog.jpg) |
+| **Title Icons Dialog**                                 | **Sort Dialog**                                      |
+| ![Title Icon Dialog](Screenshots/TItleIconsDialog.jpg) | ![Sort Dialog](Screenshots/SortDialog.jpg)           |
 
 **XML Dialog**
 
