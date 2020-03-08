@@ -39,11 +39,11 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 |                                                        |                                                      |
 | ------------------------------------------------------ | ---------------------------------------------------- |
 | **OneMore Command Menu**                               | **Favorites Menu**                                   |
-| ![Command Menu](Screenshots/MoreMenu.jpg)              | ![Favorites Menu](Screenshots/FavoritesMenu.jpg)     | 
+| ![Command Menu](Screenshots/MoreMenu.png)              | ![Favorites Menu](Screenshots/FavoritesMenu.png)     | 
 | **Custom Styles**                                      | **Custom Styles Dialog**                             |
-| ![Styles](Screenshots/CustomStyles.jpg)                | ![Styles Dialog](Screenshots/CustomStylesDialog.jpg) |
+| ![Styles](Screenshots/CustomStyles.png)                | ![Styles Dialog](Screenshots/CustomStylesDialog.png) |
 | **Title Icons Dialog**                                 | **Sort Dialog**                                      |
-| ![Title Icon Dialog](Screenshots/TItleIconsDialog.jpg) | ![Sort Dialog](Screenshots/SortDialog.jpg)           |
+| ![Title Icon Dialog](Screenshots/TItleIconsDialog.png) | ![Sort Dialog](Screenshots/SortDialog.png)           |
 
 **XML Dialog**
 
