@@ -387,6 +387,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://schemas.microsoft.com/office/onenote/2013/onenote.
+        /// </summary>
+        internal static string oneNamespace {
+            get {
+                return ResourceManager.GetString("oneNamespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Open {

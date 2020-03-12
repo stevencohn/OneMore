@@ -71,6 +71,8 @@
     <Reference Include="extensibility, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -106,6 +108,7 @@
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Commands\NewStyleCommand.cs" />
     <Compile Include="Commands\NoSpellCheckCommand.cs" />
+    <Compile Include="Commands\PasteRtfCommand.cs" />
     <Compile Include="Commands\SearchAndReplaceCommand.cs" />
     <Compile Include="Commands\ShowAboutCommand.cs" />
     <Compile Include="Commands\ApplyStyleCommand.cs" />
@@ -134,6 +137,7 @@
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
+    <Compile Include="Helpers\Keyboard.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Models\CssInfo.cs" />
     <Compile Include="Models\CustomInfo.cs" />

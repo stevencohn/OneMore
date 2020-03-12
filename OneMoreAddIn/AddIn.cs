@@ -474,7 +474,7 @@ namespace River.OneMoreAddIn
 
 		public void ApplyStyleCmd (IRibbonControl control, string selectedId, int selectedIndex)
 		{
-			logger.WriteLine($"StyleGallerySelected2({control.Id}, {selectedId}, {selectedIndex})");
+			//logger.WriteLine($"StyleGallerySelected2({control.Id}, {selectedId}, {selectedIndex})");
 			factory.GetCommand<ApplyStyleCommand>().Execute(selectedIndex);
 		}
 
@@ -523,6 +523,11 @@ namespace River.OneMoreAddIn
 		public void NoSpellCheckCmd (IRibbonControl control)
 		{
 			factory.GetCommand<NoSpellCheckCommand>().Execute();
+		}
+
+		public void PasteRtfCmd(IRibbonControl control)
+		{
+			factory.GetCommand<PasteRtfCommand>().Execute();
 		}
 
 		public void SearchAndReplaceCmd (IRibbonControl control)

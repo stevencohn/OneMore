@@ -61,6 +61,11 @@
               getScreentip="GetItemScreentip"
               onAction="NoSpellCheckCmd"/>
             <button
+              id="pasteRtfButton"
+              imageMso="PasteSpecialDialog"
+              label="Paste Rich Text"
+              onAction="PasteRtfCmd"/>
+            <button
               id="replaceButton"
               imageMso="ReplaceDialog"
               label="Search and Replace"

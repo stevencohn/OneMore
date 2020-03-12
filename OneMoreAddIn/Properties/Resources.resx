@@ -289,4 +289,7 @@
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
   </data>
+  <data name="oneNamespace" xml:space="preserve">
+    <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
+  </data>
 </root>
