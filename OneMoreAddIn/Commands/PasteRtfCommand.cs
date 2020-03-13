@@ -29,19 +29,26 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
-			logger.WriteLine("PasteRtfCommand()");
-
-			// transform RTF and Xaml data on clipboard to HTML
-
-			PrepareClipboard();
-
-			// paste what's remaining from clipboard, letting OneNote do the
-			// heavy lifting of converting the HTML into one:xml schema
-
-			Keyboard.Press(new Keyboard.KeyCode[]
+			try
 			{
-				Keyboard.KeyCode.CONTROL, Keyboard.KeyCode.KEY_V
-			});
+				logger.WriteLine("PasteRtfCommand()");
+
+				// transform RTF and Xaml data on clipboard to HTML
+
+				PrepareClipboard();
+
+				// paste what's remaining from clipboard, letting OneNote do the
+				// heavy lifting of converting the HTML into one:xml schema
+
+				Keyboard.Press(new Keyboard.KeyCode[]
+				{
+					Keyboard.KeyCode.CONTROL, Keyboard.KeyCode.KEY_V
+				});
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("PasteRtfCommand!!", exc);
+			}
 		}
 
 		private void PrepareClipboard()
@@ -182,21 +189,23 @@ namespace River.OneMoreAddIn
 						break;
 
 					case XmlNodeType.CDATA:
-						writer.WriteCData(reader.Value);
+						writer.WriteCData(Untabify(reader.Value));
 						break;
 
 					case XmlNodeType.Text:
-						writer.WriteValue(reader.Value);
+						writer.WriteValue(Untabify(reader.Value));
 						break;
 
 					case XmlNodeType.SignificantWhitespace:
 						writer.WriteWhitespace(reader.Value);
+						writer.WriteValue(Untabify(reader.Value));
 						break;
 
 					case XmlNodeType.Whitespace:
 						if (reader.XmlSpace == XmlSpace.Preserve)
 						{
-							writer.WriteWhitespace(reader.Value);
+							//writer.WriteWhitespace(reader.Value);
+							writer.WriteValue(Untabify(reader.Value));
 						}
 						break;
 
@@ -205,6 +214,59 @@ namespace River.OneMoreAddIn
 						break;
 				}
 			}
+		}
+
+
+		private string Untabify(string text)
+		{
+			logger.WriteLine($"Untabify [{text}]");
+
+			if (text == null)
+				return string.Empty;
+
+			if (text.Length == 0 || !char.IsWhiteSpace(text[0]))
+				return text;
+
+			var builder = new StringBuilder();
+
+			try
+			{
+				int i = 0;
+
+				while ((i < text.Length) && (text[i] == ' ' || text[i] == '\t'))
+				{
+					if (text[i] == ' ')
+					{
+						builder.Append('\u00a0');
+					}
+					else if (text[i] == '\t')
+					{
+						do
+						{
+							builder.Append('\u00a0');
+						}
+						while (builder.Length % 4 != 0);
+					}
+
+					i++;
+				}
+
+				while (i < text.Length)
+				{
+					builder.Append(text[i]);
+					i++;
+				}
+
+				var t1 = text.Replace(' ', '.').Replace('\t', '_');
+				var t2 = builder.ToString().Replace(' ', '.').Replace('\t', '_');
+				logger.WriteLine($"... untabified [{t1}] to [{t2}]");
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Untabify!!", exc);
+			}
+
+			return builder.ToString();
 		}
 
 
@@ -460,23 +522,23 @@ namespace River.OneMoreAddIn
 			 */
 
 			var builder = new StringBuilder();
-			builder.Append("StartHTML: 00000000" + Environment.NewLine);
-			builder.Append("EndHTML: 11111111" + Environment.NewLine);
-			builder.Append("StartFragment: 22222222" + Environment.NewLine);
-			builder.Append("EndFragment: 33333333" + Environment.NewLine);
+			builder.Append("StartHTML: 000000000" + Environment.NewLine);
+			builder.Append("EndHTML: 111111111" + Environment.NewLine);
+			builder.Append("StartFragment: 222222222" + Environment.NewLine);
+			builder.Append("EndFragment: 333333333" + Environment.NewLine);
 
-			builder.Replace("00000000", $"{builder.Length:00000000}");
-			builder.Replace("11111111", $"{(builder.Length + html.Length):00000000}");
+			// calculate offsets
+
+			builder.Replace("000000000", $"{builder.Length:000000000}");
+			builder.Replace("111111111", $"{(builder.Length + html.Length):000000000}");
 
 			int sf = html.IndexOf("<!--StartFragment-->") + 20;
-			builder.Replace("22222222", $"{(builder.Length + sf):00000000}");
+			builder.Replace("222222222", $"{(builder.Length + sf):000000000}");
 
 			int ef = html.IndexOf("<!--EndFragment-->");
-			builder.Replace("33333333", $"{(builder.Length + ef):00000000}");
+			builder.Replace("333333333", $"{(builder.Length + ef):000000000}");
 
-			builder.Append(html);
-
-			return builder.ToString();
+			return builder.ToString() + html;
 		}
 	}
 }
