@@ -197,7 +197,7 @@ namespace River.OneMoreAddIn
 						break;
 
 					case XmlNodeType.SignificantWhitespace:
-						writer.WriteWhitespace(reader.Value);
+						//writer.WriteWhitespace(reader.Value);
 						writer.WriteValue(Untabify(reader.Value));
 						break;
 
