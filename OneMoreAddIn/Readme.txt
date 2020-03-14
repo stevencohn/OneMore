@@ -35,6 +35,9 @@ https://stackoverflow.com/questions/1309855/what-is-powerful-way-to-force-a-form
 High DPI
 https://stackoverflow.com/questions/42838120/how-to-proper-auto-scale-toolstrip-in-net
 
+Free Clipboard Viewer
+https://www.freeclipboardviewer.com/
+
 ----
 
 * OneNote -> Options -> Advanced -> Other:Show add-in user interface errors

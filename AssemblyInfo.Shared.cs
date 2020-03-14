@@ -37,7 +37,7 @@ internal static partial class AssemblyInfo
 	public const string Company = "River Software";
 	public const string Copyright = "Copyright \u00a9 2016 Steven M Cohn. All rights reserved.";
 
-	public const string Version = "1.7.2";
+	public const string Version = "1.8.0";
 	public const string FileVersion = Version;
 
 	public const string Configuration =

@@ -13,6 +13,7 @@ A OneNote add-in with these features:
 * Insert Table of Contents including all headers on page
 * Increase/Decrease the font size of all content in the current page
 * Manage menu of Favorite pages
+* Paste Rich Text (preserve colors when pasting from Visual Studio)
 * Search and replace text on the current page
 * Sort pages, sections, or notebooks
 * Trim trailing whitespace from selected text
