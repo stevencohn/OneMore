@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#define diag
+
 namespace River.OneMoreAddIn
 {
 	using System;
@@ -12,16 +14,12 @@ namespace River.OneMoreAddIn
 	using System.Windows.Controls;
 	using System.Windows.Documents;
 	using System.Xml;
+	using System.Xml.Linq;
+	using Forms = System.Windows.Forms;
 
 
 	internal class PasteRtfCommand : Command
 	{
-		private class TextWithFormat
-		{
-			public string Text { get; set; }
-			public TextDataFormat Format { get; set; }
-		}
-
 
 		public PasteRtfCommand() : base()
 		{
@@ -44,12 +42,73 @@ namespace River.OneMoreAddIn
 				{
 					Keyboard.KeyCode.CONTROL, Keyboard.KeyCode.KEY_V
 				});
+
+#if diag
+				DumpClipboard(true);
+#endif
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine("PasteRtfCommand!!", exc);
 			}
 		}
+
+
+#if diag
+		private void DumpClipboard(bool fancy = false)
+		{
+			// create STA context
+			var thread = new Thread(() =>
+			{
+				if (Clipboard.ContainsText(TextDataFormat.Html))
+					DumpContent(Clipboard.GetText(TextDataFormat.Html),
+						TextDataFormat.Html, "CLIPBOARD", fancy);
+
+				if (Clipboard.ContainsText(TextDataFormat.Rtf))
+					DumpContent(Clipboard.GetText(TextDataFormat.Rtf),
+						TextDataFormat.Rtf, "CLIPBOARD");
+
+				if (Clipboard.ContainsText(TextDataFormat.Xaml))
+					DumpContent(Clipboard.GetText(TextDataFormat.Xaml),
+						TextDataFormat.Xaml, "CLIPBOARD", fancy);
+
+				if (Clipboard.ContainsText(TextDataFormat.CommaSeparatedValue))
+					DumpContent(Clipboard.GetText(TextDataFormat.CommaSeparatedValue),
+						TextDataFormat.CommaSeparatedValue, "CLIPBOARD");
+
+				if (Clipboard.ContainsText(TextDataFormat.UnicodeText))
+					DumpContent(Clipboard.GetText(TextDataFormat.UnicodeText),
+						TextDataFormat.UnicodeText, "CLIPBOARD");
+
+				if (Clipboard.ContainsText(TextDataFormat.Text))
+					DumpContent(Clipboard.GetText(TextDataFormat.Text),
+						TextDataFormat.Text, "CLIPBOARD");
+			});
+
+			thread.SetApartmentState(ApartmentState.STA);
+			thread.Start();
+			thread.Join();
+		}
+
+		private void DumpContent(
+			string content, TextDataFormat format, string title = "CONTENT", bool fancy = false)
+		{
+			if (content.StartsWith("Version:"))
+			{
+				// trim html preamble if it's present
+				content = content.Substring(content.IndexOf('<'));
+			}
+
+			if (fancy)
+			{
+				content = XElement.Parse(content).ToString(SaveOptions.None);
+			}
+
+			logger.Write($"{title}: ({format.ToString()}) [");
+			logger.Write(content);
+			logger.WriteLine("]");
+		}
+#endif
 
 		private void PrepareClipboard()
 		{
@@ -62,13 +121,7 @@ namespace River.OneMoreAddIn
 						ConvertXamlToHtml(
 							ConvertRtfToXaml(Clipboard.GetText(TextDataFormat.Rtf))));
 
-					// clear all formats from clipboard's IDataObject and replace it
-					// with our HTML-only format so OneNote will accept only that
-					// otherwise it sees RTF and stops dead in its tracks
-
-					Clipboard.Clear();
-					Clipboard.SetText(text, TextDataFormat.Html);
-					logger.WriteLine("... Rtf -> HTML ready");
+					RebuildClipboard(text);
 				}
 				else if (Clipboard.ContainsText(TextDataFormat.Xaml))
 				{
@@ -76,9 +129,7 @@ namespace River.OneMoreAddIn
 						ConvertXamlToHtml(
 							Clipboard.GetText(TextDataFormat.Xaml)));
 
-					Clipboard.Clear();
-					Clipboard.SetText(text, TextDataFormat.Html);
-					logger.WriteLine("... Xaml -> HTML ready");
+					RebuildClipboard(text);
 				}
 				else
 				{
@@ -90,6 +141,22 @@ namespace River.OneMoreAddIn
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.Start();
 			thread.Join();
+		}
+
+
+		private void RebuildClipboard(string text)
+		{
+			var dob = new DataObject();
+			dob.SetText(text, TextDataFormat.Html);
+			if (Clipboard.ContainsText(TextDataFormat.UnicodeText))
+			{
+				dob.SetText(Clipboard.GetText(TextDataFormat.UnicodeText), TextDataFormat.UnicodeText);
+			}
+			if (Clipboard.ContainsText(TextDataFormat.Text))
+			{
+				dob.SetText(Clipboard.GetText(TextDataFormat.Text), TextDataFormat.Text);
+			}
+			Clipboard.SetDataObject(dob, true);
 		}
 
 
@@ -140,39 +207,47 @@ namespace River.OneMoreAddIn
 			}
 
 			var builder = new StringBuilder();
+			builder.AppendLine("<html>");
+			builder.AppendLine("<body>");
 
-			using (var reader = new XmlTextReader(new StringReader(xaml)))
+			using (var outer = new XmlTextReader(new StringReader(xaml)))
 			{
-				using (var writer = new XmlTextWriter(new StringWriter(builder)))
+				while (outer.Read() && outer.NodeType != XmlNodeType.Element) ;
+				if (!outer.EOF)
 				{
-					// prepare proper HTML clipboard skeleton
+					using (var writer = new XmlTextWriter(new StringWriter(builder)))
+					{
+						// prepare proper HTML clipboard skeleton
 
-					writer.WriteStartElement("html");
-					writer.WriteStartElement("body");
-					writer.WriteComment("StartFragment");
+						writer.WriteComment("StartFragment");
 
-					ConvertXaml(reader, writer);
+						using (var reader = outer.ReadSubtree())
+						{
+							ConvertXaml(reader, writer);
+						}
 
-					writer.WriteComment("EndFragment");
-					writer.WriteEndElement();
-					writer.WriteEndElement();
+						writer.WriteComment("EndFragment");
+					}
 				}
 			}
+			builder.AppendLine();
+			builder.AppendLine("</body>");
+			builder.AppendLine("</html>");
 
 			return builder.ToString();
 		}
 
 
-		private void ConvertXaml(XmlTextReader reader, XmlTextWriter writer)
+		private void ConvertXaml(XmlReader reader, XmlTextWriter writer)
 		{
 			while (reader.Read())
 			{
 				switch (reader.NodeType)
 				{
 					case XmlNodeType.Element:
+						if (!reader.IsEmptyElement)
 						{
-							var n = TranslateElementName(reader.Name, reader);
-							writer.WriteStartElement(n);
+							writer.WriteStartElement(TranslateElementName(reader.Name, reader));
 
 							if (reader.HasAttributes)
 							{
@@ -182,10 +257,8 @@ namespace River.OneMoreAddIn
 						break;
 
 					case XmlNodeType.EndElement:
-						{
-							var n = TranslateElementName(reader.Name);
-							writer.WriteEndElement();
-						}
+						//var n = TranslateElementName(reader.Name);
+						writer.WriteEndElement();
 						break;
 
 					case XmlNodeType.CDATA:
@@ -219,7 +292,6 @@ namespace River.OneMoreAddIn
 
 		private string Untabify(string text)
 		{
-			logger.WriteLine($"Untabify [{text}]");
 
 			if (text == null)
 				return string.Empty;
@@ -229,48 +301,41 @@ namespace River.OneMoreAddIn
 
 			var builder = new StringBuilder();
 
-			try
-			{
-				int i = 0;
+			int i = 0;
 
-				while ((i < text.Length) && (text[i] == ' ' || text[i] == '\t'))
+			while ((i < text.Length) && (text[i] == ' ' || text[i] == '\t'))
+			{
+				if (text[i] == ' ')
 				{
-					if (text[i] == ' ')
+					builder.Append('\u00a0');
+				}
+				else if (text[i] == '\t')
+				{
+					do
 					{
 						builder.Append('\u00a0');
 					}
-					else if (text[i] == '\t')
-					{
-						do
-						{
-							builder.Append('\u00a0');
-						}
-						while (builder.Length % 4 != 0);
-					}
-
-					i++;
+					while (builder.Length % 4 != 0);
 				}
 
-				while (i < text.Length)
-				{
-					builder.Append(text[i]);
-					i++;
-				}
-
-				var t1 = text.Replace(' ', '.').Replace('\t', '_');
-				var t2 = builder.ToString().Replace(' ', '.').Replace('\t', '_');
-				logger.WriteLine($"... untabified [{t1}] to [{t2}]");
+				i++;
 			}
-			catch (Exception exc)
+
+			while (i < text.Length)
 			{
-				logger.WriteLine("Untabify!!", exc);
+				builder.Append(text[i]);
+				i++;
 			}
+
+			var t1 = text.Replace(' ', '.').Replace('\t', '_');
+			var t2 = builder.ToString().Replace('\u00a0', '·');
+			logger.WriteLine($"... untabified [{t1}] to [{t2}]");
 
 			return builder.ToString();
 		}
 
 
-		private string TranslateElementName(string xname, XmlTextReader reader = null)
+		private string TranslateElementName(string xname, XmlReader reader = null)
 		{
 			string name;
 
@@ -358,7 +423,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void TranslateAttributes(XmlTextReader reader, XmlTextWriter writer)
+		private void TranslateAttributes(XmlReader reader, XmlTextWriter writer)
 		{
 			var styles = new StringBuilder();
 
@@ -510,10 +575,10 @@ namespace River.OneMoreAddIn
 			/*
 			 * https://docs.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format
 			 * 
-			 * StartHTML: 00071
-			 * EndHTML: 00170
-			 * StartFragment: 00140
-			 * EndFragment: 00160
+			 * StartHTML:00071
+			 * EndHTML:00170
+			 * StartFragment:00140
+			 * EndFragment:00160
 			 * <html>
 			 * <body>
 			 * <!--StartFragment--> ... <!--EndFragment-->
@@ -522,21 +587,22 @@ namespace River.OneMoreAddIn
 			 */
 
 			var builder = new StringBuilder();
-			builder.Append("StartHTML: 000000000" + Environment.NewLine);
-			builder.Append("EndHTML: 111111111" + Environment.NewLine);
-			builder.Append("StartFragment: 222222222" + Environment.NewLine);
-			builder.Append("EndFragment: 333333333" + Environment.NewLine);
+			builder.AppendLine("Version:0.9");
+			builder.AppendLine("StartHTML:0000000000");
+			builder.AppendLine("EndHTML:1111111111");
+			builder.AppendLine("StartFragment:2222222222");
+			builder.AppendLine("EndFragment:3333333333");
 
 			// calculate offsets
 
-			builder.Replace("000000000", $"{builder.Length:000000000}");
-			builder.Replace("111111111", $"{(builder.Length + html.Length):000000000}");
+			builder.Replace("0000000000", $"{builder.Length:0000000000}");
+			builder.Replace("1111111111", $"{(builder.Length + html.Length):0000000000}");
 
 			int sf = html.IndexOf("<!--StartFragment-->") + 20;
-			builder.Replace("222222222", $"{(builder.Length + sf):000000000}");
+			builder.Replace("2222222222", $"{(builder.Length + sf):0000000000}");
 
 			int ef = html.IndexOf("<!--EndFragment-->");
-			builder.Replace("333333333", $"{(builder.Length + ef):000000000}");
+			builder.Replace("3333333333", $"{(builder.Length + ef):0000000000}");
 
 			return builder.ToString() + html;
 		}
