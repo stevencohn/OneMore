@@ -80,13 +80,16 @@ namespace River.OneMoreAddIn
 
 		private void LoadStyles (List<CustomStyle> styles)
 		{
+			// nameBox TextBox is shown when creating a new style to enter a single name
+			// namesBox ComboBox is shown when editing styles to select an existing name
+
 			namesBox.Items.Clear();
 
 			if (styles.Count == 0)
 			{
 				styles.Add(new CustomStyle("Normal",
 					new Font(DefaultFontFamily, DefaultFontSize),
-					Color.Black, Color.Transparent));
+					Color.Black, Color.Transparent, true));
 			}
 
 			namesBox.Items.AddRange(styles.ToArray());
@@ -124,6 +127,7 @@ namespace River.OneMoreAddIn
 			boldButton.Checked = selection.Font.Bold;
 			italicButton.Checked = selection.Font.Italic;
 			underlineButton.Checked = selection.Font.Underline;
+			applyColorsBox.Checked = selection.ApplyColors;
 
 			spaceAfterSpinner.Value = selection.SpaceAfter;
 			spaceBeforeSpinner.Value = selection.SpaceBefore;
@@ -159,7 +163,9 @@ namespace River.OneMoreAddIn
 				// create a clipping box so the text does not wrap
 				var clip = new Rectangle(20, y, previewBox.Width - 40, (int)sampleSize.Height);
 
-				if (!selection.Background.IsEmpty && !selection.Background.Equals(Color.Transparent))
+				if (selection.ApplyColors &&
+					!selection.Background.IsEmpty &&
+					!selection.Background.Equals(Color.Transparent))
 				{
 					using (var highBrush = new SolidBrush(selection.Background))
 					{
@@ -168,7 +174,8 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				using (var brush = new SolidBrush(selection.Color))
+				var color = selection.ApplyColors ? selection.Color : Color.Black;
+				using (var brush = new SolidBrush(color))
 				{
 					e.Graphics.DrawString("Sample Text", sample, brush, clip);
 				}
@@ -276,6 +283,18 @@ namespace River.OneMoreAddIn
 
 			return Color.Empty;
 		}
+
+
+		private void applyColorsBox_CheckedChanged(object sender, EventArgs e)
+		{
+			selection.ApplyColors
+				= colorButton.Enabled
+				= backColorButton.Enabled
+				= applyColorsBox.Checked;
+
+			previewBox.Invalidate();
+		}
+
 
 		private void spaceAfterSpinner_ValueChanged (object sender, EventArgs e)
 		{

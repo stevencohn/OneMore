@@ -16,32 +16,30 @@ namespace River.OneMoreAddIn
 
 	internal class Phrase
 	{
-		XCData cdata;
-
 
 		// <![CDATA[One<span style='font-weight:bold'>two</span> thre]]>
 
 		public Phrase (XCData cdata)
 		{
-			this.cdata = cdata;
+			this.CData = cdata;
 		}
 
 		public Phrase (XElement textRange)
 		{
-			cdata = textRange.DescendantNodes()
+			CData = textRange.DescendantNodes()
 				.Where(e => e.NodeType == XmlNodeType.CDATA)
 				.FirstOrDefault() as XCData;
 		}
 
-		public XCData CData => cdata;
+		public XCData CData { get; }
 
-		public bool ContainsMultipleWords => (cdata.Value.Length > 1) && (cdata.Value.IndexOf(' ') >= 0);
+		public bool ContainsMultipleWords => (CData.Value.Length > 1) && (CData.Value.IndexOf(' ') >= 0);
 
-		public bool IsEmpty => cdata.Value.Length == 0;
+		public bool IsEmpty => CData.Value.Length == 0;
 
-		public bool EndsWithSpace => !IsEmpty && (cdata.Value[cdata.Value.Length - 1] == ' ');
+		public bool EndsWithSpace => !IsEmpty && (CData.Value[CData.Value.Length - 1] == ' ');
 
-		public bool StartsWithSpace => !IsEmpty && (cdata.Value[0] == ' ');
+		public bool StartsWithSpace => !IsEmpty && (CData.Value[0] == ' ');
 
 
 		public void ClearFormatting ()
@@ -62,7 +60,7 @@ namespace River.OneMoreAddIn
 					data += ((XElement)node).Value;
 			}
 
-			cdata.Value = data;
+			CData.Value = data;
 		}
 
 
@@ -73,6 +71,7 @@ namespace River.OneMoreAddIn
 				return string.Empty;
 			}
 
+			// copy the first word and remove it from the phrase
 			var wrap = GetSanitizedWrapper();
 			var first = wrap.Nodes().First();
 			first.Remove();
@@ -80,7 +79,7 @@ namespace River.OneMoreAddIn
 			using (var reader = wrap.CreateReader())
 			{
 				reader.MoveToContent();
-				cdata.Value = reader.ReadInnerXml();
+				CData.Value = reader.ReadInnerXml();
 			}
 
 			if (first.NodeType == XmlNodeType.Text)
@@ -89,6 +88,7 @@ namespace River.OneMoreAddIn
 			return (first as XElement).Value;
 		}
 
+
 		public string ExtractLastWord ()
 		{
 			if (IsEmpty)
@@ -96,6 +96,7 @@ namespace River.OneMoreAddIn
 				return string.Empty;
 			}
 
+			// copy the last worrd and remove it from the phrase
 			var wrap = GetSanitizedWrapper();
 			var last = wrap.Nodes().Last();
 			last.Remove();
@@ -103,7 +104,7 @@ namespace River.OneMoreAddIn
 			using (var reader = wrap.CreateReader())
 			{
 				reader.MoveToContent();
-				cdata.Value = reader.ReadInnerXml();
+				CData.Value = reader.ReadInnerXml();
 			}
 
 			if (last.NodeType == XmlNodeType.Text)
@@ -156,7 +157,7 @@ namespace River.OneMoreAddIn
 		{
 			// ensure proper XML
 
-			var ctext = cdata.Value
+			var ctext = CData.Value
 				.Replace("<br>", "<br/>")
 				.Replace("&nbsp;", " ");
 

@@ -7,13 +7,12 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Drawing;
 	using System.Text;
-	using System.Xml.Linq;
 
 
 	internal class CustomStyle : IDisposable
 	{
-		public CustomStyle (string name, Font font,
-			Color color, Color background,
+		public CustomStyle(string name, Font font,
+			Color color, Color background, bool applyColors,
 			int spaceBefore = 0, int spaceAfter = 0,
 			bool isHeading = false)
 		{
@@ -21,6 +20,7 @@ namespace River.OneMoreAddIn
 			this.Font = font;
 			this.Color = color;
 			this.Background = background;
+			this.ApplyColors = applyColors;
 			this.SpaceAfter = spaceAfter;
 			this.SpaceBefore = spaceBefore;
 			this.IsHeading = isHeading;
@@ -34,6 +34,8 @@ namespace River.OneMoreAddIn
 
 		public Color Background { get; set; }
 
+		public bool ApplyColors { get; set; }
+
 		public int SpaceBefore { get; set; }
 
 		public int SpaceAfter { get; set; }
@@ -42,7 +44,7 @@ namespace River.OneMoreAddIn
 
 
 		private bool disposedValue = false;
-		protected virtual void Dispose (bool disposing)
+		protected virtual void Dispose(bool disposing)
 		{
 			if (!disposedValue)
 			{
@@ -55,13 +57,13 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		public void Dispose ()
+		public void Dispose()
 		{
 			Dispose(true);
 		}
 
 
-		public override string ToString ()
+		public override string ToString()
 		{
 			return Name;
 		}
@@ -72,7 +74,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <returns></returns>
 
-		public string ToCss (bool extended = false)
+		public string ToCss(bool extended = false)
 		{
 			var builder = new StringBuilder();
 
@@ -86,25 +88,30 @@ namespace River.OneMoreAddIn
 			if ((Font.Style & FontStyle.Italic) > 0) builder.Append("font-style:italic;");
 			if ((Font.Style & FontStyle.Underline) > 0) builder.Append("text-decoration:underline;");
 
-			if (!Color.IsEmpty && !Color.Equals(Color.Transparent))
+			if (ApplyColors)
 			{
-				var hex = Color.ToArgb().ToString("X6");
-				if (hex.Length > 6) hex = hex.Substring(hex.Length - 6);
-				builder.Append($"color:#{hex};");
+				if (!Color.IsEmpty && !Color.Equals(Color.Transparent))
+				{
+					var hex = Color.ToArgb().ToString("X6");
+					if (hex.Length > 6) hex = hex.Substring(hex.Length - 6);
+					builder.Append($"color:#{hex};");
+				}
+
+				if (!Background.IsEmpty && !Background.Equals(Color.Transparent) && !Background.Equals(Color))
+				{
+					var hex = Background.ToArgb().ToString("X6");
+					if (hex.Length > 6) hex = hex.Substring(hex.Length - 6);
+					builder.Append($"background:#{hex};");
+				}
 			}
 
-			if (!Background.IsEmpty && !Background.Equals(Color.Transparent) && !Background.Equals(Color))
-			{
-				var hex = Background.ToArgb().ToString("X6");
-				if (hex.Length > 6) hex = hex.Substring(hex.Length - 6);
-				builder.Append($"background:#{hex};");
-			}
+			// Note SpaceAfter and SpaceBefore are not applied to spans but rather the parent OE
 
 			return builder.ToString();
 		}
 
 
-		public bool Matches (object obj)
+		public bool Matches(object obj)
 		{
 			var other = obj as CustomStyle;
 			if (other == null)
@@ -115,6 +122,7 @@ namespace River.OneMoreAddIn
 			if (!Name.Equals(other.Name)) return false;
 			if (!Font.Equals(other.Font)) return false;
 			if (!Color.Equals(other.Color)) return false;
+			if (!ApplyColors.Equals(other.ApplyColors)) return false;
 			if (!Background.Equals(other.Background)) return false;
 			if (!SpaceBefore.Equals(other.SpaceBefore)) return false;
 			if (!SpaceAfter.Equals(other.SpaceAfter)) return false;
@@ -123,4 +131,3 @@ namespace River.OneMoreAddIn
 		}
 	}
 }
- 

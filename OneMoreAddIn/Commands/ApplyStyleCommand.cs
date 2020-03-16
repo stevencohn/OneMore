@@ -11,12 +11,12 @@ namespace River.OneMoreAddIn
 	internal class ApplyStyleCommand : Command
 	{
 
-		public ApplyStyleCommand () : base()
+		public ApplyStyleCommand() : base()
 		{
 		}
 
 
-		public void Execute (int selectedIndex)
+		public void Execute(int selectedIndex)
 		{
 			using (var style = new StylesProvider().GetStyle(selectedIndex, false))
 			{
@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn
 		//<one:T selected="all"><![CDATA[]]></one:T>
 		//<one:T><![CDATA[e]]></one:T>
 
-		private void EvaluatePage (XElement page, CustomStyle style, ApplicationManager manager)
+		private void EvaluatePage(XElement page, CustomStyle style, ApplicationManager manager)
 		{
 			var ns = page.GetNamespaceOfPrefix("one");
 
@@ -75,6 +75,23 @@ namespace River.OneMoreAddIn
 								word += next.ExtractFirstWord();
 							}
 						}
+
+
+
+						/*
+						 * 
+						 * 
+						 * TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
+						 * 
+						 * 
+						 * Need to merge style, check if color/background-color already exists
+						 * in span and use that when applyColor is false; otherwise override
+						 * them of insert them if applyColor is true.
+						 * 
+						 * 
+						 */
+
+
 
 						if (word.Length > 0)
 						{
@@ -119,7 +136,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void ApplySpacing (XElement paragraph, string name, int space)
+		private void ApplySpacing(XElement paragraph, string name, int space)
 		{
 			var attr = paragraph.Attribute(name);
 			if (attr == null)

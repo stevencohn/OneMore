@@ -39,6 +39,7 @@ namespace River.OneMoreAddIn
 
 					using (var style = provider.GetStyle(itemIndex))
 					{
+						var fore = style.ApplyColors ? style.Color : Color.Black;
 						using (var brush = new SolidBrush(style.Color))
 						{
 							using (var font = new Font(style.Font.FontFamily, style.Font.Size, style.Font.Style))
@@ -46,7 +47,9 @@ namespace River.OneMoreAddIn
 								var textsize = graphics.MeasureString("AaBbCc123", font);
 								var x = textsize.Width >= tileWidth ? 0 : (tileWidth - textsize.Width) / 2;
 
-								if (!style.Background.IsEmpty && !style.Background.Equals(Color.Transparent))
+								if (style.ApplyColors &&
+									!style.Background.IsEmpty && 
+									!style.Background.Equals(Color.Transparent))
 								{
 									using (var bb = new SolidBrush(style.Background))
 									{

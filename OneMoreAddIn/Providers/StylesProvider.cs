@@ -150,6 +150,7 @@ namespace River.OneMoreAddIn
 			var aStyle = template.Attribute("fontStyle")?.Value ?? "Regular";
 			var aTextColor = template.Attribute("color")?.Value ?? "Black";
 			var aHighColor = template.Attribute("background")?.Value ?? String.Empty;
+			var aApplyColors = template.Attribute("applyColors")?.Value ?? "True";
 			var aSpaceAfter = template.Attribute("spaceAfter")?.Value ?? "0";
 			var aSpaceBefore = template.Attribute("spaceBefore")?.Value ?? "0";
 			var aHeading = template.Attribute("isHeading")?.Value ?? "False";
@@ -210,13 +211,15 @@ namespace River.OneMoreAddIn
 				}
 			}
 
+			bool.TryParse(aApplyColors, out var applyColors);
+
 			int.TryParse(aSpaceAfter, out var spaceAfter);
 			int.TryParse(aSpaceBefore, out var spaceBefore);
 
 			bool.TryParse(aHeading, out var isHeading);
 
 			var style = new CustomStyle(aName,
-				font, textColor, highColor, spaceBefore, spaceAfter, isHeading);
+				font, textColor, highColor, applyColors, spaceBefore, spaceAfter, isHeading);
 
 			return style;
 		}
@@ -315,6 +318,7 @@ namespace River.OneMoreAddIn
 				new XAttribute("fontSize", custom.Font.Size.ToString("#.0")),
 				new XAttribute("fontStyle", style),
 				new XAttribute("color", "#ff" + colorHex),
+				new XAttribute("applyColor", custom.ApplyColors.ToString()),
 				new XAttribute("spaceBefore", custom.SpaceBefore),
 				new XAttribute("spaceAfter", custom.SpaceAfter),
 				new XAttribute("isHeading", custom.IsHeading.ToString())

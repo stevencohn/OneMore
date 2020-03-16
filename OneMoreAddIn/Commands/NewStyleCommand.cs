@@ -298,7 +298,7 @@ namespace River.OneMoreAddIn
 
 			var custom = new CustomStyle(
 				"Style-" + new Random().Next(1000, 9999).ToString(),
-				new Font(family, size, style), color, background, spaceBefore, spaceAfter);
+				new Font(family, size, style), color, background, true, spaceBefore, spaceAfter);
 
 			return custom;
 		}

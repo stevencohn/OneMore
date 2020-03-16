@@ -77,6 +77,7 @@ namespace River.OneMoreAddIn
 		protected override void OnShown (EventArgs e)
 		{
 			UIHelper.SetForegroundWindow(this);
+			findBox.Focus();
 		}
 
 
