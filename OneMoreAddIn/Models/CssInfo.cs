@@ -2,10 +2,13 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-using System.Text;
-
 namespace River.OneMoreAddIn
 {
+    using System.Drawing;
+    using System.Text;
+	using System.Xml.Linq;
+
+
 	internal class CssInfo : StyleInfoBase
 	{
 		public CssInfo ()
@@ -13,9 +16,52 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public CssInfo (CustomStyle style)
+		{
+			this.Name = style.Name;
+			this.FontFamily = style.Font.FontFamily.Name;
+			this.FontSize = style.Font.Size.ToString("#.0") + "pt";
+			this.IsBold = (style.Font.Style & FontStyle.Bold) > 0;
+			this.IsItalic = (style.Font.Style & FontStyle.Italic) > 0;
+			this.IsUnderline = (style.Font.Style & FontStyle.Underline) > 0;
+			this.SpaceAfter = style.SpaceAfter.ToString();
+			this.SpaceBefore = style.SpaceBefore.ToString();
+
+			if (style.ApplyColors)
+			{
+				if (!style.Color.IsEmpty && !style.Color.Equals(System.Drawing.Color.Transparent))
+				{
+					var hex = style.Color.ToArgb().ToString("X6");
+					if (hex.Length > 6) hex = hex.Substring(hex.Length - 6);
+					this.Color = "#" + hex;
+				}
+
+				if (!style.Background.IsEmpty && 
+					!style.Background.Equals(System.Drawing.Color.Transparent) && 
+					!style.Background.Equals(Color))
+				{
+					var hex = style.Background.ToArgb().ToString("X6");
+					if (hex.Length > 6) hex = hex.Substring(hex.Length - 6);
+					Highlight = "#" + hex;
+				}
+			}
+		}
+
+
+		public CssInfo (XElement element)
+		{
+			var style = element.Attribute("style")?.Value;
+			if (HasProperties = (style != null))
+			{
+				Collect(style);
+			}
+		}
+
+
 		public CssInfo (string css)
 		{
 			Collect(css);
+			HasProperties = true;
 		}
 
 
@@ -24,6 +70,9 @@ namespace River.OneMoreAddIn
 			get => base.FontSize;
 			set => base.FontSize = FormatSize(value);
 		}
+
+
+		public bool HasProperties { get; private set; }
 
 
 		public void Collect (string css)
@@ -97,6 +146,25 @@ namespace River.OneMoreAddIn
 				}
 			}
 		}
+
+
+		public void Merge(CssInfo other)
+		{
+			FontFamily = other.FontFamily;
+			FontSize = other.FontSize;
+			IsBold = other.IsBold;
+			IsItalic = other.IsItalic;
+			IsUnderline = other.IsUnderline;
+			IsSubscript = other.IsSubscript;
+			IsSuperscript = other.IsSuperscript;
+			SpaceAfter = other.SpaceAfter;
+			SpaceBefore = other.SpaceBefore;
+
+			// if other color is null then we are not applying/overriding colors here
+			if (other.Color != null) Color = other.Color;
+			if (other.Highlight != null) Highlight = other.Highlight;
+		}
+
 
 		public string ToCss ()
 		{

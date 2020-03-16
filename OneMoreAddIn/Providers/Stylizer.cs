@@ -63,35 +63,64 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Apply the given CSS to the content
 		/// </summary>
-		/// <param name="style"></param>
-		public void ApplyStyle(CustomStyle style)
+		/// <param name="info">Style info (instantiated from CustomStyle)</param>
+		public void ApplyStyle(CssInfo info)
 		{
 			XElement parent = null;
 
+			// find all one:T
 			foreach (var cdata in
 				container.DescendantNodes().Where(e => e.NodeType == XmlNodeType.CDATA).Cast<XCData>())
 			{
+				// wrap the CData as an XElement so we can parse it
 				var wrapper = ConvertCDataToXml(cdata.Value);
+
+				// true if there are at least one Text nodes
+				var hasPlainText = false;
 
 				foreach (var child in wrapper.Nodes())
 				{
 					if (child.NodeType == XmlNodeType.Text)
 					{
+						// will apply style to parent one:T when at least one Text node exists
+						hasPlainText = true;
 					}
 					else if (child.NodeType == XmlNodeType.Element)
 					{
+						//
 					}
 				}
-
-
 
 				if (parent != cdata.Parent)
 				{
 					parent = cdata.Parent;
 
-					// TODO: apply styles to parent...
+					if (hasPlainText)
+					{
+						Apply(info, parent);
+					}
 				}
+			}
+		}
+
+
+		// apply info styles to given element, merging with existing properties
+		private void Apply(CssInfo info, XElement element)
+		{
+			var span = element.Attribute("style");
+			if (span == null)
+			{
+				// give element new style
+				element.Add(new XAttribute("style", info.ToCss()));
+			}
+			else
+			{
+				// merge info style into element's style
+				var css = new CssInfo(element);
+				css.Merge(info);
+				span.Value = css.ToCss();
 			}
 		}
 
