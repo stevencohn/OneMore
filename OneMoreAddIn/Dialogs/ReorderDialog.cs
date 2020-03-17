@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				if (item.IsHeading)
+				if (item.StyleType == StyleType.Heading)
 				{
 					using (var hfont = new Font(DefaultFont.FontFamily, DefaultFont.Size - 2.0f, FontStyle.Bold | FontStyle.Italic))
 					{

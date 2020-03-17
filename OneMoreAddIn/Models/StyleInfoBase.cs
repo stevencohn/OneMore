@@ -25,6 +25,10 @@ namespace River.OneMoreAddIn
 		public string SpaceAfter { get; set; }
 		public bool? IsHeading { get; set; }
 
+		/// <summary>
+		/// Used by InsertTocCommand to keep track of TOC indent level...
+		/// There must be a better way, right?
+		/// </summary>
 		public int Level { get; set; }
 
 

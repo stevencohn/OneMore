@@ -108,6 +108,9 @@ namespace River.OneMoreAddIn
 		}
 
 
+		//========================================================================================
+		// Load
+
 		public List<CustomStyle> LoadTheme (string path)
 		{
 			if (File.Exists(path))
@@ -128,6 +131,9 @@ namespace River.OneMoreAddIn
 		}
 
 
+		//========================================================================================
+		// ReadStyle
+
 		private CustomStyle ReadStyle (XElement template, bool scaling = false)
 		{
 			float scaleFactor = 1f;
@@ -142,88 +148,124 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			var aName = template.Attribute("name")?.Value 
-				?? "Style-" + new Random().Next(1000, 9999).ToString();
-
-			var aFamily = template.Attribute("fontFamily")?.Value ?? "Calibri";
-			var aSize = template.Attribute("fontSize")?.Value ?? "10";
-			var aStyle = template.Attribute("fontStyle")?.Value ?? "Regular";
-			var aTextColor = template.Attribute("color")?.Value ?? "Black";
-			var aHighColor = template.Attribute("background")?.Value ?? String.Empty;
-			var aApplyColors = template.Attribute("applyColors")?.Value ?? "True";
-			var aSpaceAfter = template.Attribute("spaceAfter")?.Value ?? "0";
-			var aSpaceBefore = template.Attribute("spaceBefore")?.Value ?? "0";
-			var aHeading = template.Attribute("isHeading")?.Value ?? "False";
-
-			if (!float.TryParse(aSize, out var size))
+			// name
+			if (!template.ReadAttributeValue("name", out var name))
 			{
-				size = 11f;
+				name = "Style-" + new Random().Next(1000, 9999).ToString();
 			}
 
-			FontStyle fontStyle = FontStyle.Regular;
-			var bits = aStyle.Split('+');
-			foreach (var bit in bits)
+			// styleType
+			if (!template.ReadAttributeValue("styleType", out var styleType, StyleType.Paragraph))
 			{
-				if (Enum.TryParse<FontStyle>(bit, out var styleBit))
+				if (template.ReadAttributeValue("isHeading", out var isHeading, false))
 				{
-					fontStyle |= styleBit;
+					styleType = isHeading ? StyleType.Heading : StyleType.Paragraph;
+				}
+				else
+				{
+					styleType = StyleType.Paragraph;
 				}
 			}
 
+			// font size and style needed to build font...
+
+			// fontSize
+			template.ReadAttributeValue("fontSize", out var fontSize, CustomStyle.DefaultFontSize);
+
+			// fontStyle
+			var fontStyle = FontStyle.Regular;
+			if (template.ReadAttributeValue("fontStyle", out var stylev, "Regular"))
+			{
+				var parts = stylev.Split('+');
+				foreach (var part in parts)
+				{
+					if (Enum.TryParse<FontStyle>(part, out var flag))
+					{
+						fontStyle |= flag;
+					}
+				}
+			}
+
+			// font
 			Font font = null;
-			try
-			{
-				font = new Font(aFamily, size * scaleFactor, fontStyle);
-			}
-			catch (Exception exc)
-			{
-				Logger.Current.WriteLine("Error translating color" + aTextColor);
-				Logger.Current.WriteLine(exc);
-				font = new Font("Calibri", 11 * scaleFactor, fontStyle);
-			}
-
-			var textColor = Color.Black;
-			try
-			{
-				textColor = ColorTranslator.FromHtml(aTextColor);
-			}
-			catch (Exception exc)
-			{
-				Logger.Current.WriteLine("Error translating color" + aTextColor);
-				Logger.Current.WriteLine(exc);
-			}
-
-			var highColor = Color.Empty;
-			if (String.IsNullOrEmpty(aHighColor))
-			{
-				highColor = Color.Transparent;
-			}
-			else
+			if (template.ReadAttributeValue("fontFamily", out var fontFamily, CustomStyle.DefaultFontFamily))
 			{
 				try
 				{
-					highColor = ColorTranslator.FromHtml(aHighColor);
+					font = new Font(fontFamily, fontSize * scaleFactor, fontStyle);
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine("Error translating background" + aHighColor);
-					Logger.Current.WriteLine(exc);
+					Logger.Current.WriteLine(
+						$"Error creating font({fontFamily}, {fontSize}, {fontStyle.ToString()})",
+						exc);
+
+					font = new Font(
+						CustomStyle.DefaultFontFamily, 
+						CustomStyle.DefaultFontSize * scaleFactor, 
+						fontStyle);
 				}
 			}
 
-			bool.TryParse(aApplyColors, out var applyColors);
+			// color
+			Color color = Color.Black;
+			if (template.ReadAttributeValue("color", out var colorv, "Black"))
+			{
+				try
+				{
+					color = ColorTranslator.FromHtml(colorv);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine($"Error translating color {colorv}", exc);
+				}
+			}
 
-			int.TryParse(aSpaceAfter, out var spaceAfter);
-			int.TryParse(aSpaceBefore, out var spaceBefore);
+			// background
+			Color background = Color.Empty;
+			if (template.ReadAttributeValue("background", out var backgroundv, "Empty"))
+			{
+				try
+				{
+					background = ColorTranslator.FromHtml(backgroundv);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine($"Error translating background {backgroundv}", exc);
+				}
+			}
 
-			bool.TryParse(aHeading, out var isHeading);
+			// applyColors
+			template.ReadAttributeValue("applyColors", out var applyColors, true);
 
-			var style = new CustomStyle(aName,
-				font, textColor, highColor, applyColors, spaceBefore, spaceAfter, isHeading);
+			// spaceAfter
+			template.ReadAttributeValue("spaceAfter", out var spaceAfter, 0);
 
-			return style;
+			// spaceBefore
+			template.ReadAttributeValue("spaceBefore", out var spaceBefore, 0);
+
+
+			Logger.Current.WriteLine(
+				$"StylesProvider() read (name:{name}, type:{styleType}, family:{font.FontFamily.Name}, size:{font.Size}, color:{color}, background:{background}, apply:{applyColors}, before:{spaceBefore}, after:{spaceAfter})");
+
+			// make new CustomType
+
+			return new CustomStyle
+			{
+				Name = name,
+				StyleType = styleType,
+				Font = font,
+				Color = color,
+				Background = background,
+				ApplyColors = applyColors,
+				SpaceAfter = spaceAfter,
+				SpaceBefore = spaceBefore
+			};
 		}
 
+
+		//========================================================================================
+		// Save
 
 		public void SaveStyles (List<CustomStyle> styles)
 		{
@@ -314,14 +356,14 @@ namespace River.OneMoreAddIn
 
 			var element = new XElement("Style",
 				new XAttribute("name", custom.Name),
+				new XAttribute("styleType", custom.StyleType.ToString()),
 				new XAttribute("fontFamily", custom.Font.FontFamily.Name),
 				new XAttribute("fontSize", custom.Font.Size.ToString("#.0")),
 				new XAttribute("fontStyle", style),
 				new XAttribute("color", "#ff" + colorHex),
 				new XAttribute("applyColor", custom.ApplyColors.ToString()),
 				new XAttribute("spaceBefore", custom.SpaceBefore),
-				new XAttribute("spaceAfter", custom.SpaceAfter),
-				new XAttribute("isHeading", custom.IsHeading.ToString())
+				new XAttribute("spaceAfter", custom.SpaceAfter)
 				);
 
 			if (!custom.Background.IsEmpty && 

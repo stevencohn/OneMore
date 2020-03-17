@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System.Linq;
+	using System.Text;
 	using System.Xml.Linq;
 
 
@@ -25,116 +26,97 @@ namespace River.OneMoreAddIn
 					var page = manager.CurrentPage();
 					if (page != null)
 					{
-						EvaluatePage(page, style, manager);
+						Evaluate(page, style, manager);
 					}
 				}
 			}
 		}
 
 
-		//<one:T><![CDATA[One two thre]]></one:T>
-		//<one:T selected="all"><![CDATA[]]></one:T>
-		//<one:T><![CDATA[e]]></one:T>
-
-		private void EvaluatePage(XElement page, CustomStyle style, ApplicationManager manager)
+		private void Evaluate(XElement page, CustomStyle style, ApplicationManager manager)
 		{
 			var ns = page.GetNamespaceOfPrefix("one");
 
 			// find all selections; may be multiple if text is selected across multiple paragraphs
-
 			var selections = page.Descendants(ns + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
 
-			if (selections != null)
+			if (selections == null)
 			{
-				foreach (var selection in selections)
+				// shouldn't happen, but...
+				return;
+			}
+
+			var stylizer = new Stylizer(new CssInfo(style));
+
+			foreach (var selection in selections)
+			{
+				if (selection.Parent.Nodes().Count() == 1)
 				{
-					var phrase = new Phrase(selection);
+					// OE parent must have only this T
 
-					if (phrase.IsEmpty)
+					stylizer.ApplyStyle(selection);
+				}
+				else
+				{
+					// OE parent has multiple Ts so test if we need to merge them
+
+					var cdata = selection.GetCData();
+
+					if (cdata.IsEmpty())
 					{
-						// infer selected word by combining adjacent non-whitespace characters to
-						// the left of the cursor and to the right of the cursor into a single word
+						// navigate to closest word
 
-						string word = string.Empty;
+						var word = new StringBuilder();
 
 						if ((selection.PreviousNode != null) && (selection.PreviousNode is XElement))
 						{
-							var prev = new Phrase(selection.PreviousNode as XElement);
-							if (!prev.EndsWithSpace)
+							var prev = selection.PreviousNode as XElement;
+							if (!prev.GetCData().EndsWithWhitespace())
 							{
-								word += prev.ExtractLastWord();
+								// grab previous part of word
+								word.Append(prev.ExtractLastWord());
 							}
 						}
 
-						if ((selection.NextNode != null) && (selection.NextNode is XElement))
+						if ((selection.NextNode != null) && (selection.NextNode	is XElement))
 						{
-							var next = new Phrase(selection.NextNode as XElement);
-							if (!next.StartsWithSpace)
+							var next = selection.PreviousNode as XElement;
+							if (!next.GetCData().StartsWithWhitespace())
 							{
-								word += next.ExtractFirstWord();
+								// grab following part of word
+								word.Append(next.ExtractFirstWord());
 							}
 						}
-
-
-
-						/*
-						 * 
-						 * 
-						 * TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO  TODO
-						 * 
-						 * 
-						 * Need to merge style, check if color/background-color already exists
-						 * in span and use that when applyColor is false; otherwise override
-						 * them of insert them if applyColor is true.
-						 * 
-						 * 
-						 */
-
-
 
 						if (word.Length > 0)
 						{
-							phrase.CData.Value =
-								new XElement("span", new XAttribute("style", style.ToCss(true)), word)
-								.ToString(SaveOptions.DisableFormatting);
-						}
-						else
-						{
-							// cannot apply style to an empty CDATA because OneNote will
-							// strip the styling off, so instead need to apply to parent one:T instead
+							var element = new XElement(ns + "T", new XCData(word.ToString()));
+							stylizer.ApplyStyle(element);
 
-							var span = selection.Attribute("style");
-							if (span == null)
-							{
-								selection.Add(new XAttribute("style", style.ToCss(true)));
-							}
-							else
-							{
-								span.Value = style.ToCss(true);
-							}
+							// insert new element just before text cursor
+							selection.AddBeforeSelf(element);
 						}
 					}
 					else
 					{
-						phrase.ClearFormatting();
-
-						phrase.CData.Value =
-							new XElement("span", new XAttribute("style", style.ToCss(true)), phrase.CData.Value)
-							.ToString(SaveOptions.DisableFormatting);
+						stylizer.ApplyStyle(selection);
 					}
+				}
 
+				if (style.StyleType != StyleType.Character)
+				{
 					// apply spacing to parent OE; we may have selected text across multiple OEs
 					// but we'll just reapply if all Ts are within the same OE, no biggie
-
 					var oe = selection.Parent;
 					ApplySpacing(oe, "spaceBefore", style.SpaceBefore);
 					ApplySpacing(oe, "spaceAfter", style.SpaceAfter);
 				}
-
-				manager.UpdatePageContent(page);
 			}
+
+			manager.UpdatePageContent(page);
 		}
+
 
 		private void ApplySpacing(XElement paragraph, string name, int space)
 		{
@@ -159,4 +141,35 @@ namespace River.OneMoreAddIn
 			}
 		}
 	}
+
+	/*
+	 * one:OE -------------------------
+	 *
+	 * T=all but OE=partial because EOL is not selected - NOTE ONE CHILD
+	  <one:OE creationTime="2020-03-15T23:29:18.000Z" lastModifiedTime="2020-03-15T23:29:18.000Z" objectID="{BF7825D6-1EE4-46C0-AC87-B2FFA76137D1}{15}{B0}" alignment="left" quickStyleIndex="1" selected="partial">
+        <one:T selected="all"><![CDATA[This is the fourth line]]></one:T>
+      </one:OE>
+	 *
+	 * T=all and OE=all because EOL is selected - NOTE ONE CHILD
+	  <one:OE creationTime="2020-03-15T23:29:18.000Z" lastModifiedTime="2020-03-15T23:29:18.000Z" objectID="{BF7825D6-1EE4-46C0-AC87-B2FFA76137D1}{15}{B0}" selected="all" alignment="left" quickStyleIndex="1">
+        <one:T selected="all"><![CDATA[This is the fourth line]]></one:T>
+      </one:OE>
+	 * 
+	 * one:T --------------------------
+	 * 
+	 * middle of word
+      <one:OE creationTime="2020-03-15T23:29:18.000Z" lastModifiedTime="2020-03-15T23:29:18.000Z" objectID="{BF7825D6-1EE4-46C0-AC87-B2FFA76137D1}{15}{B0}" alignment="left" quickStyleIndex="1" selected="partial">
+        <one:T><![CDATA[This is the fo]]></one:T>
+        <one:T selected="all"><![CDATA[]]></one:T>
+        <one:T><![CDATA[urth line]]></one:T>
+      </one:OE>
+	 * 
+	 * selected word
+      <one:OE creationTime="2020-03-15T23:29:18.000Z" lastModifiedTime="2020-03-15T23:29:18.000Z" objectID="{BF7825D6-1EE4-46C0-AC87-B2FFA76137D1}{15}{B0}" alignment="left" quickStyleIndex="1" selected="partial">
+        <one:T><![CDATA[This is the ]]></one:T>
+        <one:T selected="all"><![CDATA[fourth ]]></one:T>
+        <one:T><![CDATA[line]]></one:T>
+      </one:OE>
+	 *
+ 	 */
 }

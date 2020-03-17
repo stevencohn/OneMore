@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreAddIn", "OneMoreAddIn\OneMoreAddIn.csproj", "{D874E185-08FE-48C5-BADE-0FE84060C978}"
 EndProject
@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreAddin.Tests", "OneMo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2679BE09-8144-4B5B-957E-D463F00FA66E}"
 	ProjectSection(SolutionItems) = preProject
+		0336.OneNoteApplication_2013.xsd = 0336.OneNoteApplication_2013.xsd
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection

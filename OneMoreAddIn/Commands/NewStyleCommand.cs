@@ -296,9 +296,17 @@ namespace River.OneMoreAddIn
 			if (attributes.ContainsKey("spaceAfter"))
 				int.TryParse(attributes["spaceAfter"], out spaceAfter);
 
-			var custom = new CustomStyle(
-				"Style-" + new Random().Next(1000, 9999).ToString(),
-				new Font(family, size, style), color, background, true, spaceBefore, spaceAfter);
+			var custom = new CustomStyle
+			{
+				Name = "Style-" + new Random().Next(1000, 9999).ToString(),
+				StyleType = StyleType.Character,
+				Font = new Font(family, size, style),
+				ApplyColors = true,
+				Color = color,
+				Background = background,
+				SpaceBefore = spaceBefore,
+				SpaceAfter = spaceAfter
+			};
 
 			return custom;
 		}

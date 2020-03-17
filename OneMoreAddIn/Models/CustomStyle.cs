@@ -6,41 +6,27 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Drawing;
-	using System.Text;
 
 
 	internal class CustomStyle : IDisposable
 	{
-		public CustomStyle(string name, Font font,
-			Color color, Color background, bool applyColors,
-			int spaceBefore = 0, int spaceAfter = 0,
-			bool isHeading = false)
+		public static readonly string DefaultFontFamily = "Calibri";
+		public const float DefaultFontSize = 11;
+
+
+		// Lifecycle
+
+		public CustomStyle()
 		{
-			this.Name = name;
-			this.Font = font;
-			this.Color = color;
-			this.Background = background;
-			this.ApplyColors = applyColors;
-			this.SpaceAfter = spaceAfter;
-			this.SpaceBefore = spaceBefore;
-			this.IsHeading = isHeading;
+			Name = "Normal";
+			StyleType = StyleType.Paragraph;
+			Font = new Font(DefaultFontFamily, DefaultFontSize);
+			Color = Color.Black;
+			Background = Color.Transparent;
+			ApplyColors = true;
+			SpaceAfter = 0;
+			SpaceBefore = 0;
 		}
-
-		public string Name { get; set; }
-
-		public Font Font { get; set; }
-
-		public Color Color { get; set; }
-
-		public Color Background { get; set; }
-
-		public bool ApplyColors { get; set; }
-
-		public int SpaceBefore { get; set; }
-
-		public int SpaceAfter { get; set; }
-
-		public bool IsHeading { get; set; }
 
 
 		private bool disposedValue = false;
@@ -63,71 +49,22 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public override string ToString()
-		{
-			return Name;
-		}
+		// Properties
 
+		public string Name { get; set; }
 
-		/// <summary>
-		/// Build a CSS style string suitable for adding to a SPAN element in Page content
-		/// </summary>
-		/// <returns></returns>
+		public StyleType StyleType { get; set; }
 
-		public string ToCss(bool extended = false)
-		{
-			var builder = new StringBuilder();
+		public Font Font { get; set; }
 
-			if (extended)
-			{
-				builder.Append($"font-family:{Font.FontFamily.Name};");
-				builder.Append($"font-size:{Font.Size.ToString("#.0")}pt;");
-			}
+		public Color Color { get; set; }
 
-			if ((Font.Style & FontStyle.Bold) > 0) builder.Append("font-weight:bold;");
-			if ((Font.Style & FontStyle.Italic) > 0) builder.Append("font-style:italic;");
-			if ((Font.Style & FontStyle.Underline) > 0) builder.Append("text-decoration:underline;");
+		public Color Background { get; set; }
 
-			if (ApplyColors)
-			{
-				if (!Color.IsEmpty && !Color.Equals(Color.Transparent))
-				{
-					var hex = Color.ToArgb().ToString("X6");
-					if (hex.Length > 6) hex = hex.Substring(hex.Length - 6);
-					builder.Append($"color:#{hex};");
-				}
+		public bool ApplyColors { get; set; }
 
-				if (!Background.IsEmpty && !Background.Equals(Color.Transparent) && !Background.Equals(Color))
-				{
-					var hex = Background.ToArgb().ToString("X6");
-					if (hex.Length > 6) hex = hex.Substring(hex.Length - 6);
-					builder.Append($"background:#{hex};");
-				}
-			}
+		public int SpaceBefore { get; set; }
 
-			// Note SpaceAfter and SpaceBefore are not applied to spans but rather the parent OE
-
-			return builder.ToString();
-		}
-
-
-		public bool Matches(object obj)
-		{
-			var other = obj as CustomStyle;
-			if (other == null)
-			{
-				return false;
-			}
-
-			if (!Name.Equals(other.Name)) return false;
-			if (!Font.Equals(other.Font)) return false;
-			if (!Color.Equals(other.Color)) return false;
-			if (!ApplyColors.Equals(other.ApplyColors)) return false;
-			if (!Background.Equals(other.Background)) return false;
-			if (!SpaceBefore.Equals(other.SpaceBefore)) return false;
-			if (!SpaceAfter.Equals(other.SpaceAfter)) return false;
-
-			return true;
-		}
+		public int SpaceAfter { get; set; }
 	}
 }

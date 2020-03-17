@@ -50,12 +50,13 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.familyBox = new River.OneMoreAddIn.FontComboBox();
 			this.namesBox = new System.Windows.Forms.ComboBox();
-			this.headingBox = new System.Windows.Forms.CheckBox();
 			this.mainTools = new River.OneMoreAddIn.ScaledToolStrip();
 			this.loadButton = new System.Windows.Forms.ToolStripButton();
 			this.reorderButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.styleTypeLabel = new System.Windows.Forms.Label();
+			this.styleTypeBox = new System.Windows.Forms.ComboBox();
 			this.applyColorsBox = new System.Windows.Forms.CheckBox();
 			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
@@ -85,56 +86,58 @@
             "22",
             "24",
             "26"});
-			this.sizeBox.Location = new System.Drawing.Point(381, 78);
+			this.sizeBox.Location = new System.Drawing.Point(416, 105);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(80, 33);
-			this.sizeBox.TabIndex = 1;
+			this.sizeBox.TabIndex = 4;
 			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.UpdateFont);
 			// 
 			// beforeLabel
 			// 
+			this.beforeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.beforeLabel.AutoSize = true;
-			this.beforeLabel.Location = new System.Drawing.Point(16, 186);
+			this.beforeLabel.Location = new System.Drawing.Point(14, 220);
 			this.beforeLabel.Name = "beforeLabel";
-			this.beforeLabel.Size = new System.Drawing.Size(107, 20);
+			this.beforeLabel.Size = new System.Drawing.Size(111, 20);
 			this.beforeLabel.TabIndex = 6;
-			this.beforeLabel.Text = "Space Before";
+			this.beforeLabel.Text = "Space Before:";
 			// 
 			// afterLabel
 			// 
+			this.afterLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.afterLabel.AutoSize = true;
-			this.afterLabel.Location = new System.Drawing.Point(28, 223);
+			this.afterLabel.Location = new System.Drawing.Point(18, 257);
 			this.afterLabel.Name = "afterLabel";
-			this.afterLabel.Size = new System.Drawing.Size(94, 20);
+			this.afterLabel.Size = new System.Drawing.Size(98, 20);
 			this.afterLabel.TabIndex = 7;
-			this.afterLabel.Text = "Space After";
+			this.afterLabel.Text = "Space After:";
 			// 
 			// nameLabel
 			// 
 			this.nameLabel.AutoSize = true;
-			this.nameLabel.Location = new System.Drawing.Point(33, 29);
+			this.nameLabel.Location = new System.Drawing.Point(18, 30);
 			this.nameLabel.Name = "nameLabel";
-			this.nameLabel.Size = new System.Drawing.Size(90, 20);
+			this.nameLabel.Size = new System.Drawing.Size(94, 20);
 			this.nameLabel.TabIndex = 8;
-			this.nameLabel.Text = "Style Name";
+			this.nameLabel.Text = "Style Name:";
 			// 
 			// nameBox
 			// 
 			this.nameBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.nameBox.Location = new System.Drawing.Point(129, 23);
+			this.nameBox.Location = new System.Drawing.Point(145, 23);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.Size = new System.Drawing.Size(332, 31);
-			this.nameBox.TabIndex = 9;
+			this.nameBox.Size = new System.Drawing.Size(351, 31);
+			this.nameBox.TabIndex = 1;
 			this.nameBox.TextChanged += new System.EventHandler(this.nameBox_TextChanged);
 			// 
 			// fontLabel
 			// 
 			this.fontLabel.AutoSize = true;
-			this.fontLabel.Location = new System.Drawing.Point(81, 85);
+			this.fontLabel.Location = new System.Drawing.Point(18, 118);
 			this.fontLabel.Name = "fontLabel";
-			this.fontLabel.Size = new System.Drawing.Size(42, 20);
+			this.fontLabel.Size = new System.Drawing.Size(46, 20);
 			this.fontLabel.TabIndex = 10;
-			this.fontLabel.Text = "Font";
+			this.fontLabel.Text = "Font:";
 			// 
 			// toolStrip
 			// 
@@ -142,18 +145,18 @@
 			this.toolStrip.BackColor = System.Drawing.Color.Transparent;
 			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-			this.toolStrip.ImageScalingSize = new System.Drawing.Size(121, 121);
+			this.toolStrip.ImageScalingSize = new System.Drawing.Size(913, 913);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.boldButton,
             this.italicButton,
             this.underlineButton,
             this.backColorButton,
             this.colorButton});
-			this.toolStrip.Location = new System.Drawing.Point(129, 118);
+			this.toolStrip.Location = new System.Drawing.Point(145, 150);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
 			this.toolStrip.Size = new System.Drawing.Size(230, 32);
-			this.toolStrip.TabIndex = 15;
+			this.toolStrip.TabIndex = 5;
 			// 
 			// boldButton
 			// 
@@ -238,29 +241,32 @@
 			// 
 			// spaceBeforeSpinner
 			// 
+			this.spaceBeforeSpinner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.spaceBeforeSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceBeforeSpinner.Location = new System.Drawing.Point(129, 180);
+			this.spaceBeforeSpinner.Location = new System.Drawing.Point(145, 214);
 			this.spaceBeforeSpinner.Name = "spaceBeforeSpinner";
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(90, 31);
-			this.spaceBeforeSpinner.TabIndex = 16;
+			this.spaceBeforeSpinner.TabIndex = 7;
 			this.spaceBeforeSpinner.ValueChanged += new System.EventHandler(this.spaceBeforeSpinner_ValueChanged);
 			// 
 			// spaceAfterSpinner
 			// 
+			this.spaceAfterSpinner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.spaceAfterSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceAfterSpinner.Location = new System.Drawing.Point(129, 217);
+			this.spaceAfterSpinner.Location = new System.Drawing.Point(145, 251);
 			this.spaceAfterSpinner.Name = "spaceAfterSpinner";
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(90, 31);
-			this.spaceAfterSpinner.TabIndex = 17;
+			this.spaceAfterSpinner.TabIndex = 8;
 			this.spaceAfterSpinner.ValueChanged += new System.EventHandler(this.spaceAfterSpinner_ValueChanged);
 			// 
 			// previewBox
 			// 
+			this.previewBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.previewBox.BackColor = System.Drawing.Color.White;
 			this.previewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.previewBox.Location = new System.Drawing.Point(260, 180);
+			this.previewBox.Location = new System.Drawing.Point(260, 211);
 			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(202, 107);
+			this.previewBox.Size = new System.Drawing.Size(236, 107);
 			this.previewBox.TabIndex = 18;
 			this.previewBox.TabStop = false;
 			this.previewBox.Paint += new System.Windows.Forms.PaintEventHandler(this.previewBox_Paint);
@@ -269,10 +275,10 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(346, 322);
+			this.cancelButton.Location = new System.Drawing.Point(380, 357);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
-			this.cancelButton.TabIndex = 19;
+			this.cancelButton.TabIndex = 10;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -280,10 +286,10 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(226, 322);
+			this.okButton.Location = new System.Drawing.Point(260, 357);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(116, 38);
-			this.okButton.TabIndex = 20;
+			this.okButton.TabIndex = 9;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -533,10 +539,10 @@
             "Yu Gothic UI Semibold",
             "Yu Gothic UI Semilight",
             "ZWAdobeF"});
-			this.familyBox.Location = new System.Drawing.Point(129, 78);
+			this.familyBox.Location = new System.Drawing.Point(145, 105);
 			this.familyBox.Name = "familyBox";
-			this.familyBox.Size = new System.Drawing.Size(246, 32);
-			this.familyBox.TabIndex = 0;
+			this.familyBox.Size = new System.Drawing.Size(265, 32);
+			this.familyBox.TabIndex = 3;
 			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.UpdateFont);
 			// 
 			// namesBox
@@ -545,28 +551,17 @@
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
-			this.namesBox.Location = new System.Drawing.Point(33, 327);
+			this.namesBox.Location = new System.Drawing.Point(18, 362);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
 			this.namesBox.TabIndex = 21;
 			this.namesBox.Visible = false;
 			this.namesBox.SelectedIndexChanged += new System.EventHandler(this.namesBox_SelectedIndexChanged);
 			// 
-			// headingBox
-			// 
-			this.headingBox.AutoSize = true;
-			this.headingBox.Location = new System.Drawing.Point(129, 263);
-			this.headingBox.Name = "headingBox";
-			this.headingBox.Size = new System.Drawing.Size(95, 24);
-			this.headingBox.TabIndex = 23;
-			this.headingBox.Text = "Heading";
-			this.headingBox.UseVisualStyleBackColor = true;
-			this.headingBox.CheckedChanged += new System.EventHandler(this.headingBox_CheckedChanged);
-			// 
 			// mainTools
 			// 
 			this.mainTools.AutoSize = false;
-			this.mainTools.ImageScalingSize = new System.Drawing.Size(121, 121);
+			this.mainTools.ImageScalingSize = new System.Drawing.Size(609, 609);
 			this.mainTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadButton,
             this.reorderButton,
@@ -574,8 +569,8 @@
 			this.mainTools.Location = new System.Drawing.Point(4, 5);
 			this.mainTools.Name = "mainTools";
 			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.mainTools.Size = new System.Drawing.Size(504, 32);
-			this.mainTools.TabIndex = 24;
+			this.mainTools.Size = new System.Drawing.Size(525, 32);
+			this.mainTools.TabIndex = 0;
 			// 
 			// loadButton
 			// 
@@ -610,12 +605,16 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Controls.Add(this.styleTypeLabel);
+			this.panel1.Controls.Add(this.styleTypeBox);
 			this.panel1.Controls.Add(this.applyColorsBox);
 			this.panel1.Controls.Add(this.nameLabel);
 			this.panel1.Controls.Add(this.familyBox);
 			this.panel1.Controls.Add(this.toolStrip);
 			this.panel1.Controls.Add(this.okButton);
-			this.panel1.Controls.Add(this.headingBox);
 			this.panel1.Controls.Add(this.cancelButton);
 			this.panel1.Controls.Add(this.sizeBox);
 			this.panel1.Controls.Add(this.beforeLabel);
@@ -626,21 +625,45 @@
 			this.panel1.Controls.Add(this.previewBox);
 			this.panel1.Controls.Add(this.spaceAfterSpinner);
 			this.panel1.Controls.Add(this.spaceBeforeSpinner);
-			this.panel1.Location = new System.Drawing.Point(8, 45);
+			this.panel1.Location = new System.Drawing.Point(7, 40);
 			this.panel1.Name = "panel1";
-			this.panel1.Padding = new System.Windows.Forms.Padding(30, 29, 30, 9);
-			this.panel1.Size = new System.Drawing.Size(495, 373);
+			this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 9);
+			this.panel1.Size = new System.Drawing.Size(514, 408);
 			this.panel1.TabIndex = 25;
+			// 
+			// styleTypeLabel
+			// 
+			this.styleTypeLabel.AutoSize = true;
+			this.styleTypeLabel.Location = new System.Drawing.Point(18, 68);
+			this.styleTypeLabel.Name = "styleTypeLabel";
+			this.styleTypeLabel.Size = new System.Drawing.Size(86, 20);
+			this.styleTypeLabel.TabIndex = 27;
+			this.styleTypeLabel.Text = "Style Type:";
+			// 
+			// styleTypeBox
+			// 
+			this.styleTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.styleTypeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.styleTypeBox.FormattingEnabled = true;
+			this.styleTypeBox.Items.AddRange(new object[] {
+            "Character - words in paragraph",
+            "Paragraph - entire paragraph",
+            "Heading - include in TOC"});
+			this.styleTypeBox.Location = new System.Drawing.Point(145, 61);
+			this.styleTypeBox.Name = "styleTypeBox";
+			this.styleTypeBox.Size = new System.Drawing.Size(351, 33);
+			this.styleTypeBox.TabIndex = 2;
+			this.styleTypeBox.SelectedIndexChanged += new System.EventHandler(this.styleTypeBox_SelectedIndexChanged);
 			// 
 			// applyColorsBox
 			// 
 			this.applyColorsBox.AutoSize = true;
 			this.applyColorsBox.Checked = true;
 			this.applyColorsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.applyColorsBox.Location = new System.Drawing.Point(342, 122);
+			this.applyColorsBox.Location = new System.Drawing.Point(376, 154);
 			this.applyColorsBox.Name = "applyColorsBox";
 			this.applyColorsBox.Size = new System.Drawing.Size(120, 24);
-			this.applyColorsBox.TabIndex = 24;
+			this.applyColorsBox.TabIndex = 6;
 			this.applyColorsBox.Text = "Apply colors";
 			this.applyColorsBox.UseVisualStyleBackColor = true;
 			this.applyColorsBox.CheckedChanged += new System.EventHandler(this.applyColorsBox_CheckedChanged);
@@ -651,7 +674,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(508, 425);
+			this.ClientSize = new System.Drawing.Size(529, 456);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.mainTools);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -696,7 +719,6 @@
 		private System.Windows.Forms.ComboBox namesBox;
 		private System.Windows.Forms.ToolStripMenuItem transparentToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem defaultBlackToolStripMenuItem;
-		private System.Windows.Forms.CheckBox headingBox;
 		private ScaledToolStrip mainTools;
 		private System.Windows.Forms.ToolStripButton reorderButton;
 		private System.Windows.Forms.ToolStripButton deleteButton;
@@ -706,5 +728,7 @@
 		private System.Windows.Forms.ToolStripButton underlineButton;
 		private System.Windows.Forms.ToolStripButton loadButton;
 		private System.Windows.Forms.CheckBox applyColorsBox;
+		private System.Windows.Forms.Label styleTypeLabel;
+		private System.Windows.Forms.ComboBox styleTypeBox;
 	}
 }

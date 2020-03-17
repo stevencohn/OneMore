@@ -139,6 +139,8 @@
     <Compile Include="Helpers\BasicColors.cs" />
     <Compile Include="Helpers\Keyboard.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
+    <Compile Include="Helpers\XCDataExtensions.cs" />
+    <Compile Include="Helpers\XElementExtensions.cs" />
     <Compile Include="Models\CssInfo.cs" />
     <Compile Include="Models\CustomInfo.cs" />
     <Compile Include="Models\CustomStyle.cs" />
@@ -182,6 +184,7 @@
     <Compile Include="Models\Phrase.cs" />
     <Compile Include="Models\QuickInfo.cs" />
     <Compile Include="Models\StyleInfoBase.cs" />
+    <Compile Include="Models\StyleType.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -201,6 +204,7 @@
     <Compile Include="Dialogs\XmlDialog.Designer.cs">
       <DependentUpon>XmlDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Stylizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Emoji\Architecture.png" />

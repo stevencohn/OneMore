@@ -71,10 +71,11 @@ namespace River.OneMoreAddIn
 		{
 			InitializeComponent();
 
-			spaceAfterSpinner.Value = 0;
-			spaceBeforeSpinner.Value = 0;
+			styleTypeBox.SelectedIndex = (int)StyleType.Paragraph;
 			familyBox.SelectedIndex = familyBox.Items.IndexOf(DefaultFontFamily);
 			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(DefaultFontSize.ToString());
+			spaceAfterSpinner.Value = 0;
+			spaceBeforeSpinner.Value = 0;
 		}
 
 
@@ -87,9 +88,7 @@ namespace River.OneMoreAddIn
 
 			if (styles.Count == 0)
 			{
-				styles.Add(new CustomStyle("Normal",
-					new Font(DefaultFontFamily, DefaultFontSize),
-					Color.Black, Color.Transparent, true));
+				styles.Add(new CustomStyle());
 			}
 
 			namesBox.Items.AddRange(styles.ToArray());
@@ -117,6 +116,7 @@ namespace River.OneMoreAddIn
 			updatable = false;
 
 			nameBox.Text = selection.Name;
+			styleTypeBox.SelectedIndex = (int)selection.StyleType;
 			familyBox.Text = selection.Font.FontFamily.Name;
 
 			if (selection.Font.Size % 1 == 0)
@@ -131,8 +131,6 @@ namespace River.OneMoreAddIn
 
 			spaceAfterSpinner.Value = selection.SpaceAfter;
 			spaceBeforeSpinner.Value = selection.SpaceBefore;
-
-			headingBox.Checked = selection.IsHeading;
 
 			updatable = true;
 		}
@@ -231,6 +229,24 @@ namespace River.OneMoreAddIn
 		}
 
 
+		private void styleTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			switch ((StyleType)styleTypeBox.SelectedIndex)
+			{
+				case StyleType.Character:
+					spaceAfterSpinner.Enabled = false;
+					spaceBeforeSpinner.Enabled = false;
+					break;
+
+				case StyleType.Paragraph:
+				case StyleType.Heading:
+					spaceAfterSpinner.Enabled = true;
+					spaceBeforeSpinner.Enabled = true;
+					break;
+			}
+		}
+
+
 		private void colorButton_Click (object sender, EventArgs e)
 		{
 			var color = SelectColor("Text Color", colorButton.Bounds, selection.Color);
@@ -307,10 +323,6 @@ namespace River.OneMoreAddIn
 			selection.SpaceBefore = (int)spaceBeforeSpinner.Value;
 		}
 
-		private void headingBox_CheckedChanged (object sender, EventArgs e)
-		{
-			selection.IsHeading = headingBox.Checked;
-		}
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

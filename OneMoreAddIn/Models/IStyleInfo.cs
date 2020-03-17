@@ -26,8 +26,18 @@ namespace River.OneMoreAddIn
 		string SpaceAfter { get; set; }
 		bool? IsHeading { get; set; }
 
+		/// <summary>
+		/// Used by InsertTocCommand to keep track of TOC indent level...
+		/// Move to QuickInfo?
+		/// </summary>
 		int Level { get; set; }
 
+		/// <summary>
+		/// Used by InsertTocCommand to match styles against internal QuickInfos...
+		/// Move to QuickInfo?
+		/// </summary>
+		/// <param name="obj"></param>
+		/// <returns></returns>
 		bool Matches (object obj);
 	}
 }
