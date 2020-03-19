@@ -6,7 +6,8 @@ namespace River.OneMoreAddIn
 {
 	using System.Linq;
 	using System.Text;
-	using System.Xml.Linq;
+    using System.Xml;
+    using System.Xml.Linq;
 
 
 	internal class ApplyStyleCommand : Command
@@ -61,49 +62,73 @@ namespace River.OneMoreAddIn
 				{
 					// OE parent has multiple Ts so test if we need to merge them
 
+					logger.WriteLine("selection.parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+
 					var cdata = selection.GetCData();
 
+					// text cursor is positioned but selection length is 0
 					if (cdata.IsEmpty())
 					{
 						// navigate to closest word
 
 						var word = new StringBuilder();
 
-						if ((selection.PreviousNode != null) && (selection.PreviousNode is XElement))
+						var prev = selection.PreviousNode as XElement;
+						if ((prev != null) && (prev is XElement))
 						{
-							var prev = selection.PreviousNode as XElement;
+							logger.WriteLine("prev:" + prev.ToString(SaveOptions.None));
+
 							if (!prev.GetCData().EndsWithWhitespace())
 							{
 								// grab previous part of word
 								word.Append(prev.ExtractLastWord());
+								logger.WriteLine("word with prev:" + word.ToString());
+								logger.WriteLine("prev updated:" + prev.ToString(SaveOptions.None));
+								logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 							}
 						}
 
-						if ((selection.NextNode != null) && (selection.NextNode	is XElement))
+						var next = selection.NextNode as XElement;
+						if ((next != null) && (next	is XElement))
 						{
-							var next = selection.PreviousNode as XElement;
+							logger.WriteLine("next:" + next.ToString(SaveOptions.None));
+
 							if (!next.GetCData().StartsWithWhitespace())
 							{
 								// grab following part of word
 								word.Append(next.ExtractFirstWord());
+								logger.WriteLine("word with next:" + word.ToString());
+								logger.WriteLine("next updated:" + next.ToString(SaveOptions.None));
+								logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 							}
 						}
 
 						if (word.Length > 0)
 						{
-							var element = new XElement(ns + "T", new XCData(word.ToString()));
-							stylizer.ApplyStyle(element);
+							selection.DescendantNodes()
+								.Where(e => e.NodeType == XmlNodeType.CDATA)
+								.First()
+								.ReplaceWith(new XCData(word.ToString()));
 
-							// insert new element just before text cursor
-							selection.AddBeforeSelf(element);
+							logger.WriteLine("parent udpated:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 						}
-					}
-					else
-					{
-						stylizer.ApplyStyle(selection);
-					}
-				}
 
+						if (prev.GetCData().Value.Length == 0)
+						{
+							prev.Remove();
+						}
+
+						if (next.GetCData().Value.Length == 0)
+						{
+							next.Remove();
+						}
+
+						logger.WriteLine("parent final:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+					}
+
+					stylizer.ApplyStyle(selection);
+				}
+#if FOO
 				if (style.StyleType != StyleType.Character)
 				{
 					// apply spacing to parent OE; we may have selected text across multiple OEs
@@ -112,6 +137,7 @@ namespace River.OneMoreAddIn
 					ApplySpacing(oe, "spaceBefore", style.SpaceBefore);
 					ApplySpacing(oe, "spaceAfter", style.SpaceAfter);
 				}
+#endif
 			}
 
 			manager.UpdatePageContent(page);

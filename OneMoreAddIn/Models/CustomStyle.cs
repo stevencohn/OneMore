@@ -66,5 +66,15 @@ namespace River.OneMoreAddIn
 		public int SpaceBefore { get; set; }
 
 		public int SpaceAfter { get; set; }
+
+
+		/// <summary>
+		/// Required because this model is data bound to the style dialog box Name dropdown
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 }

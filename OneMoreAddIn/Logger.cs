@@ -5,9 +5,9 @@
 namespace River.OneMoreAddIn
 {
 	using System;
-	using System.Text;
+    using System.IO;
+    using System.Text;
 	using System.Threading;
-	using IO = System.IO;
 
 
 	/// <summary>
@@ -36,15 +36,15 @@ namespace River.OneMoreAddIn
 		private string path;
 		private bool isNewline;
 		private bool isDisposed;
-		private IO.TextWriter writer;
+		private TextWriter writer;
 
 
 		private Logger ()
 		{
 			if (designMode)
-				path = IO.Path.Combine(IO.Path.GetTempPath(), "OneMore-design.log");
+				path = Path.Combine(Path.GetTempPath(), "OneMore-design.log");
 			else
-				path = IO.Path.Combine(IO.Path.GetTempPath(), "OneMore.log");
+				path = Path.Combine(Path.GetTempPath(), "OneMore.log");
 
 			writer = null;
 			isNewline = true;
@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public string Path => path;
+		public string LogPath => path;
 
 
 		/// <summary>
@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn
 
 				try
 				{
-					writer = new IO.StreamWriter(
+					writer = new StreamWriter(
 						path: path,
 						append: true,
 						encoding: encoding);
@@ -129,6 +129,24 @@ namespace River.OneMoreAddIn
 			copy.EncoderFallback = EncoderFallback.ReplacementFallback;
 			copy.DecoderFallback = DecoderFallback.ReplacementFallback;
 			return copy;
+		}
+
+
+		public void Clear()
+		{
+			if (writer != null)
+			{
+				writer.Flush();
+				writer.Dispose();
+				writer = null;
+			}
+
+			File.Delete(path);
+
+			if (EnsureWriter())
+			{
+				WriteLine("Log restarted");
+			}
 		}
 
 

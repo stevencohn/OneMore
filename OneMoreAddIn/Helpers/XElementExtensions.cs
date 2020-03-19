@@ -4,10 +4,11 @@
 
 namespace River.OneMoreAddIn
 {
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Xml;
-    using System.Xml.Linq;
+	using System.ComponentModel;
+	using System.Linq;
+	using System.Text.RegularExpressions;
+	using System.Xml;
+	using System.Xml.Linq;
 
 
 	internal static class XElementExtensions
@@ -23,6 +24,15 @@ namespace River.OneMoreAddIn
 			return element.DescendantNodes()
 				.Where(e => e.NodeType == XmlNodeType.CDATA)
 				.FirstOrDefault() as XCData;
+		}
+
+
+		public static void ReplaceCData(this XElement element, XCData cdata)
+		{
+			element.DescendantNodes()
+				.Where(e => e.NodeType == XmlNodeType.CDATA)
+				.FirstOrDefault()
+				.ReplaceWith(cdata);
 		}
 
 
@@ -60,7 +70,7 @@ namespace River.OneMoreAddIn
 				return string.Empty;
 			}
 
-			// copy the first word and remove it from the element
+			// copy the first word and remove it from the element...
 
 			var wrapper = cdata.GetWrapper();
 
@@ -68,9 +78,12 @@ namespace River.OneMoreAddIn
 			// whitespace when applying css to words; so we don't need to worry about whitespace
 
 			// get text node or span element but not others like <br/>
-			var node = wrapper.Nodes().Where(
-				n => n.NodeType == XmlNodeType.Text ||
-				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")))
+			var node = wrapper.Nodes().Where(n =>
+				// text nodes that have at least one word character
+				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
+				// span elements that have at least one word character
+				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")
+					&& Regex.IsMatch((n as XElement).Value, @"\w")))
 				.FirstOrDefault();
 
 			if (node == null)
@@ -78,14 +91,39 @@ namespace River.OneMoreAddIn
 				return null;
 			}
 
-			// remove first word and update element's CData
-			node.Remove();
-			cdata.Value = wrapper.GetInnerXml();
+			string word = null;
 
-			// return first word
-			return node.NodeType == XmlNodeType.Text
-				? node.ToString()
-				: (node as XElement).ToString(SaveOptions.DisableFormatting);
+			if (node.NodeType == XmlNodeType.Text)
+			{
+				// extract first word from raw text in CData
+				var result = (node as XText).Value.ExtractFirstWord();
+				word = result.Item1;
+				(node as XText).Value = result.Item2;
+			}
+			else
+			{
+				// extract first word from text in span
+				var result = (node as XElement).Value.ExtractFirstWord();
+				word = result.Item1;
+				(node as XElement).Value = result.Item2;
+
+				if (result.Item2.Length == 0)
+				{
+					// left the span empty so remove it
+					node.Remove();
+				}
+			}
+
+			// update the CData (our local wrapped copy)
+			cdata = new XCData(wrapper.GetInnerXml());
+
+			// update the element's content
+			element.DescendantNodes()
+				.Where(e => e.NodeType == XmlNodeType.CDATA)
+				.First()
+				.ReplaceWith(cdata);
+
+			return word;
 		}
 
 
@@ -103,7 +141,7 @@ namespace River.OneMoreAddIn
 				return string.Empty;
 			}
 
-			// copy the last word and remove it from the element
+			// copy the last word and remove it from the element...
 
 			var wrapper = cdata.GetWrapper();
 
@@ -112,9 +150,12 @@ namespace River.OneMoreAddIn
 
 			// get text node or span element but not others like <br/>
 			// Note the use of Reverse() here so we get the last node with content
-			var node = wrapper.Nodes().Reverse().Where(
-				n => n.NodeType == XmlNodeType.Text ||
-				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")))
+			var node = wrapper.Nodes().Reverse().Where(n =>
+				// text nodes that have at least one word character
+				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
+				// span elements that have at least one word character
+				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")
+					&& Regex.IsMatch((n as XElement).Value, @"\w")))
 				.FirstOrDefault();
 
 			if (node == null)
@@ -122,14 +163,39 @@ namespace River.OneMoreAddIn
 				return null;
 			}
 
-			// remove first word and update element's CData
-			node.Remove();
-			cdata.Value = wrapper.GetInnerXml();
+			string word = null;
 
-			// return first word
-			return node.NodeType == XmlNodeType.Text
-				? node.ToString()
-				: (node as XElement).ToString(SaveOptions.DisableFormatting);
+			if (node.NodeType == XmlNodeType.Text)
+			{
+				// extract last word from raw text in CData
+				var result = (node as XText).Value.ExtractLastWord();
+				word = result.Item1;
+				(node as XText).Value = result.Item2;
+			}
+			else
+			{
+				// extract last word from text in span
+				var result = (node as XElement).Value.ExtractLastWord();
+				word = result.Item1;
+				(node as XElement).Value = result.Item2;
+
+				if (result.Item2.Length == 0)
+				{
+					// left the span empty so remove it
+					node.Remove();
+				}
+			}
+
+			// update the CData (our local wrapped copy)
+			cdata = new XCData(wrapper.GetInnerXml());
+
+			// update the element's content
+			element.DescendantNodes()
+				.Where(e => e.NodeType == XmlNodeType.CDATA)
+				.First()
+				.ReplaceWith(cdata);
+
+			return word;
 		}
 
 

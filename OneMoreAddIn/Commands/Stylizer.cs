@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Apply the given CSS to the content
+		/// Apply the given CSS to the content, presuming the container is a one:T element.
 		/// </summary>
 		/// <param name="info">Style info (instantiated from CustomStyle)</param>
 		public void ApplyStyle(XElement container)
