@@ -240,7 +240,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// 
+		/// Repurpose the style Index property to represent the heading indent level,
+		/// so reset each heading index according to its logical hierarhcy
 		/// </summary>
 		private void ReorderKnownStyles()
 		{
@@ -293,6 +294,7 @@ namespace River.OneMoreAddIn
 					)
 				));
 
+			// use the minimum intent level
 			var minlevel = headings.Min(e => e.Style.Index);
 
 			foreach (var heading in headings)
