@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml;
@@ -15,20 +14,40 @@ namespace River.OneMoreAddIn
 
 	internal class NewStyleCommand : Command
 	{
-		private Dictionary<string, string> attributes;
+		private readonly Dictionary<string, string> properties;
 
 
-		public NewStyleCommand () : base()
+		public NewStyleCommand() : base()
 		{
-			attributes = new Dictionary<string, string>();
+			properties = new Dictionary<string, string>();
 		}
 
 
-		public void Execute ()
+		public void Execute()
 		{
 			try
 			{
-				_Execute();
+				CollectStyleFromContext();
+
+				var style = new Style(properties)
+				{
+					Name = "Style-" + new Random().Next(1000, 9999).ToString()
+				};
+
+				DialogResult result;
+				using (var dialog = new StyleDialog(style))
+				{
+					result = dialog.ShowDialog(owner);
+					if (result == DialogResult.OK)
+					{
+						style = dialog.Style;
+						if (style != null)
+						{
+							new StyleProvider().Save(style);
+							ribbon.Invalidate();
+						}
+					}
+				}
 			}
 			catch (Exception exc)
 			{
@@ -37,189 +56,133 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void _Execute ()
+		/*
+      <one:OE >
+        <one:T><![CDATA[<span
+style='font-family:Calibri'>This is the third </span><span style='font-weight:
+bold;font-style:italic;text-decoration:underline line-through;font-family:Consolas;
+color:#70AD47'>li</span>]]></one:T>
+        <one:T selected="all" style="font-family:Consolas;font-size:12.0pt;color:#70AD47"><![CDATA[]]></one:T>
+        <one:T style="font-family:Consolas;font-size:12.0pt;color:#70AD47"><![CDATA[<span style='font-weight:bold;font-style:italic;
+text-decoration:underline line-through'>ne </span>]]></one:T>
+      </one:OE>
+		 */
+
+		/// <summary>
+		/// Infer styles from the context at the position of the text cursor on the current page.
+		/// </summary>
+		private void CollectStyleFromContext()
 		{
 			// infer contextual style
 
+			XElement page = null;
 			using (var manager = new ApplicationManager())
 			{
-				var page = manager.CurrentPage();
-				if (page != null)
-				{
-					var ns = page.GetNamespaceOfPrefix("one");
-
-					var selection =
-						(from e in page.Descendants(ns + "T")
-						 where e.Attributes("selected").Any(a => a.Value.Equals("all"))
-						 select e).FirstOrDefault();
-
-					if (selection != null)
-					{
-						var phrase = new Phrase(selection);
-
-						if (phrase.IsEmpty)
-						{
-							// infer selected word by looking to the left and to the right for
-							// an adjacent non-whitespace character
-
-							var found = false;
-							if ((selection.PreviousNode != null) && (selection.PreviousNode is XElement))
-							{
-								var prev = new Phrase(selection.PreviousNode as XElement);
-								if (!prev.EndsWithSpace)
-								{
-									selection = selection.PreviousNode as XElement;
-									found = true;
-								}
-							}
-
-							if (!found)
-							{
-								selection = selection.NextNode as XElement;
-							}
-						}
-
-						if (selection != null)
-						{
-							GetTextStyle(selection);
-
-							// one:OE possibles::
-							// font-family:Calibri;font-size:11.0pt;color:red
-							ReadSpanStyles(selection.Parent);
-
-							GetQuickStyle(selection.Parent, page);
-						}
-					}
-				}
+				page = manager.CurrentPage();
 			}
 
-			// save contextual style
-
-			var custom = MakeCustomFromAttributes();
-
-			DialogResult result;
-			using (var dialog = new StyleDialog(custom))
+			if (page == null)
 			{
-				result = dialog.ShowDialog(owner);
-				if (result == DialogResult.OK)
+				return;
+			}
+
+			var ns = page.GetNamespaceOfPrefix("one");
+
+			var selection =
+				(from e in page.Descendants(ns + "T")
+				 where e.Attributes("selected").Any(a => a.Value.Equals("all"))
+				 select e).FirstOrDefault();
+
+			if (selection != null)
+			{
+				var cdata = selection.GetCData();
+				if (cdata.IsEmpty())
 				{
-					custom = dialog.CustomStyle;
-					if (custom != null)
+					//System.Diagnostics.Debugger.Launch();
+
+					// inside a word, adjacent to a word, or somewhere in whitespace?
+
+					var prev = selection.PreviousNode as XElement;
+					if ((prev != null) && prev.GetCData().EndsWithWhitespace())
 					{
-						new StylesProvider().SaveStyle(custom);
-						ribbon.Invalidate();
+						prev = null;
+					}
+
+					var next = selection.NextNode as XElement;
+					if ((next != null) && next.GetCData().StartsWithWhitespace())
+					{
+						next = null;
+					}
+
+					if (prev != null)
+					{
+						selection = prev;
+
+						if ((selection.DescendantNodes()?
+							.Where(e => e.NodeType == XmlNodeType.CDATA)
+							.LastOrDefault() is XCData data) && !string.IsNullOrEmpty(data?.Value))
+						{
+							var wrapper = data.GetWrapper();
+
+							if (wrapper.Elements("span")
+								.Where(e => e.Attribute("style") != null)
+								.LastOrDefault() is XElement wspan)
+							{
+								CollectStyleProperties(wspan);
+							}
+						}
+
+					}
+					else if (next != null)
+					{
+						selection = next;
+
+						if ((selection.DescendantNodes()?
+							.Where(e => e.NodeType == XmlNodeType.CDATA)
+							.FirstOrDefault() is XCData data) && !string.IsNullOrEmpty(data?.Value))
+						{
+							var wrapper = data.GetWrapper();
+
+							if (wrapper.Elements("span")
+								.Where(e => e.Attribute("style") != null)
+								.FirstOrDefault() is XElement wspan)
+							{
+								CollectStyleProperties(wspan);
+							}
+						}
 					}
 				}
+
+				// walk up the hierarchy from T, to OE, to page.QuickStyle
+
+				// T
+				CollectStyleProperties(selection);
+				// OE
+				CollectStyleProperties(selection.Parent);
+				// Page/QuickStyleDef
+				CollectQuickStyleProperties(selection.Parent, page);
 			}
 		}
 
 
-		// one:T possibles::
-		// font-family:Calibri;font-size:11.0pt;color:#C0504D
-		private void GetTextStyle (XElement element)
+		private void CollectStyleProperties (XElement element)
 		{
-			GetDataStyle(element);
+			var props = element.CollectStyleProperties();
 
-			ReadSpanStyles(element);
-		}
-
-
-		// CDATA possibles::
-		// font-weigth:bold;font-style:italic;text-decoration:underline;background:#000000
-		private void GetDataStyle (XElement element)
-		{
-			var cdata = element.DescendantNodes()?
-				.Where(e => e.NodeType == XmlNodeType.CDATA)
-				.FirstOrDefault() as XCData;
-
-			if (!string.IsNullOrEmpty(cdata?.Value))
+			if (props?.Any() == true)
 			{
-				// XElement can't handle &nbsp; but it can handle &#160; which is the same thing
-				var clean = cdata.Value.Replace("&nbsp;", "&#160;");
-
-				// whether or not data contains XML, we're wrapping it so we can parse it as xml
-				var wrapper = XElement.Parse("<x>" + clean + "</x>");
-				var ns = wrapper.GetDefaultNamespace();
-
-				var spans = wrapper.Elements(ns + "span").Where(e => e.Attribute("style") != null);
-				if (spans != null)
+				var e = props.GetEnumerator();
+				while (e.MoveNext())
 				{
-					string emptyColor = null;
-					string nonEmptyColor = null;
-
-					foreach (var span in spans)
-					{
-						var sstyles = ReadSpanStyles(span);
-
-						if (sstyles.ContainsKey("color"))
-						{
-							if (span.Value.Trim().Length > 0)
-							{
-								nonEmptyColor = sstyles["color"];
-							}
-							else
-							{
-								emptyColor = sstyles["color"];
-							}
-						}
-					}
-
-					// TODO this logic doesn't really work. There are cases where the empty selected="all" one:T
-					// does hold the real color and the sibling one:T might hold both the global color and the
-					// local color but this logic selects the global color instead. Not sure what to do in that
-					// case!
-
-					if ((nonEmptyColor != null) && 
-						attributes.ContainsKey("color") && attributes["color"].Equals(emptyColor))
-					{
-						// prefer non-empty color over empty color when confronted by multiple spans in cdata
-						attributes["color"] = nonEmptyColor;
-					}
+					properties.Add(e.Current.Key, e.Current.Value);
 				}
 			}
-		}
-
-
-		private Dictionary<string, string> ReadSpanStyles (XElement element)
-		{
-			var sstyles = new Dictionary<string, string>();
-
-			var ns = element.GetDefaultNamespace();
-			var csss = element.Attributes(ns + "style").Select(a => a.Value);
-
-			if (csss?.Count() == 0) return sstyles;
-
-			foreach (var css in csss.ToList())
-			{
-				var parts = css.Split(';');
-				if (parts.Length == 0) continue;
-
-				foreach (var part in parts)
-				{
-					var pair = part.Split(':');
-					if (pair.Length < 2) continue;
-
-					var key = pair[0].Trim();
-					if (!attributes.ContainsKey(key))
-					{
-						sstyles.Add(key, pair[1].Replace("'", string.Empty).Trim());
-					}
-				}
-			}
-
-			var e = sstyles.GetEnumerator();
-			while (e.MoveNext())
-			{
-				attributes.Add(e.Current.Key, e.Current.Value);
-			}
-
-			return sstyles;
 		}
 
 
 		// one:QuickStyleDef possibles:
 		// fontColor="automatic" highlightColor="automatic" font="Calibri" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" />
-		private void GetQuickStyle (XElement element, XElement page)
+		private void CollectQuickStyleProperties (XElement element, XElement page)
 		{
 			var quickStyleIndex = element.Attribute("quickStyleIndex")?.Value;
 			if (quickStyleIndex != null)
@@ -231,84 +194,33 @@ namespace River.OneMoreAddIn
 
 				if (quick != null)
 				{
-					var a = quick.Attribute("highlightColor");
-					if (a != null && !a.Value.Equals("automatic") && !attributes.ContainsKey("background"))
-						attributes.Add("background", a.Value);
+					XAttribute a;
 
 					a = quick.Attribute("font");
-					if (a != null && !attributes.ContainsKey("font-family"))
-						attributes.Add("font-family", a.Value);
-
-					a = quick.Attribute("fontColor");
-					if (a != null && !a.Value.Equals("automatic") && !attributes.ContainsKey("color"))
-						attributes.Add("color", a.Value);
+					if (a != null && !properties.ContainsKey("font-family"))
+						properties.Add("font-family", a.Value);
 
 					a = quick.Attribute("fontSize");
-					if (a != null && !attributes.ContainsKey("font-size"))
-						attributes.Add("font-size", a.Value);
+					if (a != null && !properties.ContainsKey("font-size"))
+						properties.Add("font-size", a.Value);
+
+					a = quick.Attribute("fontColor");
+					if (a != null && !a.Value.Equals("automatic") && !properties.ContainsKey("color"))
+						properties.Add("color", a.Value);
+
+					a = quick.Attribute("highlightColor");
+					if (a != null && !a.Value.Equals("automatic") && !properties.ContainsKey("background"))
+						properties.Add("background", a.Value);
 
 					a = quick.Attribute("spaceBefore");
-					if (a != null && !attributes.ContainsKey("spaceBefore"))
-						attributes.Add("spaceBefore", a.Value);
+					if (a != null && !properties.ContainsKey("spaceBefore"))
+						properties.Add("spaceBefore", a.Value);
 
 					a = quick.Attribute("spaceAfter");
-					if (a != null && !attributes.ContainsKey("spaceAfter"))
-						attributes.Add("spaceAfter", a.Value);
+					if (a != null && !properties.ContainsKey("spaceAfter"))
+						properties.Add("spaceAfter", a.Value);
 				}
 			}
-		}
-
-
-		private CustomStyle MakeCustomFromAttributes ()
-		{
-			var family = attributes.ContainsKey("font-family") ? attributes["font-family"] : "Calibri";
-
-			var size = 11;
-			if (attributes.ContainsKey("font-size"))
-			{
-				if (float.TryParse(attributes["font-size"].Replace("pt", string.Empty), out var fs))
-					size = (int)fs;
-			}
-
-			FontStyle style = FontStyle.Regular;
-			if (attributes.ContainsKey("font-weight") && attributes["font-weight"].Equals("bold"))
-				style |= FontStyle.Bold;
-
-			if (attributes.ContainsKey("font-style") && attributes["font-style"].Equals("italic"))
-				style |= FontStyle.Italic;
-
-			if (attributes.ContainsKey("text-decoration") && attributes["text-decoration"].Equals("underline"))
-				style |= FontStyle.Underline;
-
-			Color color = Color.Black;
-			if (attributes.ContainsKey("color"))
-				color = ColorTranslator.FromHtml(attributes["color"]);
-
-			Color background = Color.Transparent;
-			if (attributes.ContainsKey("background"))
-				background = ColorTranslator.FromHtml(attributes["background"]);
-
-			int spaceBefore = 0;
-			if (attributes.ContainsKey("spaceBefore"))
-				int.TryParse(attributes["spaceBefore"], out spaceBefore);
-
-			int spaceAfter = 0;
-			if (attributes.ContainsKey("spaceAfter"))
-				int.TryParse(attributes["spaceAfter"], out spaceAfter);
-
-			var custom = new CustomStyle
-			{
-				Name = "Style-" + new Random().Next(1000, 9999).ToString(),
-				StyleType = StyleType.Character,
-				Font = new Font(family, size, style),
-				ApplyColors = true,
-				Color = color,
-				Background = background,
-				SpaceBefore = spaceBefore,
-				SpaceAfter = spaceAfter
-			};
-
-			return custom;
 		}
 	}
 }

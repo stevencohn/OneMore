@@ -160,12 +160,10 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;CustomStyles&gt;
-        ///  &lt;Styles&gt;
-        ///    &lt;Style name=&quot;Heading 1&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;20&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff464646&quot; spaceBefore=&quot;14&quot; isHeading=&quot;true&quot; /&gt;
-        ///    &lt;Style name=&quot;Heading 2&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;18&quot; fontStyle=&quot;Regular&quot; color=&quot;#ffe67832&quot; spaceBefore=&quot;14&quot; isHeading=&quot;true&quot; /&gt;
-        ///    &lt;Style name=&quot;Heading 3&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;16&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff823d0a&quot; spaceBefore=&quot;12&quot; isHeading=&quot;true&quot; /&gt;
-        ///    &lt;Sty [rest of string was truncated]&quot;;.
+        ///&lt;CustomStyles xmlns:om=&quot;http://schemas.smc.com/onemore/2020/styles&quot;&gt;
+        ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 1&quot; styleType=&quot;Heading&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;20&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff464646&quot; spaceBefore=&quot;14&quot; /&gt;
+        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 2&quot; styleType=&quot;Heading&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;18&quot; fontStyle=&quot;Regular&quot; color=&quot;#ffe67832&quot; spaceBefore=&quot;14&quot; /&gt;
+        ///  &lt;Style index=&quot;3&quot; name=&quot;Heading 3&quot; styleType=&quot;Heading&quot; fontFamily=&quot;Calibri Light&quot; fontSi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CustomStyles {
             get {
@@ -374,6 +372,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string OneMoreGroup0_Label {
             get {
                 return ResourceManager.GetString("OneMoreGroup0_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://schemas.smc.com/onemore/2020/styles.
+        /// </summary>
+        internal static string OneMoreNamespace {
+            get {
+                return ResourceManager.GetString("OneMoreNamespace", resourceCulture);
             }
         }
         

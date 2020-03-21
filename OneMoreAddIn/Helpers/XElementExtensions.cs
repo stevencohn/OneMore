@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -214,7 +215,7 @@ namespace River.OneMoreAddIn
 		}
 
 		public static bool ReadAttributeValue<T>(
-			this XElement element, string name, out T value, T defaultV)
+			this XElement element, string name, out T value, T defaultV = default)
 		{
 			var attr = element.Attribute(name);
 			if (attr != null)
@@ -235,6 +236,37 @@ namespace River.OneMoreAddIn
 
 			value = defaultV;
 			return false;
+		}
+
+
+		public static Dictionary<string, string> CollectStyleProperties(this XElement element)
+		{
+			var props = new Dictionary<string, string>();
+
+			var ns = element.GetDefaultNamespace();
+			var sheet = element.Attributes(ns + "style").Select(a => a.Value);
+
+			if ((sheet == null) || !sheet.Any()) return props;
+
+			foreach (var css in sheet.ToList())
+			{
+				var parts = css.Split(';');
+				if (parts.Length == 0) continue;
+
+				foreach (var part in parts)
+				{
+					var pair = part.Split(':');
+					if (pair.Length < 2) continue;
+
+					var key = pair[0].Trim();
+					if (!props.ContainsKey(key))
+					{
+						props.Add(key, pair[1].Replace("'", string.Empty).Trim());
+					}
+				}
+			}
+
+			return props;
 		}
 	}
 }

@@ -1,10 +1,14 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
 {
-	internal enum StyleType
+
+	/// <summary>
+	/// Defines the type of a style and the scope to which the style should be applied.
+	/// </summary>
+	public enum StyleType
 	{
 		/// <summary>
 		/// Style applies to characters and words within a paragraph;

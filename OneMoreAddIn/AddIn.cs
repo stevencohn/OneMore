@@ -412,8 +412,9 @@ namespace River.OneMoreAddIn
 		#region Style Gallery
 		public int GetStyleGalleryItemCount (IRibbonControl control)
 		{
-			logger.WriteLine($"GetStyleGalleryItemCount({control.Id})");
-			return new StylesProvider().GetCount();
+			var count = new StyleProvider().Count;
+			logger.WriteLine($"GetStyleGalleryItemCount({control.Id}) = {count}");
+			return count;
 		}
 
 		public string GetStyleGalleryItemId (IRibbonControl control, int itemIndex)
@@ -429,8 +430,9 @@ namespace River.OneMoreAddIn
 
 		public string GetStyleGalleryItemScreentip (IRibbonControl control, int itemIndex)
 		{
-			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex})");
-			return new StylesProvider().GetName(itemIndex);
+			var name = new StyleProvider().GetName(itemIndex);
+			logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{name}\"");
+			return name;
 		}
 		#endregion Style Gallery
 

@@ -13,7 +13,7 @@ namespace OneMoreAddin.Tests
 
 
 	[TestClass]
-	public class StylesProviderTests
+	public class StyleProviderTests
 	{
 		[ClassInitialize]
 		public static void Initialize (TestContext context)
@@ -30,8 +30,8 @@ namespace OneMoreAddin.Tests
 		[TestMethod]
 		public void GetCount ()
 		{
-			var provider = new StylesProvider();
-			int count = provider.GetCount();
+			var provider = new StyleProvider();
+			int count = provider.Count;
 			Assert.AreEqual(15, count);
 		}
 
@@ -39,7 +39,7 @@ namespace OneMoreAddin.Tests
 		[TestMethod]
 		public void GetName ()
 		{
-			var provider = new StylesProvider();
+			var provider = new StyleProvider();
 			var name = provider.GetName(1);
 			Assert.AreEqual("Heading 2", name);
 		}
@@ -48,49 +48,21 @@ namespace OneMoreAddin.Tests
 		[TestMethod]
 		public void GetStyle ()
 		{
-			var provider = new StylesProvider();
-			using (var style = provider.GetStyle(1))
-			{
-				Assert.IsNotNull(style);
-				Assert.AreEqual("Heading 2", style.Name);
-				Assert.IsTrue(style.IsHeading);
-			}
+			var provider = new StyleProvider();
+			var style = provider.GetStyle(1);
+			Assert.IsNotNull(style);
+			Assert.AreEqual("Heading 2", style.Name);
+			Assert.IsTrue(style.StyleType == StyleType.Heading);
 		}
 
 
 		[TestMethod]
 		public void GetStyles ()
 		{
-			var provider = new StylesProvider();
+			var provider = new StyleProvider();
 			var styles = provider.GetStyles();
 			Assert.IsNotNull(styles);
 			Assert.AreEqual(15, styles.Count);
-
-			foreach (var style in styles)
-			{
-				style.Dispose();
-			}
-		}
-
-
-		[TestMethod]
-		public void Filter ()
-		{
-			var provider = new StylesProvider();
-
-			var styles = provider.Filter(
-				f => f.Attributes("isHeading").Any(a => a.Value.ToLower()
-				.Equals("true", StringComparison.InvariantCultureIgnoreCase)));
-
-			Assert.IsNotNull(styles);
-			Assert.AreEqual(6, styles.Count());
-
-			foreach (var style in styles)
-			{
-				var a = style.Attribute("isHeading");
-				Assert.IsNotNull(a);
-				Assert.AreEqual("true", a.Value);
-			}
 		}
 	}
 }

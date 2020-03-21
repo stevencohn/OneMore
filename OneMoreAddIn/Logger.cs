@@ -5,8 +5,9 @@
 namespace River.OneMoreAddIn
 {
 	using System;
-    using System.IO;
-    using System.Text;
+	using System.Diagnostics;
+	using System.IO;
+	using System.Text;
 	using System.Threading;
 
 
@@ -16,11 +17,11 @@ namespace River.OneMoreAddIn
 
 	internal interface ILogger : IDisposable
 	{
-		void Write (string message);
-		void WriteLine ();
-		void WriteLine (string message);
-		void WriteLine (Exception exc);
-		void WriteLine (string message, Exception exc);
+		void Write(string message);
+		void WriteLine();
+		void WriteLine(string message);
+		void WriteLine(Exception exc);
+		void WriteLine(string message, Exception exc);
 	}
 
 
@@ -32,19 +33,22 @@ namespace River.OneMoreAddIn
 	{
 		private static ILogger instance;
 		private static bool designMode;
-
-		private string path;
+		private static bool standard;
 		private bool isNewline;
 		private bool isDisposed;
 		private TextWriter writer;
 
 
-		private Logger ()
+		private Logger()
 		{
-			if (designMode)
-				path = Path.Combine(Path.GetTempPath(), "OneMore-design.log");
-			else
-				path = Path.Combine(Path.GetTempPath(), "OneMore.log");
+			standard = Process.GetCurrentProcess().ProcessName.StartsWith("LINQPad");
+
+			if (!standard)
+			{
+				LogPath = Path.Combine(
+					Path.GetTempPath(),
+					designMode ? "OneMore-design.log" : "OneMore.log");
+			}
 
 			writer = null;
 			isNewline = true;
@@ -56,7 +60,7 @@ namespace River.OneMoreAddIn
 		/// Close this file and release internal resources.
 		/// </summary>
 
-		public void Dispose ()
+		public void Dispose()
 		{
 			if (!isDisposed)
 			{
@@ -92,26 +96,24 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public string LogPath => path;
+		public string LogPath { get; }
 
 
 		/// <summary>
 		/// Open the file for writing.
 		/// </summary>
 		/// <returns></returns>
-
-		private bool EnsureWriter ()
+		private bool EnsureWriter()
 		{
+			if (standard)
+				return true;
+
 			if (writer == null)
 			{
-				Encoding encoding = GetEncodingWithFallback(new UTF8Encoding(false));
-
 				try
 				{
 					writer = new StreamWriter(
-						path: path,
-						append: true,
-						encoding: encoding);
+						LogPath, true, GetEncodingWithFallback(new UTF8Encoding(false)));
 				}
 				catch
 				{
@@ -123,9 +125,9 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private static Encoding GetEncodingWithFallback (Encoding encoding)
+		private static Encoding GetEncodingWithFallback(Encoding encoding)
 		{
-			Encoding copy = (Encoding)encoding.Clone();
+			var copy = (Encoding)encoding.Clone();
 			copy.EncoderFallback = EncoderFallback.ReplacementFallback;
 			copy.DecoderFallback = DecoderFallback.ReplacementFallback;
 			return copy;
@@ -141,7 +143,7 @@ namespace River.OneMoreAddIn
 				writer = null;
 			}
 
-			File.Delete(path);
+			File.Delete(LogPath);
 
 			if (EnsureWriter())
 			{
@@ -155,70 +157,96 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="message"></param>
 
-		public void Write (string message)
+		public void Write(string message)
 		{
 			if (EnsureWriter())
 			{
 				if (isNewline)
 				{
-					writer.Write(MakeHeader());
+					if (!standard)
+						writer.Write(MakeHeader());
 				}
 
-				writer.Write(message);
+				if (standard)
+					Console.Write(message);
+				else
+					writer.Write(message);
+
 				isNewline = false;
 			}
 		}
 
 
-		public void WriteLine ()
+		public void WriteLine()
 		{
 			if (EnsureWriter())
 			{
-				writer.WriteLine();
+				if (standard)
+					Console.WriteLine();
+				else
+					writer.WriteLine();
 			}
 		}
 
 
-		public void WriteLine (string message)
-		{
-			if (EnsureWriter())
-			{
-				if (isNewline)
-				{
-					writer.Write(MakeHeader());
-				}
-
-				writer.WriteLine(message);
-				writer.Flush();
-				isNewline = true;
-			}
-		}
-
-
-		public void WriteLine (Exception exc)
+		public void WriteLine(string message)
 		{
 			if (EnsureWriter())
 			{
 				if (isNewline)
 				{
-					writer.Write(MakeHeader());
+					if (!standard)
+						writer.Write(MakeHeader());
 				}
 
-				writer.WriteLine(Serialize(exc));
-				writer.Flush();
+				if (standard)
+				{
+					Console.WriteLine(message);
+				}
+				else
+				{
+					writer.WriteLine(message);
+					writer.Flush();
+				}
+
 				isNewline = true;
 			}
 		}
 
 
-		public void WriteLine (string message, Exception exc)
+		public void WriteLine(Exception exc)
+		{
+			if (EnsureWriter())
+			{
+				if (isNewline)
+				{
+					if (!standard)
+						writer.Write(MakeHeader());
+				}
+
+				if (standard)
+				{
+					Console.WriteLine(Serialize(exc));
+				}
+				else
+				{
+					writer.WriteLine(Serialize(exc));
+					writer.Flush();
+				}
+
+				isNewline = true;
+			}
+		}
+
+
+		public void WriteLine(string message, Exception exc)
 		{
 			WriteLine(message);
 			WriteLine(exc);
 		}
 
 
-		private string MakeHeader ()
+		private string MakeHeader()
 		{
 			//return DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss.fff") +
 			return DateTime.Now.ToString("hh:mm:ss.fff") +
@@ -226,7 +254,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string Serialize (Exception exc)
+		private string Serialize(Exception exc)
 		{
 			var builder = new StringBuilder("EXCEPTION - " + exc.GetType().FullName + Environment.NewLine);
 			Serialize(exc, builder, 0);
@@ -234,7 +262,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void Serialize (Exception exc, StringBuilder builder, int depth)
+		private void Serialize(Exception exc, StringBuilder builder, int depth)
 		{
 			string indent = new string(' ', depth * 2);
 

@@ -25,20 +25,20 @@ namespace River.OneMoreAddIn
 	internal class Stylizer
 	{
 
-		private readonly CssInfo info;
+		private readonly Style style;
 		private readonly string css;
 
 
 		/// <summary>
 		/// Initializes a new instance with the given style info.
 		/// </summary>
-		/// <param name="info">Style information</param>
-		public Stylizer(CssInfo info)
+		/// <param name="style">Style information</param>
+		public Stylizer(Style style)
 		{
-			this.info = info;
+			this.style = style;
 
 			// generate css string here to optimize usage
-			css = info.ToCss();
+			css = style.ToCss();
 		}
 
 
@@ -64,36 +64,46 @@ namespace River.OneMoreAddIn
 		{
 			XElement parent = null;
 
-			// find all CData
+			// find all CData (should only be one but...)
 			foreach (var cdata in container.DescendantNodes()
 				.Where(e => e.NodeType == XmlNodeType.CDATA).Cast<XCData>())
 			{
-				// wrap the CData as an XElement so we can parse it
-				var wrapper = cdata.GetWrapper();
+				bool hasPlainText;
 
-				// true if there are at least one Text nodes
-				var hasPlainText = false;
-
-				foreach (var child in wrapper.Nodes())
+				if (cdata.Value.Length > 0)
 				{
-					if (child.NodeType == XmlNodeType.Text)
+					// wrap the CData as an XElement so we can parse it
+					var wrapper = cdata.GetWrapper();
+
+					// true if there are at least one Text nodes
+					hasPlainText = false;
+
+					foreach (var child in wrapper.Nodes())
 					{
-						// will apply style to parent one:T when at least one Text node exists
-						hasPlainText = true;
-					}
-					else if (child.NodeType == XmlNodeType.Element)
-					{
-						// focus on spans, skipping br and other elements
-						if ((child as XElement).Name.LocalName == "span")
+						if (child.NodeType == XmlNodeType.Text)
 						{
-							// blast styles into span
-							Apply(child as XElement);
+							// will apply style to parent one:T when at least one Text node exists
+							hasPlainText = true;
+						}
+						else if (child.NodeType == XmlNodeType.Element)
+						{
+							// focus on spans, skipping br and other elements
+							if ((child as XElement).Name.LocalName == "span")
+							{
+								// blast styles into span
+								Apply(child as XElement);
+							}
 						}
 					}
-				}
 
-				// unwrap our temporary <cdata>
-				cdata.Value = wrapper.GetInnerXml();
+					// unwrap our temporary <cdata>
+					cdata.Value = wrapper.GetInnerXml();
+				}
+				else
+				{
+					// on an empty one:T/CData so blast styles into one:T
+					hasPlainText = true;
+				}
 
 				// capture the parent element and if we found Text nodes then set global style
 				if (parent != cdata.Parent)
@@ -124,10 +134,14 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
-				// merge info style into element's style
-				var css = new CssInfo(element);
-				css.Merge(info);
-				span.Value = css.ToCss();
+				var given = element.Attribute("style")?.Value;
+				if (given != null)
+				{
+					// merge style into element's style
+					var estyle = new Style(given);
+					estyle.Merge(style);
+					span.Value = estyle.ToCss();
+				}
 			}
 		}
 	}

@@ -20,21 +20,20 @@ namespace River.OneMoreAddIn
 
 		public void Execute(int selectedIndex)
 		{
-			using (var style = new StylesProvider().GetStyle(selectedIndex, false))
+			var style = new StyleProvider().GetStyle(selectedIndex);
+
+			using (var manager = new ApplicationManager())
 			{
-				using (var manager = new ApplicationManager())
+				var page = manager.CurrentPage();
+				if (page != null)
 				{
-					var page = manager.CurrentPage();
-					if (page != null)
-					{
-						Evaluate(page, style, manager);
-					}
+					Evaluate(page, style, manager);
 				}
 			}
 		}
 
 
-		private void Evaluate(XElement page, CustomStyle style, ApplicationManager manager)
+		private void Evaluate(XElement page, Style style, ApplicationManager manager)
 		{
 			var ns = page.GetNamespaceOfPrefix("one");
 
@@ -48,10 +47,12 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			var stylizer = new Stylizer(new CssInfo(style));
+			var stylizer = new Stylizer(style);
 
 			foreach (var selection in selections)
 			{
+				bool empty = true;
+
 				if (selection.Parent.Nodes().Count() == 1)
 				{
 					// OE parent must have only this T
@@ -69,66 +70,96 @@ namespace River.OneMoreAddIn
 					// text cursor is positioned but selection length is 0
 					if (cdata.IsEmpty())
 					{
-						// navigate to closest word
-
-						var word = new StringBuilder();
+						// inside a word, adjacent to a word, or somewhere in whitespace?
 
 						var prev = selection.PreviousNode as XElement;
-						if ((prev != null) && (prev is XElement))
+						if ((prev != null) && prev.GetCData().EndsWithWhitespace())
 						{
-							logger.WriteLine("prev:" + prev.ToString(SaveOptions.None));
-
-							if (!prev.GetCData().EndsWithWhitespace())
-							{
-								// grab previous part of word
-								word.Append(prev.ExtractLastWord());
-								logger.WriteLine("word with prev:" + word.ToString());
-								logger.WriteLine("prev updated:" + prev.ToString(SaveOptions.None));
-								logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-							}
+							prev = null;
 						}
 
 						var next = selection.NextNode as XElement;
-						if ((next != null) && (next	is XElement))
+						if ((next != null) && next.GetCData().StartsWithWhitespace())
 						{
-							logger.WriteLine("next:" + next.ToString(SaveOptions.None));
+							next = null;
+						}
 
-							if (!next.GetCData().StartsWithWhitespace())
+						if ((prev != null) && (next != null))
+						{
+							empty = false;
+
+							// navigate to closest word
+
+							var word = new StringBuilder();
+
+							if (prev != null)
 							{
-								// grab following part of word
-								word.Append(next.ExtractFirstWord());
-								logger.WriteLine("word with next:" + word.ToString());
-								logger.WriteLine("next updated:" + next.ToString(SaveOptions.None));
-								logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+								logger.WriteLine("prev:" + prev.ToString(SaveOptions.None));
+
+								if (!prev.GetCData().EndsWithWhitespace())
+								{
+									// grab previous part of word
+									word.Append(prev.ExtractLastWord());
+									logger.WriteLine("word with prev:" + word.ToString());
+									logger.WriteLine("prev updated:" + prev.ToString(SaveOptions.None));
+									logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+
+									if (prev.GetCData().Value.Length == 0)
+									{
+										prev.Remove();
+									}
+								}
 							}
+
+							if (next != null)
+							{
+								logger.WriteLine("next:" + next.ToString(SaveOptions.None));
+
+								if (!next.GetCData().StartsWithWhitespace())
+								{
+									// grab following part of word
+									word.Append(next.ExtractFirstWord());
+									logger.WriteLine("word with next:" + word.ToString());
+									logger.WriteLine("next updated:" + next.ToString(SaveOptions.None));
+									logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+
+									if (next.GetCData().Value.Length == 0)
+									{
+										next.Remove();
+									}
+								}
+							}
+
+							if (word.Length > 0)
+							{
+								selection.DescendantNodes()
+									.Where(e => e.NodeType == XmlNodeType.CDATA)
+									.First()
+									.ReplaceWith(new XCData(word.ToString()));
+
+								logger.WriteLine("parent udpated:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+							}
+
+							logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 						}
+					} 
 
-						if (word.Length > 0)
-						{
-							selection.DescendantNodes()
-								.Where(e => e.NodeType == XmlNodeType.CDATA)
-								.First()
-								.ReplaceWith(new XCData(word.ToString()));
-
-							logger.WriteLine("parent udpated:" + (selection.Parent as XElement).ToString(SaveOptions.None));
-						}
-
-						if (prev.GetCData().Value.Length == 0)
-						{
-							prev.Remove();
-						}
-
-						if (next.GetCData().Value.Length == 0)
-						{
-							next.Remove();
-						}
-
-						logger.WriteLine("parent final:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+					if (empty)
+					{
+						stylizer.ApplyStyle(selection.GetCData());
+						logger.WriteLine("final empty parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 					}
-
-					stylizer.ApplyStyle(selection);
+					else
+					{
+						stylizer.ApplyStyle(selection);
+						logger.WriteLine("final parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+					}
 				}
 #if FOO
+				// TODO: when applying a Paragraph or Heading style, reset the quickStyleIndex
+				// of the T to QuickStyleDef(P).index...
+
+
 				if (style.StyleType != StyleType.Character)
 				{
 					// apply spacing to parent OE; we may have selected text across multiple OEs

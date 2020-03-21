@@ -8,6 +8,13 @@ namespace River.OneMoreAddIn
 	using System.Drawing;
 
 
+	/// <summary>
+	/// A user-defined custom style created and managed by OneMore.
+	/// </summary>
+	/// <remarks>
+	/// This is a storage model used by the OneMore Styles management feature but also
+	/// which StylesProvider typically converts to a Style instance for general use.
+	/// </remarks>
 	internal class CustomStyle : IDisposable
 	{
 		public static readonly string DefaultFontFamily = "Calibri";
@@ -16,6 +23,9 @@ namespace River.OneMoreAddIn
 
 		// Lifecycle
 
+		/// <summary>
+		/// Initialize a new instance with defaults.
+		/// </summary>
 		public CustomStyle()
 		{
 			Name = "Normal";
@@ -49,6 +59,7 @@ namespace River.OneMoreAddIn
 		}
 
 
+		//----------------------------------------------------------------------------------------
 		// Properties
 
 		public string Name { get; set; }
