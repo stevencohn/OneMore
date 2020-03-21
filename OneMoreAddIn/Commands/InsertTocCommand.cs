@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml;
 	using System.Xml.Linq;
@@ -73,7 +74,7 @@ namespace River.OneMoreAddIn
 				where c.Value.Length > 0 && !Regex.IsMatch(c.Value, @"[\s\b]+<span[\s\b]+style=") &&
 					(e.Attribute("quickStyleIndex") != null || e.Attribute("style") != null)
 				select e;
-			
+
 			if (blocks?.Any() == true)
 			{
 				foreach (var block in blocks)
@@ -167,8 +168,15 @@ namespace River.OneMoreAddIn
 			var attr = element.Attribute("objectID");
 			if (!string.IsNullOrEmpty(attr?.Value))
 			{
-				manager.Application.GetHyperlinkToObject(pageId, attr.Value, out var link);
-				return link;
+				try
+				{
+					manager.Application.GetHyperlinkToObject(pageId, attr.Value, out var link);
+					return link;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("Error getting hyperlink", exc);
+				}
 			}
 
 			return null;
@@ -257,6 +265,12 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/*
+		 * <one:OE quickStyleIndex="1">
+		 *   <one:T><![CDATA[. .Heading 2]]></one:T>
+		 * </one:OE>
+		 */
+
 		/// <summary>
 		/// Generates a table of contents at the top of the current page
 		/// </summary>
@@ -269,75 +283,46 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			var title = new XElement(ns + "OE",
+			var items = new List<XElement>();
+
+			// "Table of Contents"
+			items.Add(new XElement(ns + "OE",
 				new XAttribute("style", "font-size:16.0pt"),
 				new XElement(ns + "T",
 					new XCData("<span style='font-weight:bold'>Table of Contents</span>")
 					)
-				);
+				));
 
-			// create a temporary root node, to be thrown away
-			var content = new XElement(ns + "OEChildren");
+			var minlevel = headings.Min(e => e.Style.Index);
 
-			if (headings.Count > 0)
+			foreach (var heading in headings)
 			{
-				// build the hierarchical heading list
-				BuildContent(content, headings, 0, 0);
+				var text = new StringBuilder();
+				var count = minlevel;
+				while (count < heading.Style.Index)
+				{
+					text.Append(". . ");
+					count++;
+				}
 
-				logger.WriteLine(content.ToString(SaveOptions.None));
+				if (!string.IsNullOrEmpty(heading.Link))
+				{
+					text.Append($"<a href=\"{heading.Link}\">{heading.Text}</a>");
+				}
+				else
+				{
+					text.Append(heading.Text);
+				}
+
+				items.Add(new XElement(ns + "OE",
+					new XElement(ns + "T", new XCData(text.ToString()))
+					));
 			}
 
 			// empty line after the TOC
-			content.Add(new XElement(ns + "OE",
-				new XElement(ns + "T", new XCData(string.Empty))
-				));
+			items.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
 
-			top.AddFirst(title, content.Nodes());
-		}
-
-
-		private int BuildContent (XElement content, List<Heading> headings, int index, int level)
-		{
-			while ((index < headings.Count) && (headings[index].Style.Index >= level))
-			{
-				var heading = headings[index];
-
-				if (heading.Style.Index == level)
-				{
-					string text;
-					if (heading.Link == null)
-					{
-						text = heading.Text;
-					}
-					else
-					{
-						text = $"<a href=\"{heading.Link}\">{heading.Text}</a>";
-					}
-
-					content.Add(new XElement(ns + "OE",
-						new XElement(ns + "T", new XCData(text)))
-						);
-
-					index++;
-				}
-				else if (heading.Style.Index > level)
-				{
-					var children = new XElement(ns + "OEChildren");
-					index = BuildContent(children, headings, index, heading.Style.Index);
-
-					var elements = content.Elements(ns + "OE");
-					if (elements == null)
-					{
-						content.Add(children);
-					}
-					else
-					{
-						content.Elements(ns + "OE").Last().Add(children);
-					}
-				}
-			}
-
-			return index;
+			top.AddFirst(items);
 		}
 	}
 }
