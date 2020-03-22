@@ -145,8 +145,7 @@ namespace River.OneMoreAddIn
 
 							if (word.Length > 0)
 							{
-								selection.DescendantNodes()
-									.Where(e => e.NodeType == XmlNodeType.CDATA)
+								selection.DescendantNodes().OfType<XCData>()
 									.First()
 									.ReplaceWith(new XCData(word.ToString()));
 

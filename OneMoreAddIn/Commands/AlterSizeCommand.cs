@@ -62,11 +62,11 @@ namespace River.OneMoreAddIn
 		{
 			int count = 0;
 
-			// TODO: page title is actually in a one:Title element....
-
 			// find all elements that have an attribute named fontSize, e.g. QuickStyleDef or Bullet
 			var elements = page.Descendants()
-				.Where(p => p.Attribute("name")?.Value != "PageTitle" && p.Attribute("fontSize") != null);
+				.Where(p => 
+					p.Attribute("name")?.Value != "PageTitle" && 
+					p.Attribute("fontSize") != null);
 
 			if (elements?.Any() == true)
 			{
@@ -96,7 +96,9 @@ namespace River.OneMoreAddIn
 			int count = 0;
 
 			var elements = page.Descendants()
-				.Where(p => p.Attribute("style")?.Value.Contains("font-size:") == true);
+				.Where(p =>
+					p.Parent.Name.LocalName != "Title" && 
+					p.Attribute("style")?.Value.Contains("font-size:") == true);
 
 			if (elements?.Any() == true)
 			{
@@ -117,10 +119,8 @@ namespace River.OneMoreAddIn
 		{
 			int count = 0;
 
-			var nodes = page.DescendantNodes()
-				.Where(n => n.NodeType == XmlNodeType.CDATA &&
-					((XCData)n).Value.Contains("font-size:"))
-				.Cast<XCData>();
+			var nodes = page.DescendantNodes().OfType<XCData>()
+				.Where(n => n.Value.Contains("font-size:"));
 
 			if (nodes?.Any() == true)
 			{
