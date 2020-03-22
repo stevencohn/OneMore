@@ -77,6 +77,7 @@ namespace River.OneMoreAddIn
 		protected override void OnShown (EventArgs e)
 		{
 			UIHelper.SetForegroundWindow(this);
+			findBox.Focus();
 		}
 
 
@@ -304,8 +305,7 @@ namespace River.OneMoreAddIn
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine("Error updating page content");
-					logger.WriteLine(exc);
+					logger.WriteLine("Error updating page content", exc);
 				}
 			}
 		}

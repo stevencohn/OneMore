@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  Yada yada...
 //************************************************************************************************
 
+#pragma warning disable IDE1006 // event handler naming convention pascal case
+
 namespace River.OneMoreAddIn
 {
 	using System;
@@ -22,10 +24,7 @@ namespace River.OneMoreAddIn
 
 	internal partial class StyleDialog : Form
 	{
-		private readonly string DefaultFontFamily = "Calibri";
-		private const int DefaultFontSize = 11;
-
-		private CustomStyle selection;
+		private GraphicStyle selection;
 
 		private bool updatable;
 
@@ -37,7 +36,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="style"></param>
 
-		public StyleDialog (CustomStyle style)
+		public StyleDialog(Style style)
 		{
 			Initialize();
 
@@ -50,8 +49,7 @@ namespace River.OneMoreAddIn
 			reorderButton.Enabled = false;
 			deleteButton.Enabled = false;
 
-			this.selection = style;
-			ShowSelection();
+			selection = new GraphicStyle(style, false);
 		}
 
 
@@ -60,36 +58,44 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="styles"></param>
 
-		public StyleDialog (List<CustomStyle> styles)
+		public StyleDialog(List<Style> styles)
 		{
 			Initialize();
 			updatable = true;
 			LoadStyles(styles);
 		}
 
-		private void Initialize ()
+
+		private void Initialize()
 		{
 			InitializeComponent();
 
+			styleTypeBox.SelectedIndex = (int)StyleType.Paragraph;
+			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
+			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString());
 			spaceAfterSpinner.Value = 0;
 			spaceBeforeSpinner.Value = 0;
-			familyBox.SelectedIndex = familyBox.Items.IndexOf(DefaultFontFamily);
-			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(DefaultFontSize.ToString());
 		}
 
 
-		private void LoadStyles (List<CustomStyle> styles)
+		private void LoadStyles(List<Style> styles)
 		{
+			// nameBox TextBox is shown when creating a new style to enter a single name
+			// namesBox ComboBox is shown when editing styles to select an existing name
+
 			namesBox.Items.Clear();
 
 			if (styles.Count == 0)
 			{
-				styles.Add(new CustomStyle("Normal",
-					new Font(DefaultFontFamily, DefaultFontSize),
-					Color.Black, Color.Transparent));
+				styles.Add(new Style
+				{
+					Name = "Style-" + new Random().Next(1000, 9999).ToString()
+				});
 			}
 
-			namesBox.Items.AddRange(styles.ToArray());
+			var items = styles.ConvertAll(e => new GraphicStyle(e, false));
+
+			namesBox.Items.AddRange(items.ToArray());
 
 			namesBox.Location = nameBox.Location;
 			namesBox.Size = nameBox.Size;
@@ -100,50 +106,53 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void StyleDialog_Shown (object sender, EventArgs e)
+		private void StyleDialog_Shown(object sender, EventArgs e)
 		{
 			UIHelper.SetForegroundWindow(this);
+
+			ShowSelection();
+
 			nameBox.Focus();
 		}
 
 		#endregion Lifecycle
 
 
-		private void ShowSelection ()
+		private void ShowSelection()
 		{
 			updatable = false;
 
 			nameBox.Text = selection.Name;
-			familyBox.Text = selection.Font.FontFamily.Name;
+			styleTypeBox.SelectedIndex = (int)selection.StyleType;
+			familyBox.Text = selection.FontFamily;
 
-			if (selection.Font.Size % 1 == 0)
-				sizeBox.Text = ((int)selection.Font.Size).ToString();
-			else
-				sizeBox.Text = selection.Font.Size.ToString("#.0");
+			sizeBox.Text = selection.FontSize;
 
-			boldButton.Checked = selection.Font.Bold;
-			italicButton.Checked = selection.Font.Italic;
-			underlineButton.Checked = selection.Font.Underline;
+			boldButton.Checked = selection.IsBold;
+			italicButton.Checked = selection.IsItalic;
+			underlineButton.Checked = selection.IsUnderline;
+			applyColorsBox.Checked = selection.ApplyColors;
 
-			spaceAfterSpinner.Value = selection.SpaceAfter;
-			spaceBeforeSpinner.Value = selection.SpaceBefore;
-
-			headingBox.Checked = selection.IsHeading;
+			spaceAfterSpinner.Value = (decimal)double.Parse(selection.SpaceAfter);
+			spaceBeforeSpinner.Value = (decimal)double.Parse(selection.SpaceBefore);
 
 			updatable = true;
+
+			previewBox.Invalidate();
 		}
 
 
 		/// <summary>
 		/// Gets the currently selected custom style
 		/// </summary>
-
-		public CustomStyle CustomStyle => selection;
-
-		public List<CustomStyle> GetStyles () => namesBox.Items.Cast<CustomStyle>().ToList();
+		public Style Style => selection.GetStyle();
 
 
-		private void previewBox_Paint (object sender, PaintEventArgs e)
+		public List<Style> GetStyles() =>
+			namesBox.Items.Cast<GraphicStyle>().ToList().ConvertAll(e => e.GetStyle());
+
+
+		private void previewBox_Paint(object sender, PaintEventArgs e)
 		{
 			var vcenter = previewBox.Height / 2;
 
@@ -159,7 +168,9 @@ namespace River.OneMoreAddIn
 				// create a clipping box so the text does not wrap
 				var clip = new Rectangle(20, y, previewBox.Width - 40, (int)sampleSize.Height);
 
-				if (!selection.Background.IsEmpty && !selection.Background.Equals(Color.Transparent))
+				if (selection.ApplyColors &&
+					!selection.Background.IsEmpty &&
+					!selection.Background.Equals(Color.Transparent))
 				{
 					using (var highBrush = new SolidBrush(selection.Background))
 					{
@@ -168,7 +179,11 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				using (var brush = new SolidBrush(selection.Color))
+				//Logger.Current.WriteLine(
+				//	$"StyleDialog.preview() (family:{sample.FontFamily.Name}, size:{sample.Size}, style:{sample.Style})");
+
+				var color = selection.ApplyColors ? selection.Foreground : Color.Black;
+				using (var brush = new SolidBrush(color))
 				{
 					e.Graphics.DrawString("Sample Text", sample, brush, clip);
 				}
@@ -176,11 +191,11 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private Font MakeFont ()
+		private Font MakeFont()
 		{
 			if (!float.TryParse(sizeBox.Text, out var size))
 			{
-				size = (float)DefaultFontSize;
+				size = (float)StyleBase.DefaultFontSize;
 			}
 
 			FontStyle style = 0;
@@ -192,7 +207,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void UpdateFont (object sender, EventArgs e)
+		private void UpdateFont(object sender, EventArgs e)
 		{
 			if (updatable && (selection != null))
 			{
@@ -207,7 +222,7 @@ namespace River.OneMoreAddIn
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void nameBox_TextChanged (object sender, EventArgs e)
+		private void nameBox_TextChanged(object sender, EventArgs e)
 		{
 			if (selection != null)
 			{
@@ -217,31 +232,55 @@ namespace River.OneMoreAddIn
 			okButton.Enabled = (nameBox.Text.Length > 0);
 		}
 
-		private void namesBox_SelectedIndexChanged (object sender, EventArgs e)
+		private void namesBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			selection = (CustomStyle)namesBox.SelectedItem;
+			selection = namesBox.SelectedItem as GraphicStyle;
 			ShowSelection();
 		}
 
 
-		private void colorButton_Click (object sender, EventArgs e)
+		private void styleTypeBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			var color = SelectColor("Text Color", colorButton.Bounds, selection.Color);
+			selection = namesBox.SelectedItem as GraphicStyle;
+			if (selection != null)
+			{
+				selection.StyleType = (StyleType)styleTypeBox.SelectedIndex;
+
+				switch (selection.StyleType)
+				{
+					case StyleType.Character:
+						spaceAfterSpinner.Enabled = false;
+						spaceBeforeSpinner.Enabled = false;
+						break;
+
+					case StyleType.Paragraph:
+					case StyleType.Heading:
+						spaceAfterSpinner.Enabled = true;
+						spaceBeforeSpinner.Enabled = true;
+						break;
+				}
+			}
+		}
+
+
+		private void colorButton_Click(object sender, EventArgs e)
+		{
+			var color = SelectColor("Text Color", colorButton.Bounds, selection.Foreground);
 			if (!color.Equals(Color.Empty))
 			{
-				selection.Color = color;
+				selection.Foreground = color;
 				previewBox.Invalidate();
 			}
 		}
 
-		private void defaultBlackToolStripMenuItem_Click (object sender, EventArgs e)
+		private void defaultBlackToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			selection.Color = Color.Black;
+			selection.Foreground = Color.Black;
 			previewBox.Invalidate();
 		}
 
 
-		private void backColorButton_ButtonClick (object sender, EventArgs e)
+		private void backColorButton_ButtonClick(object sender, EventArgs e)
 		{
 			var color = SelectColor("Highlight Color", backColorButton.Bounds, selection.Background);
 			if (!color.Equals(Color.Empty))
@@ -251,14 +290,14 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void transparentToolStripMenuItem_Click (object sender, EventArgs e)
+		private void transparentToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			selection.Background = Color.Transparent;
 			previewBox.Invalidate();
 		}
 
 
-		private Color SelectColor (string title, Rectangle bounds, Color color)
+		private Color SelectColor(string title, Rectangle bounds, Color color)
 		{
 			var location = PointToScreen(toolStrip.Location);
 
@@ -277,26 +316,34 @@ namespace River.OneMoreAddIn
 			return Color.Empty;
 		}
 
-		private void spaceAfterSpinner_ValueChanged (object sender, EventArgs e)
+
+		private void applyColorsBox_CheckedChanged(object sender, EventArgs e)
 		{
-			selection.SpaceAfter = (int)spaceAfterSpinner.Value;
+			selection.ApplyColors
+				= colorButton.Enabled
+				= backColorButton.Enabled
+				= applyColorsBox.Checked;
+
+			previewBox.Invalidate();
+		}
+
+
+		private void spaceAfterSpinner_ValueChanged(object sender, EventArgs e)
+		{
+			selection.SpaceAfter = spaceAfterSpinner.Value.ToString("#0.0");
 
 		}
 
-		private void spaceBeforeSpinner_ValueChanged (object sender, EventArgs e)
+		private void spaceBeforeSpinner_ValueChanged(object sender, EventArgs e)
 		{
-			selection.SpaceBefore = (int)spaceBeforeSpinner.Value;
+			selection.SpaceBefore = spaceBeforeSpinner.Value.ToString("#0.0");
 		}
 
-		private void headingBox_CheckedChanged (object sender, EventArgs e)
-		{
-			selection.IsHeading = headingBox.Checked;
-		}
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-		private void loadButton_Click (object sender, EventArgs e)
+		private void loadButton_Click(object sender, EventArgs e)
 		{
 			using (var dialog = new OpenFileDialog())
 			{
@@ -313,14 +360,14 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					dialog.InitialDirectory = 
+					dialog.InitialDirectory =
 						Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 				}
 
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					var styles = new StylesProvider().LoadTheme(dialog.FileName);
+					var styles = new StyleProvider().LoadTheme(dialog.FileName);
 					if (styles?.Count > 0)
 					{
 						LoadStyles(styles);
@@ -335,7 +382,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void reorderButton_Click (object sender, EventArgs e)
+		private void reorderButton_Click(object sender, EventArgs e)
 		{
 			using (var dialog = new ReorderDialog(namesBox.Items))
 			{
@@ -345,14 +392,14 @@ namespace River.OneMoreAddIn
 					string name = null;
 					if (namesBox.SelectedItem != null)
 					{
-						name = ((CustomStyle)namesBox.SelectedItem).Name;
+						name = ((GraphicStyle)namesBox.SelectedItem).Name;
 					}
 
 					var items = dialog.GetItems();
 					namesBox.Items.Clear();
 					namesBox.Items.AddRange(items);
 
-					var selected = namesBox.Items.Cast<CustomStyle>().Where(s => s.Name.Equals(name)).FirstOrDefault();
+					var selected = namesBox.Items.Cast<GraphicStyle>().Where(s => s.Name.Equals(name)).FirstOrDefault();
 					if (selected != null)
 					{
 						namesBox.SelectedItem = selected;
@@ -366,7 +413,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void deleteButton_Click (object sender, EventArgs e)
+		private void deleteButton_Click(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show(this, "Delete this custom style?", "Confirm",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -375,7 +422,7 @@ namespace River.OneMoreAddIn
 			{
 				int index = namesBox.SelectedIndex;
 
-				var style = namesBox.Items[index] as CustomStyle;
+				var style = namesBox.Items[index] as GraphicStyle;
 				style.Name = string.Empty;
 
 				namesBox.Items.RemoveAt(index);

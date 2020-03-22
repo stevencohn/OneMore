@@ -9,14 +9,14 @@ namespace River.OneMoreAddIn
 
 	internal class EditStylesCommand : Command
 	{
-		public EditStylesCommand () : base()
+		public EditStylesCommand() : base()
 		{
 		}
 
 
-		public void Execute ()
+		public void Execute()
 		{
-			var provider = new StylesProvider();
+			var provider = new StyleProvider();
 
 			var styles = provider.GetStyles();
 			DialogResult result;
@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn
 				{
 					// save styles to remove delete items and preserve ordering
 					styles = dialog.GetStyles();
-					provider.SaveStyles(styles);
+					provider.Save(styles);
 					ribbon.Invalidate();
 				}
 			}

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>River.OneMoreAddIn</RootNamespace>
     <AssemblyName>River.OneMoreAddIn</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -82,9 +82,6 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Speech" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -139,9 +136,8 @@
     <Compile Include="Helpers\BasicColors.cs" />
     <Compile Include="Helpers\Keyboard.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
-    <Compile Include="Models\CssInfo.cs" />
-    <Compile Include="Models\CustomInfo.cs" />
-    <Compile Include="Models\CustomStyle.cs" />
+    <Compile Include="Helpers\XCDataExtensions.cs" />
+    <Compile Include="Helpers\XElementExtensions.cs" />
     <Compile Include="Dialogs\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,17 +174,19 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="ApplicationManager.cs" />
     <Compile Include="Commands\ShowXmlCommand.cs" />
-    <Compile Include="Models\IStyleInfo.cs" />
-    <Compile Include="Models\Phrase.cs" />
-    <Compile Include="Models\QuickInfo.cs" />
-    <Compile Include="Models\StyleInfoBase.cs" />
+    <Compile Include="Styles\GraphicStyle.cs" />
+    <Compile Include="Styles\QuickStyleDef.cs" />
+    <Compile Include="Styles\Style.cs" />
+    <Compile Include="Styles\StyleBase.cs" />
+    <Compile Include="Styles\StyleProvider.cs" />
+    <Compile Include="Styles\StyleRecord.cs" />
+    <Compile Include="Styles\StyleType.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Providers\FavoritesProvider.cs" />
-    <Compile Include="Providers\StylesProvider.cs" />
+    <Compile Include="Helpers\FavoritesProvider.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />
@@ -201,10 +199,11 @@
     <Compile Include="Dialogs\XmlDialog.Designer.cs">
       <DependentUpon>XmlDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Styles\Stylizer.cs" />
+    <Compile Include="Styles\XmlStyleBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Emoji\Architecture.png" />
-    <None Include="packages.config" />
     <None Include="Properties\Emoji\Automobile.png" />
     <Content Include="Properties\Emoji\Bullet.png" />
     <Content Include="Properties\Emoji\Calendar.png" />
@@ -309,6 +308,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

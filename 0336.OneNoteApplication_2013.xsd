@@ -1,0 +1,1287 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://schemas.microsoft.com/office/onenote/2013/onenote"
+            xmlns="http://schemas.microsoft.com/office/onenote/2013/onenote"
+            elementFormDefault="qualified">
+
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">
+			Working draft schema for OneNote import/export.
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<!-- Valid root elements -->
+	<xsd:element name="Notebooks" type="Notebooks"/>
+	<xsd:element name="Notebook" type="Notebook"/>
+	<xsd:element name="OpenSections" type="OpenSections"/>
+	<xsd:element name="UnfiledNotes" type="UnfiledNotes"/>
+	<xsd:element name="SectionGroup" type="SectionGroup"/>
+	<xsd:element name="Section" type="Section"/>
+	<xsd:element name="Page" type="Page"/>
+
+	<!-- Notebooks. -->
+	<xsd:complexType name="Notebooks">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Notebook" type="Notebook" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="UnfiledNotes" type="UnfiledNotes" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="OpenSections" type="OpenSections" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- UnfiledNotes. -->
+	<xsd:complexType name="UnfiledNotes">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Section" type="Section" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="isCurrentlyViewed" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="ID" type="ObjectID"/>
+	</xsd:complexType>
+
+	<!-- OpenSections. -->
+	<xsd:complexType name="OpenSections">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Section" type="Section" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="isCurrentlyViewed" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="ID" type="ObjectID"/>
+	</xsd:complexType>
+
+	<!-- Notebook. -->
+	<xsd:complexType name="Notebook">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Section" type="Section" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="SectionGroup" type="SectionGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="nickname" type="xsd:string"/>
+		<xsd:attribute name="color" type="COLOR" default="automatic"/>
+		<xsd:attribute name="isUnread" type="xsd:boolean" />
+		<xsd:attributeGroup ref="HierarchyObjectAttributes"/>
+		<xsd:attributeGroup ref="FileObjectAttributes"/>
+	</xsd:complexType>
+
+	<!-- SectionGroup. -->
+	<xsd:complexType name="SectionGroup">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Section" type="Section" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="SectionGroup" type="SectionGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="isUnread" type="xsd:boolean"/>
+		<xsd:attribute name="isRecycleBin" type="xsd:boolean" default="false"/>
+		<xsd:attributeGroup ref="HierarchyObjectAttributes"/>
+		<xsd:attributeGroup ref="FileObjectAttributes"/>
+	</xsd:complexType>
+
+	<!-- Section. -->
+	<xsd:complexType name="Section">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Describes a single OneNote section.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Page" type="Page" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="color" type="COLOR" default="automatic"/>
+		<xsd:attribute name="encrypted" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="locked" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="isUnread" type="xsd:boolean" />
+		<xsd:attribute name="readOnly" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="areAllPagesAvailable" type="xsd:boolean" default="true"/>
+		<xsd:attribute name="isDeletedPages" type="xsd:boolean" default="false"/>
+		<xsd:attributeGroup ref="HierarchyObjectAttributes"/>
+		<xsd:attributeGroup ref="FileObjectAttributes"/>
+	</xsd:complexType>
+
+	<!-- Page. -->
+	<xsd:complexType name="Page">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Describes a single OneNote page.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="TagDef" type="TagDef" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="QuickStyleDef" type="QuickStyleDef" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="XPSFile" type="XPSFile" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Meta" type="Meta" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="MediaPlaylist" type="MediaPlaylist" minOccurs="0"/>
+			<xsd:element name="MeetingInfo" type="MeetingInfo" minOccurs="0"/>
+			<xsd:element name="PageSettings" type="PageSettings" minOccurs="0"/>
+			<xsd:element name="Title" type="Title" minOccurs="0"/>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="Outline" type="Outline"/>
+				<xsd:element name="Image" type="Image"/>
+				<xsd:element name="InkDrawing" type="InkDrawing"/>
+				<xsd:element name="InsertedFile" type="InsertedFile"/>
+				<xsd:element name="MediaFile" type="MediaFile"/>
+				<xsd:element name="FutureObject" type="FutureObject"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="dateTime" type="xsd:dateTime"/>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+		<xsd:attribute name="isSubPage" type="xsd:boolean"/>
+		<xsd:attribute name="pageLevel">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:integer">
+					<xsd:minInclusive value="1"/>
+					<xsd:maxInclusive value="3"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="isCollapsed" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="isUnread" type="xsd:boolean"/>
+		<xsd:attribute name="isIndexed" type="xsd:boolean" default="true"/> <!-- only set during a find -->
+		<xsd:attribute name="hasFutureContent" type="xsd:boolean" default="false"/> <!-- only set whenever page has future content on it -->
+		<xsd:attribute name="stationeryName" type="xsd:string"/>
+		<xsd:attributeGroup ref="HierarchyObjectAttributes"/>
+		<xsd:attributeGroup ref="CascadedTextAttributes"/>
+	</xsd:complexType>
+
+	<!-- Title. -->
+	<xsd:complexType name="Title">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="OE" type="OE" minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+		<xsd:attributeGroup ref="CascadedTextAttributes"/>
+		<xsd:attribute name="showDate" type="xsd:boolean" default="true"/>
+		<xsd:attribute name="showTime" type="xsd:boolean" default="true"/>
+	</xsd:complexType>
+
+	<!-- PageSettings. -->
+	<xsd:complexType name="PageSettings">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Settings for the page.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="PageSize" type="PageSize" minOccurs="0"/>
+			<xsd:element name="RuleLines" type="RuleLines" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="RTL" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="color" type="COLOR" default="automatic"/>
+	</xsd:complexType>
+
+	<!-- PageSize. -->
+	<xsd:complexType name="PageSize">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Settings for the page size.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="Automatic" type="Automatic"/>
+			<xsd:sequence>
+				<xsd:element name="Orientation" type="PageOrientation"/>
+				<xsd:element name="Dimensions" type="PageDimensions"/>
+				<xsd:element name="Margins" type="PageMargins"/>
+			</xsd:sequence>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<!-- PageOrientation. -->
+	<xsd:complexType name="PageOrientation">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<!-- Default orientation is portrait -->
+		<xsd:attribute name="landscape" type="xsd:boolean" default="false"/>
+	</xsd:complexType>
+
+	<!-- PageDimensions. -->
+	<xsd:complexType name="PageDimensions">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<!-- Default width and height are 8.5" x 11" -->
+		<xsd:attribute name="height" type="PositiveDecimal" default="792"/>
+		<xsd:attribute name="width" type="PositiveDecimal" default="612"/>
+	</xsd:complexType>
+
+	<!-- PageMargins. -->
+	<xsd:complexType name="PageMargins">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="top" type="PositiveDecimal" default="36"/>
+		<xsd:attribute name="bottom" type="PositiveDecimal" default="36"/>
+		<xsd:attribute name="left" type="PositiveDecimal" default="72"/>
+		<xsd:attribute name="right" type="PositiveDecimal" default="72"/>
+	</xsd:complexType>
+
+	<!-- RuleLines. -->
+	<xsd:complexType name="RuleLines">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Settings for the rule lines on the page.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="Automatic" type="Automatic"/>
+			<xsd:sequence>
+				<xsd:element name="Horizontal" type="RuleLineSettings" minOccurs="0"/>
+				<xsd:choice minOccurs="0">
+					<xsd:element name="Vertical" type="RuleLineSettings"/>
+					<xsd:element name="Margin" type="RuleMarginSettings"/>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:choice>
+		<xsd:attribute name="visible" type="xsd:boolean" use="required"/>
+	</xsd:complexType>
+
+	<!-- RuleLineSettings. -->
+	<xsd:complexType name="RuleLineSettings">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Settings for rule lines.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="color" type="COLOR" default="automatic"/>
+		<xsd:attribute name="spacing" type="PositiveDecimal" default="23.76"/>
+	</xsd:complexType>
+
+	<!-- RuleMarginSettings. -->
+	<xsd:complexType name="RuleMarginSettings">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Settings for margin lines.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="color" type="COLOR" default="automatic"/>
+	</xsd:complexType>
+
+	<!-- PageObject. -->
+	<xsd:complexType name="PageObject">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Base type for objects that can live on the page.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Position" type="Position" minOccurs="0"/>
+			<xsd:element name="Size" type="Size" minOccurs="0"/>
+			<xsd:element name="Meta" type="Meta" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="objectID" type="ObjectID"/>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+		<xsd:attribute name="lastModifiedTime" type="xsd:dateTime"/>
+	</xsd:complexType>
+
+	<!-- PageObjectTagable. -->
+	<xsd:complexType name="PageObjectTagable">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Base for page objects that support media and noteflags.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="PageObject">
+				<xsd:sequence>
+					<xsd:element name="MediaIndex" type="MediaIndex" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="Tag" type="Tag" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:sequence minOccurs="0" maxOccurs="1">
+						<!-- Ideally this'd be
+							<element name=Tag minoccurs=0 maxoccurs=unbounded>
+							<element name=outlooktask minoccurs=0 maxoccurs=1>
+							<element name=Tag minoccurs=0 maxoccurs=unbounded>
+						   but the schema validator thinks that's ambiguous, so hence the optional sequence -->
+						<xsd:element name="OutlookTask" type="OutlookTask" minOccurs="1" maxOccurs="1"/>
+						<xsd:element name="Tag" type="Tag" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- InkDrawing. -->
+	<xsd:complexType name="InkDrawing">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Contains the ink drawing to be imported.  The data is either referenced in a
+				file or is included inlined, Base64 encoded.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="PageObjectTagable">
+				<xsd:sequence>
+					<xsd:element name="ShapeInfo" type="ShapeInfo" minOccurs="0"/>
+					<xsd:choice>
+						<xsd:element name="File" type="FilePath"/>
+						<xsd:element name="Data" type="xsd:base64Binary"/>
+						<xsd:element name="CallbackID" type="CallbackID"/>
+					</xsd:choice>
+				</xsd:sequence>
+				<xsd:attribute name="isUnclassified" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="inkOriginX" type="xsd:double" default="0"/>
+				<xsd:attribute name="inkOriginY" type="xsd:double" default="0"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- ShapeInfo. -->
+	<xsd:complexType name="ShapeInfo">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="AnchorPoint" type="AnchorPoint" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="isLine" type="xsd:boolean" default="false"/>
+	</xsd:complexType>
+
+	<!-- AnchorPoint. -->
+	<xsd:complexType name="AnchorPoint">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="x" type="xsd:double" use="required"/>
+		<xsd:attribute name="y" type="xsd:double" use="required"/>
+	</xsd:complexType>
+
+	<!-- InsertedFile. -->
+	<xsd:complexType name="InsertedFile">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Definition of an InsertedFile.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="PageObjectTagable">
+				<xsd:choice minOccurs="0" maxOccurs="1">
+					<xsd:element name="Previews" type="Previews" />
+					<xsd:element name="Printout" type="Printout" />
+				</xsd:choice>
+				<xsd:attribute name="pathSource" type="xsd:string"/>
+				<xsd:attribute name="pathCache" type="xsd:string"/>
+				<xsd:attribute name="preferredName" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- Printout -->
+	<xsd:complexType name="Printout">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Information about a printout associated with an inserted file
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="xpsFileIndex" type="xsd:nonNegativeInteger" use="required" />
+		<xsd:attribute name="outOfDate" type="xsd:boolean" default="false" />
+	</xsd:complexType>
+
+	<!-- Previews -->
+	<xsd:complexType name="Previews">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Definition of a set of previews for an inserted file.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Preview" type="Preview" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="sourceDocument" type="GUID" use="required" />
+		<xsd:attribute name="displayAll" type="xsd:boolean" default="false" />
+	</xsd:complexType>
+
+	<!-- Preview -->
+	<xsd:complexType name="Preview">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Definition of a preview for an embedded part of an inserted file.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="page" type="xsd:string" use="required" />
+		<xsd:attribute name="object" type="xsd:string" />
+		<xsd:attribute name="range" type="xsd:string" />
+	</xsd:complexType>
+
+	<!-- Image -->
+	<xsd:complexType name="Image">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Definition of an image.
+
+				The data is either referenced in a file or is included inlined, Base64 encoded.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="PageObjectTagable">
+				<xsd:sequence>
+					<xsd:choice>
+						<xsd:element name="File" type="FilePath"/>
+						<xsd:element name="Data" type="xsd:base64Binary"/>
+						<xsd:element name="CallbackID" type="CallbackID"/>
+					</xsd:choice>
+					<xsd:element name="OCRData" type="OCRData" minOccurs="0"/>
+					<xsd:element name="Preview" type="Preview" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:attribute name="format" type="ImageFormat" default="auto"/>
+				<xsd:attribute name="xpsFileIndex" type="xsd:nonNegativeInteger"/>
+				<xsd:attribute name="originalDocumentNumber" type="xsd:nonNegativeInteger" default="0"/>
+				<xsd:attribute name="originalPageNumber" type="xsd:nonNegativeInteger" default="0"/>
+				<xsd:attribute name="isPrintOut" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="backgroundImage" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="hyperlink" type="xsd:string" />
+				<xsd:attribute name="alt" type="xsd:string" />
+				<xsd:attribute name="sourceDocument" type="GUID" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- Future Content -->
+	<xsd:complexType name="FutureObject">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Definition of unknown content from a later version of OneNote.
+
+				The data is referenced by an ObjectID. The content is not changable.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="PageObjectTagable" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- OCRData. -->
+	<xsd:complexType name="OCRData">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				lang is in ISO 639 format
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="OCRText" type="xsd:string"/>
+			<xsd:element name="OCRToken" type="OCRToken" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="lang" type="xsd:string" default="EN-US"/>
+	</xsd:complexType>
+
+	<!-- OCRToken. -->
+	<xsd:complexType name="OCRToken">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="startPos" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="region" type="xsd:nonNegativeInteger" default="0"/>
+		<xsd:attribute name="line" type="xsd:nonNegativeInteger" default="0"/>
+		<xsd:attribute name="x" type="xsd:decimal" default="0"/>
+		<xsd:attribute name="y" type="xsd:decimal" default="0"/>
+		<xsd:attribute name="width" type="PositiveDecimal" default="0"/>
+		<xsd:attribute name="height" type="PositiveDecimal" default="0"/>
+	</xsd:complexType>
+
+	<!-- Table. -->
+	<xsd:complexType name="Table">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Definition of a table in an OE.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Columns" type="Columns" minOccurs="0"/>
+			<xsd:element name="Row" type="Row" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="objectID" type="ObjectID"/>
+		<xsd:attribute name="bordersVisible" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="hasHeaderRow" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+		<xsd:attribute name="lastModifiedTime" type="xsd:dateTime"/>
+		<xsd:attribute name="meetingContentType" type="xsd:nonNegativeInteger"/>
+		<xsd:attributeGroup ref="EditedByAttributes"/>
+		<xsd:attributeGroup ref="CascadedTextAttributes"/>
+	</xsd:complexType>
+
+	<!-- Columns. -->
+	<xsd:complexType name="Columns">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Column" type="Column" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Column. -->
+	<xsd:complexType name="Column">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="index" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="width" type="PositiveDecimal" use="required"/>
+		<xsd:attribute name="isLocked" type="xsd:boolean" default="false"/>
+	</xsd:complexType>
+
+	<!-- Row. -->
+	<xsd:complexType name="Row">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Cell" type="Cell" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="objectID" type="ObjectID"/>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+		<xsd:attribute name="lastModifiedTime" type="xsd:dateTime"/>
+		<xsd:attribute name="meetingContentType" type="xsd:nonNegativeInteger"/>
+		<xsd:attribute name="meetingContentId" type="xsd:string"/>
+		<xsd:attributeGroup ref="EditedByAttributes"/>
+		<xsd:attributeGroup ref="CascadedTextAttributes"/>
+	</xsd:complexType>
+
+	<!-- Cell. -->
+	<xsd:complexType name="Cell">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="OEChildren" type="OEChildren" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="objectID" type="ObjectID"/>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+		<xsd:attribute name="lastModifiedTime" type="xsd:dateTime"/>
+		<xsd:attribute name="shadingColor" type="COLOR"/>
+		<xsd:attribute name="meetingContentType" type="xsd:nonNegativeInteger"/>
+		<xsd:attributeGroup ref="EditedByAttributes"/>
+		<xsd:attributeGroup ref="CascadedTextAttributes"/>
+	</xsd:complexType>
+
+	<!-- Outline. -->
+	<xsd:complexType name="Outline">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Definition of an outline.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="PageObject">
+				<xsd:sequence>
+					<xsd:element name="Indents" type="Indents" minOccurs="0"/>
+					<xsd:element name="OEChildren" type="OEChildren" maxOccurs="unbounded"/>
+				</xsd:sequence>
+
+				<xsd:attributeGroup ref="CascadedTextAttributes"/>
+
+				<xsd:attributeGroup ref="EditedByAttributes"/>
+
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- Indents. -->
+	<xsd:complexType name="Indents">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Indent" type="Indent" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Indent. -->
+	<xsd:complexType name="Indent">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="level" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="indent" type="PositiveDecimal" use="required"/>
+	</xsd:complexType>
+
+	<!-- OEChildren. -->
+	<xsd:complexType name="OEChildren">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				A collection of outline elements contained within either an outline or an outline element.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ChildOELayout" type="ChildOELayout" minOccurs="0"/>
+			<xsd:choice maxOccurs="unbounded">
+				<xsd:element name="OE" type="OE"/>
+				<xsd:element name="HTMLBlock" type="HtmlContent"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="indent" type="xsd:positiveInteger" default="1"/>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+
+		<xsd:attributeGroup ref="CascadedTextAttributes"/>
+
+	</xsd:complexType>
+
+  <!-- LinkedNoteThumbnail -->
+  <xsd:complexType name="LinkedNoteThumbnail">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">
+				Thumbnail in a linked note.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element name="Data" type="xsd:base64Binary"/>
+        <xsd:element name="CallbackID" type="CallbackID"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+	<!-- LinkedNote -->
+	<xsd:complexType name="LinkedNote">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Linked note property of an OE.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="LinkedNoteUri" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="LinkedNoteShortName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="LinkedNoteFriendlyName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="LinkedNoteDescription" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="LinkedNoteThumbnail" type="LinkedNoteThumbnail" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+		<xsd:attribute name="state" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:integer">
+					<xsd:minInclusive value="0"/>
+					<xsd:maxInclusive value="3"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<!-- OE. -->
+	<xsd:complexType name="OE">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				A single outline element.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="MediaIndex" type="MediaIndex" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Tag" type="Tag" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:sequence minOccurs="0" maxOccurs="1">
+				<xsd:element name="OutlookTask" type="OutlookTask" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="Tag" type="Tag" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:element name="Meta" type="Meta" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="List" type="List" minOccurs="0"/>
+			<xsd:choice>
+				<!-- One image, one table, inserted file, or a mix of Ink and Text pieces -->
+				<xsd:element name="Image" type="Image"/>
+				<xsd:element name="Table" type="Table"/>
+				<xsd:element name="InkDrawing" type="InkDrawing"/>
+				<xsd:element name="InsertedFile" type="InsertedFile"/>
+				<xsd:element name="MediaFile" type="MediaFile"/>
+				<xsd:element name="InkParagraph" type="InkParagraph"/>
+				<xsd:element name="FutureObject" type="FutureObject"/>
+				<xsd:sequence maxOccurs="unbounded">
+					<!-- Text elements can be wrapped in a CDATA marker, if needed
+							and can contain basic html for input into the outline -->
+					<xsd:element name="T" type="TextRange" minOccurs="0"/>
+					<xsd:element name="InkWord" type="InkWord" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:element name="OEChildren" type="OEChildren" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="LinkedNote" type="LinkedNote" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+		<!-- RTL defaults to Page RTL setting, if not set -->
+		<xsd:attribute name="RTL" type="xsd:boolean"/>
+		<xsd:attribute name="bodyText" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="collapsedBodyText" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="alignment" type="Alignment" default="left"/>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+		<xsd:attribute name="objectID" type="ObjectID"/>
+		<xsd:attribute name="spaceBefore" type="PositiveDecimal"/>
+		<xsd:attribute name="spaceBetween" type="PositiveDecimal"/>
+		<xsd:attribute name="spaceAfter" type="PositiveDecimal"/>
+		<xsd:attribute name="meetingContentType" type="xsd:nonNegativeInteger"/>
+		<xsd:attribute name="meetingContentId" type="xsd:string"/>
+		<xsd:attribute name="meetingTrackModifications" type="xsd:boolean"/>
+		<xsd:attribute name="meetingIsUserEdited" type="xsd:boolean"/>
+
+		<xsd:attributeGroup ref="CascadedTextAttributes"/>
+
+		<xsd:attributeGroup ref="EditedByAttributes"/>
+		<xsd:attribute name="lastModifiedTime" type="xsd:dateTime"/>
+		<xsd:attribute name="preserveTextContent" type="xsd:boolean"/>
+		<xsd:attribute name="explicitExpandCollapseEnabled" type="xsd:boolean"/>
+
+	</xsd:complexType>
+
+	<!-- ChildOELayout. -->
+	<xsd:complexType name="ChildOELayout">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Collection of settings controlling how contained OEs layout.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="spaceBefore" type="PositiveDecimal"/>
+		<xsd:attribute name="spaceBetween" type="PositiveDecimal"/>
+		<xsd:attribute name="spaceAfter" type="PositiveDecimal"/>
+		<xsd:attribute name="listSpacing" type="PositiveDecimal"/>
+		<xsd:attribute name="listAlignment">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="left"/>
+					<xsd:enumeration value="right"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<!-- TextRange. -->
+	<xsd:complexType name="TextRange" >
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="selected" type="Selection" default="none"/>
+				<xsd:attribute name="preserveWhiteSpace" type="xsd:boolean" default="true"/>
+				<xsd:attributeGroup ref="CascadedTextAttributes"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<!-- InkParagraph. -->
+	<xsd:complexType name="InkParagraph">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Contains the ink paragraph to be imported (this is ink that cannot live
+				within an outline, usually due to be slanted writing).
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="InkWord" type="InkWord" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="x" type="xsd:double"/>
+		<xsd:attribute name="y" type="xsd:double"/>
+		<xsd:attribute name="width" type="PositiveDecimal"/>
+		<xsd:attribute name="height" type="PositiveDecimal"/>
+	</xsd:complexType>
+
+	<!-- InkWord. -->
+	<xsd:complexType name="InkWord">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Contains the ink word to be imported.  The data is either referenced in a
+				file or is included inlined, Base64 encoded.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="File" type="FilePath"/>
+			<xsd:element name="Data" type="xsd:base64Binary"/>
+			<xsd:element name="CallbackID" type="CallbackID"/>
+			<xsd:element name="Space" type="Space"/>
+			<xsd:element name="EndOfLine" type="EndOfLine"/>
+		</xsd:choice>
+		<xsd:attribute name="recognizedText" type="xsd:string"/>
+		<xsd:attribute name="selected" type="Selection" default="none"/>
+		<xsd:attribute name="x" type="xsd:double"/>
+		<xsd:attribute name="y" type="xsd:double"/>
+		<xsd:attribute name="width" type="PositiveDecimal"/>
+		<xsd:attribute name="height" type="PositiveDecimal"/>
+		<xsd:attribute name="style" type="xsd:string"/>
+		<xsd:attribute name="inkOriginX" type="xsd:double" default="0"/>
+		<xsd:attribute name="inkOriginY" type="xsd:double" default="0"/>
+	</xsd:complexType>
+
+	<!-- Space. -->
+	<xsd:complexType name="Space">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:complexType>
+
+	<!-- EndOfLine. -->
+	<xsd:complexType name="EndOfLine">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:complexType>
+
+	<!-- List. -->
+	<xsd:complexType name="List">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				List information (either a bullet or a number).
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="Bullet" type="Bullet"/>
+			<xsd:element name="Number" type="Number"/>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<!-- Bullet. -->
+	<xsd:complexType name="Bullet">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="bullet" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="fontSize" type="FontSize" default="10.0"/>
+		<xsd:attribute name="fontColor" type="COLOR" default="automatic"/>
+	</xsd:complexType>
+
+	<!-- Number. -->
+	<xsd:complexType name="Number">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="numberSequence" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="numberFormat" type="xsd:string" use="required"/>
+		<xsd:attribute name="restartNumberingAt" type="xsd:nonNegativeInteger"/>
+		<xsd:attribute name="font" type="xsd:string" default="Verdana"/>
+		<xsd:attribute name="fontSize" type="FontSize" default="10.0"/>
+		<xsd:attribute name="fontColor" type="COLOR" default="automatic"/>
+		<xsd:attribute name="bold" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="italic" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="language" type="xsd:string" default="1033"/>
+		<xsd:attribute name="text" type="xsd:string"/>
+	</xsd:complexType>
+
+	<!-- QuickStyleDef. -->
+	<xsd:complexType name="QuickStyleDef">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Defines styles.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="index" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="fontColor" type="COLOR" default="automatic"/>
+		<xsd:attribute name="highlightColor" type="COLOR" default="automatic"/>
+		<xsd:attribute name="font" type="xsd:string" use="required"/>
+		<xsd:attribute name="fontSize" type="FontSize" use="required"/>
+		<xsd:attribute name="bold" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="italic" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="underline" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="strikethrough" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="superscript" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="subscript" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="spaceBefore" type="xsd:float" default="0"/>
+		<xsd:attribute name="spaceAfter" type="xsd:float" default="0"/>
+    <!-- Whatever else is defined in the styles format. -->
+	</xsd:complexType>
+
+	<!-- Font Size -->
+	<xsd:simpleType name="FontSize">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Defines the size of the text fonts.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:double">
+			<xsd:minInclusive value="6.0"/>
+			<xsd:maxInclusive value="144.0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- TagDef. -->
+	<xsd:complexType name="TagDef">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Defines the note tag.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="index" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="type" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="symbol" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="fontColor" type="COLOR" default="automatic"/>
+		<xsd:attribute name="highlightColor" type="COLOR" default="none"/>
+	</xsd:complexType>
+
+	<!-- Tag. -->
+	<xsd:complexType name="Tag">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				A single instance of an applied note tag.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="index" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attributeGroup ref="ActionItemAttributes"/>
+	</xsd:complexType>
+
+	<!-- OutlookTask. -->
+	<xsd:complexType name="OutlookTask">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				A single instance of an applied outlook task.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="ActionItemAttributes"/>
+		<xsd:attribute name="startDate" type="xsd:dateTime"/>
+		<xsd:attribute name="dueDate" type="xsd:dateTime"/>
+		<xsd:attribute name="guidTask" type="GUID" use="required"/>
+	</xsd:complexType>
+
+	<!-- MediaFile. -->
+	<xsd:complexType name="MediaFile">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Definition of an MediaFile.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="InsertedFile">
+				<xsd:sequence>
+					<xsd:element name="MediaReference" type="MediaReference" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- MediaPlaylist. -->
+	<xsd:complexType name="MediaPlaylist">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				A sorted list of media references on the page.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="MediaReference" type="MediaReference" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- MeetingInfo. -->
+	<xsd:complexType name="MeetingInfo">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Linked note taking meeting information for the page.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="broadcastUrl" type="xsd:string"/>
+		<xsd:attribute name="broadcastActive" type="xsd:boolean"/>
+		<xsd:attribute name="IMConversationId" type="xsd:string"/>
+		<xsd:attribute name="IMConversationUpdater" type="xsd:string"/>
+		<xsd:attribute name="IMConversationType" type="xsd:nonNegativeInteger"/>
+		<xsd:attribute name="meetingGlobalAppointmentId" type="xsd:string"/>
+		<xsd:attribute name="meetingStartTime" type="xsd:dateTime"/>
+		<xsd:attribute name="meetingEndTime" type="xsd:dateTime"/>
+		<xsd:attribute name="meetingRecurrenceType" type="xsd:nonNegativeInteger"/>
+		<xsd:attribute name="outlookSharedNotes" type="xsd:boolean"/>
+	</xsd:complexType>
+
+	<!-- MediaIndex. -->
+	<xsd:complexType name="MediaIndex">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				A single instance of an media time stamp.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="MediaReference" type="MediaReference"/>
+		</xsd:sequence>
+		<xsd:attribute name="timeIndex" type="xsd:nonNegativeInteger" use="required"/>
+	</xsd:complexType>
+
+	<!-- MediaReference. -->
+	<xsd:complexType name="MediaReference">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				A reference to a media file.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="mediaID" type="GUID" use="required"/>
+	</xsd:complexType>
+
+	<!-- XPSFile. -->
+	<xsd:complexType name="XPSFile">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Defines a single Microsoft Document Imaging file.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="File" type="FilePath"/>
+			<xsd:element name="Data" type="xsd:base64Binary"/>
+			<xsd:element name="CallbackID" type="CallbackID"/>
+		</xsd:choice>
+		<xsd:attribute name="xpsFileIndex" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="idDocument" type="GUID"/>
+	</xsd:complexType>
+
+	<!-- Meta. -->
+	<xsd:complexType name="Meta">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Defines a single name/value data pair.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="name" type="MetaName" use="required"/>
+		<xsd:attribute name="content" type="MetaContent"/>
+	</xsd:complexType>
+
+	<xsd:simpleType name="MetaName">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="256"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="MetaContent">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="262144"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Common types. -->
+	<xsd:simpleType name="PositiveDecimal">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Positive number.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:double">
+			<xsd:minInclusive value="0.00"/>
+			<xsd:maxInclusive value="1000000.00"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="HtmlContent">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Contains the html data to be imported.
+
+				If the html is included via a Data node, we expect it to be wrapped in
+				a CDATA marker.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="File" type="FilePath"/>
+			<xsd:element name="Data" type="xsd:string"/>
+		</xsd:choice>
+		<xsd:attribute name="meetingTrackModifications" type="xsd:boolean"/>
+	</xsd:complexType>
+
+	<xsd:simpleType name="ObjectID">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				The representation of an object to be used for identification of
+				objects on a page.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}\{[0-9]+\}\{[A-Z][0-9]+\}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="GUID">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				The representation of a GUID.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="FilePath">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Represents the path to a file.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="path" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<xsd:simpleType name="COLOR">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				The representation of a color - either the text string None or Automatic
+				or a # followed by a 6 digit hex value.  Color value is specified by
+				pairs of values in the order Red, Green, Blue.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="#[a-fA-F0-9]{6}|none|automatic"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ImageFormat">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Type of image being exported
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="auto|png|emf|jpg"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Selection">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Representation of selection - three possible values:
+					none : No selection on this object or any of its children
+					partial : This object contains at least one selected object
+					selected : This object is selected (or all its children are selected)
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="none|partial|all"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="Position">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				position of an object.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="x" type="xsd:double" use="required"/>
+		<xsd:attribute name="y" type="xsd:double" use="required"/>
+		<xsd:attribute name="z" type="xsd:nonNegativeInteger"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="Size">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				size of an object.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="width" type="PositiveDecimal" use="required"/>
+		<xsd:attribute name="height" type="PositiveDecimal" use="required"/>
+		<xsd:attribute name="isSetByUser" type="xsd:boolean" />
+	</xsd:complexType>
+
+	<xsd:complexType name="CallbackID">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="callbackID" type="ObjectID" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="Automatic">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:complexType>
+
+	<xsd:attributeGroup name="CascadedTextAttributes">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Each of these properties apply to a T element.  The attribute used
+				for a given T element will be the last attribute seen before (or on)
+				the element.
+
+				lang is in ISO 639 format
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="style" type="xsd:string"/>
+		<xsd:attribute name="quickStyleIndex" type="xsd:nonNegativeInteger"/>
+		<xsd:attribute name="lang" type="xsd:string"/>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="EditedByAttributes">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Set of properties to define who edited what when.
+				If not set on a child element, it has the same setting as the parent.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="author" type="xsd:string"/>
+		<xsd:attribute name="authorInitials" type="xsd:string"/>
+		<xsd:attribute name="authorResolutionID" type="xsd:string"/>
+		<xsd:attribute name="lastModifiedBy" type="xsd:string"/>
+		<xsd:attribute name="lastModifiedByInitials" type="xsd:string"/>
+		<xsd:attribute name="lastModifiedByResolutionID" type="xsd:string"/>
+		<xsd:attribute name="creationTime" type="xsd:dateTime"/>
+	</xsd:attributeGroup>
+
+	<!-- HierarchyObjectAttributes. -->
+	<xsd:attributeGroup name="HierarchyObjectAttributes">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="ID" type="ObjectID"/>
+		<xsd:attribute name="name" type="xsd:string"/>
+		<xsd:attribute name="lastModifiedTime" type="xsd:dateTime"/>
+		<xsd:attribute name="isCurrentlyViewed" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="isInRecycleBin" type="xsd:boolean" default="false"/>
+	</xsd:attributeGroup>
+
+	<!-- FileObjectAttributes. -->
+	<xsd:attributeGroup name="FileObjectAttributes">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="path" type="xsd:string"/>
+	</xsd:attributeGroup>
+
+	<!-- ActionItemAttributes. -->
+	<xsd:attributeGroup name="ActionItemAttributes">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+				Attributes that are common to action items (noteflags and tasks)
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="completed" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="disabled" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="creationDate" type="xsd:dateTime"/>
+		<xsd:attribute name="completionDate" type="xsd:dateTime"/>
+	</xsd:attributeGroup>
+
+	<xsd:simpleType name="Alignment">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="left|center|right"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>
+
+

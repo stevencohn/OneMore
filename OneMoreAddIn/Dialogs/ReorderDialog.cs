@@ -17,16 +17,16 @@ namespace River.OneMoreAddIn
 		{
 			InitializeComponent();
 
-			var list = items.Cast<CustomStyle>().ToArray();
+			var list = items.Cast<GraphicStyle>().ToArray();
 			listBox.Items.AddRange(list);
 
 			listBox.SelectedIndex = 0;
 		}
 
 
-		public CustomStyle[] GetItems ()
+		public GraphicStyle[] GetItems ()
 		{
-			var items = listBox.Items.Cast<CustomStyle>().ToArray();
+			var items = listBox.Items.Cast<GraphicStyle>().ToArray();
 			return items;
 		}
 
@@ -48,6 +48,11 @@ namespace River.OneMoreAddIn
 			index--;
 			listBox.Items.Insert(index, item);
 
+			for (var i = 0; i < listBox.Items.Count; i++)
+			{
+				(listBox.Items[i] as GraphicStyle).Index = i;
+			}
+
 			listBox.SelectedIndex = index;
 		}
 
@@ -61,13 +66,18 @@ namespace River.OneMoreAddIn
 			index++;
 			listBox.Items.Insert(index, item);
 
+			for (var i = 0; i < listBox.Items.Count; i++)
+			{
+				(listBox.Items[i] as GraphicStyle).Index = i;
+			}
+
 			listBox.SelectedIndex = index;
 		}
 
 
 		private void listBox_DrawItem (object sender, DrawItemEventArgs e)
 		{
-			var item = listBox.Items[e.Index] as CustomStyle;
+			var item = listBox.Items[e.Index] as GraphicStyle;
 
 			Brush brush;
 
@@ -84,7 +94,7 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				if (item.IsHeading)
+				if (item.StyleType == StyleType.Heading)
 				{
 					using (var hfont = new Font(DefaultFont.FontFamily, DefaultFont.Size - 2.0f, FontStyle.Bold | FontStyle.Italic))
 					{

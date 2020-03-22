@@ -5,13 +5,14 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+    using System.Text.RegularExpressions;
 
 
-	/// <summary>
-	/// Some extension methods for .NET types...
-	/// </summary>
+    /// <summary>
+    /// Some extension methods for .NET types...
+    /// </summary>
 
-	internal static class Extensions
+    internal static class Extensions
 	{
 
 		/// <summary>
@@ -37,6 +38,54 @@ namespace River.OneMoreAddIn
 		public static bool StartsWithICIC (this string s, string value)
 		{
 			return s.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+		}
+
+
+		/// <summary>
+		/// Extract the first word delimeted by a non-word boundary from the given
+		/// string and returns the word and updated string.
+		/// </summary>
+		/// <param name="s">A string with one or more words</param>
+		/// <returns>
+		/// A two-part ValueTuple with the word and the updated string.
+		/// </returns>
+		public static (string, string) ExtractFirstWord(this string s)
+		{
+			if (!string.IsNullOrEmpty(s))
+			{
+				var match = Regex.Match(s, @"^(\w+)\b*");
+				if (match.Success)
+				{
+					var capture = match.Captures[0];
+					return (capture.Value, s.Remove(capture.Index, capture.Length));
+				}
+			}
+
+			return (null, s);
+		}
+
+
+		/// <summary>
+		/// Extract the last word delimeted by a non-word boundary from the given
+		/// string and returns the word and updated string.
+		/// </summary>
+		/// <param name="s">A string with one or more words</param>
+		/// <returns>
+		/// A two-part ValueTuple with the word and the updated string.
+		/// </returns>
+		public static (string, string) ExtractLastWord (this string s)
+		{
+			if (!string.IsNullOrEmpty(s))
+			{
+				var match = Regex.Match(s, @"\b*(\w+)$");
+				if (match.Success)
+				{
+					var capture = match.Captures[0];
+					return (capture.Value, s.Remove(capture.Index, capture.Length));
+				}
+			}
+
+			return (null, s);
 		}
 	}
 }

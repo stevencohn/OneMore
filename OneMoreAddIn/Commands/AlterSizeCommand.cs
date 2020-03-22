@@ -4,8 +4,9 @@
 
 namespace River.OneMoreAddIn
 {
-	using System.Collections.Generic;
+	using System;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Xml;
 	using System.Xml.Linq;
 
@@ -13,8 +14,7 @@ namespace River.OneMoreAddIn
 	internal class AlterSizeCommand : Command
 	{
 		private XElement page;
-		private XNamespace ns;
-		private IStyleInfo defaultInfo;
+		private int delta;
 
 
 		public AlterSizeCommand () : base()
@@ -22,156 +22,174 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute (bool increase = true)
+		public void Execute (int delta)
 		{
-			using (var manager = new ApplicationManager())
+			try
 			{
-				page = manager.CurrentPage();
-				if (page != null)
+				using (var manager = new ApplicationManager())
 				{
-					ns = page.GetNamespaceOfPrefix("one");
-
-					Evaluate(increase);
-
-					manager.UpdatePageContent(page);
-				}
-			}
-		}
-
-
-		private void Evaluate (bool increase)
-		{
-			var templates = GetQuickStyleDefs();
-
-			// Find all TextRanges (one:T) - each and every one!
-
-			var ranges = page.Elements(ns + "Outline")?.Descendants(ns + "T");
-			if (ranges?.Count() > 0)
-			{
-				foreach (var range in ranges)
-				{
-					var phrase = new Phrase(range);
-					if (!phrase.IsEmpty)
+					page = manager.CurrentPage();
+					if (page != null)
 					{
-						var info = new CssInfo();
+						this.delta = delta;
 
-						// collect from one:T
-						CollectFromSpan(range, info);
+						//System.Diagnostics.Debugger.Launch();
 
-						// collect from one:OE
-						CollectFromObjectElement(range.Parent, info, templates);
+						var count = AlterByName();
+						count += AlterElementsByValue();
+						count += AlterCDataByValue();
 
-						if (info.FontSize == null)
+						if (count > 0)
 						{
-							info.FontSize = defaultInfo.FontSize;
+							manager.UpdatePageContent(page);
 						}
-
-						var delta = increase ? 1 : -1;
-						var defaultSize = ParseSize(info.FontSize) + delta;
-
-						var data = Rebuild(phrase, defaultSize, delta);
-
-						range.FirstNode.ReplaceWith(new XCData(data));
 					}
 				}
 			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Error executing AlterSizeCommand", exc);
+			}
 		}
 
 
-		private List<IStyleInfo> GetQuickStyleDefs ()
+		/*
+		 * <one:QuickStyleDef index="1" name="p" fontColor="automatic" highlightColor="automatic" font="Calibri" fontSize="12.0" spaceBefore="0.0" spaceAfter="0.0" />
+		 * <one:QuickStyleDef index="2" name="h2" fontColor="#2E75B5" highlightColor="automatic" font="Calibri" fontSize="14.0" spaceBefore="0.0" spaceAfter="0.0" />
+		 */
+
+		private int AlterByName()
 		{
-			// collect Heading quick style defs (h1, h2, h3, ...)
+			int count = 0;
 
-			var templates = new List<IStyleInfo>();
+			// TODO: page title is actually in a one:Title element....
 
-			var quickdefs = page.Elements(ns + "QuickStyleDef")?.Select(e => new QuickInfo(e));
-			if (quickdefs?.Count() > 0)
+			// find all elements that have an attribute named fontSize, e.g. QuickStyleDef or Bullet
+			var elements = page.Descendants()
+				.Where(p => p.Attribute("name")?.Value != "PageTitle" && p.Attribute("fontSize") != null);
+
+			if (elements?.Any() == true)
 			{
-				templates.AddRange(quickdefs);
-			}
-
-			defaultInfo = templates.FirstOrDefault(e => e.Name.Equals("P"));
-			if (defaultInfo == null)
-			{
-				defaultInfo = new CssInfo()
+				foreach (var element in elements)
 				{
-					Name = "P",
-					FontSize = "11.0pt"
-				};
-
-				templates.Add(defaultInfo);
-			}
-
-			return templates;
-		}
-
-
-		private void CollectFromSpan (XElement element, CssInfo info)
-		{
-			var spanstyle = element.Attributes("style").Select(a => a.Value).FirstOrDefault();
-			if (spanstyle != null)
-			{
-				info.Collect(spanstyle);
-			}
-		}
-
-
-		private void CollectFromObjectElement (XElement element, CssInfo info, List<IStyleInfo> templates)
-		{
-			CollectFromSpan(element, info);
-
-			var a = element.Attribute("quickStyleIndex");
-			if (a != null)
-			{
-				var template = templates.Where(e => a.Value.Equals(e.Index)).FirstOrDefault();
-				if (template != null)
-				{
-					info.Collect(template);
-				}
-			}
-		}
-
-
-		private int ParseSize (string size)
-		{
-			if (size.EndsWith("pt"))
-			{
-				size = size.Substring(0, size.Length - 2);
-			}
-
-			return (int)double.Parse(size);
-		}
-
-
-		public string Rebuild (Phrase phrase, int defaultSize, int delta)
-		{
-			string data = string.Empty;
-
-			var wrap = phrase.GetSanitizedWrapper();
-			foreach (var node in wrap.Nodes())
-			{
-				if (node.NodeType == XmlNodeType.Text)
-				{
-					data += "<span style=font-size:" + defaultSize + "pt>" + ((XText)node).Value + "</span>";
-				}
-				else
-				{
-					var info = new CssInfo();
-					CollectFromSpan((XElement)node, info);
-					if (info.FontSize == null)
+					if (element != null)
 					{
-						info.FontSize = defaultSize.ToString("#.0") + "pt";
+						var attr = element.Attribute("fontSize");
+						if (attr != null)
+						{
+							if (double.TryParse(attr.Value, out var size))
+							{
+								attr.Value = (size + delta).ToString("#0.0");
+								count++;
+							}
+						}
 					}
-					else
-					{
-						info.FontSize = (ParseSize(info.FontSize) + delta).ToString("#.0") + "pt";
-					}
-
-					data += "<span style=" + info.ToCss() + ">" + ((XElement)node).Value + "</span>";
 				}
 			}
 
-			return data;
+			return count;
+		}
+
+
+		private int AlterElementsByValue()
+		{
+			int count = 0;
+
+			var elements = page.Descendants()
+				.Where(p => p.Attribute("style")?.Value.Contains("font-size:") == true);
+
+			if (elements?.Any() == true)
+			{
+				foreach (var element in elements)
+				{
+					if (UpdateSpanStyle(element))
+					{
+						count++;
+					}
+				}
+			}
+
+			return count;
+		}
+
+
+		private int AlterCDataByValue()
+		{
+			int count = 0;
+
+			var nodes = page.DescendantNodes()
+				.Where(n => n.NodeType == XmlNodeType.CDATA &&
+					((XCData)n).Value.Contains("font-size:"))
+				.Cast<XCData>();
+
+			if (nodes?.Any() == true)
+			{
+				foreach (var cdata in nodes)
+				{
+					var wrapper = cdata.GetWrapper();
+
+					var spans = wrapper.Elements("span")
+						.Where(e => e.Attribute("style")?.Value.Contains("font-size") == true);
+
+					if (spans?.Any() == true)
+					{
+						foreach (var span in spans)
+						{
+							if (UpdateSpanStyle(span))
+							{
+								// unwrap our temporary <cdata>
+								cdata.Value = wrapper.GetInnerXml();
+								count++;
+							}
+						}
+					}
+				}
+			}
+
+			return count;
+		}
+
+
+		private bool UpdateSpanStyle(XElement span)
+		{
+			bool updated = false;
+
+			var attr = span.Attribute("style");
+			if (attr != null)
+			{
+				var properties = attr.Value.Split(';')
+					.Select(p => p.Split(':'))
+					.ToDictionary(p => p[0], p => p[1]);
+
+				if (properties?.ContainsKey("font-size") == true)
+				{
+					properties["font-size"] =
+						(ParseFontSize(properties["font-size"]) + delta).ToString("#0.0") + "pt";
+
+					attr.Value =
+						string.Join(";", properties.Select(p => p.Key + ":" + p.Value).ToArray());
+
+					updated = true;
+				}
+			}
+
+			return updated;
+		}
+
+
+		private double ParseFontSize(string size)
+		{
+			var match = Regex.Match(size, @"^([0-9]+(?:\.[0-9]+)?)(?:pt){0,1}");
+			if (match.Success)
+			{
+				size = match.Groups[match.Groups.Count - 1].Value;
+				if (!string.IsNullOrEmpty(size))
+				{
+					return double.Parse(size);
+				}
+			}
+
+			return StyleBase.DefaultFontSize;
 		}
 	}
 }

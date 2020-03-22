@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml;
 	using System.Xml.Linq;
@@ -18,12 +19,15 @@ namespace River.OneMoreAddIn
 		{
 			public string Text;
 			public string Link;
-			public int Level;
+			public StyleBase Style;
 		}
 
 
 		private XElement page;
 		private XNamespace ns;
+		private string pageId;
+		private List<Style> quickStyles;
+		private List<Style> customStyles;
 
 
 		public InsertTocCommand () : base()
@@ -35,7 +39,21 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				_Execute();
+				using (var manager = new ApplicationManager())
+				{
+
+					page = manager.CurrentPage();
+					if (page != null)
+					{
+						ns = page.GetNamespaceOfPrefix("one");
+						pageId = page.Attribute("ID").Value;
+
+						CollectHeadingDefinitions();
+
+						Evaluate(manager);
+						manager.UpdatePageContent(page);
+					}
+				}
 			}
 			catch (Exception exc)
 			{
@@ -44,202 +62,218 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void _Execute ()
-		{
-			using (var manager = new ApplicationManager())
-			{
-				page = manager.CurrentPage();
-				if (page != null)
-				{
-					ns = page.GetNamespaceOfPrefix("one");
-
-					Evaluate(manager);
-
-					manager.UpdatePageContent(page);
-				}
-			}
-		}
-
-
 		private void Evaluate (ApplicationManager manager)
 		{
-			//System.Diagnostics.Debugger.Launch();
-
 			var headings = new List<Heading>();
-			var templates = GetHeadingTemplates();
 
-			// get page.ObjectId for hyperlinks
-			var pid = page.Attribute("ID")?.Value;
+			// Find all OE blocks with text, e.g., containing at least one T
 
-			// Find all OEs that might be headings: must contain one T block; if there are more
-			// than one T block then only allow the OE if those Ts represent current selection
-
-			var candidates =
-				from e in page.Element(ns + "Outline").Element(ns + "OEChildren").Elements(ns + "OE")
-				let n = e.Elements(ns + "T").Count()
-				where n == 1 || (n <= 3 && e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all")))
+			var blocks =
+				from e in page.Elements(ns + "Outline").Descendants(ns + "OE")
+				let c = e.Elements(ns + "T").DescendantNodes().Where(p => p.NodeType == XmlNodeType.CDATA).FirstOrDefault() as XCData
+				where c.Value.Length > 0 && !Regex.IsMatch(c.Value, @"[\s\b]+<span[\s\b]+style=") &&
+					(e.Attribute("quickStyleIndex") != null || e.Attribute("style") != null)
 				select e;
 
-			if (candidates?.Count() > 0)
+			if (blocks?.Any() == true)
 			{
-				foreach (var candidate in candidates)
+				foreach (var block in blocks)
 				{
-					CssInfo info = null;
+					Heading heading = null;
 
-					var phrases = candidate.Elements(ns + "T").Select(e => new Phrase(e));
-					foreach (var phrase in phrases)
+					if (block.ReadAttributeValue("quickStyleIndex", out var quickStyleIndex, -1))
 					{
-						if (!phrase.IsEmpty)
+						var style = quickStyles
+							.Find(s => s.StyleType == StyleType.Heading && s.Index == quickStyleIndex);
+
+						if (style != null)
 						{
-							info = phrase.GetStyleInfo();
-							if (info != null)
+							// found standard heading
+							heading = new Heading
 							{
-								// collect from one:T
-								CollectFromSpan(phrase.CData.Parent, info);
-							}
+								Text = block.Value,
+								Link = GetHyperlink(block, manager),
+								Style = style
+							};
 						}
 					}
 
-					if (info != null)
+					if (heading == null)
 					{
-						// collect from one:OE
-						CollectFromObjectElement(candidate, info, templates);
+						// custom heading?
+						var style = FindCustomStyle(block);
 
-						var template = templates.Where(t => t.Matches(info)).FirstOrDefault();
-						if (template != null)
+						if (style != null)
 						{
-							string link = null;
-							if (pid != null)
+							// found standard heading
+							heading = new Heading
 							{
-								var oid = candidate.Attribute("objectID")?.Value;
-								if (oid != null)
-								{
-									manager.Application.GetHyperlinkToObject(pid, oid, out link);
-								}
-							}
-
-							// capture only first-level one:T text ranges, ignoring OEChildren
-							// which would represent something like a bullet list or indented child
-							var text = new XElement("x", candidate.Elements(ns + "T")).Value;
-
-							var heading = new Heading()
-							{
-								Text = ClearFormatting(text),
-								Link = link,
-								Level = template.Level
+								Text = block.Value,
+								Link = GetHyperlink(block, manager),
+								Style = style
 							};
-
-							logger.WriteLine($"Heading => {heading.Text} ({heading.Level})");
-							headings.Add(heading);
 						}
+					}
+
+					if (heading != null)
+					{
+						headings.Add(heading);
 					}
 				}
 			}
 
-			InsertToc(headings);
+			ReorderKnownStyles();
+			GenerateTableOfContents(headings);
 		}
 
 
-		#region GetHeadingTemplates
-		private List<IStyleInfo> GetHeadingTemplates ()
+		/// <summary>
+		/// Construct a list of possible templates from both this page's quick styles
+		/// and our own custom style definitions, choosing only Heading styles, all
+		/// ordered by the internal Index.
+		/// </summary>
+		/// <returns>A List of Styles ordered by Index</returns>
+		private void CollectHeadingDefinitions()
 		{
-			var templates = new List<IStyleInfo>();
+			// collect all quick style defs
+			
+			// going to reference both heading and non-headings
+			quickStyles = page.Elements(ns + "QuickStyleDef")
+				.Select(p => new Style(new QuickStyleDef(p)))
+				.ToList();
 
-			// collect Heading quick style defs (h1, h2, h3, ...)
-
-			var quickdefs =
-				from e in page.Elements(ns + "QuickStyleDef")
-				let n = e.Attribute("name")
-				where (n != null) && (Regex.IsMatch(n.Value, @"h\d")) // || n.Value.Equals("PageTitle"))
-				select new QuickInfo(e);
-
-			if (quickdefs?.Count() > 0)
+			// tag the headings (h1, h2, h3, ...)
+			foreach (var style in quickStyles)
 			{
-				int level = 0;
-				foreach (var def in quickdefs)
+				if (Regex.IsMatch(style.Name, @"h\d"))
 				{
-					def.Level = level++;
-					templates.Add(def);
+					style.StyleType = StyleType.Heading;
 				}
 			}
 
 			// collect custom heading styles
 
-			var customs = new StylesProvider()
-				.Filter(e => e.Attributes("isHeading").Any(a => a.Value.ToLower()
-				.Equals("True", StringComparison.InvariantCultureIgnoreCase)));
+			customStyles = new StyleProvider().GetStyles()
+				.Where(e => e.StyleType == StyleType.Heading)
+				.OrderBy(e => e.Index)
+				.ToList();
+		}
 
-			if (customs?.Count() > 0)
+
+		private string GetHyperlink(XElement element, ApplicationManager manager)
+		{
+			var attr = element.Attribute("objectID");
+			if (!string.IsNullOrEmpty(attr?.Value))
 			{
-				var level = 0;
-				foreach (var custom in customs)
+				try
 				{
-					templates.Add(new CustomInfo(custom) { Level = level++ });
+					manager.Application.GetHyperlinkToObject(pageId, attr.Value, out var link);
+					return link;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("Error getting hyperlink", exc);
 				}
 			}
 
-			return templates;
-		}
-		#endregion GetHeadingTemplates
-
-
-		private void CollectFromSpan (XElement element, CssInfo info)
-		{
-			var spanstyle = element.Attributes("style").Select(a => a.Value).FirstOrDefault();
-			if (spanstyle != null)
-			{
-				info.Collect(spanstyle);
-			}
+			return null;
 		}
 
 
-		private void CollectFromObjectElement (XElement element, CssInfo info, List<IStyleInfo> templates)
+		private Style FindCustomStyle(XElement block)
 		{
-			CollectFromSpan(element, info);
+			var style = CollectStyle(block);
 
-			var a = element.Attribute("quickStyleIndex");
-			if (a != null)
+			return customStyles.Find(s =>
+				s.FontFamily == style.FontFamily &&
+				s.FontSize == style.FontSize &&
+				s.Color == style.Color &&
+				s.Highlight == style.Highlight &&
+				s.IsBold == style.IsBold &&
+				s.IsItalic == style.IsItalic &&
+				s.IsUnderline == style.IsUnderline
+				// ignoring IsStrikethrough, IsSuperscript, IsSubscript, SpaceAfter, SpaceBefore
+			);
+		}
+
+
+		/// <summary>
+		/// Discovers the style from the given element and combines that with the
+		/// the element's quick style to derive a complete style for the block.
+		/// </summary>
+		/// <param name="block"></param>
+		/// <returns></returns>
+		private Style CollectStyle(XElement block)
+		{
+			var properties = block.CollectStyleProperties();
+
+			if (block.ReadAttributeValue("quickStyleIndex", out int quickStyleIndex))
 			{
-				var template = templates.Where(e => a.Value.Equals(e.Index)).FirstOrDefault();
-				if (template != null)
+				var style = quickStyles.Find(s => s.Index == quickStyleIndex);
+				if (style != null)
 				{
-					info.Collect(template);
+					if (!properties.ContainsKey("font-family"))
+						properties.Add("font-family", style.FontFamily);
+
+					if (!properties.ContainsKey("font-size"))
+						properties.Add("font-size", style.FontSize);
+
+					if (!properties.ContainsKey("color") && !style.Color.Equals("automatic"))
+						properties.Add("color", style.Color);
+
+					if (!properties.ContainsKey("background") && !style.Highlight.Equals("automatic"))
+						properties.Add("background", style.Highlight);
+
+					if (!properties.ContainsKey("spaceBefore"))
+						properties.Add("spaceBefore", style.SpaceBefore);
+
+					if (!properties.ContainsKey("spaceAfter"))
+						properties.Add("spaceAfter", style.SpaceBefore);
 				}
 			}
 
-			a = element.Attribute("spaceBefore");
-			if (a != null)
-			{
-				info.SpaceBefore = a.Value;
-			}
-
-			a = element.Attribute("spaceAfter");
-			if (a != null)
-			{
-				info.SpaceAfter = a.Value;
-			}
+			return new Style(properties);
 		}
 
 
-		public string ClearFormatting (string text)
+		/// <summary>
+		/// Repurpose the style Index property to represent the heading indent level,
+		/// so reset each heading index according to its logical hierarhcy
+		/// </summary>
+		private void ReorderKnownStyles()
 		{
-			var clear = string.Empty;
-
-			var ctext = text.Replace("<br>", "<br/>");
-			var wrap = XElement.Parse("<w>" + ctext + "</w>");
-			foreach (var node in wrap.Nodes())
+			foreach (var style in quickStyles)
 			{
-				if (node.NodeType == XmlNodeType.Text)
-					clear += node.ToString();
-				else
-					clear += ((XElement)node).Value;
+				var match = Regex.Match(style.Name, @"h(\d+)");
+				if (match.Success && match.Captures.Count > 0)
+				{
+					if (int.TryParse(match.Captures[0].Value, out var index))
+					{
+						style.Index = index;
+					}
+				}
 			}
 
-			return clear;
+			quickStyles = quickStyles.OrderBy(s => s.Index).ToList();
+
+			for (int i = 1; i < customStyles.Count; i++)
+			{
+				customStyles[i].Index = i;
+			}
 		}
 
 
-		private void InsertToc (List<Heading> headings)
+		/*
+		 * <one:OE quickStyleIndex="1">
+		 *   <one:T><![CDATA[. .Heading 2]]></one:T>
+		 * </one:OE>
+		 */
+
+		/// <summary>
+		/// Generates a table of contents at the top of the current page
+		/// </summary>
+		/// <param name="headings"></param>
+		private void GenerateTableOfContents (List<Heading> headings)
 		{
 			var top = page.Element(ns + "Outline")?.Element(ns + "OEChildren");
 			if (top == null)
@@ -247,75 +281,51 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			var title = new XElement(ns + "OE",
+			var items = new List<XElement>
+			{
+				// "Table of Contents"
+				new XElement(ns + "OE",
 				new XAttribute("style", "font-size:16.0pt"),
 				new XElement(ns + "T",
 					new XCData("<span style='font-weight:bold'>Table of Contents</span>")
 					)
-				);
+				)
+			};
 
-			// create a temporary root node, to be thrown away
-			var content = new XElement(ns + "OEChildren");
-
-			if (headings.Count > 0)
+			if (headings?.Any() == true)
 			{
-				// build the hierarchical heading list
-				BuildContent(content, headings, 0, 0);
+				// use the minimum intent level
+				var minlevel = headings.Min(e => e.Style.Index);
 
-				logger.WriteLine(content.ToString(SaveOptions.None));
+				foreach (var heading in headings)
+				{
+					var text = new StringBuilder();
+					var count = minlevel;
+					while (count < heading.Style.Index)
+					{
+						text.Append(". . ");
+						count++;
+					}
+
+					if (!string.IsNullOrEmpty(heading.Link))
+					{
+						text.Append($"<a href=\"{heading.Link}\">{heading.Text}</a>");
+					}
+					else
+					{
+						text.Append(heading.Text);
+					}
+
+					items.Add(new XElement(ns + "OE",
+						new XElement(ns + "T", new XCData(text.ToString()))
+						));
+				}
 			}
 
 			// empty line after the TOC
-			content.Add(new XElement(ns + "OE",
-				new XElement(ns + "T", new XCData(string.Empty))
-				));
+			items.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
 
-			top.AddFirst(title, content.Nodes());
-		}
-
-
-		private int BuildContent (XElement content, List<Heading> headings, int index, int level)
-		{
-			while ((index < headings.Count) && (headings[index].Level >= level))
-			{
-				var heading = headings[index];
-
-				if (heading.Level == level)
-				{
-					string text;
-					if (heading.Link == null)
-					{
-						text = heading.Text;
-					}
-					else
-					{
-						text = $"<a href=\"{heading.Link}\">{heading.Text}</a>";
-					}
-
-					content.Add(new XElement(ns + "OE",
-						new XElement(ns + "T", new XCData(text)))
-						);
-
-					index++;
-				}
-				else if (heading.Level > level)
-				{
-					var children = new XElement(ns + "OEChildren");
-					index = BuildContent(children, headings, index, heading.Level);
-
-					var elements = content.Elements(ns + "OE");
-					if (elements == null)
-					{
-						content.Add(children);
-					}
-					else
-					{
-						content.Elements(ns + "OE").Last().Add(children);
-					}
-				}
-			}
-
-			return index;
+			top.AddFirst(items);
 		}
 	}
 }

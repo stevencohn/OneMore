@@ -4,6 +4,9 @@
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("OneMoreAddIn.Tests")]
 
+// in order to use this, must set Preferences/Advanced "Allows LINPAad to access internals"...
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LINQPadQuery")]
+
 
 /// <summary>
 /// Define assembly constants unique to this project.

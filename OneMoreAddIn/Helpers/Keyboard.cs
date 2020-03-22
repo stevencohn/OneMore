@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable 3003, 3009
+
 namespace River.OneMoreAddIn
 {
 	using System;

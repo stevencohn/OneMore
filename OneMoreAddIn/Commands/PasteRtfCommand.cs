@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn
 
 		private void PrepareClipboard()
 		{
-			// OneNote runs in MTA context but Clipboard required STA context
+			// OneNote runs in MTA context but Clipboard requires STA context
 			var thread = new Thread(() =>
 			{
 				if (Clipboard.ContainsText(TextDataFormat.Rtf))
@@ -89,23 +89,26 @@ namespace River.OneMoreAddIn
 		private void RebuildClipboard(string text)
 		{
 			var dob = new DataObject();
+
 			// replace any Html with our own
 			dob.SetText(text, TextDataFormat.Html);
 
 			// keep Unicode
 			if (Clipboard.ContainsText(TextDataFormat.UnicodeText))
 			{
-				dob.SetText(Clipboard.GetText(TextDataFormat.UnicodeText), TextDataFormat.UnicodeText);
+				dob.SetText(
+					Clipboard.GetText(TextDataFormat.UnicodeText), TextDataFormat.UnicodeText);
 			}
 
 			// keep Text
 			if (Clipboard.ContainsText(TextDataFormat.Text))
 			{
-				dob.SetText(Clipboard.GetText(TextDataFormat.Text), TextDataFormat.Text);
+				dob.SetText(
+					Clipboard.GetText(TextDataFormat.Text), TextDataFormat.Text);
 			}
 
-			// replace clipboard contents, maybe locked so retry if fail
-					Clipboard.SetDataObject(dob, true);
+			// replace clipboard contents, may be locked so retry if fail
+			Clipboard.SetDataObject(dob, true);
 		}
 
 
