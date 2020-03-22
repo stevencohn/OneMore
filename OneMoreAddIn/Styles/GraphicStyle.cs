@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine(
+				logger.WriteLine(
 					$"Error creating font({FontFamily}, {fontSize}, {fontStyle})", exc);
 
 				Font = new Drawing.Font(
@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine($"Error translating color {Color}", exc);
+				logger.WriteLine($"Error translating color {Color}", exc);
 				Foreground = Drawing.Color.Black;
 			}
 
@@ -78,20 +78,10 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine($"Error translating highlight {Highlight}", exc);
+				logger.WriteLine($"Error translating highlight {Highlight}", exc);
 				Background = Drawing.Color.Transparent;
 			}
-
-			Logger.Current.WriteLine(
-				$"GraphicStyle() (name:{style.Name}, type:{style.StyleType}, family:{style.FontFamily}, size:{style.FontSize}, fore:{style.Color}, back:{style.Highlight}, apply:{style.ApplyColors}, before:{style.SpaceBefore}, after:{style.SpaceAfter})");
-
-			Logger.Current.WriteLine(
-				$"-------------> (name:{Name}, type:{StyleType}, family:{FontFamily}, size:{FontSize}, fore:{Foreground}, back:{Background}, apply:{ApplyColors}, before:{spaceBefore}, after:{spaceAfter})");
-
-			Logger.Current.WriteLine(
-				$"~~~~~~~~~~~~~> (name:{Name}, type:{StyleType}, family:{Font.FontFamily.Name}, size:{Font.Size}, fore:{Foreground}, back:{Background}, apply:{ApplyColors}, before:{spaceBefore}, after:{spaceAfter})");
 		}
-
 
 
 		public void Dispose()

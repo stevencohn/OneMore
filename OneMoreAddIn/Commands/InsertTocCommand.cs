@@ -122,11 +122,8 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			if (headings.Count > 0)
-			{
-				ReorderKnownStyles();
-				GenerateTableOfContents(headings);
-			}
+			ReorderKnownStyles();
+			GenerateTableOfContents(headings);
 		}
 
 
@@ -284,41 +281,45 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			var items = new List<XElement>();
-
-			// "Table of Contents"
-			items.Add(new XElement(ns + "OE",
+			var items = new List<XElement>
+			{
+				// "Table of Contents"
+				new XElement(ns + "OE",
 				new XAttribute("style", "font-size:16.0pt"),
 				new XElement(ns + "T",
 					new XCData("<span style='font-weight:bold'>Table of Contents</span>")
 					)
-				));
+				)
+			};
 
-			// use the minimum intent level
-			var minlevel = headings.Min(e => e.Style.Index);
-
-			foreach (var heading in headings)
+			if (headings?.Any() == true)
 			{
-				var text = new StringBuilder();
-				var count = minlevel;
-				while (count < heading.Style.Index)
-				{
-					text.Append(". . ");
-					count++;
-				}
+				// use the minimum intent level
+				var minlevel = headings.Min(e => e.Style.Index);
 
-				if (!string.IsNullOrEmpty(heading.Link))
+				foreach (var heading in headings)
 				{
-					text.Append($"<a href=\"{heading.Link}\">{heading.Text}</a>");
-				}
-				else
-				{
-					text.Append(heading.Text);
-				}
+					var text = new StringBuilder();
+					var count = minlevel;
+					while (count < heading.Style.Index)
+					{
+						text.Append(". . ");
+						count++;
+					}
 
-				items.Add(new XElement(ns + "OE",
-					new XElement(ns + "T", new XCData(text.ToString()))
-					));
+					if (!string.IsNullOrEmpty(heading.Link))
+					{
+						text.Append($"<a href=\"{heading.Link}\">{heading.Text}</a>");
+					}
+					else
+					{
+						text.Append(heading.Text);
+					}
+
+					items.Add(new XElement(ns + "OE",
+						new XElement(ns + "T", new XCData(text.ToString()))
+						));
+				}
 			}
 
 			// empty line after the TOC

@@ -21,6 +21,8 @@ namespace River.OneMoreAddIn
 		protected double spaceBefore;
 		protected double spaceAfter;
 
+		protected readonly ILogger logger;
+
 
 		/// <summary>
 		/// Initializes a new instance with defaults.
@@ -32,6 +34,8 @@ namespace River.OneMoreAddIn
 			FontFamily = DefaultFontFamily;
 			fontSize = DefaultFontSize;
 			ApplyColors = true;
+
+			logger = Logger.Current;
 		}
 
 
@@ -42,7 +46,7 @@ namespace River.OneMoreAddIn
 		/// Inheritors may extend their own constructor to manage additional properties
 		/// as appropriate.
 		/// </param>
-		public StyleBase(StyleBase other)
+		public StyleBase(StyleBase other) : this()
 		{
 			Name = other.Name;
 			StyleType = other.StyleType;

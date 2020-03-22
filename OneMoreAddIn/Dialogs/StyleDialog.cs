@@ -179,8 +179,8 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				Logger.Current.WriteLine(
-					$"StyleDialog.preview() (family:{sample.FontFamily.Name}, size:{sample.Size}, style:{sample.Style})");
+				//Logger.Current.WriteLine(
+				//	$"StyleDialog.preview() (family:{sample.FontFamily.Name}, size:{sample.Size}, style:{sample.Style})");
 
 				var color = selection.ApplyColors ? selection.Foreground : Color.Black;
 				using (var brush = new SolidBrush(color))
@@ -241,18 +241,24 @@ namespace River.OneMoreAddIn
 
 		private void styleTypeBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			switch ((StyleType)styleTypeBox.SelectedIndex)
+			selection = namesBox.SelectedItem as GraphicStyle;
+			if (selection != null)
 			{
-				case StyleType.Character:
-					spaceAfterSpinner.Enabled = false;
-					spaceBeforeSpinner.Enabled = false;
-					break;
+				selection.StyleType = (StyleType)styleTypeBox.SelectedIndex;
 
-				case StyleType.Paragraph:
-				case StyleType.Heading:
-					spaceAfterSpinner.Enabled = true;
-					spaceBeforeSpinner.Enabled = true;
-					break;
+				switch (selection.StyleType)
+				{
+					case StyleType.Character:
+						spaceAfterSpinner.Enabled = false;
+						spaceBeforeSpinner.Enabled = false;
+						break;
+
+					case StyleType.Paragraph:
+					case StyleType.Heading:
+						spaceAfterSpinner.Enabled = true;
+						spaceBeforeSpinner.Enabled = true;
+						break;
+				}
 			}
 		}
 

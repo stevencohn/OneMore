@@ -28,15 +28,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static void ReplaceCData(this XElement element, XCData cdata)
-		{
-			element.DescendantNodes()
-				.Where(e => e.NodeType == XmlNodeType.CDATA)
-				.FirstOrDefault()
-				.ReplaceWith(cdata);
-		}
-
-
 		/// <summary>
 		/// Returns the InnerXml of the given element
 		/// </summary>

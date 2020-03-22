@@ -62,6 +62,8 @@ namespace River.OneMoreAddIn
 		{
 			int count = 0;
 
+			// TODO: page title is actually in a one:Title element....
+
 			// find all elements that have an attribute named fontSize, e.g. QuickStyleDef or Bullet
 			var elements = page.Descendants()
 				.Where(p => p.Attribute("name")?.Value != "PageTitle" && p.Attribute("fontSize") != null);

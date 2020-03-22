@@ -186,7 +186,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Providers\FavoritesProvider.cs" />
+    <Compile Include="Helpers\FavoritesProvider.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />

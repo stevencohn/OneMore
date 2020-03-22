@@ -35,7 +35,6 @@ namespace River.OneMoreAddIn
 			{
 				try
 				{
-					Logger.Current.WriteLine($"Loading styles from {path}");
 					root = XElement.Load(path);
 				}
 				catch (Exception exc)
@@ -47,23 +46,15 @@ namespace River.OneMoreAddIn
 			if (root == null)
 			{
 				// file not found so load default theme
-				Logger.Current.WriteLine("Loading default styles");
 				root = XElement.Parse(Properties.Resources.CustomStyles);
 			}
 
-			Logger.Current.WriteLine(root.ToString(SaveOptions.None));
+			//Logger.Current.WriteLine(root.ToString(SaveOptions.None));
 
 			foreach (var record in root.Elements("Style"))
 			{
 				cache.Add(new StyleRecord(record));
 			}
-		}
-
-
-		public void Add(StyleRecord record)
-		{
-			record.Index = cache.Max(e => e.Index);
-			cache.Add(record);
 		}
 
 
@@ -113,22 +104,6 @@ namespace River.OneMoreAddIn
 		{
 			return cache.ConvertAll(e => new Style(e));
 		}
-
-
-		public XElement GetXml()
-		{
-			var root = new XElement("CustomStyles",
-				new XAttribute(XNamespace.Xmlns + "om", Properties.Resources.OneMoreNamespace) 
-				);
-
-			foreach (var record in cache)
-			{
-				root.Add(record.ToXElement());
-			}
-
-			return root;
-		}
-
 
 
 		public List<Style> LoadTheme(string path)

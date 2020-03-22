@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn
 	/// 
 	/// </summary>
 
-	internal interface ILogger : IDisposable
+	public interface ILogger : IDisposable
 	{
 		void Write(string message);
 		void WriteLine();
@@ -264,7 +264,10 @@ namespace River.OneMoreAddIn
 
 		private void Serialize(Exception exc, StringBuilder builder, int depth)
 		{
-			string indent = new string(' ', depth * 2);
+			if (depth > 0)
+			{
+				builder.Append($"-- inner exception at depth {depth} ---------------");
+			}
 
 			builder.Append("Message...: " + exc.Message + Environment.NewLine);
 			builder.Append("StackTrace: " + exc.StackTrace + Environment.NewLine);

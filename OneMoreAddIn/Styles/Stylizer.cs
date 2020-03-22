@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System.Linq;
+	using System.Text;
 	using System.Xml;
 	using System.Xml.Linq;
 
@@ -141,6 +142,62 @@ namespace River.OneMoreAddIn
 					var estyle = new Style(given);
 					estyle.Merge(style);
 					span.Value = estyle.ToCss();
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Clear all styles from the given element and its descendant nodes
+		/// </summary>
+		/// <param name="element">An OE or T node</param>
+		public void Clear(XElement element)
+		{
+			var attr = element.Attribute("style");
+			if (attr != null)
+			{
+				attr.Remove();
+			}
+
+			if (element.HasElements)
+			{
+				foreach (var child in element.Elements())
+				{
+					Clear(child);
+				}
+			}
+
+			// CData
+
+			var data = element.Nodes()
+				.Where(n => n.NodeType == XmlNodeType.CDATA && ((XCData)n).Value.Contains("span"))
+				.Cast<XCData>();
+
+			if (data?.Any() == true)
+			{
+				var builder = new StringBuilder();
+
+				foreach (var cdata in data)
+				{
+					var wrapper = cdata.GetWrapper();
+
+					foreach (var node in wrapper.Nodes())
+					{
+						if (node.NodeType == XmlNodeType.Element)
+						{
+							var e = node as XElement;
+							if (e.Name.LocalName == "span")
+							{
+								// presume spans within cdata are flat and only contain text
+								builder.Append(e.Value);
+							}
+						}
+						if (node.NodeType == XmlNodeType.Text)
+						{
+							// handle text, whitespace, significant-whitespace, et al?
+							builder.Append(((XText)node).Value);
+						}
+					}
 				}
 			}
 		}

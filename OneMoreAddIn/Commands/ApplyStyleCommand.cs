@@ -13,6 +13,12 @@ namespace River.OneMoreAddIn
 	internal class ApplyStyleCommand : Command
 	{
 
+		private XElement page;
+		private XNamespace ns;
+		private Stylizer stylizer;
+		private Style style;
+
+
 		public ApplyStyleCommand() : base()
 		{
 		}
@@ -20,34 +26,41 @@ namespace River.OneMoreAddIn
 
 		public void Execute(int selectedIndex)
 		{
-			var style = new StyleProvider().GetStyle(selectedIndex);
-
 			using (var manager = new ApplicationManager())
 			{
-				var page = manager.CurrentPage();
+				page = manager.CurrentPage();
 				if (page != null)
 				{
-					Evaluate(page, style, manager);
+					ns = page.GetNamespaceOfPrefix("one");
+					style = new StyleProvider().GetStyle(selectedIndex);
+					stylizer = new Stylizer(style);
+
+					bool success = style.StyleType == StyleType.Character
+						? StylizeWords()
+						: StylizeParagraphs();
+
+					if (success)
+					{
+						manager.UpdatePageContent(page);
+					}
 				}
 			}
 		}
 
 
-		private void Evaluate(XElement page, Style style, ApplicationManager manager)
+		private bool StylizeWords()
 		{
-			var ns = page.GetNamespaceOfPrefix("one");
+			// find all selected T element; may be multiple if text is selected across 
+			// multiple paragraphs - OEs - but partial paragraphs may be selected too...
 
-			// find all selections; may be multiple if text is selected across multiple paragraphs
 			var selections = page.Descendants(ns + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
 
 			if (selections == null)
 			{
 				// shouldn't happen, but...
-				return;
+				return false;
 			}
-
-			var stylizer = new Stylizer(style);
 
 			foreach (var selection in selections)
 			{
@@ -63,7 +76,7 @@ namespace River.OneMoreAddIn
 				{
 					// OE parent has multiple Ts so test if we need to merge them
 
-					logger.WriteLine("selection.parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+					//logger.WriteLine("selection.parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 
 					var cdata = selection.GetCData();
 
@@ -100,9 +113,9 @@ namespace River.OneMoreAddIn
 								{
 									// grab previous part of word
 									word.Append(prev.ExtractLastWord());
-									logger.WriteLine("word with prev:" + word.ToString());
-									logger.WriteLine("prev updated:" + prev.ToString(SaveOptions.None));
-									logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+									//logger.WriteLine("word with prev:" + word.ToString());
+									//logger.WriteLine("prev updated:" + prev.ToString(SaveOptions.None));
+									//logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 
 									if (prev.GetCData().Value.Length == 0)
 									{
@@ -119,9 +132,9 @@ namespace River.OneMoreAddIn
 								{
 									// grab following part of word
 									word.Append(next.ExtractFirstWord());
-									logger.WriteLine("word with next:" + word.ToString());
-									logger.WriteLine("next updated:" + next.ToString(SaveOptions.None));
-									logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+									//logger.WriteLine("word with next:" + word.ToString());
+									//logger.WriteLine("next updated:" + next.ToString(SaveOptions.None));
+									//logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 
 									if (next.GetCData().Value.Length == 0)
 									{
@@ -137,64 +150,76 @@ namespace River.OneMoreAddIn
 									.First()
 									.ReplaceWith(new XCData(word.ToString()));
 
-								logger.WriteLine("parent udpated:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+								//logger.WriteLine("parent udpated:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+							}
+							else
+							{
+								empty = true;
 							}
 
-							logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+							//logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 						}
 					} 
 
 					if (empty)
 					{
 						stylizer.ApplyStyle(selection.GetCData());
-						logger.WriteLine("final empty parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+						//logger.WriteLine("final empty parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 					}
 					else
 					{
 						stylizer.ApplyStyle(selection);
-						logger.WriteLine("final parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
+						//logger.WriteLine("final parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 					}
 				}
-#if FOO
-				// TODO: when applying a Paragraph or Heading style, reset the quickStyleIndex
-				// of the T to QuickStyleDef(P).index...
-
-
-				if (style.StyleType != StyleType.Character)
-				{
-					// apply spacing to parent OE; we may have selected text across multiple OEs
-					// but we'll just reapply if all Ts are within the same OE, no biggie
-					var oe = selection.Parent;
-					ApplySpacing(oe, "spaceBefore", style.SpaceBefore);
-					ApplySpacing(oe, "spaceAfter", style.SpaceAfter);
-				}
-#endif
 			}
 
-			manager.UpdatePageContent(page);
+			return true;
 		}
 
 
-		private void ApplySpacing(XElement paragraph, string name, int space)
+		private bool StylizeParagraphs()
 		{
-			var attr = paragraph.Attribute(name);
+			// find all paragraphs - OE elements - that have selections
+			var elements = page.Descendants()
+				.Where(p => p.NodeType == XmlNodeType.Element
+					&& p.Name.LocalName == "T"
+					&& p.Attributes("selected").Any(a => a.Value.Equals("all")))
+				.Select(p => p.Parent);
+
+			if (elements?.Any() == true)
+			{
+				var css = style.ToCss();
+
+				foreach (var element in elements)
+				{
+					// clear any existing style on or within the paragraph
+					stylizer.Clear(element);
+
+					// blast style onto paragraph, let OneNote normalize across children if it wants
+					element.Add(new XAttribute("style", css));
+
+					ApplySpacing(element, "spaceBefore", style.SpaceBefore);
+					ApplySpacing(element, "spaceAfter", style.SpaceAfter);
+				}
+
+				return true;
+			}
+
+			return false;
+		}
+
+
+		private void ApplySpacing(XElement element, string name, string space)
+		{
+			var attr = element.Attribute(name);
 			if (attr == null)
 			{
-				if (space > 0)
-				{
-					paragraph.Add(new XAttribute(name, space.ToString()));
-				}
+				element.Add(new XAttribute(name, space));
 			}
 			else
 			{
-				if (space > 0)
-				{
-					attr.Value = space.ToString();
-				}
-				else
-				{
-					attr.Remove();
-				}
+				attr.Value = space;
 			}
 		}
 	}
