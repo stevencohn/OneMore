@@ -186,7 +186,7 @@ namespace River.OneMoreAddIn
 			var match = Regex.Match(color, "^#([0-9a-fA-F]+)");
 			if (match.Success)
 			{
-				color = match.Groups[match.Groups.Count - 1].Captures[0].Value;
+				color = match.Groups[match.Groups.Count - 1].Value;
 
 				if (color.Length > 6)
 				{
@@ -222,10 +222,10 @@ namespace River.OneMoreAddIn
 				return DefaultFontSize;
 			}
 
-			var match = Regex.Match(size, @"^[0-9]+(\.[0-9]+)?$(?:pt){0,1}");
+			var match = Regex.Match(size, @"^([0-9]+(?:\.[0-9]+)?)(?:pt){0,1}");
 			if (match.Success)
 			{
-				size = match.Captures[0].Value;
+				size = match.Groups[match.Groups.Count - 1].Value;
 				if (!string.IsNullOrEmpty(size))
 				{
 					return double.Parse(size);

@@ -487,7 +487,7 @@ namespace River.OneMoreAddIn
 
 		public void DecreaseFontSizeCmd (IRibbonControl control)
 		{
-			factory.GetCommand<AlterSizeCommand>().Execute(false);
+			factory.GetCommand<AlterSizeCommand>().Execute(-1);
 		}
 
 		public void EditStylesCmd (IRibbonControl control)
@@ -504,7 +504,7 @@ namespace River.OneMoreAddIn
 
 		public void IncreaseFontSizeCmd (IRibbonControl control)
 		{
-			factory.GetCommand<AlterSizeCommand>().Execute(true);
+			factory.GetCommand<AlterSizeCommand>().Execute(1);
 		}
 
 		public void InsertDoubleHorizontalLineCmd (IRibbonControl control)

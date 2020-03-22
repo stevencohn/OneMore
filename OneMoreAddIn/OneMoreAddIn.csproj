@@ -138,8 +138,6 @@
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\XCDataExtensions.cs" />
     <Compile Include="Helpers\XElementExtensions.cs" />
-    <Compile Include="Models\CssInfo.cs" />
-    <Compile Include="Models\CustomStyle.cs" />
     <Compile Include="Dialogs\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,12 +174,8 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="ApplicationManager.cs" />
     <Compile Include="Commands\ShowXmlCommand.cs" />
-    <Compile Include="Models\IStyleInfo.cs" />
-    <Compile Include="Models\Phrase.cs" />
-    <Compile Include="Models\QuickInfo.cs" />
     <Compile Include="Styles\GraphicStyle.cs" />
     <Compile Include="Styles\QuickStyleDef.cs" />
-    <Compile Include="Models\StyleInfoBase.cs" />
     <Compile Include="Styles\Style.cs" />
     <Compile Include="Styles\StyleBase.cs" />
     <Compile Include="Styles\StyleProvider.cs" />
@@ -205,7 +199,7 @@
     <Compile Include="Dialogs\XmlDialog.Designer.cs">
       <DependentUpon>XmlDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Stylizer.cs" />
+    <Compile Include="Styles\Stylizer.cs" />
     <Compile Include="Styles\XmlStyleBase.cs" />
   </ItemGroup>
   <ItemGroup>
