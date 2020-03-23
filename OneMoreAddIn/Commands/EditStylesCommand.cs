@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Windows.Forms;
 
 
@@ -16,22 +17,29 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
-			var provider = new StyleProvider();
-
-			var styles = provider.GetStyles();
-			DialogResult result;
-
-			using (var dialog = new StyleDialog(styles))
+			try
 			{
-				result = dialog.ShowDialog(owner);
+				var provider = new StyleProvider();
 
-				if (result == DialogResult.OK)
+				var styles = provider.GetStyles();
+				DialogResult result;
+
+				using (var dialog = new StyleDialog(styles))
 				{
-					// save styles to remove delete items and preserve ordering
-					styles = dialog.GetStyles();
-					provider.Save(styles);
-					ribbon.Invalidate();
+					result = dialog.ShowDialog(owner);
+
+					if (result == DialogResult.OK)
+					{
+						// save styles to remove delete items and preserve ordering
+						styles = dialog.GetStyles();
+						provider.Save(styles);
+						ribbon.Invalidate();
+					}
 				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"Error executing {nameof(EditStylesCommand)}", exc);
 			}
 		}
 	}

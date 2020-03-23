@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("Error executing NewStyleCommand", exc);
+				logger.WriteLine($"Error executing {nameof(NewStyleCommand)}", exc);
 			}
 		}
 

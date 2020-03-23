@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn
 			const int tileHeight = 60;
 			const int dpi = 96;
 
-			logger.WriteLine($"MakeTile({controlId}, {itemIndex})");
+			//logger.WriteLine($"MakeTile({controlId}, {itemIndex})");
 
 			IStream stream = null;
 

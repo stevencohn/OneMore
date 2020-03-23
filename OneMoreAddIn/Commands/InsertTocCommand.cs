@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("Error executing InsertTocCommand", exc);
+				logger.WriteLine($"Error executing {nameof(InsertTocCommand)}", exc);
 			}
 		}
 

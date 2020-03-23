@@ -332,9 +332,9 @@ namespace River.OneMoreAddIn
 		public string GetItemScreentip (IRibbonControl control)
 		{
 			logger.WriteLine($"GetItemScreentip({control.Id})");
-
-			string label = null;
 			string resId = control.Id + "_Screentip";
+
+			string label;
 			try
 			{
 				label = Resx.ResourceManager.GetString(resId);
@@ -431,7 +431,7 @@ namespace River.OneMoreAddIn
 		public string GetStyleGalleryItemScreentip (IRibbonControl control, int itemIndex)
 		{
 			var name = new StyleProvider().GetName(itemIndex);
-			logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{name}\"");
+			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{name}\"");
 			return name;
 		}
 		#endregion Style Gallery

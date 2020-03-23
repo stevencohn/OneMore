@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("Error executing InsertLineCommand", exc);
+				logger.WriteLine($"Error executing {nameof(InsertLineCommand)}", exc);
 			}
 		}
 

@@ -31,8 +31,7 @@ namespace River.OneMoreAddIn
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"Error navigating to {pageTag}");
-					logger.WriteLine(exc);
+					logger.WriteLine($"Error navigating to {pageTag}", exc);
 
 					System.Threading.Thread.Sleep(250 * retry);
 				}
