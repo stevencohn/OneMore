@@ -77,6 +77,11 @@ namespace River.OneMoreAddIn
 
 			if (properties.ContainsKey("spaceAfter"))
 				SpaceAfter = properties["spaceAfter"];
+
+			if ((spaceBefore > 0) || (spaceAfter > 0))
+			{
+				StyleType = StyleType.Paragraph;
+			}
 		}
 
 

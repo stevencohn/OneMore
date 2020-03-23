@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Drawing;
 
 
 	/// <summary>
@@ -17,6 +18,8 @@ namespace River.OneMoreAddIn
 		public static readonly string DefaultFontFamily = "Calibri";
 		public static readonly double DefaultFontSize = 11.0;
 
+		protected string color;
+		protected string highlight;
 		protected double fontSize;
 		protected double spaceBefore;
 		protected double spaceAfter;
@@ -87,12 +90,42 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Gets or sets the font foreground color.
 		/// </summary>
-		public string Color { get; set; }
+		public string Color
+		{
+			get { return color; }
+
+			set
+			{
+				if (value.Equals("automatic"))
+					color = value;
+				else
+				{
+					// normalize as #RGB to avoid case-sensitive comparison problems
+					var c = ColorTranslator.FromHtml(value);
+					color = $"#{c.R:X2}{c.G:X2}{c.B:X2}";
+				}
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets the font background color.
 		/// </summary>
-		public string Highlight { get; set; }
+		public string Highlight
+		{
+			get { return highlight; }
+
+			set
+			{
+				if (value.Equals("automatic"))
+					highlight = value;
+				else
+				{
+					// normalize as #RGB to avoid case-sensitive comparison problems
+					var c = ColorTranslator.FromHtml(value);
+					highlight = $"#{c.R:X2}{c.G:X2}{c.B:X2}";
+				}
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets the font family name; can be a comma-separated list of names.

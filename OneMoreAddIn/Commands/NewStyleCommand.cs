@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml;
@@ -14,12 +13,9 @@ namespace River.OneMoreAddIn
 
 	internal class NewStyleCommand : Command
 	{
-		private readonly Dictionary<string, string> properties;
-
 
 		public NewStyleCommand() : base()
 		{
-			properties = new Dictionary<string, string>();
 		}
 
 
@@ -27,24 +23,22 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				CollectStyleFromContext();
+				var style = CollectStyleFromContext();
 
-				var style = new Style(properties)
+				if (style != null)
 				{
-					Name = "Style-" + new Random().Next(1000, 9999).ToString()
-				};
-
-				DialogResult result;
-				using (var dialog = new StyleDialog(style))
-				{
-					result = dialog.ShowDialog(owner);
-					if (result == DialogResult.OK)
+					DialogResult result;
+					using (var dialog = new StyleDialog(style))
 					{
-						style = dialog.Style;
-						if (style != null)
+						result = dialog.ShowDialog(owner);
+						if (result == DialogResult.OK)
 						{
-							new StyleProvider().Save(style);
-							ribbon.Invalidate();
+							style = dialog.Style;
+							if (style != null)
+							{
+								new StyleProvider().Save(style);
+								ribbon.Invalidate();
+							}
 						}
 					}
 				}
@@ -71,7 +65,7 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 		/// <summary>
 		/// Infer styles from the context at the position of the text cursor on the current page.
 		/// </summary>
-		private void CollectStyleFromContext()
+		private Style CollectStyleFromContext()
 		{
 			// infer contextual style
 
@@ -83,7 +77,7 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 
 			if (page == null)
 			{
-				return;
+				return null;
 			}
 
 			var ns = page.GetNamespaceOfPrefix("one");
@@ -95,11 +89,11 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 
 			if (selection != null)
 			{
+				var analyzer = new StyleAnalyzer(page);
+
 				var cdata = selection.GetCData();
 				if (cdata.IsEmpty())
 				{
-					//System.Diagnostics.Debugger.Launch();
-
 					// inside a word, adjacent to a word, or somewhere in whitespace?
 
 					var prev = selection.PreviousNode as XElement;
@@ -128,7 +122,7 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 								.Where(e => e.Attribute("style") != null)
 								.LastOrDefault() is XElement wspan)
 							{
-								CollectStyleProperties(wspan);
+								analyzer.CollectStyleProperties(wspan);
 							}
 						}
 
@@ -147,80 +141,23 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 								.Where(e => e.Attribute("style") != null)
 								.FirstOrDefault() is XElement wspan)
 							{
-								CollectStyleProperties(wspan);
+								analyzer.CollectStyleProperties(wspan);
 							}
 						}
 					}
 				}
 
-				// walk up the hierarchy from T, to OE, to page.QuickStyle
+				var properties = analyzer.CollectStyleProperties(selection);
 
-				// T
-				CollectStyleProperties(selection);
-				// OE
-				CollectStyleProperties(selection.Parent);
-				// Page/QuickStyleDef
-				CollectQuickStyleProperties(selection.Parent, page);
-			}
-		}
-
-
-		private void CollectStyleProperties (XElement element)
-		{
-			var props = element.CollectStyleProperties();
-
-			if (props?.Any() == true)
-			{
-				var e = props.GetEnumerator();
-				while (e.MoveNext())
+				var style = new Style(properties)
 				{
-					properties.Add(e.Current.Key, e.Current.Value);
-				}
+					Name = "Style-" + new Random().Next(1000, 9999).ToString()
+				};
+
+				return style;
 			}
-		}
 
-
-		// one:QuickStyleDef possibles:
-		// fontColor="automatic" highlightColor="automatic" font="Calibri" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" />
-		private void CollectQuickStyleProperties (XElement element, XElement page)
-		{
-			var quickStyleIndex = element.Attribute("quickStyleIndex")?.Value;
-			if (quickStyleIndex != null)
-			{
-				var ns = page.GetNamespaceOfPrefix("one");
-
-				var quick = (page.Elements(ns + "QuickStyleDef")
-					.Where(e => e.Attribute("index").Value.Equals(quickStyleIndex))).FirstOrDefault();
-
-				if (quick != null)
-				{
-					XAttribute a;
-
-					a = quick.Attribute("font");
-					if (a != null && !properties.ContainsKey("font-family"))
-						properties.Add("font-family", a.Value);
-
-					a = quick.Attribute("fontSize");
-					if (a != null && !properties.ContainsKey("font-size"))
-						properties.Add("font-size", a.Value);
-
-					a = quick.Attribute("fontColor");
-					if (a != null && !a.Value.Equals("automatic") && !properties.ContainsKey("color"))
-						properties.Add("color", a.Value);
-
-					a = quick.Attribute("highlightColor");
-					if (a != null && !a.Value.Equals("automatic") && !properties.ContainsKey("background"))
-						properties.Add("background", a.Value);
-
-					a = quick.Attribute("spaceBefore");
-					if (a != null && !properties.ContainsKey("spaceBefore"))
-						properties.Add("spaceBefore", a.Value);
-
-					a = quick.Attribute("spaceAfter");
-					if (a != null && !properties.ContainsKey("spaceAfter"))
-						properties.Add("spaceAfter", a.Value);
-				}
-			}
+			return null;
 		}
 	}
 }

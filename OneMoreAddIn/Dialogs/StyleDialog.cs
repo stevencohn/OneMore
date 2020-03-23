@@ -25,8 +25,7 @@ namespace River.OneMoreAddIn
 	internal partial class StyleDialog : Form
 	{
 		private GraphicStyle selection;
-
-		private bool updatable;
+		private bool allowEvents;
 
 
 		#region Lifecycle
@@ -39,10 +38,8 @@ namespace River.OneMoreAddIn
 		public StyleDialog(Style style)
 		{
 			Initialize();
-
 			Logger.DesignMode = DesignMode;
-
-			updatable = true;
+			allowEvents = false;
 
 			Text = "New Custom Style";
 			loadButton.Enabled = false;
@@ -61,8 +58,13 @@ namespace River.OneMoreAddIn
 		public StyleDialog(List<Style> styles)
 		{
 			Initialize();
-			updatable = true;
+			allowEvents = false;
 			LoadStyles(styles);
+
+			if (styles.Count > 0)
+			{
+				selection = new GraphicStyle(styles[0], false);
+			}
 		}
 
 
@@ -108,9 +110,13 @@ namespace River.OneMoreAddIn
 
 		private void StyleDialog_Shown(object sender, EventArgs e)
 		{
+			allowEvents = true;
 			UIHelper.SetForegroundWindow(this);
 
-			ShowSelection();
+			if (selection != null)
+			{
+				ShowSelection();
+			}
 
 			nameBox.Focus();
 		}
@@ -120,9 +126,11 @@ namespace River.OneMoreAddIn
 
 		private void ShowSelection()
 		{
-			updatable = false;
+			allowEvents = false;
 
+			// nameBox may not be visible but oh well
 			nameBox.Text = selection.Name;
+
 			styleTypeBox.SelectedIndex = (int)selection.StyleType;
 			familyBox.Text = selection.FontFamily;
 
@@ -136,7 +144,7 @@ namespace River.OneMoreAddIn
 			spaceAfterSpinner.Value = (decimal)double.Parse(selection.SpaceAfter);
 			spaceBeforeSpinner.Value = (decimal)double.Parse(selection.SpaceBefore);
 
-			updatable = true;
+			allowEvents = true;
 
 			previewBox.Invalidate();
 		}
@@ -168,7 +176,7 @@ namespace River.OneMoreAddIn
 				// create a clipping box so the text does not wrap
 				var clip = new Rectangle(20, y, previewBox.Width - 40, (int)sampleSize.Height);
 
-				if (selection.ApplyColors &&
+				if (selection?.ApplyColors == true &&
 					!selection.Background.IsEmpty &&
 					!selection.Background.Equals(Color.Transparent))
 				{
@@ -182,7 +190,7 @@ namespace River.OneMoreAddIn
 				//Logger.Current.WriteLine(
 				//	$"StyleDialog.preview() (family:{sample.FontFamily.Name}, size:{sample.Size}, style:{sample.Style})");
 
-				var color = selection.ApplyColors ? selection.Foreground : Color.Black;
+				var color = selection?.ApplyColors == true ? selection.Foreground : Color.Black;
 				using (var brush = new SolidBrush(color))
 				{
 					e.Graphics.DrawString("Sample Text", sample, brush, clip);
@@ -209,7 +217,7 @@ namespace River.OneMoreAddIn
 
 		private void UpdateFont(object sender, EventArgs e)
 		{
-			if (updatable && (selection != null))
+			if (allowEvents && (selection != null))
 			{
 				using (var oldfont = selection.Font)
 				{
@@ -224,27 +232,40 @@ namespace River.OneMoreAddIn
 
 		private void nameBox_TextChanged(object sender, EventArgs e)
 		{
-			if (selection != null)
+			if (allowEvents && nameBox.Visible)
 			{
-				selection.Name = nameBox.Text;
-			}
+				if (selection != null)
+				{
+					selection.Name = nameBox.Text;
+				}
 
-			okButton.Enabled = (nameBox.Text.Length > 0);
+				okButton.Enabled = (nameBox.Text.Length > 0);
+			}
 		}
 
 		private void namesBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			selection = namesBox.SelectedItem as GraphicStyle;
-			ShowSelection();
+			if (allowEvents && namesBox.Visible)
+			{
+				selection = namesBox.SelectedItem as GraphicStyle;
+				ShowSelection();
+			}
 		}
 
 
 		private void styleTypeBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			selection = namesBox.SelectedItem as GraphicStyle;
+			if (namesBox.Visible)
+			{
+				selection = namesBox.SelectedItem as GraphicStyle;
+			}
+
 			if (selection != null)
 			{
-				selection.StyleType = (StyleType)styleTypeBox.SelectedIndex;
+				if (allowEvents)
+				{
+					selection.StyleType = (StyleType)styleTypeBox.SelectedIndex;
+				}
 
 				switch (selection.StyleType)
 				{
@@ -340,7 +361,8 @@ namespace River.OneMoreAddIn
 		}
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Following are only active when editing a theme, not creating a new style
 
 
 		private void loadButton_Click(object sender, EventArgs e)

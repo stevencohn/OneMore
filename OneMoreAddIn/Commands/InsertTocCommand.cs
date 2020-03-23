@@ -41,7 +41,6 @@ namespace River.OneMoreAddIn
 			{
 				using (var manager = new ApplicationManager())
 				{
-
 					page = manager.CurrentPage();
 					if (page != null)
 					{
@@ -71,7 +70,7 @@ namespace River.OneMoreAddIn
 			var blocks =
 				from e in page.Elements(ns + "Outline").Descendants(ns + "OE")
 				let c = e.Elements(ns + "T").DescendantNodes().Where(p => p.NodeType == XmlNodeType.CDATA).FirstOrDefault() as XCData
-				where c.Value.Length > 0 && !Regex.IsMatch(c.Value, @"[\s\b]+<span[\s\b]+style=") &&
+				where c?.Value.Length > 0 && !Regex.IsMatch(c.Value, @"[\s\b]+<span[\s\b]+style=") &&
 					(e.Attribute("quickStyleIndex") != null || e.Attribute("style") != null)
 				select e;
 
@@ -182,57 +181,29 @@ namespace River.OneMoreAddIn
 
 		private Style FindCustomStyle(XElement block)
 		{
-			var style = CollectStyle(block);
-
-			return customStyles.Find(s =>
-				s.FontFamily == style.FontFamily &&
-				s.FontSize == style.FontSize &&
-				s.Color == style.Color &&
-				s.Highlight == style.Highlight &&
-				s.IsBold == style.IsBold &&
-				s.IsItalic == style.IsItalic &&
-				s.IsUnderline == style.IsUnderline
-				// ignoring IsStrikethrough, IsSuperscript, IsSubscript, SpaceAfter, SpaceBefore
-			);
-		}
-
-
-		/// <summary>
-		/// Discovers the style from the given element and combines that with the
-		/// the element's quick style to derive a complete style for the block.
-		/// </summary>
-		/// <param name="block"></param>
-		/// <returns></returns>
-		private Style CollectStyle(XElement block)
-		{
-			var properties = block.CollectStyleProperties();
-
-			if (block.ReadAttributeValue("quickStyleIndex", out int quickStyleIndex))
+			var child = block.Descendants(ns + "T").FirstOrDefault();
+			if (child != null)
 			{
-				var style = quickStyles.Find(s => s.Index == quickStyleIndex);
-				if (style != null)
-				{
-					if (!properties.ContainsKey("font-family"))
-						properties.Add("font-family", style.FontFamily);
+				var analyzer = new StyleAnalyzer(page);
+				var style = new Style(analyzer.CollectStyleProperties(child));
 
-					if (!properties.ContainsKey("font-size"))
-						properties.Add("font-size", style.FontSize);
+				var find = customStyles.Find(s =>
+					s.FontFamily == style.FontFamily &&
+					s.FontSize == style.FontSize &&
+					s.Color == style.Color &&
+					s.Highlight == style.Highlight &&
+					s.IsBold == style.IsBold &&
+					s.IsItalic == style.IsItalic &&
+					s.IsUnderline == style.IsUnderline &&
+					s.SpaceBefore == style.SpaceBefore &&
+					s.SpaceAfter == style.SpaceAfter
+					// ignoring IsStrikethrough, IsSuperscript, IsSubscript
+				);
 
-					if (!properties.ContainsKey("color") && !style.Color.Equals("automatic"))
-						properties.Add("color", style.Color);
-
-					if (!properties.ContainsKey("background") && !style.Highlight.Equals("automatic"))
-						properties.Add("background", style.Highlight);
-
-					if (!properties.ContainsKey("spaceBefore"))
-						properties.Add("spaceBefore", style.SpaceBefore);
-
-					if (!properties.ContainsKey("spaceAfter"))
-						properties.Add("spaceAfter", style.SpaceBefore);
-				}
+				return find;
 			}
 
-			return new Style(properties);
+			return null;
 		}
 
 

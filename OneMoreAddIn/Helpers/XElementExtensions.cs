@@ -230,12 +230,33 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Extract the style properties of this element by looking at its "style" attribute
+		/// if one exists and possibly its immediate CDATA child and any span/style attributes.
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns></returns>
 		public static Dictionary<string, string> CollectStyleProperties(this XElement element)
 		{
 			var props = new Dictionary<string, string>();
 
-			var ns = element.GetDefaultNamespace();
-			var sheet = element.Attributes(ns + "style").Select(a => a.Value);
+			// gather from CDATA child if one exists
+			var cdata = element.Nodes().OfType<XCData>().FirstOrDefault();
+			if (cdata != null)
+			{
+				var span = cdata.GetWrapper().Elements("span")
+					.Where(e => e.Attributes("style").Any())
+					.FirstOrDefault();
+
+				if (span != null)
+				{
+					var sprops = span.CollectStyleProperties();
+					sprops.ToList().ForEach(c => props.Add(c.Key, c.Value));
+				}
+			}
+
+			// gather from style attribute if one exists
+			var sheet = element.Attributes("style").Select(a => a.Value);
 
 			if ((sheet == null) || !sheet.Any()) return props;
 
@@ -255,6 +276,20 @@ namespace River.OneMoreAddIn
 						props.Add(key, pair[1].Replace("'", string.Empty).Trim());
 					}
 				}
+			}
+
+			// an OE might have spacing attributes
+
+			var attr = element.Attribute("spaceBefore");
+			if (attr != null)
+			{
+				props.Add("spaceBefore", attr.Value);
+			}
+
+			attr = element.Attribute("spaceAfter");
+			if (attr != null)
+			{
+				props.Add("spaceAfter", attr.Value);
 			}
 
 			return props;
