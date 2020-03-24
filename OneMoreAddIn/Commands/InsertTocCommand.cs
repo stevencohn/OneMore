@@ -78,6 +78,13 @@ namespace River.OneMoreAddIn
 			{
 				foreach (var block in blocks)
 				{
+					// get first T as heading text, filtering out any OEChildren (indented text)
+					var text = block.Elements(ns + "T").FirstOrDefault()?.Value;
+					if (text == null)
+					{
+						continue;
+					}
+
 					Heading heading = null;
 
 					if (block.ReadAttributeValue("quickStyleIndex", out var quickStyleIndex, -1))
@@ -90,7 +97,7 @@ namespace River.OneMoreAddIn
 							// found standard heading
 							heading = new Heading
 							{
-								Text = block.Value,
+								Text = text,
 								Link = GetHyperlink(block, manager),
 								Style = style
 							};
@@ -107,7 +114,7 @@ namespace River.OneMoreAddIn
 							// found standard heading
 							heading = new Heading
 							{
-								Text = block.Value,
+								Text = text,
 								Link = GetHyperlink(block, manager),
 								Style = style
 							};
