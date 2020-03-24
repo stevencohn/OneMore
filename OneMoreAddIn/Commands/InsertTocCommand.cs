@@ -213,6 +213,8 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		private void ReorderKnownStyles()
 		{
+			quickStyles = quickStyles.Where(s => Regex.IsMatch(s.Name, @"h(\d+)")).ToList();
+
 			foreach (var style in quickStyles)
 			{
 				var match = Regex.Match(style.Name, @"h(\d+)");
@@ -227,7 +229,12 @@ namespace River.OneMoreAddIn
 
 			quickStyles = quickStyles.OrderBy(s => s.Index).ToList();
 
-			for (int i = 1; i < customStyles.Count; i++)
+			for (int i = 0; i < quickStyles.Count; i++)
+			{
+				quickStyles[i].Index = i;
+			}
+
+			for (int i = 0; i < customStyles.Count; i++)
 			{
 				customStyles[i].Index = i;
 			}
