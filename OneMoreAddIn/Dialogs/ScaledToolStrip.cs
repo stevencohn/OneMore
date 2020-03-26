@@ -16,42 +16,41 @@ namespace River.OneMoreAddIn
 
 	internal class ScaledToolStrip : ToolStrip
 	{
-		protected override void ScaleControl (SizeF factor, BoundsSpecified specified)
+
+		protected override void ScaleControl(SizeF factor, BoundsSpecified specified)
 		{
 			base.ScaleControl(factor, specified);
 
-			SizeF dpiFactor;
-			using (var g = CreateGraphics())
-			{
-				dpiFactor = new SizeF(g.DpiX / 96f, g.DpiY / 96f);
-			}
+			var scale = new SizeF(1, 1);
+            using (var bitmap = new Bitmap(1, 1))
+            using (var graphics = Graphics.FromImage(bitmap))
+            {
+				if (graphics.DpiX > 96)
+				{
+					scale.Width = graphics.DpiX / 96;
+				}
 
-			//Logger.Current.WriteLine($"factor:{factor} dpiX:{dpiX} dpiY:{dpiY}");
-			//Logger.Current.WriteLine($"scaling width:{ImageScalingSize.Width} height:{ImageScalingSize.Height}");
+				if (graphics.DpiY > 96)
+                {
+                    scale.Height = graphics.DpiY / 96;
+                }
+            }
 
-			//if (factor.Width > 1f)
-			//{
-			ImageScalingSize = new Size(
-					(int)(ImageScalingSize.Width * dpiFactor.Width),
-					(int)(ImageScalingSize.Height * dpiFactor.Height));
-
-			//Logger.Current.WriteLine($"Rescaled h:{ImageScalingSize.Height} w:{ImageScalingSize.Width}");
-			//}
-
-			foreach (var item in Items)
+            foreach (var item in Items)
 			{
 				if (item is ToolStripControlHost)
 				{
 					var host = item as ToolStripControlHost;
 					if (host.Placement == ToolStripItemPlacement.Overflow)
 					{
-						host.Control.Scale(dpiFactor);
+						host.Control.Scale(scale);
 					}
 				}
 				else if (item is ToolStripItem)
 				{
 					var host = item as ToolStripItem;
-					host.ImageScaling = ToolStripItemImageScaling.None;
+                    //host.Image = HighDpiHelper.ScaleImage(host.Image, scale.Height);
+					host.ImageScaling = ToolStripItemImageScaling.SizeToFit;
 				}
 			}
 		}

@@ -76,4 +76,6 @@ To start the debugger, add this line to your code where you want a breakpoint:
 
     System.Diagnostics.Debugger.Launch();
 
-This will cause Visual Studio to display the "attach debugger" dialog.
+This will cause Visual Studio to display the "attach debugger" dialog. If this dialog does
+not appear and instead a new instance of VS is opened then 
+[check this out from Microsoft about the Just in Time Debugger settings](https://docs.microsoft.com/en-us/visualstudio/debugger/debug-using-the-just-in-time-debugger).

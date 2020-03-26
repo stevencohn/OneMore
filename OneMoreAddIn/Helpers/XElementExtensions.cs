@@ -236,22 +236,26 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="element"></param>
 		/// <returns></returns>
-		public static Dictionary<string, string> CollectStyleProperties(this XElement element)
+		public static Dictionary<string, string> CollectStyleProperties(
+			this XElement element, bool inward = true)
 		{
 			var props = new Dictionary<string, string>();
 
-			// gather from CDATA child if one exists
-			var cdata = element.Nodes().OfType<XCData>().FirstOrDefault();
-			if (cdata != null)
+			if (inward)
 			{
-				var span = cdata.GetWrapper().Elements("span")
-					.Where(e => e.Attributes("style").Any())
-					.FirstOrDefault();
-
-				if (span != null)
+				// gather from CDATA child if one exists
+				var cdata = element.Nodes().OfType<XCData>().FirstOrDefault();
+				if (cdata != null)
 				{
-					var sprops = span.CollectStyleProperties();
-					sprops.ToList().ForEach(c => props.Add(c.Key, c.Value));
+					var span = cdata.GetWrapper().Elements("span")
+						.Where(e => e.Attributes("style").Any())
+						.FirstOrDefault();
+
+					if (span != null)
+					{
+						var sprops = span.CollectStyleProperties();
+						sprops.ToList().ForEach(c => props.Add(c.Key, c.Value));
+					}
 				}
 			}
 

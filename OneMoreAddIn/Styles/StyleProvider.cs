@@ -135,6 +135,10 @@ namespace River.OneMoreAddIn
 			{
 				cache.Remove(target);
 			}
+			else
+			{
+				style.Index = cache.Max(s => s.Index) + 1;
+			}
 
 			cache.Add(new StyleRecord(style));
 

@@ -89,7 +89,7 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 
 			if (selection != null)
 			{
-				var analyzer = new StyleAnalyzer(page);
+				var analyzer = new StyleAnalyzer(page, inward: false);
 
 				var cdata = selection.GetCData();
 				if (cdata.IsEmpty())
@@ -97,51 +97,62 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 					// inside a word, adjacent to a word, or somewhere in whitespace?
 
 					var prev = selection.PreviousNode as XElement;
-					if ((prev != null) && prev.GetCData().EndsWithWhitespace())
-					{
-						prev = null;
-					}
-
-					var next = selection.NextNode as XElement;
-					if ((next != null) && next.GetCData().StartsWithWhitespace())
-					{
-						next = null;
-					}
-
-					if (prev != null)
+					if ((prev != null) && !prev.GetCData().EndsWithWhitespace())
 					{
 						selection = prev;
 
 						if ((selection.DescendantNodes()?
-							.Where(e => e.NodeType == XmlNodeType.CDATA)
+							.OfType<XCData>()
 							.LastOrDefault() is XCData data) && !string.IsNullOrEmpty(data?.Value))
 						{
 							var wrapper = data.GetWrapper();
 
-							if (wrapper.Elements("span")
-								.Where(e => e.Attribute("style") != null)
-								.LastOrDefault() is XElement wspan)
+							// if last node is text then skip the cdata and examine the parent T
+							// otherwise if last node is a span then start with its style
+
+							var last = wrapper.Nodes().Reverse().First(n =>
+								n.NodeType == XmlNodeType.Text ||
+								((n is XElement ne) && ne.Name.LocalName == "span"));
+
+							if (last?.NodeType == XmlNodeType.Element)
 							{
-								analyzer.CollectStyleProperties(wspan);
+								var wspan = last as XElement;
+								if (wspan.Attribute("style") != null)
+								{
+									analyzer.CollectStyleProperties(wspan);
+								}
 							}
 						}
 
 					}
-					else if (next != null)
+					else
 					{
-						selection = next;
-
-						if ((selection.DescendantNodes()?
-							.Where(e => e.NodeType == XmlNodeType.CDATA)
-							.FirstOrDefault() is XCData data) && !string.IsNullOrEmpty(data?.Value))
+						var next = selection.NextNode as XElement;
+						if ((next != null) && !next.GetCData().StartsWithWhitespace())
 						{
-							var wrapper = data.GetWrapper();
+							selection = next;
 
-							if (wrapper.Elements("span")
-								.Where(e => e.Attribute("style") != null)
-								.FirstOrDefault() is XElement wspan)
+							if ((selection.DescendantNodes()?
+								.OfType<XCData>()
+								.FirstOrDefault() is XCData data) && !string.IsNullOrEmpty(data?.Value))
 							{
-								analyzer.CollectStyleProperties(wspan);
+								var wrapper = data.GetWrapper();
+
+								// if first node is text then skip the cdata and examine the parent T
+								// otherwise if first node is a span then start with its style
+
+								var last = wrapper.Nodes().First(n =>
+									n.NodeType == XmlNodeType.Text ||
+									((n is XElement ne) && ne.Name.LocalName == "span"));
+
+								if (last?.NodeType == XmlNodeType.Element)
+								{
+									var wspan = last as XElement;
+									if (wspan.Attribute("style") != null)
+									{
+										analyzer.CollectStyleProperties(wspan);
+									}
+								}
 							}
 						}
 					}

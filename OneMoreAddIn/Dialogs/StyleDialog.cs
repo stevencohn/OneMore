@@ -153,7 +153,20 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Gets the currently selected custom style
 		/// </summary>
-		public Style Style => selection.GetStyle();
+		public Style Style
+		{
+			get
+			{
+				var style = selection.GetStyle();
+
+				style.Name = nameBox.Text;
+
+				if (subButton.Checked) style.IsSubscript = true;
+				if (superButton.Checked) style.IsSuperscript = true;
+
+				return style;
+			}
+		}
 
 
 		public List<Style> GetStyles() =>
@@ -168,48 +181,89 @@ namespace River.OneMoreAddIn
 			e.Graphics.DrawLine(Pens.Black, 0, vcenter, 15, vcenter);
 			e.Graphics.DrawLine(Pens.Black, previewBox.Width - 15, vcenter, previewBox.Width, vcenter);
 
-			using (var sample = MakeFont())
+			var offset = superButton.Checked || subButton.Checked;
+
+			if (!float.TryParse(sizeBox.Text, out var sampleFontSize))
 			{
-				var sampleSize = e.Graphics.MeasureString("Sample Text", sample);
-				var y = (int)(vcenter - (sampleSize.Height / 2));
+				sampleFontSize = (float)StyleBase.DefaultFontSize;
+			}
 
-				// create a clipping box so the text does not wrap
-				var clip = new Rectangle(20, y, previewBox.Width - 40, (int)sampleSize.Height);
+			var sampleFont = offset
+				? new Font(familyBox.Text, sampleFontSize)
+				: MakeFont(sampleFontSize);
 
-				if (selection?.ApplyColors == true &&
-					!selection.Background.IsEmpty &&
-					!selection.Background.Equals(Color.Transparent))
+			var sampleSize = e.Graphics.MeasureString(offset ? "Sample" : "Sample ", sampleFont);
+
+			// top Y, -1/2 height offset from centerline
+			var y = (int)(vcenter - (sampleSize.Height / 2));
+
+			var textFontSize = offset
+				? (float)Math.Round(sampleFontSize * 0.5)
+				: sampleFontSize;
+
+			var textFont = MakeFont(Math.Max(textFontSize, 4));
+
+			var textSize = e.Graphics.MeasureString("Text", textFont);
+			var allWidth = sampleSize.Width + textSize.Width;
+
+			// clipping box and background bounding box
+			var sampleClip = new Rectangle(20, y, previewBox.Width - 40, (int)sampleSize.Height);
+
+			var textClip = new Rectangle(
+				20 + (int)sampleSize.Width,
+				subButton.Checked ? y + (int)textSize.Height : y,
+				offset ? (int)textSize.Width : previewBox.Width - 40,
+				(int)sampleSize.Height);
+
+			if (selection?.ApplyColors == true &&
+				!selection.Background.IsEmpty &&
+				!selection.Background.Equals(Color.Transparent))
+			{
+				using (var highBrush = new SolidBrush(selection.Background))
 				{
-					using (var highBrush = new SolidBrush(selection.Background))
+					if (offset)
 					{
 						e.Graphics.FillRectangle(highBrush,
-							clip.X, clip.Y, Math.Min(clip.Width, sampleSize.Width), clip.Height);
+							textClip.X, textClip.Y, textClip.Width, textClip.Height);
+					}
+					else
+					{
+						e.Graphics.FillRectangle(highBrush,
+							sampleClip.X, sampleClip.Y,
+							Math.Min(sampleClip.Width, allWidth), sampleClip.Height);
 					}
 				}
-
-				//Logger.Current.WriteLine(
-				//	$"StyleDialog.preview() (family:{sample.FontFamily.Name}, size:{sample.Size}, style:{sample.Style})");
-
-				var color = selection?.ApplyColors == true ? selection.Foreground : Color.Black;
-				using (var brush = new SolidBrush(color))
-				{
-					e.Graphics.DrawString("Sample Text", sample, brush, clip);
-				}
 			}
+
+			var format = new StringFormat(StringFormatFlags.NoWrap);
+
+			var sampleColor = offset
+				? Color.Gray
+				: selection?.ApplyColors == true ? selection.Foreground : Color.Black;
+
+			var sampleBrush = new SolidBrush(sampleColor);
+
+			var textColor = selection?.ApplyColors == true ? selection.Foreground : Color.Black;
+			var textBrush = new SolidBrush(textColor);
+
+			e.Graphics.DrawString("Sample ", sampleFont, sampleBrush, sampleClip, format);
+
+			e.Graphics.DrawString("Text", textFont, textBrush, textClip, format);
+
+			textBrush.Dispose();
+			sampleBrush.Dispose();
+			textFont.Dispose();
+			sampleFont.Dispose();
 		}
 
 
-		private Font MakeFont()
+		private Font MakeFont(float size)
 		{
-			if (!float.TryParse(sizeBox.Text, out var size))
-			{
-				size = (float)StyleBase.DefaultFontSize;
-			}
-
 			FontStyle style = 0;
 			if (boldButton.Checked) style |= FontStyle.Bold;
 			if (italicButton.Checked) style |= FontStyle.Italic;
 			if (underlineButton.Checked) style |= FontStyle.Underline;
+			if (strikeButton.Checked) style |= FontStyle.Strikeout;
 
 			return new Font(familyBox.Text, size, style);
 		}
@@ -221,7 +275,12 @@ namespace River.OneMoreAddIn
 			{
 				using (var oldfont = selection.Font)
 				{
-					selection.Font = MakeFont();
+					if (!float.TryParse(sizeBox.Text, out var size))
+					{
+						size = (float)StyleBase.DefaultFontSize;
+					}
+
+					selection.Font = MakeFont(size);
 				}
 			}
 
@@ -280,6 +339,18 @@ namespace River.OneMoreAddIn
 						spaceBeforeSpinner.Enabled = true;
 						break;
 				}
+			}
+		}
+
+		private void ToggleSuperSub(object sender, EventArgs e)
+		{
+			if (sender == superButton)
+			{
+				subButton.Checked = false;
+			}
+			else if (sender == subButton)
+			{
+				superButton.Checked = false;
 			}
 		}
 

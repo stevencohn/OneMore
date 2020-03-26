@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				_Execute(c);
+				InsertLine(c);
 			}
 			catch (Exception exc)
 			{
@@ -49,10 +49,8 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void _Execute (char c)
+		private void InsertLine (char c)
 		{
-			//System.Diagnostics.Debugger.Launch();
-
 			using (var manager = new ApplicationManager())
 			{
 				var page = manager.CurrentPage();
@@ -124,7 +122,6 @@ namespace River.OneMoreAddIn
 					}
 				}
 			}
-		} // EnsurePageWidth
-
+		}
 	}
 }

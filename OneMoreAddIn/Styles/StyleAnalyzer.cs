@@ -16,12 +16,14 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class StyleAnalyzer
 	{
+		private readonly bool inward;
 		private readonly XElement page;
 		private readonly Dictionary<string, string> properties;
 
 
-		public StyleAnalyzer(XElement page)
+		public StyleAnalyzer(XElement page, bool inward = true)
 		{
+			this.inward = inward;
 			this.page = page;
 			properties = new Dictionary<string, string>();
 		}
@@ -57,7 +59,7 @@ namespace River.OneMoreAddIn
 
 		private void CollectElementStyleProperties (XElement element)
 		{
-			var props = element.CollectStyleProperties();
+			var props = element.CollectStyleProperties(inward);
 
 			if (props?.Any() == true)
 			{

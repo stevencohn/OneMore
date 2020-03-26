@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				_Execute();
+				SearchAndReplace();
 			}
 			catch (Exception exc)
 			{
@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void _Execute()
+		private void SearchAndReplace()
 		{
 			DialogResult result = DialogResult.None;
 			string whatText;
