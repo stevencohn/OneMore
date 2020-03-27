@@ -40,6 +40,8 @@ namespace River.OneMoreAddIn
 						}
 					}
 
+					int count = 0;
+
 					foreach (var selection in selections)
 					{
 						if ((selection == selection.Parent.LastNode) &&
@@ -53,20 +55,27 @@ namespace River.OneMoreAddIn
 								var text = wrapper.DescendantNodes().OfType<XText>().LastOrDefault();
 								if (text?.Value.Length > 0)
 								{
-									var match = Regex.Match(text.Value, @"([\s]|&#160;|&nbsp;)*$");
+									var match = Regex.Match(text.Value, @"([\s]|&#160;|&nbsp;)+$");
 									if (match.Success)
 									{
 										text.ReplaceWith(text.Value.Substring(0, match.Index));
 
 										selection.FirstNode.ReplaceWith(
 											new XCData(wrapper.GetInnerXml()));
+
+										count++;
 									}
 								}
 							}
 						}
 					}
 
-					manager.UpdatePageContent(page);
+					if (count > 0)
+					{
+						manager.UpdatePageContent(page);
+					}
+
+					logger.WriteLine($"Lines trimmed:{count}");
 				}
 			}
 		}
