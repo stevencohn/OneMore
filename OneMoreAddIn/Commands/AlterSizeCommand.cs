@@ -5,9 +5,9 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	using System.Xml;
 	using System.Xml.Linq;
 
 
@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn
 	{
 		private XElement page;
 		private int delta;
+		private bool selected;
 
 
 		public AlterSizeCommand () : base()
@@ -32,6 +33,14 @@ namespace River.OneMoreAddIn
 					if (page != null)
 					{
 						this.delta = delta;
+
+						// determine if range is selected or entire page
+
+						var ns = page.GetNamespaceOfPrefix("one");
+
+						selected = page.Element(ns + "Outline").Descendants(ns + "T")
+							.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
+							.Any(e => e.GetCData().Value.Length > 0);
 
 						//System.Diagnostics.Debugger.Launch();
 
@@ -63,10 +72,12 @@ namespace River.OneMoreAddIn
 			int count = 0;
 
 			// find all elements that have an attribute named fontSize, e.g. QuickStyleDef or Bullet
+
 			var elements = page.Descendants()
-				.Where(p => 
-					p.Attribute("name")?.Value != "PageTitle" && 
-					p.Attribute("fontSize") != null);
+				.Where(p =>
+					p.Attribute("name")?.Value != "PageTitle" &&
+					p.Attribute("fontSize") != null &&
+					(selected == (p.Attribute("selected") != null)));
 
 			if (elements?.Any() == true)
 			{
@@ -97,8 +108,9 @@ namespace River.OneMoreAddIn
 
 			var elements = page.Descendants()
 				.Where(p =>
-					p.Parent.Name.LocalName != "Title" && 
-					p.Attribute("style")?.Value.Contains("font-size:") == true);
+					p.Parent.Name.LocalName != "Title" &&
+					p.Attribute("style")?.Value.Contains("font-size:") == true &&
+					(selected = (p.Attribute("selected") != null)));
 
 			if (elements?.Any() == true)
 			{
@@ -120,7 +132,8 @@ namespace River.OneMoreAddIn
 			int count = 0;
 
 			var nodes = page.DescendantNodes().OfType<XCData>()
-				.Where(n => n.Value.Contains("font-size:"));
+				.Where(n => n.Value.Contains("font-size:") &&
+					(selected == (n.Parent.Attribute("selected") != null)));
 
 			if (nodes?.Any() == true)
 			{
