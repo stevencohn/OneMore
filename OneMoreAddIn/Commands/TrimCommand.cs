@@ -31,8 +31,6 @@ namespace River.OneMoreAddIn
 
 				if (selections != null)
 				{
-					System.Diagnostics.Debugger.Launch();
-
 					if (selections.Count() == 1)
 					{
 						if (selections.First().GetCData().Value.Length == 0)
