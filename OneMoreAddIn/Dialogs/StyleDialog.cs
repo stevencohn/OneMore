@@ -210,8 +210,7 @@ namespace River.OneMoreAddIn
 			var sampleClip = new Rectangle(20, y, previewBox.Width - 40, (int)sampleSize.Height);
 
 			var textClip = new Rectangle(
-				20 + (int)sampleSize.Width,
-				subButton.Checked ? y + (int)textSize.Height : y,
+				20 + (int)sampleSize.Width, y,
 				offset ? (int)textSize.Width : previewBox.Width - 40,
 				(int)sampleSize.Height);
 
@@ -248,6 +247,7 @@ namespace River.OneMoreAddIn
 
 			e.Graphics.DrawString("Sample ", sampleFont, sampleBrush, sampleClip, format);
 
+			if (subButton.Checked) textClip.Y += (int)textSize.Height;
 			e.Graphics.DrawString("Text", textFont, textBrush, textClip, format);
 
 			textBrush.Dispose();

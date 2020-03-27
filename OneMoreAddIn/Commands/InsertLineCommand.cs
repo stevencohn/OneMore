@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn
 
 	internal class InsertLineCommand : Command
 	{
+		private const int LineCharCount = 100;
+
+
 		public InsertLineCommand () : base()
 		{
 		}
@@ -49,6 +52,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+
 		private void InsertLine (char c)
 		{
 			using (var manager = new ApplicationManager())
@@ -63,7 +67,7 @@ namespace River.OneMoreAddIn
 
 				if (current != null)
 				{
-					string line = string.Empty.PadRight(90, c);
+					string line = string.Empty.PadRight(LineCharCount, c);
 
 					EnsurePageWidth(page, line, (IntPtr)manager.Application.Windows.CurrentWindow.WindowHandle);
 
@@ -87,18 +91,13 @@ namespace River.OneMoreAddIn
 
 			var ns = page.GetNamespaceOfPrefix("one");
 
-			var sizeElement =
-				(from e in page.Descendants(ns + "T")
-				 let a = e.Ancestors(ns + "Outline").Elements(ns + "Size").FirstOrDefault()
-				 where e.Attributes("selected").Any(a => a.Value.Equals("all"))
-				 select a).FirstOrDefault();
-
-			if (sizeElement != null)
+			var element = page.Element(ns + "Outline")?.Element(ns + "Size");
+			if (element != null)
 			{
-				var widthAttribute = sizeElement.Attribute("width");
-				if (widthAttribute != null)
+				var attr = element.Attribute("width");
+				if (attr != null)
 				{
-					var width = double.Parse(widthAttribute.Value);
+					var outlineWidth = double.Parse(attr.Value);
 
 					// measure line to ensure page width is sufficient
 
@@ -106,16 +105,17 @@ namespace River.OneMoreAddIn
 					{
 						using (var font = new Font("Courier New", 10f))
 						{
-							var size = g.MeasureString(line, font);
-							if (size.Width > width)
+							var stringSize = g.MeasureString(line, font);
+							var stringPoints = stringSize.Width * 72 / g.DpiX;
+
+							if (stringPoints > outlineWidth)
 							{
-								var points = size.Width * 72 / g.DpiX;
-								widthAttribute.Value = (points).ToString();
+								attr.Value = stringPoints.ToString("#0.00");
 
 								// must include isSetByUser or width doesn't take effect!
-								if (sizeElement.Attribute("isSetByUser") == null)
+								if (element.Attribute("isSetByUser") == null)
 								{
-									sizeElement.Add(new XAttribute("isSetByUser", "true"));
+									element.Add(new XAttribute("isSetByUser", "true"));
 								}
 							}
 						}

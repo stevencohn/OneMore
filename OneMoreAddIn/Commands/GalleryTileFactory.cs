@@ -59,6 +59,9 @@ namespace River.OneMoreAddIn
 							graphics.DrawString("AaBbCc123", style.Font, brush, x, 5);
 						}
 
+	
+						// draw font family name
+
 						var scaledSize = 8f * (dpi / graphics.DpiY);
 
 						using (var font = new Font("Tahoma", scaledSize, FontStyle.Regular))
