@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -77,7 +76,7 @@ namespace River.OneMoreAddIn
 				.Where(p =>
 					p.Attribute("name")?.Value != "PageTitle" &&
 					p.Attribute("fontSize") != null &&
-					(selected == (p.Attribute("selected") != null)));
+					(selected == (p.Attribute("selected")?.Value == "all")));
 
 			if (elements?.Any() == true)
 			{
@@ -109,8 +108,12 @@ namespace River.OneMoreAddIn
 			var elements = page.Descendants()
 				.Where(p =>
 					p.Parent.Name.LocalName != "Title" &&
-					p.Attribute("style")?.Value.Contains("font-size:") == true &&
-					(selected = (p.Attribute("selected") != null)));
+					p.Attribute("style")?.Value.Contains("font-size:") == true);
+
+			if (selected)
+			{
+				elements = elements.Where(e => e.Attribute("selected") != null);
+			}
 
 			if (elements?.Any() == true)
 			{
@@ -132,8 +135,13 @@ namespace River.OneMoreAddIn
 			int count = 0;
 
 			var nodes = page.DescendantNodes().OfType<XCData>()
-				.Where(n => n.Value.Contains("font-size:") &&
-					(selected == (n.Parent.Attribute("selected") != null)));
+				.Where(n => n.Value.Contains("font-size:"));
+
+			if (selected)
+			{
+				// parent one:T
+				nodes = nodes.Where(n => n.Parent.Attribute("selected").Value == "all");
+			}
 
 			if (nodes?.Any() == true)
 			{
