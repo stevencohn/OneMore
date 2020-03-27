@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Xml;
 	using System.Xml.Linq;
 
@@ -24,30 +25,51 @@ namespace River.OneMoreAddIn
 				var ns = page.GetNamespaceOfPrefix("one");
 
 				var selections =
-					from e in page.Descendants(ns + "OE").Elements(ns + "T")
+					from e in page.Element(ns + "Outline").Descendants(ns + "T")
 					where e.Attributes("selected").Any(a => a.Value.Equals("all"))
 					select e;
 
-				foreach (var selection in selections)
+				if (selections != null)
 				{
-					if (selection.FirstNode?.NodeType == XmlNodeType.CDATA)
+					System.Diagnostics.Debugger.Launch();
+
+					if (selections.Count() == 1)
 					{
-						var wrapper = XElement.Parse("<x>" + selection.FirstNode.Parent.Value + "</x>");
-
-						foreach (var part in wrapper.DescendantNodes().OfType<XText>().ToList())
+						if (selections.First().GetCData().Value.Length == 0)
 						{
-							part.ReplaceWith(part.Value.Trim());
+							// if zero-length selection then select all content
+							selections = page.Element(ns + "Outline").Descendants(ns + "T");
 						}
-
-						selection.FirstNode.ReplaceWith(
-							new XCData(
-								string.Concat(wrapper.Nodes().Select(x => x.ToString()).ToArray())
-								)
-							);
 					}
-				}
 
-				manager.UpdatePageContent(page);
+					foreach (var selection in selections)
+					{
+						if ((selection == selection.Parent.LastNode) &&
+							(selection.LastNode?.NodeType == XmlNodeType.CDATA))
+						{
+							var cdata = selection.GetCData();
+							if (cdata.Value.Length > 0)
+							{
+								var wrapper = cdata.GetWrapper();
+
+								var text = wrapper.DescendantNodes().OfType<XText>().LastOrDefault();
+								if (text?.Value.Length > 0)
+								{
+									var match = Regex.Match(text.Value, @"([\s]|&#160;|&nbsp;)*$");
+									if (match.Success)
+									{
+										text.ReplaceWith(text.Value.Substring(0, match.Index));
+
+										selection.FirstNode.ReplaceWith(
+											new XCData(wrapper.GetInnerXml()));
+									}
+								}
+							}
+						}
+					}
+
+					manager.UpdatePageContent(page);
+				}
 			}
 		}
 	}
