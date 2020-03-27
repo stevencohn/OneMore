@@ -20,13 +20,11 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public IStream MakeTile(string controlId, int itemIndex)
+		public IStream MakeTile(int itemIndex)
 		{
 			const int tileWidth = 70;
 			const int tileHeight = 60;
 			const int dpi = 96;
-
-			//logger.WriteLine($"MakeTile({controlId}, {itemIndex})");
 
 			IStream stream = null;
 

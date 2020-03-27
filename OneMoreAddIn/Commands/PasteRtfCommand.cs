@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn
 	internal class PasteRtfCommand : Command
 	{
 
-		private static readonly char Space = '\u00a0'; // Unicode no-break space
+		private const char Space = '\u00a0'; // Unicode no-break space
 
 
 		public PasteRtfCommand() : base()

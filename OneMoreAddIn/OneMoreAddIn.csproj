@@ -205,6 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Emoji\Architecture.png" />
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Properties\Emoji\Automobile.png" />
     <Content Include="Properties\Emoji\Bullet.png" />
     <Content Include="Properties\Emoji\Calendar.png" />

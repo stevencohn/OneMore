@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn
 
 		private Application application;
 		private bool disposedValue = false;
-		private ILogger logger;
+		private readonly ILogger logger;
 
 
 		//========================================================================================
@@ -152,8 +152,7 @@ namespace River.OneMoreAddIn
 		{
 			if (pageId != null)
 			{
-				string xml;
-				application.GetPageContent(pageId, out xml, info);
+				application.GetPageContent(pageId, out var xml, info);
 
 				var root = XElement.Parse(xml);
 				return root;
@@ -166,8 +165,7 @@ namespace River.OneMoreAddIn
 		public XElement GetHierarchy (HierarchyScope scope = HierarchyScope.hsPages)
 		{
 			// get our own copy
-			string xml;
-			application.GetHierarchy(null, scope, out xml);
+			application.GetHierarchy(null, scope, out var xml);
 			if (!string.IsNullOrEmpty(xml))
 			{
 				return XElement.Parse(xml);

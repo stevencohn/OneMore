@@ -2,7 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS3001 // Type is not CLS-compliant
+#pragma warning disable CS3001		// Type is not CLS-compliant
+#pragma warning disable IDE0060		// remove unused parameter
 
 namespace River.OneMoreAddIn
 {
@@ -27,11 +28,11 @@ namespace River.OneMoreAddIn
 	[ProgId("River.OneMoreAddin")]
 	public class AddIn : IDTExtensibility2, IRibbonExtensibility
 	{
-		private IRibbonUI ribbon;                   // reference to ribbon control
+		private IRibbonUI ribbon;					// reference to ribbon control
 
-		private ILogger logger;                     // diagnostic logger
-		private Process process;                    // current process, to kill if necessary
-		private CommandFactory factory;  
+		private ILogger logger;						// diagnostic logger
+		private CommandFactory factory;
+		private readonly Process process;			// current process, to kill if necessary
 
 		private List<IDisposable> trash;
 
@@ -236,10 +237,10 @@ namespace River.OneMoreAddIn
 
 			using (var manager = new ApplicationManager())
 			{
-				var locations = manager.GetLocations();
-				logger.WriteLine("OneNote backup folder:: " + locations.backupFolder);
-				logger.WriteLine("OneNote default folder: " + locations.defaultFolder);
-				logger.WriteLine("OneNote unfiled folder: " + locations.unfiledFolder);
+				var (backupFolder, defaultFolder, unfiledFolder) = manager.GetLocations();
+				logger.WriteLine("OneNote backup folder:: " + backupFolder);
+				logger.WriteLine("OneNote default folder: " + defaultFolder);
+				logger.WriteLine("OneNote unfiled folder: " + unfiledFolder);
 
 				factory = new CommandFactory(logger, ribbon, trash,
 					new Win32WindowHandle(new IntPtr((Int64)manager.Application.Windows.CurrentWindow.WindowHandle)));
@@ -307,7 +308,7 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine($"GetItemLabel({control.Id})");
 
-			string label = null;
+			string label;
 			string resId = control.Id + "_Label";
 			try
 			{
@@ -425,7 +426,7 @@ namespace River.OneMoreAddIn
 
 		public IStream GetStyleGalleryItemImage (IRibbonControl control, int itemIndex)
 		{
-			return factory.GetCommand<GalleryTileFactory>().MakeTile(control.Id, itemIndex);
+			return factory.GetCommand<GalleryTileFactory>().MakeTile(itemIndex);
 		}
 
 		public string GetStyleGalleryItemScreentip (IRibbonControl control, int itemIndex)

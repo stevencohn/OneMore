@@ -122,19 +122,17 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public Style GetStyle()
 		{
-			var style = new Style(this);
-
-			style.FontFamily = Font.FontFamily.Name;
-			style.FontSize = Font.Size.ToString("#0.0");
-			style.IsBold = Font.Bold;
-			style.IsItalic = Font.Italic;
-			style.IsUnderline = Font.Underline;
-			style.IsStrikethrough = Font.Strikeout;
-
-			style.Color = Drawing.ColorTranslator.ToHtml(Foreground);
-			style.Highlight = Drawing.ColorTranslator.ToHtml(Background);
-
-			return style;
+			return new Style(this)
+			{
+				FontFamily = Font.FontFamily.Name,
+				FontSize = Font.Size.ToString("#0.0"),
+				IsBold = Font.Bold,
+				IsItalic = Font.Italic,
+				IsUnderline = Font.Underline,
+				IsStrikethrough = Font.Strikeout,
+				Color = Drawing.ColorTranslator.ToHtml(Foreground),
+				Highlight = Drawing.ColorTranslator.ToHtml(Background)
+			};
 		}
 
 

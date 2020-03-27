@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn
 					var ns = page.GetNamespaceOfPrefix("one");
 
 					var ranges = page.Elements(ns + "Outline")?.Descendants(ns + "T")
-						.Where(e => !e.DescendantNodes().OfType<XCData>().Any(d => d.Value.Equals(string.Empty)));
+						.Where(e => !e.DescendantNodes().OfType<XCData>().Any(d => d.Value.Length == 0));
 
 					if (ranges != null)
 					{
