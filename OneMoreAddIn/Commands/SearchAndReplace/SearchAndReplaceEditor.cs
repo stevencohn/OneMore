@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn
 		{
 			// wrapper constructs a cleaned version of all T/CDATA content,
 			// without CDATA nodes or the empty current cursor CDATA
-			var wrapper = element.Value.ToXmlWrapper(); // XElement.Parse("<wrapper>" + oe.Value + "</wrapper>");
+			var wrapper = element.Value.ToXmlWrapper();
 
 			var options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
 
@@ -41,7 +41,8 @@ namespace River.OneMoreAddIn
 				for (int i = 0; i < matches.Count; i++)
 				{
 					var match = matches[i];
-					var index = i == 0 ? match.Index : match.Index + difference;
+					var index = match.Index + (difference * i);
+
 					Replace(wrapper, index, match.Length, replace);
 				}
 

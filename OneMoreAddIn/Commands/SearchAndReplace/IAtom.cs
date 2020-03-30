@@ -45,11 +45,5 @@ namespace River.OneMoreAddIn
 		/// <param name="length">The length of the substring to replace</param>
 		/// <param name="replacement">The string to insert</param>
 		void Replace(int index, int length, string replacement);
-
-
-		/// <summary>
-		/// Removes this atom from its parent
-		/// </summary>
-		void Remove();
 	}
 }

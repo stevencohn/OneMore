@@ -46,11 +46,5 @@ namespace River.OneMoreAddIn
 		{
 			text.Value = text.Value.Remove(index, length).Insert(index, replacement);
 		}
-
-
-		public void Remove()
-		{
-			text.Remove();
-		}
 	}
 }
