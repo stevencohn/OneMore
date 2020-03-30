@@ -31,9 +31,9 @@ namespace River.OneMoreAddIn
 
 		private void WTextChanged (object sender, EventArgs e)
 		{
-			okButton.Enabled = 
-				whatBox.Text.Length > 0 && 
-				withBox.Text.Length > 0;
+			okButton.Enabled = whatBox.Text.Length > 0;
+				//whatBox.Text.Length > 0 && 
+				//withBox.Text.Length > 0;
 		}
 	}
 }

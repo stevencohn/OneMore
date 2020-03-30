@@ -6,19 +6,26 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Linq;
-	using System.Text;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
 	internal class SearchAndReplaceCommand : Command
 	{
-		public SearchAndReplaceCommand () : base()
+
+		/*
+		 * KNOWN ISSUE
+		 * . When replacing content in a line that begins with non-breaking whitespace
+		 *   that whitespace will be removed; need to figure out how to preserve this
+		 * 
+		 */
+
+		public SearchAndReplaceCommand() : base()
 		{
 		}
 
 
-		public void Execute ()
+		public void Execute()
 		{
 			try
 			{
@@ -54,111 +61,47 @@ namespace River.OneMoreAddIn
 					var page = manager.CurrentPage();
 					var ns = page.GetNamespaceOfPrefix("one");
 
-					var ranges = page.Elements(ns + "Outline")?.Descendants(ns + "T")
-						.Where(e => !e.DescendantNodes().OfType<XCData>().Any(d => d.Value.Length == 0));
+					var elements = page.Element(ns + "Outline").Descendants(ns + "T")
+						.Select(e => e.Parent)
+						.Distinct()
+						.Cast<XElement>();
 
-					if (ranges != null)
+					if (elements.Any())
 					{
-						var count = 0;
+						// if there is a selection range...
+						var countRange = elements.Elements(ns + "T").Count(e =>
+							e.Attribute("selected")?.Value == "all" &&
+							e.FirstNode is XCData && (e.FirstNode as XCData).Value.Length > 0);
 
-						foreach (var range in ranges)
+						if (countRange > 0)
 						{
-							count += Replace(range, whatText, withText, matchCase);
+							// ...then further filter out only the selected range
+							elements = elements.Elements(ns + "T")
+								.Where(t => t.Attribute("selected")?.Value == "all")
+								.Select(t => t.Parent);
+						}
+					}
+
+					if (elements.Any())
+					{
+						int count = 0;
+						var editor = new SearchAndReplaceEditor(whatText, withText, matchCase);
+
+						// use ToList to avoid null ref exception while updating IEnumerated collection
+						var list = elements.ToList();
+						for (var i = 0; i < list.Count(); i++)
+						{
+							count += editor.SearchAndReplace(list[i]);
 						}
 
 						manager.UpdatePageContent(page);
 
-						var msg = count == 1 ? "occurance was" : "occurances were";
-						MessageBox.Show($"{count} {msg} replaced", "Replaced",
-							MessageBoxButtons.OK, MessageBoxIcon.Information);
+						//var msg = count == 1 ? "occurance was" : "occurances were";
+						//MessageBox.Show($"{count} {msg} replaced", "Replaced",
+						//	MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}
 				}
 			}
 		}
-
-
-		public int Replace (XElement range, string whatText, string withText, bool matchCase)
-		{
-			// extract TextNodes across tags (spans) and string them together to build words
-
-			var cdata = range.DescendantNodes().OfType<XCData>()?.FirstOrDefault();
-			if (string.IsNullOrEmpty(cdata?.Value))
-			{
-				return 0;
-			}
-
-			// nodes at this level should be either Text or span Element, one level
-
-			var comparison = matchCase ? StringComparison.InvariantCulture : StringComparison.InvariantCultureIgnoreCase;
-
-			var data = cdata.Value.Replace("<br>", "<br/>");
-			var text = XElement.Parse("<w>" + data + "</w>").Value;
-			var start = text.IndexOf(whatText, comparison);
-			if (start < 0)
-			{
-				return 0;
-			}
-
-			var builder = new StringBuilder(data.Length);
-			var intag = false;
-			var end = start + whatText.Length;
-			var di = 0;
-			var ti = 0;
-			var wi = 0;
-
-			var count = 1;
-
-			while (di < data.Length)
-			{
-				var c = data[di];
-				if ((c == '<') && !intag)
-				{
-					builder.Append(c);
-					intag = true;
-					di++;
-				}
-				else if ((c == '>') && intag)
-				{
-					builder.Append(c);
-					intag = false;
-					di++;
-				}
-				else if (intag)
-				{
-					builder.Append(c);
-					di++;
-				}
-				else if (ti < start)
-				{
-					builder.Append(c);
-					di++;
-					ti++;
-				}
-				else if (ti < end)
-				{
-					builder.Append(withText[wi++]);
-					di++;
-					ti++;
-				}
-				else if (ti < data.Length)
-				{
-					start = text.IndexOf(whatText, ti, comparison);
-					if (start > 0)
-					{
-						end = start + whatText.Length;
-						wi = 0;
-						count++;
-					}
-					else
-					{
-						start = end = data.Length + 1;
-					}
-				}
-			}
-
-			cdata.Value = builder.ToString();
-			return count;
-		}
-
 	}
 }

@@ -107,6 +107,11 @@
     <Compile Include="Commands\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\PasteRtfCommand.cs" />
     <Compile Include="Commands\SearchAndReplaceCommand.cs" />
+    <Compile Include="Commands\SearchAndReplace\AtomicFactory.cs" />
+    <Compile Include="Commands\SearchAndReplace\ElementAtom.cs" />
+    <Compile Include="Commands\SearchAndReplace\IAtom.cs" />
+    <Compile Include="Commands\SearchAndReplace\SearchAndReplaceEditor.cs" />
+    <Compile Include="Commands\SearchAndReplace\TextAtom.cs" />
     <Compile Include="Commands\ShowAboutCommand.cs" />
     <Compile Include="Commands\ApplyStyleCommand.cs" />
     <Compile Include="Commands\SortCommand.cs" />

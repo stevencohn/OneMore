@@ -6,13 +6,14 @@ namespace River.OneMoreAddIn
 {
 	using System;
     using System.Text.RegularExpressions;
+	using System.Xml.Linq;
 
 
-    /// <summary>
-    /// Some extension methods for .NET types...
-    /// </summary>
+	/// <summary>
+	/// Some extension methods for .NET types...
+	/// </summary>
 
-    internal static class Extensions
+	internal static class Extensions
 	{
 
 		/// <summary>
@@ -86,6 +87,26 @@ namespace River.OneMoreAddIn
 			}
 
 			return (null, s);
+		}
+
+
+		/// <summary>
+		/// Build an XML wrapper with the specified content, ensuring the content
+		/// is propertly formed XML
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		public static XElement ToXmlWrapper(this string s)
+		{
+			// ensure proper XML
+
+			// OneNote doesn't like &nbsp; but &#160; is ok and is the same as \u00A0 but 1-byte
+			var value = s.Replace("&nbsp;", "&#160;");
+
+			// XElement doesn't like <br> so replace with <br/>
+			value = Regex.Replace(value, @"\<\s*br\s*\>", "<br/>");
+
+			return XElement.Parse("<wrapper>" + value + "</wrapper>");
 		}
 	}
 }
