@@ -11,12 +11,14 @@ namespace River.OneMoreAddIn
 
 	internal class SearchAndReplaceEditor
 	{
+		private readonly XNamespace ns;
 		private readonly string search;
 		private readonly string replace;
 		private readonly bool caseSensitive;
 
-		public SearchAndReplaceEditor(string search, string replace, bool caseSensitive)
+		public SearchAndReplaceEditor(XNamespace ns, string search, string replace, bool caseSensitive)
 		{
+			this.ns = ns;
 			this.search = search;
 			this.replace = replace;
 			this.caseSensitive = caseSensitive;
@@ -48,7 +50,6 @@ namespace River.OneMoreAddIn
 
 				// TODO: preserve non-breaking whitespace at beginning of line
 
-				var ns = element.GetNamespaceOfPrefix("one");
 				element.ReplaceNodes(new XElement(ns + "T", new XCData(wrapper.GetInnerXml())));
 
 				return matches.Count;

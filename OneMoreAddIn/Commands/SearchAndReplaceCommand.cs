@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn
 					if (elements.Any())
 					{
 						int count = 0;
-						var editor = new SearchAndReplaceEditor(whatText, withText, matchCase);
+						var editor = new SearchAndReplaceEditor(ns, whatText, withText, matchCase);
 
 						// use ToList to avoid null ref exception while updating IEnumerated collection
 						var list = elements.ToList();

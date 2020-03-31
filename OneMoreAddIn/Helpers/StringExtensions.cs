@@ -106,6 +106,9 @@ namespace River.OneMoreAddIn
 			// XElement doesn't like <br> so replace with <br/>
 			value = Regex.Replace(value, @"\<\s*br\s*\>", "<br/>");
 
+			// quote unquote language attribute, e.g., lang=yo to lang="yo" (or two part en-US)
+			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
+
 			return XElement.Parse("<wrapper>" + value + "</wrapper>");
 		}
 	}
