@@ -1,0 +1,3697 @@
+<?xml version="1.0" ?>
+<!--
+	Schema definition for Ribbon Extensibility
+
+	Copyright (c) Microsoft Corporation. All rights reserved.
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" 
+	targetNamespace="http://schemas.microsoft.com/office/2009/07/customui"
+	xmlns="http://schemas.microsoft.com/office/2009/07/customui"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified"
+>
+	<xsd:annotation>
+		<xsd:documentation>
+			----------------------------------------------------------------------
+			Schema definition for Ribbon Extensibility
+			----------------------------------------------------------------------
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:annotation>
+		<xsd:documentation>
+			----------------------------------------------------------------------
+			Attribute types
+			----------------------------------------------------------------------
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:simpleType name="ST_QID">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies the "Qualified ID" for a built-in or custom control. 
+				Custom controls can be given an idQ defined with a prefix, e.g. "myaddin:Save" 
+				where "myaddin" must be an XML namespace defined in context of the element.
+				A qualified id allows multiple add-ins to refer to the same controls.
+				A custom control must have one of id, idQ, or idMso.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:QName">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_ID">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies the custom ID of a control. 
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:NCName">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_UniqueID">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a unique ID. 
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:ID">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_Delegate">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a delegate type which is used by a control to call back to a macro. 
+				Callbacks are used to provide status, update properties or perform actions.
+			
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_StringLength">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a numeric argument which determines maximum string length, such as in editBox
+				String length is limited to 1024 characters.
+			
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_GalleryRowColumnCount">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a numeric argument which determines maximum number of rows or columns in galleries.
+			
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_GalleryItemWidthHeight">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a numeric argument which determines maximum width or height of a gallery item.
+			
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="4096"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_GalleryShowInRibbon">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies the acceptable values for the gallery element's showInRibbon attribute.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="false"/>
+			<xsd:enumeration value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_String">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a string argument.
+				String length is limited to 1024 characters.
+			
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_LongString">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a string argument.
+				String length is limited to 4096 characters.
+			
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4096"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_Uri">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a string argument which is a path to a file or a resource.
+				String length is limited to 1024 characters.
+			
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1024"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_Size">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies the size of the button; "large" or "normal."
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="normal"/>
+			<xsd:enumeration value="large"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_ItemSize">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies the size of items in a menu; "normal" or "large".
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="normal"/>
+			<xsd:enumeration value="large"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_BoxStyle">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Style of a box control. "horizontal" or "vertical".
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="horizontal"/>
+			<xsd:enumeration value="vertical"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_Keytip">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a keytip.  1-3 characters, no whitespace.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="3"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ST_TaskSizes">
+		<xsd:annotation>
+			<xsd:documentation>
+				
+				Specifies the allowed sizes of task controls in taskGroups or taskFormGroups.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="largeMediumSmall"/>
+			<xsd:enumeration value="largeMedium"/>
+			<xsd:enumeration value="large"/>
+			<xsd:enumeration value="mediumSmall"/>
+			<xsd:enumeration value="medium"/>
+			<xsd:enumeration value="small"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:annotation>
+		<xsd:documentation>
+			----------------------------------------------------------------------
+			Attributes
+			----------------------------------------------------------------------
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:attributeGroup name="AG_IDCustom">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that specify custom control ID.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="id" type="ST_UniqueID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies ID of a custom UI element. IDs must be unique across customUI XML file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="idQ" type="ST_QID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+				
+					A qualified control ID.
+
+To use a qualified name, you must first create your own namespace. The following code creates a namespace called myNameSpace, aliased by "x."
+
+	&lt;customUI xmlns="http://schemas.microsoft.com/office/2005/08/customui" xmlns:x="myNameSpace"&gt;
+
+With this declaration, idQ is usable on controls:
+
+	&lt;group idQ="x:myButton" ... /&gt;
+
+By creating a namespace x, two different add-ins can add to the same group, by referring to that custom group with its qualified name.
+
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="tag" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies custom data as string.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_IDMso">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies ID of a built-in control.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="idMso" type="ST_ID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies ID of a built-in control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Title">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies the title of a menu.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="title" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Title to show as a header when the menu is opened.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getTitle" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Callback for dynamically getting the title.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	
+	<xsd:attributeGroup name="AG_IDAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that specify control ID.
+				One of id, idMso, or idQ must be specified to identify a control.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_IDMso"/>
+	</xsd:attributeGroup>
+	
+	<xsd:attributeGroup name="AG_Image">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies the control's image or icon.
+				Image attributes are mutually exclusive - only one of 
+				"image", "imageMso", or "getImage" can be specified.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="image" type="ST_Uri" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a custom image or icon.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="imageMso" type="ST_ID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies an image or icon if a built-in control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getImage" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns a custom image.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_CommonAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to all commands and controls.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+	</xsd:attributeGroup>
+	
+	<xsd:attributeGroup name="AG_PositionAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can determine position of an object within its container
+				(such as position of a control within a group or position of a tab relative to other tabs).
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="insertAfterMso" type="ST_ID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					ID of built-in control to be inserted after.
+					Mutually exclusive with InsertBeforeMso, InsertAfterQ, InsertBeforeQ.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="insertBeforeMso" type="ST_ID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					ID of built-in control to be inserted before.
+					Mutually exclusive with InsertAfterMso, InsertAfterQ, InsertBeforeQ.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="insertAfterQ" type="ST_QID" use="optional" >
+			<xsd:annotation>
+				<xsd:documentation>
+					ID of control to be inserted after.
+					Mutually exclusive with InsertAfterMso, InsertBeforeMso, InsertBeforeQ.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="insertBeforeQ" type="ST_QID" use="optional" >
+			<xsd:annotation>
+				<xsd:documentation>
+					ID of control to be inserted before.
+					Mutually exclusive with InsertAfterMso, InsertBeforeMso, InsertAfterQ.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Enabled">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to determine 
+				if a control is enabled.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="enabled" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies if a control is enabled.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getEnabled" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns true if control is enabled.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Visible">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to determine visibility.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="visible" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies if a control is visible.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getVisible" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns true if control is visible.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Label">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to determine the label.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="label" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the label.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getLabel" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns custom label.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Keytip">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to determine the Keytip.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="keytip" type="ST_Keytip" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the keytip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getKeytip" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns custom keytip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Screentip">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to determine the screentip
+				to show when mouse is over the control.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="screentip" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Screentip to show when mouse is over the control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getScreentip" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns the screentip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="supertip" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Large screentip to show when mouse is over the control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getSupertip" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns the Supertip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Description">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to determine the 
+				extended description of the control, appears in menus with itemSize set to large.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="description" type="ST_LongString" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Extended description of the control, appears in menus with itemSize set to large.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getDescription" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns control description.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_AltText">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies attributes that can be applied to specify the alternative
+				text of an image-based control.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="altText" type="ST_LongString" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Alternative text for the control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getAltText" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns the alternative text.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_ShowLabel">
+		<xsd:attribute name="showLabel" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies whether or not to show the label on a control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getShowLabel" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns whether to show the label.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_HelperText">
+		<xsd:annotation>
+			<xsd:documentation>
+				Group HelperText 
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="helperText" type="ST_LongString" use="optional" />
+		<xsd:attribute name="getHelperText" type="ST_Delegate" use="optional" />
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_UIAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to all user interface items such as tabs and controls.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_CommonAttributes"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+	</xsd:attributeGroup>
+	
+	<xsd:attributeGroup name="AG_ItemAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies common attributes that can be applied to controls and groups.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_Image"/>
+		<xsd:attributeGroup ref="AG_Screentip"/>
+		<xsd:attributeGroup ref="AG_UIAttributes"/>
+	</xsd:attributeGroup>
+	
+	<xsd:attributeGroup name="AG_ControlAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes applied to controls.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_ItemAttributes"/>
+		<xsd:attributeGroup ref="AG_ShowLabel"/>
+		<xsd:attribute name="showImage" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies whether or not to show the image on a control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getShowImage" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns whether to show the image.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	
+	<xsd:attributeGroup name="AG_Action">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies an action callback.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="onAction" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which responds on user action.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Pressed">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies the GetPressed callback.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="getPressed" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns true if the Button/CheckBox is pressed.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Definitive">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies the isDefinitive attribute
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="isDefinitive" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies whether an action should close the Backstage when it is invoked
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_SizeAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a size attribute.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="size" type="ST_Size" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies size of a button control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getSize" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns a control's size.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_DropDownAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies common attributes for controls with dropdowns (such as ComboBox or Gallery).
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="showItemImage" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies if the image is shown or hidden on dropdown items.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getItemCount" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns the number of items in dropdown.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getItemLabel" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns the label for an item.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getItemScreentip" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns screentip for an item.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getItemSupertip" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns Supertip for an item.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getItemImage" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns the image for an item.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="getItemID" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns an ID for a dynamically generated item.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="sizeString" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a representative string which should fit in the control. 
+					E.g. if the control is meant for a credit card number a string of 16 digits
+					ensures appropriate control size.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_GetContentAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to dynamic controls that support GetContent.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="getContent" type="ST_Delegate" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns the dynamic content for this control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	
+	<xsd:attributeGroup name="AG_DynamicContentAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attributes that can be applied to controls that support dynamic content.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="invalidateContentOnDrop" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies whether to call callbacks to get dynamic content every time the control is dropped.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_AlignAttributes">
+		<xsd:annotation>
+			<xsd:documentation>
+				Attributes that specify a control's alignment.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="alignLabel" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="topLeft" />
+					<xsd:enumeration value="top" />
+					<xsd:enumeration value="topRight" />
+					<xsd:enumeration value="left" />
+					<xsd:enumeration value="center" />
+					<xsd:enumeration value="right" />
+					<xsd:enumeration value="bottomLeft" />
+					<xsd:enumeration value="bottom" />
+					<xsd:enumeration value="bottomRight" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_Expand">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies attributes that specify how a control expands within its container
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="expand" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="horizontal" />
+					<xsd:enumeration value="vertical" />
+					<xsd:enumeration value="both" />
+					<xsd:enumeration value="neither" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_GroupStyle">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies the group style attributes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="style" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="normal" />
+					<xsd:enumeration value="warning" />
+					<xsd:enumeration value="error" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="getStyle" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which returns the style of a group.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="AG_ButtonStyle">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies the style of a Button
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="style" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="normal" />
+					<xsd:enumeration value="borderless"/>
+					<xsd:enumeration value="large" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+
+	<xsd:annotation>
+		<xsd:documentation>
+			----------------------------------------------------------------------
+			Global settings
+			----------------------------------------------------------------------
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:complexType name="CT_Command" mixed="false">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies attribute overrides for all controls with specified ID.
+
+				Setting a property with Command element is equivalent to setting 
+				same properties on all controls with same id in the ribbon, popup menus, status bar etc. 
+
+				For example 
+
+					&lt;command idMso="Print" enabled="false"&gt;
+
+				disables all instances of Print button in the application UI.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_Action"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_IDMso"/>
+	</xsd:complexType>
+
+	<xsd:annotation>
+		<xsd:documentation>
+			----------------------------------------------------------------------
+			Controls
+			----------------------------------------------------------------------
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:complexType name="CT_ControlBase">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Base control type. 
+				Doesn't define ID attributes.
+				Abstract type, not to be used directly.
+								
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_ControlAttributes"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_Control">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a type of control that can be used to 
+				enable, disable, or clone an existing control.	
+								
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_ControlBase">
+				<xsd:attributeGroup ref="AG_IDAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_ControlCloneRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a clone of built-in control. 
+				Control type is determined by source control.
+				Only the most common attributes can be applied here; to set
+				control-specific properties the actual control type must be specified.
+								
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="CT_Control">
+				<xsd:attribute name="id" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							Custom controls can't be cloned by id. 
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_ControlClone">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a clone of built-in control that can be sized.
+								
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="CT_Button">
+				<xsd:attribute name="id" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							Custom controls can't be cloned by id. 
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="onAction" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							The onAction property does not apply to 'control'.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_ControlCloneQat">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a clone of built-in or custom control in QAT.
+								
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_ControlBase">
+				<xsd:attribute name="id" type="ST_ID" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Custom id to clone from. 
+							Can refer to a custom ID in same file.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="idQ" type="ST_QID" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							A qualified control ID.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attributeGroup ref="AG_IDMso"/>
+				<xsd:attributeGroup ref="AG_Description"/>
+				<xsd:attributeGroup ref="AG_SizeAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_LabelControl">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Shows text and/or icon but can't have any associated actions.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="CT_Control">
+				<xsd:attribute name="image" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"image" property is not applicable to labelControl.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="imageMso" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"imageMso" property is not applicable to labelControl.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"getImage" callback is not applicable to labelControl.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="keytip" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"keytip" property is not applicable to labelControl.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getKeytip" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"getKeytip" callback is not applicable to labelControl.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="showImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"showImage" property is not applicable to labelControl.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getShowImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"getShowImage" callback is not applicable to labelControl.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_ButtonRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a fixed-size button.
+				Size of a button of this type is determined by its container such as a menu.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_Control">
+				<xsd:attributeGroup ref="AG_Action"/>
+				<xsd:attributeGroup ref="AG_Enabled"/>
+				<xsd:attributeGroup ref="AG_Description"/>
+				<xsd:attributeGroup ref="AG_Image"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_Button">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a push-type button.
+								
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_ButtonRegular">
+				<xsd:attributeGroup ref="AG_SizeAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_VisibleButton">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a button which is always visible.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="CT_ButtonRegular">
+				<xsd:attribute name="visible" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"visible" property is not applicable to these types of buttons
+							because they are always visible.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getVisible" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"getVisible" property is not applicable to these types of buttons
+							because they are always visible.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_ToggleButtonRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a fixed-size button type with an on/off state such as a Bold button.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_ButtonRegular">
+				<xsd:attributeGroup ref="AG_Pressed"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_ToggleButton">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a button type with an on/off state that can be sized.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_ToggleButtonRegular">
+				<xsd:attributeGroup ref="AG_SizeAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_VisibleToggleButton">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a toggleButton which is always visible.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="CT_ToggleButtonRegular">
+				<xsd:attribute name="visible" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"visible" property is not applicable to these types of buttons
+							because they are always visible.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getVisible" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"getVisible" property is not applicable to these types of buttons
+							because they are always visible.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+
+	<xsd:complexType name="CT_CheckBox">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a check box.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="CT_ToggleButtonRegular">
+				<xsd:attribute name="image" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"image" property is not applicable to checkBox.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="imageMso" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"imageMso" property is not applicable to checkBox.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"getImage" callback is not applicable to checkBox.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="showImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"showImage" property is not applicable to checkBox.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getShowImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"getShowImage" callback is not applicable to checkBox.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="showLabel" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"showLabel" property is not applicable to checkBox.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getShowLabel" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							"getShowLabel" callback is not applicable to checkBox.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_EditBox">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies an edit box control type.
+
+				OnChange callback reports new text.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_Control">
+				<xsd:attributeGroup ref="AG_Enabled"/>
+				<xsd:attributeGroup ref="AG_Image"/>
+				<xsd:attribute name="maxLength" type="ST_StringLength" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies maximum number of characters the user may input.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getText" type="ST_Delegate" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies a callback which returns text to be inserted in the edit box before begins editing.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="onChange" type="ST_Delegate" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies a callback which responds on change of selection.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="sizeString" type="ST_String" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies a representative string which should fit in the control. 
+							E.g. if the control is meant for a credit card number a string of 16 digits
+							ensures appropriate control size.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+
+	<xsd:complexType name="CT_Item">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Represents a selection in a comboBox or dropDown control type.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="id" type="ST_UniqueID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the ID of a gallery item.  Gallery items cannot use idMso or idQ.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="label" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies text label.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="image" type="ST_Uri" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the image.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="imageMso" type="ST_ID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a built-in image.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="screentip" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the screentip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="supertip" type="ST_String" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the SuperTip.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_ComboBox">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a comboBox control type.
+
+				Contains options (multiple-choice item) 
+
+				OnChange behavior is same as in EditBox (the text).
+				Callback can't tell if the value is typed in or selected.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_EditBox">
+				<xsd:sequence>
+					<xsd:element name="item" type="CT_Item" minOccurs="0" maxOccurs="1000">
+						<xsd:annotation>
+							<xsd:documentation>
+								One of the items to choose from. 
+								When selected, the label property of the item becomes text content of
+								the edit box.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attributeGroup ref="AG_DropDownAttributes"/>
+				<xsd:attributeGroup ref="AG_DynamicContentAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+
+	<xsd:complexType name="CT_DropDownRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a drop-down control type with a fixed-size.
+				Contains options followed by buttons. Order is important - buttons last.
+				OnAction reports the selected option.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_Control">
+				<xsd:sequence>
+					<xsd:element name="item" type="CT_Item" minOccurs="0" maxOccurs="1000">
+						<xsd:annotation>
+							<xsd:documentation>
+								One of the items to choose from. 
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="button" type="CT_ButtonRegular" minOccurs="0" maxOccurs="16">
+						<xsd:annotation>
+							<xsd:documentation>
+								Button which invokes a different command. 
+								Pushing a button doesn't have any effect on selection.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attributeGroup ref="AG_Action"/>
+				<xsd:attributeGroup ref="AG_Enabled"/>
+				<xsd:attributeGroup ref="AG_Image"/>
+				<xsd:attributeGroup ref="AG_DropDownAttributes"/>
+				<xsd:attribute name="getSelectedItemID" type="ST_Delegate" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies a callback which returns the ID of currently selected item.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getSelectedItemIndex" type="ST_Delegate" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies a callback which returns the index of currently selected item.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="showItemLabel" type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies if the label is shown or hidden on dropdown items.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_GalleryRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a drop-down grid control that can be sized.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_DropDownRegular">
+				<xsd:attributeGroup ref="AG_Description"/>
+				<xsd:attributeGroup ref="AG_DynamicContentAttributes"/>
+				<xsd:attribute name="columns" type="ST_GalleryRowColumnCount" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies number of columns in dropdown gallery. 
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="rows" type="ST_GalleryRowColumnCount" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies number of rows in dropdown gallery. 
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="itemWidth" type="ST_GalleryItemWidthHeight" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies item width in pixels.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="itemHeight" type="ST_GalleryItemWidthHeight" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies item height in pixels.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getItemWidth" type="ST_Delegate" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies a callback which returns the item width.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getItemHeight" type="ST_Delegate" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies a callback which returns the item height.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="showItemLabel" type="xsd:boolean" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies if the label is shown or hidden on gallery items.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="showInRibbon" type="ST_GalleryShowInRibbon" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies whether the gallery should be shown in-ribbon. This attribute
+							is not supported in Ribbon Extensibility documents.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_Gallery">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Gallery - choose one option from a grid of options.
+ 
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_GalleryRegular">
+				<xsd:attributeGroup ref="AG_SizeAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:group name="EG_MenuControlsBase">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a group of controls allowed in all menus.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="control" type="CT_ControlCloneRegular">
+				<xsd:annotation>
+					<xsd:documentation>
+						Control element can enable, disable or clone existing controls.
+						Creating a new (custom) control with Control element is not possible
+						because the control type is not specified.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="button" type="CT_ButtonRegular">
+				<xsd:annotation>
+					<xsd:documentation>
+						Button control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="checkBox" type="CT_CheckBox" >
+				<xsd:annotation>
+					<xsd:documentation>
+						CheckBox control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="gallery" type="CT_GalleryRegular">
+				<xsd:annotation>
+					<xsd:documentation>
+						DropDownGrid-type gallery control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="toggleButton" type="CT_ToggleButtonRegular">
+				<xsd:annotation>
+					<xsd:documentation>
+						toggleButton control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="menuSeparator" type="CT_MenuSeparator">
+				<xsd:annotation>
+					<xsd:documentation>
+						Control group separator.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+
+
+	<xsd:group name="EG_MenuOrSplitButtonRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines menu or splitButton controls.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="splitButton" type="CT_SplitButtonRegular" >
+				<xsd:annotation>
+					<xsd:documentation>
+						SplitButton control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="menu" type="CT_MenuRegular">
+				<xsd:annotation>
+					<xsd:documentation>
+						Menu.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dynamicMenu" type="CT_DynamicMenuRegular">
+				<xsd:annotation>
+					<xsd:documentation>
+						Dynamic menu.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+
+
+	<xsd:group name="EG_MenuOrSplitButtonWithTitle">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines menu or split button controls with title, for use in Office menu.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="splitButton" type="CT_SplitButtonWithTitle" >
+				<xsd:annotation>
+					<xsd:documentation>
+						SplitButton control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="menu" type="CT_MenuWithTitle">
+				<xsd:annotation>
+					<xsd:documentation>
+						Menu.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dynamicMenu" type="CT_DynamicMenuRegular">
+				<xsd:annotation>
+					<xsd:documentation>
+						DynamicMenu.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+
+
+	<xsd:group name="EG_ContextMenuControls">
+		<xsd:choice>
+			<xsd:element name="control" type="CT_ControlCloneRegular" />
+			<xsd:element name="button" type="CT_ButtonRegular" />
+			<xsd:element name="checkBox" type="CT_CheckBox" />
+			<xsd:element name="gallery" type="CT_GalleryRegular" />
+			<xsd:element name="toggleButton" type="CT_ToggleButtonRegular" />
+			<xsd:element name="splitButton" type="CT_SplitButtonRegular" />
+			<xsd:element name="menu" type="CT_MenuRegular" />
+			<xsd:element name="dynamicMenu" type="CT_DynamicMenuRegular" />
+			<xsd:element name="menuSeparator" type="CT_MenuSeparatorNoTitle" />
+		</xsd:choice>
+	</xsd:group>
+
+
+	<xsd:complexType name="CT_MenuRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a menu with a fixed-size button.
+				Contains one or more controls or other Menus.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_ControlBase">
+				<xsd:sequence>
+					<xsd:choice minOccurs="0" maxOccurs="1000">
+						<xsd:group ref="EG_MenuControlsBase"/>
+						<xsd:group ref="EG_MenuOrSplitButtonRegular"/>
+					</xsd:choice>
+				</xsd:sequence>
+				<xsd:attribute name="itemSize" type="ST_ItemSize" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies size of menu items.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attributeGroup ref="AG_Description"/>
+				<xsd:attributeGroup ref="AG_IDAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_DynamicMenuRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a dynamic menu with a fixed-size button.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_ControlBase">
+				<xsd:attributeGroup ref="AG_Description"/>
+				<xsd:attributeGroup ref="AG_IDAttributes"/>
+				<xsd:attributeGroup ref="AG_GetContentAttributes"/>
+				<xsd:attributeGroup ref="AG_DynamicContentAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_MenuWithTitle">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a menu with a fixed-size button.
+				Contains one or more controls or other Menus.
+				Implements "Title" property.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_ControlBase">
+				<xsd:sequence>
+					<xsd:choice minOccurs="0" maxOccurs="1000">
+						<xsd:group ref="EG_MenuControlsBase"/>
+						<xsd:group ref="EG_MenuOrSplitButtonWithTitle"/>
+					</xsd:choice>
+				</xsd:sequence>
+				<xsd:attributeGroup ref="AG_IDAttributes"/>
+				<xsd:attribute name="itemSize" type="ST_ItemSize" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies size of menu items.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attributeGroup ref="AG_Title"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_Menu">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a menu with a button that can be sized.
+				Contains one or more controls or other Menus.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_MenuRegular">
+				<xsd:attributeGroup ref="AG_SizeAttributes"/>
+				<xsd:attribute name="itemSize" type="ST_ItemSize" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>
+							Specifies size of menu items. Large menu items show their description property.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_DynamicMenu">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a dynamic menu with a button that can be sized.
+				Contains one or more controls or other Menus.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_DynamicMenuRegular">
+				<xsd:attributeGroup ref="AG_SizeAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	
+	<xsd:complexType name="CT_SplitButtonBase">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a split button (button type or menu) with a fixed-size.
+				Split button contains one button (or toggle button) and one menu.
+				Abstract type.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_Control">
+				<xsd:attributeGroup ref="AG_Enabled"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_SplitButtonRestricted">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies the properties which are restricted from splitButtons
+				because they are inherited from the button inside of the splitButton.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:restriction base="CT_SplitButtonBase">
+				<xsd:attribute name="label" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getLabel" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="screentip" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getScreentip" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="supertip" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getSupertip" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="image" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="imageMso" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="showImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="getShowImage" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>
+							This property is inherited from the button inside of the splitButton.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_SplitButtonRegular">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a split button (button type or menu) with a fixed-size.
+				Split button contains one button (or toggle button) and one menu.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_SplitButtonRestricted">
+				<xsd:sequence minOccurs="0">
+					<xsd:choice minOccurs="0" >
+						<xsd:element name="button" type="CT_VisibleButton">
+							<xsd:annotation>
+								<xsd:documentation>
+									Button control.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="toggleButton" type="CT_VisibleToggleButton" >
+							<xsd:annotation>
+								<xsd:documentation>
+									Button with on/off state, such as Bold.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+					<xsd:element name="menu" type="CT_MenuRegular" >
+						<xsd:annotation>
+							<xsd:documentation>
+								Menu.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_SplitButtonWithTitle">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a split button (button type or menu) with a fixed-size.
+				Split button contains one button (or toggle button) and one menu.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_SplitButtonRestricted">
+				<xsd:sequence minOccurs="0">
+					<xsd:choice minOccurs="0" >
+						<xsd:element name="button" type="CT_VisibleButton">
+							<xsd:annotation>
+								<xsd:documentation>
+									Button control.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="toggleButton" type="CT_VisibleToggleButton" >
+							<xsd:annotation>
+								<xsd:documentation>
+									Button with on/off state, such as Bold.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+					<xsd:element name="menu" type="CT_MenuWithTitle" >
+						<xsd:annotation>
+							<xsd:documentation>
+								Menu.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_SplitButton">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a split button (button type or menu) that can be sized.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_SplitButtonRegular">
+				<xsd:attributeGroup ref="AG_SizeAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+
+	<xsd:group name="EG_Controls">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines a group of control types.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="control" type="CT_ControlClone">
+				<xsd:annotation>
+					<xsd:documentation>
+						Control element can enable, disable or clone existing controls.
+						Creating a new (custom) control with Control element is not possible
+						because the control type is not specified.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="labelControl" type="CT_LabelControl" >
+				<xsd:annotation>
+					<xsd:documentation>
+						LabelControl control. 
+						Shows text and/or icon but can't have any associated actions.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="button" type="CT_Button" >
+				<xsd:annotation>
+					<xsd:documentation>
+						Button control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="toggleButton" type="CT_ToggleButton" >
+				<xsd:annotation>
+					<xsd:documentation>
+						Button with on/off state, such as Bold.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="checkBox" type="CT_CheckBox" >
+				<xsd:annotation>
+					<xsd:documentation>
+						CheckBox control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="editBox" type="CT_EditBox" >
+				<xsd:annotation>
+					<xsd:documentation>
+						EditBox control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="comboBox" type="CT_ComboBox" >
+				<xsd:annotation>
+					<xsd:documentation>
+						ComboBox control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dropDown" type="CT_DropDownRegular" >
+				<xsd:annotation>
+					<xsd:documentation>
+						DropDown control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="gallery" type="CT_Gallery" >
+				<xsd:annotation>
+					<xsd:documentation>
+						Gallery control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="menu" type="CT_Menu" >
+				<xsd:annotation>
+					<xsd:documentation>
+						Menu.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dynamicMenu" type="CT_DynamicMenu" >
+				<xsd:annotation>
+					<xsd:documentation>
+						Dynamic menu.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="splitButton" type="CT_SplitButton" >
+				<xsd:annotation>
+					<xsd:documentation>
+						SplitButton control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="box" type="CT_Box" >
+				<xsd:annotation>
+					<xsd:documentation>
+						Box control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="buttonGroup" type="CT_ButtonGroup" >
+				<xsd:annotation>
+					<xsd:documentation>
+						ButtonGroup control.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+
+	
+	<xsd:annotation>
+		<xsd:documentation>
+			----------------------------------------------------------------------
+			Containers
+			----------------------------------------------------------------------
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:complexType name="CT_DialogLauncher">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a dialog launcher with options for the associated group.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="button" type="CT_ButtonRegular" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						Dialog launcher - a widget that brings up a dialog with advanced options for this group.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	
+	<xsd:complexType name="CT_Box">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a Box control - a horizontal grouping container.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:group ref="EG_Controls" minOccurs="0" maxOccurs="1000" />
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attribute name="boxStyle" type="ST_BoxStyle" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies how controls are displayed within the box.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_Separator">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a control group separator - a vertical bar.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_MenuSeparator">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a menu separator - a horizontal bar that separates menu items.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Title"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_MenuSeparatorNoTitle">
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_ButtonGroup">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a ButtonGroup control - a horizontal container with an integrated look.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1000">
+				<xsd:element name="control" type="CT_ControlCloneRegular">
+					<xsd:annotation>
+						<xsd:documentation>
+							Control element can enable, disable or clone existing controls.
+							Creating a new (custom) control with Control element is not possible
+							because the control type is not specified.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="button" type="CT_ButtonRegular" >
+					<xsd:annotation>
+						<xsd:documentation>
+							Button control.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="toggleButton" type="CT_ToggleButtonRegular" >
+					<xsd:annotation>
+						<xsd:documentation>
+							Button with on/off state, such as Bold.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="gallery" type="CT_GalleryRegular">
+					<xsd:annotation>
+						<xsd:documentation>
+							Gallery control.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="menu" type="CT_MenuRegular">
+					<xsd:annotation>
+						<xsd:documentation>
+							Menu.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="dynamicMenu" type="CT_DynamicMenuRegular">
+					<xsd:annotation>
+						<xsd:documentation>
+							Dynamic menu.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="splitButton" type="CT_SplitButtonRegular">
+					<xsd:annotation>
+						<xsd:documentation>
+							SplitButton control.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="separator" type="CT_Separator">
+					<xsd:annotation>
+						<xsd:documentation>
+							Control separator.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_Group">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a group that contains other control types.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:sequence>
+				<xsd:choice minOccurs="0" maxOccurs="1000">
+					<xsd:group ref="EG_Controls"/>
+					<xsd:element name="separator" type="CT_Separator">
+						<xsd:annotation>
+							<xsd:documentation>
+								Control group separator.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:element name="dialogBoxLauncher" type="CT_DialogLauncher" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						Dialog launcher - a widget that brings up a dialog with advanced options for this group.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Image"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Screentip"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+		<xsd:attribute name="autoScale" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies whether the group should automatically scale its contents.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="centerVertically" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies whether the group's contents should be vertically centered
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_Tab">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a tab that contains groups with other controls.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="100">
+				<xsd:element name="group" type="CT_Group">
+					<xsd:annotation>
+						<xsd:documentation>
+						
+							Group. Contains controls.
+							
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_QatItems">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies Quick Access Toolbar items (shared or document-specific).
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1000">
+				<xsd:element name="control" type="CT_ControlCloneQat">
+					<xsd:annotation>
+						<xsd:documentation>
+							Control element can enable, disable or clone existing controls.
+							Creating a new (custom) control with Control element is not possible
+							because the control type is not specified.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="button" type="CT_ButtonRegular">
+					<xsd:annotation>
+						<xsd:documentation>
+							Button control.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="separator" type="CT_Separator">
+					<xsd:annotation>
+						<xsd:documentation>
+							Control group separator.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_Qat">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies Quick Access Toolbar. 
+				Contains two control collections: 
+					Shared (applied to all windows and documents) and
+					Document (attached to a document).
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="sharedControls" type="CT_QatItems" minOccurs="0" >
+				<xsd:annotation>
+					<xsd:documentation>
+						Custom set of controls shared between all windows or instances of the application.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="documentControls" type="CT_QatItems" minOccurs="0" >
+				<xsd:annotation>
+					<xsd:documentation>
+						Custom set of controls attached to the current document.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_Tabs">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a collection of tabs.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="tab" type="CT_Tab" minOccurs="1" maxOccurs="100">
+				<xsd:annotation>
+					<xsd:documentation>
+						Tab.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_TabSet">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a collection of contextual tab sets.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="tab" type="CT_Tab" minOccurs="0" maxOccurs="50">
+				<xsd:annotation>
+					<xsd:documentation>
+						A contextual Tab.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="idMso" type="ST_ID" use="required">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies ID of a built-in control.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attributeGroup ref="AG_Visible"/>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_ContextualTabs">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies a collection of contextual tab sets.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="tabSet" type="CT_TabSet" minOccurs="1" maxOccurs="100">
+				<xsd:annotation>
+					<xsd:documentation>
+						Tab Set.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_ContextMenu">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a ContextMenu.
+				Contains one or more controls in sections divided by separators.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1000">
+				<xsd:group ref="EG_ContextMenuControls"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDMso"/>
+	</xsd:complexType>
+
+
+	<xsd:annotation>
+		<xsd:documentation>
+			----------------------------------------------------------------------
+			Root elements
+			----------------------------------------------------------------------
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:complexType name="CT_Commands">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies a collection of Command elements.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="command" type="CT_Command" minOccurs="1" maxOccurs="5000">
+				<xsd:annotation>
+					<xsd:documentation>
+						Specifies attribute overrides for all controls with specified idMso.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_Ribbon">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies the Ribbon which contains the tabs, menu, Quick Access Toolbar control types.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:all>
+			<xsd:element name="qat" type="CT_Qat" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						Quick Access Toolbar.
+						Contains two control collections:
+						Shared (applied to all windows and documents) and
+						Document (attached to a document).
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:unique name="qatControls">
+					<xsd:annotation>
+						<xsd:documentation>
+							"id" attribute must be unique within QAT, although
+							it doesn't have to be uniquie across the file.
+						</xsd:documentation>
+					</xsd:annotation>
+					<xsd:selector xpath="*/*"/>
+					<xsd:field xpath="@id"/>
+				</xsd:unique>
+			</xsd:element>
+			<xsd:element name="tabs" type="CT_Tabs" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						A collection of tabs.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="contextualTabs" type="CT_ContextualTabs" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						A collection of contextual tab sets.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:all>
+		<xsd:attribute name="startFromScratch" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specicies the mode where most of the standard UI is turned off and
+					replaced with custom UI specified here.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_ContextMenus">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a collection of ContextMenus.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="contextMenu" type="CT_ContextMenu" minOccurs="1" maxOccurs="1000" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_MenuRoot">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies the root element of the customization XML returned by dynamicMenus.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1000">
+				<xsd:group ref="EG_MenuControlsBase"/>
+				<xsd:group ref="EG_MenuOrSplitButtonRegular"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_Title"/>
+		<xsd:attribute name="itemSize" type="ST_ItemSize" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies size of menu items.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:element name="menu" type="CT_MenuRoot">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies the root element of the customization XML used in dynamicMenu's GetContent callback.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+
+	<xsd:annotation>
+		<xsd:documentation>
+			----------------------------------------------------------------------
+			Backstage elements
+			----------------------------------------------------------------------
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:complexType name="CT_BackstageButtonBase">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a generic button in the Backstage
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Action"/>
+		<xsd:attributeGroup ref="AG_Definitive"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+		<xsd:attributeGroup ref="AG_Image"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageRegularButton">
+		<xsd:annotation>
+			<xsd:documentation>
+				A BackstageButtonBase which additionally has the screentip attributes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageButtonBase">
+				<xsd:attributeGroup ref="AG_Screentip"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageGroupButton">
+		<xsd:annotation>
+			<xsd:documentation>
+				A BackstageRegularButton that additionally has the group layout attributes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageRegularButton">
+				<xsd:attributeGroup ref="AG_Expand"/>
+				<xsd:attributeGroup ref="AG_ButtonStyle"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageMenuButton">
+		<xsd:annotation>
+			<xsd:documentation>
+				A BackstageButtonBase which additionally has the description attributes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageButtonBase">
+				<xsd:attributeGroup ref="AG_Description"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageFastCommandButton">
+		<xsd:annotation>
+			<xsd:documentation>
+				A BackstageRegularButton that also has FastCommand-related attributes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageButtonBase">
+				<xsd:attributeGroup ref="AG_IDMso"/>
+				<xsd:attributeGroup ref="AG_PositionAttributes"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageCheckBoxBase">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a generic CheckBox in the Backstage
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Action"/>
+		<xsd:attributeGroup ref="AG_Pressed"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageCheckBox">
+		<xsd:annotation>
+			<xsd:documentation>
+				A BackstageCheckBox which has the additional attributes for group controls
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageCheckBoxBase">
+				<xsd:attributeGroup ref="AG_Expand"/>
+				<xsd:attributeGroup ref="AG_Description"/>
+				<xsd:attributeGroup ref="AG_Screentip"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageMenuCheckBox">
+		<xsd:annotation>
+			<xsd:documentation>
+				A BackstageCheckBox which exists in a primary menu
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageCheckBoxBase">
+				<xsd:attributeGroup ref="AG_Description"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageMenuToggleButton">
+		<xsd:annotation>
+			<xsd:documentation>
+				An toggle button which exists in a primary menu
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageMenuCheckBox">
+				<xsd:attributeGroup ref="AG_Image"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageEditBox">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies an EditBox in the Backstage
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_AlignAttributes"/>
+		<xsd:attributeGroup ref="AG_Expand"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+		<xsd:attribute name="getText" type="ST_Delegate" use="optional"/>
+		<xsd:attribute name="onChange" type="ST_Delegate" use="optional"/>
+		<xsd:attribute name="maxLength" type="ST_StringLength" use="optional"/>
+		<xsd:attribute name="sizeString" type="ST_String" use="optional"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageDropDown">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a drop-down control
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="item" type="CT_BackstageItem" minOccurs="0" maxOccurs="1000"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_AlignAttributes"/>
+		<xsd:attributeGroup ref="AG_Expand"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Action"/>
+		<xsd:attributeGroup ref="AG_Screentip"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+		<xsd:attribute name="getSelectedItemIndex" type="ST_Delegate" use="optional" />
+		<xsd:attribute name="sizeString" type="ST_String" use="optional"/>
+		<xsd:attribute name="getItemCount" type="ST_Delegate" use="optional" />
+		<xsd:attribute name="getItemLabel" type="ST_Delegate" use="optional" />
+		<xsd:attribute name="getItemID" type="ST_Delegate" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_RadioGroup">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a group of radio buttons
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="radioButton" type="CT_BackstageItem" minOccurs="0" maxOccurs="1000"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_AlignAttributes"/>
+		<xsd:attributeGroup ref="AG_Expand"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Action"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+		<xsd:attribute name="getSelectedItemIndex" type="ST_Delegate" use="optional" />
+		<xsd:attribute name="getItemCount" type="ST_Delegate" use="optional" />
+		<xsd:attribute name="getItemLabel" type="ST_Delegate" use="optional" />
+		<xsd:attribute name="getItemID" type="ST_Delegate" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageComboBox">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a combo box control
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="item" type="CT_BackstageItem" minOccurs="0" maxOccurs="1000"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_AlignAttributes"/>
+		<xsd:attributeGroup ref="AG_Expand"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+		<xsd:attribute name="getText" type="ST_Delegate" use="optional"/>
+		<xsd:attribute name="onChange" type="ST_Delegate" use="optional"/>
+		<xsd:attribute name="sizeString" type="ST_String" use="optional"/>
+		<xsd:attribute name="getItemCount" type="ST_Delegate" use="optional" />
+		<xsd:attribute name="getItemLabel" type="ST_Delegate" use="optional" />
+		<xsd:attribute name="getItemID" type="ST_Delegate" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageItem">
+		<xsd:annotation>
+			<xsd:documentation>
+				Represents a selection item in a Backstage DropDown, ComboBox or RadioGroup
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="id" type="ST_UniqueID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the ID of an item. Items cannot use idMso or idQ.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attributeGroup ref="AG_Label"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_Hyperlink">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a hyperlink control
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_AlignAttributes"/>
+		<xsd:attributeGroup ref="AG_Expand"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Action"/>
+		<xsd:attributeGroup ref="AG_Image"/>
+		<xsd:attributeGroup ref="AG_Screentip"/>
+		<xsd:attribute name="target" type="ST_String" use="optional"/>
+		<xsd:attribute name="getTarget" type="ST_Delegate" use="optional"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageLabelControl">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a label control
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_AlignAttributes"/>
+		<xsd:attributeGroup ref="AG_Expand"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attribute name="noWrap" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_PrimaryItem">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a primary button or menu
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="1" maxOccurs="1">
+			<xsd:element name="button" type="CT_BackstageRegularButton" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="menu" type="CT_BackstagePrimaryMenu" minOccurs="0" maxOccurs="1" />
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:group name="EG_BackstageMenuControls">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the controls that can go in a Backstage MenuGroup
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="button" type="CT_BackstageMenuButton"/>
+			<xsd:element name="checkBox" type="CT_BackstageMenuCheckBox"/>
+			<xsd:element name="menu" type="CT_BackstageSubMenu"/>
+			<xsd:element name="toggleButton" type="CT_BackstageMenuToggleButton"/>
+		</xsd:choice>
+	</xsd:group>
+
+	<xsd:complexType name="CT_BackstageMenuGroup">
+		<xsd:annotation>
+			<xsd:documentation>
+				Backstage MenuGroup
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1000">
+				<xsd:group ref="EG_BackstageMenuControls"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attribute name="itemSize" type="ST_ItemSize" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies size of menu items.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageMenuBase">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a Backstage menu
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1000">
+				<xsd:element name="menuGroup" type="CT_BackstageMenuGroup"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Image"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstagePrimaryMenu">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a BackstageMenu which also includes the screentip attributes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageMenuBase">
+				<xsd:attributeGroup ref="AG_Screentip"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageSubMenu">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a BackstageMenu which also includes the
+				description/getDescription attributes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="CT_BackstageMenuBase">
+				<xsd:attributeGroup ref="AG_Description"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_ImageControl">
+		<xsd:annotation>
+			<xsd:documentation>
+				An image-hosting control
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Image"/>
+		<xsd:attributeGroup ref="AG_AltText"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_GroupControls">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a collection of controls that can live in groups.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="0" maxOccurs="1000">
+			<xsd:group ref="EG_GroupControls" minOccurs="0" maxOccurs="1000">
+				<xsd:annotation>
+					<xsd:documentation>
+						All of the controls which are allowed inside of groups.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:group>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageGroup">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a group in the backstage.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="primaryItem" type="CT_PrimaryItem" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>
+							Primary item (button/menu).
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="topItems" type="CT_GroupControls" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						TopItems.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="bottomItems" type="CT_GroupControls" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						TopItems.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_GroupStyle"/>
+		<xsd:attributeGroup ref="AG_HelperText"/>
+		<xsd:attributeGroup ref="AG_ShowLabel"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_HeaderGroup">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a collection of headerButton controls.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="button" type="CT_BackstageRegularButton" minOccurs="1" maxOccurs="100">
+				<xsd:annotation>
+					<xsd:documentation>
+						button
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_TaskGroup">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a TaskGroup.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="category" type="CT_TaskGroupCategory" minOccurs="0" maxOccurs="100">
+				<xsd:annotation>
+					<xsd:documentation>
+						TaskGroup category
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_HelperText"/>
+		<xsd:attributeGroup ref="AG_ShowLabel"/>
+		<xsd:attribute name="allowedTaskSizes" type="ST_TaskSizes" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_TaskGroupCategory">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a collection of TaskGroupTask controls.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="task" type="CT_TaskGroupTask" minOccurs="0" maxOccurs="1000">
+				<xsd:annotation>
+					<xsd:documentation>
+						task
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_TaskGroupTask">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a task in a TaskGroup
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Action"/>
+		<xsd:attributeGroup ref="AG_Definitive"/>
+		<xsd:attributeGroup ref="AG_Image"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Description"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_TaskFormGroup">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a TaskFormGroup.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="category" type="CT_TaskFormGroupCategory" minOccurs="0" maxOccurs="100">
+				<xsd:annotation>
+					<xsd:documentation>
+						TaskFormGroup category
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_HelperText"/>
+		<xsd:attributeGroup ref="AG_ShowLabel"/>
+		<xsd:attribute name="allowedTaskSizes" type="ST_TaskSizes" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_TaskFormGroupCategory">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a collection of TaskFormGroupTask controls.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="task" type="CT_TaskFormGroupTask" minOccurs="0" maxOccurs="1000">
+				<xsd:annotation>
+					<xsd:documentation>
+						task
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_TaskFormGroupTask">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a task in a TaskFormGroup
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="group" type="CT_BackstageGroup" minOccurs="0" maxOccurs="1000">
+				<xsd:annotation>
+					<xsd:documentation>
+						Group.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Image"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Description"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_GroupBox">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a groupBox.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:group ref="EG_GroupControls" minOccurs="0" maxOccurs="1000" />
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attributeGroup ref="AG_Expand"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_LayoutContainer">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a layoutContainer.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:group ref="EG_GroupControls" minOccurs="0" maxOccurs="1000" />
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDCustom"/>
+		<xsd:attribute name="align" use="optional">
+			<xsd:simpleType>
+				<xsd:annotation>
+					<xsd:documentation>
+						Specifies side of the layoutContainer where the children controls will be aligned.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="topLeft" />
+					<xsd:enumeration value="top" />
+					<xsd:enumeration value="topRight" />
+					<xsd:enumeration value="left" />
+					<xsd:enumeration value="center" />
+					<xsd:enumeration value="right" />
+					<xsd:enumeration value="bottomLeft" />
+					<xsd:enumeration value="bottom" />
+					<xsd:enumeration value="bottomRight" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="expand" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the directions in which the layoutContainer will expand to fill its parent container.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="horizontal" />
+					<xsd:enumeration value="vertical" />
+					<xsd:enumeration value="both" />
+					<xsd:enumeration value="neither" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="layoutChildren" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the layout direction for the children controls.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="horizontal" />
+					<xsd:enumeration value="vertical" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:group name="EG_GroupControls">
+		<xsd:annotation>
+			<xsd:documentation>
+				Defines the controls that can go in a group.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="button" type="CT_BackstageGroupButton"/>
+			<xsd:element name="checkBox" type="CT_BackstageCheckBox"/>
+			<xsd:element name="editBox" type="CT_BackstageEditBox"/>
+			<xsd:element name="dropDown" type="CT_BackstageDropDown"/>
+			<xsd:element name="radioGroup" type="CT_RadioGroup"/>
+			<xsd:element name="comboBox" type="CT_BackstageComboBox"/>
+			<xsd:element name="hyperlink" type="CT_Hyperlink"/>
+			<xsd:element name="labelControl" type="CT_BackstageLabelControl"/>
+			<xsd:element name="groupBox" type="CT_GroupBox"/>
+			<xsd:element name="layoutContainer" type="CT_LayoutContainer"/>
+			<xsd:element name="imageControl" type="CT_ImageControl"/>
+		</xsd:choice>
+	</xsd:group>
+
+	<xsd:group name="EG_SimpleGroups">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies the list of simple group types.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="group" type="CT_BackstageGroup">
+				<xsd:annotation>
+					<xsd:documentation>
+						A regular group.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="taskGroup" type="CT_TaskGroup">
+				<xsd:annotation>
+					<xsd:documentation>
+						A TaskGroup.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+
+	<xsd:complexType name="CT_BackstageGroups">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a collection of groups, which is either one taskFormGroup or 
+				a set of simple groups.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="1" maxOccurs="1">
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="taskFormGroup" type="CT_TaskFormGroup">
+					<xsd:annotation>
+						<xsd:documentation>
+							A TaskFormGroup.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:choice minOccurs="0" maxOccurs="1000">
+				<xsd:group ref="EG_SimpleGroups"/>
+			</xsd:choice>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_SimpleGroups">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a collection of simple groups.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="0" maxOccurs="1000">
+			<xsd:group ref="EG_SimpleGroups"/>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_BackstageTab">
+		<xsd:annotation>
+			<xsd:documentation>
+				Specifies a tab that contains a fastCommands section and group controls.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="firstColumn" type="CT_BackstageGroups" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						The left column of groups.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="secondColumn" type="CT_SimpleGroups" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						The right column of groups.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="AG_IDAttributes"/>
+		<xsd:attributeGroup ref="AG_PositionAttributes"/>
+		<xsd:attributeGroup ref="AG_Enabled"/>
+		<xsd:attributeGroup ref="AG_Label"/>
+		<xsd:attributeGroup ref="AG_Visible"/>
+		<xsd:attributeGroup ref="AG_Keytip"/>
+		<xsd:attributeGroup ref="AG_Title"/>
+		<xsd:attribute name="columnWidthPercent" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the division of the tab's columns, as a percentage of the width of the entire tab.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:positiveInteger">
+					<xsd:minInclusive value="1"/>
+					<xsd:maxInclusive value="99"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="firstColumnMinWidth" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the minimum width of the tab's first column in pixels.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:positiveInteger">
+					<xsd:minInclusive value="1"/>
+					<xsd:maxInclusive value="10000"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="firstColumnMaxWidth" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the maximum width of the tab's first column in pixels.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:positiveInteger">
+					<xsd:minInclusive value="1"/>
+					<xsd:maxInclusive value="10000"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="secondColumnMinWidth" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the minimum width of the tab's second column in pixels.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:positiveInteger">
+					<xsd:minInclusive value="1"/>
+					<xsd:maxInclusive value="10000"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="secondColumnMaxWidth" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies the maximum width of the tab's second column in pixels.
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:positiveInteger">
+					<xsd:minInclusive value="1"/>
+					<xsd:maxInclusive value="10000"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_Backstage">
+		<xsd:annotation>
+			<xsd:documentation>
+
+				Specifies the Backstage tag
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="255">
+				<xsd:element name="tab" type="CT_BackstageTab">
+					<xsd:annotation>
+						<xsd:documentation>
+							A tab.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="button" type="CT_BackstageFastCommandButton">
+					<xsd:annotation>
+						<xsd:documentation>
+							FastCommand-style button
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="onShow" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which is invoked when a Backstage is opened.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="onHide" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which is invoked when a Backstage is closed.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_CustomUI">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies the root element of the customization file which is used to create or modify the Ribbon.
+
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="commands" type="CT_Commands" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						Command overrides.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ribbon" type="CT_Ribbon" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						Ribbon.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="backstage" type="CT_Backstage" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						Backstage.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="contextMenus" type="CT_ContextMenus" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						ContextMenus.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="onLoad" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which is invoked when custom UI is loaded.
+					IRibbonUI object is passed as a parameter. 
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="loadImage" type="ST_Delegate" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>
+					Specifies a callback which is invoked to load custom images.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:element name="customUI" type="CT_CustomUI">
+		<xsd:annotation>
+			<xsd:documentation>
+			
+				Specifies the root element of the customization file which is used to create or modify the Ribbon.
+				
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>	
+
+</xsd:schema>
+
