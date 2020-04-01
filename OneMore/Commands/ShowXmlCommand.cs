@@ -18,8 +18,7 @@ namespace River.OneMoreAddIn
 
 			using (var dialog = new XmlDialog())
 			{
-				dialog.ShowDialog();
-				dialog.Focus();
+				dialog.ShowDialog(owner);
 			}
 		}
 	}

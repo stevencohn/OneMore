@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreAddIn", "OneMoreAddIn\OneMoreAddIn.csproj", "{D874E185-08FE-48C5-BADE-0FE84060C978}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMore", "OneMore\OneMore.csproj", "{D874E185-08FE-48C5-BADE-0FE84060C978}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "OneMoreSetup\OneMoreSetup.vdproj", "{617FC926-3389-4888-B08B-29B28E413936}"
 EndProject
