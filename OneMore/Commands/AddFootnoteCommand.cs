@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn
 				page = manager.CurrentPage();
 				ns = page.GetNamespaceOfPrefix("one");
 
-				AddFootnote(manager);
+				AddFootnote();
 			}
 			catch (Exception exc)
 			{
@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void AddFootnote(ApplicationManager manager)
+		private void AddFootnote()
 		{
 			var element = page.Elements(ns + "Outline").Descendants(ns + "T")
 				.Where(e => e.Attribute("selected")?.Value == "all")
@@ -111,6 +111,13 @@ namespace River.OneMoreAddIn
 				.DefaultIfEmpty() // needed to avoid null ref exception
 				.Max(e => e == null ? 0 : int.Parse(e.Attribute("content").Value))
 				+ 1).ToString();
+
+			/*
+			 * Note, this relies on the Meta.omfootnote/content value to track IDs;
+			 * these can get out of sync with the visible [ID] in the content if the user
+			 * mucks around with the hyperlink. Need a refresh routine to ensure all IDs
+			 * are in sync with their Meta labels.
+			 */
 
 			// find previous sibiling element after which new note is to be added
 			var last = separator.NodesAfterSelf()
@@ -187,19 +194,21 @@ namespace River.OneMoreAddIn
 				var line = string.Concat(Enumerable.Repeat("- ", 50));
 				PageHelper.EnsurePageWidth(page, line, "Courier New", 10f, manager.WindowHandle);
 
-				separator = new XElement(ns + "OE",
-					new XAttribute("style", "font-family:'Courier New';font-size:10.0pt;color:#999696"),
-					new XElement(ns + "Meta",
-						new XAttribute("name", "omfootnotes"),
-						new XAttribute("content", "divider")
-						),
-					new XElement(ns + "T", new XCData(line))
-					);
-
 				var content = page.Elements(ns + "Outline").Elements(ns + "OEChildren").FirstOrDefault();
 				if (content != null)
 				{
 					content.Add(new XElement(ns + "OE", new XElement(ns + "T", string.Empty)));
+					content.Add(new XElement(ns + "OE", new XElement(ns + "T", string.Empty)));
+
+					separator = new XElement(ns + "OE",
+						new XAttribute("style", "font-family:'Courier New';font-size:10.0pt;color:#999696"),
+						new XElement(ns + "Meta",
+							new XAttribute("name", "omfootnotes"),
+							new XAttribute("content", "divider")
+							),
+						new XElement(ns + "T", new XCData(line))
+						);
+
 					content.Add(separator);
 				}
 
