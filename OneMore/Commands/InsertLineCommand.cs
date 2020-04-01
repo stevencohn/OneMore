@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn
 				{
 					string line = string.Empty.PadRight(LineCharCount, c);
 
-					EnsurePageWidth(page, line, (IntPtr)manager.Application.Windows.CurrentWindow.WindowHandle);
+					PageHelper.EnsurePageWidth(page, line, "Courier New", 10f, manager.WindowHandle);
 
 					current.AddAfterSelf(
 						new XElement(ns + "OE",
@@ -81,46 +81,6 @@ namespace River.OneMoreAddIn
 				}
 
 				manager.UpdatePageContent(page);
-			}
-		}
-
-
-		private void EnsurePageWidth (XElement page, string line, IntPtr handle)
-		{
-			// detect page width
-
-			var ns = page.GetNamespaceOfPrefix("one");
-
-			var element = page.Element(ns + "Outline")?.Element(ns + "Size");
-			if (element != null)
-			{
-				var attr = element.Attribute("width");
-				if (attr != null)
-				{
-					var outlineWidth = double.Parse(attr.Value);
-
-					// measure line to ensure page width is sufficient
-
-					using (var g = Graphics.FromHwnd(handle))
-					{
-						using (var font = new Font("Courier New", 10f))
-						{
-							var stringSize = g.MeasureString(line, font);
-							var stringPoints = stringSize.Width * 72 / g.DpiX;
-
-							if (stringPoints > outlineWidth)
-							{
-								attr.Value = stringPoints.ToString("#0.00");
-
-								// must include isSetByUser or width doesn't take effect!
-								if (element.Attribute("isSetByUser") == null)
-								{
-									element.Add(new XAttribute("isSetByUser", "true"));
-								}
-							}
-						}
-					}
-				}
 			}
 		}
 	}

@@ -470,6 +470,11 @@ namespace River.OneMoreAddIn
 		// More menu handlers
 		//========================================================================================
 
+		public void AddFootnoteCmd(IRibbonControl control)
+		{
+			factory.GetCommand<AddFootnoteCommand>().Execute();
+		}
+
 		public void AddTitleIconCmd (IRibbonControl control)
 		{
 			factory.GetCommand<AddTitleIconCommand>().Execute();

@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn
 
 	internal static class FormExtensions
 	{
-		static private IntPtr HWND_TOPMOST = new IntPtr(-1);
+		private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
 
 		private const uint SWP_NOSIZE = 0x0001;
 		private const uint SWP_NOMOVE = 0x0002;

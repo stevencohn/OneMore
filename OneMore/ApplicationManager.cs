@@ -54,10 +54,10 @@ namespace River.OneMoreAddIn
 		// Properties
 		//========================================================================================
 
-		public Application Application
-		{
-			get { return application; }
-		}
+		public Application Application => application;
+
+
+		public IntPtr WindowHandle => (IntPtr)application.Windows.CurrentWindow.WindowHandle;
 
 
 		//========================================================================================

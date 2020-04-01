@@ -34,10 +34,10 @@ namespace River.OneMoreAddIn
 
 	internal class CommandFactory
 	{
-		private ILogger logger;
-		private IRibbonUI ribbon;
-		private IWin32Window owner;
-		private List<IDisposable> trash;
+		private readonly ILogger logger;
+		private readonly IRibbonUI ribbon;
+		private readonly IWin32Window owner;
+		private readonly List<IDisposable> trash;
 
 		public CommandFactory (ILogger logger, IRibbonUI ribbon, List<IDisposable> trash, IWin32Window owner)
 		{

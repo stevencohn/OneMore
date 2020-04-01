@@ -34,13 +34,7 @@ namespace River.OneMoreAddIn
 			public static extern bool SetForegroundWindow (IntPtr hWnd);
 		}
 
-		private static bool unprepared;
-
-
-		static UIHelper ()
-		{
-			unprepared = true;
-		}
+		private static bool unprepared = true;
 
 
 		/// <summary>

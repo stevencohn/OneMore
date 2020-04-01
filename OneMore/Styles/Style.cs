@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable CA1822 // member can be made static
+
 namespace River.OneMoreAddIn
 {
 	using System.Collections.Generic;

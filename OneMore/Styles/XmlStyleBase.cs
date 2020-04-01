@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable CA1012 // abstract should not have constructor
+
 namespace River.OneMoreAddIn
 {
 	using System;

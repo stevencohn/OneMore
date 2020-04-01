@@ -2,7 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  Yada yada...
 //************************************************************************************************
 
-#pragma warning disable CS3001 // Type is not CLS-compliant
+#pragma warning disable CS3001  // Type is not CLS-compliant
+#pragma warning disable IDE1006 // member names must begin with uppercase
 
 namespace River.OneMoreAddIn
 {
@@ -24,7 +25,7 @@ namespace River.OneMoreAddIn
 	{
 
 		private ApplicationManager manager;
-		private ILogger logger;
+		private readonly ILogger logger;
 
 
 		public XmlDialog ()
@@ -59,7 +60,7 @@ namespace River.OneMoreAddIn
 				if (page != null)
 				{
 					var xml = page.ToString(SaveOptions.None);
-					var pi = manager.GetCurrentPageInfo();
+					//var pi = manager.GetCurrentPageInfo();
 
 					pageBox.Text =
 						//$"Name=[{pi.Name}]" + Environment.NewLine +
@@ -171,7 +172,7 @@ namespace River.OneMoreAddIn
 			if ((index < 0) && (findIndex > 0))
 			{
 				findIndex = -1;
-				index = SearchOne(box, findBox.Text);
+				SearchOne(box, findBox.Text);
 			}
 		}
 
@@ -280,7 +281,7 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
-				hierBox.Text = $"Cannot get hierarchy for {scope.ToString()}";
+				hierBox.Text = $"Cannot get hierarchy for {scope}";
 			}
 		}
 

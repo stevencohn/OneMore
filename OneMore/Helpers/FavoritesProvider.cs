@@ -17,9 +17,9 @@ namespace River.OneMoreAddIn
 	{
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2006/01/customui";
 
-		private string path;
-		private IRibbonUI ribbon;
-		private ILogger logger;
+		private readonly string path;
+		private readonly IRibbonUI ribbon;
+		private readonly ILogger logger;
 
 
 		/*

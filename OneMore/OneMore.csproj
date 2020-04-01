@@ -94,6 +94,7 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
+    <Compile Include="Commands\AddFootnoteCommand.cs" />
     <Compile Include="Commands\AddTitleIconCommand.cs" />
     <Compile Include="Commands\AlterSizeCommand.cs" />
     <Compile Include="Commands\CollapseCommand.cs" />
@@ -140,6 +141,7 @@
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
     <Compile Include="Helpers\Keyboard.cs" />
+    <Compile Include="Helpers\PageHelper.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\XCDataExtensions.cs" />
     <Compile Include="Helpers\XElementExtensions.cs" />

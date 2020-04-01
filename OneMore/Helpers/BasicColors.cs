@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn
 
 	internal static class BasicColors
 	{
-		private static int[] colors =
+		private static readonly int[] colors =
 		{
 			0xFF8080,
 			0xFFFF80,

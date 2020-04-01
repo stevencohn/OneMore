@@ -40,8 +40,7 @@ namespace River.OneMoreAddIn
 		{
 			string h = new string(' ', level * 2);
 
-			var xse = exc as XmlSchemaException;
-			if (xse != null)
+			if (exc is XmlSchemaException xse)
 			{
 				builder.AppendLine(h + (level == 0 ? String.Empty : "Inner ") +
 					"Exception @line:" + xse.LineNumber + ",col:" + xse.LinePosition);

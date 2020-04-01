@@ -179,7 +179,7 @@ namespace River.OneMoreAddIn
 		{
 			Marshal.WriteInt64(plibNewPosition, stream.Position);
 
-			long num = 0L;
+			long num;
 			switch (dwOrigin)
 			{
 				case 0: // STREAM_SEEK_SET
@@ -227,8 +227,11 @@ namespace River.OneMoreAddIn
 
 		public void Stat (out STATSTG pstatstg, int grfStatFlag)
 		{
-			pstatstg = new STATSTG();
-			pstatstg.cbSize = stream.Length;
+			pstatstg = new STATSTG
+			{
+				cbSize = stream.Length
+			};
+
 			if ((grfStatFlag & 0x0001 /* STATFLAG_NONAME */ ) == 0)
 			{
 				pstatstg.pwcsName = stream.ToString();

@@ -2,7 +2,10 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable 3003, 3009
+#pragma warning disable CS3003 // type is not CLS compliant
+#pragma warning disable CS3009 // base type uint is not CLS compliant
+#pragma warning disable CA1815 // struct should overrid equals
+#pragma warning disable CA1034 // do not nest struct inside class
 
 namespace River.OneMoreAddIn
 {

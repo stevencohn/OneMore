@@ -38,6 +38,11 @@
               label="Add Icon to Page Title"
               onAction="AddTitleIconCmd"/>
             <button
+              id="footnoteButton"
+              imageMso="FootnoteInsert"
+              label="Add Footnote"
+              onAction="AddFootnoteCmd"/>
+            <button
               id="insertSingleLineButton"
               imageMso="HorizontalLineInsert"
               label="Insert Horzontal Line"
