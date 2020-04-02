@@ -100,6 +100,8 @@
     <Compile Include="Commands\CollapseCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\EditStylesCommand.cs" />
+    <Compile Include="Commands\Footnotes\Footnote.cs" />
+    <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
     <Compile Include="Commands\GalleryTileFactory.cs" />
     <Compile Include="Commands\InsertLineCommand.cs" />
     <Compile Include="Commands\InsertTocCommand.cs" />

@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn
 				var ns = page.GetNamespaceOfPrefix("one");
 
 				var selections =
-					from e in page.Element(ns + "Outline").Descendants(ns + "T")
+					from e in page.Elements(ns + "Outline").Descendants(ns + "T")
 					where e.Attributes("selected").Any(a => a.Value.Equals("all"))
 					select e;
 
@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn
 						if (selections.First().GetCData().Value.Length == 0)
 						{
 							// if zero-length selection then select all content
-							selections = page.Element(ns + "Outline").Descendants(ns + "T");
+							selections = page.Elements(ns + "Outline").Descendants(ns + "T");
 						}
 					}
 

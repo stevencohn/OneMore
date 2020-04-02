@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Drawing;
+	using System.Linq;
 	using System.Xml.Linq;
 
 
@@ -31,7 +32,11 @@ namespace River.OneMoreAddIn
 
 			var ns = page.GetNamespaceOfPrefix("one");
 
-			var element = page.Element(ns + "Outline")?.Element(ns + "Size");
+			var element = page.Elements(ns + "Outline")
+				.Where(e => e.Attributes("selected").Any())
+				.Elements(ns + "Size")
+				.FirstOrDefault();
+
 			if (element != null)
 			{
 				var attr = element.Attribute("width");

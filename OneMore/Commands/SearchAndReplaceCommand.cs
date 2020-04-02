@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn
 					var page = manager.CurrentPage();
 					var ns = page.GetNamespaceOfPrefix("one");
 
-					var elements = page.Element(ns + "Outline").Descendants(ns + "T")
+					var elements = page.Elements(ns + "Outline").Descendants(ns + "T")
 						.Select(e => e.Parent)
 						.Distinct()
 						.Cast<XElement>();
