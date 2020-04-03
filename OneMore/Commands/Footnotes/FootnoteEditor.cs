@@ -267,6 +267,21 @@ namespace River.OneMoreAddIn
 
 		//=======================================================================================
 
+		/// <summary>
+		/// Removes the footnote at the current cursor position, either located on a footnote
+		/// reference or a footnote text.
+		/// </summary>
+		/// <remarks>
+		/// A dialog is displayed if the cursor is not positioned over a footnote ref or text.
+		/// </remarks>
+		public void RemoveFootnote()
+		{
+
+		}
+
+
+		//=======================================================================================
+
 		private void RefreshLabels()
 		{
 			// find all references [superscript]
@@ -302,7 +317,6 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			System.Diagnostics.Debugger.Launch();
 
 			// reorder footnotes in sync with refs...
 
