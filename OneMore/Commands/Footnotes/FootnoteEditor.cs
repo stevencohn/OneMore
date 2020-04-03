@@ -4,8 +4,10 @@
 
 namespace River.OneMoreAddIn
 {
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
@@ -48,7 +50,7 @@ namespace River.OneMoreAddIn
 
 			if (element == null)
 			{
-				logger.WriteLine($"{nameof(FootnoteEditor)} could not find a selected outline");
+				logger.WriteLine($"{nameof(FootnoteEditor.AddFootnote)} could not find a selected outline");
 				return;
 			}
 
@@ -127,7 +129,7 @@ namespace River.OneMoreAddIn
 			}
 
 			logger.WriteLine(
-				$"{nameof(FootnoteEditor)} could not add footnote section; OEChildren not found");
+				$"{nameof(FootnoteEditor.EnsureFootnoteFooter)} could not add footnote section; OEChildren not found");
 
 			return false;
 		}
@@ -142,13 +144,6 @@ namespace River.OneMoreAddIn
 				.DefaultIfEmpty()  // avoids null ref exception
 				.Max(e => e == null ? 0 : int.Parse(e.Attribute("content").Value))
 				+ 1).ToString();
-
-			/*
-			 * Note, this relies on the Meta.omfootnote/content value to track IDs;
-			 * these can get out of sync with the visible [ID] in the content if the user
-			 * mucks around with the hyperlink. Need a refresh routine to ensure all IDs
-			 * are in sync with their Meta labels.
-			 */
 
 			// find last footnote (sibling) element after which new note is to be added
 			var last = divider.NodesAfterSelf()
@@ -267,39 +262,15 @@ namespace River.OneMoreAddIn
 
 		//=======================================================================================
 
-		/// <summary>
-		/// Removes the footnote at the current cursor position, either located on a footnote
-		/// reference or a footnote text.
-		/// </summary>
-		/// <remarks>
-		/// A dialog is displayed if the cursor is not positioned over a footnote ref or text.
-		/// </remarks>
-		public void RemoveFootnote()
-		{
-
-		}
-
-
-		//=======================================================================================
-
 		private void RefreshLabels()
 		{
-			// find all references [superscript]
-			var refs = page.Descendants(ns + "T").DescendantNodes().OfType<XCData>()
-				.Select(CData => new
-				{
-					CData,
-					match = Regex.Match(CData.Value, @"vertical-align:super[;'""].*>\[(\d+)\]</span>")
-				})				
-				.Where(o => o.match.Success)
-				.Select(o => new
-				{
-					o.CData,
-					Value = int.Parse(o.match.Groups[1].Value),
-					o.match.Groups[1].Index,
-					o.match.Groups[1].Length
-				})
-				.ToList();
+			var refs = FindSelectedReferences(page.Descendants(ns + "T"), true);
+
+			if (refs?.Any() != true)
+			{
+				// no refs so just give up!
+				return;
+			}
 
 			// find all footnotes
 			var notes = page.Descendants(ns + "Meta")
@@ -307,21 +278,20 @@ namespace River.OneMoreAddIn
 				.Select(e => new
 				{
 					Element = e.Parent,
-					Value = int.Parse(e.Attribute("content").Value)
+					Label = int.Parse(e.Attribute("content").Value)
 				})
 				.ToList();
 
-			if (refs.Count != notes.Count)
+			if ((notes?.Any() != true) || (refs.Count != notes.Count))
 			{
-				// out of sync so just give up!
+				// no notes or out of sync so just give up!
 				return;
 			}
 
-
 			// reorder footnotes in sync with refs...
 
-			var map = refs.Select(r => r.Value).ToList();
-			notes = notes.OrderBy(n => map.IndexOf(n.Value)).ToList();
+			var map = refs.Select(r => r.Label).ToList();
+			notes = notes.OrderBy(n => map.IndexOf(n.Label)).ToList();
 
 			// refresh labels...
 
@@ -329,7 +299,7 @@ namespace River.OneMoreAddIn
 			for (int i = 0, label = 1; i < refs.Count; i++, label++)
 			{
 				var note = notes
-					.Where(n => n.Value == label)
+					.Where(n => n.Label == refs[i].Label)
 					.FirstOrDefault();
 
 				if (note == null)
@@ -338,36 +308,22 @@ namespace River.OneMoreAddIn
 					continue;
 				}
 
-				if (refs[i].Value != label)
+				if (refs[i].Label != label)
 				{
 					var cdata = refs[i].CData.Value.Remove(refs[i].Index, refs[i].Length);
 					refs[i].CData.Value = cdata.Insert(refs[i].Index, label.ToString());
 					count++;
 				}
 
-				if (notes[i].Value != label)
+				if (notes[i].Label != label)
 				{
 					notes[i].Element.Element(ns + "Meta").Attribute("content").Value = label.ToString();
 					count++;
 				}
 
-				var text = notes[i].Element.Elements(ns + "T").DescendantNodes().OfType<XCData>()
-					.Select(CData => new
-					{
-						CData,
-						match = Regex.Match(CData.Value, @"\[(\d+)\]")
-					})
-					.Where(r => r.match.Success)
-					.Select(o => new
-					{
-						o.CData,
-						Value = int.Parse(o.match.Groups[1].Value),
-						o.match.Groups[1].Index,
-						o.match.Groups[1].Length
-					})
-					.FirstOrDefault();
+				var text = FindSelectedReferences(notes[i].Element.Elements(ns + "T"), false)?.FirstOrDefault();
 
-				if ((text != null) && (text.Value != label))
+				if ((text?.Label != label))
 				{
 					var cdata = text.CData.Value.Remove(text.Index, text.Length);
 					text.CData.Value = cdata.Insert(text.Index, label.ToString());
@@ -384,12 +340,175 @@ namespace River.OneMoreAddIn
 					note.Element.Remove();
 				}
 
+				// make sure divider is set
+				EnsureFootnoteFooter();
+
 				var previous = divider;
 				foreach (var note in notes)
 				{
 					previous.AddAfterSelf(note.Element);
 					previous = note.Element;
 				}
+			}
+		}
+
+
+		private List<FootnoteReference> FindSelectedReferences(IEnumerable<XElement> roots, bool super)
+		{
+			var pattern = super
+				? @"vertical-align:super[;'""].*>\[(\d+)\]</span>"
+				: @"\[(\d+)\]";
+
+			var list = roots.DescendantNodes().OfType<XCData>()
+				.Select(CData => new
+				{
+					CData,
+					match = Regex.Match(CData.Value, pattern)
+				})
+				.Where(o => o.match.Success)
+				.Select(o => new FootnoteReference
+				{
+					CData = o.CData,
+					Label = int.Parse(o.match.Groups[1].Value),
+					Index = o.match.Groups[1].Index,
+					Length = o.match.Groups[1].Length
+				})
+				.ToList();
+
+			foreach (var root in roots)
+			{
+				var meta = root.Parent.Elements(ns + "Meta")
+					.Where(e => e.Attribute("name").Value.Equals("omfootnote"))
+					.Select(e => new
+					{
+						CData = e.Parent.Element(ns + "T").DescendantNodes().OfType<XCData>().FirstOrDefault(),
+						Label = int.Parse(e.Attribute("content").Value)
+					})
+					.FirstOrDefault();
+
+				if (!list.Any(e => e.Label == meta.Label))
+				{
+					list.Add(new FootnoteReference
+					{
+						CData = meta.CData,
+						Label = meta.Label,
+						Index = 0,
+						Length = 0
+					});
+				}
+			}
+
+			return list;
+		}
+
+
+		//=======================================================================================
+
+		/// <summary>
+		/// Removes the footnote at the current cursor position, either located on a footnote
+		/// reference or a footnote text.
+		/// </summary>
+		/// <remarks>
+		/// A dialog is displayed if the cursor is not positioned over a footnote ref or text.
+		/// </remarks>
+		public void RemoveFootnote()
+		{
+
+			System.Diagnostics.Debugger.Launch();
+
+
+			// find all selected paragraph
+			var elements = page.Elements(ns + "Outline")
+				.Where(e => e.Attributes("selected").Any())
+				.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all");
+
+			if (elements?.Any() != true)
+			{
+				logger.WriteLine($"{nameof(FootnoteEditor.RemoveFootnote)} could not find a selected outline");
+				return;
+			}
+
+			// matches both context body refs and footer section text lines
+			var selections = FindSelectedReferences(elements, false);
+			if (selections?.Any() != true)
+			{
+				MessageBox.Show(manager.Window, "No footnotes selected");
+				return;
+			}
+
+			foreach (var selection in selections)
+			{
+				var parent = selection.CData.Parent.Parent; // should be a one:OE
+
+				var found = parent.Elements(ns + "Meta")
+					.Where(e => e.Attributes("name").Any(a => a.Value.Equals("omfootnote")))
+					.Any();
+
+				if (found)
+				{
+					// found a footnote, so remove it and associated reference
+
+					parent.Remove();
+
+					// associated reference
+					var nref = page.Elements(ns + "Outline")
+						.Where(e => e.Attributes("selected").Any())
+						.DescendantNodes()
+						.OfType<XCData>()
+						.Where(c => Regex.IsMatch(c.Value, $@"vertical-align:super[;'""].*>\[{selection.Label}\]</span>"))
+						.FirstOrDefault();
+
+					if (nref != null)
+					{
+						RemoveReference(nref, selection.Label);
+					}
+				}
+				else
+				{
+					// found a reference, so remove it and associated footnote
+
+					RemoveReference(selection.CData, selection.Label);
+
+					// associated footnote
+					var note = page.Descendants(ns + "Meta")
+						.Where(e =>
+							e.Attribute("name").Value.Equals("omfootnote") &&
+							e.Attribute("content").Value.Equals(selection.Label.ToString()))
+						.Select(e => e.Parent)
+						.FirstOrDefault();
+
+					if (note != null)
+					{
+						note.Remove();
+					}
+				}
+			}
+
+			RefreshLabels();
+			manager.UpdatePageContent(page);
+		}
+
+
+		/*
+		<a href="..."><span style='vertical-align:super'>[2]</span></a>
+		*/
+
+		private void RemoveReference(XCData data, int label)
+		{
+			var wrapper = data.GetWrapper();
+
+			var a = wrapper.Elements("a").Elements("span")
+				.Where(e => 
+					e.Attribute("style").Value.Contains("vertical-align:super") &&
+					e.Value.Equals($"[{label}]"))
+				.Select(e => e.Parent)
+				.FirstOrDefault();
+
+			if (a != null)
+			{
+				a.Remove();
+				data.Value = wrapper.GetInnerXml();
 			}
 		}
 	}

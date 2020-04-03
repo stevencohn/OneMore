@@ -43,6 +43,11 @@
               label="Add Footnote"
               onAction="AddFootnoteCmd"/>
             <button
+              id="footnoteRemoveButton"
+              imageMso="RemoveCitation"
+              label="Remove Footnote"
+              onAction="RemoveFootnoteCmd"/>
+            <button
               id="insertSingleLineButton"
               imageMso="HorizontalLineInsert"
               label="Insert Horzontal Line"
@@ -81,7 +86,7 @@
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="TrimCmd"/>
-            <menuSeparator id="sep1" title="Fonts"/>
+            <menuSeparator id="sep1" title="Text"/>
             <button
               id="uppercaseButton"
               imageMso="A"

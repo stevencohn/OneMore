@@ -7,6 +7,7 @@ A OneNote add-in with the following Level 1 features:
 * Manage menu of **Favorite** pages
 * Paste Rich Text (preserve colors when **pasting code** from Visual Studio)
 * **Search and replace** text on the current page
+* Add or remove footnotes (endnotes)
 
 *Level 2 Features*
 
@@ -24,6 +25,16 @@ A OneNote add-in with the following Level 1 features:
 
 
 All commands are accessed by two new buttons added to the main ribbon bar.
+
+**Why?**
+
+For myself. I wanted something more than what OneNote provided. I was overwhelmed by _OneNote Gem_,
+aghast at its bloated useless overloads of what was already otherwise available or features that
+I would never use in a million years - and, oh yeah, that price! I admit I was intrigued by the
+_Onetastic Macro_ approach but thought it limited and obtuse, decipherable only by programmers.
+And both of these charge money for something that should be open source and neither provided exactly
+what I wanted. So I did what any self respecting software engineer would do... I built my own.
+Deal with it.
 
 **Minimum Prerequisites**
 

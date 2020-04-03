@@ -538,6 +538,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<PasteRtfCommand>().Execute();
 		}
 
+		public void RemoveFootnoteCmd(IRibbonControl control)
+		{
+			factory.GetCommand<RemoveFootnoteCommand>().Execute();
+		}
+
 		public void SearchAndReplaceCmd (IRibbonControl control)
 		{
 			factory.GetCommand<SearchAndReplaceCommand>().Execute();

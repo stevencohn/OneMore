@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
 	using Microsoft.Office.Interop.OneNote;
+	using Forms = System.Windows.Forms;
 
 
 	internal class ApplicationManager : IDisposable
@@ -55,6 +56,9 @@ namespace River.OneMoreAddIn
 		//========================================================================================
 
 		public Application Application => application;
+
+
+		public Forms.IWin32Window Window => Forms.Control.FromHandle(WindowHandle);
 
 
 		public IntPtr WindowHandle => (IntPtr)application.Windows.CurrentWindow.WindowHandle;

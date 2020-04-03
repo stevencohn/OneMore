@@ -100,8 +100,8 @@
     <Compile Include="Commands\CollapseCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\EditStylesCommand.cs" />
-    <Compile Include="Commands\Footnotes\Footnote.cs" />
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
+    <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
     <Compile Include="Commands\GalleryTileFactory.cs" />
     <Compile Include="Commands\InsertLineCommand.cs" />
     <Compile Include="Commands\InsertTocCommand.cs" />
@@ -109,6 +109,7 @@
     <Compile Include="Commands\NewStyleCommand.cs" />
     <Compile Include="Commands\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\PasteRtfCommand.cs" />
+    <Compile Include="Commands\RemoveFootnoteCommand.cs" />
     <Compile Include="Commands\SearchAndReplaceCommand.cs" />
     <Compile Include="Commands\SearchAndReplace\AtomicFactory.cs" />
     <Compile Include="Commands\SearchAndReplace\ElementAtom.cs" />
