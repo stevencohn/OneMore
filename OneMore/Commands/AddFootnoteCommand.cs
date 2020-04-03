@@ -21,8 +21,7 @@ namespace River.OneMoreAddIn
 			{
 				using (var manager = new ApplicationManager())
 				{
-					var editor = new FootnoteEditor(manager.CurrentPage(), manager);
-					editor.AddFootnote();
+					new FootnoteEditor(manager).AddFootnote();
 				}
 			}
 			catch (Exception exc)

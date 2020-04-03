@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn
 				var attr = element.Attribute("width");
 				if (attr != null)
 				{
-					var outlineWidth = double.Parse(attr.Value);
+					var outlinePoints = double.Parse(attr.Value);
 
 					// measure line to ensure page width is sufficient
 
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn
 							var stringSize = g.MeasureString(line, font);
 							var stringPoints = stringSize.Width * 72 / g.DpiX;
 
-							if (stringPoints > outlineWidth)
+							if (stringPoints > outlinePoints)
 							{
 								attr.Value = stringPoints.ToString("#0.00");
 
