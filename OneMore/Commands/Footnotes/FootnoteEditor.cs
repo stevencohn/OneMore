@@ -262,6 +262,11 @@ namespace River.OneMoreAddIn
 
 		//=======================================================================================
 
+		/// <summary>
+		/// Refreshes the label numbers so that all references are sequentially ordered starting
+		/// at 1 from the top of the page. This is needed when adding a new reference prior to
+		/// existing ones or deleting a reference.
+		/// </summary>
 		private void RefreshLabels()
 		{
 			var refs = FindSelectedReferences(page.Descendants(ns + "T"), true);
@@ -340,9 +345,6 @@ namespace River.OneMoreAddIn
 					note.Element.Remove();
 				}
 
-				// make sure divider is set
-				EnsureFootnoteFooter();
-
 				var previous = divider;
 				foreach (var note in notes)
 				{
@@ -359,6 +361,7 @@ namespace River.OneMoreAddIn
 				? @"vertical-align:super[;'""].*>\[(\d+)\]</span>"
 				: @"\[(\d+)\]";
 
+			// find selected "[\d]" labels
 			var list = roots.DescendantNodes().OfType<XCData>()
 				.Select(CData => new
 				{
@@ -375,6 +378,7 @@ namespace River.OneMoreAddIn
 				})
 				.ToList();
 
+			// find selected footnote text lines
 			foreach (var root in roots)
 			{
 				var meta = root.Parent.Elements(ns + "Meta")
@@ -386,15 +390,19 @@ namespace River.OneMoreAddIn
 					})
 					.FirstOrDefault();
 
-				if (!list.Any(e => e.Label == meta.Label))
+				if ((meta != null) && !list.Any(e => e.Label == meta.Label))
 				{
-					list.Add(new FootnoteReference
+					var match = Regex.Match(meta.CData.Value, @"\[(\d+)\]");
+					if (match.Success)
 					{
-						CData = meta.CData,
-						Label = meta.Label,
-						Index = 0,
-						Length = 0
-					});
+						list.Add(new FootnoteReference
+						{
+							CData = meta.CData,
+							Label = meta.Label,
+							Index = match.Groups[1].Index,
+							Length = match.Groups[1].Length
+						});
+					}
 				}
 			}
 
@@ -413,10 +421,6 @@ namespace River.OneMoreAddIn
 		/// </remarks>
 		public void RemoveFootnote()
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			// find all selected paragraph
 			var elements = page.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
@@ -485,7 +489,23 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			RefreshLabels();
+			// make sure divider is set
+			EnsureFootnoteFooter();
+
+			var remaining = divider.NodesAfterSelf().OfType<XElement>().Elements(ns + "Meta")
+				.Any(e => e.Attribute("name").Value.Equals("omfootnote"));
+
+			if (remaining)
+			{
+				// must be some footnotes so resequence them
+				RefreshLabels();
+			}
+			else
+			{
+				// no footnotes left so remove divider line
+				divider.Remove();
+			}
+
 			manager.UpdatePageContent(page);
 		}
 
