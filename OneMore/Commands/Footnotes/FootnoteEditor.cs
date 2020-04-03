@@ -490,7 +490,7 @@ namespace River.OneMoreAddIn
 			}
 
 			// make sure divider is set
-			EnsureFootnoteFooter();
+			_ = EnsureFootnoteFooter();
 
 			var remaining = divider.NodesAfterSelf().OfType<XElement>().Elements(ns + "Meta")
 				.Any(e => e.Attribute("name").Value.Equals("omfootnote"));
