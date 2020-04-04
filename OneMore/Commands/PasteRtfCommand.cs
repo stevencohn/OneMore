@@ -38,10 +38,7 @@ namespace River.OneMoreAddIn
 				// paste what's remaining from clipboard, letting OneNote do the
 				// heavy lifting of converting the HTML into one:xml schema
 
-				Keyboard.Press(new Keyboard.KeyCode[]
-				{
-					Keyboard.KeyCode.CONTROL, Keyboard.KeyCode.KEY_V
-				});
+				System.Windows.Forms.SendKeys.SendWait("^(v)");
 			}
 			catch (Exception exc)
 			{

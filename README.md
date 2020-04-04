@@ -1,30 +1,28 @@
 ﻿# ![logo](Screenshots/Logo.jpg "logo") OneMore - a OneNote Add-in
 
-A OneNote add-in with the following Level 1 features:
+A OneNote add-in with the following primary features:
 
 * Create/edit/apply **custom styles** with advanced options
 * Disable **spell-check** on the current page
 * Manage menu of **Favorite** pages
 * Paste Rich Text (preserve colors when **pasting code** from Visual Studio)
 * **Search and replace** text on the current page
-* Add or remove footnotes (endnotes)
+* Add or remove **footnotes** (endnotes)
 
-*Level 2 Features*
+*Secondary Features*
 
-* Add icon to page title, also appears in page hierarchy
+* Add special icon to page title, also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
-* Change selected text to UPPERCASE
-* Change selected text to lowercase
-* Insert single horizontal line
-* Insert double horizontal line
-* Insert Table of Contents including all headers on page
-* Increase/Decrease the font size of all content in the current page
+* Change selected text to UPPERCASE or lowercase
+* Insert single or double horizontal line
+* Insert **Table of Contents** including all headers on page
+* Increase/Decrease the font size of all content on the current page
 * Sort pages, sections, or notebooks
 * Trim trailing whitespace from selected text
 * View and edit page XML (a diagnostic, debugging, advanced-user tool)
 
 
-All commands are accessed by two new buttons added to the main ribbon bar.
+All commands are accessed from a small group added to the main ribbon bar.
 
 **Why?**
 
@@ -76,7 +74,7 @@ The Registry key is here:
 
 and the key would be something like this:
 
-	"CodeBase"="C:\\OneMore\\OneMoreAddIn\\bin\\x86\\Debug\\River.OneMoreAddIn.dll"
+	"CodeBase"="C:\\OneMore\\OneMore\\bin\\x86\\Debug\\River.OneMoreAddIn.dll"
 
 *There are additional haphazard notes in the OneMore project folder readme.txt.*
 

@@ -109,8 +109,21 @@ namespace River.OneMoreAddIn
 			if (content != null)
 			{
 				// add a couple of empty lines for spacing
-				content.Add(new XElement(ns + "OE", new XElement(ns + "T", string.Empty)));
-				content.Add(new XElement(ns + "OE", new XElement(ns + "T", string.Empty)));
+				content.Add(new XElement(ns + "OE",
+					new XElement(ns + "Meta",
+						new XAttribute("name", "omfootnotes"),
+						new XAttribute("content", "empty")
+						),
+					new XElement(ns + "T", string.Empty)
+					));
+
+				content.Add(new XElement(ns + "OE",
+					new XElement(ns + "Meta",
+						new XAttribute("name", "omfootnotes"),
+						new XAttribute("content", "empty")
+						),
+					new XElement(ns + "T", string.Empty)
+					));
 
 				// build the divider line
 				divider = new XElement(ns + "OE",
@@ -502,7 +515,22 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
-				// no footnotes left so remove divider line
+				// remove blank lines before divider
+				var empties = divider.Parent.Descendants(ns + "Meta")
+					.Where(e =>
+						e.Attribute("name").Value.Equals("omfootnotes") &&
+						e.Attribute("content").Value.Equals("empty"))
+					.Select(e => e.Parent);
+
+				if (empties != null)
+				{
+					foreach (var empty in empties.ToList())
+					{
+						empty.Remove();
+					}
+				}
+
+				// remove divider line
 				divider.Remove();
 			}
 
