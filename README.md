@@ -62,7 +62,7 @@ Deal with it.
 Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 
 |   |
-| - | -
+| --- | ---
 | **OneMore Command Menu**                               | **Favorites Menu**
 | ![Command Menu](Screenshots/MoreMenu.png)              | ![Favorites Menu](Screenshots/FavoritesMenu.png)
 | **Custom Styles**                                      | **Custom Styles Dialog**
