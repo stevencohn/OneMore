@@ -41,22 +41,26 @@
               id="footnoteButton"
               imageMso="FootnoteInsert"
               label="Add Footnote"
+              getScreentip="GetItemScreentip"
               onAction="AddFootnoteCmd"/>
             <button
               id="footnoteRemoveButton"
               imageMso="RemoveCitation"
               label="Remove Footnote"
+              getScreentip="GetItemScreentip"
               onAction="RemoveFootnoteCmd"/>
             <button
               id="insertSingleLineButton"
               imageMso="HorizontalLineInsert"
               label="Insert Horzontal Line"
+              getScreentip="GetItemScreentip"
               getEnabled="EnsureBodyContext"
               onAction="InsertHorizontalLineCmd"/>
             <button
               id="insertDoubleLineButton"
               getImage="GetDoubleLineImage"
               label="Insert Double Horzontal Line"
+              getScreentip="GetItemScreentip"
               getEnabled="EnsureBodyContext"
               onAction="InsertDoubleHorizontalLineCmd"/>
             <button
@@ -74,11 +78,13 @@
               id="pasteRtfButton"
               imageMso="PasteSpecialDialog"
               label="Paste Rich Text"
+              getScreentip="GetItemScreentip"
               onAction="PasteRtfCmd"/>
             <button
               id="replaceButton"
               imageMso="ReplaceDialog"
               label="Search and Replace"
+              getScreentip="GetItemScreentip"
               onAction="SearchAndReplaceCmd"/>
             <button
               id="trimButton"
@@ -91,21 +97,25 @@
               id="uppercaseButton"
               imageMso="A"
               label="To UPPERCASE"
+              getScreentip="GetItemScreentip"
               onAction="ToUppercaseCmd"/>
             <button
               id="lowercaseButton"
               imageMso="ChangeCase"
               label="To lowercase"
+              getScreentip="GetItemScreentip"
               onAction="ToLowercaseCmd"/>
             <button
               id="increaseFontSizeButton"
               imageMso="FontSizeIncreaseWord"
               label="Increase Font Size"
+              getScreentip="GetItemScreentip"
               onAction="IncreaseFontSizeCmd"/>
             <button
               id="decreaseFontSizeButton"
               imageMso="FontSizeDecreaseWord"
               label="Decrease Font Size"
+              getScreentip="GetItemScreentip"
               onAction="DecreaseFontSizeCmd"/>
             <menuSeparator id="sepOther" title="Other"/>
             <button

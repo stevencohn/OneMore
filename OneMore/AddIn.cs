@@ -2,8 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS3001		// Type is not CLS-compliant
-#pragma warning disable IDE0060		// remove unused parameter
+#pragma warning disable CS3001      // Type is not CLS-compliant
+#pragma warning disable IDE0060     // remove unused parameter
 
 namespace River.OneMoreAddIn
 {
@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn
 	using System.Timers;
 	using Extensibility;
 	using Microsoft.Office.Core;
+	using Forms = System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
@@ -28,11 +29,11 @@ namespace River.OneMoreAddIn
 	[ProgId("River.OneMoreAddin")]
 	public class AddIn : IDTExtensibility2, IRibbonExtensibility
 	{
-		private IRibbonUI ribbon;					// reference to ribbon control
+		private IRibbonUI ribbon;                   // reference to ribbon control
 
-		private ILogger logger;						// diagnostic logger
+		private ILogger logger;                     // diagnostic logger
 		private CommandFactory factory;
-		private readonly Process process;			// current process, to kill if necessary
+		private readonly Process process;           // current process, to kill if necessary
 
 		private List<IDisposable> trash;
 
@@ -41,7 +42,7 @@ namespace River.OneMoreAddIn
 		// Lifecycle
 		//========================================================================================
 
-		public AddIn ()
+		public AddIn()
 		{
 #if WTF
 			Debugger.Launch();
@@ -81,7 +82,7 @@ namespace River.OneMoreAddIn
 		/// <param name="AddInInst"></param>
 		/// <param name="custom"></param>
 
-		public void OnConnection (
+		public void OnConnection(
 				object Application, ext_ConnectMode ConnectMode, object AddInInst, ref Array custom)
 		{
 			// do not grab a reference to Application here as it tends to prevent OneNote
@@ -92,17 +93,62 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void OnAddInsUpdate (ref Array custom)
+		public void OnAddInsUpdate(ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
 			logger.WriteLine($"OneAddInsUpdate({count})");
 		}
 
 
-		public void OnStartupComplete (ref Array custom)
+		public void OnStartupComplete(ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
 			logger.WriteLine($"OnStartupComplete({count})");
+			RegisterHotkeys();
+		}
+
+		private void RegisterHotkeys()
+		{
+			using (var manager = new ApplicationManager())
+			{
+				HotkeyManager.RegisterHotKey(Forms.Keys.F, KeyModifiers.Control | KeyModifiers.Alt);
+				HotkeyManager.RegisterHotKey(Forms.Keys.F, KeyModifiers.Control | KeyModifiers.Shift);
+				HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, KeyModifiers.Shift | KeyModifiers.Alt);
+				HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, KeyModifiers.Shift | KeyModifiers.Alt);
+				HotkeyManager.RegisterHotKey(Forms.Keys.F4, KeyModifiers.NoRepeat);
+				HotkeyManager.RegisterHotKey(Forms.Keys.V, KeyModifiers.Control | KeyModifiers.Alt);
+				HotkeyManager.RegisterHotKey(Forms.Keys.H, KeyModifiers.Control);
+				HotkeyManager.RegisterHotKey(Forms.Keys.U, KeyModifiers.Control | KeyModifiers.Shift);
+				HotkeyManager.RegisterHotKey(Forms.Keys.U, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Alt);
+				HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, KeyModifiers.Control | KeyModifiers.Alt);
+				HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, KeyModifiers.Control | KeyModifiers.Alt);
+				HotkeyManager.RegisterHotKey(Forms.Keys.X, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Alt);
+				HotkeyManager.HotKeyPressed += HotkeyHandler;
+			}
+		}
+
+		private void HotkeyHandler(object sender, EventArgs args)
+		{
+			var a = args as HotkeyEventArgs;
+			var mask = ((uint)a.Modifiers << 16) | (uint)a.Key;
+
+			//logger.WriteLine($"HOTKEY called {a.Modifiers}+{a.Key} mask:{mask:X}");
+
+			switch (mask)
+			{
+				case 0x30046: AddFootnoteCmd(null); break;
+				case 0x60046: RemoveFootnoteCmd(null); break;
+				case 0x500BD: InsertHorizontalLineCmd(null); break;
+				case 0x500BB: InsertDoubleHorizontalLineCmd(null); break;
+				case 0x73: NoSpellCheckCmd(null); break;
+				case 0x30056: PasteRtfCmd(null); break;
+				case 0x20048: SearchAndReplaceCmd(null); break;
+				case 0x70055: ToUppercaseCmd(null); break;
+				case 0x60055: ToLowercaseCmd(null); break;
+				case 0x300BB: DecreaseFontSizeCmd(null); break;
+				case 0x300BD: IncreaseFontSizeCmd(null); break;
+				case 0x70058: ShowXmlCmd(null); break;
+			}
 		}
 
 
@@ -114,7 +160,7 @@ namespace River.OneMoreAddIn
 		 * 2. OnDisconnection
 		 */
 
-		public void OnBeginShutdown (ref Array custom)
+		public void OnBeginShutdown(ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
 			logger.WriteLine($"OnBeginShutdown({count})");
@@ -122,6 +168,9 @@ namespace River.OneMoreAddIn
 			try
 			{
 				logger.WriteLine("Shutting down UI");
+
+				HotkeyManager.Unregister();
+
 				UIHelper.Shutdown();
 			}
 			catch (Exception exc)
@@ -131,7 +180,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void OnDisconnection (ext_DisconnectMode RemoveMode, ref Array custom)
+		public void OnDisconnection(ext_DisconnectMode RemoveMode, ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
 			logger.WriteLine($"OnDisconnection(RemoveMode:{RemoveMode},{count})");
@@ -170,7 +219,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void StopTimer_Elapsed (object sender, ElapsedEventArgs e)
+		private void StopTimer_Elapsed(object sender, ElapsedEventArgs e)
 		{
 #if FORCEDKILL
 			var procs = Process.GetProcessesByName("ONENOTE");
@@ -207,7 +256,7 @@ namespace River.OneMoreAddIn
 		/// <param name="RibbonID"></param>
 		/// <returns></returns>
 
-		public string GetCustomUI (string RibbonID)
+		public string GetCustomUI(string RibbonID)
 		{
 			logger.WriteLine($"GetCustomUI({RibbonID})");
 			var ribbon = Resx.Ribbon;
@@ -230,7 +279,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="ribbon"></param>
 
-		public void RibbonLoaded (IRibbonUI ribbon)
+		public void RibbonLoaded(IRibbonUI ribbon)
 		{
 			logger.WriteLine("RibbonLoaded()");
 			this.ribbon = ribbon;
@@ -254,7 +303,7 @@ namespace River.OneMoreAddIn
 		/// <param name="imageName"></param>
 		/// <returns></returns>
 
-		public IStream GetImage (string imageName)
+		public IStream GetImage(string imageName)
 		{
 			logger.WriteLine($"GetImage({imageName})");
 			IStream stream = null;
@@ -278,7 +327,7 @@ namespace River.OneMoreAddIn
 		/// <param name="control"></param>
 		/// <returns></returns>
 
-		public string GetItemContent (IRibbonControl control)
+		public string GetItemContent(IRibbonControl control)
 		{
 			logger.WriteLine($"GetItemContent({control.Id})");
 			return null;
@@ -291,7 +340,7 @@ namespace River.OneMoreAddIn
 		/// <param name="control"></param>
 		/// <returns></returns>
 
-		public bool GetItemEnabled (IRibbonControl control)
+		public bool GetItemEnabled(IRibbonControl control)
 		{
 			logger.WriteLine($"GetItemEnabled({control.Id})");
 			return true;
@@ -304,7 +353,7 @@ namespace River.OneMoreAddIn
 		/// <param name="control">The control element with a unique Id.</param>
 		/// <returns></returns>
 
-		public string GetItemLabel (IRibbonControl control)
+		public string GetItemLabel(IRibbonControl control)
 		{
 			logger.WriteLine($"GetItemLabel({control.Id})");
 
@@ -330,7 +379,7 @@ namespace River.OneMoreAddIn
 		/// <param name="control">The control element with a unique Id.</param>
 		/// <returns></returns>
 
-		public string GetItemScreentip (IRibbonControl control)
+		public string GetItemScreentip(IRibbonControl control)
 		{
 			logger.WriteLine($"GetItemScreentip({control.Id})");
 			string resId = control.Id + "_Screentip";
@@ -356,14 +405,14 @@ namespace River.OneMoreAddIn
 		/// <param name="control"></param>
 		/// <returns></returns>
 
-		public bool GetItemVisible (IRibbonControl control)
+		public bool GetItemVisible(IRibbonControl control)
 		{
 			logger.WriteLine($"GetItemVisible({control.Id})");
 			return true;
 		}
 
 
-		public IStream GetOneMoreMenuImage (IRibbonControl control)
+		public IStream GetOneMoreMenuImage(IRibbonControl control)
 		{
 			logger.WriteLine($"GetOneMoreMenuImage({control.Id})");
 
@@ -411,25 +460,25 @@ namespace River.OneMoreAddIn
 		#endregion Menu behaviors
 
 		#region Style Gallery
-		public int GetStyleGalleryItemCount (IRibbonControl control)
+		public int GetStyleGalleryItemCount(IRibbonControl control)
 		{
 			var count = new StyleProvider().Count;
 			logger.WriteLine($"GetStyleGalleryItemCount({control.Id}) = {count}");
 			return count;
 		}
 
-		public string GetStyleGalleryItemId (IRibbonControl control, int itemIndex)
+		public string GetStyleGalleryItemId(IRibbonControl control, int itemIndex)
 		{
 			//logger.WriteLine($"GetStyleGalleryItemId({control.Id}, {itemIndex})");
 			return "style_" + itemIndex;
 		}
 
-		public IStream GetStyleGalleryItemImage (IRibbonControl control, int itemIndex)
+		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
 			return factory.GetCommand<GalleryTileFactory>().MakeTile(itemIndex);
 		}
 
-		public string GetStyleGalleryItemScreentip (IRibbonControl control, int itemIndex)
+		public string GetStyleGalleryItemScreentip(IRibbonControl control, int itemIndex)
 		{
 			var name = new StyleProvider().GetName(itemIndex);
 			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{name}\"");
@@ -475,60 +524,60 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<AddFootnoteCommand>().Execute();
 		}
 
-		public void AddTitleIconCmd (IRibbonControl control)
+		public void AddTitleIconCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AddTitleIconCommand>().Execute();
 		}
 
-		public void ApplyStyleCmd (IRibbonControl control, string selectedId, int selectedIndex)
+		public void ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
 		{
 			//logger.WriteLine($"StyleGallerySelected2({control.Id}, {selectedId}, {selectedIndex})");
 			factory.GetCommand<ApplyStyleCommand>().Execute(selectedIndex);
 		}
 
-		public void CollapseCmd (IRibbonControl control)
+		public void CollapseCmd(IRibbonControl control)
 		{
 			factory.GetCommand<CollapseCommand>().Execute();
 		}
 
-		public void DecreaseFontSizeCmd (IRibbonControl control)
+		public void DecreaseFontSizeCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AlterSizeCommand>().Execute(-1);
 		}
 
-		public void EditStylesCmd (IRibbonControl control)
+		public void EditStylesCmd(IRibbonControl control)
 		{
 			factory.GetCommand<EditStylesCommand>().Execute();
 			ribbon.Invalidate(); // TODO: only if changes?
 		}
 
-		public void NewStyleCmd (IRibbonControl control)
+		public void NewStyleCmd(IRibbonControl control)
 		{
 			factory.GetCommand<NewStyleCommand>().Execute();
 			ribbon.Invalidate(); // TODO: only if changes?
 		}
 
-		public void IncreaseFontSizeCmd (IRibbonControl control)
+		public void IncreaseFontSizeCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AlterSizeCommand>().Execute(1);
 		}
 
-		public void InsertDoubleHorizontalLineCmd (IRibbonControl control)
+		public void InsertDoubleHorizontalLineCmd(IRibbonControl control)
 		{
 			factory.GetCommand<InsertLineCommand>().Execute('═');
 		}
 
-		public void InsertHorizontalLineCmd (IRibbonControl control)
+		public void InsertHorizontalLineCmd(IRibbonControl control)
 		{
 			factory.GetCommand<InsertLineCommand>().Execute('─');
 		}
 
-		public void InsertTocCmd (IRibbonControl control)
+		public void InsertTocCmd(IRibbonControl control)
 		{
 			factory.GetCommand<InsertTocCommand>().Execute();
 		}
 
-		public void NoSpellCheckCmd (IRibbonControl control)
+		public void NoSpellCheckCmd(IRibbonControl control)
 		{
 			factory.GetCommand<NoSpellCheckCommand>().Execute();
 		}
@@ -543,17 +592,17 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<RemoveFootnoteCommand>().Execute();
 		}
 
-		public void SearchAndReplaceCmd (IRibbonControl control)
+		public void SearchAndReplaceCmd(IRibbonControl control)
 		{
 			factory.GetCommand<SearchAndReplaceCommand>().Execute();
 		}
 
-		public void ShowAboutCmd (IRibbonControl control)
+		public void ShowAboutCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ShowAboutCommand>().Execute();
 		}
 
-		public void ShowXmlCmd (IRibbonControl control)
+		public void ShowXmlCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ShowXmlCommand>().Execute();
 		}
@@ -563,12 +612,12 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<SortCommand>().Execute();
 		}
 
-		public void ToLowercaseCmd (IRibbonControl control)
+		public void ToLowercaseCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ToCaseCommand>().Execute(false);
 		}
 
-		public void ToUppercaseCmd (IRibbonControl control)
+		public void ToUppercaseCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ToCaseCommand>().Execute(true);
 		}

@@ -143,6 +143,7 @@
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
+    <Compile Include="Helpers\HotkeyManager.cs" />
     <Compile Include="Helpers\PageHelper.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\XCDataExtensions.cs" />

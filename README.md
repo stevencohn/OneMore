@@ -9,7 +9,7 @@ A OneNote add-in with the following primary features:
 * **Search and replace** text on the current page
 * Add or remove **footnotes** (endnotes)
 
-*Secondary Features*
+*And these secondary features:*
 
 * Add special icon to page title, also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
@@ -22,7 +22,24 @@ A OneNote add-in with the following primary features:
 * View and edit page XML (a diagnostic, debugging, advanced-user tool)
 
 
-All commands are accessed from a small group added to the main ribbon bar.
+All commands are accessed from a small group added to the main ribbon bar and 
+most also have their own key bindings as follows:
+
+| Command                       | Key Binding
+| ----------------------------- | -----------
+| Add footnote                  | Ctrl + Alt + F
+| Remove footnote               | Ctrl + Shift + Alt + F
+| Insert horizontal line        | Shift + Alt + Minus
+| Insert double horizontal line | Shift + Alt + Equals
+| No Spell Check                | F4
+| Paste Rich Text               | Ctrl + Alt + V
+| Search and Replace            | Ctrl + H
+| To uppercase                  | Ctrl + Shift + Alt + U
+| To lowercase                  | Ctrl + Shift + U
+| Increase font size            | Cltr + Alt + Plus
+| Decrease font size            | Ctrl + Alt + Minus
+| Show XML                      | Ctrl + Shift + Alt + X
+
 
 **Why?**
 
@@ -44,14 +61,14 @@ Deal with it.
 
 Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 
-|                                                        |                                                      |
-| ------------------------------------------------------ | ---------------------------------------------------- |
-| **OneMore Command Menu**                               | **Favorites Menu**                                   |
-| ![Command Menu](Screenshots/MoreMenu.png)              | ![Favorites Menu](Screenshots/FavoritesMenu.png)     | 
-| **Custom Styles**                                      | **Custom Styles Dialog**                             |
-| ![Styles](Screenshots/CustomStyles.png)                | ![Styles Dialog](Screenshots/CustomStylesDialog.png) |
-| **Title Icons Dialog**                                 | **Sort Dialog**                                      |
-| ![Title Icon Dialog](Screenshots/TItleIconsDialog.png) | ![Sort Dialog](Screenshots/SortDialog.png)           |
+|   |
+| - | -
+| **OneMore Command Menu**                               | **Favorites Menu**
+| ![Command Menu](Screenshots/MoreMenu.png)              | ![Favorites Menu](Screenshots/FavoritesMenu.png)
+| **Custom Styles**                                      | **Custom Styles Dialog**
+| ![Styles](Screenshots/CustomStyles.png)                | ![Styles Dialog](Screenshots/CustomStylesDialog.png)
+| **Title Icons Dialog**                                 | **Sort Dialog**
+| ![Title Icon Dialog](Screenshots/TItleIconsDialog.png) | ![Sort Dialog](Screenshots/SortDialog.png)
 
 **XML Dialog**
 

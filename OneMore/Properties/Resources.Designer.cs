@@ -159,11 +159,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;CustomStyles xmlns:om=&quot;http://schemas.smc.com/onemore/2020/styles&quot;&gt;
-        ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 1&quot; styleType=&quot;Heading&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;20&quot; fontStyle=&quot;Regular&quot; color=&quot;#ff464646&quot; spaceBefore=&quot;14&quot; /&gt;
-        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 2&quot; styleType=&quot;Heading&quot; fontFamily=&quot;Calibri Light&quot; fontSize=&quot;18&quot; fontStyle=&quot;Regular&quot; color=&quot;#ffe67832&quot; spaceBefore=&quot;14&quot; /&gt;
-        ///  &lt;Style index=&quot;3&quot; name=&quot;Heading 3&quot; styleType=&quot;Heading&quot; fontFamily=&quot;Calibri Light&quot; fontSi [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;CustomStyles&gt;
+        ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
+        ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
+        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot;16.0&quot; spaceBefore=&quot;12.0&quot; sp [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CustomStyles {
             get {
@@ -187,6 +187,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Cyclist", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrease page font size (Ctrl + Alt + Minus).
+        /// </summary>
+        internal static string decreaseFontSizeButton_Screentip {
+            get {
+                return ResourceManager.GetString("decreaseFontSizeButton_Screentip", resourceCulture);
             }
         }
         
@@ -280,12 +289,57 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add footnote (Ctrl + Alt + F).
+        /// </summary>
+        internal static string footnoteButton_Screentip {
+            get {
+                return ResourceManager.GetString("footnoteButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove footnote (Shift + Alt + F).
+        /// </summary>
+        internal static string footnoteRemoveButton_Screentip {
+            get {
+                return ResourceManager.GetString("footnoteRemoveButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Hammer {
             get {
                 object obj = ResourceManager.GetObject("Hammer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase page font size (Ctrl + Alt + Plus).
+        /// </summary>
+        internal static string increaseFontSizeButton_Screentip {
+            get {
+                return ResourceManager.GetString("increaseFontSizeButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert double horizontal line (Shift + Alt + Equals).
+        /// </summary>
+        internal static string insertDoubleLineButton_Screentip {
+            get {
+                return ResourceManager.GetString("insertDoubleLineButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert single horizontal line (Shift + Alt + Minus).
+        /// </summary>
+        internal static string insertSingleLineButton_Screentip {
+            get {
+                return ResourceManager.GetString("insertSingleLineButton_Screentip", resourceCulture);
             }
         }
         
@@ -320,6 +374,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Convert text to lowercase (Ctrl + Shift + U).
+        /// </summary>
+        internal static string lowercaseButton_Screentip {
+            get {
+                return ResourceManager.GetString("lowercaseButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Memo {
@@ -349,7 +412,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable spell check for entire page.
+        ///   Looks up a localized string similar to Disable spell check for entire page (F4).
         /// </summary>
         internal static string noSpellCheckButton_Screentip {
             get {
@@ -423,6 +486,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paste rich text (Ctrl + Alt + V).
+        /// </summary>
+        internal static string pasteRtfButton_Screentip {
+            get {
+                return ResourceManager.GetString("pasteRtfButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pencil {
@@ -449,6 +521,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Reorder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search and replace (Ctrl + H).
+        /// </summary>
+        internal static string replaceButton_Screentip {
+            get {
+                return ResourceManager.GetString("replaceButton_Screentip", resourceCulture);
             }
         }
         
@@ -493,7 +574,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show XML of hierarchy and current page.
+        ///   Looks up a localized string similar to Show XML of hierarchy and current page (Ctrl + Shift + Alt + X).
         /// </summary>
         internal static string showXmlButton_Screentip {
             get {
@@ -511,7 +592,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show XML of hierarchy and current page.
+        ///   Looks up a localized string similar to Show XML of hierarchy and current page (Ctrl + Shift + Alt + X).
         /// </summary>
         internal static string showXmlButton0_Screentip {
             get {
@@ -634,6 +715,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("UpArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert text to uppercase (Ctrl + Shift + Alt + U).
+        /// </summary>
+        internal static string uppercaseButton_Screentip {
+            get {
+                return ResourceManager.GetString("uppercaseButton_Screentip", resourceCulture);
             }
         }
         
