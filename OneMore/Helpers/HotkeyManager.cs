@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn
 	// https://stackoverflow.com/questions/3654787/global-hotkey-in-console-application
 
 	[Flags]
-	public enum KeyModifiers
+	internal enum KeyModifiers
 	{
 		Alt = 1,
 		Control = 2,
@@ -24,10 +24,11 @@ namespace River.OneMoreAddIn
 		NoRepeat = 0x4000
 	}
 
-	public class HotkeyEventArgs : EventArgs
+	internal class HotkeyEventArgs : EventArgs
 	{
 		public readonly Keys Key;
 		public readonly KeyModifiers Modifiers;
+		public readonly uint Value;
 
 		public HotkeyEventArgs(Keys key, KeyModifiers modifiers)
 		{
@@ -37,13 +38,13 @@ namespace River.OneMoreAddIn
 
 		public HotkeyEventArgs(IntPtr hotKeyParam)
 		{
-			uint param = (uint)hotKeyParam.ToInt64();
-			Key = (Keys)((param & 0xffff0000) >> 16);
-			Modifiers = (KeyModifiers)(param & 0x0000ffff);
+			Value = (uint)hotKeyParam.ToInt64();
+			Key = (Keys)((Value & 0xffff0000) >> 16);
+			Modifiers = (KeyModifiers)(Value & 0x0000ffff);
 		}
 	}
 
-	public static class HotkeyManager
+	internal static class HotkeyManager
 	{
 		public static event EventHandler<HotkeyEventArgs> HotKeyPressed;
 
@@ -65,7 +66,16 @@ namespace River.OneMoreAddIn
 			{
 				if (m.Msg == WM_HOTKEY)
 				{
-					OnHotKeyPressed(new HotkeyEventArgs(m.LParam));
+					var fg = GetForegroundWindow();
+					_ = GetWindowThreadProcessId(fg, out var fpid);
+					if (fpid == processId)
+					{
+						OnHotKeyPressed(new HotkeyEventArgs(m.LParam));
+					}
+					else
+					{
+						SendMessage(fg, m.Msg, (int)m.WParam, m.LParam);
+					}
 				}
 
 				base.WndProc(ref m);
@@ -80,12 +90,19 @@ namespace River.OneMoreAddIn
 
 		private static volatile MessageWindow window;
 		private static volatile IntPtr handle;
-		private static int counter = 0;
+		private static int processId;
+		private static int counter = 0xE000;
 		private static readonly List<int> registeredKeys = new List<int>();
 		private static readonly ManualResetEvent resetEvent = new ManualResetEvent(false);
 
 		static HotkeyManager()
 		{
+			using (var mgr = new ApplicationManager())
+			{
+				_ = GetWindowThreadProcessId(mgr.WindowHandle, out var pid);
+				processId = (int)pid;
+			}
+
 			var messageLoop = new Thread(delegate () { Application.Run(new MessageWindow()); })
 			{
 				Name = $"{nameof(HotkeyManager)}Thread",
@@ -95,6 +112,7 @@ namespace River.OneMoreAddIn
 			messageLoop.Start();
 		}
 
+		public static ApplicationManager AppManager { get; set; }
 
 		public static void RegisterHotKey(Keys key, KeyModifiers modifiers)
 		{
@@ -127,6 +145,15 @@ namespace River.OneMoreAddIn
 		{
 			HotKeyPressed?.Invoke(null, e);
 		}
+
+		[DllImport("user32.dll")]
+		private static extern IntPtr GetForegroundWindow();
+
+		[DllImport("user32.dll", SetLastError = true)]
+		private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
+
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
 
 		[DllImport("user32", SetLastError = true)]
 		private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);

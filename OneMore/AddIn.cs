@@ -109,45 +109,40 @@ namespace River.OneMoreAddIn
 
 		private void RegisterHotkeys()
 		{
-			using (var manager = new ApplicationManager())
-			{
-				HotkeyManager.RegisterHotKey(Forms.Keys.F, KeyModifiers.Control | KeyModifiers.Alt);
-				HotkeyManager.RegisterHotKey(Forms.Keys.F, KeyModifiers.Control | KeyModifiers.Shift);
-				HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, KeyModifiers.Shift | KeyModifiers.Alt);
-				HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, KeyModifiers.Shift | KeyModifiers.Alt);
-				HotkeyManager.RegisterHotKey(Forms.Keys.F4, KeyModifiers.NoRepeat);
-				HotkeyManager.RegisterHotKey(Forms.Keys.V, KeyModifiers.Control | KeyModifiers.Alt);
-				HotkeyManager.RegisterHotKey(Forms.Keys.H, KeyModifiers.Control);
-				HotkeyManager.RegisterHotKey(Forms.Keys.U, KeyModifiers.Control | KeyModifiers.Shift);
-				HotkeyManager.RegisterHotKey(Forms.Keys.U, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Alt);
-				HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, KeyModifiers.Control | KeyModifiers.Alt);
-				HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, KeyModifiers.Control | KeyModifiers.Alt);
-				HotkeyManager.RegisterHotKey(Forms.Keys.X, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Alt);
-				HotkeyManager.HotKeyPressed += HotkeyHandler;
-			}
+			//HotkeyManager.RegisterHotKey(Forms.Keys.F, KeyModifiers.Control | KeyModifiers.Alt);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.F, KeyModifiers.Control | KeyModifiers.Shift);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, KeyModifiers.Shift | KeyModifiers.Alt);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, KeyModifiers.Shift | KeyModifiers.Alt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.F4, KeyModifiers.NoRepeat);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.V, KeyModifiers.Control | KeyModifiers.Alt);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.H, KeyModifiers.Control);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.U, KeyModifiers.Control | KeyModifiers.Shift);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.U, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Alt);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, KeyModifiers.Control | KeyModifiers.Alt);
+			//HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, KeyModifiers.Control | KeyModifiers.Alt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.X, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Alt);
+			HotkeyManager.HotKeyPressed += HotkeyHandler;
 		}
 
 		private void HotkeyHandler(object sender, EventArgs args)
 		{
 			var a = args as HotkeyEventArgs;
-			var mask = ((uint)a.Modifiers << 16) | (uint)a.Key;
+			//logger.WriteLine($"HOTKEY called {a.Modifiers}+{a.Key} mask:{mask:x} value:{a.Value:x}");
 
-			//logger.WriteLine($"HOTKEY called {a.Modifiers}+{a.Key} mask:{mask:X}");
-
-			switch (mask)
+			switch (a.Value)
 			{
-				case 0x30046: AddFootnoteCmd(null); break;
-				case 0x60046: RemoveFootnoteCmd(null); break;
-				case 0x500BD: InsertHorizontalLineCmd(null); break;
-				case 0x500BB: InsertDoubleHorizontalLineCmd(null); break;
-				case 0x73: NoSpellCheckCmd(null); break;
-				case 0x30056: PasteRtfCmd(null); break;
-				case 0x20048: SearchAndReplaceCmd(null); break;
-				case 0x70055: ToUppercaseCmd(null); break;
-				case 0x60055: ToLowercaseCmd(null); break;
-				case 0x300BB: DecreaseFontSizeCmd(null); break;
-				case 0x300BD: IncreaseFontSizeCmd(null); break;
-				case 0x70058: ShowXmlCmd(null); break;
+				case 0x460003: AddFootnoteCmd(null); break;
+				case 0x460006: RemoveFootnoteCmd(null); break;
+				case 0xbd0005: InsertHorizontalLineCmd(null); break;
+				case 0xbb0005: InsertDoubleHorizontalLineCmd(null); break;
+				case 0x730000: NoSpellCheckCmd(null); break;
+				case 0x560003: PasteRtfCmd(null); break;
+				case 0x480002: SearchAndReplaceCmd(null); break;
+				case 0x550007: ToUppercaseCmd(null); break;
+				case 0x550006: ToLowercaseCmd(null); break;
+				case 0xbb0003: DecreaseFontSizeCmd(null); break;
+				case 0xbd0003: IncreaseFontSizeCmd(null); break;
+				case 0x580007: ShowXmlCmd(null); break;
 			}
 		}
 

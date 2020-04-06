@@ -55,6 +55,8 @@ namespace River.OneMoreAddIn
 		// Properties
 		//========================================================================================
 
+		public bool Active => application.Windows.CurrentWindow.Active;
+
 		public Application Application => application;
 
 

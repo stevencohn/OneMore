@@ -23,22 +23,24 @@ A OneNote add-in with the following primary features:
 
 
 All commands are accessed from a small group added to the main ribbon bar and 
-most also have their own key bindings as follows:
+most also have their own key bindings as follows<sup>1</sup>
 
-| Command                       | Key Binding
-| ----------------------------- | -----------
-| Add footnote                  | Ctrl + Alt + F
-| Remove footnote               | Ctrl + Shift + Alt + F
-| Insert horizontal line        | Shift + Alt + Minus
-| Insert double horizontal line | Shift + Alt + Equals
-| No Spell Check                | F4
-| Paste Rich Text               | Ctrl + Alt + V
-| Search and Replace            | Ctrl + H
-| To uppercase                  | Ctrl + Shift + Alt + U
-| To lowercase                  | Ctrl + Shift + U
-| Increase font size            | Cltr + Alt + Plus
-| Decrease font size            | Ctrl + Alt + Minus
-| Show XML                      | Ctrl + Shift + Alt + X
+| Command                       | Key Binding |
+| ----------------------------- | ----------- | --
+| Add footnote                  | Ctrl + Alt + F | See below<sup>1</sup>
+| Remove footnote               | Ctrl + Shift + Alt + F | See below<sup>1</sup>
+| Insert horizontal line        | Shift + Alt + Minus | See below<sup>1</sup>
+| Insert double horizontal line | Shift + Alt + Equals | See below<sup>1</sup>
+| No Spell Check                | F4 |
+| Paste Rich Text               | Ctrl + Alt + V | See below<sup>1</sup>
+| Search and Replace            | Ctrl + H | See below<sup>1</sup>
+| To uppercase                  | Ctrl + Shift + Alt + U | See below<sup>1</sup>
+| To lowercase                  | Ctrl + Shift + U | See below<sup>1</sup>
+| Increase font size            | Cltr + Alt + Plus | See below<sup>1</sup>
+| Decrease font size            | Ctrl + Alt + Minus | See below<sup>1</sup>
+| Show XML                      | Ctrl + Shift + Alt + X |
+
+<sup>1</sup>Only F4 is enable temporarily while I figure out a better approach... TBD
 
 
 **Why?**
