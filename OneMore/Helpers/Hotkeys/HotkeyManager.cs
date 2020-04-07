@@ -15,21 +15,33 @@ namespace River.OneMoreAddIn
 	// based on
 	// https://stackoverflow.com/questions/3654787/global-hotkey-in-console-application
 
+
 	/// <summary>
-	/// 
+	/// Maintains a set of global hotkeys that remain active only while OneNote is the
+	/// active application.
 	/// </summary>
+	/// <remarks>
+	/// Switching global hotkeys on/off based on which application is active is accomplished
+	/// using a Windows event hook.
+	/// <para>
+	/// This approach is needed because OneMore runs as a .NET interop module and is limited
+	/// in what it can do to attach to, intercept messages and events, or inject handlers into
+	/// OneNote's unmanaged context.
+	/// </para>
+	/// </remarks>
 	internal static class HotkeyManager
 	{
-		private delegate void RegisterHotKeyDelegate(IntPtr hwnd, int id, uint modifiers, uint key);
-		private delegate void UnRegisterHotKeyDelegate(IntPtr hwnd, int id);
+		private delegate void RegisterHotkeyDelegate(IntPtr hwnd, int id, uint modifiers, uint key);
+		private delegate void UnRegisterHotkeyDelegate(IntPtr hwnd, int id);
 
+		private static readonly List<Hotkey> registeredKeys = new List<Hotkey>();
+		private static readonly ManualResetEvent resetEvent = new ManualResetEvent(false);
 		private static volatile MessageWindow window;
 		private static volatile IntPtr handle;
 		private static readonly uint threadId;
 		private static bool registered = false;
 		private static int counter = 0xE000;
-		private static readonly List<Hotkey> registeredKeys = new List<Hotkey>();
-		private static readonly ManualResetEvent resetEvent = new ManualResetEvent(false);
+
 
 		static HotkeyManager()
 		{
@@ -38,40 +50,40 @@ namespace River.OneMoreAddIn
 				threadId = Native.GetWindowThreadProcessId(mgr.WindowHandle, out _);
 			}
 
-			var messageLoop = new Thread(delegate () { Application.Run(new MessageWindow()); })
+			new Thread(delegate () { Application.Run(new MessageWindow()); })
 			{
 				Name = $"{nameof(HotkeyManager)}Thread",
 				IsBackground = true
-			};
-
-			messageLoop.Start();
+			}
+			.Start();
 		}
 
 
 		/// <summary>
-		/// 
+		/// An event handler for consumers
 		/// </summary>
 		public static event EventHandler<HotkeyEventArgs> HotKeyPressed;
 
 
 		/// <summary>
-		/// 
+		/// Registers a new global hotkey
 		/// </summary>
-		/// <param name="key"></param>
-		/// <param name="modifiers"></param>
+		/// <param name="key">The primary key code</param>
+		/// <param name="modifiers">The key modifiers such as Ctrl, Shift, and Alt</param>
 		public static void RegisterHotKey(Keys key, Hotmods modifiers = 0)
 		{
 			resetEvent.WaitOne();
-			int id = Interlocked.Increment(ref counter);
+
+			int keyId = Interlocked.Increment(ref counter);
 			modifiers |= Hotmods.NoRepeat;
 
 			window.Invoke(
-				new RegisterHotKeyDelegate(Register),
-				handle, id, (uint)modifiers, (uint)key);
+				new RegisterHotkeyDelegate(Register),
+				handle, keyId, (uint)modifiers, (uint)key);
 
 			registeredKeys.Add(new Hotkey
 			{
-				Id = id,
+				Id = keyId,
 				Key = (uint)key,
 				Modifiers = (uint)modifiers
 			});
@@ -80,6 +92,7 @@ namespace River.OneMoreAddIn
 		}
 
 
+		// runs as a delegated routine within the context of MessageWindow
 		private static void Register(IntPtr hwnd, int id, uint modifiers, uint key)
 		{
 			Native.RegisterHotKey(hwnd, id, modifiers, key);
@@ -87,21 +100,23 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// 
+		/// Unregisters all hotkeys; used for OneNote shutdown
 		/// </summary>
 		public static void Unregister()
 		{
 			registeredKeys.ForEach(k =>
-				window.Invoke(new UnRegisterHotKeyDelegate(Unregister), handle, k.Id));
+				window.Invoke(new UnRegisterHotkeyDelegate(Unregister), handle, k.Id));
 		}
 
 
+		// runs as a delegated routine within the context of MessageWindow
 		private static void Unregister(IntPtr hwnd, int id)
 		{
 			Native.UnregisterHotKey(handle, id);
 		}
 
 
+		// Invoked from MessageWindow to propagate event to consumer's handler
 		private static void OnHotKeyPressed(HotkeyEventArgs e)
 		{
 			HotKeyPressed?.Invoke(null, e);
@@ -109,19 +124,23 @@ namespace River.OneMoreAddIn
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Private message interceptor
 
 		private class MessageWindow : Form
 		{
-			private readonly uint winThreadId;
+			private readonly uint msgThreadId;
 
 			public MessageWindow()
 			{
 				window = this;
 				handle = Handle;
 
-				winThreadId = Native.GetWindowThreadProcessId(handle, out _);
+				// thread of MessageWindow would be a separate dllhost.exe
+				// process started by the OneNote process (with SysWOW64 in its command line)
+				msgThreadId = Native.GetWindowThreadProcessId(handle, out _);
 
-				_ = Native.SetWinEventHook(
+				// set up event hook to monitor switching application
+				Native.SetWinEventHook(
 					Native.EVENT_SYSTEM_FOREGROUND,
 					Native.EVENT_SYSTEM_MINIMIZEEND,
 					IntPtr.Zero,
@@ -139,7 +158,13 @@ namespace River.OneMoreAddIn
 					eventType == Native.EVENT_SYSTEM_MINIMIZESTART ||
 					eventType == Native.EVENT_SYSTEM_MINIMIZEEND)
 				{
-					if ((dwEventThread == threadId) || (dwEventThread == winThreadId))
+					// threadId is the OneNote.exe process main UI thread
+					// msgThreadId is the dllhost.exe process thread hosting this MessageWindow
+					// Both are needed because threadId will be current when switching back to
+					// OneNote.exe from another app; while msgThreadId will be current when
+					// opening a OneMore dialog such as "Search and Replace"
+
+					if ((dwEventThread == threadId) || (dwEventThread == msgThreadId))
 					{
 						if (!registered && registeredKeys.Count > 0)
 						{
@@ -168,6 +193,7 @@ namespace River.OneMoreAddIn
 			{
 				if (m.Msg == Native.WM_HOTKEY)
 				{
+					// check if this is the main OneNote.exe thread and not a dllhost.exe thread
 					var tid = Native.GetWindowThreadProcessId(Native.GetForegroundWindow(), out _);
 					if (tid == threadId)
 					{
@@ -177,6 +203,7 @@ namespace River.OneMoreAddIn
 
 				base.WndProc(ref m);
 			}
+
 
 			protected override void SetVisibleCore(bool value)
 			{

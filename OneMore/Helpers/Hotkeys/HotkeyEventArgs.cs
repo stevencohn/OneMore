@@ -13,18 +13,24 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class HotkeyEventArgs : EventArgs
 	{
+
+		/// <summary>
+		/// The code of the primary key
+		/// </summary>
 		public Keys Key { get; private set; }
 
+
+		/// <summary>
+		/// Key modifiers: ctrl, shift, alt
+		/// </summary>
 		public Hotmods Modifiers { get; private set; }
 
+
+		/// <summary>
+		/// A bit mask combining Key and Modifiers where Modifiers is the low-orde word
+		/// and Key is the high-order word
+		/// </summary>
 		public uint Value { get; private set; }
-
-
-		public HotkeyEventArgs(Keys key, Hotmods modifiers)
-		{
-			Key = key;
-			Modifiers = modifiers;
-		}
 
 
 		public HotkeyEventArgs(IntPtr hotKeyParam)
