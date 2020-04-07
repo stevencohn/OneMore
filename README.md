@@ -28,7 +28,7 @@ most also have their own key bindings as follows:
 | Command                       | Key Binding |
 | ----------------------------- | ----------- |
 | Add footnote                  | Ctrl + Alt + F
-| Remove footnote               | Ctrl + Shift + Alt + F
+| Remove footnote               | Ctrl + Shift + F
 | Insert horizontal line        | Shift + Alt + Minus
 | Insert double horizontal line | Shift + Alt + Equals
 | No Spell Check                | F4
