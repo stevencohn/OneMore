@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Runtime.InteropServices;
 	using System.Threading;
 	using System.Windows.Forms;
 
@@ -41,6 +42,7 @@ namespace River.OneMoreAddIn
 		private static readonly uint threadId;
 		private static bool registered = false;
 		private static int counter = 0xE000;
+		private static GCHandle gch;
 
 
 		static HotkeyManager()
@@ -50,12 +52,13 @@ namespace River.OneMoreAddIn
 				threadId = Native.GetWindowThreadProcessId(mgr.WindowHandle, out _);
 			}
 
-			new Thread(delegate () { Application.Run(new MessageWindow()); })
+			var mthread = new Thread(delegate () { Application.Run(new MessageWindow()); })
 			{
 				Name = $"{nameof(HotkeyManager)}Thread",
 				IsBackground = true
-			}
-			.Start();
+			};
+
+			mthread.Start();
 		}
 
 
@@ -106,6 +109,11 @@ namespace River.OneMoreAddIn
 		{
 			registeredKeys.ForEach(k =>
 				window.Invoke(new UnRegisterHotkeyDelegate(Unregister), handle, k.Id));
+
+			if (gch != null)
+			{
+				gch.Free();
+			}
 		}
 
 
@@ -128,6 +136,7 @@ namespace River.OneMoreAddIn
 
 		private class MessageWindow : Form
 		{
+			private readonly Native.WinEventDelegate evDelegate;
 			private readonly uint msgThreadId;
 
 			public MessageWindow()
@@ -139,21 +148,28 @@ namespace River.OneMoreAddIn
 				// process started by the OneNote process (with SysWOW64 in its command line)
 				msgThreadId = Native.GetWindowThreadProcessId(handle, out _);
 
+				// maintain a ref so GC doesn't remove it and cause exceptions
+				evDelegate = new Native.WinEventDelegate(WinEventProc);
+				gch = GCHandle.Alloc(evDelegate);
+
 				// set up event hook to monitor switching application
 				Native.SetWinEventHook(
 					Native.EVENT_SYSTEM_FOREGROUND,
 					Native.EVENT_SYSTEM_MINIMIZEEND,
 					IntPtr.Zero,
-					new Native.WinEventDelegate(WinEventProc),
-					0, 0, Native.WINEVENT_OUTOFCONTEXT);
+					evDelegate,
+					0, 0, Native.WINEVENT_OUTOFCONTEXT | Native.WINEVENT_SKIPOWNTHREAD);
 
 				resetEvent.Set();
 			}
+
 
 			private void WinEventProc(
 				IntPtr hWinEventHook, uint eventType, IntPtr hwnd,
 				int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
 			{
+				//Logger.Current.WriteLine($"hotkey event:{eventType} thread:{dwEventThread}");
+
 				if (eventType == Native.EVENT_SYSTEM_FOREGROUND ||
 					eventType == Native.EVENT_SYSTEM_MINIMIZESTART ||
 					eventType == Native.EVENT_SYSTEM_MINIMIZEEND)
@@ -188,6 +204,7 @@ namespace River.OneMoreAddIn
 					}
 				}
 			}
+
 
 			protected override void WndProc(ref Message m)
 			{

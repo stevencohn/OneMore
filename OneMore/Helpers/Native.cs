@@ -14,7 +14,12 @@ namespace River.OneMoreAddIn
 		// Constants...
 
 		public const int WM_HOTKEY = 0x312;
-		public const uint WINEVENT_OUTOFCONTEXT = 0;
+
+		public const uint WINEVENT_OUTOFCONTEXT = 0x0000;
+		public const uint WINEVENT_SKIPOWNTHREAD = 0x0001;
+		public const uint WINEVENT_SKIPOWNPROCESS = 0x0002;
+		public const uint WINEVENT_INCONTEXT = 0x0004;
+
 		public const uint EVENT_SYSTEM_FOREGROUND = 3;
 		public const uint EVENT_SYSTEM_MINIMIZESTART = 22;
 		public const uint EVENT_SYSTEM_MINIMIZEEND = 23;

@@ -298,7 +298,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove footnote (Shift + Alt + F).
+        ///   Looks up a localized string similar to Remove footnote (Ctrl + Shift + F).
         /// </summary>
         internal static string footnoteRemoveButton_Screentip {
             get {

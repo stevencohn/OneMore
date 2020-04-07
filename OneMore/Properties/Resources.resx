@@ -302,7 +302,7 @@
     <value>Add footnote (Ctrl + Alt + F)</value>
   </data>
   <data name="footnoteRemoveButton_Screentip" xml:space="preserve">
-    <value>Remove footnote (Shift + Alt + F)</value>
+    <value>Remove footnote (Ctrl + Shift + F)</value>
   </data>
   <data name="increaseFontSizeButton_Screentip" xml:space="preserve">
     <value>Increase page font size (Ctrl + Alt + Plus)</value>
