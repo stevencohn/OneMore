@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using System;
-	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 	using One = Microsoft.Office.Interop.OneNote;
 
@@ -21,19 +20,6 @@ namespace River.OneMoreAddIn
 
 	internal static class UIHelper
 	{
-		static class Win32
-		{
-			[DllImport("user32.dll")]
-			public static extern IntPtr GetParent (IntPtr hWnd);
-
-			[DllImport("user32.dll")]
-			public static extern bool SetProcessDPIAware ();
-
-			[DllImport("user32.dll")]
-			[return: MarshalAs(UnmanagedType.Bool)]
-			public static extern bool SetForegroundWindow (IntPtr hWnd);
-		}
-
 		private static bool unprepared = true;
 
 
@@ -51,7 +37,7 @@ namespace River.OneMoreAddIn
 
 		public static Win32WindowHandle GetOwner (One.Window context)
 		{
-			return new Win32WindowHandle(Win32.GetParent(Win32.GetParent((IntPtr)context.WindowHandle)));
+			return new Win32WindowHandle(Native.GetParent(Native.GetParent((IntPtr)context.WindowHandle)));
 		}
 
 
@@ -104,7 +90,7 @@ namespace River.OneMoreAddIn
 
 			if (unprepared)
 			{
-				Win32.SetProcessDPIAware();
+				Native.SetProcessDPIAware();
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				unprepared = false;
@@ -116,7 +102,7 @@ namespace River.OneMoreAddIn
 		{
 			var location = form.Location;
 
-			Win32.SetForegroundWindow(form.Handle);
+			Native.SetForegroundWindow(form.Handle);
 			form.BringToFront();
 			form.TopMost = true;
 			form.Activate();

@@ -44,9 +44,8 @@ namespace River.OneMoreAddIn
 
 		public AddIn()
 		{
-#if WTF
-			Debugger.Launch();
-#endif
+			//System.Diagnostics.Debugger.Launch();
+
 			logger = Logger.Current;
 			trash = new List<IDisposable>();
 			process = Process.GetCurrentProcess();
@@ -106,46 +105,6 @@ namespace River.OneMoreAddIn
 			logger.WriteLine($"OnStartupComplete({count})");
 			RegisterHotkeys();
 		}
-
-		private void RegisterHotkeys()
-		{
-			//HotkeyManager.RegisterHotKey(Forms.Keys.F, KeyModifiers.Control | KeyModifiers.Alt);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.F, KeyModifiers.Control | KeyModifiers.Shift);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, KeyModifiers.Shift | KeyModifiers.Alt);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, KeyModifiers.Shift | KeyModifiers.Alt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.F4, KeyModifiers.NoRepeat);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.V, KeyModifiers.Control | KeyModifiers.Alt);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.H, KeyModifiers.Control);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.U, KeyModifiers.Control | KeyModifiers.Shift);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.U, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Alt);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, KeyModifiers.Control | KeyModifiers.Alt);
-			//HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, KeyModifiers.Control | KeyModifiers.Alt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.X, KeyModifiers.Control | KeyModifiers.Shift | KeyModifiers.Alt);
-			HotkeyManager.HotKeyPressed += HotkeyHandler;
-		}
-
-		private void HotkeyHandler(object sender, EventArgs args)
-		{
-			var a = args as HotkeyEventArgs;
-			//logger.WriteLine($"HOTKEY called {a.Modifiers}+{a.Key} mask:{mask:x} value:{a.Value:x}");
-
-			switch (a.Value)
-			{
-				case 0x460003: AddFootnoteCmd(null); break;
-				case 0x460006: RemoveFootnoteCmd(null); break;
-				case 0xbd0005: InsertHorizontalLineCmd(null); break;
-				case 0xbb0005: InsertDoubleHorizontalLineCmd(null); break;
-				case 0x730000: NoSpellCheckCmd(null); break;
-				case 0x560003: PasteRtfCmd(null); break;
-				case 0x480002: SearchAndReplaceCmd(null); break;
-				case 0x550007: ToUppercaseCmd(null); break;
-				case 0x550006: ToLowercaseCmd(null); break;
-				case 0xbb0003: DecreaseFontSizeCmd(null); break;
-				case 0xbd0003: IncreaseFontSizeCmd(null); break;
-				case 0x580007: ShowXmlCmd(null); break;
-			}
-		}
-
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -242,6 +201,60 @@ namespace River.OneMoreAddIn
 
 		#endregion IDTExtensibility2
 
+		#region Hotkeys
+
+		private void RegisterHotkeys()
+		{
+			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlAlt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.AltShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.AltShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.F4);
+			HotkeyManager.RegisterHotKey(Forms.Keys.V, Hotmods.ControlAlt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.H, Hotmods.Control);
+			HotkeyManager.RegisterHotKey(Forms.Keys.U, Hotmods.ControlShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.U, Hotmods.ControlAltShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.ControlAlt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.ControlAlt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.X, Hotmods.ControlAltShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.F8);
+
+			HotkeyManager.HotKeyPressed += HotkeyHandler;
+		}
+
+
+		private void HotkeyHandler(object sender, EventArgs args)
+		{
+			var a = args as HotkeyEventArgs;
+			logger.WriteLine($"HOTKEY called {a.Modifiers}+{a.Key} value:{a.Value:x}");
+
+			switch (a.Value)
+			{
+				case 0x460003: AddFootnoteCmd(null); break;
+				case 0x460006: RemoveFootnoteCmd(null); break;
+				case 0xbd0005: InsertHorizontalLineCmd(null); break;
+				case 0xbb0005: InsertDoubleHorizontalLineCmd(null); break;
+				case 0x730000: NoSpellCheckCmd(null); break;
+				case 0x560003: PasteRtfCmd(null); break;
+				case 0x480002: SearchAndReplaceCmd(null); break;
+				case 0x550007: ToUppercaseCmd(null); break;
+				case 0x550006: ToLowercaseCmd(null); break;
+				case 0xbb0003: DecreaseFontSizeCmd(null); break;
+				case 0xbd0003: IncreaseFontSizeCmd(null); break;
+				case 0x580007: ShowXmlCmd(null); break;
+
+				case 0x770000:
+					factory.GetCommand<DumpDiagnosticsCommand>().Execute();
+					break;
+			}
+		}
+
+		#endregion Hotkeys
+
+
+		//========================================================================================
+		// Ribbon handlers
+
 		#region IRibbonExtensibility
 
 		/// <summary>
@@ -253,18 +266,13 @@ namespace River.OneMoreAddIn
 
 		public string GetCustomUI(string RibbonID)
 		{
-			logger.WriteLine($"GetCustomUI({RibbonID})");
+			//logger.WriteLine($"GetCustomUI({RibbonID})");
 			var ribbon = Resx.Ribbon;
 			//logger.WriteLine("ribbon=[" + ribbon + "]");
 			return ribbon;
 		}
 
 		#endregion IRibbonExtensibility
-
-
-		//========================================================================================
-		// Ribbon handlers
-		//========================================================================================
 
 		#region Ribbon handlers
 
@@ -276,7 +284,7 @@ namespace River.OneMoreAddIn
 
 		public void RibbonLoaded(IRibbonUI ribbon)
 		{
-			logger.WriteLine("RibbonLoaded()");
+			//logger.WriteLine("RibbonLoaded()");
 			this.ribbon = ribbon;
 
 			using (var manager = new ApplicationManager())
@@ -300,7 +308,7 @@ namespace River.OneMoreAddIn
 
 		public IStream GetImage(string imageName)
 		{
-			logger.WriteLine($"GetImage({imageName})");
+			//logger.WriteLine($"GetImage({imageName})");
 			IStream stream = null;
 			try
 			{
@@ -324,7 +332,7 @@ namespace River.OneMoreAddIn
 
 		public string GetItemContent(IRibbonControl control)
 		{
-			logger.WriteLine($"GetItemContent({control.Id})");
+			//logger.WriteLine($"GetItemContent({control.Id})");
 			return null;
 		}
 
@@ -337,7 +345,7 @@ namespace River.OneMoreAddIn
 
 		public bool GetItemEnabled(IRibbonControl control)
 		{
-			logger.WriteLine($"GetItemEnabled({control.Id})");
+			//logger.WriteLine($"GetItemEnabled({control.Id})");
 			return true;
 		}
 
@@ -350,7 +358,7 @@ namespace River.OneMoreAddIn
 
 		public string GetItemLabel(IRibbonControl control)
 		{
-			logger.WriteLine($"GetItemLabel({control.Id})");
+			//logger.WriteLine($"GetItemLabel({control.Id})");
 
 			string label;
 			string resId = control.Id + "_Label";
@@ -376,7 +384,7 @@ namespace River.OneMoreAddIn
 
 		public string GetItemScreentip(IRibbonControl control)
 		{
-			logger.WriteLine($"GetItemScreentip({control.Id})");
+			//logger.WriteLine($"GetItemScreentip({control.Id})");
 			string resId = control.Id + "_Screentip";
 
 			string label;
@@ -402,14 +410,20 @@ namespace River.OneMoreAddIn
 
 		public bool GetItemVisible(IRibbonControl control)
 		{
-			logger.WriteLine($"GetItemVisible({control.Id})");
+			//logger.WriteLine($"GetItemVisible({control.Id})");
 			return true;
 		}
 
 
+		/*
+		 * Note this is called when the OneNote window opens and when a new
+		 * OneNote window is opened from there, so we can use this as a hook
+		 * to know when a new window is opened
+		 */
+
 		public IStream GetOneMoreMenuImage(IRibbonControl control)
 		{
-			logger.WriteLine($"GetOneMoreMenuImage({control.Id})");
+			//logger.WriteLine($"GetOneMoreMenuImage({control.Id})");
 
 			IStream stream = null;
 
@@ -437,7 +451,7 @@ namespace River.OneMoreAddIn
 
 		public IStream GetDoubleLineImage(IRibbonControl control)
 		{
-			logger.WriteLine($"GetDoubleLineImage({control.Id})");
+			//logger.WriteLine($"GetDoubleLineImage({control.Id})");
 			IStream stream = null;
 			try
 			{
@@ -458,7 +472,7 @@ namespace River.OneMoreAddIn
 		public int GetStyleGalleryItemCount(IRibbonControl control)
 		{
 			var count = new StyleProvider().Count;
-			logger.WriteLine($"GetStyleGalleryItemCount({control.Id}) = {count}");
+			//logger.WriteLine($"GetStyleGalleryItemCount({control.Id}) = {count}");
 			return count;
 		}
 
@@ -485,25 +499,25 @@ namespace River.OneMoreAddIn
 
 		public string GetFavoritesContent(IRibbonControl control)
 		{
-			logger.WriteLine($"GetFavoritesContent({control.Id})");
+			//logger.WriteLine($"GetFavoritesContent({control.Id})");
 			return new FavoritesProvider(ribbon).GetMenuContent();
 		}
 
 		public void AddFavoritePage(IRibbonControl control)
 		{
-			logger.WriteLine($"AddFavoritePage({control.Id})");
+			//logger.WriteLine($"AddFavoritePage({control.Id})");
 			new FavoritesProvider(ribbon).AddFavorite();
 		}
 
 		public void NavigateToFavorite(IRibbonControl control)
 		{
-			logger.WriteLine($"NavigateToFavorite({control.Tag})");
+			//logger.WriteLine($"NavigateToFavorite({control.Tag})");
 			factory.GetCommand<NavigateCommand>().Execute(control.Tag);
 		}
 
 		public void RemoveFavorite(IRibbonControl control)
 		{
-			logger.WriteLine($"RemoveFavorite({control.Tag})");
+			//logger.WriteLine($"RemoveFavorite({control.Tag})");
 			new FavoritesProvider(ribbon).RemoveFavorite(control.Tag);
 		}
 
@@ -511,8 +525,9 @@ namespace River.OneMoreAddIn
 
 
 		//========================================================================================
-		// More menu handlers
-		//========================================================================================
+		// OneMore command menu handlers
+
+		#region Commands
 
 		public void AddFootnoteCmd(IRibbonControl control)
 		{
@@ -621,5 +636,7 @@ namespace River.OneMoreAddIn
 		{
 			factory.GetCommand<TrimCommand>().Execute();
 		}
+
+		#endregion Commands
 	}
 }

@@ -19,12 +19,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public IntPtr Handle
-		{
-			get
-			{
-				return handle;
-			}
-		}
+		public IntPtr Handle => handle;
 	}
 }

@@ -94,6 +94,7 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
+    <Compile Include="Commands\DumpDiagnosticsCommand.cs" />
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
     <Compile Include="Commands\AddTitleIconCommand.cs" />
     <Compile Include="Commands\AlterSizeCommand.cs" />
@@ -143,7 +144,11 @@
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
-    <Compile Include="Helpers\HotkeyManager.cs" />
+    <Compile Include="Helpers\Hotkeys\Hotkey.cs" />
+    <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
+    <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
+    <Compile Include="Helpers\Hotkeys\Hotmods.cs" />
+    <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\PageHelper.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\XCDataExtensions.cs" />

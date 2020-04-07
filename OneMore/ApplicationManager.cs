@@ -14,33 +14,32 @@ namespace River.OneMoreAddIn
 
 	internal class ApplicationManager : IDisposable
 	{
-
-		private Application application;
-		private bool disposedValue = false;
+		private bool disposed = false;
 		private readonly ILogger logger;
 
 
-		//========================================================================================
-		// Lifecycle
-		//========================================================================================
+		// Lifecycle...
 
+		/// <summary>
+		/// Initialize a new manager, instantiating a new OneNote Application.
+		/// </summary>
 		public ApplicationManager ()
 		{
-			application = new Application();
+			Application = new Application();
 			logger = Logger.Current;
 		}
 
 
 		protected virtual void Dispose (bool disposing)
 		{
-			if (!disposedValue)
+			if (!disposed)
 			{
 				if (disposing)
 				{
-					application = null;
+					Application = null;
 				}
 
-				disposedValue = true;
+				disposed = true;
 			}
 		}
 
@@ -52,31 +51,39 @@ namespace River.OneMoreAddIn
 
 
 		//========================================================================================
-		// Properties
-		//========================================================================================
+		// Properties...
 
-		public bool Active => application.Windows.CurrentWindow.Active;
+		/// <summary>
+		/// Gets a direct referenc to the OneNote Application; use wisely
+		/// </summary>
+		public Application Application { get; private set; }
 
-		public Application Application => application;
 
-
+		/// <summary>
+		/// Gets the Win32 Window associated with the current window's handle
+		/// </summary>
 		public Forms.IWin32Window Window => Forms.Control.FromHandle(WindowHandle);
 
 
-		public IntPtr WindowHandle => (IntPtr)application.Windows.CurrentWindow.WindowHandle;
+		/// <summary>
+		/// Gets the handle of the current window
+		/// </summary>
+		public IntPtr WindowHandle => (IntPtr)Application.Windows.CurrentWindow.WindowHandle;
 
 
 		//========================================================================================
-		// Scope methods
-		//========================================================================================
-
+		// Methods...
 		// https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote#gethierarchy-method
 
+		/// <summary>
+		/// Gets the XML describing the current notebook's page hierarchy
+		/// </summary>
+		/// <returns></returns>
 		public XElement CurrentNotebook ()
 		{
-			string id = application.Windows.CurrentWindow?.CurrentNotebookId;
+			string id = Application.Windows.CurrentWindow?.CurrentNotebookId;
 
-			application.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
+			Application.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
 			if (!string.IsNullOrEmpty(xml))
 			{
 				return XElement.Parse(xml);
@@ -86,26 +93,42 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public XElement CurrentSection ()
-		{
-			string id = application.Windows.CurrentWindow?.CurrentSectionId;
-
-			application.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
-			if (!string.IsNullOrEmpty(xml))
-			{
-				return XElement.Parse(xml);
-			}
-
-			return null;
-		}
-
-
+		/// <summary>
+		/// Gets the XML describing the current page content
+		/// </summary>
+		/// <param name="info">
+		/// The PageInfo scope specifying levels of detail to include in the XML
+		/// </param>
+		/// <returns></returns>
 		public XElement CurrentPage (PageInfo info = PageInfo.piSelection)
 		{
-			return GetPage(application.Windows.CurrentWindow?.CurrentPageId, info);
+			return GetPage(Application.Windows.CurrentWindow?.CurrentPageId, info);
 		}
 
 
+		/// <summary>
+		/// Gest the XML describing the current section's page hierarchy
+		/// </summary>
+		/// <returns></returns>
+		public XElement CurrentSection()
+		{
+			string id = Application.Windows.CurrentWindow?.CurrentSectionId;
+
+			Application.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
+			if (!string.IsNullOrEmpty(xml))
+			{
+				return XElement.Parse(xml);
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
+		/// Gets the name, file path, and OneNote hyperlink to the current page;
+		/// used to build up Favorites
+		/// </summary>
+		/// <returns></returns>
 		public (string Name, string Path, string Link) GetCurrentPageInfo ()
 		{
 			// name
@@ -139,39 +162,26 @@ namespace River.OneMoreAddIn
 			}
 
 			// link
-			var pageId = application.Windows.CurrentWindow?.CurrentPageId;
+			var pageId = Application.Windows.CurrentWindow?.CurrentPageId;
 			string link = null;
 			if (!string.IsNullOrEmpty(pageId))
 			{
-				application.GetHyperlinkToObject(pageId, "", out link);
+				Application.GetHyperlinkToObject(pageId, "", out link);
 			}
 
 			return (name, path, link);
 		}
 
 
-		//========================================================================================
-		// Special
-		//========================================================================================
-
-		public XElement GetPage (string pageId, PageInfo info = PageInfo.piAll)
-		{
-			if (pageId != null)
-			{
-				application.GetPageContent(pageId, out var xml, info);
-
-				var root = XElement.Parse(xml);
-				return root;
-			}
-
-			return null;
-		}
-
-
-		public XElement GetHierarchy (HierarchyScope scope = HierarchyScope.hsPages)
+		/// <summary>
+		/// Get the XML of the specified hierarchy; used for sorting and XmlDialog
+		/// </summary>
+		/// <param name="scope"></param>
+		/// <returns></returns>
+		public XElement GetHierarchy(HierarchyScope scope = HierarchyScope.hsPages)
 		{
 			// get our own copy
-			application.GetHierarchy(null, scope, out var xml);
+			Application.GetHierarchy(null, scope, out var xml);
 			if (!string.IsNullOrEmpty(xml))
 			{
 				return XElement.Parse(xml);
@@ -181,49 +191,84 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Get the known paths used by OneNote; this is for diagnostic logging
+		/// </summary>
+		/// <returns></returns>
 		public (string backupFolder, string defaultFolder, string unfiledFolder) GetLocations ()
 		{
-			application.GetSpecialLocation(SpecialLocation.slBackUpFolder, out var backupFolder);
-			application.GetSpecialLocation(SpecialLocation.slDefaultNotebookFolder, out var defaultFolder);
-			application.GetSpecialLocation(SpecialLocation.slUnfiledNotesSection, out var unfiledFolder);
+			Application.GetSpecialLocation(SpecialLocation.slBackUpFolder, out var backupFolder);
+			Application.GetSpecialLocation(SpecialLocation.slDefaultNotebookFolder, out var defaultFolder);
+			Application.GetSpecialLocation(SpecialLocation.slUnfiledNotesSection, out var unfiledFolder);
 			return (backupFolder, defaultFolder, unfiledFolder);
 		}
 
 
+		/// <summary>
+		/// Gets the XML of the specified page
+		/// </summary>
+		/// <param name="pageId">The ID of the page</param>
+		/// <param name="info">The level of detail to include in the XML</param>
+		/// <returns></returns>
+		public XElement GetPage(string pageId, PageInfo info = PageInfo.piAll)
+		{
+			if (pageId != null)
+			{
+				Application.GetPageContent(pageId, out var xml, info);
+
+				var root = XElement.Parse(xml);
+				return root;
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
+		/// Forces OneNote to jump to the specified page Uri
+		/// </summary>
+		/// <param name="pageTag"></param>
 		public void NavigateTo (string pageTag)
 		{
 			if (pageTag.StartsWith("onenote:"))
 			{
-				application.NavigateToUrl(pageTag);
+				Application.NavigateToUrl(pageTag);
 			}
 			else
 			{
-				application.NavigateTo(pageTag);
+				Application.NavigateTo(pageTag);
 			}
 		}
 
 
 		// https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote#updatehierarchy-method
 
+		/// <summary>
+		/// Update the hierarchy info with the given XML; used for sorting
+		/// </summary>
+		/// <param name="element"></param>
 		public void UpdateHierarchy (XElement element)
 		{
 			string xml = element.ToString(SaveOptions.DisableFormatting);
-			application.UpdateHierarchy(xml);
+			Application.UpdateHierarchy(xml);
 		}
 
 
+		/// <summary>
+		/// Update the current page content with the given XML
+		/// </summary>
+		/// <param name="element"></param>
 		public void UpdatePageContent (XElement element)
 		{
 			string xml = element.ToString(SaveOptions.DisableFormatting);
 
 			try
 			{
-				application.UpdatePageContent(xml);
+				Application.UpdatePageContent(xml);
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("Error updating page content");
-				logger.WriteLine(exc);
+				logger.WriteLine("ERROR updating page content", exc);
 			}
 		}
 	}

@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn
 		private const uint SWP_NOZORDER = 0x0004;
 		private const uint UFLAGS = SWP_NOSIZE | SWP_NOZORDER | SWP_SHOWWINDOW;
 
-		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		[DllImport("user32.dll", CharSet = CharSet.Unicode)]
 		private static extern bool SetWindowText (IntPtr hWnd, string text);
 
 		[DllImport("user32.dll", SetLastError = true)]
@@ -40,9 +40,9 @@ namespace River.OneMoreAddIn
 		#endregion Win32
 
 		private bool once;
-		private string title;
-		private int x;
-		private int y;
+		private readonly string title;
+		private readonly int x;
+		private readonly int y;
 
 		public ColorDialogEx (string title, int x, int y)
 			: base()

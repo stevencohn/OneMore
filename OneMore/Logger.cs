@@ -33,7 +33,9 @@ namespace River.OneMoreAddIn
 	{
 		private static ILogger instance;
 		private static bool designMode;
-		private static bool standard;
+
+		private readonly bool stdio;
+		private readonly int processId;
 		private bool isNewline;
 		private bool isDisposed;
 		private TextWriter writer;
@@ -41,9 +43,13 @@ namespace River.OneMoreAddIn
 
 		private Logger()
 		{
-			standard = Process.GetCurrentProcess().ProcessName.StartsWith("LINQPad");
+			using (var process = Process.GetCurrentProcess())
+			{
+				processId = process.Id;
+				stdio = process.ProcessName.StartsWith("LINQPad");
+			}
 
-			if (!standard)
+			if (!stdio)
 			{
 				LogPath = Path.Combine(
 					Path.GetTempPath(),
@@ -105,7 +111,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		private bool EnsureWriter()
 		{
-			if (standard)
+			if (stdio)
 				return true;
 
 			if (writer == null)
@@ -163,11 +169,11 @@ namespace River.OneMoreAddIn
 			{
 				if (isNewline)
 				{
-					if (!standard)
+					if (!stdio)
 						writer.Write(MakeHeader());
 				}
 
-				if (standard)
+				if (stdio)
 					Console.Write(message);
 				else
 					writer.Write(message);
@@ -181,10 +187,14 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (standard)
+				if (stdio)
+				{
 					Console.WriteLine();
+				}
 				else
+				{
 					writer.WriteLine();
+				}
 			}
 		}
 
@@ -195,11 +205,11 @@ namespace River.OneMoreAddIn
 			{
 				if (isNewline)
 				{
-					if (!standard)
+					if (!stdio)
 						writer.Write(MakeHeader());
 				}
 
-				if (standard)
+				if (stdio)
 				{
 					Console.WriteLine(message);
 				}
@@ -220,11 +230,11 @@ namespace River.OneMoreAddIn
 			{
 				if (isNewline)
 				{
-					if (!standard)
+					if (!stdio)
 						writer.Write(MakeHeader());
 				}
 
-				if (standard)
+				if (stdio)
 				{
 					Console.WriteLine(Serialize(exc));
 				}
@@ -248,33 +258,35 @@ namespace River.OneMoreAddIn
 
 		private string MakeHeader()
 		{
-			//return DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss.fff") +
-			return DateTime.Now.ToString("hh:mm:ss.fff") +
-				" [" + Thread.CurrentThread.ManagedThreadId + "] ";
+			//return DateTime.Now.ToString("hh:mm:ss.fff") +
+			//	" [" + Thread.CurrentThread.ManagedThreadId + "] ";
+			return $"{processId}:{Thread.CurrentThread.ManagedThreadId}] ";
 		}
 
 
 		private string Serialize(Exception exc)
 		{
-			var builder = new StringBuilder("EXCEPTION - " + exc.GetType().FullName + Environment.NewLine);
-			Serialize(exc, builder, 0);
+			var builder = new StringBuilder("EXCEPTION - ");
+			builder.AppendLine(exc.GetType().FullName);
+
+			Serialize(exc, builder);
 			return builder.ToString();
 		}
 
 
-		private void Serialize(Exception exc, StringBuilder builder, int depth)
+		private void Serialize(Exception exc, StringBuilder builder, int depth = 0)
 		{
 			if (depth > 0)
 			{
-				builder.Append($"-- inner exception at depth {depth} ---------------");
+				builder.AppendLine($"-- inner exception at depth {depth} ---------------");
 			}
 
-			builder.Append("Message...: " + exc.Message + Environment.NewLine);
-			builder.Append("StackTrace: " + exc.StackTrace + Environment.NewLine);
+			builder.AppendLine("Message...: " + exc.Message);
+			builder.AppendLine("StackTrace: " + exc.StackTrace);
 
 			if (exc.TargetSite != null)
 			{
-				builder.Append("TargetSite: [" +
+				builder.AppendLine("TargetSite: [" +
 					exc.TargetSite.DeclaringType.Assembly.GetName().Name + "] " +
 					exc.TargetSite.DeclaringType + "::" +
 					exc.TargetSite.Name + "()");
@@ -282,7 +294,6 @@ namespace River.OneMoreAddIn
 
 			if (exc.InnerException != null)
 			{
-				builder.Append("InnerExcetpion..." + Environment.NewLine);
 				Serialize(exc.InnerException, builder, depth + 1);
 			}
 		}
