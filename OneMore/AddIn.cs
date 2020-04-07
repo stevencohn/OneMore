@@ -206,7 +206,7 @@ namespace River.OneMoreAddIn
 		private void RegisterHotkeys()
 		{
 			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlAltShift);
 			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.AltShift);
 			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.AltShift);
 			HotkeyManager.RegisterHotKey(Forms.Keys.F4);
