@@ -239,8 +239,8 @@ namespace River.OneMoreAddIn
 				case 0x480002: SearchAndReplaceCmd(null); break;
 				case 0x550007: ToUppercaseCmd(null); break;
 				case 0x550006: ToLowercaseCmd(null); break;
-				case 0xbb0003: DecreaseFontSizeCmd(null); break;
-				case 0xbd0003: IncreaseFontSizeCmd(null); break;
+				case 0xbb0003: IncreaseFontSizeCmd(null); break;
+				case 0xbd0003: DecreaseFontSizeCmd(null); break;
 				case 0x580007: ShowXmlCmd(null); break;
 
 				case 0x770000:
