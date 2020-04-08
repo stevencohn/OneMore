@@ -94,7 +94,7 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
-    <Compile Include="Commands\DumpDiagnosticsCommand.cs" />
+    <Compile Include="Commands\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
     <Compile Include="Commands\AddTitleIconCommand.cs" />
     <Compile Include="Commands\AlterSizeCommand.cs" />

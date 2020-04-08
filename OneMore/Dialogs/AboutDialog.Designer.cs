@@ -35,6 +35,7 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.logLabel = new System.Windows.Forms.LinkLabel();
 			this.clearLogLabel = new System.Windows.Forms.LinkLabel();
+			this.homeLink = new System.Windows.Forms.LinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -52,7 +53,7 @@
 			// 
 			this.titleLabel.AutoSize = true;
 			this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.titleLabel.Location = new System.Drawing.Point(156, 28);
+			this.titleLabel.Location = new System.Drawing.Point(156, 26);
 			this.titleLabel.Name = "titleLabel";
 			this.titleLabel.Size = new System.Drawing.Size(297, 25);
 			this.titleLabel.TabIndex = 1;
@@ -62,7 +63,7 @@
 			// 
 			this.versionLabel.AutoSize = true;
 			this.versionLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.versionLabel.Location = new System.Drawing.Point(156, 62);
+			this.versionLabel.Location = new System.Drawing.Point(156, 58);
 			this.versionLabel.Name = "versionLabel";
 			this.versionLabel.Size = new System.Drawing.Size(99, 25);
 			this.versionLabel.TabIndex = 2;
@@ -72,17 +73,17 @@
 			// 
 			this.copyLabel.AutoSize = true;
 			this.copyLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.copyLabel.Location = new System.Drawing.Point(156, 97);
+			this.copyLabel.Location = new System.Drawing.Point(156, 92);
 			this.copyLabel.Name = "copyLabel";
-			this.copyLabel.Size = new System.Drawing.Size(283, 25);
+			this.copyLabel.Size = new System.Drawing.Size(330, 25);
 			this.copyLabel.TabIndex = 3;
-			this.copyLabel.Text = "Copyright @ 2018 Steven M Cohn";
+			this.copyLabel.Text = "Copyright @ 2018-2020 Steven M Cohn";
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(454, 168);
+			this.okButton.Location = new System.Drawing.Point(452, 180);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(104, 42);
 			this.okButton.TabIndex = 4;
@@ -92,9 +93,10 @@
 			// 
 			// logLabel
 			// 
+			this.logLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.logLabel.AutoSize = true;
 			this.logLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.logLabel.Location = new System.Drawing.Point(13, 168);
+			this.logLabel.Location = new System.Drawing.Point(13, 180);
 			this.logLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.logLabel.MaximumSize = new System.Drawing.Size(420, 0);
 			this.logLabel.Name = "logLabel";
@@ -106,15 +108,28 @@
 			// 
 			// clearLogLabel
 			// 
+			this.clearLogLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.clearLogLabel.AutoSize = true;
 			this.clearLogLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.clearLogLabel.Location = new System.Drawing.Point(12, 193);
+			this.clearLogLabel.Location = new System.Drawing.Point(12, 205);
 			this.clearLogLabel.Name = "clearLogLabel";
 			this.clearLogLabel.Size = new System.Drawing.Size(122, 20);
 			this.clearLogLabel.TabIndex = 6;
 			this.clearLogLabel.TabStop = true;
 			this.clearLogLabel.Text = "Clear the log file";
 			this.clearLogLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.clearLogLabel_LinkClicked);
+			// 
+			// homeLink
+			// 
+			this.homeLink.AutoSize = true;
+			this.homeLink.LinkColor = System.Drawing.SystemColors.Highlight;
+			this.homeLink.Location = new System.Drawing.Point(157, 129);
+			this.homeLink.Name = "homeLink";
+			this.homeLink.Size = new System.Drawing.Size(291, 20);
+			this.homeLink.TabIndex = 7;
+			this.homeLink.TabStop = true;
+			this.homeLink.Text = "https://github.com/stevencohn/OneMore";
+			this.homeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.homeLink_LinkClicked);
 			// 
 			// AboutDialog
 			// 
@@ -123,7 +138,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(570, 222);
+			this.ClientSize = new System.Drawing.Size(568, 234);
+			this.Controls.Add(this.homeLink);
 			this.Controls.Add(this.clearLogLabel);
 			this.Controls.Add(this.logLabel);
 			this.Controls.Add(this.okButton);
@@ -154,5 +170,6 @@
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.LinkLabel logLabel;
 		private System.Windows.Forms.LinkLabel clearLogLabel;
+		private System.Windows.Forms.LinkLabel homeLink;
 	}
 }

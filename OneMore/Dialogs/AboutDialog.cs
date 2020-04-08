@@ -37,9 +37,14 @@ namespace River.OneMoreAddIn
 			Close();
 		}
 
+		private void homeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start(homeLink.Text);
+		}
+
 		private void logLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start(logLabel.Text); // e.Link.LinkData.ToString());
+			System.Diagnostics.Process.Start(logLabel.Text);
 		}
 
 		private void clearLogLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

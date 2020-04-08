@@ -244,7 +244,7 @@ namespace River.OneMoreAddIn
 				case 0x580007: ShowXmlCmd(null); break;
 
 				case 0x770000:
-					factory.GetCommand<DumpDiagnosticsCommand>().Execute();
+					factory.GetCommand<DiagnosticsCommand>().Execute();
 					break;
 			}
 		}
