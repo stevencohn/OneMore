@@ -5,7 +5,7 @@ A OneNote add-in with the following primary features:
 * Create/edit/apply **custom styles** with advanced options
 * Disable **spell-check** on the current page
 * Manage menu of **Favorite** pages
-* Paste Rich Text (preserve colors when **pasting code** from Visual Studio)
+* Paste Rich Text (preserve colors when **pasting code** from Visual Studio)<sup>1</sup>
 * **Search and replace** text on the current page
 * Add or remove **footnotes** (endnotes)
 
@@ -40,6 +40,9 @@ most also have their own key bindings as follows:
 | Decrease font size            | Ctrl + Alt + Minus
 | Show XML                      | Ctrl + Shift + Alt + X
 
+<sup>1</sup> If text copied from Visual Studio is pasted as plain text instead of rich text
+when using the Paste Rich Text command (Ctrl+Alt+V) then look at the VS Tools... Options...
+Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
 
 **Why?**
 
