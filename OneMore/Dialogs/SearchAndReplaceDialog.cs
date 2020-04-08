@@ -35,6 +35,13 @@ namespace River.OneMoreAddIn
 				//whatBox.Text.Length > 0 && 
 				//withBox.Text.Length > 0;
 		}
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			Location = new System.Drawing.Point(Location.X, Location.Y - (Height / 2));
+			base.OnShown(e);
+		}
 	}
 }
 

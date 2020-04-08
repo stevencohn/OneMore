@@ -22,15 +22,15 @@ namespace River.OneMoreAddIn
 			builder.AppendLine("Diagnostics.Execute()");
 			builder.AppendLine(new string('-', 80));
 
-			builder.AppendLine($"Logger path: {(logger as Logger).LogPath}");
+			builder.AppendLine($"Log path: {(logger as Logger).LogPath}");
 			builder.AppendLine();
 
 			using (var manager = new ApplicationManager())
 			{
 				var (backupPath, defaultPath, unfiledPath) = manager.GetLocations();
-				builder.AppendLine($"Backup path.: {backupPath}");
 				builder.AppendLine($"Default path: {defaultPath}");
-				builder.AppendLine($"Unfiles path: {unfiledPath}");
+				builder.AppendLine($"Backup  path: {backupPath}");
+				builder.AppendLine($"Unfiled path: {unfiledPath}");
 				builder.AppendLine();
 
 				var (pageName, pagePath, pageLink) = manager.GetCurrentPageInfo();

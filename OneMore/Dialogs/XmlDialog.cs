@@ -77,6 +77,7 @@ namespace River.OneMoreAddIn
 
 		protected override void OnShown (EventArgs e)
 		{
+			Location = new System.Drawing.Point(30, 30);
 			UIHelper.SetForegroundWindow(this);
 			findBox.Focus();
 		}

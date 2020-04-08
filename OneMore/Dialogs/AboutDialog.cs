@@ -20,6 +20,10 @@ namespace River.OneMoreAddIn
 			var logpath = ((Logger)Logger.Current).LogPath;
 
 			versionLabel.Text = "Version " + AssemblyInfo.Version;
+
+			var year = DateTime.Now.Year;
+			copyLabel.Text = $"Copyright \u00a9 2016-{year} Steven M Cohn";
+
 			logLabel.Text = logpath;
 
 			clearLogLabel.Visible = File.Exists(logpath);
@@ -28,6 +32,7 @@ namespace River.OneMoreAddIn
 
 		protected override void OnShown(EventArgs e)
 		{
+			Location = new System.Drawing.Point(Location.X, Location.Y - Height);
 			UIHelper.SetForegroundWindow(this);
 		}
 

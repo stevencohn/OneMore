@@ -2,9 +2,7 @@
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("OneMoreAddIn.Tests")]
-
-// in order to use this, must set Preferences/Advanced "Allows LINPAad to access internals"...
+// To use, open LINQPad and set Preferences/Advanced "Allows LINPAad to access internals"...
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LINQPadQuery")]
 
 
@@ -12,7 +10,6 @@
 /// Define assembly constants unique to this project.
 /// The full set of constants are defined in AssemblyInfo.Shared.cs
 /// </summary>
-
 internal static partial class AssemblyInfo
 {
 	public const string Title = Product + " Add-In for OneNote";

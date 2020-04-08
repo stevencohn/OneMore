@@ -63,7 +63,7 @@
 			// 
 			this.versionLabel.AutoSize = true;
 			this.versionLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.versionLabel.Location = new System.Drawing.Point(156, 58);
+			this.versionLabel.Location = new System.Drawing.Point(156, 51);
 			this.versionLabel.Name = "versionLabel";
 			this.versionLabel.Size = new System.Drawing.Size(99, 25);
 			this.versionLabel.TabIndex = 2;
@@ -73,17 +73,17 @@
 			// 
 			this.copyLabel.AutoSize = true;
 			this.copyLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.copyLabel.Location = new System.Drawing.Point(156, 92);
+			this.copyLabel.Location = new System.Drawing.Point(156, 78);
 			this.copyLabel.Name = "copyLabel";
 			this.copyLabel.Size = new System.Drawing.Size(330, 25);
 			this.copyLabel.TabIndex = 3;
-			this.copyLabel.Text = "Copyright @ 2018-2020 Steven M Cohn";
+			this.copyLabel.Text = "Copyright @ 2016-2020 Steven M Cohn";
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(452, 180);
+			this.okButton.Location = new System.Drawing.Point(452, 170);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(104, 42);
 			this.okButton.TabIndex = 4;
@@ -96,7 +96,7 @@
 			this.logLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.logLabel.AutoSize = true;
 			this.logLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.logLabel.Location = new System.Drawing.Point(13, 180);
+			this.logLabel.Location = new System.Drawing.Point(13, 170);
 			this.logLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.logLabel.MaximumSize = new System.Drawing.Size(420, 0);
 			this.logLabel.Name = "logLabel";
@@ -111,7 +111,7 @@
 			this.clearLogLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.clearLogLabel.AutoSize = true;
 			this.clearLogLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.clearLogLabel.Location = new System.Drawing.Point(12, 205);
+			this.clearLogLabel.Location = new System.Drawing.Point(12, 195);
 			this.clearLogLabel.Name = "clearLogLabel";
 			this.clearLogLabel.Size = new System.Drawing.Size(122, 20);
 			this.clearLogLabel.TabIndex = 6;
@@ -123,7 +123,7 @@
 			// 
 			this.homeLink.AutoSize = true;
 			this.homeLink.LinkColor = System.Drawing.SystemColors.Highlight;
-			this.homeLink.Location = new System.Drawing.Point(157, 129);
+			this.homeLink.Location = new System.Drawing.Point(157, 109);
 			this.homeLink.Name = "homeLink";
 			this.homeLink.Size = new System.Drawing.Size(291, 20);
 			this.homeLink.TabIndex = 7;
@@ -138,7 +138,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(568, 234);
+			this.ClientSize = new System.Drawing.Size(568, 224);
 			this.Controls.Add(this.homeLink);
 			this.Controls.Add(this.clearLogLabel);
 			this.Controls.Add(this.logLabel);

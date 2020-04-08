@@ -111,6 +111,8 @@ namespace River.OneMoreAddIn
 		private void StyleDialog_Shown(object sender, EventArgs e)
 		{
 			allowEvents = true;
+
+			Location = new Point(Location.X, Location.Y - (Height / 2));
 			UIHelper.SetForegroundWindow(this);
 
 			if (selection != null)
