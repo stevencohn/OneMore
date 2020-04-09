@@ -45,7 +45,7 @@
 			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
-			this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+			this.cancelButton.Click += new System.EventHandler(this.Cancel);
 			// 
 			// okButton
 			// 
@@ -57,7 +57,7 @@
 			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
-			this.okButton.Click += new System.EventHandler(this.okButton_Click);
+			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
 			// iconBox
 			// 
@@ -70,9 +70,9 @@
 			this.iconBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
 			this.iconBox.Size = new System.Drawing.Size(234, 264);
 			this.iconBox.TabIndex = 2;
-			this.iconBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.iconBox_DrawItem);
-			this.iconBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.iconBox_MeasureItem);
-			this.iconBox.DoubleClick += new System.EventHandler(this.iconBox_DoubleClick);
+			this.iconBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawIconItem);
+			this.iconBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureIconItemSIze);
+			this.iconBox.DoubleClick += new System.EventHandler(this.DoubleClickItem);
 			// 
 			// introLabel
 			// 

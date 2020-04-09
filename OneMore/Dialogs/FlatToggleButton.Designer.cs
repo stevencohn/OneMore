@@ -42,9 +42,9 @@
 			this.pictureBox.Size = new System.Drawing.Size(42, 22);
 			this.pictureBox.TabIndex = 0;
 			this.pictureBox.TabStop = false;
-			this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
-			this.pictureBox.MouseEnter += new System.EventHandler(this.pictureBox_MouseEnter);
-			this.pictureBox.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
+			this.pictureBox.Click += new System.EventHandler(this.ClickPictureBox);
+			this.pictureBox.MouseEnter += new System.EventHandler(this.MouseEnterPictureBox);
+			this.pictureBox.MouseLeave += new System.EventHandler(this.MouseLeavePictureBox);
 			// 
 			// FlatToggleButton
 			// 

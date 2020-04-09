@@ -89,7 +89,7 @@
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
-			this.okButton.Click += new System.EventHandler(this.okButton_Click);
+			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
 			// logLabel
 			// 
@@ -104,7 +104,7 @@
 			this.logLabel.TabIndex = 5;
 			this.logLabel.TabStop = true;
 			this.logLabel.Text = "tempfile";
-			this.logLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logLabel_LinkClicked);
+			this.logLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLog);
 			// 
 			// clearLogLabel
 			// 
@@ -117,7 +117,7 @@
 			this.clearLogLabel.TabIndex = 6;
 			this.clearLogLabel.TabStop = true;
 			this.clearLogLabel.Text = "Clear the log file";
-			this.clearLogLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.clearLogLabel_LinkClicked);
+			this.clearLogLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClearLog);
 			// 
 			// homeLink
 			// 
@@ -129,7 +129,7 @@
 			this.homeLink.TabIndex = 7;
 			this.homeLink.TabStop = true;
 			this.homeLink.Text = "https://github.com/stevencohn/OneMore";
-			this.homeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.homeLink_LinkClicked);
+			this.homeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoHome);
 			// 
 			// AboutDialog
 			// 

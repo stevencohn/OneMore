@@ -69,9 +69,9 @@
 			this.listBox.Name = "listBox";
 			this.listBox.Size = new System.Drawing.Size(325, 378);
 			this.listBox.TabIndex = 2;
-			this.listBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
-			this.listBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.listBox_MeasureItem);
-			this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
+			this.listBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawItem);
+			this.listBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureItem);
+			this.listBox.SelectedIndexChanged += new System.EventHandler(this.ChangeSelection);
 			// 
 			// upButton
 			// 
@@ -82,7 +82,7 @@
 			this.upButton.Size = new System.Drawing.Size(42, 42);
 			this.upButton.TabIndex = 3;
 			this.upButton.UseVisualStyleBackColor = true;
-			this.upButton.Click += new System.EventHandler(this.upButton_Click);
+			this.upButton.Click += new System.EventHandler(this.MoveUp);
 			// 
 			// downButton
 			// 
@@ -93,7 +93,7 @@
 			this.downButton.Size = new System.Drawing.Size(42, 42);
 			this.downButton.TabIndex = 4;
 			this.downButton.UseVisualStyleBackColor = true;
-			this.downButton.Click += new System.EventHandler(this.downButton_Click);
+			this.downButton.Click += new System.EventHandler(this.MoveDown);
 			// 
 			// label
 			// 

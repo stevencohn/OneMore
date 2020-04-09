@@ -2,8 +2,6 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable IDE1006 // must begin with uppercase
-
 namespace River.OneMoreAddIn
 {
 	using System;
@@ -39,22 +37,22 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void okButton_Click(object sender, EventArgs e)
+		private void OK(object sender, EventArgs e)
 		{
 			Close();
 		}
 
-		private void homeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		private void GoHome(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start(homeLink.Text);
 		}
 
-		private void logLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		private void OpenLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start(logLabel.Text);
 		}
 
-		private void clearLogLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		private void ClearLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			if (File.Exists(((Logger)Logger.Current).LogPath))
 			{

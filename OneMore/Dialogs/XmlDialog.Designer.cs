@@ -73,7 +73,7 @@
 			this.tabs.SelectedIndex = 0;
 			this.tabs.Size = new System.Drawing.Size(1168, 755);
 			this.tabs.TabIndex = 1;
-			this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
+			this.tabs.SelectedIndexChanged += new System.EventHandler(this.ChangeSelectedTab);
 			// 
 			// pageTab
 			// 
@@ -99,7 +99,7 @@
 			this.pageBox.TabIndex = 0;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
-			this.pageBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.pageBox_KeyUp);
+			this.pageBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PageBoxKeyUp);
 			// 
 			// hierTab
 			// 
@@ -160,7 +160,7 @@
 			this.currNotebookButton.TabIndex = 7;
 			this.currNotebookButton.Text = "Current Notebook";
 			this.currNotebookButton.UseVisualStyleBackColor = true;
-			this.currNotebookButton.CheckedChanged += new System.EventHandler(this.currNotebookButton_CheckedChanged);
+			this.currNotebookButton.CheckedChanged += new System.EventHandler(this.ShowCurrentNotebook);
 			// 
 			// currSectionButton
 			// 
@@ -172,7 +172,7 @@
 			this.currSectionButton.TabIndex = 5;
 			this.currSectionButton.Text = "Current Section";
 			this.currSectionButton.UseVisualStyleBackColor = true;
-			this.currSectionButton.CheckedChanged += new System.EventHandler(this.currSectionButton_CheckedChanged);
+			this.currSectionButton.CheckedChanged += new System.EventHandler(this.ShowCurrentSection);
 			// 
 			// pagesHierButton
 			// 
@@ -184,7 +184,7 @@
 			this.pagesHierButton.TabIndex = 4;
 			this.pagesHierButton.Text = "Pages";
 			this.pagesHierButton.UseVisualStyleBackColor = true;
-			this.pagesHierButton.CheckedChanged += new System.EventHandler(this.pagesHierButton_CheckedChanged);
+			this.pagesHierButton.CheckedChanged += new System.EventHandler(this.ShowPages);
 			// 
 			// notebooksHierButton
 			// 
@@ -198,7 +198,7 @@
 			this.notebooksHierButton.TabStop = true;
 			this.notebooksHierButton.Text = "Notebooks";
 			this.notebooksHierButton.UseVisualStyleBackColor = true;
-			this.notebooksHierButton.CheckedChanged += new System.EventHandler(this.notebooksHierButton_CheckedChanged);
+			this.notebooksHierButton.CheckedChanged += new System.EventHandler(this.ShowNotebooks);
 			// 
 			// sectionsHierButton
 			// 
@@ -210,7 +210,7 @@
 			this.sectionsHierButton.TabIndex = 3;
 			this.sectionsHierButton.Text = "Sections";
 			this.sectionsHierButton.UseVisualStyleBackColor = true;
-			this.sectionsHierButton.CheckedChanged += new System.EventHandler(this.sectionsHierButton_CheckedChanged);
+			this.sectionsHierButton.CheckedChanged += new System.EventHandler(this.ShowSections);
 			// 
 			// closeButton
 			// 
@@ -222,7 +222,7 @@
 			this.closeButton.Size = new System.Drawing.Size(124, 35);
 			this.closeButton.TabIndex = 3;
 			this.closeButton.Text = "Cancel";
-			this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+			this.closeButton.Click += new System.EventHandler(this.Close);
 			// 
 			// buttonPanel
 			// 
@@ -244,7 +244,7 @@
 			this.updateButton.Size = new System.Drawing.Size(124, 35);
 			this.updateButton.TabIndex = 5;
 			this.updateButton.Text = "Update Page";
-			this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+			this.updateButton.Click += new System.EventHandler(this.Update);
 			// 
 			// pageInfoPanel
 			// 
@@ -274,7 +274,7 @@
 			this.pageInfoBox.Name = "pageInfoBox";
 			this.pageInfoBox.Size = new System.Drawing.Size(180, 30);
 			this.pageInfoBox.TabIndex = 7;
-			this.pageInfoBox.SelectedIndexChanged += new System.EventHandler(this.pageInfoBox_SelectedIndexChanged);
+			this.pageInfoBox.SelectedIndexChanged += new System.EventHandler(this.ChangeInfoScope);
 			// 
 			// selectButton
 			// 
@@ -285,7 +285,7 @@
 			this.selectButton.Size = new System.Drawing.Size(124, 35);
 			this.selectButton.TabIndex = 4;
 			this.selectButton.Text = "Select All";
-			this.selectButton.Click += new System.EventHandler(this.selectButton_Click);
+			this.selectButton.Click += new System.EventHandler(this.SelectAll);
 			// 
 			// topPanel
 			// 
@@ -312,7 +312,7 @@
 			this.wrapBox.TabIndex = 10;
 			this.wrapBox.Text = "Wrap";
 			this.wrapBox.UseVisualStyleBackColor = true;
-			this.wrapBox.CheckedChanged += new System.EventHandler(this.wrapBox_CheckedChanged);
+			this.wrapBox.CheckedChanged += new System.EventHandler(this.ChangeWrap);
 			// 
 			// findBox
 			// 
@@ -322,8 +322,8 @@
 			this.findBox.Name = "findBox";
 			this.findBox.Size = new System.Drawing.Size(271, 28);
 			this.findBox.TabIndex = 5;
-			this.findBox.TextChanged += new System.EventHandler(this.findBox_TextChanged);
-			this.findBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.findBox_KeyUp);
+			this.findBox.TextChanged += new System.EventHandler(this.ChangeFindText);
+			this.findBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FindBoxKeyUP);
 			// 
 			// findButton
 			// 
@@ -335,7 +335,7 @@
 			this.findButton.TabIndex = 4;
 			this.findButton.Text = "Search";
 			this.findButton.UseVisualStyleBackColor = true;
-			this.findButton.Click += new System.EventHandler(this.findButton_Click);
+			this.findButton.Click += new System.EventHandler(this.ClickFind);
 			// 
 			// introLabel
 			// 

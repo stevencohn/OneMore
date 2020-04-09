@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn
 	internal partial class ReorderDialog : Form
 	{
 
-		public ReorderDialog (ComboBox.ObjectCollection items)
+		public ReorderDialog(ComboBox.ObjectCollection items)
 		{
 			InitializeComponent();
 
@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public GraphicStyle[] GetItems ()
+		public GraphicStyle[] GetItems()
 		{
 			var items = listBox.Items.Cast<GraphicStyle>().ToArray();
 			return items;
@@ -32,14 +32,14 @@ namespace River.OneMoreAddIn
 
 
 
-		private void listBox_SelectedIndexChanged (object sender, System.EventArgs e)
+		private void ChangeSelection(object sender, System.EventArgs e)
 		{
 			upButton.Enabled = listBox.SelectedIndex > 0;
 			downButton.Enabled = listBox.SelectedIndex < listBox.Items.Count - 1;
 		}
 
 
-		private void upButton_Click (object sender, System.EventArgs e)
+		private void MoveUp(object sender, System.EventArgs e)
 		{
 			var index = listBox.SelectedIndex;
 			var item = listBox.SelectedItem;
@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void downButton_Click (object sender, System.EventArgs e)
+		private void MoveDown(object sender, System.EventArgs e)
 		{
 			var index = listBox.SelectedIndex;
 			var item = listBox.SelectedItem;
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void listBox_DrawItem (object sender, DrawItemEventArgs e)
+		private void DrawItem(object sender, DrawItemEventArgs e)
 		{
 			var item = listBox.Items[e.Index] as GraphicStyle;
 
@@ -102,7 +102,7 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				e.Graphics.DrawString(item.Name, DefaultFont, brush, e.Bounds.Location.X + 18, e.Bounds.Location.Y );
+				e.Graphics.DrawString(item.Name, DefaultFont, brush, e.Bounds.Location.X + 18, e.Bounds.Location.Y);
 			}
 			catch
 			{
@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void listBox_MeasureItem (object sender, MeasureItemEventArgs e)
+		private void MeasureItem(object sender, MeasureItemEventArgs e)
 		{
 			e.ItemHeight = 24;
 		}

@@ -10,15 +10,15 @@
 
 	public class FontComboBox : ComboBox
 	{
-		private Dictionary<string, Font> _fontCache;
-		private int _itemHeight;
-		private int _previewFontSize;
-		private StringFormat _stringFormat;
+		private readonly Dictionary<string, Font> cache;
+		private int itemHeight;
+		private int previewFontSize;
+		private StringFormat stringFormat;
 
 
-		public FontComboBox ()
+		public FontComboBox()
 		{
-			_fontCache = new Dictionary<string, Font>();
+			cache = new Dictionary<string, Font>();
 
 			this.DrawMode = DrawMode.OwnerDrawVariable;
 			this.Sorted = true;
@@ -32,12 +32,12 @@
 		public event EventHandler PreviewFontSizeChanged;
 
 
-		protected override void Dispose (bool disposing)
+		protected override void Dispose(bool disposing)
 		{
 			this.ClearFontCache();
 
-			if (_stringFormat != null)
-				_stringFormat.Dispose();
+			if (stringFormat != null)
+				stringFormat.Dispose();
 
 			base.Dispose(disposing);
 		}
@@ -54,10 +54,10 @@
 		[Category("Appearance"), DefaultValue(14)]
 		public int PreviewFontSize
 		{
-			get { return _previewFontSize; }
+			get { return previewFontSize; }
 			set
 			{
-				_previewFontSize = value;
+				previewFontSize = value;
 
 				this.OnPreviewFontSizeChanged(EventArgs.Empty);
 			}
@@ -73,7 +73,7 @@
 		}
 
 
-		protected override void OnDrawItem (DrawItemEventArgs e)
+		protected override void OnDrawItem(DrawItemEventArgs e)
 		{
 			base.OnDrawItem(e);
 
@@ -90,43 +90,43 @@
 
 					fontFamilyName = this.Items[e.Index].ToString();
 					e.Graphics.DrawString(fontFamilyName, this.GetFont(fontFamilyName),
-					textBrush, e.Bounds, _stringFormat);
+					textBrush, e.Bounds, stringFormat);
 				}
 			}
 		}
 
-		protected override void OnFontChanged (EventArgs e)
+		protected override void OnFontChanged(EventArgs e)
 		{
 			base.OnFontChanged(e);
 
 			this.CalculateLayout();
 		}
 
-		protected override void OnGotFocus (EventArgs e)
+		protected override void OnGotFocus(EventArgs e)
 		{
 			this.LoadFontFamilies();
 
 			base.OnGotFocus(e);
 		}
 
-		protected override void OnMeasureItem (MeasureItemEventArgs e)
+		protected override void OnMeasureItem(MeasureItemEventArgs e)
 		{
 			base.OnMeasureItem(e);
 
 			if (e.Index > -1 && e.Index < this.Items.Count)
 			{
-				e.ItemHeight = _itemHeight;
+				e.ItemHeight = itemHeight;
 			}
 		}
 
-		protected override void OnRightToLeftChanged (EventArgs e)
+		protected override void OnRightToLeftChanged(EventArgs e)
 		{
 			base.OnRightToLeftChanged(e);
 
 			this.CreateStringFormat();
 		}
 
-		protected override void OnTextChanged (EventArgs e)
+		protected override void OnTextChanged(EventArgs e)
 		{
 			base.OnTextChanged(e);
 
@@ -143,7 +143,7 @@
 		}
 
 
-		public virtual void LoadFontFamilies ()
+		public virtual void LoadFontFamilies()
 		{
 			if (this.Items.Count == 0)
 			{
@@ -157,7 +157,7 @@
 		}
 
 
-		private void CalculateLayout ()
+		private void CalculateLayout()
 		{
 			this.ClearFontCache();
 
@@ -166,11 +166,11 @@
 				Size textSize;
 
 				textSize = TextRenderer.MeasureText("yY", font);
-				_itemHeight = textSize.Height + 2;
+				itemHeight = textSize.Height + 2;
 			}
 		}
 
-		private bool IsUsingRTL (Control control)
+		private bool IsUsingRTL(Control control)
 		{
 			bool result;
 
@@ -184,36 +184,38 @@
 			return result;
 		}
 
-		protected virtual void ClearFontCache ()
+		protected virtual void ClearFontCache()
 		{
-			if (_fontCache != null)
+			if (cache != null)
 			{
-				foreach (string key in _fontCache.Keys)
-					_fontCache[key].Dispose();
-				_fontCache.Clear();
+				foreach (string key in cache.Keys)
+					cache[key].Dispose();
+				cache.Clear();
 			}
 		}
 
-		protected virtual void CreateStringFormat ()
+		protected virtual void CreateStringFormat()
 		{
-			if (_stringFormat != null)
-				_stringFormat.Dispose();
+			if (stringFormat != null)
+				stringFormat.Dispose();
 
-			_stringFormat = new StringFormat(StringFormatFlags.NoWrap);
-			_stringFormat.Trimming = StringTrimming.EllipsisCharacter;
-			_stringFormat.HotkeyPrefix = HotkeyPrefix.None;
-			_stringFormat.Alignment = StringAlignment.Near;
-			_stringFormat.LineAlignment = StringAlignment.Center;
+			stringFormat = new StringFormat(StringFormatFlags.NoWrap)
+			{
+				Trimming = StringTrimming.EllipsisCharacter,
+				HotkeyPrefix = HotkeyPrefix.None,
+				Alignment = StringAlignment.Near,
+				LineAlignment = StringAlignment.Center
+			};
 
 			if (this.IsUsingRTL(this))
-				_stringFormat.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
+				stringFormat.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
 		}
 
-		protected virtual Font GetFont (string fontFamilyName)
+		protected virtual Font GetFont(string fontFamilyName)
 		{
-			lock (_fontCache)
+			lock (cache)
 			{
-				if (!_fontCache.ContainsKey(fontFamilyName))
+				if (!cache.ContainsKey(fontFamilyName))
 				{
 					Font font;
 
@@ -227,14 +229,14 @@
 					if (font == null)
 						font = (Font)this.Font.Clone();
 
-					_fontCache.Add(fontFamilyName, font);
+					cache.Add(fontFamilyName, font);
 				}
 			}
 
-			return _fontCache[fontFamilyName];
+			return cache[fontFamilyName];
 		}
 
-		protected virtual Font GetFont (string fontFamilyName, FontStyle fontStyle)
+		protected virtual Font GetFont(string fontFamilyName, FontStyle fontStyle)
 		{
 			Font font;
 
@@ -250,11 +252,9 @@
 			return font;
 		}
 
-		protected virtual void OnPreviewFontSizeChanged (EventArgs e)
+		protected virtual void OnPreviewFontSizeChanged(EventArgs e)
 		{
-			if (PreviewFontSizeChanged != null)
-				PreviewFontSizeChanged(this, e);
-
+			PreviewFontSizeChanged?.Invoke(this, e);
 			this.CalculateLayout();
 		}
 	}

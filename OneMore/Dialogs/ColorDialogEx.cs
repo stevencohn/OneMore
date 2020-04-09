@@ -28,15 +28,15 @@ namespace River.OneMoreAddIn
 		private const uint UFLAGS = SWP_NOSIZE | SWP_NOZORDER | SWP_SHOWWINDOW;
 
 		[DllImport("user32.dll", CharSet = CharSet.Unicode)]
-		private static extern bool SetWindowText (IntPtr hWnd, string text);
+		private static extern bool SetWindowText(IntPtr hWnd, string text);
 
 		[DllImport("user32.dll", SetLastError = true)]
 		[return: MarshalAs(UnmanagedType.Bool)]
-		private static extern bool SetWindowPos (
+		private static extern bool SetWindowPos(
 			IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
 
 		[DllImport("kernel32.dll")]
-		static extern uint GetLastError ();
+		static extern uint GetLastError();
 		#endregion Win32
 
 		private bool once;
@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 		private readonly int x;
 		private readonly int y;
 
-		public ColorDialogEx (string title, int x, int y)
+		public ColorDialogEx(string title, int x, int y)
 			: base()
 		{
 			FullOpen = false;
@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 			this.y = y;
 		}
 
-		protected override IntPtr HookProc (IntPtr handle, int msg, IntPtr wparam, IntPtr lparam)
+		protected override IntPtr HookProc(IntPtr handle, int msg, IntPtr wparam, IntPtr lparam)
 		{
 			// must call base HookProc before chaning window pos or SetWindowPos won't work
 			var hook = base.HookProc(handle, msg, wparam, lparam);
@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void LoadCustomColors ()
+		private void LoadCustomColors()
 		{
 			var path = Path.Combine(PathFactory.GetAppDataPath(), Properties.Resources.CustomColorsFilesname);
 			if (File.Exists(path))
@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		protected override void Dispose (bool disposing)
+		protected override void Dispose(bool disposing)
 		{
 			if (CustomColors?.Length > 0)
 			{

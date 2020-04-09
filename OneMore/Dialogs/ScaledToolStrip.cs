@@ -22,21 +22,21 @@ namespace River.OneMoreAddIn
 			base.ScaleControl(factor, specified);
 
 			var scale = new SizeF(1, 1);
-            using (var bitmap = new Bitmap(1, 1))
-            using (var graphics = Graphics.FromImage(bitmap))
-            {
+			using (var bitmap = new Bitmap(1, 1))
+			using (var graphics = Graphics.FromImage(bitmap))
+			{
 				if (graphics.DpiX > 96)
 				{
 					scale.Width = graphics.DpiX / 96;
 				}
 
 				if (graphics.DpiY > 96)
-                {
-                    scale.Height = graphics.DpiY / 96;
-                }
-            }
+				{
+					scale.Height = graphics.DpiY / 96;
+				}
+			}
 
-            foreach (var item in Items)
+			foreach (var item in Items)
 			{
 				if (item is ToolStripControlHost)
 				{
@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn
 				else if (item is ToolStripItem)
 				{
 					var host = item as ToolStripItem;
-                    //host.Image = HighDpiHelper.ScaleImage(host.Image, scale.Height);
+					//host.Image = HighDpiHelper.ScaleImage(host.Image, scale.Height);
 					host.ImageScaling = ToolStripItemImageScaling.SizeToFit;
 				}
 			}

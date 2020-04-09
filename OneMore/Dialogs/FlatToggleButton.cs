@@ -12,7 +12,7 @@
 		private Image image;
 
 
-		public FlatToggleButton ()
+		public FlatToggleButton()
 		{
 			InitializeComponent();
 
@@ -39,7 +39,7 @@
 
 		public event EventHandler CheckedChanged;
 
-		protected virtual void OnClicked (EventArgs e)
+		protected virtual void OnClicked(EventArgs e)
 		{
 			CheckedChanged?.Invoke(this, e);
 		}
@@ -58,19 +58,19 @@
 			}
 		}
 
-		private void FlatToggleButton_MouseEnter (object sender, EventArgs e)
+		private void FlatToggleButton_MouseEnter(object sender, EventArgs e)
 		{
 			hot = true;
 			Invalidate();
 		}
 
-		private void FlatToggleButton_MouseLeave (object sender, EventArgs e)
+		private void FlatToggleButton_MouseLeave(object sender, EventArgs e)
 		{
 			hot = false;
 			Invalidate();
 		}
 
-		private void FlatToggleButton_Paint (object sender, PaintEventArgs e)
+		private void FlatToggleButton_Paint(object sender, PaintEventArgs e)
 		{
 			if (hot)
 			{
@@ -92,19 +92,19 @@
 			}
 		}
 
-		private void pictureBox_MouseEnter (object sender, EventArgs e)
+		private void MouseEnterPictureBox(object sender, EventArgs e)
 		{
 			hot = true;
 			Invalidate();
 		}
 
-		private void pictureBox_MouseLeave (object sender, EventArgs e)
+		private void MouseLeavePictureBox(object sender, EventArgs e)
 		{
 			hot = false;
 			Invalidate();
 		}
 
-		private void pictureBox_Click (object sender, EventArgs e)
+		private void ClickPictureBox(object sender, EventArgs e)
 		{
 			Checked = !Checked;
 		}

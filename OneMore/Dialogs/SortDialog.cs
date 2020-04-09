@@ -3,7 +3,6 @@
 //************************************************************************************************
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
-#pragma warning disable IDE1006 // Naming Styles
 
 namespace River.OneMoreAddIn
 {
@@ -81,19 +80,19 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void okButton_Click(object sender, EventArgs e)
+		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
 		}
 
 
-		private void cancelButton_Click(object sender, EventArgs e)
+		private void Cancel(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
 		}
 
-		private void scopeBox_SelectedIndexChanged(object sender, EventArgs e)
+		private void ChangeSelection(object sender, EventArgs e)
 		{
 			if (!(createdButton.Enabled = (scopeBox.SelectedIndex == 0)))
 			{

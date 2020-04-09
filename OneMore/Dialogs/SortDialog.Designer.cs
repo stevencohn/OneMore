@@ -58,7 +58,7 @@
 			this.cancelButton.TabIndex = 0;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
-			this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+			this.cancelButton.Click += new System.EventHandler(this.Cancel);
 			// 
 			// okButton
 			// 
@@ -70,7 +70,7 @@
 			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
-			this.okButton.Click += new System.EventHandler(this.okButton_Click);
+			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
 			// nameButton
 			// 
@@ -106,7 +106,7 @@
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(300, 28);
 			this.scopeBox.TabIndex = 4;
-			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.scopeBox_SelectedIndexChanged);
+			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeSelection);
 			// 
 			// scopeLabel
 			// 

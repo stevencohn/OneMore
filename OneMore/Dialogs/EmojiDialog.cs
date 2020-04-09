@@ -2,7 +2,6 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable IDE1006 // must begin with uppercase
 #pragma warning disable IDE0042 // variable can be deconstructed
 
 namespace River.OneMoreAddIn
@@ -56,7 +55,7 @@ namespace River.OneMoreAddIn
 		};
 
 
-		public EmojiDialog ()
+		public EmojiDialog()
 		{
 			InitializeComponent();
 
@@ -65,13 +64,13 @@ namespace River.OneMoreAddIn
 			iconBox.SelectedIndex = 0;
 		}
 
-		protected override void OnShown (EventArgs e)
+		protected override void OnShown(EventArgs e)
 		{
 			Location = new System.Drawing.Point(Location.X, Location.Y - (Height / 2));
 			UIHelper.SetForegroundWindow(this);
 		}
 
-		protected override void OnClosed (EventArgs e)
+		protected override void OnClosed(EventArgs e)
 		{
 			foreach (var icon in icons)
 			{
@@ -79,19 +78,19 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void okButton_Click (object sender, EventArgs e)
+		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
 		}
 
-		private void cancelButton_Click (object sender, EventArgs e)
+		private void Cancel(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
 		}
 
 
-		public string[] GetSelectedCodes ()
+		public string[] GetSelectedCodes()
 		{
 			var list = new List<int>();
 			foreach (int index in iconBox.SelectedIndices)
@@ -126,12 +125,12 @@ namespace River.OneMoreAddIn
 		//}
 
 
-		private void iconBox_MeasureItem (object sender, MeasureItemEventArgs e)
+		private void MeasureIconItemSIze(object sender, MeasureItemEventArgs e)
 		{
 			e.ItemHeight = 22;
 		}
 
-		private void iconBox_DrawItem (object sender, DrawItemEventArgs e)
+		private void DrawIconItem(object sender, DrawItemEventArgs e)
 		{
 			var icon = icons[e.Index];
 
@@ -165,7 +164,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void iconBox_DoubleClick (object sender, EventArgs e)
+		private void DoubleClickItem(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
 			Close();

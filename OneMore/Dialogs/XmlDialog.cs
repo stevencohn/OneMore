@@ -3,7 +3,6 @@
 //************************************************************************************************
 
 #pragma warning disable CS3001  // Type is not CLS-compliant
-#pragma warning disable IDE1006 // member names must begin with uppercase
 
 namespace River.OneMoreAddIn
 {
@@ -28,7 +27,7 @@ namespace River.OneMoreAddIn
 		private readonly ILogger logger;
 
 
-		public XmlDialog ()
+		public XmlDialog()
 		{
 			InitializeComponent();
 
@@ -43,7 +42,7 @@ namespace River.OneMoreAddIn
 
 		#region Lifecycle
 
-		private void MainForm_Load (object sender, EventArgs e)
+		private void MainForm_Load(object sender, EventArgs e)
 		{
 			manager = new ApplicationManager();
 
@@ -52,7 +51,7 @@ namespace River.OneMoreAddIn
 			pageInfoBox.SelectedIndex = infoNames.ToList().IndexOf("piSelection");
 		}
 
-		private void pageInfoBox_SelectedIndexChanged (object sender, EventArgs e)
+		private void ChangeInfoScope(object sender, EventArgs e)
 		{
 			if (Enum.TryParse<PageInfo>(pageInfoBox.Text, out var info))
 			{
@@ -75,7 +74,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		protected override void OnShown (EventArgs e)
+		protected override void OnShown(EventArgs e)
 		{
 			Location = new System.Drawing.Point(30, 30);
 			UIHelper.SetForegroundWindow(this);
@@ -83,18 +82,18 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void XmlDialog_FormClosing (object sender, FormClosingEventArgs e)
+		private void XmlDialog_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			manager?.Dispose();
 		}
 
-		private void closeButton_Click (object sender, EventArgs e)
+		private void Close(object sender, EventArgs e)
 		{
 			Close();
 		}
 
 
-		private void tabs_SelectedIndexChanged (object sender, EventArgs e)
+		private void ChangeSelectedTab(object sender, EventArgs e)
 		{
 			if (tabs.SelectedIndex == 0)
 			{
@@ -119,7 +118,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void wrapBox_CheckedChanged (object sender, EventArgs e)
+		private void ChangeWrap(object sender, EventArgs e)
 		{
 			if (tabs.SelectedIndex == 0)
 			{
@@ -131,7 +130,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		protected override bool ProcessDialogKey (Keys keyData)
+		protected override bool ProcessDialogKey(Keys keyData)
 		{
 			if (keyData == (Keys)(Keys.F | Keys.Control))
 			{
@@ -147,7 +146,7 @@ namespace River.OneMoreAddIn
 
 		#region Selection action
 
-		private void selectButton_Click (object sender, EventArgs e)
+		private void SelectAll(object sender, EventArgs e)
 		{
 			if (tabs.SelectedIndex == 0)
 			{
@@ -166,7 +165,7 @@ namespace River.OneMoreAddIn
 		#region Find actions
 
 		int findIndex = -1;
-		private void findButton_Click (object sender, EventArgs e)
+		private void ClickFind(object sender, EventArgs e)
 		{
 			RichTextBox box = tabs.SelectedIndex == 0 ? pageBox : hierBox;
 			var index = SearchOne(box, findBox.Text);
@@ -177,7 +176,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private int SearchOne (RichTextBox box, string text)
+		private int SearchOne(RichTextBox box, string text)
 		{
 			var index = box.Find(text, findIndex + 1, RichTextBoxFinds.None);
 			if (index > findIndex)
@@ -190,7 +189,7 @@ namespace River.OneMoreAddIn
 			return index;
 		}
 
-		private void findBox_TextChanged (object sender, EventArgs e)
+		private void ChangeFindText(object sender, EventArgs e)
 		{
 			if (findBox.Text.Length == 0)
 			{
@@ -207,16 +206,16 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void findBox_KeyUp (object sender, KeyEventArgs e)
+		private void FindBoxKeyUP(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				findButton_Click(sender, e);
+				ClickFind(sender, e);
 				e.Handled = true;
 			}
 		}
 
-		private void pageBox_KeyUp (object sender, KeyEventArgs e)
+		private void PageBoxKeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Control && (e.KeyCode == Keys.F))
 			{
@@ -228,22 +227,22 @@ namespace River.OneMoreAddIn
 
 		#region Hierarchy actions
 
-		private void notebooksHierButton_CheckedChanged (object sender, EventArgs e)
+		private void ShowNotebooks(object sender, EventArgs e)
 		{
 			ShowHierarchy(HierarchyScope.hsNotebooks);
 		}
 
-		private void sectionsHierButton_CheckedChanged (object sender, EventArgs e)
+		private void ShowSections(object sender, EventArgs e)
 		{
 			ShowHierarchy(HierarchyScope.hsSections);
 		}
 
-		private void pagesHierButton_CheckedChanged (object sender, EventArgs e)
+		private void ShowPages(object sender, EventArgs e)
 		{
 			ShowHierarchy(HierarchyScope.hsPages);
 		}
 
-		private void currNotebookButton_CheckedChanged (object sender, EventArgs e)
+		private void ShowCurrentNotebook(object sender, EventArgs e)
 		{
 			var element = manager.CurrentNotebook();
 			if (element != null)
@@ -257,7 +256,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void currSectionButton_CheckedChanged (object sender, EventArgs e)
+		private void ShowCurrentSection(object sender, EventArgs e)
 		{
 			var element = manager.CurrentSection();
 			if (element != null)
@@ -272,7 +271,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void ShowHierarchy (HierarchyScope scope)
+		private void ShowHierarchy(HierarchyScope scope)
 		{
 			var element = manager.GetHierarchy(scope);
 			if (element != null)
@@ -289,7 +288,7 @@ namespace River.OneMoreAddIn
 		#endregion Hierarchy actions
 
 
-		private void updateButton_Click (object sender, EventArgs e)
+		private void Update(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show(
 				"Are you sure? This may corrupt the current page.",
