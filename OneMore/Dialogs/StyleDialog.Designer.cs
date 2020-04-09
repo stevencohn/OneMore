@@ -93,7 +93,7 @@
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(105, 33);
 			this.sizeBox.TabIndex = 4;
-			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.UpdateFont);
+			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontSize);
 			// 
 			// beforeLabel
 			// 
@@ -131,7 +131,7 @@
 			this.nameBox.Name = "nameBox";
 			this.nameBox.Size = new System.Drawing.Size(443, 31);
 			this.nameBox.TabIndex = 1;
-			this.nameBox.TextChanged += new System.EventHandler(this.nameBox_TextChanged);
+			this.nameBox.TextChanged += new System.EventHandler(this.ChangeStyleName);
 			// 
 			// fontLabel
 			// 
@@ -150,7 +150,7 @@
 			this.spaceBeforeSpinner.Name = "spaceBeforeSpinner";
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceBeforeSpinner.TabIndex = 7;
-			this.spaceBeforeSpinner.ValueChanged += new System.EventHandler(this.spaceBeforeSpinner_ValueChanged);
+			this.spaceBeforeSpinner.ValueChanged += new System.EventHandler(this.ChangeSpaceBefore);
 			// 
 			// spaceAfterSpinner
 			// 
@@ -160,7 +160,7 @@
 			this.spaceAfterSpinner.Name = "spaceAfterSpinner";
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceAfterSpinner.TabIndex = 8;
-			this.spaceAfterSpinner.ValueChanged += new System.EventHandler(this.spaceAfterSpinner_ValueChanged);
+			this.spaceAfterSpinner.ValueChanged += new System.EventHandler(this.ChangeSpaceAfter);
 			// 
 			// previewBox
 			// 
@@ -207,7 +207,7 @@
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
 			this.namesBox.TabIndex = 21;
 			this.namesBox.Visible = false;
-			this.namesBox.SelectedIndexChanged += new System.EventHandler(this.namesBox_SelectedIndexChanged);
+			this.namesBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleListSelection);
 			// 
 			// panel1
 			// 
@@ -259,7 +259,7 @@
 			this.styleTypeBox.Name = "styleTypeBox";
 			this.styleTypeBox.Size = new System.Drawing.Size(443, 33);
 			this.styleTypeBox.TabIndex = 2;
-			this.styleTypeBox.SelectedIndexChanged += new System.EventHandler(this.styleTypeBox_SelectedIndexChanged);
+			this.styleTypeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleType);
 			// 
 			// applyColorsBox
 			// 
@@ -272,7 +272,7 @@
 			this.applyColorsBox.TabIndex = 6;
 			this.applyColorsBox.Text = "Apply colors";
 			this.applyColorsBox.UseVisualStyleBackColor = true;
-			this.applyColorsBox.CheckedChanged += new System.EventHandler(this.applyColorsBox_CheckedChanged);
+			this.applyColorsBox.CheckedChanged += new System.EventHandler(this.ChangeApplyColorsOption);
 			// 
 			// familyBox
 			// 
@@ -524,7 +524,7 @@
 			this.familyBox.Name = "familyBox";
 			this.familyBox.Size = new System.Drawing.Size(323, 32);
 			this.familyBox.TabIndex = 3;
-			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.UpdateFont);
+			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontFamily);
 			// 
 			// toolStrip
 			// 
@@ -558,7 +558,7 @@
 			this.boldButton.Name = "boldButton";
 			this.boldButton.Size = new System.Drawing.Size(34, 32);
 			this.boldButton.Text = "Bold";
-			this.boldButton.CheckStateChanged += new System.EventHandler(this.UpdateFont);
+			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
 			// italicButton
 			// 
@@ -570,7 +570,7 @@
 			this.italicButton.Name = "italicButton";
 			this.italicButton.Size = new System.Drawing.Size(34, 32);
 			this.italicButton.Text = "Italic";
-			this.italicButton.CheckStateChanged += new System.EventHandler(this.UpdateFont);
+			this.italicButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
 			// underlineButton
 			// 
@@ -582,7 +582,7 @@
 			this.underlineButton.Name = "underlineButton";
 			this.underlineButton.Size = new System.Drawing.Size(34, 32);
 			this.underlineButton.Text = "Underline";
-			this.underlineButton.CheckStateChanged += new System.EventHandler(this.UpdateFont);
+			this.underlineButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
 			// strikeButton
 			// 
@@ -594,7 +594,7 @@
 			this.strikeButton.Name = "strikeButton";
 			this.strikeButton.Size = new System.Drawing.Size(34, 32);
 			this.strikeButton.Text = "Strikethrough";
-			this.strikeButton.CheckStateChanged += new System.EventHandler(this.UpdateFont);
+			this.strikeButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
 			// superButton
 			// 
@@ -606,8 +606,8 @@
 			this.superButton.Name = "superButton";
 			this.superButton.Size = new System.Drawing.Size(34, 32);
 			this.superButton.Text = "Superscript";
+			this.superButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.superButton.Click += new System.EventHandler(this.ToggleSuperSub);
-			this.superButton.CheckStateChanged += new System.EventHandler(this.UpdateFont);
 			// 
 			// subButton
 			// 
@@ -619,8 +619,8 @@
 			this.subButton.Name = "subButton";
 			this.subButton.Size = new System.Drawing.Size(34, 32);
 			this.subButton.Text = "Subscript";
+			this.subButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.subButton.Click += new System.EventHandler(this.ToggleSuperSub);
-			this.subButton.CheckStateChanged += new System.EventHandler(this.UpdateFont);
 			// 
 			// backColorButton
 			// 
@@ -633,14 +633,14 @@
 			this.backColorButton.Name = "backColorButton";
 			this.backColorButton.Size = new System.Drawing.Size(45, 32);
 			this.backColorButton.ToolTipText = "Highlight Color";
-			this.backColorButton.ButtonClick += new System.EventHandler(this.backColorButton_ButtonClick);
+			this.backColorButton.ButtonClick += new System.EventHandler(this.ChangeHighlightColor);
 			// 
 			// transparentToolStripMenuItem
 			// 
 			this.transparentToolStripMenuItem.Name = "transparentToolStripMenuItem";
-			this.transparentToolStripMenuItem.Size = new System.Drawing.Size(205, 34);
+			this.transparentToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
 			this.transparentToolStripMenuItem.Text = "Transparent";
-			this.transparentToolStripMenuItem.Click += new System.EventHandler(this.transparentToolStripMenuItem_Click);
+			this.transparentToolStripMenuItem.Click += new System.EventHandler(this.ChangeHighlightToDefault);
 			// 
 			// colorButton
 			// 
@@ -653,14 +653,14 @@
 			this.colorButton.Name = "colorButton";
 			this.colorButton.Size = new System.Drawing.Size(45, 32);
 			this.colorButton.ToolTipText = "Text Color";
-			this.colorButton.ButtonClick += new System.EventHandler(this.colorButton_Click);
+			this.colorButton.ButtonClick += new System.EventHandler(this.ChangeColor);
 			// 
 			// defaultBlackToolStripMenuItem
 			// 
 			this.defaultBlackToolStripMenuItem.Name = "defaultBlackToolStripMenuItem";
-			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
+			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
 			this.defaultBlackToolStripMenuItem.Text = "Default (Black)";
-			this.defaultBlackToolStripMenuItem.Click += new System.EventHandler(this.defaultBlackToolStripMenuItem_Click);
+			this.defaultBlackToolStripMenuItem.Click += new System.EventHandler(this.ChangeColorToDefault);
 			// 
 			// mainTools
 			// 

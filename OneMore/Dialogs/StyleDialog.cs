@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn
 
 			var sampleFont = offset
 				? new Font(familyBox.Text, sampleFontSize)
-				: MakeFont(sampleFontSize);
+				: MakeFont(sampleFontSize); // dispose
 
 			var sampleSize = e.Graphics.MeasureString(offset ? "Sample" : "Sample ", sampleFont);
 
@@ -203,7 +203,7 @@ namespace River.OneMoreAddIn
 				? (float)Math.Round(sampleFontSize * 0.5)
 				: sampleFontSize;
 
-			var textFont = MakeFont(Math.Max(textFontSize, 4));
+			var textFont = MakeFont(Math.Max(textFontSize, 4)); // dispose
 
 			var textSize = e.Graphics.MeasureString("Text", textFont);
 			var allWidth = sampleSize.Width + textSize.Width;
@@ -242,10 +242,10 @@ namespace River.OneMoreAddIn
 				? Color.Gray
 				: selection?.ApplyColors == true ? selection.Foreground : Color.Black;
 
-			var sampleBrush = new SolidBrush(sampleColor);
+			var sampleBrush = new SolidBrush(sampleColor); // dispose
 
 			var textColor = selection?.ApplyColors == true ? selection.Foreground : Color.Black;
-			var textBrush = new SolidBrush(textColor);
+			var textBrush = new SolidBrush(textColor); // dispose
 
 			e.Graphics.DrawString("Sample ", sampleFont, sampleBrush, sampleClip, format);
 
@@ -271,27 +271,9 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void UpdateFont(object sender, EventArgs e)
-		{
-			if (allowEvents && (selection != null))
-			{
-				using (var oldfont = selection.Font)
-				{
-					if (!float.TryParse(sizeBox.Text, out var size))
-					{
-						size = (float)StyleBase.DefaultFontSize;
-					}
-
-					selection.Font = MakeFont(size);
-				}
-			}
-
-			previewBox.Invalidate();
-		}
-
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void nameBox_TextChanged(object sender, EventArgs e)
+		private void ChangeStyleName(object sender, EventArgs e)
 		{
 			if (allowEvents && nameBox.Visible)
 			{
@@ -304,7 +286,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void namesBox_SelectedIndexChanged(object sender, EventArgs e)
+		private void ChangeStyleListSelection(object sender, EventArgs e)
 		{
 			if (allowEvents && namesBox.Visible)
 			{
@@ -314,7 +296,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void styleTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+		private void ChangeStyleType(object sender, EventArgs e)
 		{
 			if (namesBox.Visible)
 			{
@@ -344,6 +326,75 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+		private void ChangeFontFamily(object sender, EventArgs e)
+		{
+			if (allowEvents && (selection != null))
+			{
+				var save = selection.Font;
+
+				if (!float.TryParse(sizeBox.Text, out var size))
+				{
+					size = (float)StyleBase.DefaultFontSize;
+				}
+
+				selection.FontFamily = familyBox.Text;
+				selection.Font = MakeFont(size);
+
+				save.Dispose();
+
+				previewBox.Invalidate();
+			}
+		}
+
+
+		private void ChangeFontSize(object sender, EventArgs e)
+		{
+			if (allowEvents && (selection != null))
+			{
+				var save = selection.Font;
+
+				if (!float.TryParse(sizeBox.Text, out var size))
+				{
+					size = (float)StyleBase.DefaultFontSize;
+				}
+
+				selection.FontSize = size.ToString("0.0#");
+				selection.Font = MakeFont(size);
+
+				save.Dispose();
+
+				previewBox.Invalidate();
+			}
+		}
+
+
+		private void ChangeFontStyle(object sender, EventArgs e)
+		{
+			if (allowEvents && (selection != null))
+			{
+				var save = selection.Font;
+
+				if (!float.TryParse(sizeBox.Text, out var size))
+				{
+					size = (float)StyleBase.DefaultFontSize;
+				}
+
+				selection.IsBold = boldButton.Checked;
+				selection.IsItalic = italicButton.Checked;
+				selection.IsUnderline = underlineButton.Checked;
+				selection.IsStrikethrough = strikeButton.Checked;
+				selection.IsSuperscript = superButton.Checked;
+				selection.IsSubscript = subButton.Checked;
+
+				selection.Font = MakeFont(size);
+
+				save.Dispose();
+
+				previewBox.Invalidate();
+			}
+		}
+
+
 		private void ToggleSuperSub(object sender, EventArgs e)
 		{
 			if (sender == superButton)
@@ -357,7 +408,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void colorButton_Click(object sender, EventArgs e)
+		private void ChangeColor(object sender, EventArgs e)
 		{
 			var color = SelectColor("Text Color", colorButton.Bounds, selection.Foreground);
 			if (!color.Equals(Color.Empty))
@@ -367,14 +418,14 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void defaultBlackToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ChangeColorToDefault(object sender, EventArgs e)
 		{
 			selection.Foreground = Color.Black;
 			previewBox.Invalidate();
 		}
 
 
-		private void backColorButton_ButtonClick(object sender, EventArgs e)
+		private void ChangeHighlightColor(object sender, EventArgs e)
 		{
 			var color = SelectColor("Highlight Color", backColorButton.Bounds, selection.Background);
 			if (!color.Equals(Color.Empty))
@@ -384,7 +435,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void transparentToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ChangeHighlightToDefault(object sender, EventArgs e)
 		{
 			selection.Background = Color.Transparent;
 			previewBox.Invalidate();
@@ -411,7 +462,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void applyColorsBox_CheckedChanged(object sender, EventArgs e)
+		private void ChangeApplyColorsOption(object sender, EventArgs e)
 		{
 			selection.ApplyColors
 				= colorButton.Enabled
@@ -422,13 +473,13 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void spaceAfterSpinner_ValueChanged(object sender, EventArgs e)
+		private void ChangeSpaceAfter(object sender, EventArgs e)
 		{
 			selection.SpaceAfter = spaceAfterSpinner.Value.ToString("#0.0");
 
 		}
 
-		private void spaceBeforeSpinner_ValueChanged(object sender, EventArgs e)
+		private void ChangeSpaceBefore(object sender, EventArgs e)
 		{
 			selection.SpaceBefore = spaceBeforeSpinner.Value.ToString("#0.0");
 		}

@@ -38,37 +38,6 @@
               label="Add Icon to Page Title"
               onAction="AddTitleIconCmd"/>
             <button
-              id="footnoteButton"
-              imageMso="FootnoteInsert"
-              label="Add Footnote"
-              getScreentip="GetItemScreentip"
-              onAction="AddFootnoteCmd"/>
-            <button
-              id="footnoteRemoveButton"
-              imageMso="RemoveCitation"
-              label="Remove Footnote"
-              getScreentip="GetItemScreentip"
-              onAction="RemoveFootnoteCmd"/>
-            <button
-              id="insertSingleLineButton"
-              imageMso="HorizontalLineInsert"
-              label="Insert Horzontal Line"
-              getScreentip="GetItemScreentip"
-              getEnabled="EnsureBodyContext"
-              onAction="InsertHorizontalLineCmd"/>
-            <button
-              id="insertDoubleLineButton"
-              getImage="GetDoubleLineImage"
-              label="Insert Double Horzontal Line"
-              getScreentip="GetItemScreentip"
-              getEnabled="EnsureBodyContext"
-              onAction="InsertDoubleHorizontalLineCmd"/>
-            <button
-              id="tocButton"
-              imageMso="WordInsertTableOfContents2"
-              label="Insert Page TOC"
-              onAction="InsertTocCmd"/>
-            <button
               id="noSpellCheckButton"
               image="NoSpellCheck"
               getLabel="GetItemLabel"
@@ -92,6 +61,88 @@
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="TrimCmd"/>
+            <menu id="additionalMenu" label="Additional..." imageMso="OutlineDemote">
+              <button
+                id="footnoteButton"
+                imageMso="FootnoteInsert"
+                label="Add Footnote"
+                getEnabled="EnsureBodyContext"
+                getScreentip="GetItemScreentip"
+                onAction="AddFootnoteCmd"/>
+              <button
+                id="footnoteRemoveButton"
+                imageMso="RemoveCitation"
+                label="Remove Footnote"
+                getEnabled="EnsureBodyContext"
+                getScreentip="GetItemScreentip"
+                onAction="RemoveFootnoteCmd"/>
+              <button
+                id="insertSingleLineButton"
+                imageMso="HorizontalLineInsert"
+                label="Insert Horzontal Line"
+                getScreentip="GetItemScreentip"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertHorizontalLineCmd"/>
+              <button
+                id="insertDoubleLineButton"
+                getImage="GetDoubleLineImage"
+                label="Insert Double Horzontal Line"
+                getScreentip="GetItemScreentip"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertDoubleHorizontalLineCmd"/>
+              <button
+                id="tocButton"
+                imageMso="WordInsertTableOfContents2"
+                label="Insert Page TOC"
+                onAction="InsertTocCmd"/>
+            </menu>
+            <menu id="snippetsMenu" label="Snippets..." imageMso="GroupInsertShapes">
+              <button
+                id="PersonaStatusOffline"
+                imageMso="AppointmentColor4"
+                label="Gray Status" 
+                getEnabled="EnsureBodyContext"
+                onAction="InsertGrayStatusCmd"/>
+              <button
+                id="redStatusButton"
+                imageMso="AppointmentColor1"
+                label="Red Status"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertRedStatusCmd"/>
+              <button
+                id="yellowStatusButton"
+                imageMso="AppointmentColor10"
+                label="Yellow Status"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertYellowStatusCmd"/>
+              <button
+                id="greenStatusButton"
+                imageMso="AppointmentColor3"
+                label="Green Status"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertGreenStatusCmd"/>
+              <button
+                id="blueStatusButton"
+                imageMso="AppointmentColor2"
+                label="Blue Status"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertBlueStatusCmd"/>
+              <button
+                id="infoBlockButton"
+                imageMso="Info"
+                label="Info block" 
+                getEnabled="EnsureBodyContext"/>
+              <button
+                id="warnBlockButton"
+                imageMso="HighImportance"
+                label="Warning block" 
+                getEnabled="EnsureBodyContext"/>
+              <button
+                id="codeBlockButton"
+                imageMso="CodeEdit"
+                label="Code block" 
+                getEnabled="EnsureBodyContext"/>
+            </menu>
             <menuSeparator id="sep1" title="Text"/>
             <button
               id="uppercaseButton"

@@ -7,41 +7,42 @@
 
 namespace River.OneMoreAddIn
 {
+	using Extensibility;
+	using Microsoft.Office.Core;
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Timers;
-	using Extensibility;
-	using Microsoft.Office.Core;
+	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
-	//********************************************************************************************
-	// class Addin
-	//********************************************************************************************
+	/// <summary>
+	/// This is the OneNote addin component for OneMore functionality
+	/// </summary>
 
 	[ComVisible(true)]
 	[Guid("88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61")]
 	[ProgId("River.OneMoreAddin")]
-	public class AddIn : IDTExtensibility2, IRibbonExtensibility
+	public partial class AddIn : IDTExtensibility2, IRibbonExtensibility
 	{
-		private IRibbonUI ribbon;                   // reference to ribbon control
-
-		private ILogger logger;                     // diagnostic logger
+		private IRibbonUI ribbon;                   // the ribbon control
+		private ILogger logger;                     // our diagnostic logger
 		private CommandFactory factory;
 		private readonly Process process;           // current process, to kill if necessary
+		private List<IDisposable> trash;			// track disposables
 
-		private List<IDisposable> trash;
 
+		// Lifecycle...
 
-		//========================================================================================
-		// Lifecycle
-		//========================================================================================
-
+		/// <summary>
+		/// Initializes the addin
+		/// </summary>
 		public AddIn()
 		{
 			//System.Diagnostics.Debugger.Launch();
@@ -58,12 +59,7 @@ namespace River.OneMoreAddIn
 
 
 		//========================================================================================
-		// Realizations
-		//========================================================================================
-
-		#region IDTExtensibility2
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// IDTExtensibility2
 
 		/* Startup functions are called in this order:
 		 *
@@ -105,6 +101,57 @@ namespace River.OneMoreAddIn
 			logger.WriteLine($"OnStartupComplete({count})");
 			RegisterHotkeys();
 		}
+
+		#region RegisterHotkeys
+
+		private void RegisterHotkeys()
+		{
+			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlAlt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.AltShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.AltShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.F4);
+			HotkeyManager.RegisterHotKey(Forms.Keys.V, Hotmods.ControlAlt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.H, Hotmods.Control);
+			HotkeyManager.RegisterHotKey(Forms.Keys.U, Hotmods.ControlShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.U, Hotmods.ControlAltShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.ControlAlt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.ControlAlt);
+			HotkeyManager.RegisterHotKey(Forms.Keys.X, Hotmods.ControlAltShift);
+			HotkeyManager.RegisterHotKey(Forms.Keys.F8);
+
+			HotkeyManager.HotKeyPressed += HotkeyHandler;
+		}
+
+
+		private void HotkeyHandler(object sender, EventArgs args)
+		{
+			var a = args as HotkeyEventArgs;
+			logger.WriteLine($"HOTKEY called {a.Modifiers}+{a.Key} value:{a.Value:x}");
+
+			switch (a.Value)
+			{
+				case 0x460003: AddFootnoteCmd(null); break;
+				case 0x460006: RemoveFootnoteCmd(null); break;
+				case 0xbd0005: InsertHorizontalLineCmd(null); break;
+				case 0xbb0005: InsertDoubleHorizontalLineCmd(null); break;
+				case 0x730000: NoSpellCheckCmd(null); break;
+				case 0x560003: PasteRtfCmd(null); break;
+				case 0x480002: SearchAndReplaceCmd(null); break;
+				case 0x550007: ToUppercaseCmd(null); break;
+				case 0x550006: ToLowercaseCmd(null); break;
+				case 0xbb0003: IncreaseFontSizeCmd(null); break;
+				case 0xbd0003: DecreaseFontSizeCmd(null); break;
+				case 0x580007: ShowXmlCmd(null); break;
+
+				case 0x770000:
+					factory.GetCommand<DiagnosticsCommand>().Execute();
+					break;
+			}
+		}
+
+		#endregion RegisterHotkeys
+
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -199,63 +246,12 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		#endregion IDTExtensibility2
-
-		#region Hotkeys
-
-		private void RegisterHotkeys()
-		{
-			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.AltShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.AltShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.F4);
-			HotkeyManager.RegisterHotKey(Forms.Keys.V, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.H, Hotmods.Control);
-			HotkeyManager.RegisterHotKey(Forms.Keys.U, Hotmods.ControlShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.U, Hotmods.ControlAltShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.X, Hotmods.ControlAltShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.F8);
-
-			HotkeyManager.HotKeyPressed += HotkeyHandler;
-		}
-
-
-		private void HotkeyHandler(object sender, EventArgs args)
-		{
-			var a = args as HotkeyEventArgs;
-			logger.WriteLine($"HOTKEY called {a.Modifiers}+{a.Key} value:{a.Value:x}");
-
-			switch (a.Value)
-			{
-				case 0x460003: AddFootnoteCmd(null); break;
-				case 0x460006: RemoveFootnoteCmd(null); break;
-				case 0xbd0005: InsertHorizontalLineCmd(null); break;
-				case 0xbb0005: InsertDoubleHorizontalLineCmd(null); break;
-				case 0x730000: NoSpellCheckCmd(null); break;
-				case 0x560003: PasteRtfCmd(null); break;
-				case 0x480002: SearchAndReplaceCmd(null); break;
-				case 0x550007: ToUppercaseCmd(null); break;
-				case 0x550006: ToLowercaseCmd(null); break;
-				case 0xbb0003: IncreaseFontSizeCmd(null); break;
-				case 0xbd0003: DecreaseFontSizeCmd(null); break;
-				case 0x580007: ShowXmlCmd(null); break;
-
-				case 0x770000:
-					factory.GetCommand<DiagnosticsCommand>().Execute();
-					break;
-			}
-		}
-
-		#endregion Hotkeys
-
 
 		//========================================================================================
 		// Ribbon handlers
 
-		#region IRibbonExtensibility
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// IRibbonExtensibility...
 
 		/// <summary>
 		/// Return XML that describes the Ribbon customizations.  This is called by OneNote
@@ -272,9 +268,9 @@ namespace River.OneMoreAddIn
 			return ribbon;
 		}
 
-		#endregion IRibbonExtensibility
 
-		#region Ribbon handlers
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Ribbon handlers...
 
 		/// <summary>
 		/// Specified in Ribbon.xml, this method is called once the custom ribbon UI is loaded
@@ -295,7 +291,8 @@ namespace River.OneMoreAddIn
 				logger.WriteLine("OneNote unfiled folder: " + unfiledFolder);
 
 				factory = new CommandFactory(logger, ribbon, trash,
-					new Win32WindowHandle(new IntPtr((Int64)manager.Application.Windows.CurrentWindow.WindowHandle)));
+					manager.Window);
+					//new Win32WindowHandle(new IntPtr((Int64)manager.WindowHandle)));
 			}
 		}
 
@@ -440,13 +437,25 @@ namespace River.OneMoreAddIn
 			return stream;
 		}
 
-		#endregion Ribbon handlers
 
-		#region Menu behaviors
+		//========================================================================================
+		// Addin menu behaviors
 
 		public bool EnsureBodyContext(IRibbonControl control)
 		{
-			return factory.GetCommand<InsertLineCommand>().IsBodyContext();
+			XElement page;
+			using (var manager = new ApplicationManager()) { page = manager.CurrentPage(); }
+
+			var ns = page.GetNamespaceOfPrefix("one");
+
+			var found = page.Elements(ns + "Outline")?
+				.Descendants(ns + "T")?
+				.Attributes("selected")?
+				.Any(a => a.Value.Equals("all"));
+
+			ribbon.Invalidate();
+
+			return found ?? true;
 		}
 
 		public IStream GetDoubleLineImage(IRibbonControl control)
@@ -466,9 +475,10 @@ namespace River.OneMoreAddIn
 			return stream;
 		}
 
-		#endregion Menu behaviors
 
-		#region Style Gallery
+		//========================================================================================
+		// Addin Style Gallery helpers
+
 		public int GetStyleGalleryItemCount(IRibbonControl control)
 		{
 			var count = new StyleProvider().Count;
@@ -493,150 +503,5 @@ namespace River.OneMoreAddIn
 			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{name}\"");
 			return name;
 		}
-		#endregion Style Gallery
-
-		#region Favorites handlers
-
-		public string GetFavoritesContent(IRibbonControl control)
-		{
-			//logger.WriteLine($"GetFavoritesContent({control.Id})");
-			return new FavoritesProvider(ribbon).GetMenuContent();
-		}
-
-		public void AddFavoritePage(IRibbonControl control)
-		{
-			//logger.WriteLine($"AddFavoritePage({control.Id})");
-			new FavoritesProvider(ribbon).AddFavorite();
-		}
-
-		public void NavigateToFavorite(IRibbonControl control)
-		{
-			//logger.WriteLine($"NavigateToFavorite({control.Tag})");
-			factory.GetCommand<NavigateCommand>().Execute(control.Tag);
-		}
-
-		public void RemoveFavorite(IRibbonControl control)
-		{
-			//logger.WriteLine($"RemoveFavorite({control.Tag})");
-			new FavoritesProvider(ribbon).RemoveFavorite(control.Tag);
-		}
-
-		#endregion Favorites handlers
-
-
-		//========================================================================================
-		// OneMore command menu handlers
-
-		#region Commands
-
-		public void AddFootnoteCmd(IRibbonControl control)
-		{
-			factory.GetCommand<AddFootnoteCommand>().Execute();
-		}
-
-		public void AddTitleIconCmd(IRibbonControl control)
-		{
-			factory.GetCommand<AddTitleIconCommand>().Execute();
-		}
-
-		public void ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
-		{
-			//logger.WriteLine($"StyleGallerySelected2({control.Id}, {selectedId}, {selectedIndex})");
-			factory.GetCommand<ApplyStyleCommand>().Execute(selectedIndex);
-		}
-
-		public void CollapseCmd(IRibbonControl control)
-		{
-			factory.GetCommand<CollapseCommand>().Execute();
-		}
-
-		public void DecreaseFontSizeCmd(IRibbonControl control)
-		{
-			factory.GetCommand<AlterSizeCommand>().Execute(-1);
-		}
-
-		public void EditStylesCmd(IRibbonControl control)
-		{
-			factory.GetCommand<EditStylesCommand>().Execute();
-			ribbon.Invalidate(); // TODO: only if changes?
-		}
-
-		public void NewStyleCmd(IRibbonControl control)
-		{
-			factory.GetCommand<NewStyleCommand>().Execute();
-			ribbon.Invalidate(); // TODO: only if changes?
-		}
-
-		public void IncreaseFontSizeCmd(IRibbonControl control)
-		{
-			factory.GetCommand<AlterSizeCommand>().Execute(1);
-		}
-
-		public void InsertDoubleHorizontalLineCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertLineCommand>().Execute('═');
-		}
-
-		public void InsertHorizontalLineCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertLineCommand>().Execute('─');
-		}
-
-		public void InsertTocCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertTocCommand>().Execute();
-		}
-
-		public void NoSpellCheckCmd(IRibbonControl control)
-		{
-			factory.GetCommand<NoSpellCheckCommand>().Execute();
-		}
-
-		public void PasteRtfCmd(IRibbonControl control)
-		{
-			factory.GetCommand<PasteRtfCommand>().Execute();
-		}
-
-		public void RemoveFootnoteCmd(IRibbonControl control)
-		{
-			factory.GetCommand<RemoveFootnoteCommand>().Execute();
-		}
-
-		public void SearchAndReplaceCmd(IRibbonControl control)
-		{
-			factory.GetCommand<SearchAndReplaceCommand>().Execute();
-		}
-
-		public void ShowAboutCmd(IRibbonControl control)
-		{
-			factory.GetCommand<ShowAboutCommand>().Execute();
-		}
-
-		public void ShowXmlCmd(IRibbonControl control)
-		{
-			factory.GetCommand<ShowXmlCommand>().Execute();
-		}
-
-		public void SortCmd(IRibbonControl control)
-		{
-			factory.GetCommand<SortCommand>().Execute();
-		}
-
-		public void ToLowercaseCmd(IRibbonControl control)
-		{
-			factory.GetCommand<ToCaseCommand>().Execute(false);
-		}
-
-		public void ToUppercaseCmd(IRibbonControl control)
-		{
-			factory.GetCommand<ToCaseCommand>().Execute(true);
-		}
-
-		public void TrimCmd(IRibbonControl control)
-		{
-			factory.GetCommand<TrimCommand>().Execute();
-		}
-
-		#endregion Commands
 	}
 }

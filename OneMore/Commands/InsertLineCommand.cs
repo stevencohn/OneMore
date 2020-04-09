@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using System;
-	using System.Drawing;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -17,26 +16,6 @@ namespace River.OneMoreAddIn
 
 		public InsertLineCommand () : base()
 		{
-		}
-
-
-		public bool IsBodyContext ()
-		{
-			using (var manager = new ApplicationManager())
-			{
-				var page = manager.CurrentPage();
-				var ns = page.GetNamespaceOfPrefix("one");
-
-				var found = page
-					.Elements(ns + "Outline")?
-					.Descendants(ns + "T")?
-					.Attributes("selected")?
-					.Any(a => a.Value.Equals("all"));
-
-				ribbon.Invalidate();
-
-				return found ?? true;
-			}
 		}
 
 
@@ -78,9 +57,9 @@ namespace River.OneMoreAddIn
 								new XCData(line + "<br/>")
 							)
 						));
-				}
 
-				manager.UpdatePageContent(page);
+					manager.UpdatePageContent(page);
+				}
 			}
 		}
 	}

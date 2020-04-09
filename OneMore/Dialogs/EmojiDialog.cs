@@ -2,6 +2,9 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable IDE1006 // must begin with uppercase
+#pragma warning disable IDE0042 // variable can be deconstructed
+
 namespace River.OneMoreAddIn
 {
 	using System;
@@ -21,7 +24,7 @@ namespace River.OneMoreAddIn
 
 	internal partial class EmojiDialog : Form, IOneMoreWindow
 	{
-		private (string code, string html, string name, Image image)[] icons =
+		private readonly (string code, string html, string name, Image image)[] icons =
 		{
 			("🚩", "&#128681;", "Important", Resx.Flag),			// 🚩 1F6A9 Triangular Flag On Post
 			("📐", "&#128208;", "Architecture", Resx.Architecture),	// 📐 1F4D0 Triangular Ruler

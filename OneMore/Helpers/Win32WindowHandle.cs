@@ -10,15 +10,12 @@ namespace River.OneMoreAddIn
 
 	internal class Win32WindowHandle : IWin32Window
 	{
-		private readonly IntPtr handle;
-
-
 		public Win32WindowHandle (IntPtr windowHandle)
 		{
-			handle = windowHandle;
+			Handle = windowHandle;
 		}
 
 
-		public IntPtr Handle => handle;
+		public IntPtr Handle { get; }
 	}
 }

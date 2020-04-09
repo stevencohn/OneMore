@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable IDE1006 // must begin with uppercase
+
 namespace River.OneMoreAddIn
 {
 	using System;

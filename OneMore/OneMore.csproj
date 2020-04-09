@@ -94,6 +94,8 @@
     <Compile Include="..\AssemblyInfo.Shared.cs">
       <Link>Properties\AssemblyInfo.Shared.cs</Link>
     </Compile>
+    <Compile Include="AddInCommands.cs" />
+    <Compile Include="AddInFavorites.cs" />
     <Compile Include="Commands\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
     <Compile Include="Commands\AddTitleIconCommand.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
     <Compile Include="Commands\GalleryTileFactory.cs" />
     <Compile Include="Commands\InsertLineCommand.cs" />
+    <Compile Include="Commands\InsertStatusCommand.cs" />
     <Compile Include="Commands\InsertTocCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Commands\NewStyleCommand.cs" />
