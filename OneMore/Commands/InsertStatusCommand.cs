@@ -48,11 +48,10 @@ namespace River.OneMoreAddIn
 				var page = manager.CurrentPage();
 				var ns = page.GetNamespaceOfPrefix("one");
 
-				var element = page.Descendants(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.LastOrDefault();
+				var elements = page.Descendants(ns + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				if (element != null)
+				if (elements != null)
 				{
 					string color = "black";
 					string background = "yellow";
@@ -85,20 +84,36 @@ namespace River.OneMoreAddIn
 							break;
 					}
 
-					var status = $"";
+					var span = new XElement("span",
+						new XAttribute("style", $"font-family:'Segoe UI';font-size:10.0pt;font-weight:bold;color:{color};background:{background}"),
+						$"     STATUS     "
+						);
 
-					var cdata = element.DescendantNodes().OfType<XCData>().LastOrDefault();
-					if (cdata != null)
+					var status = new XElement(ns + "T",
+						new XCData(span.ToString(SaveOptions.DisableFormatting) + "&#160;")
+						);
+
+
+					if ((elements.Count() == 1) &&
+						(elements.First().GetCData().Value.Length == 0))
 					{
-						var span = new XElement("span",
-							new XAttribute("style", $"font-family:'Segoe UI';font-size:10.0pt;font-weight:bold;color:{color};background:{background}"),
-							$"     STATUS     "
-							);
-
-						cdata.Value += span.ToString(SaveOptions.DisableFormatting);
-
-						manager.UpdatePageContent(page);
+						// no selection so insert just before cursor
+						elements.First().AddBeforeSelf(status);
 					}
+					else
+					{
+						// replace one or more one:T @select=all with status, place cursor after
+						var element = elements.Last();
+						element.AddAfterSelf(status);
+						elements.Remove();
+
+						status.AddAfterSelf(new XElement(ns + "T",
+							new XAttribute("selected", "all"),
+							new XCData(string.Empty)
+							));
+					}
+
+					manager.UpdatePageContent(page);
 				}
 			}
 		}
