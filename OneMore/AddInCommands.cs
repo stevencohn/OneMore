@@ -65,6 +65,21 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<InsertLineCommand>().Execute('─');
 		}
 
+		public void InsertCodeBlockCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertCodeBlockCommand>().Execute();
+		}
+
+		public void InsertInfoBlockCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertInfoBlockCommand>().Execute(false);
+		}
+
+		public void InsertWarningBlockCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertInfoBlockCommand>().Execute(true);
+		}
+
 		public void InsertTocCmd(IRibbonControl control)
 		{
 			factory.GetCommand<InsertTocCommand>().Execute();

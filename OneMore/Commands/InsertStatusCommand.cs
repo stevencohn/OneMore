@@ -20,8 +20,6 @@ namespace River.OneMoreAddIn
 
 	internal class InsertStatusCommand : Command
 	{
-		private const int LineCharCount = 100;
-
 
 		public InsertStatusCommand() : base()
 		{
@@ -45,10 +43,10 @@ namespace River.OneMoreAddIn
 		{
 			using (var manager = new ApplicationManager())
 			{
-				var page = manager.CurrentPage();
-				var ns = page.GetNamespaceOfPrefix("one");
+				var page = new Page(manager.CurrentPage());
+				var ns = page.Namespace;
 
-				var elements = page.Descendants(ns + "T")
+				var elements = page.Root.Descendants(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
 				if (elements != null)
@@ -84,36 +82,21 @@ namespace River.OneMoreAddIn
 							break;
 					}
 
-					var span = new XElement("span",
-						new XAttribute("style", $"font-family:'Segoe UI';font-size:10.0pt;font-weight:bold;color:{color};background:{background}"),
-						$"     STATUS     "
+					var colors = $"color:{color};background:{background}";
+					var text = "     STATUS     ";
+
+					var content = new XElement(ns + "T",
+						new XCData(
+							new XElement("span",
+								new XAttribute("style",
+									$"font-family:'Segoe UI';font-size:10.0pt;font-weight:bold;{colors}"),
+								text
+							).ToString(SaveOptions.DisableFormatting) + "&#160;")
 						);
 
-					var status = new XElement(ns + "T",
-						new XCData(span.ToString(SaveOptions.DisableFormatting) + "&#160;")
-						);
+					page.ReplaceSelectedWithContent(content);
 
-
-					if ((elements.Count() == 1) &&
-						(elements.First().GetCData().Value.Length == 0))
-					{
-						// no selection so insert just before cursor
-						elements.First().AddBeforeSelf(status);
-					}
-					else
-					{
-						// replace one or more one:T @select=all with status, place cursor after
-						var element = elements.Last();
-						element.AddAfterSelf(status);
-						elements.Remove();
-
-						status.AddAfterSelf(new XElement(ns + "T",
-							new XAttribute("selected", "all"),
-							new XCData(string.Empty)
-							));
-					}
-
-					manager.UpdatePageContent(page);
+					manager.UpdatePageContent(page.Root);
 				}
 			}
 		}

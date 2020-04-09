@@ -99,7 +99,8 @@ namespace River.OneMoreAddIn
 			// else build a new divider...
 
 			var line = string.Concat(Enumerable.Repeat("- ", 50));
-			PageHelper.EnsurePageWidth(page, line, "Courier New", 10f, manager.WindowHandle);
+
+			new Page(page).EnsurePageWidth(line, "Courier New", 10f, manager.WindowHandle);
 
 			var content = page.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())

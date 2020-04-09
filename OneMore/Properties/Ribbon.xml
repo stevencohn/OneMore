@@ -130,18 +130,21 @@
               <button
                 id="infoBlockButton"
                 imageMso="Info"
-                label="Info block" 
-                getEnabled="EnsureBodyContext"/>
+                label="Info block"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertInfoBlockCmd"/>
               <button
                 id="warnBlockButton"
                 imageMso="HighImportance"
-                label="Warning block" 
-                getEnabled="EnsureBodyContext"/>
+                label="Warning block"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertWarningBlockCmd"/>
               <button
                 id="codeBlockButton"
                 imageMso="CodeEdit"
-                label="Code block" 
-                getEnabled="EnsureBodyContext"/>
+                label="Code block"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertCodeBlockCmd"/>
             </menu>
             <menuSeparator id="sep1" title="Text"/>
             <button

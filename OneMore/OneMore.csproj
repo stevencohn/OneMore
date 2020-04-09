@@ -106,6 +106,8 @@
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
     <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
     <Compile Include="Commands\GalleryTileFactory.cs" />
+    <Compile Include="Commands\InsertCodeBlockCommand.cs" />
+    <Compile Include="Commands\InsertInfoBlockCommand.cs" />
     <Compile Include="Commands\InsertLineCommand.cs" />
     <Compile Include="Commands\InsertStatusCommand.cs" />
     <Compile Include="Commands\InsertTocCommand.cs" />
@@ -152,7 +154,6 @@
     <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
     <Compile Include="Helpers\Hotkeys\Hotmods.cs" />
     <Compile Include="Helpers\Native.cs" />
-    <Compile Include="Helpers\PageHelper.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\XCDataExtensions.cs" />
     <Compile Include="Helpers\XElementExtensions.cs" />
@@ -192,6 +193,9 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="ApplicationManager.cs" />
     <Compile Include="Commands\ShowXmlCommand.cs" />
+    <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\Table.cs" />
+    <Compile Include="Models\TableRow.cs" />
     <Compile Include="Styles\GraphicStyle.cs" />
     <Compile Include="Styles\QuickStyleDef.cs" />
     <Compile Include="Styles\Style.cs" />

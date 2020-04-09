@@ -36,11 +36,11 @@ namespace River.OneMoreAddIn
 		{
 			using (var manager = new ApplicationManager())
 			{
-				var page = manager.CurrentPage();
-				var ns = page.GetNamespaceOfPrefix("one");
+				var page = new Page(manager.CurrentPage());
+				var ns = page.Namespace;
 
 				var current =
-					(from e in page.Descendants(ns + "OE")
+					(from e in page.Root.Descendants(ns + "OE")
 					 where e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all"))
 					 select e).FirstOrDefault();
 
@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn
 				{
 					string line = string.Empty.PadRight(LineCharCount, c);
 
-					PageHelper.EnsurePageWidth(page, line, "Courier New", 10f, manager.WindowHandle);
+					page.EnsurePageWidth(line, "Courier New", 10f, manager.WindowHandle);
 
 					current.AddAfterSelf(
 						new XElement(ns + "OE",
@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn
 							)
 						));
 
-					manager.UpdatePageContent(page);
+					manager.UpdatePageContent(page.Root);
 				}
 			}
 		}
