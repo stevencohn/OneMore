@@ -2,8 +2,6 @@
 // Copyright © 2016 Steven M Cohn.  Yada yada...
 //************************************************************************************************
 
-#pragma warning disable IDE1006 // event handler naming convention pascal case
-
 namespace River.OneMoreAddIn
 {
 	using System;
@@ -141,6 +139,10 @@ namespace River.OneMoreAddIn
 			boldButton.Checked = selection.IsBold;
 			italicButton.Checked = selection.IsItalic;
 			underlineButton.Checked = selection.IsUnderline;
+			strikeButton.Checked = selection.IsStrikethrough;
+			superButton.Checked = selection.IsSuperscript;
+			subButton.Checked = selection.IsSubscript;
+
 			applyColorsBox.Checked = selection.ApplyColors;
 
 			spaceAfterSpinner.Value = (decimal)double.Parse(selection.SpaceAfter);
@@ -175,7 +177,7 @@ namespace River.OneMoreAddIn
 			namesBox.Items.Cast<GraphicStyle>().ToList().ConvertAll(e => e.GetStyle());
 
 
-		private void previewBox_Paint(object sender, PaintEventArgs e)
+		private void RepaintSample(object sender, PaintEventArgs e)
 		{
 			var vcenter = previewBox.Height / 2;
 
@@ -405,6 +407,8 @@ namespace River.OneMoreAddIn
 			{
 				superButton.Checked = false;
 			}
+
+			ChangeFontStyle(sender, e);
 		}
 
 
@@ -489,7 +493,7 @@ namespace River.OneMoreAddIn
 		// Following are only active when editing a theme, not creating a new style
 
 
-		private void loadButton_Click(object sender, EventArgs e)
+		private void LoadTheme(object sender, EventArgs e)
 		{
 			using (var dialog = new OpenFileDialog())
 			{
@@ -528,7 +532,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void reorderButton_Click(object sender, EventArgs e)
+		private void ReorderStyles(object sender, EventArgs e)
 		{
 			using (var dialog = new ReorderDialog(namesBox.Items))
 			{
@@ -559,7 +563,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void deleteButton_Click(object sender, EventArgs e)
+		private void DeleteStyle(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show(this, "Delete this custom style?", "Confirm",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);

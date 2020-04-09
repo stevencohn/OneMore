@@ -172,7 +172,7 @@
 			this.previewBox.Size = new System.Drawing.Size(310, 107);
 			this.previewBox.TabIndex = 18;
 			this.previewBox.TabStop = false;
-			this.previewBox.Paint += new System.Windows.Forms.PaintEventHandler(this.previewBox_Paint);
+			this.previewBox.Paint += new System.Windows.Forms.PaintEventHandler(this.RepaintSample);
 			// 
 			// cancelButton
 			// 
@@ -683,7 +683,7 @@
 			this.loadButton.Name = "loadButton";
 			this.loadButton.Size = new System.Drawing.Size(137, 27);
 			this.loadButton.Text = "Load Theme";
-			this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
+			this.loadButton.Click += new System.EventHandler(this.LoadTheme);
 			// 
 			// reorderButton
 			// 
@@ -692,7 +692,7 @@
 			this.reorderButton.Name = "reorderButton";
 			this.reorderButton.Size = new System.Drawing.Size(102, 27);
 			this.reorderButton.Text = "Reorder";
-			this.reorderButton.Click += new System.EventHandler(this.reorderButton_Click);
+			this.reorderButton.Click += new System.EventHandler(this.ReorderStyles);
 			// 
 			// deleteButton
 			// 
@@ -702,7 +702,7 @@
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(90, 29);
 			this.deleteButton.Text = "Delete";
-			this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+			this.deleteButton.Click += new System.EventHandler(this.DeleteStyle);
 			// 
 			// StyleDialog
 			// 
