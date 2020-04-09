@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn
 
 	internal class PasteRtfCommand : Command
 	{
+		private const double DeltaSize = 0.75;
 
 		private const char Space = '\u00a0'; // Unicode no-break space
 
@@ -494,7 +495,7 @@ namespace River.OneMoreAddIn
 			{
 				if (double.TryParse(parts[i], out var value))
 				{
-					parts[i] = Math.Ceiling(value).ToString();
+					parts[i] = Math.Ceiling(value * DeltaSize).ToString();
 				}
 				else
 				{

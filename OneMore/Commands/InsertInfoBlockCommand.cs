@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn
 					new XAttribute("alignment", "center"),
 					new XAttribute("style", $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{color};&#xA;text-align:center"),
 					new XElement(ns + "T",
-						new XCData($"<span style='font-weigth:bold'>{symbol}</span>"))
+						new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
 					));
 
 				row.SetCellContent(1, new XElement(ns + "OEChildren",
