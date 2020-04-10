@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				Foreground = Color.Equals("automatic") 
+				Foreground = Color.Equals(Automatic) 
 					? Drawing.Color.Black
 					: Drawing.ColorTranslator.FromHtml(Color);
 			}
@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				Background = Highlight.Equals("automatic")
+				Background = Highlight.Equals(Automatic)
 					? Drawing.Color.Transparent
 					: Drawing.ColorTranslator.FromHtml(Highlight);
 			}

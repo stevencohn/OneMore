@@ -190,13 +190,33 @@ namespace River.OneMoreAddIn
 			{
 				var css = style.ToCss();
 
+				var applied = new Style(style)
+				{
+					ApplyColors = true
+				};
+
+				System.Diagnostics.Debugger.Launch();
+
 				foreach (var element in elements)
 				{
 					// clear any existing style on or within the paragraph
-					stylizer.Clear(element);
+					// note that apply-colors translates to clear-colors within the method
+					stylizer.Clear(element, style.ApplyColors);
 
-					// blast style onto paragraph, let OneNote normalize across children if it wants
-					element.Add(new XAttribute("style", css));
+					// style may still exist if apply colors if false and there are colors
+					var attr = element.Attribute("style");
+					if (attr == null)
+					{
+						// blast style onto paragraph, let OneNote normalize across
+						// children if it wants
+						attr = new XAttribute("style", css);
+						element.Add(attr);
+					}
+					else
+					{
+						applied.MergeColors(new Style(attr.Value));
+						attr.Value = applied.ToCss();
+					}
 
 					ApplySpacing(element, "spaceBefore", style.SpaceBefore);
 					ApplySpacing(element, "spaceAfter", style.SpaceAfter);

@@ -61,15 +61,15 @@ namespace River.OneMoreAddIn
 
 				row.SetCellContent(0, new XElement(ns + "OEChildren",
 					new XElement(ns + "OE",
-						new XAttribute("style", "font-family:'Lucida Console';font-size:9.5pt;color:black"),
+						new XAttribute("style", "font-family:Consolas;font-size:10.0pt;color:black"),
 						new XElement(ns + "T", new XCData(""))
 						),
 					new XElement(ns + "OE",
-						new XAttribute("style", "font-family:'Lucida Console';font-size:9.5pt;color:black"),
+						new XAttribute("style", "font-family:Consolas;font-size:10.0pt;color:black"),
 						new XElement(ns + "T", new XCData("Your code here..."))
 						),
 					new XElement(ns + "OE",
-						new XAttribute("style", "font-family:'Lucida Console';font-size:9.5pt;color:black"),
+						new XAttribute("style", "font-family:Consolas;font-size:10.0pt;color:black"),
 						new XElement(ns + "T", new XCData(""))
 						)
 					));

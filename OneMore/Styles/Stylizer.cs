@@ -151,19 +151,38 @@ namespace River.OneMoreAddIn
 		/// Clear all styles from the given element and its descendant nodes
 		/// </summary>
 		/// <param name="element">An OE or T node</param>
-		public void Clear(XElement element)
+		/// <param name="clearColors">True to clear colors (everything) or false to keep colors</param>
+		public void Clear(XElement element, bool clearColors)
 		{
 			var attr = element.Attribute("style");
 			if (attr != null)
 			{
-				attr.Remove();
+				if (clearColors)
+				{
+					// discard all styling
+					attr.Remove();
+				}
+				else
+				{
+					var css = new Style(attr.Value).ToColorCss();
+					if (!string.IsNullOrEmpty(css))
+					{
+						// found explicit colors
+						attr.Value = css;
+					}
+					else
+					{
+						// no explicit colors so discard everything else
+						attr.Remove();
+					}
+				}
 			}
 
 			if (element.HasElements)
 			{
 				foreach (var child in element.Elements())
 				{
-					Clear(child);
+					Clear(child, clearColors);
 				}
 			}
 
@@ -189,7 +208,17 @@ namespace River.OneMoreAddIn
 							if (e.Name.LocalName == "span")
 							{
 								// presume spans within cdata are flat and only contain text
-								builder.Append(e.Value);
+
+								if (clearColors)
+								{
+									// discard all styling
+									builder.Append(e.Value);
+								}
+								else
+								{
+									// TODO: edit e.Value
+									builder.Append(e.Value);
+								}
 							}
 						}
 						if (node.NodeType == XmlNodeType.Text)
@@ -198,6 +227,8 @@ namespace River.OneMoreAddIn
 							builder.Append(((XText)node).Value);
 						}
 					}
+
+					// TODO: replace cdata.value here?
 				}
 			}
 		}

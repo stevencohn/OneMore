@@ -90,11 +90,11 @@ namespace River.OneMoreAddIn
 				properties.Add("font-size", a.Value);
 
 			a = element.Attribute("fontColor");
-			if (a != null && !a.Value.Equals("automatic") && !properties.ContainsKey("color"))
+			if (a != null && !a.Value.Equals(Automatic) && !properties.ContainsKey("color"))
 				properties.Add("color", a.Value);
 
 			a = element.Attribute("highlightColor");
-			if (a != null && !a.Value.Equals("automatic") && !properties.ContainsKey("background"))
+			if (a != null && !a.Value.Equals(Automatic) && !properties.ContainsKey("background"))
 				properties.Add("background", a.Value);
 
 			a = element.Attribute("spaceBefore");

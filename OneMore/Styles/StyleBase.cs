@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	public abstract class StyleBase
 	{
+		public static readonly string Automatic = "automatic";
 		public static readonly string DefaultFontFamily = "Calibri";
 		public static readonly double DefaultFontSize = 11.0;
 
@@ -32,8 +33,8 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public StyleBase()
 		{
-			Color = "automatic";
-			Highlight = "automatic";
+			Color = Automatic;
+			Highlight = Automatic;
 			FontFamily = DefaultFontFamily;
 			fontSize = DefaultFontSize;
 			ApplyColors = true;
@@ -96,7 +97,7 @@ namespace River.OneMoreAddIn
 
 			set
 			{
-				if (value.Equals("automatic"))
+				if (value.Equals(Automatic))
 					color = value;
 				else
 				{
@@ -116,7 +117,7 @@ namespace River.OneMoreAddIn
 
 			set
 			{
-				if (value.Equals("automatic"))
+				if (value.Equals(Automatic))
 					highlight = value;
 				else
 				{

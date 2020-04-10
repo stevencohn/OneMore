@@ -314,6 +314,32 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public void MergeColors(Style other)
+		{
+			Color = other.color;
+			Highlight = other.highlight;
+		}
+
+
+		/// <summary>
+		/// Builds a specialized CSS string with only color properties. If neither color
+		/// nor highlight are set then an empty string is returned.
+		/// </summary>
+		/// <returns></returns>
+		public string ToColorCss()
+		{
+			var builder = new StringBuilder();
+
+			if (!string.IsNullOrEmpty(Color) && !Color.Equals(Automatic))
+				builder.Append("color:" + FormatColor(Color) + ";");
+
+			if (!string.IsNullOrEmpty(Highlight) && !Highlight.Equals(Automatic))
+				builder.Append("background:" + FormatColor(Highlight) + ";");
+
+			return builder.ToString();
+		}
+
+
 		/// <summary>
 		/// Builds a CSS string for use within a one:Page
 		/// </summary>
@@ -334,10 +360,10 @@ namespace River.OneMoreAddIn
 
 			if (ApplyColors)
 			{
-				if (!string.IsNullOrEmpty(Color) && !Color.Equals("automatic"))
+				if (!string.IsNullOrEmpty(Color) && !Color.Equals(Automatic))
 					builder.Append("color:" + FormatColor(Color) + ";");
 
-				if (!string.IsNullOrEmpty(Highlight) && !Highlight.Equals("automatic"))
+				if (!string.IsNullOrEmpty(Highlight) && !Highlight.Equals(Automatic))
 					builder.Append("background:" + FormatColor(Highlight) + ";");
 			}
 
