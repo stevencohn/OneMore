@@ -291,6 +291,7 @@ namespace River.OneMoreAddIn
 				logger.WriteLine("OneNote unfiled folder: " + unfiledFolder);
 
 				factory = new CommandFactory(logger, ribbon, trash,
+					// looks complicated but necessary for this to work
 					new Win32WindowHandle(new IntPtr((Int64)manager.WindowHandle)));
 			}
 		}

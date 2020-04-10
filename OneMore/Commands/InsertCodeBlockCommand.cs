@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 
 				var table = new Table(ns);
 				table.SetBordersVisible(true);
-				table.AddColumn(550f, true);
+				table.AddColumn(600f, true);
 
 				// title row...
 				var row = table.AddRow();

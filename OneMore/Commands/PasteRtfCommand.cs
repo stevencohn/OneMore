@@ -39,7 +39,13 @@ namespace River.OneMoreAddIn
 				// paste what's remaining from clipboard, letting OneNote do the
 				// heavy lifting of converting the HTML into one:xml schema
 
-				System.Windows.Forms.SendKeys.SendWait("^(v)");
+				using (var manager = new ApplicationManager())
+				{
+					// since the Hotkey message loop is watching all input, explicitly setting
+					// focus on the OneNote main window provides a direct path for SendKeys
+					Native.SetForegroundWindow(manager.WindowHandle);
+					System.Windows.Forms.SendKeys.SendWait("^(v)");
+				}
 			}
 			catch (Exception exc)
 			{

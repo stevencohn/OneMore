@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn
 
 				var outer = new Table(ns, shading);
 				outer.SetBordersVisible(true);
-				outer.AddColumn(550f, true);
+				outer.AddColumn(600f, true);
 				row = outer.AddRow();
 				row.SetCellContent(0, inner);
 
