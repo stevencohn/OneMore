@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="AddInFavorites.cs" />
+    <Compile Include="Commands\ApplyStylesCommand.cs" />
     <Compile Include="Commands\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
     <Compile Include="Commands\AddTitleIconCommand.cs" />

@@ -15,6 +15,11 @@
             getItemScreentip="GetStyleGalleryItemScreentip"
             onAction="ApplyStyleCmd">
             <button
+              id="ApplyStylesButton"
+              label="Apply Custom Styles to Page"
+              imageMso="ApplyStylesPane"
+              onAction="ApplyStylesCmd"/>
+            <button
               id="SaveStylesButton"
               label="Save Selection as Custom Style..."
               imageMso="StylesPaneNewStyle"

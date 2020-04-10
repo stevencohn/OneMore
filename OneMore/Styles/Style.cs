@@ -314,6 +314,10 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Copies only color properties from the given style into this style
+		/// </summary>
+		/// <param name="other"></param>
 		public void MergeColors(Style other)
 		{
 			Color = other.color;

@@ -28,6 +28,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<ApplyStyleCommand>().Execute(selectedIndex);
 		}
 
+		public void ApplyStylesCmd(IRibbonControl control)
+		{
+			factory.GetCommand<ApplyStylesCommand>().Execute();
+		}
+
 		public void CollapseCmd(IRibbonControl control)
 		{
 			factory.GetCommand<CollapseCommand>().Execute();
