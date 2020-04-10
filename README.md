@@ -2,18 +2,18 @@
 
 A OneNote add-in with the following primary features:
 
-* Access all features from OneMore group menus added to the Home ribbon
-* Create/edit/apply **custom styles** with advanced options
-* Apply all custom styles to the current page with one click
+* Access all features from the [OneMore group menus](#menus) added to the Home ribbon
+* Create/edit/apply [**custom styles**](#styles) with advanced options
+* [Apply a style](#styles) to selected text or all custom styles to the current page with one click
 * Disable **spell-check** on the current page
-* Manage menu of **Favorite** pages
-* Paste Rich Text (preserve colors when **pasting code** from Visual Studio)<sup>1</sup>
-* **Search and replace** text on the current page
+* Manage menu of [**Favorites**](#favorites) for one-click link to your most referenced pages
+* [Paste Rich Text](#exCodeBox) (preserve colors when **pasting code** from Visual Studio)<sup>1</sup>
+* [**Search and replace**](#other) text on the current page
 * Add or remove **footnotes** (endnotes)
 
 *And these secondary features:*
 
-* Add special icon to page title, also appears in page hierarchy
+* Add [special icon to the page title](#other), also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
 * Change selected text to UPPERCASE or lowercase
 * Insert single or double horizontal line
@@ -22,10 +22,9 @@ A OneNote add-in with the following primary features:
 * Insert [Code box](#exCodeBox) similar to Confluence Code macro
 * Insert [status labels](#exStatusLabels) similar to the Confluence status macro
 * Increase/Decrease the font size of all content on the current page
-* Sort pages, sections, or notebooks
+* [Sort pages, sections, or notebooks](#other)
 * Trim trailing whitespace from selected text
-* View and edit page XML (a diagnostic, debugging, advanced-user tool)
-
+* View and edit the [internal OneNote XML](#xml) of the current page
 
 #### Key Bindings
 While all commands can be accessed from the OneMore ribbon group menus, some
@@ -45,10 +44,6 @@ commands also have their own key bindings:
 | Increase font size            | Cltr + Alt + Plus
 | Decrease font size            | Ctrl + Alt + Minus
 | Show XML                      | Ctrl + Shift + Alt + X
-
-<sup>1</sup> If text copied from Visual Studio is pasted as plain text instead of rich text
-when using the Paste Rich Text command (Ctrl+Alt+V) then look at the VS Tools... Options...
-Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
 
 **Why?**
 
@@ -110,22 +105,86 @@ to paste syntax-highlighted code directly from Visual Studio<sup>1</sup>
 
 ![Code Box](Screenshots/CodeBox.jpg)
 
+<sup>1</sup> If text copied from Visual Studio is pasted as plain text instead of rich text
+when using the Paste Rich Text command (Ctrl+Alt+V) then look at the VS Tools... Options...
+Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
+
+### What OneMore Doesn't Do
+
+OneMore doesn't apply syntax highlighting to source code. If you really want that then
+check out [OneNoteHighlight2016](https://github.com/elvirbrk/NoteHighlight2016) which seems
+to be a fanstastic solution. However, if you're a Visual Studio developer OneMore already
+knows how to paste rich text into OneNote, preserving all syntax highlighting. So why
+install two addins when you only need one?
 
 ---
 ## Screenshots
 
-|     |     |
-| --- | --- |
-| **OneMore Command Menu**                              | **Favorites Menu** |
-| ![Command Menu](Screenshots/MoreMenu.png)              | ![Favorites Menu](Screenshots/FavoritesMenu.png) |
-| **Custom Styles**                                     | **Custom Styles Dialog** |
-| ![Styles](Screenshots/CustomStyles.png)                | ![Styles Dialog](Screenshots/CustomStylesDialog.png) |
-| **Title Icons Dialog**                                | **Sort Dialog** |
-| ![Title Icon Dialog](Screenshots/TItleIconsDialog.png) | ![Sort Dialog](Screenshots/SortDialog.png) |
+<a name="menus"></a>
+#### OneMore Command Menus
 
-**XML Dialog**
+The command menus are where you'll find all the features offered by OneMore. It's a simple
+and quick way to access powerful enhancements to OneNote.
 
-![XML Dialog](Screenshots/XmlDialog.jpg)
+| Main and advanced features | Main and Snippets menus |
+| -------------------------- | ----------------------- |
+| ![Main Menu](Screenshots/MoreMenu.png) | ![Snippets Menu](Screenshots/SnippetsMenu.png) |
+
+
+<a name="styles"></a>
+#### Custom Styles Gallery and Editor
+
+The Custom Styles gallery and Editor provide an easy way to create new styles from scratch
+or from the currently selected text, modify those styles and save them for later use. You
+can then either apply a single style to selected text by choosing a style from the gallery
+or use the *Apply Custom Styles to Page* command to apply all custom styles to the entire
+page, looking for headers, citations, quotes, code, and normal text.
+
+| Styles Gallery | Styles Editor |
+| -------------- | ------------- |
+| ![Styles](Screenshots/CustomStyles.png) | ![Styles Dialog](Screenshots/CustomStylesDialog.png) |
+
+<a name="favorites"></a>
+#### Favorites Menu
+
+Although OneNote has multiple slick ways of navigating around notebooks, sections, and pages,
+the most obvious feature missing is a Favorites menu. Well, you now have one with OneMore.
+Simply click *Add current page* to add a new favorite. Click the flyout menu to delete an
+indvidual favorites. Easy.
+
+| Favorites Menu |
+| -------------- |
+| ![Favorites Menu](Screenshots/FavoritesMenu.png) |
+
+
+<a name="other"></a>
+#### Other Screenshots
+
+The *Search and Replace* command does exactly what you think. I can't believe Microsoft didn't
+add this most basic editing feature by default. Worry no longer. Here it is.
+
+The *Add Title Icon* command lets you chose from a selection of icons from the Segoe UI Emoji
+font to add to the page title; OneNote automatically displays that icon in the page
+navigator as well.
+
+The *Sort* command lets you sort notebooks, sections, or pages with advanced options
+not found in any other plugin, even those bloated pay-to-use monstrosities.
+
+| Search and Replace | Title Icons | Sort Notebooks, Sections, Pages |
+| ------------------ | ----------- | ------------------------------- |
+| ![Search and Replace](Screenshots/SearchAndReplace.png) | ![Title Icon Dialog](Screenshots/TItleIconsDialog.png) | ![Sort Dialog](Screenshots/SortDialog.png) |
+
+
+<a name="xml"></a>
+#### XML Dialog
+
+Developing OneMore meant reverse-engineering the way Microsoft built OneNote. And it's XML
+schema reference documentation was only half the picture. This editor became invaluable
+while trying to decipher the behavior and how OneNote manages its page content.
+
+| Page XML Editor |
+| --------------- |
+| ![XML Dialog](Screenshots/XmlDialog.jpg) |
 
 ---
 
