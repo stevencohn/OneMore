@@ -9,7 +9,7 @@ A OneNote add-in with the following primary features:
 * Manage menu of [**Favorites**](#favorites) for one-click link to your most referenced pages
 * [Paste Rich Text](#exCodeBox) (preserve colors when **pasting code** from Visual Studio)<sup>1</sup>
 * [**Search and replace**](#other) text on the current page
-* Add or remove **footnotes** (endnotes)
+* Add or remove [**footnotes**](#footnotes) (endnotes)
 
 *And these secondary features:*
 
