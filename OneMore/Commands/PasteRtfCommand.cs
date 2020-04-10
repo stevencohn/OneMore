@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn
 							ConvertRtfToXaml(Clipboard.GetText(TextDataFormat.Rtf))));
 
 					RebuildClipboard(text);
-					logger.WriteLine("PasteRtfCommand() Rtf -> Html");
+					logger.WriteLine("PasteRtf Rtf -> Html");
 				}
 				else if (Clipboard.ContainsText(TextDataFormat.Xaml))
 				{
@@ -75,12 +75,12 @@ namespace River.OneMoreAddIn
 							Clipboard.GetText(TextDataFormat.Xaml)));
 
 					RebuildClipboard(text);
-					logger.WriteLine("PasteRtfCommand() Xaml -> Html");
+					logger.WriteLine("PasteRtf Xaml -> Html");
 				}
 				else
 				{
 					var formats = string.Join(",", Clipboard.GetDataObject().GetFormats(false));
-					logger.WriteLine($"... saving {formats} content");
+					logger.WriteLine($"PasteRtf clipboard:({formats})");
 				}
 			});
 
