@@ -77,8 +77,11 @@ namespace River.OneMoreAddIn
 							// that replacing the element...
 
 							quick.Attribute("font").Value = style.FontFamily;
-							quick.Attribute("spaceBefore").Value = style.SpaceBefore;
-							quick.Attribute("spaceAfter").Value = style.SpaceAfter;
+
+							// TODO: why does OneNote screw these up?
+							//quick.Attribute("spaceBefore").Value = style.SpaceBefore;
+							//quick.Attribute("spaceAfter").Value = style.SpaceAfter;
+
 							quick.Attribute("fontColor").Value = style.Color;
 							quick.Attribute("highlightColor").Value = style.Highlight;
 

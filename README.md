@@ -2,7 +2,9 @@
 
 A OneNote add-in with the following primary features:
 
+* Access all features from OneMore group menus added to the Home ribbon
 * Create/edit/apply **custom styles** with advanced options
+* Apply all custom styles to the current page with one click
 * Disable **spell-check** on the current page
 * Manage menu of **Favorite** pages
 * Paste Rich Text (preserve colors when **pasting code** from Visual Studio)<sup>1</sup>
@@ -15,15 +17,19 @@ A OneNote add-in with the following primary features:
 * Collapse the page hierarchy to see only top-level pages
 * Change selected text to UPPERCASE or lowercase
 * Insert single or double horizontal line
-* Insert **Table of Contents** including all headers on page
+* Insert [**Table of Contents**](#exTOC) including all headers on page
+* Insert [Info/Warn boxes](#exInfoBoxes) similar to Confluence Info and Warn macros
+* Insert [Code box](#exCodeBox) similar to Confluence Code macro
+* Insert [status labels](#exStatusLabels) similar to the Confluence status macro
 * Increase/Decrease the font size of all content on the current page
 * Sort pages, sections, or notebooks
 * Trim trailing whitespace from selected text
 * View and edit page XML (a diagnostic, debugging, advanced-user tool)
 
 
-All commands are accessed from a small group added to the main ribbon bar and 
-most also have their own key bindings as follows:
+#### Key Bindings
+While all commands can be accessed from the OneMore ribbon group menus, some
+commands also have their own key bindings:
 
 | Command                       | Key Binding |
 | ----------------------------- | ----------- |
@@ -64,13 +70,57 @@ Deal with it.
 
 Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 
+---
+
+## Examples of What OneMore Can Do...
+
+<a name="exTOC"></a>
+#### Table of Contents
+
+Generate a Table of Contents based on both standard headings and custom user-defined headings
+where each line is hyperlinked to its heading and indented according to its heading level.
+
+**Table of Contents**</br>
+[Heading 1](#exampToc)</br>
+. . [Heading 2](#exampToc)</br>
+. . . . [Heading 3](#exampToc)
+
+<a name="exStatusLabels"></a>
+#### Status Labels
+
+Insert colored status labels similar to the Status macros found in Confluence. These
+are not as smart as the Confluence macros but instead are just simple text with a highlight
+background that are fully editable inline.
+
+![Status Labels](Screenshots/StatusLabels.jpg)
+
+<a name="exInfoBoxes"></a>
+#### Information and Warning Boxes
+
+Insert an information box or warning box with fully customizable headers and content.
+These are snippets of content that are actually nested tables.
+
+![Info Boxes](Screenshots/InfoBoxes.jpg)
+
+<a name="exCodeBox"></a>
+#### Code Box
+
+Insert a code box with heading and area for your code. Use the Paste Rich Text command
+to paste syntax-highlighted code directly from Visual Studio<sup>1</sup>
+
+![Code Box](Screenshots/CodeBox.jpg)
+
+
+---
+## Screenshots
+
 |     |     |
 | --- | --- |
-| **OneMore Command Menu**                               | **Favorites Menu** |
+| **OneMore Command Menu**                              | **Favorites Menu** |
 | ![Command Menu](Screenshots/MoreMenu.png)              | ![Favorites Menu](Screenshots/FavoritesMenu.png) |
-| **Custom Styles**                                      | **Custom Styles Dialog** |
+| **Custom Styles**                                     | **Custom Styles Dialog** |
 | ![Styles](Screenshots/CustomStyles.png)                | ![Styles Dialog](Screenshots/CustomStylesDialog.png) |
-| **Title Icons Dialog**                                 | **Sort Dialog** |
+| **Title Icons Dialog**                                | **Sort Dialog** |
 | ![Title Icon Dialog](Screenshots/TItleIconsDialog.png) | ![Sort Dialog](Screenshots/SortDialog.png) |
 
 **XML Dialog**
