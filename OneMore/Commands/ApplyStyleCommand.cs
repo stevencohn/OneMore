@@ -195,8 +195,6 @@ namespace River.OneMoreAddIn
 					ApplyColors = true
 				};
 
-				System.Diagnostics.Debugger.Launch();
-
 				foreach (var element in elements)
 				{
 					// clear any existing style on or within the paragraph
