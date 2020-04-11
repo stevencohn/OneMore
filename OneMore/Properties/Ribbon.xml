@@ -103,6 +103,24 @@
             </menu>
             <menu id="snippetsMenu" label="Snippets..." imageMso="GroupInsertShapes">
               <button
+                id="infoBlockButton"
+                imageMso="Info"
+                label="Info block"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertInfoBlockCmd"/>
+              <button
+                id="warnBlockButton"
+                imageMso="HighImportance"
+                label="Warning block"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertWarningBlockCmd"/>
+              <button
+                id="codeBlockButton"
+                imageMso="CodeEdit"
+                label="Code block"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertCodeBlockCmd"/>
+              <button
                 id="PersonaStatusOffline"
                 imageMso="AppointmentColor4"
                 label="Gray Status" 
@@ -132,24 +150,6 @@
                 label="Blue Status"
                 getEnabled="EnsureBodyContext"
                 onAction="InsertBlueStatusCmd"/>
-              <button
-                id="infoBlockButton"
-                imageMso="Info"
-                label="Info block"
-                getEnabled="EnsureBodyContext"
-                onAction="InsertInfoBlockCmd"/>
-              <button
-                id="warnBlockButton"
-                imageMso="HighImportance"
-                label="Warning block"
-                getEnabled="EnsureBodyContext"
-                onAction="InsertWarningBlockCmd"/>
-              <button
-                id="codeBlockButton"
-                imageMso="CodeEdit"
-                label="Code block"
-                getEnabled="EnsureBodyContext"
-                onAction="InsertCodeBlockCmd"/>
             </menu>
             <menuSeparator id="sep1" title="Text"/>
             <button
