@@ -214,7 +214,7 @@ namespace River.OneMoreAddIn
 		{
 			if (pageId != null)
 			{
-				Application.GetPageContent(pageId, out var xml, info);
+				Application.GetPageContent(pageId, out var xml, info, XMLSchema.xs2013);
 
 				var root = XElement.Parse(xml);
 				return root;
@@ -264,7 +264,7 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				Application.UpdatePageContent(xml);
+				Application.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
 			}
 			catch (Exception exc)
 			{

@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn
 	internal partial class StyleDialog : Form
 	{
 		private GraphicStyle selection;
+		private Color pageColor;
 		private bool allowEvents;
 
 
@@ -33,14 +34,19 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="style"></param>
 
-		public StyleDialog(Style style)
+		public StyleDialog(Style style, Color pageColor)
 		{
 			Initialize();
 			Logger.DesignMode = DesignMode;
+
 			allowEvents = false;
+			this.pageColor = pageColor;
 
 			Text = "New Custom Style";
+			mainTools.Visible = false;
 			loadButton.Enabled = false;
+			saveButton.Enabled = false;
+			newStyleButton.Enabled = false;
 			reorderButton.Enabled = false;
 			deleteButton.Enabled = false;
 
@@ -53,7 +59,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="styles"></param>
 
-		public StyleDialog(List<Style> styles)
+		public StyleDialog(List<Style> styles, Color pageColor)
 		{
 			Initialize();
 			allowEvents = false;
@@ -63,6 +69,8 @@ namespace River.OneMoreAddIn
 			{
 				selection = new GraphicStyle(styles[0], false);
 			}
+
+			this.pageColor = pageColor;
 		}
 
 
@@ -83,7 +91,18 @@ namespace River.OneMoreAddIn
 			// nameBox TextBox is shown when creating a new style to enter a single name
 			// namesBox ComboBox is shown when editing styles to select an existing name
 
+			// dispose and clear existing items...
+
+			var ie = namesBox.Items.GetEnumerator();
+			while (ie.MoveNext())
+			{
+				var item = ie.Current as GraphicStyle;
+				item.Dispose();
+			}
+
 			namesBox.Items.Clear();
+
+			// load new items...
 
 			if (styles.Count == 0)
 			{
@@ -177,13 +196,17 @@ namespace River.OneMoreAddIn
 			namesBox.Items.Cast<GraphicStyle>().ToList().ConvertAll(e => e.GetStyle());
 
 
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 		private void RepaintSample(object sender, PaintEventArgs e)
 		{
 			var vcenter = previewBox.Height / 2;
 
-			e.Graphics.Clear(Color.White); // .FillRectangle(Brushes.White, previewBox.Bounds);
-			e.Graphics.DrawLine(Pens.Black, 0, vcenter, 15, vcenter);
-			e.Graphics.DrawLine(Pens.Black, previewBox.Width - 15, vcenter, previewBox.Width, vcenter);
+			var contrastPen = pageColor.GetBrightness() <= 0.5 ? Pens.White : Pens.Black;
+
+			e.Graphics.Clear(pageColor);
+			e.Graphics.DrawLine(contrastPen, 0, vcenter, 15, vcenter);
+			e.Graphics.DrawLine(contrastPen, previewBox.Width - 15, vcenter, previewBox.Width, vcenter);
 
 			var offset = superButton.Checked || subButton.Checked;
 
@@ -242,11 +265,11 @@ namespace River.OneMoreAddIn
 
 			var sampleColor = offset
 				? Color.Gray
-				: selection?.ApplyColors == true ? selection.Foreground : Color.Black;
+				: selection?.ApplyColors == true ? selection.Foreground : contrastPen.Color;
 
 			var sampleBrush = new SolidBrush(sampleColor); // dispose
 
-			var textColor = selection?.ApplyColors == true ? selection.Foreground : Color.Black;
+			var textColor = selection?.ApplyColors == true ? selection.Foreground : contrastPen.Color;
 			var textBrush = new SolidBrush(textColor); // dispose
 
 			e.Graphics.DrawString("Sample ", sampleFont, sampleBrush, sampleClip, format);
@@ -493,6 +516,22 @@ namespace River.OneMoreAddIn
 		// Following are only active when editing a theme, not creating a new style
 
 
+		private void AddStyle(object sender, EventArgs e)
+		{
+			namesBox.Items.Add(new GraphicStyle(new Style
+			{
+				Name = "Style-" + new Random().Next(1000, 9999).ToString()
+			},
+			false));
+
+			saveButton.Enabled = true;
+			reorderButton.Enabled = true;
+			deleteButton.Enabled = true;
+
+			namesBox.SelectedIndex = namesBox.Items.Count - 1;
+		}
+
+
 		private void LoadTheme(object sender, EventArgs e)
 		{
 			using (var dialog = new OpenFileDialog())
@@ -592,8 +631,37 @@ namespace River.OneMoreAddIn
 
 			if (namesBox.Items.Count == 0)
 			{
+				saveButton.Enabled = false;
 				reorderButton.Enabled = false;
 				deleteButton.Enabled = false;
+			}
+		}
+
+		private void SaveTheme(object sender, EventArgs e)
+		{
+			using (var dialog = new SaveFileDialog())
+			{
+				dialog.DefaultExt = "xml";
+				dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
+				dialog.Title = "Save Style Theme";
+				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+
+				var path = PathFactory.GetAppDataPath();
+				if (Directory.Exists(path))
+				{
+					dialog.InitialDirectory = path;
+				}
+				else
+				{
+					dialog.InitialDirectory =
+						Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+				}
+
+				var result = dialog.ShowDialog();
+				if (result == DialogResult.OK)
+				{
+					new StyleProvider().Save(GetStyles(), dialog.FileName);
+				}
 			}
 		}
 	}

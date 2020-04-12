@@ -117,6 +117,29 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets a Color value specifying the background color of the page
+		/// </summary>
+		/// <returns></returns>
+		public Color GetPageColor()
+		{
+			var color = Root.Element(Namespace + "PageSettings").Attribute("color")?.Value;
+			if (string.IsNullOrEmpty(color) || color == "automatic")
+			{
+				return Color.White;
+			}
+
+			try
+			{
+				return ColorTranslator.FromHtml(color);
+			}
+			catch
+			{
+				return Color.White;
+			}
+		}
+
+
+		/// <summary>
 		/// Replaces the selected range on the page with the given content, keeping
 		/// the cursor after the newly inserted content.
 		/// <para>

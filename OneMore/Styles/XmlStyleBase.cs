@@ -145,10 +145,10 @@ namespace River.OneMoreAddIn
 			writer.WriteAttributeString("name", Name);
 			writer.WriteAttributeString("font", FontFamily);
 
-			if (!Color.Equals("Transparent") && !Color.Equals(Automatic))
+			if (!Color.Equals(Transparent) && !Color.Equals(Automatic))
 				writer.WriteAttributeString("fontColor", Color);
 
-			if (!Highlight.Equals("Transparent") && !Highlight.Equals(Automatic))
+			if (!Highlight.Equals(Transparent) && !Highlight.Equals(Automatic))
 				writer.WriteAttributeString("highlightColor", Highlight);
 
 			writer.WriteAttributeString("fontSize", FontSize);

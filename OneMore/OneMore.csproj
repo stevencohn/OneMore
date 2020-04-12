@@ -150,6 +150,7 @@
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
+    <Compile Include="Helpers\ColorExtensions.cs" />
     <Compile Include="Helpers\Hotkeys\Hotkey.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
@@ -264,8 +265,13 @@
     <Content Include="Properties\Images\FontColor.png" />
     <Content Include="Properties\Images\Italic.png" />
     <Content Include="Properties\Images\Logo.ico" />
+    <Content Include="Properties\Images\NewStyle.png" />
     <Content Include="Properties\Images\Open.png" />
     <Content Include="Properties\Images\Reorder.png" />
+    <Content Include="Properties\Images\SaveAs.png" />
+    <Content Include="Properties\Images\Strikethrough.png" />
+    <Content Include="Properties\Images\Subscript.png" />
+    <Content Include="Properties\Images\Superscript.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />
     <Content Include="Properties\Images\UpArrow.png" />

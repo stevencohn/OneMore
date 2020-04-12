@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml;
@@ -27,8 +28,14 @@ namespace River.OneMoreAddIn
 
 				if (style != null)
 				{
+					Color pageColor;
+					using (var manager = new ApplicationManager())
+					{
+						pageColor = new Page(manager.CurrentPage()).GetPageColor();
+					}
+
 					DialogResult result;
-					using (var dialog = new StyleDialog(style))
+					using (var dialog = new StyleDialog(style, pageColor))
 					{
 						result = dialog.ShowDialog(owner);
 						if (result == DialogResult.OK)
@@ -96,8 +103,7 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 				{
 					// inside a word, adjacent to a word, or somewhere in whitespace?
 
-					var prev = selection.PreviousNode as XElement;
-					if ((prev != null) && !prev.GetCData().EndsWithWhitespace())
+					if ((selection.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
 					{
 						selection = prev;
 
@@ -127,8 +133,7 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 					}
 					else
 					{
-						var next = selection.NextNode as XElement;
-						if ((next != null) && !next.GetCData().StartsWithWhitespace())
+						if ((selection.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
 						{
 							selection = next;
 

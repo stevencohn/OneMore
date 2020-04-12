@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 {
 	using System.Collections.Generic;
 	using System.Collections.Specialized;
+	using System.Drawing;
 	using System.Text;
 	using System.Text.RegularExpressions;
 
@@ -189,25 +190,8 @@ namespace River.OneMoreAddIn
 				return color;
 			}
 
-			// else must be an #rgb value
-			var match = Regex.Match(color, "^#([0-9a-fA-F]+)");
-			if (match.Success)
-			{
-				color = match.Groups[match.Groups.Count - 1].Value;
-
-				if (color.Length > 6)
-				{
-					color = color.Substring(color.Length - 6);
-				}
-				else while (color.Length < 6)
-				{
-					color = "0" + color;
-				}
-
-				return "#" + color.ToLower();
-			}
-
-			return color;
+			// normalize color as 6-byte hex HTML color string
+			return ColorTranslator.FromHtml(color).ToRGBHtml();
 		}
 
 

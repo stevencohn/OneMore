@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn
 	public abstract class StyleBase
 	{
 		public static readonly string Automatic = "automatic";
+		public static readonly string Transparent = "Transparent";
 		public static readonly string DefaultFontFamily = "Calibri";
 		public static readonly double DefaultFontSize = 11.0;
 
@@ -99,12 +100,13 @@ namespace River.OneMoreAddIn
 			set
 			{
 				if (value.Equals(Automatic))
+				{
 					color = value;
+				}
 				else
 				{
 					// normalize as #RGB to avoid case-sensitive comparison problems
-					var c = ColorTranslator.FromHtml(value);
-					color = $"#{c.R:X2}{c.G:X2}{c.B:X2}";
+					color = ColorTranslator.FromHtml(value).ToRGBHtml();
 				}
 			}
 		}
@@ -118,13 +120,14 @@ namespace River.OneMoreAddIn
 
 			set
 			{
-				if (value.Equals(Automatic))
+				if (value.Equals(Automatic) || value.Equals(Transparent))
+				{
 					highlight = value;
+				}
 				else
 				{
 					// normalize as #RGB to avoid case-sensitive comparison problems
-					var c = ColorTranslator.FromHtml(value);
-					highlight = $"#{c.R:X2}{c.G:X2}{c.B:X2}";
+					color = ColorTranslator.FromHtml(value).ToRGBHtml();
 				}
 			}
 		}

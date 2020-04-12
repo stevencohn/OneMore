@@ -146,17 +146,20 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Save(List<Style> styles)
+		public void Save(List<Style> styles, string path = null)
 		{
-			Save(styles.ConvertAll(e => new StyleRecord(e)).OrderBy(e => e.Index));
+			Save(styles.ConvertAll(e => new StyleRecord(e)).OrderBy(e => e.Index), path);
 		}
 
 
-		private void Save(IEnumerable<StyleRecord> styles)
+		private void Save(IEnumerable<StyleRecord> styles, string path = null)
 		{
-			var path = PathFactory.GetAppDataPath();
-			PathFactory.EnsurePathExists(path);
-			path = Path.Combine(path, Properties.Resources.CustomStylesFilename);
+			if (path == null)
+			{
+				path = Path.Combine(PathFactory.GetAppDataPath(), Properties.Resources.CustomStylesFilename);
+			}
+
+			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
 
 			var root = new XElement("CustomStyles");
 

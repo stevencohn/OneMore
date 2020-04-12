@@ -142,7 +142,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return Name; // $"{Name},{FontFamily}:{FontSize}";
+			return Name; // $"{Name} ({FontFamily} {FontSize})";
 		}
 	}
 }

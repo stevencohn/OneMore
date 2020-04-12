@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Drawing;
 	using System.Windows.Forms;
 
 
@@ -19,12 +20,18 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
+				Color pageColor;
+				using (var manager = new ApplicationManager())
+				{
+					pageColor = new Page(manager.CurrentPage()).GetPageColor();
+				}
+
 				var provider = new StyleProvider();
 
 				var styles = provider.GetStyles();
 				DialogResult result;
 
-				using (var dialog = new StyleDialog(styles))
+				using (var dialog = new StyleDialog(styles, pageColor))
 				{
 					result = dialog.ShowDialog(owner);
 

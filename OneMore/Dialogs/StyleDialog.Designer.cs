@@ -58,7 +58,10 @@
 			this.colorButton = new System.Windows.Forms.ToolStripSplitButton();
 			this.defaultBlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mainTools = new River.OneMoreAddIn.ScaledToolStrip();
-			this.loadButton = new System.Windows.Forms.ToolStripButton();
+			this.FileMenu = new System.Windows.Forms.ToolStripDropDownButton();
+			this.loadButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.newStyleButton = new System.Windows.Forms.ToolStripButton();
 			this.reorderButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
@@ -638,7 +641,7 @@
 			// transparentToolStripMenuItem
 			// 
 			this.transparentToolStripMenuItem.Name = "transparentToolStripMenuItem";
-			this.transparentToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+			this.transparentToolStripMenuItem.Size = new System.Drawing.Size(205, 34);
 			this.transparentToolStripMenuItem.Text = "Transparent";
 			this.transparentToolStripMenuItem.Click += new System.EventHandler(this.ChangeHighlightToDefault);
 			// 
@@ -658,7 +661,7 @@
 			// defaultBlackToolStripMenuItem
 			// 
 			this.defaultBlackToolStripMenuItem.Name = "defaultBlackToolStripMenuItem";
-			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
 			this.defaultBlackToolStripMenuItem.Text = "Default (Black)";
 			this.defaultBlackToolStripMenuItem.Click += new System.EventHandler(this.ChangeColorToDefault);
 			// 
@@ -667,7 +670,8 @@
 			this.mainTools.AutoSize = false;
 			this.mainTools.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.mainTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadButton,
+            this.FileMenu,
+            this.newStyleButton,
             this.reorderButton,
             this.deleteButton});
 			this.mainTools.Location = new System.Drawing.Point(4, 5);
@@ -676,14 +680,42 @@
 			this.mainTools.Size = new System.Drawing.Size(617, 32);
 			this.mainTools.TabIndex = 0;
 			// 
+			// FileMenu
+			// 
+			this.FileMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadButton,
+            this.saveButton});
+			this.FileMenu.Image = ((System.Drawing.Image)(resources.GetObject("FileMenu.Image")));
+			this.FileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.FileMenu.Name = "FileMenu";
+			this.FileMenu.Size = new System.Drawing.Size(56, 27);
+			this.FileMenu.Text = "File";
+			// 
 			// loadButton
 			// 
-			this.loadButton.Image = ((System.Drawing.Image)(resources.GetObject("loadButton.Image")));
-			this.loadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.loadButton.Image = global::River.OneMoreAddIn.Properties.Resources.Open;
 			this.loadButton.Name = "loadButton";
-			this.loadButton.Size = new System.Drawing.Size(137, 27);
-			this.loadButton.Text = "Load Theme";
+			this.loadButton.Size = new System.Drawing.Size(185, 34);
+			this.loadButton.Text = "Open...";
 			this.loadButton.Click += new System.EventHandler(this.LoadTheme);
+			// 
+			// saveButton
+			// 
+			this.saveButton.Image = global::River.OneMoreAddIn.Properties.Resources.SaveAs;
+			this.saveButton.Name = "saveButton";
+			this.saveButton.Size = new System.Drawing.Size(185, 34);
+			this.saveButton.Text = "Save as...";
+			this.saveButton.Click += new System.EventHandler(this.SaveTheme);
+			// 
+			// newStyleButton
+			// 
+			this.newStyleButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
+			this.newStyleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.newStyleButton.Name = "newStyleButton";
+			this.newStyleButton.Size = new System.Drawing.Size(117, 27);
+			this.newStyleButton.Text = "New Style";
+			this.newStyleButton.Click += new System.EventHandler(this.AddStyle);
 			// 
 			// reorderButton
 			// 
@@ -711,8 +743,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(621, 466);
-			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.mainTools);
+			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -762,12 +794,15 @@
 		private System.Windows.Forms.ToolStripButton boldButton;
 		private System.Windows.Forms.ToolStripButton italicButton;
 		private System.Windows.Forms.ToolStripButton underlineButton;
-		private System.Windows.Forms.ToolStripButton loadButton;
 		private System.Windows.Forms.CheckBox applyColorsBox;
 		private System.Windows.Forms.Label styleTypeLabel;
 		private System.Windows.Forms.ComboBox styleTypeBox;
 		private System.Windows.Forms.ToolStripButton strikeButton;
 		private System.Windows.Forms.ToolStripButton superButton;
 		private System.Windows.Forms.ToolStripButton subButton;
+		private System.Windows.Forms.ToolStripDropDownButton FileMenu;
+		private System.Windows.Forms.ToolStripMenuItem loadButton;
+		private System.Windows.Forms.ToolStripMenuItem saveButton;
+		private System.Windows.Forms.ToolStripButton newStyleButton;
 	}
 }
