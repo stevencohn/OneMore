@@ -76,6 +76,16 @@ namespace River.OneMoreAddIn
 					}
 				}
 
+				builder.AppendLine();
+
+				var page = new Page(manager.CurrentPage());
+				var pageColor = page.GetPageColor();
+				var pageBrightness = pageColor.GetBrightness();
+
+				builder.AppendLine($"Page background: {pageColor.ToRGBHtml()}");
+				builder.AppendLine($"Page brightness: {pageBrightness}");
+				builder.AppendLine($"Page is dark...: {pageBrightness < 0.5}");
+
 				builder.AppendLine(new string('-', 80));
 
 				logger.WriteLine(builder.ToString());

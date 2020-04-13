@@ -266,11 +266,14 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
+			var dark = new Page(page).GetPageColor().GetBrightness() < 0.5;
+			var textColor = dark ? "#FFFFFF" : "#000000";
+
 			var items = new List<XElement>
 			{
 				// "Table of Contents"
 				new XElement(ns + "OE",
-				new XAttribute("style", "font-size:16.0pt"),
+				new XAttribute("style", $"font-size:16.0pt;color:{textColor}"),
 				new XElement(ns + "T",
 					new XCData("<span style='font-weight:bold'>Table of Contents</span>")
 					)
@@ -294,7 +297,8 @@ namespace River.OneMoreAddIn
 
 					if (!string.IsNullOrEmpty(heading.Link))
 					{
-						text.Append($"<a href=\"{heading.Link}\">{heading.Text}</a>");
+						var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
+						text.Append($"<a href=\"{heading.Link}\"{linkColor}>{heading.Text}</a>");
 					}
 					else
 					{
@@ -302,6 +306,7 @@ namespace River.OneMoreAddIn
 					}
 
 					items.Add(new XElement(ns + "OE",
+						new XAttribute("style", $"color:{textColor}"),
 						new XElement(ns + "T", new XCData(text.ToString()))
 						));
 				}

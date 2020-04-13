@@ -13,6 +13,17 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class InsertInfoBlockCommand : Command
 	{
+		private static readonly string InfoShading = "#F6FAFF";
+		private static readonly string InfoShadingDark = "#323F4F";
+		private static readonly string InfoSymbolColor = "#2E75B5";
+		private static readonly string WarnShading = "#FFF8F7";
+		private static readonly string WarnShadingDark = "#78230C";
+		private static readonly string WarnSymbolColor = "#FFF8F7";
+		private static readonly string TitleColor = "#000000";
+		private static readonly string TitleColorDark = "#FFFFFF";
+		private static readonly string TextColor = "#333333";
+		private static readonly string TextColorDark = "#D8D8D8";
+
 
 		public InsertInfoBlockCommand() : base()
 		{
@@ -40,27 +51,33 @@ namespace River.OneMoreAddIn
 
 		private void InsertInfoBlock(bool warning)
 		{
-			string shading, color, symbol, title;
-
-			if (warning)
-			{
-				shading = "#FFF8F7";
-				color = "#B43512";
-				symbol = "\u26a0";
-				title = "Warning";
-			}
-			else
-			{
-				shading = "#F6FAFF";
-				color = "#2E75B5";
-				symbol = "\U0001F6C8";
-				title = "Information";
-			}
-
 			using (var manager = new ApplicationManager())
 			{
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
+
+				var dark = page.GetPageColor().GetBrightness() < 0.5;
+				string title, symbol, titleColor, symbolColor, textColor, shading;
+
+				if (warning)
+				{
+					title = "Warning";
+					symbol = "\u26a0";
+					symbolColor = WarnSymbolColor;
+					shading = dark ? WarnShadingDark : WarnShading;
+				}
+				else
+				{
+					title = "Information";
+					symbol = "\U0001F6C8";
+					symbolColor = InfoSymbolColor;
+					shading = dark ? InfoShadingDark : InfoShading;
+				}
+
+				titleColor = dark ? TitleColorDark : TitleColor;
+				textColor = dark ? TextColorDark : TextColor;
+
+				// table...
 
 				var inner = new Table(ns);
 				inner.AddColumn(37f, true);
@@ -70,19 +87,19 @@ namespace River.OneMoreAddIn
 
 				row.SetCellContent(0, new XElement(ns + "OE",
 					new XAttribute("alignment", "center"),
-					new XAttribute("style", $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{color};&#xA;text-align:center"),
+					new XAttribute("style", $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{symbolColor};&#xA;text-align:center"),
 					new XElement(ns + "T",
 						new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
 					));
 
 				row.SetCellContent(1, new XElement(ns + "OEChildren",
 					new XElement(ns + "OE",
-						new XAttribute("style", "font-family:'Segoe UI';font-size:11.0pt;color:black"),
+						new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
 						new XElement(ns + "T",
-							new XCData($"<span style='font-weight:bold;background:white'>{title}</span>"))
+							new XCData($"<span style='font-weight:bold'>{title}</span>"))
 						),
 					new XElement(ns + "OE",
-						new XAttribute("style", "font-family:'Segoe UI';font-size:11.0pt;color:#333333"),
+						new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{textColor}"),
 						new XElement(ns + "T",
 							new XCData("Your content here..."))
 					)));

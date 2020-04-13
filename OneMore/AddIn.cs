@@ -494,7 +494,13 @@ namespace River.OneMoreAddIn
 
 		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
-			return factory.GetCommand<GalleryTileFactory>().MakeTile(itemIndex);
+			Color pageColor;
+			using (var manager = new ApplicationManager())
+			{
+				pageColor = new Page(manager.CurrentPage()).GetPageColor();
+			}
+
+			return factory.GetCommand<GalleryTileFactory>().MakeTile(itemIndex, pageColor);
 		}
 
 		public string GetStyleGalleryItemScreentip(IRibbonControl control, int itemIndex)

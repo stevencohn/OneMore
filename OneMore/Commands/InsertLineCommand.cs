@@ -39,6 +39,9 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
+				var dark = page.GetPageColor().GetBrightness() < 0.5;
+				var color = dark ? "#D0D0D0" : "#202020";
+
 				var current =
 					(from e in page.Root.Descendants(ns + "OE")
 					 where e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all"))
@@ -53,7 +56,7 @@ namespace River.OneMoreAddIn
 					current.AddAfterSelf(
 						new XElement(ns + "OE",
 							new XElement(ns + "T",
-								new XAttribute("style", "font-family:'Courier New';font-size:10.0pt"),
+								new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
 								new XCData(line + "<br/>")
 							)
 						));

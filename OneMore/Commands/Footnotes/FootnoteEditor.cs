@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn
 		private XElement page;
 		private XNamespace ns;
 
+		private bool dark;
 		private XElement divider;
 
 
@@ -31,6 +32,8 @@ namespace River.OneMoreAddIn
 
 			page = manager.CurrentPage();
 			ns = page.GetNamespaceOfPrefix("one");
+
+			dark = new Page(page).GetPageColor().GetBrightness() < 0.5;
 
 			logger = Logger.Current;
 		}
@@ -127,8 +130,10 @@ namespace River.OneMoreAddIn
 					));
 
 				// build the divider line
+				var color = dark ? "#595959" : "#999696";
+
 				divider = new XElement(ns + "OE",
-					new XAttribute("style", "font-family:'Courier New';font-size:10.0pt;color:#999696"),
+					new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
 					new XElement(ns + "Meta",
 						new XAttribute("name", "omfootnotes"),
 						new XAttribute("content", "divider")
@@ -182,11 +187,13 @@ namespace River.OneMoreAddIn
 
 			manager.Application.GetHyperlinkToObject(page.Attribute("ID").Value, textId, out var link);
 
+			var color = dark ? ";color:#5B9BD5" : string.Empty;
+
 			var cdata = new XElement("wrapper",
 				new XElement("a",
 					new XAttribute("href", link),
 					new XElement("span",
-						new XAttribute("style", "font-family:'Calibri Light';font-size:11.0pt"),
+						new XAttribute("style", $"font-family:'Calibri Light';font-size:11.0pt{color}"),
 						$"[{label}]"
 					)
 				),
@@ -195,7 +202,10 @@ namespace River.OneMoreAddIn
 					" new footnote"
 				));
 
+			color = dark ? "#BFBFBF" : "#151515";
+
 			var note = new XElement(ns + "OE",
+				new XAttribute("style", $"color:{color}"),
 				new XElement(ns + "Meta",
 					new XAttribute("name", "omfootnote"),
 					new XAttribute("content", label)
@@ -249,6 +259,12 @@ namespace River.OneMoreAddIn
 					)
 				);
 
+			// TODO: color isn't applied correctly on dark pages, why?
+			if (dark)
+			{
+				note.Add(new XAttribute("style", "color:'#5B9BD5'"));
+			}
+
 			// find the element in the new page instance of XML
 			var element = page.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
@@ -264,6 +280,13 @@ namespace River.OneMoreAddIn
 				{
 					cdata.ReplaceWith(
 						new XCData(cdata.Value += note.ToString(SaveOptions.DisableFormatting))
+						);
+
+					element.Attribute("selected").Remove();
+
+					element.AddAfterSelf(new XElement(ns + "T",
+						new XAttribute("selected", "all"),
+						new XCData(string.Empty))
 						);
 
 					return true;

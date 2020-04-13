@@ -13,6 +13,13 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class InsertCodeBlockCommand : Command
 	{
+		private static readonly string Shading = "#F2F2F2";
+		private static readonly string ShadingDark = "#222A35";
+		private static readonly string TitleColor = "#000000";
+		private static readonly string TitleColorDark = "#F2F2F2";
+		private static readonly string TextColor = "#000000";
+		private static readonly string TextColorDark = "#FFFFFF";
+
 
 		public InsertCodeBlockCommand() : base()
 		{
@@ -42,6 +49,25 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
+				var dark = page.GetPageColor().GetBrightness() < 0.5;
+
+				// table...
+
+				string shading, titleColor, textColor;
+
+				if (dark)
+				{
+					shading = ShadingDark;
+					titleColor = TitleColorDark;
+					textColor = TextColorDark;
+				}
+				else
+				{
+					shading = Shading;
+					titleColor = TitleColor;
+					textColor = TextColor;
+				}
+
 				var table = new Table(ns);
 				table.SetBordersVisible(true);
 				table.AddColumn(600f, true);
@@ -50,26 +76,26 @@ namespace River.OneMoreAddIn
 				var row = table.AddRow();
 
 				row.SetCellContent(0, new XElement(ns + "OE",
-					new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:black"),
-					new XElement(ns + "T", new XCData("<span style='font-weight:bold;background:white'>Code</span>"))
+					new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
+					new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Code</span>"))
 					));
 
-				row.SetCellShading(0, "#F2F2F2");
+				row.SetCellShading(0, shading);
 
 				// body row...
 				row = table.AddRow();
 
 				row.SetCellContent(0, new XElement(ns + "OEChildren",
 					new XElement(ns + "OE",
-						new XAttribute("style", "font-family:Consolas;font-size:10.0pt;color:black"),
+						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
 						new XElement(ns + "T", new XCData(""))
 						),
 					new XElement(ns + "OE",
-						new XAttribute("style", "font-family:Consolas;font-size:10.0pt;color:black"),
+						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
 						new XElement(ns + "T", new XCData("Your code here..."))
 						),
 					new XElement(ns + "OE",
-						new XAttribute("style", "font-family:Consolas;font-size:10.0pt;color:black"),
+						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
 						new XElement(ns + "T", new XCData(""))
 						)
 					));

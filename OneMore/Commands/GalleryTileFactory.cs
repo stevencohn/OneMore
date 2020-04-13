@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public IStream MakeTile(int itemIndex)
+		public IStream MakeTile(int itemIndex, Color pageColor)
 		{
 			const int tileWidth = 70;
 			const int tileHeight = 60;
@@ -32,13 +32,16 @@ namespace River.OneMoreAddIn
 			{
 				using (var graphics = Graphics.FromImage(image))
 				{
-					graphics.Clear(Color.White);
+					graphics.Clear(pageColor);
 					graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
 					graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
 
 					using (var style = new GraphicStyle(provider.GetStyle(itemIndex)))
 					{
-						var fore = style.ApplyColors ? style.Foreground : Color.Black;
+						var fore = style.ApplyColors
+							? style.Foreground
+							: pageColor.GetBrightness() <= 0.5 ? Color.White : Color.Black;
+						
 						using (var brush = new SolidBrush(fore))
 						{
 							var textsize = graphics.MeasureString("AaBbCc123", style.Font);
@@ -65,7 +68,9 @@ namespace River.OneMoreAddIn
 						using (var font = new Font("Tahoma", scaledSize, FontStyle.Regular))
 						{
 							var name = TrimText(graphics, style.Name, font, tileWidth, out var measuredWidth);
-							graphics.DrawString(name, font, Brushes.Black, (tileWidth - measuredWidth) / 2, 40);
+							var brush = pageColor.GetBrightness() <= 0.5 ? Brushes.White : Brushes.Black;
+
+							graphics.DrawString(name, font, brush, (tileWidth - measuredWidth) / 2, 40);
 						}
 
 						graphics.Save();
