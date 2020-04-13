@@ -1,6 +1,6 @@
 ﻿# ![logo](Screenshots/Logo.jpg "logo") OneMore - a OneNote Add-in
 
-A OneNote add-in with the following primary features:
+A OneNote add-in with powerful yet simple and effective features including:
 
 * Access all features from the [OneMore group menus](#menus) added to the Home ribbon
 * Create/edit/apply [**custom styles**](#styles) with advanced options
@@ -11,10 +11,11 @@ A OneNote add-in with the following primary features:
 * [**Search and replace**](#other) text on the current page
 * Add or remove [**footnotes**](#footnotes) (endnotes)
 
-*And these secondary features:*
+*Want more from OneMore? OneMore has more...*
 
 * Add [special icon to the page title](#other), also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
+* Change [**page background**](#dark) to any custom color with dark-mode awareness
 * Change selected text to UPPERCASE or lowercase
 * Insert single or double horizontal line
 * Insert [**Table of Contents**](#exTOC) including all headers on page
@@ -69,11 +70,21 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 
 ## Examples of What OneMore Can Do...
 
+<a name="dark"></a>
+#### Dark Mode and Page Background
+
+While OneNote lets you select from a light, pastel pallet for page backgrounds, OneMore offers
+true dark-mode background capabilities as well as custom color selections.
+
+![Dark Page](Screenshots/DarkPage.png)
+
+
 <a name="exTOC"></a>
 #### Table of Contents
 
 Generate a Table of Contents based on both standard headings and custom user-defined headings
 where each line is hyperlinked to its heading and indented according to its heading level.
+Text colors are based on the page background color.
 
 **Table of Contents**</br>
 [Heading 1](#exampToc)</br>
@@ -95,13 +106,20 @@ background that are fully editable inline.
 Insert an information box or warning box with fully customizable headers and content.
 These are snippets of content that are actually nested tables.
 
-![Info Boxes](Screenshots/InfoBoxes.jpg)
+![Info Box  es](Screenshots/InfoBoxes.jpg)
+
+And if you have a dark background, OneMore will automatically adjust to insert dark-mode
+styled boxes instead of light styled boxes.
+
+![Info Boxes](Screenshots/InfoBoxesDark.jpg)
+
 
 <a name="exCodeBox"></a>
 #### Code Box
 
 Insert a code box with heading and area for your code. Use the Paste Rich Text command
-to paste syntax-highlighted code directly from Visual Studio<sup>1</sup>
+to paste syntax-highlighted code directly from Visual Studio<sup>1</sup>.
+Text colors are based on the page background color.
 
 ![Code Box](Screenshots/CodeBox.jpg)
 
@@ -118,7 +136,7 @@ you get it then.
 
 You can add a footnote anywhere on the page and a reference label is inserted at the current
 cursor location and a footnote is added to the bottom of the page. You can then edit the
-text in that footnote to your heart's desire. 
+text in that footnote to your heart's desire. Text colors are based on the page background color.
 
 ![Footnotes](Screenshots/Footnotes.png)
 
