@@ -20,37 +20,41 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine($"{nameof(ChangePageColorCommand)}.Execute()");
 
+			Page page = null;
+
 			using (var manager = new ApplicationManager())
 			{
-				var page = new Page(manager.CurrentPage());
+				page = new Page(manager.CurrentPage());
+			}
 
-				using (var dialog = new ChangePageColorDialog(page.GetPageColor()))
+			using (var dialog = new ChangePageColorDialog(page.GetPageColor()))
+			{
+				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					if (dialog.ShowDialog(owner) == DialogResult.OK)
+					var element = page.Root
+						.Elements(page.Namespace + "PageSettings")
+						.FirstOrDefault();
+
+					if (element != null)
 					{
-
-						var element = page.Root
-							.Elements(page.Namespace + "PageSettings")
-							.FirstOrDefault();
-
-						if (element != null)
+						var attr = element.Attribute("color");
+						if (attr != null)
 						{
-							var attr = element.Attribute("color");
-							if (attr != null)
-							{
-								attr.Value = dialog.PageColor;
-							}
-							else
-							{
-								element.Add(new XAttribute("color", dialog.PageColor));
-							}
-
-							manager.UpdatePageContent(page.Root);
+							attr.Value = dialog.PageColor;
 						}
 						else
 						{
-							logger.WriteLine("ChangePageColor failed because PageSettings not found");
+							element.Add(new XAttribute("color", dialog.PageColor));
 						}
+
+						using (var manager = new ApplicationManager())
+						{
+							manager.UpdatePageContent(page.Root);
+						}
+					}
+					else
+					{
+						logger.WriteLine("ChangePageColor failed because PageSettings not found");
 					}
 				}
 			}
