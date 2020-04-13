@@ -70,15 +70,6 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 
 ## Examples of What OneMore Can Do...
 
-<a name="dark"></a>
-#### Dark Mode and Page Background
-
-While OneNote lets you select from a light, pastel pallet for page backgrounds, OneMore offers
-true dark-mode background capabilities as well as custom color selections.
-
-![Dark Page](Screenshots/DarkPage.png)
-
-
 <a name="exTOC"></a>
 #### Table of Contents
 
@@ -104,15 +95,10 @@ background that are fully editable inline.
 #### Information and Warning Boxes
 
 Insert an information box or warning box with fully customizable headers and content.
-These are snippets of content that are actually nested tables.
+These snippets are actually just nested tables. Text colors are based on the [page background
+color](#dark).
 
 ![Info Box  es](Screenshots/InfoBoxes.jpg)
-
-And if you have a dark background, OneMore will automatically adjust to insert dark-mode
-styled boxes instead of light styled boxes.
-
-![Info Boxes](Screenshots/InfoBoxesDark.jpg)
-
 
 <a name="exCodeBox"></a>
 #### Code Box
@@ -149,6 +135,20 @@ text at the bottom of the page and click the *Remove footnote* command. Voila!
 OneMore keeps track of footnotes and will automatically reorder them to keep them numbered
 sequentially from the top of the page. If you delete a footnote, it again will renumber
 the remaining footnotes so there are no gaps. Pretty slick, huh?
+
+<a name="dark"></a>
+#### Dark Mode and Page Background
+
+While OneNote lets you select from a light, pastel pallet for page backgrounds, OneMore offers
+true dark-mode background capabilities as well as custom color selections.
+
+![Dark Page](Screenshots/DarkPage.png)
+
+If you've selected a darker page background color, OneMore will generate the information box
+and warning box such that they are more visible such as:
+
+![Info Boxes](Screenshots/InfoBoxesDark.jpg)
+
 
 ### What OneMore Doesn't Do
 
