@@ -97,6 +97,7 @@
     <Compile Include="AddInCommands.cs" />
     <Compile Include="AddInFavorites.cs" />
     <Compile Include="Commands\ApplyStylesCommand.cs" />
+    <Compile Include="Commands\ChangePageColorCommand.cs" />
     <Compile Include="Commands\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
     <Compile Include="Commands\AddTitleIconCommand.cs" />
@@ -128,6 +129,12 @@
     <Compile Include="Commands\SortCommand.cs" />
     <Compile Include="Commands\ToCaseCommand.cs" />
     <Compile Include="Commands\TrimCommand.cs" />
+    <Compile Include="Dialogs\ChangePageColorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ChangePageColorDialog.Designer.cs">
+      <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ReorderDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -286,6 +293,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChangePageColorDialog.resx">
+      <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EmojiDialog.resx">
       <DependentUpon>EmojiDialog.cs</DependentUpon>

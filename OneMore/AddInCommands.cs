@@ -33,6 +33,12 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<ApplyStylesCommand>().Execute();
 		}
 
+		public void ChangePageColorCmd(IRibbonControl control)
+		{
+			factory.GetCommand<ChangePageColorCommand>().Execute();
+			ribbon.Invalidate(); // TODO: only if changes?
+		}
+
 		public void CollapseCmd(IRibbonControl control)
 		{
 			factory.GetCommand<CollapseCommand>().Execute();

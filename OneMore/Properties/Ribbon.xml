@@ -15,20 +15,25 @@
             getItemScreentip="GetStyleGalleryItemScreentip"
             onAction="ApplyStyleCmd">
             <button
+              id="EditStylesButton"
+              label="Edit Custom Styles..."
+              imageMso="StylesModifyStyle"
+              onAction="EditStylesCmd"/>
+            <button
+              id="SaveStylesButton"
+              label="Create Custom Style from Selection..."
+              imageMso="StylesPaneNewStyle"
+              onAction="NewStyleCmd"/>
+            <button
               id="ApplyStylesButton"
               label="Apply Custom Styles to Page"
               imageMso="ApplyStylesPane"
               onAction="ApplyStylesCmd"/>
             <button
-              id="SaveStylesButton"
-              label="Save Selection as Custom Style..."
-              imageMso="StylesPaneNewStyle"
-              onAction="NewStyleCmd"/>
-            <button
-              id="EditStylesButton"
-              label="Edit Custom Styles..."
-              imageMso="StylesModifyStyle"
-              onAction="EditStylesCmd"/>
+              id="PageColorButton"
+              label="Change Page Color..."
+              imageMso="FormatBackground"
+              onAction="ChangePageColorCmd"/>
           </gallery>
 
           <dynamicMenu id="OneMoreFavoritesMenu"
