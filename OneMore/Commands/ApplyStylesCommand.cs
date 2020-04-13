@@ -18,8 +18,7 @@ namespace River.OneMoreAddIn
 	internal class ApplyStylesCommand : Command
 	{
 
-		private XElement page;
-		private XNamespace ns;
+		private Page page;
 
 
 		public ApplyStylesCommand() : base()
@@ -33,12 +32,16 @@ namespace River.OneMoreAddIn
 			{
 				using (var manager = new ApplicationManager())
 				{
-					page = manager.CurrentPage();
+					page = new Page(manager.CurrentPage());
 					if (page != null)
 					{
-						if (ApplyStyles(page))
+						var styles = new StyleProvider().GetStyles();
+
+						if (ApplyStyles(styles))
 						{
-							manager.UpdatePageContent(page);
+							ApplyToLists(styles);
+
+							manager.UpdatePageContent(page.Root);
 						}
 					}
 				}
@@ -50,16 +53,15 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private bool ApplyStyles(XElement page)
+		private bool ApplyStyles(List<Style> styles)
 		{
 			var applied = false;
 
-			ns = page.GetNamespaceOfPrefix("one");
+			var ns = page.Namespace;
 
-			var quickStyles = page.Elements(ns + "QuickStyleDef");
+			var quickStyles = page.Root.Elements(ns + "QuickStyleDef");
 			if (quickStyles?.Any() == true)
 			{
-				var styles = new StyleProvider().GetStyles();
 				var foundP = false;
 
 				foreach (var quick in quickStyles)
@@ -155,6 +157,56 @@ namespace River.OneMoreAddIn
 			}
 
 			return style;
+		}
+
+
+		private void ApplyToLists(List<Style> styles)
+		{
+			var style = styles.SingleOrDefault(s =>
+				s.Name.ToLower() == "normal" ||
+				s.Name.ToLower() == "body" ||
+				s.Name.ToLower() == "p");
+
+			string color;
+			if (style != null)
+			{
+				color = style.Color;
+			}
+			else
+			{
+				color = page.GetPageColor().GetBrightness() < 0.5
+					? "#FFFFFF"
+					: "#000000";
+			}
+
+			var ns = page.Namespace;
+			var elements = page.Root.Descendants(ns + "Bullet");
+			if (elements?.Any() == true)
+			{
+				ApplyToListItems(elements, color);
+			}
+
+			elements = page.Root.Descendants(ns + "Number");
+			if (elements?.Any() == true)
+			{
+				ApplyToListItems(elements, color);
+			}
+		}
+
+		private void ApplyToListItems(IEnumerable<XElement> elements, string color)
+		{
+			foreach (var element in elements)
+			{
+				var attr = element.Attribute("fontColor");
+				if (attr != null)
+				{
+					attr.Value = color;
+				}
+				else
+				{
+					element.Add(new XAttribute("fontColor", color));
+				}
+			}
 		}
 	}
 }
