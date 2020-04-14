@@ -19,10 +19,13 @@ namespace River.OneMoreAddIn
 	{
 
 		private Page page;
+		private Stylizer stylizer;
 
 
 		public ApplyStylesCommand() : base()
 		{
+			// using blank Style just so we have a valid Stylizer
+			stylizer = new Stylizer(new Style());
 		}
 
 
@@ -67,6 +70,8 @@ namespace River.OneMoreAddIn
 				foreach (var quick in quickStyles)
 				{
 					var name = quick.Attribute("name").Value;
+
+					// only affect the first QuickStyleDef[@name='p']
 					if (!foundP || name != "p")
 					{
 						var style = FindStyle(styles, name);
@@ -102,6 +107,9 @@ namespace River.OneMoreAddIn
 
 							applied = true;
 						}
+
+						var index = quick.Attribute("index").Value;
+						ClearInlineStyles(index, name == "p");
 					}
 				}
 			}
@@ -157,6 +165,25 @@ namespace River.OneMoreAddIn
 			}
 
 			return style;
+		}
+
+
+		// when applying styles, we want to preserve any special treatments to paragraphs
+		// because that would be tedious for the user to restore manually if their intention 
+		// was to keep those colors, but we want to clear all color styling from every other
+		// element type like headings, et al.
+		private void ClearInlineStyles(string index, bool paragraph)
+		{
+			var elements = page.Root.Descendants()
+				.Where(e => e.Attribute("quickStyleIndex")?.Value == index);
+
+			if (elements != null)
+			{
+				foreach (var element in elements)
+				{
+					stylizer.Clear(element, paragraph ? Stylizer.Clearing.Gray : Stylizer.Clearing.All);
+				}
+			}
 		}
 
 

@@ -198,8 +198,7 @@ namespace River.OneMoreAddIn
 				foreach (var element in elements)
 				{
 					// clear any existing style on or within the paragraph
-					// note that apply-colors translates to clear-colors within the method
-					stylizer.Clear(element, style.ApplyColors);
+					stylizer.Clear(element, style.ApplyColors ? Stylizer.Clearing.All : Stylizer.Clearing.None);
 
 					// style may still exist if apply colors if false and there are colors
 					var attr = element.Attribute("style");

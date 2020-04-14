@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System.Drawing;
 	using System.Linq;
 	using System.Text;
 	using System.Xml;
@@ -25,6 +26,12 @@ namespace River.OneMoreAddIn
 
 	internal class Stylizer
 	{
+		public enum Clearing
+		{
+			None,		// don't remove color styling
+			All,		// remove all color styling
+			Gray		// only gray color styling
+		}
 
 		private readonly Style style;
 		private readonly string css;
@@ -151,20 +158,20 @@ namespace River.OneMoreAddIn
 		/// Clear all styles from the given element and its descendant nodes
 		/// </summary>
 		/// <param name="element">An OE or T node</param>
-		/// <param name="clearColors">True to clear colors (everything) or false to keep colors</param>
-		public void Clear(XElement element, bool clearColors)
+		/// <param name="clearing">Exactly which color stylings to remove</param>
+		public void Clear(XElement element, Clearing clearing)
 		{
 			var attr = element.Attribute("style");
 			if (attr != null)
 			{
-				if (clearColors)
+				if (clearing == Clearing.All)
 				{
 					// discard all styling
 					attr.Remove();
 				}
-				else
+				else if (clearing == Clearing.Gray)
 				{
-					var css = new Style(attr.Value).ToColorCss();
+					var css = ClearGrays(new Style(attr.Value));
 					if (!string.IsNullOrEmpty(css))
 					{
 						// found explicit colors
@@ -182,7 +189,7 @@ namespace River.OneMoreAddIn
 			{
 				foreach (var child in element.Elements())
 				{
-					Clear(child, clearColors);
+					Clear(child, clearing);
 				}
 			}
 
@@ -209,7 +216,7 @@ namespace River.OneMoreAddIn
 							{
 								// presume spans within cdata are flat and only contain text
 
-								if (clearColors)
+								if (clearing == Clearing.All)
 								{
 									// discard all styling
 									builder.Append(e.Value);
@@ -231,6 +238,30 @@ namespace River.OneMoreAddIn
 					// TODO: replace cdata.value here?
 				}
 			}
+		}
+
+
+		private string ClearGrays(Style style)
+		{
+			var builder = new StringBuilder();
+
+			if (!string.IsNullOrEmpty(style.Color) && !style.Color.Equals("automatic"))
+			{
+				if (!ColorTranslator.FromHtml(style.Color).IsGray())
+				{
+					builder.Append("color:" + style.Color + ";");
+				}
+			}
+
+			if (!string.IsNullOrEmpty(style.Highlight) && !style.Highlight.Equals("automatic"))
+			{
+				if (!ColorTranslator.FromHtml(style.Highlight).IsGray())
+				{
+					builder.Append("background:" + style.Highlight + ";");
+				}
+			}
+
+			return builder.ToString();
 		}
 	}
 }

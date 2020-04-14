@@ -16,22 +16,22 @@
             onAction="ApplyStyleCmd">
             <button
               id="EditStylesButton"
-              label="Edit Custom Styles..."
+              label="Edit Styles..."
               imageMso="StylesModifyStyle"
               onAction="EditStylesCmd"/>
             <button
               id="SaveStylesButton"
-              label="Create Custom Style from Selection..."
+              label="Create Style from Selection..."
               imageMso="StylesPaneNewStyle"
               onAction="NewStyleCmd"/>
             <button
               id="ApplyStylesButton"
-              label="Apply Custom Styles to Page"
+              label="Apply Styles to Page"
               imageMso="ApplyStylesPane"
               onAction="ApplyStylesCmd"/>
             <button
               id="PageColorButton"
-              label="Change Page Color..."
+              label="Set Page Color..."
               imageMso="FormatBackground"
               onAction="ChangePageColorCmd"/>
           </gallery>

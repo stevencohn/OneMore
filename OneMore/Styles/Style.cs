@@ -176,6 +176,49 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+
+		/// <summary>
+		/// Gets or sets the font size for this style, handling set values like "12.0pt"
+		/// </summary>
+		public override string FontSize
+		{
+			get => base.FontSize;
+			set => base.fontSize = ParseFontSize(value);
+		}
+
+
+		/// <summary>
+		/// Gets a Boolean value indicating if this style has specific colors,
+		/// meaning either font color or background color
+		/// </summary>
+		public bool HasColors =>
+			!string.IsNullOrEmpty(Color) && !Color.Equals(Automatic) &&
+			!string.IsNullOrEmpty(Highlight) && !Highlight.Equals(Automatic);
+
+
+		/// <summary>
+		/// Gets or sets the spacebefore for this style, handling set values like "12.0px"
+		/// </summary>
+		public override string SpaceAfter
+		{
+			get => base.SpaceAfter;
+			set => base.spaceAfter = ParseSpace(value);
+		}
+
+
+		/// <summary>
+		/// Gets or sets the spaceafter for this style, handling set values like "12.0px"
+		/// </summary>
+		public override string SpaceBefore
+		{
+			get => base.SpaceBefore;
+			set => base.spaceBefore = ParseSpace(value);
+		}
+
+
+		// Methods...
+
+
 		#region Formatters
 		protected string FormatColor(string color)
 		{
@@ -244,35 +287,6 @@ namespace River.OneMoreAddIn
 		#endregion
 
 
-		/// <summary>
-		/// Gets or sets the font size for this style, handling set values like "12.0pt"
-		/// </summary>
-		public override string FontSize
-		{
-			get => base.FontSize;
-			set => base.fontSize = ParseFontSize(value);
-		}
-
-
-		/// <summary>
-		/// Gets or sets the spacebefore for this style, handling set values like "12.0px"
-		/// </summary>
-		public override string SpaceAfter
-		{
-			get => base.SpaceAfter;
-			set => base.spaceAfter = ParseSpace(value);
-		}
-
-
-		/// <summary>
-		/// Gets or sets the spaceafter for this style, handling set values like "12.0px"
-		/// </summary>
-		public override string SpaceBefore
-		{
-			get => base.SpaceBefore;
-			set => base.spaceBefore = ParseSpace(value);
-		}
-
 
 		/// <summary>
 		/// Merge this style with another given style.
@@ -306,25 +320,6 @@ namespace River.OneMoreAddIn
 		{
 			Color = other.color;
 			Highlight = other.highlight;
-		}
-
-
-		/// <summary>
-		/// Builds a specialized CSS string with only color properties. If neither color
-		/// nor highlight are set then an empty string is returned.
-		/// </summary>
-		/// <returns></returns>
-		public string ToColorCss()
-		{
-			var builder = new StringBuilder();
-
-			if (!string.IsNullOrEmpty(Color) && !Color.Equals(Automatic))
-				builder.Append("color:" + FormatColor(Color) + ";");
-
-			if (!string.IsNullOrEmpty(Highlight) && !Highlight.Equals(Automatic))
-				builder.Append("background:" + FormatColor(Highlight) + ";");
-
-			return builder.ToString();
 		}
 
 
