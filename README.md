@@ -142,10 +142,15 @@ the remaining footnotes so there are no gaps. Pretty slick, huh?
 While OneNote lets you select from a light, pastel pallet for page backgrounds, OneMore offers
 true dark-mode background capabilities as well as custom color selections.
 
+OneMore comes with a style theme named DarkStyles.xml that you can load.
+
+_Please see the pinned "Known Issues" item in the Issues area for an explanation of why
+colors might not look right when switching to a dark background._
+
 ![Dark Page](Screenshots/DarkPage.png)
 
-If you've selected a darker page background color, OneMore will generate the information box
-and warning box such that they are more visible such as:
+If you've selected a darker page background color, OneMore will generate the information box,
+warning box, and code box with darker colors as well, such as:
 
 ![Info Boxes](Screenshots/InfoBoxesDark.jpg)
 
