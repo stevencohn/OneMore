@@ -101,6 +101,11 @@
                 getEnabled="EnsureBodyContext"
                 onAction="InsertDoubleHorizontalLineCmd"/>
               <button
+                id="nameUrlsButton"
+                imageMso="AutoSigWebInsertHyperlink"
+                label="Replace URLs with Web Page Titles"
+                onAction="NameUrlsCmd"/>
+              <button
                 id="tocButton"
                 imageMso="WordInsertTableOfContents2"
                 label="Insert Page TOC"

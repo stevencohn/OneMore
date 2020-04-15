@@ -79,9 +79,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -114,6 +116,7 @@
     <Compile Include="Commands\InsertLineCommand.cs" />
     <Compile Include="Commands\InsertStatusCommand.cs" />
     <Compile Include="Commands\InsertTocCommand.cs" />
+    <Compile Include="Commands\NameUrlsCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Commands\NewStyleCommand.cs" />
     <Compile Include="Commands\NoSpellCheckCommand.cs" />

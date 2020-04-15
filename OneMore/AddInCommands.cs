@@ -9,7 +9,8 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 
-	public partial class AddIn
+
+    public partial class AddIn
 	{
 
 		public void AddFootnoteCmd(IRibbonControl control)
@@ -24,7 +25,6 @@ namespace River.OneMoreAddIn
 
 		public void ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
 		{
-			//logger.WriteLine($"StyleGallerySelected2({control.Id}, {selectedId}, {selectedIndex})");
 			factory.GetCommand<ApplyStyleCommand>().Execute(selectedIndex);
 		}
 
@@ -55,15 +55,19 @@ namespace River.OneMoreAddIn
 			ribbon.Invalidate(); // TODO: only if changes?
 		}
 
-		public void NewStyleCmd(IRibbonControl control)
-		{
-			factory.GetCommand<NewStyleCommand>().Execute();
-			ribbon.Invalidate(); // TODO: only if changes?
-		}
-
 		public void IncreaseFontSizeCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AlterSizeCommand>().Execute(1);
+		}
+
+		public void InsertBlueStatusCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Blue);
+		}
+
+		public void InsertCodeBlockCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertCodeBlockCommand>().Execute();
 		}
 
 		public void InsertDoubleHorizontalLineCmd(IRibbonControl control)
@@ -76,44 +80,9 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<InsertExpandCommand>().Execute();
 		}
 
-		public void InsertHorizontalLineCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertLineCommand>().Execute('─');
-		}
-
-		public void InsertCodeBlockCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertCodeBlockCommand>().Execute();
-		}
-
-		public void InsertInfoBlockCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertInfoBlockCommand>().Execute(false);
-		}
-
-		public void InsertWarningBlockCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertInfoBlockCommand>().Execute(true);
-		}
-
-		public void InsertTocCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertTocCommand>().Execute();
-		}
-
 		public void InsertGrayStatusCmd(IRibbonControl control)
 		{
 			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Gray);
-		}
-
-		public void InsertRedStatusCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Red);
-		}
-
-		public void InsertYellowStatusCmd(IRibbonControl control)
-		{
-			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Yellow);
 		}
 
 		public void InsertGreenStatusCmd(IRibbonControl control)
@@ -121,9 +90,45 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Green);
 		}
 
-		public void InsertBlueStatusCmd(IRibbonControl control)
+		public void InsertHorizontalLineCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Blue);
+			factory.GetCommand<InsertLineCommand>().Execute('─');
+		}
+
+		public void InsertInfoBlockCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertInfoBlockCommand>().Execute(false);
+		}
+
+		public void InsertRedStatusCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Red);
+		}
+
+		public void InsertTocCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertTocCommand>().Execute();
+		}
+
+		public void InsertWarningBlockCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertInfoBlockCommand>().Execute(true);
+		}
+
+		public void InsertYellowStatusCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Yellow);
+		}
+
+		public void NameUrlsCmd(IRibbonControl control)
+		{
+			factory.GetCommand<NameUrlsCommand>().Execute();
+		}
+
+		public void NewStyleCmd(IRibbonControl control)
+		{
+			factory.GetCommand<NewStyleCommand>().Execute();
+			ribbon.Invalidate(); // TODO: only if changes?
 		}
 
 		public void NoSpellCheckCmd(IRibbonControl control)

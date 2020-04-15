@@ -24,6 +24,7 @@ A OneNote add-in with powerful yet simple and effective features including:
 * Insert [status labels](#exStatusLabels) similar to the Confluence status macro
 * Insert [collapsable sections](#expand) to hide secondary or sensitive information
 * Increase/Decrease the font size of all content on the current page
+* Replace hyperlinked URLs with their Web page titles
 * [Sort pages, sections, or notebooks](#other)
 * Trim trailing whitespace from selected text
 * View and edit the [internal OneNote XML](#xml) of the current page
