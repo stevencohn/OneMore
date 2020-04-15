@@ -13,12 +13,12 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class InsertCodeBlockCommand : Command
 	{
-		private static readonly string Shading = "#F2F2F2";
-		private static readonly string ShadingDark = "#222A35";
-		private static readonly string TitleColor = "#000000";
-		private static readonly string TitleColorDark = "#F2F2F2";
-		private static readonly string TextColor = "#000000";
-		private static readonly string TextColorDark = "#FFFFFF";
+		private const string Shading = "#F2F2F2";
+		private const string ShadingDark = "#222A35";
+		private const string TitleColor = "#000000";
+		private const string TitleColorDark = "#F2F2F2";
+		private const string TextColor = "#000000";
+		private const string TextColorDark = "#FFFFFF";
 
 
 		public InsertCodeBlockCommand() : base()

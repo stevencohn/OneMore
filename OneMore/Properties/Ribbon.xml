@@ -126,6 +126,12 @@
                 getEnabled="EnsureBodyContext"
                 onAction="InsertCodeBlockCmd"/>
               <button
+                id="expandButton"
+                imageMso="PivotExpandIndicators"
+                label="Expand/Collapse"
+                getEnabled="EnsureBodyContext"
+                onAction="InsertExpandCmd"/>
+              <button
                 id="PersonaStatusOffline"
                 imageMso="AppointmentColor4"
                 label="Gray Status" 

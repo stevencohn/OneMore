@@ -59,6 +59,17 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Convenience routine to set the cell content to the given text.
+		/// </summary>
+		/// <param name="index"></param>
+		/// <param name="text"></param>
+		public void SetCellContent(int index, string text)
+		{
+			SetCellContent(index, new XElement(ns + "T", new XCData(text)));
+		}
+
+
+		/// <summary>
 		/// Sets the contents of the indexed cell to the given content
 		/// </summary>
 		/// <param name="index"></param>
@@ -66,7 +77,7 @@ namespace River.OneMoreAddIn
 		public void SetCellContent(int index, XElement content)
 		{
 			var cell = Root.Elements(ns + "Cell").ElementAt(index);
-			if ((cell != null) && content.HasElements)
+			if (cell != null)
 			{
 				// ensure the content is properly wrapped
 				var name = content.Name.LocalName;

@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn
 	{
 
 		private Page page;
-		private Stylizer stylizer;
+		private readonly Stylizer stylizer;
 
 
 		public ApplyStylesCommand() : base()
@@ -43,6 +43,11 @@ namespace River.OneMoreAddIn
 						if (ApplyStyles(styles))
 						{
 							ApplyToLists(styles);
+
+							if (page.GetPageColor().GetBrightness() < 0.5)
+							{
+								ApplyToHyperlinks();
+							}
 
 							manager.UpdatePageContent(page.Root);
 						}
@@ -233,6 +238,69 @@ namespace River.OneMoreAddIn
 				{
 					element.Add(new XAttribute("fontColor", color));
 				}
+			}
+		}
+
+
+		/*
+		 * 
+		 * This doesn't work. OneNote post-processes the page and override our changes :-(
+		 * 
+		 */
+
+		private void ApplyToHyperlinks()
+		{
+			var regex = new Regex(@"<a\s+href=", RegexOptions.Compiled);
+
+			var elements = page.Root.DescendantNodes().OfType<XCData>()
+				.Where(c => regex.IsMatch(c.Value))
+				.Select(e => e.Parent)
+				.ToList();
+
+			if (elements?.Count > 0)
+			{
+				foreach (var element in elements)
+				{
+					var cdata = element.GetCData();
+
+					if (cdata.Value.EndsWith("</a>"))
+					{
+						// OneNote applies styles at the OE level for link-only content
+						// so apply color to CDATA's one:OE
+						ColorizeElement(element.Parent, "#5B9BD5");
+					}
+					else
+					{
+						// OneNote applies styles inline when link is accompanied by other text
+
+						var wrapper = cdata.GetWrapper();
+						var a = wrapper.Element("a");
+						if (a != null)
+						{
+							ColorizeElement(a, "#5B9BD5");
+						}
+
+						cdata.ReplaceWith(wrapper.GetInnerXml());
+					}
+				}
+			}
+		}
+
+		private void ColorizeElement(XElement element, string color)
+		{
+			var attr = element.Attribute("style");
+			if (attr != null)
+			{
+				var style = new Style(attr.Value)
+				{
+					Color = color
+				};
+
+				attr.Value = style.ToCss();
+			}
+			else
+			{
+				element.Add(new XAttribute("style", "color:#5B9BD5"));
 			}
 		}
 	}

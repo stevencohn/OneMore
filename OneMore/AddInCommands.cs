@@ -71,6 +71,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<InsertLineCommand>().Execute('═');
 		}
 
+		public void InsertExpandCmd(IRibbonControl control)
+		{
+			factory.GetCommand<InsertExpandCommand>().Execute();
+		}
+
 		public void InsertHorizontalLineCmd(IRibbonControl control)
 		{
 			factory.GetCommand<InsertLineCommand>().Execute('─');

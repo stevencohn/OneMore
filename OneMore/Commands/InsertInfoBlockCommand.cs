@@ -13,16 +13,16 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class InsertInfoBlockCommand : Command
 	{
-		private static readonly string InfoShading = "#F6FAFF";
-		private static readonly string InfoShadingDark = "#323F4F";
-		private static readonly string InfoSymbolColor = "#2E75B5";
-		private static readonly string WarnShading = "#FFF8F7";
-		private static readonly string WarnShadingDark = "#78230C";
-		private static readonly string WarnSymbolColor = "#FFF8F7";
-		private static readonly string TitleColor = "#000000";
-		private static readonly string TitleColorDark = "#FFFFFF";
-		private static readonly string TextColor = "#333333";
-		private static readonly string TextColorDark = "#D8D8D8";
+		private const string InfoShading = "#F6FAFF";
+		private const string InfoShadingDark = "#323F4F";
+		private const string InfoSymbolColor = "#2E75B5";
+		private const string WarnShading = "#FFF8F7";
+		private const string WarnShadingDark = "#78230C";
+		private const string WarnSymbolColor = "#FFF8F7";
+		private const string TitleColor = "#000000";
+		private const string TitleColorDark = "#FFFFFF";
+		private const string TextColor = "#333333";
+		private const string TextColorDark = "#D8D8D8";
 
 
 		public InsertInfoBlockCommand() : base()

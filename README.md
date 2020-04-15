@@ -22,6 +22,7 @@ A OneNote add-in with powerful yet simple and effective features including:
 * Insert [Info/Warn boxes](#exInfoBoxes) similar to Confluence Info and Warn macros
 * Insert [Code box](#exCodeBox) similar to Confluence Code macro
 * Insert [status labels](#exStatusLabels) similar to the Confluence status macro
+* Insert [collapsable sections](#expand) to hide secondary or sensitive information
 * Increase/Decrease the font size of all content on the current page
 * [Sort pages, sections, or notebooks](#other)
 * Trim trailing whitespace from selected text
@@ -71,7 +72,7 @@ Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
 ## Examples of What OneMore Can Do...
 
 <a name="exTOC"></a>
-#### Table of Contents
+### Table of Contents
 
 Generate a Table of Contents based on both standard headings and custom user-defined headings
 where each line is hyperlinked to its heading and indented according to its heading level.
@@ -82,8 +83,18 @@ Text colors are based on the page background color.
 . . [Heading 2](#exampToc)</br>
 . . . . [Heading 3](#exampToc)
 
+<a name="expand"></a>
+### Collapsable Sections
+
+Insert a collapsable section at the current position on the page. This can be used to hide
+secondary or sensitive information on your page. This snippet includes a single-cell table
+to which you can add content.
+
+![Collapsable Section](Screenshots/Expand.jpg)
+
+
 <a name="exStatusLabels"></a>
-#### Status Labels
+### Status Labels
 
 Insert colored status labels similar to the Status macros found in Confluence. These
 are not as smart as the Confluence macros but instead are just simple text with a highlight
@@ -92,7 +103,7 @@ background that are fully editable inline.
 ![Status Labels](Screenshots/StatusLabels.jpg)
 
 <a name="exInfoBoxes"></a>
-#### Information and Warning Boxes
+### Information and Warning Boxes
 
 Insert an information box or warning box with fully customizable headers and content.
 These snippets are actually just nested tables. Text colors are based on the [page background
@@ -101,7 +112,7 @@ color](#dark).
 ![Info Box  es](Screenshots/InfoBoxes.jpg)
 
 <a name="exCodeBox"></a>
-#### Code Box
+### Code Box
 
 Insert a code box with heading and area for your code. Use the Paste Rich Text command
 to paste syntax-highlighted code directly from Visual Studio<sup>1</sup>.
@@ -114,7 +125,7 @@ when using the Paste Rich Text command (Ctrl+Alt+V) then look at the VS Tools...
 Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
 
 <a name="footnotes"></a>
-#### Footnotes
+### Footnotes
 
 Adding footnotes to a OneNote page seems somehow redundant but consider how often OneNote
 is used for research and then used to copy/paste content into Word or print as PDF... yeah,
@@ -137,7 +148,7 @@ sequentially from the top of the page. If you delete a footnote, it again will r
 the remaining footnotes so there are no gaps. Pretty slick, huh?
 
 <a name="dark"></a>
-#### Dark Mode and Page Background
+### Dark Mode and Page Background
 
 While OneNote lets you select from a light, pastel pallet for page backgrounds, OneMore offers
 true dark-mode background capabilities as well as custom color selections.
