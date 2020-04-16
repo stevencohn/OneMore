@@ -136,7 +136,7 @@ its &lt;title> element. Of course you must be connected to the interwebs.
 
 For example, given this URL on a OneNote page: [https://github.com/](https://github.com/)
 
-it would be replaced with its hyperlinked title: [Github](https://github.com)
+it would be replaced with its hyperlinked title: [GitHub](https://github.com)
 
 <a name="footnotes"></a>
 ### Footnotes
