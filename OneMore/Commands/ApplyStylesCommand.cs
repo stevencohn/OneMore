@@ -199,44 +199,38 @@ namespace River.OneMoreAddIn
 				s.Name.ToLower() == "body" ||
 				s.Name.ToLower() == "p");
 
-			string color;
-			if (style != null)
+			if (style == null)
 			{
-				color = style.Color;
-			}
-			else
-			{
-				color = page.GetPageColor().GetBrightness() < 0.5
-					? "#FFFFFF"
-					: "#000000";
+				style = new Style
+				{
+					Color = page.GetPageColor().GetBrightness() < 0.5 ? "#FFFFFF" : "#000000"
+				};
 			}
 
 			var ns = page.Namespace;
 			var elements = page.Root.Descendants(ns + "Bullet");
 			if (elements?.Any() == true)
 			{
-				ApplyToListItems(elements, color);
+				ApplyToListItems(elements, style, false);
 			}
 
 			elements = page.Root.Descendants(ns + "Number");
 			if (elements?.Any() == true)
 			{
-				ApplyToListItems(elements, color);
+				ApplyToListItems(elements, style, true);
 			}
 		}
 
-		private void ApplyToListItems(IEnumerable<XElement> elements, string color)
+		private void ApplyToListItems(IEnumerable<XElement> elements, Style style, bool withFamily)
 		{
 			foreach (var element in elements)
 			{
-				var attr = element.Attribute("fontColor");
-				if (attr != null)
+				element.SetAttributeValue("fontColor", style.Color);
+				element.SetAttributeValue("fontSize", style.FontSize);
+
+				if (withFamily)
 				{
-					attr.Value = color;
-				}
-				else
-				{
-					element.Add(new XAttribute("fontColor", color));
+					element.SetAttributeValue("font", style.FontFamily);
 				}
 			}
 		}

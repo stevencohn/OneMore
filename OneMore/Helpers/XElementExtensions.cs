@@ -16,6 +16,76 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
+		/// Extract the style properties of this element by looking at its "style" attribute
+		/// if one exists and possibly its immediate CDATA child and any span/style attributes.
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns></returns>
+		public static Dictionary<string, string> CollectStyleProperties(
+			this XElement element, bool inward = true)
+		{
+			var props = new Dictionary<string, string>();
+
+			if (inward)
+			{
+				// gather from CDATA child if one exists
+				var cdata = element.Nodes().OfType<XCData>().FirstOrDefault();
+				if (cdata != null)
+				{
+					var span = cdata.GetWrapper().Elements("span")
+						.Where(e => e.Attributes("style").Any())
+						.FirstOrDefault();
+
+					if (span != null)
+					{
+						var sprops = span.CollectStyleProperties();
+						sprops.ToList().ForEach(c => props.Add(c.Key, c.Value));
+					}
+				}
+			}
+
+			// gather from style attribute if one exists
+			var sheet = element.Attributes("style").Select(a => a.Value);
+
+			if ((sheet == null) || !sheet.Any()) return props;
+
+			foreach (var css in sheet.ToList())
+			{
+				var parts = css.Split(';');
+				if (parts.Length == 0) continue;
+
+				foreach (var part in parts)
+				{
+					var pair = part.Split(':');
+					if (pair.Length < 2) continue;
+
+					var key = pair[0].Trim();
+					if (!props.ContainsKey(key))
+					{
+						props.Add(key, pair[1].Replace("'", string.Empty).Trim());
+					}
+				}
+			}
+
+			// an OE might have spacing attributes
+
+			var attr = element.Attribute("spaceBefore");
+			if (attr != null)
+			{
+				props.Add("spaceBefore", attr.Value);
+			}
+
+			attr = element.Attribute("spaceAfter");
+			if (attr != null)
+			{
+				props.Add("spaceAfter", attr.Value);
+			}
+
+			return props;
+		}
+
+
+		/// <summary>
 		/// Returns the CData node from the current element
 		/// </summary>
 		/// <param name="element">A one:T element</param>
@@ -231,72 +301,22 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Extract the style properties of this element by looking at its "style" attribute
-		/// if one exists and possibly its immediate CDATA child and any span/style attributes.
+		/// Set or add the specified attribute with the given value.
 		/// </summary>
-		/// <param name="element"></param>
-		/// <returns></returns>
-		public static Dictionary<string, string> CollectStyleProperties(
-			this XElement element, bool inward = true)
+		/// <param name="element">The element to affect</param>
+		/// <param name="name">The name of the attribute</param>
+		/// <param name="value">The value to apply</param>
+		public static void SetAttributeValue(this XElement element, string name, string value)
 		{
-			var props = new Dictionary<string, string>();
-
-			if (inward)
-			{
-				// gather from CDATA child if one exists
-				var cdata = element.Nodes().OfType<XCData>().FirstOrDefault();
-				if (cdata != null)
-				{
-					var span = cdata.GetWrapper().Elements("span")
-						.Where(e => e.Attributes("style").Any())
-						.FirstOrDefault();
-
-					if (span != null)
-					{
-						var sprops = span.CollectStyleProperties();
-						sprops.ToList().ForEach(c => props.Add(c.Key, c.Value));
-					}
-				}
-			}
-
-			// gather from style attribute if one exists
-			var sheet = element.Attributes("style").Select(a => a.Value);
-
-			if ((sheet == null) || !sheet.Any()) return props;
-
-			foreach (var css in sheet.ToList())
-			{
-				var parts = css.Split(';');
-				if (parts.Length == 0) continue;
-
-				foreach (var part in parts)
-				{
-					var pair = part.Split(':');
-					if (pair.Length < 2) continue;
-
-					var key = pair[0].Trim();
-					if (!props.ContainsKey(key))
-					{
-						props.Add(key, pair[1].Replace("'", string.Empty).Trim());
-					}
-				}
-			}
-
-			// an OE might have spacing attributes
-
-			var attr = element.Attribute("spaceBefore");
+			var attr = element.Attribute(name);
 			if (attr != null)
 			{
-				props.Add("spaceBefore", attr.Value);
+				attr.Value = value;
 			}
-
-			attr = element.Attribute("spaceAfter");
-			if (attr != null)
+			else
 			{
-				props.Add("spaceAfter", attr.Value);
+				element.Add(new XAttribute(name, value));
 			}
-
-			return props;
 		}
 	}
 }

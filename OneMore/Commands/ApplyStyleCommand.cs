@@ -217,6 +217,8 @@ namespace River.OneMoreAddIn
 
 					ApplySpacing(element, "spaceBefore", style.SpaceBefore);
 					ApplySpacing(element, "spaceAfter", style.SpaceAfter);
+
+					ApplyToList(element, style);
 				}
 
 				return true;
@@ -236,6 +238,25 @@ namespace River.OneMoreAddIn
 			else
 			{
 				attr.Value = space;
+			}
+		}
+
+
+		private void ApplyToList(XElement element, Style style)
+		{
+			var item = element.Elements(ns + "List").Elements()
+				.Where(e => e.Name.LocalName == "Bullet" || e.Name.LocalName == "Number")
+				.FirstOrDefault();
+
+			if (item != null)
+			{
+				item.SetAttributeValue("fontColor", style.Color);
+				item.SetAttributeValue("fontSize", style.FontSize);
+
+				if (item.Name.LocalName == "Number")
+				{
+					item.SetAttributeValue("font", style.FontFamily);
+				}
 			}
 		}
 	}
