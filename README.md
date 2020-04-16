@@ -128,11 +128,10 @@ Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
 <a name="nameUrls"></a>
 ### Replace Hyperlinked URLs with Web Page Titles
 
-When copying and pasting a URL from a Web browser, OneNote either pastes the URL as-is or you
-can use the Insert Hyperlink button to give it a readable name. The OneMore _Replace Hyperlinked
-URLs with Web Page Titles_ feature allows you to automatically replace all URLs on the page with 
-their Web page title equivalents. It does this by reaching out to each URL online to retrieve 
-its &lt;title> element. Of course you must be connected to the interwebs.
+Automatically replaces all or selected hyperlinked URLs with the &lt;title> specified on the 
+associated Web pages. This only affects URLs for which the displayed text is different than the
+link address, meaning if you've already customized the dispalyed text, OneMore will not alter
+your changes.
 
 For example, given this URL on a OneNote page: [https://github.com/](https://github.com/)
 

@@ -1,17 +1,21 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Linq;
-    using System.Net;
-    using System.Net.Http;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Web;
-    using System.Xml.Linq;
+	using System.Net;
+	using System.Net.Http;
+	using System.Text;
+	using System.Text.RegularExpressions;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using System.Web;
+	using System.Xml.Linq;
 
 
 	internal class NameUrlsCommand : Command
@@ -26,6 +30,8 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
+			logger.WriteLine(nameof(NameUrlsCommand) + ".Execute()");
+
 			try
 			{
 				Page page;
@@ -51,43 +57,92 @@ namespace River.OneMoreAddIn
 
 		private bool NameUrls(Page page)
 		{
-			int count = 0;
+			List<XElement> elements = null;
 			var regex = new Regex(@"<a\s+href=", RegexOptions.Compiled);
 
-			var elements = page.Root.DescendantNodes().OfType<XCData>()
-				.Where(c => regex.IsMatch(c.Value))
-				.Select(e => e.Parent)
-				.ToList();
+			var selections = page.Root.Descendants(page.Namespace + "T")
+				.Where(e =>
+					e.Attributes("selected").Any(a => a.Value.Equals("all")));
 
+			if ((selections.Count() == 1) &&
+				(selections.First().DescendantNodes().OfType<XCData>().First().Value.Length == 0))
+			{
+				// single empty selection so affect entire page
+				elements = page.Root.DescendantNodes().OfType<XCData>()
+					.Where(c => regex.IsMatch(c.Value))
+					.Select(e => e.Parent)
+					.ToList();
+			}
+			else
+			{
+				// selected range so affect only within that
+				elements = page.Root.DescendantNodes().OfType<XCData>()
+					.Where(c => regex.IsMatch(c.Value))
+					.Select(e => e.Parent)
+					.Where(e => e.Attributes("selected").Any(a => a.Value == "all"))
+					.ToList();
+			}
+
+			// parallelize internet access for all hyperlinks on page
+
+			int count = 0;
 			if (elements?.Count > 0)
 			{
-				foreach (var element in elements)
-				{
-					var cdata = element.GetCData();
+				ServicePointManager.SecurityProtocol =
+					SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
-					var wrapper = cdata.GetWrapper();
-					var a = wrapper.Element("a");
-					if (a != null)
+				Parallel.ForEach(elements, (element) =>
+				{
+					var c = ReplaceUrlText(element);
+					Interlocked.Add(ref count, c);
+				});
+			}
+
+			return count > 0;
+		}
+
+
+		private int ReplaceUrlText(XElement element)
+		{
+			var cdata = element.GetCData();
+
+			var wrapper = cdata.GetWrapper();
+			var a = wrapper.Element("a");
+			if (a != null)
+			{
+				var href = a.Attribute("href")?.Value;
+				if (href != null)
+				{
+					if (href == a.Value)
 					{
-						var href = a.Attribute("href")?.Value;
-						if (href != null)
+						string title;
+						var watch = new Stopwatch();
+						watch.Start();
+
+						try
 						{
-							if (href == a.Value)
-							{
-								var title = FetchPageTitle(href);
-								if (title != null)
-								{
-									a.Value = HttpUtility.HtmlDecode(title);
-									cdata.ReplaceWith(wrapper.GetInnerXml());
-									count++;
-								}
-							}
+							title = FetchPageTitle(href);
+							watch.Stop();
+						}
+						catch
+						{
+							watch.Stop();
+							logger.WriteLine($"Cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
+							return 0;
+						}
+
+						if (title != null)
+						{
+							logger.WriteLine($"Resolved {href} in {watch.ElapsedMilliseconds}ms");
+							a.Value = HttpUtility.HtmlDecode(title);
+							cdata.ReplaceWith(wrapper.GetInnerXml());
+							return 1;
 						}
 					}
 				}
 			}
 
-			return count > 0;
+			return 0;
 		}
 
 
@@ -97,9 +152,6 @@ namespace River.OneMoreAddIn
 
 			using (var client = new HttpClient())
 			{
-				ServicePointManager.SecurityProtocol = 
-					SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
 				// yes, yes, i know, never use Result....
 				using (var response = client.GetAsync(new Uri(url, UriKind.Absolute)).Result)
 				{
