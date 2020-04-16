@@ -27,6 +27,10 @@ This will cause Visual Studio to launch the _attach debugger_ dialog. This is mo
 when you already have the OneMore solution open in Visual Studio so you can attach using
 that VS instance with all of the source code and symbols ready to go.
 
+If the attach debugging dialog does not appear and instead a new instance of VS is opened then 
+[check this out from Microsoft about the Just in Time Debugger settings](https://docs.microsoft.com/en-us/visualstudio/debugger/debug-using-the-just-in-time-debugger).
+
+
 #### Enable Add-in UI Error Notifiaction
 
 1. Open OneNote
