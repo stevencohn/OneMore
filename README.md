@@ -24,7 +24,7 @@ A OneNote add-in with powerful yet simple and effective features including:
 * Insert [status labels](#exStatusLabels) similar to the Confluence status macro
 * Insert [collapsable sections](#expand) to hide secondary or sensitive information
 * Increase/Decrease the font size of all content on the current page
-* Replace hyperlinked URLs with their Web page titles
+* [Replace hyperlinked URLs](#nameUrls) with their Web page titles
 * [Sort pages, sections, or notebooks](#other)
 * Trim trailing whitespace from selected text
 * View and edit the [internal OneNote XML](#xml) of the current page
@@ -124,6 +124,19 @@ Text colors are based on the page background color.
 <sup>1</sup> If text copied from Visual Studio is pasted as plain text instead of rich text
 when using the Paste Rich Text command (Ctrl+Alt+V) then look at the VS Tools... Options...
 Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
+
+<a name="nameUrls"></a>
+### Replace Hyperlinked URLs with Web Page Titles
+
+When copying and pasting a URL from a Web browser, OneNote either pastes the URL as-is or you
+can use the Insert Hyperlink button to give it a readable name. The OneMore _Replace Hyperlinked
+URLs with Web Page Titles_ feature allows you to automatically replace all URLs on the page with 
+their Web page title equivalents. It does this by reaching out to each URL online to retrieve 
+its &lt;title> element. Of course you must be connected to the interwebs.
+
+For example, given this URL on a OneNote page: [https://github.com/](https://github.com/)
+
+it would be replaced with its hyperlinked title: [Github](https://github.com)
 
 <a name="footnotes"></a>
 ### Footnotes
