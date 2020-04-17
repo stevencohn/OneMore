@@ -109,7 +109,7 @@
     <Compile Include="Commands\EditStylesCommand.cs" />
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
     <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
-    <Compile Include="Commands\GalleryTileFactory.cs" />
+    <Compile Include="Helpers\GalleryTileFactory.cs" />
     <Compile Include="Commands\InsertCodeBlockCommand.cs" />
     <Compile Include="Commands\InsertExpandCommand.cs" />
     <Compile Include="Commands\InsertInfoBlockCommand.cs" />

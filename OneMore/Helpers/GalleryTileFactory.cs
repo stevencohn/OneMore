@@ -76,6 +76,11 @@ namespace River.OneMoreAddIn
 							var decent = style.Font.Size * decentDesignUnits / emHeight * scale;
 							var y = tileHeight - textsize.Height + decent;
 
+							// adjustment for stupid decents
+							if (style.Font.Size < 12) y -= 6;
+							else if (style.Font.Size < 20) y -= 3;
+							else y -= 3;
+
 							// clipping rectangle for background and text overflow
 							var rec = new Rectangle(
 								(int)x, (int)Math.Max(y, nameSize.Height),
