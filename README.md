@@ -129,7 +129,7 @@ Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
 ### Replace Hyperlinked URLs with Web Page Titles
 
 Automatically replaces all or selected hyperlinked URLs with the &lt;title> specified on the 
-associated Web pages. This only affects URLs for which the displayed text is different than the
+associated Web pages. This only affects URLs for which the displayed text is the same as the
 link address, meaning if you've already customized the dispalyed text, OneMore will not alter
 your changes.
 
