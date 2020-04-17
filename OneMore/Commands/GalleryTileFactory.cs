@@ -4,8 +4,10 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
+	using System.Drawing.Text;
 	using System.Runtime.InteropServices.ComTypes;
 
 
@@ -22,11 +24,16 @@ namespace River.OneMoreAddIn
 
 		public IStream MakeTile(int itemIndex, Color pageColor)
 		{
-			const int tileWidth = 70;
-			const int tileHeight = 60;
-			const int dpi = 96;
+			float scale = 1.0f;
+
+#if Unecessary // OneNote does its own scaling so we don't need this...
+			using (var b = new Bitmap(1, 1)) { using (var g = Graphics.FromImage(b)) { scale = g.DpiY / 96; } }
+#endif
 
 			IStream stream = null;
+
+			int tileWidth = (int)(70f * scale);
+			int tileHeight = (int)(60f * scale);
 
 			using (var image = new Bitmap(tileWidth, tileHeight))
 			{
@@ -34,46 +41,60 @@ namespace River.OneMoreAddIn
 				{
 					graphics.Clear(pageColor);
 					graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-					graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+					graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
 
+					// TODO: scale font size?
 					using (var style = new GraphicStyle(provider.GetStyle(itemIndex)))
 					{
+						// draw name...
+
+						Size nameSize;
+						using (var font = new Font("Tahoma", 6f * scale, FontStyle.Regular))
+						{
+							var name = TrimText(graphics, style.Name, font, tileWidth, out nameSize);
+							var brush = pageColor.GetBrightness() <= 0.5 ? Brushes.White : Brushes.Black;
+
+							// centered horizontally at top of tile
+							graphics.DrawString(name, font, brush, (tileWidth - nameSize.Width) / 2, 3);
+						}
+
+						// draw sample...
+
 						var fore = style.ApplyColors
 							? style.Foreground
 							: pageColor.GetBrightness() <= 0.5 ? Color.White : Color.Black;
-						
+
 						using (var brush = new SolidBrush(fore))
 						{
+							// either centered or left justified
 							var textsize = graphics.MeasureString("AaBbCc123", style.Font);
 							var x = textsize.Width >= tileWidth ? 0 : (tileWidth - textsize.Width) / 2;
+
+							// throw away font decent so all baselies are aligned
+							var decentDesignUnits = style.Font.FontFamily.GetCellDescent(style.Font.Style);
+							var emHeight = style.Font.FontFamily.GetEmHeight(style.Font.Style);
+							var decent = style.Font.Size * decentDesignUnits / emHeight * scale;
+							var y = tileHeight - textsize.Height + decent;
+
+							// clipping rectangle for background and text overflow
+							var rec = new Rectangle(
+								(int)x, (int)Math.Max(y, nameSize.Height),
+								tileWidth, (int)textsize.Height);
+
+							graphics.SetClip(rec);
 
 							if (style.ApplyColors &&
 								!style.Background.IsEmpty &&
 								!style.Background.Equals(Color.Transparent))
 							{
-								using (var bb = new SolidBrush(style.Background))
+								using (var backBrush = new SolidBrush(style.Background))
 								{
-									graphics.FillRectangle(bb, x, 5, textsize.Width, textsize.Height);
+									graphics.FillRectangle(backBrush, rec);
 								}
 							}
 
-							graphics.DrawString("AaBbCc123", style.Font, brush, x, 5);
+							graphics.DrawString("AaBbCc123", style.Font, brush, x, y);
 						}
-
-	
-						// draw font family name
-
-						var scaledSize = 8f * (dpi / graphics.DpiY);
-
-						using (var font = new Font("Tahoma", scaledSize, FontStyle.Regular))
-						{
-							var name = TrimText(graphics, style.Name, font, tileWidth, out var measuredWidth);
-							var brush = pageColor.GetBrightness() <= 0.5 ? Brushes.White : Brushes.Black;
-
-							graphics.DrawString(name, font, brush, (tileWidth - measuredWidth) / 2, 40);
-						}
-
-						graphics.Save();
 					}
 				}
 
@@ -84,19 +105,22 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string TrimText(Graphics graphics, string text, Font font, int width, out float measuredWidth)
+		private string TrimText(Graphics graphics, string text, Font font, int width, out Size size)
 		{
-			if ((measuredWidth = graphics.MeasureString(text, font).Width) > width)
+			var sizef = graphics.MeasureString(text, font);
+			if ((sizef.Width) > width)
 			{
 				text = text.Substring(0, text.Length - 1);
-				while ((measuredWidth = graphics.MeasureString(text + "...", font).Width) > width)
+				while (((sizef = graphics.MeasureString(text + "...", font)).Width) > width)
 				{
 					text = text.Substring(0, text.Length - 1);
 					if (text.Length <= 3) break;
 				}
+
 				text += "...";
 			}
 
+			size = sizef.ToSize();
 			return text;
 		}
 	}

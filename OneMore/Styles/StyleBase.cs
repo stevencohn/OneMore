@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn
 				else
 				{
 					// normalize as #RGB to avoid case-sensitive comparison problems
-					color = ColorTranslator.FromHtml(value).ToRGBHtml();
+					highlight = ColorTranslator.FromHtml(value).ToRGBHtml();
 				}
 			}
 		}
