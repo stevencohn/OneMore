@@ -15,14 +15,20 @@ namespace River.OneMoreAddIn
 	{
 		private const string InfoShading = "#F6FAFF";
 		private const string InfoShadingDark = "#323F4F";
+		private const string InfoShadingBlack = "#DEEBF6";
 		private const string InfoSymbolColor = "#2E75B5";
+		private const string InfoSymbolBlack = "#2E75B5";
 		private const string WarnShading = "#FFF8F7";
 		private const string WarnShadingDark = "#78230C";
-		private const string WarnSymbolColor = "#FFF8F7";
+		private const string WarnShadingBlack = "#FADBD2";
+		private const string WarnSymbolColor = "#E68C74";
+		private const string WarnSymbolBlack = "#8B3119";
 		private const string TitleColor = "#000000";
-		private const string TitleColorDark = "#FFFFFF";
+		private const string TItleDark = "#FFFFFF";
+		private const string TItleBlack = "#000000";
 		private const string TextColor = "#333333";
-		private const string TextColorDark = "#D8D8D8";
+		private const string TextDark = "#D8D8D8";
+		private const string TextBlack = "#000000";
 
 
 		public InsertInfoBlockCommand() : base()
@@ -56,26 +62,27 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
-				var dark = page.GetPageColor().GetBrightness() < 0.5;
+				var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
+
 				string title, symbol, titleColor, symbolColor, textColor, shading;
 
 				if (warning)
 				{
 					title = "Warning";
 					symbol = "\u26a0";
-					symbolColor = WarnSymbolColor;
-					shading = dark ? WarnShadingDark : WarnShading;
+					symbolColor = black ? WarnSymbolBlack : (dark ? WarnSymbolBlack : WarnSymbolColor);
+					shading = black ? WarnShadingBlack : (dark ? WarnShadingDark : WarnShading);
 				}
 				else
 				{
 					title = "Information";
 					symbol = "\U0001F6C8";
-					symbolColor = InfoSymbolColor;
-					shading = dark ? InfoShadingDark : InfoShading;
+					symbolColor = black ? InfoSymbolBlack : InfoSymbolColor;
+					shading = black ? InfoShadingBlack : (dark ? InfoShadingDark : InfoShading);
 				}
 
-				titleColor = dark ? TitleColorDark : TitleColor;
-				textColor = dark ? TextColorDark : TextColor;
+				titleColor = black ? TItleBlack : (dark ? TItleDark : TitleColor);
+				textColor = black ? TextBlack : (dark ? TextDark : TextColor);
 
 				// table...
 

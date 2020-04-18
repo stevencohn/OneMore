@@ -266,7 +266,7 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			var dark = new Page(page).GetPageColor().GetBrightness() < 0.5;
+			var dark = new Page(page).GetPageColor(out _, out _).GetBrightness() < 0.5;
 			var textColor = dark ? "#FFFFFF" : "#000000";
 
 			var items = new List<XElement>

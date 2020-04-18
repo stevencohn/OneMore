@@ -48,7 +48,11 @@ namespace River.OneMoreAddIn
 			Color pageColor;
 			using (var manager = new ApplicationManager())
 			{
-				pageColor = new Page(manager.CurrentPage()).GetPageColor();
+				pageColor = new Page(manager.CurrentPage()).GetPageColor(out _, out var black);
+				if (black)
+				{
+					pageColor = ColorTranslator.FromHtml("#201F1E");
+				}
 			}
 
 			return factory.GetCommand<GalleryTileFactory>().MakeTile(itemIndex, pageColor);

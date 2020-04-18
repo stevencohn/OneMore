@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn
 					Color pageColor;
 					using (var manager = new ApplicationManager())
 					{
-						pageColor = new Page(manager.CurrentPage()).GetPageColor();
+						pageColor = new Page(manager.CurrentPage()).GetPageColor(out _, out _);
 					}
 
 					DialogResult result;

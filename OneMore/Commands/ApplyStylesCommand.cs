@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 						{
 							ApplyToLists(styles);
 
-							if (page.GetPageColor().GetBrightness() < 0.5)
+							if (page.GetPageColor(out _, out _).GetBrightness() < 0.5)
 							{
 								ApplyToHyperlinks();
 							}
@@ -203,7 +203,7 @@ namespace River.OneMoreAddIn
 			{
 				style = new Style
 				{
-					Color = page.GetPageColor().GetBrightness() < 0.5 ? "#FFFFFF" : "#000000"
+					Color = page.GetPageColor(out _, out _).GetBrightness() < 0.5 ? "#FFFFFF" : "#000000"
 				};
 			}
 

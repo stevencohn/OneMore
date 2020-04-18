@@ -15,10 +15,11 @@ namespace River.OneMoreAddIn
 	{
 		private readonly ApplicationManager manager;
 		private readonly ILogger logger;
+		private readonly bool dark;
+
 		private XElement page;
 		private XNamespace ns;
 
-		private bool dark;
 		private XElement divider;
 
 
@@ -33,7 +34,7 @@ namespace River.OneMoreAddIn
 			page = manager.CurrentPage();
 			ns = page.GetNamespaceOfPrefix("one");
 
-			dark = new Page(page).GetPageColor().GetBrightness() < 0.5;
+			dark = new Page(page).GetPageColor(out _, out _).GetBrightness() < 0.5;
 
 			logger = Logger.Current;
 		}

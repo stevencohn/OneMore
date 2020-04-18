@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn
 	{
 		private const string Shading = "#F2F2F2";
 		private const string ShadingDark = "#222A35";
+		private const string ShadingBlack = "#B2D0EB";
 		private const string TitleColor = "#000000";
 		private const string TitleColorDark = "#F2F2F2";
 		private const string TextColor = "#000000";
@@ -49,7 +50,7 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
-				var dark = page.GetPageColor().GetBrightness() < 0.5;
+				var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
 
 				// table...
 
@@ -63,7 +64,7 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					shading = Shading;
+					shading = black ? ShadingBlack : Shading;
 					titleColor = TitleColor;
 					textColor = TextColor;
 				}

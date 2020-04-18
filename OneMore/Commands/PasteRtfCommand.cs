@@ -19,10 +19,15 @@ namespace River.OneMoreAddIn
 		private const double DeltaSize = 0.75;
 
 		private const char Space = '\u00a0'; // Unicode no-break space
+		private readonly bool black;
 
 
 		public PasteRtfCommand() : base()
 		{
+			using (var manager = new ApplicationManager())
+			{
+				_ = new Page(manager.CurrentPage()).GetPageColor(out _, out black);
+			}
 		}
 
 
@@ -481,12 +486,35 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// asdf asf asdf 
+		/// </summary>
+		/// <param name="color"></param>
+		/// <returns></returns>
 		private string ConvertColor(string color)
 		{
 			// Xaml colors are /#[A-F0-9]{8}/
 			if (color.Length == 9 && color.StartsWith("#"))
 			{
-				return "#" + color.Substring(3);
+				color = "#" + color.Substring(3);
+
+				logger.WriteLine($"color [{color}]");
+
+				if (black)
+				{
+					if (color == "#0000FF" || color == "blue")
+					{
+						color = "#5B9BD5";
+					}
+					else if (color == "#00FF00" || color == "#008000" || color == "green")
+					{
+						color = "#70AD47";
+					}
+					else if (color == "#A31515" || color == "red")
+					{
+						color = "#F1937A";
+					}
+				}
 			}
 
 			return color;

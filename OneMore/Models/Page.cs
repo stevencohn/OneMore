@@ -120,13 +120,18 @@ namespace River.OneMoreAddIn
 		/// Gets a Color value specifying the background color of the page
 		/// </summary>
 		/// <returns></returns>
-		public Color GetPageColor()
+		public Color GetPageColor(out bool automatic, out bool black)
 		{
+			black = ApplicationManager.OfficeSetToBlackTheme();
+
 			var color = Root.Element(Namespace + "PageSettings").Attribute("color")?.Value;
 			if (string.IsNullOrEmpty(color) || color == "automatic")
 			{
+				automatic = true;
 				return Color.White;
 			}
+
+			automatic = false;
 
 			try
 			{
@@ -134,7 +139,7 @@ namespace River.OneMoreAddIn
 			}
 			catch
 			{
-				return Color.White;
+				return ApplicationManager.OfficeSetToBlackTheme() ? Color.Black : Color.White;
 			}
 		}
 

@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn
 				builder.AppendLine();
 
 				var page = new Page(manager.CurrentPage());
-				var pageColor = page.GetPageColor();
+				var pageColor = page.GetPageColor(out _, out _);
 				var pageBrightness = pageColor.GetBrightness();
 
 				builder.AppendLine($"Page background: {pageColor.ToRGBHtml()}");

@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
-				var dark = page.GetPageColor().GetBrightness() < 0.5;
+				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 				var color = dark ? "#D0D0D0" : "#202020";
 
 				var current =

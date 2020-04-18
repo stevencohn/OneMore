@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn
 				page = new Page(manager.CurrentPage());
 			}
 
-			using (var dialog = new ChangePageColorDialog(page.GetPageColor()))
+			using (var dialog = new ChangePageColorDialog(page.GetPageColor(out _, out _)))
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{

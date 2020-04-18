@@ -11,7 +11,8 @@ namespace River.OneMoreAddIn
 
 	public partial class ChangePageColorDialog : Form
 	{
-		private Color DarkColor = Color.FromArgb(0x21, 0x21, 0x21);
+		private readonly Color DarkColor = Color.FromArgb(0x21, 0x21, 0x21);
+
 		private Color pageColor;
 		private bool initialized = false;
 
