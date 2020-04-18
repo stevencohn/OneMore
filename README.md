@@ -161,12 +161,15 @@ sequentially from the top of the page. If you delete a footnote, it again will r
 the remaining footnotes so there are no gaps. Pretty slick, huh?
 
 <a name="dark"></a>
-### Dark Mode and Page Background
+### Office Black Theme and Custom Page Background
 
-While OneNote lets you select from a light, pastel pallet for page backgrounds, OneMore offers
-true dark-mode background capabilities as well as custom color selections.
+By default, OneNote lets you select from a light, pastel pallet for page backgrounds but it
+if you change the Office theme to _Black_ then it does a fairly decent job of colorizing your
+content and the OneMore custom styles work just fine. 
 
-OneMore comes with a style theme named DarkStyles.xml that you can load.
+But if you don't want to affect all Office products then OneMore offers true dark-mode background
+capabilities as well as custom page color selections. And OneMore comes with a style theme named
+DarkStyles.xml that you can load.
 
 _Please see the pinned "Known Issues" item in the Issues area for an explanation of why
 colors might not look right when switching to a dark background._
