@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="AddInFavorites.cs" />
+    <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\ApplyStylesCommand.cs" />
     <Compile Include="Commands\ChangePageColorCommand.cs" />
     <Compile Include="Commands\DiagnosticsCommand.cs" />

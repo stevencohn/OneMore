@@ -474,40 +474,5 @@ namespace River.OneMoreAddIn
 
 			return stream;
 		}
-
-
-		//========================================================================================
-		// Addin Style Gallery helpers
-
-		public int GetStyleGalleryItemCount(IRibbonControl control)
-		{
-			var count = new StyleProvider().Count;
-			//logger.WriteLine($"GetStyleGalleryItemCount({control.Id}) = {count}");
-			return count;
-		}
-
-		public string GetStyleGalleryItemId(IRibbonControl control, int itemIndex)
-		{
-			//logger.WriteLine($"GetStyleGalleryItemId({control.Id}, {itemIndex})");
-			return "style_" + itemIndex;
-		}
-
-		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
-		{
-			Color pageColor;
-			using (var manager = new ApplicationManager())
-			{
-				pageColor = new Page(manager.CurrentPage()).GetPageColor();
-			}
-
-			return factory.GetCommand<GalleryTileFactory>().MakeTile(itemIndex, pageColor);
-		}
-
-		public string GetStyleGalleryItemScreentip(IRibbonControl control, int itemIndex)
-		{
-			var name = new StyleProvider().GetName(itemIndex);
-			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{name}\"");
-			return name;
-		}
 	}
 }
