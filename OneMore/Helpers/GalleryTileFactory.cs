@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn
 						Size nameSize;
 						using (var font = new Font("Tahoma", 6f * scale, FontStyle.Regular))
 						{
-							var name = TrimText(graphics, style.Name, font, tileWidth, out nameSize);
+							var name = FitText(style.Name, tileWidth, graphics, font, out nameSize);
 							var brush = pageColor.GetBrightness() <= 0.5 ? Brushes.White : Brushes.Black;
 
 							// centered horizontally at top of tile
@@ -110,7 +110,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string TrimText(Graphics graphics, string text, Font font, int width, out Size size)
+		private string FitText(string text, int width, Graphics graphics, Font font, out Size size)
 		{
 			var sizef = graphics.MeasureString(text, font);
 			if ((sizef.Width) > width)
