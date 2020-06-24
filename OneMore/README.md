@@ -17,6 +17,31 @@ Other Technical
 * [Free Clipboard Viewer](https://www.freeclipboardviewer.com/)
 * [Introduction to the Office 2010 Backstage View for Developers (PDF saved)](https://msdn.microsoft.com/en-us/library/ee691833.aspx?f=255&MSPPError=-2147217396#odc_Office2010Introduction2OutSpaceUI_DescriptionsAttributesChildInformation)
 
+## Adding a New Command
+
+1. Add a new class file to the Commands folder. Name the class with a recognizable name such as
+   TrimCommand and its file name should reflect the class name such as TrimCommand.cs.
+1. The class should derive from the Command class and be marked _internal_
+1. The class should have a public constructor
+1. The class should have a public entry point method such as Execute()
+1. Add a new method to the AddinCommands.cs file to invoke the command, giving it a similar name
+   replacing Command with Cmd, such as TrimCmd and implemented as shown here:
+
+		public void TrimCmd(IRibbonControl control)
+		{
+			factory.GetCommand<TrimCommand>().Execute();
+		}
+
+1. If the command needs a test to determine whether it should be enabled, use one of the existing
+   enablers or add one to the AddInsEnablers.cs file.
+1. Add a button control to the Properties\Ribbon.xml file
+   a. Specify a unique id and label property
+   a. Choose an appropriate imageMso name from [imageMso List (PDF saved)](https://bert-toolkit.com/imagemso-list.html)
+   b. If an enabler is needed, specify the required one with a getEnabled property
+   c. Set the onAction property to the &lt;name&gt;Cmd method added to AddIns.cs
+   
+
+
 ## A Note on Debugging OneMore
 
 To start the debugging, add this to the code where you want to start the debugger:

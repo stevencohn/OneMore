@@ -441,23 +441,6 @@ namespace River.OneMoreAddIn
 		//========================================================================================
 		// Addin menu behaviors
 
-		public bool EnsureBodyContext(IRibbonControl control)
-		{
-			XElement page;
-			using (var manager = new ApplicationManager()) { page = manager.CurrentPage(); }
-
-			var ns = page.GetNamespaceOfPrefix("one");
-
-			var found = page.Elements(ns + "Outline")?
-				.Descendants(ns + "T")?
-				.Attributes("selected")?
-				.Any(a => a.Value.Equals("all"));
-
-			ribbon.Invalidate();
-
-			return found ?? true;
-		}
-
 		public IStream GetDoubleLineImage(IRibbonControl control)
 		{
 			//logger.WriteLine($"GetDoubleLineImage({control.Id})");

@@ -120,6 +120,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Yellow);
 		}
 
+		public void MergeCmd(IRibbonControl control)
+		{
+			factory.GetCommand<MergeCommand>().Execute();
+		}
+
 		public void NameUrlsCmd(IRibbonControl control)
 		{
 			factory.GetCommand<NameUrlsCommand>().Execute();

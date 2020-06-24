@@ -110,6 +110,12 @@
                 imageMso="WordInsertTableOfContents2"
                 label="Insert Page TOC"
                 onAction="InsertTocCmd"/>
+              <button
+                id="mergeButton"
+                imageMso="CompareAndCombine"
+                label="Merge Pages"
+                getEnabled="EnsureMultiPageSelections"
+                onAction="MergeCmd"/>
             </menu>
             <menu id="snippetsMenu" label="Snippets..." imageMso="GroupInsertShapes">
               <button
