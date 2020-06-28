@@ -19,6 +19,13 @@ namespace River.OneMoreAddIn
 			public double Height;
 		}
 
+		private class Quickie
+		{
+			public XElement Element { get; private set; }
+			public QuickStyleDef Style { get; private set; }
+			public Quickie (XElement element) { Element = element; Style = new QuickStyleDef(element); }
+		}
+
 
 		public MergeCommand() : base()
 		{
@@ -64,8 +71,8 @@ namespace River.OneMoreAddIn
 
 				var page = manager.GetPage(active.Attribute("ID").Value);
 
-				var quickStyles = page.Elements(ns + "QuickStyleDef")
-					.Select(p => new Style(new QuickStyleDef(p)))
+				var quickies = page.Elements(ns + "QuickStyleDef")
+					.Select(p => new Quickie(p))
 					.ToList();
 
 				var outline = page.Elements(ns + "Outline").LastOrDefault();
@@ -78,8 +85,8 @@ namespace River.OneMoreAddIn
 				{
 					var page2 = manager.GetPage(selected.Attribute("ID").Value);
 
-					var quickStyles2 = page2.Elements(ns + "QuickStyleDef")
-						.Select(p => new Style(new QuickStyleDef(p)))
+					var quickies2 = page2.Elements(ns + "QuickStyleDef")
+						.Select(p => new Quickie(p))
 						.ToList();
 
 					foreach (var outline2 in page2.Elements(ns + "Outline"))
@@ -93,13 +100,31 @@ namespace River.OneMoreAddIn
 						outline2.Attributes("objectID").Remove();
 						outline2.Descendants().Attributes("objectID").Remove();
 
+
+						// resolve quick styles
+						foreach (var quickie2 in quickies2)
+						{
+							var quickie = quickies.Find(q => q.Equals(quickie2));
+							var index = 0;
+							if (quickie != null)
+							{
+								index = quickie.Style.Index;
+							}
+							else
+							{
+								// O(n) is OK here; there should only be a few
+								index = quickies.Max(q => q.Style.Index) + 1;
+							}
+						}
+
+
 						page.Add(outline2);
 					}
 
 					selected.Remove();
 				}
 
-
+				//manager.UpdatePageContent(page);
 				//manager.UpdateHierarchy(section);
 			}
 		}

@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
+
 namespace River.OneMoreAddIn
 {
 	using System.Collections.Generic;
@@ -104,6 +106,25 @@ namespace River.OneMoreAddIn
 			a = element.Attribute("spaceAfter");
 			if (a != null && !properties.ContainsKey("spaceAfter"))
 				properties.Add("spaceAfter", a.Value);
+		}
+
+
+		public override bool Equals(object obj)
+		{
+			var other = obj as QuickStyleDef;
+			if (other == null)
+			{
+				return false;
+			}
+
+			if (FontFamily != other.FontFamily) return false;
+			if (FontSize != other.FontSize) return false;
+			if (!Color.Equals(other.color)) return false;
+			if (!Highlight.Equals(other.FontFamily)) return false;
+			if (SpaceBefore != other.SpaceBefore) return false;
+			if (SpaceAfter != other.SpaceAfter) return false;
+
+			return true;
 		}
 	}
 }
