@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn
 		{
 			public XElement Element { get; private set; }
 			public QuickStyleDef Style { get; private set; }
-			public Quickie (XElement element) { Element = element; Style = new QuickStyleDef(element); }
+			public Quickie(XElement element) { Element = element; Style = new QuickStyleDef(element); }
 		}
 
 
@@ -105,15 +105,29 @@ namespace River.OneMoreAddIn
 						foreach (var quickie2 in quickies2)
 						{
 							var quickie = quickies.Find(q => q.Equals(quickie2));
-							var index = 0;
+							var same = false;
 							if (quickie != null)
 							{
-								index = quickie.Style.Index;
+								same = quickie.Style.Index == quickie2.Style.Index;
 							}
 							else
 							{
 								// O(n) is OK here; there should only be a few
-								index = quickies.Max(q => q.Style.Index) + 1;
+								quickie2.Style.Index = quickies.Max(q => q.Style.Index) + 1;
+								quickies.Add(quickie2);
+							}
+
+							if (!same)
+							{
+								var quickStyleIndex = quickie.Style.Index.ToString();
+
+								var elements = outline2.Descendants()
+									.Where(e => e.Attribute("quickStyleIndex")?.Value == quickStyleIndex);
+
+								foreach (var element in elements)
+								{
+									element.Attribute("quickStyleIndex").Value = quickStyleIndex;
+								}
 							}
 						}
 
