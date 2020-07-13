@@ -111,8 +111,7 @@ namespace River.OneMoreAddIn
 
 		public override bool Equals(object obj)
 		{
-			var other = obj as QuickStyleDef;
-			if (other == null)
+			if (!(obj is QuickStyleDef other))
 			{
 				return false;
 			}
