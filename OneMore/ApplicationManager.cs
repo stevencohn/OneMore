@@ -242,6 +242,30 @@ namespace River.OneMoreAddIn
 		}
 
 
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Editing...
+
+
+		// https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote#deletehierarchy-method
+
+		/// <summary>
+		/// Deletes the given object(s) from the hierarchy; used for merging
+		/// </summary>
+		/// <param name="element"></param>
+		public void DeleteHierarchy(string objectId)
+		{
+			try
+			{
+				Application.DeleteHierarchy(objectId);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"MGR ERROR deleting hierarchy object {objectId}");
+			}
+		}
+
+
 		// https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote#updatehierarchy-method
 
 		/// <summary>
@@ -251,7 +275,17 @@ namespace River.OneMoreAddIn
 		public void UpdateHierarchy (XElement element)
 		{
 			string xml = element.ToString(SaveOptions.DisableFormatting);
-			Application.UpdateHierarchy(xml);
+
+			try
+			{
+				Application.UpdateHierarchy(xml);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("MGR ERROR updating hierarchy", exc);
+				logger.WriteLine(element.ToString());
+				logger.WriteLine();
+			}
 		}
 
 
@@ -269,7 +303,9 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("ERROR updating page content", exc);
+				logger.WriteLine("MGR ERROR updating page content", exc);
+				logger.WriteLine(element.ToString());
+				logger.WriteLine();
 			}
 		}
 

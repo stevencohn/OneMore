@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -14,18 +13,23 @@ namespace River.OneMoreAddIn
 	internal class MergeCommand : Command
 	{
 
-		private struct Bounds
-		{
-			public double Top;
-			public double Height;
-		}
+		private const int OutlineMargin = 30;
+
 
 		private class QuickRef
 		{
 			public XElement Element { get; private set; }
 			public QuickStyleDef Style { get; private set; }
-			public QuickRef(XElement element) { Element = element; Style = new QuickStyleDef(element); }
+			public string OriginalIndex { get; private set; }
+
+			public QuickRef(XElement element)
+			{
+				Element = element;
+				Style = new QuickStyleDef(element);
+				OriginalIndex = Style.Index.ToString();
+			}
 		}
+
 
 		private XElement page;
 		private XNamespace ns;
@@ -70,9 +74,7 @@ namespace River.OneMoreAddIn
 				}
 
 
-				// get first selected (active) page, reference its quick styles, outline, size
-
-				//System.Diagnostics.Debugger.Launch();
+				// get first selected (active) page and reference its quick styles, outline, size
 
 				page = manager.GetPage(active.Attribute("ID").Value);
 
@@ -80,112 +82,158 @@ namespace River.OneMoreAddIn
 					.Select(p => new QuickRef(p))
 					.ToList();
 
-				var outline = page.Elements(ns + "Outline").LastOrDefault();
-				var bounds = GetBounds(ns, outline);
+				var offset = GetPageBottomOffset();
 
+				// track running bottom as we add new outlines
+				var maxOffset = offset;
+
+				// find maximum z-offset
+				var z = page.Elements(ns + "Outline").Elements(ns + "Position")
+					.Attributes("z").Max(a => int.Parse(a.Value)) + 1;
 
 				// merge each of the subsequently selected pages into the active page
 
-				foreach (var selected in selections.ToList())
+				foreach (var selection in selections.ToList())
 				{
-					var childPage = manager.GetPage(selected.Attribute("ID").Value);
+					var childPage = manager.GetPage(selection.Attribute("ID").Value);
+
+					var styles = MergeQuickStyles(childPage);
+
+					var topOffset = childPage.Elements(ns + "Outline")
+						.Elements(ns + "Position").Min(p => double.Parse(p.Attribute("y").Value));
 
 					foreach (var childOutline in childPage.Elements(ns + "Outline"))
 					{
-						var childBounds = GetBounds(ns, childOutline);
+						// adjust position relative to new parent page outlines
 						var position = childOutline.Elements(ns + "Position").FirstOrDefault();
-						position.Attribute("y").Value = (childBounds.Top + bounds.Height + 30).ToString("#0.0");
-						bounds.Height += childBounds.Height + 30;
+						var y = double.Parse(position.Attribute("y").Value) - topOffset + offset + OutlineMargin;
+						position.Attribute("y").Value = y.ToString("#0.0");
+
+						// keep track of lowest bottom
+						var size = childOutline.Elements(ns + "Size").FirstOrDefault();
+						var bottom = y + double.Parse(size.Attribute("height").Value);
+						if (bottom > maxOffset)
+						{
+							maxOffset = bottom;
+						}
+
+						position.Attribute("z").Value = z.ToString();
+						z++;
 
 						// remove its IDs so the page can apply its own
 						childOutline.Attributes("objectID").Remove();
 						childOutline.Descendants().Attributes("objectID").Remove();
 
-						ResolveQuickStyles(childPage, childOutline);
+						AdjustQuickStyles(styles, childOutline);
 
 						page.Add(childOutline);
 					}
 
-					// remove selected (child) page from the section
-					selected.Remove();
+					if (maxOffset > offset)
+					{
+						offset = maxOffset;
+					}
 				}
 
+				// update page and section hierarchy
+
 				manager.UpdatePageContent(page);
-				manager.UpdateHierarchy(section);
+
+				foreach (var selection in selections)
+				{
+					manager.DeleteHierarchy(selection.Attribute("ID").Value);
+				}
 			}
 		}
 
 
-		private Bounds GetBounds(XNamespace ns, XElement outline)
+		private double GetPageBottomOffset()
 		{
-			var size = outline.Elements(ns + "Size").FirstOrDefault();
-			if (size != null)
+			// find bottom of current page; bottom of lowest Outline
+			double offset = 0.0;
+			foreach (var outline in page.Elements(ns + "Outline"))
 			{
 				var position = outline.Elements(ns + "Position").FirstOrDefault();
 				if (position != null)
 				{
-					return new Bounds
+					var size = outline.Elements(ns + "Size").FirstOrDefault();
+					if (size != null)
 					{
-						Top = (int)Math.Ceiling(double.Parse(position.Attribute("y").Value)),
-						Height = (int)Math.Ceiling(double.Parse(size.Attribute("height").Value))
-					};
+						var bottom = double.Parse(position.Attribute("y").Value)
+							+ double.Parse(size.Attribute("height").Value);
+
+						if (bottom > offset)
+						{
+							offset = bottom;
+						}
+					}
 				}
 			}
 
-			return new Bounds { Top = 0, Height = 0 };
+			return offset;
 		}
 
 
-		private void ResolveQuickStyles(XElement childPage, XElement childOutline)
+		private List<QuickRef> MergeQuickStyles(XElement childPage)
 		{
-			// resolve quick styles
-			var childQuickies = childPage.Elements(ns + "QuickStyleDef")
+			var styleRefs = childPage.Elements(ns + "QuickStyleDef")
 				.Where(p => p.Attribute("name")?.Value != "PageTitle")
 				.Select(p => new QuickRef(p))
 				.ToList();
 
-			foreach (var childQuickie in childQuickies)
-			{
-				var staleIndex = childQuickie.Style.Index.ToString();
+			// next available index; O(n) is OK here; there should only be a few
+			var index = quickies.Max(q => q.Style.Index) + 1;
 
-				var quickie = quickies.Find(q => q.Style.Equals(childQuickie.Style));
+			foreach (var styleRef in styleRefs)
+			{
+				var quickie = quickies.Find(q => q.Style.Equals(styleRef.Style));
 				var same = false;
 				if (quickie != null)
 				{
 					// found match but is it the same index?
-					same = quickie.Style.Index == childQuickie.Style.Index;
+					same = quickie.Style.Index == styleRef.Style.Index;
 				}
 				else
 				{
 					// no match so add it and set index to maxIndex+1
 					// O(n) is OK here; there should only be a few
-					childQuickie.Style.Index = quickies.Max(q => q.Style.Index) + 1;
-					childQuickie.Element.Attribute("index").Value = childQuickie.Style.Index.ToString();
-					quickies.Add(childQuickie);
+					styleRef.Style.Index = index++;
+					styleRef.Element.Attribute("index").Value = styleRef.Style.Index.ToString();
+					quickies.Add(styleRef);
 
 					var last = page.Elements(ns + "QuickStyleDef").LastOrDefault();
 					if (last != null)
 					{
-						last.AddAfterSelf(childQuickie.Element);
+						last.AddAfterSelf(styleRef.Element);
 					}
 					else
 					{
-						page.AddFirst(childQuickie.Element);
+						page.AddFirst(styleRef.Element);
 					}
 				}
+			}
 
-				if (!same)
+			return styleRefs;
+		}
+
+
+		private void AdjustQuickStyles(List<QuickRef> styles, XElement childOutline)
+		{
+			// need to reverse sort the styles so the logic doesn't continually overwrite
+			// subsequent index references
+
+			foreach (var style in styles.OrderByDescending(s => s.Style.Index))
+			{
+				if (style.OriginalIndex != style.Style.Index.ToString())
 				{
 					// apply new index to child outline elements
 
-					var quickStyleIndex = childQuickie.Style.Index.ToString();
-
 					var elements = childOutline.Descendants()
-						.Where(e => e.Attribute("quickStyleIndex")?.Value == staleIndex);
+						.Where(e => e.Attribute("quickStyleIndex")?.Value == style.OriginalIndex);
 
 					foreach (var element in elements)
 					{
-						element.Attribute("quickStyleIndex").Value = quickStyleIndex;
+						element.Attribute("quickStyleIndex").Value = style.Style.Index.ToString();
 					}
 				}
 			}
