@@ -6,8 +6,8 @@ namespace River.OneMoreAddIn
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Media;
 	using System.Text.RegularExpressions;
-	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
@@ -54,7 +54,13 @@ namespace River.OneMoreAddIn
 
 			if (element == null)
 			{
+				element = page.Elements(ns + "Outline").LastOrDefault();
+			}
+
+			if (element == null)
+			{
 				logger.WriteLine($"{nameof(FootnoteEditor.AddFootnote)} could not find a selected outline");
+				SystemSounds.Exclamation.Play();
 				return;
 			}
 
@@ -63,6 +69,8 @@ namespace River.OneMoreAddIn
 
 			if (!EnsureFootnoteFooter())
 			{
+				logger.WriteLine($"{nameof(FootnoteEditor.AddFootnote)} could not add footnote footer");
+				SystemSounds.Exclamation.Play();
 				return;
 			}
 
@@ -468,6 +476,7 @@ namespace River.OneMoreAddIn
 			if (elements?.Any() != true)
 			{
 				logger.WriteLine($"{nameof(FootnoteEditor.RemoveFootnote)} could not find a selected outline");
+				SystemSounds.Exclamation.Play();
 				return;
 			}
 
@@ -475,7 +484,8 @@ namespace River.OneMoreAddIn
 			var selections = FindSelectedReferences(elements, false);
 			if (selections?.Any() != true)
 			{
-				MessageBox.Show(manager.Window, "No footnotes selected");
+				logger.WriteLine($"{nameof(FootnoteEditor.RemoveFootnote)} could not find a selected reference");
+				SystemSounds.Exclamation.Play();
 				return;
 			}
 

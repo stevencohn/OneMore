@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Linq;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
@@ -14,12 +15,12 @@ namespace River.OneMoreAddIn
 		private const int LineCharCount = 100;
 
 
-		public InsertLineCommand () : base()
+		public InsertLineCommand() : base()
 		{
 		}
 
 
-		public void Execute (char c)
+		public void Execute(char c)
 		{
 			try
 			{
@@ -32,12 +33,17 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void InsertLine (char c)
+		private void InsertLine(char c)
 		{
 			using (var manager = new ApplicationManager())
 			{
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
+
+				if (!page.ConfirmBodyContext())
+				{
+					return;
+				}
 
 				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 				var color = dark ? "#D0D0D0" : "#202020";
@@ -47,22 +53,19 @@ namespace River.OneMoreAddIn
 					 where e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all"))
 					 select e).FirstOrDefault();
 
-				if (current != null)
-				{
-					string line = string.Empty.PadRight(LineCharCount, c);
+				string line = string.Empty.PadRight(LineCharCount, c);
 
-					page.EnsurePageWidth(line, "Courier New", 10f, manager.WindowHandle);
+				page.EnsurePageWidth(line, "Courier New", 10f, manager.WindowHandle);
 
-					current.AddAfterSelf(
-						new XElement(ns + "OE",
-							new XElement(ns + "T",
-								new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
-								new XCData(line + "<br/>")
-							)
-						));
+				current.AddAfterSelf(
+					new XElement(ns + "OE",
+						new XElement(ns + "T",
+							new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
+							new XCData(line + "<br/>")
+						)
+					));
 
-					manager.UpdatePageContent(page.Root);
-				}
+				manager.UpdatePageContent(page.Root);
 			}
 		}
 	}

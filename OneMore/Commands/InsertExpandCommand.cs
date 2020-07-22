@@ -39,6 +39,11 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
+				if (!page.ConfirmBodyContext())
+				{
+					return;
+				}
+
 				var table = new Table(ns);
 				table.SetBordersVisible(true);
 				table.AddColumn(550, true);

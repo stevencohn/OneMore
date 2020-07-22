@@ -22,6 +22,13 @@ namespace River.OneMoreAddIn
 		/// <returns>True if the context is correct; false otherwise</returns>
 		public bool EnsureBodyContext(IRibbonControl control)
 		{
+			if (clockSpeed < ReasonableClockSpeed)
+			{
+				// short-circuit the tests and always enable menu items.
+				// command handlers must do their own error checking!
+				return true;
+			}
+
 			XElement page;
 			using (var manager = new ApplicationManager()) { page = manager.CurrentPage(); }
 

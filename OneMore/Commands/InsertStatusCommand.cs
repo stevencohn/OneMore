@@ -46,6 +46,11 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
+				if (!page.ConfirmBodyContext())
+				{
+					return;
+				}
+
 				var elements = page.Root.Descendants(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all");
 

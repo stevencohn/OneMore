@@ -13,11 +13,10 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Drawing;
-	using System.Linq;
+	using System.Management;
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Timers;
-	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -31,11 +30,14 @@ namespace River.OneMoreAddIn
 	[ProgId("River.OneMoreAddin")]
 	public partial class AddIn : IDTExtensibility2, IRibbonExtensibility
 	{
+		private const uint ReasonableClockSpeed = 1800;
+
 		private IRibbonUI ribbon;                   // the ribbon control
 		private ILogger logger;                     // our diagnostic logger
 		private CommandFactory factory;
 		private readonly Process process;           // current process, to kill if necessary
-		private List<IDisposable> trash;			// track disposables
+		private List<IDisposable> trash;            // track disposables
+		private uint clockSpeed;                    // Mhz of CPU
 
 
 		// Lifecycle...
@@ -53,8 +55,28 @@ namespace River.OneMoreAddIn
 
 			UIHelper.PrepareUI();
 
+			GetCurrentClockSpeed();
+
 			logger.WriteLine();
-			logger.WriteLine($"Starting {process.ProcessName}, process PID={process.Id}");
+			logger.WriteLine($"Starting {process.ProcessName}, process PID={process.Id}, CPU={clockSpeed}Mhz");
+		}
+
+
+		private void GetCurrentClockSpeed()
+		{
+			// using this as a means of short-circuiting the Ensure methods for slower machines
+			// to speed up the display of the menus. CurrentClockSpeed will vary depending on
+			// battery capacity and other factors, whereas MaxClockSpeed is a constant
+
+			clockSpeed = ReasonableClockSpeed;
+			using (var searcher = new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
+			{
+				foreach (var item in searcher.Get())
+				{
+					clockSpeed = (uint)item["CurrentClockSpeed"];
+					item.Dispose();
+				}
+			}
 		}
 
 

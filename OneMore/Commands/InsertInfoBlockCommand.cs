@@ -62,6 +62,11 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
+				if (!page.ConfirmBodyContext())
+				{
+					return;
+				}
+
 				var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
 
 				string title, symbol, titleColor, symbolColor, textColor, shading;

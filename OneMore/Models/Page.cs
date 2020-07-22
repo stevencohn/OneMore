@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Drawing;
 	using System.Linq;
+	using System.Media;
 	using System.Xml.Linq;
 
 
@@ -59,6 +60,23 @@ namespace River.OneMoreAddIn
 
 				current.AddAfterSelf(content);
 			}
+		}
+
+
+		public bool ConfirmBodyContext()
+		{
+			var found = Root.Elements(Namespace + "Outline")?
+				.Descendants(Namespace + "T")?
+				.Attributes("selected").Any(a => a.Value.Equals("all"));
+
+			if (found != true)
+			{
+				Logger.Current.WriteLine("Could not confirm body context");
+				SystemSounds.Exclamation.Play();
+				return false;
+			}
+
+			return true;
 		}
 
 
