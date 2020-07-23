@@ -261,7 +261,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"MGR ERROR deleting hierarchy object {objectId}");
+				logger.WriteLine($"MGR ERROR deleting hierarchy object {objectId}", exc);
 			}
 		}
 

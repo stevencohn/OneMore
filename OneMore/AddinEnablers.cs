@@ -9,48 +9,60 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using System.Linq;
-	using System.Xml.Linq;
 
 
 	public partial class AddIn
 	{
+		private static bool bodyContext = false;
+
 
 		/// <summary>
-		/// Check if focus is currently on the content of the current page.
+		/// Analyze the current page and determine if the text cursor is positioned in the body
+		/// of the page or in the title.
 		/// </summary>
-		/// <param name="control"></param>
-		/// <returns>True if the context is correct; false otherwise</returns>
-		public bool EnsureBodyContext(IRibbonControl control)
+		/// <param name="control">
+		/// The menu item invoking the action. This should be done by one "controller" item so
+		/// optimize performance. All other menu items can rely on the GetBodyContext method.
+		/// </param>
+		/// <returns>True</returns>
+		public bool SetBodyContext(IRibbonControl control)
 		{
-			if (clockSpeed < ReasonableClockSpeed)
-			{
-				// short-circuit the tests and always enable menu items.
-				// command handlers must do their own error checking!
-				return true;
-			}
+			//Logger.Current.WriteLine($"SetBodyContext {control.Id}");
 
-			XElement page;
-			using (var manager = new ApplicationManager()) { page = manager.CurrentPage(); }
+			Page page;
+			using (var manager = new ApplicationManager()) { page = new Page(manager.CurrentPage()); }
 
-			var ns = page.GetNamespaceOfPrefix("one");
+			// set the context for the getters
+			bodyContext = page.ConfirmBodyContext();
 
-			var found = page.Elements(ns + "Outline")?
-				.Descendants(ns + "T")?
-				.Attributes("selected").Any(a => a.Value.Equals("all"));
-
-			ribbon.Invalidate();
-
-			return found ?? true;
+			// the setter always returns true; the getter will return bodyContext
+			return true;
 		}
 
 
 		/// <summary>
-		/// Check if there are more than one pages selected in the current section
+		/// Gets a Boolean value indicating whether the text cursor is positioned in the body of the page.
 		/// </summary>
-		/// <param name="control"></param>
-		/// <returns>True if more than one page is selected; false otherwise</returns>
-		public bool EnsureMultiPageSelections(IRibbonControl control)
+		/// <param name="control">The menu item invoking the action.</param>
+		/// <returns>True if the text cursor is position in the body.</returns>
+		public bool GetBodyContext(IRibbonControl control)
 		{
+			//Logger.Current.WriteLine($"GetBodyContext {control.Id}");
+
+			ribbon.Invalidate();
+			return bodyContext;
+		}
+
+
+		/// <summary>
+		/// Analyze the current page selections and determined if at least two pages are selected.
+		/// </summary>
+		/// <param name="control">The menu item invoking the action.</param>
+		/// <returns>True if two or more pages are selected.</returns>
+		public bool GetMultiPageContext(IRibbonControl control)
+		{
+			//Logger.Current.WriteLine($"GetMultiPageContext {control.Id}");
+
 			using (var manager = new ApplicationManager())
 			{
 				var section = manager.CurrentSection();

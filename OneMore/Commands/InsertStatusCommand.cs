@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
-				if (!page.ConfirmBodyContext())
+				if (!page.ConfirmBodyContext(true))
 				{
 					return;
 				}

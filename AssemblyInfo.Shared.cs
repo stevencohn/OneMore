@@ -37,7 +37,13 @@ internal static partial class AssemblyInfo
 	public const string Company = "River Software";
 	public const string Copyright = "Copyright \u00a9 2016 Steven M Cohn. All rights reserved.";
 
-	public const string Version = "2.6";
+	/*
+	 * NOTE - also update the version in the Setup project
+	 * by clicking on the Setup project node in VS and update its properties
+	 */
+	public const string Version = "2.6.1";
+
+
 	public const string FileVersion = Version;
 
 	public const string Configuration =

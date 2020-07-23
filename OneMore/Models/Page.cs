@@ -63,16 +63,20 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public bool ConfirmBodyContext()
+		public bool ConfirmBodyContext(bool feedback = false)
 		{
 			var found = Root.Elements(Namespace + "Outline")?
-				.Descendants(Namespace + "T")?
-				.Attributes("selected").Any(a => a.Value.Equals("all"));
+				.Attributes("selected").Any(a => a.Value.Equals("all") || a.Value.Equals("partial"));
 
 			if (found != true)
 			{
 				Logger.Current.WriteLine("Could not confirm body context");
-				SystemSounds.Exclamation.Play();
+
+				if (feedback)
+				{
+					SystemSounds.Exclamation.Play();
+				}
+
 				return false;
 			}
 

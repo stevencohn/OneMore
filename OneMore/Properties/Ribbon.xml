@@ -71,34 +71,34 @@
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="TrimCmd"/>
-            <menu id="additionalMenu" label="Additional..." imageMso="OutlineDemote">
+            <menu id="additionalMenu" label="Additional..." imageMso="OutlineDemote" getEnabled="SetBodyContext">
               <button
                 id="footnoteButton"
                 imageMso="FootnoteInsert"
                 label="Add Footnote"
-                getEnabled="EnsureBodyContext"
                 getScreentip="GetItemScreentip"
+                getEnabled="GetBodyContext"
                 onAction="AddFootnoteCmd"/>
               <button
                 id="footnoteRemoveButton"
                 imageMso="RemoveCitation"
                 label="Remove Footnote"
-                getEnabled="EnsureBodyContext"
                 getScreentip="GetItemScreentip"
+                getEnabled="GetBodyContext"
                 onAction="RemoveFootnoteCmd"/>
               <button
                 id="insertSingleLineButton"
                 imageMso="HorizontalLineInsert"
                 label="Insert Horzontal Line"
                 getScreentip="GetItemScreentip"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertHorizontalLineCmd"/>
               <button
                 id="insertDoubleLineButton"
                 getImage="GetDoubleLineImage"
                 label="Insert Double Horzontal Line"
                 getScreentip="GetItemScreentip"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertDoubleHorizontalLineCmd"/>
               <button
                 id="nameUrlsButton"
@@ -114,63 +114,63 @@
                 id="mergeButton"
                 imageMso="CompareAndCombine"
                 label="Merge Pages"
-                getEnabled="EnsureMultiPageSelections"
+                getEnabled="GetMultiPageContext"
                 onAction="MergeCmd"/>
             </menu>
-            <menu id="snippetsMenu" label="Snippets..." imageMso="GroupInsertShapes">
+            <menu id="snippetsMenu" label="Snippets..." imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
               <button
                 id="infoBlockButton"
                 imageMso="Info"
                 label="Info block"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertInfoBlockCmd"/>
               <button
                 id="warnBlockButton"
                 imageMso="HighImportance"
                 label="Warning block"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertWarningBlockCmd"/>
               <button
                 id="codeBlockButton"
                 imageMso="CodeEdit"
                 label="Code block"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertCodeBlockCmd"/>
               <button
                 id="expandButton"
                 imageMso="PivotExpandIndicators"
                 label="Expand/Collapse"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertExpandCmd"/>
               <button
                 id="PersonaStatusOffline"
                 imageMso="AppointmentColor4"
-                label="Gray Status" 
-                getEnabled="EnsureBodyContext"
+                label="Gray Status"
+                getEnabled="GetBodyContext"
                 onAction="InsertGrayStatusCmd"/>
               <button
                 id="redStatusButton"
                 imageMso="AppointmentColor1"
                 label="Red Status"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertRedStatusCmd"/>
               <button
                 id="yellowStatusButton"
                 imageMso="AppointmentColor10"
                 label="Yellow Status"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertYellowStatusCmd"/>
               <button
                 id="greenStatusButton"
                 imageMso="AppointmentColor3"
                 label="Green Status"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertGreenStatusCmd"/>
               <button
                 id="blueStatusButton"
                 imageMso="AppointmentColor2"
                 label="Blue Status"
-                getEnabled="EnsureBodyContext"
+                getEnabled="GetBodyContext"
                 onAction="InsertBlueStatusCmd"/>
             </menu>
             <menuSeparator id="sep1" title="Text"/>
