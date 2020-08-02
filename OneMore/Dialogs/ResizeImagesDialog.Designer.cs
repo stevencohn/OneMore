@@ -45,6 +45,8 @@
 			this.presetRadio = new System.Windows.Forms.RadioButton();
 			this.presetUpDown = new System.Windows.Forms.NumericUpDown();
 			this.presetLabel = new System.Windows.Forms.Label();
+			this.origLabel = new System.Windows.Forms.Label();
+			this.origSizeLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pctUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightUpDown)).BeginInit();
@@ -55,7 +57,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(280, 327);
+			this.cancelButton.Location = new System.Drawing.Point(280, 349);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 0;
@@ -66,7 +68,7 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.Location = new System.Drawing.Point(174, 327);
+			this.okButton.Location = new System.Drawing.Point(174, 349);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 1;
@@ -78,7 +80,7 @@
 			// 
 			this.pctRadio.AutoSize = true;
 			this.pctRadio.Checked = true;
-			this.pctRadio.Location = new System.Drawing.Point(17, 90);
+			this.pctRadio.Location = new System.Drawing.Point(17, 113);
 			this.pctRadio.Name = "pctRadio";
 			this.pctRadio.Size = new System.Drawing.Size(116, 24);
 			this.pctRadio.TabIndex = 2;
@@ -90,7 +92,7 @@
 			// absRadio
 			// 
 			this.absRadio.AutoSize = true;
-			this.absRadio.Location = new System.Drawing.Point(17, 143);
+			this.absRadio.Location = new System.Drawing.Point(17, 166);
 			this.absRadio.Name = "absRadio";
 			this.absRadio.Size = new System.Drawing.Size(97, 24);
 			this.absRadio.TabIndex = 3;
@@ -100,7 +102,7 @@
 			// 
 			// pctUpDown
 			// 
-			this.pctUpDown.Location = new System.Drawing.Point(148, 90);
+			this.pctUpDown.Location = new System.Drawing.Point(148, 113);
 			this.pctUpDown.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -119,7 +121,7 @@
 			// pctLabel
 			// 
 			this.pctLabel.AutoSize = true;
-			this.pctLabel.Location = new System.Drawing.Point(249, 92);
+			this.pctLabel.Location = new System.Drawing.Point(249, 115);
 			this.pctLabel.Name = "pctLabel";
 			this.pctLabel.Size = new System.Drawing.Size(23, 20);
 			this.pctLabel.TabIndex = 5;
@@ -131,7 +133,7 @@
 			this.aspectBox.Checked = true;
 			this.aspectBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.aspectBox.Enabled = false;
-			this.aspectBox.Location = new System.Drawing.Point(148, 144);
+			this.aspectBox.Location = new System.Drawing.Point(148, 167);
 			this.aspectBox.Name = "aspectBox";
 			this.aspectBox.Size = new System.Drawing.Size(182, 24);
 			this.aspectBox.TabIndex = 6;
@@ -142,7 +144,7 @@
 			// widthUpDown
 			// 
 			this.widthUpDown.Enabled = false;
-			this.widthUpDown.Location = new System.Drawing.Point(148, 176);
+			this.widthUpDown.Location = new System.Drawing.Point(148, 199);
 			this.widthUpDown.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -156,7 +158,7 @@
 			// heightUpDown
 			// 
 			this.heightUpDown.Enabled = false;
-			this.heightUpDown.Location = new System.Drawing.Point(148, 208);
+			this.heightUpDown.Location = new System.Drawing.Point(148, 231);
 			this.heightUpDown.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -170,7 +172,7 @@
 			// widthLabel
 			// 
 			this.widthLabel.AutoSize = true;
-			this.widthLabel.Location = new System.Drawing.Point(299, 178);
+			this.widthLabel.Location = new System.Drawing.Point(299, 201);
 			this.widthLabel.Name = "widthLabel";
 			this.widthLabel.Size = new System.Drawing.Size(50, 20);
 			this.widthLabel.TabIndex = 9;
@@ -179,7 +181,7 @@
 			// heightLabel
 			// 
 			this.heightLabel.AutoSize = true;
-			this.heightLabel.Location = new System.Drawing.Point(299, 210);
+			this.heightLabel.Location = new System.Drawing.Point(299, 233);
 			this.heightLabel.Name = "heightLabel";
 			this.heightLabel.Size = new System.Drawing.Size(56, 20);
 			this.heightLabel.TabIndex = 10;
@@ -188,11 +190,11 @@
 			// currentLabel
 			// 
 			this.currentLabel.AutoSize = true;
-			this.currentLabel.Location = new System.Drawing.Point(13, 33);
+			this.currentLabel.Location = new System.Drawing.Point(40, 33);
 			this.currentLabel.Name = "currentLabel";
-			this.currentLabel.Size = new System.Drawing.Size(98, 20);
+			this.currentLabel.Size = new System.Drawing.Size(94, 20);
 			this.currentLabel.TabIndex = 11;
-			this.currentLabel.Text = "Current size:";
+			this.currentLabel.Text = "Current size";
 			// 
 			// sizeLabel
 			// 
@@ -206,7 +208,7 @@
 			// presetRadio
 			// 
 			this.presetRadio.AutoSize = true;
-			this.presetRadio.Location = new System.Drawing.Point(17, 264);
+			this.presetRadio.Location = new System.Drawing.Point(17, 287);
 			this.presetRadio.Name = "presetRadio";
 			this.presetRadio.Size = new System.Drawing.Size(80, 24);
 			this.presetRadio.TabIndex = 13;
@@ -217,7 +219,7 @@
 			// presetUpDown
 			// 
 			this.presetUpDown.Enabled = false;
-			this.presetUpDown.Location = new System.Drawing.Point(148, 264);
+			this.presetUpDown.Location = new System.Drawing.Point(148, 287);
 			this.presetUpDown.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -235,11 +237,29 @@
 			// presetLabel
 			// 
 			this.presetLabel.AutoSize = true;
-			this.presetLabel.Location = new System.Drawing.Point(299, 266);
+			this.presetLabel.Location = new System.Drawing.Point(299, 289);
 			this.presetLabel.Name = "presetLabel";
 			this.presetLabel.Size = new System.Drawing.Size(50, 20);
 			this.presetLabel.TabIndex = 15;
 			this.presetLabel.Text = "Width";
+			// 
+			// origLabel
+			// 
+			this.origLabel.AutoSize = true;
+			this.origLabel.Location = new System.Drawing.Point(40, 53);
+			this.origLabel.Name = "origLabel";
+			this.origLabel.Size = new System.Drawing.Size(94, 20);
+			this.origLabel.TabIndex = 16;
+			this.origLabel.Text = "Original size";
+			// 
+			// origSizeLabel
+			// 
+			this.origSizeLabel.AutoSize = true;
+			this.origSizeLabel.Location = new System.Drawing.Point(144, 53);
+			this.origSizeLabel.Name = "origSizeLabel";
+			this.origSizeLabel.Size = new System.Drawing.Size(78, 20);
+			this.origSizeLabel.TabIndex = 17;
+			this.origSizeLabel.Text = "100 x 100";
 			// 
 			// ResizeImagesDialog
 			// 
@@ -247,7 +267,9 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(397, 382);
+			this.ClientSize = new System.Drawing.Size(397, 404);
+			this.Controls.Add(this.origSizeLabel);
+			this.Controls.Add(this.origLabel);
 			this.Controls.Add(this.presetLabel);
 			this.Controls.Add(this.presetUpDown);
 			this.Controls.Add(this.presetRadio);
@@ -300,5 +322,7 @@
 		private System.Windows.Forms.RadioButton presetRadio;
 		private System.Windows.Forms.NumericUpDown presetUpDown;
 		private System.Windows.Forms.Label presetLabel;
+		private System.Windows.Forms.Label origLabel;
+		private System.Windows.Forms.Label origSizeLabel;
 	}
 }

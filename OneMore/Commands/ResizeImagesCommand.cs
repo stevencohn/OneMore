@@ -4,10 +4,15 @@
 
 namespace River.OneMoreAddIn
 {
+	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Dialogs;
+	using System;
+	using System.Drawing;
+	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+
 
 	internal class ResizeImagesCommand : Command
 	{
@@ -20,23 +25,25 @@ namespace River.OneMoreAddIn
 		{
 			using (var manager = new ApplicationManager())
 			{
-				var page = new Page(manager.CurrentPage());
+				var page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
 				var ns = page.Namespace;
 
-				var size = page.Root.Descendants(ns + "Image")?
+				var image = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all")
-					.FirstOrDefault()?
-					.Element(ns + "Size");
+					.FirstOrDefault();
 
-				if (size != null)
+				if (image != null)
 				{
 					// resize selected image only
 
+					var size = image.Element(ns + "Size");
 					int width = (int)decimal.Parse(size.Attribute("width").Value);
 					int height = (int)decimal.Parse(size.Attribute("height").Value);
 
 					using (var dialog = new ResizeImagesDialog(width, height))
 					{
+						dialog.SetOriginalSize(GetOriginalSize(image, ns));
+
 						var result = dialog.ShowDialog(owner);
 						if (result == DialogResult.OK)
 						{
@@ -51,6 +58,22 @@ namespace River.OneMoreAddIn
 				{
 					// no selected image so resize all
 					ResizeAllImages(page.Root, ns, manager);
+				}
+			}
+		}
+
+		private Size GetOriginalSize(XElement image, XNamespace ns)
+		{
+			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
+			using (var stream = new MemoryStream(data, 0, data.Length))
+			{
+				using (var img = Image.FromStream(stream))
+				{
+					return new Size
+					{
+						Width = img.Width,
+						Height = img.Height
+					};
 				}
 			}
 		}

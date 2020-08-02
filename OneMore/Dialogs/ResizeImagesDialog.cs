@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
+	using System.Drawing;
 	using System.Windows.Forms;
 
 
@@ -32,7 +33,10 @@ namespace River.OneMoreAddIn.Dialogs
 
 			if (presetOnly)
 			{
-				sizeLabel.Text = "All images on page";
+				currentLabel.Text = "Apply to";
+				sizeLabel.Text = "all images on page";
+				origLabel.Visible = origSizeLabel.Visible = false;
+
 				presetRadio.Checked = true;
 				Radio_Click(presetRadio, null);
 				pctRadio.Enabled = false;
@@ -47,6 +51,12 @@ namespace River.OneMoreAddIn.Dialogs
 
 
 		public decimal WidthPixels => widthUpDown.Value;
+
+
+		public void SetOriginalSize(Size size)
+		{
+			origSizeLabel.Text = $"{size.Width} x {size.Height}";
+		}
 
 
 		private void OK(object sender, EventArgs e)
