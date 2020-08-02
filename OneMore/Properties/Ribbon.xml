@@ -76,7 +76,8 @@
               <button
                 id="resizeImagesButton"
                 imageMso="GroupPictureCompress"
-                label="Resize"/>
+                label="Resize"
+                onAction="ResizeImagesCmd"/>
             </menu>
             <menu id="additionalMenu" label="Extras..." imageMso="OutlineDemote">
               <button

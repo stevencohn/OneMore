@@ -156,6 +156,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<RemoveFootnoteCommand>().Execute();
 		}
 
+		public void ResizeImagesCmd(IRibbonControl control)
+		{
+			factory.GetCommand<ResizeImagesCommand>().Execute();
+		}
+
 		public void SearchAndReplaceCmd(IRibbonControl control)
 		{
 			factory.GetCommand<SearchAndReplaceCommand>().Execute();

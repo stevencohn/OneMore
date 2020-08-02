@@ -575,6 +575,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.xml.
+        /// </summary>
+        internal static string SettingsFilename {
+            get {
+                return ResourceManager.GetString("SettingsFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Shazam {

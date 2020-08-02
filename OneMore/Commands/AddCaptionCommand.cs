@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn
 				.Any(e => e.Attribute("name").Value.Equals("om") &&
 					 e.Attribute("content").Value.Equals("caption")) == true)
 			{
-				UIHelper.ShowMessage(manager.Window, "Image already has a caption");
+				UIHelper.ShowMessage(owner, "Image already has a caption");
 				return true;
 			}
 
