@@ -43,11 +43,6 @@
           <menu id="OneMoreMenu" label="More" size="large" getImage="GetOneMoreMenuImage">
             <menuSeparator id="sepSpell" title="Content" />
             <button
-              id="flagTitleButton"
-              imageMso="DataGraphicIconSet"
-              label="Add Icon to Page Title"
-              onAction="AddTitleIconCmd"/>
-            <button
               id="noSpellCheckButton"
               image="NoSpellCheck"
               getLabel="GetItemLabel"
@@ -71,7 +66,24 @@
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="TrimCmd"/>
-            <menu id="additionalMenu" label="Additional..." imageMso="OutlineDemote" getEnabled="SetBodyContext">
+            <menu id="imagesMenu" label="Images..." imageMso="ObjectPictureFill" getEnabled="SetBodyContext">
+              <button
+                id="captionButton"
+                imageMso="CaptionInsert"
+                label="Add Caption"
+                getEnabled="GetImageSelected"
+                onAction="AddCaptionCmd"/>
+              <button
+                id="resizeImagesButton"
+                imageMso="GroupPictureCompress"
+                label="Resize"/>
+            </menu>
+            <menu id="additionalMenu" label="Extras..." imageMso="OutlineDemote">
+              <button
+                id="flagTitleButton"
+                imageMso="DataGraphicIconSet"
+                label="Add Icon to Page Title"
+                onAction="AddTitleIconCmd"/>
               <button
                 id="footnoteButton"
                 imageMso="FootnoteInsert"

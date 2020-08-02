@@ -84,6 +84,27 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public bool ConfirmImageSelected(bool feedback = false)
+		{
+			var found = Root.Descendants(Namespace + "Image")?
+				.Attributes("selected").Any(a => a.Value.Equals("all"));
+
+			if (found != true)
+			{
+				Logger.Current.WriteLine("Could not confirm image selections");
+
+				if (feedback)
+				{
+					SystemSounds.Exclamation.Play();
+				}
+
+				return false;
+			}
+
+			return true;
+		}
+
+
 		/// <summary>
 		/// Adjusts the width of the given page to accomodate the width of the specified
 		/// string without wrapping.

@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn
 	public partial class AddIn
 	{
 		private static bool bodyContext = false;
+		private static bool imageSelected = false;
 
 
 		/// <summary>
@@ -34,6 +35,7 @@ namespace River.OneMoreAddIn
 
 			// set the context for the getters
 			bodyContext = page.ConfirmBodyContext();
+			imageSelected = page.ConfirmImageSelected();
 
 			// the setter always returns true; the getter will return bodyContext
 			return true;
@@ -51,6 +53,20 @@ namespace River.OneMoreAddIn
 
 			ribbon.Invalidate();
 			return bodyContext;
+		}
+
+
+		/// <summary>
+		/// Gets a Boolean value indicating whether at least one image is selected on the page
+		/// </summary>
+		/// <param name="control">The menu item invoking the action.</param>
+		/// <returns>True if at least one image is selected on the current page.</returns>
+		public bool GetImageSelected(IRibbonControl control)
+		{
+			//Logger.Current.WriteLine($"GetImageSelected {control.Id}");
+
+			ribbon.Invalidate();
+			return imageSelected;
 		}
 
 

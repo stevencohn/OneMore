@@ -13,6 +13,11 @@ namespace River.OneMoreAddIn
     public partial class AddIn
 	{
 
+		public void AddCaptionCmd(IRibbonControl control)
+		{
+			factory.GetCommand<AddCaptionCommand>().Execute();
+		}
+
 		public void AddFootnoteCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AddFootnoteCommand>().Execute();
