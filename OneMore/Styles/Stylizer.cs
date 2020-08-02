@@ -51,7 +51,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Applies styles to the given CDATA node with one or more text and spans.
+		/// Applies styles to the given CDATA (and its parent OE) node with
+		/// one or more text and spans.
 		/// </summary>
 		/// <param name="cdata">The CDATA node</param>
 		/// <remarks>

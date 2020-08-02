@@ -113,6 +113,20 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Shows an informational message box with the given caption and ensures it appears
+		/// on top of the main OneNote window
+		/// </summary>
+		/// <param name="window">The OneNote window, from ApplicationManager.Window</param>
+		/// <param name="message">The caption message to display</param>
+		public static void ShowMessage(IWin32Window window, string message)
+		{
+			MessageBox.Show(window, message, "OneMore",
+				MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1,
+				MessageBoxOptions.DefaultDesktopOnly);
+		}
+
+
 		public static void Shutdown ()
 		{
 			Application.Exit();

@@ -28,10 +28,15 @@ namespace River.OneMoreAddIn
 
 				if (image != null)
 				{
-					var table = new Table(ns);
+					if (AlreadyCaptioned(image, ns, manager))
+					{
+						return;
+					}
 
-					// OneNote will set the width accordingly
-					table.AddColumn(0f);
+					var table = new Table(ns);
+					table.AddColumn(0f); // OneNote will set width accordingly
+
+					var cdata = new XCData("Caption");
 
 					var row = table.AddRow();
 					row.SetCellContent(0,
@@ -41,20 +46,63 @@ namespace River.OneMoreAddIn
 								image),
 							new XElement(ns + "OE",
 								new XAttribute("alignment", "center"),
-								new XAttribute("style", "font-size:10pt;color:#5B9BD5;text-align:center"),
 								new XElement(ns + "Meta",
 									new XAttribute("name", "om"),
 									new XAttribute("content", "caption")),
-								new XElement(ns + "T",
-									new XCData(@"<span style=""font-weight:bold"">Caption</style>")
-									)
+								new XElement(ns + "T", cdata)
 							)
 						));
+
+					var style = GetStyle();
+					new Stylizer(style).ApplyStyle(cdata);
 
 					image.ReplaceWith(table.Root);
 					manager.UpdatePageContent(page.Root);
 				}
 			}
+		}
+
+
+		public Style GetStyle()
+		{
+			Style style = null;
+
+			// use custom Caption style if it exists
+
+			var styles = new StyleProvider().GetStyles();
+			if (styles?.Count > 0)
+			{
+				style = styles.Where(s => s.Name.Equals("Caption")).FirstOrDefault();
+			}
+
+			// otherwise use default style
+
+			if (style == null)
+			{
+				style = new Style
+				{
+					Color = "#5B9BD5", // close to CornflowerBlue
+					FontSize = "10pt",
+					IsBold = true
+				};
+			}
+
+			return style;
+		}
+
+
+		public bool AlreadyCaptioned(XElement image, XNamespace ns, ApplicationManager manager)
+		{
+			if (image.Parent.ElementsAfterSelf().FirstOrDefault()?
+				.Elements(ns + "Meta")
+				.Any(e => e.Attribute("name").Value.Equals("om") &&
+					 e.Attribute("content").Value.Equals("caption")) == true)
+			{
+				UIHelper.ShowMessage(manager.Window, "Image already has a caption");
+				return true;
+			}
+
+			return false;
 		}
 	}
 }
