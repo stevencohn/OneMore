@@ -14,6 +14,7 @@ A OneNote add-in with powerful yet simple and effective features including:
 
 *Want more from OneMore? OneMore has more...*
 
+* Add [caption to a selected image](#images)
 * Add [special icon to the page title](#other), also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
 * Change [**page background**](#dark) to any custom color with dark-mode awareness
@@ -26,6 +27,7 @@ A OneNote add-in with powerful yet simple and effective features including:
 * Insert [collapsable sections](#expand) to hide secondary or sensitive information
 * Increase/Decrease the font size of all content on the current page
 * [Replace hyperlinked URLs](#nameUrls) with their Web page titles
+* [Resize a selected image](#images) or all images on the page
 * [Sort pages, sections, or notebooks](#other)
 * Trim trailing whitespace from selected text
 * View and edit the [internal OneNote XML](#xml) of the current page
@@ -125,6 +127,19 @@ Text colors are based on the page background color.
 <sup>1</sup> If text copied from Visual Studio is pasted as plain text instead of rich text
 when using the Paste Rich Text command (Ctrl+Alt+V) then look at the VS Tools... Options...
 Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
+
+<a name="images"></a>
+### Images
+The Add Caption command will add a caption to the selected image by moving the image
+into a one-row, one-column table and place the word "Caption", centered, below the image.
+If your custom styles has a style named exactly "Caption" then that style will be applied,
+otherwise, a default caption style is used.
+
+The Resize command can be used to resize a selected image or all images on the page. When
+only one image is selected, you can resize by percentage, absolute size - optionally maintaining
+aspect ration, or to a preset width - maintaining aspect ratio for height. If no images are 
+selected then only the preset width can be used and that will be applied to all images. The 
+preset width is saved so you don't need to keep entering it if you have a width you typically use.
 
 <a name="nameUrls"></a>
 ### Replace Hyperlinked URLs with Web Page Titles
