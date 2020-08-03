@@ -143,5 +143,12 @@ namespace River.OneMoreAddIn.Dialogs
 				}
 			}
 		}
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			Location = new Point(Location.X, Location.Y - (Height / 2));
+			base.OnShown(e);
+		}
 	}
 }
