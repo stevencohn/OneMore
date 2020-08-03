@@ -33,6 +33,8 @@ namespace River.OneMoreAddIn
 						return;
 					}
 
+					image.Attribute("selected").Remove();
+
 					var table = new Table(ns);
 					table.AddColumn(0f); // OneNote will set width accordingly
 
@@ -49,7 +51,9 @@ namespace River.OneMoreAddIn
 								new XElement(ns + "Meta",
 									new XAttribute("name", "om"),
 									new XAttribute("content", "caption")),
-								new XElement(ns + "T", cdata)
+								new XElement(ns + "T",
+									new XAttribute("selected", "all"),
+									cdata)
 							)
 						));
 
