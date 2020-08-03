@@ -131,15 +131,16 @@ Text Editor... Advanced, and tick the box *Copy rich text on copy/cut*.
 <a name="images"></a>
 ### Images
 The Add Caption command will add a caption to the selected image by moving the image
-into a one-row, one-column table and place the word "Caption", centered, below the image.
-If your custom styles has a style named exactly "Caption" then that style will be applied,
-otherwise, a default caption style is used.
+into a one-row, one-column table and centering the word "Caption" below the image, which of
+course you should edit immediately. If your custom styles has a style named exactly "Caption"
+then that style will be applied, otherwise, a default caption style is used.
 
 The Resize command can be used to resize a selected image or all images on the page. When
 only one image is selected, you can resize by percentage, absolute size - optionally maintaining
-aspect ration, or to a preset width - maintaining aspect ratio for height. If no images are 
-selected then only the preset width can be used and that will be applied to all images. The 
-preset width is saved so you don't need to keep entering it if you have a width you typically use.
+aspect ratio, or to a preset width - maintaining aspect ratio for height. If no images are 
+selected then only the preset width (and calculated height) can be used and that will be applied
+to all images. The preset width is saved so you don't need to keep entering it if you have a
+width you typically use.
 
 <a name="nameUrls"></a>
 ### Replace Hyperlinked URLs with Web Page Titles
