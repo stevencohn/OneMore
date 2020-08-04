@@ -10,6 +10,10 @@ namespace River.OneMoreAddIn
 
 	internal class AddCaptionCommand : Command
 	{
+		private Page page;
+		private XNamespace ns;
+
+
 		public AddCaptionCommand()
 		{
 		}
@@ -19,8 +23,8 @@ namespace River.OneMoreAddIn
 		{
 			using (var manager = new ApplicationManager())
 			{
-				var page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
-				var ns = page.Namespace;
+				page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
+				ns = page.Namespace;
 
 				var image = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all")
@@ -28,7 +32,7 @@ namespace River.OneMoreAddIn
 
 				if (image != null)
 				{
-					if (AlreadyCaptioned(image, ns))
+					if (AlreadyCaptioned(image))
 					{
 						return;
 					}
@@ -60,14 +64,27 @@ namespace River.OneMoreAddIn
 					var style = GetStyle();
 					new Stylizer(style).ApplyStyle(cdata);
 
-					image.ReplaceWith(table.Root);
+					if (image.Parent.Name.LocalName.Equals("Page"))
+					{
+						// image.ReplaceWith seems to insert the new Outline but doesn't remove the top
+						// level image, so force the deletion by its objectID
+						var imageId = image.Attribute("objectID").Value;
+						manager.Application.DeletePageContent(page.Root.Attribute("ID").Value, imageId);
+
+						image.ReplaceWith(WrapInOutline(table.Root, image));
+					}
+					else
+					{
+						image.ReplaceWith(table.Root);
+					}
+
 					manager.UpdatePageContent(page.Root);
 				}
 			}
 		}
 
 
-		public Style GetStyle()
+		private Style GetStyle()
 		{
 			Style style = null;
 
@@ -95,7 +112,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public bool AlreadyCaptioned(XElement image, XNamespace ns)
+		private bool AlreadyCaptioned(XElement image)
 		{
 			if (image.Parent.ElementsAfterSelf().FirstOrDefault()?
 				.Elements(ns + "Meta")
@@ -107,6 +124,24 @@ namespace River.OneMoreAddIn
 			}
 
 			return false;
+		}
+
+
+		private XElement WrapInOutline(XElement table, XElement image)
+		{
+			var position = image.Element(ns + "Position");
+			position.Remove();
+
+			var outline = new XElement(ns + "Outline",
+				position,
+				new XElement(ns + "OEChildren",
+					new XElement(ns + "OE",
+						table
+					)
+				)
+			);
+
+			return outline;
 		}
 	}
 }
