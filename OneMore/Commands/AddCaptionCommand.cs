@@ -23,12 +23,12 @@ namespace River.OneMoreAddIn
 				var ns = page.Namespace;
 
 				var image = page.Root.Descendants(ns + "Image")?
-					.Where(e => e.Attribute("selected").Value.Equals("all"))
+					.Where(e => e.Attribute("selected")?.Value == "all")
 					.FirstOrDefault();
 
 				if (image != null)
 				{
-					if (AlreadyCaptioned(image, ns, manager))
+					if (AlreadyCaptioned(image, ns))
 					{
 						return;
 					}
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public bool AlreadyCaptioned(XElement image, XNamespace ns, ApplicationManager manager)
+		public bool AlreadyCaptioned(XElement image, XNamespace ns)
 		{
 			if (image.Parent.ElementsAfterSelf().FirstOrDefault()?
 				.Elements(ns + "Meta")
