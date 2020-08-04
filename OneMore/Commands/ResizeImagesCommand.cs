@@ -4,9 +4,9 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Dialogs;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
@@ -16,6 +16,11 @@ namespace River.OneMoreAddIn
 
 	internal class ResizeImagesCommand : Command
 	{
+		private ApplicationManager manager;
+		private Page page;
+		private XNamespace ns;
+
+
 		public ResizeImagesCommand() : base()
 		{
 		}
@@ -23,44 +28,35 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
-			using (var manager = new ApplicationManager())
+			using (manager = new ApplicationManager())
 			{
-				var page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
-				var ns = page.Namespace;
+				page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
+				ns = page.Namespace;
 
-				var image = page.Root.Descendants(ns + "Image")?
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.FirstOrDefault();
+				var images = page.Root.Descendants(ns + "Image")?
+					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				if (image != null)
+				if ((images == null) || (images.Count() == 0))
 				{
-					// resize selected image only
-
-					var size = image.Element(ns + "Size");
-					int width = (int)decimal.Parse(size.Attribute("width").Value);
-					int height = (int)decimal.Parse(size.Attribute("height").Value);
-
-					using (var dialog = new ResizeImagesDialog(width, height))
-					{
-						dialog.SetOriginalSize(GetOriginalSize(image, ns));
-
-						var result = dialog.ShowDialog(owner);
-						if (result == DialogResult.OK)
-						{
-							size.Attribute("width").Value = dialog.WidthPixels.ToString();
-							size.Attribute("height").Value = dialog.HeightPixels.ToString();
-
-							manager.UpdatePageContent(page.Root);
-						}
-					}
+					images = page.Root.Descendants(ns + "Image");
 				}
-				else
+
+				if (images != null)
 				{
-					// no selected image so resize all
-					ResizeAllImages(page.Root, ns, manager);
+					if (images.Count() == 1)
+					{
+						// resize single selected image only
+						ResizeOne(images.First());
+					}
+					else
+					{
+						// select many iamges, or all if none selected
+						ResizeMany(images);
+					}
 				}
 			}
 		}
+
 
 		private Size GetOriginalSize(XElement image, XNamespace ns)
 		{
@@ -79,32 +75,50 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void ResizeAllImages(XElement root, XNamespace ns, ApplicationManager manager)
+		private void ResizeOne(XElement image)
 		{
-			var images = root.Descendants(ns + "Image");
-			if (images?.Count() > 0)
+			var size = image.Element(ns + "Size");
+			int width = (int)decimal.Parse(size.Attribute("width").Value);
+			int height = (int)decimal.Parse(size.Attribute("height").Value);
+
+			using (var dialog = new ResizeImagesDialog(width, height))
 			{
-				using (var dialog = new ResizeImagesDialog(1, 1, true))
+				dialog.SetOriginalSize(GetOriginalSize(image, ns));
+
+				var result = dialog.ShowDialog(owner);
+				if (result == DialogResult.OK)
 				{
-					var result = dialog.ShowDialog(owner);
-					if (result == DialogResult.OK)
+					size.Attribute("width").Value = dialog.WidthPixels.ToString();
+					size.Attribute("height").Value = dialog.HeightPixels.ToString();
+
+					manager.UpdatePageContent(page.Root);
+				}
+			}
+		}
+
+
+		private void ResizeMany(IEnumerable<XElement> images)
+		{
+			using (var dialog = new ResizeImagesDialog(1, 1, true))
+			{
+				var result = dialog.ShowDialog(owner);
+				if (result == DialogResult.OK)
+				{
+					var width = dialog.WidthPixels.ToString();
+
+					foreach (var image in images)
 					{
-						var width = dialog.WidthPixels.ToString();
+						var size = image.Element(ns + "Size");
+						var imageWidth = (int)decimal.Parse(size.Attribute("width").Value);
+						var imageHeight = (int)decimal.Parse(size.Attribute("height").Value);
 
-						foreach (var image in images)
-						{
-							var size = image.Element(ns + "Size");
-							var imageWidth = (int)decimal.Parse(size.Attribute("width").Value);
-							var imageHeight = (int)decimal.Parse(size.Attribute("height").Value);
+						size.Attribute("width").Value = width;
 
-							size.Attribute("width").Value = width;
-
-							size.Attribute("height").Value = 
-								((int)(imageHeight * (dialog.WidthPixels / imageWidth))).ToString();
-						}
-
-						manager.UpdatePageContent(root);
+						size.Attribute("height").Value = 
+							((int)(imageHeight * (dialog.WidthPixels / imageWidth))).ToString();
 					}
+
+					manager.UpdatePageContent(page.Root);
 				}
 			}
 		}

@@ -135,11 +135,10 @@ into a one-row, one-column table and centering the word "Caption" below the imag
 course you should edit immediately. If your custom styles has a style named exactly "Caption"
 then that style will be applied, otherwise, a default caption style is used.
 
-The Resize command can be used to resize a selected image or all images on the page. When
-only one image is selected, you can resize by percentage, absolute size - optionally maintaining
-aspect ratio, or to a preset width - maintaining aspect ratio for height. If no images are 
-selected then only the preset width (and calculated height) can be used and that will be applied
-to all images. The preset width is saved so you don't need to keep entering it if you have a
+The Resize command can be used to resize images on the page. If one image is selected then
+you can resize by percentage, absolute size, or to a preset width with aspect ratio maintained.
+If more than one image is selected, or no images are selected, then you can resize them all to
+a preset width. The preset width is saved so you don't need to keep entering it if you have a
 width you typically use.
 
 <a name="nameUrls"></a>
