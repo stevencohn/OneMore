@@ -8,13 +8,16 @@ namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
 	using System.Drawing;
+	using System.ServiceModel.Activation;
 	using System.Windows.Forms;
 
 
 	public partial class ResizeImagesDialog : Form
 	{
-		private readonly int originalWidth;
-		private readonly int originalHeight;
+		private readonly int currentWidth;
+		private readonly int currentHeight;
+		private int originalWidth;
+		private int originalHeight;
 		private SettingsProvider settings;
 		private bool suspended;
 
@@ -24,7 +27,10 @@ namespace River.OneMoreAddIn.Dialogs
 			InitializeComponent();
 
 			suspended = true;
-			sizeLabel.Text = $"{width} x {height}";
+			currentWidth = width;
+			currentHeight = height;
+			sizeLink.Text = $"{width} x {height}";
+
 			widthUpDown.Value = originalWidth = width;
 			heightUpDown.Value = originalHeight = height;
 
@@ -34,8 +40,9 @@ namespace River.OneMoreAddIn.Dialogs
 			if (presetOnly)
 			{
 				currentLabel.Text = "Apply to";
-				sizeLabel.Text = "all images on page";
-				origLabel.Visible = origSizeLabel.Visible = false;
+				allLabel.Left = sizeLink.Left;
+				allLabel.Visible = true;
+				origLabel.Visible = sizeLink.Visible = origSizeLink.Visible = false;
 
 				presetRadio.Checked = true;
 				Radio_Click(presetRadio, null);
@@ -55,7 +62,9 @@ namespace River.OneMoreAddIn.Dialogs
 
 		public void SetOriginalSize(Size size)
 		{
-			origSizeLabel.Text = $"{size.Width} x {size.Height}";
+			origSizeLink.Text = $"{size.Width} x {size.Height}";
+			originalWidth = size.Width;
+			originalHeight = size.Height;
 		}
 
 
@@ -92,6 +101,24 @@ namespace River.OneMoreAddIn.Dialogs
 			heightUpDown.Enabled = abs;
 
 			presetUpDown.Enabled = sender == presetRadio;
+		}
+
+
+		private void ResetCurrentSize(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Radio_Click(absRadio, null);
+			absRadio.Checked = true;
+			widthUpDown.Value = currentWidth;
+			heightUpDown.Value = currentHeight;
+		}
+
+
+		private void ResetOriginalSize(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Radio_Click(absRadio, null);
+			absRadio.Checked = true;
+			widthUpDown.Value = originalWidth;
+			heightUpDown.Value = originalHeight;
 		}
 
 

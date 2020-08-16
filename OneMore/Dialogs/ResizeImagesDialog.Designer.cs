@@ -41,12 +41,13 @@
 			this.widthLabel = new System.Windows.Forms.Label();
 			this.heightLabel = new System.Windows.Forms.Label();
 			this.currentLabel = new System.Windows.Forms.Label();
-			this.sizeLabel = new System.Windows.Forms.Label();
 			this.presetRadio = new System.Windows.Forms.RadioButton();
 			this.presetUpDown = new System.Windows.Forms.NumericUpDown();
 			this.presetLabel = new System.Windows.Forms.Label();
 			this.origLabel = new System.Windows.Forms.Label();
-			this.origSizeLabel = new System.Windows.Forms.Label();
+			this.sizeLink = new System.Windows.Forms.LinkLabel();
+			this.origSizeLink = new System.Windows.Forms.LinkLabel();
+			this.allLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pctUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightUpDown)).BeginInit();
@@ -196,15 +197,6 @@
 			this.currentLabel.TabIndex = 11;
 			this.currentLabel.Text = "Current size";
 			// 
-			// sizeLabel
-			// 
-			this.sizeLabel.AutoSize = true;
-			this.sizeLabel.Location = new System.Drawing.Point(144, 33);
-			this.sizeLabel.Name = "sizeLabel";
-			this.sizeLabel.Size = new System.Drawing.Size(78, 20);
-			this.sizeLabel.TabIndex = 12;
-			this.sizeLabel.Text = "100 x 100";
-			// 
 			// presetRadio
 			// 
 			this.presetRadio.AutoSize = true;
@@ -252,14 +244,37 @@
 			this.origLabel.TabIndex = 16;
 			this.origLabel.Text = "Original size";
 			// 
-			// origSizeLabel
+			// sizeLink
 			// 
-			this.origSizeLabel.AutoSize = true;
-			this.origSizeLabel.Location = new System.Drawing.Point(144, 53);
-			this.origSizeLabel.Name = "origSizeLabel";
-			this.origSizeLabel.Size = new System.Drawing.Size(78, 20);
-			this.origSizeLabel.TabIndex = 17;
-			this.origSizeLabel.Text = "100 x 100";
+			this.sizeLink.AutoSize = true;
+			this.sizeLink.Location = new System.Drawing.Point(144, 33);
+			this.sizeLink.Name = "sizeLink";
+			this.sizeLink.Size = new System.Drawing.Size(78, 20);
+			this.sizeLink.TabIndex = 18;
+			this.sizeLink.TabStop = true;
+			this.sizeLink.Text = "100 x 100";
+			this.sizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetCurrentSize);
+			// 
+			// origSizeLink
+			// 
+			this.origSizeLink.AutoSize = true;
+			this.origSizeLink.Location = new System.Drawing.Point(144, 53);
+			this.origSizeLink.Name = "origSizeLink";
+			this.origSizeLink.Size = new System.Drawing.Size(78, 20);
+			this.origSizeLink.TabIndex = 19;
+			this.origSizeLink.TabStop = true;
+			this.origSizeLink.Text = "100 x 100";
+			this.origSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetOriginalSize);
+			// 
+			// allLabel
+			// 
+			this.allLabel.AutoSize = true;
+			this.allLabel.Location = new System.Drawing.Point(242, 33);
+			this.allLabel.Name = "allLabel";
+			this.allLabel.Size = new System.Drawing.Size(141, 20);
+			this.allLabel.TabIndex = 20;
+			this.allLabel.Text = "all images on page";
+			this.allLabel.Visible = false;
 			// 
 			// ResizeImagesDialog
 			// 
@@ -268,12 +283,13 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(397, 404);
-			this.Controls.Add(this.origSizeLabel);
+			this.Controls.Add(this.allLabel);
+			this.Controls.Add(this.origSizeLink);
+			this.Controls.Add(this.sizeLink);
 			this.Controls.Add(this.origLabel);
 			this.Controls.Add(this.presetLabel);
 			this.Controls.Add(this.presetUpDown);
 			this.Controls.Add(this.presetRadio);
-			this.Controls.Add(this.sizeLabel);
 			this.Controls.Add(this.currentLabel);
 			this.Controls.Add(this.heightLabel);
 			this.Controls.Add(this.widthLabel);
@@ -318,11 +334,12 @@
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.Label heightLabel;
 		private System.Windows.Forms.Label currentLabel;
-		private System.Windows.Forms.Label sizeLabel;
 		private System.Windows.Forms.RadioButton presetRadio;
 		private System.Windows.Forms.NumericUpDown presetUpDown;
 		private System.Windows.Forms.Label presetLabel;
 		private System.Windows.Forms.Label origLabel;
-		private System.Windows.Forms.Label origSizeLabel;
+		private System.Windows.Forms.LinkLabel sizeLink;
+		private System.Windows.Forms.LinkLabel origSizeLink;
+		private System.Windows.Forms.Label allLabel;
 	}
 }
