@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn
 						break;
 
 					case FormulaFunction.Median:
-						result = values.CalculateMedian();
+						result = values.Median();
 						break;
 
 					case FormulaFunction.Min:
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn
 						break;
 
 					case FormulaFunction.Mode:
-						result = values.CalculateMode();
+						result = values.Mode();
 						break;
 
 					case FormulaFunction.Range:
@@ -141,7 +141,7 @@ namespace River.OneMoreAddIn
 						break;
 
 					case FormulaFunction.StandardDeviation:
-						result = values.CalculateStandardDeviation();
+						result = values.StandardDeviation();
 						break;
 
 					case FormulaFunction.Sum:
@@ -149,7 +149,7 @@ namespace River.OneMoreAddIn
 						break;
 
 					case FormulaFunction.Variance:
-						result = values.CalculateVariance();
+						result = values.Variance();
 						break;
 				}
 

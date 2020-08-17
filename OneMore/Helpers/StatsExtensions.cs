@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn
 	internal static class StatsExtensions
 	{
 
-		public static decimal CalculateMedian(this IEnumerable<decimal> values)
+		public static decimal Median(this IEnumerable<decimal> values)
 		{
 			int count = values.Count();
 			if (count % 2 == 0)
@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static decimal CalculateMode(this IEnumerable<decimal> values)
+		public static decimal Mode(this IEnumerable<decimal> values)
 		{
 			return values
 				.GroupBy(n => n)
@@ -33,9 +33,9 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static decimal CalculateStandardDeviation(this IEnumerable<decimal> values)
+		public static decimal StandardDeviation(this IEnumerable<decimal> values)
 		{
-			var variance = CalculateVariance(values);
+			var variance = Variance(values);
 
 			if (variance == 0.0M)
 				return 0.0M;
@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static decimal CalculateVariance(this IEnumerable<decimal> values)
+		public static decimal Variance(this IEnumerable<decimal> values)
 		{
 			var mean = 0.0M;
 			var sum = 0.0M;
