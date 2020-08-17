@@ -16,6 +16,10 @@ namespace River.OneMoreAddIn
 		private Page page;
 		private XNamespace ns;
 
+		private FormulaDirection direction;
+		private FormulaFormat format;
+		private FormulaFunction function;
+
 
 		public AddFormulaCommand() : base()
 		{
@@ -36,17 +40,28 @@ namespace River.OneMoreAddIn
 
 				if (cells != null && cells.Count() > 0)
 				{
-					var direction = InferDirection(cells);
+					direction = InferDirection(cells);
 					if (direction != FormulaDirection.Error)
 					{
 						using (var dialog = new FormulaDialog())
 						{
 							dialog.Direction = direction;
 
-							var result = dialog.ShowDialog(owner);
-							if (result == DialogResult.OK)
+							var diaresult = dialog.ShowDialog(owner);
+							if (diaresult == DialogResult.OK)
 							{
-								Calculate(cells, dialog.Direction, dialog.Format, dialog.Function);
+								direction = dialog.Direction;
+								format = dialog.Format;
+								function = dialog.Function;
+
+								var calculator = new Calculator(ns, direction, function, format);
+
+								foreach (var cell in cells)
+								{
+									var values = calculator.CollectValues(cell);
+									var result = calculator.Calculate(values);
+									calculator.ReportResult(cell, result);
+								}
 
 								manager.UpdatePageContent(page.Root);
 							}
@@ -103,145 +118,6 @@ namespace River.OneMoreAddIn
 			}
 
 			return direction;
-		}
-
-
-		private void Calculate(IEnumerable<XElement> cells,
-			FormulaDirection direction, FormulaFormat format, FormulaFunction function)
-		{
-			foreach (var cell in cells)
-			{
-				var values = CollectValues(cell, direction);
-				decimal result = 0.0M;
-
-				switch (function)
-				{
-					case FormulaFunction.Average:
-						result = values.Average();
-						break;
-
-					case FormulaFunction.Max:
-						result = values.Max();
-						break;
-
-					case FormulaFunction.Median:
-						result = values.Median();
-						break;
-
-					case FormulaFunction.Min:
-						result = values.Min();
-						break;
-
-					case FormulaFunction.Mode:
-						result = values.Mode();
-						break;
-
-					case FormulaFunction.Range:
-						result = values.Max() - values.Min();
-						break;
-
-					case FormulaFunction.StandardDeviation:
-						result = values.StandardDeviation();
-						break;
-
-					case FormulaFunction.Sum:
-						result = values.Sum();
-						break;
-
-					case FormulaFunction.Variance:
-						result = values.Variance();
-						break;
-				}
-
-				ReportResult(cell, result, format);
-			}
-		}
-
-
-		private List<decimal> CollectValues(XElement cell, FormulaDirection direction)
-		{
-			var values = new List<decimal>();
-
-			if (direction == FormulaDirection.Vertical)
-			{
-				var index = cell.ElementsBeforeSelf(ns + "Cell").Count();
-				foreach (var row in cell.Parent.ElementsBeforeSelf(ns + "Row"))
-				{
-					var value = ReadCell(row.Elements(ns + "Cell").ElementAt(index));
-					if (value != null)
-					{
-						values.Add((decimal)value);
-					}
-				}
-			}
-			else
-			{
-				foreach (var element in cell.ElementsBeforeSelf(ns + "Cell"))
-				{
-					var value = ReadCell(element);
-					if (value != null)
-					{
-						values.Add((decimal)value);
-					}
-				}
-			}
-
-			return values;
-		}
-
-
-		private decimal? ReadCell(XElement cell)
-		{
-			var children = cell.Elements(ns + "OEChildren");
-			if (children?.Count() == 1)
-			{
-				var child = children.First().Elements(ns + "OE");
-				if (child?.Count() == 1)
-				{
-					var text = child.First().Value;
-					if (decimal.TryParse(text, out decimal value))
-					{
-						return value;
-					}
-				}
-			}
-
-			return null;
-		}
-
-
-		private void ReportResult(XElement cell, decimal result, FormulaFormat format)
-		{
-			string report = string.Empty;
-			switch (format)
-			{
-				case FormulaFormat.Currency:
-					report = $"{result:C}";
-					break;
-
-				case FormulaFormat.Number:
-					report = $"{result:N2}";
-					break;
-
-				case FormulaFormat.Percentage:
-					report = $"{(result / 100):P}";
-					break;
-			}
-
-			var content = new XElement(ns + "OEChildren",
-				new XElement(ns + "OE",
-					new XElement(ns + "T", report)
-					)
-				);
-
-			if (cell.HasElements)
-			{
-				cell.Element(ns + "OEChildren").ReplaceWith(content);
-			}
-			else
-			{
-				cell.Add(content);
-			}
 		}
 	}
 }

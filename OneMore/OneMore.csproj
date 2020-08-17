@@ -101,7 +101,11 @@
     <Compile Include="AddInFavorites.cs" />
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\AddCaptionCommand.cs" />
+    <Compile Include="Commands\Formula\Calculator.cs" />
+    <Compile Include="Commands\Formula\DeleteFormulaCommand.cs" />
     <Compile Include="Commands\Formula\FormulaEnums.cs" />
+    <Compile Include="Commands\Formula\HighlightFormulaCommand.cs" />
+    <Compile Include="Commands\Formula\RecalculateFormulaCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
