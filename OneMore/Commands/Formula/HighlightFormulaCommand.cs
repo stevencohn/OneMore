@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using System.Linq;
-	using System.Security.Policy;
 	using System.Xml.Linq;
 
 	internal class HighlightFormulaCommand : Command
