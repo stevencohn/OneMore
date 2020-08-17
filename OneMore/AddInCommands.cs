@@ -23,6 +23,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<AddFootnoteCommand>().Execute();
 		}
 
+		public void AddFormulaCmd(IRibbonControl control)
+		{
+			factory.GetCommand<AddFormulaCommand>().Execute();
+		}
+
 		public void AddTitleIconCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AddTitleIconCommand>().Execute();
@@ -54,6 +59,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<AlterSizeCommand>().Execute(-1);
 		}
 
+		public void DeleteFormulaCmd(IRibbonControl control)
+		{
+			//factory.GetCommand<DeleteFormulaCommand>().Execute();
+		}
+
 		public void EditStylesCmd(IRibbonControl control)
 		{
 			factory.GetCommand<EditStylesCommand>().Execute();
@@ -63,6 +73,11 @@ namespace River.OneMoreAddIn
 		public void IncreaseFontSizeCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AlterSizeCommand>().Execute(1);
+		}
+
+		public void HighlightFormulaCmd(IRibbonControl control)
+		{
+			//factory.GetCommand<HighlightFormulaCommand>().Execute();
 		}
 
 		public void InsertBlueStatusCmd(IRibbonControl control)
@@ -149,6 +164,11 @@ namespace River.OneMoreAddIn
 		public void PasteRtfCmd(IRibbonControl control)
 		{
 			factory.GetCommand<PasteRtfCommand>().Execute();
+		}
+
+		public void RecalculateFormulaCmd(IRibbonControl control)
+		{
+			//factory.GetCommand<RecalculateFormulaCommand>().Execute();
 		}
 
 		public void RemoveFootnoteCmd(IRibbonControl control)

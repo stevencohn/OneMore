@@ -101,19 +101,29 @@
     <Compile Include="AddInFavorites.cs" />
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\AddCaptionCommand.cs" />
-    <Compile Include="Commands\ApplyStylesCommand.cs" />
-    <Compile Include="Commands\ChangePageColorCommand.cs" />
+    <Compile Include="Commands\Formula\FormulaEnums.cs" />
+    <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
+    <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
+    <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
     <Compile Include="Commands\DiagnosticsCommand.cs" />
+    <Compile Include="Commands\Styles\EditStylesCommand.cs" />
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
     <Compile Include="Commands\AddTitleIconCommand.cs" />
     <Compile Include="Commands\AlterSizeCommand.cs" />
     <Compile Include="Commands\CollapseCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
-    <Compile Include="Commands\EditStylesCommand.cs" />
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
     <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
+    <Compile Include="Commands\Formula\AddFormulaCommand.cs" />
     <Compile Include="Commands\MergeCommand.cs" />
+    <Compile Include="Commands\Styles\NewStyleCommand.cs" />
     <Compile Include="Commands\ResizeImagesCommand.cs" />
+    <Compile Include="Dialogs\FormulaDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FormulaDialog.Designer.cs">
+      <DependentUpon>FormulaDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ResizeImagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,15 +131,14 @@
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\GalleryTileFactory.cs" />
-    <Compile Include="Commands\InsertCodeBlockCommand.cs" />
-    <Compile Include="Commands\InsertExpandCommand.cs" />
-    <Compile Include="Commands\InsertInfoBlockCommand.cs" />
-    <Compile Include="Commands\InsertLineCommand.cs" />
-    <Compile Include="Commands\InsertStatusCommand.cs" />
-    <Compile Include="Commands\InsertTocCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertInfoBlockCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertLineCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
     <Compile Include="Commands\NameUrlsCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
-    <Compile Include="Commands\NewStyleCommand.cs" />
     <Compile Include="Commands\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\PasteRtfCommand.cs" />
     <Compile Include="Commands\Footnotes\RemoveFootnoteCommand.cs" />
@@ -140,7 +149,6 @@
     <Compile Include="Commands\SearchAndReplace\SearchAndReplaceEditor.cs" />
     <Compile Include="Commands\SearchAndReplace\TextAtom.cs" />
     <Compile Include="Commands\ShowAboutCommand.cs" />
-    <Compile Include="Commands\ApplyStyleCommand.cs" />
     <Compile Include="Commands\SortCommand.cs" />
     <Compile Include="Commands\ToCaseCommand.cs" />
     <Compile Include="Commands\TrimCommand.cs" />
@@ -180,6 +188,7 @@
     <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\SettingsProvider.cs" />
+    <Compile Include="Helpers\StatsExtensions.cs" />
     <Compile Include="Helpers\XCDataExtensions.cs" />
     <Compile Include="Helpers\XElementExtensions.cs" />
     <Compile Include="Dialogs\AboutDialog.cs">
@@ -218,8 +227,11 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="ApplicationManager.cs" />
     <Compile Include="Commands\ShowXmlCommand.cs" />
+    <Compile Include="Models\CommonAttributes.cs" />
     <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\Selected.cs" />
     <Compile Include="Models\Table.cs" />
+    <Compile Include="Models\TableCell.cs" />
     <Compile Include="Models\TableRow.cs" />
     <Compile Include="Styles\GraphicStyle.cs" />
     <Compile Include="Styles\QuickStyleDef.cs" />
@@ -318,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FlatToggleButton.resx">
       <DependentUpon>FlatToggleButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FormulaDialog.resx">
+      <DependentUpon>FormulaDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>

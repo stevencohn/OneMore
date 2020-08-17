@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn
 	/// <summary>
 	/// Helper class to construct a OneNote table
 	/// </summary>
-	internal class Table
+	internal class Table : CommonAttributes
 	{
 		private readonly XNamespace ns;
 		private readonly XElement columns;
@@ -31,14 +31,23 @@ namespace River.OneMoreAddIn
 
 			numCells = 0;
 			columns = new XElement(ns + "Columns");
-			Root = new XElement(ns + "Table", columns);
+			root = new XElement(ns + "Table", columns);
+		}
+
+
+		public Table(XElement root)
+		{
+			this.root = root;
+			ns = root.GetDefaultNamespace();
+			columns = root.Element(ns + "Columns");
+			numCells = columns.Elements(ns + "Column").Count();
 		}
 
 
 		/// <summary>
 		/// Gest the root element of the table
 		/// </summary>
-		public XElement Root { get; }
+		public XElement Root { get { return root; } }
 
 
 		/// <summary>
@@ -95,10 +104,10 @@ namespace River.OneMoreAddIn
 		/// <param name="visible"></param>
 		public void SetBordersVisible(bool visible)
 		{
-			var attr = Root.Attribute("bordersVisible");
+			var attr = root.Attribute("bordersVisible");
 			if (attr == null)
 			{
-				Root.Add(new XAttribute("bordersVisible", visible.ToString().ToLower()));
+				root.Add(new XAttribute("bordersVisible", visible.ToString().ToLower()));
 			}
 			else
 			{
@@ -113,7 +122,7 @@ namespace River.OneMoreAddIn
 		/// <param name="color"></param>
 		public void SetShading(string color)
 		{
-			var cells = Root.Elements(ns + "Row").Elements(ns + "Cell");
+			var cells = root.Elements(ns + "Row").Elements(ns + "Cell");
 			if (cells?.Any() == true)
 			{
 				foreach (var cell in cells)

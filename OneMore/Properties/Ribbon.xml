@@ -66,6 +66,29 @@
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="TrimCmd"/>
+            <menu id="formulaMenu" label="Formula..." imageMso="TableFormulaDialog" getEnabled="SetBodyContext">
+              <button
+                id="addFormulaButton"
+                imageMso="TableFormulaDialog"
+                label="Add Formula"
+                getEnabled="GetBodyContext"
+                onAction="AddFormulaCmd"/>
+              <button
+                id="deleteFormulaButton"
+                imageMso="SheetDelete"
+                label="Delete Formula"
+                onAction="DeleteFormulaCmd"/>
+              <button
+                id="highlightFormulaButton"
+                imageMso="PivotTableListFormulas"
+                label="Highlight Formula"
+                onAction="HighlightFormulaCmd"/>
+              <button
+                id="recaluclateFormulaButton"
+                imageMso="CalculateSheet"
+                label="Recalculate Formula"
+                onAction="RecalculateFormulaCmd"/>
+            </menu>
             <menu id="imagesMenu" label="Images..." imageMso="ObjectPictureFill" getEnabled="SetBodyContext">
               <button
                 id="captionButton"

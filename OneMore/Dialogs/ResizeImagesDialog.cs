@@ -4,7 +4,7 @@
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Drawing;

@@ -1,4 +1,4 @@
-﻿namespace River.OneMoreAddIn.Dialogs
+﻿namespace River.OneMoreAddIn
 {
 	partial class ResizeImagesDialog
 	{

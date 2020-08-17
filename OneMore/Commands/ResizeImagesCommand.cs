@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
