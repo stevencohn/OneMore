@@ -26,10 +26,6 @@ namespace River.OneMoreAddIn
 		{
 			using (manager = new ApplicationManager())
 			{
-
-				System.Diagnostics.Debugger.Launch();
-
-
 				page = new Page(manager.CurrentPage());
 				ns = page.Namespace;
 

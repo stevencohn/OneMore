@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable CS3003 // Type is not CLS-compliant
+
 namespace River.OneMoreAddIn
 {
 	using System;
@@ -46,12 +48,12 @@ namespace River.OneMoreAddIn
 		internal FormulaFunction Function => (FormulaFunction)functionBox.SelectedIndex;
 
 
-		private void okButton_Click(object sender, EventArgs e)
+		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
 		}
 
-		private void cancelButton_Click(object sender, EventArgs e)
+		private void Cancel(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 		}

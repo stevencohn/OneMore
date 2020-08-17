@@ -2,23 +2,23 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS3003 // Type is not CLS-compliant
+#pragma warning disable CS3003  // Type is not CLS-compliant
+#pragma warning disable IDE1006 // must begin with upper case
 
 namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Drawing;
-	using System.ServiceModel.Activation;
 	using System.Windows.Forms;
 
 
 	public partial class ResizeImagesDialog : Form
 	{
+		private readonly SettingsProvider settings;
 		private readonly int currentWidth;
 		private readonly int currentHeight;
 		private int originalWidth;
 		private int originalHeight;
-		private SettingsProvider settings;
 		private bool suspended;
 
 
