@@ -77,16 +77,19 @@
                 id="deleteFormulaButton"
                 imageMso="SheetDelete"
                 label="Delete Formula"
+                getEnabled="GetBodyContext"
                 onAction="DeleteFormulaCmd"/>
               <button
                 id="highlightFormulaButton"
                 imageMso="PivotTableListFormulas"
                 label="Highlight Formula"
+                getEnabled="GetBodyContext"
                 onAction="HighlightFormulaCmd"/>
               <button
                 id="recaluclateFormulaButton"
                 imageMso="CalculateSheet"
                 label="Recalculate Formula"
+                getEnabled="GetBodyContext"
                 onAction="RecalculateFormulaCmd"/>
             </menu>
             <menu id="imagesMenu" label="Images..." imageMso="ObjectPictureFill" getEnabled="SetBodyContext">

@@ -4,21 +4,11 @@
 
 namespace River.OneMoreAddIn
 {
-	using System;
 	using System.Linq;
-	using System.Xml.Linq;
 
 
 	internal class RecalculateFormulaCommand : Command
 	{
-		private ApplicationManager manager;
-		private Page page;
-		private XNamespace ns;
-
-		private FormulaDirection direction;
-		private FormulaFormat format;
-		private FormulaFunction function;
-
 
 		public RecalculateFormulaCommand() : base()
 		{
@@ -27,10 +17,10 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
-			using (manager = new ApplicationManager())
+			using (var manager = new ApplicationManager())
 			{
-				page = new Page(manager.CurrentPage());
-				ns = page.Namespace;
+				var page = new Page(manager.CurrentPage());
+				var ns = page.Namespace;
 
 				// TODO: only target current/selected table(s)?
 
@@ -42,9 +32,7 @@ namespace River.OneMoreAddIn
 				{
 					foreach (var cell in cells.ToList())
 					{
-						ParseFormula(cell.formula);
-
-						var calculator = new Calculator(ns, direction, function, format);
+						var calculator = new Calculator(ns, cell.formula);
 
 						var values = calculator.CollectValues(cell.Element);
 						var result = calculator.Calculate(values);
@@ -53,21 +41,6 @@ namespace River.OneMoreAddIn
 
 					manager.UpdatePageContent(page.Root);
 				}
-			}
-		}
-
-
-		private void ParseFormula(string formula)
-		{
-			var parts = formula.Split(';');
-
-			// version
-			if (parts[0] == "0")
-			{
-				//content="0;Horizontal;Number;Sum"
-				direction = (FormulaDirection)Enum.Parse(typeof(FormulaDirection), parts[1]);
-				format = (FormulaFormat)Enum.Parse(typeof(FormulaFormat), parts[2]);
-				function = (FormulaFunction)Enum.Parse(typeof(FormulaFunction), parts[3]);
 			}
 		}
 	}

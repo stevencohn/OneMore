@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
@@ -11,27 +12,53 @@ namespace River.OneMoreAddIn
 
 	internal class Calculator
 	{
-		private readonly FormulaDirection direction;
-		private readonly FormulaFunction function;
-		private readonly FormulaFormat format;
 		private readonly XNamespace ns;
 
 
 		public Calculator(XNamespace ns,
 			FormulaDirection direction, FormulaFunction function, FormulaFormat format)
 		{
-			this.direction = direction;
-			this.function = function;
-			this.format = format;
+			Direction = direction;
+			Function = function;
+			Format = format;
 			this.ns = ns;
 		}
+
+
+		public Calculator(XNamespace ns, string formula)
+		{
+			this.ns = ns;
+			ParseFormula(formula);
+		}
+
+
+		private void ParseFormula(string formula)
+		{
+			var parts = formula.Split(';');
+
+			// version
+			if (parts[0] == "0")
+			{
+				//content="0;Horizontal;Number;Sum"
+				Direction = (FormulaDirection)Enum.Parse(typeof(FormulaDirection), parts[1]);
+				Format = (FormulaFormat)Enum.Parse(typeof(FormulaFormat), parts[2]);
+				Function = (FormulaFunction)Enum.Parse(typeof(FormulaFunction), parts[3]);
+			}
+		}
+
+
+		public FormulaDirection Direction { get; private set; }
+
+		public FormulaFormat Format { get; private set; }
+
+		public FormulaFunction Function { get; private set; }
 
 
 		public List<decimal> CollectValues(XElement cell)
 		{
 			var values = new List<decimal>();
 
-			if (direction == FormulaDirection.Vertical)
+			if (Direction == FormulaDirection.Vertical)
 			{
 				var index = cell.ElementsBeforeSelf(ns + "Cell").Count();
 				foreach (var row in cell.Parent.ElementsBeforeSelf(ns + "Row"))
@@ -63,7 +90,7 @@ namespace River.OneMoreAddIn
 		{
 			decimal result = 0.0M;
 
-			switch (function)
+			switch (Function)
 			{
 				case FormulaFunction.Average:
 					result = values.Average();
@@ -129,7 +156,7 @@ namespace River.OneMoreAddIn
 		public void ReportResult(XElement cell, decimal result)
 		{
 			string report = string.Empty;
-			switch (format)
+			switch (Format)
 			{
 				case FormulaFormat.Currency:
 					report = $"{result:C}";
@@ -148,7 +175,7 @@ namespace River.OneMoreAddIn
 				new XElement(ns + "OE",
 					new XElement(ns + "Meta",
 						new XAttribute("name", "omfx"),
-						new XAttribute("content", $"0;{direction};{format};{function}")
+						new XAttribute("content", $"0;{Direction};{Format};{Function}")
 						),
 					new XElement(ns + "T", report)
 					)

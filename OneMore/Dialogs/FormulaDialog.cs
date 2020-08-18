@@ -42,10 +42,18 @@ namespace River.OneMoreAddIn
 		}
 
 
-		internal FormulaFormat Format => (FormulaFormat)formatBox.SelectedIndex;
+		internal FormulaFormat Format
+		{
+			get { return (FormulaFormat)formatBox.SelectedIndex; }
+			set { formatBox.SelectedIndex = (int)value; }
+		}
 
 
-		internal FormulaFunction Function => (FormulaFunction)functionBox.SelectedIndex;
+		internal FormulaFunction Function
+		{
+			get { return (FormulaFunction)functionBox.SelectedIndex; }
+			set { functionBox.SelectedIndex = (int)value; }
+		}
 
 
 		private void OK(object sender, EventArgs e)

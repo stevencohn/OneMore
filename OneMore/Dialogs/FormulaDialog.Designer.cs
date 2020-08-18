@@ -60,6 +60,7 @@
 			// 
 			// formatBox
 			// 
+			this.formatBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.formatBox.FormattingEnabled = true;
 			this.formatBox.Items.AddRange(new object[] {
             "Number",

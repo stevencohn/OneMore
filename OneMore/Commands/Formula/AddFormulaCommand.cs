@@ -16,10 +16,6 @@ namespace River.OneMoreAddIn
 		private Page page;
 		private XNamespace ns;
 
-		private FormulaDirection direction;
-		private FormulaFormat format;
-		private FormulaFunction function;
-
 
 		public AddFormulaCommand() : base()
 		{
@@ -40,12 +36,32 @@ namespace River.OneMoreAddIn
 
 				if (cells != null && cells.Count() > 0)
 				{
-					direction = InferDirection(cells);
+					var direction = InferDirection(cells);
 					if (direction != FormulaDirection.Error)
 					{
+						var format = FormulaFormat.Number;
+						var function = FormulaFunction.Sum;
+
 						using (var dialog = new FormulaDialog())
 						{
 							dialog.Direction = direction;
+
+							Calculator calculator = null;
+
+							if (cells.Count() == 1)
+							{
+								var formula = cells.First().Descendants(ns + "Meta")
+									.Where(e => e.Attribute("name").Value == "omfx")
+									.Select(e => e.Attribute("content").Value).FirstOrDefault();
+
+								if (!string.IsNullOrEmpty(formula))
+								{
+									calculator = new Calculator(ns, formula);
+									dialog.Direction = calculator.Direction;
+									dialog.Format = calculator.Format;
+									dialog.Function = calculator.Function;
+								}
+							}
 
 							var diaresult = dialog.ShowDialog(owner);
 							if (diaresult == DialogResult.OK)
@@ -54,7 +70,7 @@ namespace River.OneMoreAddIn
 								format = dialog.Format;
 								function = dialog.Function;
 
-								var calculator = new Calculator(ns, direction, function, format);
+								calculator = new Calculator(ns, direction, function, format);
 
 								foreach (var cell in cells)
 								{
