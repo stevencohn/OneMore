@@ -60,7 +60,11 @@ namespace River.OneMoreAddIn
 
 			if (n > 1)
 			{
+				// if (Population)
 				variance = sum / (n - 1);
+
+				// else if (Sample)
+				//variance = sum / n;
 			}
 
 			return variance;
