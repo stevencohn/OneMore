@@ -7,6 +7,7 @@ A OneNote add-in with powerful yet simple and effective features including:
 * [Apply a style](#styles) to selected text or all custom styles to the current page with one click
 * Disable **spell-check** on the current page
 * Manage menu of [**Favorites**](#favorites) for one-click link to your most referenced pages
+* [Calculate formulas](#formulas) in tables such as Sum, Average, Min, Max, and StdDev
 * [Paste Rich Text](#exCodeBox) (preserve colors when **pasting code** from Visual Studio)<sup>1</sup>
 * [**Search and replace**](#other) text on the current page
 * Merge pages, preserving formatting and position of outlines
@@ -244,6 +245,29 @@ indvidual favorites. Easy.
 | Favorites Menu |
 | -------------- |
 | ![Favorites Menu](Screenshots/FavoritesMenu.png) |
+
+
+<a name="formulas"></a>
+#### Formulas
+
+While you can insert an Excel table on a OneNote page, for simple calculations, OneMore offers
+a Formula menu that can apply formula to selected cells and calculate across rows or columns.
+
+First, select the cell or cells into which you want to add a formula. If multiple cells are
+selected, they must either be on the same row or in the same column. Then select the Add
+Formula command. The Formula dialog is displayed. Choose the direction, format, and function
+and click OK.
+
+The Recalculate command will recalculate all formulas in the selected table(s).
+
+The Highlight command will select all cells containing formulas so you know where you put them.
+
+The Delete command will remove a formula from the selected cell(s) but retain the values displayed
+in those cell.
+
+| Formula Menu | Formula Dialog |
+| ------------ | -------------- |
+| ![Formula Menu](Screenshots/FormulaMenu.png) | ![Formula Dialog](Screenshots/FormulaDialog.png) |
 
 
 <a name="other"></a>
