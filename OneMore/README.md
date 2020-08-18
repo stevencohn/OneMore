@@ -41,6 +41,20 @@ Other Technical
    c. Set the onAction property to the &lt;name&gt;Cmd method added to AddIns.cs
    
 
+## Rebuilding for 64-Bit OneNote
+
+The Setup project is configured for a 32-Bit installation of OneNote. If you have a 64-bit version
+then you should change the TargetPlatform property in the Setup project. _Note there is no need to
+change the bitness of the OneMore project itself; leave it as AnyCPU._
+
+Select the Setup project from the Visual Studio Solution Explorer and change the TargetPlatform
+property x64 as shown here:
+
+![TargetPlatform](../Screenshots/TargetPlatform.png)
+
+Rebuild the Setup project and away you go!
+
+
 
 ## A Note on Debugging OneMore
 
