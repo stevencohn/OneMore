@@ -53,6 +53,7 @@
               imageMso="PasteSpecialDialog"
               label="Paste Rich Text"
               getScreentip="GetItemScreentip"
+              getEnabled="SetBodyContext"
               onAction="PasteRtfCmd"/>
             <button
               id="replaceButton"
@@ -66,7 +67,7 @@
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="TrimCmd"/>
-            <menu id="formulaMenu" label="Formula..." imageMso="TableFormulaDialog" getEnabled="SetBodyContext">
+            <menu id="formulaMenu" label="Formula..." imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
               <button
                 id="addFormulaButton"
                 imageMso="TableFormulaDialog"
@@ -92,7 +93,7 @@
                 getEnabled="GetBodyContext"
                 onAction="RecalculateFormulaCmd"/>
             </menu>
-            <menu id="imagesMenu" label="Images..." imageMso="ObjectPictureFill" getEnabled="SetBodyContext">
+            <menu id="imagesMenu" label="Images..." imageMso="ObjectPictureFill" getEnabled="GetBodyContext">
               <button
                 id="captionButton"
                 imageMso="CaptionInsert"

@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn
 						var cells = table.Descendants(ns + "Cell")
 							.Where(e => e.Attribute("selected") != null);
 
+						// deselect any selected cells
 						foreach (var cell in cells)
 						{
 							cell.DescendantNodes().OfType<XAttribute>()
@@ -49,6 +50,7 @@ namespace River.OneMoreAddIn
 							}
 						}
 
+						// select all omfx cells
 						var hicells = table.Descendants(ns + "Meta")
 							.Where(e => e.Attribute("name").Value == "omfx")
 							.Select(e => e.Parent.Parent.Parent);

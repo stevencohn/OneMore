@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn
 
 						var values = calculator.CollectValues(cell.Element);
 						var result = calculator.Calculate(values);
-						calculator.ReportResult(cell.Element, result);
+						calculator.ReportResult(cell.Element, result, values);
 					}
 
 					manager.UpdatePageContent(page.Root);

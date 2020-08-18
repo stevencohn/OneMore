@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void ParseFormula(string formula)
+		public void ParseFormula(string formula)
 		{
 			var parts = formula.Split(';');
 
@@ -47,11 +47,11 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public FormulaDirection Direction { get; private set; }
+		public FormulaDirection Direction { get; set; }
 
-		public FormulaFormat Format { get; private set; }
+		public FormulaFormat Format { get; set; }
 
-		public FormulaFunction Function { get; private set; }
+		public FormulaFunction Function { get; set; }
 
 
 		public List<decimal> CollectValues(XElement cell)
@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void ReportResult(XElement cell, decimal result)
+		public void ReportResult(XElement cell, decimal result, List<decimal> values)
 		{
 			string report = string.Empty;
 			switch (Format)
@@ -163,7 +163,9 @@ namespace River.OneMoreAddIn
 					break;
 
 				case FormulaFormat.Number:
-					report = $"{result:N2}";
+					// show only max precision from all values
+					var precision = values.Max(v => Math.Max(v.ToString().Length - ((int)v).ToString().Length - 1, 0));
+					report = result.ToString("N" + precision.ToString());
 					break;
 
 				case FormulaFormat.Percentage:

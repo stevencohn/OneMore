@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn
 				page = new Page(manager.CurrentPage());
 				ns = page.Namespace;
 
+				// find all selected cells into which a formula should be inserted
 				var cells = page.Root.Descendants(ns + "Cell")?
 					.Select(o => new { cell = o, selected = o.Attribute("selected")?.Value })
 					.Where(o => o.selected == "all" || o.selected == "partial")
@@ -36,27 +37,25 @@ namespace River.OneMoreAddIn
 
 				if (cells != null && cells.Count() > 0)
 				{
-					var direction = InferDirection(cells);
-					if (direction != FormulaDirection.Error)
-					{
-						var format = FormulaFormat.Number;
-						var function = FormulaFunction.Sum;
+					var calculator = new Calculator(ns, 
+						FormulaDirection.Vertical, FormulaFunction.Sum, FormulaFormat.Number);
 
+					if (calculator.Direction != FormulaDirection.Error)
+					{
 						using (var dialog = new FormulaDialog())
 						{
-							dialog.Direction = direction;
-
-							Calculator calculator = null;
+							dialog.Direction = calculator.Direction;
 
 							if (cells.Count() == 1)
 							{
+								// if cell already contains a formula, use its paramters
 								var formula = cells.First().Descendants(ns + "Meta")
 									.Where(e => e.Attribute("name").Value == "omfx")
 									.Select(e => e.Attribute("content").Value).FirstOrDefault();
 
 								if (!string.IsNullOrEmpty(formula))
 								{
-									calculator = new Calculator(ns, formula);
+									calculator.ParseFormula(formula);
 									dialog.Direction = calculator.Direction;
 									dialog.Format = calculator.Format;
 									dialog.Function = calculator.Function;
@@ -66,17 +65,15 @@ namespace River.OneMoreAddIn
 							var diaresult = dialog.ShowDialog(owner);
 							if (diaresult == DialogResult.OK)
 							{
-								direction = dialog.Direction;
-								format = dialog.Format;
-								function = dialog.Function;
-
-								calculator = new Calculator(ns, direction, function, format);
+								calculator.Direction = dialog.Direction;
+								calculator.Format = dialog.Format;
+								calculator.Function = dialog.Function;
 
 								foreach (var cell in cells)
 								{
 									var values = calculator.CollectValues(cell);
 									var result = calculator.Calculate(values);
-									calculator.ReportResult(cell, result);
+									calculator.ReportResult(cell, result, values);
 								}
 
 								manager.UpdatePageContent(page.Root);
