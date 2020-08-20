@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Helpers.Updater;
 	using System;
 	using System.IO;
 	using System.Windows.Forms;
@@ -11,6 +12,7 @@ namespace River.OneMoreAddIn
 
 	internal partial class AboutDialog : Form, IOneMoreWindow
 	{
+
 		public AboutDialog()
 		{
 			InitializeComponent();
@@ -42,15 +44,48 @@ namespace River.OneMoreAddIn
 			Close();
 		}
 
+
 		private void GoHome(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start(homeLink.Text);
 		}
 
+
+		private async void CheckForUpdates(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var updater = new Updater();
+
+			if (await updater.FetchLatestRelease())
+			{
+				if (AssemblyInfo.Version == updater.Tag)
+				{
+					MessageBox.Show("You have the latest version", "You're good to go!");
+					return;
+				}
+
+				var answer = MessageBox.Show(
+					"A new version is available:" +
+					$"\n\n   {updater.Tag} - \"{updater.Name}\"" +
+					$"\n\nDo you want to update now?\nOneNote will close automatically", "Update OneMore",
+					MessageBoxButtons.YesNo);
+
+				if (answer == DialogResult.Yes)
+				{
+					var updating = await updater.Update();
+					if (updating)
+					{
+						Close();
+					}
+				}
+			}
+		}
+
+
 		private void OpenLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start(logLabel.Text);
 		}
+
 
 		private void ClearLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{

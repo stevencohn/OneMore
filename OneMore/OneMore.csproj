@@ -84,6 +84,7 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -193,6 +194,9 @@
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\SettingsProvider.cs" />
     <Compile Include="Helpers\StatsExtensions.cs" />
+    <Compile Include="Helpers\Updater\GitAsset.cs" />
+    <Compile Include="Helpers\Updater\GitRelease.cs" />
+    <Compile Include="Helpers\Updater\Updater.cs" />
     <Compile Include="Helpers\XCDataExtensions.cs" />
     <Compile Include="Helpers\XElementExtensions.cs" />
     <Compile Include="Dialogs\AboutDialog.cs">
