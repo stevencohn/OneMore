@@ -274,7 +274,8 @@ in those cell.
 #### Other Screenshots
 
 The *Search and Replace* command does exactly what you think. I can't believe Microsoft didn't
-add this most basic editing feature by default. Worry no longer. Here it is.
+add this most basic editing feature by default. Worry no longer. Here it is. And you can enter
+a regular expression in the _Find what_ field so you can really brag to your friends.
 
 The *Add Title Icon* command lets you chose from a selection of icons from the Segoe UI Emoji
 font to add to the page title; OneNote automatically displays that icon in the page
