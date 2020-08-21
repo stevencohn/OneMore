@@ -61,6 +61,14 @@ namespace River.OneMoreAddIn.Helpers.Updater
 		}
 
 
+		public bool UpdateToDate(string assemblyVersion)
+		{
+			var currentVersion = new Version(assemblyVersion);
+			var releaseVersion = new Version(Tag);
+			return currentVersion >= releaseVersion;
+		}
+
+
 		public async Task<bool> Update()
 		{
 			// presume the msi has one of these two keywords in its name
