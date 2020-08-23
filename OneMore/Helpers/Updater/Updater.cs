@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 		}
 
 
-		public bool UpdateToDate(string assemblyVersion)
+		public bool IsUpToDate(string assemblyVersion)
 		{
 			var currentVersion = new Version(assemblyVersion);
 			var releaseVersion = new Version(Tag);

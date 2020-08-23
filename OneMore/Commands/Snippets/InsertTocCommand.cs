@@ -61,6 +61,39 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Construct a list of possible templates from both this page's quick styles
+		/// and our own custom style definitions, choosing only Heading styles, all
+		/// ordered by the internal Index.
+		/// </summary>
+		/// <returns>A List of Styles ordered by Index</returns>
+		private void CollectHeadingDefinitions()
+		{
+			// collect all quick style defs
+
+			// going to reference both heading and non-headings
+			quickStyles = page.Elements(ns + "QuickStyleDef")
+				.Select(p => new Style(new QuickStyleDef(p)))
+				.ToList();
+
+			// tag the headings (h1, h2, h3, ...)
+			foreach (var style in quickStyles)
+			{
+				if (Regex.IsMatch(style.Name, @"h\d"))
+				{
+					style.StyleType = StyleType.Heading;
+				}
+			}
+
+			// collect custom heading styles
+
+			customStyles = new StyleProvider().GetStyles()
+				.Where(e => e.StyleType == StyleType.Heading)
+				.OrderBy(e => e.Index)
+				.ToList();
+		}
+
+
 		private void Evaluate (ApplicationManager manager)
 		{
 			var headings = new List<Heading>();
@@ -130,39 +163,6 @@ namespace River.OneMoreAddIn
 
 			ReorderKnownStyles();
 			GenerateTableOfContents(headings);
-		}
-
-
-		/// <summary>
-		/// Construct a list of possible templates from both this page's quick styles
-		/// and our own custom style definitions, choosing only Heading styles, all
-		/// ordered by the internal Index.
-		/// </summary>
-		/// <returns>A List of Styles ordered by Index</returns>
-		private void CollectHeadingDefinitions()
-		{
-			// collect all quick style defs
-			
-			// going to reference both heading and non-headings
-			quickStyles = page.Elements(ns + "QuickStyleDef")
-				.Select(p => new Style(new QuickStyleDef(p)))
-				.ToList();
-
-			// tag the headings (h1, h2, h3, ...)
-			foreach (var style in quickStyles)
-			{
-				if (Regex.IsMatch(style.Name, @"h\d"))
-				{
-					style.StyleType = StyleType.Heading;
-				}
-			}
-
-			// collect custom heading styles
-
-			customStyles = new StyleProvider().GetStyles()
-				.Where(e => e.StyleType == StyleType.Heading)
-				.OrderBy(e => e.Index)
-				.ToList();
 		}
 
 

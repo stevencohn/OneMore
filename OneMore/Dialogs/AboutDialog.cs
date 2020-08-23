@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 
 			if (await updater.FetchLatestRelease())
 			{
-				if (updater.UpdateToDate(AssemblyInfo.Version))
+				if (updater.IsUpToDate(AssemblyInfo.Version))
 				{
 					MessageBox.Show("You have the latest version", "You're good to go!");
 					return;
