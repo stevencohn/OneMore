@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 					{
 						using (var dialog = new FormulaDialog())
 						{
-							dialog.Direction = calculator.Direction;
+							dialog.Direction = InferDirection(cells);
 
 							if (cells.Count() == 1)
 							{

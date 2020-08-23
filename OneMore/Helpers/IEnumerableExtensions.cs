@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 
 
-	internal static class StatsExtensions
+	internal static class IEnumerableExtensions
 	{
 
 		public static decimal Median(this IEnumerable<decimal> values)
