@@ -99,10 +99,16 @@ namespace River.OneMoreAddIn
 
 					var styles = MergeQuickStyles(childPage);
 
-					var topOffset = childPage.Elements(ns + "Outline")
-						.Elements(ns + "Position").Min(p => double.Parse(p.Attribute("y").Value));
+					var childOutlines = childPage.Elements(ns + "Outline");
+					if ((childOutlines == null || childOutlines.Count() == 0))
+					{
+						break;
+					}
 
-					foreach (var childOutline in childPage.Elements(ns + "Outline"))
+					var topOffset = childOutlines.Elements(ns + "Position")
+						.Min(p => double.Parse(p.Attribute("y").Value));
+
+					foreach (var childOutline in childOutlines)
 					{
 						// adjust position relative to new parent page outlines
 						var position = childOutline.Elements(ns + "Position").FirstOrDefault();
