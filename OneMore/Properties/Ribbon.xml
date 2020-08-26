@@ -6,258 +6,262 @@
   <ribbon>
     <tabs>
       <tab idMso="TabHome">
-        <group id="OneMoreGroup0" getLabel="GetItemLabel">
+        <group id="ribOneMoreGroup" getLabel="GetItemLabel">
           <gallery
-            id="styleGallery" label="Custom Styles" columns="4" showItemLabel="false" size="large" imageMso="StylesPane"
+            id="ribCustomStylesButton" columns="4" showItemLabel="false" size="large" imageMso="StylesPane"
+            getLabel="GetItemLabel" 
             getItemCount="GetStyleGalleryItemCount"
             getItemID="GetStyleGalleryItemId"
             getItemImage="GetStyleGalleryItemImage"
             getItemScreentip="GetStyleGalleryItemScreentip"
             onAction="ApplyStyleCmd">
             <button
-              id="EditStylesButton"
-              label="Edit Styles..."
+              id="ribEditStylesButton"
+              getLabel="GetItemLabel"
               imageMso="StylesModifyStyle"
               onAction="EditStylesCmd"/>
             <button
-              id="SaveStylesButton"
-              label="Create Style from Selection..."
+              id="ribCreateStyleButton"
+              getLabel="GetItemLabel"
               imageMso="StylesPaneNewStyle"
               onAction="NewStyleCmd"/>
             <button
-              id="ApplyStylesButton"
-              label="Apply Styles to Page"
+              id="ribApplyStylesButton"
+              getLabel="GetItemLabel"
               imageMso="ApplyStylesPane"
               onAction="ApplyStylesCmd"/>
             <button
-              id="PageColorButton"
-              label="Set Page Color..."
+              id="ribPageColorButton"
+              getLabel="GetItemLabel"
               imageMso="FormatBackground"
               onAction="ChangePageColorCmd"/>
           </gallery>
 
-          <dynamicMenu id="OneMoreFavoritesMenu"
-            label="Favorites" size="large" imageMso="EditLinks"
+          <dynamicMenu
+            id="ribFavoritesMenu"
+            getLabel="GetItemLabel"
+            size="large"
+            imageMso="EditLinks"
             getContent="GetFavoritesContent" />
 
-          <menu id="OneMoreMenu" label="More" size="large" getImage="GetOneMoreMenuImage">
+          <menu id="ribOneMoreMenu" label="More" size="large" getImage="GetOneMoreMenuImage">
             <menuSeparator id="sepSpell" title="Content" />
             <button
-              id="noSpellCheckButton"
+              id="ribNoSpellCheckButton"
               image="NoSpellCheck"
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="NoSpellCheckCmd"/>
             <button
-              id="pasteRtfButton"
+              id="ribPasteRtfButton"
               imageMso="PasteSpecialDialog"
-              label="Paste Rich Text"
+              getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               getEnabled="SetBodyContext"
               onAction="PasteRtfCmd"/>
             <button
-              id="replaceButton"
+              id="ribReplaceButton"
               imageMso="ReplaceDialog"
-              label="Search and Replace"
+              getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="SearchAndReplaceCmd"/>
             <button
-              id="trimButton"
+              id="ribTrimButton"
               imageMso="AutoTextGallery"
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="TrimCmd"/>
-            <menu id="formulaMenu" label="Formula..." imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
+            <menu id="ribFormulaMenu" getLabel="GetItemLabel" imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
               <button
-                id="addFormulaButton"
+                id="ribAddFormulaButton"
                 imageMso="TableFormulaDialog"
-                label="Add Formula"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="AddFormulaCmd"/>
               <button
-                id="deleteFormulaButton"
+                id="ribDeleteFormulaButton"
                 imageMso="SheetDelete"
-                label="Delete Formula"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="DeleteFormulaCmd"/>
               <button
-                id="highlightFormulaButton"
+                id="ribHighlightFormulaButton"
                 imageMso="PivotTableListFormulas"
-                label="Highlight Formula"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="HighlightFormulaCmd"/>
               <button
-                id="recaluclateFormulaButton"
+                id="ribRecalculateFormulaButton"
                 imageMso="CalculateSheet"
-                label="Recalculate Formula"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="RecalculateFormulaCmd"/>
             </menu>
-            <menu id="imagesMenu" label="Images..." imageMso="ObjectPictureFill" getEnabled="GetBodyContext">
+            <menu id="ribImagesMenu" getLabel="GetItemLabel" imageMso="ObjectPictureFill" getEnabled="GetBodyContext">
               <button
-                id="captionButton"
+                id="ribCaptionButton"
                 imageMso="CaptionInsert"
-                label="Add Caption"
+                getLabel="GetItemLabel"
                 getEnabled="GetImageSelected"
                 onAction="AddCaptionCmd"/>
               <button
-                id="resizeImagesButton"
+                id="ribResizeImagesButton"
                 imageMso="GroupPictureCompress"
-                label="Resize"
+                getLabel="GetItemLabel"
                 onAction="ResizeImagesCmd"/>
             </menu>
-            <menu id="additionalMenu" label="Extras..." imageMso="OutlineDemote">
+            <menu id="ribExtrasMenu" getLabel="GetItemLabel" imageMso="OutlineDemote">
               <button
-                id="flagTitleButton"
+                id="ribFlagTitleButton"
                 imageMso="DataGraphicIconSet"
-                label="Add Icon to Page Title"
+                getLabel="GetItemLabel"
                 onAction="AddTitleIconCmd"/>
               <button
-                id="footnoteButton"
+                id="ribFootnoteButton"
                 imageMso="FootnoteInsert"
-                label="Add Footnote"
+                getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
                 onAction="AddFootnoteCmd"/>
               <button
-                id="footnoteRemoveButton"
+                id="ribFootnoteRemoveButton"
                 imageMso="RemoveCitation"
-                label="Remove Footnote"
+                getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
                 onAction="RemoveFootnoteCmd"/>
               <button
-                id="insertSingleLineButton"
+                id="ribInsertSingleLineButton"
                 imageMso="HorizontalLineInsert"
-                label="Insert Horzontal Line"
+                getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
                 onAction="InsertHorizontalLineCmd"/>
               <button
-                id="insertDoubleLineButton"
+                id="ribInsertDoubleLineButton"
                 getImage="GetDoubleLineImage"
-                label="Insert Double Horzontal Line"
+                getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
                 onAction="InsertDoubleHorizontalLineCmd"/>
               <button
-                id="nameUrlsButton"
+                id="ribNameUrlsButton"
                 imageMso="AutoSigWebInsertHyperlink"
-                label="Replace URLs with Web Page Titles"
+                getLabel="GetItemLabel"
                 onAction="NameUrlsCmd"/>
               <button
-                id="tocButton"
+                id="ribTocButton"
                 imageMso="WordInsertTableOfContents2"
-                label="Insert Page TOC"
+                getLabel="GetItemLabel"
                 onAction="InsertTocCmd"/>
               <button
-                id="mergeButton"
+                id="ribMergeButton"
                 imageMso="CompareAndCombine"
-                label="Merge Pages"
+                getLabel="GetItemLabel"
                 getEnabled="GetMultiPageContext"
                 onAction="MergeCmd"/>
             </menu>
-            <menu id="snippetsMenu" label="Snippets..." imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
+            <menu id="ribSnippetsMenu" getLabel="GetItemLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
               <button
-                id="infoBlockButton"
+                id="ribInfoBlockButton"
                 imageMso="Info"
-                label="Info block"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertInfoBlockCmd"/>
               <button
-                id="warnBlockButton"
+                id="ribWarnBlockButton"
                 imageMso="HighImportance"
-                label="Warning block"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertWarningBlockCmd"/>
               <button
-                id="codeBlockButton"
+                id="ribCodeBlockButton"
                 imageMso="CodeEdit"
-                label="Code block"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertCodeBlockCmd"/>
               <button
-                id="expandButton"
+                id="ribExpandButton"
                 imageMso="PivotExpandIndicators"
-                label="Expand/Collapse"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertExpandCmd"/>
               <button
-                id="PersonaStatusOffline"
+                id="ribGrayStatusButton"
                 imageMso="AppointmentColor4"
-                label="Gray Status"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertGrayStatusCmd"/>
               <button
-                id="redStatusButton"
+                id="ribRedStatusButton"
                 imageMso="AppointmentColor1"
-                label="Red Status"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertRedStatusCmd"/>
               <button
-                id="yellowStatusButton"
+                id="ribYellowStatusButton"
                 imageMso="AppointmentColor10"
-                label="Yellow Status"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertYellowStatusCmd"/>
               <button
-                id="greenStatusButton"
+                id="ribGreenStatusButton"
                 imageMso="AppointmentColor3"
-                label="Green Status"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertGreenStatusCmd"/>
               <button
-                id="blueStatusButton"
+                id="ribBlueStatusButton"
                 imageMso="AppointmentColor2"
-                label="Blue Status"
+                getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertBlueStatusCmd"/>
             </menu>
             <menuSeparator id="sep1" title="Text"/>
             <button
-              id="uppercaseButton"
+              id="ribUppercaseButton"
               imageMso="A"
-              label="To UPPERCASE"
+              getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="ToUppercaseCmd"/>
             <button
-              id="lowercaseButton"
+              id="ribLowercaseButton"
               imageMso="ChangeCase"
-              label="To lowercase"
+              getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="ToLowercaseCmd"/>
             <button
-              id="increaseFontSizeButton"
+              id="ribIncreaseFontSizeButton"
               imageMso="FontSizeIncreaseWord"
-              label="Increase Font Size"
+              getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="IncreaseFontSizeCmd"/>
             <button
-              id="decreaseFontSizeButton"
+              id="ribDecreaseFontSizeButton"
               imageMso="FontSizeDecreaseWord"
-              label="Decrease Font Size"
+              getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="DecreaseFontSizeCmd"/>
             <menuSeparator id="sepOther" title="Other"/>
             <button
-              id="collapseButton"
+              id="ribCollapseButton"
               imageMso="CollapseAll"
-              label="Collapse Pages"
+              getLabel="GetItemLabel"
               onAction="CollapseCmd"/>
             <button
-              id="sortButton"
+              id="ribSortButton"
               imageMso="SortUp"
-              label="Sort..."
+              getLabel="GetItemLabel"
               onAction="SortCmd"/>
             <button
-              id="showXmlButton"
+              id="ribShowXmlButton"
               imageMso="XmlSource"
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="ShowXmlCmd"/>
             <button
-              id="aboutButton"
-              label="About OneMore"
+              id="ribAboutButton"
+              getLabel="GetItemLabel"
               onAction="ShowAboutCmd"/>
           </menu>
         </group>

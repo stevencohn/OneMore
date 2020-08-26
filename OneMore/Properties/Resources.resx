@@ -120,32 +120,28 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
-  <data name="showXmlButton0_Label" xml:space="preserve">
+  <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>Show XML</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="showXmlButton_Label" xml:space="preserve">
-    <value>Show XML</value>
-  </data>
-  <data name="showXmlButton0_Screentip" xml:space="preserve">
+  <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>Show XML of hierarchy and current page (Ctrl + Shift + Alt + X)</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="showXmlButton_Screentip" xml:space="preserve">
-    <value>Show XML of hierarchy and current page (Ctrl + Shift + Alt + X)</value>
-  </data>
-  <data name="OneMoreGroup0_Label" xml:space="preserve">
+  <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>OneMore</value>
-  </data>
-  <data name="OneMoreGroup_Label" xml:space="preserve">
-    <value>OneMore</value>
+    <comment>Ribbon Group</comment>
   </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>OneMore</value>
   </data>
-  <data name="noSpellCheckButton_Label" xml:space="preserve">
+  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
     <value>No Spell Check</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
-  <data name="noSpellCheckButton_Screentip" xml:space="preserve">
+  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Disable spell check for entire page (F4)</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -280,50 +276,64 @@
   <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="trimButton_Label" xml:space="preserve">
+  <data name="ribTrimButton_Label" xml:space="preserve">
     <value>Trim Whitespace</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
-  <data name="trimButton_Screentip" xml:space="preserve">
+  <data name="ribTrimButton_Screentip" xml:space="preserve">
     <value>Trim trailing whitespace from selected text</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
   </data>
   <data name="oneNamespace" xml:space="preserve">
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
+    <comment>DO NOT TRANSLATE</comment>
   </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
+    <comment>DO NOT TRANSLATE</comment>
   </data>
-  <data name="decreaseFontSizeButton_Screentip" xml:space="preserve">
+  <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>Decrease page font size (Ctrl + Alt + Minus)</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="footnoteButton_Screentip" xml:space="preserve">
+  <data name="ribFootnoteButton_Screentip" xml:space="preserve">
     <value>Add footnote (Ctrl + Alt + F)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="footnoteRemoveButton_Screentip" xml:space="preserve">
+  <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
     <value>Remove footnote (Ctrl + Shift + F)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="increaseFontSizeButton_Screentip" xml:space="preserve">
+  <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>Increase page font size (Ctrl + Alt + Plus)</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="insertDoubleLineButton_Screentip" xml:space="preserve">
+  <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>Insert double horizontal line (Shift + Alt + Equals)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="insertSingleLineButton_Screentip" xml:space="preserve">
+  <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
     <value>Insert single horizontal line (Shift + Alt + Minus)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="lowercaseButton_Screentip" xml:space="preserve">
+  <data name="ribLowercaseButton_Screentip" xml:space="preserve">
     <value>Convert text to lowercase (Ctrl + Shift + U)</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="pasteRtfButton_Screentip" xml:space="preserve">
+  <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
     <value>Paste rich text (Ctrl + Alt + V)</value>
+    <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
-  <data name="replaceButton_Screentip" xml:space="preserve">
+  <data name="ribReplaceButton_Screentip" xml:space="preserve">
     <value>Search and replace (Ctrl + H)</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
-  <data name="uppercaseButton_Screentip" xml:space="preserve">
+  <data name="ribUppercaseButton_Screentip" xml:space="preserve">
     <value>Convert text to uppercase (Ctrl + Shift + Alt + U)</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -342,5 +352,193 @@
   </data>
   <data name="SettingsFilename" xml:space="preserve">
     <value>Settings.xml</value>
+  </data>
+  <data name="ribAboutButton_Label" xml:space="preserve">
+    <value>About OneMore</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribAddFormulaButton_Label" xml:space="preserve">
+    <value>Add Formula</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
+    <value>Add formula to slected table cell(s)</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribApplyStylesButton_Label" xml:space="preserve">
+    <value>Apply Styles to Page</value>
+    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+  </data>
+  <data name="ribBlueStatusButton_Label" xml:space="preserve">
+    <value>Blue Status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribCaptionButton_Label" xml:space="preserve">
+    <value>Add Caption</value>
+    <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
+  </data>
+  <data name="ribCodeBlockButton_Label" xml:space="preserve">
+    <value>Code block</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribCollapseButton_Label" xml:space="preserve">
+    <value>Collapse Pages</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCreateStyleButton_Label" xml:space="preserve">
+    <value>Create Style from Selection...</value>
+    <comment>Ribbon Custom Styles menu item, create new style</comment>
+  </data>
+  <data name="ribCustomStylesButton_Label" xml:space="preserve">
+    <value>Custom Styles</value>
+    <comment>Ribbon main custom styles button</comment>
+  </data>
+  <data name="ribDecreaseFontSizeButton_Label" xml:space="preserve">
+    <value>Decrease Font Size</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
+    <value>Delete Formula</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribDeleteFormulaButton_Screentip" xml:space="preserve">
+    <value>Delete formula from selected table cell(s)</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribEditStylesButton_Label" xml:space="preserve">
+    <value>Edit Styles...</value>
+    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+  </data>
+  <data name="ribExpandButton_Label" xml:space="preserve">
+    <value>Expand/Collapse</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribExtrasMenu_Label" xml:space="preserve">
+    <value>Extras...</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFavoritesMenu_Label" xml:space="preserve">
+    <value>Favorites</value>
+    <comment>Ribbon main favorites button</comment>
+  </data>
+  <data name="ribFlagTitleButton_Label" xml:space="preserve">
+    <value>Add Icon to Page Title</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFootnoteButton_Label" xml:space="preserve">
+    <value>Add Footnote</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFootnoteRemoveButton_Label" xml:space="preserve">
+    <value>Remove Footnote</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFormulaMenu_Label" xml:space="preserve">
+    <value>Formula...</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribGrayStatusButton_Label" xml:space="preserve">
+    <value>Gray Status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribGreenStatusButton_Label" xml:space="preserve">
+    <value>Green Status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
+    <value>Highlight Formula</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
+    <value>High cells with formula in current table</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribImagesMenu_Label" xml:space="preserve">
+    <value>Images...</value>
+    <comment>Ribbon OneMore menu item, Images...</comment>
+  </data>
+  <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
+    <value>Increase Font Size</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribInfoBlockButton_Label" xml:space="preserve">
+    <value>Info block</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
+    <value>Insert Double Horizontal Line</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
+    <value>Insert Horizontal Line</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribLowercaseButton_Label" xml:space="preserve">
+    <value>To lowercase</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribMergeButton_Label" xml:space="preserve">
+    <value>Merge Pages</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribNameUrlsButton_Label" xml:space="preserve">
+    <value>Replace URLs with Web Page Titles</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribOneMoreMenu_Label" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Set Page Color...</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ribPasteRtfButton_Label" xml:space="preserve">
+    <value>Paste Rich Text</value>
+    <comment>Ribbon OneMore menu item, paste rich text</comment>
+  </data>
+  <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
+    <value>Recalculate Formula</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
+    <value>Recalculate all formula in the current table</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRedStatusButton_Label" xml:space="preserve">
+    <value>Red Status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribReplaceButton_Label" xml:space="preserve">
+    <value>Search and Replace</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ribResizeImagesButton_Label" xml:space="preserve">
+    <value>Resize</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribSnippetsMenu_Label" xml:space="preserve">
+    <value>Snippets...</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribSortButton_Label" xml:space="preserve">
+    <value>Sort...</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribTocButton_Label" xml:space="preserve">
+    <value>Insert Page TOC</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribUppercaseButton_Label" xml:space="preserve">
+    <value>To UPPERCASE</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribWarnBlockButton_Label" xml:space="preserve">
+    <value>Warning block</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribYellowStatusButton_Label" xml:space="preserve">
+    <value>Yellow Status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
 </root>

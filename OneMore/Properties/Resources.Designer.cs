@@ -191,15 +191,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Decrease page font size (Ctrl + Alt + Minus).
-        /// </summary>
-        internal static string decreaseFontSizeButton_Screentip {
-            get {
-                return ResourceManager.GetString("decreaseFontSizeButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Delete {
@@ -289,57 +280,12 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add footnote (Ctrl + Alt + F).
-        /// </summary>
-        internal static string footnoteButton_Screentip {
-            get {
-                return ResourceManager.GetString("footnoteButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove footnote (Ctrl + Shift + F).
-        /// </summary>
-        internal static string footnoteRemoveButton_Screentip {
-            get {
-                return ResourceManager.GetString("footnoteRemoveButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Hammer {
             get {
                 object obj = ResourceManager.GetObject("Hammer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Increase page font size (Ctrl + Alt + Plus).
-        /// </summary>
-        internal static string increaseFontSizeButton_Screentip {
-            get {
-                return ResourceManager.GetString("increaseFontSizeButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert double horizontal line (Shift + Alt + Equals).
-        /// </summary>
-        internal static string insertDoubleLineButton_Screentip {
-            get {
-                return ResourceManager.GetString("insertDoubleLineButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert single horizontal line (Shift + Alt + Minus).
-        /// </summary>
-        internal static string insertSingleLineButton_Screentip {
-            get {
-                return ResourceManager.GetString("insertSingleLineButton_Screentip", resourceCulture);
             }
         }
         
@@ -374,15 +320,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Convert text to lowercase (Ctrl + Shift + U).
-        /// </summary>
-        internal static string lowercaseButton_Screentip {
-            get {
-                return ResourceManager.GetString("lowercaseButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Memo {
@@ -409,42 +346,6 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("NoSpellCheck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No Spell Check.
-        /// </summary>
-        internal static string noSpellCheckButton_Label {
-            get {
-                return ResourceManager.GetString("noSpellCheckButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disable spell check for entire page (F4).
-        /// </summary>
-        internal static string noSpellCheckButton_Screentip {
-            get {
-                return ResourceManager.GetString("noSpellCheckButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OneMore.
-        /// </summary>
-        internal static string OneMoreGroup_Label {
-            get {
-                return ResourceManager.GetString("OneMoreGroup_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OneMore.
-        /// </summary>
-        internal static string OneMoreGroup0_Label {
-            get {
-                return ResourceManager.GetString("OneMoreGroup0_Label", resourceCulture);
             }
         }
         
@@ -496,15 +397,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paste rich text (Ctrl + Alt + V).
-        /// </summary>
-        internal static string pasteRtfButton_Screentip {
-            get {
-                return ResourceManager.GetString("pasteRtfButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pencil {
@@ -535,11 +427,47 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search and replace (Ctrl + H).
+        ///   Looks up a localized string similar to About OneMore.
         /// </summary>
-        internal static string replaceButton_Screentip {
+        internal static string ribAboutButton_Label {
             get {
-                return ResourceManager.GetString("replaceButton_Screentip", resourceCulture);
+                return ResourceManager.GetString("ribAboutButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Formula.
+        /// </summary>
+        internal static string ribAddFormulaButton_Label {
+            get {
+                return ResourceManager.GetString("ribAddFormulaButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add formula to slected table cell(s).
+        /// </summary>
+        internal static string ribAddFormulaButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAddFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Styles to Page.
+        /// </summary>
+        internal static string ribApplyStylesButton_Label {
+            get {
+                return ResourceManager.GetString("ribApplyStylesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue Status.
+        /// </summary>
+        internal static string ribBlueStatusButton_Label {
+            get {
+                return ResourceManager.GetString("ribBlueStatusButton_Label", resourceCulture);
             }
         }
         
@@ -552,15 +480,547 @@ namespace River.OneMoreAddIn.Properties {
         ///  &lt;ribbon&gt;
         ///    &lt;tabs&gt;
         ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
-        ///        &lt;group id=&quot;OneMoreGroup0&quot; getLabel=&quot;GetItemLabel&quot;&gt;
+        ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetItemLabel&quot;&gt;
         ///          &lt;gallery
-        ///            id=&quot;styleGallery&quot; label=&quot;Custom Styles&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
+        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
+        ///            getLabel=&quot;GetItemLabel&quot; 
         ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
-        ///            getItemID=&quot;GetStyleGalleryIt [rest of string was truncated]&quot;;.
+        ///            g [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
                 return ResourceManager.GetString("Ribbon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Caption.
+        /// </summary>
+        internal static string ribCaptionButton_Label {
+            get {
+                return ResourceManager.GetString("ribCaptionButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code block.
+        /// </summary>
+        internal static string ribCodeBlockButton_Label {
+            get {
+                return ResourceManager.GetString("ribCodeBlockButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collapse Pages.
+        /// </summary>
+        internal static string ribCollapseButton_Label {
+            get {
+                return ResourceManager.GetString("ribCollapseButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Style from Selection....
+        /// </summary>
+        internal static string ribCreateStyleButton_Label {
+            get {
+                return ResourceManager.GetString("ribCreateStyleButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Styles.
+        /// </summary>
+        internal static string ribCustomStylesButton_Label {
+            get {
+                return ResourceManager.GetString("ribCustomStylesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrease Font Size.
+        /// </summary>
+        internal static string ribDecreaseFontSizeButton_Label {
+            get {
+                return ResourceManager.GetString("ribDecreaseFontSizeButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrease page font size (Ctrl + Alt + Minus).
+        /// </summary>
+        internal static string ribDecreaseFontSizeButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribDecreaseFontSizeButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Formula.
+        /// </summary>
+        internal static string ribDeleteFormulaButton_Label {
+            get {
+                return ResourceManager.GetString("ribDeleteFormulaButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete formula from selected table cell(s).
+        /// </summary>
+        internal static string ribDeleteFormulaButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribDeleteFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Styles....
+        /// </summary>
+        internal static string ribEditStylesButton_Label {
+            get {
+                return ResourceManager.GetString("ribEditStylesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand/Collapse.
+        /// </summary>
+        internal static string ribExpandButton_Label {
+            get {
+                return ResourceManager.GetString("ribExpandButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extras....
+        /// </summary>
+        internal static string ribExtrasMenu_Label {
+            get {
+                return ResourceManager.GetString("ribExtrasMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Favorites.
+        /// </summary>
+        internal static string ribFavoritesMenu_Label {
+            get {
+                return ResourceManager.GetString("ribFavoritesMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Icon to Page Title.
+        /// </summary>
+        internal static string ribFlagTitleButton_Label {
+            get {
+                return ResourceManager.GetString("ribFlagTitleButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Footnote.
+        /// </summary>
+        internal static string ribFootnoteButton_Label {
+            get {
+                return ResourceManager.GetString("ribFootnoteButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add footnote (Ctrl + Alt + F).
+        /// </summary>
+        internal static string ribFootnoteButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribFootnoteButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Footnote.
+        /// </summary>
+        internal static string ribFootnoteRemoveButton_Label {
+            get {
+                return ResourceManager.GetString("ribFootnoteRemoveButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove footnote (Ctrl + Shift + F).
+        /// </summary>
+        internal static string ribFootnoteRemoveButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribFootnoteRemoveButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formula....
+        /// </summary>
+        internal static string ribFormulaMenu_Label {
+            get {
+                return ResourceManager.GetString("ribFormulaMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gray Status.
+        /// </summary>
+        internal static string ribGrayStatusButton_Label {
+            get {
+                return ResourceManager.GetString("ribGrayStatusButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green Status.
+        /// </summary>
+        internal static string ribGreenStatusButton_Label {
+            get {
+                return ResourceManager.GetString("ribGreenStatusButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight Formula.
+        /// </summary>
+        internal static string ribHighlightFormulaButton_Label {
+            get {
+                return ResourceManager.GetString("ribHighlightFormulaButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High cells with formula in current table.
+        /// </summary>
+        internal static string ribHighlightFormulaButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribHighlightFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images....
+        /// </summary>
+        internal static string ribImagesMenu_Label {
+            get {
+                return ResourceManager.GetString("ribImagesMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase Font Size.
+        /// </summary>
+        internal static string ribIncreaseFontSizeButton_Label {
+            get {
+                return ResourceManager.GetString("ribIncreaseFontSizeButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase page font size (Ctrl + Alt + Plus).
+        /// </summary>
+        internal static string ribIncreaseFontSizeButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribIncreaseFontSizeButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info block.
+        /// </summary>
+        internal static string ribInfoBlockButton_Label {
+            get {
+                return ResourceManager.GetString("ribInfoBlockButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Double Horizontal Line.
+        /// </summary>
+        internal static string ribInsertDoubleLineButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertDoubleLineButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert double horizontal line (Shift + Alt + Equals).
+        /// </summary>
+        internal static string ribInsertDoubleLineButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertDoubleLineButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Horizontal Line.
+        /// </summary>
+        internal static string ribInsertSingleLineButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertSingleLineButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert single horizontal line (Shift + Alt + Minus).
+        /// </summary>
+        internal static string ribInsertSingleLineButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertSingleLineButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To lowercase.
+        /// </summary>
+        internal static string ribLowercaseButton_Label {
+            get {
+                return ResourceManager.GetString("ribLowercaseButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert text to lowercase (Ctrl + Shift + U).
+        /// </summary>
+        internal static string ribLowercaseButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribLowercaseButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge Pages.
+        /// </summary>
+        internal static string ribMergeButton_Label {
+            get {
+                return ResourceManager.GetString("ribMergeButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace URLs with Web Page Titles.
+        /// </summary>
+        internal static string ribNameUrlsButton_Label {
+            get {
+                return ResourceManager.GetString("ribNameUrlsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Spell Check.
+        /// </summary>
+        internal static string ribNoSpellCheckButton_Label {
+            get {
+                return ResourceManager.GetString("ribNoSpellCheckButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable spell check for entire page (F4).
+        /// </summary>
+        internal static string ribNoSpellCheckButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribNoSpellCheckButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore.
+        /// </summary>
+        internal static string ribOneMoreGroup_Label {
+            get {
+                return ResourceManager.GetString("ribOneMoreGroup_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore.
+        /// </summary>
+        internal static string ribOneMoreMenu_Label {
+            get {
+                return ResourceManager.GetString("ribOneMoreMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Page Color....
+        /// </summary>
+        internal static string ribPageColorButton_Label {
+            get {
+                return ResourceManager.GetString("ribPageColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Rich Text.
+        /// </summary>
+        internal static string ribPasteRtfButton_Label {
+            get {
+                return ResourceManager.GetString("ribPasteRtfButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste rich text (Ctrl + Alt + V).
+        /// </summary>
+        internal static string ribPasteRtfButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPasteRtfButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recalculate Formula.
+        /// </summary>
+        internal static string ribRecalculateFormulaButton_Label {
+            get {
+                return ResourceManager.GetString("ribRecalculateFormulaButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recalculate all formula in the current table.
+        /// </summary>
+        internal static string ribRecalculateFormulaButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRecalculateFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red Status.
+        /// </summary>
+        internal static string ribRedStatusButton_Label {
+            get {
+                return ResourceManager.GetString("ribRedStatusButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Replace.
+        /// </summary>
+        internal static string ribReplaceButton_Label {
+            get {
+                return ResourceManager.GetString("ribReplaceButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search and replace (Ctrl + H).
+        /// </summary>
+        internal static string ribReplaceButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribReplaceButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize.
+        /// </summary>
+        internal static string ribResizeImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribResizeImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show XML.
+        /// </summary>
+        internal static string ribShowXmlButton_Label {
+            get {
+                return ResourceManager.GetString("ribShowXmlButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show XML of hierarchy and current page (Ctrl + Shift + Alt + X).
+        /// </summary>
+        internal static string ribShowXmlButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribShowXmlButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snippets....
+        /// </summary>
+        internal static string ribSnippetsMenu_Label {
+            get {
+                return ResourceManager.GetString("ribSnippetsMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort....
+        /// </summary>
+        internal static string ribSortButton_Label {
+            get {
+                return ResourceManager.GetString("ribSortButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Page TOC.
+        /// </summary>
+        internal static string ribTocButton_Label {
+            get {
+                return ResourceManager.GetString("ribTocButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trim Whitespace.
+        /// </summary>
+        internal static string ribTrimButton_Label {
+            get {
+                return ResourceManager.GetString("ribTrimButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trim trailing whitespace from selected text.
+        /// </summary>
+        internal static string ribTrimButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribTrimButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To UPPERCASE.
+        /// </summary>
+        internal static string ribUppercaseButton_Label {
+            get {
+                return ResourceManager.GetString("ribUppercaseButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert text to uppercase (Ctrl + Shift + Alt + U).
+        /// </summary>
+        internal static string ribUppercaseButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribUppercaseButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning block.
+        /// </summary>
+        internal static string ribWarnBlockButton_Label {
+            get {
+                return ResourceManager.GetString("ribWarnBlockButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow Status.
+        /// </summary>
+        internal static string ribYellowStatusButton_Label {
+            get {
+                return ResourceManager.GetString("ribYellowStatusButton_Label", resourceCulture);
             }
         }
         
@@ -590,42 +1050,6 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Shazam", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show XML.
-        /// </summary>
-        internal static string showXmlButton_Label {
-            get {
-                return ResourceManager.GetString("showXmlButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show XML of hierarchy and current page (Ctrl + Shift + Alt + X).
-        /// </summary>
-        internal static string showXmlButton_Screentip {
-            get {
-                return ResourceManager.GetString("showXmlButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show XML.
-        /// </summary>
-        internal static string showXmlButton0_Label {
-            get {
-                return ResourceManager.GetString("showXmlButton0_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show XML of hierarchy and current page (Ctrl + Shift + Alt + X).
-        /// </summary>
-        internal static string showXmlButton0_Screentip {
-            get {
-                return ResourceManager.GetString("showXmlButton0_Screentip", resourceCulture);
             }
         }
         
@@ -740,24 +1164,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trim Whitespace.
-        /// </summary>
-        internal static string trimButton_Label {
-            get {
-                return ResourceManager.GetString("trimButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Trim trailing whitespace from selected text.
-        /// </summary>
-        internal static string trimButton_Screentip {
-            get {
-                return ResourceManager.GetString("trimButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Underline {
@@ -774,15 +1180,6 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("UpArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Convert text to uppercase (Ctrl + Shift + Alt + U).
-        /// </summary>
-        internal static string uppercaseButton_Screentip {
-            get {
-                return ResourceManager.GetString("uppercaseButton_Screentip", resourceCulture);
             }
         }
         
