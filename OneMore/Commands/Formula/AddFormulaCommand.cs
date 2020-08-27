@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn
 
 					if (calculator.Direction != FormulaDirection.Error)
 					{
-						using (var dialog = new FormulaDialog())
+						using (var dialog = new Dialogs.FormulaDialog())
 						{
 							dialog.Direction = InferDirection(cells);
 
@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn
 			if (direction == FormulaDirection.Error)
 			{
 				UIHelper.ShowMessage(manager.Window,
-					"Select one or more cells from the same row or the same column");
+					Properties.Resources.AddFormula_linearMessage);
 			}
 
 			return direction;

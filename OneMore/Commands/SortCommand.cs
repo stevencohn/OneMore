@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Dialogs;
 
 
 	internal class SortCommand : Command

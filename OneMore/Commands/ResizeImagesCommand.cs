@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn
 			int width = (int)decimal.Parse(size.Attribute("width").Value);
 			int height = (int)decimal.Parse(size.Attribute("height").Value);
 
-			using (var dialog = new ResizeImagesDialog(width, height))
+			using (var dialog = new Dialogs.ResizeImagesDialog(width, height))
 			{
 				dialog.SetOriginalSize(GetOriginalSize(image, ns));
 
@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn
 
 		private void ResizeMany(IEnumerable<XElement> images)
 		{
-			using (var dialog = new ResizeImagesDialog(1, 1, true))
+			using (var dialog = new Dialogs.ResizeImagesDialog(1, 1, true))
 			{
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)

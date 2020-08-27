@@ -1,4 +1,4 @@
-﻿namespace River.OneMoreAddIn
+﻿namespace River.OneMoreAddIn.Dialogs
 {
 	partial class ReorderDialog
 	{
@@ -11,7 +11,7 @@
 		/// Clean up any resources being used.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose (bool disposing)
+		protected override void Dispose(bool disposing)
 		{
 			if (disposing && (components != null))
 			{
@@ -26,7 +26,7 @@
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		private void InitializeComponent ()
+		private void InitializeComponent()
 		{
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
@@ -103,7 +103,7 @@
 			this.label.Size = new System.Drawing.Size(376, 52);
 			this.label.TabIndex = 5;
 			this.label.Text = "Reorder how styles appear in the gallery. Also changes the order of headings in a" +
-    " TOC";
+	" TOC";
 			// 
 			// ReorderDialog
 			// 

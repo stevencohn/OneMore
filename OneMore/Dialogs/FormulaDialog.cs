@@ -4,17 +4,40 @@
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	public partial class FormulaDialog : Form
+	internal partial class FormulaDialog : LocalizableForm
 	{
 		public FormulaDialog()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.FormulaDialog_Text;
+
+				Localize(new string[]
+				{
+					"rangeLabel",
+					"formatLabel",
+					"functionLabel",
+					"okButton",
+					"cancelButton",
+					"colButton",
+					"rowButton"
+				});
+
+				formatBox.Items.Clear();
+				formatBox.Items.AddRange(Resx.FomulaDialog_formatBox_Items.Split(new char[] { '\n' }));
+
+				functionBox.Items.Clear();
+				functionBox.Items.AddRange(Resx.FormulaDialog_functionBox_Items.Split(new char[] { '\n' }));
+			}
 
 			formatBox.SelectedIndex = 0;
 			functionBox.SelectedIndex = 0;

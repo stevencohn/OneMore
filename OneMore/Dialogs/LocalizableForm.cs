@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
+	using System.Linq;
 	using System.Threading;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -22,9 +23,10 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			foreach (var key in keys)
 			{
-				if (Controls.ContainsKey(key))
+				var control = Controls.Find(key, true).FirstOrDefault();
+				if (control != null)
 				{
-					Controls[key].Text = Resx.ResourceManager.GetString($"{Name}_{key}.Text");
+					control.Text = Resx.ResourceManager.GetString($"{Name}_{key}.Text");
 				}
 			}
 		}

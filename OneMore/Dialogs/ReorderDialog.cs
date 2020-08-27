@@ -2,15 +2,16 @@
 // Copyright © 2018 Steven M Cohn.  Yada yada...
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Dialogs
 {
 	using System.Data;
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ReorderDialog : Form
+	internal partial class ReorderDialog : LocalizableForm
 	{
 
 		public ReorderDialog(ComboBox.ObjectCollection items)
@@ -21,6 +22,18 @@ namespace River.OneMoreAddIn
 			listBox.Items.AddRange(list);
 
 			listBox.SelectedIndex = 0;
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.ReorderDialog_Text;
+
+				Localize(new string[]
+				{
+					"okButton",
+					"cancelButton",
+					"label"
+				});
+			}
 		}
 
 

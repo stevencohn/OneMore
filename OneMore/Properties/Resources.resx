@@ -616,15 +616,19 @@ OneNote will close automatically</value>
   </data>
   <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
     <value>Custom background...</value>
+    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
     <value>Dark background</value>
+    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible.</value>
+    <comment>instructions</comment>
   </data>
   <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
     <value>Light background</value>
+    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -633,5 +637,220 @@ OneNote will close automatically</value>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>Page Color</value>
     <comment>color popup dialog title</comment>
+  </data>
+  <data name="AddFormula_linearMessage" xml:space="preserve">
+    <value>Select one or more cells from the same row or the same column</value>
+    <comment>message box</comment>
+  </data>
+  <data name="FomulaDialog_formatBox.Items" xml:space="preserve">
+    <value>Number
+Currency
+Percentage</value>
+    <comment>formats, one per line</comment>
+  </data>
+  <data name="FormulaDialog.Text" xml:space="preserve">
+    <value>Formula</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormulaDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel button</comment>
+  </data>
+  <data name="FormulaDialog_colButton.Text" xml:space="preserve">
+    <value>Column cells above</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
+    <value>Format:</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_functionBox.Items" xml:space="preserve">
+    <value>Sum
+Average
+Min
+Max
+Range
+Median
+Mode
+Variance
+Standard Deviation</value>
+    <comment>functions, one per line</comment>
+  </data>
+  <data name="FormulaDialog_functionLabel.Text" xml:space="preserve">
+    <value>Function:</value>
+  </data>
+  <data name="FormulaDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>OK button</comment>
+  </data>
+  <data name="FormulaDialog_rangeLabel.Text" xml:space="preserve">
+    <value>Range:</value>
+  </data>
+  <data name="FormulaDialog_rowButton.Text" xml:space="preserve">
+    <value>Row cells to the left</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ReorderDialog.Text" xml:space="preserve">
+    <value>Reorder Custom Styles</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ReorderDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ReorderDialog_label.Text" xml:space="preserve">
+    <value>Reorder how styles appear in the gallery. Also chnages the order of headings in a TOC</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="ReorderDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ResizeImagesDialog.Text" xml:space="preserve">
+    <value>Resize Image</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>Absolute</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
+    <value>all images on page</value>
+    <comment>info label</comment>
+  </data>
+  <data name="ResizeImagesDialog_aspectBox.Text" xml:space="preserve">
+    <value>Maintain aspect ratio</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ResizeImagesDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
+    <value>Apply to</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
+    <value>Current size</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>Height</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
+    <value>Original size</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
+    <value>%</value>
+    <comment>percent sign</comment>
+  </data>
+  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>Percentage</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ResizeImagesDialog_presetLabel.Text" xml:space="preserve">
+    <value>Width</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>Preset</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="ResizeImagesDialog_widthLabel.Text" xml:space="preserve">
+    <value>Width</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
+    <value>Match case</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
+    <value>Search and Replace</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_whatLabel.Text" xml:space="preserve">
+    <value>Find what:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
+    <value>Replace with:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SortDialog.Text" xml:space="preserve">
+    <value>Sort</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SortDialog_ascButton.Text" xml:space="preserve">
+    <value>Ascending</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SortDialog_createdButton.Text" xml:space="preserve">
+    <value>Date Created</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_desButton.Text" xml:space="preserve">
+    <value>Descending</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_direcitonLabel.Text" xml:space="preserve">
+    <value>Direction:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SortDialog_modifiedButton.Text" xml:space="preserve">
+    <value>Date Modified</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>Name</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
+    <value>Pin Notes to top and
+Quick Notes to bottom</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortDialog_scopeBox.Items" xml:space="preserve">
+    <value>Pages in this section
+Sections in this notebook
+Notebooks</value>
+    <comment>scope dropdown, one per line</comment>
+  </data>
+  <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
+    <value>Scope:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SortDialog_sortLabel.Text" xml:space="preserve">
+    <value>Sort by:</value>
+    <comment>label</comment>
   </data>
 </root>

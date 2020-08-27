@@ -5,14 +5,15 @@
 #pragma warning disable CS3003  // Type is not CLS-compliant
 #pragma warning disable IDE1006 // must begin with upper case
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	public partial class ResizeImagesDialog : Form
+	internal partial class ResizeImagesDialog : LocalizableForm
 	{
 		private readonly SettingsProvider settings;
 		private readonly int currentWidth;
@@ -29,7 +30,7 @@ namespace River.OneMoreAddIn
 			suspended = true;
 			currentWidth = width;
 			currentHeight = height;
-			sizeLink.Text = $"{width} x {height}";
+			sizeLink.Text = string.Format(Resx.ResizeImagesDialog_sizeLink_Text, width, height);
 
 			widthUpDown.Value = originalWidth = width;
 			heightUpDown.Value = originalHeight = height;
@@ -39,7 +40,7 @@ namespace River.OneMoreAddIn
 
 			if (presetOnly)
 			{
-				currentLabel.Text = "Apply to";
+				currentLabel.Text = Resx.ResizeImagesDialog_currentLabel_Text;
 				allLabel.Left = sizeLink.Left;
 				allLabel.Visible = true;
 				origLabel.Visible = sizeLink.Visible = origSizeLink.Visible = false;
@@ -48,6 +49,27 @@ namespace River.OneMoreAddIn
 				Radio_Click(presetRadio, null);
 				pctRadio.Enabled = false;
 				absRadio.Enabled = false;
+			}
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.ResizeImagesDialog_Text;
+
+				Localize(new string[]
+				{
+					"pctRadio",
+					"absRadio",
+					"presetRadio",
+					"presetLabel",
+					"pctLabel",
+					"aspectBox",
+					"widthLabel",
+					"heightLabel",
+					"origLabel",
+					"allLabel",
+					"okButton",
+					"cancelButton"
+				});
 			}
 
 			suspended = false;
@@ -62,7 +84,7 @@ namespace River.OneMoreAddIn
 
 		public void SetOriginalSize(Size size)
 		{
-			origSizeLink.Text = $"{size.Width} x {size.Height}";
+			origSizeLink.Text = string.Format(Resx.ResizeImagesDialog_origSizeLink_Text, size.Width, size.Height);
 			originalWidth = size.Width;
 			originalHeight = size.Height;
 		}

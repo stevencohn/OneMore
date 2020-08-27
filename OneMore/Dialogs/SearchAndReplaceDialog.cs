@@ -2,17 +2,31 @@
 // Copyright © 2018 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
-	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SearchAndReplaceDialog : Form
+	internal partial class SearchAndReplaceDialog : LocalizableForm
 	{
 		public SearchAndReplaceDialog ()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.SearchAndReplaceDialog_Text;
+
+				Localize(new string[]
+				{
+					"whatLabel",
+					"withLabel",
+					"matchBox",
+					"okButton",
+					"cancelButton"
+				});
+			}
 		}
 
 

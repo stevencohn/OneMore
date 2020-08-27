@@ -201,6 +201,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select one or more cells from the same row or the same column.
+        /// </summary>
+        internal static string AddFormula_linearMessage {
+            get {
+                return ResourceManager.GetString("AddFormula_linearMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMoreAddIn.
         /// </summary>
         internal static string AddInTitle {
@@ -473,12 +482,112 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number
+        ///Currency
+        ///Percentage.
+        /// </summary>
+        internal static string FomulaDialog_formatBox_Items {
+            get {
+                return ResourceManager.GetString("FomulaDialog_formatBox.Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap FontColor {
             get {
                 object obj = ResourceManager.GetObject("FontColor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string FormulaDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column cells above.
+        /// </summary>
+        internal static string FormulaDialog_colButton_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_colButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format:.
+        /// </summary>
+        internal static string FormulaDialog_formatLabel_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_formatLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sum
+        ///Average
+        ///Min
+        ///Max
+        ///Range
+        ///Median
+        ///Mode
+        ///Variance
+        ///Standard Deviation.
+        /// </summary>
+        internal static string FormulaDialog_functionBox_Items {
+            get {
+                return ResourceManager.GetString("FormulaDialog_functionBox.Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function:.
+        /// </summary>
+        internal static string FormulaDialog_functionLabel_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_functionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string FormulaDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range:.
+        /// </summary>
+        internal static string FormulaDialog_rangeLabel_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_rangeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row cells to the left.
+        /// </summary>
+        internal static string FormulaDialog_rowButton_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_rowButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formula.
+        /// </summary>
+        internal static string FormulaDialog_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog.Text", resourceCulture);
             }
         }
         
@@ -635,6 +744,195 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Reorder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ReorderDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ReorderDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reorder how styles appear in the gallery. Also chnages the order of headings in a TOC.
+        /// </summary>
+        internal static string ReorderDialog_label_Text {
+            get {
+                return ResourceManager.GetString("ReorderDialog_label.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string ReorderDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("ReorderDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reorder Custom Styles.
+        /// </summary>
+        internal static string ReorderDialog_Text {
+            get {
+                return ResourceManager.GetString("ReorderDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absolute.
+        /// </summary>
+        internal static string ResizeImagesDialog_absRadio_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_absRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to all images on page.
+        /// </summary>
+        internal static string ResizeImagesDialog_allLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_allLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maintain aspect ratio.
+        /// </summary>
+        internal static string ResizeImagesDialog_aspectBox_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_aspectBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ResizeImagesDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to.
+        /// </summary>
+        internal static string ResizeImagesDialog_currentLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_currentLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current size.
+        /// </summary>
+        internal static string ResizeImagesDialog_currentLabelSize_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_currentLabelSize.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        internal static string ResizeImagesDialog_heightLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_heightLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string ResizeImagesDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original size.
+        /// </summary>
+        internal static string ResizeImagesDialog_origLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_origLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} x {1}.
+        /// </summary>
+        internal static string ResizeImagesDialog_origSizeLink_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_origSizeLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to %.
+        /// </summary>
+        internal static string ResizeImagesDialog_pctLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_pctLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percentage.
+        /// </summary>
+        internal static string ResizeImagesDialog_pctRadio_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_pctRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        internal static string ResizeImagesDialog_presetLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_presetLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preset.
+        /// </summary>
+        internal static string ResizeImagesDialog_presetRadio_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_presetRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} x {1}.
+        /// </summary>
+        internal static string ResizeImagesDialog_sizeLink_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_sizeLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize Image.
+        /// </summary>
+        internal static string ResizeImagesDialog_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        internal static string ResizeImagesDialog_widthLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_widthLabel.Text", resourceCulture);
             }
         }
         
@@ -1247,6 +1545,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match case.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_matchBox_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_matchBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Replace.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find what:.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_whatLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_whatLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with:.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_withLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_withLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.xml.
         /// </summary>
         internal static string SettingsFilename {
@@ -1282,6 +1634,126 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Software", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ascending.
+        /// </summary>
+        internal static string SortDialog_ascButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_ascButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SortDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Created.
+        /// </summary>
+        internal static string SortDialog_createdButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_createdButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descending.
+        /// </summary>
+        internal static string SortDialog_desButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_desButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direction:.
+        /// </summary>
+        internal static string SortDialog_direcitonLabel_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_direcitonLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Modified.
+        /// </summary>
+        internal static string SortDialog_modifiedButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_modifiedButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string SortDialog_nameButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_nameButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string SortDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin Notes to top and
+        ///Quick Notes to bottom.
+        /// </summary>
+        internal static string SortDialog_pinNotesBox_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_pinNotesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages in this section
+        ///Sections in this notebook
+        ///Notebooks.
+        /// </summary>
+        internal static string SortDialog_scopeBox_Items {
+            get {
+                return ResourceManager.GetString("SortDialog_scopeBox.Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scope:.
+        /// </summary>
+        internal static string SortDialog_scopeLabel_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_scopeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by:.
+        /// </summary>
+        internal static string SortDialog_sortLabel_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_sortLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort.
+        /// </summary>
+        internal static string SortDialog_Text {
+            get {
+                return ResourceManager.GetString("SortDialog.Text", resourceCulture);
             }
         }
         

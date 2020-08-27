@@ -4,14 +4,15 @@
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
 	using System.Windows.Forms;
 	using Microsoft.Office.Interop.OneNote;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	public partial class SortDialog : Form, IOneMoreWindow
+	internal partial class SortDialog : LocalizableForm
 	{
 
 		public enum Sortings
@@ -32,6 +33,29 @@ namespace River.OneMoreAddIn
 		public SortDialog()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.SortDialog_Text;
+
+				scopeBox.Items.Clear();
+				scopeBox.Items.AddRange(Resx.SortDialog_scopeBox_Items.Split('\n'));
+
+				Localize(new string[]
+				{
+					"scopeLabel",
+					"sortLabel",
+					"nameButton",
+					"createdButton",
+					"modifiedButton",
+					"directionLabel",
+					"ascButton",
+					"desButton",
+					"pinNotesBox",
+					"okButton",
+					"cancelButton"
+				});
+			}
 
 			scopeBox.SelectedIndex = 0;
 		}
@@ -103,7 +127,6 @@ namespace River.OneMoreAddIn
 			}
 
 			pinNotesBox.Enabled = (scopeBox.SelectedIndex == 1);
-			quickLabel.Enabled = (scopeBox.SelectedIndex == 1);
 		}
 	}
 }

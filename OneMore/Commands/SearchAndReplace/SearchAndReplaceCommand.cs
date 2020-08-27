@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 			string withText;
 			bool matchCase;
 
-			using (var dialog = new SearchAndReplaceDialog())
+			using (var dialog = new Dialogs.SearchAndReplaceDialog())
 			{
 				result = dialog.ShowDialog(owner);
 
