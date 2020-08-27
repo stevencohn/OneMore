@@ -2,15 +2,16 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Dialogs
 {
 	using River.OneMoreAddIn.Helpers.Updater;
 	using System;
 	using System.IO;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class AboutDialog : Form, IOneMoreWindow
+	internal partial class AboutDialog : LocalizableForm
 	{
 
 		public AboutDialog()
@@ -19,16 +20,26 @@ namespace River.OneMoreAddIn
 
 			Logger.DesignMode = DesignMode;
 
+			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, AssemblyInfo.Version);
+			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
+
 			var logpath = ((Logger)Logger.Current).LogPath;
-
-			versionLabel.Text = "Version " + AssemblyInfo.Version;
-
-			var year = DateTime.Now.Year;
-			copyLabel.Text = $"Copyright \u00a9 2016-{year} Steven M Cohn";
-
 			logLabel.Text = logpath;
 
 			clearLogLabel.Visible = File.Exists(logpath);
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.AboutDialoge_Text;
+
+				Localize(new string[]
+				{
+					"titleLabel",
+					"okButton",
+					"clearLogLabel",
+					"updateLink"
+				});
+			}
 		}
 
 
@@ -59,14 +70,16 @@ namespace River.OneMoreAddIn
 			{
 				if (updater.IsUpToDate(AssemblyInfo.Version))
 				{
-					MessageBox.Show("You have the latest version", "You're good to go!");
+					MessageBox.Show(
+						Resx.AboutDialog_LatestMessage,
+						Resx.AboutDialog_LatestTitle);
+
 					return;
 				}
 
 				var answer = MessageBox.Show(
-					"A new version is available:" +
-					$"\n\n   {updater.Tag} - \"{updater.Name}\"" +
-					$"\n\nDo you want to update now?\nOneNote will close automatically", "Update OneMore",
+					string.Format(Resx.AboutDialog_NewVersionMessage, updater.Tag, updater.Name),
+					Resx.AboutDialog_NewVersionTitle,
 					MessageBoxButtons.YesNo);
 
 				if (answer == DialogResult.Yes)
@@ -92,7 +105,8 @@ namespace River.OneMoreAddIn
 			if (File.Exists(((Logger)Logger.Current).LogPath))
 			{
 				var result = MessageBox.Show(
-					"Clear the log file now?", "Confirm",
+					Resx.AboutDialog_ClearLogMessage,
+					Resx.AboutDialog_ClearLogTitle,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question,
 					MessageBoxDefaultButton.Button1);
 
@@ -103,7 +117,10 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
-				MessageBox.Show("No log file is available", "It's all good", MessageBoxButtons.OK);
+				MessageBox.Show(
+					Resx.AboutDialog_ClearLogNoneMessage,
+					Resx.AboutDialog_ClearLogNoneTitle,
+					MessageBoxButtons.OK);
 			}
 		}
 	}

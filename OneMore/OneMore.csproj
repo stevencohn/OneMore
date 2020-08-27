@@ -135,6 +135,9 @@
     <Compile Include="Dialogs\HeadingsDialog.Designer.cs">
       <DependentUpon>HeadingsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\LocalizableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\ResizeImagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -61,6 +61,146 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear the log file.
+        /// </summary>
+        internal static string AboutDialog_clearLogLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_clearLogLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear the log file now?.
+        /// </summary>
+        internal static string AboutDialog_ClearLogMessage {
+            get {
+                return ResourceManager.GetString("AboutDialog_ClearLogMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No log file is available.
+        /// </summary>
+        internal static string AboutDialog_ClearLogNoneMessage {
+            get {
+                return ResourceManager.GetString("AboutDialog_ClearLogNoneMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It&apos;s all good.
+        /// </summary>
+        internal static string AboutDialog_ClearLogNoneTitle {
+            get {
+                return ResourceManager.GetString("AboutDialog_ClearLogNoneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        internal static string AboutDialog_ClearLogTitle {
+            get {
+                return ResourceManager.GetString("AboutDialog_ClearLogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright @ 2016-{0} Steven M Cohn.
+        /// </summary>
+        internal static string AboutDialog_copyLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_copyLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have the latest version.
+        /// </summary>
+        internal static string AboutDialog_LatestMessage {
+            get {
+                return ResourceManager.GetString("AboutDialog_LatestMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re good to go!.
+        /// </summary>
+        internal static string AboutDialog_LatestTitle {
+            get {
+                return ResourceManager.GetString("AboutDialog_LatestTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new version is available:
+        ///
+        ///    {0} - &quot;{1}&quot;
+        ///
+        ///Do you want to update now?
+        ///OneNote will close automatically.
+        /// </summary>
+        internal static string AboutDialog_NewVersionMessage {
+            get {
+                return ResourceManager.GetString("AboutDialog_NewVersionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update OneMore.
+        /// </summary>
+        internal static string AboutDialog_NewVersionTitle {
+            get {
+                return ResourceManager.GetString("AboutDialog_NewVersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string AboutDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Add-in for OneNote 2016.
+        /// </summary>
+        internal static string AboutDialog_titleLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_titleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for Updates.
+        /// </summary>
+        internal static string AboutDialog_updateLink_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_updateLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        internal static string AboutDialog_versionLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_versionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Add-in.
+        /// </summary>
+        internal static string AboutDialoge_Text {
+            get {
+                return ResourceManager.GetString("AboutDialoge.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMoreAddIn.
         /// </summary>
         internal static string AddInTitle {
@@ -126,6 +266,69 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Camera", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ChangePageColorDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom background....
+        /// </summary>
+        internal static string ChangePageColorDialog_customButton_Text {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_customButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark background.
+        /// </summary>
+        internal static string ChangePageColorDialog_darkButton_Text {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_darkButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible..
+        /// </summary>
+        internal static string ChangePageColorDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light background.
+        /// </summary>
+        internal static string ChangePageColorDialog_lightButton_Text {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_lightButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string ChangePageColorDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Page Color.
+        /// </summary>
+        internal static string ChangePageColorDialog_Text {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog.Text", resourceCulture);
             }
         }
         
@@ -383,6 +586,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Color.
+        /// </summary>
+        internal static string PageColorDialog_Text {
+            get {
+                return ResourceManager.GetString("PageColorDialog.Text", resourceCulture);
             }
         }
         

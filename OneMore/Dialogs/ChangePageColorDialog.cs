@@ -2,14 +2,15 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	public partial class ChangePageColorDialog : Form
+	internal partial class ChangePageColorDialog : LocalizableForm
 	{
 		private readonly Color DarkColor = Color.FromArgb(0x21, 0x21, 0x21);
 
@@ -20,6 +21,22 @@ namespace River.OneMoreAddIn
 		public ChangePageColorDialog(Color pageColor)
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.ChangePageColorDialog_Text;
+
+				Localize(new string[]
+				{
+					"introLabel",
+					"lightButton",
+					"darkButton",
+					"customButton",
+					"cancelButton",
+					"okButton"
+				});
+			}
+
 			this.pageColor = pageColor;
 
 			if (pageColor.Equals(Color.White))
@@ -83,7 +100,7 @@ namespace River.OneMoreAddIn
 			{
 				var location = PointToScreen(customButton.Location);
 
-				using (var dialog = new ColorDialogEx("Page Color",
+				using (var dialog = new ColorDialogEx(Resx.PageColorDialog_Text,
 					location.X + customButton.Bounds.Location.X + (customButton.Width / 2),
 					location.Y - 200))
 				{
@@ -96,6 +113,5 @@ namespace River.OneMoreAddIn
 				}
 			}
 		}
-
 	}
 }

@@ -541,4 +541,97 @@
     <value>Yellow Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
+  <data name="AboutDialoge.Text" xml:space="preserve">
+    <value>OneMore Add-in</value>
+    <comment>dialog title bar</comment>
+  </data>
+  <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
+    <value>Clear the log file</value>
+    <comment>hyperlink to clear the log file</comment>
+  </data>
+  <data name="AboutDialog_ClearLogMessage" xml:space="preserve">
+    <value>Clear the log file now?</value>
+    <comment>message box message</comment>
+  </data>
+  <data name="AboutDialog_ClearLogNoneMessage" xml:space="preserve">
+    <value>No log file is available</value>
+    <comment>message box message</comment>
+  </data>
+  <data name="AboutDialog_ClearLogNoneTitle" xml:space="preserve">
+    <value>It's all good</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="AboutDialog_ClearLogTitle" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="AboutDialog_copyLabel.Text" xml:space="preserve">
+    <value>Copyright @ 2016-{0} Steven M Cohn</value>
+    <comment>copyright to current year</comment>
+  </data>
+  <data name="AboutDialog_LatestMessage" xml:space="preserve">
+    <value>You have the latest version</value>
+    <comment>message box message</comment>
+  </data>
+  <data name="AboutDialog_LatestTitle" xml:space="preserve">
+    <value>You're good to go!</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
+    <value>A new version is available:
+
+    {0} - "{1}"
+
+Do you want to update now?
+OneNote will close automatically</value>
+    <comment>message box message showing verison tag and name</comment>
+  </data>
+  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
+    <value>Update OneMore</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="AboutDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>OK button</comment>
+  </data>
+  <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
+    <value>OneMore Add-in for OneNote 2016</value>
+    <comment>Add-in full name</comment>
+  </data>
+  <data name="AboutDialog_updateLink.Text" xml:space="preserve">
+    <value>Check for Updates</value>
+    <comment>check online for available updates to add-in</comment>
+  </data>
+  <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>the version of the add-in</comment>
+  </data>
+  <data name="ChangePageColorDialog.Text" xml:space="preserve">
+    <value>Change Page Color</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
+    <value>Custom background...</value>
+  </data>
+  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
+    <value>Dark background</value>
+  </data>
+  <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
+    <value>After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible.</value>
+  </data>
+  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
+    <value>Light background</value>
+  </data>
+  <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PageColorDialog.Text" xml:space="preserve">
+    <value>Page Color</value>
+    <comment>color popup dialog title</comment>
+  </data>
 </root>
