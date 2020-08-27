@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn
 		{
 			string[] codes = null;
 
-			using (var dialog = new EmojiDialog())
+			using (var dialog = new Dialogs.EmojiDialog())
 			{
 				var result = dialog.ShowDialog(owner);
 

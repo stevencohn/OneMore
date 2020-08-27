@@ -1,4 +1,4 @@
-﻿namespace River.OneMoreAddIn
+﻿namespace River.OneMoreAddIn.Dialogs
 {
 	partial class EmojiDialog
 	{

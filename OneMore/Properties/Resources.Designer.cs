@@ -433,6 +433,285 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Architecture.
+        /// </summary>
+        internal static string Emoji_Architecture {
+            get {
+                return ResourceManager.GetString("Emoji_Architecture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automobile.
+        /// </summary>
+        internal static string Emoji_Automobile {
+            get {
+                return ResourceManager.GetString("Emoji_Automobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bullet.
+        /// </summary>
+        internal static string Emoji_Bullet {
+            get {
+                return ResourceManager.GetString("Emoji_Bullet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendar.
+        /// </summary>
+        internal static string Emoji_Calendar {
+            get {
+                return ResourceManager.GetString("Emoji_Calendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Circle.
+        /// </summary>
+        internal static string Emoji_Circle {
+            get {
+                return ResourceManager.GetString("Emoji_Circle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cross Mark.
+        /// </summary>
+        internal static string Emoji_CrossMark {
+            get {
+                return ResourceManager.GetString("Emoji_CrossMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycling.
+        /// </summary>
+        internal static string Emoji_Cycling {
+            get {
+                return ResourceManager.GetString("Emoji_Cycling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Emoji_Email {
+            get {
+                return ResourceManager.GetString("Emoji_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Family.
+        /// </summary>
+        internal static string Emoji_Family {
+            get {
+                return ResourceManager.GetString("Emoji_Family", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Financial.
+        /// </summary>
+        internal static string Emoji_Financial {
+            get {
+                return ResourceManager.GetString("Emoji_Financial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hammer.
+        /// </summary>
+        internal static string Emoji_Hammer {
+            get {
+                return ResourceManager.GetString("Emoji_Hammer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        internal static string Emoji_Images {
+            get {
+                return ResourceManager.GetString("Emoji_Images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Important.
+        /// </summary>
+        internal static string Emoji_Important {
+            get {
+                return ResourceManager.GetString("Emoji_Important", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journal.
+        /// </summary>
+        internal static string Emoji_Journal {
+            get {
+                return ResourceManager.GetString("Emoji_Journal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memo.
+        /// </summary>
+        internal static string Emoji_Memo {
+            get {
+                return ResourceManager.GetString("Emoji_Memo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords.
+        /// </summary>
+        internal static string Emoji_Passwords {
+            get {
+                return ResourceManager.GetString("Emoji_Passwords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pencil.
+        /// </summary>
+        internal static string Emoji_Pencil {
+            get {
+                return ResourceManager.GetString("Emoji_Pencil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pushpin.
+        /// </summary>
+        internal static string Emoji_Pushpin {
+            get {
+                return ResourceManager.GetString("Emoji_Pushpin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shazam!.
+        /// </summary>
+        internal static string Emoji_Shazam {
+            get {
+                return ResourceManager.GetString("Emoji_Shazam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smiley.
+        /// </summary>
+        internal static string Emoji_Smiley {
+            get {
+                return ResourceManager.GetString("Emoji_Smiley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Software.
+        /// </summary>
+        internal static string Emoji_Software {
+            get {
+                return ResourceManager.GetString("Emoji_Software", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sports.
+        /// </summary>
+        internal static string Emoji_Sports {
+            get {
+                return ResourceManager.GetString("Emoji_Sports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Star.
+        /// </summary>
+        internal static string Emoji_Star {
+            get {
+                return ResourceManager.GetString("Emoji_Star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        internal static string Emoji_Summary {
+            get {
+                return ResourceManager.GetString("Emoji_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        internal static string Emoji_Tasks {
+            get {
+                return ResourceManager.GetString("Emoji_Tasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Travel.
+        /// </summary>
+        internal static string Emoji_Travel {
+            get {
+                return ResourceManager.GetString("Emoji_Travel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watch.
+        /// </summary>
+        internal static string Emoji_Watch {
+            get {
+                return ResourceManager.GetString("Emoji_Watch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string EmojiDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select on or more icons to add to page title.
+        /// </summary>
+        internal static string EmojiDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string EmojiDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TItle Icons.
+        /// </summary>
+        internal static string EmojiDialog_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Envelope {
