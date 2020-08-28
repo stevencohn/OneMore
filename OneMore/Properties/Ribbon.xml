@@ -145,11 +145,6 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertDoubleHorizontalLineCmd"/>
               <button
-                id="ribNameUrlsButton"
-                imageMso="AutoSigWebInsertHyperlink"
-                getLabel="GetItemLabel"
-                onAction="NameUrlsCmd"/>
-              <button
                 id="ribTocButton"
                 imageMso="WordInsertTableOfContents2"
                 getLabel="GetItemLabel"
@@ -160,6 +155,16 @@
                 getLabel="GetItemLabel"
                 getEnabled="GetMultiPageContext"
                 onAction="MergeCmd"/>
+              <button
+                id="ribOutlineButton"
+                imageMso="OutlineShowDetail"
+                getLabel="GetItemLabel"
+                onAction="OutlineCmd"/>
+              <button
+                id="ribNameUrlsButton"
+                imageMso="AutoSigWebInsertHyperlink"
+                getLabel="GetItemLabel"
+                onAction="NameUrlsCmd"/>
             </menu>
             <menu id="ribSnippetsMenu" getLabel="GetItemLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
               <button

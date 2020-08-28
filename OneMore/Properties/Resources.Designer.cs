@@ -1634,6 +1634,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Outline Formatting.
+        /// </summary>
+        internal static string ribOutlineButton_Label {
+            get {
+                return ResourceManager.GetString("ribOutlineButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set Page Color....
         /// </summary>
         internal static string ribPageColorButton_Label {

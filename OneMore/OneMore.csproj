@@ -107,6 +107,7 @@
     <Compile Include="Commands\Formula\FormulaEnums.cs" />
     <Compile Include="Commands\Formula\HighlightFormulaCommand.cs" />
     <Compile Include="Commands\Formula\RecalculateFormulaCommand.cs" />
+    <Compile Include="Commands\OutlineCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
@@ -129,11 +130,11 @@
     <Compile Include="Dialogs\FormulaDialog.Designer.cs">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\HeadingsDialog.cs">
+    <Compile Include="Dialogs\OutlineDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\HeadingsDialog.Designer.cs">
-      <DependentUpon>HeadingsDialog.cs</DependentUpon>
+    <Compile Include="Dialogs\OutlineDialog.Designer.cs">
+      <DependentUpon>OutlineDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\LocalizableForm.cs">
       <SubType>Form</SubType>
@@ -358,8 +359,8 @@
     <EmbeddedResource Include="Dialogs\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\HeadingsDialog.resx">
-      <DependentUpon>HeadingsDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\OutlineDialog.resx">
+      <DependentUpon>OutlineDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>

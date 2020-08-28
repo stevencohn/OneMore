@@ -35,6 +35,7 @@
 			// 
 			// pictureBox
 			// 
+			this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
 			this.pictureBox.Location = new System.Drawing.Point(0, 0);
@@ -42,8 +43,8 @@
 			this.pictureBox.Size = new System.Drawing.Size(412, 225);
 			this.pictureBox.TabIndex = 0;
 			this.pictureBox.TabStop = false;
-			this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
 			this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+			this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
 			// 
 			// TagPickerDialog
 			// 
@@ -58,6 +59,8 @@
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TagPickerDialog_KeyUp);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
 			this.ResumeLayout(false);
 

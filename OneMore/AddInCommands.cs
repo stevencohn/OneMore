@@ -161,6 +161,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<NoSpellCheckCommand>().Execute();
 		}
 
+		public void OutlineCmd(IRibbonControl control)
+		{
+			factory.GetCommand<OutlineCommand>().Execute();
+		}
+
 		public void PasteRtfCmd(IRibbonControl control)
 		{
 			factory.GetCommand<PasteRtfCommand>().Execute();
