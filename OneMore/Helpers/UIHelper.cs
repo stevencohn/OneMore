@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Drawing;
 	using System.Windows.Forms;
 	using One = Microsoft.Office.Interop.OneNote;
 
@@ -21,6 +22,7 @@ namespace River.OneMoreAddIn
 	internal static class UIHelper
 	{
 		private static bool unprepared = true;
+		private static float scalingFactor = 0;
 
 
 		/// <summary>
@@ -38,6 +40,28 @@ namespace River.OneMoreAddIn
 		public static Win32WindowHandle GetOwner (One.Window context)
 		{
 			return new Win32WindowHandle(Native.GetParent(Native.GetParent((IntPtr)context.WindowHandle)));
+		}
+
+
+		/// <summary>
+		/// Get the HighDPI scaling factor. Should be 1.0 for non-HighDPI monitors.
+		/// </summary>
+		/// <returns></returns>
+		public static float GetScalingFactor()
+		{
+			if (scalingFactor == 0)
+			{
+				var g = Graphics.FromHwnd(IntPtr.Zero);
+				IntPtr desktop = g.GetHdc();
+
+				var LogicalScreenHeight = System.Windows.SystemParameters.WorkArea.Height;
+				//int LogicalScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_VERTRES);
+				int PhysicalScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPVERTRES);
+
+				scalingFactor = (float)PhysicalScreenHeight / (float)LogicalScreenHeight;
+			}
+
+			return scalingFactor; // 1.25 = 125%
 		}
 
 

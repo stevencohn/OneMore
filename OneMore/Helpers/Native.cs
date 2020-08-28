@@ -13,6 +13,9 @@ namespace River.OneMoreAddIn
 
 		// Constants...
 
+		public const int DEVICECAPS_VERTRES = 10;
+		public const int DEVICECAPS_DESKTOPVERTRES = 117;
+
 		public const int WM_HOTKEY = 0x312;
 
 		public const uint WINEVENT_OUTOFCONTEXT = 0x0000;
@@ -35,6 +38,11 @@ namespace River.OneMoreAddIn
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Functions...
+
+		// https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getdevicecaps?redirectedfrom=MSDN
+		[DllImport("gdi32.dll")]
+		public static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+		
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getforegroundwindow
 		[DllImport("user32.dll")]

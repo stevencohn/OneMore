@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		protected override void OnShown(EventArgs e)
 		{
-			Location = new System.Drawing.Point(Location.X, Location.Y - Height);
+			Location = new System.Drawing.Point(Location.X, Location.Y - (Height / 2));
 			UIHelper.SetForegroundWindow(this);
 		}
 
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Dialogs
 			var location = PointToScreen(tagButton.Location);
 
 			using (var dialog = new TagPickerDialog(
-				location.X + tagButton.Bounds.Location.X, // + (tagButton.Width / 2),
+				location.X + tagButton.Bounds.Location.X - tagButton.Width,
 				location.Y + tagButton.Bounds.Location.Y))
 			{
 				if (dialog.ShowDialog(this) == DialogResult.OK)
