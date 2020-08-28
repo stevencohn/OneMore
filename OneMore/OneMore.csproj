@@ -207,6 +207,7 @@
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
     <Compile Include="Helpers\Hotkeys\Hotmods.cs" />
+    <Compile Include="Helpers\IntExtensions.cs" />
     <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\SettingsProvider.cs" />

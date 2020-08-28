@@ -46,6 +46,27 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			alphaRadio.Enabled = numberingBox.Checked;
 			numRadio.Enabled = numberingBox.Checked;
+			SetOK();
+		}
+
+
+		private void cleanBox_CheckedChanged(object sender, EventArgs e)
+		{
+			SetOK();
+		}
+
+
+		private void indentBox_CheckedChanged(object sender, EventArgs e)
+		{
+			indentTagBox.Enabled = indentBox.Checked;
+			tagButton.Enabled = indentTagBox.Enabled && indentTagBox.Checked;
+			SetOK();
+		}
+
+
+		private void indentTagBox_CheckedChanged(object sender, EventArgs e)
+		{
+			tagButton.Enabled = indentTagBox.Checked;
 		}
 
 
@@ -76,16 +97,9 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		private void indentBox_CheckedChanged(object sender, EventArgs e)
+		private void SetOK()
 		{
-			indentTagBox.Enabled = indentBox.Checked;
-			tagButton.Enabled = indentTagBox.Enabled && indentTagBox.Checked;
-		}
-
-
-		private void indentTagBox_CheckedChanged(object sender, EventArgs e)
-		{
-			tagButton.Enabled = indentTagBox.Checked;
+			okButton.Enabled = numberingBox.Checked || cleanBox.Checked || indentBox.Checked;
 		}
 
 
@@ -93,6 +107,7 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			DialogResult = DialogResult.OK;
 		}
+
 
 		private void cancelButton_Click(object sender, EventArgs e)
 		{

@@ -18,6 +18,12 @@ namespace River.OneMoreAddIn.Models
 		private List<Style> customStyles;
 
 
+		/*
+		 * <one:OE quickStyleIndex="1">
+		 *   <one:T><![CDATA[. .Heading 2]]></one:T>
+		 * </one:OE>
+		 */
+
 		public List<Heading> GetHeadings(ApplicationManager manager)
 		{
 			quickStyles = GetQuickStyles();
@@ -62,10 +68,13 @@ namespace River.OneMoreAddIn.Models
 							// found standard heading
 							heading = new Heading
 							{
-								Text = text,
+								Root = block,
+								Text = text, // text might include <style
 								Link = GetHyperlink(block, manager),
 								Style = style
 							};
+
+							headings.Add(heading);
 						}
 					}
 
@@ -79,23 +88,26 @@ namespace River.OneMoreAddIn.Models
 							// found standard heading
 							heading = new Heading
 							{
-								Text = text,
+								Root = block,
+								Text = text, // text might include <style
 								Link = GetHyperlink(block, manager),
 								Style = style
 							};
-						}
-					}
 
-					if (heading != null)
-					{
-						headings.Add(heading);
+							headings.Add(heading);
+						}
 					}
 				}
 			}
 
-			// resets indexes on styles but these are referenced by each heading
-			// so they can be used when indenting TOC, for example
+			// style.Index is used for TOC indenting, regardless of heading level
 			ResetHeadingStyleIndexes();
+
+			// Level is used as the intended Heading level, e.g. Heading4 level is 4
+			foreach (var heading in headings)
+			{
+				heading.Level = heading.Style.Index;
+			}
 
 			return headings;
 		}

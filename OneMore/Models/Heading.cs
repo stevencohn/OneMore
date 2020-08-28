@@ -16,13 +16,19 @@ namespace River.OneMoreAddIn.Models
 		/// <summary>
 		/// Reference to the heading OE on the page
 		/// </summary>
-		public XElement Element;
+		public XElement Root;
 
 
 		/// <summary>
 		/// The extracted text of the heading, or null
 		/// </summary>
 		public string Text;
+
+
+		/// <summary>
+		/// The logical indent level of the header (1, 2, 3, ...)
+		/// </summary>
+		public int Level;
 
 
 		/// <summary>

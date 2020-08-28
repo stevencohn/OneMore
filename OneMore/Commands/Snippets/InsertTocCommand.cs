@@ -47,12 +47,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-		/*
-		 * <one:OE quickStyleIndex="1">
-		 *   <one:T><![CDATA[. .Heading 2]]></one:T>
-		 * </one:OE>
-		 */
-
 		/// <summary>
 		/// Generates a table of contents at the top of the current page
 		/// </summary>
@@ -70,7 +64,7 @@ namespace River.OneMoreAddIn
 			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 			var textColor = dark ? "#FFFFFF" : "#000000";
 
-			var items = new List<XElement>
+			var toc = new List<XElement>
 			{
 				// "Table of Contents"
 				new XElement(ns + "OE",
@@ -106,7 +100,7 @@ namespace River.OneMoreAddIn
 						text.Append(heading.Text);
 					}
 
-					items.Add(new XElement(ns + "OE",
+					toc.Add(new XElement(ns + "OE",
 						new XAttribute("style", $"color:{textColor}"),
 						new XElement(ns + "T", new XCData(text.ToString()))
 						));
@@ -114,9 +108,9 @@ namespace River.OneMoreAddIn
 			}
 
 			// empty line after the TOC
-			items.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
+			toc.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
 
-			top.AddFirst(items);
+			top.AddFirst(toc);
 		}
 	}
 }

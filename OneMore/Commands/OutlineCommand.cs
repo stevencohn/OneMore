@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -34,37 +35,32 @@ namespace River.OneMoreAddIn
 						var page = new Page(manager.CurrentPage());
 						if (page.IsValid)
 						{
-							bool updated = false;
 							ns = page.Namespace;
 
 							headings = page.GetHeadings(manager);
 							if (dialog.CleanupNumbering)
 							{
 								RemoveOutlineNumbering();
-								updated = true;
 							}
 
 							if (dialog.NumericNumbering)
 							{
+								System.Diagnostics.Debugger.Launch();
 								AddOutlineNumbering(true);
-								updated = true;
 							}
 							else if (dialog.AlphaNumbering)
 							{
+								System.Diagnostics.Debugger.Launch();
 								AddOutlineNumbering(false);
-								updated = true;
 							}
 
 							if (dialog.Indent)
 							{
 								IndentContent(dialog.IndentTagged, dialog.TagSymbol);
-								updated = true;
 							}
 
-							if (updated)
-							{
-								manager.UpdatePageContent(page.Root);
-							}
+							// if OK then something must have happened, so save it
+							manager.UpdatePageContent(page.Root);
 						}
 					}
 				}
@@ -78,28 +74,36 @@ namespace River.OneMoreAddIn
 			var apattern = new Regex(@"^([a-z]+\.\s).+");
 			var ipattern = new Regex(@"^((?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3})\.\s).+");
 
-
 			foreach (var heading in headings)
 			{
-				var match = npattern.Match(heading.Text);
+				var cdata = heading.Root.Element(ns + "T").GetCData();
+
+				var wrapper = cdata.GetWrapper();
+				var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
+				if (text == null)
+				{
+					continue;
+				}
+
+				// numeric 1.
+				var match = npattern.Match(text.Value);
+
+				// alpha a.
+				if (!match.Success)
+				{
+					match = apattern.Match(text.Value);
+				}
+
+				// alpha i.
+				if (!match.Success)
+				{
+					match = ipattern.Match(text.Value);
+				}
+
 				if (match.Success)
 				{
-
-				}
-				else
-				{
-					match = apattern.Match(heading.Text);
-					if (match.Success)
-					{
-
-					}
-					else
-					{
-						match = ipattern.Match(heading.Text);
-						if (match.Success)
-						{
-						}
-					}
+					text.Value = text.Value.Substring(match.Groups[1].Length);
+					cdata.Value = wrapper.GetInnerXml();
 				}
 			}
 		}
@@ -107,6 +111,25 @@ namespace River.OneMoreAddIn
 
 		private void AddOutlineNumbering(bool numeric)
 		{
+			// level/counter
+			var currentLevel = 1;
+			var counters = new Dictionary<int, int>();
+
+			foreach (var heading in headings)
+			{
+				if (heading.Level < currentLevel)
+				{
+				}
+
+				if (!counters.ContainsKey(heading.Level))
+				{
+					counters.Add(heading.Level, 1);
+				}
+
+				var cdata = heading.Root.Element(ns + "T").GetCData();
+				var wrapper = cdata.GetWrapper();
+				var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
+			}
 		}
 
 
