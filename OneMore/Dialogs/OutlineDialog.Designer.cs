@@ -206,9 +206,9 @@
 			this.indentTagBox.Enabled = false;
 			this.indentTagBox.Location = new System.Drawing.Point(26, 74);
 			this.indentTagBox.Name = "indentTagBox";
-			this.indentTagBox.Size = new System.Drawing.Size(236, 24);
+			this.indentTagBox.Size = new System.Drawing.Size(281, 24);
 			this.indentTagBox.TabIndex = 16;
-			this.indentTagBox.Text = "Indent only tagged headings";
+			this.indentTagBox.Text = "Indent only below tagged headings";
 			this.indentTagBox.UseVisualStyleBackColor = true;
 			this.indentTagBox.CheckedChanged += new System.EventHandler(this.indentTagBox_CheckedChanged);
 			// 

@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn
 		{
 			using (var manager = new ApplicationManager())
 			{
-				_ = new Page(manager.CurrentPage()).GetPageColor(out _, out black);
+				_ = new Models.Page(manager.CurrentPage()).GetPageColor(out _, out black);
 			}
 		}
 

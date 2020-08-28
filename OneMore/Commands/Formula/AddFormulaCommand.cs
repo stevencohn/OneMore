@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Models;
 
 
 	internal class AddFormulaCommand : Command

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using System.Linq;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Models;
 
 
 	internal class AddCaptionCommand : Command

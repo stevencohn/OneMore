@@ -8,6 +8,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 
 

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;

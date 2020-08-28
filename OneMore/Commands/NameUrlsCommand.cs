@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn
 	using System.Threading.Tasks;
 	using System.Web;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Models;
 
 
 	internal class NameUrlsCommand : Command

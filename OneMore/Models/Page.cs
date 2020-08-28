@@ -2,19 +2,21 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Models
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
 	using System.Media;
+	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
 
 	/// <summary>
 	/// Wraps a page with helper methods
 	/// </summary>
-	internal class Page
+	internal partial class Page
 	{
 
 		/// <summary>
@@ -23,9 +25,20 @@ namespace River.OneMoreAddIn
 		/// <param name="page"></param>
 		public Page(XElement page)
 		{
-			Root = page;
-			Namespace = page.GetNamespaceOfPrefix("one");
+			if (page != null)
+			{
+				Root = page;
+				Namespace = page.GetNamespaceOfPrefix("one");
+
+				PageId = page.Attribute("ID")?.Value;
+			}
 		}
+
+
+		public bool IsValid => Root != null;
+
+
+		public string PageId { get; private set; }
 
 
 		/// <summary>
@@ -156,6 +169,34 @@ namespace River.OneMoreAddIn
 					}
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Construct a list of possible templates from both this page's quick styles
+		/// and our own custom style definitions, choosing only Heading styles, all
+		/// ordered by the internal Index.
+		/// </summary>
+		/// <returns>A List of Styles ordered by Index</returns>
+		public List<Style> GetQuickStyles()
+		{
+			// collect all quick style defs
+
+			// going to reference both heading and non-headings
+			var styles = Root.Elements(Namespace + "QuickStyleDef")
+				.Select(p => new Style(new QuickStyleDef(p)))
+				.ToList();
+
+			// tag the headings (h1, h2, h3, ...)
+			foreach (var style in styles)
+			{
+				if (Regex.IsMatch(style.Name, @"h\d"))
+				{
+					style.StyleType = StyleType.Heading;
+				}
+			}
+
+			return styles;
 		}
 
 
