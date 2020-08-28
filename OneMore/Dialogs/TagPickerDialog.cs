@@ -223,6 +223,7 @@ namespace River.OneMoreAddIn.Dialogs
 			if (active == null)
 				return null;
 
+			// copy just the selected glyph from tagmap
 			var bitmap = new Bitmap(pictureBox.Image);
 			var glyph = bitmap.Clone(active.Bounds, bitmap.PixelFormat);
 			return glyph;
@@ -240,6 +241,7 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				if ((active != null) && (zone != active))
 				{
+					// erase previous selection box
 					using (var pen = new Pen(Color.White, 2f))
 					{
 						graphics.DrawRectangle(pen, active.Bounds);
@@ -248,6 +250,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 				active = zone;
 
+				// draw new selection box
 				using (var pen = new Pen(Color.Magenta, 2f))
 				{
 					graphics.DrawRectangle(pen, zone.Bounds);
@@ -269,6 +272,7 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				active = zone;
 
+				// erase selection box before exiting (and maybe cloning glyph)
 				using (var pen = new Pen(Color.White, 2f))
 				{
 					graphics.DrawRectangle(pen, active.Bounds);

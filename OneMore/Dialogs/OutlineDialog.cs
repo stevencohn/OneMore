@@ -17,11 +17,21 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			InitializeComponent();
 
-			Symbol = 0;
+			TagSymbol = 0;
 		}
 
 
-		public int Symbol { get; private set; }
+		public bool AlphaNumbering => alphaRadio.Enabled && alphaRadio.Checked;
+
+		public bool NumericNumbering => numRadio.Enabled && numRadio.Checked;
+
+		public bool CleanupNumbering => cleanBox.Checked;
+
+		public bool Indent => indentBox.Checked;
+
+		public bool IndentTagged => indentTagBox.Checked;
+
+		public int TagSymbol { get; private set; }
 
 
 		protected override void OnShown(EventArgs e)
@@ -59,7 +69,7 @@ namespace River.OneMoreAddIn.Dialogs
 						tagButton.Text = "?";
 					}
 
-					Symbol = dialog.Symbol;
+					TagSymbol = dialog.Symbol;
 				}
 			}
 		}

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System.Windows.Forms;
 	using River.OneMoreAddIn.Dialogs;
 
 
@@ -18,7 +19,10 @@ namespace River.OneMoreAddIn
 		{
 			using (var dialog = new OutlineDialog())
 			{
-				dialog.ShowDialog(owner);
+				var result = dialog.ShowDialog(owner);				
+				if (result == DialogResult.OK)
+				{
+				}
 			}
 
 			//using (var manager = new ApplicationManager())
