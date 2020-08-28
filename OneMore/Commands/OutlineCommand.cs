@@ -45,13 +45,11 @@ namespace River.OneMoreAddIn
 
 							if (dialog.NumericNumbering)
 							{
-								System.Diagnostics.Debugger.Launch();
-								AddOutlineNumbering(true);
+								AddOutlineNumbering(true, 0, 1, 1, string.Empty);
 							}
 							else if (dialog.AlphaNumbering)
 							{
-								System.Diagnostics.Debugger.Launch();
-								AddOutlineNumbering(false);
+								AddOutlineNumbering(false, 0, 1, 1, string.Empty);
 							}
 
 							if (dialog.Indent)
@@ -70,7 +68,7 @@ namespace River.OneMoreAddIn
 
 		private void RemoveOutlineNumbering()
 		{
-			var npattern = new Regex(@"^(\d+\.\s).+");
+			var npattern = new Regex(@"^((?:\d+\.)+\s).+");
 			var apattern = new Regex(@"^([a-z]+\.\s).+");
 			var ipattern = new Regex(@"^((?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3})\.\s).+");
 
@@ -109,27 +107,68 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void AddOutlineNumbering(bool numeric)
+		int AddOutlineNumbering(bool numeric, int index, int level, int counter, string prefix)
 		{
-			// level/counter
-			var currentLevel = 1;
-			var counters = new Dictionary<int, int>();
-
-			foreach (var heading in headings)
+			if (index > headings.Count)
 			{
-				if (heading.Level < currentLevel)
-				{
-				}
-
-				if (!counters.ContainsKey(heading.Level))
-				{
-					counters.Add(heading.Level, 1);
-				}
-
-				var cdata = heading.Root.Element(ns + "T").GetCData();
-				var wrapper = cdata.GetWrapper();
-				var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
+				return index;
 			}
+
+			while (index < headings.Count)
+			{
+				PrefixHeader(headings[index].Root, numeric, level, counter, prefix);
+
+				index++;
+				counter++;
+
+				if (index < headings.Count && headings[index].Level < level)
+				{
+					break;
+				}
+
+				if (index < headings.Count && headings[index].Level > level)
+				{
+					index = AddOutlineNumbering(numeric, index, headings[index].Level, 1, $"{prefix}{counter - 1}.");
+					if (index < headings.Count && headings[index].Level < level)
+					{
+						break;
+					}
+				}
+			}
+
+			return index;
+		}
+
+
+		private void PrefixHeader(XElement root, bool numeric, int level, int counter, string prefix)
+		{
+			var cdata = root.Element(ns + "T").GetCData();
+			var wrapper = cdata.GetWrapper();
+			var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
+
+			if (numeric)
+			{
+				text.Value = $"{prefix}{counter}. {text.Value} ";
+			}
+			else
+			{
+				switch (level % 3)
+				{
+					case 1:
+						text.Value = $"{counter}. {text.Value}";
+						break;
+
+					case 2:
+						text.Value = $"{counter.ToAlphabetic()}. {text.Value}";
+						break;
+
+					case 0:
+						text.Value = $"{counter.ToRoman()}. {text.Value}";
+						break;
+				}
+			}
+
+			cdata.Value = wrapper.GetInnerXml();
 		}
 
 

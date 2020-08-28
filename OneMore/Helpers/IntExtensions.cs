@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Helpers
+namespace River.OneMoreAddIn
 {
 
     // copied verbatim unashamedly from
@@ -22,15 +22,30 @@ namespace River.OneMoreAddIn.Helpers
         private static string[] OnesLetters =
             { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
 
-        // Convert Roman numerals to an integer.
-        private static string ToRoman(this int arabic)
+
+        // convert int to alphabet string
+        public static string ToAlphabetic(this int value)
+		{
+            string result = string.Empty;
+            while (--value >= 0)
+            {
+                result = (char)('A' + value % 26) + result;
+                value /= 26;
+            }
+
+            return result.ToLower();
+        }
+
+
+        // convert int to roman numerals
+        public static string ToRoman(this int value)
         {
-            if (arabic >= 4000)
+            if (value >= 4000)
             {
                 // use parentheses
-                int thou = arabic / 1000;
-                arabic %= 1000;
-                return "(" + ToRoman(thou) + ")" + ToRoman(arabic);
+                int thou = value / 1000;
+                value %= 1000;
+                return "(" + ToRoman(thou) + ")" + ToRoman(value);
             }
 
             // otherwise process the letters
@@ -38,22 +53,22 @@ namespace River.OneMoreAddIn.Helpers
 
             // pull out thousands
             int num;
-            num = arabic / 1000;
+            num = value / 1000;
             result += ThouLetters[num];
-            arabic %= 1000;
+            value %= 1000;
 
             // handle hundreds
-            num = arabic / 100;
+            num = value / 100;
             result += HundLetters[num];
-            arabic %= 100;
+            value %= 100;
 
             // handle tens
-            num = arabic / 10;
+            num = value / 10;
             result += TensLetters[num];
-            arabic %= 10;
+            value %= 10;
 
             // handle ones
-            result += OnesLetters[arabic];
+            result += OnesLetters[value];
 
             return result;
         }
