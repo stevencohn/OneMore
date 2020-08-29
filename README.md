@@ -144,7 +144,7 @@ If more than one image is selected, or no images are selected, then you can resi
 a preset width. The preset width is saved so you don't need to keep entering it if you have a
 width you typically use.
 
-<a name="numbering"></a>
+<a name="outlining"></a>
 ### Number Headings
 
 OneNote doesn't offer to number headings like Word does but OneMore can apply numbers to
