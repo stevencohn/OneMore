@@ -11,15 +11,15 @@ namespace River.OneMoreAddIn
     internal static class IntExtensions
 	{
         // Map digits to letters.
-        private static string[] ThouLetters = { "", "M", "MM", "MMM" };
+        private static readonly string[] ThouLetters = { "", "M", "MM", "MMM" };
 
-        private static string[] HundLetters =
+        private static readonly string[] HundLetters =
             { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
 
-        private static string[] TensLetters =
+        private static readonly string[] TensLetters =
             { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
 
-        private static string[] OnesLetters =
+        private static readonly string[] OnesLetters =
             { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
 
 

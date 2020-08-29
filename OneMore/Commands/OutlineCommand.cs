@@ -52,9 +52,10 @@ namespace River.OneMoreAddIn
 								AddOutlineNumbering(false, 0, 0, 1, string.Empty);
 							}
 
-							if (dialog.Indent)
+							if (dialog.Indent || dialog.IndentTagged)
 							{
 								IndentContent(page,
+									dialog.Indent,
 									dialog.IndentTagged,
 									dialog.TagSymbol,
 									dialog.RemoveTags);
@@ -202,7 +203,8 @@ namespace River.OneMoreAddIn
 		</one:OE>
 
 		*/
-		private void IndentContent(Page page, bool indentTagged, int tagSymbol, bool removeTags)
+		private void IndentContent(
+			Page page, bool indentHeadings, bool indentTagged, int tagSymbol, bool removeTags)
 		{
 			string tagIndex = null;
 			if (indentTagged)
@@ -213,32 +215,50 @@ namespace River.OneMoreAddIn
 					.Select(e => e.Attribute("index").Value).FirstOrDefault();
 			}
 
-			for (int i = 0; i < headings.Count; i++)
+			List<XElement> elements;
+
+			if (indentHeadings)
 			{
-				var heading = headings[i];
+				// only below headings
+				elements = headings.Select(h => h.Root).ToList();
+			}
+			else
+			{
+				// below any tagged paragraph
+				elements = page.Root.Elements(ns + "Outline")
+					.Descendants(ns + "Tag")
+					.Where(t => t.Attribute("index").Value == tagIndex)
+					.Select(e => e.Parent)
+					.ToList();
+			}
+
+			for (int i = 0; i < elements.Count; i++)
+			{
+				var element = elements[i];
 				XElement tag = null;
 
 				if (tagIndex != null)
 				{
-					tag = heading.Root.Element(ns + "Tag");
-					if (tag == null ||
-						tag.Name.LocalName != "Tag" ||
-						tag.Attribute("index").Value != tagIndex)
+					tag = element.Elements(ns + "Tag")
+						.Where(e => e.Attribute("index").Value == tagIndex)
+						.FirstOrDefault();
+
+					if (tag == null)
 					{
-						// this heading is not tagged
+						// this heading is not tagged with the specified tag
 						continue;
+					}
+
+					if (removeTags)
+					{
+						tag.Remove();
 					}
 				}
 
-				if (tag != null && removeTags)
-				{
-					tag.Remove();
-				}
-
-				var siblings = heading.Root.ElementsAfterSelf()?.ToList();
+				var siblings = element.ElementsAfterSelf()?.ToList();
 				if (siblings != null && siblings.Count > 0)
 				{
-					var next = i < headings.Count - 1 ? headings[i + 1].Root : null;
+					var next = i < elements.Count - 1 ? elements[i + 1] : null;
 
 					var children = new XElement(ns + "OEChildren");
 
@@ -257,7 +277,7 @@ namespace River.OneMoreAddIn
 
 					if (children.HasElements)
 					{
-						heading.Root.AddAfterSelf(new XElement(ns + "OE", children));
+						element.AddAfterSelf(new XElement(ns + "OE", children));
 					}
 				}
 			}

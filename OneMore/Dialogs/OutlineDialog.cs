@@ -60,8 +60,6 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void indentBox_CheckedChanged(object sender, EventArgs e)
 		{
-			indentTagBox.Enabled = indentBox.Checked;
-			tagButton.Enabled = indentTagBox.Enabled && indentTagBox.Checked;
 			SetOK();
 		}
 
@@ -69,6 +67,7 @@ namespace River.OneMoreAddIn.Dialogs
 		private void indentTagBox_CheckedChanged(object sender, EventArgs e)
 		{
 			tagButton.Enabled = removeTagsBox.Enabled = indentTagBox.Checked;
+			SetOK();
 		}
 
 
@@ -101,7 +100,9 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void SetOK()
 		{
-			okButton.Enabled = numberingBox.Checked || cleanBox.Checked || indentBox.Checked;
+			okButton.Enabled = 
+				numberingBox.Checked || cleanBox.Checked || 
+				indentBox.Checked || indentTagBox.Checked;
 		}
 
 

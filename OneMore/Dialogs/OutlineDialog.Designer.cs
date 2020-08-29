@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.numberingGroup = new System.Windows.Forms.GroupBox();
@@ -38,11 +39,12 @@
 			this.numRadio = new System.Windows.Forms.RadioButton();
 			this.numberingBox = new System.Windows.Forms.CheckBox();
 			this.indentationsGroup = new System.Windows.Forms.GroupBox();
+			this.removeTagsBox = new System.Windows.Forms.CheckBox();
 			this.tagLabel = new System.Windows.Forms.Label();
 			this.tagButton = new System.Windows.Forms.Button();
 			this.indentTagBox = new System.Windows.Forms.CheckBox();
 			this.indentBox = new System.Windows.Forms.CheckBox();
-			this.removeTagsBox = new System.Windows.Forms.CheckBox();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.numberingGroup.SuspendLayout();
 			this.indentationsGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -161,6 +163,7 @@
 			this.numberingBox.Size = new System.Drawing.Size(145, 29);
 			this.numberingBox.TabIndex = 10;
 			this.numberingBox.Text = "Add Numbering";
+			this.tooltip.SetToolTip(this.numberingBox, "Applies to both standard and custom Headings");
 			this.numberingBox.UseVisualStyleBackColor = true;
 			this.numberingBox.CheckedChanged += new System.EventHandler(this.numberingBox_CheckedChanged);
 			// 
@@ -179,6 +182,17 @@
 			this.indentationsGroup.TabIndex = 12;
 			this.indentationsGroup.TabStop = false;
 			this.indentationsGroup.Text = "Indentations";
+			// 
+			// removeTagsBox
+			// 
+			this.removeTagsBox.AutoSize = true;
+			this.removeTagsBox.Enabled = false;
+			this.removeTagsBox.Location = new System.Drawing.Point(190, 114);
+			this.removeTagsBox.Name = "removeTagsBox";
+			this.removeTagsBox.Size = new System.Drawing.Size(129, 24);
+			this.removeTagsBox.TabIndex = 19;
+			this.removeTagsBox.Text = "Remove tags";
+			this.removeTagsBox.UseVisualStyleBackColor = true;
 			// 
 			// tagLabel
 			// 
@@ -207,12 +221,12 @@
 			// indentTagBox
 			// 
 			this.indentTagBox.AutoSize = true;
-			this.indentTagBox.Enabled = false;
 			this.indentTagBox.Location = new System.Drawing.Point(26, 74);
 			this.indentTagBox.Name = "indentTagBox";
-			this.indentTagBox.Size = new System.Drawing.Size(281, 24);
+			this.indentTagBox.Size = new System.Drawing.Size(366, 24);
 			this.indentTagBox.TabIndex = 16;
-			this.indentTagBox.Text = "Indent only below tagged headings";
+			this.indentTagBox.Text = "Indent only below tagged headings/paragraphs";
+			this.tooltip.SetToolTip(this.indentTagBox, "Indents content below only tagged headings or non-heading paragraphs");
 			this.indentTagBox.UseVisualStyleBackColor = true;
 			this.indentTagBox.CheckedChanged += new System.EventHandler(this.indentTagBox_CheckedChanged);
 			// 
@@ -222,22 +236,11 @@
 			this.indentBox.Location = new System.Drawing.Point(26, 25);
 			this.indentBox.Name = "indentBox";
 			this.indentBox.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-			this.indentBox.Size = new System.Drawing.Size(245, 33);
+			this.indentBox.Size = new System.Drawing.Size(253, 33);
 			this.indentBox.TabIndex = 15;
-			this.indentBox.Text = "Indent content below heading";
+			this.indentBox.Text = "Indent content below headings";
 			this.indentBox.UseVisualStyleBackColor = true;
 			this.indentBox.CheckedChanged += new System.EventHandler(this.indentBox_CheckedChanged);
-			// 
-			// removeTagsBox
-			// 
-			this.removeTagsBox.AutoSize = true;
-			this.removeTagsBox.Enabled = false;
-			this.removeTagsBox.Location = new System.Drawing.Point(190, 114);
-			this.removeTagsBox.Name = "removeTagsBox";
-			this.removeTagsBox.Size = new System.Drawing.Size(129, 24);
-			this.removeTagsBox.TabIndex = 19;
-			this.removeTagsBox.Text = "Remove tags";
-			this.removeTagsBox.UseVisualStyleBackColor = true;
 			// 
 			// OutlineDialog
 			// 
@@ -283,5 +286,6 @@
 		private System.Windows.Forms.Label tagLabel;
 		private System.Windows.Forms.Button tagButton;
 		private System.Windows.Forms.CheckBox removeTagsBox;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }
