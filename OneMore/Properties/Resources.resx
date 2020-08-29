@@ -987,4 +987,64 @@ Notebooks</value>
     <value>Outline Formatting</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="OutlineDialog.Text" xml:space="preserve">
+    <value>Outline Formatting</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="OutlineDialog_alphaRadio.Text" xml:space="preserve">
+    <value>Alpha-numeric</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="OutlineDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
+    <value>Remove/cleanup existing numbering</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_indentationsGroup.Text" xml:space="preserve">
+    <value>Indentations</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="OutlineDialog_indentBox.Text" xml:space="preserve">
+    <value>Indent content below headings</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_indentTagBox.Text" xml:space="preserve">
+    <value>Indent only below tagged headings/paragraphs</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_indentTagBox.Tooltip" xml:space="preserve">
+    <value>Indents content below only tagged headings or non-tagged paragraphs</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="OutlineDialog_numberingBox.Text" xml:space="preserve">
+    <value>Add Numbering</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_numberingBox.Tooltip" xml:space="preserve">
+    <value>Applied to both standard and custom Headings</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="OutlineDialog_numberingGroup.Text" xml:space="preserve">
+    <value>Numbering</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
+    <value>Numeric</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="OutlineDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
+    <value>Remove tags</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
+    <value>Tag:</value>
+    <comment>label</comment>
+  </data>
 </root>

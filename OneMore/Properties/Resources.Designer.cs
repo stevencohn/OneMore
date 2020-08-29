@@ -978,6 +978,141 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alpha-numeric.
+        /// </summary>
+        internal static string OutlineDialog_alphaRadio_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_alphaRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string OutlineDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove/cleanup existing numbering.
+        /// </summary>
+        internal static string OutlineDialog_cleanBox_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_cleanBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indentations.
+        /// </summary>
+        internal static string OutlineDialog_indentationsGroup_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_indentationsGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indent content below headings.
+        /// </summary>
+        internal static string OutlineDialog_indentBox_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_indentBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indent only below tagged headings/paragraphs.
+        /// </summary>
+        internal static string OutlineDialog_indentTagBox_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_indentTagBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indents content below only tagged headings or non-tagged paragraphs.
+        /// </summary>
+        internal static string OutlineDialog_indentTagBox_Tooltip {
+            get {
+                return ResourceManager.GetString("OutlineDialog_indentTagBox.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Numbering.
+        /// </summary>
+        internal static string OutlineDialog_numberingBox_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_numberingBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applied to both standard and custom Headings.
+        /// </summary>
+        internal static string OutlineDialog_numberingBox_Tooltip {
+            get {
+                return ResourceManager.GetString("OutlineDialog_numberingBox.Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numbering.
+        /// </summary>
+        internal static string OutlineDialog_numberingGroup_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_numberingGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numeric.
+        /// </summary>
+        internal static string OutlineDialog_numRadio_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_numRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string OutlineDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove tags.
+        /// </summary>
+        internal static string OutlineDialog_removeTagsBox_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_removeTagsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag:.
+        /// </summary>
+        internal static string OutlineDialog_tagLabel_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_tagLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outline Formatting.
+        /// </summary>
+        internal static string OutlineDialog_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Color.
         /// </summary>
         internal static string PageColorDialog_Text {

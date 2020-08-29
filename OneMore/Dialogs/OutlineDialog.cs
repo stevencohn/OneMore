@@ -9,9 +9,10 @@ namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	public partial class OutlineDialog : Form
+	internal partial class OutlineDialog : LocalizableForm
 	{
 
 		public OutlineDialog()
@@ -19,6 +20,29 @@ namespace River.OneMoreAddIn.Dialogs
 			InitializeComponent();
 
 			TagSymbol = 0;
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.OutlineDialog_Text;
+				tooltip.SetToolTip(numberingBox, Resx.OutlineDialog_numberingBox_Tooltip);
+				tooltip.SetToolTip(indentTagBox, Resx.OutlineDialog_indentTagBox_Tooltip);
+
+				Localize(new string[]
+				{
+					"numberingGroup",
+					"numberingBox",
+					"alphaRadio",
+					"numRadio",
+					"cleanBox",
+					"indentationsGroup",
+					"indentBox",
+					"indentTagBox",
+					"removeTagsBox",
+					"tagLabel",
+					"okButton",
+					"cancelButton"
+				});
+			}
 		}
 
 
