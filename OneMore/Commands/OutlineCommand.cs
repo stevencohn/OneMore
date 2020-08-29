@@ -45,11 +45,13 @@ namespace River.OneMoreAddIn
 
 							if (dialog.NumericNumbering)
 							{
-								AddOutlineNumbering(true, 0, 1, 1, string.Empty);
+								System.Diagnostics.Debugger.Launch();
+								AddOutlineNumbering(true, 0, 0, 1, string.Empty);
 							}
 							else if (dialog.AlphaNumbering)
 							{
-								AddOutlineNumbering(false, 0, 1, 1, string.Empty);
+								System.Diagnostics.Debugger.Launch();
+								AddOutlineNumbering(false, 0, 0, 1, string.Empty);
 							}
 
 							if (dialog.Indent)
@@ -154,16 +156,16 @@ namespace River.OneMoreAddIn
 			{
 				switch (level % 3)
 				{
-					case 1:
+					case 0:
 						text.Value = $"{counter}. {text.Value}";
 						break;
 
-					case 2:
-						text.Value = $"{counter.ToAlphabetic()}. {text.Value}";
+					case 1:
+						text.Value = $"{counter.ToAlphabetic().ToLower()}. {text.Value}";
 						break;
 
-					case 0:
-						text.Value = $"{counter.ToRoman()}. {text.Value}";
+					case 2:
+						text.Value = $"{counter.ToRoman().ToLower()}. {text.Value}";
 						break;
 				}
 			}

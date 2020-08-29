@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn
                 value /= 26;
             }
 
-            return result.ToLower();
+            return result;
         }
 
 
@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn
             // handle ones
             result += OnesLetters[value];
 
-            return result;
+            return result.ToLower();
         }
     }
 }
