@@ -8,6 +8,7 @@ A OneNote add-in with powerful yet simple and effective features including:
 * Disable **spell-check** on the current page
 * Manage menu of [**Favorites**](#favorites) for one-click link to your most referenced pages
 * [Calculate formulas](#formulas) in tables such as Sum, Average, Min, Max, and StdDev
+* Apply [Outline numbering](#outlining) to headings
 * [Paste Rich Text](#exCodeBox) (preserve colors when **pasting code** from Visual Studio)<sup>1</sup>
 * [**Search and replace**](#other) text on the current page
 * Merge pages, preserving formatting and position of outlines
@@ -20,6 +21,7 @@ A OneNote add-in with powerful yet simple and effective features including:
 * Collapse the page hierarchy to see only top-level pages
 * Change [**page background**](#dark) to any custom color with dark-mode awareness
 * Change selected text to UPPERCASE or lowercase
+* [Indent content](#indenting) below headings or tagged paragraphs
 * Insert single or double horizontal line
 * Insert [**Table of Contents**](#exTOC) including all headers on page
 * Insert [Info/Warn boxes](#exInfoBoxes) similar to Confluence Info and Warn macros
@@ -141,6 +143,32 @@ you can resize by percentage, absolute size, or to a preset width with aspect ra
 If more than one image is selected, or no images are selected, then you can resize them all to
 a preset width. The preset width is saved so you don't need to keep entering it if you have a
 width you typically use.
+
+<a name="numbering"></a>
+### Number Headings
+
+OneNote doesn't offer to number headings like Word does but OneMore can apply numbers to
+headings after headings are in place. From the Outline Formatting dialog's Numbering section,
+choose to apply numeric or alphanumeric numbering to all headings on the page. Note that this
+is a one-time procedure so if you add new or delete old headings, re-apply numbering using
+this dialog. The _Remove existing_ checkbox cleans up numbering that you've applied below;
+remember to tick this if you've already applied numbering, otherwise it will double-up!
+
+The numeric numbering will prefix headings with "1.", "1.1.", "1.1.1.", etc. The alphanumeric
+numbering will prefix headings with "1.", "a.", "i.", etc.
+
+![Numbering](Screenshots/Numbering.png)
+
+<a name="indenting"></a>
+### Indenting Content
+
+OneMore makes it easy to indent paragraphs below all headings, below tagged headings, or
+below tagged paragraphs. If you want to indent only below tagged headings or paragraphs,
+take advantage of OneNote's tagging-by-keyboard feature by customizing a tag and moving it
+up to one of the first eight items in the list of tags; then you can use Ctrl-# to quickly
+apply tags to the headings or paragraphs you want before using the Outline Formatting dialog.
+
+![Numbering](Screenshots/Indenting.png)
 
 <a name="nameUrls"></a>
 ### Replace Hyperlinked URLs with Web Page Titles
