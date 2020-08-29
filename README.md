@@ -157,7 +157,7 @@ remember to tick this if you've already applied numbering, otherwise it will dou
 The numeric numbering will prefix headings with "1.", "1.1.", "1.1.1.", etc. The alphanumeric
 numbering will prefix headings with "1.", "a.", "i.", etc.
 
-![Numbering](Screenshots/Numbering.png)
+![Numbering](Screenshots/Numbering.png =300)
 
 <a name="indenting"></a>
 ### Indenting Content
@@ -168,7 +168,7 @@ take advantage of OneNote's tagging-by-keyboard feature by customizing a tag and
 up to one of the first eight items in the list of tags; then you can use Ctrl-# to quickly
 apply tags to the headings or paragraphs you want before using the Outline Formatting dialog.
 
-![Numbering](Screenshots/Indenting.png)
+![Numbering](Screenshots/Indenting.png =320)
 
 <a name="nameUrls"></a>
 ### Replace Hyperlinked URLs with Web Page Titles
