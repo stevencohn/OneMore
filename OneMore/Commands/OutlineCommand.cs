@@ -45,18 +45,19 @@ namespace River.OneMoreAddIn
 
 							if (dialog.NumericNumbering)
 							{
-								System.Diagnostics.Debugger.Launch();
 								AddOutlineNumbering(true, 0, 0, 1, string.Empty);
 							}
 							else if (dialog.AlphaNumbering)
 							{
-								System.Diagnostics.Debugger.Launch();
 								AddOutlineNumbering(false, 0, 0, 1, string.Empty);
 							}
 
 							if (dialog.Indent)
 							{
-								IndentContent(dialog.IndentTagged, dialog.TagSymbol);
+								IndentContent(page,
+									dialog.IndentTagged,
+									dialog.TagSymbol,
+									dialog.RemoveTags);
 							}
 
 							// if OK then something must have happened, so save it
@@ -67,6 +68,9 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+
+		//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		// Remove outline numbering...
 
 		private void RemoveOutlineNumbering()
 		{
@@ -108,6 +112,9 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+
+		//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		// Add outline numbering...
 
 		int AddOutlineNumbering(bool numeric, int index, int level, int counter, string prefix)
 		{
@@ -174,8 +181,86 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void IndentContent(bool indentTagged, int tagSymbol)
+		//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		// Indent...
+
+		/*
+		<one:OE>
+		  <one:OEChildren>
+			<one:OE>
+			  <one:T><![CDATA[tfox]]></one:T>
+			</one:OE>
+		  </one:OEChildren>
+		</one:OE>
+
+
+	    <one:TagDef index="0" symbol="143"/>
+
+	    <one:OE>
+		  <one:Tag index="0"/>
+		  <one:T><![CDATA[Heading1]]></one:T>
+		</one:OE>
+
+		*/
+		private void IndentContent(Page page, bool indentTagged, int tagSymbol, bool removeTags)
 		{
+			string tagIndex = null;
+			if (indentTagged)
+			{
+				// find the index of the tagdef of tagSymbol
+				tagIndex = page.Root.Elements(ns + "TagDef")
+					.Where(e => e.Attribute("symbol").Value == tagSymbol.ToString())
+					.Select(e => e.Attribute("index").Value).FirstOrDefault();
+			}
+
+			for (int i = 0; i < headings.Count; i++)
+			{
+				var heading = headings[i];
+				XElement tag = null;
+
+				if (tagIndex != null)
+				{
+					tag = heading.Root.Element(ns + "Tag");
+					if (tag == null ||
+						tag.Name.LocalName != "Tag" ||
+						tag.Attribute("index").Value != tagIndex)
+					{
+						// this heading is not tagged
+						continue;
+					}
+				}
+
+				if (tag != null && removeTags)
+				{
+					tag.Remove();
+				}
+
+				var siblings = heading.Root.ElementsAfterSelf()?.ToList();
+				if (siblings != null && siblings.Count > 0)
+				{
+					var next = i < headings.Count - 1 ? headings[i + 1].Root : null;
+
+					var children = new XElement(ns + "OEChildren");
+
+					foreach (var sibling in siblings)
+					{
+						// did we hit the next heading?
+						if (sibling == next)
+						{
+							break;
+						}
+
+						// move content into new OEChildren
+						sibling.Remove();
+						children.Add(sibling);
+					}
+
+					if (children.HasElements)
+					{
+						heading.Root.AddAfterSelf(new XElement(ns + "OE", children));
+					}
+				}
+			}
 		}
 	}
 }

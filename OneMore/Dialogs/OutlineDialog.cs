@@ -32,6 +32,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 		public bool IndentTagged => indentTagBox.Checked;
 
+		public bool RemoveTags => removeTagsBox.Checked;
+
 		public int TagSymbol { get; private set; }
 
 
@@ -66,7 +68,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void indentTagBox_CheckedChanged(object sender, EventArgs e)
 		{
-			tagButton.Enabled = indentTagBox.Checked;
+			tagButton.Enabled = removeTagsBox.Enabled = indentTagBox.Checked;
 		}
 
 
