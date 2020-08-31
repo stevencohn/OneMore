@@ -44,7 +44,7 @@
             imageMso="EditLinks"
             getContent="GetFavoritesContent" />
 
-          <menu id="ribOneMoreMenu" label="More" size="large" getImage="GetOneMoreMenuImage">
+          <menu id="ribOneMoreMenu" getLabel="getItemLabel" size="large" getImage="GetOneMoreMenuImage">
             <menuSeparator id="sepSpell" title="Content" />
             <button
               id="ribNoSpellCheckButton"

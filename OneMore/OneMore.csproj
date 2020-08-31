@@ -384,6 +384,7 @@
     <EmbeddedResource Include="Dialogs\TagPickerDialog.resx">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>

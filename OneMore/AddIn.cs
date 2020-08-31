@@ -57,8 +57,12 @@ namespace River.OneMoreAddIn
 
 			GetCurrentClockSpeed();
 
+			var thread = System.Threading.Thread.CurrentThread;
+
 			logger.WriteLine();
-			logger.WriteLine($"Starting {process.ProcessName}, process PID={process.Id}, CPU={clockSpeed}Mhz");
+			logger.WriteLine(
+				$"Starting {process.ProcessName}, process PID={process.Id}, CPU={clockSpeed}Mhz " +
+				$"Language={thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}");
 		}
 
 

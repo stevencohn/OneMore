@@ -1171,7 +1171,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reorder how styles appear in the gallery. Also chnages the order of headings in a TOC.
+        ///   Looks up a localized string similar to Reorder how styles appear in the gallery. Also changes the order of headings in a TOC.
         /// </summary>
         internal static string ReorderDialog_label_Text {
             get {
@@ -1369,7 +1369,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add formula to slected table cell(s).
+        ///   Looks up a localized string similar to Add formula to selected table cell(s).
         /// </summary>
         internal static string ribAddFormulaButton_Screentip {
             get {
@@ -1760,7 +1760,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneMore.
+        ///   Looks up a localized string similar to More.
         /// </summary>
         internal static string ribOneMoreMenu_Label {
             get {
