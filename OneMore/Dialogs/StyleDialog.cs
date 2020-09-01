@@ -63,12 +63,6 @@ namespace River.OneMoreAddIn
 		{
 			Initialize();
 
-			(float xScaleFactor, float yScaleFactor) = UIHelper.GetScalingFactors();
-
-			mainTools.ImageScalingSize = new Size(
-				(int)(mainTools.ImageScalingSize.Width * xScaleFactor),
-				(int)(mainTools.ImageScalingSize.Height * yScaleFactor));
-
 			allowEvents = false;
 			LoadStyles(styles);
 
