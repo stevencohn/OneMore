@@ -13,8 +13,8 @@ namespace River.OneMoreAddIn
 
 		// Constants...
 
-		public const int DEVICECAPS_VERTRES = 10;
 		public const int DEVICECAPS_DESKTOPVERTRES = 117;
+		public const int DEVICECAPS_DESKTOPHORZRES = 118;
 
 		public const int WM_HOTKEY = 0x312;
 

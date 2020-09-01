@@ -531,11 +531,9 @@
 			// 
 			// toolStrip
 			// 
-			this.toolStrip.AutoSize = false;
 			this.toolStrip.BackColor = System.Drawing.Color.Transparent;
 			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-			this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.boldButton,
             this.italicButton,
@@ -548,7 +546,7 @@
 			this.toolStrip.Location = new System.Drawing.Point(145, 150);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.toolStrip.Size = new System.Drawing.Size(443, 37);
+			this.toolStrip.Size = new System.Drawing.Size(334, 38);
 			this.toolStrip.TabIndex = 5;
 			// 
 			// boldButton
@@ -559,7 +557,7 @@
 			this.boldButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.boldButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.boldButton.Name = "boldButton";
-			this.boldButton.Size = new System.Drawing.Size(34, 32);
+			this.boldButton.Size = new System.Drawing.Size(34, 33);
 			this.boldButton.Text = "Bold";
 			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -571,7 +569,7 @@
 			this.italicButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.italicButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.italicButton.Name = "italicButton";
-			this.italicButton.Size = new System.Drawing.Size(34, 32);
+			this.italicButton.Size = new System.Drawing.Size(34, 33);
 			this.italicButton.Text = "Italic";
 			this.italicButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -583,7 +581,7 @@
 			this.underlineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.underlineButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.underlineButton.Name = "underlineButton";
-			this.underlineButton.Size = new System.Drawing.Size(34, 32);
+			this.underlineButton.Size = new System.Drawing.Size(34, 33);
 			this.underlineButton.Text = "Underline";
 			this.underlineButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -595,7 +593,7 @@
 			this.strikeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.strikeButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.strikeButton.Name = "strikeButton";
-			this.strikeButton.Size = new System.Drawing.Size(34, 32);
+			this.strikeButton.Size = new System.Drawing.Size(34, 33);
 			this.strikeButton.Text = "Strikethrough";
 			this.strikeButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -607,7 +605,7 @@
 			this.superButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.superButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.superButton.Name = "superButton";
-			this.superButton.Size = new System.Drawing.Size(34, 32);
+			this.superButton.Size = new System.Drawing.Size(34, 33);
 			this.superButton.Text = "Superscript";
 			this.superButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.superButton.Click += new System.EventHandler(this.ToggleSuperSub);
@@ -620,7 +618,7 @@
 			this.subButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.subButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.subButton.Name = "subButton";
-			this.subButton.Size = new System.Drawing.Size(34, 32);
+			this.subButton.Size = new System.Drawing.Size(34, 33);
 			this.subButton.Text = "Subscript";
 			this.subButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.subButton.Click += new System.EventHandler(this.ToggleSuperSub);
@@ -634,7 +632,7 @@
 			this.backColorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.backColorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.backColorButton.Name = "backColorButton";
-			this.backColorButton.Size = new System.Drawing.Size(45, 32);
+			this.backColorButton.Size = new System.Drawing.Size(37, 33);
 			this.backColorButton.ToolTipText = "Highlight Color";
 			this.backColorButton.ButtonClick += new System.EventHandler(this.ChangeHighlightColor);
 			// 
@@ -654,14 +652,14 @@
 			this.colorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.colorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.colorButton.Name = "colorButton";
-			this.colorButton.Size = new System.Drawing.Size(45, 32);
+			this.colorButton.Size = new System.Drawing.Size(37, 33);
 			this.colorButton.ToolTipText = "Text Color";
 			this.colorButton.ButtonClick += new System.EventHandler(this.ChangeColor);
 			// 
 			// defaultBlackToolStripMenuItem
 			// 
 			this.defaultBlackToolStripMenuItem.Name = "defaultBlackToolStripMenuItem";
-			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(226, 34);
+			this.defaultBlackToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
 			this.defaultBlackToolStripMenuItem.Text = "Default (Black)";
 			this.defaultBlackToolStripMenuItem.Click += new System.EventHandler(this.ChangeColorToDefault);
 			// 
@@ -676,8 +674,8 @@
             this.deleteButton});
 			this.mainTools.Location = new System.Drawing.Point(4, 5);
 			this.mainTools.Name = "mainTools";
-			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.mainTools.Size = new System.Drawing.Size(617, 32);
+			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+			this.mainTools.Size = new System.Drawing.Size(617, 48);
 			this.mainTools.TabIndex = 0;
 			// 
 			// FileMenu
@@ -689,7 +687,7 @@
 			this.FileMenu.Image = ((System.Drawing.Image)(resources.GetObject("FileMenu.Image")));
 			this.FileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
-			this.FileMenu.Size = new System.Drawing.Size(56, 27);
+			this.FileMenu.Size = new System.Drawing.Size(56, 43);
 			this.FileMenu.Text = "File";
 			// 
 			// loadButton
@@ -713,7 +711,7 @@
 			this.newStyleButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
 			this.newStyleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newStyleButton.Name = "newStyleButton";
-			this.newStyleButton.Size = new System.Drawing.Size(117, 27);
+			this.newStyleButton.Size = new System.Drawing.Size(117, 43);
 			this.newStyleButton.Text = "New Style";
 			this.newStyleButton.Click += new System.EventHandler(this.AddStyle);
 			// 
@@ -722,7 +720,7 @@
 			this.reorderButton.Image = ((System.Drawing.Image)(resources.GetObject("reorderButton.Image")));
 			this.reorderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.reorderButton.Name = "reorderButton";
-			this.reorderButton.Size = new System.Drawing.Size(102, 27);
+			this.reorderButton.Size = new System.Drawing.Size(102, 43);
 			this.reorderButton.Text = "Reorder";
 			this.reorderButton.Click += new System.EventHandler(this.ReorderStyles);
 			// 
@@ -732,7 +730,7 @@
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(90, 29);
+			this.deleteButton.Size = new System.Drawing.Size(90, 45);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteStyle);
 			// 

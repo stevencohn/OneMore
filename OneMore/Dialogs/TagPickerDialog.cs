@@ -22,7 +22,8 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 		private readonly Graphics graphics;
-		private readonly float scalingFactor;
+		private readonly float xScalingFactor;
+		private readonly float yScalingFactor;
 
 		private readonly List<Zone> zones;
 		private Zone active;
@@ -207,7 +208,7 @@ namespace River.OneMoreAddIn.Dialogs
 				#endregion Zones
 			};
 
-			scalingFactor = UIHelper.GetScalingFactor();
+			(xScalingFactor, yScalingFactor) = UIHelper.GetScalingFactors();
 
 			Left = x;
 			Top = y + (Height / 2);
@@ -237,13 +238,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void pictureBox_MouseMove(object sender, MouseEventArgs e)
 		{
-			var mouseX = e.X;
-			var mouseY = e.Y;
-			if (scalingFactor > 1.0)
-			{
-				mouseX = (int)(mouseX / scalingFactor);
-				mouseY = (int)(mouseY / scalingFactor);
-			}
+			var mouseX = xScalingFactor == 0.0 ? e.X : (int)(e.X / xScalingFactor);
+			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)(e.Y / yScalingFactor);
 
 			var zone = zones.Where(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
@@ -276,13 +272,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
 		{
-			var mouseX = e.X;
-			var mouseY = e.Y;
-			if (scalingFactor > 1.0)
-			{
-				mouseX = (int)(mouseX / scalingFactor);
-				mouseY = (int)(mouseY / scalingFactor);
-			}
+			var mouseX = xScalingFactor == 0.0 ? e.X : (int)(e.X / xScalingFactor);
+			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)(e.Y / yScalingFactor);
 
 			var zone = zones.Where(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&

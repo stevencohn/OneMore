@@ -22,7 +22,8 @@ namespace River.OneMoreAddIn
 	internal static class UIHelper
 	{
 		private static bool unprepared = true;
-		private static float scalingFactor = 0;
+		private static float xScalingFactor = 0;
+		private static float yScalingFactor = 0;
 
 
 		/// <summary>
@@ -44,24 +45,27 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Get the HighDPI scaling factor. Should be 1.0 for non-HighDPI monitors.
+		/// Get the HighDPI scaling factor for both width and height.
+		/// Should be 1.0 for non-HighDPI monitors.
 		/// </summary>
-		/// <returns></returns>
-		public static float GetScalingFactor()
+		/// <returns>A Tuple with xScalingFactor and yScalingFactor</returns>
+		public static (float, float) GetScalingFactors()
 		{
-			if (scalingFactor == 0)
+			if (xScalingFactor == 0 && yScalingFactor == 0)
 			{
-				var g = Graphics.FromHwnd(IntPtr.Zero);
-				IntPtr desktop = g.GetHdc();
+				using (var g = Graphics.FromHwnd(IntPtr.Zero))
+				{
+					IntPtr desktop = g.GetHdc();
 
-				var LogicalScreenHeight = System.Windows.SystemParameters.WorkArea.Height;
-				//int LogicalScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_VERTRES);
-				int PhysicalScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPVERTRES);
+					int physScreenWidth = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPHORZRES);
+					int physScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPVERTRES);
 
-				scalingFactor = (float)PhysicalScreenHeight / (float)LogicalScreenHeight;
+					xScalingFactor = physScreenWidth / (float)System.Windows.SystemParameters.WorkArea.Width;
+					yScalingFactor = physScreenHeight / (float)System.Windows.SystemParameters.WorkArea.Height;
+				}
 			}
 
-			return scalingFactor; // 1.25 = 125%
+			return (xScalingFactor, yScalingFactor); // 1.25 = 125%
 		}
 
 
