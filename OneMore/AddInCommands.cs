@@ -191,14 +191,9 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<ResizeImagesCommand>().Execute();
 		}
 
-		public void SaveAsHTMLCmd(IRibbonControl control)
+		public void SaveAsCmd(IRibbonControl control)
 		{
-			factory.GetCommand<SaveAsCommand>().Execute(SaveAsFormat.HTML);
-		}
-
-		public void SaveAsXMLLCmd(IRibbonControl control)
-		{
-			factory.GetCommand<SaveAsCommand>().Execute(SaveAsFormat.XML);
+			factory.GetCommand<SaveAsCommand>().Execute();
 		}
 
 		public void SearchAndReplaceCmd(IRibbonControl control)

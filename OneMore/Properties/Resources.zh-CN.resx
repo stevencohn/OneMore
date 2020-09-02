@@ -1047,4 +1047,32 @@ OneNote 将自动关闭</value>
     <value>标签:</value>
     <comment>label</comment>
   </data>
+  <data name="ribSaveAsButton_Label" xml:space="preserve">
+    <value>另存为...</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribSaveAsButton_Screentip" xml:space="preserve">
+    <value>将页面另存为HTML或XML</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="SaveAs_Error" xml:space="preserve">
+    <value>将页面另存为{0}时出错</value>
+    <comment>Save as dialog error message</comment>
+  </data>
+  <data name="SaveAs_Filter" xml:space="preserve">
+    <value>HTML圆角| .htm | HML圆角| .hml</value>
+    <comment>Save as dialog filename filter string</comment>
+  </data>
+  <data name="SaveAs_Invalid_Type" xml:space="preserve">
+    <value>文件类型必须为.htm或.xml</value>
+    <comment>Save as dialog invalid file type message</comment>
+  </data>
+  <data name="SaveAs_Success" xml:space="preserve">
+    <value>页面已保存到{0}</value>
+    <comment>Save as dialog success message</comment>
+  </data>
+  <data name="SaveAs_Title" xml:space="preserve">
+    <value>将页面另存为...</value>
+    <comment>Save as dialog title</comment>
+  </data>
 </root>

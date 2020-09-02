@@ -1047,4 +1047,32 @@ Notebooks</value>
     <value>Tag:</value>
     <comment>label</comment>
   </data>
+  <data name="ribSaveAsButton_Label" xml:space="preserve">
+    <value>Save as...</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribSaveAsButton_Screentip" xml:space="preserve">
+    <value>Save page as either HTML or XML</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="SaveAs_Error" xml:space="preserve">
+    <value>Error saving page as {0}</value>
+    <comment>Save as dialog error message</comment>
+  </data>
+  <data name="SaveAs_Filter" xml:space="preserve">
+    <value>HTML File|.htm|XML File|.xml</value>
+    <comment>Save as dialog filename filter string</comment>
+  </data>
+  <data name="SaveAs_Invalid_Type" xml:space="preserve">
+    <value>The file type must be either .htm or .xml</value>
+    <comment>Save as dialog invalid file type message</comment>
+  </data>
+  <data name="SaveAs_Success" xml:space="preserve">
+    <value>Page saved to {0}</value>
+    <comment>Save as dialog success message</comment>
+  </data>
+  <data name="SaveAs_Title" xml:space="preserve">
+    <value>Save Page as...</value>
+    <comment>Save as dialog title</comment>
+  </data>
 </root>

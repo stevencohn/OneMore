@@ -8,13 +8,7 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using Microsoft.Office.Interop.OneNote;
 	using System.Windows.Forms;
-
-
-	internal enum SaveAsFormat
-	{
-		HTML,
-		XML
-	}
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class SaveAsCommand : Command
@@ -24,113 +18,101 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute(SaveAsFormat format)
-		{
-			switch (format)
-			{
-				case SaveAsFormat.HTML:
-					SaveAsHTML();
-					break;
-
-				case SaveAsFormat.XML:
-					SaveAsXML();
-					break;
-			}
-		}
-
-
-		private void SaveAsHTML()
+		public void Execute()
 		{
 			using (var dialog = new SaveFileDialog
 			{
-				Filter = "HTML File|.htm",
+				Filter = Resx.SaveAs_Filter,
 				DefaultExt = ".htm",
-				Title = "Save Page as HTML",
+				Title = Resx.SaveAs_Title,
 				AddExtension = true
 			})
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					using (var manager = new ApplicationManager())
+					switch (Path.GetExtension(dialog.FileName))
 					{
-						var root = manager.CurrentPage();
+						case ".htm":
+							SaveAsHTML(dialog.FileName);
+							break;
 
-						var pageId = root.Attribute("ID").Value;
-						logger.WriteLine($"publishing page {pageId} to {dialog.FileName}");
+						case ".xml":
+							SaveAsXML(dialog.FileName);
+							break;
 
-						try
-						{
-							if (File.Exists(dialog.FileName))
-							{
-								File.Delete(dialog.FileName);
-							}
-
-							manager.Application.Publish(
-								pageId,
-								dialog.FileName,
-								PublishFormat.pfHTML,
-								string.Empty
-							);
-						}
-						catch (Exception exc)
-						{
-							logger.WriteLine("ERROR publishig page as HTML", exc);
-
-							MessageBox.Show(owner, "Error saving page as HTML", "OneMore",
-								MessageBoxButtons.OK,
-								MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,
-								MessageBoxOptions.DefaultDesktopOnly);
-
-							return;
-						}
+						default:
+							UIHelper.ShowError(Resx.SaveAs_Invalid_Type);
+							break;
 					}
-
-					UIHelper.ShowMessage(owner, $"Page saved to {dialog.FileName}");
 				}
 			}
 		}
 
 
-		public void SaveAsXML()
+		private void SaveAsHTML(string filename)
 		{
-			using (var dialog = new SaveFileDialog
+			using (var manager = new ApplicationManager())
 			{
-				Filter = "XML File|.xml",
-				DefaultExt = ".xml",
-				Title = "Save Page as XML",
-				AddExtension = true
-			})
-			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				var root = manager.CurrentPage();
+
+				var pageId = root.Attribute("ID").Value;
+				logger.WriteLine($"publishing page {pageId} to {filename}");
+
+				try
 				{
-					using (var manager = new ApplicationManager())
+					if (File.Exists(filename))
 					{
-						var root = manager.CurrentPage();
-
-						try
-						{
-							if (File.Exists(dialog.FileName))
-							{
-								File.Delete(dialog.FileName);
-							}
-
-							root.Save(dialog.FileName);
-						}
-						catch (Exception exc)
-						{
-							logger.WriteLine("ERROR publishig page as XML", exc);
-
-							MessageBox.Show(owner, "Error saving page as XML", "OneMore",
-								MessageBoxButtons.OK,
-								MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,
-								MessageBoxOptions.DefaultDesktopOnly);
-
-							return;
-						}
+						File.Delete(filename);
 					}
-				}
 
-				UIHelper.ShowMessage(owner, $"Page saved to {dialog.FileName}");
+					manager.Application.Publish(
+						pageId,
+						filename,
+						PublishFormat.pfHTML,
+						string.Empty
+					);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("ERROR publishig page as HTML", exc);
+					UIHelper.ShowError(string.Format(Resx.SaveAs_Error, "HTML") + "\n\n" + exc.Message);
+					return;
+				}
+			}
+
+			if (filename != null)
+			{
+				UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
+			}
+		}
+
+
+		public void SaveAsXML(string filename)
+		{
+			using (var manager = new ApplicationManager())
+			{
+				var root = manager.CurrentPage(PageInfo.piAll);
+
+				try
+				{
+					if (File.Exists(filename))
+					{
+						File.Delete(filename);
+					}
+
+					root.Save(filename);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("ERROR publishig page as XML", exc);
+					UIHelper.ShowError(string.Format(Resx.SaveAs_Error, "XML") + "\n\n" + exc.Message);
+					return;
+				}
+			}
+
+			if (filename != null)
+			{
+				UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
 			}
 		}
 	}

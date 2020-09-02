@@ -1859,6 +1859,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save as....
+        /// </summary>
+        internal static string ribSaveAsButton_Label {
+            get {
+                return ResourceManager.GetString("ribSaveAsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save page as either HTML or XML.
+        /// </summary>
+        internal static string ribSaveAsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSaveAsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show XML.
         /// </summary>
         internal static string ribShowXmlButton_Label {
@@ -1964,6 +1982,51 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("SaveAs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error saving page as {0}.
+        /// </summary>
+        internal static string SaveAs_Error {
+            get {
+                return ResourceManager.GetString("SaveAs_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTML File|.htm|XML File|.xml.
+        /// </summary>
+        internal static string SaveAs_Filter {
+            get {
+                return ResourceManager.GetString("SaveAs_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file type must be either .htm or .xml.
+        /// </summary>
+        internal static string SaveAs_Invalid_Type {
+            get {
+                return ResourceManager.GetString("SaveAs_Invalid_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page saved to {0}.
+        /// </summary>
+        internal static string SaveAs_Success {
+            get {
+                return ResourceManager.GetString("SaveAs_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Page as....
+        /// </summary>
+        internal static string SaveAs_Title {
+            get {
+                return ResourceManager.GetString("SaveAs_Title", resourceCulture);
             }
         }
         

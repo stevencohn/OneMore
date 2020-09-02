@@ -249,6 +249,12 @@
               onAction="DecreaseFontSizeCmd"/>
             <menuSeparator id="sepOther" title="Other"/>
             <button
+              id="ribSaveAsButton"
+              imageMso="FileSave"
+              getLabel="GetItemLabel"
+              getScreentip="GetItemScreentip"
+              onAction="SaveAsCmd"/>
+            <button
               id="ribCollapseButton"
               imageMso="CollapseAll"
               getLabel="GetItemLabel"
@@ -268,10 +274,6 @@
               id="ribAboutButton"
               getLabel="GetItemLabel"
               onAction="AboutCmd"/>
-            <button
-              id="ribSaveAsHTMLButton"
-              label="Save as HTML"
-              onAction="SaveAsHTMLCmd"/>
           </menu>
         </group>
       </tab>
