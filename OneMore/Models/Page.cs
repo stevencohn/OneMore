@@ -83,10 +83,9 @@ namespace River.OneMoreAddIn.Models
 
 			if (found != true)
 			{
-				Logger.Current.WriteLine("Could not confirm body context");
-
 				if (feedback)
 				{
+					Logger.Current.WriteLine("Could not confirm body context");
 					SystemSounds.Exclamation.Play();
 				}
 
@@ -104,10 +103,9 @@ namespace River.OneMoreAddIn.Models
 
 			if (found != true)
 			{
-				Logger.Current.WriteLine("Could not confirm image selections");
-
 				if (feedback)
 				{
+					Logger.Current.WriteLine("Could not confirm image selections");
 					SystemSounds.Exclamation.Play();
 				}
 
