@@ -13,6 +13,11 @@ namespace River.OneMoreAddIn
     public partial class AddIn
 	{
 
+		public void AboutCmd(IRibbonControl control)
+		{
+			factory.GetCommand<AboutCommand>().Execute();
+		}
+
 		public void AddCaptionCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AddCaptionCommand>().Execute();
@@ -186,14 +191,19 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<ResizeImagesCommand>().Execute();
 		}
 
+		public void SaveAsHTMLCmd(IRibbonControl control)
+		{
+			factory.GetCommand<SaveAsCommand>().Execute(SaveAsFormat.HTML);
+		}
+
+		public void SaveAsXMLLCmd(IRibbonControl control)
+		{
+			factory.GetCommand<SaveAsCommand>().Execute(SaveAsFormat.XML);
+		}
+
 		public void SearchAndReplaceCmd(IRibbonControl control)
 		{
 			factory.GetCommand<SearchAndReplaceCommand>().Execute();
-		}
-
-		public void ShowAboutCmd(IRibbonControl control)
-		{
-			factory.GetCommand<ShowAboutCommand>().Execute();
 		}
 
 		public void ShowXmlCmd(IRibbonControl control)

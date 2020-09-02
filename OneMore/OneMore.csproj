@@ -109,6 +109,7 @@
     <Compile Include="Commands\Formula\HighlightFormulaCommand.cs" />
     <Compile Include="Commands\Formula\RecalculateFormulaCommand.cs" />
     <Compile Include="Commands\OutlineCommand.cs" />
+    <Compile Include="Commands\SaveAsCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
@@ -170,7 +171,7 @@
     <Compile Include="Commands\SearchAndReplace\IAtom.cs" />
     <Compile Include="Commands\SearchAndReplace\SearchAndReplaceEditor.cs" />
     <Compile Include="Commands\SearchAndReplace\TextAtom.cs" />
-    <Compile Include="Commands\ShowAboutCommand.cs" />
+    <Compile Include="Commands\AboutCommand.cs" />
     <Compile Include="Commands\SortCommand.cs" />
     <Compile Include="Commands\ToCaseCommand.cs" />
     <Compile Include="Commands\TrimCommand.cs" />
@@ -424,8 +425,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>taskkill /fi "pid gt 0" /im ONENOTE.exe</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

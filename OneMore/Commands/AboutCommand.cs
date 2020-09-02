@@ -4,17 +4,16 @@
 
 namespace River.OneMoreAddIn
 {
-
-	internal class ShowAboutCommand : Command
+	internal class AboutCommand : Command
 	{
-		public ShowAboutCommand ()
+		public AboutCommand ()
 		{
 		}
 
 
 		public void Execute ()
 		{
-			logger.WriteLine("ShowAboutCommand.Execute()");
+			logger.WriteLine("AboutCommand.Execute()");
 
 			using (var dialog = new Dialogs.AboutDialog())
 			{

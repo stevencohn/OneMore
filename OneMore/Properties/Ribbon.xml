@@ -267,7 +267,11 @@
             <button
               id="ribAboutButton"
               getLabel="GetItemLabel"
-              onAction="ShowAboutCmd"/>
+              onAction="AboutCmd"/>
+            <button
+              id="ribSaveAsHTMLButton"
+              label="Save as HTML"
+              onAction="SaveAsHTMLCmd"/>
           </menu>
         </group>
       </tab>
