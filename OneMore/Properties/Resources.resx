@@ -1103,4 +1103,40 @@ Notebooks</value>
     <value>Remove information for all authors on this page</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribNumberingMenu_Label" xml:space="preserve">
+    <value>Numbering...</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberPagesButton_Label" xml:space="preserve">
+    <value>Number Pages</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberPagesButton_Screentip" xml:space="preserve">
+    <value>Add or update number of all pages in this section</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberSectionsButton_Label" xml:space="preserve">
+    <value>Number Sections</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
+    <value>Add or update numbering of all sections in this notebook</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
+    <value>Remove Page Numbers</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemovePageNumbersButton_Screentip" xml:space="preserve">
+    <value>Remove numbers from all pages in this section</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveSectionNumbersButton_Label" xml:space="preserve">
+    <value>Remove Section Numbers</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveSectionNumbersButton_Screentip" xml:space="preserve">
+    <value>Remove numbers from all sectionsin this notebook</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
 </root>

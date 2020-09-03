@@ -111,6 +111,10 @@
     <Compile Include="Commands\Formula\FormulaEnums.cs" />
     <Compile Include="Commands\Formula\HighlightFormulaCommand.cs" />
     <Compile Include="Commands\Formula\RecalculateFormulaCommand.cs" />
+    <Compile Include="Commands\Numbering\NumberPagesCommand.cs" />
+    <Compile Include="Commands\Numbering\NumberSectionsCommand.cs" />
+    <Compile Include="Commands\Numbering\RemovePageNumbersCommand.cs" />
+    <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
     <Compile Include="Commands\OutlineCommand.cs" />
     <Compile Include="Commands\SaveAsCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />

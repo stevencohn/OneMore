@@ -166,6 +166,16 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<NoSpellCheckCommand>().Execute();
 		}
 
+		public void NumberPagesCmd(IRibbonControl control)
+		{
+			factory.GetCommand<NumberPagesCommand>().Execute();
+		}
+
+		public void NumberSectionsCmd(IRibbonControl control)
+		{
+			factory.GetCommand<NumberSectionsCommand>().Execute();
+		}
+
 		public void OutlineCmd(IRibbonControl control)
 		{
 			factory.GetCommand<OutlineCommand>().Execute();
@@ -194,6 +204,16 @@ namespace River.OneMoreAddIn
 		public void RemoveFootnoteCmd(IRibbonControl control)
 		{
 			factory.GetCommand<RemoveFootnoteCommand>().Execute();
+		}
+
+		public void RemovePageNumbersCmd(IRibbonControl control)
+		{
+			factory.GetCommand<RemovePageNumbersCommand>().Execute();
+		}
+
+		public void RemoveSectionNumbersCmd(IRibbonControl control)
+		{
+			factory.GetCommand<RemoveSectionNumbersCommand>().Execute();
 		}
 
 		public void ResizeImagesCmd(IRibbonControl control)

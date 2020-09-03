@@ -1760,6 +1760,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Numbering....
+        /// </summary>
+        internal static string ribNumberingMenu_Label {
+            get {
+                return ResourceManager.GetString("ribNumberingMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Pages.
+        /// </summary>
+        internal static string ribNumberPagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribNumberPagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add or update number of all pages in this section.
+        /// </summary>
+        internal static string ribNumberPagesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribNumberPagesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Sections.
+        /// </summary>
+        internal static string ribNumberSectionsButton_Label {
+            get {
+                return ResourceManager.GetString("ribNumberSectionsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add or update numbering of all sections in this notebook.
+        /// </summary>
+        internal static string ribNumberSectionsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribNumberSectionsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore.
         /// </summary>
         internal static string ribOneMoreGroup_Label {
@@ -1873,6 +1918,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRemoveEmptyButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRemoveEmptyButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Page Numbers.
+        /// </summary>
+        internal static string ribRemovePageNumbersButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemovePageNumbersButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove numbers from all pages in this section.
+        /// </summary>
+        internal static string ribRemovePageNumbersButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemovePageNumbersButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Section Numbers.
+        /// </summary>
+        internal static string ribRemoveSectionNumbersButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveSectionNumbersButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove numbers from all sectionsin this notebook.
+        /// </summary>
+        internal static string ribRemoveSectionNumbersButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveSectionNumbersButton_Screentip", resourceCulture);
             }
         }
         

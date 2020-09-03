@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn
 				var count = 0;
 				var page = new Page(manager.CurrentPage());
 
+				// these are all the elements that might have editedByAttributes
 				var elements = page.Root.Descendants().Where(d => 
 					d.Name.LocalName == "Table" ||
 					d.Name.LocalName == "Row" ||
@@ -32,21 +33,19 @@ namespace River.OneMoreAddIn
 
 				foreach (var element in elements)
 				{
+					// editedByAttributes attributeGroup
 					var atts = element.Attributes().Where(a =>
 						a.Name == "author" ||
 						a.Name == "authorInitials" ||
 						a.Name == "authorResolutionID" ||
 						a.Name == "lastModifiedBy" ||
-						a.Name == "lastModifiedInitials" ||
+						a.Name == "lastModifiedByInitials" ||
 						a.Name == "lastModifiedByResolutionID"
 						)
 						.ToList();
 
-					foreach (var att in atts)
-					{
-						att.Remove();
-						count++;
-					}
+					count = atts.Count;
+					atts.ForEach(a => a.Remove());
 				}
 
 				if (count > 0)
@@ -58,22 +57,3 @@ namespace River.OneMoreAddIn
 		}
 	}
 }
-/*
- * Table, Row, Cell, Outline, OE
- * 
-	<xsd:attributeGroup name="EditedByAttributes">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">
-				Set of properties to define who edited what when.
-				If not set on a child element, it has the same setting as the parent.
-			</xsd:documentation>
-		</xsd:annotation>
-		<xsd:attribute name="author" type="xsd:string"/>
-		<xsd:attribute name="authorInitials" type="xsd:string"/>
-		<xsd:attribute name="authorResolutionID" type="xsd:string"/>
-		<xsd:attribute name="lastModifiedBy" type="xsd:string"/>
-		<xsd:attribute name="lastModifiedByInitials" type="xsd:string"/>
-		<xsd:attribute name="lastModifiedByResolutionID" type="xsd:string"/>
-		<xsd:attribute name="creationTime" type="xsd:dateTime"/>
-	</xsd:attributeGroup>
-*/

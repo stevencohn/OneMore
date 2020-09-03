@@ -130,61 +130,35 @@
                 getLabel="GetItemLabel"
                 onAction="ResizeImagesCmd"/>
             </menu>
-            <menu id="ribExtrasMenu" getLabel="GetItemLabel" imageMso="OutlineDemote">
+            <menu id="ribNumberingMenu" getLabel="GetItemLabel" imageMso="Numbering">
               <button
-                id="ribFlagTitleButton"
-                imageMso="DataGraphicIconSet"
-                getLabel="GetItemLabel"
-                onAction="AddTitleIconCmd"/>
-              <button
-                id="ribFootnoteButton"
-                imageMso="FootnoteInsert"
+                id="ribNumberSectionsButton"
+                imageMso="LineNumbersMenu"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
-                onAction="AddFootnoteCmd"/>
+                onAction="NumberSectionsCmd"/>
               <button
-                id="ribFootnoteRemoveButton"
-                imageMso="RemoveCitation"
+                id="ribRemoveSectionNumbersButton"
+                imageMso="HeaderFooterRemoveHeaderWord"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
-                onAction="RemoveFootnoteCmd"/>
+                onAction="RemoveSectionNumbersCmd"/>
               <button
-                id="ribInsertSingleLineButton"
-                imageMso="HorizontalLineInsert"
+                id="ribNumberPagesButton"
+                imageMso="CustomPageNumberGallery"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
-                onAction="InsertHorizontalLineCmd"/>
+                onAction="NumberPagesCmd"/>
               <button
-                id="ribInsertDoubleLineButton"
-                getImage="GetDoubleLineImage"
+                id="ribRemovePageNumbersButton"
+                imageMso="PageNumbersRemove"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
-                onAction="InsertDoubleHorizontalLineCmd"/>
-              <button
-                id="ribTocButton"
-                imageMso="WordInsertTableOfContents2"
-                getLabel="GetItemLabel"
-                onAction="InsertTocCmd"/>
-              <button
-                id="ribMergeButton"
-                imageMso="CompareAndCombine"
-                getLabel="GetItemLabel"
-                getEnabled="GetMultiPageContext"
-                onAction="MergeCmd"/>
-              <button
-                id="ribOutlineButton"
-                imageMso="OutlineShowDetail"
-                getLabel="GetItemLabel"
-                onAction="OutlineCmd"/>
-              <button
-                id="ribNameUrlsButton"
-                imageMso="AutoSigWebInsertHyperlink"
-                getLabel="GetItemLabel"
-                onAction="NameUrlsCmd"/>
+                onAction="RemovePageNumbersCmd"/>
             </menu>
             <menu id="ribSnippetsMenu" getLabel="GetItemLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
               <button
@@ -241,6 +215,62 @@
                 getLabel="GetItemLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertBlueStatusCmd"/>
+            </menu>
+            <menu id="ribExtrasMenu" getLabel="GetItemLabel" imageMso="OutlineDemote">
+              <button
+                id="ribFlagTitleButton"
+                imageMso="DataGraphicIconSet"
+                getLabel="GetItemLabel"
+                onAction="AddTitleIconCmd"/>
+              <button
+                id="ribFootnoteButton"
+                imageMso="FootnoteInsert"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                getEnabled="GetBodyContext"
+                onAction="AddFootnoteCmd"/>
+              <button
+                id="ribFootnoteRemoveButton"
+                imageMso="RemoveCitation"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                getEnabled="GetBodyContext"
+                onAction="RemoveFootnoteCmd"/>
+              <button
+                id="ribInsertSingleLineButton"
+                imageMso="HorizontalLineInsert"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                getEnabled="GetBodyContext"
+                onAction="InsertHorizontalLineCmd"/>
+              <button
+                id="ribInsertDoubleLineButton"
+                getImage="GetDoubleLineImage"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                getEnabled="GetBodyContext"
+                onAction="InsertDoubleHorizontalLineCmd"/>
+              <button
+                id="ribTocButton"
+                imageMso="WordInsertTableOfContents2"
+                getLabel="GetItemLabel"
+                onAction="InsertTocCmd"/>
+              <button
+                id="ribMergeButton"
+                imageMso="CompareAndCombine"
+                getLabel="GetItemLabel"
+                getEnabled="GetMultiPageContext"
+                onAction="MergeCmd"/>
+              <button
+                id="ribOutlineButton"
+                imageMso="OutlineShowDetail"
+                getLabel="GetItemLabel"
+                onAction="OutlineCmd"/>
+              <button
+                id="ribNameUrlsButton"
+                imageMso="AutoSigWebInsertHyperlink"
+                getLabel="GetItemLabel"
+                onAction="NameUrlsCmd"/>
             </menu>
             <menuSeparator id="sep1" title="Text"/>
             <button
