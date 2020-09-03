@@ -181,6 +181,16 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<RecalculateFormulaCommand>().Execute();
 		}
 
+		public void RemoveAuthorsCmd(IRibbonControl control)
+		{
+			factory.GetCommand<RemoveAuthorsCommand>().Execute();
+		}
+
+		public void RemoveEmptyCmd(IRibbonControl control)
+		{
+			factory.GetCommand<RemoveEmptyCommand>().Execute();
+		}
+
 		public void RemoveFootnoteCmd(IRibbonControl control)
 		{
 			factory.GetCommand<RemoveFootnoteCommand>().Execute();
@@ -214,6 +224,11 @@ namespace River.OneMoreAddIn
 		public void ToLowercaseCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ToCaseCommand>().Execute(false);
+		}
+
+		public void ToggleDttmCmd(IRibbonControl control)
+		{
+			factory.GetCommand<ToggleDttmCommand>().Execute();
 		}
 
 		public void ToUppercaseCmd(IRibbonControl control)

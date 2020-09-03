@@ -141,19 +141,7 @@ namespace River.OneMoreAddIn.Models
 				var analyzer = new StyleAnalyzer(Root);
 				var style = new Style(analyzer.CollectStyleProperties(child));
 
-				var find = customStyles.Find(s =>
-					s.FontFamily == style.FontFamily &&
-					s.FontSize == style.FontSize &&
-					s.Color == style.Color &&
-					s.Highlight == style.Highlight &&
-					s.IsBold == style.IsBold &&
-					s.IsItalic == style.IsItalic &&
-					s.IsUnderline == style.IsUnderline &&
-					s.SpaceBefore == style.SpaceBefore &&
-					s.SpaceAfter == style.SpaceAfter
-				// ignoring IsStrikethrough, IsSuperscript, IsSubscript
-				);
-
+				var find = customStyles.Find(s => s.Equals(style));
 				return find;
 			}
 

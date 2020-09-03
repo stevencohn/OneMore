@@ -1427,6 +1427,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean....
+        /// </summary>
+        internal static string ribCleanMenu_Label {
+            get {
+                return ResourceManager.GetString("ribCleanMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code block.
         /// </summary>
         internal static string ribCodeBlockButton_Label {
@@ -1832,6 +1841,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Author Information.
+        /// </summary>
+        internal static string ribRemoveAuthorsButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveAuthorsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove information for all authors on this page.
+        /// </summary>
+        internal static string ribRemoveAuthorsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveAuthorsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove empty paragraphs and headers.
+        /// </summary>
+        internal static string ribRemoveEmptyButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveEmptyButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove extra empty lines between paragraph and remove empty headers.
+        /// </summary>
+        internal static string ribRemoveEmptyButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveEmptyButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search and Replace.
         /// </summary>
         internal static string ribReplaceButton_Label {
@@ -1918,6 +1963,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribTocButton_Label {
             get {
                 return ResourceManager.GetString("ribTocButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show/Hide Page Date and Time Stamps.
+        /// </summary>
+        internal static string ribToggleDttmButton_Label {
+            get {
+                return ResourceManager.GetString("ribToggleDttmButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show/hide page date and time stamps below title.
+        /// </summary>
+        internal static string ribToggleDttmButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribToggleDttmButton_Screentip", resourceCulture);
             }
         }
         

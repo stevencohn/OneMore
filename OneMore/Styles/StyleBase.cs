@@ -207,5 +207,35 @@ namespace River.OneMoreAddIn
 		/// </remarks>
 		public bool ApplyColors { get; set; }
 
+
+		/// <summary>
+		/// Compares this style with the given style
+		/// </summary>
+		/// <param name="obj">A StyleBase or a type that derives from StyleBase</param>
+		/// <returns>true if the objects match; false otherwise</returns>
+		public override bool Equals(object obj)
+		{
+			if (!(obj is StyleBase style))
+			{
+				return false;
+			}
+
+			return
+				FontFamily == style.FontFamily &&
+				FontSize == style.FontSize &&
+				Color == style.Color &&
+				Highlight == style.Highlight &&
+				IsBold == style.IsBold &&
+				IsItalic == style.IsItalic &&
+				IsUnderline == style.IsUnderline &&
+				SpaceBefore == style.SpaceBefore &&
+				SpaceAfter == style.SpaceAfter;
+		}
+
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
 	}
 }

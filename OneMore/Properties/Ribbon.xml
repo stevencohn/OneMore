@@ -65,12 +65,32 @@
               getLabel="GetItemLabel"
               getScreentip="GetItemScreentip"
               onAction="SearchAndReplaceCmd"/>
-            <button
-              id="ribTrimButton"
-              imageMso="AutoTextGallery"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
-              onAction="TrimCmd"/>
+            <menu id="ribCleanMenu" getLabel="GetItemLabel" imageMso="Clear">
+              <button
+                id="ribRemoveAuthorsButton"
+                imageMso="RemoveCitation"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                onAction="RemoveAuthorsCmd"/>
+              <button
+                id="ribRemoveEmptyButton"
+                imageMso="RecordsDeleteRecord"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                onAction="RemoveEmptyCmd"/>
+              <button
+                id="ribToggleDttmButton"
+                imageMso="MessageHeaderToggle"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                onAction="ToggleDttmCmd"/>
+              <button
+                id="ribTrimButton"
+                imageMso="AutoTextGallery"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                onAction="TrimCmd"/>
+            </menu>
             <menu id="ribFormulaMenu" getLabel="GetItemLabel" imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
               <button
                 id="ribAddFormulaButton"

@@ -103,6 +103,9 @@
     <Compile Include="AddInFavorites.cs" />
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\AddCaptionCommand.cs" />
+    <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
+    <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />
+    <Compile Include="Commands\Clean\ToggleDttmCommand.cs" />
     <Compile Include="Commands\Formula\Calculator.cs" />
     <Compile Include="Commands\Formula\DeleteFormulaCommand.cs" />
     <Compile Include="Commands\Formula\FormulaEnums.cs" />
@@ -174,7 +177,7 @@
     <Compile Include="Commands\AboutCommand.cs" />
     <Compile Include="Commands\SortCommand.cs" />
     <Compile Include="Commands\ToCaseCommand.cs" />
-    <Compile Include="Commands\TrimCommand.cs" />
+    <Compile Include="Commands\Clean\TrimCommand.cs" />
     <Compile Include="Dialogs\ChangePageColorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
