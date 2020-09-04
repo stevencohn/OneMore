@@ -1122,6 +1122,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alpha-numeric.
+        /// </summary>
+        internal static string PageNumberingDialog_alphaRadio_Text {
+            get {
+                return ResourceManager.GetString("PageNumberingDialog_alphaRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string PageNumberingDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("PageNumberingDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove/cleanup existing numbering.
+        /// </summary>
+        internal static string PageNumberingDialog_cleanCheckbox_Text {
+            get {
+                return ResourceManager.GetString("PageNumberingDialog_cleanCheckbox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numeric.
+        /// </summary>
+        internal static string PageNumberingDialog_numRadio_Text {
+            get {
+                return ResourceManager.GetString("PageNumberingDialog_numRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string PageNumberingDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("PageNumberingDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Numbering.
+        /// </summary>
+        internal static string PageNumberingDialog_Text {
+            get {
+                return ResourceManager.GetString("PageNumberingDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Passwords {

@@ -26,48 +26,45 @@ namespace River.OneMoreAddIn
 				var section = manager.CurrentSection();
 				if (section != null)
 				{
-					var ns = section.GetDefaultNamespace();
+					var ns = section.GetNamespaceOfPrefix("one");
 
-					var pages = section.Elements(ns + "Page").ToList();
+					var pageIds = section.Elements(ns + "Page")
+						.Select(e => e.Attribute("ID").Value);
 
-					bool modified = false;
-
-					foreach (var page in pages)
+					foreach (var pageId in pageIds)
 					{
-						var name = section.Attributes("name").FirstOrDefault();
-						if (name != null)
+						var page = manager.GetPage(pageId, Microsoft.Office.Interop.OneNote.PageInfo.piBasic);
+						var name = page.Attribute("name").Value;
+
+						if (string.IsNullOrEmpty(name))
 						{
-							if (string.IsNullOrEmpty(name.Value))
-							{
-								continue;
-							}
-
-							// numeric 1.
-							var match = npattern.Match(name.Value);
-
-							// alpha a.
-							if (!match.Success)
-							{
-								match = apattern.Match(name.Value);
-							}
-
-							// alpha i.
-							if (!match.Success)
-							{
-								match = ipattern.Match(name.Value);
-							}
-
-							if (match.Success)
-							{
-								name.Value = name.Value.Substring(match.Groups[1].Length);
-								modified = true;
-							}
+							continue;
 						}
-					}
 
-					if (modified)
-					{
-						manager.UpdateHierarchy(section);
+						// numeric 1.
+						var match = npattern.Match(name);
+
+						// alpha a.
+						if (!match.Success)
+						{
+							match = apattern.Match(name);
+						}
+
+						// alpha i.
+						if (!match.Success)
+						{
+							match = ipattern.Match(name);
+						}
+
+						if (match.Success)
+						{
+							page.Element(ns + "Title")
+								.Element(ns + "OE")
+								.Element(ns + "T")
+								.GetCData().Value = name.Substring(match.Groups[1].Length);
+
+							manager.UpdatePageContent(page);
+						}
 					}
 				}
 			}

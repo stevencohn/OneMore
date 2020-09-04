@@ -22,6 +22,8 @@ namespace River.OneMoreAddIn
 				var count = 0;
 				var page = new Page(manager.CurrentPage());
 
+				System.Diagnostics.Debugger.Launch();
+
 				// these are all the elements that might have editedByAttributes
 				var elements = page.Root.Descendants().Where(d => 
 					d.Name.LocalName == "Table" ||
@@ -47,6 +49,9 @@ namespace River.OneMoreAddIn
 					count += atts.Count;
 					atts.ForEach(a => a.Remove());
 				}
+
+				// TODO: This is removing authorship from OEs that wrap Images but
+				// OneNote isn't saving those changes. I don't know why...
 
 				if (count > 0)
 				{

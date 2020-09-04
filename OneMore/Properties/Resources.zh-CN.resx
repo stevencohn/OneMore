@@ -1139,4 +1139,28 @@ OneNote 将自动关闭</value>
     <value>从此笔记本的所有部分中删除数字</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="PageNumberingDialog.Text" xml:space="preserve">
+    <value>页码</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PageNumberingDialog_alphaRadio.Text" xml:space="preserve">
+    <value>字母数字</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PageNumberingDialog_cleanCheckbox.Text" xml:space="preserve">
+    <value>删除/清理现有编号</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
+    <value>数字</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>ok button</comment>
+  </data>
 </root>
