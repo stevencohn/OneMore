@@ -135,7 +135,7 @@ namespace River.OneMoreAddIn
 				PathFactory.EnsurePathExists(PathFactory.GetAppDataPath());
 				root.Save(path, SaveOptions.None);
 
-				ribbon.InvalidateControl("OneMoreFavoritesMenu");
+				ribbon.InvalidateControl("ribFavoritesMenu");
 			}
 			catch (Exception exc)
 			{
@@ -182,7 +182,8 @@ namespace River.OneMoreAddIn
 						$"Remove {label}?",
 						"Confirm",
 						MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-						MessageBoxDefaultButton.Button2
+						MessageBoxDefaultButton.Button2,
+						MessageBoxOptions.DefaultDesktopOnly
 						);
 
 					if (result == DialogResult.Yes)
@@ -194,7 +195,7 @@ namespace River.OneMoreAddIn
 							PathFactory.EnsurePathExists(PathFactory.GetAppDataPath());
 							root.Save(path, SaveOptions.None);
 
-							ribbon.InvalidateControl("OneMoreFavoritesMenu");
+							ribbon.InvalidateControl("ribFavoritesMenu");
 						}
 						catch (Exception exc)
 						{
