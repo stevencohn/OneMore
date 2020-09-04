@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn
 					.Element(ns + "T")
 					.GetCData();
 
-				progress.Message = "Numbering page " + pages[index].Name;
+				progress.Message = string.Format(Properties.Resources.NumberingPage_Message, pages[index].Name);
 				progress.Increment();
 
 				var text = cdata.Value;

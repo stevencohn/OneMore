@@ -1163,4 +1163,12 @@ OneNote 将自动关闭</value>
     <value>好</value>
     <comment>ok button</comment>
   </data>
+  <data name="NumberingPage_Message" xml:space="preserve">
+    <value>编号页{0}</value>
+    <comment>progress status dialog</comment>
+  </data>
+  <data name="RemovingPageNumber_Message" xml:space="preserve">
+    <value>从页面{0}中删除号码</value>
+    <comment>progress status dialog</comment>
+  </data>
 </root>

@@ -941,6 +941,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Numbering page {0}.
+        /// </summary>
+        internal static string NumberingPage_Message {
+            get {
+                return ResourceManager.GetString("NumberingPage_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://schemas.smc.com/onemore/2020/styles.
         /// </summary>
         internal static string OneMoreNamespace {
@@ -1202,6 +1211,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Pushpin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removing number from page {0}.
+        /// </summary>
+        internal static string RemovingPageNumber_Message {
+            get {
+                return ResourceManager.GetString("RemovingPageNumber_Message", resourceCulture);
             }
         }
         

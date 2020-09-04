@@ -1163,4 +1163,12 @@ Notebooks</value>
     <value>OK</value>
     <comment>ok button</comment>
   </data>
+  <data name="NumberingPage_Message" xml:space="preserve">
+    <value>Numbering page {0}</value>
+    <comment>progress status dialog</comment>
+  </data>
+  <data name="RemovingPageNumber_Message" xml:space="preserve">
+    <value>Removing number from page {0}</value>
+    <comment>progress status dialog</comment>
+  </data>
 </root>

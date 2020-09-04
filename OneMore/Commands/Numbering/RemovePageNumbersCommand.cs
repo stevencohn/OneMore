@@ -46,8 +46,10 @@ namespace River.OneMoreAddIn
 						{
 							var page = manager.GetPage(pageId, Microsoft.Office.Interop.OneNote.PageInfo.piBasic);
 							var name = page.Attribute("name").Value;
+							
+							progress.Message = string.Format(
+								Properties.Resources.RemovingPageNumber_Message, name);
 
-							progress.Message = "Cleaning page " + name;
 							progress.Increment();
 
 							if (string.IsNullOrEmpty(name))
