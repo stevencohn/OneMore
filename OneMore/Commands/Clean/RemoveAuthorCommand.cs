@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 						)
 						.ToList();
 
-					count = atts.Count;
+					count += atts.Count;
 					atts.ForEach(a => a.Remove());
 				}
 
