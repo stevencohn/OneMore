@@ -4,23 +4,28 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Dialogs;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 
 
 	internal class RemovePageNumbersCommand : Command
 	{
+		private readonly Regex npattern;
+		private readonly Regex apattern;
+		private readonly Regex ipattern;
+
+
 		public RemovePageNumbersCommand()
 		{
+			npattern = new Regex(@"^(\((?:\d+\.{0,1})+\)\s).+");
+			apattern = new Regex(@"^(\([a-z]+\)\s).+");
+			ipattern = new Regex(@"^(\((?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3})\)\s).+");
 		}
 
 
 		public void Execute()
 		{
-			var npattern = new Regex(@"^(\(\d+\)\s).+");
-			var apattern = new Regex(@"^(\([a-z]+\)\s).+");
-			var ipattern = new Regex(@"^(\((?:xc|xl|l?x{0,3})(?:ix|iv|v?i{0,3})\)\s).+");
-
 			using (var manager = new ApplicationManager())
 			{
 				var section = manager.CurrentSection();
@@ -29,45 +34,67 @@ namespace River.OneMoreAddIn
 					var ns = section.GetNamespaceOfPrefix("one");
 
 					var pageIds = section.Elements(ns + "Page")
-						.Select(e => e.Attribute("ID").Value);
+						.Select(e => e.Attribute("ID").Value)
+						.ToList();
 
-					foreach (var pageId in pageIds)
+					using (var progress = new ProgressDialog())
 					{
-						var page = manager.GetPage(pageId, Microsoft.Office.Interop.OneNote.PageInfo.piBasic);
-						var name = page.Attribute("name").Value;
+						progress.Maximum = pageIds.Count;
+						progress.Show(owner);
 
-						if (string.IsNullOrEmpty(name))
+						foreach (var pageId in pageIds)
 						{
-							continue;
-						}
+							var page = manager.GetPage(pageId, Microsoft.Office.Interop.OneNote.PageInfo.piBasic);
+							var name = page.Attribute("name").Value;
 
-						// numeric 1.
-						var match = npattern.Match(name);
+							progress.Message = "Cleaning page " + name;
+							progress.Increment();
 
-						// alpha a.
-						if (!match.Success)
-						{
-							match = apattern.Match(name);
-						}
+							if (string.IsNullOrEmpty(name))
+							{
+								continue;
+							}
 
-						// alpha i.
-						if (!match.Success)
-						{
-							match = ipattern.Match(name);
-						}
+							if (RemoveNumbering(name, out string clean))
+							{
+								page.Element(ns + "Title")
+									.Element(ns + "OE")
+									.Element(ns + "T")
+									.GetCData().Value = clean;
 
-						if (match.Success)
-						{
-							page.Element(ns + "Title")
-								.Element(ns + "OE")
-								.Element(ns + "T")
-								.GetCData().Value = name.Substring(match.Groups[1].Length);
-
-							manager.UpdatePageContent(page);
+								manager.UpdatePageContent(page);
+							}
 						}
 					}
 				}
 			}
+		}
+
+		public bool RemoveNumbering(string name, out string clean)
+		{
+			// numeric 1.
+			var match = npattern.Match(name);
+
+			// alpha a.
+			if (!match.Success)
+			{
+				match = apattern.Match(name);
+			}
+
+			// alpha i.
+			if (!match.Success)
+			{
+				match = ipattern.Match(name);
+			}
+
+			if (match.Success)
+			{
+				clean = name.Substring(match.Groups[1].Length);
+				return true;
+			}
+
+			clean = name;
+			return false;
 		}
 	}
 }

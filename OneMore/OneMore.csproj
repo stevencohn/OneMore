@@ -154,6 +154,12 @@
     <Compile Include="Dialogs\PageNumberingDialog.Designer.cs">
       <DependentUpon>PageNumberingDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProgressDialog.Designer.cs">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ResizeImagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PageNumberingDialog.resx">
       <DependentUpon>PageNumberingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgressDialog.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>

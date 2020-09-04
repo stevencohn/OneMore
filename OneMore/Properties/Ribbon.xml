@@ -117,7 +117,7 @@
                 getEnabled="GetBodyContext"
                 onAction="RecalculateFormulaCmd"/>
             </menu>
-            <menu id="ribImagesMenu" getLabel="GetItemLabel" imageMso="ObjectPictureFill" getEnabled="GetBodyContext">
+            <menu id="ribImagesMenu" getLabel="GetItemLabel" imageMso="ObjectPictureFill">
               <button
                 id="ribCaptionButton"
                 imageMso="CaptionInsert"
@@ -136,28 +136,24 @@
                 imageMso="LineNumbersMenu"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
-                getEnabled="GetBodyContext"
                 onAction="NumberSectionsCmd"/>
               <button
                 id="ribRemoveSectionNumbersButton"
                 imageMso="HeaderFooterRemoveHeaderWord"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
-                getEnabled="GetBodyContext"
                 onAction="RemoveSectionNumbersCmd"/>
               <button
                 id="ribNumberPagesButton"
                 imageMso="CustomPageNumberGallery"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
-                getEnabled="GetBodyContext"
                 onAction="NumberPagesCmd"/>
               <button
                 id="ribRemovePageNumbersButton"
                 imageMso="PageNumbersRemove"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
-                getEnabled="GetBodyContext"
                 onAction="RemovePageNumbersCmd"/>
             </menu>
             <menu id="ribSnippetsMenu" getLabel="GetItemLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">

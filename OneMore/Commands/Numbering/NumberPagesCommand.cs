@@ -18,12 +18,14 @@ namespace River.OneMoreAddIn
 		{
 			public string ID;
 			public string Name;
-			public int PageLevel;
+			public int Level;
 		}
 
 
 		private ApplicationManager manager;
 		private XNamespace ns;
+		private RemovePageNumbersCommand cleaner;
+		private ProgressDialog progress;
 
 
 		public NumberPagesCommand()
@@ -47,14 +49,30 @@ namespace River.OneMoreAddIn
 							{
 								ID = e.Attribute("ID").Value,
 								Name = e.Attribute("name").Value,
-								PageLevel = int.Parse(e.Attribute("pageLevel").Value)
+								Level = int.Parse(e.Attribute("pageLevel").Value)
 							})
 							.ToList();
 
 						if (pages.Count > 0)
 						{
 							var index = 0;
-							ApplyNumbering(pages, ref index, pages[0].PageLevel, false, string.Empty);
+
+							if (dialog.CleanupNumbering)
+							{
+								cleaner = new RemovePageNumbersCommand();
+							}
+
+							using (progress = new ProgressDialog())
+							{
+								progress.Maximum = pages.Count;
+								progress.Show(owner);
+
+								ApplyNumbering(
+									pages, ref index, pages[0].Level,
+									dialog.NumericNumbering, string.Empty);
+
+								progress.Close();
+							}
 						}
 					}
 				}
@@ -62,11 +80,12 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void ApplyNumbering(List<PageBasics> pages, ref int index, int level, bool numeric, string prefix)
+		private void ApplyNumbering(
+			List<PageBasics> pages, ref int index, int level, bool numeric, string prefix)
 		{
 			int counter = 1;
 
-			while (index < pages.Count && pages[index].PageLevel == level)
+			while (index < pages.Count && pages[index].Level == level)
 			{
 				var page = manager.GetPage(pages[index].ID, PageInfo.piBasic);
 
@@ -75,15 +94,26 @@ namespace River.OneMoreAddIn
 					.Element(ns + "T")
 					.GetCData();
 
-				cdata.Value = BuildPrefix(counter, numeric, level, prefix) + " " + cdata.Value;
+				progress.Message = "Numbering page " + pages[index].Name;
+				progress.Increment();
+
+				var text = cdata.Value;
+				if (cleaner != null)
+				{
+					cleaner.RemoveNumbering(cdata.Value, out text);
+				}
+
+				cdata.Value = BuildPrefix(counter, numeric, level, prefix) + " " + text;
 				manager.UpdatePageContent(page);
 
 				index++;
 				counter++;
 
-				if (index < pages.Count && pages[index].PageLevel > level)
+				if (index < pages.Count && pages[index].Level > level)
 				{
-					ApplyNumbering(pages, ref index, pages[index].PageLevel, numeric, $"{prefix}{counter - 1}.");
+					ApplyNumbering(
+						pages, ref index, pages[index].Level,
+						numeric, $"{prefix}{counter - 1}.");
 				}
 			}
 		}
@@ -93,7 +123,7 @@ namespace River.OneMoreAddIn
 		{
 			if (!numeric)
 			{
-				switch (level % 3)
+				switch ((level - 1) % 3)
 				{
 					case 0:
 						return $"({counter})";
