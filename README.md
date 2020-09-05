@@ -5,35 +5,67 @@ A OneNote add-in with powerful yet simple and effective features including:
 * Access all features from the [OneMore group menus](#menus) added to the Home ribbon
 * Create/edit/apply [**custom styles**](#styles) with advanced options
 * [Apply a style](#styles) to selected text or all custom styles to the current page with one click
-* Disable **spell-check** on the current page
 * Manage menu of [**Favorites**](#favorites) for one-click link to your most referenced pages
-* [Calculate formulas](#formulas) in tables such as Sum, Average, Min, Max, and StdDev
-* Apply [Outline numbering](#outlining) to headings
-* [Paste Rich Text](#exCodeBox) (preserve colors when **pasting code** from Visual Studio)<sup>1</sup>
-* [**Search and replace**](#other) text on the current page
-* Merge pages, preserving formatting and position of outlines
-* Add or remove [**footnotes**](#footnotes) (endnotes)
 
-*Want more from OneMore? OneMore has more...*
+*Want more from OneMore? OneMore has more...* Here's what's in the OneMore menu
+
+General commands
+
+* Disable **spell-check** on the current page (F4)
+* [Paste Rich Text](#exCodeBox) (preserve colors when **pasting code** from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
+* [**Search and replace**](#other) text on the current page (Ctrl+H)
+* Change selected text to UPPERCASE or lowercase
+* Increase/Decrease the font size of all content on the current page
+* Collapse the page hierarchy to see only top-level pages
+* [Sort pages, sections, or notebooks](#other)
+* View and edit the [internal OneNote XML](#xml) of the current page
+* Change [**page background**](#dark) to any custom color with dark-mode awareness
+* Check for updates and install upgrades on-demand
+
+Clean commands
+
+* Remove author/citation information from paragraphs
+* Remove empty headers and "extra" empty lines between paragraphs
+* Show/Hide the page date and time stamps under the title
+* Trim trailing whitespace from selected text
+
+Formula commands
+
+* [Calculate formulas](#formulas) in tables such as Sum, Average, Min, Max, and StdDev
+* Delete formula from selected table cells
+* Highlight cells with custom formulas
+* Recalculate custom formulas in all tables on the page
+
+Image commands
 
 * Add [caption to a selected image](#images)
-* Add [special icon to the page title](#other), also appears in page hierarchy
-* Collapse the page hierarchy to see only top-level pages
-* Change [**page background**](#dark) to any custom color with dark-mode awareness
-* Change selected text to UPPERCASE or lowercase
-* [Indent content](#indenting) below headings or tagged paragraphs
+* [Resize a selected image](#images) or all images on the page
+
+Numbering commands
+
+* Number all sections in the current notebook
+* Number all pages in the current section with numeric or alpha-numeric prefixes
+* Remove numbering from sections
+* Remove numbering from pages
+
+Snippets commands
+
 * Insert single or double horizontal line
 * Insert [**Table of Contents**](#exTOC) including all headers on page
 * Insert [Info/Warn boxes](#exInfoBoxes) similar to Confluence Info and Warn macros
 * Insert [Code box](#exCodeBox) similar to Confluence Code macro
-* Insert [status labels](#exStatusLabels) similar to the Confluence status macro
 * Insert [collapsable sections](#expand) to hide secondary or sensitive information
-* Increase/Decrease the font size of all content on the current page
+* Insert [status labels](#exStatusLabels) similar to the Confluence status macro
+
+Extra commands
+
+* Add [special icon to the page title](#other), also appears in page hierarchy
+* Add or remove [**footnotes**](#footnotes) (endnotes)
+* Merge pages, preserving formatting and position of outlines
+* [Number page headings](#outlining) numeric or alpha-numeric outline prefixes
+* [Indent content](#indenting) below headings or tagged paragraphs
 * [Replace hyperlinked URLs](#nameUrls) with their Web page titles
-* [Resize a selected image](#images) or all images on the page
-* [Sort pages, sections, or notebooks](#other)
-* Trim trailing whitespace from selected text
-* View and edit the [internal OneNote XML](#xml) of the current page
+* Toggle strikethrough text next to all completed/incompleted tags
 
 #### Key Bindings
 While all commands can be accessed from the OneMore ribbon group menus, some
@@ -70,9 +102,9 @@ Deal with it.
 * Microsoft Visual Studio 2019, C# 7
 * Microsoft Visual Studio 2019 Installer Projects extension
 * .NET Framework 4.8
-* Microsoft OneNote 2016 32-bit
+* Microsoft OneNote 2016 32-bit or 64-bit
 
-Tested recently with Windows 10 1909, VS2019, and OneNote 2019/O365
+Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
 ---
 
