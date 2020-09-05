@@ -1742,7 +1742,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert Double Horizontal Line.
+        ///   Looks up a localized string similar to Double Horizontal Line.
         /// </summary>
         internal static string ribInsertDoubleLineButton_Label {
             get {
@@ -1760,7 +1760,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert Horizontal Line.
+        ///   Looks up a localized string similar to Horizontal Line.
         /// </summary>
         internal static string ribInsertSingleLineButton_Label {
             get {
@@ -2129,7 +2129,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert Page TOC.
+        ///   Looks up a localized string similar to Page TOC.
         /// </summary>
         internal static string ribTocButton_Label {
             get {

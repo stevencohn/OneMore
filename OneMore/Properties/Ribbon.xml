@@ -158,6 +158,25 @@
             </menu>
             <menu id="ribSnippetsMenu" getLabel="GetItemLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
               <button
+                id="ribInsertSingleLineButton"
+                imageMso="HorizontalLineInsert"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                getEnabled="GetBodyContext"
+                onAction="InsertHorizontalLineCmd"/>
+              <button
+                id="ribInsertDoubleLineButton"
+                getImage="GetDoubleLineImage"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                getEnabled="GetBodyContext"
+                onAction="InsertDoubleHorizontalLineCmd"/>
+              <button
+                id="ribTocButton"
+                imageMso="WordInsertTableOfContents2"
+                getLabel="GetItemLabel"
+                onAction="InsertTocCmd"/>
+              <button
                 id="ribInfoBlockButton"
                 imageMso="Info"
                 getLabel="GetItemLabel"
@@ -232,25 +251,6 @@
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"
                 onAction="RemoveFootnoteCmd"/>
-              <button
-                id="ribInsertSingleLineButton"
-                imageMso="HorizontalLineInsert"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
-                getEnabled="GetBodyContext"
-                onAction="InsertHorizontalLineCmd"/>
-              <button
-                id="ribInsertDoubleLineButton"
-                getImage="GetDoubleLineImage"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
-                getEnabled="GetBodyContext"
-                onAction="InsertDoubleHorizontalLineCmd"/>
-              <button
-                id="ribTocButton"
-                imageMso="WordInsertTableOfContents2"
-                getLabel="GetItemLabel"
-                onAction="InsertTocCmd"/>
               <button
                 id="ribMergeButton"
                 imageMso="CompareAndCombine"

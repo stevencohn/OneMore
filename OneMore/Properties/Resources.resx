@@ -470,11 +470,11 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
-    <value>Insert Double Horizontal Line</value>
+    <value>Double Horizontal Line</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>Insert Horizontal Line</value>
+    <value>Horizontal Line</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -530,7 +530,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
-    <value>Insert Page TOC</value>
+    <value>Page TOC</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">

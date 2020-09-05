@@ -470,11 +470,11 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
-    <value>插入双水平线</value>
+    <value>双水平线</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>插入水平线</value>
+    <value>水平线</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
@@ -530,7 +530,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
-    <value>插入页面目录</value>
+    <value>页面目录</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">

@@ -102,7 +102,7 @@
     <Compile Include="AddInEnablers.cs" />
     <Compile Include="AddInFavorites.cs" />
     <Compile Include="AddInStyleGallery.cs" />
-    <Compile Include="Commands\AddCaptionCommand.cs" />
+    <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />
     <Compile Include="Commands\Clean\ToggleDttmCommand.cs" />
@@ -115,25 +115,25 @@
     <Compile Include="Commands\Numbering\NumberSectionsCommand.cs" />
     <Compile Include="Commands\Numbering\RemovePageNumbersCommand.cs" />
     <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
-    <Compile Include="Commands\OutlineCommand.cs" />
+    <Compile Include="Commands\Extras\OutlineCommand.cs" />
     <Compile Include="Commands\SaveAsCommand.cs" />
-    <Compile Include="Commands\StrikeoutCommand.cs" />
+    <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
     <Compile Include="Commands\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Styles\EditStylesCommand.cs" />
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
-    <Compile Include="Commands\AddTitleIconCommand.cs" />
+    <Compile Include="Commands\Extras\AddTitleIconCommand.cs" />
     <Compile Include="Commands\AlterSizeCommand.cs" />
     <Compile Include="Commands\CollapseCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
     <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
     <Compile Include="Commands\Formula\AddFormulaCommand.cs" />
-    <Compile Include="Commands\MergeCommand.cs" />
+    <Compile Include="Commands\Extras\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
-    <Compile Include="Commands\ResizeImagesCommand.cs" />
+    <Compile Include="Commands\Images\ResizeImagesCommand.cs" />
     <Compile Include="Dialogs\FormulaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,7 +180,7 @@
     <Compile Include="Commands\Snippets\InsertLineCommand.cs" />
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
-    <Compile Include="Commands\NameUrlsCommand.cs" />
+    <Compile Include="Commands\Extras\NameUrlsCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Commands\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\PasteRtfCommand.cs" />
