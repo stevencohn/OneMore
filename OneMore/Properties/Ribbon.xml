@@ -267,6 +267,12 @@
                 imageMso="AutoSigWebInsertHyperlink"
                 getLabel="GetItemLabel"
                 onAction="NameUrlsCmd"/>
+              <button
+                id="ribStrikeoutTasksButton"
+                imageMso="Strikethrough"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                onAction="StrikeoutCmd"/>
             </menu>
             <menuSeparator id="sep1" title="Text"/>
             <button

@@ -1171,4 +1171,12 @@ OneNote 将自动关闭</value>
     <value>从页面{0}中删除号码</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
+    <value>删除线完成标记</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
+    <value>切换标记有完整或不完整的待办事项标签的文本的删除线</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
 </root>

@@ -241,6 +241,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<SortCommand>().Execute();
 		}
 
+		public void StrikeoutCmd(IRibbonControl control)
+		{
+			factory.GetCommand<StrikeoutCommand>().Execute();
+		}
+
 		public void ToLowercaseCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ToCaseCommand>().Execute(false);

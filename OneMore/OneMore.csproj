@@ -117,6 +117,7 @@
     <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
     <Compile Include="Commands\OutlineCommand.cs" />
     <Compile Include="Commands\SaveAsCommand.cs" />
+    <Compile Include="Commands\StrikeoutCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />

@@ -326,24 +326,28 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Builds a CSS string for use within a one:Page
 		/// </summary>
+		/// <param name="all">
+		/// Include full HTML styling,
+		/// otherwise include only attributes applicable to a CDATA span
+		/// </param>
 		/// <returns></returns>
-		public string ToCss()
+		public string ToCss(bool all = true)
 		{
 			var builder = new StringBuilder();
 
-			if (!string.IsNullOrEmpty(FontFamily))
+			if (!string.IsNullOrEmpty(FontFamily) && all)
 			{
 				builder.Append("font-family:'" + FontFamily + "';");
 			}
 
-			if (fontSize > 0)
+			if (fontSize > 0 && all)
 			{
 				builder.Append("font-size:" + FontSize + "pt;");
 			}
 
 			if (ApplyColors)
 			{
-				if (!string.IsNullOrEmpty(Color) && !Color.Equals(Automatic))
+				if (!string.IsNullOrEmpty(Color) && !Color.Equals(Automatic) && all)
 					builder.Append("color:" + FormatColor(Color) + ";");
 
 				if (!string.IsNullOrEmpty(Highlight) && !Highlight.Equals(Automatic))

@@ -2111,6 +2111,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Strikethrough Completed To Do Tags.
+        /// </summary>
+        internal static string ribStrikeoutTasksButton_Label {
+            get {
+                return ResourceManager.GetString("ribStrikeoutTasksButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle strikethough of text marked with complete or incomplete To Do tags.
+        /// </summary>
+        internal static string ribStrikeoutTasksButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribStrikeoutTasksButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert Page TOC.
         /// </summary>
         internal static string ribTocButton_Label {

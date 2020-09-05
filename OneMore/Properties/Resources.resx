@@ -1171,4 +1171,12 @@ Notebooks</value>
     <value>Removing number from page {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
+    <value>Strikethrough Completed To Do Tags</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
+    <value>Toggle strikethough of text marked with complete or incomplete To Do tags</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
 </root>
