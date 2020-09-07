@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public IStream GetImage(string imageName)
 		{
-			logger.WriteLine($"GetImage({imageName})");
+			//logger.WriteLine($"GetImage({imageName})");
 			IStream stream = null;
 			try
 			{
@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn
 		 */
 		public IStream GetOneMoreMenuImage(IRibbonControl control)
 		{
-			logger.WriteLine($"GetOneMoreMenuImage({control.Id})");
+			//logger.WriteLine($"GetOneMoreMenuImage({control.Id})");
 			IStream stream = null;
 			try
 			{
