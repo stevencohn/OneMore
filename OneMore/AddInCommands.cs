@@ -186,6 +186,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<PasteRtfCommand>().Execute();
 		}
 
+		public void PronunciateCmd(IRibbonControl control)
+		{
+			factory.GetCommand<PronunciateCommand>().Execute();
+		}
+
 		public void RecalculateFormulaCmd(IRibbonControl control)
 		{
 			factory.GetCommand<RecalculateFormulaCommand>().Execute();

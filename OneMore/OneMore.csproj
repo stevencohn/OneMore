@@ -101,6 +101,7 @@
     <Compile Include="AddInCommands.cs" />
     <Compile Include="AddInEnablers.cs" />
     <Compile Include="AddInFavorites.cs" />
+    <Compile Include="AddInRibbon.cs" />
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Commands\Numbering\RemovePageNumbersCommand.cs" />
     <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
     <Compile Include="Commands\Extras\OutlineCommand.cs" />
+    <Compile Include="Commands\PronunciateCommand.cs" />
     <Compile Include="Commands\SaveAsCommand.cs" />
     <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
@@ -154,6 +156,12 @@
     </Compile>
     <Compile Include="Dialogs\PageNumberingDialog.Designer.cs">
       <DependentUpon>PageNumberingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PhoneticsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PhoneticsDialog.Designer.cs">
+      <DependentUpon>PhoneticsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ProgressDialog.cs">
       <SubType>Form</SubType>
@@ -389,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PageNumberingDialog.resx">
       <DependentUpon>PageNumberingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PhoneticsDialog.resx">
+      <DependentUpon>PhoneticsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>

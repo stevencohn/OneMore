@@ -47,6 +47,11 @@
           <menu id="ribOneMoreMenu" getLabel="getItemLabel" size="large" getImage="GetOneMoreMenuImage">
             <menuSeparator id="sepSpell" title="Content" />
             <button
+              id="ribPronunciateButton"
+              label="Pronunciate"
+              getVisible="GetItemVisible"
+              onAction="PronunciateCmd"/>
+            <button
               id="ribNoSpellCheckButton"
               image="NoSpellCheck"
               getLabel="GetItemLabel"
@@ -166,7 +171,7 @@
                 onAction="InsertHorizontalLineCmd"/>
               <button
                 id="ribInsertDoubleLineButton"
-                getImage="GetDoubleLineImage"
+                image="DoubleLine"
                 getLabel="GetItemLabel"
                 getScreentip="GetItemScreentip"
                 getEnabled="GetBodyContext"

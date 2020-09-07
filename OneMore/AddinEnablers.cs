@@ -72,6 +72,23 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets a Boolean value indicating whether the item should be shown
+		/// </summary>
+		/// <param name="control">The menu item invoking the action</param>
+		/// <returns>True if the item should be shown; false otherwise</returns>
+		public bool GetItemVisible(IRibbonControl control)
+		{
+			//logger.WriteLine($"GetItemVisible({control.Id})");
+			if (control.Id == "ribPronunciateButton")
+			{
+				return System.Environment.GetEnvironmentVariable("USERNAME") == "steven";
+			}
+
+			return true;
+		}
+
+
+		/// <summary>
 		/// Analyze the current page selections and determined if at least two pages are selected.
 		/// </summary>
 		/// <param name="control">The menu item invoking the action.</param>

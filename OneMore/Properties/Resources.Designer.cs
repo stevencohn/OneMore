@@ -1205,6 +1205,72 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string PhoneticsDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("PhoneticsDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string PhoneticsDialog_languageLabel_Text {
+            get {
+                return ResourceManager.GetString("PhoneticsDialog_languageLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to en,English
+        ///hi,Hindi
+        ///es,Spanish
+        ///fr,French
+        ///ja,Japanese
+        ///ru,Russian
+        ///de,German
+        ///it,Italian
+        ///ko,Korean
+        ///pt-BR,Brazilian Portuguese
+        ///ar,Arabic
+        ///tr,Turkish
+        ///zh-CN,Chinese (Simplified).
+        /// </summary>
+        internal static string PhoneticsDialog_languages {
+            get {
+                return ResourceManager.GetString("PhoneticsDialog_languages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string PhoneticsDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("PhoneticsDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phonetics.
+        /// </summary>
+        internal static string PhoneticsDialog_Text {
+            get {
+                return ResourceManager.GetString("PhoneticsDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word.
+        /// </summary>
+        internal static string PhoneticsDialog_wordLabel_Text {
+            get {
+                return ResourceManager.GetString("PhoneticsDialog_wordLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pushpin {
