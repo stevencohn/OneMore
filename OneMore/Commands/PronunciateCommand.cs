@@ -128,19 +128,34 @@ namespace River.OneMoreAddIn
 			var url = string.Format(DictionaryUrl, isoCode, word);
 
 			string json = null;
-			try
+			int retries = 0;
+
+			while (json == null && retries < 2)
 			{
-				var uri = new Uri(url);
-				json = await client.GetStringAsync(uri);
-				logger.WriteLine(json);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("Error fetching definition", exc);
+				retries++;
+
+				try
+				{
+					json = await client.GetStringAsync(url);
+					//logger.WriteLine(json);
+				}
+				//catch (HttpRequestException exc) // when (..)
+				//{
+				//	logger.WriteLine("Error fetching definition", exc);
+				//	logger.WriteLine($"retrying {(200 & retries)}ms");
+				//	await Task.Delay(200 * retries);
+				//}
+				catch (Exception exc)
+				{
+					logger.WriteLine("Error fetching definition", exc);
+					logger.WriteLine($"retrying {(200 & retries)}ms");
+					await Task.Delay(200 * retries);
+				}
 			}
 
 			if (string.IsNullOrEmpty(json))
 			{
+				UIHelper.ShowError($"Could not fetch definition of word \"{word}\"\nTry again later");
 				return null;
 			}
 
@@ -155,6 +170,8 @@ namespace River.OneMoreAddIn
 				{
 					return definition[0].phonetics[0].text;
 				}
+
+				UIHelper.ShowError($"Could not find word \"{word}\"");
 			}
 			catch (Exception exc)
 			{
