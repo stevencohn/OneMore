@@ -1271,6 +1271,43 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected word cannot be empty.
+        /// </summary>
+        internal static string Pronunciate_EmptyWord {
+            get {
+                return ResourceManager.GetString("Pronunciate_EmptyWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must select a full word.
+        /// </summary>
+        internal static string Pronunciate_FullWord {
+            get {
+                return ResourceManager.GetString("Pronunciate_FullWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not fetch definition of word {0}
+        ///Try again later.
+        /// </summary>
+        internal static string Pronunciate_NetError {
+            get {
+                return ResourceManager.GetString("Pronunciate_NetError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find word {0}.
+        /// </summary>
+        internal static string Pronunciate_NoWord {
+            get {
+                return ResourceManager.GetString("Pronunciate_NoWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pushpin {
@@ -1993,6 +2030,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPasteRtfButton_Screentip {
             get {
                 return ResourceManager.GetString("ribPasteRtfButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Pronunciation.
+        /// </summary>
+        internal static string ribPronunciateButton_Label {
+            get {
+                return ResourceManager.GetString("ribPronunciateButton_Label", resourceCulture);
             }
         }
         

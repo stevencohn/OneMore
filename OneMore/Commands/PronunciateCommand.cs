@@ -3,6 +3,7 @@
 //************************************************************************************************
 
 #pragma warning disable CS0649 // never assigned to, will always be null
+
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Dialogs;
@@ -16,6 +17,7 @@ namespace River.OneMoreAddIn
 	using System.Windows.Forms;
 	using System.Xml;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class PronunciateCommand : Command
@@ -58,7 +60,7 @@ namespace River.OneMoreAddIn
 
 				if (element == null)
 				{
-					UIHelper.ShowError("Must select a full word");
+					UIHelper.ShowError(Resx.Pronunciate_FullWord);
 					return;
 				}
 
@@ -71,7 +73,7 @@ namespace River.OneMoreAddIn
 
 				if (string.IsNullOrEmpty(word))
 				{
-					UIHelper.ShowError("Selected word cannot be empty");
+					UIHelper.ShowError(Resx.Pronunciate_EmptyWord);
 					return;
 				}
 
@@ -96,14 +98,18 @@ namespace River.OneMoreAddIn
 				var ruby = await LookupPhonetics(word, isoCode);
 				if (!string.IsNullOrEmpty(ruby))
 				{
-					//if (ruby[0] == '/' && ruby[ruby.Length - 1] == '/')
-					//{
-					//	ruby = $"({ruby.Substring(1, ruby.Length - 2)})";
-					//}
+					if (ruby[0] != '/' || ruby[ruby.Length - 1] != '/')
+					{
+						ruby = $"/{ruby}/";
+					}
 
 					ruby = spaced ? ruby + ' ' : $" {ruby} ";
 
-					element.AddAfterSelf(new XElement(ns + "T", new XCData(ruby)));
+					element.AddAfterSelf(
+						new XElement(ns + "T",
+							new XCData($"<span style='color:#8496B0'>{ruby}</span>"))
+						);
+
 					manager.UpdatePageContent(page);
 				}
 			}
@@ -155,7 +161,7 @@ namespace River.OneMoreAddIn
 
 			if (string.IsNullOrEmpty(json))
 			{
-				UIHelper.ShowError($"Could not fetch definition of word \"{word}\"\nTry again later");
+				UIHelper.ShowError(string.Format(Resx.Pronunciate_NetError, word));
 				return null;
 			}
 
@@ -171,7 +177,7 @@ namespace River.OneMoreAddIn
 					return definition[0].phonetics[0].text;
 				}
 
-				UIHelper.ShowError($"Could not find word \"{word}\"");
+				UIHelper.ShowError(string.Format(Resx.Pronunciate_NoWord, word));
 			}
 			catch (Exception exc)
 			{

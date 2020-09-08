@@ -39,9 +39,10 @@
 			// wordLabel
 			// 
 			this.wordLabel.AutoSize = true;
-			this.wordLabel.Location = new System.Drawing.Point(23, 36);
+			this.wordLabel.Location = new System.Drawing.Point(15, 23);
+			this.wordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.wordLabel.Name = "wordLabel";
-			this.wordLabel.Size = new System.Drawing.Size(47, 20);
+			this.wordLabel.Size = new System.Drawing.Size(33, 13);
 			this.wordLabel.TabIndex = 0;
 			this.wordLabel.Text = "Word";
 			// 
@@ -49,17 +50,19 @@
 			// 
 			this.wordBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.wordBox.Location = new System.Drawing.Point(110, 33);
+			this.wordBox.Location = new System.Drawing.Point(73, 21);
+			this.wordBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.wordBox.Name = "wordBox";
-			this.wordBox.Size = new System.Drawing.Size(282, 26);
+			this.wordBox.Size = new System.Drawing.Size(189, 20);
 			this.wordBox.TabIndex = 1;
 			// 
 			// languageLabel
 			// 
 			this.languageLabel.AutoSize = true;
-			this.languageLabel.Location = new System.Drawing.Point(23, 76);
+			this.languageLabel.Location = new System.Drawing.Point(15, 49);
+			this.languageLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.languageLabel.Name = "languageLabel";
-			this.languageLabel.Size = new System.Drawing.Size(81, 20);
+			this.languageLabel.Size = new System.Drawing.Size(55, 13);
 			this.languageLabel.TabIndex = 2;
 			this.languageLabel.Text = "Language";
 			// 
@@ -83,19 +86,21 @@
             "Chinese (Simplified)",
             "Arabic",
             "Turkish"});
-			this.languagesBox.Location = new System.Drawing.Point(110, 73);
+			this.languagesBox.Location = new System.Drawing.Point(73, 47);
+			this.languagesBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.languagesBox.MaxDropDownItems = 13;
 			this.languagesBox.Name = "languagesBox";
-			this.languagesBox.Size = new System.Drawing.Size(282, 28);
+			this.languagesBox.Size = new System.Drawing.Size(189, 21);
 			this.languagesBox.TabIndex = 3;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(292, 134);
+			this.cancelButton.Location = new System.Drawing.Point(195, 87);
+			this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.Size = new System.Drawing.Size(67, 25);
 			this.cancelButton.TabIndex = 4;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
@@ -104,9 +109,10 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(186, 134);
+			this.okButton.Location = new System.Drawing.Point(124, 87);
+			this.okButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.Size = new System.Drawing.Size(67, 25);
 			this.okButton.TabIndex = 5;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
@@ -114,22 +120,24 @@
 			// PhoneticsDialog
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(415, 195);
+			this.ClientSize = new System.Drawing.Size(277, 127);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.languagesBox);
 			this.Controls.Add(this.languageLabel);
 			this.Controls.Add(this.wordBox);
 			this.Controls.Add(this.wordLabel);
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "PhoneticsDialog";
-			this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
+			this.Padding = new System.Windows.Forms.Padding(13, 19, 13, 13);
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Phonetics";
 			this.ResumeLayout(false);
 			this.PerformLayout();

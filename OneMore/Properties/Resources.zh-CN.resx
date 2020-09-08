@@ -1179,4 +1179,25 @@ OneNote 将自动关闭</value>
     <value>切换标记有完整或不完整的待办事项标签的文本的删除线</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribPronunciateButton_Label" xml:space="preserve">
+    <value>插入发音</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="Pronunciate_EmptyWord" xml:space="preserve">
+    <value>所选单词不能为空</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_FullWord" xml:space="preserve">
+    <value>必须选择完整的单词</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_NetError" xml:space="preserve">
+    <value>无法获取单词{0}的定义
+稍后再试</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_NoWord" xml:space="preserve">
+    <value>找不到单词{0}</value>
+    <comment>error message box</comment>
+  </data>
 </root>

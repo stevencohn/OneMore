@@ -1216,4 +1216,25 @@ ISO-code then comma then language name</comment>
     <value>Word</value>
     <comment>label</comment>
   </data>
+  <data name="ribPronunciateButton_Label" xml:space="preserve">
+    <value>Insert Pronunciation</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="Pronunciate_EmptyWord" xml:space="preserve">
+    <value>Selected word cannot be empty</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_FullWord" xml:space="preserve">
+    <value>Must select a full word</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_NetError" xml:space="preserve">
+    <value>Could not fetch definition of word {0}
+Try again later</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_NoWord" xml:space="preserve">
+    <value>Could not find word {0}</value>
+    <comment>error message box</comment>
+  </data>
 </root>

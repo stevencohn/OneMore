@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading;
@@ -63,6 +64,12 @@ namespace River.OneMoreAddIn.Dialogs
 			languagesBox.SelectedIndex = index < 0 ? 0 : index;
 		}
 
+
+		protected override void OnShown(EventArgs e)
+		{
+			Location = new System.Drawing.Point(Location.X, Location.Y - Height);
+			UIHelper.SetForegroundWindow(this);
+		}
 
 		public string Word
 		{
