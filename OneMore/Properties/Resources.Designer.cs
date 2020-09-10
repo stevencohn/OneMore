@@ -1381,6 +1381,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove spacing after paragraphs.
+        /// </summary>
+        internal static string RemoveSpacingDialog_afterBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveSpacingDialog_afterBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove spacing before paragraphs.
+        /// </summary>
+        internal static string RemoveSpacingDialog_beforeBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveSpacingDialog_beforeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove spacing between lines.
+        /// </summary>
+        internal static string RemoveSpacingDialog_betweenBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveSpacingDialog_betweenBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string RemoveSpacingDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("RemoveSpacingDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include headings.
+        /// </summary>
+        internal static string RemoveSpacingDialog_headingsBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveSpacingDialog_headingsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string RemoveSpacingDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("RemoveSpacingDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Spacing.
+        /// </summary>
+        internal static string RemoveSpacingDialog_Text {
+            get {
+                return ResourceManager.GetString("RemoveSpacingDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Removing number from page {0}.
         /// </summary>
         internal static string RemovingPageNumber_Message {
@@ -2210,6 +2273,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRemoveSectionNumbersButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRemoveSectionNumbersButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Paragraph Spacing.
+        /// </summary>
+        internal static string ribRemoveSpacingButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveSpacingButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove paragraph, heading, and line spacing.
+        /// </summary>
+        internal static string ribRemoveSpacingButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveSpacingButton_Screentip", resourceCulture);
             }
         }
         

@@ -226,6 +226,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<RemoveSectionNumbersCommand>().Execute();
 		}
 
+		public void RemoveSpacingCmd(IRibbonControl control)
+		{
+			factory.GetCommand<RemoveSpacingCommand>().Execute();
+		}
+
 		public void ResizeImagesCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ResizeImagesCommand>().Execute();

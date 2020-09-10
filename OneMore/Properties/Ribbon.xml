@@ -79,6 +79,12 @@
                 getScreentip="GetItemScreentip"
                 onAction="RemoveEmptyCmd"/>
               <button
+                id="ribRemoveSpacingButton"
+                imageMso="ParagraphSpacingDecrease"
+                getLabel="GetItemLabel"
+                getScreentip="GetItemScreentip"
+                onAction="RemoveSpacingCmd"/>
+              <button
                 id="ribToggleDttmButton"
                 imageMso="MessageHeaderToggle"
                 getLabel="GetItemLabel"

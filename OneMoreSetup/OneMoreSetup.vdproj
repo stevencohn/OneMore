@@ -240,7 +240,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_76DE0C3E4C3C41398EBF2960C9F81C36"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -344,7 +344,7 @@
         "Name" = "8:OneMoreAddIn"
         "ProductName" = "8:OneMoreAddIn"
         "ProductCode" = "8:{1FFB085F-BD0E-4DB4-A0A6-4EBCCC543884}"
-        "PackageCode" = "8:{49A29484-FBDD-4196-91CA-830F4B413CE8}"
+        "PackageCode" = "8:{BAFF1B58-5C90-43FE-84FE-2677B0423B30}"
         "UpgradeCode" = "8:{058F6D04-E0D0-4984-B6B7-7FE0C581680E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -365,7 +365,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
