@@ -1200,4 +1200,36 @@ OneNote 将自动关闭</value>
     <value>找不到单词{0}</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribCropImageButton_Label" xml:space="preserve">
+    <value>作物</value>
+    <comment>Ribbon OneMore menu item, Images...</comment>
+  </data>
+  <data name="CropImageDialog.Text" xml:space="preserve">
+    <value>裁剪图片</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CropImageDialog_bounds" xml:space="preserve">
+    <value>选择的左上方：{0}，{1}。 边界矩形大小：{2} x {3}。</value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImageDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
+    <value>作物</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="CropImageDialog_imageSize" xml:space="preserve">
+    <value>图片尺寸：{0} x {1}</value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImageDialog_noSelection" xml:space="preserve">
+    <value>没有选择</value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImage_oneImage" xml:space="preserve">
+    <value>选择一张图像进行裁剪</value>
+    <comment>Crop command error message</comment>
+  </data>
 </root>

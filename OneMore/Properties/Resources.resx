@@ -1237,4 +1237,36 @@ Try again later</value>
     <value>Could not find word {0}</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribCropImageButton_Label" xml:space="preserve">
+    <value>Crop</value>
+    <comment>Ribbon OneMore menu item, Images...</comment>
+  </data>
+  <data name="CropImageDialog.Text" xml:space="preserve">
+    <value>Crop Image</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CropImageDialog_bounds" xml:space="preserve">
+    <value>Selection top left: {0}, {1}. Bounding rectangle size: {2} x {3}.</value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImageDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
+    <value>Crop</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="CropImageDialog_imageSize" xml:space="preserve">
+    <value>Image size: {0} x {1}</value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImageDialog_noSelection" xml:space="preserve">
+    <value>No selection</value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImage_oneImage" xml:space="preserve">
+    <value>Select one image to crop</value>
+    <comment>Crop command error message</comment>
+  </data>
 </root>

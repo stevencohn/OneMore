@@ -59,6 +59,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<CollapseCommand>().Execute();
 		}
 
+		public void CropImageCmd(IRibbonControl control)
+		{
+			factory.GetCommand<CropImageCommand>().Execute();
+		}
+
 		public void DecreaseFontSizeCmd(IRibbonControl control)
 		{
 			factory.GetCommand<AlterSizeCommand>().Execute(-1);

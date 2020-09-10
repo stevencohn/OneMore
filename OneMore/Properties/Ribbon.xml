@@ -125,6 +125,11 @@
                 getEnabled="GetImageSelected"
                 onAction="AddCaptionCmd"/>
               <button
+                id="ribCropImageButton"
+                imageMso="PictureCrop"
+                getLabel="GetItemLabel"
+                onAction="CropImageCmd"/>
+              <button
                 id="ribResizeImagesButton"
                 imageMso="GroupPictureCompress"
                 getLabel="GetItemLabel"

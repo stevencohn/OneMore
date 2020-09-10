@@ -112,6 +112,7 @@
     <Compile Include="Commands\Formula\FormulaEnums.cs" />
     <Compile Include="Commands\Formula\HighlightFormulaCommand.cs" />
     <Compile Include="Commands\Formula\RecalculateFormulaCommand.cs" />
+    <Compile Include="Commands\Images\CropImageCommand.cs" />
     <Compile Include="Commands\Numbering\NumberPagesCommand.cs" />
     <Compile Include="Commands\Numbering\NumberSectionsCommand.cs" />
     <Compile Include="Commands\Numbering\RemovePageNumbersCommand.cs" />
@@ -252,6 +253,12 @@
     <Compile Include="Dialogs\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\CropImageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CropImageDialog.Designer.cs">
+      <DependentUpon>CropImageDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ColorDialogEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -382,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ChangePageColorDialog.resx">
       <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CropImageDialog.resx">
+      <DependentUpon>CropImageDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EmojiDialog.resx">
       <DependentUpon>EmojiDialog.cs</DependentUpon>

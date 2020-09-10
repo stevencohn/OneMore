@@ -352,6 +352,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select one image to crop.
+        /// </summary>
+        internal static string CropImage_oneImage {
+            get {
+                return ResourceManager.GetString("CropImage_oneImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection top left: {0}, {1}. Bounding rectangle size: {2} x {3}..
+        /// </summary>
+        internal static string CropImageDialog_bounds {
+            get {
+                return ResourceManager.GetString("CropImageDialog_bounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string CropImageDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("CropImageDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crop.
+        /// </summary>
+        internal static string CropImageDialog_cropButton_Text {
+            get {
+                return ResourceManager.GetString("CropImageDialog_cropButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image size: {0} x {1}.
+        /// </summary>
+        internal static string CropImageDialog_imageSize {
+            get {
+                return ResourceManager.GetString("CropImageDialog_imageSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No selection.
+        /// </summary>
+        internal static string CropImageDialog_noSelection {
+            get {
+                return ResourceManager.GetString("CropImageDialog_noSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crop Image.
+        /// </summary>
+        internal static string CropImageDialog_Text {
+            get {
+                return ResourceManager.GetString("CropImageDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Cross {
@@ -1634,6 +1697,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCreateStyleButton_Label {
             get {
                 return ResourceManager.GetString("ribCreateStyleButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crop.
+        /// </summary>
+        internal static string ribCropImageButton_Label {
+            get {
+                return ResourceManager.GetString("ribCropImageButton_Label", resourceCulture);
             }
         }
         
