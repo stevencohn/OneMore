@@ -22,8 +22,6 @@ namespace River.OneMoreAddIn
 				var count = 0;
 				var page = new Page(manager.CurrentPage());
 
-				System.Diagnostics.Debugger.Launch();
-
 				// these are all the elements that might have editedByAttributes
 				var elements = page.Root.Descendants().Where(d => 
 					d.Name.LocalName == "Table" ||
