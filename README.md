@@ -40,6 +40,7 @@ Formula commands
 Image commands
 
 * Add [caption to a selected image](#images)
+* Precisely [crop a selected image](#images)
 * [Resize a selected image](#images) or all images on the page
 
 Numbering commands
@@ -62,6 +63,7 @@ Extra commands
 
 * Add [special icon to the page title](#other), also appears in page hierarchy
 * Add or remove [**footnotes**](#footnotes) (endnotes)
+* Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
 * [Number page headings](#outlining) numeric or alpha-numeric outline prefixes
 * [Indent content](#indenting) below headings or tagged paragraphs
@@ -170,6 +172,11 @@ The Add Caption command will add a caption to the selected image by moving the i
 into a one-row, one-column table and centering the word "Caption" below the image, which of
 course you should edit immediately. If your custom styles has a style named exactly "Caption"
 then that style will be applied, otherwise, a default caption style is used.
+
+The Crop command opens an image editing window that allows you to precisely crop and image
+by selecting a region, moving that region around the image, and even resizing the region.
+
+<img src="Screenshots/CropImage.png" width="568" />
 
 The Resize command can be used to resize images on the page. If one image is selected then
 you can resize by percentage, absolute size, or to a preset width with aspect ratio maintained.
