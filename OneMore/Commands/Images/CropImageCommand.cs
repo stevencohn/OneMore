@@ -68,12 +68,16 @@ namespace River.OneMoreAddIn
 
 							data.Value = Convert.ToBase64String(bytes);
 
-							// calculate scaled factor of image on page
+							// OneNote does it's own scaling so we need to adjust by using both
+							// its scaling factor and the screen's High DPI scaling factor
+
+							(float factorX, float factorY) = UIHelper.GetScalingFactors();
+
 							var size = element.Element(ns + "Size");
 							size.ReadAttributeValue("width", out float ax, image.Width);
 							size.ReadAttributeValue("height", out float ay, image.Height);
-							float scaleX = ax / image.Width;
-							float scaleY = ay / image.Height;
+							float scaleX = ax / image.Width / factorX;
+							float scaleY = ay / image.Height / factorY;
 
 							size.SetAttributeValue("width", $"{(int)(dialog.Image.Width * scaleX)}.0");
 							size.SetAttributeValue("height", $"{(int)(dialog.Image.Height * scaleY)}.0");

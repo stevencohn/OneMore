@@ -44,18 +44,6 @@ namespace River.OneMoreAddIn
 		{
 			//logger.WriteLine("RibbonLoaded()");
 			this.ribbon = ribbon;
-
-			using (var manager = new ApplicationManager())
-			{
-				var (backupFolder, defaultFolder, unfiledFolder) = manager.GetLocations();
-				logger.WriteLine("OneNote backup folder:: " + backupFolder);
-				logger.WriteLine("OneNote default folder: " + defaultFolder);
-				logger.WriteLine("OneNote unfiled folder: " + unfiledFolder);
-
-				factory = new CommandFactory(logger, ribbon, trash,
-					// looks complicated but necessary for this to work
-					new Win32WindowHandle(new IntPtr((long)manager.WindowHandle)));
-			}
 		}
 
 
@@ -136,21 +124,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetItemLabel(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetItemLabel({control.Id})");
-
-			string label;
-			string resId = control.Id + "_Label";
-			try
-			{
-				label = Resx.ResourceManager.GetString(resId);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine(exc);
-				label = "*" + resId;
-			}
-
-			return label;
+			return GetString(control.Id + "_Label");
 		}
 
 
@@ -161,21 +135,22 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetItemScreentip(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetItemScreentip({control.Id})");
-			string resId = control.Id + "_Screentip";
+			return GetString(control.Id + "_Screentip");
+		}
 
-			string label;
+
+		private string GetString(string resId)
+		{
 			try
 			{
-				label = Resx.ResourceManager.GetString(resId);
+				//logger.WriteLine($"GetString({resId})");
+				return Resx.ResourceManager.GetString(resId);
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-				label = "*" + resId;
+				return $"*{resId}*";
 			}
-
-			return label;
 		}
 	}
 }

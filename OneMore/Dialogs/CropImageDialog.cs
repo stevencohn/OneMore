@@ -108,9 +108,15 @@ namespace River.OneMoreAddIn.Dialogs
 		/// <param name="image">An image to display and crop</param>
 		public CropImageDialog(Image image) : this()
 		{
-			this.Image = image;
+			Image = image;
 
-			imageBounds = new Rectangle(ImageMargin, ImageMargin, image.Width, image.Height);
+			// adjust for high-DPI scaling factors vs OneNote's internal scaling
+			(float factorX, float factorY) = UIHelper.GetScalingFactors();
+
+			imageBounds = new Rectangle(
+				ImageMargin, ImageMargin,
+				(int)(image.Width * factorX),
+				(int)(image.Height * factorY));
 
 			picturePanel.AutoScrollMinSize = new Size(
 				imageBounds.Width + (ImageMargin * 2),

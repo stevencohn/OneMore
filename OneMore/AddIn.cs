@@ -113,14 +113,27 @@ namespace River.OneMoreAddIn
 		public void OnAddInsUpdate(ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OneAddInsUpdate({count})");
+			logger.WriteLine($"OneAddInsUpdate(custom[]:{count})");
 		}
 
 
 		public void OnStartupComplete(ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OnStartupComplete({count})");
+			logger.WriteLine($"OnStartupComplete(custom[]:{count})");
+
+			using (var manager = new ApplicationManager())
+			{
+				var (backupFolder, defaultFolder, unfiledFolder) = manager.GetLocations();
+				logger.WriteLine("OneNote backup folder:: " + backupFolder);
+				logger.WriteLine("OneNote default folder: " + defaultFolder);
+				logger.WriteLine("OneNote unfiled folder: " + unfiledFolder);
+
+				factory = new CommandFactory(logger, ribbon, trash,
+					// looks complicated but necessary for this to work
+					new Win32WindowHandle(new IntPtr((long)manager.WindowHandle)));
+			}
+
 			RegisterHotkeys();
 		}
 
