@@ -35,8 +35,6 @@ namespace River.OneMoreAddIn
 					spaceBetween = dialog.SpaceBetween;
 					includeHeadings = dialog.IncludeHeadings;
 
-					System.Diagnostics.Debugger.Launch();
-
 					RemoveSpacing();
 				}
 			}
