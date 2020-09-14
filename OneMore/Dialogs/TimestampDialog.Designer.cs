@@ -33,8 +33,8 @@
 			this.showRadio = new System.Windows.Forms.RadioButton();
 			this.toggleGroup = new System.Windows.Forms.GroupBox();
 			this.scopeGroup = new System.Windows.Forms.GroupBox();
-			this.pageRadio = new System.Windows.Forms.RadioButton();
 			this.sectionRadio = new System.Windows.Forms.RadioButton();
+			this.pageRadio = new System.Windows.Forms.RadioButton();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
 			this.toggleGroup.SuspendLayout();
@@ -91,6 +91,16 @@
 			this.scopeGroup.TabStop = false;
 			this.scopeGroup.Text = "Scope";
 			// 
+			// sectionRadio
+			// 
+			this.sectionRadio.AutoSize = true;
+			this.sectionRadio.Location = new System.Drawing.Point(18, 67);
+			this.sectionRadio.Name = "sectionRadio";
+			this.sectionRadio.Size = new System.Drawing.Size(199, 24);
+			this.sectionRadio.TabIndex = 1;
+			this.sectionRadio.Text = "All pages in this section";
+			this.sectionRadio.UseVisualStyleBackColor = true;
+			// 
 			// pageRadio
 			// 
 			this.pageRadio.AutoSize = true;
@@ -102,16 +112,6 @@
 			this.pageRadio.TabStop = true;
 			this.pageRadio.Text = "This page";
 			this.pageRadio.UseVisualStyleBackColor = true;
-			// 
-			// sectionRadio
-			// 
-			this.sectionRadio.AutoSize = true;
-			this.sectionRadio.Location = new System.Drawing.Point(18, 67);
-			this.sectionRadio.Name = "sectionRadio";
-			this.sectionRadio.Size = new System.Drawing.Size(199, 24);
-			this.sectionRadio.TabIndex = 1;
-			this.sectionRadio.Text = "All pages in this section";
-			this.sectionRadio.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
@@ -153,6 +153,7 @@
 			this.Name = "TimestampDialog";
 			this.Padding = new System.Windows.Forms.Padding(15);
 			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Show/Hide Date and Time";
 			this.toggleGroup.ResumeLayout(false);
 			this.toggleGroup.PerformLayout();
