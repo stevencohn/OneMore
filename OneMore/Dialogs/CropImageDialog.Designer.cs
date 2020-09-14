@@ -49,7 +49,7 @@
 			// 
 			this.pictureBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.pictureBox.Cursor = System.Windows.Forms.Cursors.Cross;
-			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBox.Location = new System.Drawing.Point(0, 0);
 			this.pictureBox.Name = "pictureBox";
 			this.pictureBox.Size = new System.Drawing.Size(978, 651);

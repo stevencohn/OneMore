@@ -131,7 +131,7 @@ namespace River.OneMoreAddIn.Dialogs
 			imageBounds = new Rectangle(
 				ImageMargin, ImageMargin,
 				(int)(image.Width * factorX),
-				(int)(image.Height * factorY));
+				(int)(image.Height * factorY) - ImageMargin);
 
 			picturePanel.AutoScrollMinSize = new Size(
 				imageBounds.Width + (ImageMargin * 2),
