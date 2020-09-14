@@ -63,6 +63,7 @@ namespace River.OneMoreAddIn.Dialogs
 		private readonly GraphicsPath selectionPath;
 
 		// the original image
+		private SizeF viewport;
 		private Rectangle imageBounds;
 		private SelectionHandle currentHandle;
 		private readonly List<SelectionHandle> handles;
@@ -106,12 +107,26 @@ namespace River.OneMoreAddIn.Dialogs
 		/// Initialize a new dialog showing the given image
 		/// </summary>
 		/// <param name="image">An image to display and crop</param>
-		public CropImageDialog(Image image) : this()
+		public CropImageDialog(Image image, SizeF viewport) : this()
 		{
 			Image = image;
+			this.viewport = viewport;
 
 			// adjust for high-DPI scaling factors vs OneNote's internal scaling
 			(float factorX, float factorY) = UIHelper.GetScalingFactors();
+
+			Width = (int)(Math.Min(
+				image.Width + 100,
+				System.Windows.SystemParameters.WorkArea.Width) * factorX);
+			
+			Height = (int)((Math.Min(
+				image.Height + 100,
+				System.Windows.SystemParameters.WorkArea.Height) + buttonPanel.Height) * factorY);
+
+			if (Height > Width)
+			{
+				Width = Height;
+			}
 
 			imageBounds = new Rectangle(
 				ImageMargin, ImageMargin,
@@ -234,6 +249,13 @@ namespace River.OneMoreAddIn.Dialogs
 				selectionBounds.X - ImageMargin, selectionBounds.Y - ImageMargin,
 				selectionBounds.Width, selectionBounds.Height
 				);
+
+			//statusLabel.Text = string.Format("{0}x{1} size:{2}x{3} clip:{4}x{5}:{6}x{7}",
+			//	selectionBounds.X - ImageMargin, selectionBounds.Y - ImageMargin,
+			//	selectionBounds.Width, selectionBounds.Height,
+			//	e.ClipRectangle.X, e.ClipRectangle.Y,
+			//	e.ClipRectangle.Width, e.ClipRectangle.Height
+			//	);
 
 			statusStrip.Refresh();
 		}

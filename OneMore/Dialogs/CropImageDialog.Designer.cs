@@ -49,7 +49,7 @@
 			// 
 			this.pictureBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.pictureBox.Cursor = System.Windows.Forms.Cursors.Cross;
-			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pictureBox.Location = new System.Drawing.Point(0, 0);
 			this.pictureBox.Name = "pictureBox";
 			this.pictureBox.Size = new System.Drawing.Size(978, 651);
@@ -85,7 +85,7 @@
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.buttonPanel.Location = new System.Drawing.Point(0, 0);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.buttonPanel.Padding = new System.Windows.Forms.Padding(6);
 			this.buttonPanel.Size = new System.Drawing.Size(978, 58);
 			this.buttonPanel.TabIndex = 6;
 			// 

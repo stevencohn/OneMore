@@ -58,7 +58,11 @@ namespace River.OneMoreAddIn
 			{
 				using (var image = Image.FromStream(stream))
 				{
-					using (var dialog = new CropImageDialog(image))
+					var size = element.Element(ns + "Size");
+					size.ReadAttributeValue("width", out float viewWidth, image.Width);
+					size.ReadAttributeValue("height", out float viewHeight, image.Height);
+
+					using (var dialog = new CropImageDialog(image, new SizeF(viewWidth, viewHeight)))
 					{
 						var result = dialog.ShowDialog(owner);
 						if (result == DialogResult.OK)
@@ -73,11 +77,8 @@ namespace River.OneMoreAddIn
 
 							(float factorX, float factorY) = UIHelper.GetScalingFactors();
 
-							var size = element.Element(ns + "Size");
-							size.ReadAttributeValue("width", out float ax, image.Width);
-							size.ReadAttributeValue("height", out float ay, image.Height);
-							float scaleX = ax / image.Width / factorX;
-							float scaleY = ay / image.Height / factorY;
+							float scaleX = viewWidth / image.Width / factorX;
+							float scaleY = viewHeight / image.Height / factorY;
 
 							size.SetAttributeValue("width", $"{(int)(dialog.Image.Width * scaleX)}.0");
 							size.SetAttributeValue("height", $"{(int)(dialog.Image.Height * scaleY)}.0");
