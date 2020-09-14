@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+using System;
+
 namespace River.OneMoreAddIn
 {
 
@@ -13,5 +15,6 @@ namespace River.OneMoreAddIn
 		public int Id;
 		public uint Key;
 		public uint Modifiers;
+		public Action Action;
 	}
 }

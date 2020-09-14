@@ -14,7 +14,6 @@ namespace River.OneMoreAddIn
 	using System.Management;
 	using System.Runtime.InteropServices;
 	using System.Timers;
-	using Forms = System.Windows.Forms;
 
 
 	/// <summary>
@@ -69,7 +68,8 @@ namespace River.OneMoreAddIn
 			// battery capacity and other factors, whereas MaxClockSpeed is a constant
 
 			clockSpeed = ReasonableClockSpeed;
-			using (var searcher = new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
+			using (var searcher = new ManagementObjectSearcher(
+				"select CurrentClockSpeed from Win32_Processor"))
 			{
 				foreach (var item in searcher.Get())
 				{
@@ -80,16 +80,16 @@ namespace River.OneMoreAddIn
 		}
 
 
-		//========================================================================================
-		// IDTExtensibility2
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		/* Startup functions are called in this order:
-		 *
-		 * 1. OnConnection
-		 * 2. OnAddInsUpdate
-		 * 3. GetCustomUI
-		 * 4. OnStartupComplete ?? - Haven't seen this called!
-		 */
+		// IDTExtensibility2
+		//
+		// Startup functions are called in this order:
+		//
+		// 1. OnConnection
+		// 2. OnAddInsUpdate
+		// 3. GetCustomUI
+		// 4. OnStartupComplete
 
 		/// <summary>
 		/// Called upon startup; required to keep a reference to the OneNote application object.
@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn
 		/// <param name="custom"></param>
 
 		public void OnConnection(
-				object Application, ext_ConnectMode ConnectMode, object AddInInst, ref Array custom)
+			object Application, ext_ConnectMode ConnectMode, object AddInInst, ref Array custom)
 		{
 			// do not grab a reference to Application here as it tends to prevent OneNote
 			// from shutting down. Instead, use our ApplicationManager only as needed.
@@ -137,64 +137,13 @@ namespace River.OneMoreAddIn
 			RegisterHotkeys();
 		}
 
-		#region RegisterHotkeys
-
-		private void RegisterHotkeys()
-		{
-			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.F, Hotmods.ControlShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.AltShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.AltShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.F4);
-			HotkeyManager.RegisterHotKey(Forms.Keys.V, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.H, Hotmods.Control);
-			HotkeyManager.RegisterHotKey(Forms.Keys.U, Hotmods.ControlShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.U, Hotmods.ControlAltShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.Oemplus, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.OemMinus, Hotmods.ControlAlt);
-			HotkeyManager.RegisterHotKey(Forms.Keys.X, Hotmods.ControlAltShift);
-			HotkeyManager.RegisterHotKey(Forms.Keys.F8);
-
-			HotkeyManager.HotKeyPressed += HotkeyHandler;
-		}
-
-
-		private void HotkeyHandler(object sender, EventArgs args)
-		{
-			var a = args as HotkeyEventArgs;
-			logger.WriteLine($"HOTKEY called {a.Modifiers}+{a.Key} value:{a.Value:x}");
-
-			switch (a.Value)
-			{
-				case 0x460003: AddFootnoteCmd(null); break;
-				case 0x460006: RemoveFootnoteCmd(null); break;
-				case 0xbd0005: InsertHorizontalLineCmd(null); break;
-				case 0xbb0005: InsertDoubleHorizontalLineCmd(null); break;
-				case 0x730000: NoSpellCheckCmd(null); break;
-				case 0x560003: PasteRtfCmd(null); break;
-				case 0x480002: SearchAndReplaceCmd(null); break;
-				case 0x550007: ToUppercaseCmd(null); break;
-				case 0x550006: ToLowercaseCmd(null); break;
-				case 0xbb0003: IncreaseFontSizeCmd(null); break;
-				case 0xbd0003: DecreaseFontSizeCmd(null); break;
-				case 0x580007: ShowXmlCmd(null); break;
-
-				case 0x770000:
-					factory.GetCommand<DiagnosticsCommand>().Execute();
-					break;
-			}
-		}
-
-		#endregion RegisterHotkeys
-
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		/* Shutdown functions are called in this order:
-		 *
-		 * 1. OnBeginShutdown
-		 * 2. OnDisconnection
-		 */
+		// Shutdown functions are called in this order:
+		//
+		// 1. OnBeginShutdown
+		// 2. OnDisconnection
 
 		public void OnBeginShutdown(ref Array custom)
 		{

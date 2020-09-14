@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Threading;
 	using System.Windows.Forms;
@@ -95,6 +96,35 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Registers a new global hotkey bound to the given action.
+		/// </summary>
+		/// <param name="action">The action to invoke when the hotkey is pressed</param>
+		/// <param name="key">They key identifier</param>
+		/// <param name="modifiers">The key modifiers, if any</param>
+		public static void RegisterHotKey(Action action, Keys key, Hotmods modifiers = 0)
+		{
+			resetEvent.WaitOne();
+
+			int keyId = Interlocked.Increment(ref counter);
+			modifiers |= Hotmods.NoRepeat;
+
+			window.Invoke(
+				new RegisterHotkeyDelegate(Register),
+				handle, keyId, (uint)modifiers, (uint)key);
+
+			registeredKeys.Add(new Hotkey
+			{
+				Id = keyId,
+				Key = (uint)key,
+				Modifiers = (uint)modifiers,
+				Action = action
+			});
+
+			registered = true;
+		}
+
+
 		// runs as a delegated routine within the context of MessageWindow
 		private static void Register(IntPtr hwnd, int id, uint modifiers, uint key)
 		{
@@ -127,7 +157,23 @@ namespace River.OneMoreAddIn
 		// Invoked from MessageWindow to propagate event to consumer's handler
 		private static void OnHotKeyPressed(HotkeyEventArgs e)
 		{
-			HotKeyPressed?.Invoke(null, e);
+			//Logger.Current.WriteLine($"keypress key:{e.Key} mods:{e.Modifiers}");
+
+			var key = registeredKeys
+				.Where(k => k.Key == (uint)e.Key && k.Modifiers == (uint)(e.Modifiers|Hotmods.NoRepeat))
+				.FirstOrDefault();
+
+			if (key != null)
+			{
+				if (key.Action != null)
+				{
+					key.Action();
+				}
+				else
+				{
+					HotKeyPressed?.Invoke(null, e);
+				}
+			}
 		}
 
 

@@ -101,6 +101,7 @@
     <Compile Include="AddInCommands.cs" />
     <Compile Include="AddInEnablers.cs" />
     <Compile Include="AddInFavorites.cs" />
+    <Compile Include="AddInHotkeys.cs" />
     <Compile Include="AddInRibbon.cs" />
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
