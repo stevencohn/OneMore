@@ -2823,6 +2823,87 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string TimestampDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide date and time.
+        /// </summary>
+        internal static string TimestampDialog_hideRadio_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog_hideRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string TimestampDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page.
+        /// </summary>
+        internal static string TimestampDialog_pageRadio_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog_pageRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scope.
+        /// </summary>
+        internal static string TimestampDialog_scopeGroup_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog_scopeGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All pages in this section.
+        /// </summary>
+        internal static string TimestampDialog_sectionRadio_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show date and time.
+        /// </summary>
+        internal static string TimestampDialog_showRadio_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog_showRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show/Hide Date and Time.
+        /// </summary>
+        internal static string TimestampDialog_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle.
+        /// </summary>
+        internal static string TimestampDialog_toggleGroup_Text {
+            get {
+                return ResourceManager.GetString("TimestampDialog_toggleGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Travel {
