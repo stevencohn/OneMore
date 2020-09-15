@@ -61,6 +61,8 @@ namespace River.OneMoreAddIn.Dialogs
 		private int antOffset;
 		private readonly Region selectionRegion;
 		private readonly GraphicsPath selectionPath;
+		private readonly float scalingX;
+		private readonly float scalingY;
 
 		// the original image
 		private SizeF viewport;
@@ -113,15 +115,15 @@ namespace River.OneMoreAddIn.Dialogs
 			this.viewport = viewport;
 
 			// adjust for high-DPI scaling factors vs OneNote's internal scaling
-			(float factorX, float factorY) = UIHelper.GetScalingFactors();
+			(scalingX, scalingY) = UIHelper.GetScalingFactors();
 
 			Width = (int)(Math.Min(
 				image.Width + 100,
-				System.Windows.SystemParameters.WorkArea.Width) * factorX);
+				System.Windows.SystemParameters.WorkArea.Width) * scalingX);
 			
 			Height = (int)((Math.Min(
 				image.Height + 100,
-				System.Windows.SystemParameters.WorkArea.Height) + buttonPanel.Height) * factorY);
+				System.Windows.SystemParameters.WorkArea.Height) + buttonPanel.Height) * scalingY);
 
 			if (Height > Width)
 			{
@@ -130,8 +132,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 			imageBounds = new Rectangle(
 				ImageMargin, ImageMargin,
-				(int)(image.Width * factorX),
-				(int)(image.Height * factorY) - ImageMargin);
+				(int)(image.Width * scalingX),
+				(int)(image.Height * scalingY) - ImageMargin);
 
 			picturePanel.AutoScrollMinSize = new Size(
 				imageBounds.Width + (ImageMargin * 2),
@@ -263,11 +265,11 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void AddHandle(SizingHandle position, float x, float y, Graphics g)
 		{
-			var rectangle = new RectangleF(x - 3, y - 3, 6, 6);
+			var rectangle = new RectangleF(x - 4, y - 4, 8, 8);
 			var pen = brightness < 50 ? Pens.LightGray : Pens.Black;
-			g.DrawArc(pen, rectangle.Left, rectangle.Top, 6, 6, 0, 360);
+			g.DrawArc(pen, rectangle.Left, rectangle.Top, 8, 8, 0, 360);
 
-			rectangle.Inflate(6, 6);
+			rectangle.Inflate(8, 8);
 			handles.Add(new SelectionHandle
 			{
 				Position = position,
