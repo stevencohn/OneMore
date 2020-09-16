@@ -3,7 +3,7 @@
 //************************************************************************************************
 // based on https://www.codeproject.com/articles/27748/marching-ants
 
-#define Logging
+#define xLogging
 
 namespace River.OneMoreAddIn.Dialogs
 {
@@ -162,7 +162,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 			Logger.Current.WriteLine(
 				$"IMAGE bounds:{imageBounds.Width}x{imageBounds.Height} " +
-				$"dpiScaling:({scalingX},{scalingY}) dpix/y:{dpiX}x{dpiY}"
+				$"dpiScaling:({scalingX},{scalingY}) dpi:{dpiX}x{dpiY}"
 				);
 #endif
 		}
@@ -703,7 +703,8 @@ namespace River.OneMoreAddIn.Dialogs
 				(int)Math.Round(selectionBounds.Height / scalingY));
 #if Logging
 			Logger.Current.WriteLine(
-				$"CROP sbounds xy:{selectionBounds.X}x{selectionBounds.Y} siz:{selectionBounds.Width}x{selectionBounds.Height}");
+				$"CROP sbounds xy:{selectionBounds.X}x{selectionBounds.Y} " +
+				$"siz:{selectionBounds.Width}x{selectionBounds.Height}");
 
 			Logger.Current.WriteLine(
 				$"CROP bounds  xy:{bounds.X}x{bounds.Y} siz:{bounds.Width}x{bounds.Height}");
