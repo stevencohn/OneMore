@@ -45,6 +45,19 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Get the current horizontal and vertical dots per inch measurements of the screen
+		/// </summary>
+		/// <returns>A Tuple with DpiX and DpiY values</returns>
+		public static (float, float) GetDpiValues()
+		{
+			using (var graphics = Graphics.FromHwnd(IntPtr.Zero))
+			{
+				return (graphics.DpiX, graphics.DpiY);
+			}
+		}
+
+
+		/// <summary>
 		/// Get the HighDPI scaling factor for both width and height.
 		/// Should be 1.0 for non-HighDPI monitors.
 		/// </summary>

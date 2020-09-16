@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using System.Drawing.Imaging;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using SysParams = System.Windows.SystemParameters;
 
 
 	/// <summary>
@@ -65,8 +66,8 @@ namespace River.OneMoreAddIn.Dialogs
 		private int antOffset;
 		private readonly Region selectionRegion;
 		private readonly GraphicsPath selectionPath;
-		private readonly float scalingX;
-		private readonly float scalingY;
+		private readonly double scalingX;
+		private readonly double scalingY;
 
 		// the original image
 		private SizeF viewport;
@@ -118,29 +119,19 @@ namespace River.OneMoreAddIn.Dialogs
 			Image = image;
 			this.viewport = viewport;
 
-			var hasRealDpi = (image.Flags & (int)ImageFlags.HasRealDpi) > 0;
-			var hasRealPixelSize = (image.Flags & (int)ImageFlags.HasRealPixelSize) > 0;
+			(float dpiX, float dpiY) = UIHelper.GetDpiValues();
 
-			// adjust for high-DPI scaling factors vs OneNote's internal scaling
-			(scalingX, scalingY) = UIHelper.GetScalingFactors();
+			// the image may have a different resolution than the screen so combine both to compensate
+			scalingX = dpiX / image.HorizontalResolution;
+			scalingY = dpiY / image.VerticalResolution;
 
-			Width = (int)(Math.Min(
-				image.Width + 100,
-				System.Windows.SystemParameters.WorkArea.Width) * scalingX);
-			
-			Height = (int)((Math.Min(
-				image.Height + 100,
-				System.Windows.SystemParameters.WorkArea.Height) + buttonPanel.Height) * scalingY);
-
-			if (Height > Width)
-			{
-				Width = Height;
-			}
+			Height = (int)((Math.Min(image.Height * 1.25, SysParams.WorkArea.Height) + (buttonPanel.Height * 2)) * scalingY);
+			Width = (int)Math.Max(Math.Min(image.Width * 1.5, SysParams.WorkArea.Width) * scalingX, Height);
 
 			imageBounds = new Rectangle(
 				ImageMargin, ImageMargin,
-				(int)(image.Width * scalingX),
-				(int)(image.Height * scalingY) - ImageMargin);
+				(int)Math.Round(image.Width * scalingX),
+				(int)Math.Round(image.Height * scalingY));
 
 			picturePanel.AutoScrollMinSize = new Size(
 				imageBounds.Width + (ImageMargin * 2),
@@ -152,6 +143,11 @@ namespace River.OneMoreAddIn.Dialogs
 				Resx.CropImageDialog_imageSize, imageBounds.Width, imageBounds.Height);
 
 			pictureBox.Refresh();
+
+			// logging...
+
+			var hasRealDpi = (image.Flags & (int)ImageFlags.HasRealDpi) > 0;
+			var hasRealPixelSize = (image.Flags & (int)ImageFlags.HasRealPixelSize) > 0;
 
 			Logger.Current.WriteLine(
 				$"IMAGE hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} " +
@@ -673,25 +669,27 @@ namespace River.OneMoreAddIn.Dialogs
 				return;
 			}
 
-			var bounds = new Rectangle(
-				(int)(selectionBounds.X / scalingX),
-				(int)(selectionBounds.Y / scalingY),
-				(int)(selectionBounds.Width / scalingX),
-				(int)(selectionBounds.Height / scalingY) + ImageMargin);
+			Logger.Current.WriteLine(
+				$"CROP sbounds xy:{selectionBounds.X}x{selectionBounds.Y} siz:{selectionBounds.Width}x{selectionBounds.Height}");
 
-			var crop = new Bitmap(selectionBounds.Width, selectionBounds.Height);
+			var bounds = new Rectangle(
+				(int)Math.Round((selectionBounds.X - ImageMargin) / scalingX),
+				(int)Math.Round((selectionBounds.Y - ImageMargin) / scalingY),
+				(int)Math.Round(selectionBounds.Width / scalingX),
+				(int)Math.Round(selectionBounds.Height / scalingY));
+
+			Logger.Current.WriteLine(
+				$"CROP bounds  xy:{bounds.X}x{bounds.Y} siz:{bounds.Width}x{bounds.Height}");
+
+			var crop = new Bitmap(bounds.Width, bounds.Height);
+			crop.SetResolution(Image.HorizontalResolution, Image.VerticalResolution);
+
 			using (var g = Graphics.FromImage(crop))
 			{
 				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 				g.CompositingQuality = CompositingQuality.HighQuality;
-
-				bounds.Offset(
-					-(int)(ImageMargin / scalingX),
-					-(int)(ImageMargin / scalingY));
-
 				g.DrawImage(Image, 0, 0, bounds, GraphicsUnit.Pixel);
-
 				Image = crop;
 			}
 
