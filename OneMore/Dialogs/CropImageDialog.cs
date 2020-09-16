@@ -53,6 +53,9 @@ namespace River.OneMoreAddIn.Dialogs
 		// visual margin around image, provides room for cursor to select edges
 		private const int ImageMargin = 8;
 
+		// diameter of selection handles
+		private const int HandleSize = 8;
+
 		// the selection
 		private Point startPoint;
 		private Point endPoint;
@@ -252,24 +255,19 @@ namespace River.OneMoreAddIn.Dialogs
 				selectionBounds.Width, selectionBounds.Height
 				);
 
-			//statusLabel.Text = string.Format("{0}x{1} size:{2}x{3} clip:{4}x{5}:{6}x{7}",
-			//	selectionBounds.X - ImageMargin, selectionBounds.Y - ImageMargin,
-			//	selectionBounds.Width, selectionBounds.Height,
-			//	e.ClipRectangle.X, e.ClipRectangle.Y,
-			//	e.ClipRectangle.Width, e.ClipRectangle.Height
-			//	);
-
 			statusStrip.Refresh();
 		}
 
 
 		private void AddHandle(SizingHandle position, float x, float y, Graphics g)
 		{
-			var rectangle = new RectangleF(x - 4, y - 4, 8, 8);
+			var rectangle = new RectangleF(x - (HandleSize / 2), y - (HandleSize / 2), HandleSize, HandleSize);
 			var pen = brightness < 50 ? Pens.LightGray : Pens.Black;
-			g.DrawArc(pen, rectangle.Left, rectangle.Top, 8, 8, 0, 360);
+			g.DrawArc(pen, rectangle.Left, rectangle.Top, HandleSize, HandleSize, 0, 360);
 
-			rectangle.Inflate(8, 8);
+			// make hover region larger than the handle circle itself so it's easier to hit
+			rectangle.Inflate(HandleSize, HandleSize);
+
 			handles.Add(new SelectionHandle
 			{
 				Position = position,
@@ -661,10 +659,10 @@ namespace River.OneMoreAddIn.Dialogs
 			}
 
 			var bounds = new Rectangle(
-				(int)((selectionBounds.X - ImageMargin) / scalingX),
-				(int)((selectionBounds.Y - ImageMargin) / scalingY),
+				(int)(selectionBounds.X / scalingX),
+				(int)(selectionBounds.Y / scalingY),
 				(int)(selectionBounds.Width / scalingX),
-				(int)(selectionBounds.Height / scalingY));
+				(int)(selectionBounds.Height / scalingY) + ImageMargin);
 
 			var crop = new Bitmap(selectionBounds.Width, selectionBounds.Height);
 			using (var g = Graphics.FromImage(crop))
@@ -673,7 +671,9 @@ namespace River.OneMoreAddIn.Dialogs
 				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 				g.CompositingQuality = CompositingQuality.HighQuality;
 
-				selectionBounds.Offset(-ImageMargin, -ImageMargin);
+				bounds.Offset(
+					-(int)(ImageMargin / scalingX),
+					-(int)(ImageMargin / scalingY));
 
 				g.DrawImage(Image, 0, 0, bounds, GraphicsUnit.Pixel);
 
@@ -689,12 +689,6 @@ namespace River.OneMoreAddIn.Dialogs
 			marchingTimer.Stop();
 
 			pictureBox.Refresh();
-		}
-
-
-		private void CancelButton_Click(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Cancel;
 		}
 	}
 }
