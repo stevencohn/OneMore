@@ -39,6 +39,7 @@
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.sizeStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.selectButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
 			this.picturePanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
@@ -80,6 +81,7 @@
 			// 
 			// buttonPanel
 			// 
+			this.buttonPanel.Controls.Add(this.selectButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Controls.Add(this.cropButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -140,6 +142,16 @@
 			this.statusLabel.Text = "Selection top left: {x}, {y}. Bounding rectangle size: {width} x {height}.";
 			this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
+			// selectButton
+			// 
+			this.selectButton.Location = new System.Drawing.Point(12, 9);
+			this.selectButton.Name = "selectButton";
+			this.selectButton.Size = new System.Drawing.Size(120, 40);
+			this.selectButton.TabIndex = 7;
+			this.selectButton.Text = "Select All";
+			this.selectButton.UseVisualStyleBackColor = true;
+			this.selectButton.Click += new System.EventHandler(this.SelectButton_Click);
+			// 
 			// CropImageDialog
 			// 
 			this.AcceptButton = this.cropButton;
@@ -180,6 +192,7 @@
 		private System.Windows.Forms.ToolStripStatusLabel statusLabel;
 		private System.Windows.Forms.ToolStripStatusLabel sizeStatusLabel;
 		private System.Windows.Forms.Button cancelButton;
+		private System.Windows.Forms.Button selectButton;
 	}
 }
 

@@ -3,6 +3,7 @@
 //************************************************************************************************
 // based on https://www.codeproject.com/articles/27748/marching-ants
 
+#define Logging
 
 namespace River.OneMoreAddIn.Dialogs
 {
@@ -68,6 +69,8 @@ namespace River.OneMoreAddIn.Dialogs
 		private readonly GraphicsPath selectionPath;
 		private readonly double scalingX;
 		private readonly double scalingY;
+		private readonly double dpiX;
+		private readonly double dpiY;
 
 		// the original image
 		private SizeF viewport;
@@ -119,7 +122,7 @@ namespace River.OneMoreAddIn.Dialogs
 			Image = image;
 			this.viewport = viewport;
 
-			(float dpiX, float dpiY) = UIHelper.GetDpiValues();
+			(dpiX, dpiY) = UIHelper.GetDpiValues();
 
 			// the image may have a different resolution than the screen so combine both to compensate
 			scalingX = dpiX / image.HorizontalResolution;
@@ -149,6 +152,7 @@ namespace River.OneMoreAddIn.Dialogs
 			var hasRealDpi = (image.Flags & (int)ImageFlags.HasRealDpi) > 0;
 			var hasRealPixelSize = (image.Flags & (int)ImageFlags.HasRealPixelSize) > 0;
 
+#if Logging
 			Logger.Current.WriteLine(
 				$"IMAGE hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} " +
 				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} " +
@@ -157,8 +161,10 @@ namespace River.OneMoreAddIn.Dialogs
 				);
 
 			Logger.Current.WriteLine(
-				$"IMAGE bounds:{imageBounds.Width}x{imageBounds.Height} dpiScaling:({scalingX},{scalingY})"
+				$"IMAGE bounds:{imageBounds.Width}x{imageBounds.Height} " +
+				$"dpiScaling:({scalingX},{scalingY}) dpix/y:{dpiX}x{dpiY}"
 				);
+#endif
 		}
 
 
@@ -634,8 +640,8 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				if (imageBounds.Contains(e.Location))
 				{
-					endPoint.X = e.X;
-					endPoint.Y = e.Y;
+					endPoint.X = e.Location.X;
+					endPoint.Y = e.Location.Y;
 				}
 
 				selectionBounds = new Rectangle(
@@ -651,6 +657,10 @@ namespace River.OneMoreAddIn.Dialogs
 				{
 					marchingTimer.Stop();
 				}
+				else if (!marchingTimer.Enabled)
+				{
+					marchingTimer.Start();
+				}
 
 				pictureBox.Refresh();
 			}
@@ -662,6 +672,23 @@ namespace River.OneMoreAddIn.Dialogs
 		// ---------------------------------------------------------------------------------------
 		// Buttons
 
+		private void SelectButton_Click(object sender, EventArgs e)
+		{
+			Picture_MouseDown(pictureBox,
+				new MouseEventArgs(MouseButtons.Left, 1, ImageMargin, ImageMargin, 0));
+
+			var point = new Point(
+				(int)Math.Round((Image.Width + ImageMargin) * scalingX),
+				(int)Math.Round((Image.Height + ImageMargin) * scalingY)
+				);
+
+			SelectRegion(point);
+
+			Picture_MouseUp(pictureBox,
+				new MouseEventArgs(MouseButtons.Left, 1, point.X, point.Y, 0));
+		}
+
+
 		private void CropButton_Click(object sender, EventArgs e)
 		{
 			if (selectionBounds.IsEmpty)
@@ -669,18 +696,18 @@ namespace River.OneMoreAddIn.Dialogs
 				return;
 			}
 
-			Logger.Current.WriteLine(
-				$"CROP sbounds xy:{selectionBounds.X}x{selectionBounds.Y} siz:{selectionBounds.Width}x{selectionBounds.Height}");
-
 			var bounds = new Rectangle(
 				(int)Math.Round((selectionBounds.X - ImageMargin) / scalingX),
 				(int)Math.Round((selectionBounds.Y - ImageMargin) / scalingY),
 				(int)Math.Round(selectionBounds.Width / scalingX),
 				(int)Math.Round(selectionBounds.Height / scalingY));
+#if Logging
+			Logger.Current.WriteLine(
+				$"CROP sbounds xy:{selectionBounds.X}x{selectionBounds.Y} siz:{selectionBounds.Width}x{selectionBounds.Height}");
 
 			Logger.Current.WriteLine(
 				$"CROP bounds  xy:{bounds.X}x{bounds.Y} siz:{bounds.Width}x{bounds.Height}");
-
+#endif
 			var crop = new Bitmap(bounds.Width, bounds.Height);
 			crop.SetResolution(Image.HorizontalResolution, Image.VerticalResolution);
 
