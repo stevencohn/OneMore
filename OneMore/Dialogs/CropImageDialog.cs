@@ -73,7 +73,6 @@ namespace River.OneMoreAddIn.Dialogs
 		private readonly double dpiY;
 
 		// the original image
-		private SizeF viewport;
 		private Rectangle imageBounds;
 		private SelectionHandle currentHandle;
 		private readonly List<SelectionHandle> handles;
@@ -118,10 +117,9 @@ namespace River.OneMoreAddIn.Dialogs
 		/// Initialize a new dialog showing the given image
 		/// </summary>
 		/// <param name="image">An image to display and crop</param>
-		public CropImageDialog(Image image, SizeF viewport) : this()
+		public CropImageDialog(Image image) : this()
 		{
 			Image = image;
-			this.viewport = viewport;
 
 			(dpiX, dpiY) = UIHelper.GetDpiValues();
 
