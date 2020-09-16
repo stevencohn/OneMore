@@ -406,6 +406,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        internal static string CropImageDialog_selectButton_Text {
+            get {
+                return ResourceManager.GetString("CropImageDialog_selectButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crop Image.
         /// </summary>
         internal static string CropImageDialog_Text {

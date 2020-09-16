@@ -1304,4 +1304,8 @@ OneNote 将自动关闭</value>
     <value>切换</value>
     <comment>group box</comment>
   </data>
+  <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
+    <value>全选</value>
+    <comment>select all button</comment>
+  </data>
 </root>

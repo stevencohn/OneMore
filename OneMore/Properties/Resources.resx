@@ -1341,4 +1341,8 @@ Try again later</value>
     <value>Toggle</value>
     <comment>group box</comment>
   </data>
+  <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
+    <value>Select All</value>
+    <comment>select all button</comment>
+  </data>
 </root>

@@ -106,6 +106,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 				Localize(new string[]
 				{
+					"selectButton",
 					"cropButton",
 					"cancelButton"
 				});
