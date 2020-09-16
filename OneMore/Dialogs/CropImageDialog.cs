@@ -660,6 +660,12 @@ namespace River.OneMoreAddIn.Dialogs
 				return;
 			}
 
+			var bounds = new Rectangle(
+				(int)((selectionBounds.X - ImageMargin) / scalingX),
+				(int)((selectionBounds.Y - ImageMargin) / scalingY),
+				(int)(selectionBounds.Width / scalingX),
+				(int)(selectionBounds.Height / scalingY));
+
 			var crop = new Bitmap(selectionBounds.Width, selectionBounds.Height);
 			using (var g = Graphics.FromImage(crop))
 			{
@@ -669,7 +675,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 				selectionBounds.Offset(-ImageMargin, -ImageMargin);
 
-				g.DrawImage(Image, 0, 0, selectionBounds, GraphicsUnit.Pixel);
+				g.DrawImage(Image, 0, 0, bounds, GraphicsUnit.Pixel);
 
 				Image = crop;
 			}
