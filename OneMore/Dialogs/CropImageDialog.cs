@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
+	using System.Drawing.Imaging;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -116,6 +117,16 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			Image = image;
 			this.viewport = viewport;
+
+			var hasRealDpi = (image.Flags & (int)ImageFlags.HasRealDpi) > 0;
+			var hasRealPixelSize = (image.Flags & (int)ImageFlags.HasRealPixelSize) > 0;
+
+			Logger.Current.WriteLine(
+				$"IMAGE hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} " +
+				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} " +
+				$"size:{image.Width}x{image.Height} " +
+				$"physical:{image.PhysicalDimension.Width}x{image.PhysicalDimension.Height}"
+				);
 
 			// adjust for high-DPI scaling factors vs OneNote's internal scaling
 			(scalingX, scalingY) = UIHelper.GetScalingFactors();
