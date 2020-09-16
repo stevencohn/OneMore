@@ -121,13 +121,6 @@ namespace River.OneMoreAddIn.Dialogs
 			var hasRealDpi = (image.Flags & (int)ImageFlags.HasRealDpi) > 0;
 			var hasRealPixelSize = (image.Flags & (int)ImageFlags.HasRealPixelSize) > 0;
 
-			Logger.Current.WriteLine(
-				$"IMAGE hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} " +
-				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} " +
-				$"size:{image.Width}x{image.Height} " +
-				$"physical:{image.PhysicalDimension.Width}x{image.PhysicalDimension.Height}"
-				);
-
 			// adjust for high-DPI scaling factors vs OneNote's internal scaling
 			(scalingX, scalingY) = UIHelper.GetScalingFactors();
 
@@ -159,6 +152,17 @@ namespace River.OneMoreAddIn.Dialogs
 				Resx.CropImageDialog_imageSize, imageBounds.Width, imageBounds.Height);
 
 			pictureBox.Refresh();
+
+			Logger.Current.WriteLine(
+				$"IMAGE hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} " +
+				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} " +
+				$"size:{image.Width}x{image.Height} " +
+				$"physical:{image.PhysicalDimension.Width}x{image.PhysicalDimension.Height}"
+				);
+
+			Logger.Current.WriteLine(
+				$"IMAGE bounds:{imageBounds.Width}x{imageBounds.Height} dpiScaling:({scalingX},{scalingY})"
+				);
 		}
 
 
