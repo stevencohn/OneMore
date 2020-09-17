@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn.Dialogs
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
-	using System.Drawing.Imaging;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 	using SysParams = System.Windows.SystemParameters;
@@ -166,6 +165,13 @@ namespace River.OneMoreAddIn.Dialogs
 				$"dpiScaling:({scalingX},{scalingY}) dpi:{dpiX}x{dpiY}"
 				);
 #endif
+		}
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			Location = new Point(Location.X, Location.Y - (Height / 3));
+			UIHelper.SetForegroundWindow(this);
 		}
 
 
@@ -679,8 +685,8 @@ namespace River.OneMoreAddIn.Dialogs
 				new MouseEventArgs(MouseButtons.Left, 1, ImageMargin, ImageMargin, 0));
 
 			var point = new Point(
-				ImageMargin + imageBounds.Width, // (int)Math.Round((ImageMargin + Image.Width) * scalingX),
-				ImageMargin + imageBounds.Height // (int)Math.Round((ImageMargin + Image.Height) * scalingY)
+				ImageMargin + imageBounds.Width,
+				ImageMargin + imageBounds.Height
 				);
 
 			SelectRegion(point);

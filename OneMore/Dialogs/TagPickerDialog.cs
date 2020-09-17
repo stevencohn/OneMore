@@ -7,6 +7,7 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
@@ -238,8 +239,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void pictureBox_MouseMove(object sender, MouseEventArgs e)
 		{
-			var mouseX = xScalingFactor == 0.0 ? e.X : (int)(e.X / xScalingFactor);
-			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)(e.Y / yScalingFactor);
+			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);
+			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
 
 			var zone = zones.Where(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
@@ -272,8 +273,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
 		{
-			var mouseX = xScalingFactor == 0.0 ? e.X : (int)(e.X / xScalingFactor);
-			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)(e.Y / yScalingFactor);
+			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);
+			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
 
 			var zone = zones.Where(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
