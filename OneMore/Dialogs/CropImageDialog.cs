@@ -155,14 +155,14 @@ namespace River.OneMoreAddIn.Dialogs
 			var hasRealPixelSize = (image.Flags & (int)ImageFlags.HasRealPixelSize) > 0;
 
 			Logger.Current.WriteLine(
-				$"IMAGE hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} " +
-				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} " +
+				$"IMAG hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} | " +
+				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} | " +
 				$"size:{image.Width}x{image.Height} " +
 				$"physical:{image.PhysicalDimension.Width}x{image.PhysicalDimension.Height}"
 				);
 
 			Logger.Current.WriteLine(
-				$"IMAGE bounds:{imageBounds.Width}x{imageBounds.Height} " +
+				$"IMAG bounds:{imageBounds.Width}x{imageBounds.Height} " +
 				$"dpiScaling:({scalingX},{scalingY}) dpi:{dpiX}x{dpiY}"
 				);
 #endif
@@ -704,11 +704,9 @@ namespace River.OneMoreAddIn.Dialogs
 				(int)Math.Round(selectionBounds.Height / scalingY));
 #if Logging
 			Logger.Current.WriteLine(
-				$"CROP sbounds xy:{selectionBounds.X}x{selectionBounds.Y} " +
-				$"siz:{selectionBounds.Width}x{selectionBounds.Height}");
-
-			Logger.Current.WriteLine(
-				$"CROP bounds  xy:{bounds.X}x{bounds.Y} siz:{bounds.Width}x{bounds.Height}");
+				$"CROP selectionBounds xy:{selectionBounds.X}x{selectionBounds.Y} " +
+				$"siz:{selectionBounds.Width}x{selectionBounds.Height} | " +
+				$"bounds xy:{bounds.X}x{bounds.Y} siz:{bounds.Width}x{bounds.Height}");
 #endif
 			var crop = new Bitmap(bounds.Width, bounds.Height);
 			crop.SetResolution(Image.HorizontalResolution, Image.VerticalResolution);
