@@ -3,7 +3,7 @@
 //************************************************************************************************
 // based on https://www.codeproject.com/articles/27748/marching-ants
 
-#define xLogging
+#define Logging
 
 namespace River.OneMoreAddIn.Dialogs
 {
@@ -67,10 +67,10 @@ namespace River.OneMoreAddIn.Dialogs
 		private int antOffset;
 		private readonly Region selectionRegion;
 		private readonly GraphicsPath selectionPath;
+		private readonly float dpiX;
+		private readonly float dpiY;
 		private readonly double scalingX;
 		private readonly double scalingY;
-		private readonly double dpiX;
-		private readonly double dpiY;
 
 		// the original image
 		private Rectangle imageBounds;
@@ -127,8 +127,12 @@ namespace River.OneMoreAddIn.Dialogs
 			scalingX = dpiX / image.HorizontalResolution;
 			scalingY = dpiY / image.VerticalResolution;
 
-			Height = (int)((Math.Min(image.Height * 1.25, SysParams.WorkArea.Height) + (buttonPanel.Height * 2)) * scalingY);
-			Width = (int)Math.Max(Math.Min(image.Width * 1.5, SysParams.WorkArea.Width) * scalingX, Height);
+			Height = (int)((Math.Min(image.Height * 1.25, SysParams.WorkArea.Height)
+				+ (buttonPanel.Height * 2)) * scalingY);
+
+			Width = (int)Math.Max(
+				Math.Min(image.Width * 1.5, SysParams.WorkArea.Width) * scalingX,
+				Height);
 
 			imageBounds = new Rectangle(
 				ImageMargin, ImageMargin,
@@ -146,12 +150,10 @@ namespace River.OneMoreAddIn.Dialogs
 
 			pictureBox.Refresh();
 
-			// logging...
-
+#if Logging
 			var hasRealDpi = (image.Flags & (int)ImageFlags.HasRealDpi) > 0;
 			var hasRealPixelSize = (image.Flags & (int)ImageFlags.HasRealPixelSize) > 0;
 
-#if Logging
 			Logger.Current.WriteLine(
 				$"IMAGE hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} " +
 				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} " +
@@ -677,8 +679,8 @@ namespace River.OneMoreAddIn.Dialogs
 				new MouseEventArgs(MouseButtons.Left, 1, ImageMargin, ImageMargin, 0));
 
 			var point = new Point(
-				(int)Math.Round((Image.Width + ImageMargin) * scalingX),
-				(int)Math.Round((Image.Height + ImageMargin) * scalingY)
+				ImageMargin + imageBounds.Width, // (int)Math.Round((ImageMargin + Image.Width) * scalingX),
+				ImageMargin + imageBounds.Height // (int)Math.Round((ImageMargin + Image.Height) * scalingY)
 				);
 
 			SelectRegion(point);

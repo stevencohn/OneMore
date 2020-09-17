@@ -80,9 +80,17 @@ namespace River.OneMoreAddIn
 							float scaleX = width / image.Width / factorX;
 							float scaleY = height / image.Height / factorY;
 
-							size.SetAttributeValue("width", $"{(int)(dialog.Image.Width * scaleX)}.0");
-							size.SetAttributeValue("height", $"{(int)(dialog.Image.Height * scaleY)}.0");
+							var setWidth = Math.Round(dialog.Image.Width * scaleX);
+							var setHeight = Math.Round(dialog.Image.Height * scaleY);
+
+							size.SetAttributeValue("width", $"{setWidth:0.0}");
+							size.SetAttributeValue("height", $"{setHeight:0.0}");
 							size.SetAttributeValue("isSetByUser", "true");
+
+							logger.WriteLine(
+								$"FINAL factors:({factorX},{factorY}) oldsiz:{width}x{height} scales:({scaleX},{scaleY}) " +
+								$"imgsiz:{image.Width}x{image.Height} setsiz:{setWidth}x{setHeight}"
+								);
 
 							manager.UpdatePageContent(page.Root);
 						}
