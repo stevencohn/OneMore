@@ -123,3 +123,22 @@ _Primary Registry path for Regedit:_
 	"ttidLogSkyDrive"=dword:00000000
 	"ttidLogMultiRoundTripSuspend"=dword:00000000
 
+#### The COM Interface Timeout
+
+The OneNote Application COM object times out if not used within a reasonable window (somewhere around
+a minute mabe?) and, regardless of whether you've wrapped the call in a try/catch, OneNote will abort
+the call, display a dialog, and maybe leave OneNote in an unusable state. This can adversely affect a
+long-running debugging session.
+
+But in normal operations, OneMore makes every effort to minimize how long it holds on to an
+Application instance.
+
+#### Dark Colors
+
+OneNote, at times, can be a selfish and uncooperative little brat. If the page background is dark
+(brightness is less than 50%) then OneNote increases the brightness of all applied colors by 25%;
+the L of the HSL color value is increased by 25. But in another case of Microsoft being "too smart
+for their own good", OneNote doesn't allow you to override those colors from the COM API. No matter
+what colors you apply to the XML, OneNote will increase the brightness if the page background is
+considering "dark". You can, however, still use OneNote's font color button and it will happily
+apply any color your choose. Selfish OneNote. Selflish.
