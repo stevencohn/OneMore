@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Helpers.Settings
 {
 	using System;
 	using System.IO;
@@ -14,8 +14,8 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class SettingsProvider
 	{
-		private string path;
-		private XElement root;
+		private readonly string path;
+		private readonly XElement root;
 
 
 		/// <summary>
@@ -64,6 +64,43 @@ namespace River.OneMoreAddIn
 		public void SetImageWidth(int width)
 		{
 			root.Element("images").Attribute("width").Value = width.ToString();
+		}
+
+
+		public SettingCollection GetCollection(string name)
+		{
+			var settings = new SettingCollection(name);
+
+			var elements = root.Element(name)?.Elements();
+			if (elements != null)
+			{
+				foreach (var element in elements)
+				{
+					settings.Add(element.Name.LocalName, element.Value);
+				}
+			}
+
+			return settings;
+		}
+
+
+		public void SetCollection(SettingCollection settings)
+		{
+			var element = new XElement(settings.Name);
+			foreach (var key in settings.Keys)
+			{
+				element.Add(new XElement(key, settings[key]));
+			}
+
+			var e = root.Element(settings.Name);
+			if (e != null)
+			{
+				e.ReplaceWith(element);
+			}
+			else
+			{
+				root.Add(element);
+			}
 		}
 
 

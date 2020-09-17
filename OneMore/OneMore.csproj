@@ -254,7 +254,8 @@
     <Compile Include="Helpers\IntExtensions.cs" />
     <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
-    <Compile Include="Helpers\SettingsProvider.cs" />
+    <Compile Include="Helpers\Settings\SettingCollection.cs" />
+    <Compile Include="Helpers\Settings\SettingsProvider.cs" />
     <Compile Include="Helpers\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\Updater\GitAsset.cs" />
     <Compile Include="Helpers\Updater\GitRelease.cs" />

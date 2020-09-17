@@ -7,6 +7,7 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
+	using River.OneMoreAddIn.Helpers.Settings;
 	using System;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -42,6 +43,47 @@ namespace River.OneMoreAddIn.Dialogs
 					"okButton",
 					"cancelButton"
 				});
+			}
+
+			RestoreSettings();
+		}
+
+
+		private void RestoreSettings()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("outline");
+			if (settings != null)
+			{
+				numberingBox.Checked = settings.Get<bool>("addNumbering");
+				if (numberingBox.Checked)
+				{
+					alphaRadio.Checked = settings.Get<bool>("alphaNumbering");
+					numRadio.Checked = settings.Get<bool>("numericNumbering");
+				}
+
+				cleanBox.Checked = settings.Get<bool>("cleanupNumbering");
+				indentBox.Checked = settings.Get<bool>("indent");
+
+				indentTagBox.Checked = settings.Get<bool>("indentTagged");
+				if (indentTagBox.Checked)
+				{
+					removeTagsBox.Checked = settings.Get<bool>("removeTags");
+
+					var symbol = settings.Get<int>("tagSymbol");
+					if (symbol > 0)
+					{
+						using (var dialog = new TagPickerDialog(0, 0))
+						{
+							var glyph = dialog.GetGlyph(symbol);
+							if (glyph != null)
+							{
+								tagButton.Text = null;
+								tagButton.Image = glyph;
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -133,12 +175,20 @@ namespace River.OneMoreAddIn.Dialogs
 		private void okButton_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
-		}
 
+			var settings = new SettingCollection("outline");
+			settings.Add("addNumbering", numberingBox.Checked);
+			settings.Add("alphaNumbering", AlphaNumbering);
+			settings.Add("numericNumbering", NumericNumbering);
+			settings.Add("cleanupNumbering", CleanupNumbering);
+			settings.Add("indent", Indent);
+			settings.Add("indentTagged", IndentTagged);
+			settings.Add("removeTags", RemoveTags);
+			settings.Add("tagSymbol", TagSymbol);
 
-		private void cancelButton_Click(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Cancel;
+			var provider = new SettingsProvider();
+			provider.SetCollection(settings);
+			provider.Save();
 		}
 	}
 }

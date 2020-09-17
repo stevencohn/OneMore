@@ -223,7 +223,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 
 		/// <summary>
-		/// 
+		/// Return a Bitmap of the chosen symbol
 		/// </summary>
 		public Bitmap GetGlyph()
 		{
@@ -234,6 +234,24 @@ namespace River.OneMoreAddIn.Dialogs
 			var bitmap = new Bitmap(pictureBox.Image);
 			var glyph = bitmap.Clone(active.Bounds, bitmap.PixelFormat);
 			return glyph;
+		}
+
+
+		/// <summary>
+		/// Used by OutlineDialog to restore saved user settings and prepopulate
+		/// the glyph on its tag symbol button
+		/// </summary>
+		/// <param name="symbol"></param>
+		/// <returns></returns>
+		public Bitmap GetGlyph(int symbol)
+		{
+			active = zones.Where(z => z.Symbol == symbol).FirstOrDefault();
+			if (active != null)
+			{
+				return GetGlyph();
+			}
+
+			return null;
 		}
 
 
@@ -297,6 +315,7 @@ namespace River.OneMoreAddIn.Dialogs
 				Close();
 			}
 		}
+
 
 		private void TagPickerDialog_KeyUp(object sender, KeyEventArgs e)
 		{
