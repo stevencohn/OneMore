@@ -89,8 +89,8 @@ namespace River.OneMoreAddIn
 							var setHeight = (int)Math.Round(image.Height * scalingY);
 
 
-							setWidth = (int)Math.Round(image.Width * scales.Width);
-							setHeight = (int)Math.Round(image.Height * scales.Height);
+							setWidth = (int)Math.Round(dialog.Image.Width * scales.Width);
+							setHeight = (int)Math.Round(dialog.Image.Height * scales.Height);
 
 
 							logger.WriteLine(
