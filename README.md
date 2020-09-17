@@ -28,7 +28,7 @@ Clean commands
 * Remove author/citation information from paragraphs
 * Remove empty headers and "extra" empty lines between paragraphs
 * Remove spacing between paragraphs and headings
-* Show/Hide the page date and time stamps under the title
+* Show/Hide the page date and time stamps under the title on page or all pages in section
 * Trim trailing whitespace from selected text
 
 Formula commands

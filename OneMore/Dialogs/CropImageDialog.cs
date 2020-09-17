@@ -3,7 +3,7 @@
 //************************************************************************************************
 // based on https://www.codeproject.com/articles/27748/marching-ants
 
-#define Logging
+#define xLogging
 
 namespace River.OneMoreAddIn.Dialogs
 {

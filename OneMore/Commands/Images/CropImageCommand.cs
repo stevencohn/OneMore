@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#define xLogging
+
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
@@ -62,10 +64,7 @@ namespace River.OneMoreAddIn
 					size.ReadAttributeValue("width", out float width, image.Width);
 					size.ReadAttributeValue("height", out float height, image.Height);
 
-					var scales = new SizeF(
-						width / image.Width,
-						height / image.Height
-						);
+					var scales = new SizeF(width / image.Width, height / image.Height);
 
 					using (var dialog = new CropImageDialog(image))
 					{
@@ -77,48 +76,18 @@ namespace River.OneMoreAddIn
 
 							data.Value = Convert.ToBase64String(bytes);
 
-
-
-							(float dpiX, float dpiY) = UIHelper.GetDpiValues();
-
-							// the image may have a different resolution than the screen so combine both to compensate
-							var scalingX = dpiX / image.HorizontalResolution;
-							var scalingY = dpiY / image.VerticalResolution;
-
-							var setWidth = (int)Math.Round(image.Width * scalingX);
-							var setHeight = (int)Math.Round(image.Height * scalingY);
-
-
-							setWidth = (int)Math.Round(dialog.Image.Width * scales.Width);
-							setHeight = (int)Math.Round(dialog.Image.Height * scales.Height);
-
-
+							var setWidth = (int)Math.Round(dialog.Image.Width * scales.Width);
+							var setHeight = (int)Math.Round(dialog.Image.Height * scales.Height);
+#if Logging
 							logger.WriteLine(
-								$"DONE dpi:({dpiX},{dpiY}) imgres:{image.HorizontalResolution}x{image.VerticalResolution} " +
-								$"scaling:({scalingX},{scalingY}) imgsiz:{image.Width}x{image.Height} | " +
+								$"DONE crop:{dialog.Image.Width}x{dialog.Image.Height} " +
+								$"scales:({scales.Width},{scales.Height}) " +
 								$"oldsize:{width}x{height} setsiz:{setWidth}x{setHeight}"
 								);
-
-
-							// OneNote does it's own scaling so we need to adjust by using both
-							// its scaling factor and the screen's High DPI scaling factor
-
-							//(float factorX, float factorY) = UIHelper.GetScalingFactors();
-
-							//float scaleX = image.Width / width / factorX;
-							//float scaleY = image.Height / height / factorY;
-
-							//var setWidth = Math.Round(dialog.Image.Width * scaleX);
-							//var setHeight = Math.Round(dialog.Image.Height * scaleY);
-
+#endif
 							size.SetAttributeValue("width", $"{setWidth:0.0}");
 							size.SetAttributeValue("height", $"{setHeight:0.0}");
 							size.SetAttributeValue("isSetByUser", "true");
-
-							//logger.WriteLine(
-							//	$"FINAL factors:({factorX},{factorY}) oldsiz:{width}x{height} scales:({scaleX},{scaleY}) " +
-							//	$"imgsiz:{image.Width}x{image.Height} setsiz:{setWidth}x{setHeight}"
-							//	);
 
 							manager.UpdatePageContent(page.Root);
 						}
