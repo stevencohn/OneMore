@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn
 		public const int DEVICECAPS_DESKTOPHORZRES = 118;
 
 		public const int WM_HOTKEY = 0x312;
+		public const int WM_SYSCOMMAND = 0x112;
+		public const int MF_BYPOSITION = 0x400;
 
 		public const uint WINEVENT_OUTOFCONTEXT = 0x0000;
 		public const uint WINEVENT_SKIPOWNTHREAD = 0x0001;
@@ -54,9 +56,20 @@ namespace River.OneMoreAddIn
 		public static extern IntPtr GetParent(IntPtr hWnd);
 
 
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmenu
+		[DllImport("user32.dll")]
+		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+
+
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid
 		[DllImport("user32.dll", SetLastError = true)]
 		public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
+
+
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-insertmenua
+		[DllImport("user32.dll", CharSet = CharSet.Unicode)]
+		public static extern bool InsertMenu(
+			IntPtr hMenu, int wPosition, int wFlags, int wIDNewItem, string lpNewItem);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey

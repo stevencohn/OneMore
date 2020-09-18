@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Helpers.Settings
 {
 	using System;
 	using System.IO;
+	using System.Runtime.InteropServices.WindowsRuntime;
 	using System.Xml.Linq;
 
 
@@ -81,6 +82,19 @@ namespace River.OneMoreAddIn.Helpers.Settings
 			}
 
 			return settings;
+		}
+
+
+		public bool RemoveCollection(string name)
+		{
+			var element = root.Element(name);
+			if (element != null)
+			{
+				element.Remove();
+				return true;
+			}
+
+			return false;
 		}
 
 

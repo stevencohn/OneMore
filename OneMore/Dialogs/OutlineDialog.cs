@@ -15,6 +15,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 	internal partial class OutlineDialog : LocalizableForm
 	{
+		private const int SysMenuId = 1000;
+
 
 		public OutlineDialog()
 		{
@@ -101,6 +103,40 @@ namespace River.OneMoreAddIn.Dialogs
 		public bool RemoveTags => removeTagsBox.Checked;
 
 		public int TagSymbol { get; private set; }
+
+
+		protected override void WndProc(ref Message m)
+		{
+			if ((m.Msg == Native.WM_SYSCOMMAND) && (m.WParam.ToInt32() == SysMenuId))
+			{
+				var provider = new SettingsProvider();
+				if (provider.RemoveCollection("outline"))
+				{
+					provider.Save();
+
+					numberingBox.Checked = false;
+					alphaRadio.Checked = true;
+					numRadio.Checked = false;
+					cleanBox.Checked = false;
+					indentBox.Checked = false;
+					indentTagBox.Checked = false;
+					removeTagsBox.Checked = false;
+					tagButton.Image = null;
+					tagButton.Text = "?";
+				}
+
+				return;
+			}
+
+			base.WndProc(ref m);
+		}
+
+		protected override void OnLoad(EventArgs e)
+		{
+			var hmenu = Native.GetSystemMenu(this.Handle, false);
+			Native.InsertMenu(hmenu, 5, Native.MF_BYPOSITION, SysMenuId, "Reset Settings");
+			base.OnLoad(e);
+		}
 
 
 		protected override void OnShown(EventArgs e)
