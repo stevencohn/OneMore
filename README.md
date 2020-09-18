@@ -200,6 +200,10 @@ numbering will prefix headings with "1.", "a.", "i.", etc.
 
 <img src="Screenshots/Numbering.png" width="320"/>
 
+The last settings you use in this dialog will be preserved. To reset the dialog back to its
+default settings, use the Reset Settings item from its system menu, accessed from the title
+bar icon.
+
 <a name="indenting"></a>
 ### Indenting Content
 
