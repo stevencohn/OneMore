@@ -62,6 +62,10 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(() =>
 				factory.GetCommand<DiagnosticsCommand>().Execute(),
 				Keys.F8);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ClearLogCommand>().Execute(),
+				Keys.F8, Hotmods.Control);
 		}
 	}
 }

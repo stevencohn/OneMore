@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn
 
 	public interface ILogger : IDisposable
 	{
+		string LogPath { get; }
 		void Write(string message);
 		void WriteLine();
 		void WriteLine(string message);

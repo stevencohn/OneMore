@@ -70,42 +70,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear the log file now?.
-        /// </summary>
-        internal static string AboutDialog_ClearLogMessage {
-            get {
-                return ResourceManager.GetString("AboutDialog_ClearLogMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No log file is available.
-        /// </summary>
-        internal static string AboutDialog_ClearLogNoneMessage {
-            get {
-                return ResourceManager.GetString("AboutDialog_ClearLogNoneMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to It&apos;s all good.
-        /// </summary>
-        internal static string AboutDialog_ClearLogNoneTitle {
-            get {
-                return ResourceManager.GetString("AboutDialog_ClearLogNoneTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm.
-        /// </summary>
-        internal static string AboutDialog_ClearLogTitle {
-            get {
-                return ResourceManager.GetString("AboutDialog_ClearLogTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Copyright @ 2016-{0} Steven M Cohn.
         /// </summary>
         internal static string AboutDialog_copyLabel_Text {
@@ -348,6 +312,42 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Circle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear the log file now?.
+        /// </summary>
+        internal static string ClearLog_Message {
+            get {
+                return ResourceManager.GetString("ClearLog_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No log file is available.
+        /// </summary>
+        internal static string ClearLog_NoneMessage {
+            get {
+                return ResourceManager.GetString("ClearLog_NoneMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It&apos;s all good.
+        /// </summary>
+        internal static string ClearLog_NoneTitle {
+            get {
+                return ResourceManager.GetString("ClearLog_NoneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        internal static string ClearLog_Title {
+            get {
+                return ResourceManager.GetString("ClearLog_Title", resourceCulture);
             }
         }
         

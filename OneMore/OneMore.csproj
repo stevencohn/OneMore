@@ -105,6 +105,7 @@
     <Compile Include="AddInRibbon.cs" />
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
+    <Compile Include="Commands\ClearLogCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />

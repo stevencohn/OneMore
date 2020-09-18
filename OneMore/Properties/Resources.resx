@@ -553,19 +553,19 @@
     <value>Clear the log file</value>
     <comment>hyperlink to clear the log file</comment>
   </data>
-  <data name="AboutDialog_ClearLogMessage" xml:space="preserve">
+  <data name="ClearLog_Message" xml:space="preserve">
     <value>Clear the log file now?</value>
     <comment>message box message</comment>
   </data>
-  <data name="AboutDialog_ClearLogNoneMessage" xml:space="preserve">
+  <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>No log file is available</value>
     <comment>message box message</comment>
   </data>
-  <data name="AboutDialog_ClearLogNoneTitle" xml:space="preserve">
+  <data name="ClearLog_NoneTitle" xml:space="preserve">
     <value>It's all good</value>
     <comment>message box title</comment>
   </data>
-  <data name="AboutDialog_ClearLogTitle" xml:space="preserve">
+  <data name="ClearLog_Title" xml:space="preserve">
     <value>Confirm</value>
     <comment>message box title</comment>
   </data>

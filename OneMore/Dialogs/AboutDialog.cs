@@ -102,26 +102,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void ClearLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			if (File.Exists(((Logger)Logger.Current).LogPath))
-			{
-				var result = MessageBox.Show(
-					Resx.AboutDialog_ClearLogMessage,
-					Resx.AboutDialog_ClearLogTitle,
-					MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-					MessageBoxDefaultButton.Button1);
-
-				if (result == DialogResult.Yes)
-				{
-					((Logger)Logger.Current).Clear();
-				}
-			}
-			else
-			{
-				MessageBox.Show(
-					Resx.AboutDialog_ClearLogNoneMessage,
-					Resx.AboutDialog_ClearLogNoneTitle,
-					MessageBoxButtons.OK);
-			}
+			new ClearLogCommand().Execute();
 		}
 	}
 }

@@ -87,9 +87,17 @@ namespace River.OneMoreAddIn
 				builder.AppendLine($"Page brightness: {pageBrightness}");
 				builder.AppendLine($"Page is dark...: {pageBrightness < 0.5}");
 
+				(float dpiX, float dpiY) = UIHelper.GetDpiValues();
+				builder.AppendLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
+
+				(float scalingX, float scalingY) = UIHelper.GetScalingFactors();
+				builder.AppendLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
+
 				builder.AppendLine(new string('-', 80));
 
 				logger.WriteLine(builder.ToString());
+
+				UIHelper.ShowMessage($"Diagnostics written to {logger.LogPath}");
 			}
 		}
 	}
