@@ -1308,4 +1308,8 @@ OneNote 将自动关闭</value>
     <value>全选</value>
     <comment>select all button</comment>
   </data>
+  <data name="DialogResetSettings_Text" xml:space="preserve">
+    <value>重新设置</value>
+    <comment>system menu</comment>
+  </data>
 </root>

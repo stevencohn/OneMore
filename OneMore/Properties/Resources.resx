@@ -1345,4 +1345,8 @@ Try again later</value>
     <value>Select All</value>
     <comment>select all button</comment>
   </data>
+  <data name="DialogResetSettings_Text" xml:space="preserve">
+    <value>Reset Settings</value>
+    <comment>system menu</comment>
+  </data>
 </root>

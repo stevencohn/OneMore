@@ -133,8 +133,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 		protected override void OnLoad(EventArgs e)
 		{
-			var hmenu = Native.GetSystemMenu(this.Handle, false);
-			Native.InsertMenu(hmenu, 5, Native.MF_BYPOSITION, SysMenuId, "Reset Settings");
+			var hmenu = Native.GetSystemMenu(Handle, false);
+			Native.InsertMenu(hmenu, 5, Native.MF_BYPOSITION, SysMenuId, Resx.DialogResetSettings_Text);
 			base.OnLoad(e);
 		}
 
