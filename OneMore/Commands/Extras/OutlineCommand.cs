@@ -277,7 +277,8 @@ namespace River.OneMoreAddIn
 
 					if (children.HasElements)
 					{
-						element.AddAfterSelf(new XElement(ns + "OE", children));
+						element.Add(children);
+						//element.AddAfterSelf(new XElement(ns + "OE", children));
 					}
 				}
 			}

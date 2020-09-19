@@ -72,12 +72,12 @@ namespace River.OneMoreAddIn.Dialogs
 				{
 					removeTagsBox.Checked = settings.Get<bool>("removeTags");
 
-					var symbol = settings.Get<int>("tagSymbol");
-					if (symbol > 0)
+					TagSymbol = settings.Get<int>("tagSymbol");
+					if (TagSymbol > 0)
 					{
 						using (var dialog = new TagPickerDialog(0, 0))
 						{
-							var glyph = dialog.GetGlyph(symbol);
+							var glyph = dialog.GetGlyph(TagSymbol);
 							if (glyph != null)
 							{
 								tagButton.Text = null;
