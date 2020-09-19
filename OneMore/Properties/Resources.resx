@@ -1349,4 +1349,24 @@ Try again later</value>
     <value>Reset Settings</value>
     <comment>system menu</comment>
   </data>
+  <data name="sepContent_Label" xml:space="preserve">
+    <value>Content</value>
+    <comment>Ribbon OneMore menu separator</comment>
+  </data>
+  <data name="sepSpecial_Label" xml:space="preserve">
+    <value>Special</value>
+    <comment>Ribbon OneMore menu separator</comment>
+  </data>
+  <data name="sepText_Label" xml:space="preserve">
+    <value>Text</value>
+    <comment>Ribbon OneMore menu separator</comment>
+  </data>
+  <data name="ribRunPluginButton_Label" xml:space="preserve">
+    <value>Run Plugin...</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribPluginButton_Label" xml:space="preserve">
+    <value>Run Plugin...</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
 </root>

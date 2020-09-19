@@ -2187,6 +2187,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Run Plugin....
+        /// </summary>
+        internal static string ribPluginButton_Label {
+            get {
+                return ResourceManager.GetString("ribPluginButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert Pronunciation.
         /// </summary>
         internal static string ribPronunciateButton_Label {
@@ -2336,6 +2345,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribResizeImagesButton_Label {
             get {
                 return ResourceManager.GetString("ribResizeImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run Plugin....
+        /// </summary>
+        internal static string ribRunPluginButton_Label {
+            get {
+                return ResourceManager.GetString("ribRunPluginButton_Label", resourceCulture);
             }
         }
         
@@ -2598,6 +2616,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchAndReplaceDialog_withLabel_Text {
             get {
                 return ResourceManager.GetString("SearchAndReplaceDialog_withLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content.
+        /// </summary>
+        internal static string sepContent_Label {
+            get {
+                return ResourceManager.GetString("sepContent_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special.
+        /// </summary>
+        internal static string sepSpecial_Label {
+            get {
+                return ResourceManager.GetString("sepSpecial_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string sepText_Label {
+            get {
+                return ResourceManager.GetString("sepText_Label", resourceCulture);
             }
         }
         

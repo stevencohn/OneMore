@@ -122,6 +122,7 @@
     <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
     <Compile Include="Commands\Extras\OutlineCommand.cs" />
     <Compile Include="Commands\PronunciateCommand.cs" />
+    <Compile Include="Commands\RunPluginCommand.cs" />
     <Compile Include="Commands\SaveAsCommand.cs" />
     <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
@@ -184,6 +185,12 @@
     </Compile>
     <Compile Include="Dialogs\ResizeImagesDialog.Designer.cs">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\RunPluginDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\RunPluginDialog.Designer.cs">
+      <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\TagPickerDialog.cs">
       <SubType>Form</SubType>
@@ -438,6 +445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ResizeImagesDialog.resx">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\RunPluginDialog.resx">
+      <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>

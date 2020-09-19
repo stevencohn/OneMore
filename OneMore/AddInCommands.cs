@@ -8,6 +8,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Commands;
 
 
     public partial class AddIn
@@ -234,6 +235,11 @@ namespace River.OneMoreAddIn
 		public void ResizeImagesCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ResizeImagesCommand>().Execute();
+		}
+
+		public void RunPluginCmd(IRibbonControl control)
+		{
+			factory.GetCommand<RunPluginCommand>().Execute();
 		}
 
 		public void SaveAsCmd(IRibbonControl control)
