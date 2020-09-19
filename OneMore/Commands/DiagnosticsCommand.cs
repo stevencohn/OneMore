@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Diagnostics;
 	using System.Reflection;
 	using System.Text;
 	using One = Microsoft.Office.Interop.OneNote;
@@ -24,9 +25,10 @@ namespace River.OneMoreAddIn
 			builder.AppendLine("Diagnostics.Execute()");
 			builder.AppendLine(new string('-', 80));
 
+			builder.AppendLine($"ONENOTE...: {Process.GetProcessesByName("ONENOTE")[0].MainModule.FileName}");
 			builder.AppendLine($"Addin path: {Assembly.GetExecutingAssembly().Location}");
 			builder.AppendLine($"Data path.: {PathFactory.GetAppDataPath()}");
-			builder.AppendLine($"Log path..: {(logger as Logger).LogPath}");
+			builder.AppendLine($"Log path..: {logger.LogPath}");
 			builder.AppendLine();
 
 			using (var manager = new ApplicationManager())
