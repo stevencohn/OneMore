@@ -30,6 +30,7 @@
 		{
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.messageLabel = new System.Windows.Forms.Label();
+			this.cancelButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// progressBar
@@ -49,12 +50,25 @@
 			this.messageLabel.TabIndex = 0;
 			this.messageLabel.Text = "...";
 			// 
+			// cancelButton
+			// 
+			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.Location = new System.Drawing.Point(643, 110);
+			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.Size = new System.Drawing.Size(100, 36);
+			this.cancelButton.TabIndex = 2;
+			this.cancelButton.Text = "Cancel";
+			this.cancelButton.UseVisualStyleBackColor = true;
+			this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+			// 
 			// ProgressDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(771, 123);
+			this.ClientSize = new System.Drawing.Size(771, 161);
 			this.ControlBox = false;
+			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.messageLabel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -76,5 +90,6 @@
 		#endregion
 		private System.Windows.Forms.Label messageLabel;
 		private System.Windows.Forms.ProgressBar progressBar;
+		private System.Windows.Forms.Button cancelButton;
 	}
 }
