@@ -434,6 +434,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean....
+        /// </summary>
+        internal static string ctxCleanMenu_Label {
+            get {
+                return ResourceManager.GetString("ctxCleanMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To lowercase.
+        /// </summary>
+        internal static string ctxLowercaseButton_Label {
+            get {
+                return ResourceManager.GetString("ctxLowercaseButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Spell Check.
+        /// </summary>
+        internal static string ctxNoSpellCheckButton_Label {
+            get {
+                return ResourceManager.GetString("ctxNoSpellCheckButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Empty Paragraphs and Headings.
+        /// </summary>
+        internal static string ctxRemoveEmptyButton_Label {
+            get {
+                return ResourceManager.GetString("ctxRemoveEmptyButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Paragraph Spacing.
+        /// </summary>
+        internal static string ctxRemoveSpacingButton_Label {
+            get {
+                return ResourceManager.GetString("ctxRemoveSpacingButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To UPPERCASE.
+        /// </summary>
+        internal static string ctxUppercaseButton_Label {
+            get {
+                return ResourceManager.GetString("ctxUppercaseButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CustomColors.xml.
         /// </summary>
         internal static string CustomColorsFilesname {
@@ -1716,8 +1770,9 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;customUI
-        ///  xmlns=&quot;http://schemas.microsoft.com/office/2006/01/customui&quot;
+        ///&lt;!--customUI
+        ///  xmlns=&quot;http://schemas.microsoft.com/office/2006/01/customui&quot; --&gt;
+        ///&lt;customUI xmlns=&quot;http://schemas.microsoft.com/office/2009/07/customui&quot;
         ///	onLoad=&quot;RibbonLoaded&quot;
         ///	loadImage=&quot;GetImage&quot;&gt;
         ///  &lt;ribbon&gt;
@@ -1726,9 +1781,7 @@ namespace River.OneMoreAddIn.Properties {
         ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetItemLabel&quot;&gt;
         ///          &lt;gallery
         ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
-        ///            getLabel=&quot;GetItemLabel&quot; 
-        ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
-        ///            g [rest of string was truncated]&quot;;.
+        ///            getLabel=&quot;Get [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {

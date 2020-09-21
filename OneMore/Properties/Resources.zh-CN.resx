@@ -1332,4 +1332,28 @@ OneNote 将自动关闭</value>
     <value>运行插件...</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ctxCleanMenu_Label" xml:space="preserve">
+    <value>清洁...</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxLowercaseButton_Label" xml:space="preserve">
+    <value>小写</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
+    <value>没有拼写检查</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+    <value>删除空的段落和标题</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
+    <value>删除段落间距</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxUppercaseButton_Label" xml:space="preserve">
+    <value>大写</value>
+    <comment>Context menu</comment>
+  </data>
 </root>

@@ -1369,4 +1369,28 @@ Try again later</value>
     <value>Run Plugin...</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ctxCleanMenu_Label" xml:space="preserve">
+    <value>Clean...</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxLowercaseButton_Label" xml:space="preserve">
+    <value>To lowercase</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
+    <value>No Spell Check</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+    <value>Remove Empty Paragraphs and Headings</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
+    <value>Remove Paragraph Spacing</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxUppercaseButton_Label" xml:space="preserve">
+    <value>To UPPERCASE</value>
+    <comment>Context menu</comment>
+  </data>
 </root>

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--customUI
-  xmlns="http://schemas.microsoft.com/office/2006/01/customui" -->
-<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui"
+<customUI
+  xmlns="http://schemas.microsoft.com/office/2009/07/customui"
 	onLoad="RibbonLoaded"
 	loadImage="GetImage">
   <ribbon>
@@ -359,31 +358,31 @@
         id="ctxNoSpellCheckButton"
         insertBeforeMso="Cut"
         image="NoSpellCheck"
-        label="No Spell Check"
+        getLabel="GetItemLabel"
         onAction="NoSpellCheckCmd"/>
-      <menu id="ctxCleanMenu" label="Clean..." imageMso="Clear" insertBeforeMso="Cut">
+      <menu id="ctxCleanMenu" getLabel="GetItemLabel" imageMso="Clear" insertBeforeMso="Cut">
         <button
           id="ctxRemoveEmptyButton"
           imageMso="RecordsDeleteRecord"
-          label="Remove Empty Paragraphs and Headings"
+          getLabel="GetItemLabel"
           onAction="RemoveEmptyCmd"/>
         <button
           id="ctxRemoveSpacingButton"
           imageMso="ParagraphSpacingDecrease"
-          label="Remove Paragraph Spacing"
+          getLabel="GetItemLabel"
           onAction="RemoveSpacingCmd"/>
       </menu>
       <button
         id="ctxUppercaseButton"
         insertBeforeMso="Cut"
         imageMso="A"
-        label="To UPPERCASE"
+        getLabel="GetItemLabel"
         onAction="ToUppercaseCmd"/>
       <button
         id="ctxLowercaseButton"
         insertBeforeMso="Cut"
         imageMso="ChangeCase"
-        label="To lowercase"
+        getLabel="GetItemLabel"
         onAction="ToLowercaseCmd"/>
       <menuSeparator id="ctxSeparator" insertBeforeMso="Cut" />
     </contextMenu>
