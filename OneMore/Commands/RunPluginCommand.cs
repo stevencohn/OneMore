@@ -45,7 +45,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var page = new Page(manager.CurrentPage());
 					var name = page.PageId.Replace("{", string.Empty).Replace("}", string.Empty);
-					name = name.Substring(0, Math.Min(name.Length, 32));
+
+					// pageId is of the form {sectionID}{}{pageId} so grab last 32 digits
+					name = name.Substring(Math.Max(0, name.Length - 32));
 
 					var xmlPath = Path.Combine(Path.GetTempPath(), $"{name}.xml");
 					logger.WriteLine($"Plugin input file is {xmlPath}");

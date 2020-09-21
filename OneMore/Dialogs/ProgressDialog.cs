@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Dialogs
 	/// </remarks>
 	internal partial class ProgressDialog : LocalizableForm
 	{
-		private CancellationTokenSource source;
+		private readonly CancellationTokenSource source;
 
 
 		/// <summary>
@@ -53,9 +53,12 @@ namespace River.OneMoreAddIn.Dialogs
 			InitializeComponent();
 			Localize();
 
+			Height = 218;
+
 			this.source = source;
 			timer.Tick += Timer_Tick;
 		}
+
 
 		private void Localize()
 		{

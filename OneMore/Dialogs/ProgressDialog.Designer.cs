@@ -37,20 +37,18 @@
 			// 
 			// progressBar
 			// 
-			this.progressBar.Location = new System.Drawing.Point(19, 44);
-			this.progressBar.Margin = new System.Windows.Forms.Padding(2);
+			this.progressBar.Location = new System.Drawing.Point(28, 68);
 			this.progressBar.Name = "progressBar";
-			this.progressBar.Size = new System.Drawing.Size(477, 15);
+			this.progressBar.Size = new System.Drawing.Size(716, 23);
 			this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			this.progressBar.TabIndex = 1;
 			// 
 			// messageLabel
 			// 
 			this.messageLabel.AutoSize = true;
-			this.messageLabel.Location = new System.Drawing.Point(19, 16);
-			this.messageLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.messageLabel.Location = new System.Drawing.Point(28, 25);
 			this.messageLabel.Name = "messageLabel";
-			this.messageLabel.Size = new System.Drawing.Size(16, 13);
+			this.messageLabel.Size = new System.Drawing.Size(21, 20);
 			this.messageLabel.TabIndex = 0;
 			this.messageLabel.Text = "...";
 			// 
@@ -58,10 +56,9 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(429, 71);
-			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
+			this.cancelButton.Location = new System.Drawing.Point(644, 109);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(67, 23);
+			this.cancelButton.Size = new System.Drawing.Size(100, 35);
 			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
@@ -73,19 +70,18 @@
 			// 
 			// ProgressDialog
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(514, 105);
+			this.ClientSize = new System.Drawing.Size(771, 162);
 			this.ControlBox = false;
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.messageLabel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ProgressDialog";
-			this.Padding = new System.Windows.Forms.Padding(17, 16, 17, 16);
+			this.Padding = new System.Windows.Forms.Padding(26, 25, 26, 25);
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
