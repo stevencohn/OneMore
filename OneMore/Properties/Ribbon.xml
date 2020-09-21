@@ -2,14 +2,14 @@
 <customUI
   xmlns="http://schemas.microsoft.com/office/2009/07/customui"
 	onLoad="RibbonLoaded"
-	loadImage="GetImage">
+	loadImage="GetRibbonImage">
   <ribbon>
     <tabs>
       <tab idMso="TabHome">
-        <group id="ribOneMoreGroup" getLabel="GetItemLabel">
+        <group id="ribOneMoreGroup" getLabel="GetRibbonLabel">
           <gallery
             id="ribCustomStylesButton" columns="4" showItemLabel="false" size="large" imageMso="StylesPane"
-            getLabel="GetItemLabel" 
+            getLabel="GetRibbonLabel"
             getItemCount="GetStyleGalleryItemCount"
             getItemID="GetStyleGalleryItemId"
             getItemImage="GetStyleGalleryItemImage"
@@ -17,335 +17,335 @@
             onAction="ApplyStyleCmd">
             <button
               id="ribEditStylesButton"
-              getLabel="GetItemLabel"
+              getLabel="GetRibbonLabel"
               imageMso="StylesModifyStyle"
               onAction="EditStylesCmd"/>
             <button
               id="ribCreateStyleButton"
-              getLabel="GetItemLabel"
+              getLabel="GetRibbonLabel"
               imageMso="StylesPaneNewStyle"
               onAction="NewStyleCmd"/>
             <button
               id="ribApplyStylesButton"
-              getLabel="GetItemLabel"
+              getLabel="GetRibbonLabel"
               imageMso="ApplyStylesPane"
               onAction="ApplyStylesCmd"/>
             <button
               id="ribPageColorButton"
-              getLabel="GetItemLabel"
+              getLabel="GetRibbonLabel"
               imageMso="FormatBackground"
               onAction="ChangePageColorCmd"/>
           </gallery>
 
           <dynamicMenu
             id="ribFavoritesMenu"
-            getLabel="GetItemLabel"
+            getLabel="GetRibbonLabel"
             size="large"
             imageMso="EditLinks"
             getContent="GetFavoritesContent" />
 
-          <menu id="ribOneMoreMenu" getLabel="getItemLabel" size="large" getImage="GetOneMoreMenuImage">
+          <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" getImage="GetOneMoreRibbonImage">
             <button
               id="ribCollapseButton"
               imageMso="CollapseAll"
-              getLabel="GetItemLabel"
+              getLabel="GetRibbonLabel"
               onAction="CollapseCmd"/>
             <button
               id="ribNoSpellCheckButton"
               image="NoSpellCheck"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="NoSpellCheckCmd"/>
             <button
               id="ribPasteRtfButton"
               imageMso="PasteSpecialDialog"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
               onAction="PasteRtfCmd"/>
             <button
               id="ribReplaceButton"
               imageMso="ReplaceDialog"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="SearchAndReplaceCmd"/>
             <button
               id="ribSortButton"
               imageMso="SortUp"
-              getLabel="GetItemLabel"
+              getLabel="GetRibbonLabel"
               onAction="SortCmd"/>
-            <menu id="ribCleanMenu" getLabel="GetItemLabel" imageMso="Clear">
+            <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
               <button
                 id="ribRemoveAuthorsButton"
                 imageMso="RemoveCitation"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RemoveAuthorsCmd"/>
               <button
                 id="ribRemoveEmptyButton"
                 imageMso="RecordsDeleteRecord"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RemoveEmptyCmd"/>
               <button
                 id="ribRemoveSpacingButton"
                 imageMso="ParagraphSpacingDecrease"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RemoveSpacingCmd"/>
               <button
                 id="ribToggleDttmButton"
                 imageMso="MessageHeaderToggle"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="ToggleDttmCmd"/>
               <button
                 id="ribTrimButton"
                 imageMso="AutoTextGallery"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="TrimCmd"/>
             </menu>
-            <menu id="ribFormulaMenu" getLabel="GetItemLabel" imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
+            <menu id="ribFormulaMenu" getLabel="GetRibbonLabel" imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
               <button
                 id="ribAddFormulaButton"
                 imageMso="TableFormulaDialog"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="AddFormulaCmd"/>
               <button
                 id="ribDeleteFormulaButton"
                 imageMso="SheetDelete"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="DeleteFormulaCmd"/>
               <button
                 id="ribHighlightFormulaButton"
                 imageMso="PivotTableListFormulas"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="HighlightFormulaCmd"/>
               <button
                 id="ribRecalculateFormulaButton"
                 imageMso="CalculateSheet"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="RecalculateFormulaCmd"/>
             </menu>
-            <menu id="ribImagesMenu" getLabel="GetItemLabel" imageMso="ObjectPictureFill">
+            <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">
               <button
                 id="ribCaptionButton"
                 imageMso="CaptionInsert"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetImageSelected"
                 onAction="AddCaptionCmd"/>
               <button
                 id="ribCropImageButton"
                 imageMso="PictureCrop"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 onAction="CropImageCmd"/>
               <button
                 id="ribResizeImagesButton"
                 imageMso="GroupPictureCompress"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 onAction="ResizeImagesCmd"/>
             </menu>
-            <menu id="ribNumberingMenu" getLabel="GetItemLabel" imageMso="Numbering">
+            <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering">
               <button
                 id="ribNumberSectionsButton"
                 imageMso="LineNumbersMenu"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="NumberSectionsCmd"/>
               <button
                 id="ribRemoveSectionNumbersButton"
                 imageMso="HeaderFooterRemoveHeaderWord"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RemoveSectionNumbersCmd"/>
               <button
                 id="ribNumberPagesButton"
                 imageMso="CustomPageNumberGallery"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="NumberPagesCmd"/>
               <button
                 id="ribRemovePageNumbersButton"
                 imageMso="PageNumbersRemove"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="RemovePageNumbersCmd"/>
             </menu>
-            <menu id="ribSnippetsMenu" getLabel="GetItemLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
+            <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
               <button
                 id="ribInsertSingleLineButton"
                 imageMso="HorizontalLineInsert"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="InsertHorizontalLineCmd"/>
               <button
                 id="ribInsertDoubleLineButton"
                 image="DoubleLine"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="InsertDoubleHorizontalLineCmd"/>
               <button
                 id="ribTocButton"
                 imageMso="WordInsertTableOfContents2"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 onAction="InsertTocCmd"/>
               <button
                 id="ribInfoBlockButton"
                 imageMso="Info"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertInfoBlockCmd"/>
               <button
                 id="ribWarnBlockButton"
                 imageMso="HighImportance"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertWarningBlockCmd"/>
               <button
                 id="ribCodeBlockButton"
                 imageMso="CodeEdit"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertCodeBlockCmd"/>
               <button
                 id="ribExpandButton"
                 imageMso="PivotExpandIndicators"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertExpandCmd"/>
               <button
                 id="ribGrayStatusButton"
                 imageMso="AppointmentColor4"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertGrayStatusCmd"/>
               <button
                 id="ribRedStatusButton"
                 imageMso="AppointmentColor1"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertRedStatusCmd"/>
               <button
                 id="ribYellowStatusButton"
                 imageMso="AppointmentColor10"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertYellowStatusCmd"/>
               <button
                 id="ribGreenStatusButton"
                 imageMso="AppointmentColor3"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertGreenStatusCmd"/>
               <button
                 id="ribBlueStatusButton"
                 imageMso="AppointmentColor2"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertBlueStatusCmd"/>
             </menu>
-            <menu id="ribExtrasMenu" getLabel="GetItemLabel" imageMso="OutlineDemote">
+            <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote">
               <button
                 id="ribFlagTitleButton"
                 imageMso="DataGraphicIconSet"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 onAction="AddTitleIconCmd"/>
               <button
                 id="ribFootnoteButton"
                 imageMso="FootnoteInsert"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="AddFootnoteCmd"/>
               <button
                 id="ribFootnoteRemoveButton"
                 imageMso="RemoveCitation"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="RemoveFootnoteCmd"/>
               <button
                 id="ribPronunciateButton"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 imageMso="SpeakOnEnter"
                 getEnabled="GetBodyContext"
                 onAction="PronunciateCmd"/>
               <button
                 id="ribMergeButton"
                 imageMso="CompareAndCombine"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetMultiPageContext"
                 onAction="MergeCmd"/>
               <button
                 id="ribOutlineButton"
                 imageMso="OutlineShowDetail"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 onAction="OutlineCmd"/>
               <button
                 id="ribNameUrlsButton"
                 imageMso="AutoSigWebInsertHyperlink"
-                getLabel="GetItemLabel"
+                getLabel="GetRibbonLabel"
                 onAction="NameUrlsCmd"/>
               <button
                 id="ribStrikeoutTasksButton"
                 imageMso="Strikethrough"
-                getLabel="GetItemLabel"
-                getScreentip="GetItemScreentip"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="StrikeoutCmd"/>
             </menu>
-            <menuSeparator id="sepText" getTitle="GetItemLabel"/>
+            <menuSeparator id="sepText" getTitle="GetRibbonLabel"/>
             <button
               id="ribUppercaseButton"
               imageMso="A"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="ToUppercaseCmd"/>
             <button
               id="ribLowercaseButton"
               imageMso="ChangeCase"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="ToLowercaseCmd"/>
             <button
               id="ribIncreaseFontSizeButton"
               imageMso="FontSizeIncreaseWord"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="IncreaseFontSizeCmd"/>
             <button
               id="ribDecreaseFontSizeButton"
               imageMso="FontSizeDecreaseWord"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="DecreaseFontSizeCmd"/>
-            <menuSeparator id="sepSpecial" getTitle="GetItemLabel" />
+            <menuSeparator id="sepSpecial" getTitle="GetRibbonLabel" />
             <button
               id="ribSaveAsButton"
               imageMso="FileSave"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="SaveAsCmd"/>
             <!--button
               id="ribPluginButton"
               imageMso="ComAddInsDialog"
-              getLabel="GetItemLabel"
+              getLabel="GetRibbonLabel"
               onAction="RunPluginCmd"/-->
             <button
               id="ribShowXmlButton"
               imageMso="XmlSource"
-              getLabel="GetItemLabel"
-              getScreentip="GetItemScreentip"
+              getLabel="GetRibbonLabel"
+              getScreentip="GetRibbonScreentip"
               onAction="ShowXmlCmd"/>
             <button
               id="ribAboutButton"
-              getLabel="GetItemLabel"
+              getLabel="GetRibbonLabel"
               onAction="AboutCmd"/>
           </menu>
         </group>
@@ -358,31 +358,33 @@
         id="ctxNoSpellCheckButton"
         insertBeforeMso="Cut"
         image="NoSpellCheck"
-        getLabel="GetItemLabel"
+        getLabel="GetRibbonLabel"
         onAction="NoSpellCheckCmd"/>
-      <menu id="ctxCleanMenu" getLabel="GetItemLabel" imageMso="Clear" insertBeforeMso="Cut">
+      <!--menu id="ctxCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" insertBeforeMso="Cut"-->
         <button
           id="ctxRemoveEmptyButton"
+          insertBeforeMso="Cut"
           imageMso="RecordsDeleteRecord"
-          getLabel="GetItemLabel"
+          getLabel="GetRibbonLabel"
           onAction="RemoveEmptyCmd"/>
         <button
           id="ctxRemoveSpacingButton"
+          insertBeforeMso="Cut"
           imageMso="ParagraphSpacingDecrease"
-          getLabel="GetItemLabel"
+          getLabel="GetRibbonLabel"
           onAction="RemoveSpacingCmd"/>
-      </menu>
+      <!--/menu-->
       <button
         id="ctxUppercaseButton"
         insertBeforeMso="Cut"
         imageMso="A"
-        getLabel="GetItemLabel"
+        getLabel="GetRibbonLabel"
         onAction="ToUppercaseCmd"/>
       <button
         id="ctxLowercaseButton"
         insertBeforeMso="Cut"
         imageMso="ChangeCase"
-        getLabel="GetItemLabel"
+        getLabel="GetRibbonLabel"
         onAction="ToLowercaseCmd"/>
       <menuSeparator id="ctxSeparator" insertBeforeMso="Cut" />
     </contextMenu>

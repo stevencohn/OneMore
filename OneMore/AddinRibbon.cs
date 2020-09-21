@@ -21,11 +21,11 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Return XML that describes the Ribbon customizations.  This is called by OneNote
-		/// when initializing the addin.
+		/// IRibbonExtensibility method, returns XML describing the Ribbon customizations.
+		/// Called directly by OneNote when initializing the addin.
 		/// </summary>
-		/// <param name="RibbonID"></param>
-		/// <returns></returns>
+		/// <param name="RibbonID">The ID of the ribbon</param>
+		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
 			//logger.WriteLine($"GetCustomUI({RibbonID})");
@@ -36,10 +36,10 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Specified in Ribbon.xml, this method is called once the custom ribbon UI is loaded
-		/// allowing us to store a reference to the ribbon control.
+		/// Specified as the value of the /customUI@onLoad attribute, called immediately after the
+		/// custom ribbon UI is initialized, allowing us to store a reference to the ribbon control.
 		/// </summary>
-		/// <param name="ribbon"></param>
+		/// <param name="ribbon">The Ribbon</param>
 		public void RibbonLoaded(IRibbonUI ribbon)
 		{
 			//logger.WriteLine("RibbonLoaded()");
@@ -48,13 +48,14 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Specified in Ribbon.xml, this method returns the image to display on the ribbon button
+		/// Specified as the value of the /customUI@loadImage attribute, returns the named image for
+		/// a ribbon item; typically a button on the ribbon or one of its sub-menus
 		/// </summary>
-		/// <param name="imageName"></param>
-		/// <returns></returns>
-		public IStream GetImage(string imageName)
+		/// <param name="imageName">The name of the image to return</param>
+		/// <returns>A Bitmap image</returns>
+		public IStream GetRibbonImage(string imageName)
 		{
-			//logger.WriteLine($"GetImage({imageName})");
+			//logger.WriteLine($"GetRibbonImage({imageName})");
 			IStream stream = null;
 			try
 			{
@@ -71,13 +72,13 @@ namespace River.OneMoreAddIn
 
 
 		/*
-		 * Note, while this is very similar to GetImage, this is called when the OneNote window
-		 * opens and when a new OneNote window is opened from there, so we can use this as a hook
-		 * to know when a new window is opened
+		 * Note, while very similar to GetRibbonImage, this is called when the OneNote window opens and
+		 * when a new OneNote window is opened from there, so we can use this as a hook to be informed
+		 * when a new window is opened. Specified in the /ribOneMoreMenu@getImage attribute
 		 */
-		public IStream GetOneMoreMenuImage(IRibbonControl control)
+		public IStream GetOneMoreRibbonImage(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetOneMoreMenuImage({control.Id})");
+			//logger.WriteLine($"GetOneMoreRibbonImage({control.Id})");
 			IStream stream = null;
 			try
 			{
@@ -94,52 +95,54 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// getContent="GetItemContent"
+		/// Not used? getContent="GetItemContent", per item
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns></returns>
-		public string GetItemContent(IRibbonControl control)
+		public string GetRibbonContent(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetItemContent({control.Id})");
+			//logger.WriteLine($"GetRibbonContent({control.Id})");
 			return null;
 		}
 
 
 		/// <summary>
-		/// getEnabled="GetItemEnabled"
+		/// Not used? getEnabled="GetItemEnabled", per item
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns></returns>
-		public bool GetItemEnabled(IRibbonControl control)
+		public bool GetRibbonEnabled(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetItemEnabled({control.Id})");
+			//logger.WriteLine($"GetRibbonEnabled({control.Id})");
 			return true;
 		}
 
 
 		/// <summary>
-		/// Ribbon handler called for items with getLabel="GetButtonLabel" attributes.
+		/// Specified as the value of the @getLabel attribute for each item to retrieve the
+		/// localized text of the item
 		/// </summary>
 		/// <param name="control">The control element with a unique Id.</param>
-		/// <returns></returns>
-		public string GetItemLabel(IRibbonControl control)
+		/// <returns>A string specifying the text of the element</returns>
+		public string GetRibbonLabel(IRibbonControl control)
 		{
-			return GetString(control.Id + "_Label");
+			return ReadString(control.Id + "_Label");
 		}
 
 
 		/// <summary>
-		/// Ribbon handler called for items with getScreentip="GetButtonScreentip" attributes.
+		/// Specified as the value of the @getScreentip attribute for each item to retrieve the
+		/// localized text of the screentip of the item
 		/// </summary>
 		/// <param name="control">The control element with a unique Id.</param>
-		/// <returns></returns>
-		public string GetItemScreentip(IRibbonControl control)
+		/// <returns>A string specifying the screentip text of the element</returns>
+		public string GetRibbonScreentip(IRibbonControl control)
 		{
-			return GetString(control.Id + "_Screentip");
+			return ReadString(control.Id + "_Screentip");
 		}
 
 
-		private string GetString(string resId)
+		private string ReadString(string resId)
 		{
 			try
 			{
