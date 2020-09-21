@@ -1401,4 +1401,20 @@ Try again later</value>
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
+  <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
+    <value>Remove Pasted Citations</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
+    <value>Remove screen clipping and paste URL citations</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveCitations_Clippings" xml:space="preserve">
+    <value>Screen clipping</value>
+    <comment>Screen clipping citation</comment>
+  </data>
+  <data name="RemoveCitations_FromUrl" xml:space="preserve">
+    <value>From &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
+    <comment>From &lt;URL&gt; pattern match</comment>
+  </data>
 </root>

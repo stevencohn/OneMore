@@ -1364,4 +1364,20 @@ OneNote 将自动关闭</value>
     <value>取消</value>
     <comment>cancel button</comment>
   </data>
+  <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
+    <value>删除粘贴的引文</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
+    <value>删除屏幕剪辑并粘贴URL引用</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveCitations_Clippings" xml:space="preserve">
+    <value>屏幕剪辑</value>
+    <comment>Screen clipping citation</comment>
+  </data>
+  <data name="RemoveCitations_FromUrl" xml:space="preserve">
+    <value>从 &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
+    <comment>From &lt;URL&gt; pattern match</comment>
+  </data>
 </root>

@@ -21,11 +21,13 @@ General commands
 * View and edit the [internal OneNote XML](#xml) of the current page
 * Change [**page background**](#dark) to any custom color with dark-mode awareness
 * Save the current page as HTML or as OneNote native XML
+* Invoke an external [custom plugin](#plugin) to process a page
 * Check for updates and install upgrades on-demand
 
 Clean commands
 
 * Remove author/citation information from paragraphs
+* Remove pasted screen clipping and URL citation lines from page
 * Remove empty headers and "extra" empty lines between paragraphs
 * Remove spacing between paragraphs and headings
 * Show/Hide the page date and time stamps under the title on page or all pages in section
@@ -70,6 +72,16 @@ Extra commands
 * [Indent content](#indenting) below headings or tagged paragraphs
 * [Replace hyperlinked URLs](#nameUrls) with their Web page titles
 * Toggle strikethrough text next to all completed/incompleted tags
+
+#### Context Menu
+
+The following commands are available from the page context menu
+
+* No Spell Check
+* Remove Empty Paragraphs and Headings
+* Remove Paragraph Spacing
+* To UPPERCASE
+* To lowercase
 
 #### Key Bindings
 While all commands can be accessed from the OneMore ribbon group menus, some
@@ -342,6 +354,21 @@ in those cell.
 | ------------ | -------------- |
 | ![Formula Menu](Screenshots/FormulaMenu.png) | ![Formula Dialog](Screenshots/FormulaDialog.png) |
 
+
+<a name="plugin"></a>
+#### External Plugins
+
+OneMore has a plugin facility that let you process a page using a program that you write.
+The workflow is very simple: 
+
+1. Create a plugin program that accepts one command line argument; this will specify the path to a file containing the page XML.
+2. If your plugin program completes and has changed the file then OneMore will update the current page with your updated XML.
+3. If your plugin program completes and has no made changes to the file then no changes are made to the current page.
+4. Your plugin program must complete within 10 seconds or it will timeout and be aborted.
+5. The OneNote page schema is defined in the 0336.OneNoteApplication_2013.xsd file in the References folder of this repo.
+
+_NOTICE: I provide no guarantee, warranty, or promise that you won't screw it up and loose data! It's in your
+hands and if you mess up the XML and cause data loss, that's entirely on you. You've been warned._
 
 <a name="other"></a>
 #### Other Screenshots

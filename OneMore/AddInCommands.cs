@@ -207,6 +207,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<RemoveAuthorsCommand>().Execute();
 		}
 
+		public void RemoveCitationsCmd(IRibbonControl control)
+		{
+			factory.GetCommand<RemoveCitationsCommand>().Execute();
+		}
+
 		public void RemoveEmptyCmd(IRibbonControl control)
 		{
 			factory.GetCommand<RemoveEmptyCommand>().Execute();

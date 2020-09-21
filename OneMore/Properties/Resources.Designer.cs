@@ -1471,6 +1471,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Screen clipping.
+        /// </summary>
+        internal static string RemoveCitations_Clippings {
+            get {
+                return ResourceManager.GetString("RemoveCitations_Clippings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;.
+        /// </summary>
+        internal static string RemoveCitations_FromUrl {
+            get {
+                return ResourceManager.GetString("RemoveCitations_FromUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove spacing after paragraphs.
         /// </summary>
         internal static string RemoveSpacingDialog_afterBox_Text {
@@ -2318,6 +2336,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRemoveAuthorsButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRemoveAuthorsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Pasted Citations.
+        /// </summary>
+        internal static string ribRemoveCitationsButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveCitationsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove screen clipping and paste URL citations.
+        /// </summary>
+        internal static string ribRemoveCitationsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveCitationsButton_Screentip", resourceCulture);
             }
         }
         

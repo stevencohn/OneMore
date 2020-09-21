@@ -104,6 +104,7 @@
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="AddInRibbon.cs" />
     <Compile Include="AddInStyleGallery.cs" />
+    <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\ClearLogCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />

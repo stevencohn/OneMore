@@ -77,10 +77,16 @@
             <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
               <button
                 id="ribRemoveAuthorsButton"
-                imageMso="RemoveCitation"
+                imageMso="BuildingBlocksCreateTableOfAuthorities"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="RemoveAuthorsCmd"/>
+              <button
+                id="ribRemoveCitationsButton"
+                imageMso="RemoveCitation"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="RemoveCitationsCmd"/>
               <button
                 id="ribRemoveEmptyButton"
                 imageMso="RecordsDeleteRecord"
