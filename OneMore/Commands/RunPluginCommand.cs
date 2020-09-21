@@ -5,25 +5,22 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Dialogs;
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Diagnostics;
 	using System.IO;
 	using System.Threading;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 
 
 	internal class RunPluginCommand : Command
 	{
-		private const int OneSecond = 1000;
 		private const int MaxTimeoutSeconds = 10;
-		private const int MaxTimeout = OneSecond * MaxTimeoutSeconds;
 
-		private int ticks = 0;
 		private Process process = null;
 		private ProgressDialog progressDialog = null;
 		private CancellationTokenSource source = null;
-
-		private delegate void TickDelegate(object sender, EventArgs e);
 
 
 		public RunPluginCommand()
@@ -33,86 +30,110 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Execute()
 		{
-			string path = null;
+			string pluginPath = null;
 			using (var dialog = new RunPluginDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					path = dialog.PluginPath;	
+					pluginPath = dialog.PluginPath;
 				}
 			}
 
-			if (!string.IsNullOrEmpty(path) && File.Exists(path))
+			if (!string.IsNullOrEmpty(pluginPath) && File.Exists(pluginPath))
 			{
-				source = new CancellationTokenSource();
+				using (var manager = new ApplicationManager())
+				{
+					var page = new Page(manager.CurrentPage());
+					var name = page.PageId.Replace("{", string.Empty).Replace("}", string.Empty);
+					name = name.Substring(0, Math.Min(name.Length, 32));
 
-				progressDialog = new ProgressDialog(source)
+					var xmlPath = Path.Combine(Path.GetTempPath(), $"{name}.xml");
+					logger.WriteLine($"Plugin input file is {xmlPath}");
+
+					try
+					{
+						var original = page.Root.ToString(SaveOptions.DisableFormatting);
+						page.Root.Save(xmlPath, SaveOptions.DisableFormatting);
+
+						if (Execute(pluginPath, xmlPath))
+						{
+							var root = XElement.Load(xmlPath);
+							var updated = root.ToString(SaveOptions.DisableFormatting);
+
+							if (updated != original)
+							{
+								logger.WriteLine("Updating content modified by plugin");
+								manager.UpdatePageContent(root);
+							}
+
+							if (File.Exists(xmlPath))
+							{
+								File.Delete(xmlPath);
+							}
+						}
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("Error running plugin", exc);
+						UIHelper.ShowError("Error running plugin. See log file");
+					}
+				}
+			}
+		}
+
+
+		private bool Execute(string pluginPath, string xmlPath)
+		{
+			using (source = new CancellationTokenSource())
+			{
+				using (progressDialog = new ProgressDialog(source)
 				{
 					Maximum = MaxTimeoutSeconds,
-					Message = $"Running {path}"
-				};
-
-				progressDialog.Show(owner);
-
-				try
+					Message = $"Running {pluginPath}"
+				})
 				{
-					var thread = new Thread(() =>
+					try
 					{
-						using (var timer = new System.Threading.Timer(Timer_Tick, null, 0, 1000))
+						// process should run in an STA thread otherwise it will conflict with
+						// the OneNote MTA thread environment
+						var thread = new Thread(() =>
 						{
-							RunPlugin(path);
+							RunPlugin(pluginPath, xmlPath);
+						});
+
+						thread.SetApartmentState(ApartmentState.STA);
+						thread.IsBackground = true;
+						thread.Start();
+
+						progressDialog.StartTimer();
+						var result = progressDialog.ShowDialog(owner);
+
+						if (result == DialogResult.Cancel)
+						{
+							logger.WriteLine("Clicked cancel");
+							process.Kill();
+							return false;
 						}
-					});
-
-					thread.SetApartmentState(ApartmentState.STA);
-					thread.IsBackground = true;
-					thread.Start();
-					thread.Join();
-				}
-				finally
-				{
-					if (progressDialog != null)
-					{
-						progressDialog.Close();
-						progressDialog.Dispose();
 					}
-
-					if (source != null)
+					catch (Exception exc)
 					{
-						source.Dispose();
+						logger.WriteLine("Error running Execute(string)", exc);
+					}
+					finally
+					{
+						if (process != null)
+						{
+							process.Dispose();
+						}
 					}
 				}
 			}
-		}
-		//private void Timer_Tick(object sender, EventArgs e)
-		private void Timer_Tick(object state)
-		{
-			if (progressDialog.InvokeRequired)
-			{
-				progressDialog.Invoke(new Action(() => Timer_Tick(state)));
-			}
 
-			logger.WriteLine($"ticking {ticks}");
-
-			if (ticks < MaxTimeoutSeconds && !process.HasExited)
-			{
-				if (source.Token.IsCancellationRequested)
-				{
-					ticks = int.MaxValue;
-					logger.WriteLine("cancelled");
-				}
-				else
-				{
-					ticks++;
-
-					progressDialog.Increment();
-					logger.WriteLine("increment");
-				}
-			}
+			return true;
 		}
 
 
-		private void RunPlugin(string path)
+		private void RunPlugin(string path, string xmlPath)
 		{
 			try
 			{
@@ -121,46 +142,41 @@ namespace River.OneMoreAddIn.Commands
 					StartInfo = new ProcessStartInfo
 					{
 						FileName = path,
+						Arguments = xmlPath,
 						CreateNoWindow = true,
 						UseShellExecute = false,
-						RedirectStandardOutput = true
-					}
+						RedirectStandardOutput = true,
+					},
+
+					EnableRaisingEvents = true
 				};
 
+				process.Exited += Process_Exited;
 				process.OutputDataReceived += Process_OutputDataReceived;
 
 				process.Start();
 				process.BeginOutputReadLine();
 
-				logger.WriteLine($"started process {process.Id}");
-
-				if (!process.WaitForExit(MaxTimeout))
-				{
-					logger.WriteLine("killing processing");
-					process.Kill();
-				}
-				else
-				{
-					logger.WriteLine("finished");
-				}
+				logger.WriteLine($"Plugin process started PID:{process.Id}");
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine(exc);
+				logger.WriteLine("Error running RunPlugin(string)", exc);
 			}
-			finally
-			{
-				if (process != null)
-				{
-					process.Dispose();
-				}
-			}
+		}
+
+
+		private void Process_Exited(object sender, EventArgs e)
+		{
+			logger.WriteLine("Plugin process exited");
+			progressDialog.DialogResult = DialogResult.OK;
+			progressDialog.Close();
 		}
 
 
 		private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
 		{
-			logger.WriteLine("OUT: " + e.Data);
+			logger.WriteLine("| " + e.Data);
 		}
 	}
 }

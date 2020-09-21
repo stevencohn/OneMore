@@ -1406,6 +1406,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ProgressDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ProgressDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore.
+        /// </summary>
+        internal static string ProgressDialog_Text {
+            get {
+                return ResourceManager.GetString("ProgressDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected word cannot be empty.
         /// </summary>
         internal static string Pronunciate_EmptyWord {
@@ -1770,18 +1788,19 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;!--customUI
-        ///  xmlns=&quot;http://schemas.microsoft.com/office/2006/01/customui&quot; --&gt;
-        ///&lt;customUI xmlns=&quot;http://schemas.microsoft.com/office/2009/07/customui&quot;
+        ///&lt;customUI
+        ///  xmlns=&quot;http://schemas.microsoft.com/office/2009/07/customui&quot;
         ///	onLoad=&quot;RibbonLoaded&quot;
-        ///	loadImage=&quot;GetImage&quot;&gt;
+        ///	loadImage=&quot;GetRibbonImage&quot;&gt;
         ///  &lt;ribbon&gt;
         ///    &lt;tabs&gt;
         ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
-        ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetItemLabel&quot;&gt;
+        ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
         ///          &lt;gallery
         ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;large&quot; imageMso=&quot;StylesPane&quot;
-        ///            getLabel=&quot;Get [rest of string was truncated]&quot;;.
+        ///            getLabel=&quot;GetRibbonLabel&quot;
+        ///            getItemCount=&quot;GetStyleGalleryItemCount&quot;
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {

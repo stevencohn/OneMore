@@ -332,11 +332,11 @@
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="SaveAsCmd"/>
-            <!--button
+            <button
               id="ribPluginButton"
               imageMso="ComAddInsDialog"
               getLabel="GetRibbonLabel"
-              onAction="RunPluginCmd"/-->
+              onAction="RunPluginCmd"/>
             <button
               id="ribShowXmlButton"
               imageMso="XmlSource"

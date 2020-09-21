@@ -1393,4 +1393,12 @@ Try again later</value>
     <value>To UPPERCASE</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ProgressDialog.Text" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
 </root>

@@ -1356,4 +1356,12 @@ OneNote 将自动关闭</value>
     <value>大写</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ProgressDialog.Text" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
 </root>
