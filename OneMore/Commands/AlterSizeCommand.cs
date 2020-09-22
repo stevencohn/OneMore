@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -178,11 +179,29 @@ namespace River.OneMoreAddIn
 			var attr = span.Attribute("style");
 			if (attr != null)
 			{
-				var properties = attr.Value.Split(';')
-					.Select(p => p.Split(':'))
-					.ToDictionary(p => p[0], p => p[1]);
+				//var properties = attr.Value.Split(';')
+				//	.Select(p => p.Split(':'))
+				//	.ToDictionary(p => p[0], p => p[1]);
 
-				if (properties?.ContainsKey("font-size") == true)
+				// Cannot use .ToDictionary(p => p[0], p => p[1]); here because there might
+				// be duplicate properties, so overwrite duplicates in the dictionary
+
+				var properties = new Dictionary<string, string>();
+				var props = attr.Value.Split(';');
+				foreach (var prop in props)
+				{
+					var parts = prop.Split(':');
+					if (properties.ContainsKey(parts[0]))
+					{
+						properties[parts[0]] = parts[1];
+					}
+					else
+					{
+						properties.Add(parts[0], parts[1]);
+					}
+				}
+
+				if (properties.ContainsKey("font-size") == true)
 				{
 					properties["font-size"] =
 						(ParseFontSize(properties["font-size"]) + delta).ToString("#0.0") + "pt";
