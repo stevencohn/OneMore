@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Diagnostics;
 	using System.IO;
+	using System.Linq;
 	using System.Threading;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -17,6 +18,13 @@ namespace River.OneMoreAddIn.Commands
 	internal class RunPluginCommand : Command
 	{
 		private const int MaxTimeoutSeconds = 10;
+
+		private string command;
+		private string arguments;
+
+		private bool createNewPage;
+		private bool createChildPage;
+		private string pageName;
 
 		private Process process = null;
 		private ProgressDialog progressDialog = null;
@@ -30,68 +38,139 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Execute()
 		{
-			string pluginPath = null;
-			using (var dialog = new RunPluginDialog())
+			using (var manager = new ApplicationManager())
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
-				{
-					pluginPath = dialog.PluginPath;
-				}
-			}
+				var page = new Page(manager.CurrentPage());
 
-			if (!string.IsNullOrEmpty(pluginPath) && File.Exists(pluginPath))
-			{
-				using (var manager = new ApplicationManager())
+				using (var dialog = new RunPluginDialog())
 				{
-					var page = new Page(manager.CurrentPage());
+					dialog.PageName = page.PageName + " (2)";
+
+					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+					{
+						return;
+					}
+
+					command = dialog.Command;
+					arguments = dialog.Arguments;
+					createNewPage = !dialog.UpdatePage;
+					createChildPage = dialog.CreateChild;
+					pageName = dialog.PageName;
+				}
+
+				if (!string.IsNullOrEmpty(command))
+				{
 					var name = page.PageId.Replace("{", string.Empty).Replace("}", string.Empty);
 
 					// pageId is of the form {sectionID}{}{pageId} so grab last 32 digits
 					name = name.Substring(Math.Max(0, name.Length - 32));
 
-					var xmlPath = Path.Combine(Path.GetTempPath(), $"{name}.xml");
-					logger.WriteLine($"Plugin input file is {xmlPath}");
+					var path = Path.Combine(Path.GetTempPath(), $"{name}.xml");
+					logger.WriteLine($"Plugin input file is {path}");
+
+					string original = null;
+					try
+					{
+						original = page.Root.ToString(SaveOptions.DisableFormatting);
+						page.Root.Save(path, SaveOptions.DisableFormatting);
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("Error saving page", exc);
+						return;
+					}
+
+					var success = false;
+					try
+					{
+						success = Execute(path);
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("Error executing plugin", exc);
+						return;
+					}
+
+					if (!success)
+					{
+						UIHelper.ShowError("Plugin did not complete successfully. See log file");
+						return;
+					}
 
 					try
 					{
-						var original = page.Root.ToString(SaveOptions.DisableFormatting);
-						page.Root.Save(xmlPath, SaveOptions.DisableFormatting);
+						var root = XElement.Load(path);
+						var updated = root.ToString(SaveOptions.DisableFormatting);
 
-						if (Execute(pluginPath, xmlPath))
+						if (updated != original)
 						{
-							var root = XElement.Load(xmlPath);
-							var updated = root.ToString(SaveOptions.DisableFormatting);
-
-							if (updated != original)
+							if (createNewPage)
 							{
-								logger.WriteLine("Updating content modified by plugin");
+								CreatePage(manager, root, page);
+							}
+							else
+							{
+								logger.WriteLine("Updating page by plugin");
 								manager.UpdatePageContent(root);
 							}
+						}
+						else
+						{
+							logger.WriteLine("No changes found");
+						}
 
-							if (File.Exists(xmlPath))
-							{
-								File.Delete(xmlPath);
-							}
+						if (File.Exists(path))
+						{
+							File.Delete(path);
 						}
 					}
 					catch (Exception exc)
 					{
-						logger.WriteLine("Error running plugin", exc);
-						UIHelper.ShowError("Error running plugin. See log file");
+						logger.WriteLine("Error updating page", exc);
+						UIHelper.ShowError("Error updating page. See log file");
 					}
 				}
 			}
 		}
 
 
-		private bool Execute(string pluginPath, string xmlPath)
+		private void CreatePage(ApplicationManager manager, XElement page, Page parent)
+		{
+			logger.WriteLine("Creating page by plugin");
+
+			var section = manager.CurrentSection();
+			var sectionId = section.Attribute("ID").Value;
+
+			manager.Application.CreateNewPage(sectionId, out var pageId);
+
+			// set the page ID to the new page's ID
+			page.Attribute("ID").Value = pageId;
+			// set the page name to user-entered name
+			new Page(page).PageName = pageName;
+			// remove all objectID values and let OneNote generate new IDs
+			page.Descendants().Attributes("objectID").Remove();
+
+			manager.UpdatePageContent(page);
+
+			// get current section again after new page is created
+			section = manager.CurrentSection();
+
+			var parentElement = section.Elements(parent.Namespace + "Page")
+				.Where(e => e.Attribute("ID").Value == parent.PageId)
+				.FirstOrDefault();
+
+			// TODO: childPage?
+		}
+
+
+		private bool Execute(string path)
 		{
 			using (source = new CancellationTokenSource())
 			{
 				using (progressDialog = new ProgressDialog(source)
 				{
 					Maximum = MaxTimeoutSeconds,
-					Message = $"Running {pluginPath}"
+					Message = $"Running {command} {arguments} \"{path}\""
 				})
 				{
 					try
@@ -100,7 +179,7 @@ namespace River.OneMoreAddIn.Commands
 						// the OneNote MTA thread environment
 						var thread = new Thread(() =>
 						{
-							RunPlugin(pluginPath, xmlPath);
+							RunPlugin(path);
 						});
 
 						thread.SetApartmentState(ApartmentState.STA);
@@ -135,16 +214,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void RunPlugin(string path, string xmlPath)
+		private void RunPlugin(string path)
 		{
+			logger.WriteLine($"Running {command} {arguments} \"{path}\"");
+
 			try
 			{
 				process = new Process
 				{
 					StartInfo = new ProcessStartInfo
 					{
-						FileName = path,
-						Arguments = xmlPath,
+						FileName = command,
+						Arguments = $"{arguments} \"{path}\"",
 						CreateNoWindow = true,
 						UseShellExecute = false,
 						RedirectStandardOutput = true,

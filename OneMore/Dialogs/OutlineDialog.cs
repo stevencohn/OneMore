@@ -113,17 +113,17 @@ namespace River.OneMoreAddIn.Dialogs
 				if (provider.RemoveCollection("outline"))
 				{
 					provider.Save();
-
-					numberingBox.Checked = false;
-					alphaRadio.Checked = true;
-					numRadio.Checked = false;
-					cleanBox.Checked = false;
-					indentBox.Checked = false;
-					indentTagBox.Checked = false;
-					removeTagsBox.Checked = false;
-					tagButton.Image = null;
-					tagButton.Text = "?";
 				}
+
+				numberingBox.Checked = false;
+				alphaRadio.Checked = true;
+				numRadio.Checked = false;
+				cleanBox.Checked = false;
+				indentBox.Checked = false;
+				indentTagBox.Checked = false;
+				removeTagsBox.Checked = false;
+				tagButton.Image = null;
+				tagButton.Text = "?";
 
 				return;
 			}

@@ -1406,6 +1406,78 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arguments.
+        /// </summary>
+        internal static string PluginDialog_argsLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_argsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string PluginDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create as child of current page.
+        /// </summary>
+        internal static string PluginDialog_childBox_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_childBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugin Command.
+        /// </summary>
+        internal static string PluginDialog_cmdLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_cmdLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new page named.
+        /// </summary>
+        internal static string PluginDialog_createRadio_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_createRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run.
+        /// </summary>
+        internal static string PluginDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run Plugin.
+        /// </summary>
+        internal static string PluginDialog_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update current page.
+        /// </summary>
+        internal static string PluginDialog_updateRadio_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_updateRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ProgressDialog_cancelButton_Text {

@@ -53,6 +53,31 @@ namespace River.OneMoreAddIn.Models
 		public XNamespace Namespace { get; private set; }
 
 
+		public string PageName
+		{
+			get
+			{
+				var text = Root.Elements(Namespace + "Title")
+					.Elements(Namespace + "OE")
+					.Elements(Namespace + "T").FirstOrDefault();
+
+				return text?.GetCData().Value;
+			}
+
+			set
+			{
+				var text = Root.Elements(Namespace + "Title")
+					.Elements(Namespace + "OE")
+					.Elements(Namespace + "T").FirstOrDefault();
+
+				if (text != null)
+				{
+					text.GetCData().Value = value;
+				}
+			}
+		}
+
+
 		/// <summary>
 		/// Adds the given content after the selected insertion point; this will not
 		/// replace selected regions.

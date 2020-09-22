@@ -1380,4 +1380,36 @@ OneNote 将自动关闭</value>
     <value>从 &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
     <comment>From &lt;URL&gt; pattern match</comment>
   </data>
+  <data name="PluginDialog.Text" xml:space="preserve">
+    <value>运行插件</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PluginDialog_childBox.Text" xml:space="preserve">
+    <value>创建为当前页面的子代</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PluginDialog_createRadio.Text" xml:space="preserve">
+    <value>创建一个名为</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_okButton.Text" xml:space="preserve">
+    <value>执行</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
+    <value>插件命令</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
+    <value>更新当前页面</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_argsLabel.Text" xml:space="preserve">
+    <value>争论</value>
+    <comment>label</comment>
+  </data>
 </root>

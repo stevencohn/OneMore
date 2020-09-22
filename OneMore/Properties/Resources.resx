@@ -1417,4 +1417,36 @@ Try again later</value>
     <value>From &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
     <comment>From &lt;URL&gt; pattern match</comment>
   </data>
+  <data name="PluginDialog.Text" xml:space="preserve">
+    <value>Run Plugin</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PluginDialog_childBox.Text" xml:space="preserve">
+    <value>Create as child of current page</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PluginDialog_createRadio.Text" xml:space="preserve">
+    <value>Create a new page named</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_okButton.Text" xml:space="preserve">
+    <value>Run</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
+    <value>Plugin Command</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
+    <value>Update current page</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_argsLabel.Text" xml:space="preserve">
+    <value>Arguments</value>
+    <comment>label</comment>
+  </data>
 </root>
