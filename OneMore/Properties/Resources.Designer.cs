@@ -1406,6 +1406,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plugin completed successfully but no changes were found.
+        /// </summary>
+        internal static string Plugin_NoChanges {
+            get {
+                return ResourceManager.GetString("Plugin_NoChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error updating page. See log file.
+        /// </summary>
+        internal static string Plugin_NoUpdate {
+            get {
+                return ResourceManager.GetString("Plugin_NoUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running {0} {1} \&quot;{2}\&quot;.
+        /// </summary>
+        internal static string Plugin_Running {
+            get {
+                return ResourceManager.GetString("Plugin_Running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugin.
+        /// </summary>
+        internal static string Plugin_Title {
+            get {
+                return ResourceManager.GetString("Plugin_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugin did not complete successfully. See log file..
+        /// </summary>
+        internal static string Plugin_Unsuccessful {
+            get {
+                return ResourceManager.GetString("Plugin_Unsuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error writing to temp file. See log file..
+        /// </summary>
+        internal static string Plugin_WritingTemp {
+            get {
+                return ResourceManager.GetString("Plugin_WritingTemp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arguments.
         /// </summary>
         internal static string PluginDialog_argsLabel_Text {

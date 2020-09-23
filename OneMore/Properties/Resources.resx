@@ -1449,4 +1449,28 @@ Try again later</value>
     <value>Arguments</value>
     <comment>label</comment>
   </data>
+  <data name="Plugin_NoChanges" xml:space="preserve">
+    <value>Plugin completed successfully but no changes were found</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="Plugin_NoUpdate" xml:space="preserve">
+    <value>Error updating page. See log file</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Plugin_Running" xml:space="preserve">
+    <value>Running {0} {1} \"{2}\"</value>
+    <comment>running message</comment>
+  </data>
+  <data name="Plugin_Title" xml:space="preserve">
+    <value>Plugin</value>
+    <comment>Open File Dialog title</comment>
+  </data>
+  <data name="Plugin_Unsuccessful" xml:space="preserve">
+    <value>Plugin did not complete successfully. See log file.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Plugin_WritingTemp" xml:space="preserve">
+    <value>Error writing to temp file. See log file.</value>
+    <comment>error message</comment>
+  </data>
 </root>

@@ -131,7 +131,7 @@ namespace River.OneMoreAddIn.Dialogs
 				dialog.Filter = "All files (*.*)|*.*";
 				dialog.CheckFileExists = true;
 				dialog.Multiselect = false;
-				dialog.Title = "Plugin";
+				dialog.Title = Resx.Plugin_Title;
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 
 				dialog.InitialDirectory = File.Exists(cmdBox.Text)

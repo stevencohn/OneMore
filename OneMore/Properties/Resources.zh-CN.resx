@@ -1412,4 +1412,28 @@ OneNote 将自动关闭</value>
     <value>争论</value>
     <comment>label</comment>
   </data>
+  <data name="Plugin_NoChanges" xml:space="preserve">
+    <value>插件已成功完成，但未找到任何更改</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="Plugin_NoUpdate" xml:space="preserve">
+    <value>更新页面时出错。 查看日志文件</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Plugin_Running" xml:space="preserve">
+    <value>正在运行{0} {1} \“ {2} \”</value>
+    <comment>running message</comment>
+  </data>
+  <data name="Plugin_Title" xml:space="preserve">
+    <value>添加在</value>
+    <comment>Open File Dialog title</comment>
+  </data>
+  <data name="Plugin_Unsuccessful" xml:space="preserve">
+    <value>插件没有成功完成。 请参阅日志文件。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Plugin_WritingTemp" xml:space="preserve">
+    <value>写入临时文件时出错。 请参阅日志文件。</value>
+    <comment>error message</comment>
+  </data>
 </root>

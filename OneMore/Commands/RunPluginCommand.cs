@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class RunPluginCommand : Command
@@ -58,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					UIHelper.ShowError("Error writing to temp file. See log file");
+					UIHelper.ShowError(Resx.Plugin_WritingTemp);
 					logger.WriteLine("Error writing to temp file", exc);
 					return;
 				}
@@ -66,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 				// execute the plugin in an STA thread
 				if (!Execute(workPath))
 				{
-					UIHelper.ShowError("Plugin did not complete successfully. See log file");
+					UIHelper.ShowError(Resx.Plugin_Unsuccessful);
 					Cleanup(workPath);
 					return;
 				}
@@ -88,14 +89,14 @@ namespace River.OneMoreAddIn.Commands
 						}
 						else
 						{
-							UIHelper.ShowMessage("Plugin completed successfully but no changes were found");
+							UIHelper.ShowMessage(Resx.Plugin_NoChanges);
 						}
 					}
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine("Error updating page", exc);
-					UIHelper.ShowError("Error updating page. See log file");
+					UIHelper.ShowError(Resx.Plugin_NoUpdate);
 				}
 				finally
 				{
@@ -149,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 				using (progressDialog = new ProgressDialog(source)
 				{
 					Maximum = MaxTimeoutSeconds,
-					Message = $"Running {command} {arguments} \"{workPath}\""
+					Message = string.Format(Resx.Plugin_Running, command, arguments, workPath)
 				})
 				{
 					Process process = null;
