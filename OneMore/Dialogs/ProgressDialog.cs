@@ -47,6 +47,7 @@ namespace River.OneMoreAddIn.Dialogs
 			}
 			else
 			{
+				Height = 144;
 				this.source = source;
 				timer.Tick += Timer_Tick;
 			}
