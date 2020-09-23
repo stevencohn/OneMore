@@ -17,16 +17,15 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class RunPluginCommand : Command
 	{
-		private const int MaxTimeoutSeconds = 10;
+		private const int MaxTimeoutSeconds = 15;
 
 		private string command;
 		private string arguments;
 
 		private bool createNewPage;
-		private bool createChildPage;
+		private bool asChildPage;
 		private string pageName;
 
-		private Process process = null;
 		private ProgressDialog progressDialog = null;
 		private CancellationTokenSource source = null;
 
@@ -42,144 +41,126 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var page = new Page(manager.CurrentPage());
 
-				using (var dialog = new RunPluginDialog())
+				if (!PromptForPlugin(page.PageName) || string.IsNullOrEmpty(command))
 				{
-					dialog.PageName = page.PageName + " (2)";
-
-					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
-					{
-						return;
-					}
-
-					command = dialog.Command;
-					arguments = dialog.Arguments;
-					createNewPage = !dialog.UpdatePage;
-					createChildPage = dialog.CreateChild;
-					pageName = dialog.PageName;
+					return;
 				}
 
-				if (!string.IsNullOrEmpty(command))
+				var workPath = MakeWorkingFilePath(page.PageId);
+
+				// copy contents for comparison later
+				string original = page.Root.ToString(SaveOptions.DisableFormatting);
+
+				try
 				{
-					var name = page.PageId.Replace("{", string.Empty).Replace("}", string.Empty);
+					// write the page XML to the working path
+					page.Root.Save(workPath, SaveOptions.DisableFormatting);
+				}
+				catch (Exception exc)
+				{
+					UIHelper.ShowError("Error writing to temp file. See log file");
+					logger.WriteLine("Error writing to temp file", exc);
+					return;
+				}
 
-					// pageId is of the form {sectionID}{}{pageId} so grab last 32 digits
-					name = name.Substring(Math.Max(0, name.Length - 32));
+				// execute the plugin in an STA thread
+				if (!Execute(workPath))
+				{
+					UIHelper.ShowError("Plugin did not complete successfully. See log file");
+					Cleanup(workPath);
+					return;
+				}
 
-					var path = Path.Combine(Path.GetTempPath(), $"{name}.xml");
-					logger.WriteLine($"Plugin input file is {path}");
+				try
+				{
+					var root = XElement.Load(workPath);
+					var updated = root.ToString(SaveOptions.DisableFormatting);
 
-					string original = null;
-					try
+					if (createNewPage)
 					{
-						original = page.Root.ToString(SaveOptions.DisableFormatting);
-						page.Root.Save(path, SaveOptions.DisableFormatting);
+						CreatePage(manager, root, page);
 					}
-					catch (Exception exc)
+					else
 					{
-						logger.WriteLine("Error saving page", exc);
-						return;
-					}
-
-					var success = false;
-					try
-					{
-						success = Execute(path);
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine("Error executing plugin", exc);
-						return;
-					}
-
-					if (!success)
-					{
-						UIHelper.ShowError("Plugin did not complete successfully. See log file");
-						return;
-					}
-
-					try
-					{
-						var root = XElement.Load(path);
-						var updated = root.ToString(SaveOptions.DisableFormatting);
-
 						if (updated != original)
 						{
-							if (createNewPage)
-							{
-								CreatePage(manager, root, page);
-							}
-							else
-							{
-								logger.WriteLine("Updating page by plugin");
-								manager.UpdatePageContent(root);
-							}
+							manager.UpdatePageContent(root);
 						}
 						else
 						{
-							logger.WriteLine("No changes found");
-						}
-
-						if (File.Exists(path))
-						{
-							File.Delete(path);
+							UIHelper.ShowMessage("Plugin completed successfully but no changes were found");
 						}
 					}
-					catch (Exception exc)
-					{
-						logger.WriteLine("Error updating page", exc);
-						UIHelper.ShowError("Error updating page. See log file");
-					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("Error updating page", exc);
+					UIHelper.ShowError("Error updating page. See log file");
+				}
+				finally
+				{
+					Cleanup(workPath);
 				}
 			}
 		}
 
 
-		private void CreatePage(ApplicationManager manager, XElement page, Page parent)
+		private bool PromptForPlugin(string name)
 		{
-			logger.WriteLine("Creating page by plugin");
+			using (var dialog = new RunPluginDialog())
+			{
+				dialog.PageName = name + " (2)";
 
-			var section = manager.CurrentSection();
-			var sectionId = section.Attribute("ID").Value;
+				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+				{
+					return false;
+				}
 
-			manager.Application.CreateNewPage(sectionId, out var pageId);
+				command = dialog.Command;
+				arguments = dialog.Arguments;
+				createNewPage = !dialog.UpdatePage;
+				asChildPage = dialog.CreateChild;
+				pageName = dialog.PageName;
+			}
 
-			// set the page ID to the new page's ID
-			page.Attribute("ID").Value = pageId;
-			// set the page name to user-entered name
-			new Page(page).PageName = pageName;
-			// remove all objectID values and let OneNote generate new IDs
-			page.Descendants().Attributes("objectID").Remove();
-
-			manager.UpdatePageContent(page);
-
-			// get current section again after new page is created
-			section = manager.CurrentSection();
-
-			var parentElement = section.Elements(parent.Namespace + "Page")
-				.Where(e => e.Attribute("ID").Value == parent.PageId)
-				.FirstOrDefault();
-
-			// TODO: childPage?
+			return true;
 		}
 
 
-		private bool Execute(string path)
+		private string MakeWorkingFilePath(string pageId)
+		{
+			// Page.ID is of the form {sectionID}{}{pageId} so grab just the pageId part
+			// which should be a Guid spanning the last 32 digits
+
+			var name = pageId.Replace("{", string.Empty).Replace("}", string.Empty);
+			name = name.Substring(Math.Max(0, name.Length - 32));
+
+			var path = Path.Combine(Path.GetTempPath(), $"{name}.xml");
+			logger.WriteLine($"Plugin working file is {path}");
+
+			return path;
+		}
+
+
+		private bool Execute(string workPath)
 		{
 			using (source = new CancellationTokenSource())
 			{
 				using (progressDialog = new ProgressDialog(source)
 				{
 					Maximum = MaxTimeoutSeconds,
-					Message = $"Running {command} {arguments} \"{path}\""
+					Message = $"Running {command} {arguments} \"{workPath}\""
 				})
 				{
+					Process process = null;
+
 					try
 					{
 						// process should run in an STA thread otherwise it will conflict with
 						// the OneNote MTA thread environment
 						var thread = new Thread(() =>
 						{
-							RunPlugin(path);
+							process = StartPlugin(workPath);
 						});
 
 						thread.SetApartmentState(ApartmentState.STA);
@@ -205,6 +186,7 @@ namespace River.OneMoreAddIn.Commands
 						if (process != null)
 						{
 							process.Dispose();
+							process = null;
 						}
 					}
 				}
@@ -214,9 +196,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void RunPlugin(string path)
+		private Process StartPlugin(string path)
 		{
 			logger.WriteLine($"Running {command} {arguments} \"{path}\"");
+
+			Process process = null;
 
 			try
 			{
@@ -245,7 +229,15 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("Error running RunPlugin(string)", exc);
+
+				if (process != null)
+				{
+					process.Dispose();
+					process = null;
+				}
 			}
+
+			return process;
 		}
 
 
@@ -260,6 +252,70 @@ namespace River.OneMoreAddIn.Commands
 		private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
 		{
 			logger.WriteLine("| " + e.Data);
+		}
+
+
+		private void CreatePage(ApplicationManager manager, XElement page, Page parent)
+		{
+			var section = manager.CurrentSection();
+			var sectionId = section.Attribute("ID").Value;
+
+			manager.Application.CreateNewPage(sectionId, out var pageId);
+
+			// set the page ID to the new page's ID
+			page.Attribute("ID").Value = pageId;
+
+			// set the page name to user-entered name
+			new Page(page).PageName = pageName;
+
+			// remove all objectID values and let OneNote generate new IDs
+			page.Descendants().Attributes("objectID").Remove();
+
+			manager.UpdatePageContent(page);
+
+			if (asChildPage)
+			{
+				// get current section again after new page is created
+				section = manager.CurrentSection();
+
+				var parentElement = section.Elements(parent.Namespace + "Page")
+				.Where(e => e.Attribute("ID").Value == parent.PageId)
+				.FirstOrDefault();
+
+				var childElement = section.Elements(parent.Namespace + "Page")
+					.Where(e => e.Attribute("ID").Value == pageId)
+					.FirstOrDefault();
+
+				if (childElement != parentElement.NextNode)
+				{
+					// move new page immediately after its original in the section
+					childElement.Remove();
+					parentElement.AddAfterSelf(childElement);
+				}
+
+				var level = int.Parse(parentElement.Attribute("pageLevel").Value);
+				childElement.Attribute("pageLevel").Value = (level + 1).ToString();
+
+				manager.UpdateHierarchy(section);
+			}
+
+			manager.Application.NavigateTo(pageId);
+		}
+
+
+		private void Cleanup(string workPath)
+		{
+			if (File.Exists(workPath))
+			{
+				try
+				{
+					File.Delete(workPath);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"Error deleting {workPath}", exc);
+				}
+			}
 		}
 	}
 }
