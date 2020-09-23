@@ -361,11 +361,19 @@ in those cell.
 OneMore has a plugin facility that let you process a page using a program that you write.
 The workflow is very simple: 
 
-1. Create a plugin program that accepts one command line argument; this will specify the path to a file containing the page XML.
-2. If your plugin program completes and has changed the file then OneMore will update the current page with your updated XML.
-3. If your plugin program completes and has no made changes to the file then no changes are made to the current page.
-4. Your plugin program must complete within 10 seconds or it will timeout and be aborted.
-5. The OneNote page schema is defined in the 0336.OneNoteApplication_2013.xsd file in the References folder of this repo.
+1. Create a plugin program that accepts one command line argument; the argument will specify the path to a file containing the page XML.
+1. Run the Plugin command, specyfing the path to the program and any other arguments.
+1. The plugin must complete within 20 seconds or it will timeout and be aborted.
+1. If the plugin completes and has changed the file then OneMore will update the current page with your updated XML;
+1. If the plugin completes and has not made changes to the file then no changes are made to the current page.
+1. If you chose to create a new page then it will be created regardless of whether the plugin updated the XML file.
+
+The OneNote page schema is defined in the 0336.OneNoteApplication_2013.xsd file in the References folder of this repo.
+
+If the plugin is written in PowerShell then specify the Plugin Command as powershell.exe and use the Arguments
+line to specify the -file argument pointing to your plugin script as shown here.
+
+![Plugin Dialog](Screenshots/PluginDialog.png)
 
 _NOTICE: I provide no guarantee, warranty, or promise that you won't screw it up and loose data! It's in your
 hands and if you mess up the XML and cause data loss, that's entirely on you. You've been warned._
