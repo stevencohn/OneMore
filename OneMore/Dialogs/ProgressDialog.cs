@@ -50,6 +50,9 @@ namespace River.OneMoreAddIn.Dialogs
 				this.source = source;
 				timer.Tick += Timer_Tick;
 			}
+
+			(_, float factorY) = UIHelper.GetScalingFactors();
+			Height = (int)Math.Round(Height * factorY);
 		}
 
 
