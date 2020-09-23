@@ -130,6 +130,33 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+
+		private void HideAttributes(object sender, EventArgs e)
+		{
+			if (hideBox.Checked)
+			{
+				var root = XElement.Parse(pageBox.Text);
+
+				root.Descendants().Attributes().Where(a =>
+					a.Name.LocalName == "author"
+					|| a.Name.LocalName == "authorInitials"
+					|| a.Name.LocalName == "lastModifiedBy"
+					|| a.Name.LocalName == "lastModifiedByInitials"
+					|| a.Name.LocalName == "authorResolutionID"
+					|| a.Name.LocalName == "lastModifiedByResolutionID"
+					|| a.Name.LocalName == "creationTime"
+					|| a.Name.LocalName == "lastModifiedTime"
+					|| a.Name.LocalName == "objectID").Remove();
+
+				pageBox.Text = root.ToString(SaveOptions.None);
+			}
+			else
+			{
+				ChangeInfoScope(sender, e);
+			}
+		}
+
+
 		protected override bool ProcessDialogKey(Keys keyData)
 		{
 			if (keyData == (Keys)(Keys.F | Keys.Control))

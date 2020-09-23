@@ -12,6 +12,12 @@ namespace River.OneMoreAddIn
 	internal static class IEnumerableExtensions
 	{
 
+		public static bool IsNullOrEmpty<T>(this IEnumerable<T> collection)
+		{
+			return collection == null || !collection.Any();
+		}
+
+
 		public static decimal Median(this IEnumerable<decimal> values)
 		{
 			int count = values.Count();
