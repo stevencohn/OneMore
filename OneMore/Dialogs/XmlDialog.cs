@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn
 
 			this.Width = (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8);
 			this.Height = (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8);
-			if (Width > 2500) Width = 2500;
+			if (Width > 2000) Width = 2000;
 			if (Height > 1500) Height = 1500;
 		}
 
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn
 
 		protected override void OnShown(EventArgs e)
 		{
-			Location = new System.Drawing.Point(30, 30);
+			//Location = new System.Drawing.Point(30, 30);
 			UIHelper.SetForegroundWindow(this);
 			findBox.Focus();
 		}
@@ -137,16 +137,18 @@ namespace River.OneMoreAddIn
 			{
 				var root = XElement.Parse(pageBox.Text);
 
+				// EditedByAttributes and others
 				root.Descendants().Attributes().Where(a =>
 					a.Name.LocalName == "author"
 					|| a.Name.LocalName == "authorInitials"
+					|| a.Name.LocalName == "authorResolutionID"
 					|| a.Name.LocalName == "lastModifiedBy"
 					|| a.Name.LocalName == "lastModifiedByInitials"
-					|| a.Name.LocalName == "authorResolutionID"
 					|| a.Name.LocalName == "lastModifiedByResolutionID"
 					|| a.Name.LocalName == "creationTime"
 					|| a.Name.LocalName == "lastModifiedTime"
-					|| a.Name.LocalName == "objectID").Remove();
+					|| a.Name.LocalName == "objectID")
+					.Remove();
 
 				pageBox.Text = root.ToString(SaveOptions.None);
 			}

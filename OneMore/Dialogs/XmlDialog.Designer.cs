@@ -400,7 +400,7 @@
 			this.MinimumSize = new System.Drawing.Size(803, 333);
 			this.Name = "XmlDialog";
 			this.Padding = new System.Windows.Forms.Padding(5);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "OneMore XML";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.XmlDialog_FormClosing);
 			this.Load += new System.EventHandler(this.MainForm_Load);

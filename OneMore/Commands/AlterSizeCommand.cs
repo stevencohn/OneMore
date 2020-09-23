@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn
 					p.Attribute("fontSize") != null &&
 					(selected == (p.Attribute("selected")?.Value == "all")));
 
-			if (elements?.Any() == true)
+			if (!elements.IsNullOrEmpty())
 			{
 				foreach (var element in elements)
 				{
@@ -111,12 +111,12 @@ namespace River.OneMoreAddIn
 					p.Parent.Name.LocalName != "Title" &&
 					p.Attribute("style")?.Value.Contains("font-size:") == true);
 
-			if (selected)
+			if (selected && !elements.IsNullOrEmpty())
 			{
 				elements = elements.Where(e => e.Attribute("selected") != null);
 			}
 
-			if (elements?.Any() == true)
+			if (!elements.IsNullOrEmpty())
 			{
 				foreach (var element in elements)
 				{
@@ -138,13 +138,13 @@ namespace River.OneMoreAddIn
 			var nodes = page.DescendantNodes().OfType<XCData>()
 				.Where(n => n.Value.Contains("font-size:"));
 
-			if (selected)
+			if (selected && !nodes.IsNullOrEmpty())
 			{
 				// parent one:T
-				nodes = nodes.Where(n => n.Parent.Attribute("selected").Value == "all");
+				nodes = nodes.Where(n => n.Parent.Attribute("selected")?.Value == "all");
 			}
 
-			if (nodes?.Any() == true)
+			if (!nodes.IsNullOrEmpty())
 			{
 				foreach (var cdata in nodes)
 				{
@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn
 					var spans = wrapper.Elements("span")
 						.Where(e => e.Attribute("style")?.Value.Contains("font-size") == true);
 
-					if (spans?.Any() == true)
+					if (!spans.IsNullOrEmpty())
 					{
 						foreach (var span in spans)
 						{
@@ -191,13 +191,16 @@ namespace River.OneMoreAddIn
 				foreach (var prop in props)
 				{
 					var parts = prop.Split(':');
-					if (properties.ContainsKey(parts[0]))
+					if (parts.Length > 1)
 					{
-						properties[parts[0]] = parts[1];
-					}
-					else
-					{
-						properties.Add(parts[0], parts[1]);
+						if (properties.ContainsKey(parts[0]))
+						{
+							properties[parts[0]] = parts[1];
+						}
+						else
+						{
+							properties.Add(parts[0], parts[1]);
+						}
 					}
 				}
 
