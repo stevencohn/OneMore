@@ -42,8 +42,6 @@ namespace River.OneMoreAddIn
 							.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
 							.Any(e => e.GetCData().Value.Length > 0);
 
-						//System.Diagnostics.Debugger.Launch();
-
 						var count = AlterByName();
 						count += AlterElementsByValue();
 						count += AlterCDataByValue();
