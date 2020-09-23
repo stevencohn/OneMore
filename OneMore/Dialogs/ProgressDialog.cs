@@ -43,20 +43,13 @@ namespace River.OneMoreAddIn.Dialogs
 			if (source == null)
 			{
 				cancelButton.Visible = false;
-				Height = 180;
+				Height = 112;
 			}
 			else
 			{
-				//Height = 218;
-
 				this.source = source;
 				timer.Tick += Timer_Tick;
 			}
-
-			(_, float scalingY) = UIHelper.GetScalingFactors();
-			Height = (int)Math.Round(Height * scalingY);
-
-			PerformAutoScale();
 		}
 
 

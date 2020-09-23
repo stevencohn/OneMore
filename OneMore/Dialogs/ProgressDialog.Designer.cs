@@ -38,7 +38,7 @@
 			// progressBar
 			// 
 			this.progressBar.Location = new System.Drawing.Point(19, 44);
-			this.progressBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.progressBar.Margin = new System.Windows.Forms.Padding(2);
 			this.progressBar.Name = "progressBar";
 			this.progressBar.Size = new System.Drawing.Size(477, 15);
 			this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -58,7 +58,7 @@
 			// 
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.Location = new System.Drawing.Point(429, 71);
-			this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(67, 23);
 			this.cancelButton.TabIndex = 2;
@@ -80,7 +80,7 @@
 			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.messageLabel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ProgressDialog";
