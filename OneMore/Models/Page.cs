@@ -57,11 +57,11 @@ namespace River.OneMoreAddIn.Models
 		{
 			get
 			{
-				var text = Root.Elements(Namespace + "Title")
-					.Elements(Namespace + "OE")
-					.Elements(Namespace + "T").FirstOrDefault();
+				// account for cursor being in the title, just grab all text in paragraph
+				var para = Root.Elements(Namespace + "Title")
+					.Elements(Namespace + "OE").FirstOrDefault();
 
-				return text?.GetCData().Value;
+				return para?.Value;
 			}
 
 			set

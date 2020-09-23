@@ -87,7 +87,6 @@ namespace River.OneMoreAddIn.Dialogs
 				argsBox.Text = string.Empty;
 				updateRadio.Checked = true;
 				createRadio.Checked = false;
-				nameBox.Text = string.Empty;
 				childBox.Checked = false;
 
 				return;

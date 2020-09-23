@@ -30,21 +30,6 @@ namespace River.OneMoreAddIn.Dialogs
 		private readonly CancellationTokenSource source;
 
 
-		/*
-		/// <summary>
-		/// Initialite a simple UI with message area and progress bar.
-		/// </summary>
-		public ProgressDialog()
-		{
-			InitializeComponent();
-			Localize();
-
-			cancelButton.Visible = false;
-			Height = 180;
-		}
-		*/
-
-
 		/// <summary>
 		/// Initializes a UI with message area, progress bar, and cancel button. When the cancel
 		/// button is clicked, the source is marked as IsCancellationPending
@@ -67,6 +52,11 @@ namespace River.OneMoreAddIn.Dialogs
 				this.source = source;
 				timer.Tick += Timer_Tick;
 			}
+
+			(_, float scalingY) = UIHelper.GetScalingFactors();
+			Height = (int)Math.Round(Height * scalingY);
+
+			PerformAutoScale();
 		}
 
 
