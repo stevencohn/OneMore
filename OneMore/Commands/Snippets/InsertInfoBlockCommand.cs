@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn
 
 				row.SetCellContent(0, new XElement(ns + "OE",
 					new XAttribute("alignment", "center"),
-					new XAttribute("style", $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{symbolColor};&#xA;text-align:center"),
+					new XAttribute("style", $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{symbolColor};text-align:center"),
 					new XElement(ns + "T",
 						new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
 					));

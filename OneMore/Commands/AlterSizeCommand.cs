@@ -102,6 +102,8 @@ namespace River.OneMoreAddIn
 		}
 
 
+		// <one:OE alignment="left" spaceBefore="14.0" quickStyleIndex="1" style="font-family:'Segoe UI';font-size:&#xA;20.0pt;color:#151515">
+
 		private int AlterElementsByValue()
 		{
 			int count = 0;
@@ -179,6 +181,9 @@ namespace River.OneMoreAddIn
 			var attr = span.Attribute("style");
 			if (attr != null)
 			{
+				// remove encoded LF character (&#xA)
+				var css = attr.Value.Replace("\n", string.Empty);
+
 				//var properties = attr.Value.Split(';')
 				//	.Select(p => p.Split(':'))
 				//	.ToDictionary(p => p[0], p => p[1]);
@@ -187,7 +192,7 @@ namespace River.OneMoreAddIn
 				// be duplicate properties, so overwrite duplicates in the dictionary
 
 				var properties = new Dictionary<string, string>();
-				var props = attr.Value.Split(';');
+				var props = css.Split(';');
 				foreach (var prop in props)
 				{
 					var parts = prop.Split(':');
