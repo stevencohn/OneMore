@@ -43,6 +43,8 @@ Other Technical
 
 ## Rebuilding for 64-Bit OneNote
 
+### Option 1
+
 The Setup project is configured for a 32-Bit installation of OneNote. If you have a 64-bit version
 then you should change the TargetPlatform property in the Setup project. _Note there is no need to
 change the bitness of the OneMore project itself; leave it as AnyCPU._
@@ -54,7 +56,17 @@ property x64 as shown here:
 
 Rebuild the Setup project and away you go!
 
+### Option 2
 
+There is a PowerShell script named build.ps1 in the solution folder that can build both the 32-bit
+and the 64-bit installers. Prior to running this script, you must first configure your machine by
+running the Microsoft tool:
+
+    C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\
+        CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild\DisableOutOfProcBuild.exe
+
+This is provided specifically to allow later versions of VS to build vdproj projects from the
+command line.
 
 ## A Note on Debugging OneMore
 
