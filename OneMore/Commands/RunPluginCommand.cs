@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var manager = new ApplicationManager())
 			{
-				var page = new Page(manager.CurrentPage());
+				var page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
 
 				if (!PromptForPlugin(page.PageName) || string.IsNullOrEmpty(command))
 				{
