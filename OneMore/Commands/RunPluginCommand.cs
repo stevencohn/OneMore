@@ -110,6 +110,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new RunPluginDialog())
 			{
+				name = XElement.Parse($"<wrapper>{name}</wrapper>").Value;
+
 				dialog.PageName = name + " (2)";
 
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
