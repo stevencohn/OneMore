@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn
 				{
 					FontSize = attr.Value;
 				}
-				else if (attr.Name == "fontCOlor")
+				else if (attr.Name == "fontColor")
 				{
 					Color = attr.Value;
 				}
