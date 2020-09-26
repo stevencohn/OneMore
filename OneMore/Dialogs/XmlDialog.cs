@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Collections.Specialized;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -133,10 +134,17 @@ namespace River.OneMoreAddIn
 
 		private void HideAttributes(object sender, EventArgs e)
 		{
+			ChangeInfoScope(sender, e);
+
+			if (!hideBox.Checked && !hideLFBox.Checked)
+			{
+				return;
+			}
+
+			var root = XElement.Parse(pageBox.Text);
+
 			if (hideBox.Checked)
 			{
-				var root = XElement.Parse(pageBox.Text);
-
 				// EditedByAttributes and others
 				root.Descendants().Attributes().Where(a =>
 					a.Name.LocalName == "author"
@@ -149,13 +157,26 @@ namespace River.OneMoreAddIn
 					|| a.Name.LocalName == "lastModifiedTime"
 					|| a.Name.LocalName == "objectID")
 					.Remove();
+			}
 
-				pageBox.Text = root.ToString(SaveOptions.None);
-			}
-			else
+			if (hideLFBox.Checked)
 			{
-				ChangeInfoScope(sender, e);
+				var nodes = root.DescendantNodes().OfType<XCData>();
+				if (!nodes.IsNullOrEmpty())
+				{
+					foreach (var cdata in nodes)
+					{
+						cdata.Value = cdata.Value
+							.Replace("\nstyle", " style")
+							.Replace("\nhref", " href")
+							.Replace(";\nfont-size:", ";font-size:")
+							.Replace(";\ncolor:", ";color:")
+							.Replace(":\n", ": ");
+					}
+				}
 			}
+
+			pageBox.Text = root.ToString(SaveOptions.None);
 		}
 
 
