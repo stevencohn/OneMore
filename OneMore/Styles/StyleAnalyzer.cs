@@ -30,6 +30,15 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Clear the collected properties to ready the analyzer for the next element
+		/// </summary>
+		public void Clear()
+		{
+			properties.Clear();
+		}
+
+
+		/// <summary>
 		/// Builds a dictionary of style properties from the element, its parent,
 		/// and any referenced quick style.
 		/// </summary>

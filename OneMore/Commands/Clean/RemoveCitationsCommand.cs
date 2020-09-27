@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn
 						 select e)
 						.ToList();
 
-					if (elements != null && elements.Count > 0)
+					if (elements?.Count > 0)
 					{
 						foreach (var element in elements)
 						{

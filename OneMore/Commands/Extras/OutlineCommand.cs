@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn
 				}
 
 				var siblings = element.ElementsAfterSelf()?.ToList();
-				if (siblings != null && siblings.Count > 0)
+				if (siblings?.Count > 0)
 				{
 					var next = i < elements.Count - 1 ? elements[i + 1] : null;
 

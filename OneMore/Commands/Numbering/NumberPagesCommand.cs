@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn
 							})
 							.ToList();
 
-						if (pages.Count > 0)
+						if (pages?.Count > 0)
 						{
 							var index = 0;
 

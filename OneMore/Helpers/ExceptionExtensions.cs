@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn
 						exc.TargetSite.DeclaringType.ToString());
 				}
 
-				if ((exc.Data != null) && (exc.Data.Count > 0))
+				if (exc.Data?.Count > 0)
 				{
 					var e = exc.Data.GetEnumerator();
 					while (e.MoveNext())
