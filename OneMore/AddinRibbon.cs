@@ -63,7 +63,6 @@ namespace River.OneMoreAddIn
 							new XAttribute("insertBeforeMso", "Cut")
 							);
 
-						// < !--menu id = "ctxCleanMenu" getLabel = "GetRibbonLabel" imageMso = "Clear" insertBeforeMso = "Cut"-- >
 						var count = 0;
 						foreach (var engine in engines)
 						{
