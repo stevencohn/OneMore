@@ -48,17 +48,9 @@ namespace River.OneMoreAddIn
 						.Where(e => e.Attribute("id").Value == "ctxSeparator")
 						.FirstOrDefault();
 
-					var count = 0;
-					foreach (var engine in engines)
+					if (engines.Count == 1)
 					{
-						var button = new XElement(ns + "button",
-							new XAttribute("id", $"ctxSearch{count++}"),
-							new XAttribute("insertBeforeMso", "Cut"),
-							new XAttribute("label", engine.Name),
-							new XAttribute("tag", engine.Uri),
-							new XAttribute("onAction", "SearchEngineCmd")
-							);
-
+						var button = MakeSearchButton(engines[0], ns, 0);
 						if (separator != null)
 						{
 							separator.AddBeforeSelf(button);
@@ -66,6 +58,31 @@ namespace River.OneMoreAddIn
 						else
 						{
 							menu.Add(button);
+						}
+					}
+					else
+					{
+						var submenu = new XElement(ns + "menu",
+							new XAttribute("id", "ctxSearchMenu"),
+							new XAttribute("label", "Search"),
+							new XAttribute("imageMso", "RmsInvokeBrowser"),
+							new XAttribute("insertBeforeMso", "Cut")
+							);
+
+						// < !--menu id = "ctxCleanMenu" getLabel = "GetRibbonLabel" imageMso = "Clear" insertBeforeMso = "Cut"-- >
+						var count = 0;
+						foreach (var engine in engines)
+						{
+							submenu.Add(MakeSearchButton(engine, ns, count++));
+						}
+
+						if (separator != null)
+						{
+							separator.AddBeforeSelf(submenu);
+						}
+						else
+						{
+							menu.Add(submenu);
 						}
 					}
 				}
@@ -79,6 +96,19 @@ namespace River.OneMoreAddIn
 				logger.WriteLine("Error extending context menu", exc);
 				return Resx.Ribbon;
 			}
+		}
+
+
+		private XElement MakeSearchButton(SearchEngine engine, XNamespace ns, int id)
+		{
+			return new XElement(ns + "button",
+				new XAttribute("id", $"ctxSearch{id}"),
+				new XAttribute("insertBeforeMso", "Cut"),
+				new XAttribute("label", engine.Name),
+				new XAttribute("imageMso", "RmsInvokeBrowser"),
+				new XAttribute("tag", engine.Uri),
+				new XAttribute("onAction", "SearchEngineCmd")
+				);
 		}
 
 
