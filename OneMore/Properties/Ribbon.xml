@@ -149,6 +149,7 @@
                 id="ribCropImageButton"
                 imageMso="PictureCrop"
                 getLabel="GetRibbonLabel"
+                getEnabled="GetImageSelected"
                 onAction="CropImageCmd"/>
               <button
                 id="ribResizeImagesButton"

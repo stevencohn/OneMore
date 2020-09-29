@@ -126,6 +126,7 @@
     <Compile Include="Commands\RunPluginCommand.cs" />
     <Compile Include="Commands\SaveAsCommand.cs" />
     <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
+    <Compile Include="Commands\SearchEngineCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
@@ -263,6 +264,7 @@
     <Compile Include="Helpers\IntExtensions.cs" />
     <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
+    <Compile Include="Helpers\Settings\SearchProvider.cs" />
     <Compile Include="Helpers\Settings\SettingCollection.cs" />
     <Compile Include="Helpers\Settings\SettingsProvider.cs" />
     <Compile Include="Helpers\IEnumerableExtensions.cs" />
@@ -317,6 +319,7 @@
     <Compile Include="Models\Heading.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PageHeadings.cs" />
+    <Compile Include="Helpers\Settings\SearchEngine.cs" />
     <Compile Include="Models\Selected.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TableCell.cs" />

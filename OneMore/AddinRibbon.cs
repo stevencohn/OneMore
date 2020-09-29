@@ -8,9 +8,12 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Helpers.Settings;
 	using System;
 	using System.Drawing;
+	using System.Linq;
 	using System.Runtime.InteropServices.ComTypes;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -28,10 +31,54 @@ namespace River.OneMoreAddIn
 		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
-			//logger.WriteLine($"GetCustomUI({RibbonID})");
-			var ribbon = Resx.Ribbon;
-			//logger.WriteLine("ribbon=[" + ribbon + "]");
-			return ribbon;
+			var engines = new SearchProvider().LoadEngines();
+			if (engines?.Count == 0)
+			{
+				return Resx.Ribbon;
+			}
+
+			try
+			{
+				var root = XElement.Parse(Resx.Ribbon);
+				var ns = root.GetDefaultNamespace();
+				var menu = root.Element(ns + "contextMenus")?.Element(ns + "contextMenu");
+				if (menu != null)
+				{
+					var separator = menu.Elements(ns + "menuSeparator")
+						.Where(e => e.Attribute("id").Value == "ctxSeparator")
+						.FirstOrDefault();
+
+					var count = 0;
+					foreach (var engine in engines)
+					{
+						var button = new XElement(ns + "button",
+							new XAttribute("id", $"ctxSearch{count++}"),
+							new XAttribute("insertBeforeMso", "Cut"),
+							new XAttribute("label", engine.Name),
+							new XAttribute("tag", engine.Uri),
+							new XAttribute("onAction", "SearchEngineCmd")
+							);
+
+						if (separator != null)
+						{
+							separator.AddBeforeSelf(button);
+						}
+						else
+						{
+							menu.Add(button);
+						}
+					}
+				}
+
+				//logger.WriteLine(root.ToString());
+
+				return root.ToString(SaveOptions.DisableFormatting);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Error extending context menu", exc);
+				return Resx.Ribbon;
+			}
 		}
 
 

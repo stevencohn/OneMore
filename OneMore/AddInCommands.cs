@@ -257,6 +257,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<SearchAndReplaceCommand>().Execute();
 		}
 
+		public void SearchEngineCmd(IRibbonControl control)
+		{
+			factory.GetCommand<SearchEngineCommand>().Execute(control.Tag);
+		}
+
 		public void ShowXmlCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ShowXmlCommand>().Execute();

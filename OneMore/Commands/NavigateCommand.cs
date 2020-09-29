@@ -2,10 +2,11 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-using System;
-
 namespace River.OneMoreAddIn
 {
+	using System;
+
+
 	internal class NavigateCommand : Command
 	{
 		public NavigateCommand() : base()
