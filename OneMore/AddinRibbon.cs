@@ -48,21 +48,15 @@ namespace River.OneMoreAddIn
 						.Where(e => e.Attribute("id").Value == "ctxSeparator")
 						.FirstOrDefault();
 
+					XElement content = null;
+
 					if (engines.Count == 1)
 					{
-						var button = MakeSearchButton(engines[0], ns, 0);
-						if (separator != null)
-						{
-							separator.AddBeforeSelf(button);
-						}
-						else
-						{
-							menu.Add(button);
-						}
+						content = MakeSearchButton(engines[0], ns, 0);
 					}
 					else
 					{
-						var submenu = new XElement(ns + "menu",
+						content = new XElement(ns + "menu",
 							new XAttribute("id", "ctxSearchMenu"),
 							new XAttribute("label", "Search"),
 							new XAttribute("imageMso", "RmsInvokeBrowser"),
@@ -73,17 +67,17 @@ namespace River.OneMoreAddIn
 						var count = 0;
 						foreach (var engine in engines)
 						{
-							submenu.Add(MakeSearchButton(engine, ns, count++));
+							content.Add(MakeSearchButton(engine, ns, count++));
 						}
+					}
 
-						if (separator != null)
-						{
-							separator.AddBeforeSelf(submenu);
-						}
-						else
-						{
-							menu.Add(submenu);
-						}
+					if (separator != null)
+					{
+						separator.AddBeforeSelf(content);
+					}
+					else
+					{
+						menu.Add(content);
 					}
 				}
 
