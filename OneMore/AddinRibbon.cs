@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Helpers.Settings;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
 	using System.Runtime.InteropServices.ComTypes;
@@ -22,6 +23,8 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	public partial class AddIn
 	{
+		private List<SearchEngine> engines = null;
+
 
 		/// <summary>
 		/// IRibbonExtensibility method, returns XML describing the Ribbon customizations.
@@ -31,7 +34,7 @@ namespace River.OneMoreAddIn
 		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
-			var engines = new SearchEngineProvider().LoadEngines();
+			engines = new SearchEngineProvider().Load();
 			if (engines?.Count == 0)
 			{
 				return Resx.Ribbon;
@@ -98,7 +101,7 @@ namespace River.OneMoreAddIn
 				new XAttribute("id", $"ctxSearch{id}"),
 				new XAttribute("insertBeforeMso", "Cut"),
 				new XAttribute("label", engine.Name),
-				new XAttribute("imageMso", "RmsInvokeBrowser"),
+				new XAttribute("getImage", "GetRibbonSearchImage"),
 				new XAttribute("tag", engine.Uri),
 				new XAttribute("onAction", "SearchEngineCmd")
 				);
@@ -224,6 +227,27 @@ namespace River.OneMoreAddIn
 				logger.WriteLine(exc);
 				return $"*{resId}*";
 			}
+		}
+
+
+		/// <summary>
+		/// Specified as the value of the @getImage attribute for the context menu Search items,
+		/// loads an image associated with the given search engine
+		/// </summary>
+		/// <param name="control">The control element with a unique Id.</param>
+		/// <returns>A steam of the Image to display</returns>
+		public IStream GetRibbonSearchImage(IRibbonControl control)
+		{
+			if (engines?.Count > 0)
+			{
+				var engine = engines.Where(e => e.Uri == control.Tag).FirstOrDefault();
+				if (engine?.Image != null)
+				{
+					return ((Bitmap)engine.Image).GetReadOnlyStream();
+				}
+			}
+
+			return Resx.Smiley.GetReadOnlyStream();
 		}
 	}
 }

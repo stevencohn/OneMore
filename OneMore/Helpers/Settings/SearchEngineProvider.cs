@@ -18,58 +18,11 @@ namespace River.OneMoreAddIn.Helpers.Settings
 	/// </summary>
 	internal class SearchEngineProvider
 	{
-		private readonly string path;
 
-
+		#region EnginesConverter
 		/// <summary>
-		/// Initialize a new provider.
+		/// Custom converter to handle serializing Web site favicon icons to/from base64 strings
 		/// </summary>
-		public SearchEngineProvider()
-		{
-			path = Path.Combine(
-				PathFactory.GetAppDataPath(), "SearchEngines.json");
-		}
-
-
-		public List<SearchEngine> LoadEngines()
-		{
-			var engines = new List<SearchEngine>();
-
-			if (File.Exists(path))
-			{
-				try
-				{
-					var json = File.ReadAllText(path);
-					var serializer = new JavaScriptSerializer();
-					engines.AddRange(serializer.Deserialize<SearchEngine[]>(json));
-				}
-				catch (Exception exc)
-				{
-					Logger.Current.WriteLine($"Error reading {path}", exc);
-				}
-			}
-
-			return engines;
-		}
-
-
-		public void Save(List<SearchEngine> engines)
-		{
-			try
-			{
-				var serializer = new JavaScriptSerializer();
-				serializer.RegisterConverters(new JavaScriptConverter[]
-				{
-					new EnginesConverter()
-				});
-			}
-			catch (Exception exc)
-			{
-				Logger.Current.WriteLine($"Error saving {path}", exc);
-			}
-		}
-
-
 		private class EnginesConverter : JavaScriptConverter
 		{
 			public override IEnumerable<Type> SupportedTypes =>
@@ -89,7 +42,33 @@ namespace River.OneMoreAddIn.Helpers.Settings
 					var list = (ArrayList)dictionary["Engines"];
 					for (int i = 0; i < list.Count; i++)
 					{
-						engines.Add(serializer.ConvertToType<SearchEngine>(list[i]));
+						dynamic item = list[i];
+						SearchEngine engine = null;
+
+						string data = item["Image"];
+						if (!string.IsNullOrEmpty(data))
+						{
+							var bytes = Convert.FromBase64String(data);
+							using (var stream = new MemoryStream(bytes, 0, bytes.Length))
+							{
+								engine = new SearchEngine
+								{
+									Image = Image.FromStream(stream),
+									Name = item["Name"],
+									Uri = item["Uri"]
+								};
+							}
+						}
+						else
+						{
+							engine = new SearchEngine
+							{
+								Name = item["Name"],
+								Uri = item["Uri"]
+							};
+						}
+
+						engines.Add(engine);
 					}
 
 					return engines;
@@ -109,12 +88,9 @@ namespace River.OneMoreAddIn.Helpers.Settings
 					var list = new ArrayList();
 					foreach (var engine in engines)
 					{
-						var data = Convert.ToBase64String(
-							(byte[])new ImageConverter().ConvertTo(engine.Image, typeof(byte[])));
-
 						var dict = new Dictionary<string, object>
 						{
-							{ "Image", data },
+							{ "Image", engine.Image.ToBase64String() },
 							{ "Name", engine.Name },
 							{ "Uri", engine.Uri }
 						};
@@ -125,6 +101,61 @@ namespace River.OneMoreAddIn.Helpers.Settings
 				}
 
 				return new Dictionary<string, object>();
+			}
+		}
+		#endregion EnginesConverter
+
+
+		private readonly string path;
+
+
+		/// <summary>
+		/// Initialize a new provider.
+		/// </summary>
+		public SearchEngineProvider()
+		{
+			path = Path.Combine(
+				PathFactory.GetAppDataPath(), "SearchEngines.json");
+		}
+
+
+		public List<SearchEngine> Load()
+		{
+			var engines = new List<SearchEngine>();
+
+			if (File.Exists(path))
+			{
+				try
+				{
+					var json = File.ReadAllText(path);
+
+					var serializer = new JavaScriptSerializer();
+					serializer.RegisterConverters(new JavaScriptConverter[] { new EnginesConverter() });
+
+					engines.AddRange(serializer.Deserialize<List<SearchEngine>>(json));
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine($"Error reading {path}", exc);
+				}
+			}
+
+			return engines;
+		}
+
+
+		public void Save(List<SearchEngine> engines)
+		{
+			try
+			{
+				var serializer = new JavaScriptSerializer();
+				serializer.RegisterConverters(new JavaScriptConverter[] { new EnginesConverter() });
+
+				File.WriteAllText(path, serializer.Serialize(engines));
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"Error saving {path}", exc);
 			}
 		}
 	}

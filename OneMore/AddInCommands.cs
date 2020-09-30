@@ -52,7 +52,6 @@ namespace River.OneMoreAddIn
 		public void ChangePageColorCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ChangePageColorCommand>().Execute();
-			ribbon.Invalidate(); // TODO: only if changes?
 		}
 
 		public void CollapseCmd(IRibbonControl control)
@@ -78,6 +77,7 @@ namespace River.OneMoreAddIn
 		public void EditSearchEnginesCmd(IRibbonControl control)
 		{
 			factory.GetCommand<EditSearchEnginesCommand>().Execute();
+			ribbon.Invalidate(); // TODO: only if changes?
 		}
 
 		public void EditStylesCmd(IRibbonControl control)

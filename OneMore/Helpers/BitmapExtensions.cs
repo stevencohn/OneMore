@@ -13,14 +13,14 @@ namespace River.OneMoreAddIn
 
 	internal static class BitmapExtensions
 	{
-		public static IStream GetReadOnlyStream (this Bitmap bitmap)
+		public static IStream GetReadOnlyStream(this Bitmap bitmap)
 		{
 			ReadOnlyStream stream = null;
 
 			try
 			{
 				var memory = new MemoryStream();
-				((Image)bitmap).Save(memory, ImageFormat.Png);
+				bitmap.Save(memory, ImageFormat.Png);
 				stream = new ReadOnlyStream(memory);
 			}
 			catch (Exception exc)
@@ -29,6 +29,13 @@ namespace River.OneMoreAddIn
 			}
 
 			return stream;
+		}
+
+
+		public static string ToBase64String(this Image image)
+		{
+			return Convert.ToBase64String(
+				(byte[])new ImageConverter().ConvertTo(image, typeof(byte[])));
 		}
 	}
 }

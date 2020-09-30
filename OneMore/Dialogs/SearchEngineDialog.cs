@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using River.OneMoreAddIn.Helpers.Settings;
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel;
 	using System.Drawing;
 	using System.Net;
 	using System.Windows.Forms;
@@ -18,7 +19,7 @@ namespace River.OneMoreAddIn.Dialogs
 	public partial class SearchEngineDialog : Form
 	{
 		private readonly List<SearchEngine> engines;
-		private readonly BindingSource source;
+		private readonly BindingList<SearchEngine> source;
 
 
 		public SearchEngineDialog()
@@ -33,14 +34,9 @@ namespace River.OneMoreAddIn.Dialogs
 			gridView.Columns[1].DataPropertyName = "Name";
 			gridView.Columns[2].DataPropertyName = "Uri";
 
-			engines = new List<SearchEngine>
-			{
-				new SearchEngine { Name = "Google", Uri = "https://www.google.com/search?q={0}" },
-				new SearchEngine { Name = "Google Books", Uri = "https://www.google.com/search?tbm=bks&q={0}" },
-				new SearchEngine { Name = "Bing", Uri = "https://www.bing.com/search?q={0}" }
-			};
+			engines = new SearchEngineProvider().Load();
 
-			source = new BindingSource();
+			source = new BindingList<SearchEngine>();
 			foreach (var engine in engines)
 			{
 				source.Add(engine);
@@ -51,28 +47,14 @@ namespace River.OneMoreAddIn.Dialogs
 			RefreshImages();
 		}
 
-
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new Point(Location.X, Location.Y - (Height / 2));
-			base.OnShown(e);
-		}
-
-
-		private void gridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-		{
-			if (e.ColumnIndex == 2)
-			{
-				RefreshImage(gridView.Rows[e.RowIndex].DataBoundItem as SearchEngine);
-			}
-		}
-
-
 		private void RefreshImages()
 		{
 			for (int i = 0; i < source.Count; i++)
 			{
-				RefreshImage(source[i] as SearchEngine);
+				if (source[i].Image == null)
+				{
+					RefreshImage(source[i]);
+				}
 			}
 		}
 
@@ -102,6 +84,27 @@ namespace River.OneMoreAddIn.Dialogs
 			}
 		}
 
+
+		protected override void OnShown(EventArgs e)
+		{
+			Location = new Point(Location.X, Location.Y - (Height / 2));
+			base.OnShown(e);
+		}
+
+
+		private void gridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		{
+			if (e.ColumnIndex == 2)
+			{
+				if (source[e.RowIndex] is SearchEngine engine)
+				{
+					RefreshImage(engine);
+					gridView.Refresh();
+				}
+			}
+		}
+
+
 		private void gridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
 		{
 			// overrides the "red x" icon in the new-item row
@@ -114,6 +117,29 @@ namespace River.OneMoreAddIn.Dialogs
 			//	loaded = true;
 			//}
 		}
+
+
+		private void refreshButton_Click(object sender, EventArgs e)
+		{
+			int rowIndex = -1;
+			if (gridView.SelectedCells.Count > 0)
+			{
+				rowIndex = gridView.SelectedCells[0].RowIndex;
+			}
+			else if (gridView.SelectedRows.Count > 0)
+			{
+				rowIndex = gridView.SelectedRows[0].Index;
+			}
+
+			if (rowIndex >= 0)
+			{
+				if (source[rowIndex] is SearchEngine engine)
+				{
+					RefreshImage(engine);
+				}
+			}
+		}
+
 
 		private void deleteButton_Click(object sender, EventArgs e)
 		{
@@ -135,6 +161,7 @@ namespace River.OneMoreAddIn.Dialogs
 			}
 		}
 
+
 		private void upButton_Click(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count > 0)
@@ -143,7 +170,7 @@ namespace River.OneMoreAddIn.Dialogs
 				int rowIndex = gridView.SelectedCells[0].RowIndex;
 				if (rowIndex > 0 && rowIndex < source.Count)
 				{
-					var item = source[rowIndex] as SearchEngine;
+					var item = source[rowIndex];
 					source.RemoveAt(rowIndex);
 					source.Insert(rowIndex - 1, item);
 
@@ -161,13 +188,25 @@ namespace River.OneMoreAddIn.Dialogs
 				int rowIndex = gridView.SelectedCells[0].RowIndex;
 				if (rowIndex < source.Count - 1)
 				{
-					var item = source[rowIndex] as SearchEngine;
+					var item = source[rowIndex];
 					source.RemoveAt(rowIndex);
 					source.Insert(rowIndex + 1, item);
 
 					gridView.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
 				}
 			}
+		}
+
+
+		private void okButton_Click(object sender, EventArgs e)
+		{
+			var list = new List<SearchEngine>();
+			foreach (var item in source)
+			{
+				list.Add(item);
+			}
+
+			new SearchEngineProvider().Save(list);
 		}
 	}
 }
