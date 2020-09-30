@@ -82,6 +82,7 @@ The following commands are available from the page context menu
 * Remove Paragraph Spacing
 * To UPPERCASE
 * To lowercase
+* One or more [custom-defined search engines](#lookup)
 
 #### Key Bindings
 While all commands can be accessed from the OneMore ribbon group menus, some
@@ -261,6 +262,24 @@ text at the bottom of the page and click the *Remove footnote* command. Voila!
 OneMore keeps track of footnotes and will automatically reorder them to keep them numbered
 sequentially from the top of the page. If you delete a footnote, it again will renumber
 the remaining footnotes so there are no gaps. Pretty slick, huh?
+
+<a name="lookup"></a>
+### Context Menu and Custom Search Engines
+
+As mentioned above, OneMore adds commands to the context menu that appears when you right-click
+on the body of a page. Additionally, you can define your own custom search engines to add to
+the context menu.
+
+The search engines dialog, accessible from the Extras menu, lets you add search engines. If you
+add one engine then that is shown directly in the page context menu. If you add more than one
+engine, then a submenu is added to the context menu with a list of engines that you define.
+
+_Note that you need to restart OneNote when modifying the search engine list.
+Sadly, there is no way to dynamically reload the context menu without restarting._
+
+Select a phrase, or place the text cursor in the middle of a word, and choose your search
+engine. Your default Web browser is opened, search for your selecte content using the selected
+engine.
 
 <a name="dark"></a>
 ### Office Black Theme and Custom Page Background
