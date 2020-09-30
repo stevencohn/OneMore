@@ -4,6 +4,9 @@
 
 namespace River.OneMoreAddIn.Helpers.Settings
 {
+	using System.Drawing;
+
+
 	internal class SearchEngine
 	{
 		public SearchEngine()
@@ -11,11 +14,15 @@ namespace River.OneMoreAddIn.Helpers.Settings
 		}
 
 
-		public SearchEngine(string name, string uri)
+		public SearchEngine(Image image, string name, string uri)
 		{
+			Image = image;
 			Name = name;
 			Uri = uri;
 		}
+
+
+		public Image Image { get; set; }
 
 
 		public string Name { get; set; }

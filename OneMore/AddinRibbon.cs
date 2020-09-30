@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn
 		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
-			var engines = new SearchProvider().LoadEngines();
+			var engines = new SearchEngineProvider().LoadEngines();
 			if (engines?.Count == 0)
 			{
 				return Resx.Ribbon;

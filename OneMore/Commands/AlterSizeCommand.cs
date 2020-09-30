@@ -14,17 +14,20 @@ namespace River.OneMoreAddIn
 	internal class AlterSizeCommand : Command
 	{
 		private XElement page;
+		private XNamespace ns;
 		private int delta;
 		private bool selected;
 
 
-		public AlterSizeCommand () : base()
+		public AlterSizeCommand() : base()
 		{
 		}
 
 
-		public void Execute (int delta)
+		public void Execute(int delta)
 		{
+			this.delta = delta; // +/-1
+
 			try
 			{
 				using (var manager = new ApplicationManager())
@@ -32,19 +35,26 @@ namespace River.OneMoreAddIn
 					page = manager.CurrentPage();
 					if (page != null)
 					{
-						this.delta = delta;
-
 						// determine if range is selected or entire page
 
-						var ns = page.GetNamespaceOfPrefix("one");
+						ns = page.GetNamespaceOfPrefix("one");
 
 						selected = page.Element(ns + "Outline").Descendants(ns + "T")
 							.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
 							.Any(e => e.GetCData().Value.Length > 0);
 
-						var count = AlterByName();
-						count += AlterElementsByValue();
-						count += AlterCDataByValue();
+						var count = 0;
+
+						if (selected)
+						{
+							count += AlterSelections();
+						}
+						else
+						{
+							count += AlterByName();
+							count += AlterElementsByValue();
+							count += AlterCDataByValue();
+						}
 
 						if (count > 0)
 						{
@@ -60,9 +70,41 @@ namespace River.OneMoreAddIn
 		}
 
 
+		private int AlterSelections()
+		{
+			var elements = page.Element(ns + "Outline").Descendants(ns + "T")
+				.Where(e => e.Attributes("selected").Any(a => a.Value == "all"));
+
+			var count = 0;
+
+			if (!elements.IsNullOrEmpty())
+			{
+				var analyzer = new StyleAnalyzer(page, true);
+
+				foreach (var element in elements)
+				{
+					analyzer.Clear();
+					var style = new Style(analyzer.CollectStyleProperties(element));
+					style.FontSize = (ParseFontSize(style.FontSize) + delta).ToString("#0.0") + "pt";
+
+					var stylizer = new Stylizer(style);
+					stylizer.ApplyStyle(element);
+					count++;
+				}
+			}
+
+			return count;
+		}
+
+
 		/*
 		 * <one:QuickStyleDef index="1" name="p" fontColor="automatic" highlightColor="automatic" font="Calibri" fontSize="12.0" spaceBefore="0.0" spaceAfter="0.0" />
 		 * <one:QuickStyleDef index="2" name="h2" fontColor="#2E75B5" highlightColor="automatic" font="Calibri" fontSize="14.0" spaceBefore="0.0" spaceAfter="0.0" />
+		 *
+		 * <one:OE alignment="left" quickStyleIndex="1" selected="partial" style="font-family:Calibri;font-size:11.0pt">
+		 *   <one:List>
+		 *     <one:Bullet bullet="2" fontSize="11.0" />
+		 *   </one:List>
 		 */
 
 		private int AlterByName()
@@ -113,7 +155,7 @@ namespace River.OneMoreAddIn
 
 			if (selected && !elements.IsNullOrEmpty())
 			{
-				elements = elements.Where(e => e.Attribute("selected") != null);
+				elements = elements.Where(e => e.Attribute("selected")?.Value == "all");
 			}
 
 			if (!elements.IsNullOrEmpty())
@@ -141,7 +183,7 @@ namespace River.OneMoreAddIn
 			if (selected && !nodes.IsNullOrEmpty())
 			{
 				// parent one:T
-				nodes = nodes.Where(n => n.Parent.Attribute("selected")?.Value == "all");
+				nodes = nodes.Where(n => n.Parent.Attribute("selected") != null);
 			}
 
 			if (!nodes.IsNullOrEmpty())

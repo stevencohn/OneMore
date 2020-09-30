@@ -279,6 +279,11 @@
                 getEnabled="GetBodyContext"
                 onAction="RemoveFootnoteCmd"/>
               <button
+                id="ribEditSearchEnginesButton"
+                label="Edit Search Engines"
+                imageMso="HyperlinkEdit"
+                onAction="EditSearchEnginesCmd"/>
+              <button
                 id="ribPronunciateButton"
                 getLabel="GetRibbonLabel"
                 imageMso="SpeakOnEnter"

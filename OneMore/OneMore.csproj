@@ -107,6 +107,7 @@
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\ClearLogCommand.cs" />
+    <Compile Include="Commands\Extras\EditSearchEnginesCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />
@@ -194,6 +195,12 @@
     <Compile Include="Dialogs\RunPluginDialog.Designer.cs">
       <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SearchEngineDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SearchEngineDialog.Designer.cs">
+      <DependentUpon>SearchEngineDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\TagPickerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,7 +271,7 @@
     <Compile Include="Helpers\IntExtensions.cs" />
     <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
-    <Compile Include="Helpers\Settings\SearchProvider.cs" />
+    <Compile Include="Helpers\Settings\SearchEngineProvider.cs" />
     <Compile Include="Helpers\Settings\SettingCollection.cs" />
     <Compile Include="Helpers\Settings\SettingsProvider.cs" />
     <Compile Include="Helpers\IEnumerableExtensions.cs" />
@@ -455,6 +462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SearchEngineDialog.resx">
+      <DependentUpon>SearchEngineDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>

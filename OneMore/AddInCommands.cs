@@ -75,6 +75,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<DeleteFormulaCommand>().Execute();
 		}
 
+		public void EditSearchEnginesCmd(IRibbonControl control)
+		{
+			factory.GetCommand<EditSearchEnginesCommand>().Execute();
+		}
+
 		public void EditStylesCmd(IRibbonControl control)
 		{
 			factory.GetCommand<EditStylesCommand>().Execute();
