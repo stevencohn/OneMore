@@ -2864,6 +2864,123 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SearchEngineDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string SearchEngineDialog_deleteButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_deleteButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete:.
+        /// </summary>
+        internal static string SearchEngineDialog_deleteLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_deleteLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete {0}?.
+        /// </summary>
+        internal static string SearchEngineDialog_DeleteMessage {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_DeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move down.
+        /// </summary>
+        internal static string SearchEngineDialog_downButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_downButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Icon.
+        /// </summary>
+        internal static string SearchEngineDialog_iconColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_iconColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL Patterns must contain a string replacement token, such as &amp;q={0}.
+        /// </summary>
+        internal static string SearchEngineDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string SearchEngineDialog_nameColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_nameColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string SearchEngineDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh icons.
+        /// </summary>
+        internal static string SearchEngineDialog_refreshButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_refreshButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Engines.
+        /// </summary>
+        internal static string SearchEngineDialog_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move up.
+        /// </summary>
+        internal static string SearchEngineDialog_upButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_upButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL Pattern.
+        /// </summary>
+        internal static string SearchEngineDialog_urlColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("SearchEngineDialog_urlColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content.
         /// </summary>
         internal static string sepContent_Label {

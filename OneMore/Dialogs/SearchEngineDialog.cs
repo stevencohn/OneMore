@@ -9,22 +9,43 @@ namespace River.OneMoreAddIn.Dialogs
 {
 	using River.OneMoreAddIn.Helpers.Settings;
 	using System;
-	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Drawing;
+	using System.Linq;
 	using System.Net;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	public partial class SearchEngineDialog : Form
+	internal partial class SearchEngineDialog : LocalizableForm
 	{
-		private readonly List<SearchEngine> engines;
-		private readonly BindingList<SearchEngine> source;
+		private readonly BindingList<SearchEngine> engines;
 
 
 		public SearchEngineDialog()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.SearchEngineDialog_Text;
+
+				Localize(new string[]
+				{
+					"introLabel",
+					"upButton",
+					"downButton",
+					"refreshButton",
+					"deleteLabel",
+					"deleteButton",
+					"okButton",
+					"cancelButton"
+				});
+
+				iconColumn.HeaderText = Resx.SearchEngineDialog_iconColumn_HeaderText;
+				nameColumn.HeaderText = Resx.SearchEngineDialog_nameColumn_HeaderText;
+				urlColumn.HeaderText = Resx.SearchEngineDialog_urlColumn_HeaderText;
+			}
 
 			// prevent VS designer from overriding
 			toolStrip.ImageScalingSize = new Size(16, 16);
@@ -34,26 +55,20 @@ namespace River.OneMoreAddIn.Dialogs
 			gridView.Columns[1].DataPropertyName = "Name";
 			gridView.Columns[2].DataPropertyName = "Uri";
 
-			engines = new SearchEngineProvider().Load();
+			engines = new BindingList<SearchEngine>(new SearchEngineProvider().Load());
 
-			source = new BindingList<SearchEngine>();
-			foreach (var engine in engines)
-			{
-				source.Add(engine);
-			}
-
-			gridView.DataSource = source;
+			gridView.DataSource = engines;
 
 			RefreshImages();
 		}
 
 		private void RefreshImages()
 		{
-			for (int i = 0; i < source.Count; i++)
+			foreach (var engine in engines)
 			{
-				if (source[i].Image == null)
+				if (engine.Image == null)
 				{
-					RefreshImage(source[i]);
+					RefreshImage(engine);
 				}
 			}
 		}
@@ -96,7 +111,7 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			if (e.ColumnIndex == 2)
 			{
-				if (source[e.RowIndex] is SearchEngine engine)
+				if (engines[e.RowIndex] is SearchEngine engine)
 				{
 					RefreshImage(engine);
 					gridView.Refresh();
@@ -133,10 +148,25 @@ namespace River.OneMoreAddIn.Dialogs
 
 			if (rowIndex >= 0)
 			{
-				if (source[rowIndex] is SearchEngine engine)
+				if (engines[rowIndex] is SearchEngine engine)
 				{
 					RefreshImage(engine);
 				}
+			}
+		}
+
+
+		private void gridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+		{
+			var result = MessageBox.Show(
+				string.Format(Resx.SearchEngineDialog_DeleteMessage, engines[e.Row.Index].Name),
+				"OneMore",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2,
+				MessageBoxOptions.DefaultDesktopOnly);
+
+			if (result != DialogResult.Yes)
+			{
+				e.Cancel = true;
 			}
 		}
 
@@ -147,16 +177,26 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				int colIndex = gridView.SelectedCells[0].ColumnIndex;
 				int rowIndex = gridView.SelectedCells[0].RowIndex;
-				if (rowIndex < source.Count)
+				if (rowIndex < engines.Count)
 				{
-					source.RemoveAt(rowIndex);
+					var result = MessageBox.Show(
+						string.Format(Resx.SearchEngineDialog_DeleteMessage, engines[rowIndex].Name),
+						"OneMore",
+						MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+						MessageBoxDefaultButton.Button2,
+						MessageBoxOptions.DefaultDesktopOnly);
 
-					if (rowIndex > 0)
+					if (result == DialogResult.Yes)
 					{
-						rowIndex--;
-					}
+						engines.RemoveAt(rowIndex);
 
-					gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
+						if (rowIndex > 0)
+						{
+							rowIndex--;
+						}
+
+						gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
+					}
 				}
 			}
 		}
@@ -168,11 +208,11 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				int colIndex = gridView.SelectedCells[0].ColumnIndex;
 				int rowIndex = gridView.SelectedCells[0].RowIndex;
-				if (rowIndex > 0 && rowIndex < source.Count)
+				if (rowIndex > 0 && rowIndex < engines.Count)
 				{
-					var item = source[rowIndex];
-					source.RemoveAt(rowIndex);
-					source.Insert(rowIndex - 1, item);
+					var item = engines[rowIndex];
+					engines.RemoveAt(rowIndex);
+					engines.Insert(rowIndex - 1, item);
 
 					gridView.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
 				}
@@ -186,11 +226,11 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				int colIndex = gridView.SelectedCells[0].ColumnIndex;
 				int rowIndex = gridView.SelectedCells[0].RowIndex;
-				if (rowIndex < source.Count - 1)
+				if (rowIndex < engines.Count - 1)
 				{
-					var item = source[rowIndex];
-					source.RemoveAt(rowIndex);
-					source.Insert(rowIndex + 1, item);
+					var item = engines[rowIndex];
+					engines.RemoveAt(rowIndex);
+					engines.Insert(rowIndex + 1, item);
 
 					gridView.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
 				}
@@ -200,13 +240,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void okButton_Click(object sender, EventArgs e)
 		{
-			var list = new List<SearchEngine>();
-			foreach (var item in source)
-			{
-				list.Add(item);
-			}
-
-			new SearchEngineProvider().Save(list);
+			new SearchEngineProvider().Save(engines.ToList());
 		}
 	}
 }

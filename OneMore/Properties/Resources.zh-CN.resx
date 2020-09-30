@@ -1439,4 +1439,56 @@ OneNote 将自动关闭</value>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
+    <value>删除</value>
+    <comment>delete button</comment>
+  </data>
+  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
+    <value>删除：</value>
+    <comment>delete label</comment>
+  </data>
+  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
+    <value>删除{0}？</value>
+    <comment>delete confirmation message</comment>
+  </data>
+  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
+    <value>下移</value>
+    <comment>down buttom</comment>
+  </data>
+  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
+    <value>图标</value>
+    <comment>icon col</comment>
+  </data>
+  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
+    <value>网址格式必须包含字符串替换令牌，例如＆q = {0}</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
+    <value>名称</value>
+    <comment>name col</comment>
+  </data>
+  <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
+    <value>刷新图标</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineDialog_Text" xml:space="preserve">
+    <value>搜索引擎</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
+    <value>提升</value>
+    <comment>up buttom</comment>
+  </data>
+  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
+    <value>网址格式</value>
+    <comment>url col</comment>
+  </data>
 </root>
