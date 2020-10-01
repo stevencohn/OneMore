@@ -93,7 +93,13 @@ namespace River.OneMoreAddIn
 
 			if (word.Length > 0)
 			{
-				System.Diagnostics.Process.Start(string.Format(uri, word.ToString()));
+				var url = string.Format(uri, word.ToString());
+				logger.WriteLine($"Search query {url}");
+				System.Diagnostics.Process.Start(url);
+			}
+			else
+			{
+				logger.WriteLine("Search phrase is empty");
 			}
 		}
 	}
