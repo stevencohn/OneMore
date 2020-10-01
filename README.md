@@ -68,6 +68,7 @@ Extra commands
 * Add or remove [**footnotes**](#footnotes) (endnotes)
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
+* Edit [search engines](#lookup) that you want to appear in the context menu
 * [Number page headings](#outlining) numeric or alpha-numeric outline prefixes
 * [Indent content](#indenting) below headings or tagged paragraphs
 * [Replace hyperlinked URLs](#nameUrls) with their Web page titles
@@ -266,13 +267,27 @@ the remaining footnotes so there are no gaps. Pretty slick, huh?
 <a name="lookup"></a>
 ### Context Menu and Custom Search Engines
 
-As mentioned above, OneMore adds commands to the context menu that appears when you right-click
-on the body of a page. Additionally, you can define your own custom search engines to add to
-the context menu.
+OneMore adds commands to the context menu that appears when you right-click on the body of a 
+page. Additionally, you can define your own custom search engines to add to the context menu.
 
-The search engines dialog, accessible from the Extras menu, lets you add search engines. If you
-add one engine then that is shown directly in the page context menu. If you add more than one
-engine, then a submenu is added to the context menu with a list of engines that you define.
+From the Extras menu, open the Edit Search Engines dialog. You can define one or more engines.
+Each engine needs a unique name and a URL pattern. The URL pattern must contains the phrase
+"{0}" which will be replaced with a selected word or phrase.
+
+Some common search engine URL patterns are shown here:
+
+| Name | URL Pattern |
+| ---- | ----------- |
+| Bing           | https://www.bing.com/search?q={0} |
+| Google         | https://www.google.com/search?q={0} |
+| Google Books   | https://www.google.com/search?q={0} |
+| Google Scholar | https://scholar.google.com/scholar?q={0} |
+| Duck Duck Go   | https://duckduckgo.com/?q={0} |
+| WikipediA      | https://en.wikipedia.org/wiki/{0} |
+
+If you define one engine then that is shown directly in the page context menu. If you define
+more than one engine, then a submenu is added to the context menu with a list of engines that
+you define.
 
 _Note that you need to restart OneNote when modifying the search engine list.
 Sadly, there is no way to dynamically reload the context menu without restarting._
