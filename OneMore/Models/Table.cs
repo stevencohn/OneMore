@@ -2,8 +2,9 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Models
 {
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -11,11 +12,10 @@ namespace River.OneMoreAddIn
 	/// <summary>
 	/// Helper class to construct a OneNote table
 	/// </summary>
-	internal class Table : CommonAttributes
+	internal class Table : TableProperties
 	{
-		private readonly XNamespace ns;
 		private readonly XElement columns;
-		private readonly string shadingColor;
+		private readonly List<TableRow> rows;
 		private int numCells;
 
 
@@ -24,30 +24,41 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="ns"></param>
 		/// <param name="shadingColor"></param>
-		public Table(XNamespace ns, string shadingColor = null)
+		public Table(XNamespace ns) : base(ns)
 		{
-			this.ns = ns;
-			this.shadingColor = shadingColor;
-
-			numCells = 0;
 			columns = new XElement(ns + "Columns");
-			root = new XElement(ns + "Table", columns);
+			Root = new XElement(ns + "Table", columns);
+
+			rows = new List<TableRow>();
+			numCells = 0;
 		}
 
 
-		public Table(XElement root)
+		public Table(XElement root) : base(root)
 		{
-			this.root = root;
-			ns = root.GetDefaultNamespace();
 			columns = root.Element(ns + "Columns");
 			numCells = columns.Elements(ns + "Column").Count();
 		}
 
 
+		public bool BordersVisible
+		{
+			get { return GetBooleanAttribute("bordersVisible"); }
+			set { SetAttribute("bordersVisible", value.ToString().ToLower()); }
+		}
+
+
+		public bool HasHeaderRow
+		{
+			get { return GetBooleanAttribute("hasHeaderRow"); }
+			set { SetAttribute("hasHeaderRow", value.ToString().ToLower()); }
+		}
+
+
 		/// <summary>
-		/// Gest the root element of the table
+		/// Gets the rows in this table.
 		/// </summary>
-		public XElement Root { get { return root; } }
+		public IEnumerable<TableRow> Rows => rows;
 
 
 		/// <summary>
@@ -58,10 +69,9 @@ namespace River.OneMoreAddIn
 		public void AddColumn(float width, bool locked = false)
 		{
 			var column = new XElement(ns + "Column",
-				new XAttribute("index", numCells)
+				new XAttribute("index", numCells),
+				new XAttribute("width", width.ToString("0.0#"))
 				);
-
-			column.Add(new XAttribute("width", width.ToString("0.0#")));
 
 			if (locked)
 			{
@@ -79,7 +89,8 @@ namespace River.OneMoreAddIn
 		/// <returns>A TableRow that can be used to add content</returns>
 		public TableRow AddRow()
 		{
-			var row = new TableRow(ns, numCells, shadingColor);
+			var row = new TableRow(ns, numCells);
+			rows.Add(row);
 
 			var last = columns.NodesAfterSelf().OfType<XElement>()
 				.Where(e => e.Name.LocalName == "Row")
@@ -95,49 +106,6 @@ namespace River.OneMoreAddIn
 			}
 
 			return row;
-		}
-
-
-		/// <summary>
-		/// Enables or disables border visiblity for the table
-		/// </summary>
-		/// <param name="visible"></param>
-		public void SetBordersVisible(bool visible)
-		{
-			var attr = root.Attribute("bordersVisible");
-			if (attr == null)
-			{
-				root.Add(new XAttribute("bordersVisible", visible.ToString().ToLower()));
-			}
-			else
-			{
-				attr.Value = visible.ToString().ToLower();
-			}
-		}
-
-
-		/// <summary>
-		/// Sets the overall shading for the table
-		/// </summary>
-		/// <param name="color"></param>
-		public void SetShading(string color)
-		{
-			var cells = root.Elements(ns + "Row").Elements(ns + "Cell");
-			if (cells?.Any() == true)
-			{
-				foreach (var cell in cells)
-				{
-					var attr = cell.Attribute("shadingColor");
-					if (attr == null)
-					{
-						cell.Add(new XAttribute("shadingColor", color));
-					}
-					else
-					{
-						attr.Value = color;
-					}
-				}
-			}
 		}
 	}
 }

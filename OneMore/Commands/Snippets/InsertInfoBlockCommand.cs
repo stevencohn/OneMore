@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Linq;
 	using System.Xml.Linq;
 
 
@@ -98,30 +99,39 @@ namespace River.OneMoreAddIn
 
 				var row = inner.AddRow();
 
-				row.SetCellContent(0, new XElement(ns + "OE",
-					new XAttribute("alignment", "center"),
-					new XAttribute("style", $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{symbolColor};text-align:center"),
-					new XElement(ns + "T",
-						new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
+				row.Cells.ElementAt(0).SetContent(
+					new XElement(ns + "OE",
+						new XAttribute("alignment", "center"),
+						new XAttribute("style", $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{symbolColor};text-align:center"),
+						new XElement(ns + "T",
+							new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
 					));
 
-				row.SetCellContent(1, new XElement(ns + "OEChildren",
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
-						new XElement(ns + "T",
-							new XCData($"<span style='font-weight:bold'>{title}</span>"))
-						),
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{textColor}"),
-						new XElement(ns + "T",
-							new XCData("Your content here..."))
+				row.Cells.ElementAt(1).SetContent(
+					new XElement(ns + "OEChildren",
+						new XElement(ns + "OE",
+							new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
+							new XElement(ns + "T",
+								new XCData($"<span style='font-weight:bold'>{title}</span>"))
+							),
+						new XElement(ns + "OE",
+							new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{textColor}"),
+							new XElement(ns + "T",
+								new XCData("Your content here..."))
 					)));
 
-				var outer = new Table(ns, shading);
-				outer.SetBordersVisible(true);
+				var outer = new Table(ns)
+				{
+					BordersVisible = true
+				};
+
 				outer.AddColumn(600f, true);
 				row = outer.AddRow();
-				row.SetCellContent(0, inner);
+
+				var cell = row.Cells.ElementAt(0);
+
+				cell.ShadingColor = shading;				
+				cell.SetContent(inner);
 
 				page.AddNextParagraph(outer.Root);
 				manager.UpdatePageContent(page.Root);

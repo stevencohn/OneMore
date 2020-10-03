@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
-	internal enum Selected
+	internal enum Selection
 	{
 		none,
 		partial,

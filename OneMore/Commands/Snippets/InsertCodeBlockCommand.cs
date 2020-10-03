@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Linq;
 	using System.Xml.Linq;
 
 
@@ -75,37 +76,44 @@ namespace River.OneMoreAddIn
 					textColor = TextColor;
 				}
 
-				var table = new Table(ns);
-				table.SetBordersVisible(true);
+				var table = new Table(ns)
+				{
+					BordersVisible = true
+				};
+
 				table.AddColumn(600f, true);
 
 				// title row...
 				var row = table.AddRow();
+				var cell = row.Cells.First();
 
-				row.SetCellContent(0, new XElement(ns + "OE",
-					new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
-					new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Code</span>"))
-					));
+				cell.SetContent(
+					new XElement(ns + "OE",
+						new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
+						new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Code</span>"))
+						));
 
-				row.SetCellShading(0, shading);
+				cell.ShadingColor = shading;
 
 				// body row...
 				row = table.AddRow();
+				cell = row.Cells.First();
 
-				row.SetCellContent(0, new XElement(ns + "OEChildren",
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-						new XElement(ns + "T", new XCData(""))
-						),
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-						new XElement(ns + "T", new XCData("Your code here..."))
-						),
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-						new XElement(ns + "T", new XCData(""))
-						)
-					));
+				cell.SetContent(
+					new XElement(ns + "OEChildren",
+						new XElement(ns + "OE",
+							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+							new XElement(ns + "T", new XCData(""))
+							),
+						new XElement(ns + "OE",
+							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+							new XElement(ns + "T", new XCData("Your code here..."))
+							),
+						new XElement(ns + "OE",
+							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+							new XElement(ns + "T", new XCData(""))
+							)
+						));
 
 				page.AddNextParagraph(table.Root);
 				manager.UpdatePageContent(page.Root);

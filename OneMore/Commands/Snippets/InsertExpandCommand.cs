@@ -45,11 +45,16 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
-				var table = new Table(ns);
-				table.SetBordersVisible(true);
+				var table = new Table(ns)
+				{
+					BordersVisible = true
+				};
+
 				table.AddColumn(550, true);
 				var row = table.AddRow();
-				row.SetCellContent(0, "Your content here");
+
+				var cell = row.Cells.First();
+				cell.SetContent("Your content here");
 
 				var expand = new XElement(ns + "OE",
 					new XAttribute("explicitExpandCollapseEnabled", "true"),

@@ -322,12 +322,12 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="ApplicationManager.cs" />
     <Compile Include="Commands\ShowXmlCommand.cs" />
-    <Compile Include="Models\CommonAttributes.cs" />
+    <Compile Include="Models\TableProperties.cs" />
     <Compile Include="Models\Heading.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PageHeadings.cs" />
     <Compile Include="Helpers\Settings\SearchEngine.cs" />
-    <Compile Include="Models\Selected.cs" />
+    <Compile Include="Models\Selection.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TableCell.cs" />
     <Compile Include="Models\TableRow.cs" />

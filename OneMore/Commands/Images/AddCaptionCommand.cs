@@ -46,7 +46,9 @@ namespace River.OneMoreAddIn
 					var cdata = new XCData("Caption");
 
 					var row = table.AddRow();
-					row.SetCellContent(0,
+					var cell = row.Cells.First();
+
+					cell.SetContent(
 						new XElement(ns + "OEChildren",
 							new XElement(ns + "OE",
 								new XAttribute("alignment", "center"),
