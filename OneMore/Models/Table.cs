@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Models
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Runtime.InteropServices;
 	using System.Xml.Linq;
 
 
@@ -31,6 +32,20 @@ namespace River.OneMoreAddIn.Models
 
 			rows = new List<TableRow>();
 			numCells = 0;
+		}
+
+
+		public Table(XNamespace ns, int rows, int cols) : this(ns)
+		{
+			for (int i = 0; i < cols; i++)
+			{
+				AddColumn(1f, false);
+			}
+
+			for (int i = 0; i < rows; i++)
+			{
+				AddRow();
+			}
 		}
 
 
@@ -106,6 +121,17 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return row;
+		}
+
+
+		public void SetColumnWidth(int index, float width)
+		{
+			var column = columns.Elements(ns + "Column").Skip(index)?.FirstOrDefault();
+			if (column != null)
+			{
+				column.SetAttributeValue("width", width.ToString("0.0#"));
+				column.SetAttributeValue("isLocked", "true");
+			}
 		}
 	}
 }

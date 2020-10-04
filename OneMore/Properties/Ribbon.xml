@@ -204,6 +204,10 @@
                 getLabel="GetRibbonLabel"
                 onAction="InsertTocCmd"/>
               <button
+                id="ribCalendarButton"
+                label="Insert Calendar"
+                onAction="CalendarCmd"/>
+              <button
                 id="ribInfoBlockButton"
                 imageMso="Info"
                 getLabel="GetRibbonLabel"

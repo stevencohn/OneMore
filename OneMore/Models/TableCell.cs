@@ -12,7 +12,11 @@ namespace River.OneMoreAddIn.Models
 
 		public TableCell(XNamespace ns) : base(ns)
 		{
-			Root = new XElement(ns + "Cell");
+			Root = new XElement(ns + "Cell",
+				new XElement(ns + "OEChildren",
+					new XElement(ns + "OE",
+						new XElement(ns + "T", new XCData(string.Empty))
+				)));
 		}
 
 

@@ -107,6 +107,7 @@
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\ClearLogCommand.cs" />
+    <Compile Include="Commands\Extras\CalendarCommand.cs" />
     <Compile Include="Commands\Extras\EditSearchEnginesCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />

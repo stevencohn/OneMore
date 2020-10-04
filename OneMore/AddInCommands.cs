@@ -49,6 +49,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<ApplyStylesCommand>().Execute();
 		}
 
+		public void CalendarCmd(IRibbonControl control)
+		{
+			factory.GetCommand<CalendarCommand>().Execute();
+		}
+
 		public void ChangePageColorCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ChangePageColorCommand>().Execute();
