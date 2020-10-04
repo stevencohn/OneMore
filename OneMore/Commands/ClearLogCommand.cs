@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn
 	{
 		public ClearLogCommand()
 		{
+			logger = River.OneMoreAddIn.Logger.Current;
 		}
 
 
