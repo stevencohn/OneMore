@@ -96,8 +96,6 @@ namespace River.OneMoreAddIn
 			var header = table.Rows.First();
 			var format = CultureInfo.CurrentUICulture.DateTimeFormat;
 			var dow = 0;
-			var css = large ? HeaderCss : $"{HeaderCss};text-align:right";
-
 			foreach (var cell in header.Cells)
 			{
 				cell.ShadingColor = HeaderShading;
@@ -108,7 +106,7 @@ namespace River.OneMoreAddIn
 
 				cell.SetContent(new XElement(ns + "OE",
 					new XAttribute("alignment", alignment),
-					new XAttribute("style", css),
+					new XAttribute("style", HeaderCss),
 					new XElement(ns + "T", new XCData(name))
 					));
 
@@ -124,14 +122,12 @@ namespace River.OneMoreAddIn
 				var prev = date.Subtract(new TimeSpan(-1, 0, 0, 0));
 				var prevLast = DateTime.DaysInMonth(prev.Year, prev.Month);
 				row = table.Rows.ElementAt(1);
-				css = large ? GhostCss : $"{GhostCss};text-align:right";
-
 				for (int i = 0; i < first; i++)
 				{
 					int d = prevLast - first + i;
 					row.Cells.ElementAt(i).SetContent(new XElement(ns + "OE",
 						new XAttribute("alignment", alignment),
-						new XAttribute("style", css),
+						new XAttribute("style", GhostCss),
 						new XElement(ns + "T", new XCData(d.ToString()))
 						));
 				}
@@ -143,7 +139,6 @@ namespace River.OneMoreAddIn
 			int rindex = 1;
 			dow = first;
 			row = table.Rows.ElementAt(rindex);
-			css = large ? GhostCss : $"{DailyCss};text-align:right";
 			while (day <= last)
 			{
 				var cell = row.Cells.ElementAt(dow);
@@ -182,12 +177,11 @@ namespace River.OneMoreAddIn
 			if (large && dow < 7)
 			{
 				day = 1;
-				css = large ? GhostCss : $"{GhostCss};text-align:right";
 				while (dow < 7)
 				{
 					row.Cells.ElementAt(dow).SetContent(new XElement(ns + "OE",
 						new XAttribute("alignment", alignment),
-						new XAttribute("style", GhostCss),
+						new XAttribute("style", HeaderCss),
 						new XElement(ns + "T", new XCData(day.ToString()))
 						));
 
