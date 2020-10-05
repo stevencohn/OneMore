@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn
 		private const string HeaderShading = "#DEEBF6";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt;text-align:right";
 		private const string DailyCss = "font-family:Calibri;font-size:11.0pt;text-align:right";
-		private const string GhostCss = "font-family:Calibri;font-size:11.0pt;color:#CFCFCF;text-align:right";
+		private const string GhostCss = "font-family:Calibri;font-size:11.0pt;color:#BFBFBF;text-align:right";
 
 		private Page page;
 		private XNamespace ns;
@@ -38,6 +38,10 @@ namespace River.OneMoreAddIn
 				{
 					var root = MakeCalendar(2020, 9, true);
 					page.AddNextParagraph(root);
+
+					var header = MakeHeader(2020, 9);
+					page.AddNextParagraph(header);
+
 					manager.UpdatePageContent(page.Root);
 				}
 				catch (Exception exc)
@@ -163,6 +167,20 @@ namespace River.OneMoreAddIn
 			}
 
 			return table.Root;
+		}
+
+
+		private XElement MakeHeader(int year, int month)
+		{
+			var quick = page.GetQuickStyle(Styles.StandardStyles.Heading2);
+
+			var format = CultureInfo.CurrentUICulture.DateTimeFormat;
+			var monthName = format.GetMonthName(month);
+
+			return new XElement(ns + "OE",
+				new XAttribute("quickStyleIndex", quick.Index),
+				new XElement(ns + "T", new XCData($"{monthName} {year}"))
+				);
 		}
 	}
 }

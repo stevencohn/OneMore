@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
 	using System.Xml.Linq;
 	using System.Xml.Serialization;
@@ -124,6 +125,35 @@ namespace River.OneMoreAddIn
 			if (SpaceAfter != other.SpaceAfter) return false;
 
 			return true;
+		}
+
+
+		public XElement ToElement(XNamespace ns)
+		{
+			var element = new XElement(ns + "QuickStyleDef",
+				new XAttribute("index", Index.ToString()),
+				new XAttribute("name", Name),
+				new XAttribute("font", FontFamily),
+				new XAttribute("fontSize", FontSize),
+				new XAttribute("fontColor", Color)
+				);
+
+			if (!string.IsNullOrEmpty(Highlight))
+			{
+				element.Add(new XAttribute("highlightColor", Highlight));
+			}
+
+			if (!string.IsNullOrEmpty(SpaceBefore))
+			{
+				element.Add(new XAttribute("spaceBefore", SpaceBefore));
+			}
+
+			if (!string.IsNullOrEmpty(SpaceAfter))
+			{
+				element.Add(new XAttribute("spaceAfter", SpaceAfter));
+			}
+
+			return element;
 		}
 	}
 }

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -192,6 +193,38 @@ namespace River.OneMoreAddIn.Models
 					}
 				}
 			}
+		}
+
+
+		public Style GetQuickStyle(StandardStyles key)
+		{
+			string name = key.ToName();
+
+			var style = Root.Elements(Namespace + "QuickStyleDef")
+				.Where(e => e.Attribute("name").Value == name)
+				.Select(p => new Style(new QuickStyleDef(p)))
+				.FirstOrDefault();
+
+			if (style == null)
+			{
+				var quick = key.GetDefaults();
+
+				var sibling = Root.Elements(Namespace + "QuickStyleDef").LastOrDefault();
+				if (sibling == null)
+				{
+					quick.Index = 0;
+					Root.AddFirst(quick.ToElement(Namespace));
+				}
+				else
+				{
+					quick.Index = int.Parse(sibling.Attribute("index").Value) + 1;
+					sibling.AddAfterSelf(quick.ToElement(Namespace));
+				}
+
+				style = new Style(quick);
+			}
+
+			return style;
 		}
 
 

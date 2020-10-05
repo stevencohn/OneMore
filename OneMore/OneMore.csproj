@@ -107,7 +107,7 @@
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\ClearLogCommand.cs" />
-    <Compile Include="Commands\Extras\CalendarCommand.cs" />
+    <Compile Include="Commands\Snippets\CalendarCommand.cs" />
     <Compile Include="Commands\Extras\EditSearchEnginesCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
@@ -334,6 +334,7 @@
     <Compile Include="Models\TableRow.cs" />
     <Compile Include="Styles\GraphicStyle.cs" />
     <Compile Include="Styles\QuickStyleDef.cs" />
+    <Compile Include="Styles\StandardStyles.cs" />
     <Compile Include="Styles\Style.cs" />
     <Compile Include="Styles\StyleAnalyzer.cs" />
     <Compile Include="Styles\StyleBase.cs" />
