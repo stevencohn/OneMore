@@ -206,7 +206,7 @@
               <button
                 id="ribCalendarButton"
                 imageMso="CalendarInsert"
-                label="Insert Calendar"
+                label="Calendar"
                 onAction="CalendarCmd"/>
               <button
                 id="ribInfoBlockButton"
