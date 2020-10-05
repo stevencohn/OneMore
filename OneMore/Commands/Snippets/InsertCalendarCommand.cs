@@ -16,9 +16,9 @@ namespace River.OneMoreAddIn
 	internal class InsertCalendarCommand : Command
 	{
 		private const string HeaderShading = "#DEEBF6";
-		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt;text-align:right";
-		private const string DailyCss = "font-family:Calibri;font-size:11.0pt;text-align:right";
-		private const string GhostCss = "font-family:Calibri;font-size:11.0pt;color:#BFBFBF;text-align:right";
+		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
+		private const string DailyCss = "font-family:Calibri;font-size:11.0pt";
+		private const string GhostCss = "font-family:Calibri;font-size:11.0pt;color:#BFBFBF";
 
 		private Page page;
 		private XNamespace ns;
@@ -74,6 +74,7 @@ namespace River.OneMoreAddIn
 			var date = new DateTime(year, month, 1);
 			var first = (int)date.DayOfWeek;
 			var last = DateTime.DaysInMonth(year, month);
+			var alignment = large ? "left" : "right";
 
 			var rowCount = last == 28 && first == 0 ? 5 : 6;
 
@@ -90,9 +91,13 @@ namespace River.OneMoreAddIn
 				}
 			}
 
+			// headers...
+
 			var header = table.Rows.First();
 			var format = CultureInfo.CurrentUICulture.DateTimeFormat;
 			var dow = 0;
+			var css = large ? HeaderCss : $"{HeaderCss};text-align:right";
+
 			foreach (var cell in header.Cells)
 			{
 				cell.ShadingColor = HeaderShading;
@@ -102,8 +107,8 @@ namespace River.OneMoreAddIn
 					: format.GetShortestDayName((DayOfWeek)dow).ToUpper();
 
 				cell.SetContent(new XElement(ns + "OE",
-					new XAttribute("alignment", "right"),
-					new XAttribute("style", HeaderCss),
+					new XAttribute("alignment", alignment),
+					new XAttribute("style", css),
 					new XElement(ns + "T", new XCData(name))
 					));
 
@@ -112,34 +117,40 @@ namespace River.OneMoreAddIn
 
 			TableRow row;
 
+			// previous month days...
+
 			if (large && first > 0)
 			{
-				// fill in previous month days...
 				var prev = date.Subtract(new TimeSpan(-1, 0, 0, 0));
 				var prevLast = DateTime.DaysInMonth(prev.Year, prev.Month);
 				row = table.Rows.ElementAt(1);
+				css = large ? GhostCss : $"{GhostCss};text-align:right";
+
 				for (int i = 0; i < first; i++)
 				{
 					int d = prevLast - first + i;
 					row.Cells.ElementAt(i).SetContent(new XElement(ns + "OE",
-						new XAttribute("alignment", "right"),
-						new XAttribute("style", GhostCss),
+						new XAttribute("alignment", alignment),
+						new XAttribute("style", css),
 						new XElement(ns + "T", new XCData(d.ToString()))
 						));
 				}
 			}
 
+			// days...
+
 			int day = 1;
 			int rindex = 1;
 			dow = first;
 			row = table.Rows.ElementAt(rindex);
+			css = large ? GhostCss : $"{DailyCss};text-align:right";
 			while (day <= last)
 			{
 				var cell = row.Cells.ElementAt(dow);
 
 				var content = new XElement(ns + "OEChildren",
 					new XElement(ns + "OE",
-					new XAttribute("alignment", "right"),
+					new XAttribute("alignment", alignment),
 					new XAttribute("style", DailyCss),
 					new XElement(ns + "T", new XCData(day.ToString()))
 					));
@@ -166,14 +177,16 @@ namespace River.OneMoreAddIn
 				}
 			}
 
+			// next month days...
+
 			if (large && dow < 7)
 			{
-				// fill in next month days...
 				day = 1;
+				css = large ? GhostCss : $"{GhostCss};text-align:right";
 				while (dow < 7)
 				{
 					row.Cells.ElementAt(dow).SetContent(new XElement(ns + "OE",
-						new XAttribute("alignment", "right"),
+						new XAttribute("alignment", alignment),
 						new XAttribute("style", GhostCss),
 						new XElement(ns + "T", new XCData(day.ToString()))
 						));

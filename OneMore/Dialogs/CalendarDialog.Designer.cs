@@ -93,7 +93,7 @@
 			// smallRadio
 			// 
 			this.smallRadio.AutoSize = true;
-			this.smallRadio.Location = new System.Drawing.Point(91, 76);
+			this.smallRadio.Location = new System.Drawing.Point(91, 99);
 			this.smallRadio.Name = "smallRadio";
 			this.smallRadio.Size = new System.Drawing.Size(50, 17);
 			this.smallRadio.TabIndex = 5;
@@ -104,7 +104,7 @@
 			// 
 			this.largeRadio.AutoSize = true;
 			this.largeRadio.Checked = true;
-			this.largeRadio.Location = new System.Drawing.Point(91, 99);
+			this.largeRadio.Location = new System.Drawing.Point(91, 76);
 			this.largeRadio.Name = "largeRadio";
 			this.largeRadio.Size = new System.Drawing.Size(52, 17);
 			this.largeRadio.TabIndex = 6;
