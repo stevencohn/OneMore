@@ -57,6 +57,7 @@ Snippets commands
 
 * Insert single or double horizontal line
 * Insert [**Table of Contents**](#exTOC) including all headers on page
+* Insert small or large [monthly calendar](#calendar) for a specific month
 * Insert [Info/Warn boxes](#exInfoBoxes) similar to Confluence Info and Warn macros
 * Insert [Code box](#exCodeBox) similar to Confluence Code macro
 * Insert [collapsable sections](#expand) to hide secondary or sensitive information
@@ -176,6 +177,16 @@ to paste syntax-highlighted code directly from Visual Studio<sup>1</sup>.
 Text colors are based on the page background color.
 
 ![Code Box](Screenshots/CodeBox.jpg)
+
+<a name="calendar"></a>
+### Calendar
+
+Insert a monthly calendar for a selected month in either large or small format. The small
+format is good for a quick look at a month. The large format is good for entering brief
+daily notes.
+
+![Insert Calendar](Screenshots/Calendar.jpg)
+
 
 <sup>1</sup> If text copied from Visual Studio is pasted as plain text instead of rich text
 when using the Paste Rich Text command (Ctrl+Alt+V) then look at the VS Tools... Options...
