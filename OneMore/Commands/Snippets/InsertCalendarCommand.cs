@@ -4,14 +4,16 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Globalization;
 	using System.Linq;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
-	internal class CalendarCommand : Command
+	internal class InsertCalendarCommand : Command
 	{
 		private const string HeaderShading = "#DEEBF6";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt;text-align:right";
@@ -22,13 +24,28 @@ namespace River.OneMoreAddIn
 		private XNamespace ns;
 
 
-		public CalendarCommand()
+		public InsertCalendarCommand()
 		{
 		}
 
 
 		public void Execute()
 		{
+			int year;
+			int month;
+			bool large;
+			using (var dialog = new CalendarDialog())
+			{
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				year = dialog.Year;
+				month = dialog.Month;
+				large = dialog.Large;
+			}
+
 			using (var manager = new ApplicationManager())
 			{
 				page = new Page(manager.CurrentPage());
@@ -36,10 +53,10 @@ namespace River.OneMoreAddIn
 
 				try
 				{
-					var root = MakeCalendar(2020, 9, true);
+					var root = MakeCalendar(year, month, large);
 					page.AddNextParagraph(root);
 
-					var header = MakeHeader(2020, 9);
+					var header = MakeHeader(year, month);
 					page.AddNextParagraph(header);
 
 					manager.UpdatePageContent(page.Root);

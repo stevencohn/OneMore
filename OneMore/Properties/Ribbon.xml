@@ -206,8 +206,9 @@
               <button
                 id="ribCalendarButton"
                 imageMso="CalendarInsert"
-                label="Calendar"
-                onAction="CalendarCmd"/>
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="InsertCalendarCmd"/>
               <button
                 id="ribInfoBlockButton"
                 imageMso="Info"

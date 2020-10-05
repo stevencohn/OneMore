@@ -1016,6 +1016,78 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string InsertCalendarDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format.
+        /// </summary>
+        internal static string InsertCalendarDialog_formatLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_formatLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Large.
+        /// </summary>
+        internal static string InsertCalendarDialog_largeRadio_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_largeRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        internal static string InsertCalendarDialog_monthLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_monthLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string InsertCalendarDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small.
+        /// </summary>
+        internal static string InsertCalendarDialog_smallRadio_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_smallRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Calendar.
+        /// </summary>
+        internal static string InsertCalendarDialog_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        internal static string InsertCalendarDialog_yearLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_yearLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Italic {
@@ -1959,6 +2031,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Ribbon {
             get {
                 return ResourceManager.GetString("Ribbon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendar.
+        /// </summary>
+        internal static string ribCalendarButton_Label {
+            get {
+                return ResourceManager.GetString("ribCalendarButton_Label", resourceCulture);
             }
         }
         
