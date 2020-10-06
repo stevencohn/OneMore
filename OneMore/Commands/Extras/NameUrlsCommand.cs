@@ -21,8 +21,6 @@ namespace River.OneMoreAddIn
 
 	internal class NameUrlsCommand : Command
 	{
-		private const int LineCharCount = 100;
-
 
 		public NameUrlsCommand() : base()
 		{
@@ -143,7 +141,10 @@ namespace River.OneMoreAddIn
 			return 0;
 		}
 
-
+		[System.Diagnostics.CodeAnalysis.SuppressMessage(
+			"Minor Code Smell",
+			"S1643:Strings should not be concatenated using '+' in a loop",
+			Justification = "Need string functions that are not available in StringBuilder")]
 		private string FetchPageTitle(string url)
 		{
 			string title = null;

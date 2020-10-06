@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S125 // Sections of code should not be commented out
+
 namespace River.OneMoreAddIn
 {
 	using System.Linq;
@@ -245,8 +247,7 @@ namespace River.OneMoreAddIn
 		private void ApplyToList(XElement element, Style style)
 		{
 			var item = element.Elements(ns + "List").Elements()
-				.Where(e => e.Name.LocalName == "Bullet" || e.Name.LocalName == "Number")
-				.FirstOrDefault();
+				.FirstOrDefault(e => e.Name.LocalName == "Bullet" || e.Name.LocalName == "Number");
 
 			if (item != null)
 			{

@@ -285,7 +285,7 @@ namespace River.OneMoreAddIn
 				if (cdata != null)
 				{
 					cdata.ReplaceWith(
-						new XCData(cdata.Value += note.ToString(SaveOptions.DisableFormatting))
+						new XCData(cdata.Value + note.ToString(SaveOptions.DisableFormatting))
 						);
 
 					element.Attribute("selected").Remove();
@@ -370,7 +370,7 @@ namespace River.OneMoreAddIn
 
 				var text = FindSelectedReferences(notes[i].Element.Elements(ns + "T"), false)?.FirstOrDefault();
 
-				if ((text?.Label != label))
+				if (text != null && (text.Label != label))
 				{
 					var cdata = text.CData.Value.Remove(text.Index, text.Length);
 					text.CData.Value = cdata.Insert(text.Index, label.ToString());

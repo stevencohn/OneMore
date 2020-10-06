@@ -37,21 +37,17 @@ namespace River.OneMoreAddIn
 				using (var manager = new ApplicationManager())
 				{
 					page = new Page(manager.CurrentPage());
-					if (page != null)
+					var styles = new StyleProvider().GetStyles();
+					if (ApplyStyles(styles))
 					{
-						var styles = new StyleProvider().GetStyles();
+						ApplyToLists(styles);
 
-						if (ApplyStyles(styles))
+						if (page.GetPageColor(out _, out _).GetBrightness() < 0.5)
 						{
-							ApplyToLists(styles);
-
-							if (page.GetPageColor(out _, out _).GetBrightness() < 0.5)
-							{
-								ApplyToHyperlinks();
-							}
-
-							manager.UpdatePageContent(page.Root);
+							ApplyToHyperlinks();
 						}
+
+						manager.UpdatePageContent(page.Root);
 					}
 				}
 			}
@@ -91,7 +87,7 @@ namespace River.OneMoreAddIn
 
 							quick.Attribute("font").Value = style.FontFamily;
 
-							// TODO: why does OneNote screw these up?
+							// Why does OneNote screw these up?
 							//quick.Attribute("spaceBefore").Value = style.SpaceBefore;
 							//quick.Attribute("spaceAfter").Value = style.SpaceAfter;
 

@@ -27,43 +27,21 @@ namespace River.OneMoreAddIn
 				var ns = page.GetNamespaceOfPrefix("one");
 
 				var cursor = page.Descendants(ns + "T")
-					.Where(e =>
+					.FirstOrDefault(e =>
 						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
 						e.FirstNode.NodeType == XmlNodeType.CDATA &&
-						((XCData)e.FirstNode).Value.Length == 0)
-					.FirstOrDefault();
+						((XCData)e.FirstNode).Value.Length == 0);
 
 				if (cursor != null)
 				{
-					var prev = cursor.PreviousNode as XElement;
-					if ((prev != null) && prev.GetCData().EndsWithWhitespace())
+					if ((cursor.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
 					{
-						prev = null;
+						word.Append(prev.ExtractLastWord());
 					}
 
-					var next = cursor.NextNode as XElement;
-					if ((next != null) && next.GetCData().StartsWithWhitespace())
+					if ((cursor.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
 					{
-						next = null;
-					}
-
-					if ((prev != null) && (next != null))
-					{
-						if (prev != null)
-						{
-							if (!prev.GetCData().EndsWithWhitespace())
-							{
-								word.Append(prev.ExtractLastWord());
-							}
-						}
-
-						if (next != null)
-						{
-							if (!next.GetCData().StartsWithWhitespace())
-							{
-								word.Append(next.ExtractFirstWord());
-							}
-						}
+						word.Append(next.ExtractFirstWord());
 					}
 				}
 				else

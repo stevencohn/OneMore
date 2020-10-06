@@ -33,8 +33,7 @@ namespace River.OneMoreAddIn
 				if (cdata != null)
 				{
 					var span = cdata.GetWrapper().Elements("span")
-						.Where(e => e.Attributes("style").Any())
-						.FirstOrDefault();
+						.FirstOrDefault(e => e.Attributes("style").Any());
 
 					if (span != null)
 					{
@@ -112,8 +111,7 @@ namespace River.OneMoreAddIn
 		public static XCData GetCData(this XElement element)
 		{
 			return element.DescendantNodes()
-				.Where(e => e.NodeType == XmlNodeType.CDATA)
-				.FirstOrDefault() as XCData;
+				.FirstOrDefault(e => e.NodeType == XmlNodeType.CDATA) as XCData;
 		}
 
 
@@ -159,13 +157,12 @@ namespace River.OneMoreAddIn
 			// whitespace when applying css to words; so we don't need to worry about whitespace
 
 			// get text node or span element but not others like <br/>
-			var node = wrapper.Nodes().Where(n =>
+			var node = wrapper.Nodes().FirstOrDefault(n =>
 				// text nodes that have at least one word character
 				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
 				// span elements that have at least one word character
 				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")
-					&& Regex.IsMatch((n as XElement).Value, @"\w")))
-				.FirstOrDefault();
+					&& Regex.IsMatch((n as XElement).Value, @"\w")));
 
 			if (node == null)
 			{
@@ -200,8 +197,7 @@ namespace River.OneMoreAddIn
 
 			// update the element's content
 			element.DescendantNodes()
-				.Where(e => e.NodeType == XmlNodeType.CDATA)
-				.First()
+				.First(e => e.NodeType == XmlNodeType.CDATA)
 				.ReplaceWith(cdata);
 
 			return word;
@@ -231,13 +227,12 @@ namespace River.OneMoreAddIn
 
 			// get text node or span element but not others like <br/>
 			// Note the use of Reverse() here so we get the last node with content
-			var node = wrapper.Nodes().Reverse().Where(n =>
+			var node = wrapper.Nodes().Reverse().FirstOrDefault(n =>
 				// text nodes that have at least one word character
 				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
 				// span elements that have at least one word character
 				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")
-					&& Regex.IsMatch((n as XElement).Value, @"\w")))
-				.FirstOrDefault();
+					&& Regex.IsMatch((n as XElement).Value, @"\w")));
 
 			if (node == null)
 			{
@@ -272,8 +267,7 @@ namespace River.OneMoreAddIn
 
 			// update the element's content
 			element.DescendantNodes()
-				.Where(e => e.NodeType == XmlNodeType.CDATA)
-				.First()
+				.First(e => e.NodeType == XmlNodeType.CDATA)
 				.ReplaceWith(cdata);
 
 			return word;

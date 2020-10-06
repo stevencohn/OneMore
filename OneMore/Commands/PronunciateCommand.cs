@@ -167,7 +167,7 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				// use the .NET Framework serializer;
+				// use the .NET Framework serializer
 				// it's not great but I don't want to pull in a nuget if I don't need to
 				var serializer = new JavaScriptSerializer();
 				var definition = serializer.Deserialize<Definition[]>(json);

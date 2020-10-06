@@ -155,8 +155,6 @@ namespace River.OneMoreAddIn
 
 			cdata.Value = wrapper.GetInnerXml();
 
-			//logger.WriteLine($"strike{(modified ? "!" : "")}: {cdata.Value}");
-
 			return modified;
 		}
 	}

@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Dialogs;
-	using System.Windows.Forms;
 
 
 	internal class EditSearchEnginesCommand : Command
@@ -19,10 +18,7 @@ namespace River.OneMoreAddIn
 		{
 			using (var dialog = new SearchEngineDialog())
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
-				{
-
-				}
+				dialog.ShowDialog(owner);
 			}
 		}
 	}

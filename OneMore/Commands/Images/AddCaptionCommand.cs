@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn
 
 	internal class AddCaptionCommand : Command
 	{
-		private Page page;
 		private XNamespace ns;
 
 
@@ -24,12 +23,11 @@ namespace River.OneMoreAddIn
 		{
 			using (var manager = new ApplicationManager())
 			{
-				page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
+				var page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
 				ns = page.Namespace;
 
 				var image = page.Root.Descendants(ns + "Image")?
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.FirstOrDefault();
+					.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
 
 				if (image != null)
 				{
@@ -96,7 +94,7 @@ namespace River.OneMoreAddIn
 			var styles = new StyleProvider().GetStyles();
 			if (styles?.Count > 0)
 			{
-				style = styles.Where(s => s.Name.Equals("Caption")).FirstOrDefault();
+				style = styles.FirstOrDefault(s => s.Name.Equals("Caption"));
 			}
 
 			// otherwise use default style

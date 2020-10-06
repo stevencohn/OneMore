@@ -14,8 +14,6 @@ namespace River.OneMoreAddIn
 	internal class AddFormulaCommand : Command
 	{
 		private ApplicationManager manager;
-		private Page page;
-		private XNamespace ns;
 
 
 		public AddFormulaCommand() : base()
@@ -27,8 +25,8 @@ namespace River.OneMoreAddIn
 		{
 			using (manager = new ApplicationManager())
 			{
-				page = new Page(manager.CurrentPage());
-				ns = page.Namespace;
+				var page = new Page(manager.CurrentPage());
+				var ns = page.Namespace;
 
 				// find all selected cells into which a formula should be inserted
 				var cells = page.Root.Descendants(ns + "Cell")?
@@ -101,15 +99,15 @@ namespace River.OneMoreAddIn
 			// or all cells must be from different rows (e.g. last col selected)
 
 			var direction = FormulaDirection.Vertical;
-			var rowsCount = rows.Count();
+			var rowsCount = rows.Count;
 			var cellsCount = cells.Count();
 
 			if (cellsCount == 1)
 			{
 				// one cell selected in last column, not last row?
 				var cell = cells.First();
-				if (cell.ElementsAfterSelf().Count() == 0 &&		// right
-					cell.Parent.ElementsAfterSelf().Count() > 0)	// below
+				if (!cell.ElementsAfterSelf().Any() &&		// right
+					cell.Parent.ElementsAfterSelf().Any())	// below
 				{
 					direction = FormulaDirection.Horizontal;
 				}

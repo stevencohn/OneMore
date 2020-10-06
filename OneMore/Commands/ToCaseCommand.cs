@@ -23,65 +23,46 @@ namespace River.OneMoreAddIn
 			{
 				var page = manager.CurrentPage();
 				var ns = page.GetNamespaceOfPrefix("one");
+				var updated = false;
 
 				var cursor = page.Descendants(ns + "T")
-					.Where(e =>
+					.FirstOrDefault(e =>
 						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
 						e.FirstNode.NodeType == XmlNodeType.CDATA &&
-						((XCData)e.FirstNode).Value.Length == 0)
-					.FirstOrDefault();
+						((XCData)e.FirstNode).Value.Length == 0);
 
 				if (cursor != null)
 				{
-					var prev = cursor.PreviousNode as XElement;
-					if ((prev != null) && prev.GetCData().EndsWithWhitespace())
+					var word = new StringBuilder();
+
+					if ((cursor.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
 					{
-						prev = null;
+						word.Append(prev.ExtractLastWord());
+						if (prev.GetCData().Value.Length == 0)
+						{
+							prev.Remove();
+						}
 					}
 
-					var next = cursor.NextNode as XElement;
-					if ((next != null) && next.GetCData().StartsWithWhitespace())
+					if ((cursor.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
 					{
-						next = null;
+						word.Append(next.ExtractFirstWord());
+						if (next.GetCData().Value.Length == 0)
+						{
+							next.Remove();
+						}
 					}
 
-					if ((prev != null) && (next != null))
+					if (word.Length > 0)
 					{
-						var word = new StringBuilder();
+						var text = upper ? word.ToString().ToUpper() : word.ToString().ToLower();
 
-						if (prev != null)
-						{
-							if (!prev.GetCData().EndsWithWhitespace())
-							{
-								word.Append(prev.ExtractLastWord());
-								if (prev.GetCData().Value.Length == 0)
-								{
-									prev.Remove();
-								}
-							}
-						}
+						cursor.DescendantNodes()
+							.OfType<XCData>()
+							.First()
+							.ReplaceWith(new XCData(text));
 
-						if (next != null)
-						{
-							if (!next.GetCData().StartsWithWhitespace())
-							{
-								word.Append(next.ExtractFirstWord());
-								if (next.GetCData().Value.Length == 0)
-								{
-									next.Remove();
-								}
-							}
-						}
-
-						if (word.Length > 0)
-						{
-							var text = upper ? word.ToString().ToUpper() : word.ToString().ToLower();
-
-							cursor.DescendantNodes()
-								.OfType<XCData>()
-								.First()
-								.ReplaceWith(new XCData(text));
-						}
+						updated = true;
 					}
 				}
 				else
@@ -110,10 +91,15 @@ namespace River.OneMoreAddIn
 									));
 							}
 						}
+
+						updated = true;
 					}
 				}
 
-				manager.UpdatePageContent(page);
+				if (updated)
+				{
+					manager.UpdatePageContent(page);
+				}
 			}
 		}
 	}

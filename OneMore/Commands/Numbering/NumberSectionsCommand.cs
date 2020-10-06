@@ -29,8 +29,7 @@ namespace River.OneMoreAddIn
 				ns = notebooks.GetNamespaceOfPrefix("one");
 
 				var notebook = notebooks.Elements(ns + "Notebook")
-					.Where(e => e.Attribute("isCurrentlyViewed") != null)
-					.FirstOrDefault();
+					.FirstOrDefault(e => e.Attribute("isCurrentlyViewed") != null);
 
 				if (notebook != null)
 				{
@@ -53,7 +52,7 @@ namespace River.OneMoreAddIn
 			{
 				var section = sections[i];
 
-				if (section.ReadAttributeValue("locked", out bool locked, false) == true)
+				if (section.ReadAttributeValue("locked", out bool locked, false))
 				{
 					continue;
 				}

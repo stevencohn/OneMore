@@ -25,10 +25,25 @@ namespace River.OneMoreAddIn
 		protected IWin32Window owner;
 		protected List<IDisposable> trash;
 
-		public ILogger Logger { set => logger = value; }
-		public IRibbonUI Ribbon { set => ribbon = value; }
-		public IWin32Window Owner { set => owner = value; }
-		public List<IDisposable> Trash { set => trash = value; }
+		public void SetLogger(ILogger value)
+		{
+			logger = value;
+		}
+
+		public void SetRibbon(IRibbonUI value)
+		{
+			ribbon = value;
+		}
+
+		public void SetOwner(IWin32Window value)
+		{
+			owner = value;
+		}
+
+		public void SetTrash(List<IDisposable> value)
+		{
+			trash = value;
+		}
 	}
 
 
@@ -49,13 +64,11 @@ namespace River.OneMoreAddIn
 
 		public T GetCommand<T> () where T : Command, new()
 		{
-			var command = new T()
-			{
-				Logger = logger,
-				Ribbon = ribbon,
-				Owner = owner,
-				Trash = trash
-			};
+			var command = new T();
+			command.SetLogger(logger);
+			command.SetRibbon(ribbon);
+			command.SetOwner(owner);
+			command.SetTrash(trash);
 
 			return command;
 		}

@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn
 				var images = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				if ((images == null) || (images.Count() == 0))
+				if ((images == null) || !images.Any())
 				{
 					images = page.Root.Descendants(ns + "Image");
 				}
