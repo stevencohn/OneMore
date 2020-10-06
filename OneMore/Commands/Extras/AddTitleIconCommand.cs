@@ -47,40 +47,37 @@ namespace River.OneMoreAddIn
 				.Elements(page.Namespace + "OE")?.Elements(page.Namespace + "T")
 				.FirstOrDefault();
 
-			if (title != null)
+			if (title != null && title.FirstNode?.NodeType == XmlNodeType.CDATA)
 			{
-				if (title.FirstNode?.NodeType == XmlNodeType.CDATA)
+				var wrapper = XElement.Parse("<x>" + title.FirstNode.Parent.Value + "</x>");
+				var wns = wrapper.GetDefaultNamespace();
+
+				var emojii =
+					(from e in wrapper.Elements(wns + "span")
+					 where e.Attributes("style").Any(a => a.Value.Contains("Segoe UI Emoji"))
+					 select e).FirstOrDefault();
+
+				if (emojii != null)
 				{
-					var wrapper = XElement.Parse("<x>" + title.FirstNode.Parent.Value + "</x>");
-					var wns = wrapper.GetDefaultNamespace();
+					emojii.Value = string.Join(string.Empty, codes) + emojii.Value;
+				}
+				else
+				{
+					wrapper.AddFirst(new XElement("span",
+						new XAttribute("style", "font-family:'Segoe UI Emoji';font-size:16pt;"),
+						string.Join(string.Empty, codes)
+						));
+				}
 
-					var emojii =
-						(from e in wrapper.Elements(wns + "span")
-						 where e.Attributes("style").Any(a => a.Value.Contains("Segoe UI Emoji"))
-						 select e).FirstOrDefault();
+				var decoded = string.Concat(wrapper.Nodes()
+					.Select(x => x.ToString()).ToArray())
+					.Replace("&amp;", "&");
 
-					if (emojii != null)
-					{
-						emojii.Value = string.Join(string.Empty, codes) + emojii.Value;
-					}
-					else
-					{
-						wrapper.AddFirst(new XElement("span",
-							new XAttribute("style", "font-family:'Segoe UI Emoji';font-size:16pt;"),
-							string.Join(string.Empty, codes)
-							));
-					}
+				title.FirstNode.ReplaceWith(new XCData(decoded));
 
-					var decoded = string.Concat(wrapper.Nodes()
-						.Select(x => x.ToString()).ToArray())
-						.Replace("&amp;", "&");
-
-					title.FirstNode.ReplaceWith(new XCData(decoded));
-
-					using (var manager = new ApplicationManager())
-					{
-						manager.UpdatePageContent(page.Root);
-					}
+				using (var manager = new ApplicationManager())
+				{
+					manager.UpdatePageContent(page.Root);
 				}
 			}
 		}

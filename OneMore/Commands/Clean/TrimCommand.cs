@@ -31,13 +31,11 @@ namespace River.OneMoreAddIn
 
 				if (selections != null)
 				{
-					if (selections.Count() == 1)
+					if (selections.Count() == 1 && 
+						selections.First().GetCData().Value.Length == 0)
 					{
-						if (selections.First().GetCData().Value.Length == 0)
-						{
-							// if zero-length selection then select all content
-							selections = page.Elements(ns + "Outline").Descendants(ns + "T");
-						}
+						// if zero-length selection then select all content
+						selections = page.Elements(ns + "Outline").Descendants(ns + "T");
 					}
 
 					int count = 0;

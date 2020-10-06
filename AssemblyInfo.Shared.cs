@@ -6,7 +6,8 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-#pragma warning disable CS0436 // Type redefined (AssemblyInfo)
+#pragma warning disable CS0436	// Type redefined (AssemblyInfo)
+#pragma warning disable S3903	// Types should be defined in named namespaces
 
 [assembly: AssemblyTitle(AssemblyInfo.Title)]
 [assembly: AssemblyDescription(AssemblyInfo.Product)]

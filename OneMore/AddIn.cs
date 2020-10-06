@@ -42,7 +42,9 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public AddIn()
 		{
+#pragma warning disable S125 // Sections of code should not be commented out
 			//System.Diagnostics.Debugger.Launch();
+#pragma warning restore S125
 
 			logger = Logger.Current;
 			trash = new List<IDisposable>();
@@ -194,8 +196,10 @@ namespace River.OneMoreAddIn
 			ribbon = null;
 			trash = null;
 
+#pragma warning disable S1215 // "GC.Collect" should not be called
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
+#pragma warning restore S1215
 
 			var stopTimer = new Timer();
 			stopTimer.Elapsed += StopTimer_Elapsed;
@@ -227,6 +231,7 @@ namespace River.OneMoreAddIn
 			}
 			catch
 			{
+				// we're leaving anyway, so fuhgettaboutit
 			}
 		}
 	}

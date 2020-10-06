@@ -240,8 +240,7 @@ namespace River.OneMoreAddIn
 				if (tagIndex != null)
 				{
 					tag = element.Elements(ns + "Tag")
-						.Where(e => e.Attribute("index").Value == tagIndex)
-						.FirstOrDefault();
+						.FirstOrDefault(e => e.Attribute("index").Value == tagIndex);
 
 					if (tag == null)
 					{

@@ -112,33 +112,30 @@ namespace River.OneMoreAddIn
 			if (a != null)
 			{
 				var href = a.Attribute("href")?.Value;
-				if (href != null)
+				if (href != null && href == a.Value)
 				{
-					if (href == a.Value)
+					string title;
+					var watch = new Stopwatch();
+					watch.Start();
+
+					try
 					{
-						string title;
-						var watch = new Stopwatch();
-						watch.Start();
+						title = FetchPageTitle(href);
+						watch.Stop();
+					}
+					catch
+					{
+						watch.Stop();
+						logger.WriteLine($"Cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
+						return 0;
+					}
 
-						try
-						{
-							title = FetchPageTitle(href);
-							watch.Stop();
-						}
-						catch
-						{
-							watch.Stop();
-							logger.WriteLine($"Cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
-							return 0;
-						}
-
-						if (title != null)
-						{
-							logger.WriteLine($"Resolved {href} in {watch.ElapsedMilliseconds}ms");
-							a.Value = HttpUtility.HtmlDecode(title);
-							cdata.ReplaceWith(wrapper.GetInnerXml());
-							return 1;
-						}
+					if (title != null)
+					{
+						logger.WriteLine($"Resolved {href} in {watch.ElapsedMilliseconds}ms");
+						a.Value = HttpUtility.HtmlDecode(title);
+						cdata.ReplaceWith(wrapper.GetInnerXml());
+						return 1;
 					}
 				}
 			}

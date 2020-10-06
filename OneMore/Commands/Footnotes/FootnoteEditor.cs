@@ -50,8 +50,7 @@ namespace River.OneMoreAddIn
 			var element = page.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				.LastOrDefault();
+				.LastOrDefault(e => e.Attribute("selected")?.Value == "all");
 
 			if (element == null)
 			{
@@ -97,10 +96,9 @@ namespace River.OneMoreAddIn
 			divider = page.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "Meta")
-				.Where(e =>
+				.FirstOrDefault(e =>
 					e.Attribute("name").Value.Equals("omfootnotes") &&
-					e.Attribute("content").Value.Equals("divider"))
-				.FirstOrDefault();
+					e.Attribute("content").Value.Equals("divider"));
 
 			if (divider != null)
 			{
@@ -177,8 +175,7 @@ namespace River.OneMoreAddIn
 			// find last footnote (sibling) element after which new note is to be added
 			var last = divider.NodesAfterSelf()
 				.OfType<XElement>().Elements(ns + "Meta")
-				.Where(e => e.Attribute("name").Value.Equals("omfootnote"))
-				.LastOrDefault();
+				.LastOrDefault(e => e.Attribute("name").Value.Equals("omfootnote"));
 
 			// divider is a valid precedesor sibling; otherwise last's Parent
 			last = last == null ? divider : last.Parent;
@@ -279,8 +276,7 @@ namespace River.OneMoreAddIn
 			var element = page.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				.LastOrDefault();
+				.LastOrDefault(e => e.Attribute("selected")?.Value == "all");
 
 			if (element != null)
 			{
@@ -351,8 +347,7 @@ namespace River.OneMoreAddIn
 			for (int i = 0, label = 1; i < refs.Count; i++, label++)
 			{
 				var note = notes
-					.Where(n => n.Label == refs[i].Label)
-					.FirstOrDefault();
+					.FirstOrDefault(n => n.Label == refs[i].Label);
 
 				if (note == null)
 				{
@@ -495,8 +490,7 @@ namespace River.OneMoreAddIn
 				var parent = selection.CData.Parent.Parent; // should be a one:OE
 
 				var found = parent.Elements(ns + "Meta")
-					.Where(e => e.Attributes("name").Any(a => a.Value.Equals("omfootnote")))
-					.Any();
+					.Any(e => e.Attributes("name").Any(a => a.Value.Equals("omfootnote")));
 
 				if (found)
 				{
@@ -509,8 +503,9 @@ namespace River.OneMoreAddIn
 						.Where(e => e.Attributes("selected").Any())
 						.DescendantNodes()
 						.OfType<XCData>()
-						.Where(c => Regex.IsMatch(c.Value, $@"vertical-align:super[;'""].*>\[{selection.Label}\]</span>"))
-						.FirstOrDefault();
+						.FirstOrDefault(c => Regex.IsMatch(
+							c.Value,
+							$@"vertical-align:super[;'""].*>\[{selection.Label}\]</span>"));
 
 					if (nref != null)
 					{

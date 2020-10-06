@@ -126,13 +126,10 @@ namespace River.OneMoreAddIn
 					if (element != null)
 					{
 						var attr = element.Attribute("fontSize");
-						if (attr != null)
+						if (attr != null && double.TryParse(attr.Value, out var size))
 						{
-							if (double.TryParse(attr.Value, out var size))
-							{
-								attr.Value = (size + delta).ToString("#0.0");
-								count++;
-							}
+							attr.Value = (size + delta).ToString("#0.0");
+							count++;
 						}
 					}
 				}
@@ -249,7 +246,7 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				if (properties.ContainsKey("font-size") == true)
+				if (properties.ContainsKey("font-size"))
 				{
 					properties["font-size"] =
 						(ParseFontSize(properties["font-size"]) + delta).ToString("#0.0") + "pt";

@@ -4,6 +4,7 @@
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
+#pragma warning disable S125		// Sections of code should not be commented out
 
 namespace River.OneMoreAddIn
 {
@@ -14,8 +15,8 @@ namespace River.OneMoreAddIn
 
 	public partial class AddIn
 	{
-		private static bool bodyContext = false;
-		private static bool imageSelected = false;
+		private bool bodyContext = false;
+		private bool imageSelected = false;
 
 
 		/// <summary>

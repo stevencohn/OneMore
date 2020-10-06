@@ -4,6 +4,7 @@
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
+#pragma warning disable S125		// Sections of code should not be commented out
 
 namespace River.OneMoreAddIn
 {
@@ -48,8 +49,7 @@ namespace River.OneMoreAddIn
 				if (menu != null)
 				{
 					var separator = menu.Elements(ns + "menuSeparator")
-						.Where(e => e.Attribute("id").Value == "ctxSeparator")
-						.FirstOrDefault();
+						.FirstOrDefault(e => e.Attribute("id").Value == "ctxSeparator");
 
 					XElement content = null;
 
@@ -83,8 +83,8 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				//logger.WriteLine(root.ToString());
 
+				//logger.WriteLine(root.ToString());
 				return root.ToString(SaveOptions.DisableFormatting);
 			}
 			catch (Exception exc)
@@ -240,7 +240,7 @@ namespace River.OneMoreAddIn
 		{
 			if (engines?.Count > 0)
 			{
-				var engine = engines.Where(e => e.Uri == control.Tag).FirstOrDefault();
+				var engine = engines.FirstOrDefault(e => e.Uri == control.Tag);
 				if (engine?.Image != null)
 				{
 					return ((Bitmap)engine.Image).GetReadOnlyStream();

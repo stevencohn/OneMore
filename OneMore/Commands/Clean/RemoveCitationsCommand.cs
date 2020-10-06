@@ -28,8 +28,7 @@ namespace River.OneMoreAddIn
 					var ns = page.Namespace;
 
 					var style = page.GetQuickStyles()
-						.Where(s => s.Name == "cite")
-						.FirstOrDefault();
+						.FirstOrDefault(s => s.Name == "cite");
 
 					if (style == null)
 					{

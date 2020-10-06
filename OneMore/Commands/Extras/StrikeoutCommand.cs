@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn
 				var elements = page.Root.Descendants(page.Namespace + "Tag")
 					.Where(e => indexes.Contains(e.Attribute("index").Value));
 
-				if (elements == null || elements.Count() == 0)
+				if (elements == null || !elements.Any())
 				{
 					return;
 				}
@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn
 		{
 			var modified = false;
 			var wrapper = cdata.GetWrapper();
-			var span = wrapper.Elements("span").Where(e => e.Attribute("style") != null).FirstOrDefault();
+			var span = wrapper.Elements("span").FirstOrDefault(e => e.Attribute("style") != null);
 
 			if (completed)
 			{

@@ -4,6 +4,7 @@
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
+#pragma warning disable S1135		// Track uses of "TODO" tags
 
 namespace River.OneMoreAddIn
 {

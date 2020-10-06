@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn
 					.Where(o => o.selected == "all" || o.selected == "partial")
 					.Select(o => o.cell);
 
-				if (cells != null && cells.Count() > 0)
+				if (cells != null && cells.Any())
 				{
 					var calculator = new Calculator(ns, 
 						FormulaDirection.Vertical, FormulaFunction.Sum, FormulaFormat.Number);

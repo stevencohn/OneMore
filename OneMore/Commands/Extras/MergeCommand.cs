@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn
 {
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
@@ -52,8 +51,7 @@ namespace River.OneMoreAddIn
 
 				var active =
 					section.Elements(ns + "Page")
-					.Where(e => e.Attributes("isCurrentlyViewed").Any(a => a.Value.Equals("true")))
-					.FirstOrDefault();
+					.FirstOrDefault(e => e.Attributes("isCurrentlyViewed").Any(a => a.Value.Equals("true")));
 
 				if (active == null)
 				{
@@ -64,7 +62,7 @@ namespace River.OneMoreAddIn
 				var selections =
 					section.Elements(ns + "Page")
 					.Where(e =>
-						e.Attributes("isCurrentlyViewed").Count() == 0 &&
+						!e.Attributes("isCurrentlyViewed").Any() &&
 						e.Attributes("selected").Any(a => a.Value.Equals("all")));
 
 				if (active == null)
@@ -100,7 +98,7 @@ namespace River.OneMoreAddIn
 					var styles = MergeQuickStyles(childPage);
 
 					var childOutlines = childPage.Elements(ns + "Outline");
-					if ((childOutlines == null || childOutlines.Count() == 0))
+					if (childOutlines == null || !childOutlines.Any())
 					{
 						break;
 					}
