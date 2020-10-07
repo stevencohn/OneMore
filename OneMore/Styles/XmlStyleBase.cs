@@ -48,12 +48,12 @@ namespace River.OneMoreAddIn
 		protected string Namespace;
 
 
-		public XmlStyleBase() : base()
+		protected XmlStyleBase() : base()
 		{
 		}
 
 
-		public XmlStyleBase(StyleBase style) : base(style)
+		protected XmlStyleBase(StyleBase style) : base(style)
 		{
 		}
 

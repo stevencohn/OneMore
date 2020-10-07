@@ -57,15 +57,15 @@ namespace River.OneMoreAddIn
 			this.y = y;
 		}
 
-		protected override IntPtr HookProc(IntPtr handle, int msg, IntPtr wparam, IntPtr lparam)
+		protected override IntPtr HookProc(IntPtr hWnd, int msg, IntPtr wparam, IntPtr lparam)
 		{
 			// must call base HookProc before chaning window pos or SetWindowPos won't work
-			var hook = base.HookProc(handle, msg, wparam, lparam);
+			var hook = base.HookProc(hWnd, msg, wparam, lparam);
 
 			if ((msg == WM_INITDIALOG) && once)
 			{
-				SetWindowText(handle, title);
-				SetWindowPos(handle, IntPtr.Zero, x, y, 0, 0, UFLAGS);
+				SetWindowText(hWnd, title);
+				SetWindowPos(hWnd, IntPtr.Zero, x, y, 0, 0, UFLAGS);
 				once = false;
 			}
 

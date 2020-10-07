@@ -168,10 +168,9 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline)
+				if (isNewline && !stdio)
 				{
-					if (!stdio)
-						writer.Write(MakeHeader());
+					writer.Write(MakeHeader());
 				}
 
 				if (stdio)
@@ -204,10 +203,9 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline)
+				if (isNewline && !stdio)
 				{
-					if (!stdio)
-						writer.Write(MakeHeader());
+					writer.Write(MakeHeader());
 				}
 
 				if (stdio)
@@ -229,10 +227,9 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline)
+				if (isNewline && !stdio)
 				{
-					if (!stdio)
-						writer.Write(MakeHeader());
+					writer.Write(MakeHeader());
 				}
 
 				if (stdio)
