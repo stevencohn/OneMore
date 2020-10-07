@@ -146,7 +146,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Save(List<Style> styles, string path = null)
+		public static void Save(List<Style> styles, string path = null)
 		{
 			Save(styles.ConvertAll(e => new StyleRecord(e)).OrderBy(e => e.Index), path);
 		}

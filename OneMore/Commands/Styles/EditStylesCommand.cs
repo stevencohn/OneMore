@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 					{
 						// save styles to remove delete items and preserve ordering
 						styles = dialog.GetStyles();
-						provider.Save(styles);
+						StyleProvider.Save(styles);
 						ribbon.Invalidate();
 					}
 				}

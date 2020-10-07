@@ -663,7 +663,7 @@ namespace River.OneMoreAddIn
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					new StyleProvider().Save(GetStyles(), dialog.FileName);
+					StyleProvider.Save(GetStyles(), dialog.FileName);
 				}
 			}
 		}

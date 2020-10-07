@@ -117,10 +117,14 @@ namespace River.OneMoreAddIn
 			if ((sizef.Width) > width)
 			{
 				text = text.Substring(0, text.Length - 1);
-				while (((sizef = graphics.MeasureString(text + "...", font)).Width) > width)
+				sizef = graphics.MeasureString(text + "...", font);
+
+				while (sizef.Width > width)
 				{
 					text = text.Substring(0, text.Length - 1);
 					if (text.Length <= 3) break;
+
+					sizef = graphics.MeasureString(text + "...", font);
 				}
 
 				text += "...";
