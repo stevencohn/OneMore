@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Models
 {
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Runtime.InteropServices;
 	using System.Xml.Linq;
 
 
@@ -108,8 +107,7 @@ namespace River.OneMoreAddIn.Models
 			rows.Add(row);
 
 			var last = columns.NodesAfterSelf().OfType<XElement>()
-				.Where(e => e.Name.LocalName == "Row")
-				.LastOrDefault();
+				.LastOrDefault(e => e.Name.LocalName == "Row");
 
 			if (last == null)
 			{

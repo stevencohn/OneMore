@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void InsertCodeBlock()
+		private static void InsertCodeBlock()
 		{
 			using (var manager = new ApplicationManager())
 			{

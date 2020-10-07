@@ -245,7 +245,7 @@ namespace River.OneMoreAddIn.Dialogs
 		/// <returns></returns>
 		public Bitmap GetGlyph(int symbol)
 		{
-			active = zones.Where(z => z.Symbol == symbol).FirstOrDefault();
+			active = zones.FirstOrDefault(z => z.Symbol == symbol);
 			if (active != null)
 			{
 				return GetGlyph();
@@ -260,10 +260,9 @@ namespace River.OneMoreAddIn.Dialogs
 			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);
 			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
 
-			var zone = zones.Where(z =>
+			var zone = zones.FirstOrDefault(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
-				mouseY >= z.Bounds.Top && mouseY <= z.Bounds.Bottom)
-				.FirstOrDefault();
+				mouseY >= z.Bounds.Top && mouseY <= z.Bounds.Bottom);
 
 			if (zone != null)
 			{
@@ -294,10 +293,9 @@ namespace River.OneMoreAddIn.Dialogs
 			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);
 			var mouseY = yScalingFactor == 0.0 ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
 
-			var zone = zones.Where(z =>
+			var zone = zones.FirstOrDefault(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
-				mouseY >= z.Bounds.Top && mouseY <= z.Bounds.Bottom)
-				.FirstOrDefault();
+				mouseY >= z.Bounds.Top && mouseY <= z.Bounds.Bottom);
 
 			if (zone != null)
 			{
@@ -322,7 +320,6 @@ namespace River.OneMoreAddIn.Dialogs
 			if (e.KeyCode == Keys.Escape)
 			{
 				active = null;
-				graphics.Dispose();
 
 				DialogResult = DialogResult.Cancel;
 				Close();

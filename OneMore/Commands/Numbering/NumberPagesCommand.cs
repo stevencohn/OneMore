@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string BuildPrefix(int counter, bool numeric, int level, string prefix)
+		private static string BuildPrefix(int counter, bool numeric, int level, string prefix)
 		{
 			if (!numeric)
 			{

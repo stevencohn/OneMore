@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn
 							var brush = pageColor.GetBrightness() <= 0.5 ? Brushes.White : Brushes.Black;
 
 							// centered horizontally at top of tile
-							graphics.DrawString(name, font, brush, (tileWidth - nameSize.Width) / 2, 3);
+							graphics.DrawString(name, font, brush, (tileWidth - nameSize.Width) / 2f, 3f);
 						}
 
 						// draw sample...
@@ -110,7 +110,8 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string FitText(string text, int width, Graphics graphics, Font font, out Size size)
+		private static string FitText(
+			string text, int width, Graphics graphics, Font font, out Size size)
 		{
 			var sizef = graphics.MeasureString(text, font);
 			if ((sizef.Width) > width)

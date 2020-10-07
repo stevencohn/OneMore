@@ -11,6 +11,7 @@
 		{
 			if (disposing && (components != null))
 			{
+				manager?.Dispose();
 				components.Dispose();
 			}
 			base.Dispose(disposing);
@@ -403,7 +404,6 @@
 			this.Padding = new System.Windows.Forms.Padding(8);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "OneMore XML";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.XmlDialog_FormClosing);
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.tabs.ResumeLayout(false);
 			this.pageTab.ResumeLayout(false);

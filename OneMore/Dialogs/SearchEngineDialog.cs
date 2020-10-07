@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		private void RefreshImage(SearchEngine engine)
+		private static void RefreshImage(SearchEngine engine)
 		{
 			ServicePointManager.SecurityProtocol =
 				SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;

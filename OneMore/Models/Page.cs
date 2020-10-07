@@ -87,8 +87,7 @@ namespace River.OneMoreAddIn.Models
 		public void AddNextParagraph(XElement content)
 		{
 			var current = Root.Descendants(Namespace + "OE")
-				.Where(e => e.Elements(Namespace + "T").Attributes("selected").Any(a => a.Value == "all"))
-				.LastOrDefault();
+				.LastOrDefault(e => e.Elements(Namespace + "T").Attributes("selected").Any(a => a.Value == "all"));
 
 			if (current != null)
 			{

@@ -6,12 +6,11 @@
 
 namespace River.OneMoreAddIn
 {
+	using Microsoft.Office.Interop.OneNote;
 	using System;
-	using System.Collections.Specialized;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Microsoft.Office.Interop.OneNote;
 
 
 	/// <summary>
@@ -82,11 +81,6 @@ namespace River.OneMoreAddIn
 			findBox.Focus();
 		}
 
-
-		private void XmlDialog_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			manager?.Dispose();
-		}
 
 		private void Close(object sender, EventArgs e)
 		{
@@ -182,7 +176,7 @@ namespace River.OneMoreAddIn
 
 		protected override bool ProcessDialogKey(Keys keyData)
 		{
-			if (keyData == (Keys)(Keys.F | Keys.Control))
+			if (keyData == (Keys.F | Keys.Control))
 			{
 				findBox.SelectAll();
 				findBox.Focus();

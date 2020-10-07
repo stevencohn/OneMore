@@ -73,7 +73,7 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 		/// <summary>
 		/// Infer styles from the context at the position of the text cursor on the current page.
 		/// </summary>
-		private Style CollectStyleFromContext()
+		private static Style CollectStyleFromContext()
 		{
 			// infer contextual style
 

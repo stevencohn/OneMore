@@ -145,7 +145,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private XElement MakeMenuRoot()
+		private static XElement MakeMenuRoot()
 		{
 			var root = new XElement(ns + "menu",
 				new XElement(ns + "button",

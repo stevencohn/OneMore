@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void InsertStatus(StatusColor statusColor)
+		private static void InsertStatus(StatusColor statusColor)
 		{
 			using (var manager = new ApplicationManager())
 			{

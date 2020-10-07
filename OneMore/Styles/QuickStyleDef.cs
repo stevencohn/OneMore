@@ -6,7 +6,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
 	using System.Xml.Linq;
 	using System.Xml.Serialization;
@@ -18,7 +17,7 @@ namespace River.OneMoreAddIn
 	/// only create an element for a style if it is used on the page.
 	/// </summary>
 	[XmlRoot("QuickStyleDef")]
-	public class QuickStyleDef : XmlStyleBase, IXmlSerializable
+	public class QuickStyleDef : XmlStyleBase
 	{
 
 		public QuickStyleDef() : base()

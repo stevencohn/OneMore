@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn
 	internal partial class StyleDialog : Form
 	{
 		private GraphicStyle selection;
-		private Color pageColor;
+		private static Color pageColor;
 		private bool allowEvents;
 
 
@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn
 			Logger.DesignMode = DesignMode;
 
 			allowEvents = false;
-			this.pageColor = pageColor;
+			StyleDialog.pageColor = pageColor;
 
 			Text = "New Custom Style";
 			mainTools.Visible = false;
@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn
 				selection = new GraphicStyle(styles[0], false);
 			}
 
-			this.pageColor = pageColor;
+			StyleDialog.pageColor = pageColor;
 		}
 
 
@@ -589,7 +589,9 @@ namespace River.OneMoreAddIn
 					namesBox.Items.Clear();
 					namesBox.Items.AddRange(items);
 
-					var selected = namesBox.Items.Cast<GraphicStyle>().Where(s => s.Name.Equals(name)).FirstOrDefault();
+					var selected = namesBox.Items.Cast<GraphicStyle>()
+						.FirstOrDefault(s => s.Name.Equals(name));
+
 					if (selected != null)
 					{
 						namesBox.SelectedItem = selected;

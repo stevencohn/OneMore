@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Dialogs
 	internal class LocalizableForm : Form, IOneMoreWindow
 	{
 
-		public bool NeedsLocalizing()
+		public static bool NeedsLocalizing()
 		{
 			return Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName != "en";
 		}

@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn
 			return 0;
 		}
 
-		private void Replace(XElement wrapper, int searchIndex, int searchLength, string replace)
+		private static void Replace(XElement wrapper, int searchIndex, int searchLength, string replace)
 		{
 			int index = 0;
 			int searchEnd = searchIndex + searchLength;

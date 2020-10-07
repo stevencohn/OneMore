@@ -262,7 +262,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private double ParseFontSize(string size)
+		private static double ParseFontSize(string size)
 		{
 			var match = Regex.Match(size, @"^([0-9]+(?:\.[0-9]+)?)(?:pt){0,1}");
 			if (match.Success)

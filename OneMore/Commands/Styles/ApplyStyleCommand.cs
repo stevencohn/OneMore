@@ -230,7 +230,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void ApplySpacing(XElement element, string name, string space)
+		private static void ApplySpacing(XElement element, string name, string space)
 		{
 			var attr = element.Attribute(name);
 			if (attr == null)

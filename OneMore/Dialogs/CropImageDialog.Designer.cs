@@ -15,6 +15,8 @@
 		{
 			if (disposing && (components != null))
 			{
+				selectionRegion?.Dispose();
+				selectionPath?.Dispose();
 				components.Dispose();
 			}
 			base.Dispose(disposing);

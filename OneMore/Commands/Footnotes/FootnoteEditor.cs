@@ -573,7 +573,7 @@ namespace River.OneMoreAddIn
 		<a href="..."><span style='vertical-align:super'>[2]</span></a>
 		*/
 
-		private void RemoveReference(XCData data, int label)
+		private static void RemoveReference(XCData data, int label)
 		{
 			var wrapper = data.GetWrapper();
 

@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable IDE1006 // Naming Styles
+
 namespace River.OneMoreAddIn.Helpers.Updater
 {
     internal class GitAsset

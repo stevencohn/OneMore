@@ -38,14 +38,12 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("SortCommand.Execute()");
 
-			var result = DialogResult.None;
+			DialogResult result;
 
 			using (var dialog = new SortDialog())
 			{
 				result = dialog.ShowDialog(owner);
-				dialog.Focus();
 
-				result = dialog.DialogResult;
 				scope = dialog.Scope;
 				sorting = dialog.Soring;
 				direction = dialog.Direction;
@@ -93,7 +91,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private XElement SortPages(
+		private static XElement SortPages(
 			XElement root, SortDialog.Sortings sorting, SortDialog.Directions direction)
 		{
 			/*
@@ -164,7 +162,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private XElement SortSections(
+		private static XElement SortSections(
 			XElement root, SortDialog.Sortings sorting, SortDialog.Directions direction, bool pinNotes)
 		{
 			/*
@@ -264,7 +262,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private XElement SortNotebooks(
+		private static XElement SortNotebooks(
 			XElement root, SortDialog.Sortings sorting, SortDialog.Directions direction)
 		{
 			/*

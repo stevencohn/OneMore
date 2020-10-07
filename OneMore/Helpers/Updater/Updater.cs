@@ -138,7 +138,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 		}
 
 
-		private string GetProductCode()
+		private static string GetProductCode()
 		{
 			string code = null;
 

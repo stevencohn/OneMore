@@ -12,8 +12,6 @@ namespace River.OneMoreAddIn
 
 	internal class InsertExpandCommand : Command
 	{
-		private const int LineCharCount = 100;
-
 
 		public InsertExpandCommand() : base()
 		{
@@ -33,7 +31,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void InsertExpand()
+		private static void InsertExpand()
 		{
 			using (var manager = new ApplicationManager())
 			{

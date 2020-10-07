@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void RebuildClipboard(string text)
+		private static void RebuildClipboard(string text)
 		{
 			var dob = new DataObject();
 
@@ -122,7 +122,7 @@ namespace River.OneMoreAddIn
 
 
 		// called from STA context
-		private string ConvertRtfToXaml(string rtf)
+		private static string ConvertRtfToXaml(string rtf)
 		{
 			if (string.IsNullOrEmpty(rtf))
 			{
@@ -250,7 +250,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string Untabify(string text)
+		private static string Untabify(string text)
 		{
 
 			if (text == null)
@@ -295,7 +295,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string TranslateElementName(string xname, XmlReader reader = null)
+		private static string TranslateElementName(string xname, XmlReader reader = null)
 		{
 			string name;
 
@@ -521,7 +521,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string ConvertSize(string size, string units = null)
+		private static string ConvertSize(string size, string units = null)
 		{
 			var parts = size.Split(',');
 
@@ -553,7 +553,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public string AddHtmlPreamble(string html)
+		public static string AddHtmlPreamble(string html)
 		{
 			/*
 			 * https://docs.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format

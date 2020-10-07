@@ -220,6 +220,7 @@
     <Compile Include="Dialogs\TimestampDialog.Designer.cs">
       <DependentUpon>TimestampDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\GalleryTileFactory.cs" />
     <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
     <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />

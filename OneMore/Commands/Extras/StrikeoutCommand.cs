@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private bool RestyleText(XCData cdata, bool completed)
+		private static bool RestyleText(XCData cdata, bool completed)
 		{
 			var modified = false;
 			var wrapper = cdata.GetWrapper();

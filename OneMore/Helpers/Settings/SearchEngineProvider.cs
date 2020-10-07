@@ -81,8 +81,7 @@ namespace River.OneMoreAddIn.Helpers.Settings
 			public override IDictionary<string, object> Serialize(
 				object obj, JavaScriptSerializer serializer)
 			{
-				var engines = obj as List<SearchEngine>;
-				if (engines != null)
+				if (obj is List<SearchEngine> engines)
 				{
 					var result = new Dictionary<string, object>();
 					var list = new ArrayList();

@@ -62,8 +62,7 @@ namespace River.OneMoreAddIn
 
 					var elements = page.Elements(ns + "Outline").Descendants(ns + "T")
 						.Select(e => e.Parent)
-						.Distinct()
-						.Cast<XElement>();
+						.Distinct();
 
 					if (elements.Any())
 					{

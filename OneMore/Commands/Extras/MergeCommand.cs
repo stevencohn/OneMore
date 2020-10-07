@@ -221,7 +221,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void AdjustQuickStyles(List<QuickRef> styles, XElement childOutline)
+		private static void AdjustQuickStyles(List<QuickRef> styles, XElement childOutline)
 		{
 			// need to reverse sort the styles so the logic doesn't continually overwrite
 			// subsequent index references

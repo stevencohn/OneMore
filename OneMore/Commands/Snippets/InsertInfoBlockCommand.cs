@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void InsertInfoBlock(bool warning)
+		private static void InsertInfoBlock(bool warning)
 		{
 			using (var manager = new ApplicationManager())
 			{

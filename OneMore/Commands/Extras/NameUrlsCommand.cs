@@ -145,7 +145,7 @@ namespace River.OneMoreAddIn
 			"Minor Code Smell",
 			"S1643:Strings should not be concatenated using '+' in a loop",
 			Justification = "Need string functions that are not available in StringBuilder")]
-		private string FetchPageTitle(string url)
+		private static string FetchPageTitle(string url)
 		{
 			string title = null;
 

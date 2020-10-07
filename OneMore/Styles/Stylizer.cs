@@ -172,11 +172,11 @@ namespace River.OneMoreAddIn
 				}
 				else if (clearing == Clearing.Gray)
 				{
-					var css = ClearGrays(new Style(attr.Value));
-					if (!string.IsNullOrEmpty(css))
+					var colorfulCss = ClearGrays(new Style(attr.Value));
+					if (!string.IsNullOrEmpty(colorfulCss))
 					{
 						// found explicit colors
-						attr.Value = css;
+						attr.Value = colorfulCss;
 					}
 					else
 					{
@@ -242,7 +242,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string ClearGrays(Style style)
+		private static string ClearGrays(Style style)
 		{
 			var builder = new StringBuilder();
 

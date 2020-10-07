@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn
 			return applied;
 		}
 
-		private Style FindStyle(List<Style> styles, string name)
+		private static Style FindStyle(List<Style> styles, string name)
 		{
 			Style style = null;
 
@@ -218,7 +218,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void ApplyToListItems(IEnumerable<XElement> elements, Style style, bool withFamily)
+		private static void ApplyToListItems(IEnumerable<XElement> elements, Style style, bool withFamily)
 		{
 			foreach (var element in elements)
 			{
@@ -277,7 +277,7 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		private void ColorizeElement(XElement element, string color)
+		private static void ColorizeElement(XElement element, string color)
 		{
 			var attr = element.Attribute("style");
 			if (attr != null)

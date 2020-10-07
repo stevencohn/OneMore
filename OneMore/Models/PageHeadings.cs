@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Models
 			var blocks =
 				from e in Root.Elements(Namespace + "Outline").Descendants(Namespace + "OE")
 				let c = e.Elements(Namespace + "T").DescendantNodes()
-					.Where(p => p.NodeType == XmlNodeType.CDATA).FirstOrDefault() as XCData
+					.FirstOrDefault(p => p.NodeType == XmlNodeType.CDATA) as XCData
 				where c?.Value.Length > 0 && !Regex.IsMatch(c.Value, @"[\s\b]+<span[\s\b]+style=") &&
 					(e.Attribute("quickStyleIndex") != null || e.Attribute("style") != null)
 				select e;

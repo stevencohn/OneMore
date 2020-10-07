@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private Size GetOriginalSize(XElement image, XNamespace ns)
+		private static Size GetOriginalSize(XElement image, XNamespace ns)
 		{
 			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
 			using (var stream = new MemoryStream(data, 0, data.Length))

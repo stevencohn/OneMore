@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private Style GetStyle()
+		private static Style GetStyle()
 		{
 			Style style = null;
 

@@ -52,11 +52,10 @@ namespace River.OneMoreAddIn
 				var ns = page.GetNamespaceOfPrefix("one");
 
 				var element = page.Descendants(ns + "T")
-					.Where(e =>
+					.FirstOrDefault(e =>
 						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
 						e.FirstNode.NodeType == XmlNodeType.CDATA &&
-						((XCData)e.FirstNode).Value.Length > 0)
-					.FirstOrDefault();
+						((XCData)e.FirstNode).Value.Length > 0);
 
 				if (element == null)
 				{

@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void SetTimestampVisibility(
+		private static void SetTimestampVisibility(
 			ApplicationManager manager, XElement page, XNamespace ns, bool visible)
 		{
 			var modified = false;
@@ -86,7 +86,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private bool SetTimestampAttribute(XElement title, string name, bool visible)
+		private static bool SetTimestampAttribute(XElement title, string name, bool visible)
 		{
 			var attr = title.Attribute(name);
 			if (visible)

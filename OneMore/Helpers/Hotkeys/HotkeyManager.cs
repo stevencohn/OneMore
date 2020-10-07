@@ -160,8 +160,9 @@ namespace River.OneMoreAddIn
 			//Logger.Current.WriteLine($"keypress key:{e.Key} mods:{e.Modifiers}");
 
 			var key = registeredKeys
-				.Where(k => k.Key == (uint)e.Key && k.Modifiers == (uint)(e.Modifiers|Hotmods.NoRepeat))
-				.FirstOrDefault();
+				.FirstOrDefault(k => 
+					k.Key == (uint)e.Key && 
+					k.Modifiers == (uint)(e.Modifiers|Hotmods.NoRepeat));
 
 			if (key != null)
 			{

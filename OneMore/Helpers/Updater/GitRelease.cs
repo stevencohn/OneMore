@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable IDE1006 // Naming Styles
+
 namespace River.OneMoreAddIn.Helpers.Updater
 {
     using System.Collections.Generic;
@@ -11,9 +13,9 @@ namespace River.OneMoreAddIn.Helpers.Updater
 	{
         public string url { get; set; }
 
-        public string id { get; set; }
+		public string id { get; set; }
 
-        public string tag_name { get; set; }
+		public string tag_name { get; set; }
 
         public string name { get; set; }
 

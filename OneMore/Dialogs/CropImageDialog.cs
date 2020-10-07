@@ -328,18 +328,18 @@ namespace River.OneMoreAddIn.Dialogs
 		private int GetBrightness(Bitmap image)
 		{
 			// the average brightness of the entire image (0=black, 100=white)
-			float brightness = 0;
+			float brightnessValue = 0;
 
 			for (int i = 0; i < image.Size.Width; i++)
 			{
 				for (int j = 0; j < image.Size.Height; j++)
 				{
 					var color = image.GetPixel(i, j);
-					brightness += color.GetBrightness();
+					brightnessValue += color.GetBrightness();
 				}
 			}
 
-			return (int)(brightness / (image.Size.Width * image.Size.Height) * 100);
+			return (int)(brightnessValue / (image.Size.Width * image.Size.Height) * 100);
 		}
 
 

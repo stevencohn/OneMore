@@ -94,8 +94,7 @@ namespace River.OneMoreAddIn
 				var ns = page.GetNamespaceOfPrefix("one");
 
 				var quick = page.Elements(ns + "QuickStyleDef")
-					.Where(e => e.Attribute("index").Value.Equals(index))
-					.FirstOrDefault();
+					.FirstOrDefault(e => e.Attribute("index").Value.Equals(index));
 
 				if (quick != null)
 				{

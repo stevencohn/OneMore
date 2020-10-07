@@ -15,6 +15,7 @@
 		{
 			if (disposing && (components != null))
 			{
+				selection?.Dispose();
 				components.Dispose();
 			}
 			base.Dispose(disposing);

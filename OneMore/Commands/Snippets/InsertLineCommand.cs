@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void InsertLine(char c)
+		private static void InsertLine(char c)
 		{
 			using (var manager = new ApplicationManager())
 			{

@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  Yada yada...
 //************************************************************************************************
 
+#pragma warning disable IDE1006 // Naming Styles
+
 namespace River.OneMoreAddIn.Dialogs
 {
 	using System;

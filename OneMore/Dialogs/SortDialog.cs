@@ -99,11 +99,6 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		protected override void OnClosed(EventArgs e)
-		{
-		}
-
-
 		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
