@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn
 		public StyleDialog(Style style, Color pageColor)
 		{
 			Initialize();
-			Logger.DesignMode = DesignMode;
+			Logger.SetDesignMode(DesignMode);
 
 			allowEvents = false;
 			StyleDialog.pageColor = pageColor;

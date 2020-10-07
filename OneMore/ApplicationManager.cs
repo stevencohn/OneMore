@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3881 // "IDisposable" should be implemented correctly, but OneMore won't exit
+
 namespace River.OneMoreAddIn
 {
 	using System;

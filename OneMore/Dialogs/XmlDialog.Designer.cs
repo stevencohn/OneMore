@@ -9,10 +9,17 @@
 
 		protected override void Dispose (bool disposing)
 		{
-			if (disposing && (components != null))
+			if (disposing)
 			{
-				manager?.Dispose();
-				components.Dispose();
+				if (manager != null)
+				{
+					manager.Dispose();
+				}
+
+				if (components != null)
+				{
+					components.Dispose();
+				}
 			}
 			base.Dispose(disposing);
 		}

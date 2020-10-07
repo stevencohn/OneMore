@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
 	using System;
+	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -31,13 +32,17 @@ namespace River.OneMoreAddIn
 		{
 			InitializeComponent();
 
-			Logger.DesignMode = DesignMode;
+			if (DesignMode)
+			{
+				AutoScaleDimensions = new SizeF(96f, 96f);
+				AutoScaleMode = AutoScaleMode.Dpi;
+				Logger.SetDesignMode(DesignMode);
+			}
+
 			logger = Logger.Current;
 
-			this.Width = (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8);
-			this.Height = (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8);
-			if (Width > 2000) Width = 2000;
-			if (Height > 1500) Height = 1500;
+			Width = Math.Min(2000, (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8));
+			Height = Math.Min(1500, (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));
 		}
 
 		#region Lifecycle
@@ -242,7 +247,7 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
-				if (findButton.Enabled == false)
+				if (findButton.Enabled)
 				{
 					findIndex = -1;
 					findButton.Enabled = true;

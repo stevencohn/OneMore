@@ -107,12 +107,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static bool DesignMode
-		{
-			set => designMode = value;
-		}
-
-
 		public string LogPath { get; }
 
 
@@ -166,6 +160,13 @@ namespace River.OneMoreAddIn
 			{
 				WriteLine("Log restarted");
 			}
+		}
+
+
+		// For VS Forms designer
+		public static void SetDesignMode(bool mode)
+		{
+			designMode = mode;
 		}
 
 

@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			InitializeComponent();
 
-			Logger.DesignMode = DesignMode;
+			Logger.SetDesignMode(DesignMode);
 
 			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, AssemblyInfo.Version);
 			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
