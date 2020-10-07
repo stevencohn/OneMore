@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn
 
 		private void SearchAndReplace()
 		{
-			DialogResult result = DialogResult.None;
+			DialogResult result;
 			string whatText;
 			string withText;
 			bool matchCase;
@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn
 
 						// use ToList to avoid null ref exception while updating IEnumerated collection
 						var list = elements.ToList();
-						for (var i = 0; i < list.Count(); i++)
+						for (var i = 0; i < list.Count; i++)
 						{
 							count += editor.SearchAndReplace(list[i]);
 						}

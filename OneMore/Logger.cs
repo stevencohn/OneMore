@@ -69,16 +69,26 @@ namespace River.OneMoreAddIn
 
 		public void Dispose()
 		{
-			if (!isDisposed)
-			{
-				if (writer != null)
-				{
-					writer.Flush();
-					writer.Dispose();
-					writer = null;
-				}
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
 
-				isDisposed = true;
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				if (!isDisposed)
+				{
+					if (writer != null)
+					{
+						writer.Flush();
+						writer.Dispose();
+						writer = null;
+					}
+
+					isDisposed = true;
+				}
 			}
 		}
 

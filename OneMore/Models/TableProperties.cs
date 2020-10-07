@@ -157,9 +157,12 @@ namespace River.OneMoreAddIn
 		protected void SetAttribute(string name, string value)
 		{
 			var attr = Root.Attribute(name);
-			if ((attr == null) && !string.IsNullOrEmpty(value))
+			if (attr == null)
 			{
-				Root.Add(new XAttribute(name, value));
+				if (!string.IsNullOrEmpty(value))
+				{
+					Root.Add(new XAttribute(name, value));
+				}
 			}
 			else
 			{

@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn
 			var list = wrapper.Nodes().ToList();
 
 			int i = 0;
-			while (i < list.Count())
+			while (i < list.Count)
 			{
 				var node = list[i];
 				var atom = AtomicFactory.MakeAtom(node);

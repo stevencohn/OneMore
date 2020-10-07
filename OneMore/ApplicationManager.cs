@@ -15,7 +15,6 @@ namespace River.OneMoreAddIn
 
 	internal class ApplicationManager : IDisposable
 	{
-		private bool disposed = false;
 		private readonly ILogger logger;
 
 
@@ -31,23 +30,19 @@ namespace River.OneMoreAddIn
 		}
 
 
-		protected virtual void Dispose (bool disposing)
+		public void Dispose()
 		{
-			if (!disposed)
-			{
-				if (disposing)
-				{
-					Application = null;
-				}
-
-				disposed = true;
-			}
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
 
-		public void Dispose ()
+		protected virtual void Dispose (bool disposing)
 		{
-			Dispose(true);
+			if (disposing)
+			{
+				Application = null;
+			}
 		}
 
 

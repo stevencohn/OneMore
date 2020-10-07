@@ -13,8 +13,6 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class GraphicStyle : StyleBase, IDisposable
 	{
-		private bool disposed = false;
-
 
 		/// <summary>
 		/// Copy given style to initialize a new instance.
@@ -86,14 +84,17 @@ namespace River.OneMoreAddIn
 
 		public void Dispose()
 		{
-			if (!disposed)
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
 			{
-				if (Font != null)
-				{
-					Font.Dispose();
-					Font = null;
-					disposed = true;
-				}
+				Font?.Dispose();
+				Font = null;
 			}
 		}
 
