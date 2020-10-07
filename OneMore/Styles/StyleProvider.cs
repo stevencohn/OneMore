@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void Save(IEnumerable<StyleRecord> styles, string path = null)
+		private static void Save(IEnumerable<StyleRecord> styles, string path = null)
 		{
 			if (path == null)
 			{

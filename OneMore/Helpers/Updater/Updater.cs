@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S1075 // URIs should not be hardcoded
+
 namespace River.OneMoreAddIn.Helpers.Updater
 {
 	using Microsoft.Win32;

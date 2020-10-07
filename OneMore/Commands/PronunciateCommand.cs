@@ -2,7 +2,9 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS0649 // never assigned to, will always be null
+#pragma warning disable CS0649  // never assigned to, will always be null
+#pragma warning disable S1075	// URIs should not be hardcoded
+#pragma warning disable S3459   // Unassigned members should be removed
 
 namespace River.OneMoreAddIn
 {

@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Initializes a new instance with defaults.
 		/// </summary>
-		public StyleBase()
+		protected StyleBase()
 		{
 			Color = Automatic;
 			Highlight = Automatic;
@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn
 		/// Inheritors may extend their own constructor to manage additional properties
 		/// as appropriate.
 		/// </param>
-		public StyleBase(StyleBase other) : this()
+		protected StyleBase(StyleBase other) : this()
 		{
 			Name = other.Name;
 			StyleType = other.StyleType;

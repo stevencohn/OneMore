@@ -113,7 +113,8 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void ChangeSelection(object sender, EventArgs e)
 		{
-			if (!(createdButton.Enabled = (scopeBox.SelectedIndex == 0)))
+			createdButton.Enabled = scopeBox.SelectedIndex == 0;
+			if (!createdButton.Enabled)
 			{
 				if (createdButton.Checked)
 				{

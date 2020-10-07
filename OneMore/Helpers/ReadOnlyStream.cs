@@ -58,6 +58,7 @@ namespace River.OneMoreAddIn
 		public void Dispose ()
 		{
 			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
 		#endregion
@@ -108,6 +109,7 @@ namespace River.OneMoreAddIn
 
 		public void CopyTo (IStream pstm, long cb, IntPtr pcbRead, IntPtr pcbWritten)
 		{
+			// N/A
 		}
 
 		#endregion CopyTo

@@ -126,6 +126,11 @@ namespace River.OneMoreAddIn
 			return true;
 		}
 
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
+
 
 		public XElement ToElement(XNamespace ns)
 		{
