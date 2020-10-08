@@ -66,6 +66,44 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(() =>
 				factory.GetCommand<ClearLogCommand>().Execute(),
 				Keys.F8, Hotmods.Control);
+
+			// custom styles, CtrlAltShift+1..9
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(0),
+				Keys.D1, Hotmods.ControlAltShift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(1),
+				Keys.D2, Hotmods.ControlAltShift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(2),
+				Keys.D3, Hotmods.ControlAltShift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(3),
+				Keys.D4, Hotmods.ControlAltShift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(4),
+				Keys.D5, Hotmods.ControlAltShift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(5),
+				Keys.D6, Hotmods.ControlAltShift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(6),
+				Keys.D7, Hotmods.ControlAltShift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(7),
+				Keys.D8, Hotmods.ControlAltShift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				factory.GetCommand<ApplyStyleCommand>().Execute(8),
+				Keys.D9, Hotmods.ControlAltShift);
 		}
 	}
 }
