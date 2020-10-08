@@ -48,6 +48,12 @@
 			this.sectionsHierButton = new System.Windows.Forms.RadioButton();
 			this.closeButton = new System.Windows.Forms.Button();
 			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.pageLink = new System.Windows.Forms.Label();
+			this.pagePath = new System.Windows.Forms.Label();
+			this.pageName = new System.Windows.Forms.Label();
+			this.pageLinkLabel = new System.Windows.Forms.Label();
+			this.pagePathLabel = new System.Windows.Forms.Label();
+			this.pageNameLabel = new System.Windows.Forms.Label();
 			this.updateButton = new System.Windows.Forms.Button();
 			this.pageInfoPanel = new System.Windows.Forms.Panel();
 			this.pageInfoLabel = new System.Windows.Forms.Label();
@@ -81,7 +87,7 @@
 			this.tabs.Margin = new System.Windows.Forms.Padding(2);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(1168, 755);
+			this.tabs.Size = new System.Drawing.Size(1168, 750);
 			this.tabs.TabIndex = 1;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.ChangeSelectedTab);
 			// 
@@ -92,7 +98,7 @@
 			this.pageTab.Margin = new System.Windows.Forms.Padding(2);
 			this.pageTab.Name = "pageTab";
 			this.pageTab.Padding = new System.Windows.Forms.Padding(2);
-			this.pageTab.Size = new System.Drawing.Size(1160, 722);
+			this.pageTab.Size = new System.Drawing.Size(1160, 717);
 			this.pageTab.TabIndex = 0;
 			this.pageTab.Text = "Page";
 			this.pageTab.UseVisualStyleBackColor = true;
@@ -105,7 +111,7 @@
 			this.pageBox.Location = new System.Drawing.Point(2, 2);
 			this.pageBox.Margin = new System.Windows.Forms.Padding(2);
 			this.pageBox.Name = "pageBox";
-			this.pageBox.Size = new System.Drawing.Size(1156, 718);
+			this.pageBox.Size = new System.Drawing.Size(1156, 713);
 			this.pageBox.TabIndex = 0;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
@@ -119,7 +125,7 @@
 			this.hierTab.Margin = new System.Windows.Forms.Padding(2);
 			this.hierTab.Name = "hierTab";
 			this.hierTab.Padding = new System.Windows.Forms.Padding(2);
-			this.hierTab.Size = new System.Drawing.Size(1160, 722);
+			this.hierTab.Size = new System.Drawing.Size(1160, 717);
 			this.hierTab.TabIndex = 1;
 			this.hierTab.Text = "Hierarchy";
 			this.hierTab.UseVisualStyleBackColor = true;
@@ -130,7 +136,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(2, 56);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1156, 664);
+			this.panel2.Size = new System.Drawing.Size(1156, 659);
 			this.panel2.TabIndex = 6;
 			// 
 			// hierBox
@@ -141,7 +147,7 @@
 			this.hierBox.Location = new System.Drawing.Point(0, 0);
 			this.hierBox.Margin = new System.Windows.Forms.Padding(2);
 			this.hierBox.Name = "hierBox";
-			this.hierBox.Size = new System.Drawing.Size(1156, 664);
+			this.hierBox.Size = new System.Drawing.Size(1156, 659);
 			this.hierBox.TabIndex = 0;
 			this.hierBox.Text = "";
 			this.hierBox.WordWrap = false;
@@ -226,7 +232,7 @@
 			// 
 			this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.closeButton.Location = new System.Drawing.Point(1028, 14);
+			this.closeButton.Location = new System.Drawing.Point(1028, 19);
 			this.closeButton.Margin = new System.Windows.Forms.Padding(2);
 			this.closeButton.Name = "closeButton";
 			this.closeButton.Size = new System.Drawing.Size(124, 35);
@@ -236,19 +242,85 @@
 			// 
 			// buttonPanel
 			// 
-			this.buttonPanel.Controls.Add(this.updateButton);
 			this.buttonPanel.Controls.Add(this.closeButton);
+			this.buttonPanel.Controls.Add(this.updateButton);
+			this.buttonPanel.Controls.Add(this.pageLink);
+			this.buttonPanel.Controls.Add(this.pagePath);
+			this.buttonPanel.Controls.Add(this.pageName);
+			this.buttonPanel.Controls.Add(this.pageLinkLabel);
+			this.buttonPanel.Controls.Add(this.pagePathLabel);
+			this.buttonPanel.Controls.Add(this.pageNameLabel);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 866);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 861);
 			this.buttonPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(1168, 63);
+			this.buttonPanel.Size = new System.Drawing.Size(1168, 68);
 			this.buttonPanel.TabIndex = 4;
+			// 
+			// pageLink
+			// 
+			this.pageLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pageLink.AutoSize = true;
+			this.pageLink.Location = new System.Drawing.Point(64, 48);
+			this.pageLink.Name = "pageLink";
+			this.pageLink.Size = new System.Drawing.Size(14, 20);
+			this.pageLink.TabIndex = 11;
+			this.pageLink.Text = "-";
+			// 
+			// pagePath
+			// 
+			this.pagePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pagePath.AutoSize = true;
+			this.pagePath.Location = new System.Drawing.Point(64, 28);
+			this.pagePath.Name = "pagePath";
+			this.pagePath.Size = new System.Drawing.Size(14, 20);
+			this.pagePath.TabIndex = 10;
+			this.pagePath.Text = "-";
+			// 
+			// pageName
+			// 
+			this.pageName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pageName.AutoSize = true;
+			this.pageName.Location = new System.Drawing.Point(64, 8);
+			this.pageName.Name = "pageName";
+			this.pageName.Size = new System.Drawing.Size(14, 20);
+			this.pageName.TabIndex = 9;
+			this.pageName.Text = "-";
+			// 
+			// pageLinkLabel
+			// 
+			this.pageLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pageLinkLabel.AutoSize = true;
+			this.pageLinkLabel.Location = new System.Drawing.Point(3, 48);
+			this.pageLinkLabel.Name = "pageLinkLabel";
+			this.pageLinkLabel.Size = new System.Drawing.Size(42, 20);
+			this.pageLinkLabel.TabIndex = 8;
+			this.pageLinkLabel.Text = "Link:";
+			// 
+			// pagePathLabel
+			// 
+			this.pagePathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pagePathLabel.AutoSize = true;
+			this.pagePathLabel.Location = new System.Drawing.Point(3, 28);
+			this.pagePathLabel.Name = "pagePathLabel";
+			this.pagePathLabel.Size = new System.Drawing.Size(46, 20);
+			this.pagePathLabel.TabIndex = 7;
+			this.pagePathLabel.Text = "Path:";
+			// 
+			// pageNameLabel
+			// 
+			this.pageNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pageNameLabel.AutoSize = true;
+			this.pageNameLabel.Location = new System.Drawing.Point(3, 8);
+			this.pageNameLabel.Name = "pageNameLabel";
+			this.pageNameLabel.Size = new System.Drawing.Size(55, 20);
+			this.pageNameLabel.TabIndex = 6;
+			this.pageNameLabel.Text = "Name:";
 			// 
 			// updateButton
 			// 
 			this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.updateButton.Location = new System.Drawing.Point(896, 14);
+			this.updateButton.Location = new System.Drawing.Point(896, 19);
 			this.updateButton.Margin = new System.Windows.Forms.Padding(2);
 			this.updateButton.Name = "updateButton";
 			this.updateButton.Size = new System.Drawing.Size(124, 35);
@@ -419,6 +491,7 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.buttonPanel.ResumeLayout(false);
+			this.buttonPanel.PerformLayout();
 			this.pageInfoPanel.ResumeLayout(false);
 			this.pageInfoPanel.PerformLayout();
 			this.topPanel.ResumeLayout(false);
@@ -457,5 +530,11 @@
 		private System.Windows.Forms.CheckBox wrapBox;
 		private System.Windows.Forms.CheckBox hideBox;
 		private System.Windows.Forms.CheckBox hideLFBox;
+		private System.Windows.Forms.Label pageNameLabel;
+		private System.Windows.Forms.Label pageLink;
+		private System.Windows.Forms.Label pagePath;
+		private System.Windows.Forms.Label pageName;
+		private System.Windows.Forms.Label pageLinkLabel;
+		private System.Windows.Forms.Label pagePathLabel;
 	}
 }
