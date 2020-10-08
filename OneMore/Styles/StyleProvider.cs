@@ -124,7 +124,7 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			return null;
+			return new List<Style>();
 		}
 
 

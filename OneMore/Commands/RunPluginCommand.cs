@@ -149,12 +149,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (source = new CancellationTokenSource())
 			{
-				using (progressDialog = new ProgressDialog(source)
+				using (progressDialog = new ProgressDialog(source))
 				{
-					Maximum = MaxTimeoutSeconds,
-					Message = string.Format(Resx.Plugin_Running, command, arguments, workPath)
-				})
-				{
+					progressDialog.SetMaximum(MaxTimeoutSeconds);
+					progressDialog.SetMessage(string.Format(Resx.Plugin_Running, command, arguments, workPath));
+
 					Process process = null;
 
 					try

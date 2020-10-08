@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn
 	internal partial class StyleDialog : Form
 	{
 		private GraphicStyle selection;
-		private static Color pageColor;
+		private Color pageColor;
 		private bool allowEvents;
 
 
@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn
 			Logger.SetDesignMode(DesignMode);
 
 			allowEvents = false;
-			StyleDialog.pageColor = pageColor;
+			this.pageColor = pageColor;
 
 			Text = "New Custom Style";
 			mainTools.Visible = false;
@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn
 				selection = new GraphicStyle(styles[0], false);
 			}
 
-			StyleDialog.pageColor = pageColor;
+			this.pageColor = pageColor;
 		}
 
 
@@ -264,14 +264,11 @@ namespace River.OneMoreAddIn
 
 			var format = new StringFormat(StringFormatFlags.NoWrap);
 
-			var sampleColor = offset
-				? Color.Gray
-				: selection?.ApplyColors == true ? selection.Foreground : contrastPen.Color;
-
-			var sampleBrush = new SolidBrush(sampleColor); // dispose
-
 			var textColor = selection?.ApplyColors == true ? selection.Foreground : contrastPen.Color;
 			var textBrush = new SolidBrush(textColor); // dispose
+
+			var sampleColor = offset ? Color.Gray : textColor;
+			var sampleBrush = new SolidBrush(sampleColor); // dispose
 
 			e.Graphics.DrawString("Sample ", sampleFont, sampleBrush, sampleClip, format);
 
@@ -558,7 +555,7 @@ namespace River.OneMoreAddIn
 				if (result == DialogResult.OK)
 				{
 					var styles = new StyleProvider().LoadTheme(dialog.FileName);
-					if (styles?.Count > 0)
+					if (styles.Count > 0)
 					{
 						LoadStyles(styles);
 					}

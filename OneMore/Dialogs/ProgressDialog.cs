@@ -74,34 +74,31 @@ namespace River.OneMoreAddIn.Dialogs
 
 
 		/// <summary>
-		/// Sets the message displayed
-		/// </summary>
-		public string Message
-		{
-			set
-			{
-				messageLabel.Text = value;
-				messageLabel.Refresh();
-			}
-		}
-
-
-		/// <summary>
-		/// Sets the maximum increment value
-		/// </summary>
-		public int Maximum
-		{
-			set => progressBar.Maximum = value;
-		}
-
-
-		/// <summary>
 		/// Increments the progress bar by one step.
 		/// </summary>
 		/// <param name="step"></param>
 		public void Increment(int step = 1)
 		{
 			progressBar.Value += step;
+		}
+
+
+		/// <summary>
+		/// Sets the maximum increment value
+		/// </summary>
+		public void SetMaximum(int value)
+		{
+			progressBar.Maximum = value;
+		}
+
+
+		/// <summary>
+		/// Sets the message displayed
+		/// </summary>
+		public void SetMessage(string value)
+		{
+			messageLabel.Text = value;
+			messageLabel.Refresh();
 		}
 
 

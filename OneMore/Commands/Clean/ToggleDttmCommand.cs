@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn
 
 								using (var progress = new ProgressDialog())
 								{
-									progress.Maximum = pageIds.Count;
+									progress.SetMaximum(pageIds.Count);
 									progress.Show(owner);
 
 									foreach (var pageId in pageIds)
@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn
 										var page = manager.GetPage(pageId, PageInfo.piBasic);
 										var name = page.Attribute("name").Value;
 
-										progress.Message = name;
+										progress.SetMessage(name);
 										progress.Increment();
 
 										SetTimestampVisibility(manager, page, ns, dialog.ShowTimestamps);

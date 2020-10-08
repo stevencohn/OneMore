@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn
 
 					using (var progress = new ProgressDialog())
 					{
-						progress.Maximum = pageIds.Count;
+						progress.SetMaximum(pageIds.Count);
 						progress.Show(owner);
 
 						foreach (var pageId in pageIds)
@@ -47,8 +47,8 @@ namespace River.OneMoreAddIn
 							var page = manager.GetPage(pageId, Microsoft.Office.Interop.OneNote.PageInfo.piBasic);
 							var name = page.Attribute("name").Value;
 							
-							progress.Message = string.Format(
-								Properties.Resources.RemovingPageNumber_Message, name);
+							progress.SetMessage(string.Format(
+								Properties.Resources.RemovingPageNumber_Message, name));
 
 							progress.Increment();
 

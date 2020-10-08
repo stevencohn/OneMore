@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn
 
 							using (progress = new ProgressDialog())
 							{
-								progress.Maximum = pages.Count;
+								progress.SetMaximum(pages.Count);
 								progress.Show(owner);
 
 								ApplyNumbering(
@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn
 					.Element(ns + "T")
 					.GetCData();
 
-				progress.Message = string.Format(Properties.Resources.NumberingPage_Message, pages[index].Name);
+				progress.SetMessage(string.Format(Properties.Resources.NumberingPage_Message, pages[index].Name));
 				progress.Increment();
 
 				var text = cdata.Value;

@@ -3,7 +3,7 @@
 //************************************************************************************************
 
 #pragma warning disable CS0649  // never assigned to, will always be null
-#pragma warning disable S1075	// URIs should not be hardcoded
+#pragma warning disable S1075   // URIs should not be hardcoded
 #pragma warning disable S3459   // Unassigned members should be removed
 
 namespace River.OneMoreAddIn
@@ -13,7 +13,6 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Net;
 	using System.Net.Http;
-	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
 	using System.Windows.Forms;
@@ -44,7 +43,7 @@ namespace River.OneMoreAddIn
 		public PronunciateCommand()
 		{
 		}
-		
+
 
 		public async void Execute()
 		{
@@ -78,12 +77,7 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
-				string isoCode = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
-				if (isoCode == "zh")
-				{
-					isoCode = "zh-CN";
-				}
-
+				string isoCode;
 				using (var dialog = new PhoneticsDialog())
 				{
 					dialog.Word = word;

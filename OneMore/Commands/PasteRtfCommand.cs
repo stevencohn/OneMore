@@ -135,16 +135,14 @@ namespace River.OneMoreAddIn
 			var box = new RichTextBox();
 			var range = new TextRange(box.Document.ContentStart, box.Document.ContentEnd);
 
-			// store RTF in memory stream and load into rich text box
-			using (var stream = new MemoryStream())
+			// store RTF in-memory stream and load into rich text box
+			var istream = new MemoryStream(); // will be disposed by the following StreamWriter
+			using (var writer = new StreamWriter(istream))
 			{
-				using (var writer = new StreamWriter(stream))
-				{
-					writer.Write(rtf);
-					writer.Flush();
-					stream.Seek(0, SeekOrigin.Begin);
-					range.Load(stream, DataFormats.Rtf);
-				}
+				writer.Write(rtf);
+				writer.Flush();
+				istream.Seek(0, SeekOrigin.Begin);
+				range.Load(istream, DataFormats.Rtf);
 			}
 
 			// read Xaml from rich text box
@@ -175,7 +173,7 @@ namespace River.OneMoreAddIn
 			using (var outer = new XmlTextReader(new StringReader(xaml)))
 			{
 				// skip outer <Section> to get to subtree
-				while (outer.Read() && outer.NodeType != XmlNodeType.Element) ;
+				while (outer.Read() && outer.NodeType != XmlNodeType.Element) { /**/ }
 				if (!outer.EOF)
 				{
 					using (var writer = new XmlTextWriter(new StringWriter(builder)))
