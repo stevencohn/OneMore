@@ -21,7 +21,8 @@
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>OneMore.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
@@ -31,7 +32,8 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>OneMore.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <RegisterForComInterop>false</RegisterForComInterop>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -43,7 +45,8 @@
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>OneMore.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -54,7 +57,8 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>OneMore.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
@@ -370,10 +374,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Emoji\Architecture.png" />
-    <None Include="..\.editorconfig">
-      <Link>.editorconfig</Link>
-    </None>
-    <None Include="OneMore.ruleset" />
+    <None Include=".editorconfig" />
     <None Include="Properties\Emoji\Automobile.png" />
     <Content Include="Properties\Emoji\Bullet.png" />
     <Content Include="Properties\Emoji\Calendar.png" />
