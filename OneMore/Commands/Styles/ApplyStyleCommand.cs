@@ -28,13 +28,20 @@ namespace River.OneMoreAddIn
 
 		public void Execute(int selectedIndex)
 		{
+			style = new StyleProvider().GetStyle(selectedIndex);
+			if (style == null)
+			{
+				// could be from a CtrlAltShift+# but that indexed style doesn't exist
+				// e.g. there are only 5 custom styles but the user pressed CtrlAltShift+6
+				return;
+			}
+
 			using (var manager = new ApplicationManager())
 			{
 				page = manager.CurrentPage();
 				if (page != null)
 				{
 					ns = page.GetNamespaceOfPrefix("one");
-					style = new StyleProvider().GetStyle(selectedIndex);
 					stylizer = new Stylizer(style);
 
 					bool success = style.StyleType == StyleType.Character
