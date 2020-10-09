@@ -360,6 +360,9 @@ can then either apply a single style to selected text by choosing a style from t
 or use the *Apply Custom Styles to Page* command to apply all custom styles to the entire
 page, looking for headers, citations, quotes, code, and normal text.
 
+The first nine custom styles are automatically bound to the key sequences
+CtrlAltShift+1, CtrlAltShift+2, etc., through CtrlAltShift+9
+
 | Styles Gallery | Styles Editor |
 | -------------- | ------------- |
 | ![Styles](Screenshots/CustomStyles.png) | ![Styles Dialog](Screenshots/CustomStylesDialog.png) |
