@@ -361,7 +361,7 @@ or use the *Apply Custom Styles to Page* command to apply all custom styles to t
 page, looking for headers, citations, quotes, code, and normal text.
 
 The first nine custom styles are automatically bound to the key sequences
-CtrlAltShift+1, CtrlAltShift+2, etc., through CtrlAltShift+9
+Ctrl+Alt+Shift + 1, Ctrl+Alt+Shift + 2, etc., through Ctrl+Alt+Shift + 9
 
 | Styles Gallery | Styles Editor |
 | -------------- | ------------- |
