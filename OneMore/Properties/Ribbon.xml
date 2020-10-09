@@ -210,6 +210,12 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertCalendarCmd"/>
               <button
+                id="ribCodeBlockButton"
+                imageMso="CodeEdit"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="InsertCodeBlockCmd"/>
+              <button
                 id="ribInfoBlockButton"
                 imageMso="Info"
                 getLabel="GetRibbonLabel"
@@ -221,12 +227,6 @@
                 getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertWarningBlockCmd"/>
-              <button
-                id="ribCodeBlockButton"
-                imageMso="CodeEdit"
-                getLabel="GetRibbonLabel"
-                getEnabled="GetBodyContext"
-                onAction="InsertCodeBlockCmd"/>
               <button
                 id="ribExpandButton"
                 imageMso="PivotExpandIndicators"

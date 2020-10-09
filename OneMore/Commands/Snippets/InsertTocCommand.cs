@@ -75,36 +75,33 @@ namespace River.OneMoreAddIn
 				)
 			};
 
-			if (headings?.Any() == true)
+			// use the minimum intent level
+			var minlevel = headings.Min(e => e.Style.Index);
+
+			foreach (var heading in headings)
 			{
-				// use the minimum intent level
-				var minlevel = headings.Min(e => e.Style.Index);
-
-				foreach (var heading in headings)
+				var text = new StringBuilder();
+				var count = minlevel;
+				while (count < heading.Style.Index)
 				{
-					var text = new StringBuilder();
-					var count = minlevel;
-					while (count < heading.Style.Index)
-					{
-						text.Append(". . ");
-						count++;
-					}
-
-					if (!string.IsNullOrEmpty(heading.Link))
-					{
-						var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
-						text.Append($"<a href=\"{heading.Link}\"{linkColor}>{heading.Text}</a>");
-					}
-					else
-					{
-						text.Append(heading.Text);
-					}
-
-					toc.Add(new XElement(ns + "OE",
-						new XAttribute("style", $"color:{textColor}"),
-						new XElement(ns + "T", new XCData(text.ToString()))
-						));
+					text.Append(". . ");
+					count++;
 				}
+
+				if (!string.IsNullOrEmpty(heading.Link))
+				{
+					var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
+					text.Append($"<a href=\"{heading.Link}\"{linkColor}>{heading.Text}</a>");
+				}
+				else
+				{
+					text.Append(heading.Text);
+				}
+
+				toc.Add(new XElement(ns + "OE",
+					new XAttribute("style", $"color:{textColor}"),
+					new XElement(ns + "T", new XCData(text.ToString()))
+					));
 			}
 
 			// empty line after the TOC

@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Models
 	{
 		private List<Style> quickStyles;
 		private List<Style> customStyles;
+		private string pageColor;
 
 
 		/*
@@ -47,6 +48,8 @@ namespace River.OneMoreAddIn.Models
 
 			if (blocks?.Any() == true)
 			{
+				GetPageColor();
+
 				foreach (var block in blocks)
 				{
 					// get first T as heading text, filtering out any OEChildren (indented text)
@@ -113,6 +116,20 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		private void GetPageColor()
+		{
+			pageColor = Root.Elements(Namespace + "PageSettings")
+				.Where(e => e.Attribute("color") != null)
+				.Select(e => e.Attribute("color").Value)
+				.FirstOrDefault();
+
+			if (pageColor == null)
+			{
+				pageColor = "automatic";
+			}
+		}
+
+
 		private string GetHyperlink(XElement element, ApplicationManager manager)
 		{
 			var attr = element.Attribute("objectID");
@@ -141,6 +158,16 @@ namespace River.OneMoreAddIn.Models
 				var analyzer = new StyleAnalyzer(Root);
 				var style = new Style(analyzer.CollectStyleProperties(child));
 
+				// normalize style background to page background
+				if (style.Highlight != pageColor && pageColor == "automatic")
+				{
+					if (style.Highlight == "#FFFFFF")
+					{
+						style.Highlight = "automatic";
+					}
+				}
+
+				// compare and find
 				var find = customStyles.Find(s => s.Equals(style));
 				return find;
 			}

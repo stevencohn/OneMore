@@ -235,7 +235,7 @@ namespace River.OneMoreAddIn
 
 		public override int GetHashCode()
 		{
-			return base.GetHashCode();
+			return new { Name, StyleType, Index, FontFamily, FontSize }.GetHashCode();
 		}
 	}
 }

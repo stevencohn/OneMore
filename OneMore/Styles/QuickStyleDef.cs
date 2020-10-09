@@ -2,8 +2,6 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
-
 namespace River.OneMoreAddIn
 {
 	using System.Collections.Generic;
