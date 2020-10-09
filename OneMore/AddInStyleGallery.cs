@@ -63,9 +63,15 @@ namespace River.OneMoreAddIn
 
 		public string GetStyleGalleryItemScreentip(IRibbonControl control, int itemIndex)
 		{
-			var name = new StyleProvider().GetName(itemIndex);
-			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{name}\"");
-			return name;
+			var tip = new StyleProvider().GetName(itemIndex);
+
+			if (itemIndex < 9)
+			{
+				tip = string.Format(Properties.Resources.CustomStyle_Screentip, tip, itemIndex + 1);
+			}
+
+			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{tip}\"");
+			return tip;
 		}
 	}
 }

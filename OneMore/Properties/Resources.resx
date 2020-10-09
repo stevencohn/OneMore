@@ -1564,4 +1564,8 @@ Try again later</value>
     <value>Calendar</value>
     <comment>Ribbon OneMore menu item, snippets</comment>
   </data>
+  <data name="CustomStyle_Screentip" xml:space="preserve">
+    <value>{0} (Ctrl+Alt+Shift + {1})</value>
+    <comment>Screentip for custom style gallery tiles</comment>
+  </data>
 </root>
