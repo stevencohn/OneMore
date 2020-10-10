@@ -1531,4 +1531,36 @@ OneNote 将自动关闭</value>
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
+  <data name="TocDialog.Text" xml:space="preserve">
+    <value>目录</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TocDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
+    <value>在此笔记本中添加带有部分表的页面</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="TocDialog_pageRadio.Text" xml:space="preserve">
+    <value>在此页上插入标题表</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_pagesBox.Text" xml:space="preserve">
+    <value>在每个部分中包含页面</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
+    <value>在此部分中添加带有页表的页面</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_topBox.Text" xml:space="preserve">
+    <value>将链接添加到每个标题以跳至页面顶部</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

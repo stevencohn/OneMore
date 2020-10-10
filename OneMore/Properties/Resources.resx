@@ -1568,4 +1568,36 @@ Try again later</value>
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
+  <data name="TocDialog.Text" xml:space="preserve">
+    <value>Table of Contents</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TocDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Add page with table of sections in this notebook</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="TocDialog_pageRadio.Text" xml:space="preserve">
+    <value>Insert table of headings on this page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_pagesBox.Text" xml:space="preserve">
+    <value>Include pages in each section</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
+    <value>Add page with table of pages in this section</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_topBox.Text" xml:space="preserve">
+    <value>Add link to each heading to jump to top of page</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

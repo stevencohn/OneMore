@@ -224,6 +224,12 @@
     <Compile Include="Dialogs\TimestampDialog.Designer.cs">
       <DependentUpon>TimestampDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\TocDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TocDialog.Designer.cs">
+      <DependentUpon>TocDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\GalleryTileFactory.cs" />
     <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
     <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />
@@ -490,6 +496,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TimestampDialog.resx">
       <DependentUpon>TimestampDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TocDialog.resx">
+      <DependentUpon>TocDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">

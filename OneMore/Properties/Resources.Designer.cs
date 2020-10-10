@@ -3418,6 +3418,78 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string TocDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("TocDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add page with table of sections in this notebook.
+        /// </summary>
+        internal static string TocDialog_notebookRadio_Text {
+            get {
+                return ResourceManager.GetString("TocDialog_notebookRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string TocDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("TocDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert table of headings on this page.
+        /// </summary>
+        internal static string TocDialog_pageRadio_Text {
+            get {
+                return ResourceManager.GetString("TocDialog_pageRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include pages in each section.
+        /// </summary>
+        internal static string TocDialog_pagesBox_Text {
+            get {
+                return ResourceManager.GetString("TocDialog_pagesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add page with table of pages in this section.
+        /// </summary>
+        internal static string TocDialog_sectionRadio_Text {
+            get {
+                return ResourceManager.GetString("TocDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Contents.
+        /// </summary>
+        internal static string TocDialog_Text {
+            get {
+                return ResourceManager.GetString("TocDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add link to each heading to jump to top of page.
+        /// </summary>
+        internal static string TocDialog_topBox_Text {
+            get {
+                return ResourceManager.GetString("TocDialog_topBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Travel {
