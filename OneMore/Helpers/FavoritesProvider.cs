@@ -69,6 +69,9 @@ namespace River.OneMoreAddIn
 		{
 			XElement root;
 
+			System.Diagnostics.Debugger.Launch();
+
+
 			if (File.Exists(path))
 			{
 				root = XElement.Load(path, LoadOptions.None);
