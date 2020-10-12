@@ -56,7 +56,7 @@ Numbering commands
 Snippets commands
 
 * Insert single or double horizontal line
-* Insert [**Table of Contents**](#exTOC) including all headers on page
+* Insert [**Table of Contents**](#exTOC) of headers, pages, or sections
 * Insert small or large [monthly calendar](#calendar) for a specific month
 * Insert [Info/Warn boxes](#exInfoBoxes) similar to Confluence Info and Warn macros
 * Insert [Code box](#exCodeBox) similar to Confluence Code macro
@@ -127,10 +127,19 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
 ---
 
-## Examples of What OneMore Can Do...
+## Details of What OneMore Can Do...
 
 <a name="exTOC"></a>
 ### Table of Contents
+
+The Table of Contents command can run in one of three modes:
+
+* Insert a table of contents at the top of the page with hyperlinks to all the standard and custom
+  headings on the page. Optionally, add a "top of page" link to each heading on the page to quickly
+  jump back to the top of the page.
+* Create a new page at the top of the section with hyperlinks to all pages in the current section
+* Create a new page at the top of the section with hyperlinks to all sections in the current
+  notebook and optionally include all pages in each section. 
 
 Generate a Table of Contents based on both standard headings and custom user-defined headings
 where each line is hyperlinked to its heading and indented according to its heading level.
