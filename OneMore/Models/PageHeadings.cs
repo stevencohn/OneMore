@@ -72,7 +72,8 @@ namespace River.OneMoreAddIn.Models
 							heading = new Heading
 							{
 								Root = block,
-								Text = text, // text might include <style
+								// text might include <style...
+								Text = text,
 								Link = GetHyperlink(block, manager),
 								Style = style
 							};
@@ -92,7 +93,8 @@ namespace River.OneMoreAddIn.Models
 							heading = new Heading
 							{
 								Root = block,
-								Text = text, // text might include <style
+								// text might include <style...
+								Text = text,
 								Link = GetHyperlink(block, manager),
 								Style = style
 							};

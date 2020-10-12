@@ -530,7 +530,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
-    <value>页面目录</value>
+    <value>目录</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
@@ -1562,5 +1562,21 @@ OneNote 将自动关闭</value>
   <data name="TocDialog_topBox.Text" xml:space="preserve">
     <value>将链接添加到每个标题以跳至页面顶部</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocCommand_TOC" xml:space="preserve">
+    <value>目录</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
+    <value>目录-笔记本{0}</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_TOCSections" xml:space="preserve">
+    <value>目录-第{0}节</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_Top" xml:space="preserve">
+    <value>页面顶部</value>
+    <comment>hyperlink</comment>
   </data>
 </root>

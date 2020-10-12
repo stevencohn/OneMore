@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class InsertTocCommand : Command
@@ -90,6 +91,17 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
+			var title = page.Root.Elements(ns + "Title").Elements(ns + "OE").FirstOrDefault();
+			if (title == null)
+			{
+				return;
+			}
+
+			manager.Application.GetHyperlinkToObject(
+				page.PageId, title.Attribute("objectID").Value, out var titleLink);
+
+			var titleLinkText = $"<a href=\"{titleLink}\"><span style='font-style:italic'>{Resx.InsertTocCommand_Top}</span></a>";
+
 			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 			var textColor = dark ? "#FFFFFF" : "#000000";
 
@@ -99,7 +111,7 @@ namespace River.OneMoreAddIn
 				new XElement(ns + "OE",
 				new XAttribute("style", $"font-size:16.0pt;color:{textColor}"),
 				new XElement(ns + "T",
-					new XCData("<span style='font-weight:bold'>Table of Contents</span>")
+					new XCData($"<span style='font-weight:bold'>{Resx.InsertTocCommand_TOC}</span>")
 					)
 				)
 			};
@@ -131,11 +143,27 @@ namespace River.OneMoreAddIn
 					new XAttribute("style", $"color:{textColor}"),
 					new XElement(ns + "T", new XCData(text.ToString()))
 					));
+
+				if (addTopLinks)
+				{
+					var table = new Table(ns);
+					table.AddColumn(400, true);
+					table.AddColumn(100, true);
+					var row = table.AddRow();
+					row.Cells.ElementAt(0).SetContent(heading.Root);
+					row.Cells.ElementAt(1).SetContent(
+						new XElement(ns + "OE",
+							new XAttribute("alignment", "right"),
+							new XElement(ns + "T", new XCData(titleLinkText)))
+						);
+
+					// heading.Root is the OE
+					heading.Root.ReplaceNodes(table.Root);
+				}
 			}
 
 			// empty line after the TOC
 			toc.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
-
 			top.AddFirst(toc);
 
 			manager.UpdatePageContent(page.Root);
@@ -156,7 +184,7 @@ namespace River.OneMoreAddIn
 			var page = new Page(manager.GetPage(pageId));
 			var ns = page.Namespace;
 
-			page.PageName = "Table of Contents - Section " + section.Attribute("name").Value; // TODO: resx
+			page.PageName = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
 
 			var container = new XElement(ns + "OEChildren");
 
@@ -205,6 +233,7 @@ namespace River.OneMoreAddIn
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+		#region InsertSectionsTable
 		private void InsertSectionsTable(ApplicationManager manager, bool includePages)
 		{
 			var section = manager.CurrentSection();
@@ -216,7 +245,7 @@ namespace River.OneMoreAddIn
 			var ns = page.Namespace;
 
 			var notebook = manager.CurrentNotebook();
-			page.PageName = "Table of Contents - Notebook " + notebook.Attribute("name").Value; // TODO: resx
+			page.PageName = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
 
 			var container = new XElement(ns + "OEChildren");
 
@@ -248,19 +277,30 @@ namespace River.OneMoreAddIn
 		{
 			foreach (var element in elements)
 			{
-				if (element.Name.LocalName == "SectionGroup")
+				var notBin = element.Attribute("isRecycleBin") == null;
+
+				if (element.Name.LocalName == "SectionGroup" && notBin)
 				{
 					// SectionGroup
 
-					container.Add(new XElement(ns + "OE",
-						new XElement(ns + "T", new XCData(element.Attribute("name").Value)
-						)));
+					var name = element.Attribute("name").Value;
+
+					var indent = new XElement(ns + "OEChildren");
+
+					indent.Add(new XElement(ns + "OE",
+						new XElement(ns + "T",
+							new XCData($"<span style='font-weight:bold'>{name}</span>"))
+						));
 
 					BuildSectionTable(
-						manager, ns, container, element.Elements(), includePages, level + 1);
+						manager, ns, indent, element.Elements(), includePages, level + 1);
+
+					container.Add(
+						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
+						new XElement(ns + "OE", indent)
+						);
 				}
-				else if (element.Name.LocalName == "Section" &&
-					!element.Attributes().Any(a => a.Name == "isREcycleBin"))
+				else if (element.Name.LocalName == "Section" && notBin)
 				{
 					// Section
 
@@ -269,37 +309,48 @@ namespace River.OneMoreAddIn
 
 					var name = element.Attribute("name").Value;
 
-					container.Add(new XElement(ns + "OE",
-						new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name}</a>")
-						)));
+					var pages = element.Elements(ns + "Page");
 
-					if (includePages)
+					if (includePages && pages.Any())
 					{
-						//var elements = section.Elements(ns + "Page");
-						//foreach (var element in elements)
-						//{
-						//	var text = new StringBuilder();
-						//	var level = int.Parse(element.Attribute("pageLevel").Value);
-						//	while (level > 0)
-						//	{
-						//		text.Append(". . ");
-						//		level--;
-						//	}
+						var indent = new XElement(ns + "OEChildren");
 
-						//	manager.Application.GetHyperlinkToObject(
-						//		element.Attribute("ID").Value, string.Empty, out var link);
+						foreach (var page in pages)
+						{
+							var text = new StringBuilder();
+							var plevel = int.Parse(page.Attribute("pageLevel").Value);
+							while (plevel > 0)
+							{
+								text.Append(". . ");
+								plevel--;
+							}
 
-						//	var name = element.Attribute("name").Value;
-						//	text.Append($"<a href=\"{link}\">{name}</a>");
+							manager.Application.GetHyperlinkToObject(
+								element.Attribute("ID").Value, string.Empty, out var plink);
 
-						//	container.Add(new XElement(ns + "OE",
-						//		new XElement(ns + "T", new XCData(text.ToString())
-						//		)));
-						//}
+							var pname = page.Attribute("name").Value;
+							text.Append($"<a href=\"{plink}\">{pname}</a>");
+
+							indent.Add(new XElement(ns + "OE",
+								new XElement(ns + "T", new XCData(text.ToString())
+								)));
+						}
+
+						container.Add(new XElement(ns + "OE",
+							new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name}</a>")),
+							indent
+							));
+					}
+					else
+					{
+						container.Add(new XElement(ns + "OE",
+							new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name}</a>")
+							)));
 					}
 				}
 			}
 		}
+		#endregion InsertSectionsTable
 	}
 }
 /*

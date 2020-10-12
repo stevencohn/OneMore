@@ -1097,6 +1097,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Table of Contents.
+        /// </summary>
+        internal static string InsertTocCommand_TOC {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_TOC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Contents - Notebook {0}.
+        /// </summary>
+        internal static string InsertTocCommand_TOCNotebook {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_TOCNotebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Contents - Section {0}.
+        /// </summary>
+        internal static string InsertTocCommand_TOCSections {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_TOCSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top of page.
+        /// </summary>
+        internal static string InsertTocCommand_Top {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Italic {
@@ -2764,7 +2800,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page TOC.
+        ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
         internal static string ribTocButton_Label {
             get {

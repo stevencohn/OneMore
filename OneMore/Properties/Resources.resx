@@ -530,7 +530,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
-    <value>Page TOC</value>
+    <value>Table of Contents</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
@@ -1599,5 +1599,21 @@ Try again later</value>
   <data name="TocDialog_topBox.Text" xml:space="preserve">
     <value>Add link to each heading to jump to top of page</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocCommand_TOC" xml:space="preserve">
+    <value>Table of Contents</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
+    <value>Table of Contents - Notebook {0}</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_TOCSections" xml:space="preserve">
+    <value>Table of Contents - Section {0}</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_Top" xml:space="preserve">
+    <value>Top of page</value>
+    <comment>hyperlink</comment>
   </data>
 </root>
