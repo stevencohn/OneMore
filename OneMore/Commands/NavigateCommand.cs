@@ -19,8 +19,6 @@ namespace River.OneMoreAddIn
 			int retry = 0;
 			while (retry < 4)
 			{
-				retry++;
-
 				try
 				{
 					using (var manager = new ApplicationManager())
@@ -34,6 +32,7 @@ namespace River.OneMoreAddIn
 				{
 					logger.WriteLine($"Error navigating to {pageTag}", exc);
 
+					retry++;
 					System.Threading.Thread.Sleep(250 * retry);
 				}
 			}

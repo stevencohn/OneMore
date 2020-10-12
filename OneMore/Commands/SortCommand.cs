@@ -5,12 +5,11 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
+	using River.OneMoreAddIn.Dialogs;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using River.OneMoreAddIn.Dialogs;
 
 
 	internal class SortCommand : Command
@@ -135,7 +134,7 @@ namespace River.OneMoreAddIn
 			// regex keeps only printable characters (so we don't sort on title emoticons!)
 			pages =
 				(from p in pages
-				 let key = Regex.Replace(p.Page.Attribute(keyName).Value, @"[^ -~]", "")
+				 let key = EmojiDialog.RemoveEmojis(p.Page.Attribute(keyName).Value)
 				 orderby key
 				 select p).ToList();
 
@@ -205,7 +204,7 @@ namespace River.OneMoreAddIn
 				// get all top level sections sorted by key
 				var sections =
 					from s in notebook.Elements(ns + "Section")
-					let key = Regex.Replace(s.Attribute(keyName).Value, @"[^ -~]", "")
+					let key = EmojiDialog.RemoveEmojis(s.Attribute(keyName).Value)
 					orderby key
 					select s;
 
@@ -276,8 +275,8 @@ namespace River.OneMoreAddIn
 			 */
 
 			// nickname is display name whereas name is the folder name
-			var keyName = sorting == SortDialog.Sortings.ByModified 
-				? "lastModifiedTime" 
+			var keyName = sorting == SortDialog.Sortings.ByModified
+				? "lastModifiedTime"
 				: "nickname";
 
 			var ns = root.GetNamespaceOfPrefix("one");
@@ -286,7 +285,7 @@ namespace River.OneMoreAddIn
 			// regex keeps only printable characters (so we don't sort on title emoticons!)
 			var books =
 				from p in root.Elements(ns + "Notebook")
-				let key = Regex.Replace(p.Attribute(keyName).Value, @"[^ -~]", "")
+				let key = EmojiDialog.RemoveEmojis(p.Attribute(keyName).Value)
 				orderby key
 				select p;
 

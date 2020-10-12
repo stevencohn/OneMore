@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Text;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -180,6 +181,46 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			DialogResult = DialogResult.OK;
 			Close();
+		}
+
+
+		public static string RemoveEmojis(string value)
+		{
+			// single-char emojis
+			var singles = new List<char> {
+				(char)0x2211, (char)0x231A, (char)0x25CF, (char)0x2611, (char)0x26A1, (char)0x26BE,
+				(char)0x2709, (char)0x270F, (char)0x274C, (char)0x2B50, (char)0x2B55,
+			};
+
+			// double-char emojis, all have first char 0xD83D
+			var doubleMarker = (char)0xD83D;
+
+			var doubles = new List<char> {
+				(char)0xDC6A, (char)0xDCB2, (char)0xDCBE, (char)0xDCC6, (char)0xDCCC, (char)0xDCD0,
+				(char)0xDCD3, (char)0xDCDD, (char)0xDCF7, (char)0xDD11, (char)0xDD28, (char)0xDE42,
+				(char)0xDE97, (char)0xDEA9, (char)0xDEB4, (char)0xDEE9
+			};
+
+			var builder = new StringBuilder(value);
+			int i;
+
+			foreach (var c in singles)
+			{
+				if ((i = builder.IndexOf(c)) >= 0)
+				{
+					builder.Remove(i, 1);
+				}
+			}
+
+			while (((i = builder.IndexOf(doubleMarker)) >= 0) && (i < builder.Length - 1))
+			{
+				if (doubles.Contains(builder[i + 1]))
+				{
+					builder.Remove(i, 2);
+				}
+			}
+
+			return builder.ToString();
 		}
 	}
 }

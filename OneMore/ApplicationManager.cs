@@ -140,12 +140,6 @@ namespace River.OneMoreAddIn
 			if (page != null)
 			{
 				name = page.Attribute("name")?.Value;
-
-				//if (!string.IsNullOrEmpty(name))
-				//{
-				//	// printable chars only; e.g. remove title emoticon
-				//	name = Regex.Replace(name, @"[^ -~]", "");
-				//}
 			}
 
 			// path

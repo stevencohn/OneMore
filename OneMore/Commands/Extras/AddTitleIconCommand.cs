@@ -5,9 +5,9 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Linq;
 	using System.Windows.Forms;
-	using System.Xml;
 	using System.Xml.Linq;
 
 
@@ -24,59 +24,62 @@ namespace River.OneMoreAddIn
 
 			using (var dialog = new Dialogs.EmojiDialog())
 			{
-				var result = dialog.ShowDialog(owner);
-
-				if (result == DialogResult.OK)
+				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{
-					codes = dialog.GetSelectedCodes();
+					return;
 				}
+
+				codes = dialog.GetSelectedCodes();
 			}
 
-			if (codes == null || codes.Length == 0)
+			try
 			{
-				return;
+				AddIcons(codes);
 			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Error adding title icons", exc);
+			}
+		}
 
-			Page page = null;
+		private void AddIcons(string[] codes)
+		{
 			using (var manager = new ApplicationManager())
 			{
-				page = new Page(manager.CurrentPage());
-			}
+				var page = new Page(manager.CurrentPage());
 
-			var title = page.Root.Element(page.Namespace + "Title")?
-				.Elements(page.Namespace + "OE")?.Elements(page.Namespace + "T")
-				.FirstOrDefault();
+				var cdata = page.Root.Elements(page.Namespace + "Title")
+					.Elements(page.Namespace + "OE")
+					.Elements(page.Namespace + "T")
+					.DescendantNodes().OfType<XCData>()
+					.FirstOrDefault();
 
-			if (title != null && title.FirstNode?.NodeType == XmlNodeType.CDATA)
-			{
-				var wrapper = XElement.Parse("<x>" + title.FirstNode.Parent.Value + "</x>");
-				var wns = wrapper.GetDefaultNamespace();
-
-				var emojii =
-					(from e in wrapper.Elements(wns + "span")
-					 where e.Attributes("style").Any(a => a.Value.Contains("Segoe UI Emoji"))
-					 select e).FirstOrDefault();
-
-				if (emojii != null)
+				if (cdata != null)
 				{
-					emojii.Value = string.Join(string.Empty, codes) + emojii.Value;
-				}
-				else
-				{
-					wrapper.AddFirst(new XElement("span",
-						new XAttribute("style", "font-family:'Segoe UI Emoji';font-size:16pt;"),
-						string.Join(string.Empty, codes)
-						));
-				}
+					var wrapper = cdata.GetWrapper();
 
-				var decoded = string.Concat(wrapper.Nodes()
-					.Select(x => x.ToString()).ToArray())
-					.Replace("&amp;", "&");
+					var espan = wrapper.Elements("span")
+						.FirstOrDefault(e =>
+							e.Attributes("style").Any(a => a.Value.Contains("Segoe UI Emoji")));
 
-				title.FirstNode.ReplaceWith(new XCData(decoded));
+					if (espan != null)
+					{
+						espan.Value = string.Join(string.Empty, codes) + espan.Value;
+					}
+					else
+					{
+						wrapper.AddFirst(new XElement("span",
+							new XAttribute("style", "font-family:'Segoe UI Emoji';font-size:16pt;"),
+							string.Join(string.Empty, codes)
+							));
+					}
 
-				using (var manager = new ApplicationManager())
-				{
+					var decoded = string.Concat(wrapper.Nodes()
+						.Select(x => x.ToString()).ToArray())
+						.Replace("&amp;", "&");
+
+					cdata.ReplaceWith(new XCData(decoded));
+
 					manager.UpdatePageContent(page.Root);
 				}
 			}

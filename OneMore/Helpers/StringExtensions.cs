@@ -5,7 +5,8 @@
 namespace River.OneMoreAddIn
 {
 	using System;
-    using System.Text.RegularExpressions;
+	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
 
@@ -23,7 +24,7 @@ namespace River.OneMoreAddIn
 		/// <param name="value">The comparison string</param>
 		/// <returns>True if both strings are equal</returns>
 
-		public static bool EqualsICIC (this string s, string value)
+		public static bool EqualsICIC(this string s, string value)
 		{
 			return s.Equals(value, StringComparison.InvariantCultureIgnoreCase);
 		}
@@ -36,7 +37,7 @@ namespace River.OneMoreAddIn
 		/// <param name="value">The substring to use as a search</param>
 		/// <returns>True if the current start starts with the given substring</returns>
 
-		public static bool StartsWithICIC (this string s, string value)
+		public static bool StartsWithICIC(this string s, string value)
 		{
 			return s.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
 		}
@@ -74,7 +75,7 @@ namespace River.OneMoreAddIn
 		/// <returns>
 		/// A two-part ValueTuple with the word and the updated string.
 		/// </returns>
-		public static (string, string) ExtractLastWord (this string s)
+		public static (string, string) ExtractLastWord(this string s)
 		{
 			if (!string.IsNullOrEmpty(s))
 			{
@@ -110,6 +111,25 @@ namespace River.OneMoreAddIn
 			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
 
 			return XElement.Parse("<wrapper>" + value + "</wrapper>");
+		}
+
+
+		// StringBuilder...
+
+		public static int IndexOf(this StringBuilder s, char c)
+		{
+			int i = 0;
+			while (i < s.Length)
+			{
+				if (s[i] == c)
+				{
+					return i;
+				}
+
+				i++;
+			}
+
+			return -1;
 		}
 	}
 }
