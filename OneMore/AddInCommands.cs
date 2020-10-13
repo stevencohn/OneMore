@@ -288,6 +288,11 @@ namespace River.OneMoreAddIn
 			factory.GetCommand<StrikeoutCommand>().Execute();
 		}
 
+		public void TextToTableCmd(IRibbonControl control)
+		{
+			factory.GetCommand<TextToTableCommand>().Execute();
+		}
+
 		public void ToLowercaseCmd(IRibbonControl control)
 		{
 			factory.GetCommand<ToCaseCommand>().Execute(false);
