@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Dialogs;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -22,12 +23,6 @@ namespace River.OneMoreAddIn
 		};
 
 
-		private HierarchyScope scope;
-		private SortDialog.Sortings sorting;
-		private SortDialog.Directions direction;
-		private bool pinNotes;
-
-
 		public SortCommand() : base()
 		{
 		}
@@ -37,11 +32,17 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("SortCommand.Execute()");
 
-			DialogResult result;
+			HierarchyScope scope;
+			SortDialog.Sortings sorting;
+			SortDialog.Directions direction;
+			bool pinNotes;
 
 			using (var dialog = new SortDialog())
 			{
-				result = dialog.ShowDialog(owner);
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
 
 				scope = dialog.Scope;
 				sorting = dialog.Soring;
@@ -49,50 +50,74 @@ namespace River.OneMoreAddIn
 				pinNotes = dialog.PinNotes;
 			}
 
-			if (result == DialogResult.OK)
+			logger.WriteLine($"- sort scope:{scope} sorting:{sorting} direction:{direction}");
+
+			try
 			{
-				logger.WriteLine($"- sort scope [{scope}]");
-				logger.WriteLine($"- sort sorting[{sorting}]");
-				logger.WriteLine($"- sort direction [{direction}]");
-
-				using (var manager = new ApplicationManager())
+				switch (scope)
 				{
-					XElement root;
+					case HierarchyScope.hsPages:
+						SortPages(sorting, direction);
+						break;
 
-					if (scope == HierarchyScope.hsPages)
-					{
-						// get just the current section with all pages as child elements
-						root = manager.CurrentSection();
-						root = SortPages(root, sorting, direction);
-					}
-					else
-					{
-						root = manager.GetHierarchy(scope);
+					case HierarchyScope.hsSections:
+						SortSections(sorting, direction, pinNotes);
+						break;
 
-						if (scope == HierarchyScope.hsNotebooks)
-						{
-							// notebooks is a simple flat list
-							root = SortNotebooks(root, sorting, direction);
-						}
-						else
-						{
-							// sections will include all sections for the current notebook
-							root = SortSections(root, sorting, direction, pinNotes);
-						}
-					}
-
-					if (root != null)
-					{
-						manager.UpdateHierarchy(root);
-					}
+					case HierarchyScope.hsNotebooks:
+						SortNotebooks(sorting, direction);
+						break;
 				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Error sorting", exc);
+			}
+		}
+
+		/*
+		private static void SortPages(SortDialog.Sortings sorting, SortDialog.Directions direction)
+		{
+			using (var manager = new ApplicationManager())
+			{
+				var section = manager.CurrentSection();
+				var ns = section.GetNamespaceOfPrefix("one");
+
+				var tree = new List<PageNode>();
+				var list = section.Elements(ns + "Page").ToList();
+				BuildTree(tree, list, 0, 0);
 			}
 		}
 
 
-		private static XElement SortPages(
-			XElement root, SortDialog.Sortings sorting, SortDialog.Directions direction)
+		private static int BuildTree(List<PageNode> tree, List<XElement> elements, int level, int index)
 		{
+			if (index >= elements.Count)
+			{
+				return index;
+			}
+
+			var element = elements[index];
+			var pageLevel = int.Parse(element.Attribute("pageLevel").Value);
+
+			if (pageLevel < level)
+			{
+				return index;
+			}
+
+			if (pageLevel > level)
+			{
+				index = BuildTree(tree, elements, pageLevel, index + 1);
+			}
+
+			return index;
+		}
+		*/
+
+
+		private static void SortPages(SortDialog.Sortings sorting, SortDialog.Directions direction)
+		{
+			#region Notes
 			/*
 			 * <one:Page ID="{B49..." 
 			 *		name="Notes"
@@ -105,65 +130,72 @@ namespace River.OneMoreAddIn
 			 * So the code below must group child pages with their parent so all parents
 			 * can be sorted correctly. Children are not sorted.
 			 */
+			#endregion Notes
 
-			var ns = root.GetNamespaceOfPrefix("one");
-
-			var pages = new List<PageNode>();
-
-			foreach (var child in root.Elements(ns + "Page"))
+			using (var manager = new ApplicationManager())
 			{
-				if (child.Attribute("pageLevel").Value == "1")
+				var root = manager.CurrentSection();
+				var ns = root.GetNamespaceOfPrefix("one");
+
+				var pages = new List<PageNode>();
+
+				foreach (var child in root.Elements(ns + "Page"))
 				{
-					// found the next parent page
-					pages.Add(new PageNode(child));
+					if (child.Attribute("pageLevel").Value == "1")
+					{
+						// found the next parent page
+						pages.Add(new PageNode(child));
+					}
+					else
+					{
+						// grouping child pages with the top parent
+						pages[pages.Count - 1].Children.Add(child);
+					}
+				}
+
+				if (sorting == SortDialog.Sortings.ByName)
+				{
+					pages =
+						(from p in pages
+						 let key = EmojiDialog.RemoveEmojis(p.Page.Attribute("name").Value)
+						 orderby key
+						 select p).ToList();
 				}
 				else
 				{
-					// grouping child pages with the top parent
-					pages[pages.Count - 1].Children.Add(child);
+					var key = sorting == SortDialog.Sortings.ByCreated ? "dateTime" : "lastModifiedTime";
+					pages = pages.OrderBy(p => EmojiDialog.RemoveEmojis(p.Page.Attribute(key).Value)).ToList();
 				}
-			}
 
-			string keyName;
-
-			if (sorting == SortDialog.Sortings.ByCreated) keyName = "dateTime";
-			else if (sorting == SortDialog.Sortings.ByModified) keyName = "lastModifiedTime";
-			else keyName = "name";
-
-			// sort all parents by chosen key.
-			// regex keeps only printable characters (so we don't sort on title emoticons!)
-			pages =
-				(from p in pages
-				 let key = EmojiDialog.RemoveEmojis(p.Page.Attribute(keyName).Value)
-				 orderby key
-				 select p).ToList();
-
-			// reverse if descending
-			if (direction == SortDialog.Directions.Descending)
-			{
-				pages.Reverse();
-			}
-
-			root.RemoveNodes();
-
-			// recreate flat list
-			foreach (var page in pages)
-			{
-				root.Add(page.Page);
-
-				foreach (var child in page.Children)
+				// reverse if descending
+				if (direction == SortDialog.Directions.Descending)
 				{
-					root.Add(child);
+					pages.Reverse();
 				}
-			}
 
-			return root;
+				root.RemoveNodes();
+
+				// recreate flat list
+				foreach (var page in pages)
+				{
+					root.Add(page.Page);
+
+					foreach (var child in page.Children)
+					{
+						root.Add(child);
+					}
+				}
+
+				//Logger.Current.WriteLine(root.ToString());
+				manager.UpdateHierarchy(root);
+			}
 		}
 
 
-		private static XElement SortSections(
-			XElement root, SortDialog.Sortings sorting, SortDialog.Directions direction, bool pinNotes)
+		private static void SortSections(
+			SortDialog.Sortings sorting, SortDialog.Directions direction, bool pinNotes)
 		{
+			#region Notes
 			/*
 			 * <one:Notebooks xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote">
 			 *   <one:Notebook name="Personal" nickname="Personal" ID="{CA.."
@@ -186,27 +218,38 @@ namespace River.OneMoreAddIn
 			 *
 			 * Sort top-level sections only; ignore section groups.
 			 */
+			#endregion Notes
 
-			var ns = root.GetNamespaceOfPrefix("one");
-
-			// find current notebook node; this is the one we want to edit
-			var notebook =
-				(from n in root.Elements(ns + "Notebook")
-				 where n.Attribute("isCurrentlyViewed")?.Value == "true"
-				 select n).FirstOrDefault();
-
-			if (notebook != null)
+			using (var manager = new ApplicationManager())
 			{
-				var keyName = sorting == SortDialog.Sortings.ByModified
-					? "lastModifiedTime"
-					: "name";
+				var root = manager.GetHierarchy(HierarchyScope.hsSections);
+				var ns = root.GetNamespaceOfPrefix("one");
 
-				// get all top level sections sorted by key
-				var sections =
-					from s in notebook.Elements(ns + "Section")
-					let key = EmojiDialog.RemoveEmojis(s.Attribute(keyName).Value)
-					orderby key
-					select s;
+				// find current notebook node; this is the one we want to edit
+				var notebook =
+					(from n in root.Elements(ns + "Notebook")
+					 where n.Attribute("isCurrentlyViewed")?.Value == "true"
+					 select n).FirstOrDefault();
+
+				if (notebook == null)
+				{
+					return;
+				}
+
+				IEnumerable<XElement> sections;
+				if (sorting == SortDialog.Sortings.ByName)
+				{
+					sections =
+						from s in notebook.Elements(ns + "Section")
+						let key = EmojiDialog.RemoveEmojis(s.Attribute("name").Value)
+						orderby key
+						select s;
+				}
+				else
+				{
+					sections = notebook.Elements(ns + "Section")
+						.OrderBy(s => s.Attribute("lastModifiedTime").Value);
+				}
 
 				// reverse if descending
 				if (direction == SortDialog.Directions.Descending)
@@ -254,16 +297,15 @@ namespace River.OneMoreAddIn
 					notebook.AddFirst(notes);
 				}
 
-				return root;
+				//Logger.Current.WriteLine(root.ToString());
+				manager.UpdateHierarchy(root);
 			}
-
-			return null;
 		}
 
 
-		private static XElement SortNotebooks(
-			XElement root, SortDialog.Sortings sorting, SortDialog.Directions direction)
+		private static void SortNotebooks(SortDialog.Sortings sorting, SortDialog.Directions direction)
 		{
+			#region Notes
 			/*
 			 * <one:Notebook
 			 *		name="Personal"
@@ -273,30 +315,39 @@ namespace River.OneMoreAddIn
 			 *		lastModifiedTime="2020-03-04T00:00:32.000Z"
 			 *		color="#FFD869" />
 			 */
+			#endregion Notes
 
-			// nickname is display name whereas name is the folder name
-			var keyName = sorting == SortDialog.Sortings.ByModified
-				? "lastModifiedTime"
-				: "nickname";
-
-			var ns = root.GetNamespaceOfPrefix("one");
-
-			// sort all notebooks by chosen key.
-			// regex keeps only printable characters (so we don't sort on title emoticons!)
-			var books =
-				from p in root.Elements(ns + "Notebook")
-				let key = EmojiDialog.RemoveEmojis(p.Attribute(keyName).Value)
-				orderby key
-				select p;
-
-			if (direction == SortDialog.Directions.Descending)
+			using (var manager = new ApplicationManager())
 			{
-				books = books.Reverse();
+				var root = manager.GetHierarchy(HierarchyScope.hsNotebooks);
+				var ns = root.GetNamespaceOfPrefix("one");
+
+				IEnumerable<XElement> books;
+				if (sorting == SortDialog.Sortings.ByName)
+				{
+					books =
+						from s in root.Elements(ns + "Notebook")
+						// nickname is display name whereas name is the folder name
+						let key = EmojiDialog.RemoveEmojis(s.Attribute("nickname").Value)
+						orderby key
+						select s;
+				}
+				else
+				{
+					books = root.Elements(ns + "Notebook")
+						.OrderBy(s => s.Attribute("lastModifiedTime").Value);
+				}
+
+				if (direction == SortDialog.Directions.Descending)
+				{
+					books = books.Reverse();
+				}
+
+				root.ReplaceNodes(books);
+
+				//Logger.Current.WriteLine(root.ToString());
+				manager.UpdateHierarchy(root);
 			}
-
-			root.ReplaceNodes(books);
-
-			return root;
 		}
 	}
 }
