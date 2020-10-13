@@ -132,6 +132,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.ShowInTaskbar = false;
 			this.Name = "SearchAndReplaceDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Search and Replace";

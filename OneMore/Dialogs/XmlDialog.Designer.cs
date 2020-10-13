@@ -480,6 +480,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MinimumSize = new System.Drawing.Size(1194, 482);
 			this.Name = "XmlDialog";
+			this.ShowInTaskbar = false;
 			this.Padding = new System.Windows.Forms.Padding(8);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "OneMore XML";

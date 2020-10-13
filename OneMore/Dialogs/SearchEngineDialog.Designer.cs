@@ -234,6 +234,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(539, 274);
+			this.ShowInTaskbar = false;
 			this.Name = "SearchEngineDialog";
 			this.Padding = new System.Windows.Forms.Padding(7, 6, 7, 0);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

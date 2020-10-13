@@ -100,6 +100,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.ShowInTaskbar = false;
 			this.Name = "EmojiDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Title Icons";

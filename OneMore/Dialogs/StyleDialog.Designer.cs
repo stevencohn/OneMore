@@ -764,6 +764,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.ShowInTaskbar = false;
 			this.Name = "StyleDialog";
 			this.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

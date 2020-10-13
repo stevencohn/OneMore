@@ -185,6 +185,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.ShowInTaskbar = false;
 			this.Name = "RunPluginDialog";
 			this.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

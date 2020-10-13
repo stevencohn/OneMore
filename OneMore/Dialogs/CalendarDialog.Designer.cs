@@ -154,6 +154,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.ShowInTaskbar = false;
 			this.Name = "CalendarDialog";
 			this.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

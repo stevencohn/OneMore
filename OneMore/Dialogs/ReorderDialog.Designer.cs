@@ -119,6 +119,7 @@
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.ShowInTaskbar = false;
 			this.Name = "ReorderDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 10, 20);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
