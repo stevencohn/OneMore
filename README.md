@@ -129,8 +129,9 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
 1. Close OneNote if it is currently running
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
-3. Run the installer
-4. Run OneNote and enjoy
+3. Right-click the downloaded installer msi and choose Properties, then tick the Unblock box and click OK
+4. Run the installer
+5. Run OneNote and enjoy
 
 ---
 
