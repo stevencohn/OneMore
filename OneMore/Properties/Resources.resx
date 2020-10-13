@@ -1672,4 +1672,8 @@ Try again later</value>
     <value>No text is selected</value>
     <comment>info message</comment>
   </data>
+  <data name="ribTextToTableButton_Label" xml:space="preserve">
+    <value>Convert Text to Table</value>
+    <comment>Ribbon OneMore menu item, extras</comment>
+  </data>
 </root>

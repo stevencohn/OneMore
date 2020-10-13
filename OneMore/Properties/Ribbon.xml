@@ -285,6 +285,12 @@
                 getEnabled="GetBodyContext"
                 onAction="RemoveFootnoteCmd"/>
               <button
+                id="ribTextToTableButton"
+                imageMso="ConvertTextToTable"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="TextToTableCmd"/>
+              <button
                 id="ribEditSearchEnginesButton"
                 label="Edit Search Engines"
                 imageMso="HyperlinkEdit"
@@ -317,11 +323,6 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="StrikeoutCmd"/>
-              <button
-                id="ribTextToTableButton"
-                imageMso="ConvertTextToTable"
-                label="Convert Text To Table"
-                onAction="TextToTableCmd"/>
             </menu>
             <menuSeparator id="sepText" getTitle="GetRibbonLabel"/>
             <button

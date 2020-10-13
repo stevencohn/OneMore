@@ -2800,6 +2800,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Convert Text to Table.
+        /// </summary>
+        internal static string ribTextToTableButton_Label {
+            get {
+                return ResourceManager.GetString("ribTextToTableButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
         internal static string ribTocButton_Label {

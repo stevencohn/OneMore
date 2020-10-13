@@ -1631,4 +1631,8 @@ OneNote 将自动关闭</value>
     <value>从完整的字符串中删除引号</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribTextToTableButton_Label" xml:space="preserve">
+    <value>显示/隐藏日期和时间</value>
+    <comment>Ribbon OneMore menu item, extras</comment>
+  </data>
 </root>
