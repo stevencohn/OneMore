@@ -67,6 +67,7 @@ Extra commands
 
 * Add [special icon to the page title](#other), also appears in page hierarchy
 * Add or remove [**footnotes**](#footnotes) (endnotes)
+* Convert select text to a table
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
 * Edit [search engines](#lookup) that you want to appear in the context menu
