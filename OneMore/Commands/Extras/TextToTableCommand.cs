@@ -11,10 +11,14 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class TextToTableCommand : Command
 	{
+		private const string HeaderShading = "#DEEBF6";
+
+
 		public TextToTableCommand()
 		{
 		}
@@ -22,8 +26,6 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
-			System.Diagnostics.Debugger.Launch();
-
 			using (var manager = new ApplicationManager())
 			{
 				var page = new Page(manager.CurrentPage(PageInfo.piSelection));
@@ -37,7 +39,7 @@ namespace River.OneMoreAddIn
 
 				if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
 				{
-					UIHelper.ShowMessage(manager.Window, "No text is selected");
+					UIHelper.ShowMessage(manager.Window, Resx.TextToTable_NoText);
 					return;
 				}
 
@@ -65,6 +67,8 @@ namespace River.OneMoreAddIn
 			TextToTableDialog.Delimeter delimetedBy;
 			string delimeter;
 			int cols, rows;
+			bool hasHeader;
+			bool unquote;
 
 			using (var dialog = new TextToTableDialog())
 			{
@@ -103,40 +107,59 @@ namespace River.OneMoreAddIn
 					case TextToTableDialog.Delimeter.Other: delimeter = dialog.CustomDelimeter; break;
 					default: delimeter = string.Empty; break;
 				}
+
+				hasHeader = dialog.HasHeader;
+				unquote = dialog.Unquote;
 			}
 
-			var table = new Table(ns, 0, cols)
+			var table = new Table(ns, rows, cols)
 			{
 				BordersVisible = true
 			};
 
-			foreach (var selection in selections)
+			for (int r = 0; r < selections.Count; r++)
 			{
-				var row = table.AddRow();
+				var selection = selections[r];
+				var row = table.Rows.ElementAt(r);
 
 				if (delimetedBy == TextToTableDialog.Delimeter.Paragraphs)
 				{
-					row.Cells.ElementAt(0).SetContent(selection.Value);
+					SetCellContent(row.Cells.ElementAt(0), selection.Value.Trim(), r, unquote, hasHeader);
 				}
 				else
 				{
 					var parts = selection.Value.Split(new string[] { delimeter }, StringSplitOptions.None);
-					for (int i = 0; i < parts.Length && i < cols; i++)
+					for (int c = 0; c < parts.Length && c < cols; c++)
 					{
-						row.Cells.ElementAt(i).SetContent(parts[i]);
+						SetCellContent(row.Cells.ElementAt(c), parts[c].Trim(), r, unquote, hasHeader);
 					}
 				}
 			}
 
-			if (rows < selections.Count)
+			return table;
+		}
+
+
+		public void SetCellContent(TableCell cell, string text, int rownum, bool unquote, bool hasHeader)
+		{
+			if (unquote)
 			{
-				for (int i = rows; i < selections.Count; i++)
+				if (text.Length > 12)
 				{
-					table.AddRow();
+					if (text.StartsWith("&quot;") && text.EndsWith("&quot;"))
+					{
+						text = text.Substring(6, text.Length - 12);
+					}
 				}
 			}
 
-			return table;
+			if (rownum == 0 && hasHeader)
+			{
+				text = $"<span style=\"font-weight:bold\">{text}</span>";
+				cell.ShadingColor = HeaderShading;
+			}
+
+			cell.SetContent(text);
 		}
 	}
 }

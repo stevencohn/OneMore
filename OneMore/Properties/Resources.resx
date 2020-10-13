@@ -1616,4 +1616,60 @@ Try again later</value>
     <value>Top of page</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="TextToTableDialog.Text" xml:space="preserve">
+    <value>Convert Text to Table</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TextToTableDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="TextToTableDialog_columnsLabel.Text" xml:space="preserve">
+    <value>Number of columns:</value>
+    <comment>label</comment>
+  </data>
+  <data name="TextToTableDialog_commasRadio.Text" xml:space="preserve">
+    <value>Commas</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TextToTableDialog_group1.Text" xml:space="preserve">
+    <value>Separate text at</value>
+    <comment>group</comment>
+  </data>
+  <data name="TextToTableDialog_group2.Text" xml:space="preserve">
+    <value>Table size</value>
+    <comment>group</comment>
+  </data>
+  <data name="TextToTableDialog_headerBox.Text" xml:space="preserve">
+    <value>First row is a header</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TextToTableDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="TextToTableDialog_otherRadio.Text" xml:space="preserve">
+    <value>Other</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TextToTableDialog_paragraphsRadio.Text" xml:space="preserve">
+    <value>Paragraphs</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TextToTableDialog_rowsLabel.Text" xml:space="preserve">
+    <value>Number of rows:</value>
+    <comment>label</comment>
+  </data>
+  <data name="TextToTableDialog_tabsRadio.Text" xml:space="preserve">
+    <value>Tabs</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
+    <value>Remove quotes from complete strings</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TextToTable_NoText" xml:space="preserve">
+    <value>No text is selected</value>
+    <comment>info message</comment>
+  </data>
 </root>

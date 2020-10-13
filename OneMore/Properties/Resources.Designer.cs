@@ -3373,6 +3373,132 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No text is selected.
+        /// </summary>
+        internal static string TextToTable_NoText {
+            get {
+                return ResourceManager.GetString("TextToTable_NoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string TextToTableDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of columns:.
+        /// </summary>
+        internal static string TextToTableDialog_columnsLabel_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_columnsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commas.
+        /// </summary>
+        internal static string TextToTableDialog_commasRadio_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_commasRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Separate text at.
+        /// </summary>
+        internal static string TextToTableDialog_group1_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_group1.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table size.
+        /// </summary>
+        internal static string TextToTableDialog_group2_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_group2.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First row is a header.
+        /// </summary>
+        internal static string TextToTableDialog_headerBox_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_headerBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string TextToTableDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        internal static string TextToTableDialog_otherRadio_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_otherRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paragraphs.
+        /// </summary>
+        internal static string TextToTableDialog_paragraphsRadio_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_paragraphsRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of rows:.
+        /// </summary>
+        internal static string TextToTableDialog_rowsLabel_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_rowsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabs.
+        /// </summary>
+        internal static string TextToTableDialog_tabsRadio_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_tabsRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert Text to Table.
+        /// </summary>
+        internal static string TextToTableDialog_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove quotes from complete strings.
+        /// </summary>
+        internal static string TextToTableDialog_unquoteBox_Text {
+            get {
+                return ResourceManager.GetString("TextToTableDialog_unquoteBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string TimestampDialog_cancelButton_Text {

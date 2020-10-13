@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 			if (NeedsLocalizing())
 			{
-				//Text = Resx.TextToTableDialog_Text;
+				Text = Resx.TextToTableDialog_Text;
 
 				Localize(new string[]
 				{
@@ -42,6 +42,8 @@ namespace River.OneMoreAddIn.Dialogs
 					"columnsBox",
 					"rowsLabel",
 					"rowsBox",
+					"headerBox",
+					"unquoteBox",
 					"okButton",
 					"cancelButton"
 				});
@@ -103,17 +105,32 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
+		public bool HasHeader => headerBox.Checked;
+
+
+		public bool Unquote => unquoteBox.Checked;
+
+
 		private void ChangeDelimetedBy(object sender, System.EventArgs e)
 		{
 			if (paragraphsRadio.Checked)
 			{
+				columnsBox.Minimum = 1;
 				columnsBox.Value = 1;
+				columnsBox.Enabled = false;
 				otherBox.Text = string.Empty;
 				otherBox.Enabled = false;
 			}
 			else
 			{
-				columnsBox.Value = userCols;
+				if (!columnsBox.Enabled)
+				{
+					// coming from paragraphsRadio so reset
+					columnsBox.Minimum = userCols;
+					columnsBox.Value = userCols;
+					columnsBox.Enabled = true;
+				}
+
 				otherBox.Enabled = otherRadio.Checked;
 
 				if (otherRadio.Checked && (otherBox.Text == string.Empty))
