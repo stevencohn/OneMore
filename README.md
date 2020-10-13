@@ -125,6 +125,13 @@ Deal with it.
 
 Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
+**How to Install**
+
+1. Close OneNote if it is currently running
+2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
+3. Run the installer
+4. Run OneNote and enjoy
+
 ---
 
 ## Details of What OneMore Can Do...
