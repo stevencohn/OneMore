@@ -77,20 +77,19 @@ namespace River.OneMoreAddIn.Commands
 					var root = XElement.Load(workPath);
 					var updated = root.ToString(SaveOptions.DisableFormatting);
 
+					if (updated == original)
+					{
+						UIHelper.ShowMessage(Resx.Plugin_NoChanges);
+						return;
+					}
+
 					if (createNewPage)
 					{
 						CreatePage(manager, root, page);
 					}
 					else
 					{
-						if (updated != original)
-						{
-							manager.UpdatePageContent(root);
-						}
-						else
-						{
-							UIHelper.ShowMessage(Resx.Plugin_NoChanges);
-						}
+						manager.UpdatePageContent(root);
 					}
 				}
 				catch (Exception exc)
