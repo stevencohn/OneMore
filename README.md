@@ -440,7 +440,12 @@ The workflow is very simple:
 
 Any output that your plugin writes to stdout will be captured in the OneMore log file.
 
+Note, if you run the plugin and a Web browser is invoked (IE) showing the XML file contents then
+you probably forgot to specify the right arguments to powershell.exe or python.exe.
+
 The OneNote page schema is defined in the 0336.OneNoteApplication_2013.xsd file in the References folder of this repo.
+
+*Example*
 
 If the plugin is written in PowerShell then specify the Plugin Command as powershell.exe and use the Arguments
 line to specify the -file argument pointing to your plugin script as shown here.
