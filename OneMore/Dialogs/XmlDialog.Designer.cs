@@ -40,11 +40,12 @@
 			this.hierTab = new System.Windows.Forms.TabPage();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.hierBox = new System.Windows.Forms.RichTextBox();
-			this.currNotebookButton = new System.Windows.Forms.RadioButton();
-			this.currSectionButton = new System.Windows.Forms.RadioButton();
-			this.pagesHierButton = new System.Windows.Forms.RadioButton();
+			this.hierButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.notebooksHierButton = new System.Windows.Forms.RadioButton();
 			this.sectionsHierButton = new System.Windows.Forms.RadioButton();
+			this.pagesHierButton = new System.Windows.Forms.RadioButton();
+			this.currSectionButton = new System.Windows.Forms.RadioButton();
+			this.currNotebookButton = new System.Windows.Forms.RadioButton();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
@@ -65,16 +66,15 @@
 			this.findBox = new System.Windows.Forms.TextBox();
 			this.findButton = new System.Windows.Forms.Button();
 			this.masterPanel = new System.Windows.Forms.Panel();
-			this.hierButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.tabs.SuspendLayout();
 			this.pageTab.SuspendLayout();
 			this.hierTab.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.hierButtonsPanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
 			this.pageInfoPanel.SuspendLayout();
 			this.topPanel.SuspendLayout();
 			this.masterPanel.SuspendLayout();
-			this.hierButtonsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabs
@@ -87,7 +87,7 @@
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
 			this.tabs.Size = new System.Drawing.Size(779, 477);
-			this.tabs.TabIndex = 1;
+			this.tabs.TabIndex = 0;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.ChangeSelectedTab);
 			// 
 			// pageTab
@@ -111,7 +111,7 @@
 			this.pageBox.Margin = new System.Windows.Forms.Padding(1);
 			this.pageBox.Name = "pageBox";
 			this.pageBox.Size = new System.Drawing.Size(769, 449);
-			this.pageBox.TabIndex = 0;
+			this.pageBox.TabIndex = 7;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
 			this.pageBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.XmlBoxKeyUp);
@@ -153,47 +153,20 @@
 			this.hierBox.WordWrap = false;
 			this.hierBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.XmlBoxKeyUp);
 			// 
-			// currNotebookButton
+			// hierButtonsPanel
 			// 
-			this.currNotebookButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.currNotebookButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.currNotebookButton.AutoSize = true;
-			this.currNotebookButton.Location = new System.Drawing.Point(287, 7);
-			this.currNotebookButton.Margin = new System.Windows.Forms.Padding(2);
-			this.currNotebookButton.Name = "currNotebookButton";
-			this.currNotebookButton.Size = new System.Drawing.Size(101, 23);
-			this.currNotebookButton.TabIndex = 7;
-			this.currNotebookButton.Text = "Current Notebook";
-			this.currNotebookButton.UseVisualStyleBackColor = true;
-			this.currNotebookButton.CheckedChanged += new System.EventHandler(this.ShowCurrentNotebook);
-			// 
-			// currSectionButton
-			// 
-			this.currSectionButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.currSectionButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.currSectionButton.AutoSize = true;
-			this.currSectionButton.Location = new System.Drawing.Point(193, 7);
-			this.currSectionButton.Margin = new System.Windows.Forms.Padding(2);
-			this.currSectionButton.Name = "currSectionButton";
-			this.currSectionButton.Size = new System.Drawing.Size(90, 23);
-			this.currSectionButton.TabIndex = 5;
-			this.currSectionButton.Text = "Current Section";
-			this.currSectionButton.UseVisualStyleBackColor = true;
-			this.currSectionButton.CheckedChanged += new System.EventHandler(this.ShowCurrentSection);
-			// 
-			// pagesHierButton
-			// 
-			this.pagesHierButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.pagesHierButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.pagesHierButton.AutoSize = true;
-			this.pagesHierButton.Location = new System.Drawing.Point(142, 7);
-			this.pagesHierButton.Margin = new System.Windows.Forms.Padding(2);
-			this.pagesHierButton.Name = "pagesHierButton";
-			this.pagesHierButton.Size = new System.Drawing.Size(47, 23);
-			this.pagesHierButton.TabIndex = 4;
-			this.pagesHierButton.Text = "Pages";
-			this.pagesHierButton.UseVisualStyleBackColor = true;
-			this.pagesHierButton.CheckedChanged += new System.EventHandler(this.ShowPages);
+			this.hierButtonsPanel.BackColor = System.Drawing.SystemColors.Info;
+			this.hierButtonsPanel.Controls.Add(this.notebooksHierButton);
+			this.hierButtonsPanel.Controls.Add(this.sectionsHierButton);
+			this.hierButtonsPanel.Controls.Add(this.pagesHierButton);
+			this.hierButtonsPanel.Controls.Add(this.currSectionButton);
+			this.hierButtonsPanel.Controls.Add(this.currNotebookButton);
+			this.hierButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.hierButtonsPanel.Location = new System.Drawing.Point(0, 0);
+			this.hierButtonsPanel.Name = "hierButtonsPanel";
+			this.hierButtonsPanel.Padding = new System.Windows.Forms.Padding(5);
+			this.hierButtonsPanel.Size = new System.Drawing.Size(769, 38);
+			this.hierButtonsPanel.TabIndex = 1;
 			// 
 			// notebooksHierButton
 			// 
@@ -224,6 +197,48 @@
 			this.sectionsHierButton.UseVisualStyleBackColor = true;
 			this.sectionsHierButton.CheckedChanged += new System.EventHandler(this.ShowSections);
 			// 
+			// pagesHierButton
+			// 
+			this.pagesHierButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.pagesHierButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.pagesHierButton.AutoSize = true;
+			this.pagesHierButton.Location = new System.Drawing.Point(142, 7);
+			this.pagesHierButton.Margin = new System.Windows.Forms.Padding(2);
+			this.pagesHierButton.Name = "pagesHierButton";
+			this.pagesHierButton.Size = new System.Drawing.Size(47, 23);
+			this.pagesHierButton.TabIndex = 4;
+			this.pagesHierButton.Text = "Pages";
+			this.pagesHierButton.UseVisualStyleBackColor = true;
+			this.pagesHierButton.CheckedChanged += new System.EventHandler(this.ShowPages);
+			// 
+			// currSectionButton
+			// 
+			this.currSectionButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.currSectionButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.currSectionButton.AutoSize = true;
+			this.currSectionButton.Location = new System.Drawing.Point(193, 7);
+			this.currSectionButton.Margin = new System.Windows.Forms.Padding(2);
+			this.currSectionButton.Name = "currSectionButton";
+			this.currSectionButton.Size = new System.Drawing.Size(90, 23);
+			this.currSectionButton.TabIndex = 5;
+			this.currSectionButton.Text = "Current Section";
+			this.currSectionButton.UseVisualStyleBackColor = true;
+			this.currSectionButton.CheckedChanged += new System.EventHandler(this.ShowCurrentSection);
+			// 
+			// currNotebookButton
+			// 
+			this.currNotebookButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.currNotebookButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.currNotebookButton.AutoSize = true;
+			this.currNotebookButton.Location = new System.Drawing.Point(287, 7);
+			this.currNotebookButton.Margin = new System.Windows.Forms.Padding(2);
+			this.currNotebookButton.Name = "currNotebookButton";
+			this.currNotebookButton.Size = new System.Drawing.Size(101, 23);
+			this.currNotebookButton.TabIndex = 7;
+			this.currNotebookButton.Text = "Current Notebook";
+			this.currNotebookButton.UseVisualStyleBackColor = true;
+			this.currNotebookButton.CheckedChanged += new System.EventHandler(this.ShowCurrentNotebook);
+			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -232,7 +247,7 @@
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(1);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(83, 23);
-			this.cancelButton.TabIndex = 3;
+			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.Click += new System.EventHandler(this.Close);
 			// 
@@ -260,7 +275,7 @@
 			this.okButton.Margin = new System.Windows.Forms.Padding(1);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(83, 23);
-			this.okButton.TabIndex = 5;
+			this.okButton.TabIndex = 8;
 			this.okButton.Text = "Update Page";
 			this.okButton.Click += new System.EventHandler(this.Update);
 			// 
@@ -272,7 +287,7 @@
 			this.pageLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.pageLink.Name = "pageLink";
 			this.pageLink.Size = new System.Drawing.Size(10, 13);
-			this.pageLink.TabIndex = 11;
+			this.pageLink.TabIndex = 0;
 			this.pageLink.Text = "-";
 			// 
 			// pagePath
@@ -283,7 +298,7 @@
 			this.pagePath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.pagePath.Name = "pagePath";
 			this.pagePath.Size = new System.Drawing.Size(10, 13);
-			this.pagePath.TabIndex = 10;
+			this.pagePath.TabIndex = 0;
 			this.pagePath.Text = "-";
 			// 
 			// pageName
@@ -294,7 +309,7 @@
 			this.pageName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.pageName.Name = "pageName";
 			this.pageName.Size = new System.Drawing.Size(10, 13);
-			this.pageName.TabIndex = 9;
+			this.pageName.TabIndex = 0;
 			this.pageName.Text = "-";
 			// 
 			// pageLinkLabel
@@ -305,7 +320,7 @@
 			this.pageLinkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.pageLinkLabel.Name = "pageLinkLabel";
 			this.pageLinkLabel.Size = new System.Drawing.Size(30, 13);
-			this.pageLinkLabel.TabIndex = 8;
+			this.pageLinkLabel.TabIndex = 0;
 			this.pageLinkLabel.Text = "Link:";
 			// 
 			// pagePathLabel
@@ -316,7 +331,7 @@
 			this.pagePathLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.pagePathLabel.Name = "pagePathLabel";
 			this.pagePathLabel.Size = new System.Drawing.Size(32, 13);
-			this.pagePathLabel.TabIndex = 7;
+			this.pagePathLabel.TabIndex = 0;
 			this.pagePathLabel.Text = "Path:";
 			// 
 			// pageNameLabel
@@ -327,7 +342,7 @@
 			this.pageNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.pageNameLabel.Name = "pageNameLabel";
 			this.pageNameLabel.Size = new System.Drawing.Size(38, 13);
-			this.pageNameLabel.TabIndex = 6;
+			this.pageNameLabel.TabIndex = 0;
 			this.pageNameLabel.Text = "Name:";
 			// 
 			// pageInfoPanel
@@ -348,7 +363,7 @@
 			this.hideLFBox.Location = new System.Drawing.Point(249, 34);
 			this.hideLFBox.Name = "hideLFBox";
 			this.hideLFBox.Size = new System.Drawing.Size(143, 17);
-			this.hideLFBox.TabIndex = 12;
+			this.hideLFBox.TabIndex = 6;
 			this.hideLFBox.Text = "Remove LF from CDATA";
 			this.hideLFBox.UseVisualStyleBackColor = true;
 			this.hideLFBox.CheckedChanged += new System.EventHandler(this.HideAttributes);
@@ -361,7 +376,7 @@
 			this.hideBox.Location = new System.Drawing.Point(249, 11);
 			this.hideBox.Name = "hideBox";
 			this.hideBox.Size = new System.Drawing.Size(140, 17);
-			this.hideBox.TabIndex = 11;
+			this.hideBox.TabIndex = 5;
 			this.hideBox.Text = "Hide edited-by attributes";
 			this.hideBox.UseVisualStyleBackColor = true;
 			this.hideBox.CheckedChanged += new System.EventHandler(this.HideAttributes);
@@ -371,7 +386,7 @@
 			this.pageInfoBox.Location = new System.Drawing.Point(63, 7);
 			this.pageInfoBox.Name = "pageInfoBox";
 			this.pageInfoBox.Size = new System.Drawing.Size(150, 56);
-			this.pageInfoBox.TabIndex = 13;
+			this.pageInfoBox.TabIndex = 4;
 			this.pageInfoBox.SelectedValueChanged += new System.EventHandler(this.ChangeInfoScope);
 			// 
 			// pageInfoLabel
@@ -381,7 +396,7 @@
 			this.pageInfoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.pageInfoLabel.Name = "pageInfoLabel";
 			this.pageInfoLabel.Size = new System.Drawing.Size(53, 13);
-			this.pageInfoLabel.TabIndex = 8;
+			this.pageInfoLabel.TabIndex = 0;
 			this.pageInfoLabel.Text = "PageInfo:";
 			// 
 			// selectButton
@@ -392,7 +407,7 @@
 			this.selectButton.Margin = new System.Windows.Forms.Padding(1);
 			this.selectButton.Name = "selectButton";
 			this.selectButton.Size = new System.Drawing.Size(78, 23);
-			this.selectButton.TabIndex = 4;
+			this.selectButton.TabIndex = 3;
 			this.selectButton.Text = "Select All";
 			this.selectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.selectButton.Click += new System.EventHandler(this.SelectAll);
@@ -418,7 +433,7 @@
 			this.wrapBox.Margin = new System.Windows.Forms.Padding(2);
 			this.wrapBox.Name = "wrapBox";
 			this.wrapBox.Size = new System.Drawing.Size(72, 17);
-			this.wrapBox.TabIndex = 10;
+			this.wrapBox.TabIndex = 2;
 			this.wrapBox.Text = "Wrap text";
 			this.wrapBox.UseVisualStyleBackColor = true;
 			this.wrapBox.CheckedChanged += new System.EventHandler(this.ChangeWrap);
@@ -430,7 +445,7 @@
 			this.findBox.Margin = new System.Windows.Forms.Padding(2);
 			this.findBox.Name = "findBox";
 			this.findBox.Size = new System.Drawing.Size(181, 21);
-			this.findBox.TabIndex = 5;
+			this.findBox.TabIndex = 0;
 			this.findBox.TextChanged += new System.EventHandler(this.ChangeFindText);
 			this.findBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FindBoxKeyUP);
 			// 
@@ -442,7 +457,7 @@
 			this.findButton.Margin = new System.Windows.Forms.Padding(2);
 			this.findButton.Name = "findButton";
 			this.findButton.Size = new System.Drawing.Size(39, 23);
-			this.findButton.TabIndex = 4;
+			this.findButton.TabIndex = 1;
 			this.findButton.UseVisualStyleBackColor = true;
 			this.findButton.Click += new System.EventHandler(this.ClickFind);
 			// 
@@ -458,24 +473,8 @@
 			this.masterPanel.Size = new System.Drawing.Size(779, 604);
 			this.masterPanel.TabIndex = 6;
 			// 
-			// hierButtonsPanel
-			// 
-			this.hierButtonsPanel.BackColor = System.Drawing.SystemColors.Info;
-			this.hierButtonsPanel.Controls.Add(this.notebooksHierButton);
-			this.hierButtonsPanel.Controls.Add(this.sectionsHierButton);
-			this.hierButtonsPanel.Controls.Add(this.pagesHierButton);
-			this.hierButtonsPanel.Controls.Add(this.currSectionButton);
-			this.hierButtonsPanel.Controls.Add(this.currNotebookButton);
-			this.hierButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.hierButtonsPanel.Location = new System.Drawing.Point(0, 0);
-			this.hierButtonsPanel.Name = "hierButtonsPanel";
-			this.hierButtonsPanel.Padding = new System.Windows.Forms.Padding(5);
-			this.hierButtonsPanel.Size = new System.Drawing.Size(769, 38);
-			this.hierButtonsPanel.TabIndex = 1;
-			// 
 			// XmlDialog
 			// 
-			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
@@ -495,6 +494,8 @@
 			this.pageTab.ResumeLayout(false);
 			this.hierTab.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
+			this.hierButtonsPanel.ResumeLayout(false);
+			this.hierButtonsPanel.PerformLayout();
 			this.buttonPanel.ResumeLayout(false);
 			this.buttonPanel.PerformLayout();
 			this.pageInfoPanel.ResumeLayout(false);
@@ -502,8 +503,6 @@
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
 			this.masterPanel.ResumeLayout(false);
-			this.hierButtonsPanel.ResumeLayout(false);
-			this.hierButtonsPanel.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
