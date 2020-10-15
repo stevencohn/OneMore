@@ -239,7 +239,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 					ApplyHideOptions();
 
-					logger.WriteLine("XmlDialog loaded page, " + xml.Length + " chars");
+					logger.WriteLine($"XmlDialog loaded page, scope {info}, {xml.Length} chars");
 				}
 			}
 		}
