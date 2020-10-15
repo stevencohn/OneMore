@@ -1703,4 +1703,8 @@ OneNote 将自动关闭</value>
     <value>自动换行</value>
     <comment>checkbox</comment>
   </data>
+  <data name="Plugin_InvalidSchema" xml:space="preserve">
+    <value>检测到无效的XML。 检查日志文件以获取详细信息</value>
+    <comment>error message</comment>
+  </data>
 </root>

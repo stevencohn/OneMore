@@ -1744,4 +1744,11 @@ Try again later</value>
     <value>Wrap text</value>
     <comment>checkbox</comment>
   </data>
+  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Plugin_InvalidSchema" xml:space="preserve">
+    <value>Invalid XML detected. Check log file for details</value>
+    <comment>error message</comment>
+  </data>
 </root>

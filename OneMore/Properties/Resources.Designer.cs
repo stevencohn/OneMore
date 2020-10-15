@@ -61,6 +61,28 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
+        ///&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+        ///            targetNamespace=&quot;http://schemas.microsoft.com/office/onenote/2013/onenote&quot;
+        ///            xmlns=&quot;http://schemas.microsoft.com/office/onenote/2013/onenote&quot;
+        ///            elementFormDefault=&quot;qualified&quot;&gt;
+        ///
+        ///	&lt;xsd:annotation&gt;
+        ///		&lt;xsd:documentation xml:lang=&quot;en&quot;&gt;
+        ///			Working draft schema for OneNote import/export.
+        ///		&lt;/xsd:documentation&gt;
+        ///	&lt;/xsd:annotation&gt;
+        ///
+        ///	&lt;!-- Valid root elements --&gt;
+        ///	&lt;xsd:element name=&quot;Notebooks&quot; ty [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _0336_OneNoteApplication_2013 {
+            get {
+                return ResourceManager.GetString("_0336_OneNoteApplication_2013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear the log file.
         /// </summary>
         internal static string AboutDialog_clearLogLabel_Text {
@@ -1519,6 +1541,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PhoneticsDialog_wordLabel_Text {
             get {
                 return ResourceManager.GetString("PhoneticsDialog_wordLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid XML detected. Check log file for details.
+        /// </summary>
+        internal static string Plugin_InvalidSchema {
+            get {
+                return ResourceManager.GetString("Plugin_InvalidSchema", resourceCulture);
             }
         }
         

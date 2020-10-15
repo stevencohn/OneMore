@@ -12,7 +12,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading;
 	using System.Windows.Forms;
+	using System.Xml;
 	using System.Xml.Linq;
+	using System.Xml.Schema;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -80,6 +82,12 @@ namespace River.OneMoreAddIn.Commands
 					if (updated == original)
 					{
 						UIHelper.ShowMessage(Resx.Plugin_NoChanges);
+						return;
+					}
+
+					if (!Validated(root))
+					{
+						UIHelper.ShowMessage(Resx.Plugin_InvalidSchema);
 						return;
 					}
 
@@ -253,6 +261,26 @@ namespace River.OneMoreAddIn.Commands
 		private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
 		{
 			logger.WriteLine("| " + e.Data);
+		}
+
+
+		private bool Validated(XElement root)
+		{
+			var ns = root.GetNamespaceOfPrefix("one");
+
+			var schemas = new XmlSchemaSet();
+			schemas.Add(ns.ToString(), XmlReader.Create(new StringReader(Resx._0336_OneNoteApplication_2013)));
+
+			var document = new XDocument(root);
+
+			bool valid = true;
+			document.Validate(schemas, (o, e) =>
+			{
+				logger.WriteLine($"Schema validation {e.Severity}", e.Exception);
+				valid = false;
+			});
+			
+			return valid;
 		}
 
 

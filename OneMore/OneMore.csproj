@@ -439,6 +439,9 @@
     <Content Include="Properties\Ribbon.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\0336.OneNoteApplication_2013.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
