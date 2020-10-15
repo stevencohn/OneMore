@@ -67,13 +67,13 @@ namespace River.OneMoreAddIn.Models
 
 			set
 			{
-				var text = Root.Elements(Namespace + "Title")
-					.Elements(Namespace + "OE")
-					.Elements(Namespace + "T").FirstOrDefault();
+				// overwrite the entire title
+				var title = Root.Elements(Namespace + "Title")
+					.Elements(Namespace + "OE").FirstOrDefault();
 
-				if (text != null)
+				if (title != null)
 				{
-					text.GetCData().Value = value;
+					title.ReplaceNodes(new XElement(Namespace + "T", new XCData(value)));
 				}
 			}
 		}
