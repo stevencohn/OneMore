@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("ShowXmlCommand.Execute()");
 
-			using (var dialog = new XmlDialog())
+			using (var dialog = new Dialogs.XmlDialog())
 			{
 				dialog.ShowDialog(owner);
 			}

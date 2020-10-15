@@ -3699,5 +3699,158 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string XmlDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Notebook.
+        /// </summary>
+        internal static string XmlDialog_currNotebookButton_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_currNotebookButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Section.
+        /// </summary>
+        internal static string XmlDialog_currSectionButton_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_currSectionButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide edited-by attributes.
+        /// </summary>
+        internal static string XmlDialog_hideBox_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_hideBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove LF from CDATA.
+        /// </summary>
+        internal static string XmlDialog_hideLFBox_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_hideLFBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hierarchy.
+        /// </summary>
+        internal static string XmlDialog_hierTab_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_hierTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notebooks.
+        /// </summary>
+        internal static string XmlDialog_notebooksHierButton_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_notebooksHierButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Page.
+        /// </summary>
+        internal static string XmlDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link:.
+        /// </summary>
+        internal static string XmlDialog_pageLinkLabel_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_pageLinkLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        internal static string XmlDialog_pageNameLabel_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_pageNameLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path:.
+        /// </summary>
+        internal static string XmlDialog_pagePathLabel_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_pagePathLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages.
+        /// </summary>
+        internal static string XmlDialog_pagesHierButton_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_pagesHierButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string XmlDialog_pageTab_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_pageTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sections.
+        /// </summary>
+        internal static string XmlDialog_sectionsHierButton_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_sectionsHierButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string XmlDialog_selectButton_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_selectButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore XML.
+        /// </summary>
+        internal static string XmlDialog_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrap text.
+        /// </summary>
+        internal static string XmlDialog_wrapBox_Text {
+            get {
+                return ResourceManager.GetString("XmlDialog_wrapBox.Text", resourceCulture);
+            }
+        }
     }
 }

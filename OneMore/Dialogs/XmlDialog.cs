@@ -1,32 +1,30 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  Yada yada...
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3001  // Type is not CLS-compliant
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Dialogs
 {
 	using Microsoft.Office.Interop.OneNote;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
-	using System.Runtime.InteropServices.WindowsRuntime;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
-	/// View page and hierarchy XML. Update page XML if desired.
+	/// A dialog to view page and hierarchy XML and update page XML if desired.
 	/// </summary>
-	/// <remarks>
-	/// Disposables: Local ApplicationManager disposed in OnClosed.
-	/// </remarks>
-
-	internal partial class XmlDialog : Form, IOneMoreWindow
+	internal partial class XmlDialog : LocalizableForm
 	{
 
 		private ApplicationManager manager;
 		private readonly ILogger logger;
+		private int findIndex = -1;
 
 
 		public XmlDialog()
@@ -40,27 +38,194 @@ namespace River.OneMoreAddIn
 				Logger.SetDesignMode(DesignMode);
 			}
 
+			if (NeedsLocalizing())
+			{
+				Text = Resx.XmlDialog_Text;
+
+				Localize(new string[]
+				{
+					"wrapBox",
+					"selectButton",
+					"hideBox",
+					"hideLFBox",
+					"pageTab",
+					"hierTab",
+					"notebooksHierButton",
+					"sectionsHierButton",
+					"pagesHierButton",
+					"currNotebookButton",
+					"currSectionButton",
+					"pageNameLabel",
+					"pagePathLabel",
+					"pageLinkLabel",
+					"okButton",
+					"cancelButton"
+				});
+			}
+
 			logger = Logger.Current;
 
 			Width = Math.Min(2000, (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8));
 			Height = Math.Min(1500, (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));
 		}
 
-		#region Lifecycle
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
 			manager = new ApplicationManager();
 
-			var infoNames = Enum.GetNames(typeof(PageInfo));
-			pageInfoBox.Items.AddRange(infoNames);
-			pageInfoBox.SelectedIndex = infoNames.ToList().IndexOf("piSelection");
+			// build pageInfoBox with custom order
+			var names = new List<string>
+			{
+				Enum.GetName(typeof(PageInfo), PageInfo.piAll),
+				Enum.GetName(typeof(PageInfo), PageInfo.piSelection),
+				Enum.GetName(typeof(PageInfo), PageInfo.piBasic),
+				Enum.GetName(typeof(PageInfo), PageInfo.piBinaryData),
+				Enum.GetName(typeof(PageInfo), PageInfo.piBinaryDataSelection),
+				Enum.GetName(typeof(PageInfo), PageInfo.piBinaryDataFileType),
+				Enum.GetName(typeof(PageInfo), PageInfo.piFileType),
+				Enum.GetName(typeof(PageInfo), PageInfo.piSelectionFileType)
+			};
 
+			pageInfoBox.Items.AddRange(names.ToArray());
+			pageInfoBox.SelectedIndex = names.IndexOf("piSelection");
+
+			// populate page info...
 			var info = manager.GetCurrentPageInfo();
 			pageName.Text = info.Name;
 			pagePath.Text = info.Path;
 			pageLink.Text = info.Link;
 		}
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			//Location = new System.Drawing.Point(30, 30);
+			UIHelper.SetForegroundWindow(this);
+			findBox.Focus();
+		}
+
+
+		private void Close(object sender, EventArgs e)
+		{
+			manager.Dispose();
+			Close();
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Search, Wrap, Select
+
+		private void ChangeFindText(object sender, EventArgs e)
+		{
+			if (findBox.Text.Length == 0)
+			{
+				findIndex = -1;
+				findButton.Enabled = false;
+			}
+			else if (!findButton.Enabled)
+			{
+				findIndex = -1;
+				findButton.Enabled = true;
+			}
+		}
+
+
+		private void ClickFind(object sender, EventArgs e)
+		{
+			var box = tabs.SelectedIndex == 0 ? pageBox : hierBox;
+			var index = FindNext(box, findBox.Text);
+
+			if (index > 0)
+			{
+				box.Select(index, findBox.Text.Length);
+				box.Focus();
+				findIndex = index;
+			}
+		}
+
+
+		private int FindNext(RichTextBox box, string text)
+		{
+			var index = box.Find(text, findIndex + 1, RichTextBoxFinds.None);
+
+			if ((index < 0) && (findIndex > 0))
+			{
+				// wrap back to top and try again
+				findIndex = -1;
+				index = box.Find(text, 0, RichTextBoxFinds.None);
+			}
+
+			return index;
+		}
+
+
+		private void FindBoxKeyUP(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				ClickFind(sender, e);
+				e.Handled = true;
+			}
+		}
+
+
+		private void XmlBoxKeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Control && (e.KeyCode == Keys.F))
+			{
+				findBox.Focus();
+			}
+		}
+
+
+		protected override bool ProcessDialogKey(Keys keyData)
+		{
+			if (keyData == (Keys.F | Keys.Control))
+			{
+				findBox.SelectAll();
+				findBox.Focus();
+				return true;
+			}
+			else if (keyData == Keys.F3)
+			{
+				ClickFind(null, null);
+			}
+
+			return base.ProcessDialogKey(keyData);
+		}
+
+
+		private void ChangeWrap(object sender, EventArgs e)
+		{
+			if (tabs.SelectedIndex == 0)
+			{
+				pageBox.WordWrap = wrapBox.Checked;
+			}
+			else
+			{
+				hierBox.WordWrap = wrapBox.Checked;
+			}
+		}
+
+
+		private void SelectAll(object sender, EventArgs e)
+		{
+			if (tabs.SelectedIndex == 0)
+			{
+				pageBox.SelectAll();
+				pageBox.Focus();
+			}
+			else
+			{
+				hierBox.SelectAll();
+				hierBox.Focus();
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Page control
 
 		private void ChangeInfoScope(object sender, EventArgs e)
 		{
@@ -76,58 +241,6 @@ namespace River.OneMoreAddIn
 
 					logger.WriteLine("XmlDialog loaded page, " + xml.Length + " chars");
 				}
-			}
-		}
-
-
-		protected override void OnShown(EventArgs e)
-		{
-			//Location = new System.Drawing.Point(30, 30);
-			UIHelper.SetForegroundWindow(this);
-			findBox.Focus();
-		}
-
-
-		private void Close(object sender, EventArgs e)
-		{
-			Close();
-		}
-
-
-		private void ChangeSelectedTab(object sender, EventArgs e)
-		{
-			if (tabs.SelectedIndex == 0)
-			{
-				pageBox.Select(0, 0);
-				pageBox.Focus();
-				updateButton.Visible = true;
-				pageInfoPanel.Visible = true;
-				wrapBox.Checked = pageBox.WordWrap;
-			}
-			else
-			{
-				if (hierBox.TextLength == 0)
-				{
-					ShowHierarchy(HierarchyScope.hsNotebooks);
-				}
-
-				pageBox.Select(0, 0);
-				pageBox.Focus();
-				updateButton.Visible = false;
-				pageInfoPanel.Visible = false;
-				wrapBox.Checked = hierBox.WordWrap;
-			}
-		}
-
-		private void ChangeWrap(object sender, EventArgs e)
-		{
-			if (tabs.SelectedIndex == 0)
-			{
-				pageBox.WordWrap = wrapBox.Checked;
-			}
-			else
-			{
-				hierBox.WordWrap = wrapBox.Checked;
 			}
 		}
 
@@ -184,102 +297,34 @@ namespace River.OneMoreAddIn
 		}
 
 
-		protected override bool ProcessDialogKey(Keys keyData)
-		{
-			if (keyData == (Keys.F | Keys.Control))
-			{
-				findBox.SelectAll();
-				findBox.Focus();
-				return true;
-			}
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Tabs
 
-			return base.ProcessDialogKey(keyData);
-		}
-
-		#endregion Lifecycle
-
-		#region Selection action
-
-		private void SelectAll(object sender, EventArgs e)
+		private void ChangeSelectedTab(object sender, EventArgs e)
 		{
 			if (tabs.SelectedIndex == 0)
 			{
-				pageBox.SelectAll();
+				pageBox.Select(0, 0);
 				pageBox.Focus();
+				okButton.Visible = true;
+				pageInfoPanel.Visible = true;
+				wrapBox.Checked = pageBox.WordWrap;
 			}
 			else
 			{
-				hierBox.SelectAll();
-				hierBox.Focus();
-			}
-		}
-
-		#endregion Selection action
-
-		#region Find actions
-
-		int findIndex = -1;
-		private void ClickFind(object sender, EventArgs e)
-		{
-			RichTextBox box = tabs.SelectedIndex == 0 ? pageBox : hierBox;
-			var index = SearchOne(box, findBox.Text);
-			if ((index < 0) && (findIndex > 0))
-			{
-				findIndex = -1;
-				SearchOne(box, findBox.Text);
-			}
-		}
-
-		private int SearchOne(RichTextBox box, string text)
-		{
-			var index = box.Find(text, findIndex + 1, RichTextBoxFinds.None);
-			if (index > findIndex)
-			{
-				box.Select(index, findBox.Text.Length);
-				box.Focus();
-				findIndex = index;
-			}
-
-			return index;
-		}
-
-		private void ChangeFindText(object sender, EventArgs e)
-		{
-			if (findBox.Text.Length == 0)
-			{
-				findIndex = -1;
-				findButton.Enabled = false;
-			}
-			else
-			{
-				if (findButton.Enabled)
+				if (hierBox.TextLength == 0)
 				{
-					findIndex = -1;
-					findButton.Enabled = true;
+					ShowHierarchy(HierarchyScope.hsNotebooks);
 				}
+
+				pageBox.Select(0, 0);
+				pageBox.Focus();
+				okButton.Visible = false;
+				pageInfoPanel.Visible = false;
+				wrapBox.Checked = hierBox.WordWrap;
 			}
 		}
 
-		private void FindBoxKeyUP(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				ClickFind(sender, e);
-				e.Handled = true;
-			}
-		}
-
-		private void PageBoxKeyUp(object sender, KeyEventArgs e)
-		{
-			if (e.Control && (e.KeyCode == Keys.F))
-			{
-				findBox.Focus();
-			}
-		}
-
-		#endregion Find actions
-
-		#region Hierarchy actions
 
 		private void ShowNotebooks(object sender, EventArgs e)
 		{
@@ -339,8 +384,9 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		#endregion Hierarchy actions
 
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Update
 
 		private void Update(object sender, EventArgs e)
 		{
