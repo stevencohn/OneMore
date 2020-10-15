@@ -105,6 +105,8 @@ commands also have their own key bindings:
 | Increase font size            | Cltr + Alt + Plus
 | Decrease font size            | Ctrl + Alt + Minus
 | Show XML                      | Ctrl + Shift + Alt + X
+| Dump diagnostic info to log   | F8
+| Clear the diagnostic log file | Ctrl + F8
 
 **Why?**
 
