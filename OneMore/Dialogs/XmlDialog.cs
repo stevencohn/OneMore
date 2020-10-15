@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Drawing;
 	using System.Linq;
+	using System.Runtime.InteropServices.WindowsRuntime;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -70,6 +71,8 @@ namespace River.OneMoreAddIn
 				{
 					var xml = page.ToString(SaveOptions.None);
 					pageBox.Text = xml;
+
+					ApplyHideOptions();
 
 					logger.WriteLine("XmlDialog loaded page, " + xml.Length + " chars");
 				}
@@ -133,11 +136,15 @@ namespace River.OneMoreAddIn
 		{
 			ChangeInfoScope(sender, e);
 
-			if (!hideBox.Checked && !hideLFBox.Checked)
+			if (hideBox.Checked || hideLFBox.Checked)
 			{
-				return;
+				ApplyHideOptions();
 			}
+		}
 
+
+		private void ApplyHideOptions()
+		{
 			var root = XElement.Parse(pageBox.Text);
 
 			if (hideBox.Checked)
