@@ -222,6 +222,7 @@ namespace River.OneMoreAddIn.Commands
 						CreateNoWindow = true,
 						UseShellExecute = false,
 						RedirectStandardOutput = true,
+						RedirectStandardError = true
 					},
 
 					EnableRaisingEvents = true
@@ -229,9 +230,11 @@ namespace River.OneMoreAddIn.Commands
 
 				process.Exited += Process_Exited;
 				process.OutputDataReceived += Process_OutputDataReceived;
+				process.ErrorDataReceived += Process_ErrorDataReceived;
 
 				process.Start();
 				process.BeginOutputReadLine();
+				process.BeginErrorReadLine();
 
 				logger.WriteLine($"Plugin process started PID:{process.Id}");
 			}
@@ -249,7 +252,6 @@ namespace River.OneMoreAddIn.Commands
 			return process;
 		}
 
-
 		private void Process_Exited(object sender, EventArgs e)
 		{
 			logger.WriteLine("Plugin process exited");
@@ -261,6 +263,12 @@ namespace River.OneMoreAddIn.Commands
 		private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
 		{
 			logger.WriteLine("| " + e.Data);
+		}
+
+
+		private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+		{
+			logger.WriteLine("! " + e.Data);
 		}
 
 
