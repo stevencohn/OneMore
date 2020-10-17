@@ -118,9 +118,10 @@ And both of these charge money for something that should be open source and neit
 what I wanted. So I did what any self respecting software engineer would do... I built my own.
 Deal with it.
 
-I do this as a hobby. I will never charge you to use OneMore. So I humbly suggest that you consider
-a small donation to support the development of OneMore. In exchange, I pledge to continue listening
-with an open mind and responding to your questions and tips in a timely manner.
+I do this as a hobby. I will never charge you to use OneMore. So it is with great humility and
+appreciation that I humbly suggest that you consider a small donation to support the development
+of OneMore. In exchange, I pledge to continue listening with an open mind and to respond to your
+questions and tips in a timely manner.
 
 [![Donate](Screenshots/Donate.png)](https://paypal.me/stevenmcohn?locale.x=en_US)
 
