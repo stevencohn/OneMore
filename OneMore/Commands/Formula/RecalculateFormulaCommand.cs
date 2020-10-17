@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn
 				{
 					foreach (var cell in cells.ToList())
 					{
-						var calculator = new Calculator(ns, cell.formula);
+						var calculator = new Processor(ns, cell.formula);
 
 						var values = calculator.CollectValues(cell.Element);
 						var result = calculator.Calculate(values);

@@ -10,12 +10,12 @@ namespace River.OneMoreAddIn
 	using System.Xml.Linq;
 
 
-	internal class Calculator
+	internal class Processor
 	{
 		private readonly XNamespace ns;
 
 
-		public Calculator(XNamespace ns,
+		public Processor(XNamespace ns,
 			FormulaDirection direction, FormulaFunction function, FormulaFormat format)
 		{
 			Direction = direction;
@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public Calculator(XNamespace ns, string formula)
+		public Processor(XNamespace ns, string formula)
 		{
 			this.ns = ns;
 			ParseFormula(formula);

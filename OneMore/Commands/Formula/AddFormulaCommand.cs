@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn
 
 				if (cells != null && cells.Any())
 				{
-					var calculator = new Calculator(ns, 
+					var calculator = new Processor(ns, 
 						FormulaDirection.Vertical, FormulaFunction.Sum, FormulaFormat.Number);
 
 					if (calculator.Direction != FormulaDirection.Error)

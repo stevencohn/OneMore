@@ -118,7 +118,7 @@
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />
     <Compile Include="Commands\Clean\ToggleDttmCommand.cs" />
-    <Compile Include="Commands\Formula\Calculator.cs" />
+    <Compile Include="Commands\Formula\Processor.cs" />
     <Compile Include="Commands\Formula\DeleteFormulaCommand.cs" />
     <Compile Include="Commands\Formula\FormulaEnums.cs" />
     <Compile Include="Commands\Formula\HighlightFormulaCommand.cs" />
