@@ -110,13 +110,20 @@ commands also have their own key bindings:
 
 **Why?**
 
-For myself. I wanted something more than what OneNote provided. I was overwhelmed by _OneNote Gem_,
+I wanted something more than what OneNote provided. I was overwhelmed by _OneNote Gem_,
 aghast at its bloated useless overloads of what was already otherwise available or features that
 I would never use in a million years - and, oh yeah, that price! I admit I was intrigued by the
 _Onetastic Macro_ approach but thought it limited and obtuse, decipherable only by programmers.
 And both of these charge money for something that should be open source and neither provided exactly
 what I wanted. So I did what any self respecting software engineer would do... I built my own.
 Deal with it.
+
+I do this as a hobby. I will never charge you to use OneMore. So I humbly suggest that you consider
+a small donation to support the development of OneMore. In exchange, I pledge to continue listening
+with an open mind and responding to your questions and tips in a timely manner.
+
+[![Donate](Screenshots/Donate.png)](https://paypal.me/stevenmcohn?locale.x=en_US)
+
 
 **Minimum Prerequisites**
 
