@@ -116,7 +116,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 			cell.SetContent(text);
 
-			logger.WriteLine($"Cell {cell.Coordinates} calculated result = ({text})");
+			//logger.WriteLine($"Cell {cell.Coordinates} calculated result = ({text})");
 		}
 
 
