@@ -5,11 +5,11 @@
 namespace River.OneMoreAddIn.Commands.Formula
 {
 
-	internal enum FormulaDirection
+	internal enum FormulaRangeType
 	{
 		Single,
-		Horizontal,
-		Vertical,
+		Columns,
+		Rows,
 		Rectangular
 	}
 
@@ -33,5 +33,21 @@ namespace River.OneMoreAddIn.Commands.Formula
 		Mode,
 		Variance,
 		StandardDeviation
+	}
+
+
+	internal enum FunctionStatus
+	{
+		OK,
+		UndefinedFunction,
+		WrongParameterCount,
+	}
+
+
+	internal enum SymbolStatus
+	{
+		OK,
+		None,
+		UndefinedSymbol,
 	}
 }

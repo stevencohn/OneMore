@@ -30,19 +30,19 @@ namespace River.OneMoreAddIn
 					.Where(e => e.Attribute("name").Value == "omfx")
 					.Select(e => new { Element = e.Parent.Parent.Parent, formula = e.Attribute("content").Value });
 
-				if (cells?.Count() > 0)
-				{
-					foreach (var cell in cells.ToList())
-					{
-						var calculator = new Processor(ns, cell.formula);
+				//if (cells?.Count() > 0)
+				//{
+				//	foreach (var cell in cells.ToList())
+				//	{
+				//		var calculator = new Processor(ns, cell.formula);
 
-						var values = calculator.CollectValues(cell.Element);
-						var result = calculator.Calculate(values);
-						calculator.ReportResult(cell.Element, result, values);
-					}
+				//		var values = calculator.CollectValues(cell.Element);
+				//		var result = calculator.Calculate(values);
+				//		calculator.ReportResult(cell.Element, result, values);
+				//	}
 
-					manager.UpdatePageContent(page.Root);
-				}
+				//	manager.UpdatePageContent(page.Root);
+				//}
 			}
 		}
 	}

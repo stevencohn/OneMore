@@ -4,61 +4,130 @@
 
 namespace River.OneMoreAddIn.Commands.Formula
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
-	using System.Xml.Linq;
 
 
 	internal class Processor
 	{
-		private readonly XNamespace ns;
+		private readonly Table table;
+		private int precision;
 
 
-		public Processor(XNamespace ns,
-			FormulaDirection direction, FormulaFunction function, FormulaFormat format)
+		public Processor(Table table)
 		{
-			Direction = direction;
-			Function = function;
-			Format = format;
-			this.ns = ns;
+			this.table = table;
 		}
 
 
-		public Processor(XNamespace ns, string formula)
+		public void Execute(IEnumerable<TableCell> cells)
 		{
-			this.ns = ns;
-			ParseFormula(formula);
-		}
+			var calculator = new Calculator();
+			calculator.ProcessSymbol += LookupCellValue;
 
-
-		public void ParseFormula(string formula)
-		{
-			var parts = formula.Split(';');
-
-			// version
-			if (parts[0] == "0")
+			foreach (var cell in cells)
 			{
-				//content="0;Horizontal;Number;Sum"
-				Direction = (FormulaDirection)Enum.Parse(typeof(FormulaDirection), parts[1]);
-				Format = (FormulaFormat)Enum.Parse(typeof(FormulaFormat), parts[2]);
-				Function = (FormulaFunction)Enum.Parse(typeof(FormulaFunction), parts[3]);
+				var formula = cell.GetMeta("omfx");
+				if (formula == null)
+				{
+					Logger.Current.WriteLine($"Cell {cell.Coordinates} is missing its formula");
+					continue;
+				}
+
+				var parts = formula.Split(';');
+				if (parts[0] == "0") // Version 0
+				{
+					Execute(cell, parts[1], parts[2], parts[3]);
+					continue;
+				}
+
+				if (parts.Length < 3 || !Enum.TryParse<FormulaFormat>(parts[1], out var format))
+				{
+					Logger.Current.WriteLine($"Cell {cell.Coordinates} has bad function {formula}");
+					continue;
+				}
+
+				formula = parts[2];
+
+				precision = 0;
+
+				try
+				{
+					var result = calculator.Execute(formula);
+
+					string text = string.Empty;
+					switch (format)
+					{
+						case FormulaFormat.Currency:
+							text = $"{result:C}";
+							break;
+
+						case FormulaFormat.Number:
+							text = result.ToString($"N{precision}");
+							break;
+
+						case FormulaFormat.Percentage:
+							text = $"{(result / 100):P}";
+							break;
+					}
+
+					cell.SetContent(text);
+
+					Logger.Current.WriteLine($"Cell {cell.Coordinates} calculated result = ({text})");
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine(
+						$"Error calculating {cell.Coordinates} formula '{formula}'", exc);
+				}
 			}
 		}
 
 
-		public FormulaDirection Direction { get; set; }
+		private void LookupCellValue(object sender, SymbolEventArgs e)
+		{
+			var cell = table.GetCell(e.Name.ToUpper());
+			if (cell != null)
+			{
+				if (double.TryParse(cell.GetContent(), out var value))
+				{
+					precision = Math.Max(value.ToString().Length - ((int)value).ToString().Length - 1, precision);
+					e.Result = value;
+					e.Status = SymbolStatus.OK;
+				}
+				else
+					e.Status = SymbolStatus.None;
+			}
+			else
+			{
+				e.Status = SymbolStatus.UndefinedSymbol;
+			}
+		}
 
-		public FormulaFormat Format { get; set; }
 
-		public FormulaFunction Function { get; set; }
+		// ----------
+		// Version 0
 
+		private void Execute(TableCell cell, string range, string func, string form)
+		{
+			if (!Enum.TryParse<FormulaRangeType>(range, out var rangeType))
+				return;
 
-		public List<decimal> CollectValues(XElement cell)
+			if (!Enum.TryParse<FormulaFunction>(func, out var function))
+				return;
+
+			if (!Enum.TryParse<FormulaFormat>(form, out var format))
+				return;
+
+			//
+		}
+		/*
+		private List<decimal> CollectValues(XElement cell)
 		{
 			var values = new List<decimal>();
 
-			if (Direction == FormulaDirection.Vertical)
+			if (Direction == FormulaRangeType.Rows)
 			{
 				var index = cell.ElementsBeforeSelf(ns + "Cell").Count();
 				foreach (var row in cell.Parent.ElementsBeforeSelf(ns + "Row"))
@@ -193,5 +262,6 @@ namespace River.OneMoreAddIn.Commands.Formula
 				cell.Add(content);
 			}
 		}
+		*/
 	}
 }

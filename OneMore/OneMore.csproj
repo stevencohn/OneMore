@@ -112,6 +112,12 @@
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\ClearLogCommand.cs" />
     <Compile Include="Commands\Extras\TextToTableCommand.cs" />
+    <Compile Include="Commands\Formula\Calculator.cs" />
+    <Compile Include="Commands\Formula\FormulaException.cs" />
+    <Compile Include="Commands\Formula\FunctionEventArgs.cs" />
+    <Compile Include="Commands\Formula\MathFunctions.cs" />
+    <Compile Include="Commands\Formula\SymbolEventArgs.cs" />
+    <Compile Include="Commands\Formula\TextParser.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
     <Compile Include="Commands\Extras\EditSearchEnginesCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />

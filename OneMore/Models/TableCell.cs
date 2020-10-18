@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using System.Linq;
 	using System.Xml.Linq;
 
 
@@ -47,6 +48,38 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets the value stored in this cell
+		/// </summary>
+		/// <returns>A string value</returns>
+		public string GetContent()
+		{
+			var text = Root.Elements(ns + "OEChildren")
+				.Elements(ns + "OE")
+				.Elements(ns + "T")
+				.FirstOrDefault();
+
+			return text?.Value;
+		}
+
+
+		/// <summary>
+		/// Gets the value of the named meta attribute
+		/// </summary>
+		/// <param name="name">The name of a meta attribute</param>
+		/// <returns>The value of the meta attribute</returns>
+		public string GetMeta(string name)
+		{
+			var attribute = Root.Elements(ns + "OEChildren")
+				.Elements(ns + "OE")
+				.Elements(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name").Value == name)
+				.Attribute("value");
+			
+			return attribute?.Value;
+		}
+
+
+		/// <summary>
 		/// Adds the given table as the content of this cell.
 		/// </summary>
 		/// <param name="table">The table to add</param>
@@ -72,28 +105,78 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="content"></param>
 		public void SetContent(XElement content)
 		{
-			// ensure the content is properly wrapped
+			// ensure the content is properly wrapped, while preserving existing
+			// elements such as Meta that might have formula details
+
 			var name = content.Name.LocalName;
-			if (name != "OEChildren")
+			var oec = Root.Element(ns + "OEChildren");
+			if (name == "OEChildren")
 			{
-				if (name == "OE")
-				{
-					content = new XElement(ns + "OEChildren", content);
-				}
+				if (oec == null)
+					Root.ReplaceNodes(content);
 				else
-				{
-					content = new XElement(ns + "OEChildren", new XElement(ns + "OE", content));
-				}
+					oec.ReplaceWith(content);
+
+				return;
+			}
+			else if (oec == null)
+			{
+				oec = new XElement(ns + "OEChildren");
+				Root.Add(oec);
 			}
 
-			// set cell contents
-			if (Root.HasElements)
+			var oe = oec.Element(ns + "OE");
+			if (name == "OE")
 			{
-				Root.Element(ns + "OEChildren").ReplaceWith(content);
+				if (oe == null)
+					oec.ReplaceNodes(content);
+				else
+					oec.ReplaceWith(content);
+
+				return;
+			}
+			else if (oe == null)
+			{
+				oe = new XElement(ns + "OE");
+				oec.Add(oe);
+			}
+
+			var t = oe.Element(ns + "T");
+
+			if (t == null)
+				oe.Add(content);
+			else
+				t.ReplaceWith(content);
+		}
+
+
+		/// <summary>
+		/// Applies a meta attribute to the cell, used to contain formula definitions
+		/// </summary>
+		/// <param name="name">The meta name</param>
+		/// <param name="value">The meta value</param>
+		public void SetMeta(string name, string value)
+		{
+			if (GetContent() == null)
+			{
+				SetContent(string.Empty);
+			}
+
+			var parent = Root.Element(ns + "OEChildren").Element(ns + "OE");
+
+			var element = parent.Elements(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name").Value == name);
+
+			if (element == null)
+			{
+				parent.Add(new XElement(ns + "Meta",
+					new XAttribute("name", name),
+					new XAttribute("value", value)
+					));
 			}
 			else
 			{
-				Root.Add(content);
+				element.SetAttributeValue("value", value);
 			}
 		}
 
