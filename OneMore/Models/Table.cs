@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Models
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Security.Policy;
 	using System.Xml.Linq;
 
 
@@ -52,6 +53,18 @@ namespace River.OneMoreAddIn.Models
 		{
 			columns = root.Element(ns + "Columns");
 			numCells = columns.Elements(ns + "Column").Count();
+
+			rows = new List<TableRow>();
+			var elements = root.Elements(ns + "Row");
+			if (elements?.Any() == true)
+			{
+				int r = 1;
+				foreach (var element in elements)
+				{
+					rows.Add(new TableRow(element, r));
+					r++;
+				}
+			}
 		}
 
 
@@ -119,6 +132,22 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return row;
+		}
+
+
+		public TableCell GetCell(string coord)
+		{
+			return rows.SelectMany(
+				r => r.Cells.Where(e => e.Coordinates == coord), (row, cell) => cell)
+				.FirstOrDefault();
+		}
+
+
+		public IEnumerable<TableCell> GetSelectedCells()
+		{
+			return rows.SelectMany(
+				r => r.Cells.Where(e => e.Selected == Selection.all || e.Selected == Selection.partial),
+				(row, cell) => cell);
 		}
 
 

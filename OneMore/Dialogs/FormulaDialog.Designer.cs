@@ -29,30 +29,21 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormulaDialog));
-			this.rangeLabel = new System.Windows.Forms.Label();
 			this.formatLabel = new System.Windows.Forms.Label();
 			this.formatBox = new System.Windows.Forms.ComboBox();
-			this.functionLabel = new System.Windows.Forms.Label();
-			this.functionBox = new System.Windows.Forms.ListBox();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
-			this.colButton = new System.Windows.Forms.RadioButton();
-			this.rowButton = new System.Windows.Forms.RadioButton();
+			this.formulaLabel = new System.Windows.Forms.Label();
+			this.formulaBox = new System.Windows.Forms.TextBox();
+			this.currentCellLabel = new System.Windows.Forms.Label();
+			this.cellLabel = new System.Windows.Forms.Label();
+			this.helpBox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
-			// 
-			// rangeLabel
-			// 
-			this.rangeLabel.AutoSize = true;
-			this.rangeLabel.Location = new System.Drawing.Point(22, 24);
-			this.rangeLabel.Name = "rangeLabel";
-			this.rangeLabel.Size = new System.Drawing.Size(61, 20);
-			this.rangeLabel.TabIndex = 0;
-			this.rangeLabel.Text = "Range:";
 			// 
 			// formatLabel
 			// 
 			this.formatLabel.AutoSize = true;
-			this.formatLabel.Location = new System.Drawing.Point(22, 98);
+			this.formatLabel.Location = new System.Drawing.Point(13, 95);
 			this.formatLabel.Name = "formatLabel";
 			this.formatLabel.Size = new System.Drawing.Size(64, 20);
 			this.formatLabel.TabIndex = 2;
@@ -66,84 +57,86 @@
             "Number",
             "Currency",
             "Percentage"});
-			this.formatBox.Location = new System.Drawing.Point(103, 95);
+			this.formatBox.Location = new System.Drawing.Point(134, 92);
+			this.formatBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.formatBox.Name = "formatBox";
 			this.formatBox.Size = new System.Drawing.Size(261, 28);
-			this.formatBox.TabIndex = 3;
-			// 
-			// functionLabel
-			// 
-			this.functionLabel.AutoSize = true;
-			this.functionLabel.Location = new System.Drawing.Point(22, 142);
-			this.functionLabel.Name = "functionLabel";
-			this.functionLabel.Size = new System.Drawing.Size(75, 20);
-			this.functionLabel.TabIndex = 4;
-			this.functionLabel.Text = "Function:";
-			// 
-			// functionBox
-			// 
-			this.functionBox.FormattingEnabled = true;
-			this.functionBox.ItemHeight = 20;
-			this.functionBox.Items.AddRange(new object[] {
-            "Sum",
-            "Average",
-            "Min",
-            "Max",
-            "Range",
-            "Median",
-            "Mode",
-            "Variance",
-            "Standard Deviation"});
-			this.functionBox.Location = new System.Drawing.Point(103, 142);
-			this.functionBox.Name = "functionBox";
-			this.functionBox.Size = new System.Drawing.Size(261, 184);
-			this.functionBox.TabIndex = 5;
+			this.formatBox.TabIndex = 1;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(269, 358);
+			this.cancelButton.Location = new System.Drawing.Point(418, 411);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 6;
+			this.cancelButton.TabIndex = 4;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
-			this.cancelButton.Click += new System.EventHandler(this.Cancel);
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(163, 358);
+			this.okButton.Enabled = false;
+			this.okButton.Location = new System.Drawing.Point(312, 411);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 7;
+			this.okButton.TabIndex = 3;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
-			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
-			// colButton
+			// formulaLabel
 			// 
-			this.colButton.AutoSize = true;
-			this.colButton.Checked = true;
-			this.colButton.Location = new System.Drawing.Point(103, 22);
-			this.colButton.Name = "colButton";
-			this.colButton.Size = new System.Drawing.Size(170, 24);
-			this.colButton.TabIndex = 8;
-			this.colButton.TabStop = true;
-			this.colButton.Text = "Column cells above";
-			this.colButton.UseVisualStyleBackColor = true;
+			this.formulaLabel.AutoSize = true;
+			this.formulaLabel.Location = new System.Drawing.Point(13, 56);
+			this.formulaLabel.Name = "formulaLabel";
+			this.formulaLabel.Size = new System.Drawing.Size(71, 20);
+			this.formulaLabel.TabIndex = 8;
+			this.formulaLabel.Text = "Formula:";
 			// 
-			// rowButton
+			// formulaBox
 			// 
-			this.rowButton.AutoSize = true;
-			this.rowButton.Location = new System.Drawing.Point(103, 52);
-			this.rowButton.Name = "rowButton";
-			this.rowButton.Size = new System.Drawing.Size(172, 24);
-			this.rowButton.TabIndex = 9;
-			this.rowButton.Text = "Row cells to the left";
-			this.rowButton.UseVisualStyleBackColor = true;
+			this.formulaBox.Location = new System.Drawing.Point(134, 53);
+			this.formulaBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+			this.formulaBox.Name = "formulaBox";
+			this.formulaBox.Size = new System.Drawing.Size(382, 26);
+			this.formulaBox.TabIndex = 0;
+			this.formulaBox.TextChanged += new System.EventHandler(this.ChangedFormula);
+			// 
+			// currentCellLabel
+			// 
+			this.currentCellLabel.AutoSize = true;
+			this.currentCellLabel.Location = new System.Drawing.Point(13, 20);
+			this.currentCellLabel.Name = "currentCellLabel";
+			this.currentCellLabel.Size = new System.Drawing.Size(111, 20);
+			this.currentCellLabel.TabIndex = 10;
+			this.currentCellLabel.Text = "Selected cells:";
+			// 
+			// cellLabel
+			// 
+			this.cellLabel.AutoSize = true;
+			this.cellLabel.Location = new System.Drawing.Point(130, 20);
+			this.cellLabel.Name = "cellLabel";
+			this.cellLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+			this.cellLabel.Size = new System.Drawing.Size(29, 30);
+			this.cellLabel.TabIndex = 11;
+			this.cellLabel.Text = "A1";
+			// 
+			// helpBox
+			// 
+			this.helpBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.helpBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.helpBox.Enabled = false;
+			this.helpBox.Location = new System.Drawing.Point(17, 143);
+			this.helpBox.Multiline = true;
+			this.helpBox.Name = "helpBox";
+			this.helpBox.Size = new System.Drawing.Size(501, 248);
+			this.helpBox.TabIndex = 12;
+			this.helpBox.TabStop = false;
+			this.helpBox.Text = resources.GetString("helpBox.Text");
 			// 
 			// FormulaDialog
 			// 
@@ -151,22 +144,22 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(382, 409);
-			this.Controls.Add(this.rowButton);
-			this.Controls.Add(this.colButton);
+			this.ClientSize = new System.Drawing.Size(531, 462);
+			this.Controls.Add(this.helpBox);
+			this.Controls.Add(this.cellLabel);
+			this.Controls.Add(this.currentCellLabel);
+			this.Controls.Add(this.formulaBox);
+			this.Controls.Add(this.formulaLabel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
-			this.Controls.Add(this.functionBox);
-			this.Controls.Add(this.functionLabel);
 			this.Controls.Add(this.formatBox);
 			this.Controls.Add(this.formatLabel);
-			this.Controls.Add(this.rangeLabel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "FormulaDialog";
-			this.Padding = new System.Windows.Forms.Padding(10, 15, 10, 10);
+			this.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Formula";
@@ -176,15 +169,14 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Label rangeLabel;
 		private System.Windows.Forms.Label formatLabel;
 		private System.Windows.Forms.ComboBox formatBox;
-		private System.Windows.Forms.Label functionLabel;
-		private System.Windows.Forms.ListBox functionBox;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.RadioButton colButton;
-		private System.Windows.Forms.RadioButton rowButton;
+		private System.Windows.Forms.Label formulaLabel;
+		private System.Windows.Forms.TextBox formulaBox;
+		private System.Windows.Forms.Label currentCellLabel;
+		private System.Windows.Forms.Label cellLabel;
+		private System.Windows.Forms.TextBox helpBox;
 	}
 }

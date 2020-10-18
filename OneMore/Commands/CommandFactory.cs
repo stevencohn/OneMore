@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn
 		private readonly IWin32Window owner;
 		private readonly List<IDisposable> trash;
 
-		public CommandFactory (ILogger logger, IRibbonUI ribbon, List<IDisposable> trash, IWin32Window owner)
+		public CommandFactory(ILogger logger, IRibbonUI ribbon, List<IDisposable> trash, IWin32Window owner)
 		{
 			this.logger = logger;
 			this.ribbon = ribbon;
@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn
 			this.trash = trash;
 		}
 
-		public T GetCommand<T> () where T : Command, new()
+		public T GetCommand<T>() where T : Command, new()
 		{
 			var command = new T();
 			command.SetLogger(logger);

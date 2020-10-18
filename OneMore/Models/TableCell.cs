@@ -26,6 +26,17 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets or sets the tabular coordinate name of the cell, A1, A2, etc.
+		/// </summary>
+		public string Coordinates { get; set; }
+
+		public int ColNum { get; set; }
+
+
+		public int RowNum { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the background shading color of this cell.
 		/// </summary>
 		public string ShadingColor
@@ -84,6 +95,50 @@ namespace River.OneMoreAddIn.Models
 			{
 				Root.Add(content);
 			}
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		/// <summary>
+		/// Convert an index number to an alphabetic sequence, column index to column name
+		/// </summary>
+		/// <param name="index">A numeric index</param>
+		/// <returns>A letter sequence A, B, C, ... ZZZ</returns>
+		public static string IndexToLetters(int index)
+		{
+			string letters = string.Empty;
+			int mod;
+			int div = index;
+
+			while (div > 0)
+			{
+				mod = (div - 1) % 26;
+				letters = (char)(65 + mod) + letters;
+				div = ((div - mod) / 26);
+			}
+
+			return letters;
+		}
+
+
+		/// <summary>
+		/// Converts an alphabetic sequence to an index number, column name to column index
+		/// </summary>
+		/// <param name="letters">A letter sequence A, B, C, ... ZZZ</param>
+		/// <returns>A numeric index</returns>
+		public static int LettersToIndex(string letters)
+		{
+			letters = letters.ToUpper();
+			int sum = 0;
+
+			for (int i = 0; i < letters.Length; i++)
+			{
+				sum *= 26;
+				sum += (letters[i] - 'A' + 1);
+			}
+
+			return sum;
 		}
 	}
 }

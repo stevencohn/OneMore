@@ -2,12 +2,10 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS3003 // Type is not CLS-compliant
-
 namespace River.OneMoreAddIn.Dialogs
 {
+	using River.OneMoreAddIn.Commands.Formula;
 	using System;
-	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -23,45 +21,19 @@ namespace River.OneMoreAddIn.Dialogs
 
 				Localize(new string[]
 				{
-					"rangeLabel",
+					"currentCellLabel",
+					"formulaLabel",
 					"formatLabel",
-					"functionLabel",
+					"helpBox",
 					"okButton",
-					"cancelButton",
-					"colButton",
-					"rowButton"
+					"cancelButton"
 				});
 
 				formatBox.Items.Clear();
 				formatBox.Items.AddRange(Resx.FomulaDialog_formatBox_Items.Split(new char[] { '\n' }));
-
-				functionBox.Items.Clear();
-				functionBox.Items.AddRange(Resx.FormulaDialog_functionBox_Items.Split(new char[] { '\n' }));
 			}
 
 			formatBox.SelectedIndex = 0;
-			functionBox.SelectedIndex = 0;
-		}
-
-
-		internal FormulaDirection Direction
-		{
-			get
-			{
-				return colButton.Checked ? FormulaDirection.Vertical: FormulaDirection.Horizontal;
-			}
-
-			set
-			{
-				if (value == FormulaDirection.Horizontal)
-				{
-					rowButton.Checked = true;
-				}
-				else
-				{
-					colButton.Checked = true;
-				}
-			}
 		}
 
 
@@ -72,21 +44,22 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		internal FormulaFunction Function
+		internal string Formula
 		{
-			get { return (FormulaFunction)functionBox.SelectedIndex; }
-			set { functionBox.SelectedIndex = (int)value; }
+			get => formulaBox.Text;
+			set => formulaBox.Text = value;
 		}
 
 
-		private void OK(object sender, EventArgs e)
+		internal void SetCellNames(string names)
 		{
-			DialogResult = DialogResult.OK;
+			cellLabel.Text = names;
 		}
 
-		private void Cancel(object sender, EventArgs e)
+
+		private void ChangedFormula(object sender, EventArgs e)
 		{
-			DialogResult = DialogResult.Cancel;
+			okButton.Enabled = formulaBox.Text.Trim().Length > 0;
 		}
 	}
 }

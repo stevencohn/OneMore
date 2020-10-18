@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn
 		protected TableProperties(XElement root)
 		{
 			Root = root;
-			ns = Root.GetDefaultNamespace();
+			ns = Root.GetNamespaceOfPrefix("one");
 		}
 
 

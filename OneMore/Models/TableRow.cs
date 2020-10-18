@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Models
 {
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Xml.Linq;
 
 
@@ -25,6 +26,8 @@ namespace River.OneMoreAddIn.Models
 		public TableRow(XNamespace ns, int numCells) : base(ns)
 		{
 			Root = new XElement(ns + "Row");
+			this.ns = ns;
+
 			cells = new List<TableCell>();
 
 			for (int i = 0; i < numCells; i++)
@@ -36,9 +39,39 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public TableRow(XElement root, int rownum) : base(root)
+		{
+			cells = new List<TableCell>();
+
+			var elements = root.Elements(ns + "Cell");
+			if (elements?.Any() == true)
+			{
+				var c = 1;
+				foreach (var element in elements)
+				{
+					var cell = new TableCell(element)
+					{
+						ColNum = c,
+						RowNum = rownum,
+						Coordinates = $"{TableCell.IndexToLetters(c)}{rownum}"
+					};
+
+					cells.Add(cell);
+					c++;
+				}
+			}
+		}
+
+
 		/// <summary>
 		/// Gets the table cells in this row.
 		/// </summary>
 		public IEnumerable<TableCell> Cells => cells;
+
+
+		/// <summary>
+		/// Gets the row number, position in the table, starting at 1
+		/// </summary>
+		public int RowNum { get; private set; }
 	}
 }

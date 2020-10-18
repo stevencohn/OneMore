@@ -2,13 +2,15 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands.Formula
 {
+
 	internal enum FormulaDirection
 	{
-		Vertical,
+		Single,
 		Horizontal,
-		Error
+		Vertical,
+		Rectangular
 	}
 
 

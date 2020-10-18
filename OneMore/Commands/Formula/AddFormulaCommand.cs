@@ -4,11 +4,12 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Commands.Formula;
+	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
-	using River.OneMoreAddIn.Models;
 
 
 	internal class AddFormulaCommand : Command
@@ -23,23 +24,52 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
-			using (manager = new ApplicationManager())
+			try
 			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
-				// find all selected cells into which a formula should be inserted
-				var cells = page.Root.Descendants(ns + "Cell")?
-					.Select(o => new { cell = o, selected = o.Attribute("selected")?.Value })
-					.Where(o => o.selected == "all" || o.selected == "partial")
-					.Select(o => o.cell);
-
-				if (cells != null && cells.Any())
+				using (manager = new ApplicationManager())
 				{
-					var calculator = new Processor(ns, 
+					var page = new Page(manager.CurrentPage());
+					var ns = page.Namespace;
+
+					// find first selected cell as anchor point to locate table
+					var anchor = page.Root.Descendants(ns + "Cell")?
+						.Select(o => new { cell = o, selected = o.Attribute("selected")?.Value })
+						.Where(o => o.selected == "all" || o.selected == "partial")
+						.Select(o => o.cell)
+						.FirstOrDefault();
+
+					if (anchor == null)
+					{
+						UIHelper.ShowMessage(manager.Window, "Select one or more table cells");
+						return;
+					}
+
+					var table = new Table(anchor.Ancestors(ns + "Table").First());
+					var cells = table.GetSelectedCells();
+
+					var direction = InferDirection(cells);
+					if (direction == FormulaDirection.Rectangular)
+					{
+						UIHelper.ShowMessage(manager.Window, "Selected cells must be in the same row or the same column");
+						return;
+					}
+
+					using (var dialog = new Dialogs.FormulaDialog())
+					{
+						dialog.SetCellNames(
+							string.Join(", ", cells.Select(c => c.Coordinates)) + $" ({direction})");
+
+						if (dialog.ShowDialog(owner) != DialogResult.OK)
+						{
+							return;
+						}
+					}
+
+					/*
+					var processor = new Processor(ns,
 						FormulaDirection.Vertical, FormulaFunction.Sum, FormulaFormat.Number);
 
-					if (calculator.Direction != FormulaDirection.Error)
+					if (processor.Direction != FormulaDirection.Error)
 					{
 						using (var dialog = new Dialogs.FormulaDialog())
 						{
@@ -54,82 +84,73 @@ namespace River.OneMoreAddIn
 
 								if (!string.IsNullOrEmpty(formula))
 								{
-									calculator.ParseFormula(formula);
-									dialog.Direction = calculator.Direction;
-									dialog.Format = calculator.Format;
-									dialog.Function = calculator.Function;
+									processor.ParseFormula(formula);
+									dialog.Direction = processor.Direction;
+									dialog.Format = processor.Format;
+									dialog.Function = processor.Function;
 								}
 							}
 
 							var diaresult = dialog.ShowDialog(owner);
 							if (diaresult == DialogResult.OK)
 							{
-								calculator.Direction = dialog.Direction;
-								calculator.Format = dialog.Format;
-								calculator.Function = dialog.Function;
+								processor.Direction = dialog.Direction;
+								processor.Format = dialog.Format;
+								processor.Function = dialog.Function;
 
 								foreach (var cell in cells)
 								{
-									var values = calculator.CollectValues(cell);
-									var result = calculator.Calculate(values);
-									calculator.ReportResult(cell, result, values);
+									var values = processor.CollectValues(cell);
+									var result = processor.Calculate(values);
+									processor.ReportResult(cell, result, values);
 								}
 
 								manager.UpdatePageContent(page.Root);
 							}
 						}
 					}
+					*/
 				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("AddFormula", exc);
 			}
 		}
 
 
-		private FormulaDirection InferDirection(IEnumerable<XElement> cells)
+		private FormulaDirection InferDirection(IEnumerable<TableCell> cells)
 		{
-			var rows = new List<XElement>();
+			if (cells.Count() == 1)
+			{
+				return FormulaDirection.Single;
+			}
+
+			var col = -1;
+			var row = -1;
 			foreach (var cell in cells)
 			{
-				if (!rows.Contains(cell.Parent))
-				{
-					rows.Add(cell.Parent);
-				}
+				if (col < 0)
+					col = cell.ColNum;
+				else if (col != int.MaxValue && col != cell.ColNum)
+					col = int.MaxValue;
+
+				if (row < 0)
+					row = cell.RowNum;
+				else if (row != int.MaxValue && row != cell.RowNum)
+					row = int.MaxValue;
 			}
 
-			// either all cells must share the same row (e.g. last row selected)
-			// or all cells must be from different rows (e.g. last col selected)
-
-			var direction = FormulaDirection.Vertical;
-			var rowsCount = rows.Count;
-			var cellsCount = cells.Count();
-
-			if (cellsCount == 1)
+			if (col == int.MaxValue && row == int.MaxValue)
 			{
-				// one cell selected in last column, not last row?
-				var cell = cells.First();
-				if (!cell.ElementsAfterSelf().Any() &&		// right
-					cell.Parent.ElementsAfterSelf().Any())	// below
-				{
-					direction = FormulaDirection.Horizontal;
-				}
+				return FormulaDirection.Rectangular;
 			}
-			else if (rowsCount == cellsCount && rowsCount > 1)
+			else if (col == int.MaxValue)
 			{
-				// all selected cells in one column
-				direction = FormulaDirection.Horizontal;
-			}
-			else if (!(rowsCount == 1 || rowsCount == cellsCount))
-			{
-				// multiple rows and columns (rectangular selection)
-				direction = FormulaDirection.Error;
+				return FormulaDirection.Vertical;
 			}
 
-			if (direction == FormulaDirection.Error)
-			{
-				UIHelper.ShowMessage(manager.Window,
-					Properties.Resources.AddFormula_linearMessage);
-			}
-
-			return direction;
+			return FormulaDirection.Horizontal;
 		}
 	}
 }
