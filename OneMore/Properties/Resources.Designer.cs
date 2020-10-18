@@ -927,23 +927,39 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number
-        ///Currency
-        ///Percentage.
-        /// </summary>
-        internal static string FomulaDialog_formatBox_Items {
-            get {
-                return ResourceManager.GetString("FomulaDialog_formatBox.Items", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap FontColor {
             get {
                 object obj = ResourceManager.GetObject("FontColor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (column {1}).
+        /// </summary>
+        internal static string FormulaCommand_Exception {
+            get {
+                return ResourceManager.GetString("FormulaCommand_Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected cells must be in the same row or in the same column.
+        /// </summary>
+        internal static string FormulaCommand_Linear {
+            get {
+                return ResourceManager.GetString("FormulaCommand_Linear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select one or more table cells.
+        /// </summary>
+        internal static string FormulaCommand_SelectOne {
+            get {
+                return ResourceManager.GetString("FormulaCommand_SelectOne", resourceCulture);
             }
         }
         
@@ -957,11 +973,13 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Column cells above.
+        ///   Looks up a localized string similar to Number
+        ///Currency
+        ///Percentage.
         /// </summary>
-        internal static string FormulaDialog_colButton_Text {
+        internal static string FormulaDialog_formatBox_Items {
             get {
-                return ResourceManager.GetString("FormulaDialog_colButton.Text", resourceCulture);
+                return ResourceManager.GetString("FormulaDialog_formatBox.Items", resourceCulture);
             }
         }
         
@@ -975,28 +993,36 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sum
-        ///Average
-        ///Min
-        ///Max
-        ///Range
-        ///Median
-        ///Mode
-        ///Variance
-        ///Standard Deviation.
+        ///   Looks up a localized string similar to Formula:.
         /// </summary>
-        internal static string FormulaDialog_functionBox_Items {
+        internal static string FormulaDialog_formulaLabel_Text {
             get {
-                return ResourceManager.GetString("FormulaDialog_functionBox.Items", resourceCulture);
+                return ResourceManager.GetString("FormulaDialog_formulaLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function:.
+        ///   Looks up a localized string similar to Entered formula should apply to the first selected cell. This formula will be incremented automatically for additional selected cells.
+        ///
+        ///Functions: abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
+        ///
+        ///Operators: + - / * ^
+        ///Cell reference: A1, A2, ... ZZZ999
+        ///Cell range: A1:A22
+        ///Symbols: PI, E.
         /// </summary>
-        internal static string FormulaDialog_functionLabel_Text {
+        internal static string FormulaDialog_helpBox_Text {
             get {
-                return ResourceManager.GetString("FormulaDialog_functionLabel.Text", resourceCulture);
+                return ResourceManager.GetString("FormulaDialog_helpBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        internal static string FormulaDialog_helpButton_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_helpButton.Text", resourceCulture);
             }
         }
         
@@ -1010,20 +1036,47 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Range:.
+        ///   Looks up a localized string similar to Selected cells:.
         /// </summary>
-        internal static string FormulaDialog_rangeLabel_Text {
+        internal static string FormulaDialog_selectedLabel_Text {
             get {
-                return ResourceManager.GetString("FormulaDialog_rangeLabel.Text", resourceCulture);
+                return ResourceManager.GetString("FormulaDialog_selectedLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Row cells to the left.
+        ///   Looks up a localized string similar to &lt;empty&gt;.
         /// </summary>
-        internal static string FormulaDialog_rowButton_Text {
+        internal static string FormulaDialog_status_Empty {
             get {
-                return ResourceManager.GetString("FormulaDialog_rowButton.Text", resourceCulture);
+                return ResourceManager.GetString("FormulaDialog_status_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid.
+        /// </summary>
+        internal static string FormulaDialog_status_Invalid {
+            get {
+                return ResourceManager.GetString("FormulaDialog_status_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string FormulaDialog_status_OK {
+            get {
+                return ResourceManager.GetString("FormulaDialog_status_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status:.
+        /// </summary>
+        internal static string FormulaDialog_statusLabel_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_statusLabel.Text", resourceCulture);
             }
         }
         

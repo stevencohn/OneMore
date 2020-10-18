@@ -35,9 +35,14 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.formulaLabel = new System.Windows.Forms.Label();
 			this.formulaBox = new System.Windows.Forms.TextBox();
-			this.currentCellLabel = new System.Windows.Forms.Label();
+			this.selectedLabel = new System.Windows.Forms.Label();
 			this.cellLabel = new System.Windows.Forms.Label();
 			this.helpBox = new System.Windows.Forms.TextBox();
+			this.helpPanel = new System.Windows.Forms.Panel();
+			this.helpButton = new System.Windows.Forms.CheckBox();
+			this.validStatusLabel = new System.Windows.Forms.Label();
+			this.statusLabel = new System.Windows.Forms.Label();
+			this.helpPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// formatLabel
@@ -65,9 +70,9 @@
 			// 
 			// cancelButton
 			// 
-			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(418, 411);
+			this.cancelButton.Location = new System.Drawing.Point(504, 148);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 4;
@@ -76,10 +81,10 @@
 			// 
 			// okButton
 			// 
-			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(312, 411);
+			this.okButton.Location = new System.Drawing.Point(398, 148);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 3;
@@ -104,14 +109,14 @@
 			this.formulaBox.TabIndex = 0;
 			this.formulaBox.TextChanged += new System.EventHandler(this.ChangedFormula);
 			// 
-			// currentCellLabel
+			// selectedLabel
 			// 
-			this.currentCellLabel.AutoSize = true;
-			this.currentCellLabel.Location = new System.Drawing.Point(13, 20);
-			this.currentCellLabel.Name = "currentCellLabel";
-			this.currentCellLabel.Size = new System.Drawing.Size(111, 20);
-			this.currentCellLabel.TabIndex = 10;
-			this.currentCellLabel.Text = "Selected cells:";
+			this.selectedLabel.AutoSize = true;
+			this.selectedLabel.Location = new System.Drawing.Point(13, 20);
+			this.selectedLabel.Name = "selectedLabel";
+			this.selectedLabel.Size = new System.Drawing.Size(111, 20);
+			this.selectedLabel.TabIndex = 10;
+			this.selectedLabel.Text = "Selected cells:";
 			// 
 			// cellLabel
 			// 
@@ -125,18 +130,62 @@
 			// 
 			// helpBox
 			// 
-			this.helpBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.helpBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.helpBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.helpBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.helpBox.Enabled = false;
-			this.helpBox.Location = new System.Drawing.Point(17, 143);
+			this.helpBox.Location = new System.Drawing.Point(7, 7);
 			this.helpBox.Multiline = true;
 			this.helpBox.Name = "helpBox";
-			this.helpBox.Size = new System.Drawing.Size(501, 248);
+			this.helpBox.Size = new System.Drawing.Size(571, 248);
 			this.helpBox.TabIndex = 12;
 			this.helpBox.TabStop = false;
 			this.helpBox.Text = resources.GetString("helpBox.Text");
+			// 
+			// helpPanel
+			// 
+			this.helpPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.helpPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.helpPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.helpPanel.Controls.Add(this.helpBox);
+			this.helpPanel.Location = new System.Drawing.Point(17, 212);
+			this.helpPanel.Name = "helpPanel";
+			this.helpPanel.Padding = new System.Windows.Forms.Padding(7);
+			this.helpPanel.Size = new System.Drawing.Size(587, 264);
+			this.helpPanel.TabIndex = 13;
+			this.helpPanel.Visible = false;
+			// 
+			// helpButton
+			// 
+			this.helpButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.helpButton.AutoSize = true;
+			this.helpButton.Location = new System.Drawing.Point(17, 152);
+			this.helpButton.Name = "helpButton";
+			this.helpButton.Size = new System.Drawing.Size(52, 30);
+			this.helpButton.TabIndex = 14;
+			this.helpButton.Text = "Help";
+			this.helpButton.UseVisualStyleBackColor = true;
+			this.helpButton.CheckedChanged += new System.EventHandler(this.ToggleHelp);
+			// 
+			// validStatusLabel
+			// 
+			this.validStatusLabel.AutoSize = true;
+			this.validStatusLabel.Location = new System.Drawing.Point(207, 157);
+			this.validStatusLabel.Name = "validStatusLabel";
+			this.validStatusLabel.Size = new System.Drawing.Size(70, 20);
+			this.validStatusLabel.TabIndex = 16;
+			this.validStatusLabel.Text = "<empty>";
+			// 
+			// statusLabel
+			// 
+			this.statusLabel.AutoSize = true;
+			this.statusLabel.Location = new System.Drawing.Point(130, 157);
+			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.Size = new System.Drawing.Size(60, 20);
+			this.statusLabel.TabIndex = 17;
+			this.statusLabel.Text = "Status:";
 			// 
 			// FormulaDialog
 			// 
@@ -144,10 +193,13 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(531, 462);
-			this.Controls.Add(this.helpBox);
+			this.ClientSize = new System.Drawing.Size(617, 489);
+			this.Controls.Add(this.statusLabel);
+			this.Controls.Add(this.validStatusLabel);
+			this.Controls.Add(this.helpButton);
+			this.Controls.Add(this.helpPanel);
 			this.Controls.Add(this.cellLabel);
-			this.Controls.Add(this.currentCellLabel);
+			this.Controls.Add(this.selectedLabel);
 			this.Controls.Add(this.formulaBox);
 			this.Controls.Add(this.formulaLabel);
 			this.Controls.Add(this.okButton);
@@ -163,6 +215,8 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Formula";
+			this.helpPanel.ResumeLayout(false);
+			this.helpPanel.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -175,8 +229,12 @@
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label formulaLabel;
 		private System.Windows.Forms.TextBox formulaBox;
-		private System.Windows.Forms.Label currentCellLabel;
+		private System.Windows.Forms.Label selectedLabel;
 		private System.Windows.Forms.Label cellLabel;
 		private System.Windows.Forms.TextBox helpBox;
+		private System.Windows.Forms.Panel helpPanel;
+		private System.Windows.Forms.CheckBox helpButton;
+		private System.Windows.Forms.Label validStatusLabel;
+		private System.Windows.Forms.Label statusLabel;
 	}
 }

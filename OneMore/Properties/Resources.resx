@@ -646,7 +646,7 @@ OneNote will close automatically</value>
     <value>Select one or more cells from the same row or the same column</value>
     <comment>message box</comment>
   </data>
-  <data name="FomulaDialog_formatBox.Items" xml:space="preserve">
+  <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
     <value>Number
 Currency
 Percentage</value>
@@ -660,41 +660,29 @@ Percentage</value>
     <value>Cancel</value>
     <comment>Cancel button</comment>
   </data>
-  <data name="FormulaDialog_colButton.Text" xml:space="preserve">
-    <value>Column cells above</value>
-    <comment>radio button</comment>
+  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
+    <value>Help</value>
+    <comment>help checkbox button</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
     <value>Format:</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_functionBox.Items" xml:space="preserve">
-    <value>Sum
-Average
-Min
-Max
-Range
-Median
-Mode
-Variance
-Standard Deviation</value>
-    <comment>functions, one per line</comment>
+  <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
+    <value>Status:</value>
+    <comment>status label</comment>
   </data>
-  <data name="FormulaDialog_functionLabel.Text" xml:space="preserve">
-    <value>Function:</value>
+  <data name="FormulaDialog_status_Empty" xml:space="preserve">
+    <value>&lt;empty&gt;</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>OK button</comment>
   </data>
-  <data name="FormulaDialog_rangeLabel.Text" xml:space="preserve">
-    <value>Range:</value>
+  <data name="FormulaDialog_status_OK" xml:space="preserve">
+    <value>OK</value>
     <comment>label</comment>
-  </data>
-  <data name="FormulaDialog_rowButton.Text" xml:space="preserve">
-    <value>Row cells to the left</value>
-    <comment>radio button</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Reorder Custom Styles</value>
@@ -1750,5 +1738,39 @@ Try again later</value>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Invalid XML detected. Check log file for details</value>
     <comment>error message</comment>
+  </data>
+  <data name="FormulaCommand_Exception" xml:space="preserve">
+    <value>{0} (column {1})</value>
+    <comment>exception message</comment>
+  </data>
+  <data name="FormulaCommand_Linear" xml:space="preserve">
+    <value>Selected cells must be in the same row or in the same column</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="FormulaCommand_SelectOne" xml:space="preserve">
+    <value>Select one or more table cells</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
+    <value>Formula:</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
+    <value>Entered formula should apply to the first selected cell. This formula will be incremented automatically for additional selected cells.
+
+Functions: abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
+
+Operators: + - / * ^
+Cell reference: A1, A2, ... ZZZ999
+Cell range: A1:A22
+Symbols: PI, E</value>
+  </data>
+  <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
+    <value>Selected cells:</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
+    <value>Invalid</value>
+    <comment>label</comment>
   </data>
 </root>

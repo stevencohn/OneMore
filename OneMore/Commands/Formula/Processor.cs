@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 				catch (Exception exc)
 				{
 					logger.WriteLine($"Error calculating {cell.Coordinates} formula '{formula}'", exc);
-					throw;
+					UIHelper.ShowError(exc.Message);
 				}
 			}
 		}

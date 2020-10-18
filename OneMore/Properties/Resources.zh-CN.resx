@@ -646,7 +646,7 @@ OneNote 将自动关闭</value>
     <value>从同一行或列中选择一个或多个单元格</value>
     <comment>message box</comment>
   </data>
-  <data name="FomulaDialog_formatBox.Items" xml:space="preserve">
+  <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
     <value>数
 货币
 百分比</value>
@@ -660,28 +660,20 @@ OneNote 将自动关闭</value>
     <value>取消</value>
     <comment>Cancel button</comment>
   </data>
-  <data name="FormulaDialog_colButton.Text" xml:space="preserve">
-    <value>上方的列单元格</value>
-    <comment>radio button</comment>
+  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
+    <value>帮帮我</value>
+    <comment>help checkbox button</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
     <value>格式:</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_functionBox.Items" xml:space="preserve">
-    <value>和
-平均
-敏
-最高
-范围
-中位数
-模式
-方差
-标准偏差</value>
-    <comment>functions, one per line</comment>
+  <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
+    <value>状态：</value>
+    <comment>status label</comment>
   </data>
-  <data name="FormulaDialog_functionLabel.Text" xml:space="preserve">
-    <value>功能:</value>
+  <data name="FormulaDialog_status_Empty" xml:space="preserve">
+    <value>&lt;空&gt;</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_okButton.Text" xml:space="preserve">
@@ -691,10 +683,6 @@ OneNote 将自动关闭</value>
   <data name="FormulaDialog_rangeLabel.Text" xml:space="preserve">
     <value>范围:</value>
     <comment>label</comment>
-  </data>
-  <data name="FormulaDialog_rowButton.Text" xml:space="preserve">
-    <value>左侧的行单元格</value>
-    <comment>radio button</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>重新排序自定义样式</value>
@@ -1706,5 +1694,43 @@ OneNote 将自动关闭</value>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>检测到无效的XML。 检查日志文件以获取详细信息</value>
     <comment>error message</comment>
+  </data>
+  <data name="FormulaCommand_Exception" xml:space="preserve">
+    <value>{0}（第{1}列）</value>
+    <comment>exception message</comment>
+  </data>
+  <data name="FormulaCommand_Linear" xml:space="preserve">
+    <value>所选单元格必须在同一行或同一列中</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="FormulaCommand_SelectOne" xml:space="preserve">
+    <value>选择一个或多个表格单元格</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
+    <value>式：</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
+    <value>输入的公式应适用于第一个选定的单元格。 对于其他选定的单元格，此公式将自动增加。
+
+功能：abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
+
+运营商： + - / * ^
+单元格参考： A1, A2, ... ZZZ999
+单元格范围： A1:A22
+符号： PI, E</value>
+  </data>
+  <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
+    <value>选定的单元格：</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
+    <value>无效</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_status_OK" xml:space="preserve">
+    <value>好</value>
+    <comment>label</comment>
   </data>
 </root>

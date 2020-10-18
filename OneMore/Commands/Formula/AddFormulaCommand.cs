@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class AddFormulaCommand : Command
@@ -42,7 +43,7 @@ namespace River.OneMoreAddIn
 
 					if (anchor == null)
 					{
-						UIHelper.ShowMessage(manager.Window, "Select one or more table cells");
+						UIHelper.ShowMessage(manager.Window, Resx.FormulaCommand_SelectOne);
 						return;
 					}
 
@@ -52,9 +53,7 @@ namespace River.OneMoreAddIn
 					var rangeType = InferRangeType(cells);
 					if (rangeType == FormulaRangeType.Rectangular)
 					{
-						UIHelper.ShowMessage(manager.Window,
-							"Selected cells must be in the same row or the same column");
-
+						UIHelper.ShowMessage(manager.Window, Resx.FormulaCommand_Linear);
 						return;
 					}
 

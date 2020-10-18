@@ -12,6 +12,8 @@
 namespace River.OneMoreAddIn.Commands.Formula
 {
 	using System;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
+
 
 	/// <summary>
 	/// Custom exception for formula evaluation errors
@@ -40,6 +42,6 @@ namespace River.OneMoreAddIn.Commands.Formula
 		/// Gets the message associated with this exception
 		/// </summary>
 		public override string Message =>
-			string.Format("{0} (column {1})", base.Message, Column + 1);
+			string.Format(Resx.FormulaCommand_Exception, base.Message, Column + 1);
 	}
 }
