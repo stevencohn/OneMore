@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 					continue;
 				}
 
-				if (parts.Length < 3 || !Enum.TryParse<FormulaFormat>(parts[1], out var format))
+				if (parts.Length < 3 || !Enum.TryParse<FormulaFormat>(parts[1], true, out var format))
 				{
 					logger.WriteLine($"Cell {cell.Coordinates} has bad function {formula}");
 					continue;
@@ -76,7 +76,11 @@ namespace River.OneMoreAddIn.Commands.Formula
 			var cell = table.GetCell(e.Name.ToUpper());
 			if (cell != null)
 			{
-				if (double.TryParse(cell.GetContent(), out var value))
+				var text = cell.GetContent()
+					.Replace("$", string.Empty)
+					.Replace("%", string.Empty);
+
+				if (double.TryParse(text, out var value))
 				{
 					precision = Math.Max(value.ToString().Length - ((int)value).ToString().Length - 1, precision);
 					e.Result = value;
@@ -120,13 +124,13 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 		private void Execute(TableCell cell, string range, string func, string form)
 		{
-			if (!Enum.TryParse<FormulaRangeType>(range, out var rangeType))
+			if (!Enum.TryParse<FormulaRangeType>(range, true, out var rangeType))
 				return;
 
-			if (!Enum.TryParse<FormulaFunction>(func, out var function))
+			if (!Enum.TryParse<FormulaFunction>(func, true, out var function))
 				return;
 
-			if (!Enum.TryParse<FormulaFormat>(form, out var format))
+			if (!Enum.TryParse<FormulaFormat>(form, true, out var format))
 				return;
 
 			var values = CollectValues(cell.Root, rangeType);

@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn
 							var parts = fx.Split(';');
 							if (parts.Length == 3)
 							{
-								if (!Enum.TryParse<FormulaFormat>(parts[1], out var format))
+								if (Enum.TryParse<FormulaFormat>(parts[1], true, out var format))
 								{
 									dialog.Format = format;
 								}

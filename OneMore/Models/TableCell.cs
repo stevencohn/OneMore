@@ -140,12 +140,14 @@ namespace River.OneMoreAddIn.Models
 				oec.Add(oe);
 			}
 
-			var t = oe.Element(ns + "T");
+			var t = oe.Elements(ns + "T");
 
-			if (t == null)
-				oe.Add(content);
-			else
-				t.ReplaceWith(content);
+			if (t?.Any() == true)
+			{
+				t.Remove();
+			}
+
+			oe.Add(content);
 		}
 
 
