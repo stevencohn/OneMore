@@ -1773,4 +1773,48 @@ Symbols: PI, E</value>
     <value>Invalid</value>
     <comment>label</comment>
   </data>
+  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
+    <value>Closing parenthesis expected</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
+    <value>Cell range must be within one column or within one row</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
+    <value>Invalid operand</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
+    <value>Operand contains multiple decimal points</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
+    <value>Operand expected</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
+    <value>Operator expected</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
+    <value>Undefined function \"{0}\"</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
+    <value>Undefined symbol \"{0}\"</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
+    <value>Unexpected character encountered '{0}'</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
+    <value>Closing parenthesis without matching open parenthesis</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
+    <value>Wrong number of function parameters</value>
+    <comment>error</comment>
+  </data>
 </root>

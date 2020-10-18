@@ -245,6 +245,105 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closing parenthesis expected.
+        /// </summary>
+        internal static string Calculator_ErrClosingParenExpected {
+            get {
+                return ResourceManager.GetString("Calculator_ErrClosingParenExpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell range must be within one column or within one row.
+        /// </summary>
+        internal static string Calculator_ErrInvalidCellRange {
+            get {
+                return ResourceManager.GetString("Calculator_ErrInvalidCellRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid operand.
+        /// </summary>
+        internal static string Calculator_ErrInvalidOperand {
+            get {
+                return ResourceManager.GetString("Calculator_ErrInvalidOperand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operand contains multiple decimal points.
+        /// </summary>
+        internal static string Calculator_ErrMultipleDecimalPoints {
+            get {
+                return ResourceManager.GetString("Calculator_ErrMultipleDecimalPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operand expected.
+        /// </summary>
+        internal static string Calculator_ErrOperandExpected {
+            get {
+                return ResourceManager.GetString("Calculator_ErrOperandExpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operator expected.
+        /// </summary>
+        internal static string Calculator_ErrOperatorExpected {
+            get {
+                return ResourceManager.GetString("Calculator_ErrOperatorExpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undefined function \&quot;{0}\&quot;.
+        /// </summary>
+        internal static string Calculator_ErrUndefinedFunction {
+            get {
+                return ResourceManager.GetString("Calculator_ErrUndefinedFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undefined symbol \&quot;{0}\&quot;.
+        /// </summary>
+        internal static string Calculator_ErrUndefinedSymbol {
+            get {
+                return ResourceManager.GetString("Calculator_ErrUndefinedSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected character encountered &apos;{0}&apos;.
+        /// </summary>
+        internal static string Calculator_ErrUnexpectedCharacter {
+            get {
+                return ResourceManager.GetString("Calculator_ErrUnexpectedCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closing parenthesis without matching open parenthesis.
+        /// </summary>
+        internal static string Calculator_ErrUnmatchedClosingParen {
+            get {
+                return ResourceManager.GetString("Calculator_ErrUnmatchedClosingParen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong number of function parameters.
+        /// </summary>
+        internal static string Calculator_ErrWrongParamCount {
+            get {
+                return ResourceManager.GetString("Calculator_ErrWrongParamCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Calendar {

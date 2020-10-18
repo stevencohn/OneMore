@@ -1733,4 +1733,48 @@ OneNote 将自动关闭</value>
     <value>好</value>
     <comment>label</comment>
   </data>
+  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
+    <value>预计要加上圆括号</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
+    <value>单元格范围必须在一列或一行内</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
+    <value>无效的操作数</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
+    <value>操作数包含多个小数点</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
+    <value>预期操作数</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
+    <value>运营商期望</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
+    <value>未定义函数 \“{0}\”</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
+    <value>未定义符号 \“{0}\”</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
+    <value>遇到意外字符“ {0}”</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
+    <value>右括号不匹配右括号</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
+    <value>功能参数数量错误</value>
+    <comment>error</comment>
+  </data>
 </root>

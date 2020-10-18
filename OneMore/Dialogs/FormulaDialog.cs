@@ -21,9 +21,6 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			InitializeComponent();
 
-			System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
-
-
 			helpHeight = helpPanel.Height;
 			helpPanel.Visible = false;
 			Height -= helpHeight;

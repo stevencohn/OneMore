@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -44,16 +45,17 @@ namespace River.OneMoreAddIn.Commands.Formula
 		}
 
 		// error messages
-		private readonly string ErrInvalidOperand = "Invalid operand";
-		private readonly string ErrOperandExpected = "Operand expected";
-		private readonly string ErrOperatorExpected = "Operator expected";
-		private readonly string ErrUnmatchedClosingParen = "Closing parenthesis without matching open parenthesis";
-		private readonly string ErrMultipleDecimalPoints = "Operand contains multiple decimal points";
-		private readonly string ErrUnexpectedCharacter = "Unexpected character encountered \"{0}\"";
-		private readonly string ErrUndefinedSymbol = "Undefined symbol \"{0}\"";
-		private readonly string ErrUndefinedFunction = "Undefined function \"{0}\"";
-		private readonly string ErrClosingParenExpected = "Closing parenthesis expected";
-		private readonly string ErrWrongParamCount = "Wrong number of function parameters";
+		private readonly string ErrInvalidOperand = Resx.Calculator_ErrInvalidOperand;
+		private readonly string ErrOperandExpected = Resx.Calculator_ErrOperandExpected;
+		private readonly string ErrOperatorExpected = Resx.Calculator_ErrOperatorExpected;
+		private readonly string ErrUnmatchedClosingParen = Resx.Calculator_ErrUnmatchedClosingParen;
+		private readonly string ErrMultipleDecimalPoints = Resx.Calculator_ErrMultipleDecimalPoints;
+		private readonly string ErrUnexpectedCharacter = Resx.Calculator_ErrUnexpectedCharacter;
+		private readonly string ErrUndefinedSymbol = Resx.Calculator_ErrUndefinedSymbol;
+		private readonly string ErrUndefinedFunction = Resx.Calculator_ErrUndefinedFunction;
+		private readonly string ErrClosingParenExpected = Resx.Calculator_ErrClosingParenExpected;
+		private readonly string ErrWrongParamCount = Resx.Calculator_ErrWrongParamCount;
+		private readonly string ErrInvalidCellRange = Resx.Calculator_ErrInvalidCellRange;
 
 		// To distinguish it from a minus operator, use a character unlikely to appear
 		// in expressions to signify a unary negative
@@ -447,7 +449,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 				}
 			}
 			else
-				throw new FormatException("Cell range must be within one column or within one row");
+				throw new FormatException(ErrInvalidCellRange);
 
 			return values;
 		}
