@@ -7,13 +7,15 @@ namespace River.OneMoreAddIn.Commands.Formula
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
+	using System.Xml.Linq;
 
 
 	internal class Processor
 	{
+		private readonly ILogger logger;
 		private readonly Table table;
 		private int precision;
-		private ILogger logger;
 
 
 		public Processor(Table table)
@@ -26,7 +28,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 		public void Execute(IEnumerable<TableCell> cells)
 		{
 			var calculator = new Calculator();
-			calculator.ProcessSymbol += LookupCellValue;
+			calculator.ProcessSymbol += ResolveCellReference;
 
 			foreach (var cell in cells)
 			{
@@ -69,7 +71,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 		}
 
 
-		private void LookupCellValue(object sender, SymbolEventArgs e)
+		private void ResolveCellReference(object sender, SymbolEventArgs e)
 		{
 			var cell = table.GetCell(e.Name.ToUpper());
 			if (cell != null)
@@ -114,8 +116,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 		}
 
 
-		// ----------
-		// Version 0
+		#region Version0_obsolete
 
 		private void Execute(TableCell cell, string range, string func, string form)
 		{
@@ -128,19 +129,42 @@ namespace River.OneMoreAddIn.Commands.Formula
 			if (!Enum.TryParse<FormulaFormat>(form, out var format))
 				return;
 
-			//
+			var values = CollectValues(cell.Root, rangeType);
+			var result = Calculate(values, function);
+
+			string text = string.Empty;
+			switch (format)
+			{
+				case FormulaFormat.Currency:
+					text = $"{result:C}";
+					break;
+
+				case FormulaFormat.Number:
+					// show only max precision from all values
+					var prec = values.Max(v => Math.Max(v.ToString().Length - ((int)v).ToString().Length - 1, 0));
+					text = result.ToString($"N{prec}");
+					break;
+
+				case FormulaFormat.Percentage:
+					text = $"{(result / 100):P}";
+					break;
+			}
+
+			cell.SetContent(text);
 		}
-		/*
-		private List<decimal> CollectValues(XElement cell)
+
+
+		private List<decimal> CollectValues(XElement cell, FormulaRangeType rangeType)
 		{
 			var values = new List<decimal>();
+			var ns = cell.GetNamespaceOfPrefix("one");
 
-			if (Direction == FormulaRangeType.Rows)
+			if (rangeType == FormulaRangeType.Rows)
 			{
 				var index = cell.ElementsBeforeSelf(ns + "Cell").Count();
 				foreach (var row in cell.Parent.ElementsBeforeSelf(ns + "Row"))
 				{
-					var value = ReadCell(row.Elements(ns + "Cell").ElementAt(index));
+					var value = ReadCell(row.Elements(ns + "Cell").ElementAt(index), ns);
 					if (value != null)
 					{
 						values.Add((decimal)value);
@@ -151,7 +175,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 			{
 				foreach (var element in cell.ElementsBeforeSelf(ns + "Cell"))
 				{
-					var value = ReadCell(element);
+					var value = ReadCell(element, ns);
 					if (value != null)
 					{
 						values.Add((decimal)value);
@@ -163,11 +187,31 @@ namespace River.OneMoreAddIn.Commands.Formula
 		}
 
 
-		public decimal Calculate(List<decimal> values)
+		private decimal? ReadCell(XElement cell, XNamespace ns)
+		{
+			var children = cell.Elements(ns + "OEChildren");
+			if (children?.Count() == 1)
+			{
+				var child = children.First().Elements(ns + "OE");
+				if (child?.Count() == 1)
+				{
+					var text = child.First().Value;
+					if (decimal.TryParse(text, out decimal value))
+					{
+						return value;
+					}
+				}
+			}
+
+			return null;
+		}
+
+
+		public decimal Calculate(List<decimal> values, FormulaFunction function)
 		{
 			decimal result = 0.0M;
 
-			switch (Function)
+			switch (function)
 			{
 				case FormulaFunction.Average:
 					result = values.Average();
@@ -209,67 +253,6 @@ namespace River.OneMoreAddIn.Commands.Formula
 			return result;
 		}
 
-
-		private decimal? ReadCell(XElement cell)
-		{
-			var children = cell.Elements(ns + "OEChildren");
-			if (children?.Count() == 1)
-			{
-				var child = children.First().Elements(ns + "OE");
-				if (child?.Count() == 1)
-				{
-					var text = child.First().Value;
-					if (decimal.TryParse(text, out decimal value))
-					{
-						return value;
-					}
-				}
-			}
-
-			return null;
-		}
-
-
-		public void ReportResult(XElement cell, decimal result, List<decimal> values)
-		{
-			string report = string.Empty;
-			switch (Format)
-			{
-				case FormulaFormat.Currency:
-					report = $"{result:C}";
-					break;
-
-				case FormulaFormat.Number:
-					// show only max precision from all values
-					var precision = values.Max(v => Math.Max(v.ToString().Length - ((int)v).ToString().Length - 1, 0));
-					report = result.ToString("N" + precision.ToString());
-					break;
-
-				case FormulaFormat.Percentage:
-					report = $"{(result / 100):P}";
-					break;
-			}
-
-			var content = new XElement(ns + "OEChildren",
-				new XElement(ns + "OE",
-					new XElement(ns + "Meta",
-						new XAttribute("name", "omfx"),
-						new XAttribute("content", $"0;{Direction};{Format};{Function}")
-						),
-					new XElement(ns + "T", report)
-					)
-				);
-
-			if (cell.HasElements)
-			{
-				cell.Descendants().Remove();
-				cell.Add(content);
-			}
-			else
-			{
-				cell.Add(content);
-			}
-		}
-		*/
+		#endregion Version0_obsolete
 	}
 }
