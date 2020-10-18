@@ -35,10 +35,10 @@ Clean commands
 
 Formula commands
 
-* [Calculate formulas](#formulas) in tables such as Sum, Average, Min, Max, and StdDev
+* [Calculate Excel-like formulas](#formulas) in tables
 * Delete formula from selected table cells
 * Highlight cells with custom formulas
-* Recalculate custom formulas in all tables on the page
+* Recalculate all formulas in selected tables on the page
 
 Image commands
 
@@ -411,13 +411,27 @@ indvidual favorites. Easy.
 <a name="formulas"></a>
 #### Formulas
 
-While you can insert an Excel table on a OneNote page, for simple calculations, OneMore offers
-a Formula menu that can apply formula to selected cells and calculate across rows or columns.
+OneNote lets you insert an Excel table on a page or convert a table to an Excel object. This is
+convenient if you want complicated formulas and charts... and you have Excel installed! But what
+if you don't?
+
+OneMore offeres Excel-like formula functionality in native OneNote tables. Thanks to the work done
+by [Jonathan Wood](http://www.blackbeltcoder.com/Articles/algorithms/a-c-expression-evaluator),
+you can apply a formula to one or more selected cells in a table. A formula can consist of basic
+mathematical operators, parenthesis, and most math functions such as abs, sum, average, sin, etc.
 
 First, select the cell or cells into which you want to add a formula. If multiple cells are
 selected, they must either be on the same row or in the same column. Then select the Add
-Formula command. The Formula dialog is displayed. Choose the direction, format, and function
-and click OK.
+Formula command. The Formula dialog is displayed showing the names of the selected cells: A1, A2,
+A3, etc. Enter the formula and choose how you want the result to be formatted. Click OK.
+
+If you use cell references in your formula and you've selected more than one cell then OneMore
+will automatically increment the references relative to each seleted cell. For example, if you
+select cells A10, B10, and C10 and enter the formula sum(A1:A9) then that will apply to A10, 
+sum(B1:B9) will apply to B10, and sum(C1:C9) will apply to C10.
+
+Note that as you type the formula, OneMore validates the format of the expression in real time,
+showing whether the formula is OK or invalid. Only when it is OK will the OK button be enabled.
 
 The Recalculate command will recalculate all formulas in the selected table(s).
 
