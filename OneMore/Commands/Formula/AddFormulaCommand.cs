@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn
 					{
 						// display selected cell names
 						dialog.SetCellNames(
-							string.Join(", ", cells.Select(c => c.Coordinates)) + $" ({rangeType})");
+							string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
 
 						// display formula of first cell if any
 						var fx = cells.First().GetMeta("omfx");
