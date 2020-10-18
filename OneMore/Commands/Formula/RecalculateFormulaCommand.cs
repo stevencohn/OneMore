@@ -24,25 +24,28 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
-				// TODO: only target current/selected table(s)?
+				var tables = page.Root.Descendants(ns + "Table")?
+					.Select(o => new { table = o, selected = o.Attribute("selected")?.Value })
+					.Where(o => o.selected == "all" || o.selected == "partial")
+					.Select(o => o.table);
 
-				var cells = page.Root.Descendants(ns + "Meta")
-					.Where(e => e.Attribute("name").Value == "omfx")
-					.Select(e => new { Element = e.Parent.Parent.Parent, formula = e.Attribute("content").Value });
+				if (tables?.Any() == true)
+				{
+					foreach (var element in tables)
+					{
+						var table = new Table(element);
 
-				//if (cells?.Count() > 0)
-				//{
-				//	foreach (var cell in cells.ToList())
-				//	{
-				//		var calculator = new Processor(ns, cell.formula);
+						var cells = table.Root.Descendants(ns + "Meta")
+							.Where(e => e.Attribute("name").Value == "omfx")
+							.Select(e => new TableCell(e.Parent.Parent.Parent))
+							.ToList();
 
-				//		var values = calculator.CollectValues(cell.Element);
-				//		var result = calculator.Calculate(values);
-				//		calculator.ReportResult(cell.Element, result, values);
-				//	}
+						var processor = new Processor(table);
+						processor.Execute(cells);
 
-				//	manager.UpdatePageContent(page.Root);
-				//}
+						manager.UpdatePageContent(page.Root);
+					}
+				}
 			}
 		}
 	}

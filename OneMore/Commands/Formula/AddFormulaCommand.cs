@@ -60,8 +60,25 @@ namespace River.OneMoreAddIn
 
 					using (var dialog = new Dialogs.FormulaDialog())
 					{
+						// display selected cell names
 						dialog.SetCellNames(
 							string.Join(", ", cells.Select(c => c.Coordinates)) + $" ({rangeType})");
+
+						// display formula of first cell if any
+						var fx = cells.First().GetMeta("omfx");
+						if (fx != null)
+						{
+							var parts = fx.Split(';');
+							if (parts.Length == 3)
+							{
+								if (!Enum.TryParse<FormulaFormat>(parts[1], out var format))
+								{
+									dialog.Format = format;
+								}
+
+								dialog.Formula = parts[2];
+							}
+						}
 
 						if (dialog.ShowDialog(owner) != DialogResult.OK)
 						{
@@ -128,8 +145,7 @@ namespace River.OneMoreAddIn
 			if (rangeType == FormulaRangeType.Single)
 			{
 				cells.First().SetMeta("omfx", $"1;{format};{formula}");
-
-				logger.WriteLine($"Cell {cells.First().Coordinates} stored formula '{formula}'");
+				//logger.WriteLine($"Cell {cells.First().Coordinates} stored formula '{formula}'");
 				return;
 			}
 
@@ -165,8 +181,7 @@ namespace River.OneMoreAddIn
 				}
 
 				cell.SetMeta("omfx", $"1;{format};{builder}");
-
-				logger.WriteLine($"Cell {cell.Coordinates} stored formula '{builder}'");
+				//logger.WriteLine($"Cell {cell.Coordinates} stored formula '{builder}'");
 
 				offset++;
 			}

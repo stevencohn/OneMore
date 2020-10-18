@@ -69,13 +69,12 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>The value of the meta attribute</returns>
 		public string GetMeta(string name)
 		{
-			var attribute = Root.Elements(ns + "OEChildren")
+			var element = Root.Elements(ns + "OEChildren")
 				.Elements(ns + "OE")
 				.Elements(ns + "Meta")
-				.FirstOrDefault(e => e.Attribute("name").Value == name)
-				.Attribute("value");
+				.FirstOrDefault(e => e.Attribute("name").Value == name);
 			
-			return attribute?.Value;
+			return element?.Attribute("content")?.Value;
 		}
 
 
@@ -169,14 +168,15 @@ namespace River.OneMoreAddIn.Models
 
 			if (element == null)
 			{
-				parent.Add(new XElement(ns + "Meta",
+				// Meta must precede T
+				parent.AddFirst(new XElement(ns + "Meta",
 					new XAttribute("name", name),
-					new XAttribute("value", value)
+					new XAttribute("content", value)
 					));
 			}
 			else
 			{
-				element.SetAttributeValue("value", value);
+				element.SetAttributeValue("content", value);
 			}
 		}
 

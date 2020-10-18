@@ -13,11 +13,13 @@ namespace River.OneMoreAddIn.Commands.Formula
 	{
 		private readonly Table table;
 		private int precision;
+		private ILogger logger;
 
 
 		public Processor(Table table)
 		{
 			this.table = table;
+			logger = Logger.Current;
 		}
 
 
@@ -31,7 +33,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 				var formula = cell.GetMeta("omfx");
 				if (formula == null)
 				{
-					Logger.Current.WriteLine($"Cell {cell.Coordinates} is missing its formula");
+					logger.WriteLine($"Cell {cell.Coordinates} is missing its formula");
 					continue;
 				}
 
@@ -44,7 +46,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 				if (parts.Length < 3 || !Enum.TryParse<FormulaFormat>(parts[1], out var format))
 				{
-					Logger.Current.WriteLine($"Cell {cell.Coordinates} has bad function {formula}");
+					logger.WriteLine($"Cell {cell.Coordinates} has bad function {formula}");
 					continue;
 				}
 
@@ -56,30 +58,12 @@ namespace River.OneMoreAddIn.Commands.Formula
 				{
 					var result = calculator.Execute(formula);
 
-					string text = string.Empty;
-					switch (format)
-					{
-						case FormulaFormat.Currency:
-							text = $"{result:C}";
-							break;
-
-						case FormulaFormat.Number:
-							text = result.ToString($"N{precision}");
-							break;
-
-						case FormulaFormat.Percentage:
-							text = $"{(result / 100):P}";
-							break;
-					}
-
-					cell.SetContent(text);
-
-					Logger.Current.WriteLine($"Cell {cell.Coordinates} calculated result = ({text})");
+					Report(cell, result, format);
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine(
-						$"Error calculating {cell.Coordinates} formula '{formula}'", exc);
+					logger.WriteLine($"Error calculating {cell.Coordinates} formula '{formula}'", exc);
+					throw;
 				}
 			}
 		}
@@ -103,6 +87,30 @@ namespace River.OneMoreAddIn.Commands.Formula
 			{
 				e.Status = SymbolStatus.UndefinedSymbol;
 			}
+		}
+
+
+		private void Report(TableCell cell, double result, FormulaFormat format)
+		{
+			string text = string.Empty;
+			switch (format)
+			{
+				case FormulaFormat.Currency:
+					text = $"{result:C}";
+					break;
+
+				case FormulaFormat.Number:
+					text = result.ToString($"N{precision}");
+					break;
+
+				case FormulaFormat.Percentage:
+					text = $"{(result / 100):P}";
+					break;
+			}
+
+			cell.SetContent(text);
+
+			logger.WriteLine($"Cell {cell.Coordinates} calculated result = ({text})");
 		}
 
 

@@ -409,7 +409,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 		private List<double> EvaluateCellReferences(string cell1, string cell2, int p1, int p2)
 		{
-			var pattern = @"^([a-z]{1,3})([0-9]{1,3})$";
+			var pattern = @"^([a-zA-Z]{1,3})(\d{1,3})$";
 
 			var match = Regex.Match(cell1, pattern);
 			if (!match.Success)

@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn
 					.Where(o => o.selected == "all" || o.selected == "partial")
 					.Select(o => o.table);
 
-				if (tables?.Count() > 0)
+				if (tables?.Any() == true)
 				{
 					foreach (var table in tables)
 					{
