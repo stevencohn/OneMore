@@ -26,31 +26,38 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
-				var element = page.Root.Descendants(ns + "Table")
-					.Where(e => e.Attributes("selected").Any())
-					.Descendants(ns + "T")
+				var element = page.Root.Descendants(ns + "Cell")
+					// first dive down to find the selected T
+					.Elements(ns + "OEChildren")
+					.Elements(ns + "OE")
+					.Elements(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all")
-					.Ancestors(ns + "Table")
+					// now move back up to the Table
+					.Select(e => e.FirstAncestor(ns + "Table"))
 					.FirstOrDefault();
 
 				if (element != null)
 				{
 					var table = new Table(element);
 
-					var cells = table.Root.Descendants(ns + "Meta")
-						.Where(e => e.Attribute("name").Value == "omfx")
-						.Select(e => new TableCell(e.Parent.Parent.Parent))
-						.ToList();
+					var cells =
+						from r in table.Rows
+						from c in r.Cells
+						where c.Root.Elements(ns + "OEChildren").Elements(ns + "OE").Elements(ns + "Meta").Any()
+						select c;
 
-					var processor = new Processor(table);
-					processor.Execute(cells);
+					if (cells?.Any() == true)
+					{
+						var processor = new Processor(table);
+						processor.Execute(cells.ToList());
 
-					manager.UpdatePageContent(page.Root);
+						manager.UpdatePageContent(page.Root);
+
+						return;
+					}
 				}
-				else
-				{
-					UIHelper.ShowMessage(Resx.RecalculateFormulaCommand_NoFormula);
-				}
+
+				UIHelper.ShowMessage(Resx.RecalculateFormulaCommand_NoFormula);
 			}
 		}
 	}
