@@ -91,9 +91,6 @@ namespace River.OneMoreAddIn
 							return;
 						}
 
-
-						System.Diagnostics.Debugger.Launch();
-
 						var tagIndex = string.Empty;
 						if (dialog.Tagged)
 						{
