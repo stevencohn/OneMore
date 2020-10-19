@@ -159,6 +159,11 @@
             </menu>
             <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering">
               <button
+                id="ribOutlineButton"
+                imageMso="OutlineShowDetail"
+                getLabel="GetRibbonLabel"
+                onAction="OutlineCmd"/>
+              <button
                 id="ribNumberSectionsButton"
                 imageMso="LineNumbersMenu"
                 getLabel="GetRibbonLabel"
@@ -307,11 +312,6 @@
                 getLabel="GetRibbonLabel"
                 getEnabled="GetMultiPageContext"
                 onAction="MergeCmd"/>
-              <button
-                id="ribOutlineButton"
-                imageMso="OutlineShowDetail"
-                getLabel="GetRibbonLabel"
-                onAction="OutlineCmd"/>
               <button
                 id="ribNameUrlsButton"
                 imageMso="AutoSigWebInsertHyperlink"

@@ -42,7 +42,7 @@ internal static partial class AssemblyInfo
 	 * NOTE - also update the version in the Setup project
 	 * by clicking on the Setup project node in VS and update its properties
 	 */
-	public const string Version = "3.0";
+	public const string Version = "3.1";
 
 
 	public const string FileVersion = Version;
