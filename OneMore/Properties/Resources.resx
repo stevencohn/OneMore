@@ -1845,4 +1845,8 @@ Symbols: PI, E</value>
     <value>Total words on page: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="AddFormulaCommand_Calculated" xml:space="preserve">
+    <value>Calculated</value>
+    <comment>tag name</comment>
+  </data>
 </root>

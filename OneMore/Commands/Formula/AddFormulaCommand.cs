@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn
 
 						if (dialog.Tagged)
 						{
-							tagIndex = page.AddTag("140", "Calculated");
+							tagIndex = page.AddTag("140", Resx.AddFormulaCommand_Calculated);
 						}
 
 						StoreFormula(cells, dialog.Formula, dialog.Format, rangeType, tagIndex);

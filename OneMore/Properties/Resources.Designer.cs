@@ -205,6 +205,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculated.
+        /// </summary>
+        internal static string AddFormulaCommand_Calculated {
+            get {
+                return ResourceManager.GetString("AddFormulaCommand_Calculated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMoreAddIn.
         /// </summary>
         internal static string AddInTitle {

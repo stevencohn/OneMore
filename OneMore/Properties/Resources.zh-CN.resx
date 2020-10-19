@@ -1805,4 +1805,8 @@ OneNote 将自动关闭</value>
     <value>页面总字数：{0}</value>
     <comment>message box</comment>
   </data>
+  <data name="AddFormulaCommand_Calculated" xml:space="preserve">
+    <value>已计算</value>
+    <comment>tag name</comment>
+  </data>
 </root>
