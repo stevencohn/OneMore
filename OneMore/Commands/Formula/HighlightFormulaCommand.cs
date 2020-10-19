@@ -7,6 +7,8 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
+
 
 	internal class HighlightFormulaCommand : Command
 	{
@@ -23,46 +25,38 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
-				// only highlight formula cells from current table
+				// deselect any selected content in the page
+				page.Root.Descendants().Attributes("selected").Remove();
 
-				var tables = page.Root.Descendants(ns + "Table")?
-					.Select(o => new { table = o, selected = o.Attribute("selected")?.Value })
-					.Where(o => o.selected == "all" || o.selected == "partial")
-					.Select(o => o.table);
+				// highlight all formula cells in all tables on the page
+
+				var tables = page.Root.Descendants(ns + "Cell")
+					.Elements(ns + "OEChildren")
+					.Elements(ns + "OE")
+					.Elements(ns + "Meta")
+					.Where(e => e.Attribute("name").Value == "omfx")
+					.Select(e => e.FirstAncestor(ns + "Table"));
 
 				if (tables?.Any() == true)
 				{
 					foreach (var table in tables)
 					{
-						var cells = table.Descendants(ns + "Cell")
-							.Where(e => e.Attribute("selected") != null);
-
-						// deselect any selected cells
-						foreach (var cell in cells)
-						{
-							cell.DescendantNodes().OfType<XAttribute>()
-								.Where(a => a.Name == "selected")
-								.Remove();
-
-							var attr = cell.Attribute("selected");
-							if (attr != null)
-							{
-								attr.Remove();
-							}
-						}
-
 						// select all omfx cells
-						var hicells = table.Descendants(ns + "Meta")
+						var cells = table.Descendants(ns + "Meta")
 							.Where(e => e.Attribute("name").Value == "omfx")
 							.Select(e => e.Parent.Parent.Parent);
 
-						foreach (var cell in hicells)
+						foreach (var cell in cells)
 						{
-							cell.SetAttributeValue("selected", "all"); // Cell
+							cell.SetAttributeValue("selected", "all");
 						}
 					}
 
 					manager.UpdatePageContent(page.Root);
+				}
+				else
+				{
+					UIHelper.ShowMessage(Resx.HighlightFormulaCommand_NoFormulas);
 				}
 			}
 		}

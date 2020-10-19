@@ -1758,11 +1758,11 @@ OneNote 将自动关闭</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>未定义函数 \“{0}\”</value>
+    <value>未定义函数 “{0}”</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>未定义符号 \“{0}\”</value>
+    <value>未定义符号 “{0}”</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
@@ -1776,5 +1776,21 @@ OneNote 将自动关闭</value>
   <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
     <value>功能参数数量错误</value>
     <comment>error</comment>
+  </data>
+  <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
+    <value>已从{0}个单元格中删除了公式</value>
+    <comment>delete command message</comment>
+  </data>
+  <data name="DeleteFormulaCommand_NoFormulas" xml:space="preserve">
+    <value>找不到公式。 选择一个或多个包含公式的表格单元格。</value>
+    <comment>delete command message</comment>
+  </data>
+  <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
+    <value>在此页面上找不到公式</value>
+    <comment>highlight command message</comment>
+  </data>
+  <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
+    <value>在所选表格中找不到公式</value>
+    <comment>recalculate command message</comment>
   </data>
 </root>

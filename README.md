@@ -37,7 +37,7 @@ Formula commands
 
 * [Calculate Excel-like formulas](#formulas) in tables
 * Delete formula from selected table cells
-* Highlight cells with custom formulas
+* Highlight all cells on the page with custom formulas
 * Recalculate all formulas in selected tables on the page
 
 Image commands
@@ -435,7 +435,8 @@ showing whether the formula is OK or invalid. Only when it is OK will the OK but
 
 The Recalculate command will recalculate all formulas in the selected table(s).
 
-The Highlight command will select all cells containing formulas so you know where you put them.
+The Highlight command will select all cells on the page containing formulas so you know where
+you put them.
 
 The Delete command will remove a formula from the selected cell(s) but retain the values displayed
 in those cell.

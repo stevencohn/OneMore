@@ -7,6 +7,8 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Commands.Formula;
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
+	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class RecalculateFormulaCommand : Command
@@ -24,27 +26,30 @@ namespace River.OneMoreAddIn
 				var page = new Page(manager.CurrentPage());
 				var ns = page.Namespace;
 
-				var tables = page.Root.Descendants(ns + "Table")?
-					.Select(o => new { table = o, selected = o.Attribute("selected")?.Value })
-					.Where(o => o.selected == "all" || o.selected == "partial")
-					.Select(o => o.table);
+				var element = page.Root.Descendants(ns + "Table")
+					.Where(e => e.Attributes("selected").Any())
+					.Descendants(ns + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.Ancestors(ns + "Table")
+					.FirstOrDefault();
 
-				if (tables?.Any() == true)
+				if (element != null)
 				{
-					foreach (var element in tables)
-					{
-						var table = new Table(element);
+					var table = new Table(element);
 
-						var cells = table.Root.Descendants(ns + "Meta")
-							.Where(e => e.Attribute("name").Value == "omfx")
-							.Select(e => new TableCell(e.Parent.Parent.Parent))
-							.ToList();
+					var cells = table.Root.Descendants(ns + "Meta")
+						.Where(e => e.Attribute("name").Value == "omfx")
+						.Select(e => new TableCell(e.Parent.Parent.Parent))
+						.ToList();
 
-						var processor = new Processor(table);
-						processor.Execute(cells);
+					var processor = new Processor(table);
+					processor.Execute(cells);
 
-						manager.UpdatePageContent(page.Root);
-					}
+					manager.UpdatePageContent(page.Root);
+				}
+				else
+				{
+					UIHelper.ShowMessage(Resx.RecalculateFormulaCommand_NoFormula);
 				}
 			}
 		}

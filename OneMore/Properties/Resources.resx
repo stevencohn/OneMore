@@ -1798,11 +1798,11 @@ Symbols: PI, E</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>Undefined function \"{0}\"</value>
+    <value>Undefined function "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>Undefined symbol \"{0}\"</value>
+    <value>Undefined symbol "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
@@ -1816,5 +1816,21 @@ Symbols: PI, E</value>
   <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
     <value>Wrong number of function parameters</value>
     <comment>error</comment>
+  </data>
+  <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
+    <value>Deleted formulas from {0} cell(s)</value>
+    <comment>delete command message</comment>
+  </data>
+  <data name="DeleteFormulaCommand_NoFormulas" xml:space="preserve">
+    <value>Formula not found. Select one or more table cells containing formulas.</value>
+    <comment>delete command message</comment>
+  </data>
+  <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
+    <value>No formulas found on this page</value>
+    <comment>highlight command message</comment>
+  </data>
+  <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
+    <value>No formula found in the selected table</value>
+    <comment>recalculate command message</comment>
   </data>
 </root>

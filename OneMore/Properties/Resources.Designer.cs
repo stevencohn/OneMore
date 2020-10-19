@@ -299,7 +299,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Undefined function \&quot;{0}\&quot;.
+        ///   Looks up a localized string similar to Undefined function &quot;{0}&quot;.
         /// </summary>
         internal static string Calculator_ErrUndefinedFunction {
             get {
@@ -308,7 +308,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Undefined symbol \&quot;{0}\&quot;.
+        ///   Looks up a localized string similar to Undefined symbol &quot;{0}&quot;.
         /// </summary>
         internal static string Calculator_ErrUndefinedSymbol {
             get {
@@ -665,6 +665,24 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted formulas from {0} cell(s).
+        /// </summary>
+        internal static string DeleteFormulaCommand_Deleted {
+            get {
+                return ResourceManager.GetString("DeleteFormulaCommand_Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formula not found. Select one or more table cells containing formulas..
+        /// </summary>
+        internal static string DeleteFormulaCommand_NoFormulas {
+            get {
+                return ResourceManager.GetString("DeleteFormulaCommand_NoFormulas", resourceCulture);
             }
         }
         
@@ -1195,6 +1213,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Hammer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No formulas found on this page.
+        /// </summary>
+        internal static string HighlightFormulaCommand_NoFormulas {
+            get {
+                return ResourceManager.GetString("HighlightFormulaCommand_NoFormulas", resourceCulture);
             }
         }
         
@@ -1893,6 +1920,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Pushpin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No formula found in the selected table.
+        /// </summary>
+        internal static string RecalculateFormulaCommand_NoFormula {
+            get {
+                return ResourceManager.GetString("RecalculateFormulaCommand_NoFormula", resourceCulture);
             }
         }
         

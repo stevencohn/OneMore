@@ -144,9 +144,12 @@ namespace River.OneMoreAddIn.Models
 
 		public IEnumerable<TableCell> GetSelectedCells()
 		{
-			return rows.SelectMany(
-				r => r.Cells.Where(e => e.Selected == Selection.all || e.Selected == Selection.partial),
-				(row, cell) => cell);
+			return
+				from r in rows
+				let cells = r.Cells
+				from c in cells
+				where c.Selected == Selection.all || c.Selected == Selection.partial
+				select c;
 		}
 
 

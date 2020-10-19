@@ -274,6 +274,37 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="element"></param>
+		/// <param name="name"></param>
+		/// <param name="breakout"></param>
+		/// <returns></returns>
+		public static XElement FirstAncestor(this XElement element, XName name, XName breakout = null)
+		{
+			var found = false;
+			var ancestor = element.Parent;
+			while (ancestor != null && !found)
+			{
+				if (ancestor.Name == name)
+				{
+					found = true;
+				}
+				else if (breakout != null && ancestor.Name == breakout)
+				{
+					break;
+				}
+				else
+				{
+					ancestor = ancestor.Parent;
+				}
+			}
+
+			return found ? ancestor : null;
+		}
+
+
 		public static bool ReadAttributeValue(
 			this XElement element, string name, out string value, string defaultV = null)
 		{

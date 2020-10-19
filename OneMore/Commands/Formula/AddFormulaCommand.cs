@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -34,11 +35,17 @@ namespace River.OneMoreAddIn
 					var page = new Page(manager.CurrentPage());
 					var ns = page.Namespace;
 
-					// find first selected cell as anchor point to locate table
-					var anchor = page.Root.Descendants(ns + "Cell")?
-						.Select(o => new { cell = o, selected = o.Attribute("selected")?.Value })
-						.Where(o => o.selected == "all" || o.selected == "partial")
-						.Select(o => o.cell)
+					// Find first selected cell as anchor point to locate table into which
+					// the formula should be inserted; By filtering on selected=all, we avoid
+					// including the parent table of a selected nested table.
+
+					var anchor = page.Root.Descendants(ns + "Cell")
+						// first dive down to find the selected T
+						.Elements(ns + "OEChildren").Elements(ns + "OE")
+						.Elements(ns + "T")
+						.Where(e => e.Attribute("selected")?.Value == "all")
+						// now move back up to the Cell
+						.Select(e => e.Parent.Parent.Parent)
 						.FirstOrDefault();
 
 					if (anchor == null)
@@ -47,7 +54,7 @@ namespace River.OneMoreAddIn
 						return;
 					}
 
-					var table = new Table(anchor.Ancestors(ns + "Table").First());
+					var table = new Table(anchor.FirstAncestor(ns + "Table"));
 					var cells = table.GetSelectedCells().ToList();
 
 					var rangeType = InferRangeType(cells);

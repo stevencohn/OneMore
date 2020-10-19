@@ -82,22 +82,22 @@
 			this.tabs.Controls.Add(this.pageTab);
 			this.tabs.Controls.Add(this.hierTab);
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabs.Location = new System.Drawing.Point(0, 83);
-			this.tabs.Margin = new System.Windows.Forms.Padding(1);
+			this.tabs.Location = new System.Drawing.Point(0, 128);
+			this.tabs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(779, 477);
+			this.tabs.Size = new System.Drawing.Size(1168, 733);
 			this.tabs.TabIndex = 0;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.ChangeSelectedTab);
 			// 
 			// pageTab
 			// 
 			this.pageTab.Controls.Add(this.pageBox);
-			this.pageTab.Location = new System.Drawing.Point(4, 22);
-			this.pageTab.Margin = new System.Windows.Forms.Padding(1);
+			this.pageTab.Location = new System.Drawing.Point(4, 29);
+			this.pageTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.pageTab.Name = "pageTab";
-			this.pageTab.Padding = new System.Windows.Forms.Padding(1);
-			this.pageTab.Size = new System.Drawing.Size(771, 451);
+			this.pageTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pageTab.Size = new System.Drawing.Size(1160, 700);
 			this.pageTab.TabIndex = 0;
 			this.pageTab.Text = "Page";
 			this.pageTab.UseVisualStyleBackColor = true;
@@ -107,10 +107,10 @@
 			this.pageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pageBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.pageBox.Location = new System.Drawing.Point(1, 1);
-			this.pageBox.Margin = new System.Windows.Forms.Padding(1);
+			this.pageBox.Location = new System.Drawing.Point(2, 2);
+			this.pageBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.pageBox.Name = "pageBox";
-			this.pageBox.Size = new System.Drawing.Size(769, 449);
+			this.pageBox.Size = new System.Drawing.Size(1156, 696);
 			this.pageBox.TabIndex = 7;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
@@ -119,11 +119,11 @@
 			// hierTab
 			// 
 			this.hierTab.Controls.Add(this.panel2);
-			this.hierTab.Location = new System.Drawing.Point(4, 22);
-			this.hierTab.Margin = new System.Windows.Forms.Padding(1);
+			this.hierTab.Location = new System.Drawing.Point(4, 29);
+			this.hierTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.hierTab.Name = "hierTab";
-			this.hierTab.Padding = new System.Windows.Forms.Padding(1);
-			this.hierTab.Size = new System.Drawing.Size(771, 451);
+			this.hierTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.hierTab.Size = new System.Drawing.Size(1160, 701);
 			this.hierTab.TabIndex = 1;
 			this.hierTab.Text = "Hierarchy";
 			this.hierTab.UseVisualStyleBackColor = true;
@@ -133,10 +133,9 @@
 			this.panel2.Controls.Add(this.hierBox);
 			this.panel2.Controls.Add(this.hierButtonsPanel);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(1, 1);
-			this.panel2.Margin = new System.Windows.Forms.Padding(2);
+			this.panel2.Location = new System.Drawing.Point(2, 2);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(769, 449);
+			this.panel2.Size = new System.Drawing.Size(1156, 697);
 			this.panel2.TabIndex = 6;
 			// 
 			// hierBox
@@ -144,10 +143,10 @@
 			this.hierBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.hierBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.hierBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.hierBox.Location = new System.Drawing.Point(0, 38);
-			this.hierBox.Margin = new System.Windows.Forms.Padding(1);
+			this.hierBox.Location = new System.Drawing.Point(0, 58);
+			this.hierBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.hierBox.Name = "hierBox";
-			this.hierBox.Size = new System.Drawing.Size(769, 411);
+			this.hierBox.Size = new System.Drawing.Size(1156, 639);
 			this.hierBox.TabIndex = 0;
 			this.hierBox.Text = "";
 			this.hierBox.WordWrap = false;
@@ -163,9 +162,10 @@
 			this.hierButtonsPanel.Controls.Add(this.currNotebookButton);
 			this.hierButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.hierButtonsPanel.Location = new System.Drawing.Point(0, 0);
+			this.hierButtonsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.hierButtonsPanel.Name = "hierButtonsPanel";
-			this.hierButtonsPanel.Padding = new System.Windows.Forms.Padding(5);
-			this.hierButtonsPanel.Size = new System.Drawing.Size(769, 38);
+			this.hierButtonsPanel.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+			this.hierButtonsPanel.Size = new System.Drawing.Size(1156, 58);
 			this.hierButtonsPanel.TabIndex = 1;
 			// 
 			// notebooksHierButton
@@ -173,10 +173,9 @@
 			this.notebooksHierButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.notebooksHierButton.AutoSize = true;
 			this.notebooksHierButton.Checked = true;
-			this.notebooksHierButton.Location = new System.Drawing.Point(7, 7);
-			this.notebooksHierButton.Margin = new System.Windows.Forms.Padding(2);
+			this.notebooksHierButton.Location = new System.Drawing.Point(11, 11);
 			this.notebooksHierButton.Name = "notebooksHierButton";
-			this.notebooksHierButton.Size = new System.Drawing.Size(69, 23);
+			this.notebooksHierButton.Size = new System.Drawing.Size(96, 30);
 			this.notebooksHierButton.TabIndex = 2;
 			this.notebooksHierButton.TabStop = true;
 			this.notebooksHierButton.Text = "Notebooks";
@@ -188,10 +187,9 @@
 			this.sectionsHierButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.sectionsHierButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.sectionsHierButton.AutoSize = true;
-			this.sectionsHierButton.Location = new System.Drawing.Point(80, 7);
-			this.sectionsHierButton.Margin = new System.Windows.Forms.Padding(2);
+			this.sectionsHierButton.Location = new System.Drawing.Point(113, 11);
 			this.sectionsHierButton.Name = "sectionsHierButton";
-			this.sectionsHierButton.Size = new System.Drawing.Size(58, 23);
+			this.sectionsHierButton.Size = new System.Drawing.Size(81, 30);
 			this.sectionsHierButton.TabIndex = 3;
 			this.sectionsHierButton.Text = "Sections";
 			this.sectionsHierButton.UseVisualStyleBackColor = true;
@@ -202,10 +200,9 @@
 			this.pagesHierButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pagesHierButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.pagesHierButton.AutoSize = true;
-			this.pagesHierButton.Location = new System.Drawing.Point(142, 7);
-			this.pagesHierButton.Margin = new System.Windows.Forms.Padding(2);
+			this.pagesHierButton.Location = new System.Drawing.Point(200, 11);
 			this.pagesHierButton.Name = "pagesHierButton";
-			this.pagesHierButton.Size = new System.Drawing.Size(47, 23);
+			this.pagesHierButton.Size = new System.Drawing.Size(64, 30);
 			this.pagesHierButton.TabIndex = 4;
 			this.pagesHierButton.Text = "Pages";
 			this.pagesHierButton.UseVisualStyleBackColor = true;
@@ -216,10 +213,9 @@
 			this.currSectionButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.currSectionButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.currSectionButton.AutoSize = true;
-			this.currSectionButton.Location = new System.Drawing.Point(193, 7);
-			this.currSectionButton.Margin = new System.Windows.Forms.Padding(2);
+			this.currSectionButton.Location = new System.Drawing.Point(270, 11);
 			this.currSectionButton.Name = "currSectionButton";
-			this.currSectionButton.Size = new System.Drawing.Size(90, 23);
+			this.currSectionButton.Size = new System.Drawing.Size(130, 30);
 			this.currSectionButton.TabIndex = 5;
 			this.currSectionButton.Text = "Current Section";
 			this.currSectionButton.UseVisualStyleBackColor = true;
@@ -230,10 +226,9 @@
 			this.currNotebookButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.currNotebookButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.currNotebookButton.AutoSize = true;
-			this.currNotebookButton.Location = new System.Drawing.Point(287, 7);
-			this.currNotebookButton.Margin = new System.Windows.Forms.Padding(2);
+			this.currNotebookButton.Location = new System.Drawing.Point(406, 11);
 			this.currNotebookButton.Name = "currNotebookButton";
-			this.currNotebookButton.Size = new System.Drawing.Size(101, 23);
+			this.currNotebookButton.Size = new System.Drawing.Size(145, 30);
 			this.currNotebookButton.TabIndex = 7;
 			this.currNotebookButton.Text = "Current Notebook";
 			this.currNotebookButton.UseVisualStyleBackColor = true;
@@ -243,10 +238,10 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(685, 12);
-			this.cancelButton.Margin = new System.Windows.Forms.Padding(1);
+			this.cancelButton.Location = new System.Drawing.Point(1028, 18);
+			this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(83, 23);
+			this.cancelButton.Size = new System.Drawing.Size(124, 35);
 			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.Click += new System.EventHandler(this.Close);
@@ -262,19 +257,19 @@
 			this.buttonPanel.Controls.Add(this.pagePathLabel);
 			this.buttonPanel.Controls.Add(this.pageNameLabel);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 560);
-			this.buttonPanel.Margin = new System.Windows.Forms.Padding(1);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 861);
+			this.buttonPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(779, 44);
+			this.buttonPanel.Size = new System.Drawing.Size(1168, 68);
 			this.buttonPanel.TabIndex = 4;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.Location = new System.Drawing.Point(597, 12);
-			this.okButton.Margin = new System.Windows.Forms.Padding(1);
+			this.okButton.Location = new System.Drawing.Point(896, 18);
+			this.okButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(83, 23);
+			this.okButton.Size = new System.Drawing.Size(124, 35);
 			this.okButton.TabIndex = 8;
 			this.okButton.Text = "Update Page";
 			this.okButton.Click += new System.EventHandler(this.Update);
@@ -283,10 +278,9 @@
 			// 
 			this.pageLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pageLink.AutoSize = true;
-			this.pageLink.Location = new System.Drawing.Point(43, 31);
-			this.pageLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pageLink.Location = new System.Drawing.Point(64, 48);
 			this.pageLink.Name = "pageLink";
-			this.pageLink.Size = new System.Drawing.Size(10, 13);
+			this.pageLink.Size = new System.Drawing.Size(14, 20);
 			this.pageLink.TabIndex = 0;
 			this.pageLink.Text = "-";
 			// 
@@ -294,10 +288,9 @@
 			// 
 			this.pagePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pagePath.AutoSize = true;
-			this.pagePath.Location = new System.Drawing.Point(43, 18);
-			this.pagePath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pagePath.Location = new System.Drawing.Point(64, 28);
 			this.pagePath.Name = "pagePath";
-			this.pagePath.Size = new System.Drawing.Size(10, 13);
+			this.pagePath.Size = new System.Drawing.Size(14, 20);
 			this.pagePath.TabIndex = 0;
 			this.pagePath.Text = "-";
 			// 
@@ -305,10 +298,9 @@
 			// 
 			this.pageName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pageName.AutoSize = true;
-			this.pageName.Location = new System.Drawing.Point(43, 5);
-			this.pageName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pageName.Location = new System.Drawing.Point(64, 8);
 			this.pageName.Name = "pageName";
-			this.pageName.Size = new System.Drawing.Size(10, 13);
+			this.pageName.Size = new System.Drawing.Size(14, 20);
 			this.pageName.TabIndex = 0;
 			this.pageName.Text = "-";
 			// 
@@ -316,10 +308,9 @@
 			// 
 			this.pageLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pageLinkLabel.AutoSize = true;
-			this.pageLinkLabel.Location = new System.Drawing.Point(2, 31);
-			this.pageLinkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pageLinkLabel.Location = new System.Drawing.Point(3, 48);
 			this.pageLinkLabel.Name = "pageLinkLabel";
-			this.pageLinkLabel.Size = new System.Drawing.Size(30, 13);
+			this.pageLinkLabel.Size = new System.Drawing.Size(42, 20);
 			this.pageLinkLabel.TabIndex = 0;
 			this.pageLinkLabel.Text = "Link:";
 			// 
@@ -327,10 +318,9 @@
 			// 
 			this.pagePathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pagePathLabel.AutoSize = true;
-			this.pagePathLabel.Location = new System.Drawing.Point(2, 18);
-			this.pagePathLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pagePathLabel.Location = new System.Drawing.Point(3, 28);
 			this.pagePathLabel.Name = "pagePathLabel";
-			this.pagePathLabel.Size = new System.Drawing.Size(32, 13);
+			this.pagePathLabel.Size = new System.Drawing.Size(46, 20);
 			this.pagePathLabel.TabIndex = 0;
 			this.pagePathLabel.Text = "Path:";
 			// 
@@ -338,10 +328,9 @@
 			// 
 			this.pageNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.pageNameLabel.AutoSize = true;
-			this.pageNameLabel.Location = new System.Drawing.Point(2, 5);
-			this.pageNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pageNameLabel.Location = new System.Drawing.Point(3, 8);
 			this.pageNameLabel.Name = "pageNameLabel";
-			this.pageNameLabel.Size = new System.Drawing.Size(38, 13);
+			this.pageNameLabel.Size = new System.Drawing.Size(55, 20);
 			this.pageNameLabel.TabIndex = 0;
 			this.pageNameLabel.Text = "Name:";
 			// 
@@ -351,18 +340,20 @@
 			this.pageInfoPanel.Controls.Add(this.hideBox);
 			this.pageInfoPanel.Controls.Add(this.pageInfoBox);
 			this.pageInfoPanel.Controls.Add(this.pageInfoLabel);
-			this.pageInfoPanel.Location = new System.Drawing.Point(272, 5);
-			this.pageInfoPanel.Margin = new System.Windows.Forms.Padding(2);
+			this.pageInfoPanel.Location = new System.Drawing.Point(408, 8);
 			this.pageInfoPanel.Name = "pageInfoPanel";
-			this.pageInfoPanel.Size = new System.Drawing.Size(413, 68);
+			this.pageInfoPanel.Size = new System.Drawing.Size(620, 105);
 			this.pageInfoPanel.TabIndex = 9;
 			// 
 			// hideLFBox
 			// 
 			this.hideLFBox.AutoSize = true;
-			this.hideLFBox.Location = new System.Drawing.Point(249, 34);
+			this.hideLFBox.Checked = true;
+			this.hideLFBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.hideLFBox.Location = new System.Drawing.Point(374, 52);
+			this.hideLFBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.hideLFBox.Name = "hideLFBox";
-			this.hideLFBox.Size = new System.Drawing.Size(143, 17);
+			this.hideLFBox.Size = new System.Drawing.Size(211, 24);
 			this.hideLFBox.TabIndex = 6;
 			this.hideLFBox.Text = "Remove LF from CDATA";
 			this.hideLFBox.UseVisualStyleBackColor = true;
@@ -373,9 +364,10 @@
 			this.hideBox.AutoSize = true;
 			this.hideBox.Checked = true;
 			this.hideBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.hideBox.Location = new System.Drawing.Point(249, 11);
+			this.hideBox.Location = new System.Drawing.Point(374, 17);
+			this.hideBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.hideBox.Name = "hideBox";
-			this.hideBox.Size = new System.Drawing.Size(140, 17);
+			this.hideBox.Size = new System.Drawing.Size(208, 24);
 			this.hideBox.TabIndex = 5;
 			this.hideBox.Text = "Hide edited-by attributes";
 			this.hideBox.UseVisualStyleBackColor = true;
@@ -383,19 +375,20 @@
 			// 
 			// pageInfoBox
 			// 
-			this.pageInfoBox.Location = new System.Drawing.Point(63, 7);
+			this.pageInfoBox.ItemHeight = 20;
+			this.pageInfoBox.Location = new System.Drawing.Point(94, 11);
+			this.pageInfoBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pageInfoBox.Name = "pageInfoBox";
-			this.pageInfoBox.Size = new System.Drawing.Size(150, 56);
+			this.pageInfoBox.Size = new System.Drawing.Size(223, 84);
 			this.pageInfoBox.TabIndex = 4;
 			this.pageInfoBox.SelectedValueChanged += new System.EventHandler(this.ChangeInfoScope);
 			// 
 			// pageInfoLabel
 			// 
 			this.pageInfoLabel.AutoSize = true;
-			this.pageInfoLabel.Location = new System.Drawing.Point(5, 12);
-			this.pageInfoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pageInfoLabel.Location = new System.Drawing.Point(8, 18);
 			this.pageInfoLabel.Name = "pageInfoLabel";
-			this.pageInfoLabel.Size = new System.Drawing.Size(53, 13);
+			this.pageInfoLabel.Size = new System.Drawing.Size(78, 20);
 			this.pageInfoLabel.TabIndex = 0;
 			this.pageInfoLabel.Text = "PageInfo:";
 			// 
@@ -403,10 +396,10 @@
 			// 
 			this.selectButton.Image = ((System.Drawing.Image)(resources.GetObject("selectButton.Image")));
 			this.selectButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.selectButton.Location = new System.Drawing.Point(110, 36);
-			this.selectButton.Margin = new System.Windows.Forms.Padding(1);
+			this.selectButton.Location = new System.Drawing.Point(165, 55);
+			this.selectButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.selectButton.Name = "selectButton";
-			this.selectButton.Size = new System.Drawing.Size(78, 23);
+			this.selectButton.Size = new System.Drawing.Size(117, 35);
 			this.selectButton.TabIndex = 3;
 			this.selectButton.Text = "Select All";
 			this.selectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -420,19 +413,18 @@
 			this.topPanel.Controls.Add(this.selectButton);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
-			this.topPanel.Margin = new System.Windows.Forms.Padding(1);
+			this.topPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.topPanel.Name = "topPanel";
-			this.topPanel.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-			this.topPanel.Size = new System.Drawing.Size(779, 83);
+			this.topPanel.Padding = new System.Windows.Forms.Padding(8, 8, 0, 0);
+			this.topPanel.Size = new System.Drawing.Size(1168, 128);
 			this.topPanel.TabIndex = 5;
 			// 
 			// wrapBox
 			// 
 			this.wrapBox.AutoSize = true;
-			this.wrapBox.Location = new System.Drawing.Point(18, 40);
-			this.wrapBox.Margin = new System.Windows.Forms.Padding(2);
+			this.wrapBox.Location = new System.Drawing.Point(27, 62);
 			this.wrapBox.Name = "wrapBox";
-			this.wrapBox.Size = new System.Drawing.Size(72, 17);
+			this.wrapBox.Size = new System.Drawing.Size(103, 24);
 			this.wrapBox.TabIndex = 2;
 			this.wrapBox.Text = "Wrap text";
 			this.wrapBox.UseVisualStyleBackColor = true;
@@ -441,10 +433,9 @@
 			// findBox
 			// 
 			this.findBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.findBox.Location = new System.Drawing.Point(7, 7);
-			this.findBox.Margin = new System.Windows.Forms.Padding(2);
+			this.findBox.Location = new System.Drawing.Point(10, 11);
 			this.findBox.Name = "findBox";
-			this.findBox.Size = new System.Drawing.Size(181, 21);
+			this.findBox.Size = new System.Drawing.Size(270, 28);
 			this.findBox.TabIndex = 0;
 			this.findBox.TextChanged += new System.EventHandler(this.ChangeFindText);
 			this.findBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FindBoxKeyUP);
@@ -453,10 +444,9 @@
 			// 
 			this.findButton.Enabled = false;
 			this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
-			this.findButton.Location = new System.Drawing.Point(192, 6);
-			this.findButton.Margin = new System.Windows.Forms.Padding(2);
+			this.findButton.Location = new System.Drawing.Point(288, 9);
 			this.findButton.Name = "findButton";
-			this.findButton.Size = new System.Drawing.Size(39, 23);
+			this.findButton.Size = new System.Drawing.Size(58, 35);
 			this.findButton.TabIndex = 1;
 			this.findButton.UseVisualStyleBackColor = true;
 			this.findButton.Click += new System.EventHandler(this.ClickFind);
@@ -467,25 +457,25 @@
 			this.masterPanel.Controls.Add(this.topPanel);
 			this.masterPanel.Controls.Add(this.buttonPanel);
 			this.masterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.masterPanel.Location = new System.Drawing.Point(5, 5);
-			this.masterPanel.Margin = new System.Windows.Forms.Padding(1);
+			this.masterPanel.Location = new System.Drawing.Point(8, 8);
+			this.masterPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.masterPanel.Name = "masterPanel";
-			this.masterPanel.Size = new System.Drawing.Size(779, 604);
+			this.masterPanel.Size = new System.Drawing.Size(1168, 929);
 			this.masterPanel.TabIndex = 6;
 			// 
 			// XmlDialog
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(789, 614);
+			this.ClientSize = new System.Drawing.Size(1184, 945);
 			this.Controls.Add(this.pageInfoPanel);
 			this.Controls.Add(this.masterPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(1);
-			this.MinimumSize = new System.Drawing.Size(801, 327);
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.MinimumSize = new System.Drawing.Size(1190, 473);
 			this.Name = "XmlDialog";
-			this.Padding = new System.Windows.Forms.Padding(5);
+			this.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "OneMore XML";
