@@ -168,10 +168,18 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static void ShowMessage(string message)
+		public static void ShowInfo(string message)
 		{
 			MessageBox.Show(message, "OneMore",
 				MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1,
+				MessageBoxOptions.DefaultDesktopOnly);
+		}
+
+
+		public static void ShowMessage(string message)
+		{
+			MessageBox.Show(message, "OneMore",
+				MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
 

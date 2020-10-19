@@ -3100,6 +3100,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Word Count.
+        /// </summary>
+        internal static string ribWordCountButton_Label {
+            get {
+                return ResourceManager.GetString("ribWordCountButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yellow Status.
         /// </summary>
         internal static string ribYellowStatusButton_Label {

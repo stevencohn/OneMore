@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				UIHelper.ShowMessage(Resx.RecalculateFormulaCommand_NoFormula);
+				UIHelper.ShowInfo(Resx.RecalculateFormulaCommand_NoFormula);
 			}
 		}
 	}

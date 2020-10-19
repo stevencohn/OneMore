@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn
 
 				logger.WriteLine(builder.ToString());
 
-				UIHelper.ShowMessage($"Diagnostics written to {logger.LogPath}");
+				UIHelper.ShowInfo($"Diagnostics written to {logger.LogPath}");
 			}
 		}
 	}

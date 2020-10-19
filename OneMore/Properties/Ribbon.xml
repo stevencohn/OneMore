@@ -323,6 +323,11 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="StrikeoutCmd"/>
+              <button
+                id="ribWordCountButton"
+                imageMso="WordCount"
+                getLabel="GetRibbonLabel"
+                onAction="WordCountCmd"/>
             </menu>
             <menuSeparator id="sepText" getTitle="GetRibbonLabel"/>
             <button

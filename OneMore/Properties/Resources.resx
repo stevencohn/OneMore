@@ -1833,4 +1833,8 @@ Symbols: PI, E</value>
     <value>No formula found in the selected table</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="ribWordCountButton_Label" xml:space="preserve">
+    <value>Word Count</value>
+    <comment>Ribbon OneMore menu extras</comment>
+  </data>
 </root>

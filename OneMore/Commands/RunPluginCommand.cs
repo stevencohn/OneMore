@@ -81,13 +81,13 @@ namespace River.OneMoreAddIn.Commands
 
 					if (updated == original)
 					{
-						UIHelper.ShowMessage(Resx.Plugin_NoChanges);
+						UIHelper.ShowInfo(Resx.Plugin_NoChanges);
 						return;
 					}
 
 					if (!Validated(root))
 					{
-						UIHelper.ShowMessage(Resx.Plugin_InvalidSchema);
+						UIHelper.ShowInfo(Resx.Plugin_InvalidSchema);
 						return;
 					}
 

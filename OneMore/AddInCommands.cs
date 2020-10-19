@@ -312,5 +312,10 @@ namespace River.OneMoreAddIn
 		{
 			factory.GetCommand<TrimCommand>().Execute();
 		}
+
+		public void WordCountCmd(IRibbonControl control)
+		{
+			factory.GetCommand<WordCountCommand>().Execute();
+		}
 	}
 }

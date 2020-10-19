@@ -111,6 +111,7 @@
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\ClearLogCommand.cs" />
+    <Compile Include="Commands\Extras\WordCountCommand.cs" />
     <Compile Include="Commands\Extras\TextToTableCommand.cs" />
     <Compile Include="Commands\Formula\Calculator.cs" />
     <Compile Include="Commands\Formula\FormulaException.cs" />

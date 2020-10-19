@@ -1793,4 +1793,8 @@ OneNote 将自动关闭</value>
     <value>在所选表格中找不到公式</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="ribWordCountButton_Label" xml:space="preserve">
+    <value>字数</value>
+    <comment>Ribbon OneMore menu extras</comment>
+  </data>
 </root>
