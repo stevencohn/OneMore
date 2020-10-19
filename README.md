@@ -48,6 +48,7 @@ Image commands
 
 Numbering commands
 
+* [Number page headings](#outlining) numeric or alpha-numeric outline prefixes
 * Number all sections in the current notebook
 * Number all pages in the current section with numeric or alpha-numeric prefixes
 * Remove numbering from sections
@@ -71,7 +72,6 @@ Extra commands
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
 * Edit [search engines](#lookup) that you want to appear in the context menu
-* [Number page headings](#outlining) numeric or alpha-numeric outline prefixes
 * [Indent content](#indenting) below headings or tagged paragraphs
 * [Replace hyperlinked URLs](#nameUrls) with their Web page titles
 * Toggle strikethrough text next to all completed/incompleted tags
