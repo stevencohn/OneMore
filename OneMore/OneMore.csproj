@@ -134,7 +134,7 @@
     <Compile Include="Commands\Numbering\NumberSectionsCommand.cs" />
     <Compile Include="Commands\Numbering\RemovePageNumbersCommand.cs" />
     <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
-    <Compile Include="Commands\Extras\OutlineCommand.cs" />
+    <Compile Include="Commands\Numbering\OutlineCommand.cs" />
     <Compile Include="Commands\PronunciateCommand.cs" />
     <Compile Include="Commands\RunPluginCommand.cs" />
     <Compile Include="Commands\SaveAsCommand.cs" />

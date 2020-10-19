@@ -61,24 +61,27 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		internal FormulaFormat Format
+		public FormulaFormat Format
 		{
 			get { return (FormulaFormat)formatBox.SelectedIndex; }
 			set { formatBox.SelectedIndex = (int)value; }
 		}
 
 
-		internal string Formula
+		public string Formula
 		{
 			get => formulaBox.Text;
 			set => formulaBox.Text = value;
 		}
 
 
-		internal void SetCellNames(string names)
+		public void SetCellNames(string names)
 		{
 			cellLabel.Text = names;
 		}
+
+
+		public bool Tagged => tagBox.Checked;
 
 
 		private void ChangedFormula(object sender, EventArgs e)

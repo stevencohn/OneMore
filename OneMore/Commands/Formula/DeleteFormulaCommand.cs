@@ -40,9 +40,22 @@ namespace River.OneMoreAddIn
 
 				if (metas?.Any() == true)
 				{
+					var tagIndex = page.GetTagIndex("140");
+
 					var count = 0;
 					foreach (var meta in metas.ToList())
 					{
+						if (tagIndex != null)
+						{
+							var tag = meta.Parent.Elements(ns + "Tag")
+								.FirstOrDefault(e => e.Attribute("index").Value == tagIndex);
+
+							if (tag != null)
+							{
+								tag.Remove();
+							}
+						}
+
 						meta.Parent.Attribute("objectID").Remove();
 						meta.Remove();
 						count++;

@@ -91,7 +91,16 @@ namespace River.OneMoreAddIn
 							return;
 						}
 
-						StoreFormula(cells, dialog.Formula, dialog.Format, rangeType);
+
+						System.Diagnostics.Debugger.Launch();
+
+						var tagIndex = string.Empty;
+						if (dialog.Tagged)
+						{
+							tagIndex = page.AddTag("140", "Calculated");
+						}
+
+						StoreFormula(cells, dialog.Formula, dialog.Format, rangeType, tagIndex);
 
 						var processor = new Processor(table);
 						processor.Execute(cells);
@@ -146,12 +155,19 @@ namespace River.OneMoreAddIn
 
 
 		private void StoreFormula(
-			IEnumerable<TableCell> cells, string formula, FormulaFormat format, FormulaRangeType rangeType)
+			IEnumerable<TableCell> cells, 
+			string formula, FormulaFormat format, FormulaRangeType rangeType, string tagIndex)
 		{
 			if (rangeType == FormulaRangeType.Single)
 			{
-				cells.First().SetMeta("omfx", $"1;{format};{formula}");
+				var cell = cells.First();
+				cell.SetMeta("omfx", $"1;{format};{formula}");
 				//logger.WriteLine($"Cell {cells.First().Coordinates} stored formula '{formula}'");
+
+				if (!string.IsNullOrEmpty(tagIndex))
+				{
+					cell.SetTag(tagIndex);
+				}
 				return;
 			}
 
@@ -188,6 +204,11 @@ namespace River.OneMoreAddIn
 
 				cell.SetMeta("omfx", $"1;{format};{builder}");
 				//logger.WriteLine($"Cell {cell.Coordinates} stored formula '{builder}'");
+
+				if (!string.IsNullOrEmpty(tagIndex))
+				{
+					cell.SetTag(tagIndex);
+				}
 
 				offset++;
 			}

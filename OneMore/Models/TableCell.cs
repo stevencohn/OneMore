@@ -183,6 +183,32 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public void SetTag(string index)
+		{
+			//<one:Tag index="0" completed="true" disabled="false" />
+
+			if (GetContent() == null)
+			{
+				SetContent(string.Empty);
+			}
+
+			var parent = Root.Element(ns + "OEChildren").Element(ns + "OE");
+
+			var element = parent.Elements(ns + "Tag")
+				.FirstOrDefault(e => e.Attribute("index").Value == index);
+
+			if (element == null)
+			{
+				// Meta must precede T
+				parent.AddFirst(new XElement(ns + "Tag",
+					new XAttribute("index", index),
+					new XAttribute("completed", "true"),
+					new XAttribute("disabled", "false")
+					));
+			}
+		}
+
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		/// <summary>

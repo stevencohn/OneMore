@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Drawing;
 	using System.Linq;
 	using System.Media;
+	using System.Runtime.InteropServices.WindowsRuntime;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
@@ -98,6 +99,43 @@ namespace River.OneMoreAddIn.Models
 
 				current.AddAfterSelf(content);
 			}
+		}
+
+
+		/// <summary>
+		/// Adds a TagDef to the page and returns its index value. If the tag already exists
+		/// the index is returned with no other changes to the page.
+		/// </summary>
+		/// <param name="symbol">The symbol of the tag</param>
+		/// <param name="name">The name to apply to the new tag</param>
+		/// <returns>The index of the new tag or of the existing tag with the same symbol</returns>
+		public string AddTag(string symbol, string name)
+		{
+			//<one:TagDef index="0" type="0" symbol="140" fontColor="automatic" highlightColor="none" name="Calculated" />
+			var tags = Root.Elements(Namespace + "TagDef");
+
+			int index = 0;
+			if (tags?.Any() == true)
+			{
+				var tag = tags.FirstOrDefault(e => e.Attribute("symbol").Value == symbol);
+				if (tag != null)
+				{
+					return tag.Attribute("index").Value;
+				}
+
+				index = tags.Max(e => int.Parse(e.Attribute("index").Value)) + 1;
+			}
+
+			Root.AddFirst(new XElement(Namespace + "TagDef",
+				new XAttribute("index", index.ToString()),
+				new XAttribute("type", "0"),
+				new XAttribute("symbol", symbol),
+				new XAttribute("fontColor", "automatic"),
+				new XAttribute("highlightColor", "none"),
+				new XAttribute("name", name)
+				));
+
+			return index.ToString();
 		}
 
 
@@ -280,6 +318,25 @@ namespace River.OneMoreAddIn.Models
 			{
 				return ApplicationManager.OfficeSetToBlackTheme() ? Color.Black : Color.White;
 			}
+		}
+
+
+		/// <summary>
+		/// Finds the index of the tag by its specified symbol
+		/// </summary>
+		/// <param name="symbol">The symbol of the tag to find</param>
+		/// <returns>The index value or null if not found</returns>
+		public string GetTagIndex(string symbol)
+		{
+			var tag = Root.Elements(Namespace + "TagDef")
+				.FirstOrDefault(e => e.Attribute("symbol").Value == symbol);
+
+			if (tag != null)
+			{
+				return tag.Attribute("index").Value;
+			}
+
+			return null;
 		}
 
 
