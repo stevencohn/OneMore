@@ -81,7 +81,11 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		public bool Tagged => tagBox.Checked;
+		public bool Tagged
+		{
+			get => tagBox.Checked;
+			set => tagBox.Checked = value;
+		}
 
 
 		private void ChangedFormula(object sender, EventArgs e)

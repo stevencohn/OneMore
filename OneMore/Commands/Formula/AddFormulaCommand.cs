@@ -70,8 +70,10 @@ namespace River.OneMoreAddIn
 						dialog.SetCellNames(
 							string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
 
+						var cell = cells.First();
+
 						// display formula of first cell if any
-						var fx = cells.First().GetMeta("omfx");
+						var fx = cell.GetMeta("omfx");
 						if (fx != null)
 						{
 							var parts = fx.Split(';');
@@ -86,12 +88,21 @@ namespace River.OneMoreAddIn
 							}
 						}
 
+
+						var tagIndex = page.GetTagIndex("140");
+						if (!string.IsNullOrEmpty(tagIndex))
+						{
+							if (cell.HasTag(tagIndex))
+							{
+								dialog.Tagged = true;
+							}
+						}
+
 						if (dialog.ShowDialog(owner) != DialogResult.OK)
 						{
 							return;
 						}
 
-						var tagIndex = string.Empty;
 						if (dialog.Tagged)
 						{
 							tagIndex = page.AddTag("140", "Calculated");

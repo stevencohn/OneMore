@@ -78,6 +78,15 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public bool HasTag(string index)
+		{
+			return Root.Elements(ns + "OEChildren")
+				.Elements(ns + "OE")
+				.Elements(ns + "Tag")
+				.Any(e => e.Attribute("index").Value == index);
+		}
+
+
 		/// <summary>
 		/// Adds the given table as the content of this cell.
 		/// </summary>

@@ -165,7 +165,8 @@
 			this.helpButton.Location = new System.Drawing.Point(17, 175);
 			this.helpButton.Name = "helpButton";
 			this.helpButton.Size = new System.Drawing.Size(52, 30);
-			this.helpButton.TabIndex = 14;
+			this.helpButton.TabIndex = 9;
+			this.helpButton.TabStop = false;
 			this.helpButton.Text = "Help";
 			this.helpButton.UseVisualStyleBackColor = true;
 			this.helpButton.CheckedChanged += new System.EventHandler(this.ToggleHelp);
@@ -195,7 +196,7 @@
 			this.tagBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.Size = new System.Drawing.Size(147, 24);
-			this.tagBox.TabIndex = 18;
+			this.tagBox.TabIndex = 2;
 			this.tagBox.Text = "Tag formula cells";
 			this.tagBox.UseVisualStyleBackColor = true;
 			// 
