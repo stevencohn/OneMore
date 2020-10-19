@@ -18,6 +18,8 @@ namespace River.OneMoreAddIn
 
 	internal class AddFormulaCommand : Command
 	{
+		public const string BoltSymbol = "140";
+
 		private ApplicationManager manager;
 
 
@@ -89,7 +91,7 @@ namespace River.OneMoreAddIn
 						}
 
 
-						var tagIndex = page.GetTagIndex("140");
+						var tagIndex = page.GetTagIndex(BoltSymbol);
 						if (!string.IsNullOrEmpty(tagIndex))
 						{
 							if (cell.HasTag(tagIndex))
@@ -105,7 +107,7 @@ namespace River.OneMoreAddIn
 
 						if (dialog.Tagged)
 						{
-							tagIndex = page.AddTag("140", Resx.AddFormulaCommand_Calculated);
+							tagIndex = page.AddTag(BoltSymbol, Resx.AddFormulaCommand_Calculated);
 						}
 
 						StoreFormula(cells, dialog.Formula, dialog.Format, rangeType, tagIndex);

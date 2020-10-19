@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn
 
 				if (metas?.Any() == true)
 				{
-					var tagIndex = page.GetTagIndex("140");
+					var tagIndex = page.GetTagIndex(AddFormulaCommand.BoltSymbol);
 
 					var count = 0;
 					foreach (var meta in metas.ToList())
