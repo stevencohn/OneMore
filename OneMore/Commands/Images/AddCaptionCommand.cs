@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Xml.Linq;
 	using River.OneMoreAddIn.Models;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class AddCaptionCommand : Command
@@ -120,7 +121,7 @@ namespace River.OneMoreAddIn
 				.Any(e => e.Attribute("name").Value.Equals("om") &&
 					 e.Attribute("content").Value.Equals("caption")) == true)
 			{
-				UIHelper.ShowMessage(owner, "Image already has a caption");
+				UIHelper.ShowInfo(owner, Resx.AddCaptionCommand_Captioned);
 				return true;
 			}
 

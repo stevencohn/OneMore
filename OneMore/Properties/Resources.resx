@@ -1837,4 +1837,12 @@ Symbols: PI, E</value>
     <value>Word Count</value>
     <comment>Ribbon OneMore menu extras</comment>
   </data>
+  <data name="AddCaptionCommand_Captioned" xml:space="preserve">
+    <value>Image already has a caption</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WordCountCommand_Count" xml:space="preserve">
+    <value>Total words on page: {0}</value>
+    <comment>message box</comment>
+  </data>
 </root>

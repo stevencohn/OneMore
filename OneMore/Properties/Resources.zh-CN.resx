@@ -1797,4 +1797,12 @@ OneNote 将自动关闭</value>
     <value>字数</value>
     <comment>Ribbon OneMore menu extras</comment>
   </data>
+  <data name="AddCaptionCommand_Captioned" xml:space="preserve">
+    <value>图片已经有标题</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WordCountCommand_Count" xml:space="preserve">
+    <value>页面总字数：{0}</value>
+    <comment>message box</comment>
+  </data>
 </root>

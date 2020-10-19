@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn
 
 					if (anchor == null)
 					{
-						UIHelper.ShowMessage(manager.Window, Resx.FormulaCommand_SelectOne);
+						UIHelper.ShowInfo(manager.Window, Resx.FormulaCommand_SelectOne);
 						return;
 					}
 
@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn
 					var rangeType = InferRangeType(cells);
 					if (rangeType == FormulaRangeType.Rectangular)
 					{
-						UIHelper.ShowMessage(manager.Window, Resx.FormulaCommand_Linear);
+						UIHelper.ShowInfo(manager.Window, Resx.FormulaCommand_Linear);
 						return;
 					}
 

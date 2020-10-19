@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Linq;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class WordCountCommand : Command
@@ -35,7 +36,8 @@ namespace River.OneMoreAddIn
 							StringSplitOptions.RemoveEmptyEntries).Length;
 					}
 				}
-				UIHelper.ShowMessage($"Total words on page: {count}");
+
+				UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Count, count));
 			}
 		}
 	}

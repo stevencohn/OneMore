@@ -154,6 +154,24 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public static void ShowInfo(IWin32Window window, string message)
+		{
+			MessageBox.Show(window, message, "OneMore",
+				MessageBoxButtons.OK, MessageBoxIcon.Information,
+				MessageBoxDefaultButton.Button1,
+				MessageBoxOptions.DefaultDesktopOnly);
+		}
+
+
+		public static void ShowInfo(string message)
+		{
+			MessageBox.Show(message, "OneMore",
+				MessageBoxButtons.OK, MessageBoxIcon.Information,
+				MessageBoxDefaultButton.Button1,
+				MessageBoxOptions.DefaultDesktopOnly);
+		}
+
+
 		/// <summary>
 		/// Shows an informational message box with the given caption and ensures it appears
 		/// on top of the main OneNote window
@@ -163,15 +181,8 @@ namespace River.OneMoreAddIn
 		public static void ShowMessage(IWin32Window window, string message)
 		{
 			MessageBox.Show(window, message, "OneMore",
-				MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
-		}
-
-
-		public static void ShowInfo(string message)
-		{
-			MessageBox.Show(message, "OneMore",
-				MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1,
+				MessageBoxButtons.OK, MessageBoxIcon.None,
+				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
 
@@ -179,7 +190,8 @@ namespace River.OneMoreAddIn
 		public static void ShowMessage(string message)
 		{
 			MessageBox.Show(message, "OneMore",
-				MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1,
+				MessageBoxButtons.OK, MessageBoxIcon.None,
+				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
 
@@ -187,7 +199,8 @@ namespace River.OneMoreAddIn
 		public static void ShowError(string message)
 		{
 			MessageBox.Show(message, "OneMore",
-				MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1,
+				MessageBoxButtons.OK, MessageBoxIcon.Error,
+				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
 

@@ -187,6 +187,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image already has a caption.
+        /// </summary>
+        internal static string AddCaptionCommand_Captioned {
+            get {
+                return ResourceManager.GetString("AddCaptionCommand_Captioned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one or more cells from the same row or the same column.
         /// </summary>
         internal static string AddFormula_linearMessage {
@@ -3925,6 +3934,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Watch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total words on page: {0}.
+        /// </summary>
+        internal static string WordCountCommand_Count {
+            get {
+                return ResourceManager.GetString("WordCountCommand_Count", resourceCulture);
             }
         }
         
