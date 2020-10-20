@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void SaveAsXML(XElement root, string filename)
+		private void SaveAsXML(XElement root, string filename)
 		{
 			try
 			{
