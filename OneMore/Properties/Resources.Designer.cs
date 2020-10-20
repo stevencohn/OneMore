@@ -1023,6 +1023,72 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ExportDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder:.
+        /// </summary>
+        internal static string ExportDialog_folderLabel_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_folderLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTML File (*.htm)
+        ///PDF File (*.pdf)
+        ///Word File (*.docx)
+        ///XML File (*.xml).
+        /// </summary>
+        internal static string ExportDialog_formatBox_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_formatBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format:.
+        /// </summary>
+        internal static string ExportDialog_formatLabel_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_formatLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export {0} Pages.
+        /// </summary>
+        internal static string ExportDialog_groupBox_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_groupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string ExportDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Pages.
+        /// </summary>
+        internal static string ExportDialog_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Family {

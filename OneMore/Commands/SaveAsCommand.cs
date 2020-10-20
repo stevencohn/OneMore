@@ -5,8 +5,10 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
+	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -16,6 +18,16 @@ namespace River.OneMoreAddIn
 
 	internal class SaveAsCommand : Command
 	{
+
+		public enum ExportFormat
+		{
+			HTML = PublishFormat.pfHTML,
+			PDF = PublishFormat.pfPDF,
+			Word = PublishFormat.pfWord,
+			XML = 100
+		}
+
+
 		public SaveAsCommand()
 		{
 		}
@@ -23,12 +35,62 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
-			Page page;
-			using (var manager = new ApplicationManager())
+			try
 			{
-				page = new Page(manager.CurrentPage());
+				Page page;
+				using (var manager = new ApplicationManager())
+				{
+					var section = manager.CurrentSection();
+					var ns = section.GetNamespaceOfPrefix("one");
+					var pageIDs = section.Elements(ns + "Page")
+						.Where(e => e.Attribute("selected")?.Value == "all")
+						.Select(e => e.Attribute("ID").Value)
+						.ToList();
+
+					if (pageIDs.Count > 1)
+					{
+						ExportMany(manager, pageIDs);
+						return;
+					}
+
+					page = new Page(manager.CurrentPage());
+				}
+
+				ExportOne(page);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("Error saving page(s)", exc);
+				UIHelper.ShowError("Error exporting page(s). See log file for more information.");
+			}
+		}
+
+
+		private void ExportMany(ApplicationManager manager, List<string> pageIDs)
+		{
+			ExportFormat format;
+			string path;
+
+			using (var dialog = new ExportDialog(pageIDs.Count))
+			{
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				path = dialog.FolderPath;
+				format = dialog.Format;				
 			}
 
+			foreach (var pageID in pageIDs)
+			{
+				logger.WriteLine($"{pageID} -> {path} {format}");
+			}
+		}
+
+
+		private void ExportOne(Page page)
+		{
 			var titles = page.Root
 				.Elements(page.Namespace + "Title")
 				.Elements(page.Namespace + "OE")

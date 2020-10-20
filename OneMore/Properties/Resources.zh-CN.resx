@@ -1809,4 +1809,35 @@ OneNote 将自动关闭</value>
     <value>已计算</value>
     <comment>tag name</comment>
   </data>
+  <data name="ExportDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
+    <value>夹：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
+    <value>HTML档案（* .htm）
+PDF档案（* .pdf）
+Word文件（* .docx）
+XML档案（* .xml）</value>
+    <comment>combo box</comment>
+  </data>
+  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
+    <value>格式：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_groupBox.Text" xml:space="preserve">
+    <value>导出{0}页</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="ExportDialog_Text" xml:space="preserve">
+    <value>导出页面</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

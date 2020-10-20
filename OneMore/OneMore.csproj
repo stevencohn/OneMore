@@ -163,6 +163,12 @@
     <Compile Include="Dialogs\CalendarDialog.Designer.cs">
       <DependentUpon>CalendarDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ExportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ExportDialog.Designer.cs">
+      <DependentUpon>ExportDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\FormulaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -465,6 +471,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EmojiDialog.resx">
       <DependentUpon>EmojiDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportDialog.resx">
+      <DependentUpon>ExportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FlatToggleButton.resx">
       <DependentUpon>FlatToggleButton.cs</DependentUpon>
