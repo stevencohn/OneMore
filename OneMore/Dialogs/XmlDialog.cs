@@ -253,6 +253,8 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				ApplyHideOptions();
 			}
+
+			okButton.Enabled = !hideBox.Checked;
 		}
 
 

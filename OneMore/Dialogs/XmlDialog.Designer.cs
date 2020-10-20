@@ -83,10 +83,10 @@
 			this.tabs.Controls.Add(this.hierTab);
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabs.Location = new System.Drawing.Point(0, 128);
-			this.tabs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabs.Margin = new System.Windows.Forms.Padding(2);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(1168, 733);
+			this.tabs.Size = new System.Drawing.Size(1287, 733);
 			this.tabs.TabIndex = 0;
 			this.tabs.SelectedIndexChanged += new System.EventHandler(this.ChangeSelectedTab);
 			// 
@@ -94,10 +94,10 @@
 			// 
 			this.pageTab.Controls.Add(this.pageBox);
 			this.pageTab.Location = new System.Drawing.Point(4, 29);
-			this.pageTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pageTab.Margin = new System.Windows.Forms.Padding(2);
 			this.pageTab.Name = "pageTab";
-			this.pageTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.pageTab.Size = new System.Drawing.Size(1160, 700);
+			this.pageTab.Padding = new System.Windows.Forms.Padding(2);
+			this.pageTab.Size = new System.Drawing.Size(1279, 700);
 			this.pageTab.TabIndex = 0;
 			this.pageTab.Text = "Page";
 			this.pageTab.UseVisualStyleBackColor = true;
@@ -108,9 +108,9 @@
 			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pageBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageBox.Location = new System.Drawing.Point(2, 2);
-			this.pageBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pageBox.Margin = new System.Windows.Forms.Padding(2);
 			this.pageBox.Name = "pageBox";
-			this.pageBox.Size = new System.Drawing.Size(1156, 696);
+			this.pageBox.Size = new System.Drawing.Size(1275, 696);
 			this.pageBox.TabIndex = 7;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
@@ -120,10 +120,10 @@
 			// 
 			this.hierTab.Controls.Add(this.panel2);
 			this.hierTab.Location = new System.Drawing.Point(4, 29);
-			this.hierTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.hierTab.Margin = new System.Windows.Forms.Padding(2);
 			this.hierTab.Name = "hierTab";
-			this.hierTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.hierTab.Size = new System.Drawing.Size(1160, 701);
+			this.hierTab.Padding = new System.Windows.Forms.Padding(2);
+			this.hierTab.Size = new System.Drawing.Size(1279, 700);
 			this.hierTab.TabIndex = 1;
 			this.hierTab.Text = "Hierarchy";
 			this.hierTab.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(2, 2);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1156, 697);
+			this.panel2.Size = new System.Drawing.Size(1275, 696);
 			this.panel2.TabIndex = 6;
 			// 
 			// hierBox
@@ -144,9 +144,9 @@
 			this.hierBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.hierBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.hierBox.Location = new System.Drawing.Point(0, 58);
-			this.hierBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.hierBox.Margin = new System.Windows.Forms.Padding(2);
 			this.hierBox.Name = "hierBox";
-			this.hierBox.Size = new System.Drawing.Size(1156, 639);
+			this.hierBox.Size = new System.Drawing.Size(1275, 638);
 			this.hierBox.TabIndex = 0;
 			this.hierBox.Text = "";
 			this.hierBox.WordWrap = false;
@@ -164,8 +164,8 @@
 			this.hierButtonsPanel.Location = new System.Drawing.Point(0, 0);
 			this.hierButtonsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.hierButtonsPanel.Name = "hierButtonsPanel";
-			this.hierButtonsPanel.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
-			this.hierButtonsPanel.Size = new System.Drawing.Size(1156, 58);
+			this.hierButtonsPanel.Padding = new System.Windows.Forms.Padding(8);
+			this.hierButtonsPanel.Size = new System.Drawing.Size(1275, 58);
 			this.hierButtonsPanel.TabIndex = 1;
 			// 
 			// notebooksHierButton
@@ -238,8 +238,8 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(1028, 18);
-			this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cancelButton.Location = new System.Drawing.Point(1147, 18);
+			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(124, 35);
 			this.cancelButton.TabIndex = 9;
@@ -258,16 +258,17 @@
 			this.buttonPanel.Controls.Add(this.pageNameLabel);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.Location = new System.Drawing.Point(0, 861);
-			this.buttonPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.buttonPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(1168, 68);
+			this.buttonPanel.Size = new System.Drawing.Size(1287, 68);
 			this.buttonPanel.TabIndex = 4;
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.Location = new System.Drawing.Point(896, 18);
-			this.okButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.okButton.Enabled = false;
+			this.okButton.Location = new System.Drawing.Point(1015, 18);
+			this.okButton.Margin = new System.Windows.Forms.Padding(2);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(124, 35);
 			this.okButton.TabIndex = 8;
@@ -342,7 +343,7 @@
 			this.pageInfoPanel.Controls.Add(this.pageInfoLabel);
 			this.pageInfoPanel.Location = new System.Drawing.Point(408, 8);
 			this.pageInfoPanel.Name = "pageInfoPanel";
-			this.pageInfoPanel.Size = new System.Drawing.Size(620, 105);
+			this.pageInfoPanel.Size = new System.Drawing.Size(802, 105);
 			this.pageInfoPanel.TabIndex = 9;
 			// 
 			// hideLFBox
@@ -350,8 +351,7 @@
 			this.hideLFBox.AutoSize = true;
 			this.hideLFBox.Checked = true;
 			this.hideLFBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.hideLFBox.Location = new System.Drawing.Point(374, 52);
-			this.hideLFBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.hideLFBox.Location = new System.Drawing.Point(367, 50);
 			this.hideLFBox.Name = "hideLFBox";
 			this.hideLFBox.Size = new System.Drawing.Size(211, 24);
 			this.hideLFBox.TabIndex = 6;
@@ -364,12 +364,11 @@
 			this.hideBox.AutoSize = true;
 			this.hideBox.Checked = true;
 			this.hideBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.hideBox.Location = new System.Drawing.Point(374, 17);
-			this.hideBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.hideBox.Location = new System.Drawing.Point(367, 20);
 			this.hideBox.Name = "hideBox";
-			this.hideBox.Size = new System.Drawing.Size(208, 24);
+			this.hideBox.Size = new System.Drawing.Size(370, 24);
 			this.hideBox.TabIndex = 5;
-			this.hideBox.Text = "Hide edited-by attributes";
+			this.hideBox.Text = "Hide edited-by attributes (uncheck to edit page)";
 			this.hideBox.UseVisualStyleBackColor = true;
 			this.hideBox.CheckedChanged += new System.EventHandler(this.HideAttributes);
 			// 
@@ -397,7 +396,7 @@
 			this.selectButton.Image = ((System.Drawing.Image)(resources.GetObject("selectButton.Image")));
 			this.selectButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.selectButton.Location = new System.Drawing.Point(165, 55);
-			this.selectButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.selectButton.Margin = new System.Windows.Forms.Padding(2);
 			this.selectButton.Name = "selectButton";
 			this.selectButton.Size = new System.Drawing.Size(117, 35);
 			this.selectButton.TabIndex = 3;
@@ -413,10 +412,10 @@
 			this.topPanel.Controls.Add(this.selectButton);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
-			this.topPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.topPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(8, 8, 0, 0);
-			this.topPanel.Size = new System.Drawing.Size(1168, 128);
+			this.topPanel.Size = new System.Drawing.Size(1287, 128);
 			this.topPanel.TabIndex = 5;
 			// 
 			// wrapBox
@@ -458,9 +457,9 @@
 			this.masterPanel.Controls.Add(this.buttonPanel);
 			this.masterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.masterPanel.Location = new System.Drawing.Point(8, 8);
-			this.masterPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.masterPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.masterPanel.Name = "masterPanel";
-			this.masterPanel.Size = new System.Drawing.Size(1168, 929);
+			this.masterPanel.Size = new System.Drawing.Size(1287, 929);
 			this.masterPanel.TabIndex = 6;
 			// 
 			// XmlDialog
@@ -468,14 +467,14 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(1184, 945);
+			this.ClientSize = new System.Drawing.Size(1303, 945);
 			this.Controls.Add(this.pageInfoPanel);
 			this.Controls.Add(this.masterPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MinimumSize = new System.Drawing.Size(1190, 473);
 			this.Name = "XmlDialog";
-			this.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+			this.Padding = new System.Windows.Forms.Padding(8);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "OneMore XML";

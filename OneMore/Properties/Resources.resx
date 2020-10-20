@@ -1681,7 +1681,7 @@ Try again later</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_hideBox.Text" xml:space="preserve">
-    <value>Hide edited-by attributes</value>
+    <value>Hide edited-by attributes (uncheck to edit page)</value>
     <comment>checkbox</comment>
   </data>
   <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">

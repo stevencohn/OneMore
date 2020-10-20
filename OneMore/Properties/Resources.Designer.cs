@@ -3983,7 +3983,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hide edited-by attributes.
+        ///   Looks up a localized string similar to Hide edited-by attributes (uncheck to edit page).
         /// </summary>
         internal static string XmlDialog_hideBox_Text {
             get {

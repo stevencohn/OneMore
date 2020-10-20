@@ -1640,7 +1640,7 @@ OneNote 将自动关闭</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_hideBox.Text" xml:space="preserve">
-    <value>隐藏编辑者属性</value>
+    <value>隐藏编辑者属性（取消选中以编辑页面）</value>
     <comment>checkbox</comment>
   </data>
   <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">
