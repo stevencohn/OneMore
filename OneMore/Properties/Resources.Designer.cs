@@ -3155,7 +3155,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HTML File|.htm|XML File|.xml.
+        ///   Looks up a localized string similar to HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml.
         /// </summary>
         internal static string SaveAs_Filter {
             get {
@@ -3164,7 +3164,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file type must be either .htm or .xml.
+        ///   Looks up a localized string similar to File extension must be one of .htm, .docx, .pdf, or .xml.
         /// </summary>
         internal static string SaveAs_Invalid_Type {
             get {

@@ -1048,11 +1048,11 @@ Notebooks</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>HTML File|.htm|XML File|.xml</value>
+    <value>HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml</value>
     <comment>Save as dialog filename filter string</comment>
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>The file type must be either .htm or .xml</value>
+    <value>File extension must be one of .htm, .docx, .pdf, or .xml</value>
     <comment>Save as dialog invalid file type message</comment>
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
