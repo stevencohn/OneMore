@@ -1880,4 +1880,8 @@ XML File (*.xml)</value>
     <value>Export Pages</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveAsMany_Success" xml:space="preserve">
+    <value>Saved {0} pages to {1}</value>
+    <comment>save many message</comment>
+  </data>
 </root>

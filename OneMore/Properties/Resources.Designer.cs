@@ -3257,6 +3257,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saved {0} pages to {1}.
+        /// </summary>
+        internal static string SaveAsMany_Success {
+            get {
+                return ResourceManager.GetString("SaveAsMany_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string SearchAndReplaceDialog_cancelButton_Text {

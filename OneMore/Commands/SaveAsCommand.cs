@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
-	using System.Security.Cryptography;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -38,7 +37,6 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				Page page;
 				using (var manager = new ApplicationManager())
 				{
 					var section = manager.CurrentSection();
@@ -51,11 +49,12 @@ namespace River.OneMoreAddIn
 					if (pageIDs.Count > 1)
 					{
 						ExportMany(manager, pageIDs);
-						return;
 					}
-
-					page = new Page(manager.CurrentPage());
-					ExportOne(manager, page);
+					else
+					{
+						var page = new Page(manager.CurrentPage());
+						ExportOne(manager, page);
+					}
 				}
 			}
 			catch (Exception exc)
@@ -79,15 +78,45 @@ namespace River.OneMoreAddIn
 				}
 
 				path = dialog.FolderPath;
-				format = dialog.Format;				
+				format = dialog.Format;
 			}
 
-			foreach (var pageID in pageIDs)
+			string ext = null;
+			switch (format)
 			{
-				var page = new Page(manager.GetPage(pageID));
-
-				SaveOne(manager, page, path, format);
+				case ExportFormat.HTML: ext = ".htm"; break;
+				case ExportFormat.PDF: ext = ".pdf"; break;
+				case ExportFormat.Word: ext = ".docx"; break;
+				case ExportFormat.XML: ext = ".xml"; break;
 			}
+
+			string formatName = format.ToString();
+
+			using (var progress = new ProgressDialog())
+			{
+				progress.SetMaximum(pageIDs.Count);
+				progress.Show(owner);
+
+				foreach (var pageID in pageIDs)
+				{
+					var page = new Page(manager.GetPage(pageID));
+					var filename = Path.Combine(path, page.PageName.Replace(' ', '_') + ext);
+
+					progress.SetMessage(filename);
+					progress.Increment();
+
+					if (format == ExportFormat.XML)
+					{
+						SaveAsXML(page.Root, filename);
+					}
+					else
+					{
+						SaveAs(manager, page.PageId, filename, (PublishFormat)format, formatName);
+					}
+				}
+			}
+
+			UIHelper.ShowMessage(string.Format(Resx.SaveAsMany_Success, pageIDs.Count, path));
 		}
 
 
@@ -113,11 +142,12 @@ namespace River.OneMoreAddIn
 			}
 
 			ExportFormat format = ExportFormat.XML;
-			var ext = Path.GetExtension(filename);
+			var ext = Path.GetExtension(filename).ToLower();
 
 			if (ext == ".xml")
 			{
 				SaveAsXML(page.Root, filename);
+				UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
 				return;
 			}
 
@@ -125,7 +155,6 @@ namespace River.OneMoreAddIn
 			{
 				case ".htm": format = ExportFormat.HTML; break;
 				case ".pdf": format = ExportFormat.PDF; break;
-				case ".doc": format = ExportFormat.Word; break;
 				case ".docx": format = ExportFormat.Word; break;
 				case ".xml": format = ExportFormat.XML; break;
 
@@ -134,16 +163,8 @@ namespace River.OneMoreAddIn
 					break;
 			}
 
-			SaveOne(manager, page, filename, format);
-		}
-
-
-		private void SaveOne(
-			ApplicationManager manager, Page page, string filename, ExportFormat format)
-		{
-			logger.WriteLine($"{page.PageId} -> {format} {filename}");
-
 			SaveAs(manager, page.PageId, filename, (PublishFormat)format, format.ToString());
+			UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
 		}
 
 
@@ -161,8 +182,6 @@ namespace River.OneMoreAddIn
 				}
 
 				manager.Application.Publish(pageId, filename, format, string.Empty);
-
-				UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
 			}
 			catch (Exception exc)
 			{
@@ -182,8 +201,6 @@ namespace River.OneMoreAddIn
 				}
 
 				root.Save(filename);
-
-				UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
 			}
 			catch (Exception exc)
 			{

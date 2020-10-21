@@ -1840,4 +1840,8 @@ XML档案（* .xml）</value>
     <value>导出页面</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveAsMany_Success" xml:space="preserve">
+    <value>已将{0}页保存到{1}</value>
+    <comment>save many message</comment>
+  </data>
 </root>
