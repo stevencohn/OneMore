@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using System.Security.Cryptography;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -54,9 +55,8 @@ namespace River.OneMoreAddIn
 					}
 
 					page = new Page(manager.CurrentPage());
+					ExportOne(manager, page);
 				}
-
-				ExportOne(page);
 			}
 			catch (Exception exc)
 			{
@@ -84,20 +84,16 @@ namespace River.OneMoreAddIn
 
 			foreach (var pageID in pageIDs)
 			{
-				logger.WriteLine($"{pageID} -> {path} {format}");
+				var page = new Page(manager.GetPage(pageID));
+
+				SaveOne(manager, page, path, format);
 			}
 		}
 
 
-		private void ExportOne(Page page)
+		private void ExportOne(ApplicationManager manager, Page page)
 		{
-			var titles = page.Root
-				.Elements(page.Namespace + "Title")
-				.Elements(page.Namespace + "OE")
-				.Elements(page.Namespace + "T")
-				.Select(e => e.GetCData().GetWrapper().Value.Replace(' ', '_'));
-
-			var filename = titles == null ? string.Empty : string.Concat(titles);
+			var filename = page.PageName.Replace(' ', '_');
 
 			using (var dialog = new SaveFileDialog
 			{
@@ -116,32 +112,44 @@ namespace River.OneMoreAddIn
 				filename = dialog.FileName;
 			}
 
-			switch (Path.GetExtension(filename))
+			ExportFormat format = ExportFormat.XML;
+			var ext = Path.GetExtension(filename);
+
+			if (ext == ".xml")
 			{
-				case ".htm":
-					SaveAs(page.PageId, filename, PublishFormat.pfHTML, "HTML");
-					break;
+				SaveAsXML(page.Root, filename);
+				return;
+			}
 
-				case ".pdf":
-					SaveAs(page.PageId, filename, PublishFormat.pfPDF, "PDF");
-					break;
-
-				case ".docx":
-					SaveAs(page.PageId, filename, PublishFormat.pfWord, "DOCX");
-					break;
-
-				case ".xml":
-					SaveAsXML(page.Root, filename);
-					break;
+			switch (ext)
+			{
+				case ".htm": format = ExportFormat.HTML; break;
+				case ".pdf": format = ExportFormat.PDF; break;
+				case ".doc": format = ExportFormat.Word; break;
+				case ".docx": format = ExportFormat.Word; break;
+				case ".xml": format = ExportFormat.XML; break;
 
 				default:
 					UIHelper.ShowError(Resx.SaveAs_Invalid_Type);
 					break;
 			}
+
+			SaveOne(manager, page, filename, format);
 		}
 
 
-		private void SaveAs(string pageId, string filename, PublishFormat format, string fname)
+		private void SaveOne(
+			ApplicationManager manager, Page page, string filename, ExportFormat format)
+		{
+			logger.WriteLine($"{page.PageId} -> {format} {filename}");
+
+			SaveAs(manager, page.PageId, filename, (PublishFormat)format, format.ToString());
+		}
+
+
+		private void SaveAs(
+			ApplicationManager manager, string pageId, string filename,
+			PublishFormat format, string formatName)
 		{
 			logger.WriteLine($"publishing page {pageId} to {filename}");
 
@@ -152,17 +160,14 @@ namespace River.OneMoreAddIn
 					File.Delete(filename);
 				}
 
-				using (var manager = new ApplicationManager())
-				{
-					manager.Application.Publish(pageId, filename, format, string.Empty);
-				}
+				manager.Application.Publish(pageId, filename, format, string.Empty);
 
 				UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"ERROR publishig page as {fname}", exc);
-				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, fname) + "\n\n" + exc.Message);
+				logger.WriteLine($"ERROR publishig page as {formatName}", exc);
+				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, formatName) + "\n\n" + exc.Message);
 			}
 		}
 

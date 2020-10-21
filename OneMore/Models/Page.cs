@@ -59,11 +59,14 @@ namespace River.OneMoreAddIn.Models
 		{
 			get
 			{
-				// account for cursor being in the title, just grab all text in paragraph
-				var para = Root.Elements(Namespace + "Title")
-					.Elements(Namespace + "OE").FirstOrDefault();
+				// account for multiple T runs, e.g., the cursor being in the title
+				var titles = Root
+					.Elements(Namespace + "Title")
+					.Elements(Namespace + "OE")
+					.Elements(Namespace + "T")
+					.Select(e => e.GetCData().GetWrapper().Value);
 
-				return para?.Value;
+				return titles == null ? null : string.Concat(titles);
 			}
 
 			set
