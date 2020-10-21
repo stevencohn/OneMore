@@ -2,24 +2,29 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#define Zx
+
 namespace River.OneMoreAddIn
 {
 	using System;
 	using System.IO;
+	using System.Linq;
 	using System.Text;
 	using System.Threading;
 	using System.Windows;
 	using System.Windows.Controls;
 	using System.Windows.Documents;
 	using System.Xml;
-
+	using System.Xml.Linq;
 
 	internal class PasteRtfCommand : Command
 	{
 		private const double DeltaSize = 0.75;
 
 		private const char Space = '\u00a0'; // Unicode no-break space
+		private const char Zpace = '\uFEFF'; // Unicdoe zero-width no-break space
 		private readonly bool black;
+		private bool zindents;
 
 
 		public PasteRtfCommand() : base()
@@ -71,7 +76,7 @@ namespace River.OneMoreAddIn
 							ConvertRtfToXaml(Clipboard.GetText(TextDataFormat.Rtf))));
 
 					RebuildClipboard(text);
-					logger.WriteLine("PasteRtf Rtf -> Html");
+					//logger.WriteLine("PasteRtf Rtf -> Html");
 				}
 				else if (Clipboard.ContainsText(TextDataFormat.Xaml))
 				{
@@ -80,7 +85,7 @@ namespace River.OneMoreAddIn
 							Clipboard.GetText(TextDataFormat.Xaml)));
 
 					RebuildClipboard(text);
-					logger.WriteLine("PasteRtf Xaml -> Html");
+					//logger.WriteLine("PasteRtf Xaml -> Html");
 				}
 				else
 				{
@@ -95,7 +100,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private static void RebuildClipboard(string text)
+		private void RebuildClipboard(string text)
 		{
 			var dob = new DataObject();
 
@@ -122,7 +127,7 @@ namespace River.OneMoreAddIn
 
 
 		// called from STA context
-		private static string ConvertRtfToXaml(string rtf)
+		private string ConvertRtfToXaml(string rtf)
 		{
 			if (string.IsNullOrEmpty(rtf))
 			{
@@ -195,12 +200,60 @@ namespace River.OneMoreAddIn
 			builder.AppendLine("</body>");
 			builder.AppendLine("</html>");
 
+			if (zindents)
+			{
+				return ConvertIndentations(builder.ToString());
+			}
+
 			return builder.ToString();
+		}
+
+
+		private string ConvertIndentations(string body)
+		{
+			var root = XElement.Parse(body);
+			var zeros = root.DescendantNodes().OfType<XText>()
+				.Where(t => t.Value.Length > 0 && t.Value[0] == Zpace)
+				.ToList();
+
+			foreach (var zero in zeros)
+			{
+				int count = 0;
+				while ((count < zero.Value.Length) && zero.Value[count] == Zpace)
+				{
+					count++;
+				}
+
+				var element = zero.Ancestors("p").FirstOrDefault();
+				if (element != null)
+				{
+					var attr = element.Attribute("style");
+					if (attr == null)
+					{
+						element.Add(new XAttribute("style", $"margin:0 0 0 {count * 30}"));
+					}
+					else
+					{
+						attr.Value = $"{attr.Value}margin:0 0 0 {count * 30}";
+					}
+				}
+
+				zero.Value = zero.Value.Replace(Zpace, ' ');
+				if (zero.Value.Trim().Length == 0)
+				{
+					zero.Remove();
+				}
+			}
+
+			logger.WriteLine(root.ToString());
+			return root.ToString(SaveOptions.DisableFormatting);
 		}
 
 
 		private void ConvertXaml(XmlReader reader, XmlTextWriter writer)
 		{
+			zindents = false;
+
 			while (reader.Read())
 			{
 				switch (reader.NodeType)
@@ -248,7 +301,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private static string Untabify(string text)
+		private string Untabify(string text)
 		{
 
 			if (text == null)
@@ -260,6 +313,14 @@ namespace River.OneMoreAddIn
 			var builder = new StringBuilder();
 
 			int i = 0;
+#if Z
+			while ((i < text.Length) && text[i] == '\t')
+			{
+				builder.Append(Zpace);
+				i++;
+			}
+#endif
+			zindents = zindents || i > 0;
 
 			while ((i < text.Length) && (text[i] == ' ' || text[i] == '\t'))
 			{
@@ -293,7 +354,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private static string TranslateElementName(string xname, XmlReader reader = null)
+		private string TranslateElementName(string xname, XmlReader reader = null)
 		{
 			string name;
 
@@ -496,7 +557,7 @@ namespace River.OneMoreAddIn
 			{
 				color = "#" + color.Substring(3);
 
-				logger.WriteLine($"color [{color}]");
+				//logger.WriteLine($"color [{color}]");
 
 				if (black)
 				{
@@ -519,7 +580,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private static string ConvertSize(string size, string units = null)
+		private string ConvertSize(string size, string units = null)
 		{
 			var parts = size.Split(',');
 
@@ -551,7 +612,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static string AddHtmlPreamble(string html)
+		public string AddHtmlPreamble(string html)
 		{
 			/*
 			 * https://docs.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format

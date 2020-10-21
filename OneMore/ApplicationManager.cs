@@ -6,12 +6,11 @@
 
 namespace River.OneMoreAddIn
 {
-	using System;
-    using System.IO;
-    using System.Text.RegularExpressions;
-    using System.Xml.Linq;
 	using Microsoft.Office.Interop.OneNote;
 	using Microsoft.Win32;
+	using System;
+	using System.IO;
+	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 
 
@@ -26,14 +25,14 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Initialize a new manager, instantiating a new OneNote Application.
 		/// </summary>
-		public ApplicationManager ()
+		public ApplicationManager()
 		{
 			Application = new Application();
 			logger = Logger.Current;
 		}
 
 
-		protected virtual void Dispose (bool disposing)
+		protected virtual void Dispose(bool disposing)
 		{
 			if (!disposed)
 			{
@@ -47,7 +46,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Dispose ()
+		public void Dispose()
 		{
 			Dispose(true);
 		}
@@ -82,7 +81,7 @@ namespace River.OneMoreAddIn
 		/// Gets the XML describing the current notebook's page hierarchy
 		/// </summary>
 		/// <returns></returns>
-		public XElement CurrentNotebook ()
+		public XElement CurrentNotebook()
 		{
 			string id = Application.Windows.CurrentWindow?.CurrentNotebookId;
 
@@ -103,7 +102,7 @@ namespace River.OneMoreAddIn
 		/// The PageInfo scope specifying levels of detail to include in the XML
 		/// </param>
 		/// <returns></returns>
-		public XElement CurrentPage (PageInfo info = PageInfo.piSelection)
+		public XElement CurrentPage(PageInfo info = PageInfo.piSelection)
 		{
 			return GetPage(Application.Windows.CurrentWindow?.CurrentPageId, info);
 		}
@@ -132,7 +131,7 @@ namespace River.OneMoreAddIn
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
-		public (string Name, string Path, string Link) GetCurrentPageInfo ()
+		public (string Name, string Path, string Link) GetCurrentPageInfo()
 		{
 			// name
 			string name = null;
@@ -192,7 +191,7 @@ namespace River.OneMoreAddIn
 		/// Get the known paths used by OneNote; this is for diagnostic logging
 		/// </summary>
 		/// <returns></returns>
-		public (string backupFolder, string defaultFolder, string unfiledFolder) GetLocations ()
+		public (string backupFolder, string defaultFolder, string unfiledFolder) GetLocations()
 		{
 			Application.GetSpecialLocation(SpecialLocation.slBackUpFolder, out var backupFolder);
 			Application.GetSpecialLocation(SpecialLocation.slDefaultNotebookFolder, out var defaultFolder);
@@ -225,7 +224,7 @@ namespace River.OneMoreAddIn
 		/// Forces OneNote to jump to the specified page Uri
 		/// </summary>
 		/// <param name="pageTag"></param>
-		public void NavigateTo (string pageTag)
+		public void NavigateTo(string pageTag)
 		{
 			if (pageTag.StartsWith("onenote:"))
 			{
@@ -268,7 +267,7 @@ namespace River.OneMoreAddIn
 		/// Update the hierarchy info with the given XML; used for sorting
 		/// </summary>
 		/// <param name="element"></param>
-		public void UpdateHierarchy (XElement element)
+		public void UpdateHierarchy(XElement element)
 		{
 			string xml = element.ToString(SaveOptions.DisableFormatting);
 
@@ -289,7 +288,7 @@ namespace River.OneMoreAddIn
 		/// Update the current page content with the given XML
 		/// </summary>
 		/// <param name="element"></param>
-		public void UpdatePageContent (XElement element)
+		public void UpdatePageContent(XElement element)
 		{
 			string xml = element.ToString(SaveOptions.DisableFormatting);
 

@@ -10,7 +10,6 @@ namespace River.OneMoreAddIn.Models
 	using System.Drawing;
 	using System.Linq;
 	using System.Media;
-	using System.Runtime.InteropServices.WindowsRuntime;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 

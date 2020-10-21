@@ -2,7 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS3001      // Type is not CLS-compliant
+#pragma warning disable CS3001	// Type is not CLS-compliant
+#pragma warning disable S1215	// "GC.Collect" should not be called
 
 namespace River.OneMoreAddIn
 {

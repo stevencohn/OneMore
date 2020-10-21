@@ -137,7 +137,7 @@ namespace River.OneMoreAddIn.Models
 			if (name == "OE")
 			{
 				if (oe == null)
-					oe.ReplaceNodes(content);
+					oec.ReplaceNodes(content);
 				else
 					oe.ReplaceWith(content);
 
