@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			try
 			{
-				string path = null;
+				string path = pathBox.Text;
 
 				// FolderBrowserDialog must run in an STA thread
 				var thread = new Thread(() =>
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Dialogs
 					using (var dialog = new FolderBrowserDialog()
 					{
 						Description = "Export pages to this folder:",
-						SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+						SelectedPath = path
 					})
 					{
 						// cannot use owner parameter here or it will hang! cross-threading
