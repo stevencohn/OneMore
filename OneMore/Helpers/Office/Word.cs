@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 	internal class Word : IDisposable
 	{
 		private Application word;
-		private bool disposedValue;
+		private bool disposed;
 
 
 		public Word()
@@ -21,6 +21,24 @@ namespace River.OneMoreAddIn.Helpers.Office
 			{
 				Visible = false
 			};
+		}
+
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposed)
+			{
+				word.Quit();
+				word = null;
+				disposed = true;
+			}
+		}
+
+
+		public void Dispose()
+		{
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
 		}
 
 
@@ -80,25 +98,6 @@ namespace River.OneMoreAddIn.Helpers.Office
 			}
 
 			return null;
-		}
-
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposedValue)
-			{
-				word.Quit();
-				word = null;
-				disposedValue = true;
-			}
-		}
-
-
-		public void Dispose()
-		{
-			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-			Dispose(disposing: true);
-			GC.SuppressFinalize(this);
 		}
 	}
 }

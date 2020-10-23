@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
-			logger.WriteLine("SortCommand.Execute()");
+			logger.Start("SortCommand.Execute()");
 
 			HierarchyScope scope;
 			SortDialog.Sortings sorting;
@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn
 				pinNotes = dialog.PinNotes;
 			}
 
-			logger.WriteLine($"- sort scope:{scope} sorting:{sorting} direction:{direction}");
+			logger.WriteLine($"sort scope:{scope} sorting:{sorting} direction:{direction}");
 
 			try
 			{
@@ -71,8 +71,10 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("Error sorting", exc);
+				logger.WriteLine("ERROR sorting", exc);
 			}
+
+			logger.End();
 		}
 
 		/*
@@ -115,7 +117,7 @@ namespace River.OneMoreAddIn
 		*/
 
 
-		private static void SortPages(SortDialog.Sortings sorting, SortDialog.Directions direction)
+		private void SortPages(SortDialog.Sortings sorting, SortDialog.Directions direction)
 		{
 			#region Notes
 			/*
@@ -131,6 +133,8 @@ namespace River.OneMoreAddIn
 			 * can be sorted correctly. Children are not sorted.
 			 */
 			#endregion Notes
+
+			logger.StartClock();
 
 			using (var manager = new ApplicationManager())
 			{
@@ -153,24 +157,37 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				if (sorting == SortDialog.Sortings.ByName)
+				if (direction == SortDialog.Directions.Descending)
 				{
-					pages =
-						(from p in pages
-						 let key = EmojiDialog.RemoveEmojis(p.Page.Attribute("name").Value)
-						 orderby key
-						 select p).ToList();
+					if (sorting == SortDialog.Sortings.ByName)
+					{
+						pages = pages.OrderByDescending(
+							p => EmojiDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
+					}
+					else
+					{
+						var key = sorting == SortDialog.Sortings.ByCreated
+							? "dateTime" : "lastModifiedTime";
+
+						pages = pages.OrderByDescending(
+							p => p.Page.Attribute(key).Value).ToList();
+					}
 				}
 				else
 				{
-					var key = sorting == SortDialog.Sortings.ByCreated ? "dateTime" : "lastModifiedTime";
-					pages = pages.OrderBy(p => EmojiDialog.RemoveEmojis(p.Page.Attribute(key).Value)).ToList();
-				}
+					if (sorting == SortDialog.Sortings.ByName)
+					{
+						pages = pages.OrderBy(
+							p => EmojiDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
+					}
+					else
+					{
+						var key = sorting == SortDialog.Sortings.ByCreated
+							? "dateTime" : "lastModifiedTime";
 
-				// reverse if descending
-				if (direction == SortDialog.Directions.Descending)
-				{
-					pages.Reverse();
+						pages = pages.OrderBy(
+							p => p.Page.Attribute(key).Value).ToList();
+					}
 				}
 
 				root.RemoveNodes();
@@ -186,13 +203,15 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				//Logger.Current.WriteLine(root.ToString());
+				//logger.WriteLine(root.ToString());
 				manager.UpdateHierarchy(root);
 			}
+
+			logger.WriteTime(nameof(SortPages));
 		}
 
 
-		private static void SortSections(
+		private void SortSections(
 			SortDialog.Sortings sorting, SortDialog.Directions direction, bool pinNotes)
 		{
 			#region Notes
@@ -220,90 +239,75 @@ namespace River.OneMoreAddIn
 			 */
 			#endregion Notes
 
+			logger.StartClock();
+
 			using (var manager = new ApplicationManager())
 			{
-				var root = manager.GetHierarchy(HierarchyScope.hsSections);
-				var ns = root.GetNamespaceOfPrefix("one");
+				// find the ID of the current notebook
+				var notebooks = manager.GetHierarchy(HierarchyScope.hsNotebooks);
+				var ns = notebooks.GetNamespaceOfPrefix("one");
+				var sectionId = notebooks.Elements(ns + "Notebook")
+					.Where(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
+					.Select(e => e.Attribute("ID").Value).FirstOrDefault();
 
-				// find current notebook node; this is the one we want to edit
-				var notebook =
-					(from n in root.Elements(ns + "Notebook")
-					 where n.Attribute("isCurrentlyViewed")?.Value == "true"
-					 select n).FirstOrDefault();
+				// get the current notebook with its sections
+				var notebook = manager.GetHierarchySection(sectionId);
 
 				if (notebook == null)
 				{
 					return;
 				}
 
+				var key = sorting == SortDialog.Sortings.ByName
+					? "name"
+					: "lastModifiedTime";
+
 				IEnumerable<XElement> sections;
-				if (sorting == SortDialog.Sortings.ByName)
+				if (direction == SortDialog.Directions.Descending)
 				{
-					sections =
-						from s in notebook.Elements(ns + "Section")
-						let key = EmojiDialog.RemoveEmojis(s.Attribute("name").Value)
-						orderby key
-						select s;
+					sections = notebook.Elements(ns + "Section")
+						.OrderByDescending(s => s.Attribute(key).Value);
 				}
 				else
 				{
 					sections = notebook.Elements(ns + "Section")
-						.OrderBy(s => s.Attribute("lastModifiedTime").Value);
+						.OrderBy(s => s.Attribute(key).Value);
 				}
 
-				// reverse if descending
-				if (direction == SortDialog.Directions.Descending)
-				{
-					sections = sections.Reverse();
-				}
+				notebook.ReplaceNodes(sections);
 
-				XElement notes = null;
-				XElement quick = null;
-				var list = new List<XElement>();
-
-				// .Remove will remove from "sections" IEnumerable so add to new list
-				foreach (var section in sections)
+				if (pinNotes)
 				{
-					if (pinNotes && section.Attribute("name").Value.Equals("Notes"))
+					// move Notes to the beginning
+					var element = notebook.Elements(ns + "Section")
+						.FirstOrDefault(e => e.Attribute("name").Value == "Notes");
+
+					if (element?.PreviousNode != null)
 					{
-						notes = section;
-					}
-					else if (pinNotes && section.Attribute("name").Value.Equals("Quick Notes"))
-					{
-						quick = section;
-					}
-					else
-					{
-						list.Insert(0, section);
+						element.Remove();
+						notebook.AddFirst(element);
 					}
 
-					section.Remove();
+					// move Quick Notes to the end
+					element = notebook.Elements(ns + "Section")
+						.FirstOrDefault(e => e.Attribute("name").Value == "Quick Notes");
+
+					if (element?.NextNode != null)
+					{
+						element.Remove();
+						notebook.Add(element);
+					}
 				}
 
-				// re-insert sorted sections into notebook
-
-				if (quick != null)
-				{
-					notebook.AddFirst(quick);
-				}
-
-				foreach (var section in list)
-				{
-					notebook.AddFirst(section);
-				}
-
-				if (notes != null)
-				{
-					notebook.AddFirst(notes);
-				}
-
-				//Logger.Current.WriteLine(root.ToString());
-				manager.UpdateHierarchy(root);
+				//logger.WriteLine(notebook.ToString());
+				manager.UpdateHierarchy(notebook);
 			}
+
+			logger.WriteTime(nameof(SortSections));
 		}
 
 
-		private static void SortNotebooks(SortDialog.Sortings sorting, SortDialog.Directions direction)
+		private void SortNotebooks(SortDialog.Sortings sorting, SortDialog.Directions direction)
 		{
 			#region Notes
 			/*
@@ -317,37 +321,37 @@ namespace River.OneMoreAddIn
 			 */
 			#endregion Notes
 
+			logger.StartClock();
+
 			using (var manager = new ApplicationManager())
 			{
 				var root = manager.GetHierarchy(HierarchyScope.hsNotebooks);
 				var ns = root.GetNamespaceOfPrefix("one");
 
+				// nickname is display name whereas name is the folder name
+				var key = sorting == SortDialog.Sortings.ByName
+					? "nickname"
+					: "lastModifiedTime";
+
 				IEnumerable<XElement> books;
-				if (sorting == SortDialog.Sortings.ByName)
+				if (direction == SortDialog.Directions.Descending)
 				{
-					books =
-						from s in root.Elements(ns + "Notebook")
-						// nickname is display name whereas name is the folder name
-						let key = EmojiDialog.RemoveEmojis(s.Attribute("nickname").Value)
-						orderby key
-						select s;
+					books = root.Elements(ns + "Notebook")
+						.OrderByDescending(s => s.Attribute(key).Value);
 				}
 				else
 				{
 					books = root.Elements(ns + "Notebook")
-						.OrderBy(s => s.Attribute("lastModifiedTime").Value);
-				}
-
-				if (direction == SortDialog.Directions.Descending)
-				{
-					books = books.Reverse();
+						.OrderBy(s => s.Attribute(key).Value);
 				}
 
 				root.ReplaceNodes(books);
 
-				//Logger.Current.WriteLine(root.ToString());
+				//logger.WriteLine(root.ToString());
 				manager.UpdateHierarchy(root);
 			}
+
+			logger.WriteTime(nameof(SortNotebooks));
 		}
 	}
 }

@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Dialogs
 			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, AssemblyInfo.Version);
 			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
 
-			var logpath = ((Logger)Logger.Current).LogPath;
+			var logpath = Logger.Current.LogPath;
 			logLabel.Text = logpath;
 
 			clearLogLabel.Visible = File.Exists(logpath);

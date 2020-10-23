@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn
 			var thread = System.Threading.Thread.CurrentThread;
 
 			logger.WriteLine();
-			logger.WriteLine(
+			logger.Start(
 				$"Starting {process.ProcessName}, process PID={process.Id}, CPU={clockSpeed}Mhz " +
 				$"Language={thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}");
 		}
@@ -129,6 +129,7 @@ namespace River.OneMoreAddIn
 				logger.WriteLine("OneNote backup folder:: " + backupFolder);
 				logger.WriteLine("OneNote default folder: " + defaultFolder);
 				logger.WriteLine("OneNote unfiled folder: " + unfiledFolder);
+				logger.End();
 
 				factory = new CommandFactory(logger, ribbon, trash,
 					// looks complicated but necessary for this to work

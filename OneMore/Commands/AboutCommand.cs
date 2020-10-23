@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#define Testingx
+
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
@@ -22,6 +24,7 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("AboutCommand.Execute()");
 
+#if Testing
 			if (Office.IsWordInstalled())
 			{
 				using (var word = new Word())
@@ -47,12 +50,13 @@ namespace River.OneMoreAddIn
 						return;
 					}
 				}
-
-				//using (var dialog = new Dialogs.AboutDialog())
-				//{
-				//	dialog.ShowDialog(owner);
-				//}
 			}
+#else
+			using (var dialog = new Dialogs.AboutDialog())
+			{
+				dialog.ShowDialog(owner);
+			}
+#endif
 		}
 	}
 }

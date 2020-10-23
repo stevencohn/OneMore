@@ -187,6 +187,18 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public XElement GetHierarchySection(string id)
+		{
+			Application.GetHierarchy(id, HierarchyScope.hsSections, out var xml);
+			if (!string.IsNullOrEmpty(xml))
+			{
+				return XElement.Parse(xml);
+			}
+
+			return null;
+		}
+
+
 		/// <summary>
 		/// Get the known paths used by OneNote; this is for diagnostic logging
 		/// </summary>

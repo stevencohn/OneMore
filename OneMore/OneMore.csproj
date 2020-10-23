@@ -309,6 +309,7 @@
     <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
     <Compile Include="Helpers\Hotkeys\Hotmods.cs" />
     <Compile Include="Helpers\Extensions\IntExtensions.cs" />
+    <Compile Include="Helpers\ILogger.cs" />
     <Compile Include="Helpers\Native.cs" />
     <Compile Include="Helpers\Office\Office.cs" />
     <Compile Include="Helpers\Office\Word.cs" />
@@ -388,7 +389,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Helpers\FavoritesProvider.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

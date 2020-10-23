@@ -12,21 +12,6 @@ namespace River.OneMoreAddIn
 
 
 	/// <summary>
-	/// 
-	/// </summary>
-
-	public interface ILogger : IDisposable
-	{
-		string LogPath { get; }
-		void Write(string message);
-		void WriteLine();
-		void WriteLine(string message);
-		void WriteLine(Exception exc);
-		void WriteLine(string message, Exception exc);
-	}
-
-
-	/// <summary>
 	/// Provide clean access to a simple output text file.
 	/// </summary>
 
@@ -37,9 +22,11 @@ namespace River.OneMoreAddIn
 
 		private readonly bool stdio;
 		private readonly int processId;
+		private string preamble;
 		private bool isNewline;
 		private bool isDisposed;
 		private TextWriter writer;
+		private Stopwatch clock;
 
 
 		private Logger()
@@ -57,16 +44,14 @@ namespace River.OneMoreAddIn
 					designMode ? "OneMore-design.log" : "OneMore.log");
 			}
 
+			preamble = string.Empty;
 			writer = null;
 			isNewline = true;
 			isDisposed = false;
 		}
 
 
-		/// <summary>
-		/// Close this file and release internal resources.
-		/// </summary>
-
+		#region Lifecycle
 		public void Dispose()
 		{
 			Dispose(true);
@@ -80,6 +65,9 @@ namespace River.OneMoreAddIn
 			{
 				if (!isDisposed)
 				{
+					clock?.Stop();
+					clock = null;
+
 					if (writer != null)
 					{
 						writer.Flush();
@@ -91,6 +79,7 @@ namespace River.OneMoreAddIn
 				}
 			}
 		}
+		#endregion Lifecycle
 
 
 		public static ILogger Current
@@ -110,10 +99,6 @@ namespace River.OneMoreAddIn
 		public string LogPath { get; }
 
 
-		/// <summary>
-		/// Open the file for writing.
-		/// </summary>
-		/// <returns></returns>
 		private bool EnsureWriter()
 		{
 			if (stdio)
@@ -123,8 +108,13 @@ namespace River.OneMoreAddIn
 			{
 				try
 				{
-					writer = new StreamWriter(
-						LogPath, true, GetEncodingWithFallback(new UTF8Encoding(false)));
+					// allow the UTF8 output stream to handle Unicode characters
+					// by falling back to default replacement characters like '?'
+					var encodingWithFallback = (Encoding)(new UTF8Encoding(false)).Clone();
+					encodingWithFallback.EncoderFallback = EncoderFallback.ReplacementFallback;
+					encodingWithFallback.DecoderFallback = DecoderFallback.ReplacementFallback;
+
+					writer = new StreamWriter(LogPath, true, encodingWithFallback);
 				}
 				catch
 				{
@@ -133,15 +123,6 @@ namespace River.OneMoreAddIn
 			}
 
 			return (writer != null);
-		}
-
-
-		private static Encoding GetEncodingWithFallback(Encoding encoding)
-		{
-			var copy = (Encoding)encoding.Clone();
-			copy.EncoderFallback = EncoderFallback.ReplacementFallback;
-			copy.DecoderFallback = DecoderFallback.ReplacementFallback;
-			return copy;
 		}
 
 
@@ -156,10 +137,19 @@ namespace River.OneMoreAddIn
 
 			File.Delete(LogPath);
 
+			preamble = string.Empty;
+			isNewline = true;
+
 			if (EnsureWriter())
 			{
 				WriteLine("Log restarted");
 			}
+		}
+
+
+		public void End()
+		{
+			preamble = string.Empty;
 		}
 
 
@@ -170,16 +160,43 @@ namespace River.OneMoreAddIn
 		}
 
 
-		/// <summary>
-		/// Write text to the file without a newline character.
-		/// </summary>
-		/// <param name="message"></param>
+
+		public void Start(string message)
+		{
+			WriteLine(message);
+			preamble = "..";
+		}
+
+
+		public void StartClock()
+		{
+			if (clock == null)
+			{
+				clock = new Stopwatch();
+			}
+
+			if (clock.IsRunning)
+			{
+				clock.Restart();
+			}
+			else
+			{
+				clock.Start();
+			}
+		}
+
+
+		public void StopClock()
+		{
+			clock?.Stop();
+		}
+
 
 		public void Write(string message)
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline && !stdio)
+				if (isNewline)
 				{
 					writer.Write(MakeHeader());
 				}
@@ -214,7 +231,7 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline && !stdio)
+				if (isNewline)
 				{
 					writer.Write(MakeHeader());
 				}
@@ -238,7 +255,7 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline && !stdio)
+				if (isNewline)
 				{
 					writer.Write(MakeHeader());
 				}
@@ -265,11 +282,34 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public void WriteTime(string message)
+		{
+			if (clock == null)
+			{
+				WriteLine($"{message} @ <no time to report>");
+				return;
+			}
+
+			if (clock.IsRunning)
+			{
+				clock.Stop();
+			}
+
+			WriteLine(string.Format("{0} @ {1:00}.{2:00}s", 
+				message, clock.Elapsed.Seconds, clock.Elapsed.Milliseconds / 10));
+		}
+
+
 		private string MakeHeader()
 		{
-			//return DateTime.Now.ToString("hh:mm:ss.fff") +
-			//	" [" + Thread.CurrentThread.ManagedThreadId + "] ";
-			return $"{processId}:{Thread.CurrentThread.ManagedThreadId}] ";
+			//$"{DateTime.Now.ToString("hh:mm:ss.fff")} [{Thread.CurrentThread.ManagedThreadId}] ";
+
+			if (!stdio)
+			{
+				return $"{processId}:{Thread.CurrentThread.ManagedThreadId}] {preamble}";
+			}
+
+			return string.Empty;
 		}
 
 
