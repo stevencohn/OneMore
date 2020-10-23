@@ -2,10 +2,12 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#define Hx
 #define Zx
 
 namespace River.OneMoreAddIn
 {
+	using Microsoft.Office.Interop.OneNote;
 	using System;
 	using System.IO;
 	using System.Linq;
@@ -16,6 +18,8 @@ namespace River.OneMoreAddIn
 	using System.Windows.Documents;
 	using System.Xml;
 	using System.Xml.Linq;
+	using OM = River.OneMoreAddIn.Models;
+
 
 	internal class PasteRtfCommand : Command
 	{
@@ -44,8 +48,29 @@ namespace River.OneMoreAddIn
 
 				// transform RTF and Xaml data on clipboard to HTML
 
-				PrepareClipboard();
+				var html = PrepareClipboard();
+#if H
+				if (html != null)
+				{
+					// TODO: find and replace selected region
 
+					logger.WriteLine("Adding HTML blcok");
+					using (var manager = new ApplicationManager())
+					{
+						var page = new OM.Page(manager.CurrentPage(PageInfo.piBasic));
+						var ns = page.Namespace;
+
+						var outline = page.Root.Elements(ns + "Outline").Elements(ns + "OEChildren").FirstOrDefault();
+
+						outline.Add(new XElement(ns + "HTMLBlock",
+							new XElement(ns + "Data", new XCData(html))
+							));
+
+						manager.UpdatePageContent(page.Root);
+						return;
+					}
+				}
+#endif
 				// paste what's remaining from clipboard, letting OneNote do the
 				// heavy lifting of converting the HTML into one:xml schema
 
@@ -64,25 +89,34 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void PrepareClipboard()
+		private string PrepareClipboard()
 		{
+			string html = null;
+
 			// OneNote runs in MTA context but Clipboard requires STA context
 			var thread = new Thread(() =>
 			{
-				if (Clipboard.ContainsText(TextDataFormat.Rtf))
+				if (Clipboard.ContainsText(TextDataFormat.Html))
 				{
-					var text = AddHtmlPreamble(
-						ConvertXamlToHtml(
-							ConvertRtfToXaml(Clipboard.GetText(TextDataFormat.Rtf))));
+					var text = Clipboard.GetText(TextDataFormat.Html);
+					html = text.Substring(text.IndexOf("<html>"));
+				}
+				else if (Clipboard.ContainsText(TextDataFormat.Rtf))
+				{
+					html = ConvertXamlToHtml(
+						ConvertRtfToXaml(Clipboard.GetText(TextDataFormat.Rtf)));
+
+					var text = AddHtmlPreamble(html);
 
 					RebuildClipboard(text);
 					//logger.WriteLine("PasteRtf Rtf -> Html");
 				}
 				else if (Clipboard.ContainsText(TextDataFormat.Xaml))
 				{
-					var text = AddHtmlPreamble(
-						ConvertXamlToHtml(
-							Clipboard.GetText(TextDataFormat.Xaml)));
+					html = ConvertXamlToHtml(
+							Clipboard.GetText(TextDataFormat.Xaml));
+
+					var text = AddHtmlPreamble(html);
 
 					RebuildClipboard(text);
 					//logger.WriteLine("PasteRtf Xaml -> Html");
@@ -97,6 +131,8 @@ namespace River.OneMoreAddIn
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.Start();
 			thread.Join();
+
+			return html;
 		}
 
 
@@ -171,6 +207,8 @@ namespace River.OneMoreAddIn
 				return string.Empty;
 			}
 
+			//logger.WriteLine(xaml);
+
 			var builder = new StringBuilder();
 			builder.AppendLine("<html>");
 			builder.AppendLine("<body>");
@@ -216,6 +254,8 @@ namespace River.OneMoreAddIn
 				.Where(t => t.Value.Length > 0 && t.Value[0] == Zpace)
 				.ToList();
 
+			int prevMargin = 0;
+
 			foreach (var zero in zeros)
 			{
 				int count = 0;
@@ -224,17 +264,29 @@ namespace River.OneMoreAddIn
 					count++;
 				}
 
+				int margin = 0;
+				if (count > prevMargin)
+				{
+					margin = (count - prevMargin) * 30;
+				}
+				else if (count < prevMargin)
+				{
+					margin = -((prevMargin - count) * 30);
+				}
+
+				prevMargin = count;
+
 				var element = zero.Ancestors("p").FirstOrDefault();
 				if (element != null)
 				{
 					var attr = element.Attribute("style");
 					if (attr == null)
 					{
-						element.Add(new XAttribute("style", $"margin:0 0 0 {count * 30}"));
+						element.Add(new XAttribute("style", $"margin:0 0 0 {margin}"));
 					}
 					else
 					{
-						attr.Value = $"{attr.Value}margin:0 0 0 {count * 30}";
+						attr.Value = $"{attr.Value}margin:0 0 0 {margin}";
 					}
 				}
 
