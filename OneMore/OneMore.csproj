@@ -75,6 +75,9 @@
     <Reference Include="extensibility, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -300,23 +303,25 @@
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
-    <Compile Include="Helpers\ColorExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ColorExtensions.cs" />
     <Compile Include="Helpers\Hotkeys\Hotkey.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
     <Compile Include="Helpers\Hotkeys\Hotmods.cs" />
-    <Compile Include="Helpers\IntExtensions.cs" />
+    <Compile Include="Helpers\Extensions\IntExtensions.cs" />
     <Compile Include="Helpers\Native.cs" />
+    <Compile Include="Helpers\Office\Office.cs" />
+    <Compile Include="Helpers\Office\Word.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Helpers\Settings\SearchEngineProvider.cs" />
     <Compile Include="Helpers\Settings\SettingCollection.cs" />
     <Compile Include="Helpers\Settings\SettingsProvider.cs" />
-    <Compile Include="Helpers\IEnumerableExtensions.cs" />
+    <Compile Include="Helpers\Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\Updater\GitAsset.cs" />
     <Compile Include="Helpers\Updater\GitRelease.cs" />
     <Compile Include="Helpers\Updater\Updater.cs" />
-    <Compile Include="Helpers\XCDataExtensions.cs" />
-    <Compile Include="Helpers\XElementExtensions.cs" />
+    <Compile Include="Helpers\Extensions\XCDataExtensions.cs" />
+    <Compile Include="Helpers\Extensions\XElementExtensions.cs" />
     <Compile Include="Dialogs\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,10 +358,10 @@
     <Compile Include="Dialogs\StyleDialog.Designer.cs">
       <DependentUpon>StyleDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ExceptionExtensions.cs" />
-    <Compile Include="Helpers\BitmapExtensions.cs" />
-    <Compile Include="Helpers\FormExtensions.cs" />
-    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Helpers\Extensions\BitmapExtensions.cs" />
+    <Compile Include="Helpers\Extensions\FormExtensions.cs" />
+    <Compile Include="Helpers\Extensions\StringExtensions.cs" />
     <Compile Include="ApplicationManager.cs" />
     <Compile Include="Commands\ShowXmlCommand.cs" />
     <Compile Include="Models\TableProperties.cs" />
