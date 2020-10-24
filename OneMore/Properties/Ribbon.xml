@@ -356,11 +356,11 @@
               onAction="DecreaseFontSizeCmd"/>
             <menuSeparator id="sepSpecial" getTitle="GetRibbonLabel" />
             <button
-              id="ribSaveAsButton"
+              id="ribExportButton"
               imageMso="FileSave"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
-              onAction="SaveAsCmd"/>
+              onAction="ExportCmd"/>
             <button
               id="ribPluginButton"
               imageMso="ComAddInsDialog"

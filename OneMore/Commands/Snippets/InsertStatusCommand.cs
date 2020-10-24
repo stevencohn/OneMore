@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -22,31 +20,17 @@ namespace River.OneMoreAddIn
 	internal class InsertStatusCommand : Command
 	{
 
-		public InsertStatusCommand() : base()
+		public InsertStatusCommand()
 		{
 		}
 
 
-		public void Execute(StatusColor statusColor)
+		public override void Execute(params object[] args)
 		{
-			try
-			{
-				InsertStatus(statusColor);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(InsertStatusCommand)}", exc);
-			}
-		}
+			var statusColor = (StatusColor)args[0];
 
-
-		private static void InsertStatus(StatusColor statusColor)
-		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
 				if (!page.ConfirmBodyContext(true))
 				{
 					return;
@@ -102,7 +86,7 @@ namespace River.OneMoreAddIn
 
 					page.ReplaceSelectedWithContent(content);
 
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 				}
 			}
 		}

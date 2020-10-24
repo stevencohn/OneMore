@@ -15,10 +15,10 @@ namespace River.OneMoreAddIn
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal class SaveAsCommand : Command
+	internal class ExportCommand : Command
 	{
 
-		public SaveAsCommand()
+		public ExportCommand()
 		{
 		}
 
@@ -164,7 +164,7 @@ namespace River.OneMoreAddIn
 					File.Delete(filename);
 				}
 
-				one.Publish(pageId, filename, format);
+				one.Export(pageId, filename, format);
 			}
 			catch (Exception exc)
 			{

@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Models
 		 * </one:OE>
 		 */
 
-		public List<Heading> GetHeadings(ApplicationManager manager)
+		public List<Heading> GetHeadings(OneNote one)
 		{
 			quickStyles = GetQuickStyles();
 
@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Models
 								Root = block,
 								// text might include <style...
 								Text = text,
-								Link = GetHyperlink(block, manager),
+								Link = GetHyperlink(block, one),
 								Style = style
 							};
 
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Models
 								Root = block,
 								// text might include <style...
 								Text = text,
-								Link = GetHyperlink(block, manager),
+								Link = GetHyperlink(block, one),
 								Style = style
 							};
 
@@ -132,14 +132,14 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private string GetHyperlink(XElement element, ApplicationManager manager)
+		private string GetHyperlink(XElement element, OneNote one)
 		{
 			var attr = element.Attribute("objectID");
 			if (!string.IsNullOrEmpty(attr?.Value))
 			{
 				try
 				{
-					manager.Application.GetHyperlinkToObject(PageId, attr.Value, out var link);
+					var link = one.GetHyperlink(PageId, attr.Value);
 					return link;
 				}
 				catch (Exception exc)

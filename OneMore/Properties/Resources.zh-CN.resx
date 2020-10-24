@@ -1035,12 +1035,12 @@ OneNote 将自动关闭</value>
     <value>标签:</value>
     <comment>label</comment>
   </data>
-  <data name="ribSaveAsButton_Label" xml:space="preserve">
-    <value>另存为...</value>
+  <data name="ribExportButton_Label" xml:space="preserve">
+    <value>出口...</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ribSaveAsButton_Screentip" xml:space="preserve">
-    <value>将页面另存为HTML或XML</value>
+  <data name="ribExportButton_Screentip" xml:space="preserve">
+    <value>将页面导出为HTML，PDF，Word或XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="SaveAs_Error" xml:space="preserve">

@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
@@ -19,14 +18,14 @@ namespace River.OneMoreAddIn
 	internal class InsertTocCommand : Command
 	{
 
-		public InsertTocCommand() : base()
+		public InsertTocCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			HierarchyScope scope;
+			OneNote.Scope scope;
 			bool addTopLinks;
 			bool includePages;
 
@@ -44,20 +43,20 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				using (var manager = new ApplicationManager())
+				using (var one = new OneNote())
 				{
 					switch (scope)
 					{
-						case HierarchyScope.hsSelf:
-							InsertHeadingsTable(manager, addTopLinks);
+						case OneNote.Scope.Self:
+							InsertHeadingsTable(one, addTopLinks);
 							break;
 
-						case HierarchyScope.hsPages:
-							InsertPagesTable(manager);
+						case OneNote.Scope.Pages:
+							InsertPagesTable(one);
 							break;
 
-						case HierarchyScope.hsSections:
-							InsertSectionsTable(manager, includePages);
+						case OneNote.Scope.Sections:
+							InsertSectionsTable(one, includePages);
 							break;
 					}
 				}
@@ -77,13 +76,13 @@ namespace River.OneMoreAddIn
 		/// of all headings on the page
 		/// </summary>
 		/// <param name="addTopLinks"></param>
-		/// <param name="manager"></param>
-		private void InsertHeadingsTable(ApplicationManager manager, bool addTopLinks)
+		/// <param name="one"></param>
+		private void InsertHeadingsTable(OneNote one, bool addTopLinks)
 		{
-			var page = new Page(manager.CurrentPage());
+			var page = one.GetPage();
 			var ns = page.Namespace;
 
-			var headings = page.GetHeadings(manager);
+			var headings = page.GetHeadings(one);
 
 			var top = page.Root.Element(ns + "Outline")?.Element(ns + "OEChildren");
 			if (top == null)
@@ -97,9 +96,7 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			manager.Application.GetHyperlinkToObject(
-				page.PageId, title.Attribute("objectID").Value, out var titleLink);
-
+			var titleLink = one.GetHyperlink(page.PageId, title.Attribute("objectID").Value);
 			var titleLinkText = $"<a href=\"{titleLink}\"><span style='font-style:italic'>{Resx.InsertTocCommand_Top}</span></a>";
 
 			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
@@ -166,7 +163,7 @@ namespace River.OneMoreAddIn
 			toc.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
 			top.AddFirst(toc);
 
-			manager.UpdatePageContent(page.Root);
+			one.Update(page);
 		}
 		#endregion InsertHeadingsTable
 
@@ -174,14 +171,14 @@ namespace River.OneMoreAddIn
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		#region InsertPagesTables
-		private void InsertPagesTable(ApplicationManager manager)
+		private void InsertPagesTable(OneNote one)
 		{
-			var section = manager.CurrentSection();
+			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
-			manager.Application.CreateNewPage(sectionId, out var pageId);
+			one.CreatePage(sectionId, out var pageId);
 
-			var page = new Page(manager.GetPage(pageId));
+			var page = one.GetPage(pageId);
 			var ns = page.Namespace;
 
 			page.PageName = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
@@ -199,8 +196,7 @@ namespace River.OneMoreAddIn
 					level--;
 				}
 
-				manager.Application.GetHyperlinkToObject(
-					element.Attribute("ID").Value, string.Empty, out var link);
+				var link = one.GetHyperlink(element.Attribute("ID").Value, string.Empty);
 
 				var name = element.Attribute("name").Value;
 				text.Append($"<a href=\"{link}\">{name}</a>");
@@ -212,21 +208,21 @@ namespace River.OneMoreAddIn
 
 			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
-			manager.UpdatePageContent(page.Root);
+			one.Update(page);
 
 			// move TOC page to top of section...
 
 			// get current section again after new page is created
-			section = manager.CurrentSection();
+			section = one.GetSection();
 
 			var entry = section.Elements(ns + "Page")
 				.FirstOrDefault(e => e.Attribute("ID").Value == pageId);
 
 			entry.Remove();
 			section.AddFirst(entry);
-			manager.UpdateHierarchy(section);
+			one.UpdateHierarchy(section);
 
-			manager.Application.NavigateTo(pageId);
+			one.NavigateTo(pageId);
 		}
 		#endregion InsertPagesTables
 
@@ -234,45 +230,45 @@ namespace River.OneMoreAddIn
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		#region InsertSectionsTable
-		private void InsertSectionsTable(ApplicationManager manager, bool includePages)
+		private void InsertSectionsTable(OneNote one, bool includePages)
 		{
-			var section = manager.CurrentSection();
+			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
-			manager.Application.CreateNewPage(sectionId, out var pageId);
+			one.CreatePage(sectionId, out var pageId);
 
-			var page = new Page(manager.GetPage(pageId));
+			var page = one.GetPage(pageId);
 			var ns = page.Namespace;
 
-			var notebook = manager.CurrentNotebook();
+			var notebook = one.GetNotebook();
 			page.PageName = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
 
 			var container = new XElement(ns + "OEChildren");
 
-			BuildSectionTable(manager, ns, container, notebook.Elements(), includePages, 1);
+			BuildSectionTable(one, ns, container, notebook.Elements(), includePages, 1);
 
 			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
-			manager.UpdatePageContent(page.Root);
+			one.Update(page);
 
 			// move TOC page to top of section...
 
 			// get current section again after new page is created
-			section = manager.CurrentSection();
+			section = one.GetSection();
 
 			var entry = section.Elements(ns + "Page")
 				.FirstOrDefault(e => e.Attribute("ID").Value == pageId);
 
 			entry.Remove();
 			section.AddFirst(entry);
-			manager.UpdateHierarchy(section);
+			one.UpdateHierarchy(section);
 
-			manager.Application.NavigateTo(pageId);
+			one.NavigateTo(pageId);
 		}
 
 
 		private void BuildSectionTable(
-			ApplicationManager manager, XNamespace ns, XElement container,
+			OneNote one, XNamespace ns, XElement container,
 			IEnumerable<XElement> elements, bool includePages, int level)
 		{
 			foreach (var element in elements)
@@ -293,7 +289,7 @@ namespace River.OneMoreAddIn
 						));
 
 					BuildSectionTable(
-						manager, ns, indent, element.Elements(), includePages, level + 1);
+						one, ns, indent, element.Elements(), includePages, level + 1);
 
 					container.Add(
 						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
@@ -304,11 +300,8 @@ namespace River.OneMoreAddIn
 				{
 					// Section
 
-					manager.Application.GetHyperlinkToObject(
-						element.Attribute("ID").Value, string.Empty, out var link);
-
+					var link = one.GetHyperlink(element.Attribute("ID").Value, string.Empty);
 					var name = element.Attribute("name").Value;
-
 					var pages = element.Elements(ns + "Page");
 
 					if (includePages && pages.Any())
@@ -325,8 +318,7 @@ namespace River.OneMoreAddIn
 								plevel--;
 							}
 
-							manager.Application.GetHyperlinkToObject(
-								element.Attribute("ID").Value, string.Empty, out var plink);
+							var plink = one.GetHyperlink(element.Attribute("ID").Value, string.Empty);
 
 							var pname = page.Attribute("name").Value;
 							text.Append($"<a href=\"{plink}\">{pname}</a>");

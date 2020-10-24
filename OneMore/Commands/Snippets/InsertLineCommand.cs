@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -15,31 +13,17 @@ namespace River.OneMoreAddIn
 		private const int LineCharCount = 100;
 
 
-		public InsertLineCommand() : base()
+		public InsertLineCommand()
 		{
 		}
 
 
-		public void Execute(char c)
+		public override void Execute(params object[] args)
 		{
-			try
-			{
-				InsertLine(c);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(InsertLineCommand)}", exc);
-			}
-		}
+			var c = (char)args[0];
 
-
-		private static void InsertLine(char c)
-		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
 				if (!page.ConfirmBodyContext(true))
 				{
 					return;
@@ -55,7 +39,7 @@ namespace River.OneMoreAddIn
 
 				string line = string.Empty.PadRight(LineCharCount, c);
 
-				page.EnsurePageWidth(line, "Courier New", 10f, manager.WindowHandle);
+				page.EnsurePageWidth(line, "Courier New", 10f, one.WindowHandle);
 
 				current.AddAfterSelf(
 					new XElement(ns + "OE",
@@ -65,7 +49,7 @@ namespace River.OneMoreAddIn
 						)
 					));
 
-				manager.UpdatePageContent(page.Root);
+				one.Update(page);
 			}
 		}
 	}

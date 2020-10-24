@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -33,7 +32,7 @@ namespace River.OneMoreAddIn
 		private const string TextBlack = "#000000";
 
 
-		public InsertInfoBlockCommand() : base()
+		public InsertInfoBlockCommand()
 		{
 		}
 
@@ -44,26 +43,12 @@ namespace River.OneMoreAddIn
 		/// <param name="warning">
 		/// True to generate a Warning table; other an Info table is generated
 		/// </param>
-		public void Execute(bool warning)
+		public override void Execute(params object[] args)
 		{
-			try
-			{
-				InsertInfoBlock(warning);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(InsertInfoBlockCommand)}", exc);
-			}
-		}
+			var warning = (bool)args[0];
 
-
-		private static void InsertInfoBlock(bool warning)
-		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
 				if (!page.ConfirmBodyContext(true))
 				{
 					return;
@@ -130,11 +115,11 @@ namespace River.OneMoreAddIn
 
 				var cell = row.Cells.ElementAt(0);
 
-				cell.ShadingColor = shading;				
+				cell.ShadingColor = shading;
 				cell.SetContent(inner);
 
 				page.AddNextParagraph(outer.Root);
-				manager.UpdatePageContent(page.Root);
+				one.Update(page);
 			}
 		}
 	}

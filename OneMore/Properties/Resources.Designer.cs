@@ -2509,6 +2509,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export....
+        /// </summary>
+        internal static string ribExportButton_Label {
+            get {
+                return ResourceManager.GetString("ribExportButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export page(s) as HTML, PDF, Word or XML.
+        /// </summary>
+        internal static string ribExportButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribExportButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extras....
         /// </summary>
         internal static string ribExtrasMenu_Label {
@@ -3027,24 +3045,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRunPluginButton_Label {
             get {
                 return ResourceManager.GetString("ribRunPluginButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save as....
-        /// </summary>
-        internal static string ribSaveAsButton_Label {
-            get {
-                return ResourceManager.GetString("ribSaveAsButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save page as either HTML or XML.
-        /// </summary>
-        internal static string ribSaveAsButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribSaveAsButton_Screentip", resourceCulture);
             }
         }
         

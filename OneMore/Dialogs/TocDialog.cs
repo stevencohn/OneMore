@@ -5,8 +5,6 @@
 namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
-	using Microsoft.Office.Interop.OneNote;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class TocDialog : LocalizableForm
@@ -38,13 +36,13 @@ namespace River.OneMoreAddIn.Dialogs
 		/// current page, Pages means add a page with links to all pages in this section,
 		/// and Sections means add a page with links to sections in this notebook.
 		/// </summary>
-		public HierarchyScope Scope
+		public OneNote.Scope Scope
 		{
 			get
 			{
-				if (pageRadio.Checked) return HierarchyScope.hsSelf;
-				if (sectionRadio.Checked) return HierarchyScope.hsPages;
-				return HierarchyScope.hsSections;
+				if (pageRadio.Checked) return OneNote.Scope.Self;
+				if (sectionRadio.Checked) return OneNote.Scope.Pages;
+				return OneNote.Scope.Sections;
 			}
 		}
 

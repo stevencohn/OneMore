@@ -99,67 +99,67 @@ namespace River.OneMoreAddIn
 
 		public void InsertBlueStatusCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Blue);
+			factory.Run<InsertStatusCommand>(StatusColor.Blue);
 		}
 
 		public void InsertCalendarCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertCalendarCommand>().Execute();
+			factory.Run<InsertCalendarCommand>();
 		}
 
 		public void InsertCodeBlockCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertCodeBlockCommand>().Execute();
+			factory.Run<InsertCodeBlockCommand>();
 		}
 
 		public void InsertDoubleHorizontalLineCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertLineCommand>().Execute('═');
+			factory.Run<InsertLineCommand>('═');
 		}
 
 		public void InsertExpandCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertExpandCommand>().Execute();
+			factory.Run<InsertExpandCommand>();
 		}
 
 		public void InsertGrayStatusCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Gray);
+			factory.Run<InsertStatusCommand>(StatusColor.Gray);
 		}
 
 		public void InsertGreenStatusCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Green);
+			factory.Run<InsertStatusCommand>(StatusColor.Green);
 		}
 
 		public void InsertHorizontalLineCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertLineCommand>().Execute('─');
+			factory.Run<InsertLineCommand>('─');
 		}
 
 		public void InsertInfoBlockCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertInfoBlockCommand>().Execute(false);
+			factory.Run<InsertInfoBlockCommand>(false);
 		}
 
 		public void InsertRedStatusCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Red);
+			factory.Run<InsertStatusCommand>(StatusColor.Red);
 		}
 
 		public void InsertTocCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertTocCommand>().Execute();
+			factory.Run<InsertTocCommand>();
 		}
 
 		public void InsertWarningBlockCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertInfoBlockCommand>().Execute(true);
+			factory.Run<InsertInfoBlockCommand>(true);
 		}
 
 		public void InsertYellowStatusCmd(IRibbonControl control)
 		{
-			factory.GetCommand<InsertStatusCommand>().Execute(StatusColor.Yellow);
+			factory.Run<InsertStatusCommand>(StatusColor.Yellow);
 		}
 
 		public void MergeCmd(IRibbonControl control)
@@ -195,7 +195,7 @@ namespace River.OneMoreAddIn
 
 		public void OutlineCmd(IRibbonControl control)
 		{
-			factory.GetCommand<OutlineCommand>().Execute();
+			factory.Run<OutlineCommand>();
 		}
 
 		public void PasteRtfCmd(IRibbonControl control)
@@ -258,9 +258,9 @@ namespace River.OneMoreAddIn
 			factory.Run<RunPluginCommand>();
 		}
 
-		public void SaveAsCmd(IRibbonControl control)
+		public void ExportCmd(IRibbonControl control)
 		{
-			factory.Run<SaveAsCommand>();
+			factory.Run<ExportCommand>();
 		}
 
 		public void SearchAndReplaceCmd(IRibbonControl control)

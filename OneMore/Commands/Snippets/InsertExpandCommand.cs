@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -13,31 +12,15 @@ namespace River.OneMoreAddIn
 	internal class InsertExpandCommand : Command
 	{
 
-		public InsertExpandCommand() : base()
+		public InsertExpandCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				InsertExpand();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(InsertExpandCommand)}", exc);
-			}
-		}
-
-
-		private static void InsertExpand()
-		{
-			using (var manager = new ApplicationManager())
-			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
 				if (!page.ConfirmBodyContext(true))
 				{
 					return;
@@ -80,7 +63,7 @@ namespace River.OneMoreAddIn
 				}
 
 				page.AddNextParagraph(expand);
-				manager.UpdatePageContent(page.Root);
+				one.Update(page);
 			}
 		}
 	}

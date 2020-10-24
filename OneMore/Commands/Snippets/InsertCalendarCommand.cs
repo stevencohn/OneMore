@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			int year;
 			int month;
@@ -46,25 +46,15 @@ namespace River.OneMoreAddIn
 				large = dialog.Large;
 			}
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out page, out ns))
 			{
-				page = new Page(manager.CurrentPage());
-				ns = page.Namespace;
+				var root = MakeCalendar(year, month, large);
+				page.AddNextParagraph(root);
 
-				try
-				{
-					var root = MakeCalendar(year, month, large);
-					page.AddNextParagraph(root);
+				var header = MakeHeader(year, month);
+				page.AddNextParagraph(header);
 
-					var header = MakeHeader(year, month);
-					page.AddNextParagraph(header);
-
-					manager.UpdatePageContent(page.Root);
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine(exc);
-				}
+				one.Update(page);
 			}
 		}
 

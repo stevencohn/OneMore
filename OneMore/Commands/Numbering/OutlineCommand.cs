@@ -19,25 +19,22 @@ namespace River.OneMoreAddIn
 		private List<Heading> headings;
 
 
-		public OutlineCommand() : base()
+		public OutlineCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			using (var dialog = new OutlineDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					using (var manager = new ApplicationManager())
+					using (var one = new OneNote(out var page, out var ns))
 					{
-						var page = new Page(manager.CurrentPage());
 						if (page.IsValid)
 						{
-							ns = page.Namespace;
-
-							headings = page.GetHeadings(manager);
+							headings = page.GetHeadings(one);
 							if (dialog.CleanupNumbering)
 							{
 								RemoveOutlineNumbering();
@@ -62,7 +59,7 @@ namespace River.OneMoreAddIn
 							}
 
 							// if OK then something must have happened, so save it
-							manager.UpdatePageContent(page.Root);
+							one.Update(page);
 						}
 					}
 				}

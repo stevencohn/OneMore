@@ -20,18 +20,6 @@ namespace River.OneMoreAddIn
 	/// <see cref="https://docs.microsoft.com/en-us/office/client-developer/onenote/application-interface-onenote"/>
 	internal class OneNote : IDisposable
 	{
-		public enum PageInfo
-		{
-			All = ON.PageInfo.piAll,
-			Basic = ON.PageInfo.piBasic,
-			BinaryData = ON.PageInfo.piBinaryData,
-			BinaryDataFileType = ON.PageInfo.piBinaryDataFileType,
-			BinaryDataSelection = ON.PageInfo.piBinaryDataSelection,
-			FileType = ON.PageInfo.piFileType,
-			Selection = ON.PageInfo.piSelection,
-			SelectionFileType = ON.PageInfo.piSelectionFileType
-		}
-
 		public enum ExportFormat
 		{
 			EMF = PublishFormat.pfEMF,
@@ -44,6 +32,27 @@ namespace River.OneMoreAddIn
 			Word = PublishFormat.pfWord,
 			XPS = PublishFormat.pfXPS,
 			XML = 1000
+		}
+
+		public enum PageInfo
+		{
+			All = ON.PageInfo.piAll,
+			Basic = ON.PageInfo.piBasic,
+			BinaryData = ON.PageInfo.piBinaryData,
+			BinaryDataFileType = ON.PageInfo.piBinaryDataFileType,
+			BinaryDataSelection = ON.PageInfo.piBinaryDataSelection,
+			FileType = ON.PageInfo.piFileType,
+			Selection = ON.PageInfo.piSelection,
+			SelectionFileType = ON.PageInfo.piSelectionFileType
+		}
+
+		public enum Scope
+		{
+			Children = ON.HierarchyScope.hsChildren,
+			Notebooks = ON.HierarchyScope.hsNotebooks,
+			Pages = ON.HierarchyScope.hsPages,
+			Sections = ON.HierarchyScope.hsSections,
+			Self = ON.HierarchyScope.hsSelf
 		}
 
 
@@ -125,6 +134,21 @@ namespace River.OneMoreAddIn
 		// Get...
 
 		/// <summary>
+		/// Gets a onenote:hyperline to an object on the specified page
+		/// </summary>
+		/// <param name="pageId">The ID of a page</param>
+		/// <param name="objectId">
+		/// The ID of an object on the page or string.Empty to link to the page itself
+		/// </param>
+		/// <returns></returns>
+		public string GetHyperlink(string pageId, string objectId)
+		{
+			onenote.GetHyperlinkToObject(pageId, objectId, out var hyperlink);
+			return hyperlink;
+		}
+
+
+		/// <summary>
 		/// Gets the OneNote namespace for the given element
 		/// </summary>
 		/// <param name="element"></param>
@@ -132,6 +156,26 @@ namespace River.OneMoreAddIn
 		public XNamespace GetNamespace(XElement element)
 		{
 			return element.GetNamespaceOfPrefix(Prefix);
+		}
+
+
+		/// <summary>
+		/// Gets the XML describing the current notebook's page hierarchy
+		/// </summary>
+		/// <returns></returns>
+		public XElement GetNotebook()
+		{
+			string id = onenote.Windows.CurrentWindow?.CurrentNotebookId;
+			if (!string.IsNullOrEmpty(id))
+			{
+				onenote.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
+				if (!string.IsNullOrEmpty(xml))
+				{
+					return XElement.Parse(xml);
+				}
+			}
+
+			return null;
 		}
 
 
@@ -292,12 +336,12 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Publish the specified page to a file using the given format
+		/// Exports the specified page to a file using the given format
 		/// </summary>
 		/// <param name="pageId">The page ID</param>
 		/// <param name="path">The output file path</param>
 		/// <param name="format">The format</param>
-		public void Publish(string pageId, string path, ExportFormat format)
+		public void Export(string pageId, string path, ExportFormat format)
 		{
 			onenote.Publish(pageId, path, (PublishFormat)format, string.Empty);
 		}

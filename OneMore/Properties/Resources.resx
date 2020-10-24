@@ -1035,12 +1035,12 @@ Notebooks</value>
     <value>Tag:</value>
     <comment>label</comment>
   </data>
-  <data name="ribSaveAsButton_Label" xml:space="preserve">
-    <value>Save as...</value>
+  <data name="ribExportButton_Label" xml:space="preserve">
+    <value>Export...</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ribSaveAsButton_Screentip" xml:space="preserve">
-    <value>Save page as either HTML or XML</value>
+  <data name="ribExportButton_Screentip" xml:space="preserve">
+    <value>Export page(s) as HTML, PDF, Word or XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="SaveAs_Error" xml:space="preserve">

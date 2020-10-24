@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -24,7 +23,7 @@ namespace River.OneMoreAddIn
 		private const string TextColorDark = "#FFFFFF";
 
 
-		public InsertCodeBlockCommand() : base()
+		public InsertCodeBlockCommand()
 		{
 		}
 
@@ -32,26 +31,10 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Insert a new Code table with starter content
 		/// </summary>
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				InsertCodeBlock();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(InsertCodeBlockCommand)}", exc);
-			}
-		}
-
-
-		private static void InsertCodeBlock()
-		{
-			using (var manager = new ApplicationManager())
-			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
 				if (!page.ConfirmBodyContext(true))
 				{
 					return;
@@ -116,7 +99,7 @@ namespace River.OneMoreAddIn
 						));
 
 				page.AddNextParagraph(table.Root);
-				manager.UpdatePageContent(page.Root);
+				one.Update(page);
 			}
 		}
 	}

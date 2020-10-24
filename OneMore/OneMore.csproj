@@ -142,7 +142,7 @@
     <Compile Include="Commands\Numbering\OutlineCommand.cs" />
     <Compile Include="Commands\PronunciateCommand.cs" />
     <Compile Include="Commands\RunPluginCommand.cs" />
-    <Compile Include="Commands\SaveAsCommand.cs" />
+    <Compile Include="Commands\ExportCommand.cs" />
     <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
     <Compile Include="Commands\SearchEngineCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
