@@ -14,21 +14,17 @@ namespace River.OneMoreAddIn
 	internal class RecalculateFormulaCommand : Command
 	{
 
-		public RecalculateFormulaCommand() : base()
+		public RecalculateFormulaCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			logger.Start($"{nameof(RecalculateFormulaCommand)}.Execute()");
 			logger.StartClock();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
 				var element = page.Root.Descendants(ns + "Cell")
 					// first dive down to find the selected T
 					.Elements(ns + "OEChildren")
@@ -56,7 +52,7 @@ namespace River.OneMoreAddIn
 						var processor = new Processor(table);
 						processor.Execute(cells.ToList());
 
-						manager.UpdatePageContent(page.Root);
+						one.Update(page);
 						updated = true;
 					}
 				}
@@ -68,7 +64,6 @@ namespace River.OneMoreAddIn
 			}
 
 			logger.WriteTime("recalcution");
-			logger.End();
 		}
 	}
 }

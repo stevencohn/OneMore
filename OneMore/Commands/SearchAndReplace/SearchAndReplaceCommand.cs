@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using System;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -20,24 +19,12 @@ namespace River.OneMoreAddIn
 		 * 
 		 */
 
-		public SearchAndReplaceCommand() : base()
+		public SearchAndReplaceCommand()
 		{
 		}
 
 
-		public void Execute()
-		{
-			try
-			{
-				SearchAndReplace();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(SearchAndReplaceCommand)}", exc);
-			}
-		}
-
-		private void SearchAndReplace()
+		public override void Execute(params object[] args)
 		{
 			DialogResult result;
 			string whatText;
@@ -55,12 +42,9 @@ namespace River.OneMoreAddIn
 
 			if (result == DialogResult.OK)
 			{
-				using (var manager = new ApplicationManager())
+				using (var one = new OneNote(out var page, out var ns))
 				{
-					var page = manager.CurrentPage();
-					var ns = page.GetNamespaceOfPrefix("one");
-
-					var elements = page.Elements(ns + "Outline").Descendants(ns + "T")
+					var elements = page.Root.Elements(ns + "Outline").Descendants(ns + "T")
 						.Select(e => e.Parent)
 						.Distinct();
 
@@ -92,7 +76,7 @@ namespace River.OneMoreAddIn
 							count += editor.SearchAndReplace(list[i]);
 						}
 
-						manager.UpdatePageContent(page);
+						one.Update(page);
 
 						//var msg = count == 1 ? "occurance was" : "occurances were";
 						//MessageBox.Show($"{count} {msg} replaced", "Replaced",

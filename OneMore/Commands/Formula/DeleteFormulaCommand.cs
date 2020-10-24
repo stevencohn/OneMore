@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -13,18 +12,15 @@ namespace River.OneMoreAddIn
 	internal class DeleteFormulaCommand : Command
 	{
 
-		public DeleteFormulaCommand() : base()
+		public DeleteFormulaCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
 				// only delete formula from selected cell(s)
 
 				var metas = page.Root.Descendants(ns + "Cell")
@@ -61,7 +57,7 @@ namespace River.OneMoreAddIn
 						count++;
 					}
 
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 
 					UIHelper.ShowMessage(
 						string.Format(Resx.DeleteFormulaCommand_Deleted, count));

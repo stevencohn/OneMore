@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -13,21 +12,17 @@ namespace River.OneMoreAddIn
 	internal class HighlightFormulaCommand : Command
 	{
 
-		public HighlightFormulaCommand() : base()
+		public HighlightFormulaCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			logger.Start($"{nameof(HighlightFormulaCommand)}.Execute()");
 			logger.StartClock();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-				var ns = page.Namespace;
-
 				// deselect any selected content in the page
 				page.Root.Descendants().Attributes("selected").Remove();
 
@@ -55,7 +50,7 @@ namespace River.OneMoreAddIn
 						}
 					}
 
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 				}
 				else
 				{
@@ -64,7 +59,6 @@ namespace River.OneMoreAddIn
 			}
 
 			logger.WriteTime("highlight");
-			logger.End();
 		}
 	}
 }

@@ -20,108 +20,98 @@ namespace River.OneMoreAddIn
 	{
 		public const string BoltSymbol = "140";
 
-		private ApplicationManager manager;
+		private OneNote one;
 
 
-		public AddFormulaCommand() : base()
+		public AddFormulaCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			using (one = new OneNote(out var page, out var ns))
 			{
-				using (manager = new ApplicationManager())
+				// Find first selected cell as anchor point to locate table into which
+				// the formula should be inserted; By filtering on selected=all, we avoid
+				// including the parent table of a selected nested table.
+
+				var anchor = page.Root.Descendants(ns + "Cell")
+					// first dive down to find the selected T
+					.Elements(ns + "OEChildren").Elements(ns + "OE")
+					.Elements(ns + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					// now move back up to the Cell
+					.Select(e => e.Parent.Parent.Parent)
+					.FirstOrDefault();
+
+				if (anchor == null)
 				{
-					var page = new Page(manager.CurrentPage());
-					var ns = page.Namespace;
-
-					// Find first selected cell as anchor point to locate table into which
-					// the formula should be inserted; By filtering on selected=all, we avoid
-					// including the parent table of a selected nested table.
-
-					var anchor = page.Root.Descendants(ns + "Cell")
-						// first dive down to find the selected T
-						.Elements(ns + "OEChildren").Elements(ns + "OE")
-						.Elements(ns + "T")
-						.Where(e => e.Attribute("selected")?.Value == "all")
-						// now move back up to the Cell
-						.Select(e => e.Parent.Parent.Parent)
-						.FirstOrDefault();
-
-					if (anchor == null)
-					{
-						UIHelper.ShowInfo(manager.Window, Resx.FormulaCommand_SelectOne);
-						return;
-					}
-
-					var table = new Table(anchor.FirstAncestor(ns + "Table"));
-					var cells = table.GetSelectedCells().ToList();
-
-					var rangeType = InferRangeType(cells);
-					if (rangeType == FormulaRangeType.Rectangular)
-					{
-						UIHelper.ShowInfo(manager.Window, Resx.FormulaCommand_Linear);
-						return;
-					}
-
-					using (var dialog = new Dialogs.FormulaDialog())
-					{
-						// display selected cell names
-						dialog.SetCellNames(
-							string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
-
-						var cell = cells.First();
-
-						// display formula of first cell if any
-						var fx = cell.GetMeta("omfx");
-						if (fx != null)
-						{
-							var parts = fx.Split(';');
-							if (parts.Length == 3)
-							{
-								if (Enum.TryParse<FormulaFormat>(parts[1], true, out var format))
-								{
-									dialog.Format = format;
-								}
-
-								dialog.Formula = parts[2];
-							}
-						}
-
-
-						var tagIndex = page.GetTagIndex(BoltSymbol);
-						if (!string.IsNullOrEmpty(tagIndex))
-						{
-							if (cell.HasTag(tagIndex))
-							{
-								dialog.Tagged = true;
-							}
-						}
-
-						if (dialog.ShowDialog(owner) != DialogResult.OK)
-						{
-							return;
-						}
-
-						if (dialog.Tagged)
-						{
-							tagIndex = page.AddTag(BoltSymbol, Resx.AddFormulaCommand_Calculated);
-						}
-
-						StoreFormula(cells, dialog.Formula, dialog.Format, rangeType, tagIndex);
-
-						var processor = new Processor(table);
-						processor.Execute(cells);
-
-						manager.UpdatePageContent(page.Root);
-					}
+					UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
+					return;
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("AddFormula", exc);
+
+				var table = new Table(anchor.FirstAncestor(ns + "Table"));
+				var cells = table.GetSelectedCells().ToList();
+
+				var rangeType = InferRangeType(cells);
+				if (rangeType == FormulaRangeType.Rectangular)
+				{
+					UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_Linear);
+					return;
+				}
+
+				using (var dialog = new Dialogs.FormulaDialog())
+				{
+					// display selected cell names
+					dialog.SetCellNames(
+						string.Join(", ", cells.Select(c => c.Coordinates))); // + $" ({rangeType})");
+
+					var cell = cells.First();
+
+					// display formula of first cell if any
+					var fx = cell.GetMeta("omfx");
+					if (fx != null)
+					{
+						var parts = fx.Split(';');
+						if (parts.Length == 3)
+						{
+							if (Enum.TryParse<FormulaFormat>(parts[1], true, out var format))
+							{
+								dialog.Format = format;
+							}
+
+							dialog.Formula = parts[2];
+						}
+					}
+
+
+					var tagIndex = page.GetTagIndex(BoltSymbol);
+					if (!string.IsNullOrEmpty(tagIndex))
+					{
+						if (cell.HasTag(tagIndex))
+						{
+							dialog.Tagged = true;
+						}
+					}
+
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					{
+						return;
+					}
+
+					if (dialog.Tagged)
+					{
+						tagIndex = page.AddTag(BoltSymbol, Resx.AddFormulaCommand_Calculated);
+					}
+
+					StoreFormula(cells, dialog.Formula, dialog.Format, rangeType, tagIndex);
+
+					var processor = new Processor(table);
+					processor.Execute(cells);
+
+					one.Update(page);
+				}
 			}
 		}
 
@@ -165,7 +155,7 @@ namespace River.OneMoreAddIn
 
 
 		private void StoreFormula(
-			IEnumerable<TableCell> cells, 
+			IEnumerable<TableCell> cells,
 			string formula, FormulaFormat format, FormulaRangeType rangeType, string tagIndex)
 		{
 			if (rangeType == FormulaRangeType.Single)

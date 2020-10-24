@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn
 
 		public void AddFormulaCmd(IRibbonControl control)
 		{
-			factory.GetCommand<AddFormulaCommand>().Execute();
+			factory.Run<AddFormulaCommand>();
 		}
 
 		public void AddTitleIconCmd(IRibbonControl control)
@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn
 
 		public void DeleteFormulaCmd(IRibbonControl control)
 		{
-			factory.GetCommand<DeleteFormulaCommand>().Execute();
+			factory.Run<DeleteFormulaCommand>();
 		}
 
 		public void EditSearchEnginesCmd(IRibbonControl control)
@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn
 
 		public void HighlightFormulaCmd(IRibbonControl control)
 		{
-			factory.GetCommand<HighlightFormulaCommand>().Execute();
+			factory.Run<HighlightFormulaCommand>();
 		}
 
 		public void InsertBlueStatusCmd(IRibbonControl control)
@@ -210,7 +210,7 @@ namespace River.OneMoreAddIn
 
 		public void RecalculateFormulaCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RecalculateFormulaCommand>().Execute();
+			factory.Run<RecalculateFormulaCommand>();
 		}
 
 		public void RemoveAuthorsCmd(IRibbonControl control)
@@ -265,7 +265,7 @@ namespace River.OneMoreAddIn
 
 		public void SearchAndReplaceCmd(IRibbonControl control)
 		{
-			factory.GetCommand<SearchAndReplaceCommand>().Execute();
+			factory.Run<SearchAndReplaceCommand>();
 		}
 
 		public void SearchEngineCmd(IRibbonControl control)
