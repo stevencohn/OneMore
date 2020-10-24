@@ -20,13 +20,10 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns, OneNote.PageInfo.All))
 			{
-				var page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
-				ns = page.Namespace;
-
 				var image = page.Root.Descendants(ns + "Image")?
 					.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
 
@@ -71,7 +68,7 @@ namespace River.OneMoreAddIn
 						// image.ReplaceWith seems to insert the new Outline but doesn't remove the top
 						// level image, so force the deletion by its objectID
 						var imageId = image.Attribute("objectID").Value;
-						manager.Application.DeletePageContent(page.Root.Attribute("ID").Value, imageId);
+						one.DeleteContent(page.Root.Attribute("ID").Value, imageId);
 
 						image.ReplaceWith(WrapInOutline(table.Root, image));
 					}
@@ -80,7 +77,7 @@ namespace River.OneMoreAddIn
 						image.ReplaceWith(table.Root);
 					}
 
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 				}
 			}
 		}

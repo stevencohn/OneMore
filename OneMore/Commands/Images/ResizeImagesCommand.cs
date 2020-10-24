@@ -16,23 +16,20 @@ namespace River.OneMoreAddIn
 
 	internal class ResizeImagesCommand : Command
 	{
-		private ApplicationManager manager;
+		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 
 
-		public ResizeImagesCommand() : base()
+		public ResizeImagesCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (manager = new ApplicationManager())
+			using (one = new OneNote(out page, out ns, OneNote.PageInfo.All))
 			{
-				page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
-				ns = page.Namespace;
-
 				var images = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
@@ -91,7 +88,7 @@ namespace River.OneMoreAddIn
 					size.Attribute("width").Value = dialog.WidthPixels.ToString();
 					size.Attribute("height").Value = dialog.HeightPixels.ToString();
 
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 				}
 			}
 		}
@@ -114,11 +111,11 @@ namespace River.OneMoreAddIn
 
 						size.Attribute("width").Value = width;
 
-						size.Attribute("height").Value = 
+						size.Attribute("height").Value =
 							((int)(imageHeight * (dialog.WidthPixels / imageWidth))).ToString();
 					}
 
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 				}
 			}
 		}

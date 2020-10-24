@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn
 
 		public void AddCaptionCmd(IRibbonControl control)
 		{
-			factory.GetCommand<AddCaptionCommand>().Execute();
+			factory.Run<AddCaptionCommand>();
 		}
 
 		public void AddFootnoteCmd(IRibbonControl control)
@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn
 
 		public void CropImageCmd(IRibbonControl control)
 		{
-			factory.GetCommand<CropImageCommand>().Execute();
+			factory.Run<CropImageCommand>();
 		}
 
 		public void DecreaseFontSizeCmd(IRibbonControl control)
@@ -250,7 +250,7 @@ namespace River.OneMoreAddIn
 
 		public void ResizeImagesCmd(IRibbonControl control)
 		{
-			factory.GetCommand<ResizeImagesCommand>().Execute();
+			factory.Run<ResizeImagesCommand>();
 		}
 
 		public void RunPluginCmd(IRibbonControl control)
@@ -280,7 +280,7 @@ namespace River.OneMoreAddIn
 
 		public void SortCmd(IRibbonControl control)
 		{
-			factory.GetCommand<SortCommand>().Execute();
+			factory.Run<SortCommand>();
 		}
 
 		public void StrikeoutCmd(IRibbonControl control)

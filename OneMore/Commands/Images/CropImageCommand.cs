@@ -6,7 +6,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
@@ -20,23 +19,20 @@ namespace River.OneMoreAddIn
 
 	internal class CropImageCommand : Command
 	{
-		private ApplicationManager manager;
+		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 
 
-		public CropImageCommand() : base()
+		public CropImageCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (manager = new ApplicationManager())
+			using (one = new OneNote(out page, out ns, OneNote.PageInfo.All))
 			{
-				page = new Page(manager.CurrentPage(PageInfo.piAll));
-				ns = page.Namespace;
-
 				var images = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
@@ -89,7 +85,7 @@ namespace River.OneMoreAddIn
 							size.SetAttributeValue("height", $"{setHeight:0.0}");
 							size.SetAttributeValue("isSetByUser", "true");
 
-							manager.UpdatePageContent(page.Root);
+							one.Update(page);
 						}
 					}
 				}

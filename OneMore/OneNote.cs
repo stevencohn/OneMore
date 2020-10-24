@@ -274,6 +274,24 @@ namespace River.OneMoreAddIn
 		// Update...
 
 		/// <summary>
+		/// Deletes the given object from the specified page
+		/// </summary>
+		/// <param name="pageId">The ID of the page to modify</param>
+		/// <param name="objectId">The ID of the object to remove from the page</param>
+		public void DeleteContent(string pageId, string objectId)
+		{
+			try
+			{
+				onenote.DeletePageContent(pageId, objectId);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"ERROR deleting page object {objectId}", exc);
+			}
+		}
+
+
+		/// <summary>
 		/// Deletes the given object(s) from the hierarchy; used for merging
 		/// </summary>
 		/// <param name="element"></param>
