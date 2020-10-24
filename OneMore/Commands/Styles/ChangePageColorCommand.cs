@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -17,21 +16,17 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			logger.WriteLine($"{nameof(ChangePageColorCommand)}.Execute()");
-
-			Page page = null;
-
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out _))
 			{
-				page = new Page(manager.CurrentPage());
-			}
-
-			using (var dialog = new Dialogs.ChangePageColorDialog(page.GetPageColor(out _, out _)))
-			{
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				using (var dialog = new Dialogs.ChangePageColorDialog(page.GetPageColor(out _, out _)))
 				{
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					{
+						return;
+					}
+
 					var element = page.Root
 						.Elements(page.Namespace + "PageSettings")
 						.FirstOrDefault();
@@ -48,10 +43,7 @@ namespace River.OneMoreAddIn
 							element.Add(new XAttribute("color", dialog.PageColor));
 						}
 
-						using (var manager = new ApplicationManager())
-						{
-							manager.UpdatePageContent(page.Root);
-						}
+						one.Update(page);
 					}
 					else
 					{

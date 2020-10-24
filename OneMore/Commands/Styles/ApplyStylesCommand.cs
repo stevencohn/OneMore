@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -23,37 +22,29 @@ namespace River.OneMoreAddIn
 		private readonly Stylizer stylizer;
 
 
-		public ApplyStylesCommand() : base()
+		public ApplyStylesCommand()
 		{
 			// using blank Style just so we have a valid Stylizer
 			stylizer = new Stylizer(new Style());
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			using (var one = new OneNote(out page, out _))
 			{
-				using (var manager = new ApplicationManager())
+				var styles = new StyleProvider().GetStyles();
+				if (ApplyStyles(styles))
 				{
-					page = new Page(manager.CurrentPage());
-					var styles = new StyleProvider().GetStyles();
-					if (ApplyStyles(styles))
+					ApplyToLists(styles);
+
+					if (page.GetPageColor(out _, out _).GetBrightness() < 0.5)
 					{
-						ApplyToLists(styles);
-
-						if (page.GetPageColor(out _, out _).GetBrightness() < 0.5)
-						{
-							ApplyToHyperlinks();
-						}
-
-						manager.UpdatePageContent(page.Root);
+						ApplyToHyperlinks();
 					}
+
+					one.Update(page);
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(ApplyStylesCommand)}", exc);
 			}
 		}
 
@@ -160,7 +151,7 @@ namespace River.OneMoreAddIn
 						var index = nmatch.Groups[1].Captures[0].Value;
 
 						// match any of (h1, head1, head 1, heading1, heading 1)
-						style = styles.SingleOrDefault(s => 
+						style = styles.SingleOrDefault(s =>
 							Regex.IsMatch(s.Name, $@"^[Hh](?:ead)?.*?{index}$"));
 					}
 					break;

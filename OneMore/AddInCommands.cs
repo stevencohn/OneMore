@@ -42,17 +42,17 @@ namespace River.OneMoreAddIn
 
 		public void ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
 		{
-			factory.GetCommand<ApplyStyleCommand>().Execute(selectedIndex);
+			factory.Run<ApplyStyleCommand>(selectedIndex);
 		}
 
 		public void ApplyStylesCmd(IRibbonControl control)
 		{
-			factory.GetCommand<ApplyStylesCommand>().Execute();
+			factory.Run<ApplyStylesCommand>();
 		}
 
 		public void ChangePageColorCmd(IRibbonControl control)
 		{
-			factory.GetCommand<ChangePageColorCommand>().Execute();
+			factory.Run<ChangePageColorCommand>();
 		}
 
 		public void CollapseCmd(IRibbonControl control)
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn
 
 		public void EditStylesCmd(IRibbonControl control)
 		{
-			factory.GetCommand<EditStylesCommand>().Execute();
+			factory.Run<EditStylesCommand>();
 			ribbon.Invalidate(); // TODO: only if changes?
 		}
 
@@ -174,7 +174,7 @@ namespace River.OneMoreAddIn
 
 		public void NewStyleCmd(IRibbonControl control)
 		{
-			factory.GetCommand<NewStyleCommand>().Execute();
+			factory.Run<NewStyleCommand>();
 			ribbon.Invalidate(); // TODO: only if changes?
 		}
 

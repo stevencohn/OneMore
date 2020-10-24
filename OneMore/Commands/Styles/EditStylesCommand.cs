@@ -4,54 +4,45 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 
 
 	internal class EditStylesCommand : Command
 	{
-		public EditStylesCommand() : base()
+		public EditStylesCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			Color pageColor;
+			using (var one = new OneNote(out var page, out _))
 			{
-				Color pageColor;
-				using (var manager = new ApplicationManager())
+				pageColor = page.GetPageColor(out _, out var black);
+				if (black)
 				{
-					pageColor = new Page(manager.CurrentPage()).GetPageColor(out _, out var black);
-					if (black)
-					{
-						pageColor = ColorTranslator.FromHtml("#201F1E");
-					}
-				}
-
-				var provider = new StyleProvider();
-
-				var styles = provider.GetStyles();
-				DialogResult result;
-
-				using (var dialog = new StyleDialog(styles, pageColor))
-				{
-					result = dialog.ShowDialog(owner);
-
-					if (result == DialogResult.OK)
-					{
-						// save styles to remove delete items and preserve ordering
-						styles = dialog.GetStyles();
-						StyleProvider.Save(styles);
-						ribbon.Invalidate();
-					}
+					pageColor = ColorTranslator.FromHtml("#201F1E");
 				}
 			}
-			catch (Exception exc)
+
+			var provider = new StyleProvider();
+
+			var styles = provider.GetStyles();
+			DialogResult result;
+
+			using (var dialog = new StyleDialog(styles, pageColor))
 			{
-				logger.WriteLine($"Error executing {nameof(EditStylesCommand)}", exc);
+				result = dialog.ShowDialog(owner);
+
+				if (result == DialogResult.OK)
+				{
+					// save styles to remove delete items and preserve ordering
+					styles = dialog.GetStyles();
+					StyleProvider.Save(styles);
+					ribbon.Invalidate();
+				}
 			}
 		}
 	}

@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Text;
     using System.Xml;
@@ -15,19 +16,21 @@ namespace River.OneMoreAddIn
 	internal class ApplyStyleCommand : Command
 	{
 
-		private XElement page;
+		private Page page;
 		private XNamespace ns;
 		private Stylizer stylizer;
 		private Style style;
 
 
-		public ApplyStyleCommand() : base()
+		public ApplyStyleCommand()
 		{
 		}
 
 
-		public void Execute(int selectedIndex)
+		public override void Execute(params object[] args)
 		{
+			var selectedIndex = (int)args[0];
+
 			style = new StyleProvider().GetStyle(selectedIndex);
 			if (style == null)
 			{
@@ -36,12 +39,10 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out page, out ns))
 			{
-				page = manager.CurrentPage();
 				if (page != null)
 				{
-					ns = page.GetNamespaceOfPrefix("one");
 					stylizer = new Stylizer(style);
 
 					bool success = style.StyleType == StyleType.Character
@@ -50,7 +51,7 @@ namespace River.OneMoreAddIn
 
 					if (success)
 					{
-						manager.UpdatePageContent(page);
+						one.Update(page);
 					}
 				}
 			}
@@ -62,7 +63,7 @@ namespace River.OneMoreAddIn
 			// find all selected T element; may be multiple if text is selected across 
 			// multiple paragraphs - OEs - but partial paragraphs may be selected too...
 
-			var selections = page.Descendants(ns + "T")
+			var selections = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
 
 			if (selections == null)
@@ -189,7 +190,7 @@ namespace River.OneMoreAddIn
 		private bool StylizeParagraphs()
 		{
 			// find all paragraphs - OE elements - that have selections
-			var elements = page.Descendants()
+			var elements = page.Root.Descendants()
 				.Where(p => p.NodeType == XmlNodeType.Element
 					&& p.Name.LocalName == "T"
 					&& p.Attributes("selected").Any(a => a.Value.Equals("all")))

@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Drawing;
 	using System.Linq;
@@ -16,44 +15,37 @@ namespace River.OneMoreAddIn
 	internal class NewStyleCommand : Command
 	{
 
-		public NewStyleCommand() : base()
+		public NewStyleCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			var style = CollectStyleFromContext();
+
+			if (style != null)
 			{
-				var style = CollectStyleFromContext();
-
-				if (style != null)
+				Color pageColor;
+				using (var one = new OneNote(out var page, out _))
 				{
-					Color pageColor;
-					using (var manager = new ApplicationManager())
-					{
-						pageColor = new Page(manager.CurrentPage()).GetPageColor(out _, out _);
-					}
+					pageColor = page.GetPageColor(out _, out _);
+				}
 
-					DialogResult result;
-					using (var dialog = new StyleDialog(style, pageColor))
+				DialogResult result;
+				using (var dialog = new StyleDialog(style, pageColor))
+				{
+					result = dialog.ShowDialog(owner);
+					if (result == DialogResult.OK)
 					{
-						result = dialog.ShowDialog(owner);
-						if (result == DialogResult.OK)
+						style = dialog.Style;
+						if (style != null)
 						{
-							style = dialog.Style;
-							if (style != null)
-							{
-								new StyleProvider().Save(style);
-								ribbon.Invalidate();
-							}
+							new StyleProvider().Save(style);
+							ribbon.Invalidate();
 						}
 					}
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(NewStyleCommand)}", exc);
 			}
 		}
 
