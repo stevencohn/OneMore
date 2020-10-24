@@ -4,24 +4,21 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Xml.Linq;
 
 
 	internal class RemoveEmptyCommand : Command
 	{
-		public RemoveEmptyCommand() : base()
+		public RemoveEmptyCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-
 				var elements =
 					(from e in page.Root.Descendants(page.Namespace + "OE")
 					 where e.Elements().Count() == 1
@@ -86,7 +83,7 @@ namespace River.OneMoreAddIn
 
 					if (modified)
 					{
-						manager.UpdatePageContent(page.Root);
+						one.Update(page);
 					}
 				}
 			}

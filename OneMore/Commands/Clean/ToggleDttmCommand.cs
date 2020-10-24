@@ -9,57 +9,62 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Microsoft.Office.Interop.OneNote;
 
 
 	internal class ToggleDttmCommand : Command
 	{
 
-		public ToggleDttmCommand() : base()
+		public ToggleDttmCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			using (var dialog = new TimestampDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					using (var manager = new ApplicationManager())
+					Toggle(dialog.PageOnly, dialog.ShowTimestamps);
+				}
+			}
+		}
+
+
+		private void Toggle(bool pageOnly, bool showTimestamps)
+		{
+			using (var one = new OneNote())
+			{
+				if (pageOnly)
+				{
+					var page = one.GetPage();
+					SetTimestampVisibility(one, page, showTimestamps);
+				}
+				else
+				{
+					var section = one.GetSection();
+					if (section != null)
 					{
-						if (dialog.PageOnly)
+						var ns = one.GetNamespace(section);
+
+						var pageIds = section.Elements(ns + "Page")
+							.Select(e => e.Attribute("ID").Value)
+							.ToList();
+
+						using (var progress = new ProgressDialog())
 						{
-							var page = new Page(manager.CurrentPage());
-							SetTimestampVisibility(manager, page.Root, page.Namespace, dialog.ShowTimestamps);
-						}
-						else
-						{
-							var section = manager.CurrentSection();
-							if (section != null)
+							progress.SetMaximum(pageIds.Count);
+							progress.Show(owner);
+
+							foreach (var pageId in pageIds)
 							{
-								var ns = section.GetNamespaceOfPrefix("one");
+								var page = one.GetPage(pageId, OneNote.PageInfo.Basic);
+								var name = page.Root.Attribute("name").Value;
 
-								var pageIds = section.Elements(ns + "Page")
-									.Select(e => e.Attribute("ID").Value)
-									.ToList();
+								progress.SetMessage(name);
+								progress.Increment();
 
-								using (var progress = new ProgressDialog())
-								{
-									progress.SetMaximum(pageIds.Count);
-									progress.Show(owner);
-
-									foreach (var pageId in pageIds)
-									{
-										var page = manager.GetPage(pageId, PageInfo.piBasic);
-										var name = page.Attribute("name").Value;
-
-										progress.SetMessage(name);
-										progress.Increment();
-
-										SetTimestampVisibility(manager, page, ns, dialog.ShowTimestamps);
-									}
-								}
+								SetTimestampVisibility(one, page, showTimestamps);
 							}
 						}
 					}
@@ -68,11 +73,10 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private static void SetTimestampVisibility(
-			ApplicationManager manager, XElement page, XNamespace ns, bool visible)
+		private static void SetTimestampVisibility(OneNote one, Page page, bool visible)
 		{
 			var modified = false;
-			var title = page.Element(ns + "Title");
+			var title = page.Root.Element(page.Namespace + "Title");
 			if (title != null)
 			{
 				modified |= SetTimestampAttribute(title, "showDate", visible);
@@ -80,7 +84,7 @@ namespace River.OneMoreAddIn
 
 				if (modified)
 				{
-					manager.UpdatePageContent(page);
+					one.Update(page);
 				}
 			}
 		}

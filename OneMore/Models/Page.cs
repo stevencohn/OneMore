@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Models
 			if (page != null)
 			{
 				Root = page;
-				Namespace = page.GetNamespaceOfPrefix("one");
+				Namespace = page.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				PageId = page.Attribute("ID")?.Value;
 			}

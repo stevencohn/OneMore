@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -13,53 +11,43 @@ namespace River.OneMoreAddIn
 
 	internal class RemoveCitationsCommand : Command
 	{
-		public RemoveCitationsCommand() : base()
+		public RemoveCitationsCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				using (var manager = new ApplicationManager())
+				var style = page.GetQuickStyles()
+					.FirstOrDefault(s => s.Name == "cite");
+
+				if (style == null)
 				{
-					var page = new Page(manager.CurrentPage());
-					var ns = page.Namespace;
-
-					var style = page.GetQuickStyles()
-						.FirstOrDefault(s => s.Name == "cite");
-
-					if (style == null)
-					{
-						return;
-					}
-
-					var index = style.Index.ToString();
-					var pattern = new Regex(Resx.RemoveCitations_FromUrl);
-
-					var elements =
-						(from e in page.Root.Descendants(ns + "OE")
-						 where e.Attributes("quickStyleIndex").Any(a => a.Value == index)
-						 let text = e.Element(ns + "T").GetCData().Value
-						 where text.Contains(Resx.RemoveCitations_Clippings) || pattern.Match(text).Success
-						 select e)
-						.ToList();
-
-					if (elements?.Count > 0)
-					{
-						foreach (var element in elements)
-						{
-							element.Remove();
-						}
-
-						manager.UpdatePageContent(page.Root);
-					}
+					return;
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine(exc);
+
+				var index = style.Index.ToString();
+				var pattern = new Regex(Resx.RemoveCitations_FromUrl);
+
+				var elements =
+					(from e in page.Root.Descendants(ns + "OE")
+					 where e.Attributes("quickStyleIndex").Any(a => a.Value == index)
+					 let text = e.Element(ns + "T").GetCData().Value
+					 where text.Contains(Resx.RemoveCitations_Clippings) || pattern.Match(text).Success
+					 select e)
+					.ToList();
+
+				if (elements?.Count > 0)
+				{
+					foreach (var element in elements)
+					{
+						element.Remove();
+					}
+
+					one.Update(page);
+				}
 			}
 		}
 	}

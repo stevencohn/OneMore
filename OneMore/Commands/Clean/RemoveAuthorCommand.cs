@@ -4,26 +4,24 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
 	using System.Linq;
 
 
 	internal class RemoveAuthorsCommand : Command
 	{
-		public RemoveAuthorsCommand() : base()
+		public RemoveAuthorsCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
 				var count = 0;
-				var page = new Page(manager.CurrentPage());
 
 				// these are all the elements that might have editedByAttributes
-				var elements = page.Root.Descendants().Where(d => 
+				var elements = page.Root.Descendants().Where(d =>
 					d.Name.LocalName == "Table" ||
 					d.Name.LocalName == "Row" ||
 					d.Name.LocalName == "Cell" ||
@@ -53,8 +51,8 @@ namespace River.OneMoreAddIn
 
 				if (count > 0)
 				{
-					logger.WriteLine($"clean {count} author attributes");
-					manager.UpdatePageContent(page.Root);
+					logger.WriteLine($"cleaned {count} author attributes");
+					one.Update(page);
 				}
 			}
 		}

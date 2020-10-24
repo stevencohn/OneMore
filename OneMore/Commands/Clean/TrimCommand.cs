@@ -12,20 +12,17 @@ namespace River.OneMoreAddIn
 
 	internal class TrimCommand : Command
 	{
-		public TrimCommand() : base()
+		public TrimCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = manager.CurrentPage();
-				var ns = page.GetNamespaceOfPrefix("one");
-
 				var selections =
-					from e in page.Elements(ns + "Outline").Descendants(ns + "T")
+					from e in page.Root.Elements(ns + "Outline").Descendants(ns + "T")
 					where e.Attributes("selected").Any(a => a.Value.Equals("all"))
 					select e;
 
@@ -35,7 +32,7 @@ namespace River.OneMoreAddIn
 						selections.First().GetCData().Value.Length == 0)
 					{
 						// if zero-length selection then select all content
-						selections = page.Elements(ns + "Outline").Descendants(ns + "T");
+						selections = page.Root.Elements(ns + "Outline").Descendants(ns + "T");
 					}
 
 					int count = 0;
@@ -70,10 +67,10 @@ namespace River.OneMoreAddIn
 
 					if (count > 0)
 					{
-						manager.UpdatePageContent(page);
+						one.Update(page);
 					}
 
-					logger.WriteLine($"Lines trimmed:{count}");
+					logger.WriteLine($"trimmed {count} lines");
 				}
 			}
 		}

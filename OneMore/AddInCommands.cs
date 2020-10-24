@@ -215,17 +215,17 @@ namespace River.OneMoreAddIn
 
 		public void RemoveAuthorsCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RemoveAuthorsCommand>().Execute();
+			factory.Run<RemoveAuthorsCommand>();
 		}
 
 		public void RemoveCitationsCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RemoveCitationsCommand>().Execute();
+			factory.Run<RemoveCitationsCommand>();
 		}
 
 		public void RemoveEmptyCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RemoveEmptyCommand>().Execute();
+			factory.Run<RemoveEmptyCommand>();
 		}
 
 		public void RemoveFootnoteCmd(IRibbonControl control)
@@ -245,7 +245,7 @@ namespace River.OneMoreAddIn
 
 		public void RemoveSpacingCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RemoveSpacingCommand>().Execute();
+			factory.Run<RemoveSpacingCommand>();
 		}
 
 		public void ResizeImagesCmd(IRibbonControl control)
@@ -300,7 +300,7 @@ namespace River.OneMoreAddIn
 
 		public void ToggleDttmCmd(IRibbonControl control)
 		{
-			factory.GetCommand<ToggleDttmCommand>().Execute();
+			factory.Run<ToggleDttmCommand>();
 		}
 
 		public void ToUppercaseCmd(IRibbonControl control)
@@ -310,7 +310,7 @@ namespace River.OneMoreAddIn
 
 		public void TrimCmd(IRibbonControl control)
 		{
-			factory.GetCommand<TrimCommand>().Execute();
+			factory.Run<TrimCommand>();
 		}
 
 		public void WordCountCmd(IRibbonControl control)

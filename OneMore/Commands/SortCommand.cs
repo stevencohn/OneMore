@@ -241,13 +241,13 @@ namespace River.OneMoreAddIn
 			{
 				// find the ID of the current notebook
 				var notebooks = manager.GetHierarchy(HierarchyScope.hsNotebooks);
-				var ns = notebooks.GetNamespaceOfPrefix("one");
-				var sectionId = notebooks.Elements(ns + "Notebook")
+				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
+				var notebookId = notebooks.Elements(ns + "Notebook")
 					.Where(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
 					.Select(e => e.Attribute("ID").Value).FirstOrDefault();
 
 				// get the current notebook with its sections
-				var notebook = manager.GetHierarchySection(sectionId);
+				var notebook = manager.GetHierarchySection(notebookId);
 
 				if (notebook == null)
 				{

@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn
 		protected TableProperties(XElement root)
 		{
 			Root = root;
-			ns = Root.GetNamespaceOfPrefix("one");
+			ns = Root.GetNamespaceOfPrefix(OneNote.Prefix);
 		}
 
 
