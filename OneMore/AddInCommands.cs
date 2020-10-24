@@ -315,7 +315,7 @@ namespace River.OneMoreAddIn
 
 		public void WordCountCmd(IRibbonControl control)
 		{
-			factory.GetCommand<WordCountCommand>().Execute();
+			factory.Run<WordCountCommand>();
 		}
 	}
 }
