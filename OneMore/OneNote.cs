@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Xml.Linq;
+	using Forms = System.Windows.Forms;
 	using ON = Microsoft.Office.Interop.OneNote;
 
 
@@ -105,6 +106,22 @@ namespace River.OneMoreAddIn
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Properties
+
+		/// <summary>
+		/// Gets the Win32 Window associated with the current window's handle
+		/// </summary>
+		public Forms.IWin32Window Window => Forms.Control.FromHandle(WindowHandle);
+
+
+
+		/// <summary>
+		/// Gets the handle of the current window
+		/// </summary>
+		public IntPtr WindowHandle => (IntPtr)onenote.Windows.CurrentWindow.WindowHandle;
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Get...
 
 		/// <summary>
@@ -173,6 +190,23 @@ namespace River.OneMoreAddIn
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Update...
+
+		/// <summary>
+		/// Deletes the given object(s) from the hierarchy; used for merging
+		/// </summary>
+		/// <param name="element"></param>
+		public void DeleteHierarchy(string objectId)
+		{
+			try
+			{
+				onenote.DeleteHierarchy(objectId);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"ERROR deleting hierarchy object {objectId}", exc);
+			}
+		}
+
 
 		/// <summary>
 		/// Update the current page.

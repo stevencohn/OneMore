@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			using (var dialog = new SearchEngineDialog())
 			{

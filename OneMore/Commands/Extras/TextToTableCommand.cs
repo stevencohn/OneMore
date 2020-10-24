@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
@@ -24,12 +23,10 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns, OneNote.PageInfo.Selection))
 			{
-				var page = new Page(manager.CurrentPage(PageInfo.piSelection));
-
 				var selections = page.Root
 					.Descendants(page.Namespace + "OE")
 					.Elements(page.Namespace + "T")
@@ -39,7 +36,7 @@ namespace River.OneMoreAddIn
 
 				if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
 				{
-					UIHelper.ShowInfo(manager.Window, Resx.TextToTable_NoText);
+					UIHelper.ShowInfo(one.Window, Resx.TextToTable_NoText);
 					return;
 				}
 
@@ -56,7 +53,7 @@ namespace River.OneMoreAddIn
 					first.ReplaceNodes(table.Root);
 
 					//logger.WriteLine(page.Root.ToString());
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 				}
 			}
 		}

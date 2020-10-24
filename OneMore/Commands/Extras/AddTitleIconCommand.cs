@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -13,12 +11,12 @@ namespace River.OneMoreAddIn
 
 	internal class AddTitleIconCommand : Command
 	{
-		public AddTitleIconCommand() : base()
+		public AddTitleIconCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			string[] codes = null;
 
@@ -32,22 +30,14 @@ namespace River.OneMoreAddIn
 				codes = dialog.GetSelectedCodes();
 			}
 
-			try
-			{
-				AddIcons(codes);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("Error adding title icons", exc);
-			}
+			AddIcons(codes);
 		}
+
 
 		private void AddIcons(string[] codes)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-
 				var cdata = page.Root.Elements(page.Namespace + "Title")
 					.Elements(page.Namespace + "OE")
 					.Elements(page.Namespace + "T")
@@ -80,7 +70,7 @@ namespace River.OneMoreAddIn
 
 					cdata.ReplaceWith(new XCData(decoded));
 
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 				}
 			}
 		}

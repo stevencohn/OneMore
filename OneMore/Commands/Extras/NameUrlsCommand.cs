@@ -22,34 +22,19 @@ namespace River.OneMoreAddIn
 	internal class NameUrlsCommand : Command
 	{
 
-		public NameUrlsCommand() : base()
+		public NameUrlsCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			logger.WriteLine(nameof(NameUrlsCommand) + ".Execute()");
-
-			try
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				Page page;
-				using (var manager = new ApplicationManager())
-				{
-					page = new Page(manager.CurrentPage());
-				}
-
 				if (NameUrls(page))
 				{
-					using (var manager = new ApplicationManager())
-					{
-						manager.UpdatePageContent(page.Root);
-					}
+					one.Update(page);
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(NameUrlsCommand)}", exc);
 			}
 		}
 

@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn
 
 		public void AddTitleIconCmd(IRibbonControl control)
 		{
-			factory.GetCommand<AddTitleIconCommand>().Execute();
+			factory.Run<AddTitleIconCommand>();
 		}
 
 		public void ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn
 
 		public void EditSearchEnginesCmd(IRibbonControl control)
 		{
-			factory.GetCommand<EditSearchEnginesCommand>().Execute();
+			factory.Run<EditSearchEnginesCommand>();
 			ribbon.Invalidate(); // TODO: only if changes?
 		}
 
@@ -164,12 +164,12 @@ namespace River.OneMoreAddIn
 
 		public void MergeCmd(IRibbonControl control)
 		{
-			factory.GetCommand<MergeCommand>().Execute();
+			factory.Run<MergeCommand>();
 		}
 
 		public void NameUrlsCmd(IRibbonControl control)
 		{
-			factory.GetCommand<NameUrlsCommand>().Execute();
+			factory.Run<NameUrlsCommand>();
 		}
 
 		public void NewStyleCmd(IRibbonControl control)
@@ -285,12 +285,12 @@ namespace River.OneMoreAddIn
 
 		public void StrikeoutCmd(IRibbonControl control)
 		{
-			factory.GetCommand<StrikeoutCommand>().Execute();
+			factory.Run<StrikeoutCommand>();
 		}
 
 		public void TextToTableCmd(IRibbonControl control)
 		{
-			factory.GetCommand<TextToTableCommand>().Execute();
+			factory.Run<TextToTableCommand>();
 		}
 
 		public void ToLowercaseCmd(IRibbonControl control)

@@ -1,11 +1,9 @@
-﻿using System;
-//************************************************************************************************
+﻿//************************************************************************************************
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
@@ -18,7 +16,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			// built-in checkable/completeable tags
 			var symbols = new List<int> {
@@ -31,12 +29,10 @@ namespace River.OneMoreAddIn
 				95  // Discuss with manager
 			};
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = new Page(manager.CurrentPage());
-
 				var indexes =
-					page.Root.Elements(page.Namespace + "TagDef")
+					page.Root.Elements(ns + "TagDef")
 					.Where(e => symbols.Contains(int.Parse(e.Attribute("symbol").Value)))
 					.Select(e => e.Attribute("index").Value)
 					.ToList();
@@ -46,7 +42,7 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
-				var elements = page.Root.Descendants(page.Namespace + "Tag")
+				var elements = page.Root.Descendants(ns + "Tag")
 					.Where(e => indexes.Contains(e.Attribute("index").Value));
 
 				if (elements == null || !elements.Any())
@@ -88,11 +84,10 @@ namespace River.OneMoreAddIn
 
 				if (modified)
 				{
-					manager.UpdatePageContent(page.Root);
+					one.Update(page);
 				}
 			}
 		}
-
 
 		private static bool RestyleText(XCData cdata, bool completed)
 		{

@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using System;
 	using System.Linq;
 	using System.Xml.Linq;
@@ -19,12 +18,11 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns, OneNote.PageInfo.Selection))
 			{
-				var page = manager.CurrentPage(PageInfo.piSelection);
-				var cdatas = page.DescendantNodes().OfType<XCData>();
+				var cdatas = page.Root.DescendantNodes().OfType<XCData>();
 
 				var count = 0;
 				foreach (var cdata in cdatas)

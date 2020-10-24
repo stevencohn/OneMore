@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
@@ -30,22 +31,22 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private XElement page;
+		private Page page;
 		private XNamespace ns;
 		private List<QuickRef> quickies;
 
 
-		public MergeCommand() : base()
+		public MergeCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var section = manager.CurrentSection();
-				ns = section.GetNamespaceOfPrefix("one");
+				var section = one.GetSection();
+				ns = one.GetNamespace(section);
 
 				// find first selected - active page
 
@@ -55,7 +56,7 @@ namespace River.OneMoreAddIn
 
 				if (active == null)
 				{
-					UIHelper.ShowInfo(manager.Window, "At least two pages must be selected to merge");
+					UIHelper.ShowInfo(one.Window, "At least two pages must be selected to merge");
 					return;
 				}
 
@@ -67,16 +68,16 @@ namespace River.OneMoreAddIn
 
 				if (active == null)
 				{
-					UIHelper.ShowInfo(manager.Window, "At least two pages must be selected to merge");
+					UIHelper.ShowInfo(one.Window, "At least two pages must be selected to merge");
 					return;
 				}
 
 
 				// get first selected (active) page and reference its quick styles, outline, size
 
-				page = manager.GetPage(active.Attribute("ID").Value);
+				page = one.GetPage(active.Attribute("ID").Value);
 
-				quickies = page.Elements(ns + "QuickStyleDef")
+				quickies = page.Root.Elements(ns + "QuickStyleDef")
 					.Select(p => new QuickRef(p))
 					.ToList();
 
@@ -86,18 +87,18 @@ namespace River.OneMoreAddIn
 				var maxOffset = offset;
 
 				// find maximum z-offset
-				var z = page.Elements(ns + "Outline").Elements(ns + "Position")
+				var z = page.Root.Elements(ns + "Outline").Elements(ns + "Position")
 					.Attributes("z").Max(a => int.Parse(a.Value)) + 1;
 
 				// merge each of the subsequently selected pages into the active page
 
 				foreach (var selection in selections.ToList())
 				{
-					var childPage = manager.GetPage(selection.Attribute("ID").Value);
+					var childPage = one.GetPage(selection.Attribute("ID").Value);
 
-					var styles = MergeQuickStyles(childPage);
+					var styles = MergeQuickStyles(childPage.Root);
 
-					var childOutlines = childPage.Elements(ns + "Outline");
+					var childOutlines = childPage.Root.Elements(ns + "Outline");
 					if (childOutlines == null || !childOutlines.Any())
 					{
 						break;
@@ -130,7 +131,7 @@ namespace River.OneMoreAddIn
 
 						AdjustQuickStyles(styles, childOutline);
 
-						page.Add(childOutline);
+						page.Root.Add(childOutline);
 					}
 
 					if (maxOffset > offset)
@@ -141,11 +142,11 @@ namespace River.OneMoreAddIn
 
 				// update page and section hierarchy
 
-				manager.UpdatePageContent(page);
+				one.Update(page);
 
 				foreach (var selection in selections)
 				{
-					manager.DeleteHierarchy(selection.Attribute("ID").Value);
+					one.DeleteHierarchy(selection.Attribute("ID").Value);
 				}
 			}
 		}
@@ -155,7 +156,7 @@ namespace River.OneMoreAddIn
 		{
 			// find bottom of current page; bottom of lowest Outline
 			double offset = 0.0;
-			foreach (var outline in page.Elements(ns + "Outline"))
+			foreach (var outline in page.Root.Elements(ns + "Outline"))
 			{
 				var position = outline.Elements(ns + "Position").FirstOrDefault();
 				if (position != null)
@@ -205,14 +206,14 @@ namespace River.OneMoreAddIn
 					styleRef.Element.Attribute("index").Value = styleRef.Style.Index.ToString();
 					quickies.Add(styleRef);
 
-					var last = page.Elements(ns + "QuickStyleDef").LastOrDefault();
+					var last = page.Root.Elements(ns + "QuickStyleDef").LastOrDefault();
 					if (last != null)
 					{
 						last.AddAfterSelf(styleRef.Element);
 					}
 					else
 					{
-						page.AddFirst(styleRef.Element);
+						page.Root.AddFirst(styleRef.Element);
 					}
 				}
 			}
