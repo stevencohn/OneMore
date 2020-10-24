@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Dialogs;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -22,7 +21,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private ApplicationManager manager;
+		private OneNote one;
 		private XNamespace ns;
 		private RemovePageNumbersCommand cleaner;
 		private ProgressDialog progress;
@@ -33,16 +32,16 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			using (var dialog = new PageNumberingDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					using (manager = new ApplicationManager())
+					using (one = new OneNote())
 					{
-						var section = manager.CurrentSection();
-						ns = section.GetNamespaceOfPrefix("one");
+						var section = one.GetSection();
+						ns = one.GetNamespace(section);
 
 						var pages = section.Elements(ns + "Page")
 							.Select(e => new PageBasics
@@ -92,9 +91,9 @@ namespace River.OneMoreAddIn
 
 			while (index < pages.Count && pages[index].Level == level)
 			{
-				var page = manager.GetPage(pages[index].ID, PageInfo.piBasic);
+				var page = one.GetPage(pages[index].ID, OneNote.PageInfo.Basic);
 
-				var cdata = page.Element(ns + "Title")
+				var cdata = page.Root.Element(ns + "Title")
 					.Element(ns + "OE")
 					.Element(ns + "T")
 					.GetCData();
@@ -109,7 +108,7 @@ namespace River.OneMoreAddIn
 				}
 
 				cdata.Value = BuildPrefix(counter, numeric, level, prefix) + " " + text;
-				manager.UpdatePageContent(page);
+				one.Update(page);
 
 				index++;
 				counter++;

@@ -4,9 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Dialogs;
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -30,7 +28,7 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
-			HierarchyScope scope;
+			OneNote.Scope scope;
 			SortDialog.Sortings sorting;
 			SortDialog.Directions direction;
 			bool pinNotes;
@@ -50,26 +48,19 @@ namespace River.OneMoreAddIn
 
 			logger.WriteLine($"sort scope:{scope} sorting:{sorting} direction:{direction}");
 
-			try
+			switch (scope)
 			{
-				switch (scope)
-				{
-					case HierarchyScope.hsPages:
-						SortPages(sorting, direction);
-						break;
+				case OneNote.Scope.Pages:
+					SortPages(sorting, direction);
+					break;
 
-					case HierarchyScope.hsSections:
-						SortSections(sorting, direction, pinNotes);
-						break;
+				case OneNote.Scope.Sections:
+					SortSections(sorting, direction, pinNotes);
+					break;
 
-					case HierarchyScope.hsNotebooks:
-						SortNotebooks(sorting, direction);
-						break;
-				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("ERROR sorting", exc);
+				case OneNote.Scope.Notebooks:
+					SortNotebooks(sorting, direction);
+					break;
 			}
 		}
 
@@ -132,10 +123,10 @@ namespace River.OneMoreAddIn
 
 			logger.StartClock();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var root = manager.CurrentSection();
-				var ns = root.GetNamespaceOfPrefix("one");
+				var root = one.GetSection();
+				var ns = one.GetNamespace(root);
 
 				var pages = new List<PageNode>();
 
@@ -200,7 +191,7 @@ namespace River.OneMoreAddIn
 				}
 
 				//logger.WriteLine(root.ToString());
-				manager.UpdateHierarchy(root);
+				one.UpdateHierarchy(root);
 			}
 
 			logger.WriteTime(nameof(SortPages));
@@ -237,22 +228,16 @@ namespace River.OneMoreAddIn
 
 			logger.StartClock();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				// find the ID of the current notebook
-				var notebooks = manager.GetHierarchy(HierarchyScope.hsNotebooks);
-				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
-				var notebookId = notebooks.Elements(ns + "Notebook")
-					.Where(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
-					.Select(e => e.Attribute("ID").Value).FirstOrDefault();
-
 				// get the current notebook with its sections
-				var notebook = manager.GetHierarchySection(notebookId);
-
+				var notebook = one.GetNotebook();
 				if (notebook == null)
 				{
 					return;
 				}
+
+				var ns = one.GetNamespace(notebook);
 
 				var key = sorting == SortDialog.Sortings.ByName
 					? "name"
@@ -296,7 +281,7 @@ namespace River.OneMoreAddIn
 				}
 
 				//logger.WriteLine(notebook.ToString());
-				manager.UpdateHierarchy(notebook);
+				one.UpdateHierarchy(notebook);
 			}
 
 			logger.WriteTime(nameof(SortSections));
@@ -319,10 +304,10 @@ namespace River.OneMoreAddIn
 
 			logger.StartClock();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var root = manager.GetHierarchy(HierarchyScope.hsNotebooks);
-				var ns = root.GetNamespaceOfPrefix("one");
+				var root = one.GetNotebooks();
+				var ns = one.GetNamespace(root);
 
 				// nickname is display name whereas name is the folder name
 				var key = sorting == SortDialog.Sortings.ByName
@@ -344,7 +329,7 @@ namespace River.OneMoreAddIn
 				root.ReplaceNodes(books);
 
 				//logger.WriteLine(root.ToString());
-				manager.UpdateHierarchy(root);
+				one.UpdateHierarchy(root);
 			}
 
 			logger.WriteTime(nameof(SortNotebooks));

@@ -185,12 +185,12 @@ namespace River.OneMoreAddIn
 
 		public void NumberPagesCmd(IRibbonControl control)
 		{
-			factory.GetCommand<NumberPagesCommand>().Execute();
+			factory.Run<NumberPagesCommand>();
 		}
 
 		public void NumberSectionsCmd(IRibbonControl control)
 		{
-			factory.GetCommand<NumberSectionsCommand>().Execute();
+			factory.Run<NumberSectionsCommand>();
 		}
 
 		public void OutlineCmd(IRibbonControl control)
@@ -235,12 +235,12 @@ namespace River.OneMoreAddIn
 
 		public void RemovePageNumbersCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RemovePageNumbersCommand>().Execute();
+			factory.Run<RemovePageNumbersCommand>();
 		}
 
 		public void RemoveSectionNumbersCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RemoveSectionNumbersCommand>().Execute();
+			factory.Run<RemoveSectionNumbersCommand>();
 		}
 
 		public void RemoveSpacingCmd(IRibbonControl control)

@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Dialogs
 {
 	using System;
 	using System.Windows.Forms;
-	using Microsoft.Office.Interop.OneNote;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -61,20 +60,20 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		public HierarchyScope Scope
+		public OneNote.Scope Scope
 		{
 			get
 			{
 				switch (scopeBox.SelectedIndex)
 				{
 					case 0:
-						return HierarchyScope.hsPages;
+						return OneNote.Scope.Pages;
 
 					case 1:
-						return HierarchyScope.hsSections;
+						return OneNote.Scope.Sections;
 
 					default:
-						return HierarchyScope.hsNotebooks;
+						return OneNote.Scope.Notebooks;
 				}
 			}
 		}

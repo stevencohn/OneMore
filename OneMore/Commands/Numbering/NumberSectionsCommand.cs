@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -13,7 +12,6 @@ namespace River.OneMoreAddIn
 	internal class NumberSectionsCommand : Command
 	{
 		private Regex pattern;
-		private XNamespace ns;
 
 
 		public NumberSectionsCommand()
@@ -21,30 +19,25 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var notebooks = manager.GetHierarchy(HierarchyScope.hsSections);
-				ns = notebooks.GetNamespaceOfPrefix("one");
-
-				var notebook = notebooks.Elements(ns + "Notebook")
-					.FirstOrDefault(e => e.Attribute("isCurrentlyViewed") != null);
-
+				var notebook = one.GetNotebook();
 				if (notebook != null)
 				{
 					pattern = new Regex(@"^(\(\d+\)\s).+");
 
-					if (ApplyNumbering(notebook) > 0)
+					if (ApplyNumbering(notebook, one.GetNamespace(notebook)) > 0)
 					{
-						manager.UpdateHierarchy(notebook);
+						one.UpdateHierarchy(notebook);
 					}
 				}
 			}
 		}
 
 
-		private int ApplyNumbering(XElement root)
+		private int ApplyNumbering(XElement root, XNamespace ns)
 		{
 			var sections = root.Elements(ns + "Section").ToList();
 
@@ -79,7 +72,7 @@ namespace River.OneMoreAddIn
 
 			foreach (var group in groups)
 			{
-				count += ApplyNumbering(group);
+				count += ApplyNumbering(group, ns);
 			}
 
 			return count;

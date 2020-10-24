@@ -160,15 +160,25 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets the XML describing the current notebook's page hierarchy
+		/// Gets the current notebook with a hierarchy of sections
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A Notebook element with Section children</returns>
 		public XElement GetNotebook()
 		{
-			string id = onenote.Windows.CurrentWindow?.CurrentNotebookId;
+			return GetNotebook(onenote.Windows.CurrentWindow?.CurrentNotebookId);
+		}
+
+
+		/// <summary>
+		/// Get the spcified notebook with a hierarchy of sections
+		/// </summary>
+		/// <param name="id">The ID of the notebook</param>
+		/// <returns>A Notebook element with Section children</returns>
+		public XElement GetNotebook(string id)
+		{
 			if (!string.IsNullOrEmpty(id))
 			{
-				onenote.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
+				onenote.GetHierarchy(id, HierarchyScope.hsSections, out var xml);
 				if (!string.IsNullOrEmpty(xml))
 				{
 					return XElement.Parse(xml);
@@ -180,10 +190,27 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets a root note containing Notebook elements
+		/// </summary>
+		/// <returns>A Notebooks element with Notebook children</returns>
+		public XElement GetNotebooks()
+		{
+			// find the ID of the current notebook
+			onenote.GetHierarchy(string.Empty, HierarchyScope.hsNotebooks, out var xml, XMLSchema.xs2013);
+			if (!string.IsNullOrEmpty(xml))
+			{
+				return XElement.Parse(xml);
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
 		/// Gets the current page.
 		/// </summary>
 		/// <param name="info">The desired verbosity of the XML</param>
-		/// <returns></returns>
+		/// <returns>A Page containing the root XML of the page</returns>
 		public Page GetPage(PageInfo info = PageInfo.Selection)
 		{
 			return GetPage(onenote.Windows.CurrentWindow?.CurrentPageId, info);
@@ -195,7 +222,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="pageId">The unique ID of the page</param>
 		/// <param name="info">The desired verbosity of the XML</param>
-		/// <returns></returns>
+		/// <returns>A Page containing the root XML of the page</returns>
 		public Page GetPage(string pageId, PageInfo info = PageInfo.All)
 		{
 			if (string.IsNullOrEmpty(pageId))
@@ -216,15 +243,26 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Gest the current section and its child page hierarchy
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A Section element with Page children</returns>
 		public XElement GetSection()
 		{
-			var id = onenote.Windows.CurrentWindow?.CurrentSectionId;
+			return GetSection(onenote.Windows.CurrentWindow?.CurrentSectionId);
+		}
 
-			onenote.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
-			if (!string.IsNullOrEmpty(xml))
+
+		/// <summary>
+		/// Gest the specified section and its child page hierarchy
+		/// </summary>
+		/// <returns>A Section element with Page children</returns>
+		public XElement GetSection(string id)
+		{
+			if (!string.IsNullOrEmpty(id))
 			{
-				return XElement.Parse(xml);
+				onenote.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
+				if (!string.IsNullOrEmpty(xml))
+				{
+					return XElement.Parse(xml);
+				}
 			}
 
 			return null;

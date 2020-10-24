@@ -24,16 +24,16 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			logger.StartClock();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var section = manager.CurrentSection();
+				var section = one.GetSection();
 				if (section != null)
 				{
-					var ns = section.GetNamespaceOfPrefix("one");
+					var ns = one.GetNamespace(section);
 
 					var pageIds = section.Elements(ns + "Page")
 						.Select(e => e.Attribute("ID").Value)
@@ -46,8 +46,8 @@ namespace River.OneMoreAddIn
 
 						foreach (var pageId in pageIds)
 						{
-							var page = manager.GetPage(pageId, Microsoft.Office.Interop.OneNote.PageInfo.piBasic);
-							var name = page.Attribute("name").Value;
+							var page = one.GetPage(pageId, OneNote.PageInfo.Basic);
+							var name = page.Root.Attribute("name").Value;
 							
 							progress.SetMessage(string.Format(
 								Properties.Resources.RemovingPageNumber_Message, name));
@@ -61,12 +61,13 @@ namespace River.OneMoreAddIn
 
 							if (RemoveNumbering(name, out string clean))
 							{
-								page.Element(ns + "Title")
+								page.Root
+									.Element(ns + "Title")
 									.Element(ns + "OE")
 									.Element(ns + "T")
 									.GetCData().Value = clean;
 
-								manager.UpdatePageContent(page);
+								one.Update(page);
 							}
 						}
 					}
