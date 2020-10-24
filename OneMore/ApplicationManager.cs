@@ -7,7 +7,6 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
-	using Microsoft.Win32;
 	using System;
 	using System.IO;
 	using System.Xml.Linq;
@@ -314,38 +313,6 @@ namespace River.OneMoreAddIn
 				logger.WriteLine(element.ToString());
 				logger.WriteLine();
 			}
-		}
-
-
-		/// <summary>
-		/// Determines if Office is set to Black color theme.
-		/// </summary>
-		/// <returns>True if Black theme is set; otherwise false</returns>
-		public static bool OfficeSetToBlackTheme()
-		{
-			var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Office\16.0\Common");
-			if (key != null)
-			{
-				var theme = key.GetValue("UI Theme") as Int32?;
-				if (theme == null)
-				{
-					theme = key.GetValue("Theme") as Int32?;
-				}
-
-				if (theme != null)
-				{
-					/*
-					Colorful   0
-					Dark Gray  3
-					Black      4
-					White      5
-					*/
-
-					return theme == 4;
-				}
-			}
-
-			return false;
 		}
 	}
 }

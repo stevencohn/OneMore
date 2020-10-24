@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
@@ -301,7 +302,7 @@ namespace River.OneMoreAddIn.Models
 		/// <returns></returns>
 		public Color GetPageColor(out bool automatic, out bool black)
 		{
-			black = ApplicationManager.OfficeSetToBlackTheme();
+			black = Office.IsBlackThemeEnabled();
 
 			var color = Root.Element(Namespace + "PageSettings").Attribute("color")?.Value;
 			if (string.IsNullOrEmpty(color) || color == "automatic")
@@ -318,7 +319,7 @@ namespace River.OneMoreAddIn.Models
 			}
 			catch
 			{
-				return ApplicationManager.OfficeSetToBlackTheme() ? Color.Black : Color.White;
+				return black ? Color.Black : Color.White;
 			}
 		}
 

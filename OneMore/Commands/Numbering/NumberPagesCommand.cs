@@ -55,6 +55,8 @@ namespace River.OneMoreAddIn
 
 						if (pages?.Count > 0)
 						{
+							logger.StartClock();
+
 							var index = 0;
 
 							if (dialog.CleanupNumbering)
@@ -73,6 +75,9 @@ namespace River.OneMoreAddIn
 
 								progress.Close();
 							}
+
+							logger.StopClock();
+							logger.WriteTime("numbered pages");
 						}
 					}
 				}

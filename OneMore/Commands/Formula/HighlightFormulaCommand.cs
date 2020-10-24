@@ -20,6 +20,9 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
+			logger.Start($"{nameof(HighlightFormulaCommand)}.Execute()");
+			logger.StartClock();
+
 			using (var manager = new ApplicationManager())
 			{
 				var page = new Page(manager.CurrentPage());
@@ -59,6 +62,9 @@ namespace River.OneMoreAddIn
 					UIHelper.ShowInfo(Resx.HighlightFormulaCommand_NoFormulas);
 				}
 			}
+
+			logger.WriteTime("highlight");
+			logger.End();
 		}
 	}
 }

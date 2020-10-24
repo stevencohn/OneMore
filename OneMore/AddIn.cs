@@ -150,7 +150,7 @@ namespace River.OneMoreAddIn
 		public void OnBeginShutdown(ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OnBeginShutdown({count})");
+			logger.Start($"OnBeginShutdown({count})");
 
 			try
 			{

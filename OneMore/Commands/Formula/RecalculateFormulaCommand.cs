@@ -21,6 +21,9 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
+			logger.Start($"{nameof(RecalculateFormulaCommand)}.Execute()");
+			logger.StartClock();
+
 			using (var manager = new ApplicationManager())
 			{
 				var page = new Page(manager.CurrentPage());
@@ -35,6 +38,8 @@ namespace River.OneMoreAddIn
 					// now move back up to the Table
 					.Select(e => e.FirstAncestor(ns + "Table"))
 					.FirstOrDefault();
+
+				var updated = false;
 
 				if (element != null)
 				{
@@ -52,13 +57,18 @@ namespace River.OneMoreAddIn
 						processor.Execute(cells.ToList());
 
 						manager.UpdatePageContent(page.Root);
-
-						return;
+						updated = true;
 					}
 				}
 
-				UIHelper.ShowInfo(Resx.RecalculateFormulaCommand_NoFormula);
+				if (!updated)
+				{
+					UIHelper.ShowInfo(Resx.RecalculateFormulaCommand_NoFormula);
+				}
 			}
+
+			logger.WriteTime("recalcution");
+			logger.End();
 		}
 	}
 }

@@ -26,6 +26,8 @@ namespace River.OneMoreAddIn
 
 		public void Execute()
 		{
+			logger.StartClock();
+
 			using (var manager = new ApplicationManager())
 			{
 				var section = manager.CurrentSection();
@@ -70,6 +72,9 @@ namespace River.OneMoreAddIn
 					}
 				}
 			}
+
+			logger.StopClock();
+			logger.WriteTime("removed page numbering");
 		}
 
 		public bool RemoveNumbering(string name, out string clean)
