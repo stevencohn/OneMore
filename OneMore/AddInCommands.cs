@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn
 
 		public void AddFootnoteCmd(IRibbonControl control)
 		{
-			factory.GetCommand<AddFootnoteCommand>().Execute();
+			factory.Run<AddFootnoteCommand>();
 		}
 
 		public void AddFormulaCmd(IRibbonControl control)
@@ -230,7 +230,7 @@ namespace River.OneMoreAddIn
 
 		public void RemoveFootnoteCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RemoveFootnoteCommand>().Execute();
+			factory.Run<RemoveFootnoteCommand>();
 		}
 
 		public void RemovePageNumbersCmd(IRibbonControl control)

@@ -4,29 +4,20 @@
 
 namespace River.OneMoreAddIn
 {
-	using System;
-
 
 	internal class AddFootnoteCommand : Command
 	{
 
-		public AddFootnoteCommand() : base()
+		public AddFootnoteCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			using (var one = new OneNote())
 			{
-				using (var manager = new ApplicationManager())
-				{
-					new FootnoteEditor(manager).AddFootnote();
-				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(AddFootnoteCommand)}", exc);
+				new FootnoteEditor(one).AddFootnote();
 			}
 		}
 	}

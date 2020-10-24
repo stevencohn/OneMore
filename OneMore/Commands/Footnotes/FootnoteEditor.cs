@@ -14,11 +14,11 @@ namespace River.OneMoreAddIn
 
 	internal class FootnoteEditor
 	{
-		private readonly ApplicationManager manager;
+		private readonly OneNote one;
 		private readonly ILogger logger;
 		private readonly bool dark;
 
-		private XElement page;
+		private Page page;
 		private XNamespace ns;
 
 		private XElement divider;
@@ -27,15 +27,15 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Initialize a new instance of the editor with the given manager
 		/// </summary>
-		/// <param name="manager">The OneNote application manager (abstraction)</param>
-		public FootnoteEditor(ApplicationManager manager)
+		/// <param name="one">The OneNote application manager (abstraction)</param>
+		public FootnoteEditor(OneNote one)
 		{
-			this.manager = manager;
+			this.one = one;
 
-			page = manager.CurrentPage();
-			ns = page.GetNamespaceOfPrefix("one");
+			page = one.GetPage();
+			ns = page.Namespace;
 
-			dark = new Page(page).GetPageColor(out _, out _).GetBrightness() < 0.5;
+			dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 
 			logger = Logger.Current;
 		}
@@ -47,14 +47,14 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public void AddFootnote()
 		{
-			var element = page.Elements(ns + "Outline")
+			var element = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "T")
 				.LastOrDefault(e => e.Attribute("selected")?.Value == "all");
 
 			if (element == null)
 			{
-				element = page.Elements(ns + "Outline").LastOrDefault();
+				element = page.Root.Elements(ns + "Outline").LastOrDefault();
 			}
 
 			if (element == null)
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn
 			{
 				RefreshLabels();
 
-				manager.UpdatePageContent(page);
+				one.Update(page);
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn
 		*/
 		private bool EnsureFootnoteFooter()
 		{
-			divider = page.Elements(ns + "Outline")
+			divider = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "Meta")
 				.FirstOrDefault(e =>
@@ -111,9 +111,9 @@ namespace River.OneMoreAddIn
 
 			var line = string.Concat(Enumerable.Repeat("- ", 50));
 
-			new Page(page).EnsurePageWidth(line, "Courier New", 10f, manager.WindowHandle);
+			page.EnsurePageWidth(line, "Courier New", 10f, one.WindowHandle);
 
-			var content = page.Elements(ns + "Outline")
+			var content = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Elements(ns + "OEChildren")
 				.FirstOrDefault();
@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn
 			</one:OE>
 			*/
 
-			manager.Application.GetHyperlinkToObject(page.Attribute("ID").Value, textId, out var link);
+			var link = one.GetHyperlink(page.PageId, textId);
 
 			var color = dark ? ";color:#5B9BD5" : string.Empty;
 
@@ -225,11 +225,11 @@ namespace River.OneMoreAddIn
 			last.AddAfterSelf(note);
 
 			// update the page so OneNote will generate a new objectID
-			manager.UpdatePageContent(page);
+			one.Update(page);
 
 			// reload the page and reset state variables...
-			page = manager.CurrentPage();
-			ns = page.GetNamespaceOfPrefix("one");
+			page = one.GetPage();
+			ns = page.Namespace;
 
 			_ = EnsureFootnoteFooter();
 
@@ -240,7 +240,7 @@ namespace River.OneMoreAddIn
 		private bool WriteFootnoteRef(string label)
 		{
 			// find the new footer by its label and get its new objectID
-			var noteId = page.Descendants(ns + "Meta")
+			var noteId = page.Root.Descendants(ns + "Meta")
 				.Where(e =>
 					e.Attribute("name").Value.Equals("omfootnote") &&
 					e.Attribute("content").Value.Equals(label))
@@ -252,7 +252,7 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			manager.Application.GetHyperlinkToObject(page.Attribute("ID").Value, noteId, out var link);
+			var link = one.GetHyperlink(page.PageId, noteId);
 
 			// <a href="...">
 			//  <span style='vertical-align:super'>[1]</span>
@@ -273,7 +273,7 @@ namespace River.OneMoreAddIn
 			}
 
 			// find the element in the new page instance of XML
-			var element = page.Elements(ns + "Outline")
+			var element = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "T")
 				.LastOrDefault(e => e.Attribute("selected")?.Value == "all");
@@ -312,7 +312,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		private void RefreshLabels()
 		{
-			var refs = FindSelectedReferences(page.Descendants(ns + "T"), true);
+			var refs = FindSelectedReferences(page.Root.Descendants(ns + "T"), true);
 
 			if (refs?.Any() != true)
 			{
@@ -321,7 +321,7 @@ namespace River.OneMoreAddIn
 			}
 
 			// find all footnotes
-			var notes = page.Descendants(ns + "Meta")
+			var notes = page.Root.Descendants(ns + "Meta")
 				.Where(e => e.Attribute("name").Value.Equals("omfootnote"))
 				.Select(e => new
 				{
@@ -464,7 +464,7 @@ namespace River.OneMoreAddIn
 		public void RemoveFootnote()
 		{
 			// find all selected paragraph
-			var elements = page.Elements(ns + "Outline")
+			var elements = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "T")
 				.Where(e => e.Attribute("selected")?.Value == "all");
@@ -499,7 +499,7 @@ namespace River.OneMoreAddIn
 					parent.Remove();
 
 					// associated reference
-					var nref = page.Elements(ns + "Outline")
+					var nref = page.Root.Elements(ns + "Outline")
 						.Where(e => e.Attributes("selected").Any())
 						.DescendantNodes()
 						.OfType<XCData>()
@@ -519,7 +519,7 @@ namespace River.OneMoreAddIn
 					RemoveReference(selection.CData, selection.Label);
 
 					// associated footnote
-					var note = page.Descendants(ns + "Meta")
+					var note = page.Root.Descendants(ns + "Meta")
 						.Where(e =>
 							e.Attribute("name").Value.Equals("omfootnote") &&
 							e.Attribute("content").Value.Equals(selection.Label.ToString()))
@@ -565,7 +565,7 @@ namespace River.OneMoreAddIn
 				divider.Remove();
 			}
 
-			manager.UpdatePageContent(page);
+			one.Update(page);
 		}
 
 

@@ -4,29 +4,20 @@
 
 namespace River.OneMoreAddIn
 {
-	using System;
-
 
 	internal class RemoveFootnoteCommand : Command
 	{
 
-		public RemoveFootnoteCommand() : base()
+		public RemoveFootnoteCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			using (var one = new OneNote())
 			{
-				using (var manager = new ApplicationManager())
-				{
-					new FootnoteEditor(manager).RemoveFootnote();
-				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"Error executing {nameof(RemoveFootnoteCommand)}", exc);
+				new FootnoteEditor(one).RemoveFootnote();
 			}
 		}
 	}
