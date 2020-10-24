@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
@@ -19,55 +18,39 @@ namespace River.OneMoreAddIn
 	internal class SaveAsCommand : Command
 	{
 
-		public enum ExportFormat
-		{
-			HTML = PublishFormat.pfHTML,
-			PDF = PublishFormat.pfPDF,
-			Word = PublishFormat.pfWord,
-			XML = 100
-		}
-
-
 		public SaveAsCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			try
+			using (var one = new OneNote())
 			{
-				using (var manager = new ApplicationManager())
-				{
-					var section = manager.CurrentSection();
-					var ns = section.GetNamespaceOfPrefix("one");
-					var pageIDs = section.Elements(ns + "Page")
-						.Where(e => e.Attribute("selected")?.Value == "all")
-						.Select(e => e.Attribute("ID").Value)
-						.ToList();
+				var section = one.GetSection();
+				var ns = one.GetNamespace(section);
 
-					if (pageIDs.Count > 1)
-					{
-						ExportMany(manager, pageIDs);
-					}
-					else
-					{
-						var page = new Page(manager.CurrentPage());
-						ExportOne(manager, page);
-					}
+				var pageIDs = section.Elements(ns + "Page")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.Select(e => e.Attribute("ID").Value)
+					.ToList();
+
+				if (pageIDs.Count > 1)
+				{
+					ExportMany(one, pageIDs);
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("Error saving page(s)", exc);
-				UIHelper.ShowError("Error exporting page(s). See log file for more information.");
+				else
+				{
+					var page = one.GetPage();
+					ExportOne(one, page);
+				}
 			}
 		}
 
 
-		private void ExportMany(ApplicationManager manager, List<string> pageIDs)
+		private void ExportMany(OneNote one, List<string> pageIDs)
 		{
-			ExportFormat format;
+			OneNote.ExportFormat format;
 			string path;
 
 			using (var dialog = new ExportDialog(pageIDs.Count))
@@ -84,10 +67,10 @@ namespace River.OneMoreAddIn
 			string ext = null;
 			switch (format)
 			{
-				case ExportFormat.HTML: ext = ".htm"; break;
-				case ExportFormat.PDF: ext = ".pdf"; break;
-				case ExportFormat.Word: ext = ".docx"; break;
-				case ExportFormat.XML: ext = ".xml"; break;
+				case OneNote.ExportFormat.HTML: ext = ".htm"; break;
+				case OneNote.ExportFormat.PDF: ext = ".pdf"; break;
+				case OneNote.ExportFormat.Word: ext = ".docx"; break;
+				case OneNote.ExportFormat.XML: ext = ".xml"; break;
 			}
 
 			string formatName = format.ToString();
@@ -99,19 +82,19 @@ namespace River.OneMoreAddIn
 
 				foreach (var pageID in pageIDs)
 				{
-					var page = new Page(manager.GetPage(pageID));
+					var page = one.GetPage(pageID);
 					var filename = Path.Combine(path, page.PageName.Replace(' ', '_') + ext);
 
 					progress.SetMessage(filename);
 					progress.Increment();
 
-					if (format == ExportFormat.XML)
+					if (format == OneNote.ExportFormat.XML)
 					{
 						SaveAsXML(page.Root, filename);
 					}
 					else
 					{
-						SaveAs(manager, page.PageId, filename, (PublishFormat)format, formatName);
+						SaveAs(one, page.PageId, filename, format, formatName);
 					}
 				}
 			}
@@ -120,7 +103,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void ExportOne(ApplicationManager manager, Page page)
+		private void ExportOne(OneNote one, Page page)
 		{
 			var filename = page.PageName.Replace(' ', '_');
 
@@ -141,7 +124,7 @@ namespace River.OneMoreAddIn
 				filename = dialog.FileName;
 			}
 
-			ExportFormat format = ExportFormat.XML;
+			var format = OneNote.ExportFormat.XML;
 			var ext = Path.GetExtension(filename).ToLower();
 
 			if (ext == ".xml")
@@ -153,24 +136,24 @@ namespace River.OneMoreAddIn
 
 			switch (ext)
 			{
-				case ".htm": format = ExportFormat.HTML; break;
-				case ".pdf": format = ExportFormat.PDF; break;
-				case ".docx": format = ExportFormat.Word; break;
-				case ".xml": format = ExportFormat.XML; break;
+				case ".htm": format = OneNote.ExportFormat.HTML; break;
+				case ".pdf": format = OneNote.ExportFormat.PDF; break;
+				case ".docx": format = OneNote.ExportFormat.Word; break;
+				case ".xml": format = OneNote.ExportFormat.XML; break;
 
 				default:
 					UIHelper.ShowError(Resx.SaveAs_Invalid_Type);
 					break;
 			}
 
-			SaveAs(manager, page.PageId, filename, (PublishFormat)format, format.ToString());
+			SaveAs(one, page.PageId, filename, format, format.ToString());
 			UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
 		}
 
 
 		private void SaveAs(
-			ApplicationManager manager, string pageId, string filename,
-			PublishFormat format, string formatName)
+			OneNote one, string pageId, string filename,
+			OneNote.ExportFormat format, string formatName)
 		{
 			logger.WriteLine($"publishing page {pageId} to {filename}");
 
@@ -181,7 +164,7 @@ namespace River.OneMoreAddIn
 					File.Delete(filename);
 				}
 
-				manager.Application.Publish(pageId, filename, format, string.Empty);
+				one.Publish(pageId, filename, format);
 			}
 			catch (Exception exc)
 			{

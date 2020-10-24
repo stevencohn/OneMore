@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn
 		/// prefaced with a ".." preamble to indent related log entries
 		/// </summary>
 		/// <param name="message"></param>
-		void Start(string message);
+		void Start(string message = null);
 
 
 		/// <summary>

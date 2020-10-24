@@ -4,51 +4,40 @@
 
 namespace River.OneMoreAddIn
 {
-	using System.Linq;
 	using System.Xml.Linq;
 
 
 	internal class NoSpellCheckCommand : Command
 	{
-		public NoSpellCheckCommand ()
+		public NoSpellCheckCommand()
 		{
 		}
 
 
-		public void Execute ()
+		public override void Execute(params object[] args)
 		{
-			logger.WriteLine("NoSpellCheckCommand.Execute()");
+			logger.StartClock();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = manager.CurrentPage();
 				if (page != null)
 				{
-					var ns = page.GetNamespaceOfPrefix("one");
-
 					// remove all occurances of the "lang=" attribute across the entire page
 
-					var list =
-						from e in page.DescendantsAndSelf()
-						where e.Attributes().Any(a => a.Name.LocalName.ToLower().Equals("lang"))
-						select e;
-
-					if (list?.Count() > 0)
-					{
-						foreach (var e in list)
-						{
-							e.Attribute("lang").Remove();
-						}
-					}
+					page.Root.DescendantsAndSelf()
+						.Attributes("lang")
+						.Remove();
 
 					// set lang=yo for the page and the page title
 
-					page.Add(new XAttribute("lang", "yo"));
-					page.Element(ns + "Title")?.Add(new XAttribute("lang", "yo"));
+					page.Root.Add(new XAttribute("lang", "yo"));
+					page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", "yo"));
 
-					manager.UpdatePageContent(page);
+					one.Update(page);
 				}
 			}
+
+			logger.WriteTime("language reset");
 		}
 	}
 }

@@ -4,49 +4,15 @@
 
 namespace River.OneMoreAddIn
 {
+	using Microsoft.Office.Core;
 	using System;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
-	using Microsoft.Office.Core;
 
 
-	// commands are injected with logger, ribbon, and the tash collector...
-
-
-	public interface ICommand
-	{
-	}
-
-
-	internal abstract class Command : ICommand
-	{
-		protected ILogger logger;
-		protected IRibbonUI ribbon;
-		protected IWin32Window owner;
-		protected List<IDisposable> trash;
-
-		public void SetLogger(ILogger value)
-		{
-			logger = value;
-		}
-
-		public void SetRibbon(IRibbonUI value)
-		{
-			ribbon = value;
-		}
-
-		public void SetOwner(IWin32Window value)
-		{
-			owner = value;
-		}
-
-		public void SetTrash(List<IDisposable> value)
-		{
-			trash = value;
-		}
-	}
-
-
+	/// <summary>
+	/// Instantiates and runs OneMore commands
+	/// </summary>
 	internal class CommandFactory
 	{
 		private readonly ILogger logger;
@@ -54,6 +20,14 @@ namespace River.OneMoreAddIn
 		private readonly IWin32Window owner;
 		private readonly List<IDisposable> trash;
 
+
+		/// <summary>
+		/// Initialize a new factory with the given services
+		/// </summary>
+		/// <param name="logger">The logger</param>
+		/// <param name="ribbon">The OneNote ribbon</param>
+		/// <param name="trash">A colleciton of IDisposables for cleanup on shutdown</param>
+		/// <param name="owner">The owner window</param>
 		public CommandFactory(ILogger logger, IRibbonUI ribbon, List<IDisposable> trash, IWin32Window owner)
 		{
 			this.logger = logger;
@@ -62,6 +36,9 @@ namespace River.OneMoreAddIn
 			this.trash = trash;
 		}
 
+
+		// TODO: obsolete
+		[Obsolete("Remove this")]
 		public T GetCommand<T>() where T : Command, new()
 		{
 			var command = new T();
@@ -71,6 +48,43 @@ namespace River.OneMoreAddIn
 			command.SetTrash(trash);
 
 			return command;
+		}
+
+
+		/// <summary>
+		/// Instantiates and executes the specified command with optional arguments.
+		/// Provides catch-all exception handling - logging and a generic message to the user
+		/// </summary>
+		/// <typeparam name="T">The command type</typeparam>
+		/// <param name="args">The argument list</param>
+		public void Run<T>(params object[] args) where T : Command, new()
+		{
+			try
+			{
+				logger.Start($"Running command {typeof(T).Name}");
+
+				var command = new T();
+				command.SetLogger(logger);
+				command.SetRibbon(ribbon);
+				command.SetOwner(owner);
+				command.SetTrash(trash);
+
+				command.Execute(args);
+
+				logger.End();
+			}
+			catch (Exception exc)
+			{
+				// catch-all exception hander
+
+				var msg = $"Error running command {typeof(T).Name}";
+				logger.End();
+				logger.WriteLine(msg);
+				logger.WriteLine(exc);
+				logger.WriteLine();
+
+				UIHelper.ShowError($"{msg}. See log file for detailed");
+			}
 		}
 	}
 }

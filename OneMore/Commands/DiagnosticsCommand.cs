@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			var builder = new StringBuilder();
 			builder.AppendLine("Diagnostics.Execute()");

@@ -13,11 +13,10 @@ namespace River.OneMoreAddIn
 	{
 		public ClearLogCommand()
 		{
-			logger = River.OneMoreAddIn.Logger.Current;
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			if (File.Exists(logger.LogPath))
 			{

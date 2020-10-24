@@ -38,12 +38,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns, OneNote.PageInfo.All))
 			{
-				var page = new Page(manager.CurrentPage(Microsoft.Office.Interop.OneNote.PageInfo.piAll));
-
 				if (!PromptForPlugin(page.PageName) || string.IsNullOrEmpty(command))
 				{
 					return;
@@ -85,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
-					if (!Validated(root))
+					if (!Validated(root, one.GetNamespace(root)))
 					{
 						UIHelper.ShowInfo(Resx.Plugin_InvalidSchema);
 						return;
@@ -93,11 +91,11 @@ namespace River.OneMoreAddIn.Commands
 
 					if (createNewPage)
 					{
-						CreatePage(manager, root, page);
+						CreatePage(one, root, page);
 					}
 					else
 					{
-						manager.UpdatePageContent(root);
+						one.UpdateContent(root);
 					}
 				}
 				catch (Exception exc)
@@ -272,10 +270,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool Validated(XElement root)
+		private bool Validated(XElement root, XNamespace ns)
 		{
-			var ns = root.GetNamespaceOfPrefix("one");
-
 			var schemas = new XmlSchemaSet();
 			schemas.Add(ns.ToString(), XmlReader.Create(new StringReader(Resx._0336_OneNoteApplication_2013)));
 
@@ -287,17 +283,17 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine($"Schema validation {e.Severity}", e.Exception);
 				valid = false;
 			});
-			
+
 			return valid;
 		}
 
 
-		private void CreatePage(ApplicationManager manager, XElement page, Page parent)
+		private void CreatePage(OneNote one, XElement page, Page parent)
 		{
-			var section = manager.CurrentSection();
+			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
 
-			manager.Application.CreateNewPage(sectionId, out var pageId);
+			one.CreatePage(sectionId, out var pageId);
 
 			// set the page ID to the new page's ID
 			page.Attribute("ID").Value = pageId;
@@ -308,12 +304,12 @@ namespace River.OneMoreAddIn.Commands
 			// remove all objectID values and let OneNote generate new IDs
 			page.Descendants().Attributes("objectID").Remove();
 
-			manager.UpdatePageContent(page);
+			one.UpdateContent(page);
 
 			if (asChildPage)
 			{
 				// get current section again after new page is created
-				section = manager.CurrentSection();
+				section = one.GetSection();
 
 				var parentElement = section.Elements(parent.Namespace + "Page")
 					.FirstOrDefault(e => e.Attribute("ID").Value == parent.PageId);
@@ -331,10 +327,10 @@ namespace River.OneMoreAddIn.Commands
 				var level = int.Parse(parentElement.Attribute("pageLevel").Value);
 				childElement.Attribute("pageLevel").Value = (level + 1).ToString();
 
-				manager.UpdateHierarchy(section);
+				one.UpdateHierarchy(section);
 			}
 
-			manager.Application.NavigateTo(pageId);
+			one.NavigateTo(pageId);
 		}
 
 

@@ -23,15 +23,13 @@ namespace River.OneMoreAddIn
 		};
 
 
-		public SortCommand() : base()
+		public SortCommand()
 		{
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
-			logger.Start("SortCommand.Execute()");
-
 			HierarchyScope scope;
 			SortDialog.Sortings sorting;
 			SortDialog.Directions direction;
@@ -73,8 +71,6 @@ namespace River.OneMoreAddIn
 			{
 				logger.WriteLine("ERROR sorting", exc);
 			}
-
-			logger.End();
 		}
 
 		/*

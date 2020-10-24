@@ -114,6 +114,7 @@
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\ClearLogCommand.cs" />
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Extras\WordCountCommand.cs" />
     <Compile Include="Commands\Extras\TextToTableCommand.cs" />
     <Compile Include="Commands\Formula\Calculator.cs" />
@@ -374,6 +375,7 @@
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TableCell.cs" />
     <Compile Include="Models\TableRow.cs" />
+    <Compile Include="OneNote.cs" />
     <Compile Include="Styles\GraphicStyle.cs" />
     <Compile Include="Styles\QuickStyleDef.cs" />
     <Compile Include="Styles\StandardStyles.cs" />

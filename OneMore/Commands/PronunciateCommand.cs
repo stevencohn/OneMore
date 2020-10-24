@@ -45,14 +45,11 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public async void Execute()
+		public override async void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = manager.CurrentPage();
-				var ns = page.GetNamespaceOfPrefix("one");
-
-				var element = page.Descendants(ns + "T")
+				var element = page.Root.Descendants(ns + "T")
 					.FirstOrDefault(e =>
 						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
 						e.FirstNode.NodeType == XmlNodeType.CDATA &&
@@ -105,7 +102,7 @@ namespace River.OneMoreAddIn
 							new XCData($"<span style='color:#8496B0'>{ruby}</span>"))
 						);
 
-					manager.UpdatePageContent(page);
+					one.Update(page);
 				}
 			}
 		}

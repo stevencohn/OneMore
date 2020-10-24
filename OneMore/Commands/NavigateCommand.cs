@@ -9,31 +9,34 @@ namespace River.OneMoreAddIn
 
 	internal class NavigateCommand : Command
 	{
-		public NavigateCommand() : base()
+		public NavigateCommand()
 		{
 		}
 
 
-		public void Execute(string pageTag)
+		public override void Execute(params object[] args)
 		{
+			var pageTag = (string)args[0];
+
 			int retry = 0;
 			while (retry < 4)
 			{
 				try
 				{
-					using (var manager = new ApplicationManager())
+					using (var one = new OneNote())
 					{
-						manager.NavigateTo(pageTag);
+						one.NavigateTo(pageTag);
 					}
 
 					retry = int.MaxValue;
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"Error navigating to {pageTag}", exc);
-
 					retry++;
-					System.Threading.Thread.Sleep(250 * retry);
+					var ms = 250 * retry;
+
+					logger.WriteLine($"ERROR navigating to {pageTag}, retyring in {ms}ms", exc);
+					System.Threading.Thread.Sleep(ms);
 				}
 			}
 		}

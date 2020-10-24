@@ -60,11 +60,11 @@ namespace River.OneMoreAddIn
 				Keys.X, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<DiagnosticsCommand>().Execute(),
+				factory.Run<DiagnosticsCommand>(),
 				Keys.F8);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ClearLogCommand>().Execute(),
+				factory.Run<ClearLogCommand>(),
 				Keys.F8, Hotmods.Control);
 
 			// custom styles, CtrlAltShift+1..9

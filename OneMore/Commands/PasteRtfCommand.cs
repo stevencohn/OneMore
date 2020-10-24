@@ -21,43 +21,26 @@ namespace River.OneMoreAddIn
 	using OM = River.OneMoreAddIn.Models;
 
 
-	internal class PasteRtfCommand : Command
-	{
-		private const double DeltaSize = 0.75;
+	/*
+	using Microsoft.Office.Interop.OneNote;
+	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.Models;
+	using System.Linq;
+	using System.Xml.Linq;
 
-		private const char Space = '\u00a0'; // Unicode no-break space
-		private const char Zpace = '\uFEFF'; // Unicdoe zero-width no-break space
-		private readonly bool black;
-		private bool zindents;
-
-
-		public PasteRtfCommand() : base()
-		{
-			using (var manager = new ApplicationManager())
+			if (Office.IsWordInstalled())
 			{
-				_ = new Models.Page(manager.CurrentPage()).GetPageColor(out _, out black);
-			}
-		}
-
-
-		public void Execute()
-		{
-			try
-			{
-				logger.WriteLine("PasteRtfCommand()");
-
-				// transform RTF and Xaml data on clipboard to HTML
-
-				var html = PrepareClipboard();
-#if H
-				if (html != null)
+				using (var word = new Word())
 				{
-					// TODO: find and replace selected region
+					//var html = word.ConvertFileToHtml(@"C:\users\steven\downloads\foo.docx");
+					var html = word.ConvertClipboardToHtml();
+
+					logger.WriteLine(html);
 
 					logger.WriteLine("Adding HTML blcok");
 					using (var manager = new ApplicationManager())
 					{
-						var page = new OM.Page(manager.CurrentPage(PageInfo.piBasic));
+						var page = new Page(manager.CurrentPage(PageInfo.piBasic));
 						var ns = page.Namespace;
 
 						var outline = page.Root.Elements(ns + "Outline").Elements(ns + "OEChildren").FirstOrDefault();
@@ -70,21 +53,64 @@ namespace River.OneMoreAddIn
 						return;
 					}
 				}
-#endif
-				// paste what's remaining from clipboard, letting OneNote do the
-				// heavy lifting of converting the HTML into one:xml schema
+			}
+	*/
 
+	internal class PasteRtfCommand : Command
+	{
+		private const double DeltaSize = 0.75;
+
+		private const char Space = '\u00a0'; // Unicode no-break space
+		private const char Zpace = '\uFEFF'; // Unicdoe zero-width no-break space
+		private readonly bool black;
+		private bool zindents;
+
+
+		public PasteRtfCommand()
+		{
+			using (var manager = new ApplicationManager())
+			{
+				_ = new Models.Page(manager.CurrentPage()).GetPageColor(out _, out black);
+			}
+		}
+
+
+		public void Execute()
+		{
+			// transform RTF and Xaml data on clipboard to HTML
+
+			var html = PrepareClipboard();
+#if H
+			if (html != null)
+			{
+				// TODO: find and replace selected region
+
+				logger.WriteLine("Adding HTML blcok");
 				using (var manager = new ApplicationManager())
 				{
-					// since the Hotkey message loop is watching all input, explicitly setting
-					// focus on the OneNote main window provides a direct path for SendKeys
-					Native.SetForegroundWindow(manager.WindowHandle);
-					System.Windows.Forms.SendKeys.SendWait("^(v)");
+					var page = new OM.Page(manager.CurrentPage(PageInfo.piBasic));
+					var ns = page.Namespace;
+
+					var outline = page.Root.Elements(ns + "Outline").Elements(ns + "OEChildren").FirstOrDefault();
+
+					outline.Add(new XElement(ns + "HTMLBlock",
+						new XElement(ns + "Data", new XCData(html))
+						));
+
+					manager.UpdatePageContent(page.Root);
+					return;
 				}
 			}
-			catch (Exception exc)
+#endif
+			// paste what's remaining from clipboard, letting OneNote do the
+			// heavy lifting of converting the HTML into one:xml schema
+
+			using (var manager = new ApplicationManager())
 			{
-				logger.WriteLine($"Error executing {nameof(PasteRtfCommand)}", exc);
+				// since the Hotkey message loop is watching all input, explicitly setting
+				// focus on the OneNote main window provides a direct path for SendKeys
+				Native.SetForegroundWindow(manager.WindowHandle);
+				System.Windows.Forms.SendKeys.SendWait("^(v)");
 			}
 		}
 

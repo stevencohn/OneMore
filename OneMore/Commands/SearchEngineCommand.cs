@@ -12,21 +12,19 @@ namespace River.OneMoreAddIn
 
 	internal class SearchEngineCommand : Command
 	{
-		public SearchEngineCommand() : base()
+		public SearchEngineCommand()
 		{
 		}
 
 
-		public void Execute(string uri)
+		public override void Execute(params object[] args)
 		{
+			var uri = (string)args[0];
 			var word = new StringBuilder();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = manager.CurrentPage();
-				var ns = page.GetNamespaceOfPrefix("one");
-
-				var cursor = page.Descendants(ns + "T")
+				var cursor = page.Root.Descendants(ns + "T")
 					.FirstOrDefault(e =>
 						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
 						e.FirstNode.NodeType == XmlNodeType.CDATA &&
@@ -47,7 +45,7 @@ namespace River.OneMoreAddIn
 				else
 				{
 					var selections =
-						from e in page.Descendants(ns + "OE").Elements(ns + "T")
+						from e in page.Root.Descendants(ns + "OE").Elements(ns + "T")
 						where e.Attributes("selected").Any(a => a.Value.Equals("all"))
 						select e;
 

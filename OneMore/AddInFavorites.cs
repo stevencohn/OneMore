@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn
 		public void NavigateToFavorite(IRibbonControl control)
 		{
 			//logger.WriteLine($"NavigateToFavorite({control.Tag})");
-			factory.GetCommand<NavigateCommand>().Execute(control.Tag);
+			factory.Run<NavigateCommand>(control.Tag);
 		}
 
 		public void RemoveFavorite(IRibbonControl control)

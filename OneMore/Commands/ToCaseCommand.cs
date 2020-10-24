@@ -12,20 +12,20 @@ namespace River.OneMoreAddIn
 
 	internal class ToCaseCommand : Command
 	{
-		public ToCaseCommand () : base()
+		public ToCaseCommand ()
 		{
 		}
 
 
-		public void Execute (bool upper)
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			bool upper = (bool)args[0];
+
+			using (var one = new OneNote(out var page, out var ns))
 			{
-				var page = manager.CurrentPage();
-				var ns = page.GetNamespaceOfPrefix("one");
 				var updated = false;
 
-				var cursor = page.Descendants(ns + "T")
+				var cursor = page.Root.Descendants(ns + "T")
 					.FirstOrDefault(e =>
 						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
 						e.FirstNode.NodeType == XmlNodeType.CDATA &&
@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn
 				else
 				{
 					var selections =
-						from e in page.Descendants(ns + "OE").Elements(ns + "T")
+						from e in page.Root.Descendants(ns + "OE").Elements(ns + "T")
 						where e.Attributes("selected").Any(a => a.Value.Equals("all"))
 						select e;
 
@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn
 
 				if (updated)
 				{
-					manager.UpdatePageContent(page);
+					one.Update(page);
 				}
 			}
 		}

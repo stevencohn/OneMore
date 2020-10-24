@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
-	using System;
+	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -13,73 +13,63 @@ namespace River.OneMoreAddIn
 
 	internal class AlterSizeCommand : Command
 	{
-		private XElement page;
+		private Page page;
 		private XNamespace ns;
 		private int delta;
 		private bool selected;
 
 
-		public AlterSizeCommand() : base()
+		public AlterSizeCommand()
 		{
 		}
 
 
-		public void Execute(int delta)
+		public override void Execute(params object[] args)
 		{
-			this.delta = delta; // +/-1
+			delta = (int)args[0]; // +/-1
 
-			try
+			using (var one = new OneNote(out page, out ns))
 			{
-				using (var manager = new ApplicationManager())
+				if (page != null)
 				{
-					page = manager.CurrentPage();
-					if (page != null)
+					// determine if range is selected or entire page
+
+					selected = page.Root.Element(ns + "Outline").Descendants(ns + "T")
+						.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
+						.Any(e => e.GetCData().Value.Length > 0);
+
+					var count = 0;
+
+					if (selected)
 					{
-						// determine if range is selected or entire page
+						count += AlterSelections();
+					}
+					else
+					{
+						count += AlterByName();
+						count += AlterElementsByValue();
+						count += AlterCDataByValue();
+					}
 
-						ns = page.GetNamespaceOfPrefix("one");
-
-						selected = page.Element(ns + "Outline").Descendants(ns + "T")
-							.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
-							.Any(e => e.GetCData().Value.Length > 0);
-
-						var count = 0;
-
-						if (selected)
-						{
-							count += AlterSelections();
-						}
-						else
-						{
-							count += AlterByName();
-							count += AlterElementsByValue();
-							count += AlterCDataByValue();
-						}
-
-						if (count > 0)
-						{
-							manager.UpdatePageContent(page);
-						}
+					if (count > 0)
+					{
+						one.Update(page);
 					}
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("Error executing AlterSizeCommand", exc);
 			}
 		}
 
 
 		private int AlterSelections()
 		{
-			var elements = page.Element(ns + "Outline").Descendants(ns + "T")
+			var elements = page.Root.Element(ns + "Outline").Descendants(ns + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value == "all"));
 
 			var count = 0;
 
 			if (!elements.IsNullOrEmpty())
 			{
-				var analyzer = new StyleAnalyzer(page, true);
+				var analyzer = new StyleAnalyzer(page.Root, true);
 
 				foreach (var element in elements)
 				{
@@ -113,7 +103,7 @@ namespace River.OneMoreAddIn
 
 			// find all elements that have an attribute named fontSize, e.g. QuickStyleDef or Bullet
 
-			var elements = page.Descendants()
+			var elements = page.Root.Descendants()
 				.Where(p =>
 					p.Attribute("name")?.Value != "PageTitle" &&
 					p.Attribute("fontSize") != null &&
@@ -145,7 +135,7 @@ namespace River.OneMoreAddIn
 		{
 			int count = 0;
 
-			var elements = page.Descendants()
+			var elements = page.Root.Descendants()
 				.Where(p =>
 					p.Parent.Name.LocalName != "Title" &&
 					p.Attribute("style")?.Value.Contains("font-size:") == true);
@@ -174,7 +164,7 @@ namespace River.OneMoreAddIn
 		{
 			int count = 0;
 
-			var nodes = page.DescendantNodes().OfType<XCData>()
+			var nodes = page.Root.DescendantNodes().OfType<XCData>()
 				.Where(n => n.Value.Contains("font-size:"));
 
 			if (selected && !nodes.IsNullOrEmpty())

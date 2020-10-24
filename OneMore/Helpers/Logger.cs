@@ -161,9 +161,13 @@ namespace River.OneMoreAddIn
 
 
 
-		public void Start(string message)
+		public void Start(string message = null)
 		{
-			WriteLine(message);
+			if (message != null)
+			{
+				WriteLine(message);
+			}
+
 			preamble = "..";
 		}
 

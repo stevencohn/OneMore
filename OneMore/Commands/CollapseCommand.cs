@@ -11,17 +11,17 @@ namespace River.OneMoreAddIn
 
 	internal class CollapseCommand : Command
 	{
-		public CollapseCommand () : base()
+		public CollapseCommand()
 		{
 		}
 
 
-		public void Execute ()
+		public override void Execute(params object[] args)
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var section = manager.CurrentSection();
-				var ns = section.GetNamespaceOfPrefix("one");
+				var section = one.GetSection();
+				var ns = one.GetNamespace(section);
 
 				// find all level 1 pages not collapsed and immediately followed by level 2 page
 
@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn
 						page.Add(new XAttribute("isCollapsed", "true"));
 					}
 
-					manager.UpdateHierarchy(section);
+					one.UpdateHierarchy(section);
 				}
 				else
 				{
@@ -51,6 +51,5 @@ namespace River.OneMoreAddIn
 				}
 			}
 		}
-
 	}
 }

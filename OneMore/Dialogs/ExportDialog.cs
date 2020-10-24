@@ -48,18 +48,18 @@ namespace River.OneMoreAddIn.Dialogs
 		public string FolderPath => pathBox.Text;
 
 
-		public SaveAsCommand.ExportFormat Format
+		public OneNote.ExportFormat Format
 		{
 			get
 			{
 				switch (formatBox.SelectedIndex)
 				{
-					case 0: return SaveAsCommand.ExportFormat.HTML;
-					case 1: return SaveAsCommand.ExportFormat.PDF;
-					case 2: return SaveAsCommand.ExportFormat.Word;
+					case 0: return OneNote.ExportFormat.HTML;
+					case 1: return OneNote.ExportFormat.PDF;
+					case 2: return OneNote.ExportFormat.Word;
 
 					default:
-						return SaveAsCommand.ExportFormat.XML;
+						return OneNote.ExportFormat.XML;
 				}
 			}
 		}

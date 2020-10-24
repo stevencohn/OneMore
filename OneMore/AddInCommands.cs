@@ -4,7 +4,7 @@
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
-#pragma warning disable S1135		// Track uses of "TODO" tags
+#pragma warning disable S1135       // Track uses of "TODO" tags
 
 namespace River.OneMoreAddIn
 {
@@ -12,12 +12,12 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Commands;
 
 
-    public partial class AddIn
+	public partial class AddIn
 	{
 
 		public void AboutCmd(IRibbonControl control)
 		{
-			factory.GetCommand<AboutCommand>().Execute();
+			factory.Run<AboutCommand>();
 		}
 
 		public void AddCaptionCmd(IRibbonControl control)
@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 
 		public void CollapseCmd(IRibbonControl control)
 		{
-			factory.GetCommand<CollapseCommand>().Execute();
+			factory.Run<CollapseCommand>();
 		}
 
 		public void CropImageCmd(IRibbonControl control)
@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn
 
 		public void DecreaseFontSizeCmd(IRibbonControl control)
 		{
-			factory.GetCommand<AlterSizeCommand>().Execute(-1);
+			factory.Run<AlterSizeCommand>(-1);
 		}
 
 		public void DeleteFormulaCmd(IRibbonControl control)
@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn
 
 		public void IncreaseFontSizeCmd(IRibbonControl control)
 		{
-			factory.GetCommand<AlterSizeCommand>().Execute(1);
+			factory.Run<AlterSizeCommand>(1);
 		}
 
 		public void HighlightFormulaCmd(IRibbonControl control)
@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn
 
 		public void NoSpellCheckCmd(IRibbonControl control)
 		{
-			factory.GetCommand<NoSpellCheckCommand>().Execute();
+			factory.Run<NoSpellCheckCommand>();
 		}
 
 		public void NumberPagesCmd(IRibbonControl control)
@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn
 
 		public void PronunciateCmd(IRibbonControl control)
 		{
-			factory.GetCommand<PronunciateCommand>().Execute();
+			factory.Run<PronunciateCommand>();
 		}
 
 		public void RecalculateFormulaCmd(IRibbonControl control)
@@ -255,12 +255,12 @@ namespace River.OneMoreAddIn
 
 		public void RunPluginCmd(IRibbonControl control)
 		{
-			factory.GetCommand<RunPluginCommand>().Execute();
+			factory.Run<RunPluginCommand>();
 		}
 
 		public void SaveAsCmd(IRibbonControl control)
 		{
-			factory.GetCommand<SaveAsCommand>().Execute();
+			factory.Run<SaveAsCommand>();
 		}
 
 		public void SearchAndReplaceCmd(IRibbonControl control)
@@ -270,12 +270,12 @@ namespace River.OneMoreAddIn
 
 		public void SearchEngineCmd(IRibbonControl control)
 		{
-			factory.GetCommand<SearchEngineCommand>().Execute(control.Tag);
+			factory.Run<SearchEngineCommand>(control.Tag);
 		}
 
 		public void ShowXmlCmd(IRibbonControl control)
 		{
-			factory.GetCommand<ShowXmlCommand>().Execute();
+			factory.Run<ShowXmlCommand>();
 		}
 
 		public void SortCmd(IRibbonControl control)
@@ -295,7 +295,7 @@ namespace River.OneMoreAddIn
 
 		public void ToLowercaseCmd(IRibbonControl control)
 		{
-			factory.GetCommand<ToCaseCommand>().Execute(false);
+			factory.Run<ToCaseCommand>(false);
 		}
 
 		public void ToggleDttmCmd(IRibbonControl control)
@@ -305,7 +305,7 @@ namespace River.OneMoreAddIn
 
 		public void ToUppercaseCmd(IRibbonControl control)
 		{
-			factory.GetCommand<ToCaseCommand>().Execute(true);
+			factory.Run<ToCaseCommand>(true);
 		}
 
 		public void TrimCmd(IRibbonControl control)
