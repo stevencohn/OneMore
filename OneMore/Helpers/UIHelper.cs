@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
-	using One = Microsoft.Office.Interop.OneNote;
 
 
 	public interface IOneMoreWindow : IDisposable
@@ -24,24 +23,6 @@ namespace River.OneMoreAddIn
 		private static bool unprepared = true;
 		private static float xScalingFactor = 0;
 		private static float yScalingFactor = 0;
-
-
-		/// <summary>
-		/// Find the OneNote main window from the given window context.
-		/// </summary>
-		/// <param name="context">Window context; typically an IRibbonControl reference.</param>
-		/// <returns>The window wrapper.</returns>
-		/// <remarks>
-		/// Call with
-		/// <![CDATA[
-		/// var owner = UIHelper.GetOwner((IRibbonControl)control.Context as Window);
-		/// ]]>
-		/// </remarks>
-
-		public static Win32WindowHandle GetOwner (One.Window context)
-		{
-			return new Win32WindowHandle(Native.GetParent(Native.GetParent((IntPtr)context.WindowHandle)));
-		}
 
 
 		/// <summary>

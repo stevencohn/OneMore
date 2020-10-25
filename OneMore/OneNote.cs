@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.IO;
+	using System.Text;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using ON = Microsoft.Office.Interop.OneNote;
@@ -119,6 +120,24 @@ namespace River.OneMoreAddIn
 		// Properties
 
 		/// <summary>
+		/// Gets the currently viewed page ID
+		/// </summary>
+		public string CurrentPageId => onenote.Windows.CurrentWindow?.CurrentPageId;
+
+
+		/// <summary>
+		/// Gets the currently viewed section ID
+		/// </summary>
+		public string CurrentSectionId => onenote.Windows.CurrentWindow?.CurrentSectionId;
+
+
+		/// <summary>
+		/// Gets the currently viewed notebook ID
+		/// </summary>
+		public string CurrentNotebookId => onenote.Windows.CurrentWindow?.CurrentNotebookId;
+
+
+		/// <summary>
 		/// Gets the Win32 Window associated with the current window's handle
 		/// </summary>
 		public Forms.IWin32Window Window => Forms.Control.FromHandle(WindowHandle);
@@ -177,9 +196,9 @@ namespace River.OneMoreAddIn
 		/// Gets the current notebook with a hierarchy of sections
 		/// </summary>
 		/// <returns>A Notebook element with Section children</returns>
-		public XElement GetNotebook()
+		public XElement GetNotebook(Scope scope = Scope.Sections)
 		{
-			return GetNotebook(onenote.Windows.CurrentWindow?.CurrentNotebookId);
+			return GetNotebook(CurrentNotebookId, scope);
 		}
 
 
@@ -188,11 +207,11 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="id">The ID of the notebook</param>
 		/// <returns>A Notebook element with Section children</returns>
-		public XElement GetNotebook(string id)
+		public XElement GetNotebook(string id, Scope scope = Scope.Sections)
 		{
 			if (!string.IsNullOrEmpty(id))
 			{
-				onenote.GetHierarchy(id, HierarchyScope.hsSections, out var xml);
+				onenote.GetHierarchy(id, (HierarchyScope)scope, out var xml);
 				if (!string.IsNullOrEmpty(xml))
 				{
 					return XElement.Parse(xml);
@@ -227,7 +246,7 @@ namespace River.OneMoreAddIn
 		/// <returns>A Page containing the root XML of the page</returns>
 		public Page GetPage(PageInfo info = PageInfo.Selection)
 		{
-			return GetPage(onenote.Windows.CurrentWindow?.CurrentPageId, info);
+			return GetPage(CurrentPageId, info);
 		}
 
 
@@ -261,13 +280,14 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public (string Name, string Path, string Link) GetPageInfo()
 		{
-			// name
-			string name = null;
 			var page = GetPage(PageInfo.Basic);
-			if (page != null)
+			if (page == null)
 			{
-				name = page.Root.Attribute("name")?.Value;
+				return (null, null, null);
 			}
+
+			// name
+			var name = page.Root.Attribute("name")?.Value;
 
 			// path
 			string path = null;
@@ -298,7 +318,7 @@ namespace River.OneMoreAddIn
 		/// <returns>A Section element with Page children</returns>
 		public XElement GetSection()
 		{
-			return GetSection(onenote.Windows.CurrentWindow?.CurrentSectionId);
+			return GetSection(CurrentSectionId);
 		}
 
 
@@ -452,6 +472,45 @@ namespace River.OneMoreAddIn
 		public void Export(string pageId, string path, ExportFormat format)
 		{
 			onenote.Publish(pageId, path, (PublishFormat)format, string.Empty);
+		}
+
+
+		/// <summary>
+		/// Special helper for DiagnosticsCommand
+		/// </summary>
+		/// <param name="builder"></param>
+		public void ReportWindowDiagnostics(StringBuilder builder)
+		{
+			var win = onenote.Windows.CurrentWindow;
+
+			builder.AppendLine($"CurrentNotebookId: {win.CurrentNotebookId}");
+			builder.AppendLine($"CurrentPageId....: {win.CurrentPageId}");
+			builder.AppendLine($"CurrentSectionId.: {win.CurrentSectionId}");
+			builder.AppendLine($"CurrentSecGrpId..: {win.CurrentSectionGroupId}");
+			builder.AppendLine($"DockedLocation...: {win.DockedLocation}");
+			builder.AppendLine($"IsFullPageView...: {win.FullPageView}");
+			builder.AppendLine($"IsSideNote.......: {win.SideNote}");
+			builder.AppendLine();
+
+			builder.AppendLine($"Windows ({onenote.Windows.Count})");
+
+			var e = onenote.Windows.GetEnumerator();
+			while (e.MoveNext())
+			{
+				var window = e.Current as Window;
+
+				var threadId = Native.GetWindowThreadProcessId(
+					(IntPtr)window.WindowHandle,
+					out var processId);
+
+				builder.Append($"- window [processId:{processId}, threadId:{threadId}]");
+				builder.Append($" handle:{window.WindowHandle:x} active:{window.Active}");
+
+				if (window.WindowHandle == onenote.Windows.CurrentWindow.WindowHandle)
+				{
+					builder.AppendLine(" (current)");
+				}
+			}
 		}
 	}
 }

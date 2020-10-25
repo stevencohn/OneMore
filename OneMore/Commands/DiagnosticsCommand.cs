@@ -4,12 +4,9 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Diagnostics;
 	using System.Reflection;
 	using System.Text;
-	using One = Microsoft.Office.Interop.OneNote;
 
 
 	internal class DiagnosticsCommand : Command
@@ -45,40 +42,7 @@ namespace River.OneMoreAddIn
 				builder.AppendLine($"Page link: {Link}");
 				builder.AppendLine();
 
-				/*
-				var app = one.Application;
-
-				var win = app.Windows.CurrentWindow;
-
-				builder.AppendLine($"CurrentNotebookId: {win.CurrentNotebookId}");
-				builder.AppendLine($"CurrentPageId....: {win.CurrentPageId}");
-				builder.AppendLine($"CurrentSectionId.: {win.CurrentSectionId}");
-				builder.AppendLine($"CurrentSecGrpId..: {win.CurrentSectionGroupId}");
-				builder.AppendLine($"DockedLocation...: {win.DockedLocation}");
-				builder.AppendLine($"IsFullPageView...: {win.FullPageView}");
-				builder.AppendLine($"IsSideNote.......: {win.SideNote}");
-				builder.AppendLine();
-
-				builder.AppendLine($"Windows ({app.Windows.Count})");
-
-				var e = app.Windows.GetEnumerator();
-				while (e.MoveNext())
-				{
-					var window = e.Current as One.Window;
-
-					var threadId = Native.GetWindowThreadProcessId(
-						(IntPtr)window.WindowHandle,
-						out var processId);
-
-					builder.Append($"- window [processId:{processId}, threadId:{threadId}]");
-					builder.Append($" handle:{window.WindowHandle:x} active:{window.Active}");
-
-					if (window.WindowHandle == (ulong)one.WindowHandle)
-					{
-						builder.AppendLine(" (current)");
-					}
-				}
-				*/
+				one.ReportWindowDiagnostics(builder);
 
 				builder.AppendLine();
 

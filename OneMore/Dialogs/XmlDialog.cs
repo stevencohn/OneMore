@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn.Dialogs
 			};
 
 			pageInfoBox.Items.AddRange(names.ToArray());
-			pageInfoBox.SelectedIndex = names.IndexOf("piSelection");
+			pageInfoBox.SelectedIndex = names.IndexOf("Selection");
 
 			// populate page info...
 			var info = one.GetPageInfo();
@@ -339,7 +339,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void ShowPages(object sender, EventArgs e)
 		{
-			ShowHierarchy(one.GetSection());
+			ShowHierarchy(one.GetNotebook(OneNote.Scope.Pages));
 		}
 
 		private void ShowCurrentNotebook(object sender, EventArgs e)
