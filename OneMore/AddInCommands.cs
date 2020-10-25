@@ -16,197 +16,118 @@ namespace River.OneMoreAddIn
 	{
 
 		public void AboutCmd(IRibbonControl control)
-		{
-			factory.Run<AboutCommand>();
-		}
+			=> factory.Run<AboutCommand>();
 
 		public void AddCaptionCmd(IRibbonControl control)
-		{
-			factory.Run<AddCaptionCommand>();
-		}
+			=> factory.Run<AddCaptionCommand>();
 
 		public void AddFootnoteCmd(IRibbonControl control)
-		{
-			factory.Run<AddFootnoteCommand>();
-		}
+			=> factory.Run<AddFootnoteCommand>();
 
 		public void AddFormulaCmd(IRibbonControl control)
-		{
-			factory.Run<AddFormulaCommand>();
-		}
+			=> factory.Run<AddFormulaCommand>();
 
 		public void AddTitleIconCmd(IRibbonControl control)
-		{
-			factory.Run<AddTitleIconCommand>();
-		}
+			=> factory.Run<AddTitleIconCommand>();
 
 		public void ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
-		{
-			factory.Run<ApplyStyleCommand>(selectedIndex);
-		}
+			=> factory.Run<ApplyStyleCommand>(selectedIndex);
 
 		public void ApplyStylesCmd(IRibbonControl control)
-		{
-			factory.Run<ApplyStylesCommand>();
-		}
+			=> factory.Run<ApplyStylesCommand>();
 
 		public void ChangePageColorCmd(IRibbonControl control)
-		{
-			factory.Run<ChangePageColorCommand>();
-		}
+			=> factory.Run<ChangePageColorCommand>();
 
 		public void CollapseCmd(IRibbonControl control)
-		{
-			factory.Run<CollapseCommand>();
-		}
+			=> factory.Run<CollapseCommand>();
 
 		public void CropImageCmd(IRibbonControl control)
-		{
-			factory.Run<CropImageCommand>();
-		}
+			=> factory.Run<CropImageCommand>();
 
 		public void DecreaseFontSizeCmd(IRibbonControl control)
-		{
-			factory.Run<AlterSizeCommand>(-1);
-		}
+			=> factory.Run<AlterSizeCommand>(-1);
 
 		public void DeleteFormulaCmd(IRibbonControl control)
-		{
-			factory.Run<DeleteFormulaCommand>();
-		}
+			=> factory.Run<DeleteFormulaCommand>();
 
 		public void EditSearchEnginesCmd(IRibbonControl control)
-		{
-			factory.Run<EditSearchEnginesCommand>();
-			ribbon.Invalidate(); // TODO: only if changes?
-		}
+			=> factory.Run<EditSearchEnginesCommand>();
 
 		public void EditStylesCmd(IRibbonControl control)
-		{
-			factory.Run<EditStylesCommand>();
-			ribbon.Invalidate(); // TODO: only if changes?
-		}
+			=> factory.Run<EditStylesCommand>();
 
 		public void IncreaseFontSizeCmd(IRibbonControl control)
-		{
-			factory.Run<AlterSizeCommand>(1);
-		}
+			=> factory.Run<AlterSizeCommand>(1);
 
 		public void HighlightFormulaCmd(IRibbonControl control)
-		{
-			factory.Run<HighlightFormulaCommand>();
-		}
+			=> factory.Run<HighlightFormulaCommand>();
 
 		public void InsertBlueStatusCmd(IRibbonControl control)
-		{
-			factory.Run<InsertStatusCommand>(StatusColor.Blue);
-		}
+			=> factory.Run<InsertStatusCommand>(StatusColor.Blue);
 
 		public void InsertCalendarCmd(IRibbonControl control)
-		{
-			factory.Run<InsertCalendarCommand>();
-		}
+			=> factory.Run<InsertCalendarCommand>();
 
 		public void InsertCodeBlockCmd(IRibbonControl control)
-		{
-			factory.Run<InsertCodeBlockCommand>();
-		}
+			=> factory.Run<InsertCodeBlockCommand>();
 
 		public void InsertDoubleHorizontalLineCmd(IRibbonControl control)
-		{
-			factory.Run<InsertLineCommand>('═');
-		}
+			=> factory.Run<InsertLineCommand>('═');
 
 		public void InsertExpandCmd(IRibbonControl control)
-		{
-			factory.Run<InsertExpandCommand>();
-		}
+			=> factory.Run<InsertExpandCommand>();
 
 		public void InsertGrayStatusCmd(IRibbonControl control)
-		{
-			factory.Run<InsertStatusCommand>(StatusColor.Gray);
-		}
+			=> factory.Run<InsertStatusCommand>(StatusColor.Gray);
 
 		public void InsertGreenStatusCmd(IRibbonControl control)
-		{
-			factory.Run<InsertStatusCommand>(StatusColor.Green);
-		}
+			=> factory.Run<InsertStatusCommand>(StatusColor.Green);
 
 		public void InsertHorizontalLineCmd(IRibbonControl control)
-		{
-			factory.Run<InsertLineCommand>('─');
-		}
+			=> factory.Run<InsertLineCommand>('─');
 
 		public void InsertInfoBlockCmd(IRibbonControl control)
-		{
-			factory.Run<InsertInfoBlockCommand>(false);
-		}
+			=> factory.Run<InsertInfoBlockCommand>(false);
 
 		public void InsertRedStatusCmd(IRibbonControl control)
-		{
-			factory.Run<InsertStatusCommand>(StatusColor.Red);
-		}
+			=> factory.Run<InsertStatusCommand>(StatusColor.Red);
 
 		public void InsertTocCmd(IRibbonControl control)
-		{
-			factory.Run<InsertTocCommand>();
-		}
+			=> factory.Run<InsertTocCommand>();
 
 		public void InsertWarningBlockCmd(IRibbonControl control)
-		{
-			factory.Run<InsertInfoBlockCommand>(true);
-		}
+			=> factory.Run<InsertInfoBlockCommand>(true);
 
 		public void InsertYellowStatusCmd(IRibbonControl control)
-		{
-			factory.Run<InsertStatusCommand>(StatusColor.Yellow);
-		}
+			=> factory.Run<InsertStatusCommand>(StatusColor.Yellow);
 
 		public void MergeCmd(IRibbonControl control)
-		{
-			factory.Run<MergeCommand>();
-		}
+			=> factory.Run<MergeCommand>();
 
 		public void NameUrlsCmd(IRibbonControl control)
-		{
-			factory.Run<NameUrlsCommand>();
-		}
+			=> factory.Run<NameUrlsCommand>();
 
 		public void NewStyleCmd(IRibbonControl control)
-		{
-			factory.Run<NewStyleCommand>();
-			ribbon.Invalidate(); // TODO: only if changes?
-		}
+			=> factory.Run<NewStyleCommand>();
 
 		public void NoSpellCheckCmd(IRibbonControl control)
-		{
-			factory.Run<NoSpellCheckCommand>();
-		}
+			=> factory.Run<NoSpellCheckCommand>();
 
 		public void NumberPagesCmd(IRibbonControl control)
-		{
-			factory.Run<NumberPagesCommand>();
-		}
+			=> factory.Run<NumberPagesCommand>();
 
 		public void NumberSectionsCmd(IRibbonControl control)
-		{
-			factory.Run<NumberSectionsCommand>();
-		}
+			=> factory.Run<NumberSectionsCommand>();
 
 		public void OutlineCmd(IRibbonControl control)
-		{
-			factory.Run<OutlineCommand>();
-		}
+			=> factory.Run<OutlineCommand>();
 
 		public void PasteRtfCmd(IRibbonControl control)
-		{
-			factory.Run<PasteRtfCommand>();
-		}
+			=> factory.Run<PasteRtfCommand>();
 
 		public void PronunciateCmd(IRibbonControl control)
-		{
-			factory.Run<PronunciateCommand>();
-		}
+			=> factory.Run<PronunciateCommand>();
 
 		public void RecalculateFormulaCmd(IRibbonControl control)
 		{
@@ -294,28 +215,18 @@ namespace River.OneMoreAddIn
 		}
 
 		public void ToLowercaseCmd(IRibbonControl control)
-		{
-			factory.Run<ToCaseCommand>(false);
-		}
+			=> factory.Run<ToCaseCommand>(false);
 
 		public void ToggleDttmCmd(IRibbonControl control)
-		{
-			factory.Run<ToggleDttmCommand>();
-		}
+			=> factory.Run<ToggleDttmCommand>();
 
 		public void ToUppercaseCmd(IRibbonControl control)
-		{
-			factory.Run<ToCaseCommand>(true);
-		}
+			=> factory.Run<ToCaseCommand>(true);
 
 		public void TrimCmd(IRibbonControl control)
-		{
-			factory.Run<TrimCommand>();
-		}
+			=> factory.Run<TrimCommand>();
 
 		public void WordCountCmd(IRibbonControl control)
-		{
-			factory.Run<WordCountCommand>();
-		}
+			=> factory.Run<WordCountCommand>();
 	}
 }

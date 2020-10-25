@@ -20,6 +20,8 @@ namespace River.OneMoreAddIn
 			{
 				dialog.ShowDialog(owner);
 			}
+
+			ribbon.Invalidate();
 		}
 	}
 }

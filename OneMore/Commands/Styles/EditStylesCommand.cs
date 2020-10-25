@@ -44,6 +44,8 @@ namespace River.OneMoreAddIn
 					ribbon.Invalidate();
 				}
 			}
+
+			ribbon.Invalidate();
 		}
 	}
 }
