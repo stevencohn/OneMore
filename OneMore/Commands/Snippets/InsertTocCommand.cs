@@ -240,7 +240,9 @@ namespace River.OneMoreAddIn
 			var page = one.GetPage(pageId);
 			var ns = page.Namespace;
 
-			var notebook = one.GetNotebook();
+			var scope = includePages ? OneNote.Scope.Pages : OneNote.Scope.Sections;
+			var notebook = one.GetNotebook(scope);
+
 			page.PageName = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
 
 			var container = new XElement(ns + "OEChildren");

@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn
 				logger.WriteLine(exc);
 				logger.WriteLine();
 
-				UIHelper.ShowError($"{msg}. See log file for detailed");
+				UIHelper.ShowError($"{msg}. See log file for details");
 			}
 		}
 	}

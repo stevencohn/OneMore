@@ -327,47 +327,27 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		private void ShowNotebooks(object sender, EventArgs e)
+		private void GetNotebooks(object sender, EventArgs e)
 		{
 			ShowHierarchy(one.GetNotebooks());
 		}
 
-		private void ShowSections(object sender, EventArgs e)
+
+		private void GetNotebook(object sender, EventArgs e)
 		{
 			ShowHierarchy(one.GetNotebook());
 		}
 
-		private void ShowPages(object sender, EventArgs e)
+
+		private void GetSection(object sender, EventArgs e)
 		{
 			ShowHierarchy(one.GetNotebook(OneNote.Scope.Pages));
 		}
 
-		private void ShowCurrentNotebook(object sender, EventArgs e)
-		{
-			var element = one.GetNotebook();
-			if (element != null)
-			{
-				var xml = element.ToString(SaveOptions.None);
-				hierBox.Text = xml;
-			}
-			else
-			{
-				hierBox.Text = "Cannot get current notebook hierarchy";
-			}
-		}
 
 		private void ShowCurrentSection(object sender, EventArgs e)
 		{
-			var element = one.GetSection();
-			if (element != null)
-			{
-				var xml = element.ToString(SaveOptions.None);
-				hierBox.Text = xml;
-			}
-			else
-			{
-				hierBox.Text = "Cannot get current section hierarchy";
-			}
+			ShowHierarchy(one.GetSection());
 		}
 
 

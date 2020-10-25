@@ -41,11 +41,10 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.hierBox = new System.Windows.Forms.RichTextBox();
 			this.hierButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.notebooksHierButton = new System.Windows.Forms.RadioButton();
-			this.sectionsHierButton = new System.Windows.Forms.RadioButton();
-			this.pagesHierButton = new System.Windows.Forms.RadioButton();
+			this.notebooksButton = new System.Windows.Forms.RadioButton();
+			this.notebookButton = new System.Windows.Forms.RadioButton();
+			this.sectionButton = new System.Windows.Forms.RadioButton();
 			this.currSectionButton = new System.Windows.Forms.RadioButton();
-			this.currNotebookButton = new System.Windows.Forms.RadioButton();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
@@ -155,11 +154,10 @@
 			// hierButtonsPanel
 			// 
 			this.hierButtonsPanel.BackColor = System.Drawing.SystemColors.Info;
-			this.hierButtonsPanel.Controls.Add(this.notebooksHierButton);
-			this.hierButtonsPanel.Controls.Add(this.sectionsHierButton);
-			this.hierButtonsPanel.Controls.Add(this.pagesHierButton);
+			this.hierButtonsPanel.Controls.Add(this.notebooksButton);
+			this.hierButtonsPanel.Controls.Add(this.notebookButton);
+			this.hierButtonsPanel.Controls.Add(this.sectionButton);
 			this.hierButtonsPanel.Controls.Add(this.currSectionButton);
-			this.hierButtonsPanel.Controls.Add(this.currNotebookButton);
 			this.hierButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.hierButtonsPanel.Location = new System.Drawing.Point(0, 0);
 			this.hierButtonsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -168,71 +166,58 @@
 			this.hierButtonsPanel.Size = new System.Drawing.Size(1275, 58);
 			this.hierButtonsPanel.TabIndex = 1;
 			// 
-			// notebooksHierButton
+			// notebooksButton
 			// 
-			this.notebooksHierButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.notebooksHierButton.AutoSize = true;
-			this.notebooksHierButton.Checked = true;
-			this.notebooksHierButton.Location = new System.Drawing.Point(11, 11);
-			this.notebooksHierButton.Name = "notebooksHierButton";
-			this.notebooksHierButton.Size = new System.Drawing.Size(96, 30);
-			this.notebooksHierButton.TabIndex = 2;
-			this.notebooksHierButton.TabStop = true;
-			this.notebooksHierButton.Text = "Notebooks";
-			this.notebooksHierButton.UseVisualStyleBackColor = true;
-			this.notebooksHierButton.CheckedChanged += new System.EventHandler(this.ShowNotebooks);
+			this.notebooksButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.notebooksButton.AutoSize = true;
+			this.notebooksButton.Checked = true;
+			this.notebooksButton.Location = new System.Drawing.Point(11, 11);
+			this.notebooksButton.Name = "notebooksButton";
+			this.notebooksButton.Size = new System.Drawing.Size(96, 30);
+			this.notebooksButton.TabIndex = 2;
+			this.notebooksButton.TabStop = true;
+			this.notebooksButton.Text = "Notebooks";
+			this.notebooksButton.UseVisualStyleBackColor = true;
+			this.notebooksButton.CheckedChanged += new System.EventHandler(this.GetNotebooks);
 			// 
-			// sectionsHierButton
+			// notebookButton
 			// 
-			this.sectionsHierButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.sectionsHierButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.sectionsHierButton.AutoSize = true;
-			this.sectionsHierButton.Location = new System.Drawing.Point(113, 11);
-			this.sectionsHierButton.Name = "sectionsHierButton";
-			this.sectionsHierButton.Size = new System.Drawing.Size(81, 30);
-			this.sectionsHierButton.TabIndex = 3;
-			this.sectionsHierButton.Text = "Sections";
-			this.sectionsHierButton.UseVisualStyleBackColor = true;
-			this.sectionsHierButton.CheckedChanged += new System.EventHandler(this.ShowSections);
+			this.notebookButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.notebookButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.notebookButton.AutoSize = true;
+			this.notebookButton.Location = new System.Drawing.Point(113, 11);
+			this.notebookButton.Name = "notebookButton";
+			this.notebookButton.Size = new System.Drawing.Size(159, 30);
+			this.notebookButton.TabIndex = 3;
+			this.notebookButton.Text = "Notebook+Sections";
+			this.notebookButton.UseVisualStyleBackColor = true;
+			this.notebookButton.CheckedChanged += new System.EventHandler(this.GetNotebook);
 			// 
-			// pagesHierButton
+			// sectionButton
 			// 
-			this.pagesHierButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.pagesHierButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.pagesHierButton.AutoSize = true;
-			this.pagesHierButton.Location = new System.Drawing.Point(200, 11);
-			this.pagesHierButton.Name = "pagesHierButton";
-			this.pagesHierButton.Size = new System.Drawing.Size(64, 30);
-			this.pagesHierButton.TabIndex = 4;
-			this.pagesHierButton.Text = "Pages";
-			this.pagesHierButton.UseVisualStyleBackColor = true;
-			this.pagesHierButton.CheckedChanged += new System.EventHandler(this.ShowPages);
+			this.sectionButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.sectionButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.sectionButton.AutoSize = true;
+			this.sectionButton.Location = new System.Drawing.Point(278, 11);
+			this.sectionButton.Name = "sectionButton";
+			this.sectionButton.Size = new System.Drawing.Size(142, 30);
+			this.sectionButton.TabIndex = 4;
+			this.sectionButton.Text = "Notebook+Pages";
+			this.sectionButton.UseVisualStyleBackColor = true;
+			this.sectionButton.CheckedChanged += new System.EventHandler(this.GetSection);
 			// 
 			// currSectionButton
 			// 
 			this.currSectionButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.currSectionButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.currSectionButton.AutoSize = true;
-			this.currSectionButton.Location = new System.Drawing.Point(270, 11);
+			this.currSectionButton.Location = new System.Drawing.Point(426, 11);
 			this.currSectionButton.Name = "currSectionButton";
-			this.currSectionButton.Size = new System.Drawing.Size(130, 30);
+			this.currSectionButton.Size = new System.Drawing.Size(127, 30);
 			this.currSectionButton.TabIndex = 5;
-			this.currSectionButton.Text = "Current Section";
+			this.currSectionButton.Text = "Section+Pages";
 			this.currSectionButton.UseVisualStyleBackColor = true;
 			this.currSectionButton.CheckedChanged += new System.EventHandler(this.ShowCurrentSection);
-			// 
-			// currNotebookButton
-			// 
-			this.currNotebookButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.currNotebookButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.currNotebookButton.AutoSize = true;
-			this.currNotebookButton.Location = new System.Drawing.Point(406, 11);
-			this.currNotebookButton.Name = "currNotebookButton";
-			this.currNotebookButton.Size = new System.Drawing.Size(145, 30);
-			this.currNotebookButton.TabIndex = 7;
-			this.currNotebookButton.Text = "Current Notebook";
-			this.currNotebookButton.UseVisualStyleBackColor = true;
-			this.currNotebookButton.CheckedChanged += new System.EventHandler(this.ShowCurrentNotebook);
 			// 
 			// cancelButton
 			// 
@@ -510,11 +495,10 @@
 		private System.Windows.Forms.TextBox findBox;
 		private System.Windows.Forms.Button findButton;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.RadioButton pagesHierButton;
-		private System.Windows.Forms.RadioButton notebooksHierButton;
-		private System.Windows.Forms.RadioButton sectionsHierButton;
+		private System.Windows.Forms.RadioButton sectionButton;
+		private System.Windows.Forms.RadioButton notebooksButton;
+		private System.Windows.Forms.RadioButton notebookButton;
 		private System.Windows.Forms.RadioButton currSectionButton;
-		private System.Windows.Forms.RadioButton currNotebookButton;
 		private System.Windows.Forms.Button selectButton;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label pageInfoLabel;

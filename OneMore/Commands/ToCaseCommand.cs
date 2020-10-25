@@ -78,7 +78,10 @@ namespace River.OneMoreAddIn
 						{
 							if (selection.FirstNode?.NodeType == XmlNodeType.CDATA)
 							{
-								var wrapper = XElement.Parse("<x>" + selection.FirstNode.Parent.Value + "</x>");
+								// used numbered entity &#160; instead of undeclared &nbsp;
+								var value = selection.FirstNode.Parent.Value.Replace("&nbsp;", "&#160;");
+
+								var wrapper = XElement.Parse($"<x>{value}</x>");
 
 								foreach (var part in wrapper.DescendantNodes().OfType<XText>().ToList())
 								{
