@@ -79,9 +79,9 @@ namespace River.OneMoreAddIn
 				root = MakeMenuRoot();
 			}
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var info = manager.GetCurrentPageInfo();
+				var info = one.GetPageInfo();
 
 				var name = EmojiDialog.RemoveEmojis(info.Name);
 				if (name.Length > 50)

@@ -32,12 +32,12 @@ namespace River.OneMoreAddIn
 		{
 			//Logger.Current.WriteLine($"SetBodyContext {control.Id}");
 
-			Page page;
-			using (var manager = new ApplicationManager()) { page = new Page(manager.CurrentPage()); }
-
-			// set the context for the getters
-			bodyContext = page.ConfirmBodyContext();
-			imageSelected = page.ConfirmImageSelected();
+			using (var one = new OneNote(out var page, out _))
+			{
+				// set the context for the getters
+				bodyContext = page.ConfirmBodyContext();
+				imageSelected = page.ConfirmImageSelected();
+			}
 
 			// the setter always returns true; the getter will return bodyContext
 			return true;
@@ -98,10 +98,10 @@ namespace River.OneMoreAddIn
 		{
 			//Logger.Current.WriteLine($"GetMultiPageContext {control.Id}");
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var section = manager.CurrentSection();
-				var ns = section.GetNamespaceOfPrefix("one");
+				var section = one.GetSection();
+				var ns = one.GetNamespace(section);
 
 				var count =
 					section.Elements(ns + "Page")

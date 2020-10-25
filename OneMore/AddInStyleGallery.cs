@@ -48,9 +48,9 @@ namespace River.OneMoreAddIn
 			//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex})");
 
 			Color pageColor;
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote(out var page, out _))
 			{
-				pageColor = new Page(manager.CurrentPage()).GetPageColor(out _, out var black);
+				pageColor = page.GetPageColor(out _, out var black);
 				if (black)
 				{
 					pageColor = ColorTranslator.FromHtml("#201F1E");

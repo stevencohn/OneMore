@@ -364,7 +364,6 @@
     <Compile Include="Helpers\Extensions\BitmapExtensions.cs" />
     <Compile Include="Helpers\Extensions\FormExtensions.cs" />
     <Compile Include="Helpers\Extensions\StringExtensions.cs" />
-    <Compile Include="ApplicationManager.cs" />
     <Compile Include="Commands\ShowXmlCommand.cs" />
     <Compile Include="Models\TableProperties.cs" />
     <Compile Include="Models\Heading.cs" />

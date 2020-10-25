@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn
 		private readonly StyleProvider provider;
 
 
-		public GalleryTileFactory() : base()
+		public GalleryTileFactory()
 		{
 			provider = new StyleProvider();
 		}

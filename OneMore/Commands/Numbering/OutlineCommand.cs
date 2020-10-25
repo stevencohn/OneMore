@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					using (var one = new OneNote(out var page, out var ns))
+					using (var one = new OneNote(out var page, out ns))
 					{
 						if (page.IsValid)
 						{

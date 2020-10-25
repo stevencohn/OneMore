@@ -11,9 +11,9 @@
 		{
 			if (disposing)
 			{
-				if (manager != null)
+				if (one != null)
 				{
-					manager.Dispose();
+					one.Dispose();
 				}
 
 				if (components != null)

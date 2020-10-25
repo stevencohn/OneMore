@@ -200,7 +200,7 @@ namespace River.OneMoreAddIn
 
 		public void PasteRtfCmd(IRibbonControl control)
 		{
-			factory.GetCommand<PasteRtfCommand>().Execute();
+			factory.Run<PasteRtfCommand>();
 		}
 
 		public void PronunciateCmd(IRibbonControl control)

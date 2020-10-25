@@ -7,7 +7,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Interop.OneNote;
 	using System;
 	using System.IO;
 	using System.Linq;
@@ -18,7 +17,6 @@ namespace River.OneMoreAddIn
 	using System.Windows.Documents;
 	using System.Xml;
 	using System.Xml.Linq;
-	using OM = River.OneMoreAddIn.Models;
 
 
 	/*
@@ -68,9 +66,9 @@ namespace River.OneMoreAddIn
 
 		public PasteRtfCommand()
 		{
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				_ = new Models.Page(manager.CurrentPage()).GetPageColor(out _, out black);
+				_ = one.GetPage().GetPageColor(out _, out black);
 			}
 		}
 
@@ -105,11 +103,11 @@ namespace River.OneMoreAddIn
 			// paste what's remaining from clipboard, letting OneNote do the
 			// heavy lifting of converting the HTML into one:xml schema
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
 				// since the Hotkey message loop is watching all input, explicitly setting
 				// focus on the OneNote main window provides a direct path for SendKeys
-				Native.SetForegroundWindow(manager.WindowHandle);
+				Native.SetForegroundWindow(one.WindowHandle);
 				System.Windows.Forms.SendKeys.SendWait("^(v)");
 			}
 		}

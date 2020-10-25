@@ -6,7 +6,6 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
-	using Microsoft.Office.Interop.OneNote;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -22,7 +21,7 @@ namespace River.OneMoreAddIn.Dialogs
 	internal partial class XmlDialog : LocalizableForm
 	{
 
-		private ApplicationManager manager;
+		private OneNote one;
 		private readonly ILogger logger;
 		private int findIndex = -1;
 
@@ -72,26 +71,26 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			manager = new ApplicationManager();
+			one = new OneNote();
 
 			// build pageInfoBox with custom order
 			var names = new List<string>
 			{
-				Enum.GetName(typeof(PageInfo), PageInfo.piAll),
-				Enum.GetName(typeof(PageInfo), PageInfo.piSelection),
-				Enum.GetName(typeof(PageInfo), PageInfo.piBasic),
-				Enum.GetName(typeof(PageInfo), PageInfo.piBinaryData),
-				Enum.GetName(typeof(PageInfo), PageInfo.piBinaryDataSelection),
-				Enum.GetName(typeof(PageInfo), PageInfo.piBinaryDataFileType),
-				Enum.GetName(typeof(PageInfo), PageInfo.piFileType),
-				Enum.GetName(typeof(PageInfo), PageInfo.piSelectionFileType)
+				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.All),
+				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.Selection),
+				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.Basic),
+				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.BinaryData),
+				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.BinaryDataSelection),
+				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.BinaryDataFileType),
+				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.FileType),
+				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.SelectionFileType)
 			};
 
 			pageInfoBox.Items.AddRange(names.ToArray());
 			pageInfoBox.SelectedIndex = names.IndexOf("piSelection");
 
 			// populate page info...
-			var info = manager.GetCurrentPageInfo();
+			var info = one.GetPageInfo();
 			pageName.Text = info.Name;
 			pagePath.Text = info.Path;
 			pageLink.Text = info.Link;
@@ -108,7 +107,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void Close(object sender, EventArgs e)
 		{
-			manager.Dispose();
+			one.Dispose();
 			Close();
 		}
 
@@ -229,12 +228,12 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void ChangeInfoScope(object sender, EventArgs e)
 		{
-			if (Enum.TryParse<PageInfo>(pageInfoBox.Text, out var info))
+			if (Enum.TryParse<OneNote.PageInfo>(pageInfoBox.Text, out var info))
 			{
-				var page = manager.CurrentPage(info);
+				var page = one.GetPage(info);
 				if (page != null)
 				{
-					var xml = page.ToString(SaveOptions.None);
+					var xml = page.Root.ToString(SaveOptions.None);
 					pageBox.Text = xml;
 
 					ApplyHideOptions();
@@ -316,7 +315,7 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				if (hierBox.TextLength == 0)
 				{
-					ShowHierarchy(HierarchyScope.hsNotebooks);
+					ShowHierarchy(one.GetNotebooks());
 				}
 
 				pageBox.Select(0, 0);
@@ -330,22 +329,22 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void ShowNotebooks(object sender, EventArgs e)
 		{
-			ShowHierarchy(HierarchyScope.hsNotebooks);
+			ShowHierarchy(one.GetNotebooks());
 		}
 
 		private void ShowSections(object sender, EventArgs e)
 		{
-			ShowHierarchy(HierarchyScope.hsSections);
+			ShowHierarchy(one.GetNotebook());
 		}
 
 		private void ShowPages(object sender, EventArgs e)
 		{
-			ShowHierarchy(HierarchyScope.hsPages);
+			ShowHierarchy(one.GetSection());
 		}
 
 		private void ShowCurrentNotebook(object sender, EventArgs e)
 		{
-			var element = manager.CurrentNotebook();
+			var element = one.GetNotebook();
 			if (element != null)
 			{
 				var xml = element.ToString(SaveOptions.None);
@@ -359,7 +358,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void ShowCurrentSection(object sender, EventArgs e)
 		{
-			var element = manager.CurrentSection();
+			var element = one.GetSection();
 			if (element != null)
 			{
 				var xml = element.ToString(SaveOptions.None);
@@ -372,9 +371,8 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		private void ShowHierarchy(HierarchyScope scope)
+		private void ShowHierarchy(XElement element)
 		{
-			var element = manager.GetHierarchy(scope);
 			if (element != null)
 			{
 				var xml = element.ToString(SaveOptions.None);
@@ -382,7 +380,7 @@ namespace River.OneMoreAddIn.Dialogs
 			}
 			else
 			{
-				hierBox.Text = $"Cannot get hierarchy for {scope}";
+				hierBox.Text = "no hierarchy";
 			}
 		}
 
@@ -403,7 +401,7 @@ namespace River.OneMoreAddIn.Dialogs
 				try
 				{
 					var page = XElement.Parse(pageBox.Text);
-					manager.UpdatePageContent(page);
+					one.UpdateContent(page);
 					Close();
 				}
 				catch (Exception exc)

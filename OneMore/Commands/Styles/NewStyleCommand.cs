@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Drawing;
 	using System.Linq;
@@ -69,10 +70,10 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 		{
 			// infer contextual style
 
-			XElement page = null;
-			using (var manager = new ApplicationManager())
+			Page page = null;
+			using (var one = new OneNote())
 			{
-				page = manager.CurrentPage();
+				page = one.GetPage();
 			}
 
 			if (page == null)
@@ -80,16 +81,16 @@ text-decoration:underline line-through'>ne </span>]]></one:T>
 				return null;
 			}
 
-			var ns = page.GetNamespaceOfPrefix("one");
+			var ns = page.Namespace;
 
 			var selection =
-				(from e in page.Descendants(ns + "T")
+				(from e in page.Root.Descendants(ns + "T")
 				 where e.Attributes("selected").Any(a => a.Value.Equals("all"))
 				 select e).FirstOrDefault();
 
 			if (selection != null)
 			{
-				var analyzer = new StyleAnalyzer(page, inward: false);
+				var analyzer = new StyleAnalyzer(page.Root, inward: false);
 
 				var cdata = selection.GetCData();
 				if (cdata.IsEmpty())

@@ -70,39 +70,39 @@ namespace River.OneMoreAddIn
 			// custom styles, CtrlAltShift+1..9
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(0),
+				factory.Run<ApplyStyleCommand>(0),
 				Keys.D1, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(1),
+				factory.Run<ApplyStyleCommand>(1),
 				Keys.D2, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(2),
+				factory.Run<ApplyStyleCommand>(2),
 				Keys.D3, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(3),
+				factory.Run<ApplyStyleCommand>(3),
 				Keys.D4, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(4),
+				factory.Run<ApplyStyleCommand>(4),
 				Keys.D5, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(5),
+				factory.Run<ApplyStyleCommand>(5),
 				Keys.D6, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(6),
+				factory.Run<ApplyStyleCommand>(6),
 				Keys.D7, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(7),
+				factory.Run<ApplyStyleCommand>(7),
 				Keys.D8, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(() =>
-				factory.GetCommand<ApplyStyleCommand>().Execute(8),
+				factory.Run<ApplyStyleCommand>(9),
 				Keys.D9, Hotmods.ControlAltShift);
 		}
 	}

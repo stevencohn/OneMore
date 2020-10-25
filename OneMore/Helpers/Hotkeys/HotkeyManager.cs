@@ -48,9 +48,9 @@ namespace River.OneMoreAddIn
 
 		static HotkeyManager()
 		{
-			using (var mgr = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				threadId = Native.GetWindowThreadProcessId(mgr.WindowHandle, out _);
+				threadId = Native.GetWindowThreadProcessId(one.WindowHandle, out _);
 			}
 
 			var mthread = new Thread(delegate () { Application.Run(new MessageWindow()); })

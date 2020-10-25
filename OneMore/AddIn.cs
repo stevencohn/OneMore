@@ -123,17 +123,17 @@ namespace River.OneMoreAddIn
 			int count = custom == null ? 0 : custom.Length;
 			logger.WriteLine($"OnStartupComplete(custom[]:{count})");
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var (backupFolder, defaultFolder, unfiledFolder) = manager.GetLocations();
-				logger.WriteLine("OneNote backup folder:: " + backupFolder);
-				logger.WriteLine("OneNote default folder: " + defaultFolder);
-				logger.WriteLine("OneNote unfiled folder: " + unfiledFolder);
+				var folders = one.GetFolders();
+				logger.WriteLine("OneNote backup folder:: " + folders.backupFolder);
+				logger.WriteLine("OneNote default folder: " + folders.defaultFolder);
+				logger.WriteLine("OneNote unfiled folder: " + folders.unfiledFolder);
 				logger.End();
 
 				factory = new CommandFactory(logger, ribbon, trash,
 					// looks complicated but necessary for this to work
-					new Win32WindowHandle(new IntPtr((long)manager.WindowHandle)));
+					new Win32WindowHandle(new IntPtr((long)one.WindowHandle)));
 			}
 
 			RegisterHotkeys();

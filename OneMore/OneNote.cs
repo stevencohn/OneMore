@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.IO;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using ON = Microsoft.Office.Interop.OneNote;
@@ -134,6 +135,19 @@ namespace River.OneMoreAddIn
 		// Get...
 
 		/// <summary>
+		/// Get the known paths used by OneNote; this is for diagnostic logging
+		/// </summary>
+		/// <returns></returns>
+		public (string backupFolder, string defaultFolder, string unfiledFolder) GetFolders()
+		{
+			onenote.GetSpecialLocation(SpecialLocation.slBackUpFolder, out var backupFolder);
+			onenote.GetSpecialLocation(SpecialLocation.slDefaultNotebookFolder, out var defaultFolder);
+			onenote.GetSpecialLocation(SpecialLocation.slUnfiledNotesSection, out var unfiledFolder);
+			return (backupFolder, defaultFolder, unfiledFolder);
+		}
+
+
+		/// <summary>
 		/// Gets a onenote:hyperline to an object on the specified page
 		/// </summary>
 		/// <param name="pageId">The ID of a page</param>
@@ -237,6 +251,44 @@ namespace River.OneMoreAddIn
 			}
 
 			return null;
+		}
+
+
+		/// <summary>
+		/// Gets the name, file path, and OneNote hyperlink to the current page;
+		/// used to build up Favorites
+		/// </summary>
+		/// <returns></returns>
+		public (string Name, string Path, string Link) GetPageInfo()
+		{
+			// name
+			string name = null;
+			var page = GetPage(PageInfo.Basic);
+			if (page != null)
+			{
+				name = page.Root.Attribute("name")?.Value;
+			}
+
+			// path
+			string path = null;
+			var section = GetSection();
+			if (section != null)
+			{
+				var uri = section.Attribute("path")?.Value;
+				if (!string.IsNullOrEmpty(uri))
+				{
+					path = "/" + Path.Combine(
+						Path.GetFileName(Path.GetDirectoryName(uri)),
+						Path.GetFileNameWithoutExtension(uri),
+						name
+						).Replace("\\", "/");
+				}
+			}
+
+			// link
+			string link = GetHyperlink(page.PageId, string.Empty);
+
+			return (name, path, link);
 		}
 
 

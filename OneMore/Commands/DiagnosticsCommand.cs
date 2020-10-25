@@ -31,21 +31,22 @@ namespace River.OneMoreAddIn
 			builder.AppendLine($"Log path..: {logger.LogPath}");
 			builder.AppendLine();
 
-			using (var manager = new ApplicationManager())
+			using (var one = new OneNote())
 			{
-				var (backupPath, defaultPath, unfiledPath) = manager.GetLocations();
-				builder.AppendLine($"Default path: {defaultPath}");
-				builder.AppendLine($"Backup  path: {backupPath}");
-				builder.AppendLine($"Unfiled path: {unfiledPath}");
+				var (backupFolder, defaultFolder, unfiledFolder) = one.GetFolders();
+				builder.AppendLine($"Default path: {defaultFolder}");
+				builder.AppendLine($"Backup  path: {backupFolder}");
+				builder.AppendLine($"Unfiled path: {unfiledFolder}");
 				builder.AppendLine();
 
-				var (pageName, pagePath, pageLink) = manager.GetCurrentPageInfo();
-				builder.AppendLine($"Page name: {pageName}");
-				builder.AppendLine($"Page path: {pagePath}");
-				builder.AppendLine($"Page link: {pageLink}");
+				var (Name, Path, Link) = one.GetPageInfo();
+				builder.AppendLine($"Page name: {Name}");
+				builder.AppendLine($"Page path: {Path}");
+				builder.AppendLine($"Page link: {Link}");
 				builder.AppendLine();
 
-				var app = manager.Application;
+				/*
+				var app = one.Application;
 
 				var win = app.Windows.CurrentWindow;
 
@@ -59,7 +60,6 @@ namespace River.OneMoreAddIn
 				builder.AppendLine();
 
 				builder.AppendLine($"Windows ({app.Windows.Count})");
-				var currentHandle = manager.Application.Windows.CurrentWindow.WindowHandle;
 
 				var e = app.Windows.GetEnumerator();
 				while (e.MoveNext())
@@ -73,15 +73,16 @@ namespace River.OneMoreAddIn
 					builder.Append($"- window [processId:{processId}, threadId:{threadId}]");
 					builder.Append($" handle:{window.WindowHandle:x} active:{window.Active}");
 
-					if (window.WindowHandle == currentHandle)
+					if (window.WindowHandle == (ulong)one.WindowHandle)
 					{
 						builder.AppendLine(" (current)");
 					}
 				}
+				*/
 
 				builder.AppendLine();
 
-				var page = new Page(manager.CurrentPage());
+				var page = one.GetPage();
 				var pageColor = page.GetPageColor(out _, out _);
 				var pageBrightness = pageColor.GetBrightness();
 
