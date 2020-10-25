@@ -113,7 +113,7 @@
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
-    <Compile Include="Commands\ClearLogCommand.cs" />
+    <Compile Include="Commands\Tools\ClearLogCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Extras\WordCountCommand.cs" />
     <Compile Include="Commands\Extras\TextToTableCommand.cs" />
@@ -140,19 +140,19 @@
     <Compile Include="Commands\Numbering\RemovePageNumbersCommand.cs" />
     <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
     <Compile Include="Commands\Numbering\OutlineCommand.cs" />
-    <Compile Include="Commands\PronunciateCommand.cs" />
-    <Compile Include="Commands\RunPluginCommand.cs" />
-    <Compile Include="Commands\ExportCommand.cs" />
+    <Compile Include="Commands\Edit\PronunciateCommand.cs" />
+    <Compile Include="Commands\File\RunPluginCommand.cs" />
+    <Compile Include="Commands\File\ExportCommand.cs" />
     <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
     <Compile Include="Commands\SearchEngineCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
-    <Compile Include="Commands\DiagnosticsCommand.cs" />
+    <Compile Include="Commands\Tools\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Styles\EditStylesCommand.cs" />
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
     <Compile Include="Commands\Extras\AddTitleIconCommand.cs" />
-    <Compile Include="Commands\AlterSizeCommand.cs" />
+    <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
     <Compile Include="Commands\CollapseCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
@@ -263,8 +263,8 @@
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
     <Compile Include="Commands\Extras\NameUrlsCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
-    <Compile Include="Commands\NoSpellCheckCommand.cs" />
-    <Compile Include="Commands\PasteRtfCommand.cs" />
+    <Compile Include="Commands\Edit\NoSpellCheckCommand.cs" />
+    <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\Footnotes\RemoveFootnoteCommand.cs" />
     <Compile Include="Commands\SearchAndReplace\SearchAndReplaceCommand.cs" />
     <Compile Include="Commands\SearchAndReplace\AtomicFactory.cs" />
@@ -274,7 +274,7 @@
     <Compile Include="Commands\SearchAndReplace\TextAtom.cs" />
     <Compile Include="Commands\AboutCommand.cs" />
     <Compile Include="Commands\SortCommand.cs" />
-    <Compile Include="Commands\ToCaseCommand.cs" />
+    <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />
     <Compile Include="Dialogs\ChangePageColorDialog.cs">
       <SubType>Form</SubType>
@@ -364,7 +364,7 @@
     <Compile Include="Helpers\Extensions\BitmapExtensions.cs" />
     <Compile Include="Helpers\Extensions\FormExtensions.cs" />
     <Compile Include="Helpers\Extensions\StringExtensions.cs" />
-    <Compile Include="Commands\ShowXmlCommand.cs" />
+    <Compile Include="Commands\Tools\ShowXmlCommand.cs" />
     <Compile Include="Models\TableProperties.cs" />
     <Compile Include="Models\Heading.cs" />
     <Compile Include="Models\Page.cs" />

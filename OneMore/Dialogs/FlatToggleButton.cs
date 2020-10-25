@@ -58,13 +58,13 @@
 			}
 		}
 
-		private void FlatToggleButton_MouseEnter(object sender, EventArgs e)
+		private void MakeItHot(object sender, EventArgs e)
 		{
 			hot = true;
 			Invalidate();
 		}
 
-		private void FlatToggleButton_MouseLeave(object sender, EventArgs e)
+		private void MakeItCool(object sender, EventArgs e)
 		{
 			hot = false;
 			Invalidate();
@@ -74,34 +74,22 @@
 		{
 			if (hot)
 			{
-				this.BackColor = SystemColors.ActiveBorder;
-				this.BorderStyle = BorderStyle.FixedSingle;
+				BackColor = SystemColors.ActiveBorder;
+				BorderStyle = BorderStyle.FixedSingle;
 			}
 			else
 			{
 				if (Checked)
 				{
-					this.BackColor = SystemColors.ActiveBorder;
+					BackColor = SystemColors.ActiveBorder;
 				}
 				else
 				{
-					this.BackColor = SystemColors.Control;
+					BackColor = SystemColors.Control;
 				}
 
 				BorderStyle = BorderStyle.None;
 			}
-		}
-
-		private void MouseEnterPictureBox(object sender, EventArgs e)
-		{
-			hot = true;
-			Invalidate();
-		}
-
-		private void MouseLeavePictureBox(object sender, EventArgs e)
-		{
-			hot = false;
-			Invalidate();
 		}
 
 		private void ClickPictureBox(object sender, EventArgs e)

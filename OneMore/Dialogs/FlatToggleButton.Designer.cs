@@ -43,8 +43,8 @@
 			this.pictureBox.TabIndex = 0;
 			this.pictureBox.TabStop = false;
 			this.pictureBox.Click += new System.EventHandler(this.ClickPictureBox);
-			this.pictureBox.MouseEnter += new System.EventHandler(this.MouseEnterPictureBox);
-			this.pictureBox.MouseLeave += new System.EventHandler(this.MouseLeavePictureBox);
+			this.pictureBox.MouseEnter += new System.EventHandler(this.MakeItHot);
+			this.pictureBox.MouseLeave += new System.EventHandler(this.MakeItCool);
 			// 
 			// FlatToggleButton
 			// 
@@ -53,8 +53,8 @@
 			this.Padding = new System.Windows.Forms.Padding(4);
 			this.Size = new System.Drawing.Size(50, 30);
 			this.Paint += new System.Windows.Forms.PaintEventHandler(this.FlatToggleButton_Paint);
-			this.MouseEnter += new System.EventHandler(this.FlatToggleButton_MouseEnter);
-			this.MouseLeave += new System.EventHandler(this.FlatToggleButton_MouseLeave);
+			this.MouseEnter += new System.EventHandler(this.MakeItHot);
+			this.MouseLeave += new System.EventHandler(this.MakeItCool);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
 			this.ResumeLayout(false);
 
