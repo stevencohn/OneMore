@@ -130,89 +130,55 @@ namespace River.OneMoreAddIn
 			=> factory.Run<PronunciateCommand>();
 
 		public void RecalculateFormulaCmd(IRibbonControl control)
-		{
-			factory.Run<RecalculateFormulaCommand>();
-		}
+			=> factory.Run<RecalculateFormulaCommand>();
 
 		public void RemoveAuthorsCmd(IRibbonControl control)
-		{
-			factory.Run<RemoveAuthorsCommand>();
-		}
+			=> factory.Run<RemoveAuthorsCommand>();
 
 		public void RemoveCitationsCmd(IRibbonControl control)
-		{
-			factory.Run<RemoveCitationsCommand>();
-		}
+			=> factory.Run<RemoveCitationsCommand>();
 
 		public void RemoveEmptyCmd(IRibbonControl control)
-		{
-			factory.Run<RemoveEmptyCommand>();
-		}
+			=> factory.Run<RemoveEmptyCommand>();
 
 		public void RemoveFootnoteCmd(IRibbonControl control)
-		{
-			factory.Run<RemoveFootnoteCommand>();
-		}
+			=> factory.Run<RemoveFootnoteCommand>();
 
 		public void RemovePageNumbersCmd(IRibbonControl control)
-		{
-			factory.Run<RemovePageNumbersCommand>();
-		}
+			=> factory.Run<RemovePageNumbersCommand>();
 
 		public void RemoveSectionNumbersCmd(IRibbonControl control)
-		{
-			factory.Run<RemoveSectionNumbersCommand>();
-		}
+			=> factory.Run<RemoveSectionNumbersCommand>();
 
 		public void RemoveSpacingCmd(IRibbonControl control)
-		{
-			factory.Run<RemoveSpacingCommand>();
-		}
+			=> factory.Run<RemoveSpacingCommand>();
 
 		public void ResizeImagesCmd(IRibbonControl control)
-		{
-			factory.Run<ResizeImagesCommand>();
-		}
+			=> factory.Run<ResizeImagesCommand>();
 
 		public void RunPluginCmd(IRibbonControl control)
-		{
-			factory.Run<RunPluginCommand>();
-		}
+			=> factory.Run<RunPluginCommand>();
 
 		public void ExportCmd(IRibbonControl control)
-		{
-			factory.Run<ExportCommand>();
-		}
+			=> factory.Run<ExportCommand>();
 
 		public void SearchAndReplaceCmd(IRibbonControl control)
-		{
-			factory.Run<SearchAndReplaceCommand>();
-		}
+			=> factory.Run<SearchAndReplaceCommand>();
 
 		public void SearchEngineCmd(IRibbonControl control)
-		{
-			factory.Run<SearchEngineCommand>(control.Tag);
-		}
+			=> factory.Run<SearchEngineCommand>(control.Tag);
 
 		public void ShowXmlCmd(IRibbonControl control)
-		{
-			factory.Run<ShowXmlCommand>();
-		}
+			=> factory.Run<ShowXmlCommand>();
 
 		public void SortCmd(IRibbonControl control)
-		{
-			factory.Run<SortCommand>();
-		}
+			=> factory.Run<SortCommand>();
 
 		public void StrikeoutCmd(IRibbonControl control)
-		{
-			factory.Run<StrikeoutCommand>();
-		}
+			=> factory.Run<StrikeoutCommand>();
 
 		public void TextToTableCmd(IRibbonControl control)
-		{
-			factory.Run<TextToTableCommand>();
-		}
+			=> factory.Run<TextToTableCommand>();
 
 		public void ToLowercaseCmd(IRibbonControl control)
 			=> factory.Run<ToCaseCommand>(false);

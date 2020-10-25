@@ -4,12 +4,11 @@
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
-#pragma warning disable S125		// Sections of code should not be commented out
+#pragma warning disable S125        // Sections of code should not be commented out
 
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
-	using River.OneMoreAddIn.Models;
 	using System.Linq;
 
 
