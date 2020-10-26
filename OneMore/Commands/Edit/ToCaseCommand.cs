@@ -78,11 +78,10 @@ namespace River.OneMoreAddIn
 						{
 							if (selection.FirstNode?.NodeType == XmlNodeType.CDATA)
 							{
-								// used numbered entity &#160; instead of undeclared &nbsp;
-								var value = selection.FirstNode.Parent.Value.Replace("&nbsp;", "&#160;");
+								// get a cleaned up XML wrapper of the content
+								var wrapper = selection.FirstNode.Parent.Value.ToXmlWrapper();
 
-								var wrapper = XElement.Parse($"<x>{value}</x>");
-
+								// re-case the XText nodes
 								foreach (var part in wrapper.DescendantNodes().OfType<XText>().ToList())
 								{
 									part.ReplaceWith(upper ? part.Value.ToUpper() : part.Value.ToLower());
