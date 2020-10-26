@@ -14,8 +14,10 @@ namespace River.OneMoreAddIn
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
+
 	internal class ImportCommand : Command
 	{
+		private const int MaxWait = 15;
 		private ProgressDialog progressDialog;
 
 
@@ -257,7 +259,7 @@ namespace River.OneMoreAddIn
 			{
 				using (progressDialog = new ProgressDialog(source))
 				{
-					progressDialog.SetMaximum(15);
+					progressDialog.SetMaximum(MaxWait);
 					progressDialog.SetMessage($"Importing {path}...");
 
 					try
