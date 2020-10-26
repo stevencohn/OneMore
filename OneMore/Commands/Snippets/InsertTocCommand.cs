@@ -181,7 +181,7 @@ namespace River.OneMoreAddIn
 			var page = one.GetPage(pageId);
 			var ns = page.Namespace;
 
-			page.PageName = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
+			page.Title = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
 
 			var container = new XElement(ns + "OEChildren");
 
@@ -243,7 +243,7 @@ namespace River.OneMoreAddIn
 			var scope = includePages ? OneNote.Scope.Pages : OneNote.Scope.Sections;
 			var notebook = one.GetNotebook(scope);
 
-			page.PageName = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
+			page.Title = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
 
 			var container = new XElement(ns + "OEChildren");
 

@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn
 				foreach (var pageID in pageIDs)
 				{
 					var page = one.GetPage(pageID);
-					var filename = Path.Combine(path, page.PageName.Replace(' ', '_') + ext);
+					var filename = Path.Combine(path, page.Title.Replace(' ', '_') + ext);
 
 					progress.SetMessage(filename);
 					progress.Increment();
@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn
 
 		private void ExportOne(OneNote one, Page page)
 		{
-			var filename = page.PageName.Replace(' ', '_');
+			var filename = page.Title.Replace(' ', '_');
 
 			using (var dialog = new SaveFileDialog
 			{

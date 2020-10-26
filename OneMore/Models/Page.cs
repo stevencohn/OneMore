@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Models
 		public XNamespace Namespace { get; private set; }
 
 
-		public string PageName
+		public string Title
 		{
 			get
 			{
@@ -80,6 +80,35 @@ namespace River.OneMoreAddIn.Models
 					title.ReplaceNodes(new XElement(Namespace + "T", new XCData(value)));
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Appends HTML content to the current page
+		/// </summary>
+		/// <param name="html"></param>
+		public void AddHtmlContent(string html)
+		{
+			XElement children;
+			var outline = Root.Elements(Namespace + "Outline").LastOrDefault();
+			if (outline == null)
+			{
+				children = new XElement(Namespace + "OEChildren");
+				Root.Add(new XElement(Namespace + "Outline", children));
+			}
+			else
+			{
+				children = outline.Elements(Namespace + "OEChildren").LastOrDefault();
+				if (children == null)
+				{
+					children = new XElement(Namespace + "OEChildren");
+					outline.Add(children);
+				}
+			}
+
+			children.Add(new XElement(Namespace + "HTMLBlock",
+				new XElement(Namespace + "Data", new XCData(html))
+				));
 		}
 
 

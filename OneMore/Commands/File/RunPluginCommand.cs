@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All))
 			{
-				if (!PromptForPlugin(page.PageName) || string.IsNullOrEmpty(command))
+				if (!PromptForPlugin(page.Title) || string.IsNullOrEmpty(command))
 				{
 					return;
 				}
@@ -299,7 +299,7 @@ namespace River.OneMoreAddIn.Commands
 			page.Attribute("ID").Value = pageId;
 
 			// set the page name to user-entered name
-			new Page(page).PageName = pageName;
+			new Page(page).Title = pageName;
 
 			// remove all objectID values and let OneNote generate new IDs
 			page.Descendants().Attributes("objectID").Remove();
