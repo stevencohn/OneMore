@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn
 						{
 							if (selection.FirstNode?.NodeType == XmlNodeType.CDATA)
 							{
-								var wrapper = XElement.Parse("<x>" + selection.FirstNode.Parent.Value + "</x>");
+								var wrapper = selection.FirstNode.Parent.Value.ToXmlWrapper()
 
 								foreach (var part in wrapper.DescendantNodes().OfType<XText>().ToList())
 								{
