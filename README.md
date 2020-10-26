@@ -20,7 +20,8 @@ General commands
 * [Sort pages, sections, or notebooks](#other)
 * View and edit the [internal OneNote XML](#xml) of the current page
 * Change [**page background**](#dark) to any custom color with dark-mode awareness
-* Save the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
+* Import MSWord and PowerPoint into the current page or a new page
+* Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
 * Invoke an external [custom plugin](#plugin) to process a page
 * Check for updates and install upgrades on-demand
 
