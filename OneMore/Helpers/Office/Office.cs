@@ -47,10 +47,10 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 
 		/// <summary>
-		/// Determines if Powerpoint is installed
+		/// Determines if PowerPoint is installed
 		/// </summary>
 		/// <returns></returns>
-		public static bool IsPowerpointInstalled()
+		public static bool IsPowerPointInstalled()
 		{
 			var type = Type.GetTypeFromProgID("Powerpoint.Application");
 			return type != null;

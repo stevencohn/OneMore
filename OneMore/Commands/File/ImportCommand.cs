@@ -7,10 +7,11 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Helpers.Office;
 	using System;
+	using System.Drawing;
 	using System.IO;
 	using System.Threading;
 	using System.Windows.Forms;
-
+	using System.Xml.Linq;
 
 	internal class ImportCommand : Command
 	{
@@ -37,12 +38,16 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					ImportPowerpoint(dialog.FilePath, dialog.AppendToPage, dialog.SplitSlides);
+					ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.SplitSlides);
 				}
 			}
 		}
 
-		private void ImportWord(string path, bool append)
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Word...
+
+		private void ImportWord(string filepath, bool append)
 		{
 			if (!Office.IsWordInstalled())
 			{
@@ -51,18 +56,18 @@ namespace River.OneMoreAddIn
 
 			logger.StartClock();
 
-			var completed = ConvertWordFile(path, () =>
+			var completed = ConvertWordFile(filepath, () =>
 			{
 				using (var word = new Word())
 				{
-					var html = word.ConvertFileToHtml(path);
+					var html = word.ConvertFileToHtml(filepath);
 
 					progressDialog.DialogResult = DialogResult.OK;
 					progressDialog.Close();
 
 					if (append)
 					{
-						using (var one = new OneNote(out var page, out var ns))
+						using (var one = new OneNote(out var page, out _))
 						{
 							page.AddHtmlContent(html);
 							one.Update(page);
@@ -75,7 +80,7 @@ namespace River.OneMoreAddIn
 							one.CreatePage(one.CurrentSectionId, out var pageId);
 							var page = one.GetPage(pageId);
 
-							page.Title = Path.GetFileName(path);
+							page.Title = Path.GetFileName(filepath);
 							page.AddHtmlContent(html);
 							one.Update(page);
 							one.NavigateTo(page.PageId);
@@ -138,9 +143,58 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void ImportPowerpoint(string path, bool append, bool split)
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Powerpoint...
+
+		private void ImportPowerPoint(string filepath, bool append, bool split)
 		{
-			//
+			if (!Office.IsPowerPointInstalled())
+			{
+				UIHelper.ShowMessage("PowerPoint is not installed");
+			}
+
+			string outpath;
+			using (var powerpoint = new PowerPoint())
+			{
+				outpath = powerpoint.ConvertFileToImages(filepath);
+			}
+
+			if (outpath != null)
+			{
+				if (append)
+				{
+					using (var one = new OneNote(out var page, out var ns))
+					{
+						var container = page.EnsureContentContainer();
+
+						foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
+						{
+							using (var image = Image.FromFile(file))
+							{
+								container.Add(
+									new XElement(ns + "OE",
+										new XElement(ns + "Image",
+											new XElement(ns + "Size",
+												new XAttribute("width", $"{image.Width:00}"),
+												new XAttribute("height", $"{image.Height:00}"),
+												new XAttribute("isSetByUser", "true")),
+											new XElement(ns + "Data", image.ToBase64String())
+										)),
+									new XElement(ns + "OE",
+										new XElement(ns + "T", new XCData(string.Empty))
+										)
+									);
+							}
+
+							File.Delete(file);
+						}
+
+						one.Update(page);
+					}
+				}
+
+				Directory.Delete(outpath);
+			}
 		}
 	}
 }

@@ -113,13 +113,13 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets a Boolean value indicating whether Word or Powerpoint is installed.
+		/// Gets a Boolean value indicating whether Word or PowerPoint is installed.
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns></returns>
 		public bool GetOfficeInstalled(IRibbonControl control)
 		{
-			return Office.IsWordInstalled() || Office.IsPowerpointInstalled();
+			return Office.IsWordInstalled() || Office.IsPowerPointInstalled();
 		}
 	}
 }

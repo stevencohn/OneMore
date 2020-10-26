@@ -144,7 +144,7 @@
 			this.powerGroup.Size = new System.Drawing.Size(539, 144);
 			this.powerGroup.TabIndex = 9;
 			this.powerGroup.TabStop = false;
-			this.powerGroup.Text = "Powerpoint Options";
+			this.powerGroup.Text = "PowerPoint Options";
 			// 
 			// powerCreateButton
 			// 
@@ -189,7 +189,7 @@
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(234, 20);
 			this.introLabel.TabIndex = 9;
-			this.introLabel.Text = "Select a Word or Powerpoint file";
+			this.introLabel.Text = "Select a Word or PowerPoint file";
 			// 
 			// ImportDialog
 			// 

@@ -89,24 +89,9 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="html"></param>
 		public void AddHtmlContent(string html)
 		{
-			XElement children;
-			var outline = Root.Elements(Namespace + "Outline").LastOrDefault();
-			if (outline == null)
-			{
-				children = new XElement(Namespace + "OEChildren");
-				Root.Add(new XElement(Namespace + "Outline", children));
-			}
-			else
-			{
-				children = outline.Elements(Namespace + "OEChildren").LastOrDefault();
-				if (children == null)
-				{
-					children = new XElement(Namespace + "OEChildren");
-					outline.Add(children);
-				}
-			}
+			var container = EnsureContentContainer();
 
-			children.Add(new XElement(Namespace + "HTMLBlock",
+			container.Add(new XElement(Namespace + "HTMLBlock",
 				new XElement(Namespace + "Data", new XCData(html))
 				));
 		}
@@ -208,6 +193,32 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return true;
+		}
+
+
+		/// <summary>
+		/// Ensures the page contains at least one OEChildren elements and returns it
+		/// </summary>
+		public XElement EnsureContentContainer()
+		{
+			XElement container;
+			var outline = Root.Elements(Namespace + "Outline").LastOrDefault();
+			if (outline == null)
+			{
+				container = new XElement(Namespace + "OEChildren");
+				Root.Add(new XElement(Namespace + "Outline", container));
+			}
+			else
+			{
+				container = outline.Elements(Namespace + "OEChildren").LastOrDefault();
+				if (container == null)
+				{
+					container = new XElement(Namespace + "OEChildren");
+					outline.Add(container);
+				}
+			}
+
+			return container;
 		}
 
 

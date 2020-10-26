@@ -23,6 +23,9 @@ namespace River.OneMoreAddIn.Dialogs
 			wordGroup.Visible = false;
 			powerGroup.Visible = false;
 
+			browseButton.Top = pathBox.Top;
+			browseButton.Height = pathBox.Height;
+
 			if (NeedsLocalizing())
 			{
 				Text = Resx.ImportDialog_Text;
