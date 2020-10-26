@@ -1920,8 +1920,8 @@ XML File (*.xml)</value>
     <value>Powerpoint Options</value>
     <comment>group box</comment>
   </data>
-  <data name="ImportDialog_powerPagesButton.Text" xml:space="preserve">
-    <value>Create a new page for each slide</value>
+  <data name="ImportDialog_powerSectionButton.Text" xml:space="preserve">
+    <value>Create a new section with a page for each slide</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_Text" xml:space="preserve">

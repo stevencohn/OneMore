@@ -9,7 +9,10 @@ namespace River.OneMoreAddIn
 	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel;
 	using System.IO;
+	using System.Linq;
 	using System.Text;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
@@ -442,6 +445,62 @@ namespace River.OneMoreAddIn
 		public void CreatePage(string sectionId, out string pageId)
 		{
 			onenote.CreateNewPage(sectionId, out pageId);
+		}
+
+
+		/// <summary>
+		/// Create a new section in the current notebook immediately after the open section
+		/// </summary>
+		/// <param name="name">The name of the new section</param>
+		/// <returns>The Section element</returns>
+		public XElement CreateSection(string name)
+		{
+			// find the current section in this notebook (may be in section group)
+			var notebook = GetNotebook();
+			var ns = GetNamespace(notebook);
+			var current = notebook.Descendants(ns + "Section")
+				.FirstOrDefault(e => e.Attribute("isCurrentlyViewed")?.Value == "true");
+
+			XElement parent;
+			var sectionIds = new List<string>();
+
+			if (current == null)
+			{
+				// add first section to notebook
+				notebook.Add(new XElement(ns + "Section", new XAttribute("name", name)));
+				parent = notebook;
+			}
+			else
+			{
+				// get the parent of the current section (may be the notebook or a section group)
+				// so we will then only update that parent rather than the entire hierarchy
+				parent = current.Parent;
+
+				// collect all section IDs for comparison
+				sectionIds = parent.Elements(ns + "Section")
+					.Where(e => e.Attribute("isRecycleBin") == null && e.Attribute("isInRecycleBin") == null)
+					.Attributes("ID").Select(a => a.Value).ToList();
+
+				// add the new section (won't know the ID yet)
+				current.AddAfterSelf(new XElement(ns + "Section", new XAttribute("name", name)));
+			}
+
+			// udpate the notebook or section group
+			UpdateHierarchy(parent);
+
+			// get the parent again so we can find the new section ID
+			onenote.GetHierarchy(
+				parent.Attribute("ID").Value,
+				HierarchyScope.hsSections, out var xml, XMLSchema.xs2013);
+
+			parent = XElement.Parse(xml);
+
+			// compare the new parent with old section IDs to find the new ID
+			var section = parent.Elements(ns + "Section")
+				.Where(e => e.Attribute("isRecycleBin") == null && e.Attribute("isInRecycleBin") == null)
+				.FirstOrDefault(e => !sectionIds.Contains(e.Attribute("ID").Value));
+
+			return section;
 		}
 
 

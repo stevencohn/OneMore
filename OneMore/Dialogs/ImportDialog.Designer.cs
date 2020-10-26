@@ -40,7 +40,7 @@
 			this.powerGroup = new System.Windows.Forms.GroupBox();
 			this.powerCreateButton = new System.Windows.Forms.RadioButton();
 			this.powerAppendButton = new System.Windows.Forms.RadioButton();
-			this.powerPagesButton = new System.Windows.Forms.RadioButton();
+			this.powerSectionButton = new System.Windows.Forms.RadioButton();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.wordGroup.SuspendLayout();
 			this.powerGroup.SuspendLayout();
@@ -137,7 +137,7 @@
 			// 
 			this.powerGroup.Controls.Add(this.powerCreateButton);
 			this.powerGroup.Controls.Add(this.powerAppendButton);
-			this.powerGroup.Controls.Add(this.powerPagesButton);
+			this.powerGroup.Controls.Add(this.powerSectionButton);
 			this.powerGroup.Location = new System.Drawing.Point(22, 98);
 			this.powerGroup.Name = "powerGroup";
 			this.powerGroup.Padding = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -171,23 +171,23 @@
 			this.powerAppendButton.Text = "Append to this page";
 			this.powerAppendButton.UseVisualStyleBackColor = true;
 			// 
-			// powerPagesButton
+			// powerSectionButton
 			// 
-			this.powerPagesButton.AutoSize = true;
-			this.powerPagesButton.Location = new System.Drawing.Point(40, 101);
-			this.powerPagesButton.Name = "powerPagesButton";
-			this.powerPagesButton.Size = new System.Drawing.Size(266, 24);
-			this.powerPagesButton.TabIndex = 2;
-			this.powerPagesButton.TabStop = true;
-			this.powerPagesButton.Text = "Create a new page for each slide";
-			this.powerPagesButton.UseVisualStyleBackColor = true;
+			this.powerSectionButton.AutoSize = true;
+			this.powerSectionButton.Location = new System.Drawing.Point(40, 101);
+			this.powerSectionButton.Name = "powerSectionButton";
+			this.powerSectionButton.Size = new System.Drawing.Size(343, 24);
+			this.powerSectionButton.TabIndex = 2;
+			this.powerSectionButton.TabStop = true;
+			this.powerSectionButton.Text = "Create a new section with a page each slide";
+			this.powerSectionButton.UseVisualStyleBackColor = true;
 			// 
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
 			this.introLabel.Location = new System.Drawing.Point(18, 15);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(234, 20);
+			this.introLabel.Size = new System.Drawing.Size(235, 20);
 			this.introLabel.TabIndex = 9;
 			this.introLabel.Text = "Select a Word or PowerPoint file";
 			// 
@@ -215,6 +215,7 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Import";
+			this.TopMost = true;
 			this.wordGroup.ResumeLayout(false);
 			this.wordGroup.PerformLayout();
 			this.powerGroup.ResumeLayout(false);
@@ -237,7 +238,7 @@
 		private System.Windows.Forms.GroupBox powerGroup;
 		private System.Windows.Forms.RadioButton powerCreateButton;
 		private System.Windows.Forms.RadioButton powerAppendButton;
-		private System.Windows.Forms.RadioButton powerPagesButton;
+		private System.Windows.Forms.RadioButton powerSectionButton;
 		private System.Windows.Forms.Label introLabel;
 	}
 }

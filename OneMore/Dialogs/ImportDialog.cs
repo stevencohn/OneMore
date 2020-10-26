@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Dialogs
 					"powerGroup",
 					"powerAppendButton",
 					"powerCreateButton",
-					"powerPagesButton",
+					"powerSectionButton",
 					"okButton",
 					"cancelButton"
 				});
@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		public bool AppendToPage => WordFile ? wordAppendButton.Checked : powerAppendButton.Checked;
 
-		public bool SplitSlides => powerPagesButton.Checked;
+		public bool CreateSection => powerSectionButton.Checked;
 
 
 		private void ChangePath(object sender, EventArgs e)
@@ -113,6 +113,7 @@ namespace River.OneMoreAddIn.Dialogs
 						CheckFileExists = true,
 						DefaultExt = ".docx",
 						Filter = Resx.ImportDialog_OpenFileFilter,
+						InitialDirectory = path,
 						Multiselect = false,
 						Title = Resx.ImportDialog_OpenFileTitle
 					})

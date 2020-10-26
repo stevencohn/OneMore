@@ -46,8 +46,6 @@ namespace River.OneMoreAddIn.Helpers.Office
 		{
 			try
 			{
-				System.Diagnostics.Debugger.Launch();
-
 				var presentation = power.Presentations.Open(
 					source, MsoTriState.msoTrue, MsoTriState.msoFalse, MsoTriState.msoFalse);
 

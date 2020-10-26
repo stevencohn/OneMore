@@ -1880,8 +1880,8 @@ XML档案（* .xml）</value>
     <value>简报选项</value>
     <comment>group box</comment>
   </data>
-  <data name="ImportDialog_powerPagesButton.Text" xml:space="preserve">
-    <value>为每张幻灯片创建一个新页面</value>
+  <data name="ImportDialog_powerSectionButton.Text" xml:space="preserve">
+    <value>为每张幻灯片创建一个带有页面的新部分</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_Text" xml:space="preserve">

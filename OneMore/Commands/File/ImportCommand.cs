@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Drawing;
 	using System.IO;
@@ -38,7 +39,7 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.SplitSlides);
+					ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.CreateSection);
 				}
 			}
 		}
@@ -56,42 +57,17 @@ namespace River.OneMoreAddIn
 
 			logger.StartClock();
 
-			var completed = ConvertWordFile(filepath, () =>
+			var completed = RunBackgroundTask(filepath, () =>
 			{
-				using (var word = new Word())
-				{
-					var html = word.ConvertFileToHtml(filepath);
+				WordImporter(filepath, append);
 
-					progressDialog.DialogResult = DialogResult.OK;
-					progressDialog.Close();
-
-					if (append)
-					{
-						using (var one = new OneNote(out var page, out _))
-						{
-							page.AddHtmlContent(html);
-							one.Update(page);
-						}
-					}
-					else
-					{
-						using (var one = new OneNote())
-						{
-							one.CreatePage(one.CurrentSectionId, out var pageId);
-							var page = one.GetPage(pageId);
-
-							page.Title = Path.GetFileName(filepath);
-							page.AddHtmlContent(html);
-							one.Update(page);
-							one.NavigateTo(page.PageId);
-						}
-					}
-				}
+				progressDialog.DialogResult = DialogResult.OK;
+				progressDialog.Close();
 			});
 
 			if (completed)
 			{
-				logger.WriteTime("word file converted");
+				logger.WriteTime("word file imported");
 			}
 			else
 			{
@@ -100,7 +76,182 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private bool ConvertWordFile(string path, Action action)
+		private void WordImporter(string filepath, bool append)
+		{
+			using (var word = new Word())
+			{
+				var html = word.ConvertFileToHtml(filepath);
+
+
+				if (append)
+				{
+					using (var one = new OneNote(out var page, out _))
+					{
+						page.AddHtmlContent(html);
+						one.Update(page);
+					}
+				}
+				else
+				{
+					using (var one = new OneNote())
+					{
+						one.CreatePage(one.CurrentSectionId, out var pageId);
+						var page = one.GetPage(pageId);
+
+						page.Title = Path.GetFileName(filepath);
+						page.AddHtmlContent(html);
+						one.Update(page);
+						one.NavigateTo(page.PageId);
+					}
+				}
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Powerpoint...
+
+		private void ImportPowerPoint(string filepath, bool append, bool split)
+		{
+			if (!Office.IsPowerPointInstalled())
+			{
+				UIHelper.ShowMessage("PowerPoint is not installed");
+			}
+
+			logger.StartClock();
+
+			var completed = RunBackgroundTask(filepath, () =>
+			{
+				PowerPointImporter(filepath, append, split);
+
+				progressDialog.DialogResult = DialogResult.OK;
+				progressDialog.Close();
+			});
+
+			if (completed)
+			{
+				logger.WriteTime("powerpoint file imported");
+			}
+			else
+			{
+				logger.StopClock();
+			}
+		}
+
+
+		private void PowerPointImporter(string filepath, bool append, bool split)
+		{
+			string outpath;
+			using (var powerpoint = new PowerPoint())
+			{
+				outpath = powerpoint.ConvertFileToImages(filepath);
+			}
+
+			if (outpath == null)
+			{
+				logger.WriteLine($"failed to create output path");
+				return;
+			}
+
+			if (split)
+			{
+				using (var one = new OneNote())
+				{
+					var section = one.CreateSection(Path.GetFileNameWithoutExtension(filepath));
+					var sectionId = section.Attribute("ID").Value;
+					var ns = one.GetNamespace(section);
+
+					one.NavigateTo(sectionId);
+
+					int i = 1;
+					foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
+					{
+						one.CreatePage(sectionId, out var pageId);
+						var page = one.GetPage(pageId);
+						page.Title = $"Slide {i}";
+						var container = page.EnsureContentContainer();
+
+						LoadImage(container, ns, file);
+
+						one.Update(page);
+
+						i++;
+					}
+
+					logger.WriteLine("created section");
+				}
+			}
+			else
+			{
+				using (var one = new OneNote())
+				{
+					Page page;
+					if (append)
+					{
+						page = one.GetPage();
+					}
+					else
+					{
+						one.CreatePage(one.CurrentSectionId, out var pageId);
+						page = one.GetPage(pageId);
+						page.Title = Path.GetFileName(filepath);
+					}
+
+					var container = page.EnsureContentContainer();
+
+					foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
+					{
+						using (var image = Image.FromFile(file))
+						{
+							LoadImage(container, page.Namespace, file);
+						}
+					}
+
+					one.Update(page);
+
+					if (!append)
+					{
+						one.NavigateTo(page.PageId);
+					}
+				}
+			}
+
+			try
+			{
+				Directory.Delete(outpath, true);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"Error cleaning up {outpath}", exc);
+			}
+		}
+
+
+		private void LoadImage(XElement container, XNamespace ns, string filepath)
+		{
+			using (var image = Image.FromFile(filepath))
+			{
+				container.Add(
+					new XElement(ns + "OE",
+						new XElement(ns + "Image",
+							new XElement(ns + "Size",
+								new XAttribute("width", $"{image.Width:00}"),
+								new XAttribute("height", $"{image.Height:00}"),
+								new XAttribute("isSetByUser", "true")),
+							new XElement(ns + "Data", image.ToBase64String())
+						)),
+					new XElement(ns + "OE",
+						new XElement(ns + "T", new XCData(string.Empty))
+						)
+					);
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// The Worker!
+
+		private bool RunBackgroundTask(string path, Action action)
 		{
 			using (var source = new CancellationTokenSource())
 			{
@@ -134,67 +285,12 @@ namespace River.OneMoreAddIn
 					}
 					catch (Exception exc)
 					{
-						logger.WriteLine("Error running Execute(string)", exc);
+						logger.WriteLine("Error importing", exc);
 					}
 				}
 			}
 
 			return true;
-		}
-
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// Powerpoint...
-
-		private void ImportPowerPoint(string filepath, bool append, bool split)
-		{
-			if (!Office.IsPowerPointInstalled())
-			{
-				UIHelper.ShowMessage("PowerPoint is not installed");
-			}
-
-			string outpath;
-			using (var powerpoint = new PowerPoint())
-			{
-				outpath = powerpoint.ConvertFileToImages(filepath);
-			}
-
-			if (outpath != null)
-			{
-				if (append)
-				{
-					using (var one = new OneNote(out var page, out var ns))
-					{
-						var container = page.EnsureContentContainer();
-
-						foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
-						{
-							using (var image = Image.FromFile(file))
-							{
-								container.Add(
-									new XElement(ns + "OE",
-										new XElement(ns + "Image",
-											new XElement(ns + "Size",
-												new XAttribute("width", $"{image.Width:00}"),
-												new XAttribute("height", $"{image.Height:00}"),
-												new XAttribute("isSetByUser", "true")),
-											new XElement(ns + "Data", image.ToBase64String())
-										)),
-									new XElement(ns + "OE",
-										new XElement(ns + "T", new XCData(string.Empty))
-										)
-									);
-							}
-
-							File.Delete(file);
-						}
-
-						one.Update(page);
-					}
-				}
-
-				Directory.Delete(outpath);
-			}
 		}
 	}
 }

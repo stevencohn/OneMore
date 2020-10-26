@@ -1409,11 +1409,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create a new page for each slide.
+        ///   Looks up a localized string similar to Create a new section with a page for each slide.
         /// </summary>
-        internal static string ImportDialog_powerPagesButton_Text {
+        internal static string ImportDialog_powerSectionButton_Text {
             get {
-                return ResourceManager.GetString("ImportDialog_powerPagesButton.Text", resourceCulture);
+                return ResourceManager.GetString("ImportDialog_powerSectionButton.Text", resourceCulture);
             }
         }
         
