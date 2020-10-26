@@ -9,6 +9,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Helpers.Office;
 	using System.Linq;
 
 
@@ -108,6 +109,17 @@ namespace River.OneMoreAddIn
 
 				return count > 1;
 			}
+		}
+
+
+		/// <summary>
+		/// Gets a Boolean value indicating whether Word or Powerpoint is installed.
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public bool GetOfficeInstalled(IRibbonControl control)
+		{
+			return Office.IsWordInstalled() || Office.IsPowerpointInstalled();
 		}
 	}
 }

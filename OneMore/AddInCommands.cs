@@ -63,6 +63,9 @@ namespace River.OneMoreAddIn
 		public void HighlightFormulaCmd(IRibbonControl control)
 			=> factory.Run<HighlightFormulaCommand>();
 
+		public void ImportCmd(IRibbonControl control)
+			=> factory.Run<ImportCommand>();
+
 		public void InsertBlueStatusCmd(IRibbonControl control)
 			=> factory.Run<InsertStatusCommand>(StatusColor.Blue);
 

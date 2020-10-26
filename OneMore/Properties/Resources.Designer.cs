@@ -1330,6 +1330,132 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
+        internal static string ImportDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File:.
+        /// </summary>
+        internal static string ImportDialog_fileLabel_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_fileLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Word or Powerpoint file.
+        /// </summary>
+        internal static string ImportDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string ImportDialog_okButton_text {
+            get {
+                return ResourceManager.GetString("ImportDialog_okButton.text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx.
+        /// </summary>
+        internal static string ImportDialog_OpenFileFilter {
+            get {
+                return ResourceManager.GetString("ImportDialog_OpenFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose file to import.
+        /// </summary>
+        internal static string ImportDialog_OpenFileTitle {
+            get {
+                return ResourceManager.GetString("ImportDialog_OpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Append to this page.
+        /// </summary>
+        internal static string ImportDialog_powerAppendButton_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_powerAppendButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new page.
+        /// </summary>
+        internal static string ImportDialog_powerCreateButton_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_powerCreateButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Powerpoint Options.
+        /// </summary>
+        internal static string ImportDialog_powerGroup_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_powerGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new page for each slide.
+        /// </summary>
+        internal static string ImportDialog_powerPagesButton_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_powerPagesButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        internal static string ImportDialog_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Append to this page.
+        /// </summary>
+        internal static string ImportDialog_wordAppendButton_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_wordAppendButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new page.
+        /// </summary>
+        internal static string ImportDialog_wordCreateButton_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_wordCreateButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word Options.
+        /// </summary>
+        internal static string ImportDialog_wordGroup_Text {
+            get {
+                return ResourceManager.GetString("ImportDialog_wordGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
         internal static string InsertCalendarDialog_cancelButton_Text {
             get {
                 return ResourceManager.GetString("InsertCalendarDialog_cancelButton.Text", resourceCulture);
