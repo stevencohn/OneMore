@@ -76,14 +76,14 @@ namespace River.OneMoreAddIn.Dialogs
 			// build pageInfoBox with custom order
 			var names = new List<string>
 			{
-				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.All),
-				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.Selection),
-				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.Basic),
-				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.BinaryData),
-				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.BinaryDataSelection),
-				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.BinaryDataFileType),
-				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.FileType),
-				Enum.GetName(typeof(OneNote.PageInfo), OneNote.PageInfo.SelectionFileType)
+				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.All),
+				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.Selection),
+				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.Basic),
+				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.BinaryData),
+				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.BinaryDataSelection),
+				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.BinaryDataFileType),
+				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.FileType),
+				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.SelectionFileType)
 			};
 
 			pageInfoBox.Items.AddRange(names.ToArray());
@@ -228,7 +228,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void ChangeInfoScope(object sender, EventArgs e)
 		{
-			if (Enum.TryParse<OneNote.PageInfo>(pageInfoBox.Text, out var info))
+			if (Enum.TryParse<OneNote.PageDetail>(pageInfoBox.Text, out var info))
 			{
 				var page = one.GetPage(info);
 				if (page != null)

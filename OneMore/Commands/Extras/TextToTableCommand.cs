@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns, OneNote.PageInfo.Selection))
+			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection))
 			{
 				var selections = page.Root
 					.Descendants(page.Namespace + "OE")

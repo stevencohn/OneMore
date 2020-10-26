@@ -13,7 +13,6 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
-	using ON = Microsoft.Office.Interop.OneNote;
 
 
 	/// <summary>
@@ -36,25 +35,25 @@ namespace River.OneMoreAddIn
 			XML = 1000
 		}
 
-		public enum PageInfo
+		public enum PageDetail
 		{
-			All = ON.PageInfo.piAll,
-			Basic = ON.PageInfo.piBasic,
-			BinaryData = ON.PageInfo.piBinaryData,
-			BinaryDataFileType = ON.PageInfo.piBinaryDataFileType,
-			BinaryDataSelection = ON.PageInfo.piBinaryDataSelection,
-			FileType = ON.PageInfo.piFileType,
-			Selection = ON.PageInfo.piSelection,
-			SelectionFileType = ON.PageInfo.piSelectionFileType
+			All = PageInfo.piAll,
+			Basic = PageInfo.piBasic,
+			BinaryData = PageInfo.piBinaryData,
+			BinaryDataFileType = PageInfo.piBinaryDataFileType,
+			BinaryDataSelection = PageInfo.piBinaryDataSelection,
+			FileType = PageInfo.piFileType,
+			Selection = PageInfo.piSelection,
+			SelectionFileType = PageInfo.piSelectionFileType
 		}
 
 		public enum Scope
 		{
-			Children = ON.HierarchyScope.hsChildren,
-			Notebooks = ON.HierarchyScope.hsNotebooks,
-			Pages = ON.HierarchyScope.hsPages,
-			Sections = ON.HierarchyScope.hsSections,
-			Self = ON.HierarchyScope.hsSelf
+			Children = HierarchyScope.hsChildren,
+			Notebooks = HierarchyScope.hsNotebooks,
+			Pages = HierarchyScope.hsPages,
+			Sections = HierarchyScope.hsSections,
+			Self = HierarchyScope.hsSelf
 		}
 
 
@@ -84,7 +83,7 @@ namespace River.OneMoreAddIn
 		/// <param name="page">The current Page</param>
 		/// <param name="ns">The namespace of the current page</param>
 		/// <param name="info">The desired verbosity of the XML</param>
-		public OneNote(out Page page, out XNamespace ns, PageInfo info = PageInfo.Selection)
+		public OneNote(out Page page, out XNamespace ns, PageDetail info = PageDetail.Selection)
 			: this()
 		{
 			page = GetPage(info);
@@ -244,7 +243,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="info">The desired verbosity of the XML</param>
 		/// <returns>A Page containing the root XML of the page</returns>
-		public Page GetPage(PageInfo info = PageInfo.Selection)
+		public Page GetPage(PageDetail info = PageDetail.Selection)
 		{
 			return GetPage(CurrentPageId, info);
 		}
@@ -256,14 +255,14 @@ namespace River.OneMoreAddIn
 		/// <param name="pageId">The unique ID of the page</param>
 		/// <param name="info">The desired verbosity of the XML</param>
 		/// <returns>A Page containing the root XML of the page</returns>
-		public Page GetPage(string pageId, PageInfo info = PageInfo.All)
+		public Page GetPage(string pageId, PageDetail info = PageDetail.All)
 		{
 			if (string.IsNullOrEmpty(pageId))
 			{
 				return null;
 			}
 
-			onenote.GetPageContent(pageId, out var xml, (ON.PageInfo)info, XMLSchema.xs2013);
+			onenote.GetPageContent(pageId, out var xml, (PageInfo)info, XMLSchema.xs2013);
 			if (!string.IsNullOrEmpty(xml))
 			{
 				return new Page(XElement.Parse(xml));
@@ -280,7 +279,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public (string Name, string Path, string Link) GetPageInfo()
 		{
-			var page = GetPage(PageInfo.Basic);
+			var page = GetPage(PageDetail.Basic);
 			if (page == null)
 			{
 				return (null, null, null);

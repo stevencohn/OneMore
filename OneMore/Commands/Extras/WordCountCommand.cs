@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns, OneNote.PageInfo.Selection))
+			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection))
 			{
 				var cdatas = page.Root.DescendantNodes().OfType<XCData>();
 

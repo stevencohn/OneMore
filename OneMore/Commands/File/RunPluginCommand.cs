@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override void Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns, OneNote.PageInfo.All))
+			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All))
 			{
 				if (!PromptForPlugin(page.PageName) || string.IsNullOrEmpty(command))
 				{

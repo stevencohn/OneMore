@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
-			using (one = new OneNote(out page, out ns, OneNote.PageInfo.All))
+			using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 			{
 				var images = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
