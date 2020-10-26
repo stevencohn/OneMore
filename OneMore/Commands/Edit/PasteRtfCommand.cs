@@ -72,11 +72,12 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Execute()
+		public override void Execute(params object[] args)
 		{
 			// transform RTF and Xaml data on clipboard to HTML
 
 			var html = PrepareClipboard();
+			logger.WriteLine(html);
 #if H
 			if (html != null)
 			{

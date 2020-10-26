@@ -491,6 +491,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error running command {0}.
+        /// </summary>
+        internal static string Command_Error {
+            get {
+                return ResourceManager.GetString("Command_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}. See log file for details.
+        /// </summary>
+        internal static string Command_ErrorMsg {
+            get {
+                return ResourceManager.GetString("Command_ErrorMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one image to crop.
         /// </summary>
         internal static string CropImage_oneImage {

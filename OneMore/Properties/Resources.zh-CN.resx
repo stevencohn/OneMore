@@ -1844,4 +1844,12 @@ XML档案（* .xml）</value>
     <value>已将{0}页保存到{1}</value>
     <comment>save many message</comment>
   </data>
+  <data name="Command_Error" xml:space="preserve">
+    <value>运行命令{0}时出错</value>
+    <comment>logged and displayed in messagebox</comment>
+  </data>
+  <data name="Command_ErrorMsg" xml:space="preserve">
+    <value>{0}。 请参阅日志文件以获取详细信息</value>
+    <comment>messagebox (0 arg is Command_Error)</comment>
+  </data>
 </root>

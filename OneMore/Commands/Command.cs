@@ -25,7 +25,9 @@ namespace River.OneMoreAddIn
 		protected List<IDisposable> trash;
 
 
-		#region Factory setters
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Settings used by CommandFactory
+
 		public void SetLogger(ILogger value)
 		{
 			logger = value;
@@ -48,8 +50,10 @@ namespace River.OneMoreAddIn
 		{
 			trash = value;
 		}
-		#endregion Factory setters
 
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Must override by inheritors...
 
 		/// <summary>
 		/// The entry point for the command which may take zero or more arguments

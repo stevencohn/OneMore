@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			return factory.GetCommand<GalleryTileFactory>().MakeTile(itemIndex, pageColor);
+			return new GalleryTileFactory().MakeTile(itemIndex, pageColor);
 		}
 
 

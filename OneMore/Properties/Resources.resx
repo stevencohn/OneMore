@@ -1884,4 +1884,12 @@ XML File (*.xml)</value>
     <value>Saved {0} pages to {1}</value>
     <comment>save many message</comment>
   </data>
+  <data name="Command_Error" xml:space="preserve">
+    <value>Error running command {0}</value>
+    <comment>logged and displayed in messagebox</comment>
+  </data>
+  <data name="Command_ErrorMsg" xml:space="preserve">
+    <value>{0}. See log file for details</value>
+    <comment>messagebox (0 arg is Command_Error)</comment>
+  </data>
 </root>

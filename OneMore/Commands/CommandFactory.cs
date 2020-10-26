@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -28,26 +29,13 @@ namespace River.OneMoreAddIn
 		/// <param name="ribbon">The OneNote ribbon</param>
 		/// <param name="trash">A colleciton of IDisposables for cleanup on shutdown</param>
 		/// <param name="owner">The owner window</param>
-		public CommandFactory(ILogger logger, IRibbonUI ribbon, List<IDisposable> trash, IWin32Window owner)
+		public CommandFactory(
+			ILogger logger, IRibbonUI ribbon, List<IDisposable> trash, IWin32Window owner)
 		{
 			this.logger = logger;
 			this.ribbon = ribbon;
 			this.owner = owner;
 			this.trash = trash;
-		}
-
-
-		// TODO: obsolete
-		[Obsolete("Remove this")]
-		public T GetCommand<T>() where T : Command, new()
-		{
-			var command = new T();
-			command.SetLogger(logger);
-			command.SetRibbon(ribbon);
-			command.SetOwner(owner);
-			command.SetTrash(trash);
-
-			return command;
 		}
 
 
@@ -77,13 +65,13 @@ namespace River.OneMoreAddIn
 			{
 				// catch-all exception hander
 
-				var msg = $"Error running command {typeof(T).Name}";
+				var msg = string.Format(Resx.Command_Error, typeof(T).Name);
 				logger.End();
 				logger.WriteLine(msg);
 				logger.WriteLine(exc);
 				logger.WriteLine();
 
-				UIHelper.ShowError($"{msg}. See log file for details");
+				UIHelper.ShowError(string.Format(Resx.Command_ErrorMsg, msg));
 			}
 		}
 	}

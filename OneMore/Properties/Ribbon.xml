@@ -377,6 +377,14 @@
               getLabel="GetRibbonLabel"
               onAction="AboutCmd"/>
           </menu>
+
+          <!--
+          <separator id="extrasSeparator"/>
+
+          <button id="boo1" image="NoSpellCheck" label="No Spell Check"/>
+          <button id="boo3" imageMso="PasteSpecialDialog" label="Paste Rich Text"/>
+          <button id="boo2" imageMso="TableFormulaDialog" label="Add Formula"/>
+          -->
         </group>
       </tab>
     </tabs>

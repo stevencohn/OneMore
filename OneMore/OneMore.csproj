@@ -144,7 +144,7 @@
     <Compile Include="Commands\File\RunPluginCommand.cs" />
     <Compile Include="Commands\File\ExportCommand.cs" />
     <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
-    <Compile Include="Commands\SearchEngineCommand.cs" />
+    <Compile Include="Commands\Tools\SearchEngineCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
@@ -153,7 +153,7 @@
     <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
     <Compile Include="Commands\Extras\AddTitleIconCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
-    <Compile Include="Commands\CollapseCommand.cs" />
+    <Compile Include="Commands\Tools\CollapseCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
     <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
@@ -262,7 +262,7 @@
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
     <Compile Include="Commands\Extras\NameUrlsCommand.cs" />
-    <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Commands\Tools\NavigateCommand.cs" />
     <Compile Include="Commands\Edit\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\Footnotes\RemoveFootnoteCommand.cs" />
@@ -272,8 +272,8 @@
     <Compile Include="Commands\SearchAndReplace\IAtom.cs" />
     <Compile Include="Commands\SearchAndReplace\SearchAndReplaceEditor.cs" />
     <Compile Include="Commands\SearchAndReplace\TextAtom.cs" />
-    <Compile Include="Commands\AboutCommand.cs" />
-    <Compile Include="Commands\SortCommand.cs" />
+    <Compile Include="Commands\Tools\AboutCommand.cs" />
+    <Compile Include="Commands\Tools\SortCommand.cs" />
     <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />
     <Compile Include="Dialogs\ChangePageColorDialog.cs">

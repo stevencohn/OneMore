@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn
 	using System.Runtime.InteropServices.ComTypes;
 
 
-	internal class GalleryTileFactory : Command
+	internal class GalleryTileFactory
 	{
 		private readonly StyleProvider provider;
 
