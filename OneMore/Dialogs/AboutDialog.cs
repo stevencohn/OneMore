@@ -102,7 +102,9 @@ namespace River.OneMoreAddIn.Dialogs
 
 		private void ClearLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			new ClearLogCommand().Execute();
+			var cmd = new ClearLogCommand();
+			cmd.SetLogger(Logger.Current);
+			cmd.Execute();
 		}
 	}
 }

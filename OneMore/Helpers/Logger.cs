@@ -37,12 +37,9 @@ namespace River.OneMoreAddIn
 				stdio = process.ProcessName.StartsWith("LINQPad");
 			}
 
-			if (!stdio)
-			{
-				LogPath = Path.Combine(
-					Path.GetTempPath(),
-					designMode ? "OneMore-design.log" : "OneMore.log");
-			}
+			LogPath = Path.Combine(
+				Path.GetTempPath(),
+				designMode ? "OneMore-design.log" : "OneMore.log");
 
 			preamble = string.Empty;
 			writer = null;
