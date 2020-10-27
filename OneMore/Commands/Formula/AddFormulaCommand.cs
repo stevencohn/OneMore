@@ -74,17 +74,28 @@ namespace River.OneMoreAddIn
 					if (fx != null)
 					{
 						var parts = fx.Split(';');
-						if (parts.Length == 3)
+						if (parts[0] == "1" || parts[0] == "2")
 						{
 							if (Enum.TryParse<FormulaFormat>(parts[1], true, out var format))
 							{
 								dialog.Format = format;
 							}
 
-							dialog.Formula = parts[2];
+							if (parts[0] == "2")
+							{
+								if (int.TryParse(parts[2], out var dplaces))
+								{
+									dialog.DecimalPlaces = dplaces;
+								}
+
+								dialog.Formula = parts[3];
+							}
+							else
+							{
+								dialog.Formula = parts[2];
+							}
 						}
 					}
-
 
 					var tagIndex = page.GetTagIndex(BoltSymbol);
 					if (!string.IsNullOrEmpty(tagIndex))
