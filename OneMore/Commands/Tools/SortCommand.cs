@@ -71,11 +71,7 @@ namespace River.OneMoreAddIn
 		{
 			#region Notes
 			/*
-			 * <one:Page ID="{B49..." 
-			 *		name="Notes"
-			 *		dateTime="2018-01-24T03:23:12.000Z"
-			 *		lastModifiedTime="2019-10-26T12:56:53.000Z"
-			 *		pageLevel="1" />
+			 * <one:Page ID="" name="Notes" pageLevel="1" />
 			 *		
 			 * Pages within a section are stored as a flat list of elements with
 			 * indented pages indicated by pageLevel only - they are not recursive children.
@@ -208,25 +204,14 @@ namespace River.OneMoreAddIn
 		{
 			#region Notes
 			/*
-			 * <one:Notebooks xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote">
-			 *   <one:Notebook name="Personal" nickname="Personal" ID="{CA.."
-			 *      path="https://d.docs.live.net/../Personal/"
-			 *      lastModifiedTime="2020-03-04T22:28:34.000Z"
-			 *      color="#FFD869"
-			 *      isCurrentlyViewed="true">
-			 *     <one:Section 
-			 *          name="Notes" 
-			 *          ID="{41.." 
-			 *          path="https://d.docs.live.net/../Personal/Notes.one" 
-			 *          lastModifiedTime="2020-03-03T15:59:21.000Z" 
-			 *          color="#F6B078" />
-			 *     <one:Section name="Automobiles" ID="{EC.." path="https://d.docs.live.net/../Personal/Automobiles.one" lastModifiedTime="2018-09-27T16:03:28.000Z" color="#9BBBD2" />
-			 *     <one:SectionGroup name="OneNote_RecycleBin" ID="{09.." path="https://d.docs.live.net/../Personal/OneNote_RecycleBin/" lastModifiedTime="2020-03-04T00:00:32.000Z" isRecycleBin="true">
-			 *       <one:Section name="Deleted Pages" ID="{8A.." path="https://d.docs.live.net/../Personal/OneNote_RecycleBin/OneNote_DeletedPages.one" lastModifiedTime="2020-03-04T00:00:32.000Z" color="#E1E1E1" isInRecycleBin="true" isDeletedPages="true" />
-			 *     </one:SectionGroup>
-			 *   </one:Notebook>
-			 * </one:Notebooks>
-			 *
+			 * <one:Notebook name="Personal" nickname="Personal" ID="">
+			 *   <one:Section name="Notes" ID="" />
+			 *   <one:Section name="Automobiles" ID="" />
+			 *   <one:SectionGroup name="OneNote_RecycleBin" ID="" isRecycleBin="true">
+			 *     <one:Section name="Deleted Pages" ID="" isInRecycleBin="true" isDeletedPages="true" />
+			 *   </one:SectionGroup>
+			 * </one:Notebook>
+			 * 
 			 * Sort top-level sections only; ignore section groups.
 			 */
 			#endregion Notes
@@ -237,6 +222,7 @@ namespace River.OneMoreAddIn
 			{
 				// get the current notebook with its sections
 				var notebook = one.GetNotebook();
+
 				if (notebook == null)
 				{
 					return;
@@ -248,7 +234,7 @@ namespace River.OneMoreAddIn
 					? "name"
 					: "lastModifiedTime";
 
-				SortSections(notebook, ns,
+				SortSection(notebook, ns,
 					key, direction == SortDialog.Directions.Ascending, pinNotes);
 
 				//logger.WriteLine(notebook.ToString());
@@ -259,7 +245,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void SortSections(XElement parent, XNamespace ns, string key, bool ascending, bool pin)
+		private void SortSection(XElement parent, XNamespace ns, string key, bool ascending, bool pin)
 		{
 			IEnumerable<XElement> sections;
 			if (ascending)
@@ -277,12 +263,8 @@ namespace River.OneMoreAddIn
 
 			parent.Elements(ns + "Section").Remove();
 
-			// recyclebin will be at the top level but sectiongroups may not have sub-groups
-			XElement marker = null;
-			if (parent.Name.LocalName == "Notebook")
-			{
-				marker = parent.Elements(ns + "SectionGroup").FirstOrDefault();
-			}
+			// Sections must precede any SectionGroups; so use first group as a marker to insert before
+			var marker = parent.Elements(ns + "SectionGroup").FirstOrDefault();
 
 			foreach (var section in sections)
 			{
@@ -312,8 +294,10 @@ namespace River.OneMoreAddIn
 				element = parent.Elements(ns + "Section")
 					.FirstOrDefault(e => e.Attribute("name").Value == "Quick Notes");
 
-				if (element?.NextNode != null)
+				if (element != null)
 				{
+					// regardless of where it is, just remove it and add it back in.
+					// easier than dealing with case like before/after SectionGroups
 					element.Remove();
 					if (marker == null)
 					{
@@ -332,7 +316,7 @@ namespace River.OneMoreAddIn
 
 			foreach (var group in groups)
 			{
-				SortSections(group, ns, key, ascending, pin);
+				SortSection(group, ns, key, ascending, pin);
 			}
 		}
 
@@ -344,13 +328,7 @@ namespace River.OneMoreAddIn
 		{
 			#region Notes
 			/*
-			 * <one:Notebook
-			 *		name="Personal"
-			 *		nickname="Personal"
-			 *		ID="{CAE56365-6026-4E6C-A313-667D6FEBE5D8}{1}{B0}"
-			 *		path="https://d.docs.live.net/../Personal/"
-			 *		lastModifiedTime="2020-03-04T00:00:32.000Z"
-			 *		color="#FFD869" />
+			 * <one:Notebook name="Personal" nickname="Personal" ID="" path="" />
 			 */
 			#endregion Notes
 
