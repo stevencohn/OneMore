@@ -1,4 +1,4 @@
-﻿sort# ![logo](Screenshots/Logo.jpg "logo") OneMore - a OneNote Add-in
+﻿![logo](Screenshots/Logo.jpg "logo") OneMore - a OneNote Add-in
 
 A OneNote add-in with powerful yet simple and effective features including:
 
