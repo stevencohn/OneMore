@@ -105,9 +105,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AssemblyInfo.Shared.cs">
-      <Link>Properties\AssemblyInfo.Shared.cs</Link>
-    </Compile>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="AddInEnablers.cs" />
     <Compile Include="AddInFavorites.cs" />

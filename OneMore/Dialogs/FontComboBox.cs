@@ -1,4 +1,8 @@
-﻿namespace River.OneMoreAddIn
+﻿//************************************************************************************************
+// Copyright © 2016 Steven M Cohn.  All rights reserved.
+//************************************************************************************************
+
+namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Collections.Generic;
@@ -20,12 +24,12 @@
 		{
 			cache = new Dictionary<string, Font>();
 
-			this.DrawMode = DrawMode.OwnerDrawVariable;
-			this.Sorted = true;
-			this.PreviewFontSize = 14;
+			DrawMode = DrawMode.OwnerDrawVariable;
+			Sorted = true;
+			PreviewFontSize = 14;
 
-			this.CalculateLayout();
-			this.CreateStringFormat();
+			CalculateLayout();
+			CreateStringFormat();
 		}
 
 
@@ -34,7 +38,7 @@
 
 		protected override void Dispose(bool disposing)
 		{
-			this.ClearFontCache();
+			ClearFontCache();
 
 			if (stringFormat != null)
 				stringFormat.Dispose();
@@ -59,7 +63,7 @@
 			{
 				previewFontSize = value;
 
-				this.OnPreviewFontSizeChanged(EventArgs.Empty);
+				OnPreviewFontSizeChanged(EventArgs.Empty);
 			}
 		}
 
@@ -77,7 +81,7 @@
 		{
 			base.OnDrawItem(e);
 
-			if (e.Index > -1 && e.Index < this.Items.Count)
+			if (e.Index > -1 && e.Index < Items.Count)
 			{
 				e.DrawBackground();
 
@@ -88,8 +92,8 @@
 				{
 					string fontFamilyName;
 
-					fontFamilyName = this.Items[e.Index].ToString();
-					e.Graphics.DrawString(fontFamilyName, this.GetFont(fontFamilyName),
+					fontFamilyName = Items[e.Index].ToString();
+					e.Graphics.DrawString(fontFamilyName, GetFont(fontFamilyName),
 					textBrush, e.Bounds, stringFormat);
 				}
 			}
@@ -99,12 +103,12 @@
 		{
 			base.OnFontChanged(e);
 
-			this.CalculateLayout();
+			CalculateLayout();
 		}
 
 		protected override void OnGotFocus(EventArgs e)
 		{
-			this.LoadFontFamilies();
+			LoadFontFamilies();
 
 			base.OnGotFocus(e);
 		}
@@ -113,7 +117,7 @@
 		{
 			base.OnMeasureItem(e);
 
-			if (e.Index > -1 && e.Index < this.Items.Count)
+			if (e.Index > -1 && e.Index < Items.Count)
 			{
 				e.ItemHeight = itemHeight;
 			}
@@ -123,34 +127,34 @@
 		{
 			base.OnRightToLeftChanged(e);
 
-			this.CreateStringFormat();
+			CreateStringFormat();
 		}
 
 		protected override void OnTextChanged(EventArgs e)
 		{
 			base.OnTextChanged(e);
 
-			if (this.Items.Count == 0)
+			if (Items.Count == 0)
 			{
 				int selectedIndex;
 
-				this.LoadFontFamilies();
+				LoadFontFamilies();
 
-				selectedIndex = this.FindStringExact(this.Text);
+				selectedIndex = FindStringExact(Text);
 				if (selectedIndex != -1)
-					this.SelectedIndex = selectedIndex;
+					SelectedIndex = selectedIndex;
 			}
 		}
 
 
 		public virtual void LoadFontFamilies()
 		{
-			if (this.Items.Count == 0)
+			if (Items.Count == 0)
 			{
 				Cursor.Current = Cursors.WaitCursor;
 
 				foreach (FontFamily fontFamily in FontFamily.Families)
-					this.Items.Add(fontFamily.Name);
+					Items.Add(fontFamily.Name);
 
 				Cursor.Current = Cursors.Default;
 			}
@@ -159,9 +163,9 @@
 
 		private void CalculateLayout()
 		{
-			this.ClearFontCache();
+			ClearFontCache();
 
-			using (Font font = new Font(this.Font.FontFamily, (float)this.PreviewFontSize))
+			using (Font font = new Font(Font.FontFamily, PreviewFontSize))
 			{
 				Size textSize;
 
@@ -194,7 +198,7 @@
 			}
 		}
 
-		protected virtual void CreateStringFormat()
+		private void CreateStringFormat()
 		{
 			if (stringFormat != null)
 				stringFormat.Dispose();
@@ -207,7 +211,7 @@
 				LineAlignment = StringAlignment.Center
 			};
 
-			if (this.IsUsingRTL(this))
+			if (IsUsingRTL(this))
 				stringFormat.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
 		}
 
@@ -219,15 +223,15 @@
 				{
 					Font font;
 
-					font = this.GetFont(fontFamilyName, FontStyle.Regular);
+					font = GetFont(fontFamilyName, FontStyle.Regular);
 					if (font == null)
-						font = this.GetFont(fontFamilyName, FontStyle.Bold);
+						font = GetFont(fontFamilyName, FontStyle.Bold);
 					if (font == null)
-						font = this.GetFont(fontFamilyName, FontStyle.Italic);
+						font = GetFont(fontFamilyName, FontStyle.Italic);
 					if (font == null)
-						font = this.GetFont(fontFamilyName, FontStyle.Bold | FontStyle.Italic);
+						font = GetFont(fontFamilyName, FontStyle.Bold | FontStyle.Italic);
 					if (font == null)
-						font = (Font)this.Font.Clone();
+						font = (Font)Font.Clone();
 
 					cache.Add(fontFamilyName, font);
 				}
@@ -242,7 +246,7 @@
 
 			try
 			{
-				font = new Font(fontFamilyName, this.PreviewFontSize, fontStyle);
+				font = new Font(fontFamilyName, PreviewFontSize, fontStyle);
 			}
 			catch
 			{
@@ -255,7 +259,7 @@
 		protected virtual void OnPreviewFontSizeChanged(EventArgs e)
 		{
 			PreviewFontSizeChanged?.Invoke(this, e);
-			this.CalculateLayout();
+			CalculateLayout();
 		}
 	}
 }

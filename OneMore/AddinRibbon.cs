@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn
 						content = new XElement(ns + "menu",
 							new XAttribute("id", "ctxSearchMenu"),
 							new XAttribute("label", "Search"),
-							new XAttribute("imageMso", "RmsInvokeBrowser"),
+							new XAttribute("imageMso", "WebPagePreview"),
 							new XAttribute("insertBeforeMso", "Cut")
 							);
 

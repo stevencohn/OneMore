@@ -76,4 +76,5 @@ dotnet_diagnostic.CA2242.severity = warning
 dotnet_diagnostic.S1066.severity = none
 dotnet_diagnostic.S1135.severity = none
 dotnet_diagnostic.S125.severity = none
+dotnet_diagnostic.S2696.severity = none # Make enclosing instance method static
 dotnet_diagnostic.S3358.severity = none

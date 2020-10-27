@@ -2545,7 +2545,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clean....
+        ///   Looks up a localized string similar to Clean.
         /// </summary>
         internal static string ribCleanMenu_Label {
             get {
@@ -2572,7 +2572,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Style from Selection....
+        ///   Looks up a localized string similar to Create Style from Selection.
         /// </summary>
         internal static string ribCreateStyleButton_Label {
             get {
@@ -2635,7 +2635,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Styles....
+        ///   Looks up a localized string similar to Edit Styles.
         /// </summary>
         internal static string ribEditStylesButton_Label {
             get {
@@ -2653,7 +2653,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export....
+        ///   Looks up a localized string similar to Export.
         /// </summary>
         internal static string ribExportButton_Label {
             get {
@@ -2671,7 +2671,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extras....
+        ///   Looks up a localized string similar to Extras.
         /// </summary>
         internal static string ribExtrasMenu_Label {
             get {
@@ -2734,7 +2734,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Formula....
+        ///   Looks up a localized string similar to Formula.
         /// </summary>
         internal static string ribFormulaMenu_Label {
             get {
@@ -2779,7 +2779,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Images....
+        ///   Looks up a localized string similar to Images.
         /// </summary>
         internal static string ribImagesMenu_Label {
             get {
@@ -2905,7 +2905,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numbering....
+        ///   Looks up a localized string similar to Numbering.
         /// </summary>
         internal static string ribNumberingMenu_Label {
             get {
@@ -2977,7 +2977,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Page Color....
+        ///   Looks up a localized string similar to Set Page Color.
         /// </summary>
         internal static string ribPageColorButton_Label {
             get {
@@ -3004,7 +3004,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Run Plugin....
+        ///   Looks up a localized string similar to Run Plugin.
         /// </summary>
         internal static string ribPluginButton_Label {
             get {
@@ -3184,7 +3184,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Run Plugin....
+        ///   Looks up a localized string similar to Run Plugin.
         /// </summary>
         internal static string ribRunPluginButton_Label {
             get {
@@ -3211,7 +3211,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Snippets....
+        ///   Looks up a localized string similar to Snippets.
         /// </summary>
         internal static string ribSnippetsMenu_Label {
             get {
@@ -3220,7 +3220,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sort....
+        ///   Looks up a localized string similar to Sort.
         /// </summary>
         internal static string ribSortButton_Label {
             get {

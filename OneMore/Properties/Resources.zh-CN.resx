@@ -390,7 +390,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCreateStyleButton_Label" xml:space="preserve">
-    <value>通过选择创建样式...</value>
+    <value>通过选择创建样式</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
@@ -410,7 +410,7 @@
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>编辑样式...</value>
+    <value>编辑样式</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
   <data name="ribExpandButton_Label" xml:space="preserve">
@@ -418,7 +418,7 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
-    <value>额外...</value>
+    <value>额外</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
@@ -438,7 +438,7 @@
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>式...</value>
+    <value>式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
@@ -458,7 +458,7 @@
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
-    <value>图片...</value>
+    <value>图片</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
@@ -494,7 +494,7 @@
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>设置页面颜色...</value>
+    <value>设置页面颜色</value>
     <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
@@ -522,11 +522,11 @@
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
-    <value>片段...</value>
+    <value>片段</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
-    <value>分类...</value>
+    <value>分类</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
@@ -1036,7 +1036,7 @@ OneNote 将自动关闭</value>
     <comment>label</comment>
   </data>
   <data name="ribExportButton_Label" xml:space="preserve">
-    <value>出口...</value>
+    <value>出口</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribExportButton_Screentip" xml:space="preserve">
@@ -1080,7 +1080,7 @@ OneNote 将自动关闭</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
-    <value>清洁...</value>
+    <value>清洁</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Label" xml:space="preserve">
@@ -1092,7 +1092,7 @@ OneNote 将自动关闭</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
-    <value>编号...</value>
+    <value>编号</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
@@ -1313,11 +1313,11 @@ OneNote 将自动关闭</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
-    <value>运行插件...</value>
+    <value>运行插件</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
-    <value>运行插件...</value>
+    <value>运行插件</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">

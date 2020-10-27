@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Dialogs;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Web.UI.WebControls;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -65,45 +64,8 @@ namespace River.OneMoreAddIn
 			}
 		}
 
-		/*
-		private static void SortPages(SortDialog.Sortings sorting, SortDialog.Directions direction)
-		{
-			using (var manager = new ApplicationManager())
-			{
-				var section = manager.CurrentSection();
-				var ns = section.GetNamespaceOfPrefix("one");
-
-				var tree = new List<PageNode>();
-				var list = section.Elements(ns + "Page").ToList();
-				BuildTree(tree, list, 0, 0);
-			}
-		}
-
-
-		private static int BuildTree(List<PageNode> tree, List<XElement> elements, int level, int index)
-		{
-			if (index >= elements.Count)
-			{
-				return index;
-			}
-
-			var element = elements[index];
-			var pageLevel = int.Parse(element.Attribute("pageLevel").Value);
-
-			if (pageLevel < level)
-			{
-				return index;
-			}
-
-			if (pageLevel > level)
-			{
-				index = BuildTree(tree, elements, pageLevel, index + 1);
-			}
-
-			return index;
-		}
-		*/
-
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Pages
 
 		private void SortPages(SortDialog.Sortings sorting, SortDialog.Directions direction)
 		{
@@ -198,6 +160,48 @@ namespace River.OneMoreAddIn
 			logger.WriteTime(nameof(SortPages));
 		}
 
+		/*
+		private static void SortPages(SortDialog.Sortings sorting, SortDialog.Directions direction)
+		{
+			using (var manager = new ApplicationManager())
+			{
+				var section = manager.CurrentSection();
+				var ns = section.GetNamespaceOfPrefix("one");
+
+				var tree = new List<PageNode>();
+				var list = section.Elements(ns + "Page").ToList();
+				BuildTree(tree, list, 0, 0);
+			}
+		}
+
+
+		private static int BuildTree(List<PageNode> tree, List<XElement> elements, int level, int index)
+		{
+			if (index >= elements.Count)
+			{
+				return index;
+			}
+
+			var element = elements[index];
+			var pageLevel = int.Parse(element.Attribute("pageLevel").Value);
+
+			if (pageLevel < level)
+			{
+				return index;
+			}
+
+			if (pageLevel > level)
+			{
+				index = BuildTree(tree, elements, pageLevel, index + 1);
+			}
+
+			return index;
+		}
+		*/
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Sections
 
 		private void SortSections(
 			SortDialog.Sortings sorting, SortDialog.Directions direction, bool pinNotes)
@@ -244,7 +248,7 @@ namespace River.OneMoreAddIn
 					? "name"
 					: "lastModifiedTime";
 
-				SortSections(notebook, ns, 
+				SortSections(notebook, ns,
 					key, direction == SortDialog.Directions.Ascending, pinNotes);
 
 				//logger.WriteLine(notebook.ToString());
@@ -332,6 +336,9 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Notebooks
 
 		private void SortNotebooks(SortDialog.Sortings sorting, SortDialog.Directions direction)
 		{

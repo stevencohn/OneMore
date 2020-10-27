@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 	internal class TextParser
 	{
-		public static char NullChar = (char)0;
+		public const char NullChar = (char)0;
 
 		public TextParser()
 		{
