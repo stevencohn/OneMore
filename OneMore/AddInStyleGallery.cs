@@ -15,7 +15,6 @@ namespace River.OneMoreAddIn
 
 	public partial class AddIn
 	{
-		private static string pageId;
 		private static Color pageColor;
 
 
@@ -37,11 +36,8 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public int GetStyleGalleryItemCount(IRibbonControl control)
 		{
-			RefreshPageColor();
-
 			var count = new StyleProvider().Count;
-
-			//logger.WriteLine($"GetStyleGalleryItemCount() count:{count} pageId:{pageId}");
+			//logger.WriteLine($"GetStyleGalleryItemCount() count:{count}");
 			return count;
 		}
 
@@ -67,12 +63,17 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
-			using (var one = new OneNote())
+			//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex})");
+
+			if (itemIndex == 0)
 			{
-				//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex}) pageId={pageId} current={one.CurrentPageId}");
-				if (pageId != one.CurrentPageId)
+				using (var one = new OneNote(out var page, out _))
 				{
-					RefreshPageColor();
+					pageColor = page.GetPageColor(out _, out var black);
+					if (black)
+					{
+						pageColor = ColorTranslator.FromHtml("#201F1E");
+					}
 				}
 			}
 
@@ -97,20 +98,6 @@ namespace River.OneMoreAddIn
 
 			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{tip}\"");
 			return tip;
-		}
-
-
-		private static void RefreshPageColor()
-		{
-			using (var one = new OneNote(out var page, out _))
-			{
-				pageId = page.PageId;
-				pageColor = page.GetPageColor(out _, out var black);
-				if (black)
-				{
-					pageColor = ColorTranslator.FromHtml("#201F1E");
-				}
-			}
 		}
 	}
 }

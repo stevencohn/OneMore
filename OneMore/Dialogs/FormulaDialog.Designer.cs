@@ -43,7 +43,10 @@
 			this.validStatusLabel = new System.Windows.Forms.Label();
 			this.statusLabel = new System.Windows.Forms.Label();
 			this.tagBox = new System.Windows.Forms.CheckBox();
+			this.decLabel = new System.Windows.Forms.Label();
+			this.decimalBox = new System.Windows.Forms.NumericUpDown();
 			this.helpPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.decimalBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// formatLabel
@@ -63,7 +66,7 @@
             "Number",
             "Currency",
             "Percentage"});
-			this.formatBox.Location = new System.Drawing.Point(134, 92);
+			this.formatBox.Location = new System.Drawing.Point(139, 92);
 			this.formatBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.formatBox.Name = "formatBox";
 			this.formatBox.Size = new System.Drawing.Size(261, 28);
@@ -73,7 +76,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(504, 171);
+			this.cancelButton.Location = new System.Drawing.Point(504, 209);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 4;
@@ -85,7 +88,7 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(398, 171);
+			this.okButton.Location = new System.Drawing.Point(398, 209);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 3;
@@ -103,7 +106,7 @@
 			// 
 			// formulaBox
 			// 
-			this.formulaBox.Location = new System.Drawing.Point(134, 53);
+			this.formulaBox.Location = new System.Drawing.Point(139, 53);
 			this.formulaBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.formulaBox.Name = "formulaBox";
 			this.formulaBox.Size = new System.Drawing.Size(382, 26);
@@ -122,7 +125,7 @@
 			// cellLabel
 			// 
 			this.cellLabel.AutoSize = true;
-			this.cellLabel.Location = new System.Drawing.Point(130, 20);
+			this.cellLabel.Location = new System.Drawing.Point(135, 20);
 			this.cellLabel.Name = "cellLabel";
 			this.cellLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
 			this.cellLabel.Size = new System.Drawing.Size(29, 30);
@@ -138,7 +141,7 @@
 			this.helpBox.Location = new System.Drawing.Point(7, 7);
 			this.helpBox.Multiline = true;
 			this.helpBox.Name = "helpBox";
-			this.helpBox.Size = new System.Drawing.Size(571, 236);
+			this.helpBox.Size = new System.Drawing.Size(571, 240);
 			this.helpBox.TabIndex = 12;
 			this.helpBox.TabStop = false;
 			this.helpBox.Text = resources.GetString("helpBox.Text");
@@ -151,10 +154,10 @@
 			this.helpPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.helpPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.helpPanel.Controls.Add(this.helpBox);
-			this.helpPanel.Location = new System.Drawing.Point(17, 230);
+			this.helpPanel.Location = new System.Drawing.Point(17, 267);
 			this.helpPanel.Name = "helpPanel";
 			this.helpPanel.Padding = new System.Windows.Forms.Padding(7);
-			this.helpPanel.Size = new System.Drawing.Size(587, 252);
+			this.helpPanel.Size = new System.Drawing.Size(587, 256);
 			this.helpPanel.TabIndex = 13;
 			this.helpPanel.Visible = false;
 			// 
@@ -162,7 +165,7 @@
 			// 
 			this.helpButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.helpButton.AutoSize = true;
-			this.helpButton.Location = new System.Drawing.Point(17, 175);
+			this.helpButton.Location = new System.Drawing.Point(17, 213);
 			this.helpButton.Name = "helpButton";
 			this.helpButton.Size = new System.Drawing.Size(52, 30);
 			this.helpButton.TabIndex = 9;
@@ -174,7 +177,7 @@
 			// validStatusLabel
 			// 
 			this.validStatusLabel.AutoSize = true;
-			this.validStatusLabel.Location = new System.Drawing.Point(207, 180);
+			this.validStatusLabel.Location = new System.Drawing.Point(211, 218);
 			this.validStatusLabel.Name = "validStatusLabel";
 			this.validStatusLabel.Size = new System.Drawing.Size(70, 20);
 			this.validStatusLabel.TabIndex = 16;
@@ -183,7 +186,7 @@
 			// statusLabel
 			// 
 			this.statusLabel.AutoSize = true;
-			this.statusLabel.Location = new System.Drawing.Point(131, 180);
+			this.statusLabel.Location = new System.Drawing.Point(135, 218);
 			this.statusLabel.Name = "statusLabel";
 			this.statusLabel.Size = new System.Drawing.Size(60, 20);
 			this.statusLabel.TabIndex = 17;
@@ -192,13 +195,35 @@
 			// tagBox
 			// 
 			this.tagBox.AutoSize = true;
-			this.tagBox.Location = new System.Drawing.Point(134, 133);
+			this.tagBox.Location = new System.Drawing.Point(139, 172);
 			this.tagBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(147, 24);
+			this.tagBox.Size = new System.Drawing.Size(154, 24);
 			this.tagBox.TabIndex = 2;
 			this.tagBox.Text = "Tag formula cells";
 			this.tagBox.UseVisualStyleBackColor = true;
+			// 
+			// decLabel
+			// 
+			this.decLabel.AutoSize = true;
+			this.decLabel.Location = new System.Drawing.Point(13, 135);
+			this.decLabel.Name = "decLabel";
+			this.decLabel.Size = new System.Drawing.Size(120, 20);
+			this.decLabel.TabIndex = 18;
+			this.decLabel.Text = "Decimal places:";
+			// 
+			// decimalBox
+			// 
+			this.decimalBox.Location = new System.Drawing.Point(139, 133);
+			this.decimalBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+			this.decimalBox.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+			this.decimalBox.Name = "decimalBox";
+			this.decimalBox.Size = new System.Drawing.Size(99, 26);
+			this.decimalBox.TabIndex = 19;
 			// 
 			// FormulaDialog
 			// 
@@ -206,7 +231,9 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(617, 495);
+			this.ClientSize = new System.Drawing.Size(617, 536);
+			this.Controls.Add(this.decimalBox);
+			this.Controls.Add(this.decLabel);
 			this.Controls.Add(this.tagBox);
 			this.Controls.Add(this.statusLabel);
 			this.Controls.Add(this.validStatusLabel);
@@ -231,6 +258,7 @@
 			this.Text = "Formula";
 			this.helpPanel.ResumeLayout(false);
 			this.helpPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.decimalBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -251,5 +279,7 @@
 		private System.Windows.Forms.Label validStatusLabel;
 		private System.Windows.Forms.Label statusLabel;
 		private System.Windows.Forms.CheckBox tagBox;
+		private System.Windows.Forms.Label decLabel;
+		private System.Windows.Forms.NumericUpDown decimalBox;
 	}
 }

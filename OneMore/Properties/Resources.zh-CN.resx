@@ -1908,4 +1908,8 @@ XML档案（* .xml）</value>
     <value>选择要导入的文件</value>
     <comment>openfiledialog title</comment>
   </data>
+  <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
+    <value>小数位数：</value>
+    <comment>label</comment>
+  </data>
 </root>

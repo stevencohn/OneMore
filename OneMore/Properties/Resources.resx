@@ -1948,4 +1948,8 @@ XML File (*.xml)</value>
     <value>Choose file to import</value>
     <comment>openfiledialog title</comment>
   </data>
+  <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
+    <value>Decimal places:</value>
+    <comment>label</comment>
+  </data>
 </root>

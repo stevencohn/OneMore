@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 	{
 		private readonly ILogger logger;
 		private readonly Table table;
-		private int precision;
+		private int dplaces;
 
 
 		public Processor(Table table)
@@ -40,21 +40,37 @@ namespace River.OneMoreAddIn.Commands.Formula
 				}
 
 				var parts = formula.Split(';');
-				if (parts[0] == "0") // Version 0
+
+				// Version 0 = "0;range;function;format"
+				if (parts[0] == "0")
 				{
 					Execute(cell, parts[1], parts[2], parts[3]);
 					continue;
 				}
 
+				// v1 and v2: parts[1] = format
 				if (parts.Length < 3 || !Enum.TryParse<FormulaFormat>(parts[1], true, out var format))
 				{
 					logger.WriteLine($"Cell {cell.Coordinates} has bad function {formula}");
 					continue;
 				}
 
-				formula = parts[2];
+				// Version 1 = "1;format:formula"
+				if (parts[0] == "1")
+				{
+					dplaces = 0;
+					formula = parts[2];
+				}
+				// Version 2 = "2;format;decplaces;formula"
+				else
+				{
+					if (!int.TryParse(parts[2], out dplaces))
+					{
+						dplaces = 1;
+					}
 
-				precision = 0;
+					formula = parts[3];
+				}
 
 				try
 				{
@@ -82,7 +98,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 				if (double.TryParse(text, out var value))
 				{
-					precision = Math.Max(value.ToString().Length - ((int)value).ToString().Length - 1, precision);
+					dplaces = Math.Max(value.ToString().Length - ((int)value).ToString().Length - 1, dplaces);
 					e.Result = value;
 					e.Status = SymbolStatus.OK;
 				}
@@ -106,7 +122,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 					break;
 
 				case FormulaFormat.Number:
-					text = result.ToString($"N{precision}");
+					text = result.ToString($"N{dplaces}");
 					break;
 
 				case FormulaFormat.Percentage:

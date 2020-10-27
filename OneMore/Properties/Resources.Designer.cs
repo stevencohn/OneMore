@@ -1192,6 +1192,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decimal places:.
+        /// </summary>
+        internal static string FormulaDialog_decLabel_Text {
+            get {
+                return ResourceManager.GetString("FormulaDialog_decLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number
         ///Currency
         ///Percentage.

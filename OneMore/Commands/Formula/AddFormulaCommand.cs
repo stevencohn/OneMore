@@ -105,7 +105,9 @@ namespace River.OneMoreAddIn
 						tagIndex = page.AddTag(BoltSymbol, Resx.AddFormulaCommand_Calculated);
 					}
 
-					StoreFormula(cells, dialog.Formula, dialog.Format, rangeType, tagIndex);
+					StoreFormula(cells,
+						dialog.Formula, dialog.Format, dialog.DecimalPlaces,
+						rangeType, tagIndex);
 
 					var processor = new Processor(table);
 					processor.Execute(cells);
@@ -156,12 +158,13 @@ namespace River.OneMoreAddIn
 
 		private void StoreFormula(
 			IEnumerable<TableCell> cells,
-			string formula, FormulaFormat format, FormulaRangeType rangeType, string tagIndex)
+			string formula, FormulaFormat format, int dplaces, 
+			FormulaRangeType rangeType, string tagIndex)
 		{
 			if (rangeType == FormulaRangeType.Single)
 			{
 				var cell = cells.First();
-				cell.SetMeta("omfx", $"1;{format};{formula}");
+				cell.SetMeta("omfx", $"2;{format};{dplaces};{formula}");
 				//logger.WriteLine($"Cell {cells.First().Coordinates} stored formula '{formula}'");
 
 				if (!string.IsNullOrEmpty(tagIndex))
@@ -202,7 +205,7 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				cell.SetMeta("omfx", $"1;{format};{builder}");
+				cell.SetMeta("omfx", $"2;{format};{dplaces};{builder}");
 				//logger.WriteLine($"Cell {cell.Coordinates} stored formula '{builder}'");
 
 				if (!string.IsNullOrEmpty(tagIndex))

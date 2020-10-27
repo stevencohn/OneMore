@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Dialogs
 					"selectedLabel",
 					"formulaLabel",
 					"formatLabel",
+					"decLabel",
 					"helpButton",
 					"helpBox",
 					"statusLabel",
@@ -56,8 +57,15 @@ namespace River.OneMoreAddIn.Dialogs
 
 		protected override void OnShown(EventArgs e)
 		{
-			Location = new System.Drawing.Point(Location.X, Location.Y - (Height / 2));
+			Location = new Point(Location.X, Location.Y - (Height / 2));
 			UIHelper.SetForegroundWindow(this);
+		}
+
+
+		public int DecimalPlaces
+		{
+			get { return (int)decimalBox.Value; }
+			set { decimalBox.Value = value; }
 		}
 
 
@@ -129,6 +137,7 @@ namespace River.OneMoreAddIn.Dialogs
 				e.Status = SymbolStatus.UndefinedSymbol;
 			}
 		}
+
 
 		private void ToggleHelp(object sender, EventArgs e)
 		{
