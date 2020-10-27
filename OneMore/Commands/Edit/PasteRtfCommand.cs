@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn
 			// transform RTF and Xaml data on clipboard to HTML
 
 			var html = PrepareClipboard();
-			logger.WriteLine(html);
+			//logger.WriteLine(html);
 #if H
 			if (html != null)
 			{

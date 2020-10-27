@@ -1,4 +1,4 @@
-﻿# ![logo](Screenshots/Logo.jpg "logo") OneMore - a OneNote Add-in
+﻿sort# ![logo](Screenshots/Logo.jpg "logo") OneMore - a OneNote Add-in
 
 A OneNote add-in with powerful yet simple and effective features including:
 
@@ -502,7 +502,9 @@ font to add to the page title; OneNote automatically displays that icon in the p
 navigator as well.
 
 The *Sort* command lets you sort notebooks, sections, or pages with advanced options
-not found in any other plugin, even those bloated pay-to-use monstrosities.
+not found in any other plugin, even those bloated pay-to-use monstrosities. Pages are sorted
+within the current section only, not recursively throughout the notebook. Sections are sorted 
+throughout the current notebook recursively.
 
 | Search and Replace | Title Icons | Sort Notebooks, Sections, Pages |
 | ------------------ | ----------- | ------------------------------- |

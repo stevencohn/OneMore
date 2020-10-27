@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Dialogs;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Web.UI.WebControls;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -243,48 +244,92 @@ namespace River.OneMoreAddIn
 					? "name"
 					: "lastModifiedTime";
 
-				IEnumerable<XElement> sections;
-				if (direction == SortDialog.Directions.Descending)
-				{
-					sections = notebook.Elements(ns + "Section")
-						.OrderByDescending(s => s.Attribute(key).Value);
-				}
-				else
-				{
-					sections = notebook.Elements(ns + "Section")
-						.OrderBy(s => s.Attribute(key).Value);
-				}
-
-				notebook.ReplaceNodes(sections);
-
-				if (pinNotes)
-				{
-					// move Notes to the beginning
-					var element = notebook.Elements(ns + "Section")
-						.FirstOrDefault(e => e.Attribute("name").Value == "Notes");
-
-					if (element?.PreviousNode != null)
-					{
-						element.Remove();
-						notebook.AddFirst(element);
-					}
-
-					// move Quick Notes to the end
-					element = notebook.Elements(ns + "Section")
-						.FirstOrDefault(e => e.Attribute("name").Value == "Quick Notes");
-
-					if (element?.NextNode != null)
-					{
-						element.Remove();
-						notebook.Add(element);
-					}
-				}
+				SortSections(notebook, ns, 
+					key, direction == SortDialog.Directions.Ascending, pinNotes);
 
 				//logger.WriteLine(notebook.ToString());
 				one.UpdateHierarchy(notebook);
 			}
 
 			logger.WriteTime(nameof(SortSections));
+		}
+
+
+		private void SortSections(XElement parent, XNamespace ns, string key, bool ascending, bool pin)
+		{
+			IEnumerable<XElement> sections;
+			if (ascending)
+			{
+				sections = parent.Elements(ns + "Section")
+					.OrderBy(s => s.Attribute(key).Value)
+					.ToList();
+			}
+			else
+			{
+				sections = parent.Elements(ns + "Section")
+					.OrderByDescending(s => s.Attribute(key).Value)
+					.ToList();
+			}
+
+			parent.Elements(ns + "Section").Remove();
+
+			// recyclebin will be at the top level but sectiongroups may not have sub-groups
+			XElement marker = null;
+			if (parent.Name.LocalName == "Notebook")
+			{
+				marker = parent.Elements(ns + "SectionGroup").FirstOrDefault();
+			}
+
+			foreach (var section in sections)
+			{
+				if (marker == null)
+				{
+					parent.Add(section);
+				}
+				else
+				{
+					marker.AddBeforeSelf(section);
+				}
+			}
+
+			if (pin)
+			{
+				// move Notes to the beginning
+				var element = parent.Elements(ns + "Section")
+					.FirstOrDefault(e => e.Attribute("name").Value == "Notes");
+
+				if (element?.PreviousNode != null)
+				{
+					element.Remove();
+					parent.AddFirst(element);
+				}
+
+				// move Quick Notes to the end
+				element = parent.Elements(ns + "Section")
+					.FirstOrDefault(e => e.Attribute("name").Value == "Quick Notes");
+
+				if (element?.NextNode != null)
+				{
+					element.Remove();
+					if (marker == null)
+					{
+						parent.Add(element);
+					}
+					else
+					{
+						marker.AddBeforeSelf(element);
+					}
+				}
+			}
+
+			var groups = parent.Elements(ns + "SectionGroup")
+				.Where(e => e.Attribute("isRecycleBin") == null)
+				.ToList();
+
+			foreach (var group in groups)
+			{
+				SortSections(group, ns, key, ascending, pin);
+			}
 		}
 
 
