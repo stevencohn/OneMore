@@ -9,33 +9,49 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
-	using River.OneMoreAddIn.Models;
 	using System.Drawing;
 	using System.Runtime.InteropServices.ComTypes;
 
 
 	public partial class AddIn
 	{
+		private static string pageId;
+		private static Color pageColor;
+
 
 		/*
-		 * called once, when the ribbon is shown after it is invalidated
-		 */
-
-		public int GetStyleGalleryItemCount(IRibbonControl control)
-		{
-			var count = new StyleProvider().Count;
-			//logger.WriteLine($"GetStyleGalleryItemCount({control.Id}) = {count}");
-			return count;
-		}
-
-		/*
-		 * Foreach... in this order...
-		 * 
+		 * When Ribbon button is invalid, first calls:
+		 *		GetStyleGalleryItemCount(styleGallery)
+		 *
+		 * Then for each item, these are called in this order:
 		 *     GetStyleGalleryItemScreentip(styleGallery, 0) = "Heading 1"
 		 *     GetStyleGalleryItemImage(styleGallery, 0)
 		 *     GetStyleGalleryItemId(styleGallery, 0)
 		 */
 
+
+		/// <summary>
+		/// Called by ribbon getItemCount, once when the ribbon is shown after it is invalidated
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public int GetStyleGalleryItemCount(IRibbonControl control)
+		{
+			RefreshPageColor();
+
+			var count = new StyleProvider().Count;
+
+			//logger.WriteLine($"GetStyleGalleryItemCount() count:{count} pageId:{pageId}");
+			return count;
+		}
+
+
+		/// <summary>
+		/// Called by ribbon getItemID, for each item only after invalidation
+		/// </summary>
+		/// <param name="control"></param>
+		/// <param name="itemIndex"></param>
+		/// <returns></returns>
 		public string GetStyleGalleryItemId(IRibbonControl control, int itemIndex)
 		{
 			//logger.WriteLine($"GetStyleGalleryItemId({control.Id}, {itemIndex})");
@@ -43,17 +59,20 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Called by ribbon getItemImage, for each item only after invalidation
+		/// </summary>
+		/// <param name="control"></param>
+		/// <param name="itemIndex"></param>
+		/// <returns></returns>
 		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
-			//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex})");
-
-			Color pageColor;
-			using (var one = new OneNote(out var page, out _))
+			using (var one = new OneNote())
 			{
-				pageColor = page.GetPageColor(out _, out var black);
-				if (black)
+				//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex}) pageId={pageId} current={one.CurrentPageId}");
+				if (pageId != one.CurrentPageId)
 				{
-					pageColor = ColorTranslator.FromHtml("#201F1E");
+					RefreshPageColor();
 				}
 			}
 
@@ -61,6 +80,12 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Called by ribbon getItemScreentip, for each item only after invalidation
+		/// </summary>
+		/// <param name="control"></param>
+		/// <param name="itemIndex"></param>
+		/// <returns></returns>
 		public string GetStyleGalleryItemScreentip(IRibbonControl control, int itemIndex)
 		{
 			var tip = new StyleProvider().GetName(itemIndex);
@@ -72,6 +97,20 @@ namespace River.OneMoreAddIn
 
 			//logger.WriteLine($"GetStyleGalleryItemScreentip({control.Id}, {itemIndex}) = \"{tip}\"");
 			return tip;
+		}
+
+
+		private static void RefreshPageColor()
+		{
+			using (var one = new OneNote(out var page, out _))
+			{
+				pageId = page.PageId;
+				pageColor = page.GetPageColor(out _, out var black);
+				if (black)
+				{
+					pageColor = ColorTranslator.FromHtml("#201F1E");
+				}
+			}
 		}
 	}
 }
