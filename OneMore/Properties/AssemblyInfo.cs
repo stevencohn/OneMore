@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("OneMore Add-In for Microsoft OneNote 2016")]
 [assembly: AssemblyConfiguration(River.OneMore.AssemblyInfo.Configuration)]
 [assembly: AssemblyCompany("River Software")]
-[assembly: AssemblyProduct("OneMore")]
+[assembly: AssemblyProduct(River.OneMore.AssemblyInfo.Product)]
 [assembly: AssemblyCopyright("Copyright \u00a9 2016 Steven M Cohn. All rights reserved.")]
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: Guid("EE5423E9-D70C-4553-9C61-5B8E9D973736")]
 
 [assembly: AssemblyVersion(River.OneMore.AssemblyInfo.Version)]
-[assembly: AssemblyFileVersion(River.OneMore.AssemblyInfo.FileVersion)]
+[assembly: AssemblyFileVersion(River.OneMore.AssemblyInfo.Version)]
 
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
 
@@ -37,8 +37,7 @@ namespace River.OneMore
 		 */
 		public const string Version = "3.4.1";
 
-
-		public const string FileVersion = Version;
+		public const string Product = "OneMore";
 
 		public const string Configuration =
 #if DEBUG

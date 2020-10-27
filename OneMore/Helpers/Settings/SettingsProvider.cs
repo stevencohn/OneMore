@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Helpers.Settings
 {
 	using System;
 	using System.IO;
+	using System.Linq;
 	using System.Xml.Linq;
 
 
@@ -100,7 +101,8 @@ namespace River.OneMoreAddIn.Helpers.Settings
 		public void SetCollection(SettingCollection settings)
 		{
 			var element = new XElement(settings.Name);
-			foreach (var key in settings.Keys)
+			var keys = settings.Keys.ToList();
+			foreach (var key in keys)
 			{
 				element.Add(new XElement(key, settings[key]));
 			}

@@ -504,7 +504,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 			{
 				// Adjust column and rethrow exception
 				ex.Column += paramStart;
-				throw ex;
+				throw;
 			}
 		}
 

@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Helpers.Settings
 {
 	using System.Collections.Generic;
 	using System.ComponentModel;
-	using System.Linq;
 
 
 	internal class SettingCollection
@@ -21,7 +20,7 @@ namespace River.OneMoreAddIn.Helpers.Settings
 		}
 
 
-		public IEnumerable<string> Keys => properties.Keys.ToList();
+		public IEnumerable<string> Keys => properties.Keys;
 
 
 		public string Name { get; }

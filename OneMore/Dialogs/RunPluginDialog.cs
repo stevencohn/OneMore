@@ -49,7 +49,10 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				cmdBox.Text = settings.Get<string>("cmd");
 				argsBox.Text = settings.Get<string>("args");
-				updateRadio.Checked = !settings.Keys.Contains("update") || settings.Get<bool>("update");
+
+				var keys = settings.Keys.ToList();
+				updateRadio.Checked = !keys.Contains("update") || settings.Get<bool>("update");
+
 				createRadio.Checked = !updateRadio.Checked;
 				nameBox.Enabled = createRadio.Checked;
 				childBox.Enabled = createRadio.Checked;

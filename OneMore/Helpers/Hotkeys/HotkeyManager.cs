@@ -3,6 +3,7 @@
 //************************************************************************************************
 
 #pragma warning disable CA1810 // Initialize reference type static fields inline
+#pragma warning disable S3010 // Static fields should not be updated in constructors
 
 namespace River.OneMoreAddIn
 {
@@ -40,13 +41,22 @@ namespace River.OneMoreAddIn
 		private static readonly ManualResetEvent resetEvent = new ManualResetEvent(false);
 		private static volatile MessageWindow window;
 		private static volatile IntPtr handle;
-		private static readonly uint threadId;
+		private static uint threadId;
 		private static bool registered = false;
 		private static int counter = 0xE000;
 		private static GCHandle gch;
 
 
-		static HotkeyManager()
+		/// <summary>
+		/// An event handler for consumers
+		/// </summary>
+		public static event EventHandler<HotkeyEventArgs> HotKeyPressed;
+
+
+		/// <summary>
+		/// Initializes the background message pump used to filter our own registered key sequences
+		/// </summary>
+		public static void Initialize()
 		{
 			using (var one = new OneNote())
 			{
@@ -61,12 +71,6 @@ namespace River.OneMoreAddIn
 
 			mthread.Start();
 		}
-
-
-		/// <summary>
-		/// An event handler for consumers
-		/// </summary>
-		public static event EventHandler<HotkeyEventArgs> HotKeyPressed;
 
 
 		/// <summary>
@@ -140,10 +144,7 @@ namespace River.OneMoreAddIn
 			registeredKeys.ForEach(k =>
 				window.Invoke(new UnRegisterHotkeyDelegate(Unregister), handle, k.Id));
 
-			if (gch != null)
-			{
-				gch.Free();
-			}
+			gch.Free();
 		}
 
 
@@ -183,7 +184,6 @@ namespace River.OneMoreAddIn
 
 		private class MessageWindow : Form
 		{
-			private readonly Native.WinEventDelegate evDelegate;
 			private readonly uint msgThreadId;
 
 			public MessageWindow()
@@ -196,7 +196,7 @@ namespace River.OneMoreAddIn
 				msgThreadId = Native.GetWindowThreadProcessId(handle, out _);
 
 				// maintain a ref so GC doesn't remove it and cause exceptions
-				evDelegate = new Native.WinEventDelegate(WinEventProc);
+				var evDelegate = new Native.WinEventDelegate(WinEventProc);
 				gch = GCHandle.Alloc(evDelegate);
 
 				// set up event hook to monitor switching application
