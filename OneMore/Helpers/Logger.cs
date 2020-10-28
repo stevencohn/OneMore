@@ -175,15 +175,12 @@ namespace River.OneMoreAddIn
 			{
 				clock = new Stopwatch();
 			}
-
-			if (clock.IsRunning)
-			{
-				clock.Restart();
-			}
 			else
 			{
-				clock.Start();
+				clock.Reset();
 			}
+
+			clock.Start();
 		}
 
 
