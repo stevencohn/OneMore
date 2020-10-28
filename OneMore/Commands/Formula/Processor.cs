@@ -15,12 +15,14 @@ namespace River.OneMoreAddIn.Commands.Formula
 	{
 		private readonly ILogger logger;
 		private readonly Table table;
-		private int dplaces;
+		private int maxdec;
 
 
 		public Processor(Table table)
 		{
 			this.table = table;
+			maxdec = 0;
+
 			logger = Logger.Current;
 		}
 
@@ -32,51 +34,24 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 			foreach (var cell in cells)
 			{
-				var formula = cell.GetMeta("omfx");
-				if (formula == null)
+				var formula = new Formula(cell.GetMeta("omfx"));
+				if (!formula.Valid)
 				{
 					logger.WriteLine($"Cell {cell.Coordinates} is missing its formula");
 					continue;
 				}
 
-				var parts = formula.Split(';');
-
-				// Version 0 = "0;range;function;format"
-				if (parts[0] == "0")
+				if (formula.Version == 0)
 				{
-					Execute(cell, parts[1], parts[2], parts[3]);
+					Execute(cell, formula.Range, formula.Expression, formula.Format);
 					continue;
-				}
-
-				// v1 and v2: parts[1] = format
-				if (parts.Length < 3 || !Enum.TryParse<FormulaFormat>(parts[1], true, out var format))
-				{
-					logger.WriteLine($"Cell {cell.Coordinates} has bad function {formula}");
-					continue;
-				}
-
-				// Version 1 = "1;format:formula"
-				if (parts[0] == "1")
-				{
-					dplaces = 0;
-					formula = parts[2];
-				}
-				// Version 2 = "2;format;decplaces;formula"
-				else
-				{
-					if (!int.TryParse(parts[2], out dplaces))
-					{
-						dplaces = 1;
-					}
-
-					formula = parts[3];
 				}
 
 				try
 				{
-					var result = calculator.Execute(formula);
+					var result = calculator.Execute(formula.Expression);
 
-					Report(cell, result, format);
+					Report(cell, formula, result);
 				}
 				catch (Exception exc)
 				{
@@ -98,7 +73,8 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 				if (double.TryParse(text, out var value))
 				{
-					dplaces = Math.Max(value.ToString().Length - ((int)value).ToString().Length - 1, dplaces);
+					maxdec = Math.Max(value.ToString().Length - ((int)value).ToString().Length - 1, maxdec);
+
 					e.Result = value;
 					e.Status = SymbolStatus.OK;
 				}
@@ -112,10 +88,12 @@ namespace River.OneMoreAddIn.Commands.Formula
 		}
 
 
-		private void Report(TableCell cell, double result, FormulaFormat format)
+		private void Report(TableCell cell, Formula formula, double result)
 		{
+			int dplaces = formula.Version >= 2 ? formula.Version : maxdec;
+
 			string text = string.Empty;
-			switch (format)
+			switch (formula.Format)
 			{
 				case FormulaFormat.Currency:
 					text = result.ToString($"C{dplaces}");
@@ -138,15 +116,12 @@ namespace River.OneMoreAddIn.Commands.Formula
 
 		#region Version0_obsolete
 
-		private void Execute(TableCell cell, string range, string func, string form)
+		private void Execute(TableCell cell, string range, string func, FormulaFormat format)
 		{
 			if (!Enum.TryParse<FormulaRangeType>(range, true, out var rangeType))
 				return;
 
 			if (!Enum.TryParse<FormulaFunction>(func, true, out var function))
-				return;
-
-			if (!Enum.TryParse<FormulaFormat>(form, true, out var format))
 				return;
 
 			var values = CollectValues(cell.Root, rangeType);

@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Commands.Formula;
 	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
@@ -70,30 +69,15 @@ namespace River.OneMoreAddIn
 					var cell = cells.First();
 
 					// display formula of first cell if any
-					var fx = cell.GetMeta("omfx");
-					if (fx != null)
+					var meta = cell.GetMeta("omfx");
+					if (meta != null)
 					{
-						var parts = fx.Split(';');
-						if (parts[0] == "1" || parts[0] == "2")
+						var formula = new Formula(meta);
+						if (formula.Valid)
 						{
-							if (Enum.TryParse<FormulaFormat>(parts[1], true, out var format))
-							{
-								dialog.Format = format;
-							}
-
-							if (parts[0] == "2")
-							{
-								if (int.TryParse(parts[2], out var dplaces))
-								{
-									dialog.DecimalPlaces = dplaces;
-								}
-
-								dialog.Formula = parts[3];
-							}
-							else
-							{
-								dialog.Formula = parts[2];
-							}
+							dialog.Format = formula.Format;
+							dialog.Formula = formula.Expression;
+							dialog.DecimalPlaces = formula.DecimalPlaces;
 						}
 					}
 
@@ -169,19 +153,19 @@ namespace River.OneMoreAddIn
 
 		private void StoreFormula(
 			IEnumerable<TableCell> cells,
-			string formula, FormulaFormat format, int dplaces, 
+			string expression, FormulaFormat format, int dplaces,
 			FormulaRangeType rangeType, string tagIndex)
 		{
 			if (rangeType == FormulaRangeType.Single)
 			{
 				var cell = cells.First();
-				cell.SetMeta("omfx", $"2;{format};{dplaces};{formula}");
-				//logger.WriteLine($"Cell {cells.First().Coordinates} stored formula '{formula}'");
 
+				cell.SetMeta("omfx", new Formula(format, dplaces, expression).ToString());
 				if (!string.IsNullOrEmpty(tagIndex))
 				{
 					cell.SetTag(tagIndex);
 				}
+
 				return;
 			}
 
@@ -190,10 +174,10 @@ namespace River.OneMoreAddIn
 			int offset = 0;
 			foreach (var cell in cells)
 			{
-				var builder = new StringBuilder(formula);
+				var builder = new StringBuilder(expression);
 				if (offset > 0)
 				{
-					var matches = regex.Matches(formula);
+					var matches = regex.Matches(expression);
 					foreach (Match match in matches)
 					{
 						string col;
@@ -216,8 +200,7 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				cell.SetMeta("omfx", $"2;{format};{dplaces};{builder}");
-				//logger.WriteLine($"Cell {cell.Coordinates} stored formula '{builder}'");
+				cell.SetMeta("omfx", new Formula(format, dplaces, builder.ToString()).ToString());
 
 				if (!string.IsNullOrEmpty(tagIndex))
 				{

@@ -113,6 +113,7 @@
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
+    <Compile Include="Commands\Formula\Formula.cs" />
     <Compile Include="Dialogs\ImportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
