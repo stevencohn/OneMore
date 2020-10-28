@@ -118,7 +118,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 			switch (format)
 			{
 				case FormulaFormat.Currency:
-					text = $"{result:C}";
+					text = result.ToString($"C{dplaces}");
 					break;
 
 				case FormulaFormat.Number:
