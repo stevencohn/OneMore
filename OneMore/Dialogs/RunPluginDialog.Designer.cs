@@ -46,8 +46,8 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(427, 136);
-			this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cancelButton.Location = new System.Drawing.Point(427, 150);
+			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(80, 23);
 			this.cancelButton.TabIndex = 8;
@@ -59,8 +59,8 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(343, 136);
-			this.okButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.okButton.Location = new System.Drawing.Point(343, 150);
+			this.okButton.Margin = new System.Windows.Forms.Padding(2);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(80, 23);
 			this.okButton.TabIndex = 7;
@@ -81,7 +81,7 @@
 			// cmdBox
 			// 
 			this.cmdBox.Location = new System.Drawing.Point(107, 20);
-			this.cmdBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cmdBox.Margin = new System.Windows.Forms.Padding(2);
 			this.cmdBox.Name = "cmdBox";
 			this.cmdBox.Size = new System.Drawing.Size(373, 20);
 			this.cmdBox.TabIndex = 0;
@@ -89,7 +89,7 @@
 			// browseButton
 			// 
 			this.browseButton.Location = new System.Drawing.Point(483, 20);
-			this.browseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.browseButton.Margin = new System.Windows.Forms.Padding(2);
 			this.browseButton.Name = "browseButton";
 			this.browseButton.Size = new System.Drawing.Size(24, 20);
 			this.browseButton.TabIndex = 1;
@@ -101,8 +101,8 @@
 			// 
 			this.updateRadio.AutoSize = true;
 			this.updateRadio.Checked = true;
-			this.updateRadio.Location = new System.Drawing.Point(15, 71);
-			this.updateRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.updateRadio.Location = new System.Drawing.Point(15, 80);
+			this.updateRadio.Margin = new System.Windows.Forms.Padding(2);
 			this.updateRadio.Name = "updateRadio";
 			this.updateRadio.Size = new System.Drawing.Size(123, 17);
 			this.updateRadio.TabIndex = 3;
@@ -114,8 +114,8 @@
 			// createRadio
 			// 
 			this.createRadio.AutoSize = true;
-			this.createRadio.Location = new System.Drawing.Point(15, 91);
-			this.createRadio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.createRadio.Location = new System.Drawing.Point(15, 102);
+			this.createRadio.Margin = new System.Windows.Forms.Padding(2);
 			this.createRadio.Name = "createRadio";
 			this.createRadio.Size = new System.Drawing.Size(150, 17);
 			this.createRadio.TabIndex = 4;
@@ -125,8 +125,8 @@
 			// nameBox
 			// 
 			this.nameBox.Enabled = false;
-			this.nameBox.Location = new System.Drawing.Point(166, 91);
-			this.nameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.nameBox.Location = new System.Drawing.Point(166, 102);
+			this.nameBox.Margin = new System.Windows.Forms.Padding(2);
 			this.nameBox.Name = "nameBox";
 			this.nameBox.Size = new System.Drawing.Size(314, 20);
 			this.nameBox.TabIndex = 5;
@@ -136,8 +136,8 @@
 			// 
 			this.childBox.AutoSize = true;
 			this.childBox.Enabled = false;
-			this.childBox.Location = new System.Drawing.Point(15, 112);
-			this.childBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.childBox.Location = new System.Drawing.Point(15, 125);
+			this.childBox.Margin = new System.Windows.Forms.Padding(2);
 			this.childBox.Name = "childBox";
 			this.childBox.Size = new System.Drawing.Size(171, 17);
 			this.childBox.TabIndex = 6;
@@ -146,8 +146,8 @@
 			// 
 			// argsBox
 			// 
-			this.argsBox.Location = new System.Drawing.Point(107, 41);
-			this.argsBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.argsBox.Location = new System.Drawing.Point(107, 50);
+			this.argsBox.Margin = new System.Windows.Forms.Padding(2);
 			this.argsBox.Name = "argsBox";
 			this.argsBox.Size = new System.Drawing.Size(373, 20);
 			this.argsBox.TabIndex = 2;
@@ -155,7 +155,7 @@
 			// argLabel
 			// 
 			this.argLabel.AutoSize = true;
-			this.argLabel.Location = new System.Drawing.Point(12, 43);
+			this.argLabel.Location = new System.Drawing.Point(12, 52);
 			this.argLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.argLabel.Name = "argLabel";
 			this.argLabel.Size = new System.Drawing.Size(57, 13);
@@ -168,7 +168,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(519, 172);
+			this.ClientSize = new System.Drawing.Size(519, 186);
 			this.Controls.Add(this.argLabel);
 			this.Controls.Add(this.argsBox);
 			this.Controls.Add(this.childBox);
@@ -182,12 +182,12 @@
 			this.Controls.Add(this.cancelButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.ShowInTaskbar = false;
 			this.Name = "RunPluginDialog";
-			this.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+			this.Padding = new System.Windows.Forms.Padding(10);
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Run Plugin";
 			this.ResumeLayout(false);
