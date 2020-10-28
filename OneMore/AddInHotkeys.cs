@@ -22,6 +22,18 @@ namespace River.OneMoreAddIn
 				Keys.F, Hotmods.ControlShift);
 
 			HotkeyManager.RegisterHotKey(() =>
+				AddFormulaCmd(null),
+				Keys.F5);
+
+			HotkeyManager.RegisterHotKey(() =>
+				RecalculateFormulaCmd(null),
+				Keys.F5, Hotmods.Shift);
+
+			HotkeyManager.RegisterHotKey(() =>
+				InsertCodeBlockCmd(null),
+				Keys.F6);
+
+			HotkeyManager.RegisterHotKey(() =>
 				InsertHorizontalLineCmd(null),
 				Keys.OemMinus, Hotmods.AltShift);
 

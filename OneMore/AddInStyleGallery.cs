@@ -36,6 +36,15 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public int GetStyleGalleryItemCount(IRibbonControl control)
 		{
+			using (var one = new OneNote(out var page, out _))
+			{
+				pageColor = page.GetPageColor(out _, out var black);
+				if (black)
+				{
+					pageColor = ColorTranslator.FromHtml("#201F1E");
+				}
+			}
+
 			var count = new StyleProvider().Count;
 			//logger.WriteLine($"GetStyleGalleryItemCount() count:{count}");
 			return count;
@@ -64,19 +73,6 @@ namespace River.OneMoreAddIn
 		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
 			//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex})");
-
-			if (itemIndex == 0)
-			{
-				using (var one = new OneNote(out var page, out _))
-				{
-					pageColor = page.GetPageColor(out _, out var black);
-					if (black)
-					{
-						pageColor = ColorTranslator.FromHtml("#201F1E");
-					}
-				}
-			}
-
 			return new GalleryTileFactory().MakeTile(itemIndex, pageColor);
 		}
 

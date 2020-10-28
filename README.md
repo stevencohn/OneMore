@@ -96,6 +96,9 @@ commands also have their own key bindings:
 | ----------------------------- | ----------- |
 | Add footnote                  | Ctrl + Alt + F
 | Remove footnote               | Ctrl + Shift + F
+| Add/Edit formula              | F5
+| Recalculate formulas          | Shift + F5
+| Insert Code Block             | F6
 | Insert horizontal line        | Shift + Alt + Minus
 | Insert double horizontal line | Shift + Alt + Equals
 | No Spell Check                | F4
