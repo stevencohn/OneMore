@@ -1912,4 +1912,8 @@ XML档案（* .xml）</value>
     <value>小数位数：</value>
     <comment>label</comment>
   </data>
+  <data name="OK" xml:space="preserve">
+    <value>接受</value>
+    <comment>General OK label</comment>
+  </data>
 </root>

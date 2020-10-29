@@ -64,6 +64,11 @@
               getEnabled="SetBodyContext"
               onAction="PasteRtfCmd"/>
             <button
+              id="ribSearchButton"
+              imageMso="SearchUI"
+              label="Search"
+              onAction="SearchCmd"/>
+            <button
               id="ribReplaceButton"
               imageMso="ReplaceDialog"
               getLabel="GetRibbonLabel"

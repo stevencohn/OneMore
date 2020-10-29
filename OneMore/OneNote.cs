@@ -1,6 +1,6 @@
 ﻿//************************************************************************************************
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
-//************************************************************************************************
+//************************************************************************************************                
 
 #pragma warning disable S3881 // IDisposable should be implemented correctly
 
@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -301,7 +302,9 @@ namespace River.OneMoreAddIn
 		public XElement GetNotebooks()
 		{
 			// find the ID of the current notebook
-			onenote.GetHierarchy(string.Empty, HierarchyScope.hsNotebooks, out var xml, XMLSchema.xs2013);
+			onenote.GetHierarchy(
+				string.Empty, HierarchyScope.hsNotebooks, out var xml, XMLSchema.xs2013);
+
 			if (!string.IsNullOrEmpty(xml))
 			{
 				return XElement.Parse(xml);
@@ -505,7 +508,82 @@ namespace River.OneMoreAddIn
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// QuickFiling...
+
+		/// <summary>
+		/// A callback delegate for consumers who want to know the selected item in the
+		/// QuickFiling dialog.
+		/// </summary>
+		/// <param name="nodeId"></param>
+		public delegate void SelectLocationCallback(string nodeId);
+
+
+		/// <summary>
+		/// Presents the QuickFiling dialog to the user and invokes the given callback
+		/// when completed.
+		/// </summary>
+		/// <param name="title"></param>
+		/// <param name="description"></param>
+		/// <param name="scope"></param>
+		/// <param name="callback"></param>
+		public void SelectLocation(
+			string title, string description, Scope scope, SelectLocationCallback callback)
+		{
+			var dialog = onenote.QuickFiling();
+			dialog.Title = title;
+			dialog.Description = description;
+			dialog.ParentWindowHandle = onenote.Windows.CurrentWindow.WindowHandle;
+
+			switch (scope)
+			{
+				case Scope.Notebooks:
+					dialog.TreeDepth = HierarchyElement.heNotebooks;
+					break;
+				case Scope.Sections:
+					dialog.TreeDepth = HierarchyElement.heSections;
+					break;
+				case Scope.Pages:
+					dialog.TreeDepth = HierarchyElement.hePages;
+					break;
+			}
+
+			dialog.AddButton(
+				Resx.OK, HierarchyElement.heSections, HierarchyElement.heSections, false);
+
+			dialog.Run(new FilingCallback(callback));
+		}
+
+
+		private class FilingCallback : IQuickFilingDialogCallback
+		{
+			private readonly SelectLocationCallback userCallback;
+
+			public FilingCallback(SelectLocationCallback usercb)
+			{
+				userCallback = usercb;
+			}
+
+			public void OnDialogClosed(IQuickFilingDialog dialog)
+			{
+				userCallback(dialog.SelectedItem);
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Utilities...
+
+		/// <summary>
+		/// Exports the specified page to a file using the given format
+		/// </summary>
+		/// <param name="pageId">The page ID</param>
+		/// <param name="path">The output file path</param>
+		/// <param name="format">The format</param>
+		public void Export(string pageId, string path, ExportFormat format)
+		{
+			onenote.Publish(pageId, path, (PublishFormat)format, string.Empty);
+		}
+
 
 		/// <summary>
 		/// Forces OneNote to jump to the specified object, onenote Uri, or Web Uri
@@ -525,14 +603,15 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Exports the specified page to a file using the given format
+		/// Search pages under the specified hierarchy node using the given query.
 		/// </summary>
-		/// <param name="pageId">The page ID</param>
-		/// <param name="path">The output file path</param>
-		/// <param name="format">The format</param>
-		public void Export(string pageId, string path, ExportFormat format)
+		/// <param name="nodeId"></param>
+		/// <param name="query"></param>
+		/// <returns></returns>
+		public string Search(string nodeId, string query)
 		{
-			onenote.Publish(pageId, path, (PublishFormat)format, string.Empty);
+			onenote.FindPages(nodeId, query, out var xml, false, false, XMLSchema.xs2013);
+			return xml;
 		}
 
 

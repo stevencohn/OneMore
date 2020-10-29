@@ -1952,4 +1952,8 @@ XML File (*.xml)</value>
     <value>Decimal places:</value>
     <comment>label</comment>
   </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>General OK label</comment>
+  </data>
 </root>

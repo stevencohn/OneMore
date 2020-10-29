@@ -114,6 +114,13 @@
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Formula\Formula.cs" />
+    <Compile Include="Commands\Search\SearchCommand.cs" />
+    <Compile Include="Commands\Search\SearchDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Search\SearchDialog.Designer.cs">
+      <DependentUpon>SearchDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ImportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -473,6 +480,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
+      <DependentUpon>SearchDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>
       <SubType>Designer</SubType>

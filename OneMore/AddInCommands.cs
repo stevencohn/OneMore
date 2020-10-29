@@ -165,6 +165,9 @@ namespace River.OneMoreAddIn
 		public void ExportCmd(IRibbonControl control)
 			=> factory.Run<ExportCommand>();
 
+		public void SearchCmd(IRibbonControl control)
+			=> factory.Run<SearchCommand>();
+
 		public void SearchAndReplaceCmd(IRibbonControl control)
 			=> factory.Run<SearchAndReplaceCommand>();
 
