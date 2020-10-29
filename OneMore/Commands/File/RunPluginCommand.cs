@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						one.UpdateContent(root);
+						one.Update(root);
 					}
 				}
 				catch (Exception exc)
@@ -304,7 +304,7 @@ namespace River.OneMoreAddIn.Commands
 			// remove all objectID values and let OneNote generate new IDs
 			page.Descendants().Attributes("objectID").Remove();
 
-			one.UpdateContent(page);
+			one.Update(page);
 
 			if (asChildPage)
 			{

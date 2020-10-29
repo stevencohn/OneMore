@@ -1,7 +1,9 @@
 ﻿
 namespace River.OneMoreAddIn.Commands.Formula
 {
+	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Text;
 
 
 	/// <summary>
@@ -22,7 +24,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 		/// <summary>
 		/// Gets or sets the formula version, should be 0 through CurrentVersion
 		/// </summary>
-		public int Version { get; set; }
+		public int Version { get; private set; }
 
 
 		/// <summary>
@@ -41,13 +43,6 @@ namespace River.OneMoreAddIn.Commands.Formula
 		/// Gets or sets the formula expression.
 		/// </summary>
 		public string Expression { get; set; }
-
-
-		/// <summary>
-		/// Gets the formula range - version 0 only - deprecated
-		/// </summary>
-		[Obsolete("version 0")]
-		public string Range { get; private set; }
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -72,10 +67,11 @@ namespace River.OneMoreAddIn.Commands.Formula
 		/// Initialize a formula by parsing the given meta string. Used for existing formulas.
 		/// </summary>
 		/// <param name="meta"></param>
-		public Formula(string meta)
+		public Formula(TableCell cell)
 		{
 			Valid = false;
 
+			var meta = cell.GetMeta("omfx");
 			if (string.IsNullOrEmpty(meta))
 			{
 				return;
@@ -96,32 +92,75 @@ namespace River.OneMoreAddIn.Commands.Formula
 				return;
 			}
 
-			// version 0;range;function;format
-			if (version == 0)
+			switch (version)
 			{
-				Range = parts[1];
-				Expression = parts[2];
-				ParseFormat(parts[3]);
-				Valid = true;
-				return;
-			}
+				case 0:
+					// version 0;range;function;format
+					Upgrade0(cell, parts);
+					break;
 
+				case 1:
+					// version 1;format;expression
+					ParseFormat(parts[1]);
+					Expression = parts[2];
+					break;
 
-			// version 1;format;expression
-			if (version == 1)
-			{
-				ParseFormat(parts[1]);
-				Expression = parts[2];
-			}
-			// version 2;format;dplaces;expression
-			else
-			{
-				ParseFormat(parts[1]);
-				ParseDecimalPlaces(parts[2]);
-				Expression = parts[3];
+				case 2:
+					// version 2;format;dplaces;expression
+					ParseFormat(parts[1]);
+					ParseDecimalPlaces(parts[2]);
+					Expression = parts[3];
+					break;
 			}
 
 			Valid = !string.IsNullOrEmpty(Expression);
+		}
+
+
+		private void Upgrade0(TableCell cell, string[] parts)
+		{
+			// 0;range;function;format
+
+			if (!Enum.TryParse<FormulaFunction>(parts[2], true, out var func))
+			{
+				Valid = false;
+				return;
+			}
+
+			var builder = new StringBuilder();
+
+			if (func == FormulaFunction.StandardDeviation)
+			{
+				builder.Append("stdev(");
+			}
+			else
+			{
+				builder.Append(func.ToString().ToLower());
+				builder.Append("(");
+			}
+
+			if (parts[1] == "Rows")
+			{
+				var col = cell.ColNum.ToAlphabetic();
+				builder.Append(col);
+				builder.Append(1);
+				builder.Append(":");
+				builder.Append(col);
+				builder.Append(cell.RowNum - 1);
+			}
+			else
+			{
+				builder.Append("A");
+				builder.Append(cell.RowNum);
+				builder.Append(":");
+				builder.Append((cell.ColNum -1).ToAlphabetic());
+				builder.Append(cell.RowNum);
+			}
+
+			builder.Append(")");
+			Expression = builder.ToString();
+
+			ParseFormat(parts[3]);
 		}
 
 

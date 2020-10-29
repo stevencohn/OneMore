@@ -458,15 +458,15 @@ namespace River.OneMoreAddIn
 		/// <param name="page">A Page</param>
 		public void Update(Page page)
 		{
-			UpdateContent(page.Root);
+			Update(page.Root);
 		}
 
 
 		/// <summary>
-		/// Updates the current page with the given content.
+		/// Updates the given content, with a unique ID, on the current page.
 		/// </summary>
 		/// <param name="element">A page or element within a page with a unique objectID</param>
-		public void UpdateContent(XElement element)
+		public void Update(XElement element)
 		{
 			var xml = element.ToString(SaveOptions.DisableFormatting);
 

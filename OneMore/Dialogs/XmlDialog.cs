@@ -381,7 +381,7 @@ namespace River.OneMoreAddIn.Dialogs
 				try
 				{
 					var page = XElement.Parse(pageBox.Text);
-					one.UpdateContent(page);
+					one.Update(page);
 					Close();
 				}
 				catch (Exception exc)

@@ -69,16 +69,12 @@ namespace River.OneMoreAddIn
 					var cell = cells.First();
 
 					// display formula of first cell if any
-					var meta = cell.GetMeta("omfx");
-					if (meta != null)
+					var formula = new Formula(cell);
+					if (formula.Valid)
 					{
-						var formula = new Formula(meta);
-						if (formula.Valid)
-						{
-							dialog.Format = formula.Format;
-							dialog.Formula = formula.Expression;
-							dialog.DecimalPlaces = formula.DecimalPlaces;
-						}
+						dialog.Format = formula.Format;
+						dialog.Formula = formula.Expression;
+						dialog.DecimalPlaces = formula.DecimalPlaces;
 					}
 
 					var tagIndex = page.GetTagIndex(BoltSymbol);
