@@ -388,6 +388,25 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets the ID of the parent hierachy object that owns the specified object
+		/// </summary>
+		/// <param name="objectId">The ID of the object whose parent you want to find</param>
+		/// <returns>The ID of the parent or null if not found (e.g. parent of a notebook)</returns>
+		public string GetParent(string objectId)
+		{
+			try
+			{
+				onenote.GetHierarchyParent(objectId, out var parentId);
+				return parentId;
+			}
+			catch
+			{
+				return null;
+			}
+		}
+
+
+		/// <summary>
 		/// Gest the current section and its child page hierarchy
 		/// </summary>
 		/// <returns>A Section element with Page children</returns>

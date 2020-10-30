@@ -5,14 +5,16 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Commands.Search;
+	using System;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class SearchCommand : Command
 	{
-		private bool copySelections;
+		private bool copying;
 		private List<string> selections;
 
 
@@ -25,7 +27,7 @@ namespace River.OneMoreAddIn
 		{
 			// search for keywords and find page
 
-			copySelections = false;
+			copying = false;
 
 			using (var dialog = new SearchDialog())
 			{
@@ -34,7 +36,7 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
-				copySelections = dialog.CopySelections;
+				copying = dialog.CopySelections;
 				selections = dialog.SelectedPages;
 			}
 
@@ -53,18 +55,54 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void Callback(string nodeId)
+		private void Callback(string sectionId)
 		{
-			if (string.IsNullOrEmpty(nodeId))
+			if (string.IsNullOrEmpty(sectionId))
 			{
 				// cancelled
 				return;
 			}
 
+			var action = copying ? "copying" : "moving";
+			logger.Start($"..{action} {selections.Count} pages");
+
 			try
 			{
-				var action = copySelections ? "copying" : "moving";
-				logger.Start($"..{action} {selections.Count} pages");
+				using (var one = new OneNote())
+				{
+					var section = one.GetSection(sectionId);
+
+					foreach (var pageId in selections)
+					{
+						if (one.GetParent(pageId) == sectionId)
+						{
+							continue;
+						}
+
+						if (copying)
+						{
+							one.CreatePage(sectionId, out var newPageId);
+
+							// get the page to copy
+							var page = one.GetPage(pageId);
+							// set the page ID to the new page's ID
+							page.Root.Attribute("ID").Value = newPageId;
+							// remove all objectID values and let OneNote generate new IDs
+							page.Root.Descendants().Attributes("objectID").Remove();
+							one.Update(page);
+						}
+						else
+						{
+							//
+						}
+					}
+
+					one.NavigateTo(sectionId);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
 			}
 			finally
 			{
