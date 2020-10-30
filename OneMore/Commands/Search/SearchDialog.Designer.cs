@@ -195,7 +195,7 @@
 			this.Controls.Add(this.introLabel);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(489, 209);
+			this.MinimumSize = new System.Drawing.Size(489, 500);
 			this.Name = "SearchDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 10);
 			this.ShowInTaskbar = false;

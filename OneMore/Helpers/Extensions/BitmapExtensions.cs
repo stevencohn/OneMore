@@ -13,6 +13,12 @@ namespace River.OneMoreAddIn
 
 	internal static class BitmapExtensions
 	{
+
+		/// <summary>
+		/// Gets a readonly stream from the given bitmap.
+		/// </summary>
+		/// <param name="bitmap"></param>
+		/// <returns></returns>
 		public static IStream GetReadOnlyStream(this Bitmap bitmap)
 		{
 			ReadOnlyStream stream = null;
@@ -32,6 +38,14 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Replaces fromColor with toColor in the given image. This can be used to "colorize"
+		/// an image mask such as Notebooks and Section in the SearchCommand dialog
+		/// </summary>
+		/// <param name="image"></param>
+		/// <param name="fromColor"></param>
+		/// <param name="toColor"></param>
+		/// <returns></returns>
 		public static Image MapColor(this Image image, Color fromColor, Color toColor)
 		{
 			var attributes = new ImageAttributes();
@@ -60,6 +74,11 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Serializes the given image as a base64 string.
+		/// </summary>
+		/// <param name="image"></param>
+		/// <returns></returns>
 		public static string ToBase64String(this Image image)
 		{
 			return Convert.ToBase64String(

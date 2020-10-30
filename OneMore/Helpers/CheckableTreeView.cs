@@ -33,6 +33,11 @@ namespace River.OneMoreAddIn
 
 	internal class CheckableTreeView : TreeView
 	{
+		public CheckableTreeView() : base()
+		{
+			DoubleBuffered = true;
+		}
+
 
 		/// <summary>
 		/// Set this when updating the text of a node, otherwise a stack overflow will occur

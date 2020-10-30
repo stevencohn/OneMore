@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Commands.Search;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class SearchCommand : Command
@@ -45,7 +46,9 @@ namespace River.OneMoreAddIn
 
 			using (var one = new OneNote())
 			{
-				one.SelectLocation("title", "description", OneNote.Scope.Sections, Callback);
+				one.SelectLocation(
+					Resx.SearchQF_Title, Resx.SearchQF_Description,
+					OneNote.Scope.Sections, Callback);
 			}
 		}
 

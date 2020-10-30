@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands.Search
 {
+	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -13,11 +14,28 @@ namespace River.OneMoreAddIn.Commands.Search
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	public partial class SearchDialog : Form
+	internal partial class SearchDialog : LocalizableForm
 	{
 		public SearchDialog()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.SearchDialog_Title;
+
+				Localize(new string[]
+				{
+					"introLabel",
+					"findLabel",
+					"allButton",
+					"notebookButton",
+					"sectionButton",
+					"moveButton",
+					"copyButton",
+					"cancelButton"
+				});
+			}
 
 			SelectedPages = new List<string>();
 		}
@@ -27,6 +45,13 @@ namespace River.OneMoreAddIn.Commands.Search
 
 
 		public List<string> SelectedPages { get; private set; }
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			Location = new Point(Location.X, Location.Y - (Height / 5));
+			UIHelper.SetForegroundWindow(this);
+		}
 
 
 		private void ChangeQuery(object sender, EventArgs e)
@@ -69,8 +94,14 @@ namespace River.OneMoreAddIn.Commands.Search
 
 				if (results.HasElements)
 				{
+					resultTree.BeginUpdate();
 					DisplayResults(results, one.GetNamespace(results), resultTree.Nodes);
-					resultTree.ExpandAll();
+					if (resultTree.Nodes.Count > 0)
+					{
+						resultTree.ExpandAll();
+						resultTree.Nodes[0].EnsureVisible();
+					}
+					resultTree.EndUpdate();
 				}
 			}
 		}

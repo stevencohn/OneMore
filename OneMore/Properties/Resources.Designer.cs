@@ -3492,6 +3492,87 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In all notebooks.
+        /// </summary>
+        internal static string SearchDialog_allButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_allButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SearchDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        internal static string SearchDialog_copyButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_copyButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find:.
+        /// </summary>
+        internal static string SearchDialog_findLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_findLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter one or more keywords, &quot;quoted phrases&quot;, and use uppercase AND and OR.
+        /// </summary>
+        internal static string SearchDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        internal static string SearchDialog_moveButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_moveButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this notebook.
+        /// </summary>
+        internal static string SearchDialog_notebookButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_notebookButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this section.
+        /// </summary>
+        internal static string SearchDialog_sectionButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_sectionButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Move/Copy.
+        /// </summary>
+        internal static string SearchDialog_Title {
+            get {
+                return ResourceManager.GetString("SearchDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string SearchEngineDialog_cancelButton_Text {
@@ -3605,6 +3686,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchEngineDialog_urlColumn_HeaderText {
             get {
                 return ResourceManager.GetString("SearchEngineDialog_urlColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection the location to move or copy selected pages.
+        /// </summary>
+        internal static string SearchQF_Description {
+            get {
+                return ResourceManager.GetString("SearchQF_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Location.
+        /// </summary>
+        internal static string SearchQF_Title {
+            get {
+                return ResourceManager.GetString("SearchQF_Title", resourceCulture);
             }
         }
         
