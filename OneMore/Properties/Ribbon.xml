@@ -65,7 +65,7 @@
               onAction="PasteRtfCmd"/>
             <button
               id="ribSearchButton"
-              imageMso="SearchUI"
+              imageMso="FileFind"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               onAction="SearchCmd"/>
