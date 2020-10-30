@@ -5,12 +5,14 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Commands.Search;
+	using System.Collections.Generic;
 	using System.Windows.Forms;
 
 
 	internal class SearchCommand : Command
 	{
 		private bool copySelections;
+		private List<string> selections;
 
 
 		public SearchCommand()
@@ -20,7 +22,10 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
+			// search for keywords and find page
+
 			copySelections = false;
+
 			using (var dialog = new SearchDialog())
 			{
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
@@ -29,7 +34,14 @@ namespace River.OneMoreAddIn
 				}
 
 				copySelections = dialog.CopySelections;
+				selections = dialog.SelectedPages;
 			}
+
+			logger.WriteLine($"selected {selections.Count} pages");
+
+			// choose where to copy/move the selected pages
+			// This needs to be done here, on this thread; I've tried to play threading tricks
+			// to do this from the SearchDialog but could find a way to prevent hanging
 
 			using (var one = new OneNote())
 			{
@@ -42,11 +54,19 @@ namespace River.OneMoreAddIn
 		{
 			if (string.IsNullOrEmpty(nodeId))
 			{
-				logger.WriteLine("search cancelled");
+				// cancelled
 				return;
-
 			}
-			logger.WriteLine($"nodeId={nodeId} (copy:{copySelections})");
+
+			try
+			{
+				var action = copySelections ? "copying" : "moving";
+				logger.Start($"..{action} {selections.Count} pages");
+			}
+			finally
+			{
+				logger.End();
+			}
 		}
 	}
 }

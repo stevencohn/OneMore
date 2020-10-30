@@ -5,8 +5,12 @@
 namespace River.OneMoreAddIn.Commands.Search
 {
 	using System;
+	using System.Collections.Generic;
+	using System.Drawing;
+	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	public partial class SearchDialog : Form
@@ -14,10 +18,15 @@ namespace River.OneMoreAddIn.Commands.Search
 		public SearchDialog()
 		{
 			InitializeComponent();
+
+			SelectedPages = new List<string>();
 		}
 
 
 		public bool CopySelections { get; private set; }
+
+
+		public List<string> SelectedPages { get; private set; }
 
 
 		private void ChangeQuery(object sender, EventArgs e)
@@ -38,6 +47,8 @@ namespace River.OneMoreAddIn.Commands.Search
 
 		private void Search(object sender, EventArgs e)
 		{
+			resultTree.Nodes.Clear();
+
 			using (var one = new OneNote())
 			{
 				string startId = string.Empty;
@@ -49,33 +60,149 @@ namespace River.OneMoreAddIn.Commands.Search
 				var xml = one.Search(startId, findBox.Text);
 				var results = XElement.Parse(xml);
 
-				resultTree.Nodes.Clear();
+				// remove recyclebin nodes
+				results.Descendants()
+					.Where(n => n.Name.LocalName == "UnfiledNotes" ||
+								n.Attribute("isRecycleBin") != null ||
+								n.Attribute("isInRecycleBin") != null)
+					.Remove();
 
 				if (results.HasElements)
 				{
 					DisplayResults(results, one.GetNamespace(results), resultTree.Nodes);
+					resultTree.ExpandAll();
 				}
-
-				copyButton.Enabled = true;
-				moveButton.Enabled = true;
 			}
 		}
 
 
-		private void DisplayResults(XElement results, XNamespace ns, TreeNodeCollection nodes)
+		private void DisplayResults(XElement root, XNamespace ns, TreeNodeCollection nodes)
 		{
-			
+			TreeNode node;
+
+			if (root.Name.LocalName == "Page")
+			{
+				node = new TreeNode(root.Attribute("name").Value) { Tag = root };
+				nodes.Add(node);
+				return;
+			}
+
+			if (root.Name.LocalName == "Notebooks")
+			{
+				foreach (var element in root.Elements())
+				{
+					DisplayResults(element, ns, nodes);
+				}
+				return;
+			}
+
+			node = new UncheckableTreeNode(root.Attribute("name")?.Value) { Tag = root };
+			nodes.Add(node);
+
+			foreach (var element in root.Elements())
+			{
+				DisplayResults(element, ns, node.Nodes);
+			}
 		}
-		/*
-<one:Notebooks xmlns>
-  <one:Notebook name="Personal" nickname="Personal" ID="" color="#F6B078">
-    <one:SectionGroup name="Jesters" ID="">
-      <one:Section name="OneMore" ID="" color="#B49EDE">
-      <one:Page ID="" name="" />
-    </one:Section>
-  </one:Notebook>
-</one:Notebooks>
-		*/
+
+
+		private void TreeDrawNode(object sender, DrawTreeNodeEventArgs e)
+		{
+			var element = e.Node.Tag as XElement;
+			var isPage = element.Name.LocalName == "Page";
+
+			var color = SystemBrushes.ControlText;
+			var bounds = MakeNodeBounds(e.Node);
+
+			// draw the selection background
+			if ((e.State & TreeNodeStates.Selected) != 0)
+			{
+				e.Graphics.FillRectangle(SystemBrushes.Highlight, bounds);
+				color = SystemBrushes.HighlightText;
+			}
+
+			if (!isPage)
+			{
+				Image image = Resx.SectionGroup;
+				if (element.Name.LocalName == "Notebook" || element.Name.LocalName == "Section")
+				{
+					image = element.Name.LocalName == "Notebook" ? Resx.NotebookMask : Resx.SectionMask;
+					image.MapColor(Color.Black, ColorTranslator.FromHtml(element.Attribute("color").Value));
+				}
+
+				e.Graphics.DrawImage(image, bounds.Left, bounds.Top);
+			}
+
+			// draw the node text
+			var font = e.Node.NodeFont ?? ((TreeView)sender).Font;
+			var left = isPage ? bounds.Left : bounds.Left + 20;
+			e.Graphics.DrawString(e.Node.Text, font, color, left, bounds.Top);
+
+			if (!isPage)
+			{
+				// draw the focus rectangle
+				if ((e.State & TreeNodeStates.Focused) != 0)
+				{
+					using (var pen = new Pen(Color.Black))
+					{
+						pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+						bounds.Size = new Size(bounds.Width - 1, bounds.Height - 1);
+						e.Graphics.DrawRectangle(pen, bounds);
+					}
+				}
+			}
+		}
+
+		private Rectangle MakeNodeBounds(TreeNode node)
+		{
+			var element = node.Tag as XElement;
+			if (element.Name.LocalName == "Page")
+			{
+				return new Rectangle(
+					node.Bounds.Left + 4,	// offset from checkbox
+					node.Bounds.Top,
+					node.Bounds.Width + 2,
+					node.Bounds.Height);
+			}
+
+			return new Rectangle(
+				node.Bounds.Left,
+				node.Bounds.Top,
+				node.Bounds.Width + 24,		// include space for image
+				node.Bounds.Height);
+		}
+
+
+		private void TreeMouseDown(object sender, MouseEventArgs e)
+		{
+			var node = resultTree.GetNodeAt(e.X, e.Y);
+			if (MakeNodeBounds(node).Contains(e.X, e.Y))
+			{
+				resultTree.SelectedNode = node;
+			}
+		}
+
+
+		private void TreeAfterCheck(object sender, TreeViewEventArgs e)
+		{
+			var element = e.Node.Tag as XElement;
+			var id = element.Attribute("ID").Value;
+
+			if (e.Node.Checked)
+			{
+				if (!SelectedPages.Contains(id))
+				{
+					SelectedPages.Add(id);
+				}
+			}
+			else if (SelectedPages.Contains(id))
+			{
+				SelectedPages.Remove(id);
+			}
+
+			copyButton.Enabled = moveButton.Enabled = SelectedPages.Count > 0;
+		}
+
 
 		private void CopyPressed(object sender, EventArgs e)
 		{
@@ -90,14 +217,6 @@ namespace River.OneMoreAddIn.Commands.Search
 			CopySelections = false;
 			DialogResult = DialogResult.OK;
 			Close();
-		}
-	}
-
-
-	internal class NotebookNode : TreeNode
-	{
-		public NotebookNode()
-		{
 		}
 	}
 }

@@ -1631,6 +1631,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NotebookMask {
+            get {
+                object obj = ResourceManager.GetObject("NotebookMask", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Numbering page {0}.
         /// </summary>
         internal static string NumberingPage_Message {
@@ -3595,6 +3605,26 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchEngineDialog_urlColumn_HeaderText {
             get {
                 return ResourceManager.GetString("SearchEngineDialog_urlColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SectionGroup {
+            get {
+                object obj = ResourceManager.GetObject("SectionGroup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SectionMask {
+            get {
+                object obj = ResourceManager.GetObject("SectionMask", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
