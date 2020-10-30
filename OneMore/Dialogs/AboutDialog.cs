@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 			Logger.SetDesignMode(DesignMode);
 
-			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, River.OneMore.AssemblyInfo.Version);
+			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, River.OneMoreAddIn.AssemblyInfo.Version);
 			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
 
 			var logpath = Logger.Current.LogPath;
@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 			if (await updater.FetchLatestRelease())
 			{
-				if (updater.IsUpToDate(River.OneMore.AssemblyInfo.Version))
+				if (updater.IsUpToDate(River.OneMoreAddIn.AssemblyInfo.Version))
 				{
 					MessageBox.Show(
 						Resx.AboutDialog_LatestMessage,

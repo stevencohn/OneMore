@@ -29,6 +29,34 @@ namespace River.OneMoreAddIn
 		public const uint EVENT_SYSTEM_MINIMIZESTART = 22;
 		public const uint EVENT_SYSTEM_MINIMIZEEND = 23;
 
+		public const int TVIF_STATE = 0x8;
+		public const int TVIS_STATEIMAGEMASK = 0xF000;
+
+		public const int TVM_SETITEMA = 0x110d;
+		public const int TVM_SETITEM = 0x110d;
+		public const int TVM_SETITEMW = 0x113f;
+
+		public const int TVM_GETITEM = 0x110C;
+
+
+		/// <summary>
+		/// Specifies the attributes of a node in a TreeView
+		/// </summary>
+		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+		public struct TreeViewItem
+		{
+			public int Mask;
+			public IntPtr ItemHandle;
+			public int State;
+			public int StateMask;
+			public IntPtr TextPtr;
+			public int TextMax;
+			public int Image;
+			public int SelectedImage;
+			public int Children;
+			public IntPtr LParam;
+		}
+
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Delegates...
@@ -70,6 +98,10 @@ namespace River.OneMoreAddIn
 		[DllImport("user32.dll", CharSet = CharSet.Unicode)]
 		public static extern bool InsertMenu(
 			IntPtr hMenu, int wPosition, int wFlags, int wIDNewItem, string lpNewItem);
+
+
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		public static extern IntPtr SendMessage(HandleRef hWnd, int msg, int wParam, ref TreeViewItem lParam);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey

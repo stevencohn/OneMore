@@ -50,6 +50,10 @@ namespace River.OneMoreAddIn
 				Keys.V, Hotmods.ControlAlt);
 
 			HotkeyManager.RegisterHotKey(() =>
+				SearchCmd(null),
+				Keys.F, Hotmods.Alt);
+
+			HotkeyManager.RegisterHotKey(() =>
 				SearchAndReplaceCmd(null),
 				Keys.H, Hotmods.Control);
 

@@ -32,6 +32,34 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public static Image MapColor(this Image image, Color fromColor, Color toColor)
+		{
+			var attributes = new ImageAttributes();
+
+			attributes.SetRemapTable(new ColorMap[]
+				{
+					new ColorMap
+					{
+						OldColor = fromColor,
+						NewColor = toColor,
+					}
+				},
+				ColorAdjustType.Bitmap);
+
+			using (var g = Graphics.FromImage(image))
+			{
+				g.DrawImage(
+					image,
+					new Rectangle(Point.Empty, image.Size),
+					0, 0, image.Width, image.Height,
+					GraphicsUnit.Pixel,
+					attributes);
+			}
+
+			return image;
+		}
+
+
 		public static string ToBase64String(this Image image)
 		{
 			return Convert.ToBase64String(
