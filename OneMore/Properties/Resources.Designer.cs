@@ -2506,7 +2506,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add formula to selected table cell(s).
+        ///   Looks up a localized string similar to Add/edit formula in selected table cells (F5).
         /// </summary>
         internal static string ribAddFormulaButton_Screentip {
             get {
@@ -3059,7 +3059,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recalculate all formula in the current table.
+        ///   Looks up a localized string similar to Recalculate all formula in the current table (Shift + F5).
         /// </summary>
         internal static string ribRecalculateFormulaButton_Screentip {
             get {
@@ -3217,6 +3217,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRunPluginButton_Label {
             get {
                 return ResourceManager.GetString("ribRunPluginButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Copy/Move.
+        /// </summary>
+        internal static string ribSearchButton_Label {
+            get {
+                return ResourceManager.GetString("ribSearchButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search pages for keywords and copy/move to another section (Alt + F).
+        /// </summary>
+        internal static string ribSearchButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSearchButton_Screentip", resourceCulture);
             }
         }
         
@@ -3690,11 +3708,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selection the location to move or copy selected pages.
+        ///   Looks up a localized string similar to Pick the location where selected pages should be copied.
         /// </summary>
-        internal static string SearchQF_Description {
+        internal static string SearchQF_DescriptionCopy {
             get {
-                return ResourceManager.GetString("SearchQF_Description", resourceCulture);
+                return ResourceManager.GetString("SearchQF_DescriptionCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick the location where selected pages should be moved.
+        /// </summary>
+        internal static string SearchQF_DescriptionMove {
+            get {
+                return ResourceManager.GetString("SearchQF_DescriptionMove", resourceCulture);
             }
         }
         

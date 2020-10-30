@@ -14,6 +14,7 @@ General commands
 * Disable **spell-check** on the current page (F4)
 * [Paste Rich Text](#exCodeBox) (preserve colors when **pasting code** from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
 * [**Search and replace**](#other) text on the current page (Ctrl+H)
+* Search for keywords and copy/move selected pages (Alt + F)
 * Change selected text to UPPERCASE or lowercase
 * Increase/Decrease the font size of all content on the current page
 * Collapse the page hierarchy to see only top-level pages
@@ -103,6 +104,7 @@ commands also have their own key bindings:
 | Insert double horizontal line | Shift + Alt + Equals
 | No Spell Check                | F4
 | Paste Rich Text               | Ctrl + Alt + V
+| Search and Move/Copy          | Alt + F
 | Search and Replace            | Ctrl + H
 | To uppercase                  | Ctrl + Shift + Alt + U
 | To lowercase                  | Ctrl + Shift + U

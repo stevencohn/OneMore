@@ -366,7 +366,7 @@
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>Add formula to selected table cell(s)</value>
+    <value>Add/edit formula in selected table cells (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
@@ -506,7 +506,7 @@
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Recalculate all formula in the current table</value>
+    <value>Recalculate all formula in the current table (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribRedStatusButton_Label" xml:space="preserve">
@@ -2001,12 +2001,24 @@ XML File (*.xml)</value>
     <value>Search and Move/Copy</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SearchQF_Description" xml:space="preserve">
-    <value>Selection the location to move or copy selected pages</value>
+  <data name="SearchQF_DescriptionCopy" xml:space="preserve">
+    <value>Pick the location where selected pages should be copied</value>
     <comment>QuickFiling description</comment>
   </data>
   <data name="SearchQF_Title" xml:space="preserve">
     <value>Select Location</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchQF_DescriptionMove" xml:space="preserve">
+    <value>Pick the location where selected pages should be moved</value>
+    <comment>QuickFiling description</comment>
+  </data>
+  <data name="ribSearchButton_Label" xml:space="preserve">
+    <value>Search and Copy/Move</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribSearchButton_Screentip" xml:space="preserve">
+    <value>Search pages for keywords and copy/move to another section (Alt + F)</value>
+    <comment>ribbon item</comment>
   </data>
 </root>

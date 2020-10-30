@@ -366,7 +366,7 @@
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>将公式添加到选定的表格单元格</value>
+    <value>在选定的表格单元格中添加/编辑公式（F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
@@ -506,7 +506,7 @@
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>重新计算当前表中的所有公式</value>
+    <value>重新计算当前表中的所有公式（Shift + F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribRedStatusButton_Label" xml:space="preserve">
@@ -1952,12 +1952,24 @@ XML档案（* .xml）</value>
     <value>搜索和移动/复制</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SearchQF_Description" xml:space="preserve">
-    <value>选择要移动或复制所选页面的位置</value>
-    <comment>QuickFiling description</comment>
-  </data>
   <data name="SearchQF_Title" xml:space="preserve">
     <value>选择位置</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchQF_DescriptionCopy" xml:space="preserve">
+    <value>选择应该复制所选页面的位置</value>
+    <comment>QuickFiling description</comment>
+  </data>
+  <data name="SearchQF_DescriptionMove" xml:space="preserve">
+    <value>选择应该移动选定页面的位置</value>
+    <comment>QuickFiling description</comment>
+  </data>
+  <data name="ribSearchButton_Label" xml:space="preserve">
+    <value>搜索和复制/移动</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribSearchButton_Screentip" xml:space="preserve">
+    <value>在页面上搜索关键字，然后将其复制/移动到另一部分（Alt + F）</value>
+    <comment>ribbon item</comment>
   </data>
 </root>
