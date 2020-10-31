@@ -331,8 +331,23 @@
     <Compile Include="Helpers\Office\PowerPoint.cs" />
     <Compile Include="Helpers\Office\Word.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
+    <Compile Include="Helpers\Settings\ContextMenuSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Helpers\Settings\ContextMenuSheet.Designer.cs">
+      <DependentUpon>ContextMenuSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Settings\FadingLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Helpers\Settings\SearchEngineProvider.cs" />
     <Compile Include="Helpers\Settings\SettingCollection.cs" />
+    <Compile Include="Helpers\Settings\SettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpers\Settings\SettingsDialog.Designer.cs">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Settings\SettingsProvider.cs" />
     <Compile Include="Helpers\Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\CheckableTreeView.cs" />
@@ -564,7 +579,15 @@
     <EmbeddedResource Include="Dialogs\TocDialog.resx">
       <DependentUpon>TocDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+    <EmbeddedResource Include="Helpers\Settings\ContextMenuSheet.resx">
+      <DependentUpon>ContextMenuSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpers\Settings\SettingsDialog.resx">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>

@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands.Search
 	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -16,6 +17,7 @@ namespace River.OneMoreAddIn.Commands.Search
 
 	internal partial class SearchDialog : LocalizableForm
 	{
+
 		public SearchDialog()
 		{
 			InitializeComponent();
@@ -140,7 +142,7 @@ namespace River.OneMoreAddIn.Commands.Search
 		private void TreeDrawNode(object sender, DrawTreeNodeEventArgs e)
 		{
 			var element = e.Node.Tag as XElement;
-			var isPage = element.Name.LocalName == "Page";
+			var isContainer = element.Name.LocalName != "Page";
 
 			var color = SystemBrushes.ControlText;
 			var bounds = MakeNodeBounds(e.Node);
@@ -152,9 +154,9 @@ namespace River.OneMoreAddIn.Commands.Search
 				color = SystemBrushes.HighlightText;
 			}
 
-			if (!isPage)
+			if (isContainer)
 			{
-				Image image = Resx.SectionGroup;
+				var image = Resx.SectionGroup;
 				if (element.Name.LocalName == "Notebook" || element.Name.LocalName == "Section")
 				{
 					image = element.Name.LocalName == "Notebook" ? Resx.NotebookMask : Resx.SectionMask;
@@ -166,10 +168,10 @@ namespace River.OneMoreAddIn.Commands.Search
 
 			// draw the node text
 			var font = e.Node.NodeFont ?? ((TreeView)sender).Font;
-			var left = isPage ? bounds.Left : bounds.Left + 20;
+			var left = isContainer ? bounds.Left + 20 : bounds.Left;
 			e.Graphics.DrawString(e.Node.Text, font, color, left, bounds.Top);
 
-			if (!isPage)
+			if (isContainer)
 			{
 				// draw the focus rectangle
 				if ((e.State & TreeNodeStates.Focused) != 0)
@@ -190,7 +192,7 @@ namespace River.OneMoreAddIn.Commands.Search
 			if (element.Name.LocalName == "Page")
 			{
 				return new Rectangle(
-					node.Bounds.Left + 4,	// offset from checkbox
+					node.Bounds.Left + 4,   // offset from checkbox
 					node.Bounds.Top,
 					node.Bounds.Width + 2,
 					node.Bounds.Height);
@@ -199,7 +201,7 @@ namespace River.OneMoreAddIn.Commands.Search
 			return new Rectangle(
 				node.Bounds.Left,
 				node.Bounds.Top,
-				node.Bounds.Width + 24,		// include space for image
+				node.Bounds.Width + 24,     // include space for image
 				node.Bounds.Height);
 		}
 
@@ -210,6 +212,29 @@ namespace River.OneMoreAddIn.Commands.Search
 			if (MakeNodeBounds(node).Contains(e.X, e.Y))
 			{
 				resultTree.SelectedNode = node;
+			}
+		}
+
+
+		private void TreeDoubleClick(object sender, EventArgs e)
+		{
+			var node = resultTree.SelectedNode;
+			if (node != null)
+			{
+				var element = node.Tag as XElement;
+				if (element?.Name.LocalName == "Page")
+				{
+					var pageId = element.Attribute("ID").Value;
+
+					using (var one = new OneNote())
+					{
+						// TODO: there must be a better way to do it than this...
+						// Invoke or SynchronizationContext???
+
+						var link = one.GetHyperlink(pageId, string.Empty);
+						Process.Start(new ProcessStartInfo(link));
+					}
+				}
 			}
 		}
 

@@ -88,6 +88,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 		public string ConvertClipboardToHtml()
 		{
+			object target = null;
+
 			try
 			{
 				// create new document
@@ -98,7 +100,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 				para.Range.Paste();
 
 				// save as HTML
-				object target = Path.GetTempFileName();
+				target = Path.GetTempFileName();
 				object format = WdSaveFormat.wdFormatHTML;
 
 				doc.SaveAs2(ref target, ref format);
@@ -112,7 +114,20 @@ namespace River.OneMoreAddIn.Helpers.Office
 			{
 				Logger.Current.WriteLine(exc);
 			}
-
+			finally
+			{
+				try
+				{
+					if (File.Exists((string)target))
+					{
+						File.Delete((string)target);
+					}
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine($"Error cleaning up {target}", exc);
+				}
+			}
 			return null;
 		}
 	}
