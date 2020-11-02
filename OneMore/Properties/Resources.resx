@@ -2046,11 +2046,11 @@ XML File (*.xml)</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>... No Spell Check</value>
+    <value>No Spell Check</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
-    <value>... Paste Rich Text</value>
+    <value>Paste Rich Text</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">

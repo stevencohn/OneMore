@@ -581,7 +581,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... No Spell Check.
+        ///   Looks up a localized string similar to No Spell Check.
         /// </summary>
         internal static string ContextMenuSheet_ribNoSpellCheckButton {
             get {
@@ -590,7 +590,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ... Paste Rich Text.
+        ///   Looks up a localized string similar to Paste Rich Text.
         /// </summary>
         internal static string ContextMenuSheet_ribPasteRtfButton {
             get {

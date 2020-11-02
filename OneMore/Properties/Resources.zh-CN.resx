@@ -1997,11 +1997,11 @@ XML档案（* .xml）</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>...没有拼写检查</value>
+    <value>没有拼写检查</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
-    <value>...粘贴富文本</value>
+    <value>粘贴富文本</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">

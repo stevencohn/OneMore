@@ -121,7 +121,7 @@
             <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage">
               <button
                 id="ribHighlightButton"
-                imageMso="TextHighlightColorPicker"
+                imageMso="AppointmentColorDialog"
                 getLabel="GetRibbonLabel"
                 onAction="HighlightCmd"/>
               <button
