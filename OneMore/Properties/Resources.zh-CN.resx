@@ -2084,4 +2084,8 @@ XML档案（* .xml）</value>
     <value>主题</value>
     <comment>group</comment>
   </data>
+  <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
+    <value>插入代码块（F6）</value>
+    <comment>menu</comment>
+  </data>
 </root>

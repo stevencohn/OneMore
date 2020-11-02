@@ -257,6 +257,7 @@
                 id="ribCodeBlockButton"
                 imageMso="CodeEdit"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="InsertCodeBlockCmd"/>
               <button

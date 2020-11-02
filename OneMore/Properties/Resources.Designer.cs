@@ -2825,6 +2825,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert a code block (F6).
+        /// </summary>
+        internal static string ribCodeBlockButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCodeBlockButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collapse Pages.
         /// </summary>
         internal static string ribCollapseButton_Label {

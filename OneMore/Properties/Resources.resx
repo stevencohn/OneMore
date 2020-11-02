@@ -2133,4 +2133,8 @@ XML File (*.xml)</value>
     <value>Themes</value>
     <comment>group</comment>
   </data>
+  <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
+    <value>Insert a code block (F6)</value>
+    <comment>menu</comment>
+  </data>
 </root>
