@@ -1499,6 +1499,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Themes.
+        /// </summary>
+        internal static string HighlightsSheet_themeGroup_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_themeGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rotating Highlighter Options.
         /// </summary>
         internal static string HighlightsSheet_Title {
@@ -2722,6 +2731,60 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Ribbon {
             get {
                 return ResourceManager.GetString("Ribbon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Commands.
+        /// </summary>
+        internal static string RibbonBarSheet_editGroup_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_editGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show only icons for edit commands.
+        /// </summary>
+        internal static string RibbonBarSheet_editIconBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_editIconBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formula Commands.
+        /// </summary>
+        internal static string RibbonBarSheet_formulaGroup_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_formulaGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show only icons for formula commands.
+        /// </summary>
+        internal static string RibbonBarSheet_formulaIconBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_formulaIconBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes..
+        /// </summary>
+        internal static string RibbonBarSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ribbon Bar Options.
+        /// </summary>
+        internal static string RibbonBarSheet_Title {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_Title", resourceCulture);
             }
         }
         

@@ -2056,4 +2056,32 @@ XML档案（* .xml）</value>
     <value>...旋转荧光笔</value>
     <comment>context menu</comment>
   </data>
+  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
+    <value>编辑指令</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
+    <value>仅显示用于编辑命令的图标</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
+    <value>公式命令</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
+    <value>仅显示公式命令的图标</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
+    <value>选择要包含在功能区栏中的命令，以及显示图标还是显示图标和标签。 重新启动OneNote以查看更改。</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_Title" xml:space="preserve">
+    <value>色带栏选项</value>
+    <comment>settings dialog</comment>
+  </data>
+  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+    <value>主题</value>
+    <comment>group</comment>
+  </data>
 </root>

@@ -20,7 +20,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Localize(new string[]
 				{
-					"introBox"
+					"introBox",
+					"themeGroup"
 				});
 			}
 

@@ -2105,4 +2105,32 @@ XML File (*.xml)</value>
     <value>... Rotating Highlighter</value>
     <comment>context menu</comment>
   </data>
+  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
+    <value>Edit Commands</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
+    <value>Show only icons for edit commands</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
+    <value>Formula Commands</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
+    <value>Show only icons for formula commands</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
+    <value>Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes.</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_Title" xml:space="preserve">
+    <value>Ribbon Bar Options</value>
+    <comment>settings dialog</comment>
+  </data>
+  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+    <value>Themes</value>
+    <comment>group</comment>
+  </data>
 </root>

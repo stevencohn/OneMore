@@ -32,6 +32,8 @@
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.normalRadio = new System.Windows.Forms.RadioButton();
 			this.fadedRadio = new System.Windows.Forms.RadioButton();
+			this.themesGroup = new System.Windows.Forms.GroupBox();
+			this.themesGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -54,7 +56,8 @@
 			this.normalRadio.AutoSize = true;
 			this.normalRadio.Checked = true;
 			this.normalRadio.Image = ((System.Drawing.Image)(resources.GetObject("normalRadio.Image")));
-			this.normalRadio.Location = new System.Drawing.Point(13, 82);
+			this.normalRadio.Location = new System.Drawing.Point(18, 37);
+			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.normalRadio.Name = "normalRadio";
 			this.normalRadio.Size = new System.Drawing.Size(242, 41);
 			this.normalRadio.TabIndex = 3;
@@ -65,23 +68,38 @@
 			// 
 			this.fadedRadio.AutoSize = true;
 			this.fadedRadio.Image = ((System.Drawing.Image)(resources.GetObject("fadedRadio.Image")));
-			this.fadedRadio.Location = new System.Drawing.Point(13, 142);
+			this.fadedRadio.Location = new System.Drawing.Point(18, 91);
 			this.fadedRadio.Name = "fadedRadio";
 			this.fadedRadio.Size = new System.Drawing.Size(242, 41);
 			this.fadedRadio.TabIndex = 4;
 			this.fadedRadio.UseVisualStyleBackColor = true;
+			// 
+			// themesGroup
+			// 
+			this.themesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.themesGroup.Controls.Add(this.normalRadio);
+			this.themesGroup.Controls.Add(this.fadedRadio);
+			this.themesGroup.Location = new System.Drawing.Point(13, 82);
+			this.themesGroup.Name = "themesGroup";
+			this.themesGroup.Padding = new System.Windows.Forms.Padding(15, 15, 3, 3);
+			this.themesGroup.Size = new System.Drawing.Size(774, 179);
+			this.themesGroup.TabIndex = 5;
+			this.themesGroup.TabStop = false;
+			this.themesGroup.Text = "Themes";
 			// 
 			// HighlightsSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.Controls.Add(this.fadedRadio);
-			this.Controls.Add(this.normalRadio);
+			this.Controls.Add(this.themesGroup);
 			this.Controls.Add(this.introBox);
 			this.Name = "HighlightsSheet";
 			this.Padding = new System.Windows.Forms.Padding(10);
 			this.Size = new System.Drawing.Size(800, 500);
+			this.themesGroup.ResumeLayout(false);
+			this.themesGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -92,5 +110,6 @@
 		private System.Windows.Forms.TextBox introBox;
 		private System.Windows.Forms.RadioButton normalRadio;
 		private System.Windows.Forms.RadioButton fadedRadio;
+		private System.Windows.Forms.GroupBox themesGroup;
 	}
 }

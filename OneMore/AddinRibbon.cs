@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn
 	public partial class AddIn
 	{
 		private XElement engines;
+		private XNamespace ns;
 
 
 		/// <summary>
@@ -35,21 +36,27 @@ namespace River.OneMoreAddIn
 		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
+			var root = XElement.Parse(Resx.Ribbon);
+			ns = root.GetDefaultNamespace();
+
 			var provider = new SettingsProvider();
+
+			var ribbonbar = provider.GetCollection("RibbonBarSheet");
+			if (ribbonbar.Count > 0)
+			{
+				AddRibbonBarCommands(ribbonbar, root);
+			}
 
 			var ccommands = provider.GetCollection("ContextMenuSheet");
 			var searchers = provider.GetCollection("SearchEngineSheet");
 
 			if (ccommands.Count == 0 && searchers.Count == 0)
 			{
-				return Resx.Ribbon;
+				return root.ToString(SaveOptions.DisableFormatting);
 			}
 
 			try
 			{
-				var root = XElement.Parse(Resx.Ribbon);
-				var ns = root.GetDefaultNamespace();
-
 				// construct context menu UI
 				var menu = new XElement(ns + "contextMenu",
 					new XAttribute("idMso", "ContextMenuText"));
@@ -61,7 +68,7 @@ namespace River.OneMoreAddIn
 
 				if (searchers.Count > 0)
 				{
-					AddContextMenuSearchers(searchers, menu, ns);
+					AddContextMenuSearchers(searchers, menu);
 				}
 
 				// add separator before Cut
@@ -78,8 +85,92 @@ namespace River.OneMoreAddIn
 			catch (Exception exc)
 			{
 				logger.WriteLine("Error extending context menu", exc);
-				return Resx.Ribbon;
+				return root.ToString(SaveOptions.DisableFormatting);
 			}
+		}
+
+
+		private void AddRibbonBarCommands(SettingsCollection ribbonbar, XElement root)
+		{
+			var group = root.Descendants(ns + "group")
+				.FirstOrDefault(e => e.Attribute("id")?.Value == "ribOneMoreGroup");
+
+			if (group == null)
+			{
+				return;
+			}
+
+			var editCommands = ribbonbar.Get<bool>("editCommands");
+			var formulaCommands = ribbonbar.Get<bool>("formulaCommands");
+
+			if (editCommands || formulaCommands)
+			{
+				group.Add(new XElement(ns + "separator", new XAttribute("id", "omRibbonExtensions")));
+
+				if (editCommands)
+				{
+					var showLabels = !ribbonbar.Get<bool>("editIconsOnly");
+					group.Add(MakeNoSpellCheckButton(showLabels));
+
+					group.Add(MakeRibbonButton(
+						"barPasteRtfButton", "PasteSpecialDialog", "PasteRtfCmd", showLabels));
+
+					group.Add(MakeRibbonButton(
+						"barReplaceButton", "ReplaceDialog", "SearchAndReplaceCmd", showLabels));
+				}
+
+				if (formulaCommands)
+				{
+					var showLabels = !ribbonbar.Get<bool>("formulaIconsOnly");
+
+					group.Add(MakeRibbonButton(
+						"barAddFormulaButton", "TableFormulaDialog", "AddFormulaCmd", showLabels));
+
+					group.Add(MakeRibbonButton(
+						"barHighlightFormulaButton", "PivotTableListFormulas", "HighlightFormulaCmd", showLabels));
+
+					group.Add(MakeRibbonButton(
+						"barRecalculateFormulaButton", "CalculateSheet", "RecalculateFormulaCmd", showLabels));
+				}
+			}
+		}
+
+
+		private XElement MakeNoSpellCheckButton(bool showLabel)
+		{
+			var button = new XElement(ns + "button",
+				new XAttribute("id", "barNoSpellCheckButton"),
+				new XAttribute("image", "NoSpellCheck"),
+				new XAttribute("getLabel", "GetRibbonLabel"),
+				new XAttribute("getScreentip", "GetRibbonScreentip"),
+				new XAttribute("onAction", "NoSpellCheckCmd")
+				);
+
+			if (!showLabel)
+			{
+				button.Add(new XAttribute("showLabel", "false"));
+			}
+
+			return button;
+		}
+
+
+		private XElement MakeRibbonButton(string id, string imageMso, string action, bool showLabel)
+		{
+			var button = new XElement(ns + "button",
+				new XAttribute("id", id),
+				new XAttribute("imageMso", imageMso),
+				new XAttribute("getLabel", "GetRibbonLabel"),
+				new XAttribute("getScreentip", "GetRibbonScreentip"),
+				new XAttribute("onAction", action)
+				);
+
+			if (!showLabel)
+			{
+				button.Add(new XAttribute("showLabel", "false"));
+			}
+
+			return button;
 		}
 
 
@@ -135,7 +226,7 @@ namespace River.OneMoreAddIn
 
 
 		private void AddContextMenuSearchers(
-			SettingsCollection ccommands, XElement menu, XNamespace ns)
+			SettingsCollection ccommands, XElement menu)
 		{
 			engines = ccommands.Get<XElement>("engines");
 			var elements = engines.Elements("engine");
@@ -144,7 +235,7 @@ namespace River.OneMoreAddIn
 			XElement content = null;
 			if (count == 1)
 			{
-				content = MakeSearchButton(elements.First(), ns, 0);
+				content = MakeSearchButton(elements.First(), 0);
 			}
 			else if (count > 1)
 			{
@@ -158,7 +249,7 @@ namespace River.OneMoreAddIn
 				var id = 0;
 				foreach (var engine in engines.Elements("engine"))
 				{
-					content.Add(MakeSearchButton(engine, ns, id++));
+					content.Add(MakeSearchButton(engine, id++));
 				}
 			}
 
@@ -169,7 +260,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private XElement MakeSearchButton(XElement engine, XNamespace ns, int id)
+		private XElement MakeSearchButton(XElement engine, int id)
 		{
 			return new XElement(ns + "button",
 				new XAttribute("id", $"ctxSearch{id}"),
@@ -277,7 +368,10 @@ namespace River.OneMoreAddIn
 		{
 			// convert ctx items to rib items so they share the same label
 			var id = control.Id;
-			if (id.StartsWith("ctx")) id = $"rib{id.Substring(3)}";
+			if (id.StartsWith("ctx") || id.StartsWith("bar"))
+			{
+				id = $"rib{id.Substring(3)}";
+			}
 
 			return ReadString(id + "_Label");
 		}
@@ -291,7 +385,14 @@ namespace River.OneMoreAddIn
 		/// <returns>A string specifying the screentip text of the element</returns>
 		public string GetRibbonScreentip(IRibbonControl control)
 		{
-			return ReadString(control.Id + "_Screentip");
+			// convert ctx items to rib items so they share the same label
+			var id = control.Id;
+			if (id.StartsWith("ctx") || id.StartsWith("bar"))
+			{
+				id = $"rib{id.Substring(3)}";
+			}
+
+			return ReadString(id + "_Screentip");
 		}
 
 
