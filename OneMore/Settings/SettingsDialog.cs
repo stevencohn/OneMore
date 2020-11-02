@@ -72,6 +72,8 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			provider.Save();
+
+			Logger.Current.WriteLine("User settings saved");
 		}
 	}
 }

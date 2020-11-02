@@ -113,6 +113,7 @@
     <Compile Include="AddInStyleGallery.cs" />
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
+    <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Formula\Formula.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">

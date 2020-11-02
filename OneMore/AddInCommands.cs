@@ -57,6 +57,9 @@ namespace River.OneMoreAddIn
 		public void IncreaseFontSizeCmd(IRibbonControl control)
 			=> factory.Run<AlterSizeCommand>(1);
 
+		public void HighlightCmd(IRibbonControl control)
+			=> factory.Run<HighlightCommand>();
+
 		public void HighlightFormulaCmd(IRibbonControl control)
 			=> factory.Run<HighlightFormulaCommand>();
 

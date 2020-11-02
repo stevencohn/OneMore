@@ -135,8 +135,6 @@ namespace River.OneMoreAddIn.Settings
 
 		public void Save()
 		{
-			Logger.Current.WriteLine(root.ToString());
-
 			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
 			root.Save(path, SaveOptions.None);
 		}

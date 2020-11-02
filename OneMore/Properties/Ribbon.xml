@@ -120,6 +120,11 @@
             </menu>
             <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage">
               <button
+                id="ribHighlightButton"
+                imageMso="TextHighlightColorPicker"
+                getLabel="GetRibbonLabel"
+                onAction="HighlightCmd"/>
+              <button
                 id="ribUppercaseButton"
                 imageMso="A"
                 getLabel="GetRibbonLabel"

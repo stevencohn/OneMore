@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribPasteRtfButton",			// Paste Rich Text
 			"ribFootnoteButton",			// Add Footnote
 			"ribEditMenu",					// Edit Menu
+			"ribHighlightButton",			// ... Rotating Highlighter
 			"ribUppercaseButton",			// ... To UPPERCASE
 			"ribLowercaseButton",			// ... To lowercase
 			"ribIncreaseFontSizeButton",	// ... Increase Text Size

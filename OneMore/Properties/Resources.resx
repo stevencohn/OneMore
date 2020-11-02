@@ -2097,4 +2097,12 @@ XML File (*.xml)</value>
     <value>Edit</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
+  <data name="ribHighlightButton_Label" xml:space="preserve">
+    <value>Rotating Highlighter</value>
+    <comment>menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribHighlightButton" xml:space="preserve">
+    <value>... Rotating Highlighter</value>
+    <comment>context menu</comment>
+  </data>
 </root>

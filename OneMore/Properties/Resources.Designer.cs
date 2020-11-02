@@ -554,6 +554,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Rotating Highlighter.
+        /// </summary>
+        internal static string ContextMenuSheet_ribHighlightButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribHighlightButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Increase Text Size.
         /// </summary>
         internal static string ContextMenuSheet_ribIncreaseFontSizeButton {
@@ -2956,6 +2965,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribGreenStatusButton_Label {
             get {
                 return ResourceManager.GetString("ribGreenStatusButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotating Highlighter.
+        /// </summary>
+        internal static string ribHighlightButton_Label {
+            get {
+                return ResourceManager.GetString("ribHighlightButton_Label", resourceCulture);
             }
         }
         

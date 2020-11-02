@@ -83,50 +83,53 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+
 		private void AddContextMenuCommands(
 			SettingsCollection ccommands, XElement root, XElement menu)
 		{
 			foreach (var key in ccommands.Keys)
 			{
-				if (ccommands.Get<bool>(key))
+				if (!ccommands.Get<bool>(key))
 				{
-					var element = root.Descendants()
-						.FirstOrDefault(e => e.Attribute("id")?.Value == key);
+					continue;
+				}
 
-					if (element != null)
+				var element = root.Descendants()
+					.FirstOrDefault(e => e.Attribute("id")?.Value == key);
+
+				if (element != null)
+				{
+					// deep clone item but must change id and remove getEnabled...
+
+					var item = new XElement(element);
+
+					// cleanup the item itself
+					XAttribute id = item.Attribute("id");
+					if (id != null && id.Value.StartsWith("rib"))
 					{
-						// deep clone item but must change id and remove getEnabled...
+						id.Value = $"ctx{id.Value.Substring(3)}";
+					}
 
-						var item = new XElement(element);
+					var enabled = item.Attribute("getEnabled");
+					if (enabled != null) enabled.Remove();
 
-						// cleanup the item itself
-						XAttribute id = item.Attribute("id");
+					// cleanup all children below the item
+					foreach (var node in item.Descendants()
+						.Where(e => e.Attributes().Any(a => a.Name == "id")))
+					{
+						id = node.Attribute("id");
 						if (id != null && id.Value.StartsWith("rib"))
 						{
 							id.Value = $"ctx{id.Value.Substring(3)}";
 						}
 
-						var enabled = item.Attribute("getEnabled");
+						enabled = node.Attribute("getEnabled");
 						if (enabled != null) enabled.Remove();
-
-						// cleanup all children below the item
-						foreach (var node in item.Descendants()
-							.Where(e => e.Attributes().Any(a => a.Name == "id")))
-						{
-							id = node.Attribute("id");
-							if (id != null && id.Value.StartsWith("rib"))
-							{
-								id.Value = $"ctx{id.Value.Substring(3)}";
-							}
-
-							enabled = node.Attribute("getEnabled");
-							if (enabled != null) enabled.Remove();
-						}
-
-						item.Add(new XAttribute("insertBeforeMso", "Cut"));
-
-						menu.Add(item);
 					}
+
+					item.Add(new XAttribute("insertBeforeMso", "Cut"));
+
+					menu.Add(item);
 				}
 			}
 		}

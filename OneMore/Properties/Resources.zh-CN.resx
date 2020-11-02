@@ -2048,4 +2048,12 @@ XML档案（* .xml）</value>
     <value>编辑</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
+  <data name="ribHighlightButton_Label" xml:space="preserve">
+    <value>旋转荧光笔</value>
+    <comment>Ribbon OneMore menu item, Edit...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribHighlightButton" xml:space="preserve">
+    <value>...旋转荧光笔</value>
+    <comment>context menu</comment>
+  </data>
 </root>
