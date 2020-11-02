@@ -118,6 +118,32 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="TrimCmd"/>
             </menu>
+            <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage">
+              <button
+                id="ribUppercaseButton"
+                imageMso="A"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="ToUppercaseCmd"/>
+              <button
+                id="ribLowercaseButton"
+                imageMso="ChangeCase"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="ToLowercaseCmd"/>
+              <button
+                id="ribIncreaseFontSizeButton"
+                imageMso="FontSizeIncreaseWord"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="IncreaseFontSizeCmd"/>
+              <button
+                id="ribDecreaseFontSizeButton"
+                imageMso="FontSizeDecreaseWord"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="DecreaseFontSizeCmd"/>
+            </menu>
             <menu id="ribFormulaMenu" getLabel="GetRibbonLabel" imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
               <button
                 id="ribAddFormulaButton"
@@ -304,11 +330,6 @@
                 getEnabled="GetBodyContext"
                 onAction="TextToTableCmd"/>
               <button
-                id="ribEditSearchEnginesButton"
-                label="Edit Search Engines"
-                imageMso="HyperlinkEdit"
-                onAction="EditSearchEnginesCmd"/>
-              <button
                 id="ribPronunciateButton"
                 getLabel="GetRibbonLabel"
                 imageMso="SpeakOnEnter"
@@ -337,31 +358,6 @@
                 getLabel="GetRibbonLabel"
                 onAction="WordCountCmd"/>
             </menu>
-            <menuSeparator id="sepText" getTitle="GetRibbonLabel"/>
-            <button
-              id="ribUppercaseButton"
-              imageMso="A"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="ToUppercaseCmd"/>
-            <button
-              id="ribLowercaseButton"
-              imageMso="ChangeCase"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="ToLowercaseCmd"/>
-            <button
-              id="ribIncreaseFontSizeButton"
-              imageMso="FontSizeIncreaseWord"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="IncreaseFontSizeCmd"/>
-            <button
-              id="ribDecreaseFontSizeButton"
-              imageMso="FontSizeDecreaseWord"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="DecreaseFontSizeCmd"/>
             <menuSeparator id="sepSpecial" getTitle="GetRibbonLabel" />
             <button
               id="ribImportButton"
@@ -387,57 +383,17 @@
               getScreentip="GetRibbonScreentip"
               onAction="ShowXmlCmd"/>
             <button
+              id="ribSettingsButton"
+              imageMso="ReadingViewToolsMenu"
+              label="Settings"
+              onAction="SettingsCmd"/>
+            <button
               id="ribAboutButton"
               getLabel="GetRibbonLabel"
               onAction="AboutCmd"/>
           </menu>
-
-          <!--
-          <separator id="extrasSeparator"/>
-
-          <button id="boo1" image="NoSpellCheck" label="No Spell Check"/>
-          <button id="boo3" imageMso="PasteSpecialDialog" label="Paste Rich Text"/>
-          <button id="boo2" imageMso="TableFormulaDialog" label="Add Formula"/>
-          -->
         </group>
       </tab>
     </tabs>
   </ribbon>
-  <contextMenus>
-    <contextMenu idMso="ContextMenuText">
-      <button
-        id="ctxNoSpellCheckButton"
-        insertBeforeMso="Cut"
-        image="NoSpellCheck"
-        getLabel="GetRibbonLabel"
-        onAction="NoSpellCheckCmd"/>
-      <!--menu id="ctxCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" insertBeforeMso="Cut"-->
-        <button
-          id="ctxRemoveEmptyButton"
-          insertBeforeMso="Cut"
-          imageMso="RecordsDeleteRecord"
-          getLabel="GetRibbonLabel"
-          onAction="RemoveEmptyCmd"/>
-        <button
-          id="ctxRemoveSpacingButton"
-          insertBeforeMso="Cut"
-          imageMso="ParagraphSpacingDecrease"
-          getLabel="GetRibbonLabel"
-          onAction="RemoveSpacingCmd"/>
-      <!--/menu-->
-      <button
-        id="ctxUppercaseButton"
-        insertBeforeMso="Cut"
-        imageMso="A"
-        getLabel="GetRibbonLabel"
-        onAction="ToUppercaseCmd"/>
-      <button
-        id="ctxLowercaseButton"
-        insertBeforeMso="Cut"
-        imageMso="ChangeCase"
-        getLabel="GetRibbonLabel"
-        onAction="ToLowercaseCmd"/>
-      <menuSeparator id="ctxSeparator" insertBeforeMso="Cut" />
-    </contextMenu>
-  </contextMenus>
 </customUI>

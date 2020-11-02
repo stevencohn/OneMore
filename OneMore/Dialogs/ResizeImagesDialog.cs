@@ -7,7 +7,7 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
-	using River.OneMoreAddIn.Helpers.Settings;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;

@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Helpers.Settings
+namespace River.OneMoreAddIn.Settings
 {
 	using System;
 	using System.IO;
@@ -68,16 +68,23 @@ namespace River.OneMoreAddIn.Helpers.Settings
 		}
 
 
-		public SettingCollection GetCollection(string name)
+		public SettingsCollection GetCollection(string name)
 		{
-			var settings = new SettingCollection(name);
+			var settings = new SettingsCollection(name);
 
 			var elements = root.Element(name)?.Elements();
 			if (elements != null)
 			{
 				foreach (var element in elements)
 				{
-					settings.Add(element.Name.LocalName, element.Value);
+					if (element.HasElements)
+					{
+						settings.Add(element.Name.LocalName, element);
+					}
+					else
+					{
+						settings.Add(element.Name.LocalName, element.Value);
+					}
 				}
 			}
 
@@ -98,13 +105,20 @@ namespace River.OneMoreAddIn.Helpers.Settings
 		}
 
 
-		public void SetCollection(SettingCollection settings)
+		public void SetCollection(SettingsCollection settings)
 		{
 			var element = new XElement(settings.Name);
 			var keys = settings.Keys.ToList();
 			foreach (var key in keys)
 			{
-				element.Add(new XElement(key, settings[key]));
+				if (settings.IsElement(key))
+				{
+					element.Add(settings.Get<XElement>(key));
+				}
+				else
+				{
+					element.Add(new XElement(key, settings[key]));
+				}
 			}
 
 			var e = root.Element(settings.Name);
@@ -121,6 +135,8 @@ namespace River.OneMoreAddIn.Helpers.Settings
 
 		public void Save()
 		{
+			Logger.Current.WriteLine(root.ToString());
+
 			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
 			root.Save(path, SaveOptions.None);
 		}

@@ -121,6 +121,7 @@
     <Compile Include="Commands\Search\SearchDialog.Designer.cs">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\SettingsCommand.cs" />
     <Compile Include="Dialogs\ImportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,7 +140,6 @@
     <Compile Include="Commands\Formula\SymbolEventArgs.cs" />
     <Compile Include="Commands\Formula\TextParser.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
-    <Compile Include="Commands\Extras\EditSearchEnginesCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />
@@ -239,12 +239,6 @@
     <Compile Include="Dialogs\RunPluginDialog.Designer.cs">
       <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SearchEngineDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\SearchEngineDialog.Designer.cs">
-      <DependentUpon>SearchEngineDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\TagPickerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,26 +325,46 @@
     <Compile Include="Helpers\Office\PowerPoint.cs" />
     <Compile Include="Helpers\Office\Word.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
-    <Compile Include="Helpers\Settings\ContextMenuSheet.cs">
+    <Compile Include="Settings\ContextMenuSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Helpers\Settings\ContextMenuSheet.Designer.cs">
+    <Compile Include="Settings\ContextMenuSheet.Designer.cs">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Settings\FadingLabel.cs">
+    <Compile Include="Settings\FadingLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Helpers\Settings\SearchEngineProvider.cs" />
-    <Compile Include="Helpers\Settings\SettingCollection.cs" />
-    <Compile Include="Helpers\Settings\SettingsDialog.cs">
+    <Compile Include="Settings\HighlightsSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\HighlightsSheet.Designer.cs">
+      <DependentUpon>HighlightsSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\RibbonBarSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\RibbonBarSheet.Designer.cs">
+      <DependentUpon>RibbonBarSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SearchEngineSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\SearchEngineSheet.Designer.cs">
+      <DependentUpon>SearchEngineSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsCollection.cs" />
+    <Compile Include="Settings\SettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Helpers\Settings\SettingsDialog.Designer.cs">
+    <Compile Include="Settings\SettingsDialog.Designer.cs">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Settings\SettingsProvider.cs" />
+    <Compile Include="Settings\SettingsProvider.cs" />
     <Compile Include="Helpers\Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Helpers\CheckableTreeView.cs" />
+    <Compile Include="Settings\SheetBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Helpers\Updater\GitAsset.cs" />
     <Compile Include="Helpers\Updater\GitRelease.cs" />
     <Compile Include="Helpers\Updater\Updater.cs" />
@@ -401,7 +415,6 @@
     <Compile Include="Models\Heading.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PageHeadings.cs" />
-    <Compile Include="Helpers\Settings\SearchEngine.cs" />
     <Compile Include="Models\Selection.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TableCell.cs" />
@@ -470,6 +483,8 @@
     <Content Include="Properties\Images\DoubleLine.png" />
     <Content Include="Properties\Images\DownArrow.png" />
     <Content Include="Properties\Images\FontColor.png" />
+    <Content Include="Properties\Images\HighlightFaded.png" />
+    <Content Include="Properties\Images\HighlightNormal.png" />
     <Content Include="Properties\Images\Italic.png" />
     <Content Include="Properties\Images\Logo.ico" />
     <Content Include="Properties\Images\NewStyle.png" />
@@ -495,7 +510,7 @@
     <Content Include="Properties\Ribbon.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Resources\0336.OneNoteApplication_2013.xsd">
+    <None Include="Properties\0336.OneNoteApplication_2013.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -558,9 +573,6 @@
     <EmbeddedResource Include="Dialogs\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SearchEngineDialog.resx">
-      <DependentUpon>SearchEngineDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -579,10 +591,19 @@
     <EmbeddedResource Include="Dialogs\TocDialog.resx">
       <DependentUpon>TocDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Helpers\Settings\ContextMenuSheet.resx">
+    <EmbeddedResource Include="Settings\ContextMenuSheet.resx">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Helpers\Settings\SettingsDialog.resx">
+    <EmbeddedResource Include="Settings\HighlightsSheet.resx">
+      <DependentUpon>HighlightsSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\RibbonBarSheet.resx">
+      <DependentUpon>RibbonBarSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\SearchEngineSheet.resx">
+      <DependentUpon>SearchEngineSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
@@ -595,6 +616,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\XmlDialog.resx">
       <DependentUpon>XmlDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings\SheetBase.resx">
+      <DependentUpon>SheetBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

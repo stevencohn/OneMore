@@ -509,6 +509,159 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes..
+        /// </summary>
+        internal static string ContextMenuSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clean Menu.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCleanMenu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCleanMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Decrease Text Size.
+        /// </summary>
+        internal static string ContextMenuSheet_ribDecreaseFontSizeButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribDecreaseFontSizeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Menu.
+        /// </summary>
+        internal static string ContextMenuSheet_ribEditMenu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribEditMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Footnote.
+        /// </summary>
+        internal static string ContextMenuSheet_ribFootnoteButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribFootnoteButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Increase Text Size.
+        /// </summary>
+        internal static string ContextMenuSheet_ribIncreaseFontSizeButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribIncreaseFontSizeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... To lowercase.
+        /// </summary>
+        internal static string ContextMenuSheet_ribLowercaseButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribLowercaseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... No Spell Check.
+        /// </summary>
+        internal static string ContextMenuSheet_ribNoSpellCheckButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribNoSpellCheckButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Paste Rich Text.
+        /// </summary>
+        internal static string ContextMenuSheet_ribPasteRtfButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribPasteRtfButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Remove Author Information.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRemoveAuthorsButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRemoveAuthorsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Remove Pasted Citations.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRemoveCitationsButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRemoveCitationsButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Remove Empty Paragraphs and Headings.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRemoveEmptyButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRemoveEmptyButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Remove Paragraph Spacing.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRemoveSpacingButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRemoveSpacingButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snippets Menu.
+        /// </summary>
+        internal static string ContextMenuSheet_ribSnippetsMenu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribSnippetsMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Trim Whitespace.
+        /// </summary>
+        internal static string ContextMenuSheet_ribTrimButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribTrimButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... To UPPERCASE.
+        /// </summary>
+        internal static string ContextMenuSheet_ribUppercaseButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribUppercaseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Context Menu Options.
+        /// </summary>
+        internal static string ContextMenuSheet_Title {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one image to crop.
         /// </summary>
         internal static string CropImage_oneImage {
@@ -1333,6 +1486,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HighlightFormulaCommand_NoFormulas {
             get {
                 return ResourceManager.GetString("HighlightFormulaCommand_NoFormulas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotating Highlighter Options.
+        /// </summary>
+        internal static string HighlightsSheet_Title {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_Title", resourceCulture);
             }
         }
         
@@ -2659,6 +2821,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribDeleteFormulaButton_Screentip {
             get {
                 return ResourceManager.GetString("ribDeleteFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string ribEditMenu_Label {
+            get {
+                return ResourceManager.GetString("ribEditMenu_Label", resourceCulture);
             }
         }
         

@@ -3,7 +3,7 @@
 // Originally from my own Orqa project
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Helpers.Settings
+namespace River.OneMoreAddIn.Settings
 {
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
@@ -12,8 +12,8 @@ namespace River.OneMoreAddIn.Helpers.Settings
 
 	internal class FadingLabel : Label
 	{
-		private Color startColor;
-		private Color endColor;
+		private readonly Color startColor;
+		private readonly Color endColor;
 
 
 		public FadingLabel()
@@ -32,32 +32,24 @@ namespace River.OneMoreAddIn.Helpers.Settings
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			// declare linear gradient brush for fill background of label
-			LinearGradientBrush GBrush = new LinearGradientBrush(
+			// linear gradient brush for background fill
+			var gradient = new LinearGradientBrush(
 				new Point(0, 0),
 				new Point(Width, 0),
 				startColor,
 				endColor);
 
-			Rectangle rect = new Rectangle(0, 0, Width, Height);
+			// fill with gradient 
+			e.Graphics.FillRectangle(gradient, new Rectangle(0, 0, Width, Height));
 
-			// Fill with gradient 
-			e.Graphics.FillRectangle(GBrush, rect);
-
-			// draw text on label
-			SolidBrush drawBrush = new SolidBrush(ForeColor);
-
-			StringFormat sf = new StringFormat();
-
-			// align with center
-			sf.Alignment = StringAlignment.Near;
-
-			// set rectangle bound text
-			RectangleF recf = new RectangleF(
-				0, Height / 2 - Font.Height / 2, Width, Height);
-
-			// output string
-			e.Graphics.DrawString(Text, Font, drawBrush, recf, sf);
+			// overlay rectangle with text
+			e.Graphics.DrawString(
+				Text,
+				Font,
+				new SolidBrush(ForeColor),
+				new Rectangle(0, Height / 2 - Font.Height / 2, Width, Height),
+				new StringFormat { Alignment = StringAlignment.Near }
+				);
 		}
 	}
 }

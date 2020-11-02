@@ -4,15 +4,15 @@
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
-#pragma warning disable S125		// Sections of code should not be commented out
+#pragma warning disable S125        // Sections of code should not be commented out
 
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
-	using River.OneMoreAddIn.Helpers.Settings;
+	using River.OneMoreAddIn.Settings;
 	using System;
-	using System.Collections.Generic;
 	using System.Drawing;
+	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Xml.Linq;
@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	public partial class AddIn
 	{
-		private List<SearchEngine> engines = null;
+		private XElement engines;
 
 
 		/// <summary>
@@ -35,8 +35,12 @@ namespace River.OneMoreAddIn
 		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
-			engines = new SearchEngineProvider().Load();
-			if (engines?.Count == 0)
+			var provider = new SettingsProvider();
+
+			var ccommands = provider.GetCollection("ContextMenuSheet");
+			var searchers = provider.GetCollection("SearchEngineSheet");
+
+			if (ccommands.Count == 0 && searchers.Count == 0)
 			{
 				return Resx.Ribbon;
 			}
@@ -45,46 +49,31 @@ namespace River.OneMoreAddIn
 			{
 				var root = XElement.Parse(Resx.Ribbon);
 				var ns = root.GetDefaultNamespace();
-				var menu = root.Element(ns + "contextMenus")?.Element(ns + "contextMenu");
-				if (menu != null)
+
+				// construct context menu UI
+				var menu = new XElement(ns + "contextMenu",
+					new XAttribute("idMso", "ContextMenuText"));
+
+				if (ccommands.Count > 0)
 				{
-					var separator = menu.Elements(ns + "menuSeparator")
-						.FirstOrDefault(e => e.Attribute("id").Value == "ctxSeparator");
-
-					XElement content = null;
-
-					if (engines.Count == 1)
-					{
-						content = MakeSearchButton(engines[0], ns, 0);
-					}
-					else
-					{
-						content = new XElement(ns + "menu",
-							new XAttribute("id", "ctxSearchMenu"),
-							new XAttribute("label", "Search"),
-							new XAttribute("imageMso", "WebPagePreview"),
-							new XAttribute("insertBeforeMso", "Cut")
-							);
-
-						var count = 0;
-						foreach (var engine in engines)
-						{
-							content.Add(MakeSearchButton(engine, ns, count++));
-						}
-					}
-
-					if (separator != null)
-					{
-						separator.AddBeforeSelf(content);
-					}
-					else
-					{
-						menu.Add(content);
-					}
+					AddContextMenuCommands(ccommands, root, menu);
 				}
 
+				if (searchers.Count > 0)
+				{
+					AddContextMenuSearchers(searchers, menu, ns);
+				}
 
-				//logger.WriteLine(root.ToString());
+				// add separator before Cut
+				menu.Add(new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "Cut")
+					));
+
+				root.Add(new XElement(ns + "contextMenus", menu));
+
+				logger.WriteLine(menu.ToString());
+
 				return root.ToString(SaveOptions.DisableFormatting);
 			}
 			catch (Exception exc)
@@ -94,19 +83,104 @@ namespace River.OneMoreAddIn
 			}
 		}
 
+		private void AddContextMenuCommands(
+			SettingsCollection ccommands, XElement root, XElement menu)
+		{
+			foreach (var key in ccommands.Keys)
+			{
+				if (ccommands.Get<bool>(key))
+				{
+					var element = root.Descendants()
+						.FirstOrDefault(e => e.Attribute("id")?.Value == key);
 
-		private XElement MakeSearchButton(SearchEngine engine, XNamespace ns, int id)
+					if (element != null)
+					{
+						// deep clone item but must change id and remove getEnabled...
+
+						var item = new XElement(element);
+
+						// cleanup the item itself
+						XAttribute id = item.Attribute("id");
+						if (id != null && id.Value.StartsWith("rib"))
+						{
+							id.Value = $"ctx{id.Value.Substring(3)}";
+						}
+
+						var enabled = item.Attribute("getEnabled");
+						if (enabled != null) enabled.Remove();
+
+						// cleanup all children below the item
+						foreach (var node in item.Descendants()
+							.Where(e => e.Attributes().Any(a => a.Name == "id")))
+						{
+							id = node.Attribute("id");
+							if (id != null && id.Value.StartsWith("rib"))
+							{
+								id.Value = $"ctx{id.Value.Substring(3)}";
+							}
+
+							enabled = node.Attribute("getEnabled");
+							if (enabled != null) enabled.Remove();
+						}
+
+						item.Add(new XAttribute("insertBeforeMso", "Cut"));
+
+						menu.Add(item);
+					}
+				}
+			}
+		}
+
+
+		private void AddContextMenuSearchers(
+			SettingsCollection ccommands, XElement menu, XNamespace ns)
+		{
+			engines = ccommands.Get<XElement>("engines");
+			var elements = engines.Elements("engine");
+			var count = elements.Count();
+
+			XElement content = null;
+			if (count == 1)
+			{
+				content = MakeSearchButton(elements.First(), ns, 0);
+			}
+			else if (count > 1)
+			{
+				content = new XElement(ns + "menu",
+					new XAttribute("id", "ctxSearchMenu"),
+					new XAttribute("label", "Search"),
+					new XAttribute("imageMso", "WebPagePreview"),
+					new XAttribute("insertBeforeMso", "Cut")
+					);
+
+				var id = 0;
+				foreach (var engine in engines.Elements("engine"))
+				{
+					content.Add(MakeSearchButton(engine, ns, id++));
+				}
+			}
+
+			if (content != null)
+			{
+				menu.Add(content);
+			}
+		}
+
+
+		private XElement MakeSearchButton(XElement engine, XNamespace ns, int id)
 		{
 			return new XElement(ns + "button",
 				new XAttribute("id", $"ctxSearch{id}"),
 				new XAttribute("insertBeforeMso", "Cut"),
-				new XAttribute("label", engine.Name),
+				new XAttribute("label", engine.Element("name").Value),
 				new XAttribute("getImage", "GetRibbonSearchImage"),
-				new XAttribute("tag", engine.Uri),
+				new XAttribute("tag", engine.Element("uri").Value),
 				new XAttribute("onAction", "SearchEngineCmd")
 				);
 		}
 
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		/// <summary>
 		/// Specified as the value of the /customUI@onLoad attribute, called immediately after the
@@ -145,9 +219,9 @@ namespace River.OneMoreAddIn
 
 
 		/*
-		 * Note, while very similar to GetRibbonImage, this is called when the OneNote window opens and
-		 * when a new OneNote window is opened from there, so we can use this as a hook to be informed
-		 * when a new window is opened. Specified in the /ribOneMoreMenu@getImage attribute
+		 * Note, while very similar to GetRibbonImage, this is called when the OneNote opens and
+		 * when a new OneNote window is opened from there, so we can use this as a hook to be
+		 * informed when a new window is opened. Specified in /ribOneMoreMenu@getImage attribute
 		 */
 		public IStream GetOneMoreRibbonImage(IRibbonControl control)
 		{
@@ -199,7 +273,11 @@ namespace River.OneMoreAddIn
 		/// <returns>A string specifying the text of the element</returns>
 		public string GetRibbonLabel(IRibbonControl control)
 		{
-			return ReadString(control.Id + "_Label");
+			// convert ctx items to rib items so they share the same label
+			var id = control.Id;
+			if (id.StartsWith("ctx")) id = $"rib{id.Substring(3)}";
+
+			return ReadString(id + "_Label");
 		}
 
 
@@ -238,12 +316,19 @@ namespace River.OneMoreAddIn
 		/// <returns>A steam of the Image to display</returns>
 		public IStream GetRibbonSearchImage(IRibbonControl control)
 		{
-			if (engines?.Count > 0)
+			if (engines.HasElements)
 			{
-				var engine = engines.FirstOrDefault(e => e.Uri == control.Tag);
-				if (engine?.Image != null)
+				var engine = engines.Elements("engine")
+					.FirstOrDefault(e => e.Element("uri").Value == control.Tag);
+
+				var img = engine.Element("image")?.Value;
+				if (!string.IsNullOrEmpty(img))
 				{
-					return ((Bitmap)engine.Image).GetReadOnlyStream();
+					var bytes = Convert.FromBase64String(img);
+					using (var stream = new MemoryStream(bytes, 0, bytes.Length))
+					{
+						return ((Bitmap)(Image.FromStream(stream))).GetReadOnlyStream();
+					}
 				}
 			}
 

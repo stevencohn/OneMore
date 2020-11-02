@@ -1733,7 +1733,7 @@ Try again later</value>
     <comment>checkbox</comment>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Invalid XML detected. Check log file for details</value>
@@ -2020,5 +2020,81 @@ XML File (*.xml)</value>
   </data>
   <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
+    <value>Add Footnote</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCleanMenu" xml:space="preserve">
+    <value>Clean Menu</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDecreaseFontSizeButton" xml:space="preserve">
+    <value>... Decrease Text Size</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribEditMenu" xml:space="preserve">
+    <value>Edit Menu</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribIncreaseFontSizeButton" xml:space="preserve">
+    <value>... Increase Text Size</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
+    <value>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes.</value>
+    <comment>intro</comment>
+  </data>
+  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
+    <value>... No Spell Check</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
+    <value>... Paste Rich Text</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">
+    <value>... Remove Author Information</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemoveCitationsButton" xml:space="preserve">
+    <value>... Remove Pasted Citations</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemoveEmptyButton" xml:space="preserve">
+    <value>... Remove Empty Paragraphs and Headings</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemoveSpacingButton" xml:space="preserve">
+    <value>... Remove Paragraph Spacing</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSnippetsMenu" xml:space="preserve">
+    <value>Snippets Menu</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_Title" xml:space="preserve">
+    <value>Context Menu Options</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ContextMenuSheet_ribLowercaseButton" xml:space="preserve">
+    <value>... To lowercase</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribUppercaseButton" xml:space="preserve">
+    <value>... To UPPERCASE</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribTrimButton" xml:space="preserve">
+    <value>... Trim Whitespace</value>
+    <comment>option</comment>
+  </data>
+  <data name="HighlightsSheet_Title" xml:space="preserve">
+    <value>Rotating Highlighter Options</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="ribEditMenu_Label" xml:space="preserve">
+    <value>Edit</value>
+    <comment>OneMore Ribbon menu item</comment>
   </data>
 </root>

@@ -51,9 +51,6 @@ namespace River.OneMoreAddIn
 		public void DeleteFormulaCmd(IRibbonControl control)
 			=> factory.Run<DeleteFormulaCommand>();
 
-		public void EditSearchEnginesCmd(IRibbonControl control)
-			=> factory.Run<EditSearchEnginesCommand>();
-
 		public void EditStylesCmd(IRibbonControl control)
 			=> factory.Run<EditStylesCommand>();
 
@@ -173,6 +170,9 @@ namespace River.OneMoreAddIn
 
 		public void SearchEngineCmd(IRibbonControl control)
 			=> factory.Run<SearchEngineCommand>(control.Tag);
+
+		public void SettingsCmd(IRibbonControl control)
+			=> factory.Run<SettingsCommand>();
 
 		public void ShowXmlCmd(IRibbonControl control)
 			=> factory.Run<ShowXmlCommand>();

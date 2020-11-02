@@ -4,24 +4,22 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.Dialogs;
+	using River.OneMoreAddIn.Settings;
 
 
-	internal class EditSearchEnginesCommand : Command
+	internal class SettingsCommand : Command
 	{
-		public EditSearchEnginesCommand()
+		public SettingsCommand()
 		{
 		}
 
 
 		public override void Execute(params object[] args)
 		{
-			using (var dialog = new SearchEngineDialog())
+			using (var dialog = new SettingsDialog())
 			{
 				dialog.ShowDialog(owner);
 			}
-
-			ribbon.Invalidate();
 		}
 	}
 }

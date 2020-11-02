@@ -7,7 +7,7 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
-	using River.OneMoreAddIn.Helpers.Settings;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -212,7 +212,7 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			DialogResult = DialogResult.OK;
 
-			var settings = new SettingCollection("outline");
+			var settings = new SettingsCollection("outline");
 			settings.Add("addNumbering", numberingBox.Checked);
 			settings.Add("alphaNumbering", AlphaNumbering);
 			settings.Add("numericNumbering", NumericNumbering);

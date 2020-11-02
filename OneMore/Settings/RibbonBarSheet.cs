@@ -2,16 +2,21 @@
 // Copyright © 2020 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Helpers.Settings
+namespace River.OneMoreAddIn.Settings
 {
-	using River.OneMoreAddIn.Dialogs;
-
-
-	internal partial class SettingsDialog : LocalizableForm
+	internal partial class RibbonBarSheet : SheetBase
 	{
-		public SettingsDialog()
+		public RibbonBarSheet(SettingsProvider provider) : base(provider)
 		{
 			InitializeComponent();
+
+			Title = "Ribbon Bar Options";
+		}
+
+
+		public override void CollectSettings()
+		{
+			//
 		}
 	}
 }

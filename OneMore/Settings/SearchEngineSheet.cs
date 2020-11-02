@@ -5,31 +5,41 @@
 #pragma warning disable CS3003  // Type is not CLS-compliant
 #pragma warning disable IDE1006 // Words must begin with upper case
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Settings
 {
-	using River.OneMoreAddIn.Helpers.Settings;
 	using System;
+	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Drawing;
-	using System.Linq;
+	using System.IO;
 	using System.Net;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SearchEngineDialog : LocalizableForm
+	internal partial class SearchEngineSheet : SheetBase
 	{
+		private class SearchEngine
+		{
+			public Image Image { get; set; }
+			public string Name { get; set; }
+			public string Uri { get; set; }
+		}
+
+
 		private readonly BindingList<SearchEngine> engines;
 
 
-		public SearchEngineDialog()
+		public SearchEngineSheet(SettingsProvider provider) : base(provider)
 		{
 			InitializeComponent();
 
+			Name = "SearchEngineSheet";
+			Title = Resx.SearchEngineDialog_Text;
+
 			if (NeedsLocalizing())
 			{
-				Text = Resx.SearchEngineDialog_Text;
-
 				Localize(new string[]
 				{
 					"introLabel",
@@ -55,12 +65,39 @@ namespace River.OneMoreAddIn.Dialogs
 			gridView.Columns[1].DataPropertyName = "Name";
 			gridView.Columns[2].DataPropertyName = "Uri";
 
-			engines = new BindingList<SearchEngine>(new SearchEngineProvider().Load());
+			engines = new BindingList<SearchEngine>(LoadSettings());
 
 			gridView.DataSource = engines;
 
 			RefreshImages();
 		}
+
+
+		private List<SearchEngine> LoadSettings()
+		{
+			var list = new List<SearchEngine>();
+			var settings = provider.GetCollection(Name).Get<XElement>("engines");
+
+			if (settings != null)
+			{
+				foreach (var element in settings.Elements("engine"))
+				{
+					var bytes = Convert.FromBase64String(element.Element("image").Value);
+					using (var stream = new MemoryStream(bytes, 0, bytes.Length))
+					{
+						list.Add(new SearchEngine
+						{
+							Image = Image.FromStream(stream),
+							Name = element.Element("name").Value,
+							Uri = element.Element("uri").Value
+						});
+					}
+				}
+			}
+
+			return list;
+		}
+
 
 		private void RefreshImages()
 		{
@@ -97,13 +134,6 @@ namespace River.OneMoreAddIn.Dialogs
 			{
 				Logger.Current.WriteLine($"Error getting favicon for {engine.Uri}", exc);
 			}
-		}
-
-
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new Point(Location.X, Location.Y - (Height / 2));
-			base.OnShown(e);
 		}
 
 
@@ -238,9 +268,23 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
-		private void okButton_Click(object sender, EventArgs e)
+		public override void CollectSettings()
 		{
-			new SearchEngineProvider().Save(engines.ToList());
+			var element = new XElement("engines");
+
+			foreach (var engine in engines)
+			{
+				element.Add(new XElement("engine",
+					new XElement("image", engine.Image.ToBase64String()),
+					new XElement("name", engine.Name),
+					new XElement("uri", engine.Uri)
+					));
+			}
+
+			var settings = provider.GetCollection(Name);
+			settings.Add(Name, element);
+
+			provider.SetCollection(settings);
 		}
 	}
 }

@@ -7,7 +7,7 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
-	using River.OneMoreAddIn.Helpers.Settings;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.IO;
 	using System.Linq;
@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			DialogResult = DialogResult.OK;
 
-			var settings = new SettingCollection("runPlugin");
+			var settings = new SettingsCollection("runPlugin");
 			settings.Add("cmd", cmdBox.Text);
 			settings.Add("args", argsBox.Text);
 			settings.Add("update", updateRadio.Checked);
