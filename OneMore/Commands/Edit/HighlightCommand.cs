@@ -37,7 +37,9 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				var color = GetColor(index);
+				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+
+				var color = GetColor(index, dark);
 
 				// zero-length selection?
 				var cursor = page.Root.Descendants(ns + "T")
@@ -110,8 +112,20 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string GetColor(int index)
+		private string GetColor(int index, bool dark)
 		{
+			if (dark)
+			{
+				switch (index)
+				{
+					case 1: return "#008000";	// Dark Green
+					case 2: return "#00B0F0";   // Turquoise
+					case 3: return "#800080";   // Dark Purple
+					case 4: return "#0000FF";	// Blue
+					default: return "#808000";	// Dark Yellow
+				}
+			}
+
 			var theme = new SettingsProvider()
 				.GetCollection("HighlightsSheet")?.Get<string>("theme");
 
