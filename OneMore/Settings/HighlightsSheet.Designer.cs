@@ -53,24 +53,22 @@
 			// 
 			// normalRadio
 			// 
-			this.normalRadio.AutoSize = true;
 			this.normalRadio.Checked = true;
 			this.normalRadio.Image = ((System.Drawing.Image)(resources.GetObject("normalRadio.Image")));
 			this.normalRadio.Location = new System.Drawing.Point(18, 37);
 			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.normalRadio.Name = "normalRadio";
-			this.normalRadio.Size = new System.Drawing.Size(242, 41);
+			this.normalRadio.Size = new System.Drawing.Size(270, 41);
 			this.normalRadio.TabIndex = 3;
 			this.normalRadio.TabStop = true;
 			this.normalRadio.UseVisualStyleBackColor = true;
 			// 
 			// fadedRadio
 			// 
-			this.fadedRadio.AutoSize = true;
 			this.fadedRadio.Image = ((System.Drawing.Image)(resources.GetObject("fadedRadio.Image")));
 			this.fadedRadio.Location = new System.Drawing.Point(18, 91);
 			this.fadedRadio.Name = "fadedRadio";
-			this.fadedRadio.Size = new System.Drawing.Size(242, 41);
+			this.fadedRadio.Size = new System.Drawing.Size(270, 41);
 			this.fadedRadio.TabIndex = 4;
 			this.fadedRadio.UseVisualStyleBackColor = true;
 			// 
@@ -99,7 +97,6 @@
 			this.Padding = new System.Windows.Forms.Padding(10);
 			this.Size = new System.Drawing.Size(800, 500);
 			this.themesGroup.ResumeLayout(false);
-			this.themesGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

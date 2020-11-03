@@ -56,11 +56,10 @@
 			// 
 			// editRibbonBox
 			// 
-			this.editRibbonBox.AutoSize = true;
 			this.editRibbonBox.Image = ((System.Drawing.Image)(resources.GetObject("editRibbonBox.Image")));
 			this.editRibbonBox.Location = new System.Drawing.Point(23, 32);
 			this.editRibbonBox.Name = "editRibbonBox";
-			this.editRibbonBox.Size = new System.Drawing.Size(216, 95);
+			this.editRibbonBox.Size = new System.Drawing.Size(250, 95);
 			this.editRibbonBox.TabIndex = 5;
 			this.editRibbonBox.UseVisualStyleBackColor = true;
 			this.editRibbonBox.CheckedChanged += new System.EventHandler(this.CheckedChanged);
@@ -78,11 +77,10 @@
 			// 
 			// formulaRibbonBox
 			// 
-			this.formulaRibbonBox.AutoSize = true;
 			this.formulaRibbonBox.Image = ((System.Drawing.Image)(resources.GetObject("formulaRibbonBox.Image")));
 			this.formulaRibbonBox.Location = new System.Drawing.Point(23, 25);
 			this.formulaRibbonBox.Name = "formulaRibbonBox";
-			this.formulaRibbonBox.Size = new System.Drawing.Size(216, 95);
+			this.formulaRibbonBox.Size = new System.Drawing.Size(250, 95);
 			this.formulaRibbonBox.TabIndex = 7;
 			this.formulaRibbonBox.UseVisualStyleBackColor = true;
 			this.formulaRibbonBox.CheckedChanged += new System.EventHandler(this.CheckedChanged);

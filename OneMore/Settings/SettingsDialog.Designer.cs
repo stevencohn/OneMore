@@ -140,8 +140,8 @@
 			// SettingsDialog
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1157, 621);
 			this.Controls.Add(this.editorPanel);
