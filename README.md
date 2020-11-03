@@ -35,7 +35,7 @@ Clean commands
 * Show/Hide the page date and time stamps under the title on page or all pages in section
 * Trim trailing whitespace from selected text
 
-Formula commands
+[Formula commands](/wiki/Formula-Commands)
 
 * [Calculate Excel-like formulas](#formulas) in tables
 * Delete formula from selected table cells

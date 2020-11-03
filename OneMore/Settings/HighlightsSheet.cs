@@ -26,16 +26,23 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			var settings = provider.GetCollection(Name);
-			if (settings.Get<string>("theme") == "Faded")
+			var theme = settings.Get<string>("theme");
+			if (theme == "Faded")
 			{
 				fadedRadio.Checked = true;
+			}
+			else if (theme == "Deep")
+			{
+				deepRadio.Checked = true;
 			}
 		}
 
 
 		public override void CollectSettings()
 		{
-			string theme = normalRadio.Checked ? "Normal" : "Faded";
+			string theme = "Normal";
+			if (fadedRadio.Checked) theme = "Faded";
+			else if (deepRadio.Checked) theme = "Deep";
 
 			var settings = provider.GetCollection(Name);
 			settings.Add("theme", theme);

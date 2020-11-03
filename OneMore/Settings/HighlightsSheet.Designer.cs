@@ -33,6 +33,7 @@
 			this.normalRadio = new System.Windows.Forms.RadioButton();
 			this.fadedRadio = new System.Windows.Forms.RadioButton();
 			this.themesGroup = new System.Windows.Forms.GroupBox();
+			this.deepRadio = new System.Windows.Forms.RadioButton();
 			this.themesGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -56,7 +57,7 @@
 			this.normalRadio.Checked = true;
 			this.normalRadio.Image = ((System.Drawing.Image)(resources.GetObject("normalRadio.Image")));
 			this.normalRadio.Location = new System.Drawing.Point(18, 37);
-			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 13);
 			this.normalRadio.Name = "normalRadio";
 			this.normalRadio.Size = new System.Drawing.Size(270, 41);
 			this.normalRadio.TabIndex = 3;
@@ -66,7 +67,8 @@
 			// fadedRadio
 			// 
 			this.fadedRadio.Image = ((System.Drawing.Image)(resources.GetObject("fadedRadio.Image")));
-			this.fadedRadio.Location = new System.Drawing.Point(18, 91);
+			this.fadedRadio.Location = new System.Drawing.Point(18, 94);
+			this.fadedRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 13);
 			this.fadedRadio.Name = "fadedRadio";
 			this.fadedRadio.Size = new System.Drawing.Size(270, 41);
 			this.fadedRadio.TabIndex = 4;
@@ -76,15 +78,26 @@
 			// 
 			this.themesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.themesGroup.Controls.Add(this.deepRadio);
 			this.themesGroup.Controls.Add(this.normalRadio);
 			this.themesGroup.Controls.Add(this.fadedRadio);
 			this.themesGroup.Location = new System.Drawing.Point(13, 82);
 			this.themesGroup.Name = "themesGroup";
 			this.themesGroup.Padding = new System.Windows.Forms.Padding(15, 15, 3, 3);
-			this.themesGroup.Size = new System.Drawing.Size(774, 179);
+			this.themesGroup.Size = new System.Drawing.Size(774, 282);
 			this.themesGroup.TabIndex = 5;
 			this.themesGroup.TabStop = false;
 			this.themesGroup.Text = "Themes";
+			// 
+			// deepRadio
+			// 
+			this.deepRadio.Image = ((System.Drawing.Image)(resources.GetObject("deepRadio.Image")));
+			this.deepRadio.Location = new System.Drawing.Point(18, 151);
+			this.deepRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 13);
+			this.deepRadio.Name = "deepRadio";
+			this.deepRadio.Size = new System.Drawing.Size(270, 41);
+			this.deepRadio.TabIndex = 5;
+			this.deepRadio.UseVisualStyleBackColor = true;
 			// 
 			// HighlightsSheet
 			// 
@@ -108,5 +121,6 @@
 		private System.Windows.Forms.RadioButton normalRadio;
 		private System.Windows.Forms.RadioButton fadedRadio;
 		private System.Windows.Forms.GroupBox themesGroup;
+		private System.Windows.Forms.RadioButton deepRadio;
 	}
 }

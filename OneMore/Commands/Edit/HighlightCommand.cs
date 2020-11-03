@@ -119,8 +119,8 @@ namespace River.OneMoreAddIn
 				switch (index)
 				{
 					case 1: return "#008000";	// Dark Green
-					case 2: return "#00B0F0";   // Turquoise
-					case 3: return "#800080";   // Dark Purple
+					case 2: return "#00B0F0";	// Turquoise
+					case 3: return "#800080";	// Dark Purple
 					case 4: return "#0000FF";	// Blue
 					default: return "#808000";	// Dark Yellow
 				}
@@ -139,21 +139,33 @@ namespace River.OneMoreAddIn
 				switch (index)
 				{
 					case 1: return "#CCFFCC";	// Light Green
-					case 2: return "#CCFFFF";   // Sky Blue
-					case 3: return "#FF99CC";   // Pink
-					case 4: return "#99CCFF";   // Light Blue
-					default: return "#FFFF99";   // Light Yellow
+					case 2: return "#CCFFFF";	// Sky Blue
+					case 3: return "#FF99CC";	// Pink
+					case 4: return "#99CCFF";	// Light Blue
+					default: return "#FFFF99";	// Light Yellow
+				}
+			}
+
+			if (theme == "Deep")
+			{
+				switch (index)
+				{
+					case 1: return "#92D050";	// Lime
+					case 2: return "#33CCCC";	// Teal
+					case 3: return "#CC99FF";	// Lavender
+					case 4: return "#00B0F0";	// Turquoise
+					default: return "#FFC000";	// Gold
 				}
 			}
 
 			// theme "Normal"
 			switch (index)
 			{
-				case 1: return "#00FF00";   // Light Green
-				case 2: return "#00FFFF";   // Sky Blue
-				case 3: return "#FF00CC";   // Pink
-				case 4: return "#0000FF";   // Light Blue
-				default: return "#FFFF00";   // Light Yellow
+				case 1: return "#00FF00";	// Light Green
+				case 2: return "#00FFFF";	// Sky Blue
+				case 3: return "#FF00CC";	// Pink
+				case 4: return "#0000FF";	// Light Blue
+				default: return "#FFFF00";	// Light Yellow
 			}
 		}
 

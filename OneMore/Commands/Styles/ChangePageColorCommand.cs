@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -20,7 +21,10 @@ namespace River.OneMoreAddIn
 		{
 			using (var one = new OneNote(out var page, out _))
 			{
-				using (var dialog = new Dialogs.ChangePageColorDialog(page.GetPageColor(out _, out _)))
+				var currentColor = page.GetPageColor(out _, out _);
+				var currentlydDark = currentColor.GetBrightness() < 0.5;
+
+				using (var dialog = new Dialogs.ChangePageColorDialog(currentColor))
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
@@ -41,6 +45,19 @@ namespace River.OneMoreAddIn
 						else
 						{
 							element.Add(new XAttribute("color", dialog.PageColor));
+						}
+
+						// if light->dark or dark->light, apply appropriate theme...
+
+						var dark = false;
+						if (dialog.PageColor != "automatic")
+						{
+							dark = ColorTranslator.FromHtml(dialog.PageColor).GetBrightness() < 0.5;
+						}
+
+						if (dark != currentlydDark)
+						{
+							//
 						}
 
 						one.Update(page);
