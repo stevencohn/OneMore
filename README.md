@@ -23,7 +23,6 @@ General commands
 * Collapse the page hierarchy to see only top-level pages
 * [Sort pages, sections, or notebooks](#other)
 * View and edit the [internal OneNote XML](../../wiki/Tools) of the current page
-* Change [**page background**](#dark) to any custom color with dark-mode awareness
 * Import MSWord and PowerPoint into the current page or a new page
 * Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
 * Invoke an external [custom plugin](../../wiki/Plugins) to process a page
@@ -37,6 +36,13 @@ Clean commands
 * Remove spacing between paragraphs and headings
 * Show/Hide the page date and time stamps under the title on page or all pages in section
 * Trim trailing whitespace from selected text
+
+[Custom Styles](../../wiki/Custom-styles)
+* Manage custom style themes. Save, load separate themes
+* Apply custom styles to selected text
+* Apply an entire theme to a page
+* Change page background to any custom color with dark-mode awareness
+
 
 [Formula commands](../../wiki/Formula-Commands)
 
@@ -72,7 +78,7 @@ Numbering commands
 Extra commands
 
 * Add [special icon to the page title](#other), also appears in page hierarchy
-* Add or remove [**footnotes**](#footnotes) (endnotes)
+* Add or remove [footnotes](../../wiki/Footnotes) (endnotes)
 * Convert select text to a table
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
@@ -80,17 +86,6 @@ Extra commands
 * [Indent content](#indenting) below headings or tagged paragraphs
 * [Replace hyperlinked URLs](#nameUrls) with their Web page titles
 * Toggle strikethrough text next to all completed/incompleted tags
-
-#### Context Menu
-
-The following commands are available from the page context menu
-
-* No Spell Check
-* Remove Empty Paragraphs and Headings
-* Remove Paragraph Spacing
-* To UPPERCASE
-* To lowercase
-* One or more [custom-defined search engines](#lookup)
 
 
 **Why?**
@@ -175,82 +170,6 @@ For example, given this URL on a OneNote page: [https://github.com/](https://git
 
 it would be replaced with its hyperlinked title: [GitHub](https://github.com)
 
-<a name="footnotes"></a>
-### Footnotes
-
-Adding footnotes to a OneNote page seems somehow redundant but consider how often OneNote
-is used for research and then used to copy/paste content into Word or print as PDF... yeah,
-you get it then.
-
-You can add a footnote anywhere on the page and a reference label is inserted at the current
-cursor location and a footnote is added to the bottom of the page. You can then edit the
-text in that footnote to your heart's desire. Text colors are based on the page background color.
-
-![Footnotes](Screenshots/Footnotes.png)
-
-Note that footenotes are hyperlinked so you jump from the content body down to the text
-of a footnote or back up again to the content that references a particular footnote.
-
-And if you no longer want a footnote, place the cursor over the label or over the foonote
-text at the bottom of the page and click the *Remove footnote* command. Voila!
-
-OneMore keeps track of footnotes and will automatically reorder them to keep them numbered
-sequentially from the top of the page. If you delete a footnote, it again will renumber
-the remaining footnotes so there are no gaps. Pretty slick, huh?
-
-<a name="lookup"></a>
-### Context Menu and Custom Search Engines
-
-OneMore adds commands to the context menu that appears when you right-click on the body of a 
-page. Additionally, you can define your own custom search engines to add to the context menu.
-
-From the Extras menu, open the Edit Search Engines dialog. You can define one or more engines.
-Each engine needs a unique name and a URL pattern. The URL pattern must contains the phrase
-"{0}" which will be replaced with a selected word or phrase.
-
-Some common search engine URL patterns are shown here:
-
-| Name | URL Pattern |
-| ---- | ----------- |
-| Bing           | https://www.bing.com/search?q={0} |
-| Google         | https://www.google.com/search?q={0} |
-| Google Books   | https://www.google.com/search?q={0} |
-| Google Scholar | https://scholar.google.com/scholar?q={0} |
-| Duck Duck Go   | https://duckduckgo.com/?q={0} |
-| WikipediA      | https://en.wikipedia.org/wiki/{0} |
-
-If you define one engine then that is shown directly in the page context menu. If you define
-more than one engine, then a submenu is added to the context menu with a list of engines that
-you define.
-
-_Note that you need to restart OneNote when modifying the search engine list.
-Sadly, there is no way to dynamically reload the context menu without restarting._
-
-Select a phrase, or place the text cursor in the middle of a word, and choose your search
-engine. Your default Web browser is opened, search for your selecte content using the selected
-engine.
-
-<a name="dark"></a>
-### Office Black Theme and Custom Page Background
-
-By default, OneNote lets you select from a light, pastel pallet for page backgrounds but it
-if you change the Office theme to _Black_ then it does a fairly decent job of colorizing your
-content and the OneMore custom styles work just fine. 
-
-But if you don't want to affect all Office products then OneMore offers true dark-mode background
-capabilities as well as custom page color selections. And OneMore comes with a style theme named
-DarkStyles.xml that you can load.
-
-_Please see the pinned "Known Issues" item in the Issues area for an explanation of why
-colors might not look right when switching to a dark background._
-
-![Dark Page](Screenshots/DarkPage.png)
-
-If you've selected a darker page background color, OneMore will generate the information box,
-warning box, and code box with darker colors as well, such as:
-
-![Info Boxes](Screenshots/InfoBoxesDark.jpg)
-
 
 ### What OneMore Doesn't Do
 
@@ -300,6 +219,5 @@ throughout the current notebook recursively.
 
 ## Developing OneMore
 
-See the [README file](OneMore/README.md) under the OneMore project folder for technical reference and information
-regarding developing and debugging this OneNote add-in.
-
+See the [Developer Notes](../../wiki/Developer-Notes) page in the Wiki where I keep a list of 
+technical references and information regarding developing and debugging this OneNote add-in.
