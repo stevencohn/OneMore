@@ -19,7 +19,7 @@ General commands
 * Increase/Decrease the font size of all content on the current page
 * Collapse the page hierarchy to see only top-level pages
 * [Sort pages, sections, or notebooks](#other)
-* View and edit the [internal OneNote XML](#xml) of the current page
+* View and edit the [internal OneNote XML](../../wiki/Tools) of the current page
 * Change [**page background**](#dark) to any custom color with dark-mode awareness
 * Import MSWord and PowerPoint into the current page or a new page
 * Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
@@ -363,18 +363,6 @@ throughout the current notebook recursively.
 | Search and Replace | Title Icons | Sort Notebooks, Sections, Pages |
 | ------------------ | ----------- | ------------------------------- |
 | ![Search and Replace](Screenshots/SearchAndReplace.png) | ![Title Icon Dialog](Screenshots/TItleIconsDialog.png) | ![Sort Dialog](Screenshots/SortDialog.png) |
-
-
-<a name="xml"></a>
-#### XML Dialog
-
-Developing OneMore meant reverse-engineering the way Microsoft built OneNote. And it's XML
-schema reference documentation was only half the picture. This editor became invaluable
-while trying to decipher the behavior and how OneNote manages its page content.
-
-| Page XML Editor |
-| --------------- |
-| ![XML Dialog](Screenshots/XmlDialog.jpg) |
 
 ---
 
