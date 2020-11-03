@@ -1,11 +1,14 @@
 ﻿# ![logo](Screenshots/Logo.jpg "logo") OneMore - a OneNote Add-in
 
-A OneNote add-in with powerful yet simple and effective features including:
+A OneNote add-in with powerful yet simple and effective features.
 
-* Access all features from the [OneMore group menus](#menus) added to the Home ribbon
-* Create/edit/apply [**custom styles**](#styles) with advanced options
-* [Apply a style](#styles) to selected text or all custom styles to the current page with one click
-* Manage menu of [**Favorites**](#favorites) for one-click link to your most referenced pages
+See the [project wiki](../../wiki) for full details. Meanwhile, here's some pleasurable reading...
+
+* Access all features from the [OneMore group menus](../../wiki) added to the Home ribbon
+* Access some "key" features using [keyboard shortcuts](../../wiki/Key-Shortcut-Bindings) (see what I did there?)
+* Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
+* [Apply a style](../../wiki/Custom-Styles) to selected text or all custom styles to the current page with one click
+* Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
 
 *Want more from OneMore? OneMore has more...* Here's what's in the OneMore menu
 
@@ -311,35 +314,6 @@ and quick way to access powerful enhancements to OneNote.
 | Main and advanced features | Main and Snippets menus |
 | -------------------------- | ----------------------- |
 | ![Main Menu](Screenshots/MoreMenu.png) | ![Snippets Menu](Screenshots/SnippetsMenu.png) |
-
-
-<a name="styles"></a>
-#### Custom Styles Gallery and Editor
-
-The Custom Styles gallery and Editor provide an easy way to create new styles from scratch
-or from the currently selected text, modify those styles and save them for later use. You
-can then either apply a single style to selected text by choosing a style from the gallery
-or use the *Apply Custom Styles to Page* command to apply all custom styles to the entire
-page, looking for headers, citations, quotes, code, and normal text.
-
-The first nine custom styles are automatically bound to the key sequences
-Ctrl+Alt+Shift + 1, Ctrl+Alt+Shift + 2, etc., through Ctrl+Alt+Shift + 9
-
-| Styles Gallery | Styles Editor |
-| -------------- | ------------- |
-| ![Styles](Screenshots/CustomStyles.png) | ![Styles Dialog](Screenshots/CustomStylesDialog.png) |
-
-<a name="favorites"></a>
-#### Favorites Menu
-
-Although OneNote has multiple slick ways of navigating around notebooks, sections, and pages,
-the most obvious feature missing is a Favorites menu. Well, you now have one with OneMore.
-Simply click *Add current page* to add a new favorite. Click the flyout menu to delete an
-indvidual favorites. Easy.
-
-| Favorites Menu |
-| -------------- |
-| ![Favorites Menu](Screenshots/FavoritesMenu.png) |
 
 
 <a name="other"></a>
