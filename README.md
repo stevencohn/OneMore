@@ -2,10 +2,10 @@
 
 A OneNote add-in with powerful yet simple and effective features.
 
-See the [project wiki](../../wiki) for full details. Meanwhile, here's some pleasurable reading...
+See the [project wiki](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
 
 * Access all features from the [OneMore group menus](../../wiki) added to the Home ribbon
-* Access some "key" features using [keyboard shortcuts](../../wiki/Key-Shortcut-Bindings) (see what I did there?)
+* Access some "key" features using keyboard shortcuts (see what I did there?)
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
 * Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
 * Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
@@ -130,7 +130,7 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 ---
 
 
-### What OneMore Doesn't Do
+#### What OneMore Doesn't Do
 
 OneMore doesn't apply syntax highlighting to source code. If you really want that then
 check out [OneNoteHighlight2016](https://github.com/elvirbrk/NoteHighlight2016) which seems
@@ -150,27 +150,6 @@ and quick way to access powerful enhancements to OneNote.
 | -------------------------- | ----------------------- |
 | ![Main Menu](Screenshots/MoreMenu.png) | ![Snippets Menu](Screenshots/SnippetsMenu.png) |
 
-
-#### Other Screenshots
-
-The *Search and Replace* command does exactly what you think. I can't believe Microsoft didn't
-add this most basic editing feature by default. Worry no longer. Here it is. And you can enter
-a regular expression in the _Find what_ field so you can really brag to your friends. It searches
-line-by-line so expression will not span paragraphs or table cells. It uses standard regular
-expression syntax used by .NET's Regex.Match function.
-
-The *Add Title Icon* command lets you chose from a selection of icons from the Segoe UI Emoji
-font to add to the page title; OneNote automatically displays that icon in the page
-navigator as well.
-
-The *Sort* command lets you sort notebooks, sections, or pages with advanced options
-not found in any other plugin, even those bloated pay-to-use monstrosities. Pages are sorted
-within the current section only, not recursively throughout the notebook. Sections are sorted 
-throughout the current notebook recursively.
-
-| Search and Replace | Title Icons | Sort Notebooks, Sections, Pages |
-| ------------------ | ----------- | ------------------------------- |
-| ![Search and Replace](Screenshots/SearchAndReplace.png) | ![Title Icon Dialog](Screenshots/TItleIconsDialog.png) | ![Sort Dialog](Screenshots/SortDialog.png) |
 
 ---
 
