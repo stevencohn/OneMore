@@ -64,12 +64,6 @@
               getEnabled="SetBodyContext"
               onAction="PasteRtfCmd"/>
             <button
-              id="ribSearchButton"
-              imageMso="FileFind"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="SearchCmd"/>
-            <button
               id="ribReplaceButton"
               imageMso="ReplaceDialog"
               getLabel="GetRibbonLabel"
@@ -352,6 +346,12 @@
                 imageMso="AutoSigWebInsertHyperlink"
                 getLabel="GetRibbonLabel"
                 onAction="NameUrlsCmd"/>
+              <button
+                id="ribSearchButton"
+                imageMso="FileFind"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="SearchCmd"/>
               <button
                 id="ribStrikeoutTasksButton"
                 imageMso="Strikethrough"

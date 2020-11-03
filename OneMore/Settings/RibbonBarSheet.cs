@@ -59,5 +59,18 @@ namespace River.OneMoreAddIn.Settings
                 formulaIconBox.Enabled = formulaRibbonBox.Checked;
 			}
 		}
+
+
+		private void ClickPicture(object sender, System.EventArgs e)
+		{
+            if (sender == editPicture)
+			{
+                editRibbonBox.Checked = !editRibbonBox.Checked;
+			}
+            else
+			{
+                formulaRibbonBox.Checked = !formulaRibbonBox.Checked;
+            }
+		}
 	}
 }

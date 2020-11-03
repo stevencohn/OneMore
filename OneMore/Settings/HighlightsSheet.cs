@@ -49,5 +49,21 @@ namespace River.OneMoreAddIn.Settings
 
 			provider.SetCollection(settings);
 		}
+
+		private void ClickPicture(object sender, System.EventArgs e)
+		{
+			if (sender == fadedPicture)
+			{
+				fadedRadio.Checked = true;
+			}
+			else if (sender == deepPicture)
+			{
+				deepRadio.Checked = true;
+			}
+			else
+			{
+				normalRadio.Checked = true;
+			}
+		}
 	}
 }
