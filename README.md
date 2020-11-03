@@ -9,6 +9,7 @@ See the [project wiki](../../wiki) for full details. Meanwhile, here's some plea
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
 * Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
 * Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
+* [Customize the context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
 
 *Want more from OneMore? OneMore has more...* Here's what's in the OneMore menu
 
@@ -70,26 +71,24 @@ See the [project wiki](../../wiki) for full details. Meanwhile, here's some plea
 * Insert collapsable sections to hide secondary or sensitive information
 * Insert status labels similar to the Confluence status macro
 
-Extra commands
+[Extra commands](../../wiki/Extra-Commands)
 
-* Add [special icon to the page title](#other), also appears in page hierarchy
+* Add special icon to the page title, also appears in page hierarchy
+* Collapse the page hierarchy to see only top-level pages
 * Convert select text to a table
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
-* Edit [search engines](#lookup) that you want to appear in the context menu
-* [Indent content](#indenting) below headings or tagged paragraphs
-* [Replace hyperlinked URLs](#nameUrls) with their Web page titles
+* Replace hyperlinked URLs with their Web page titles
+* Search for keywords and copy/move selected pages (Alt + F)
+* Sort pages, sections, or notebooks
 * Toggle strikethrough text next to all completed/incompleted tags
 
-Tools
+[Tools](../../wiki/Tools)
 
-* Search for keywords and copy/move selected pages (Alt + F)
-* Collapse the page hierarchy to see only top-level pages
-* [Sort pages, sections, or notebooks](#other)
-* View and edit the [internal OneNote XML](../../wiki/Tools) of the current page
 * Import MSWord and PowerPoint into the current page or a new page
 * Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
-* Invoke an external [custom plugin](../../wiki/Plugins) to process a page
+* Invoke an external custom plugin to process a page
+* View and edit the internal OneNote XML of the current page
 * Check for updates and install upgrades on-demand
 
 **Why?**
@@ -130,20 +129,6 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
 ---
 
-## Details of What OneMore Can Do...
-
-<a name="nameUrls"></a>
-### Replace Hyperlinked URLs with Web Page Titles
-
-Automatically replaces all or selected hyperlinked URLs with the &lt;title> specified on the 
-associated Web pages. This only affects URLs for which the displayed text is the same as the
-link address, meaning if you've already customized the dispalyed text, OneMore will not alter
-your changes.
-
-For example, given this URL on a OneNote page: [https://github.com/](https://github.com/)
-
-it would be replaced with its hyperlinked title: [GitHub](https://github.com)
-
 
 ### What OneMore Doesn't Do
 
@@ -156,7 +141,6 @@ install two addins when you only need one?
 ---
 ## Screenshots
 
-<a name="menus"></a>
 #### OneMore Command Menus
 
 The command menus are where you'll find all the features offered by OneMore. It's a simple
@@ -167,7 +151,6 @@ and quick way to access powerful enhancements to OneNote.
 | ![Main Menu](Screenshots/MoreMenu.png) | ![Snippets Menu](Screenshots/SnippetsMenu.png) |
 
 
-<a name="other"></a>
 #### Other Screenshots
 
 The *Search and Replace* command does exactly what you think. I can't believe Microsoft didn't
