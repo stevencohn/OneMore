@@ -92,30 +92,6 @@ The following commands are available from the page context menu
 * To lowercase
 * One or more [custom-defined search engines](#lookup)
 
-#### Key Bindings
-While all commands can be accessed from the OneMore ribbon group menus, some
-commands also have their own key bindings:
-
-| Command                       | Key Binding |
-| ----------------------------- | ----------- |
-| Add footnote                  | Ctrl + Alt + F
-| Remove footnote               | Ctrl + Shift + F
-| Add/Edit formula              | F5
-| Recalculate formulas          | Shift + F5
-| Insert Code Block             | F6
-| Insert horizontal line        | Shift + Alt + Minus
-| Insert double horizontal line | Shift + Alt + Equals
-| No Spell Check                | F4
-| Paste Rich Text               | Ctrl + Alt + V
-| Search and Move/Copy          | Alt + F
-| Search and Replace            | Ctrl + H
-| To uppercase                  | Ctrl + Shift + Alt + U
-| To lowercase                  | Ctrl + Shift + U
-| Increase font size            | Cltr + Alt + Plus
-| Decrease font size            | Ctrl + Alt + Minus
-| Show XML                      | Ctrl + Shift + Alt + X
-| Dump diagnostic info to log   | F8
-| Clear the diagnostic log file | Ctrl + F8
 
 **Why?**
 
