@@ -12,23 +12,7 @@ See the [project wiki](../../wiki) for full details. Meanwhile, here's some plea
 
 *Want more from OneMore? OneMore has more...* Here's what's in the OneMore menu
 
-General commands
-
-* Disable **spell-check** on the current page (F4)
-* [Paste Rich Text](#exCodeBox) (preserve colors when **pasting code** from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
-* [**Search and replace**](#other) text on the current page (Ctrl+H)
-* Search for keywords and copy/move selected pages (Alt + F)
-* Change selected text to UPPERCASE or lowercase
-* Increase/Decrease the font size of all content on the current page
-* Collapse the page hierarchy to see only top-level pages
-* [Sort pages, sections, or notebooks](#other)
-* View and edit the [internal OneNote XML](../../wiki/Tools) of the current page
-* Import MSWord and PowerPoint into the current page or a new page
-* Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
-* Invoke an external [custom plugin](../../wiki/Plugins) to process a page
-* Check for updates and install upgrades on-demand
-
-Clean commands
+[Clean commands](../../wiki/Clean-Commands)
 
 * Remove author/citation information from paragraphs
 * Remove pasted screen clipping and URL citation lines from page
@@ -38,11 +22,22 @@ Clean commands
 * Trim trailing whitespace from selected text
 
 [Custom Styles](../../wiki/Custom-styles)
+
 * Manage custom style themes. Save, load separate themes
 * Apply custom styles to selected text
 * Apply an entire theme to a page
 * Change page background to any custom color with dark-mode awareness
 
+[Edit Commands](../../wiki/Edit-Commands)
+* Disable spell-check on the current page (F4)
+* Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
+* Search and replace text on the current page (Ctrl+H)
+* Change selected text to UPPERCASE or lowercase
+* Increase/Decrease the font size of all content on the current page
+
+[Footnote Commands](../../wiki/Footnote-Commands)
+* Insert a new footnote (endnote) at the current location
+* Remove a footnote from either the label or from the footer description
 
 [Formula commands](../../wiki/Formula-Commands)
 
@@ -57,9 +52,9 @@ Clean commands
 * Precisely crop a selected image
 * Resize a selected image or all images on the page
 
-Numbering commands
+[Numbering commands](../../wiki/Numbering-Commands)
 
-* [Number page headings](#outlining) numeric or alpha-numeric outline prefixes
+* Number page headings with numeric or alpha-numeric outline prefixes
 * Number all sections in the current notebook
 * Number all pages in the current section with numeric or alpha-numeric prefixes
 * Remove numbering from sections
@@ -68,7 +63,7 @@ Numbering commands
 [Snippets commands](../../wiki/Snippets-Commands)
 
 * Insert single or double horizontal line
-* Insert **Table of Contents** of headers, pages, or sections
+* Insert Table of Contents of headers, pages, or sections
 * Insert small or large monthly calendar for a specific month
 * Insert Info/Warn boxes similar to Confluence Info and Warn macros
 * Insert Code box similar to Confluence Code macro
@@ -78,7 +73,6 @@ Numbering commands
 Extra commands
 
 * Add [special icon to the page title](#other), also appears in page hierarchy
-* Add or remove [footnotes](../../wiki/Footnotes) (endnotes)
 * Convert select text to a table
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
@@ -87,6 +81,16 @@ Extra commands
 * [Replace hyperlinked URLs](#nameUrls) with their Web page titles
 * Toggle strikethrough text next to all completed/incompleted tags
 
+Tools
+
+* Search for keywords and copy/move selected pages (Alt + F)
+* Collapse the page hierarchy to see only top-level pages
+* [Sort pages, sections, or notebooks](#other)
+* View and edit the [internal OneNote XML](../../wiki/Tools) of the current page
+* Import MSWord and PowerPoint into the current page or a new page
+* Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
+* Invoke an external [custom plugin](../../wiki/Plugins) to process a page
+* Check for updates and install upgrades on-demand
 
 **Why?**
 
@@ -127,36 +131,6 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 ---
 
 ## Details of What OneMore Can Do...
-
-<a name="outlining"></a>
-### Number Headings
-
-OneNote doesn't offer to number headings like Word does but OneMore can apply numbers to
-headings after headings are in place. From the Outline Formatting dialog's Numbering section,
-choose to apply numeric or alphanumeric numbering to all headings on the page. Note that this
-is a one-time procedure so if you add new or delete old headings, re-apply numbering using
-this dialog. The _Remove existing_ checkbox cleans up numbering that you've applied below;
-remember to tick this if you've already applied numbering, otherwise it will double-up!
-
-The numeric numbering will prefix headings with "1.", "1.1.", "1.1.1.", etc. The alphanumeric
-numbering will prefix headings with "1.", "a.", "i.", etc.
-
-<img src="Screenshots/Numbering.png" width="320"/>
-
-The last settings you use in this dialog will be preserved. To reset the dialog back to its
-default settings, use the Reset Settings item from its system menu, accessed from the title
-bar icon.
-
-<a name="indenting"></a>
-### Indenting Content
-
-OneMore makes it easy to indent paragraphs below all headings, below tagged headings, or
-below tagged paragraphs. If you want to indent only below tagged headings or paragraphs,
-take advantage of OneNote's tagging-by-keyboard feature by customizing a tag and moving it
-up to one of the first eight items in the list of tags; then you can use Ctrl-# to quickly
-apply tags to the headings or paragraphs you want before using the Outline Formatting dialog.
-
-<img src="Screenshots/Indenting.png" width="400"/>
 
 <a name="nameUrls"></a>
 ### Replace Hyperlinked URLs with Web Page Titles
