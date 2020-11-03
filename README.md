@@ -7,8 +7,8 @@ See the [project wiki](../../wiki) for full details. Meanwhile, here's some plea
 * Access all features from the [OneMore group menus](../../wiki) added to the Home ribbon
 * Access some "key" features using [keyboard shortcuts](../../wiki/Key-Shortcut-Bindings) (see what I did there?)
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
-* [Apply a style](../../wiki/Custom-Styles) to selected text or all custom styles to the current page with one click
 * Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
+* Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
 
 *Want more from OneMore? OneMore has more...* Here's what's in the OneMore menu
 
@@ -40,16 +40,16 @@ Clean commands
 
 [Formula commands](../../wiki/Formula-Commands)
 
-* Calculate Excel-like formulas in tables
+* Calculate Excel-like formulas in tables (F5)
 * Delete formula from selected table cells
 * Highlight all cells on the page with custom formulas
-* Recalculate all formulas in selected tables on the page
+* Recalculate all formulas in selected tables on the page (Shift + F5)
 
-Image commands
+[Image commands](../../wiki/Image-Commands)
 
-* Add [caption to a selected image](#images)
-* Precisely [crop a selected image](#images)
-* [Resize a selected image](#images) or all images on the page
+* Add caption to a selected images
+* Precisely crop a selected image
+* Resize a selected image or all images on the page
 
 Numbering commands
 
@@ -132,24 +132,6 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 ---
 
 ## Details of What OneMore Can Do...
-
-<a name="images"></a>
-### Images
-The Add Caption command will add a caption to the selected image by moving the image
-into a one-row, one-column table and centering the word "Caption" below the image, which of
-course you should edit immediately. If your custom styles has a style named exactly "Caption"
-then that style will be applied, otherwise, a default caption style is used.
-
-The Crop command opens an image editing window that allows you to precisely crop and image
-by selecting a region, moving that region around the image, and even resizing the region.
-
-<img src="Screenshots/CropImage.png" width="568" />
-
-The Resize command can be used to resize images on the page. If one image is selected then
-you can resize by percentage, absolute size, or to a preset width with aspect ratio maintained.
-If more than one image is selected, or no images are selected, then you can resize them all to
-a preset width. The preset width is saved so you don't need to keep entering it if you have a
-width you typically use.
 
 <a name="outlining"></a>
 ### Number Headings
