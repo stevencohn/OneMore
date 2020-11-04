@@ -209,7 +209,7 @@ namespace River.OneMoreAddIn
 						id = node.Attribute("id");
 						if (id != null && id.Value.StartsWith("rib"))
 						{
-							id.Value = $"ctx{id.Value.Substring(3)}";
+							id.Value = $"ct2{id.Value.Substring(3)}";
 						}
 
 						enabled = node.Attribute("getEnabled");
@@ -373,7 +373,7 @@ namespace River.OneMoreAddIn
 		{
 			// convert ctx items to rib items so they share the same label
 			var id = control.Id;
-			if (id.StartsWith("ctx") || id.StartsWith("bar"))
+			if (id.StartsWith("ctx") || id.StartsWith("ct2") || id.StartsWith("bar"))
 			{
 				id = $"rib{id.Substring(3)}";
 			}
