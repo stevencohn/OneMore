@@ -27,8 +27,6 @@ namespace River.OneMoreAddIn
 	[ProgId("River.OneMoreAddin")]
 	public partial class AddIn : IDTExtensibility2, IRibbonExtensibility
 	{
-		private const uint ReasonableClockSpeed = 1800;
-
 		private IRibbonUI ribbon;                   // the ribbon control
 		private ILogger logger;                     // our diagnostic logger
 		private CommandFactory factory;
