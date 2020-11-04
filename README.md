@@ -11,8 +11,11 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
 * [Customize the context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
 
-*Want more from OneMore? OneMore has more...* Here's what's in the OneMore menu
+*Want more from OneMore? OneMore has more...* [Click here to see a list of all features](#features)
 
+![screenshot](../../images/Screenshot.png)
+
+<a name="features"></a>
 [Clean commands](../../wiki/Clean-Commands)
 
 * Remove author/citation information from paragraphs
