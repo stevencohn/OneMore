@@ -53,8 +53,8 @@ namespace River.OneMoreAddIn
 
 			logger.WriteLine();
 			logger.Start(
-				$"Starting {process.ProcessName}, PID={process.Id}, " +
-				$"lang={thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name},  " +
+				$"Starting {process.ProcessName} {process.Id}, " +
+				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
 				$"v{AssemblyInfo.Version}, OneNote {Office.GetOneNoteVersion()}, " +
 				$"Office {Office.GetOfficeVersion()}");
 		}
