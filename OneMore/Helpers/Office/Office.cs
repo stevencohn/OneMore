@@ -18,9 +18,21 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// Get installed version of Office, which may differ from version of OneNote
 		/// </summary>
 		/// <returns></returns>
-		public static Version GetVersion()
+		public static Version GetOfficeVersion()
 		{
-			var key = Registry.ClassesRoot.OpenSubKey(@"\Excel.Application\CurVer", false);
+			return GetVersion("Excel", 16);
+		}
+
+
+		public static Version GetOneNoteVersion()
+		{
+			return GetVersion("OneNote", 15);
+		}
+
+
+		private static Version GetVersion(string name, int latest)
+		{
+			var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false);
 			if (key != null)
 			{
 				// get default value string
@@ -31,7 +43,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 			}
 
 			// presume latest
-			return new Version(16, 0);
+			return new Version(latest, 0);
 		}
 
 
@@ -63,7 +75,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <returns>True if Black theme is set; otherwise false</returns>
 		public static bool IsBlackThemeEnabled()
 		{
-			var version = GetVersion();
+			var version = GetOfficeVersion();
 
 			var key = Registry.CurrentUser.OpenSubKey(
 				$@"Software\Microsoft\Office\{version.Major}.{version.Minor}\Common");

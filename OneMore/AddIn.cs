@@ -10,10 +10,10 @@ namespace River.OneMoreAddIn
 {
 	using Extensibility;
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Helpers.Office;
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
-	using System.Management;
 	using System.Runtime.InteropServices;
 	using System.Timers;
 
@@ -34,7 +34,6 @@ namespace River.OneMoreAddIn
 		private CommandFactory factory;
 		private readonly Process process;           // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
-		private uint clockSpeed;                    // Mhz of CPU
 
 
 		// Lifecycle...
@@ -52,33 +51,14 @@ namespace River.OneMoreAddIn
 
 			UIHelper.PrepareUI();
 
-			GetCurrentClockSpeed();
-
 			var thread = System.Threading.Thread.CurrentThread;
 
 			logger.WriteLine();
 			logger.Start(
-				$"Starting {process.ProcessName}, process PID={process.Id}, CPU={clockSpeed}Mhz " +
-				$"Language={thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}");
-		}
-
-
-		private void GetCurrentClockSpeed()
-		{
-			// using this as a means of short-circuiting the Ensure methods for slower machines
-			// to speed up the display of the menus. CurrentClockSpeed will vary depending on
-			// battery capacity and other factors, whereas MaxClockSpeed is a constant
-
-			clockSpeed = ReasonableClockSpeed;
-			using (var searcher = new ManagementObjectSearcher(
-				"select CurrentClockSpeed from Win32_Processor"))
-			{
-				foreach (var item in searcher.Get())
-				{
-					clockSpeed = (uint)item["CurrentClockSpeed"];
-					item.Dispose();
-				}
-			}
+				$"Starting {process.ProcessName}, PID={process.Id}, " +
+				$"lang={thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name},  " +
+				$"v{AssemblyInfo.Version}, OneNote {Office.GetOneNoteVersion()}, " +
+				$"Office {Office.GetOfficeVersion()}");
 		}
 
 
