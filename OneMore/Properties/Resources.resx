@@ -2137,4 +2137,8 @@ XML File (*.xml)</value>
     <value>Insert a code block (F6)</value>
     <comment>menu</comment>
   </data>
+  <data name="SettingsDialog_Restart" xml:space="preserve">
+    <value>Some changes require OneNote to be restarted. Restart OneNote at your convenience.</value>
+    <comment>restart message</comment>
+  </data>
 </root>

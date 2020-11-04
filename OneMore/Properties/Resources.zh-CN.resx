@@ -2088,4 +2088,8 @@ XML档案（* .xml）</value>
     <value>插入代码块（F6）</value>
     <comment>menu</comment>
   </data>
+  <data name="SettingsDialog_Restart" xml:space="preserve">
+    <value>某些更改要求重新启动OneNote。 在您方便时重新启动OneNote。</value>
+    <comment>restart message</comment>
+  </data>
 </root>

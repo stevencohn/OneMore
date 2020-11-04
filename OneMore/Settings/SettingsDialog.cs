@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Settings
 	using System;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class SettingsDialog : LocalizableForm
@@ -72,6 +73,8 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			provider.Save();
+
+			UIHelper.ShowMessage(Resx.SettingsDialog_Restart);
 
 			Logger.Current.WriteLine("User settings saved");
 		}

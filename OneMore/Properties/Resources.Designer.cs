@@ -4043,6 +4043,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Some changes require OneNote to be restarted. Restart OneNote at your convenience..
+        /// </summary>
+        internal static string SettingsDialog_Restart {
+            get {
+                return ResourceManager.GetString("SettingsDialog_Restart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.xml.
         /// </summary>
         internal static string SettingsFilename {
