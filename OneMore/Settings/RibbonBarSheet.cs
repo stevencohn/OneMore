@@ -36,18 +36,6 @@ namespace River.OneMoreAddIn.Settings
         }
 
 
-        public override void CollectSettings()
-        {
-            var settings = provider.GetCollection(Name);
-            settings.Add("editCommands", editRibbonBox.Checked);
-            settings.Add("editIconsOnly", editIconBox.Checked);
-            settings.Add("formulaCommands", formulaRibbonBox.Checked);
-            settings.Add("formulaIconsOnly", formulaIconBox.Checked);
-
-            provider.SetCollection(settings);
-        }
-
-
 		private void CheckedChanged(object sender, System.EventArgs e)
 		{
             if (sender == editRibbonBox)
@@ -72,5 +60,23 @@ namespace River.OneMoreAddIn.Settings
                 formulaRibbonBox.Checked = !formulaRibbonBox.Checked;
             }
 		}
-	}
+
+
+        public override void CollectSettings()
+        {
+            if (!editRibbonBox.Checked && !formulaRibbonBox.Checked)
+			{
+                provider.RemoveCollection(Name);
+                return;
+			}
+
+            var settings = provider.GetCollection(Name);
+            settings.Add("editCommands", editRibbonBox.Checked);
+            settings.Add("editIconsOnly", editIconBox.Checked);
+            settings.Add("formulaCommands", formulaRibbonBox.Checked);
+            settings.Add("formulaIconsOnly", formulaIconBox.Checked);
+
+            provider.SetCollection(settings);
+        }
+    }
 }

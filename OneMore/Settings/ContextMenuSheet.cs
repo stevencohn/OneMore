@@ -90,7 +90,14 @@ namespace River.OneMoreAddIn.Settings
 				}
 			}
 
-			provider.SetCollection(settings);
+			if (settings.Count > 0)
+			{
+				provider.SetCollection(settings);
+			}
+			else
+			{
+				provider.RemoveCollection(Name);
+			}
 		}
 	}
 }

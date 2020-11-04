@@ -281,10 +281,16 @@ namespace River.OneMoreAddIn.Settings
 					));
 			}
 
-			var settings = provider.GetCollection(Name);
-			settings.Add(Name, element);
-
-			provider.SetCollection(settings);
+			if (element.HasElements)
+			{
+				var settings = provider.GetCollection(Name);
+				settings.Add(Name, element);
+				provider.SetCollection(settings);
+			}
+			else
+			{
+				provider.RemoveCollection(Name);
+			}
 		}
 	}
 }

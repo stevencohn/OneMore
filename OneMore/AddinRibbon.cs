@@ -228,6 +228,12 @@ namespace River.OneMoreAddIn
 			SettingsCollection ccommands, XElement menu)
 		{
 			engines = ccommands.Get<XElement>("engines");
+
+			if (engines == null || !engines.HasElements)
+			{
+				return;
+			}
+
 			var elements = engines.Elements("engine");
 			var count = elements.Count();
 
