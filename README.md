@@ -13,7 +13,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 *Want more from OneMore? OneMore has more...* [Click here to see a list of all features](#features)
 
-![screenshot](../../images/Screenshot.png)
+![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
 [Clean commands](../../wiki/Clean-Commands)
