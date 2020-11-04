@@ -91,7 +91,7 @@ See the [project wiki](../../wiki) for full details. Meanwhile, here's some plea
 * View and edit the internal OneNote XML of the current page
 * Check for updates and install upgrades on-demand
 
-**Why?**
+### Why?
 
 I wanted something more than what OneNote provided. I was overwhelmed by _OneNote Gem_,
 aghast at its bloated useless overloads of what was already otherwise available or features that
@@ -101,15 +101,17 @@ And both of these charge money for something that should be open source and neit
 what I wanted. So I did what any self respecting software engineer would do... I built my own.
 Deal with it.
 
+**Please Support**
 I do this as a hobby. I will never charge you to use OneMore. So it is with great humility and
-appreciation that I humbly suggest that you consider a small donation to support the development
+appreciation that I humbly request that you consider a small donation to support the development
 of OneMore. In exchange, I pledge to continue listening with an open mind and to respond to your
 questions and tips in a timely manner.
 
-[![Donate](Screenshots/Donate.png)](https://paypal.me/stevenmcohn?locale.x=en_US)
+_Click here, click now, click often! >>_  
+>  [![Donate](Screenshots/Donate.png)](https://paypal.me/stevenmcohn?locale.x=en_US)
 
 
-**Minimum Prerequisites**
+### Minimum Prerequisites
 
 * Developed for Windows 10
 * Microsoft Visual Studio 2019, C# 7
@@ -119,7 +121,8 @@ questions and tips in a timely manner.
 
 Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
-**How to Install**
+
+### How to Install
 
 1. Close OneNote if it is currently running
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
@@ -129,31 +132,7 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
 ---
 
-
-#### What OneMore Doesn't Do
-
-OneMore doesn't apply syntax highlighting to source code. If you really want that then
-check out [OneNoteHighlight2016](https://github.com/elvirbrk/NoteHighlight2016) which seems
-to be a fanstastic solution. However, if you're a Visual Studio developer OneMore already
-knows how to paste rich text into OneNote, preserving all syntax highlighting. So why
-install two addins when you only need one?
-
----
-## Screenshots
-
-#### OneMore Command Menus
-
-The command menus are where you'll find all the features offered by OneMore. It's a simple
-and quick way to access powerful enhancements to OneNote.
-
-| Main and advanced features | Main and Snippets menus |
-| -------------------------- | ----------------------- |
-| ![Main Menu](Screenshots/MoreMenu.png) | ![Snippets Menu](Screenshots/SnippetsMenu.png) |
-
-
----
-
-## Developing OneMore
+### Developing OneMore
 
 See the [Developer Notes](../../wiki/Developer-Notes) page in the Wiki where I keep a list of 
 technical references and information regarding developing and debugging this OneNote add-in.
