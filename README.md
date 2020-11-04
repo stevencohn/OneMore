@@ -16,6 +16,8 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
+## Features
+
 [Clean commands](../../wiki/Clean-Commands)
 
 * Remove author/citation information from paragraphs
