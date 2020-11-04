@@ -2,7 +2,7 @@
 
 A OneNote add-in with powerful yet simple and effective features.
 
-See the [project wiki](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
+See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
 
 * Access all features from the [OneMore group menus](../../wiki) added to the Home ribbon
 * Access some "key" features using keyboard shortcuts (see what I did there?)
