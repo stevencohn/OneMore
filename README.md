@@ -1,4 +1,4 @@
-﻿# ![logo](Screenshots/Logo.jpg "logo") OneMore - a OneNote Add-in
+﻿# ![logo](../..wiki/images/Logo.jpg "logo") OneMore - a OneNote Add-in
 
 A OneNote add-in with powerful yet simple and effective features.
 
@@ -113,7 +113,7 @@ of OneMore. In exchange, I pledge to continue listening with an open mind and to
 questions and tips in a timely manner.
 
 _Click here, click now, click often! >>_  
->  [![Donate](Screenshots/Donate.png)](https://paypal.me/stevenmcohn?locale.x=en_US)
+>  [![Donate](../../wiki/images/Donate.png)](https://paypal.me/stevenmcohn?locale.x=en_US)
 
 
 ### Minimum Prerequisites
