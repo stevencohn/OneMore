@@ -81,5 +81,18 @@ namespace River.OneMoreAddIn.Models
 		/// Gets the row number, position in the table, starting at 1
 		/// </summary>
 		public int RowNum { get; private set; }
+
+
+		/// <summary>
+		/// Adds a new cell to this row and returns the cell
+		/// </summary>
+		/// <returns></returns>
+		public TableCell AddCell()
+		{
+			var cell = new TableCell(ns);
+			cells.Add(cell);
+			Root.Add(cell.Root);
+			return cell;
+		}
 	}
 }

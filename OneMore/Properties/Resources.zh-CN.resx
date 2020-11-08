@@ -2092,4 +2092,32 @@ XML档案（* .xml）</value>
     <value>某些更改要求重新启动OneNote。 在您方便时重新启动OneNote。</value>
     <comment>restart message</comment>
   </data>
+  <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
+    <value>选择一个或多个表格单元格</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertCellsDialog.Text" xml:space="preserve">
+    <value>插入单元格</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="InsertCellsDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertCellsDialog_numLabel.Text" xml:space="preserve">
+    <value>要插入的单元格数量：</value>
+    <comment>numeric label</comment>
+  </data>
+  <data name="InsertCellsDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
+    <value>下移单元格</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
+    <value>向右移动单元格</value>
+    <comment>radio</comment>
+  </data>
 </root>

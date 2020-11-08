@@ -1715,6 +1715,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select one or more table cells.
+        /// </summary>
+        internal static string InsertCellsCommand_NoSelection {
+            get {
+                return ResourceManager.GetString("InsertCellsCommand_NoSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string InsertCellsDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("InsertCellsDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of cells to insert:.
+        /// </summary>
+        internal static string InsertCellsDialog_numLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCellsDialog_numLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string InsertCellsDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("InsertCellsDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shift cells down.
+        /// </summary>
+        internal static string InsertCellsDialog_shiftDownRadio_Text {
+            get {
+                return ResourceManager.GetString("InsertCellsDialog_shiftDownRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shift cells right.
+        /// </summary>
+        internal static string InsertCellsDialog_shiftRightRadio_Text {
+            get {
+                return ResourceManager.GetString("InsertCellsDialog_shiftRightRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Cells.
+        /// </summary>
+        internal static string InsertCellsDialog_Text {
+            get {
+                return ResourceManager.GetString("InsertCellsDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
         internal static string InsertTocCommand_TOC {

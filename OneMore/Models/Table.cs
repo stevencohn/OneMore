@@ -105,7 +105,8 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Adds a column definition to the table
+		/// Adds a column definition to the table. If the table has any rows then append
+		/// each row with a new cell
 		/// </summary>
 		/// <param name="width">Required width of the column</param>
 		/// <param name="locked">True if the column width is locked</param>
@@ -123,6 +124,14 @@ namespace River.OneMoreAddIn.Models
 
 			columns.Add(column);
 			numCells++;
+
+			if (rows.Any())
+			{
+				foreach (var row in rows)
+				{
+					row.AddCell();
+				}
+			}
 		}
 
 

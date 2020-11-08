@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (anchor == null)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
+					UIHelper.ShowInfo(one.Window, Resx.InsertCellsCommand_NoSelection);
 					return;
 				}
 
@@ -75,28 +75,25 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ShiftDown(Table table, List<TableCell> cells, int numCells)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
-
-			// RowNum and ColNum are 1-based so must adjust them to be 0-based
-
+			// RowNum and ColNum are 1-based so must shift them to be 0-based
 			var minCol = cells.Min(c => c.ColNum) - 1;
 			var maxCol = cells.Max(c => c.ColNum) - 1;
 			var minRow = cells.Min(c => c.RowNum) - 1;
 			var maxRow = cells.Max(c => c.RowNum) - 1;
 
-			// if rectangular then only move rectangle
+			// if selected one row then move all visible content in desired direction
+			// if rectangular then only move rectangle...
+
 			if (minRow == maxRow)
 			{
-				// find last row in columns that contains visible text
+				// find last row that contains visible text
 				var found = false;
 				maxRow = table.Rows.Count() - 1;
 				while (maxRow > minRow && !found)
 				{
-					for (var i = minCol; i <= maxCol; i++)
+					for (var c = minCol; c <= maxCol; c++)
 					{
-						if (!string.IsNullOrEmpty(table[maxRow][i].GetText()))
+						if (!string.IsNullOrEmpty(table[maxRow][c].GetText()))
 						{
 							found = true;
 							break;
@@ -114,19 +111,19 @@ namespace River.OneMoreAddIn.Commands
 			int overflow = (maxRow + 1) + numCells;
 			if (overflow > table.Rows.Count())
 			{
-				for (var i = 0; i < maxRow - table.Rows.Count(); i++) table.AddRow();
+				for (var i = 0; i < overflow - table.Rows.Count(); i++) table.AddRow();
 			}
 
-			int offset = numCells - 1;
+			int offset = numCells;
 
-			// start one row below
-			for (var r = maxRow + 1; r > minRow; r--)
+			// iterate target coordinates
+			for (var r = maxRow + offset; r >= minRow + offset; r--)
 			{
 				for (var c = minCol; c <= maxCol; c++)
 				{
-					var source = table[r - 1 + offset][c];
+					var source = table[r - offset][c];
 
-					table[r + offset][c].SetContent(source.GetContent());
+					table[r][c].SetContent(source.GetContent());
 					source.SetContent(string.Empty);
 				}
 			}
@@ -135,7 +132,63 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ShiftRight(Table table, List<TableCell> cells, int numCells)
 		{
-			//
+			// RowNum and ColNum are 1-based so must shift them to be 0-based
+			var minCol = cells.Min(c => c.ColNum) - 1;
+			var maxCol = cells.Max(c => c.ColNum) - 1;
+			var minRow = cells.Min(c => c.RowNum) - 1;
+			var maxRow = cells.Max(c => c.RowNum) - 1;
+
+
+			System.Diagnostics.Debugger.Launch();
+
+			var cols = table[0].Cells.Count();
+
+			// if selected one col then move all visible content in desired direction
+			// if rectangular then only move rectangle...
+
+			if (minCol == maxCol)
+			{
+				// find last col that contains visible text
+				var found = false;
+				maxCol = cols - 1;
+				while (maxCol > minCol && !found)
+				{
+					for (var r = minRow; r <= maxRow; r++)
+					{
+						if (!string.IsNullOrEmpty(table[r][maxCol].GetText()))
+						{
+							found = true;
+							break;
+						}
+					}
+
+					if (!found)
+					{
+						maxCol--;
+					}
+				}
+			}
+
+			// add cols to make room for all visible text
+			int overflow = (maxCol + 1) + numCells - cols;
+			if (overflow > 0)
+			{
+				for (var i = 0; i < overflow; i++) table.AddColumn(80f);
+			}
+
+			int offset = numCells;
+
+			// iterate target coordinates
+			for (var c = maxCol + offset; c >= minCol + offset; c--)
+			{
+				for (var r = minRow; r <= maxRow; r++)
+				{
+					var source = table[r][c - offset];
+
+					table[r][c].SetContent(source.GetContent());
+					source.SetContent(string.Empty);
+				}
+			}
 		}
 	}
 }
