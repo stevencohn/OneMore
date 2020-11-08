@@ -1,0 +1,2111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddInTitle" xml:space="preserve">
+    <value>OneMoreAddIn</value>
+  </data>
+  <data name="ribShowXmlButton_Label" xml:space="preserve">
+    <value>إظهار XML</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribShowXmlButton_Screentip" xml:space="preserve">
+    <value>إظهار XML للتسلسل الهرمي والصفحة الحالية (Ctrl + Shift + Alt + X)</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribOneMoreGroup_Label" xml:space="preserve">
+    <value>مرة اخرى</value>
+    <comment>Ribbon Group</comment>
+  </data>
+  <data name="OneMoreTab_Label" xml:space="preserve">
+    <value>مرة اخرى</value>
+  </data>
+  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
+    <value>لا تدقيق إملائي</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
+    <value>تعطيل التدقيق الإملائي للصفحة بأكملها (F4)</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoSpellCheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\nospellcheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TextHighlightColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\texthighlightcolorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DoubleLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\doubleline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\fontcolor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Architecture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\architecture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cyclist" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\cyclist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\flag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>customstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="CustomColorsFilesname" xml:space="preserve">
+    <value>CustomColors.xml</value>
+    <comment>FILENAME</comment>
+  </data>
+  <data name="CustomStylesFilename" xml:space="preserve">
+    <value>CustomStyles.xml</value>
+    <comment>FILENAME</comment>
+  </data>
+  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Automobile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Automobile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Financial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Financial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Memo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Memo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ribTrimButton_Label" xml:space="preserve">
+    <value>تقليم المسافة البيضاء</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribTrimButton_Screentip" xml:space="preserve">
+    <value>اقتطاع المسافة البيضاء الزائدة من النص المحدد</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="FavoritesFilename" xml:space="preserve">
+    <value>Favorites.xml</value>
+    <comment>FILENAME</comment>
+  </data>
+  <data name="oneNamespace" xml:space="preserve">
+    <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
+    <comment>DO NOT TRANSLATE</comment>
+  </data>
+  <data name="OneMoreNamespace" xml:space="preserve">
+    <value>http://schemas.smc.com/onemore/2020/styles</value>
+    <comment>DO NOT TRANSLATE</comment>
+  </data>
+  <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
+    <value>تصغير حجم خط الصفحة (Ctrl + Alt + علامة ناقص)</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribFootnoteButton_Screentip" xml:space="preserve">
+    <value>إضافة حاشية سفلية (Ctrl + Alt + F)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
+    <value>إزالة الحاشية السفلية (Ctrl + Shift + F)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
+    <value>تكبير حجم خط الصفحة (Ctrl + Alt + Plus)</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
+    <value>أدخل خط أفقي مزدوج (Shift + Alt + Equals)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
+    <value>إدراج خط أفقي واحد (Shift + Alt + علامة ناقص)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribLowercaseButton_Screentip" xml:space="preserve">
+    <value>تحويل النص إلى أحرف صغيرة (Ctrl + Shift + U)</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
+    <value>لصق نص منسق (Ctrl + Alt + V)</value>
+    <comment>Ribbon OneMore menu item, paste rich text</comment>
+  </data>
+  <data name="ribReplaceButton_Screentip" xml:space="preserve">
+    <value>بحث واستبدال (Ctrl + H)</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ribUppercaseButton_Screentip" xml:space="preserve">
+    <value>تحويل النص إلى أحرف كبيرة (Ctrl + Shift + Alt + U)</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Superscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\superscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\newstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsFilename" xml:space="preserve">
+    <value>Settings.xml</value>
+    <comment>FILENAME</comment>
+  </data>
+  <data name="ribAboutButton_Label" xml:space="preserve">
+    <value>حول OneMore</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribAddFormulaButton_Label" xml:space="preserve">
+    <value>أضف الصيغة</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
+    <value>إضافة / تحرير الصيغة في خلايا الجدول المحددة (F5)</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribApplyStylesButton_Label" xml:space="preserve">
+    <value>تطبيق الأنماط على الصفحة</value>
+    <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
+  </data>
+  <data name="ribBlueStatusButton_Label" xml:space="preserve">
+    <value>الحالة الزرقاء</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribCaptionButton_Label" xml:space="preserve">
+    <value>إضافة تعليق</value>
+    <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
+  </data>
+  <data name="ribCodeBlockButton_Label" xml:space="preserve">
+    <value>كتلة التعليمات البرمجية</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribCollapseButton_Label" xml:space="preserve">
+    <value>تصغير الصفحات</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCreateStyleButton_Label" xml:space="preserve">
+    <value>إنشاء نمط من التحديد</value>
+    <comment>Ribbon Custom Styles menu item, create new style</comment>
+  </data>
+  <data name="ribCustomStylesButton_Label" xml:space="preserve">
+    <value>الأنماط المخصصة</value>
+    <comment>Ribbon main custom styles button</comment>
+  </data>
+  <data name="ribDecreaseFontSizeButton_Label" xml:space="preserve">
+    <value>تصغير حجم الخط</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
+    <value>حذف الصيغة</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribDeleteFormulaButton_Screentip" xml:space="preserve">
+    <value>حذف الصيغة من خلية (خلايا) الجدول المحددة</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribEditStylesButton_Label" xml:space="preserve">
+    <value>تحرير الأنماط</value>
+    <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
+  </data>
+  <data name="ribExpandButton_Label" xml:space="preserve">
+    <value>توسيع الانهيار</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribExtrasMenu_Label" xml:space="preserve">
+    <value>إضافات</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFavoritesMenu_Label" xml:space="preserve">
+    <value>المفضلة</value>
+    <comment>Ribbon main favorites button</comment>
+  </data>
+  <data name="ribFlagTitleButton_Label" xml:space="preserve">
+    <value>أضف أيقونة إلى عنوان الصفحة</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFootnoteButton_Label" xml:space="preserve">
+    <value>أضف حاشية سفلية</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFootnoteRemoveButton_Label" xml:space="preserve">
+    <value>إزالة الحاشية السفلية</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFormulaMenu_Label" xml:space="preserve">
+    <value>معادلة</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribGrayStatusButton_Label" xml:space="preserve">
+    <value>الحالة الرمادية</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribGreenStatusButton_Label" xml:space="preserve">
+    <value>الحالة الخضراء</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
+    <value>تسليط الضوء على الصيغة</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
+    <value>خلايا عالية مع صيغة في الجدول الحالي</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribImagesMenu_Label" xml:space="preserve">
+    <value>الصور</value>
+    <comment>Ribbon OneMore menu item, Images...</comment>
+  </data>
+  <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
+    <value>زيادة حجم الخط</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribInfoBlockButton_Label" xml:space="preserve">
+    <value>كتلة المعلومات</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
+    <value>خط أفقي مزدوج</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
+    <value>خط أفقي</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribLowercaseButton_Label" xml:space="preserve">
+    <value>لأحرف صغيرة</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribMergeButton_Label" xml:space="preserve">
+    <value>دمج الصفحات</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribNameUrlsButton_Label" xml:space="preserve">
+    <value>استبدل عناوين URL بعناوين صفحات الويب</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribOneMoreMenu_Label" xml:space="preserve">
+    <value>أكثر</value>
+    <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>تعيين لون الصفحة</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ribPasteRtfButton_Label" xml:space="preserve">
+    <value>لصق نص منسق</value>
+    <comment>Ribbon OneMore menu item, paste rich text</comment>
+  </data>
+  <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
+    <value>إعادة حساب الصيغة</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
+    <value>إعادة حساب كل الصيغ في الجدول الحالي (Shift + F5)</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRedStatusButton_Label" xml:space="preserve">
+    <value>الحالة الحمراء</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribReplaceButton_Label" xml:space="preserve">
+    <value>البحث والاستبدال</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ribResizeImagesButton_Label" xml:space="preserve">
+    <value>تغيير الحجم</value>
+    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+  </data>
+  <data name="ribSnippetsMenu_Label" xml:space="preserve">
+    <value>المقتطفات</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribSortButton_Label" xml:space="preserve">
+    <value>فرز</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribTocButton_Label" xml:space="preserve">
+    <value>جدول المحتويات</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribUppercaseButton_Label" xml:space="preserve">
+    <value>إلى الحالة العليا</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribWarnBlockButton_Label" xml:space="preserve">
+    <value>كتلة تحذير</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribYellowStatusButton_Label" xml:space="preserve">
+    <value>الحالة الصفراء</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="AboutDialoge.Text" xml:space="preserve">
+    <value>الوظيفة الإضافية OneMore</value>
+    <comment>dialog title bar</comment>
+  </data>
+  <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
+    <value>امسح ملف السجل</value>
+    <comment>hyperlink to clear the log file</comment>
+  </data>
+  <data name="ClearLog_Message" xml:space="preserve">
+    <value>مسح ملف السجل الآن؟</value>
+    <comment>message box message</comment>
+  </data>
+  <data name="ClearLog_NoneMessage" xml:space="preserve">
+    <value>لا يوجد ملف سجل متاح</value>
+    <comment>message box message</comment>
+  </data>
+  <data name="ClearLog_NoneTitle" xml:space="preserve">
+    <value>كل شيء جيد</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ClearLog_Title" xml:space="preserve">
+    <value>تؤكد</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="AboutDialog_copyLabel.Text" xml:space="preserve">
+    <value>حقوق الطبع والنشر @ 2016- {0} Steven M Cohn</value>
+    <comment>copyright to current year</comment>
+  </data>
+  <data name="AboutDialog_LatestMessage" xml:space="preserve">
+    <value>لديك أحدث نسخة</value>
+    <comment>message box message</comment>
+  </data>
+  <data name="AboutDialog_LatestTitle" xml:space="preserve">
+    <value>أنت على ما يرام!</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
+    <value>إصدار جديد متوفر:\n\n    </value>
+    <comment>message box message showing verison tag and name</comment>
+  </data>
+  <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
+    <value>تحديث OneMore</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="AboutDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>OK button</comment>
+  </data>
+  <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
+    <value>الوظيفة الإضافية OneMore لـ OneNote 2016</value>
+    <comment>Add-in full name</comment>
+  </data>
+  <data name="AboutDialog_updateLink.Text" xml:space="preserve">
+    <value>تحقق من وجود تحديثات</value>
+    <comment>check online for available updates to add-in</comment>
+  </data>
+  <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
+    <value>الإصدار {0}</value>
+    <comment>the version of the add-in</comment>
+  </data>
+  <data name="ChangePageColorDialog.Text" xml:space="preserve">
+    <value>تغيير لون الصفحة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
+    <value>خلفية مخصصة...</value>
+    <comment>button</comment>
+  </data>
+  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
+    <value>خلفية داكنة</value>
+    <comment>button</comment>
+  </data>
+  <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
+    <value>بعد اختيار لون الصفحة ، قم بتحميل أحد الأنماط المحددة مسبقًا أو قم بتخصيص الأنماط الخاصة بك بحيث يكون لكل المحتوى تباين كافٍ ليكون مرئيًا.</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
+    <value>خلفية فاتحة</value>
+    <comment>button</comment>
+  </data>
+  <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PageColorDialog.Text" xml:space="preserve">
+    <value>لون الصفحة</value>
+    <comment>color popup dialog title</comment>
+  </data>
+  <data name="AddFormula_linearMessage" xml:space="preserve">
+    <value>حدد خلية واحدة أو أكثر من نفس الصف أو نفس العمود</value>
+    <comment>message box</comment>
+  </data>
+  <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
+    <value>رقم\n</value>
+    <comment>formats, one per line</comment>
+  </data>
+  <data name="FormulaDialog.Text" xml:space="preserve">
+    <value>معادلة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FormulaDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>Cancel button</comment>
+  </data>
+  <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
+    <value>مساعدة</value>
+    <comment>help checkbox button</comment>
+  </data>
+  <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
+    <value>شكل:</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
+    <value>الحالة:</value>
+    <comment>status label</comment>
+  </data>
+  <data name="FormulaDialog_status_Empty" xml:space="preserve">
+    <value>\u003cفارغ\u003e</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>OK button</comment>
+  </data>
+  <data name="FormulaDialog_status_OK" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReorderDialog.Text" xml:space="preserve">
+    <value>إعادة ترتيب الأنماط المخصصة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ReorderDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ReorderDialog_label.Text" xml:space="preserve">
+    <value>أعد ترتيب كيفية ظهور الأنماط في المعرض. </value>
+    <comment>instructions</comment>
+  </data>
+  <data name="ReorderDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ResizeImagesDialog.Text" xml:space="preserve">
+    <value>تغيير حجم الصورة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>مطلق</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
+    <value>كل الصور في الصفحة</value>
+    <comment>info label</comment>
+  </data>
+  <data name="ResizeImagesDialog_aspectBox.Text" xml:space="preserve">
+    <value>الحفاظ على نسبة العرض إلى الارتفاع</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ResizeImagesDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
+    <value>تنطبق على</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
+    <value>الحجم الحالي</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
+    <value>ارتفاع</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
+    <value>الحجم الأصلي</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
+    <value>{0} × {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
+    <value>٪</value>
+    <comment>percent sign</comment>
+  </data>
+  <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
+    <value>النسبة المئوية</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ResizeImagesDialog_presetLabel.Text" xml:space="preserve">
+    <value>عرض</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
+    <value>المعد مسبقا</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} × {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="ResizeImagesDialog_widthLabel.Text" xml:space="preserve">
+    <value>عرض</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
+    <value>حالة مباراة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
+    <value>البحث والاستبدال</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_whatLabel.Text" xml:space="preserve">
+    <value>اوجد ماذا:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
+    <value>استبدل ب:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SortDialog.Text" xml:space="preserve">
+    <value>فرز</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SortDialog_ascButton.Text" xml:space="preserve">
+    <value>تصاعدي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SortDialog_createdButton.Text" xml:space="preserve">
+    <value>تاريخ الإنشاء</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_desButton.Text" xml:space="preserve">
+    <value>تنازلي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_direcitonLabel.Text" xml:space="preserve">
+    <value>اتجاه:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SortDialog_modifiedButton.Text" xml:space="preserve">
+    <value>التاريخ عدل</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>اسم</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
+    <value>تثبيت الملاحظات في الأعلى و\n</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortDialog_scopeBox.Items" xml:space="preserve">
+    <value>صفحات في هذا القسم\n</value>
+    <comment>scope dropdown, one per line</comment>
+  </data>
+  <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
+    <value>نطاق:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SortDialog_sortLabel.Text" xml:space="preserve">
+    <value>ترتيب حسب:</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmojiDialog.Text" xml:space="preserve">
+    <value>أيقونات العنوان</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="EmojiDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+    <value>حدد أو أكثر من الرموز لإضافتها إلى عنوان الصفحة</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="EmojiDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="Emoji_Architecture" xml:space="preserve">
+    <value>هندسة معمارية</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Automobile" xml:space="preserve">
+    <value>سيارة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Bullet" xml:space="preserve">
+    <value>رصاصة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Calendar" xml:space="preserve">
+    <value>التقويم</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Circle" xml:space="preserve">
+    <value>دائرة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_CrossMark" xml:space="preserve">
+    <value>علامة تقاطع</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Cycling" xml:space="preserve">
+    <value>ركوب الدراجات</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Email" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Family" xml:space="preserve">
+    <value>أسرة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Financial" xml:space="preserve">
+    <value>الأمور المالية</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Hammer" xml:space="preserve">
+    <value>شاكوش</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Images" xml:space="preserve">
+    <value>الصور</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Important" xml:space="preserve">
+    <value>مهم</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Journal" xml:space="preserve">
+    <value>مجلة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Memo" xml:space="preserve">
+    <value>مذكرة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Passwords" xml:space="preserve">
+    <value>كلمات السر</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Pencil" xml:space="preserve">
+    <value>قلم</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Pushpin" xml:space="preserve">
+    <value>دبوس التثبيت</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Shazam" xml:space="preserve">
+    <value>شزام!</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Smiley" xml:space="preserve">
+    <value>مبتسم</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Software" xml:space="preserve">
+    <value>البرمجيات</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Sports" xml:space="preserve">
+    <value>رياضات</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Star" xml:space="preserve">
+    <value>نجمة</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Summary" xml:space="preserve">
+    <value>ملخص</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Tasks" xml:space="preserve">
+    <value>مهام</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Travel" xml:space="preserve">
+    <value>السفر</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="Emoji_Watch" xml:space="preserve">
+    <value>راقب</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="ribOutlineButton_Label" xml:space="preserve">
+    <value>تنسيق المخطط التفصيلي</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="OutlineDialog.Text" xml:space="preserve">
+    <value>تنسيق المخطط التفصيلي</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="OutlineDialog_alphaRadio.Text" xml:space="preserve">
+    <value>ألفا عددي</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="OutlineDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
+    <value>إزالة / تنظيف الترقيم الموجود</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_indentationsGroup.Text" xml:space="preserve">
+    <value>المسافات البادئة</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="OutlineDialog_indentBox.Text" xml:space="preserve">
+    <value>مسافة بادئة للمحتوى أسفل العناوين</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_indentTagBox.Text" xml:space="preserve">
+    <value>مسافة بادئة أسفل العناوين / الفقرات ذات العلامات فقط</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_indentTagBox.Tooltip" xml:space="preserve">
+    <value>المسافة البادئة للمحتوى أسفل العناوين ذات العلامات فقط أو الفقرات غير المميزة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="OutlineDialog_numberingBox.Text" xml:space="preserve">
+    <value>أضف الترقيم</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_numberingBox.Tooltip" xml:space="preserve">
+    <value>تُطبق على كل من العناوين القياسية والمخصصة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="OutlineDialog_numberingGroup.Text" xml:space="preserve">
+    <value>الترقيم</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
+    <value>رقمي</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="OutlineDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
+    <value>إزالة العلامات</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
+    <value>بطاقة شعار:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribExportButton_Label" xml:space="preserve">
+    <value>تصدير</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribExportButton_Screentip" xml:space="preserve">
+    <value>تصدير الصفحة (الصفحات) بتنسيق HTML أو PDF أو Word أو XML</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="SaveAs_Error" xml:space="preserve">
+    <value>خطأ في حفظ الصفحة باسم {0}</value>
+    <comment>Save as dialog error message</comment>
+  </data>
+  <data name="SaveAs_Filter" xml:space="preserve">
+    <value>ملف HTML | * .htm | ملف Word | * .docx | ملف PDF | * .pdf | ملف XML | * .xml</value>
+    <comment>Save as dialog filename filter string</comment>
+  </data>
+  <data name="SaveAs_Invalid_Type" xml:space="preserve">
+    <value>يجب أن يكون امتداد الملف واحدًا من .htm أو .docx أو .pdf أو .xml</value>
+    <comment>Save as dialog invalid file type message</comment>
+  </data>
+  <data name="SaveAs_Success" xml:space="preserve">
+    <value>تم حفظ الصفحة في {0}</value>
+    <comment>Save as dialog success message</comment>
+  </data>
+  <data name="SaveAs_Title" xml:space="preserve">
+    <value>حفظ الصفحة كما...</value>
+    <comment>Save as dialog title</comment>
+  </data>
+  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
+    <value>قم بإزالة الفقرات والعناوين الفارغة</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
+    <value>أزل الأسطر الفارغة الزائدة بين الفقرة وأزل الرؤوس الفارغة</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribToggleDttmButton_Label" xml:space="preserve">
+    <value>إظهار / إخفاء الصفحة تاريخ ووقت الطوابع</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
+    <value>إظهار / إخفاء الصفحة طوابع التاريخ والوقت أسفل العنوان</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribCleanMenu_Label" xml:space="preserve">
+    <value>نظيف</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveAuthorsButton_Label" xml:space="preserve">
+    <value>إزالة معلومات المؤلف</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
+    <value>إزالة المعلومات لجميع المؤلفين في هذه الصفحة</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberingMenu_Label" xml:space="preserve">
+    <value>الترقيم</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberPagesButton_Label" xml:space="preserve">
+    <value>عدد الصفحات</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberPagesButton_Screentip" xml:space="preserve">
+    <value>قم بإضافة أو تحديث رقم كل الصفحات في هذا القسم</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberSectionsButton_Label" xml:space="preserve">
+    <value>عدد المقاطع</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
+    <value>قم بإضافة أو تحديث ترقيم كافة الأقسام في دفتر الملاحظات هذا</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
+    <value>إزالة أرقام الصفحات</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemovePageNumbersButton_Screentip" xml:space="preserve">
+    <value>إزالة الأرقام من جميع الصفحات في هذا القسم</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveSectionNumbersButton_Label" xml:space="preserve">
+    <value>إزالة أرقام الأقسام</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveSectionNumbersButton_Screentip" xml:space="preserve">
+    <value>قم بإزالة الأرقام من كافة الأقسام الموجودة في دفتر الملاحظات هذا</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="PageNumberingDialog.Text" xml:space="preserve">
+    <value>ترقيم الصفحات</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PageNumberingDialog_alphaRadio.Text" xml:space="preserve">
+    <value>ألفا عددي</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PageNumberingDialog_cleanCheckbox.Text" xml:space="preserve">
+    <value>إزالة / تنظيف الترقيم الموجود</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
+    <value>رقمي</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="NumberingPage_Message" xml:space="preserve">
+    <value>صفحة الترقيم {0}</value>
+    <comment>progress status dialog</comment>
+  </data>
+  <data name="RemovingPageNumber_Message" xml:space="preserve">
+    <value>إزالة الرقم من الصفحة {0}</value>
+    <comment>progress status dialog</comment>
+  </data>
+  <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
+    <value>اكتمل يتوسطه خط مهام المهام</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
+    <value>قم بتبديل خط وسط النص المحدد بعلامات To Do كاملة أو غير كاملة</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="PhoneticsDialog.Text" xml:space="preserve">
+    <value>علم الصوتيات</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
+    <value>لغة</value>
+    <comment>label</comment>
+  </data>
+  <data name="PhoneticsDialog_languages" xml:space="preserve">
+    <value>en، English\n</value>
+    <comment>Recognized languages, one per line.
+ISO-code then comma then language name</comment>
+  </data>
+  <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
+    <value>كلمة</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribPronunciateButton_Label" xml:space="preserve">
+    <value>أدخل النطق</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="Pronunciate_EmptyWord" xml:space="preserve">
+    <value>لا يمكن أن تكون الكلمة المحددة فارغة</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_FullWord" xml:space="preserve">
+    <value>يجب تحديد كلمة كاملة</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_NetError" xml:space="preserve">
+    <value>تعذر جلب تعريف الكلمة {0}\n</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Pronunciate_NoWord" xml:space="preserve">
+    <value>تعذر العثور على الكلمة {0}</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="ribCropImageButton_Label" xml:space="preserve">
+    <value>ا \u0026 قتصاص</value>
+    <comment>Ribbon OneMore menu item, Images...</comment>
+  </data>
+  <data name="CropImageDialog.Text" xml:space="preserve">
+    <value>قص الصوره</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CropImageDialog_bounds" xml:space="preserve">
+    <value>تحديد أعلى اليسار: {0} ، {1}. </value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImageDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
+    <value>ا \u0026 قتصاص</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="CropImageDialog_imageSize" xml:space="preserve">
+    <value>حجم الصورة: {0} × {1}</value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImageDialog_noSelection" xml:space="preserve">
+    <value>لا اختيار</value>
+    <comment>status bar text</comment>
+  </data>
+  <data name="CropImage_oneImage" xml:space="preserve">
+    <value>حدد صورة واحدة لقصها</value>
+    <comment>Crop command error message</comment>
+  </data>
+  <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
+    <value>إزالة تباعد الفقرات</value>
+    <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
+    <value>إزالة تباعد الفقرات والعناوين والأسطر</value>
+    <comment>Ribbon OneMore menu item, Clean...</comment>
+  </data>
+  <data name="RemoveSpacingDialog.Text" xml:space="preserve">
+    <value>إزالة التباعد</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveSpacingDialog_afterBox.Text" xml:space="preserve">
+    <value>أزل المسافات بعد الفقرات</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="RemoveSpacingDialog_beforeBox.Text" xml:space="preserve">
+    <value>إزالة المسافات قبل الفقرات</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="RemoveSpacingDialog_betweenBox.Text" xml:space="preserve">
+    <value>إزالة التباعد بين السطور</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="RemoveSpacingDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="RemoveSpacingDialog_headingsBox.Text" xml:space="preserve">
+    <value>قم بتضمين العناوين</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="TimestampDialog.Text" xml:space="preserve">
+    <value>إظهار / إخفاء التاريخ والوقت</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TimestampDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="TimestampDialog_hideRadio.Text" xml:space="preserve">
+    <value>إخفاء التاريخ والوقت</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="TimestampDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="TimestampDialog_pageRadio.Text" xml:space="preserve">
+    <value>هذه الصفحة</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="TimestampDialog_scopeGroup.Text" xml:space="preserve">
+    <value>نطاق</value>
+    <comment>group box</comment>
+  </data>
+  <data name="TimestampDialog_sectionRadio.Text" xml:space="preserve">
+    <value>كل الصفحات في هذا القسم</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="TimestampDialog_showRadio.Text" xml:space="preserve">
+    <value>إظهار التاريخ والوقت</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="TimestampDialog_toggleGroup.Text" xml:space="preserve">
+    <value>تبديل</value>
+    <comment>group box</comment>
+  </data>
+  <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
+    <value>اختر الكل</value>
+    <comment>select all button</comment>
+  </data>
+  <data name="DialogResetSettings_Text" xml:space="preserve">
+    <value>اعادة الضبط</value>
+    <comment>system menu</comment>
+  </data>
+  <data name="sepContent_Label" xml:space="preserve">
+    <value>المحتوى</value>
+    <comment>Ribbon OneMore menu separator</comment>
+  </data>
+  <data name="sepSpecial_Label" xml:space="preserve">
+    <value>مميز</value>
+    <comment>Ribbon OneMore menu separator</comment>
+  </data>
+  <data name="sepText_Label" xml:space="preserve">
+    <value>نص</value>
+    <comment>Ribbon OneMore menu separator</comment>
+  </data>
+  <data name="ribRunPluginButton_Label" xml:space="preserve">
+    <value>تشغيل البرنامج المساعد</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribPluginButton_Label" xml:space="preserve">
+    <value>تشغيل البرنامج المساعد</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ctxCleanMenu_Label" xml:space="preserve">
+    <value>نظيف ...</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxLowercaseButton_Label" xml:space="preserve">
+    <value>لأحرف صغيرة</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
+    <value>لا تدقيق إملائي</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+    <value>قم بإزالة الفقرات والعناوين الفارغة</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
+    <value>إزالة تباعد الفقرات</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ctxUppercaseButton_Label" xml:space="preserve">
+    <value>إلى الحالة العليا</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="ProgressDialog.Text" xml:space="preserve">
+    <value>مرة اخرى</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
+    <value>إزالة الاقتباسات التي تم لصقها</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
+    <value>إزالة لقطة الشاشة ولصق الاقتباسات URL</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveCitations_Clippings" xml:space="preserve">
+    <value>لقطة الشاشة</value>
+    <comment>Screen clipping citation</comment>
+  </data>
+  <data name="RemoveCitations_FromUrl" xml:space="preserve">
+    <value>من \u003c\u003c a \\ shref \u003d. +؟ \u003c/a\u003e\u003e</value>
+    <comment>From &lt;URL&gt; pattern match</comment>
+  </data>
+  <data name="PluginDialog.Text" xml:space="preserve">
+    <value>تشغيل البرنامج المساعد</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PluginDialog_childBox.Text" xml:space="preserve">
+    <value>إنشاء كعنصر تابع للصفحة الحالية</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PluginDialog_createRadio.Text" xml:space="preserve">
+    <value>قم بإنشاء صفحة جديدة باسم</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_okButton.Text" xml:space="preserve">
+    <value>يركض</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
+    <value>أمر البرنامج المساعد</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
+    <value>تحديث الصفحة الحالية</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="PluginDialog_argsLabel.Text" xml:space="preserve">
+    <value>الحجج</value>
+    <comment>label</comment>
+  </data>
+  <data name="Plugin_NoChanges" xml:space="preserve">
+    <value>اكتمل البرنامج المساعد بنجاح ولكن لم يتم العثور على تغييرات</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="Plugin_NoUpdate" xml:space="preserve">
+    <value>خطأ في تحديث الصفحة. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="Plugin_Running" xml:space="preserve">
+    <value>تشغيل {0} {1} \\ \"{2} \\\"</value>
+    <comment>running message</comment>
+  </data>
+  <data name="Plugin_Title" xml:space="preserve">
+    <value>توصيل في</value>
+    <comment>Open File Dialog title</comment>
+  </data>
+  <data name="Plugin_Unsuccessful" xml:space="preserve">
+    <value>لم يكتمل البرنامج المساعد بنجاح. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="Plugin_WritingTemp" xml:space="preserve">
+    <value>خطأ في الكتابة إلى ملف مؤقت. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
+    <value>حذف</value>
+    <comment>delete button</comment>
+  </data>
+  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
+    <value>حذف:</value>
+    <comment>delete label</comment>
+  </data>
+  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
+    <value>حذف {0}؟</value>
+    <comment>delete confirmation message</comment>
+  </data>
+  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
+    <value>تحرك لأسفل</value>
+    <comment>down buttom</comment>
+  </data>
+  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
+    <value>أيقونة</value>
+    <comment>icon col</comment>
+  </data>
+  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
+    <value>يجب أن تحتوي أنماط عناوين URL على رمز مميز لاستبدال السلسلة ، مثل \u0026 q \u003d {0}</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
+    <value>اسم</value>
+    <comment>name col</comment>
+  </data>
+  <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
+    <value>تحديث الرموز</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineDialog_Text" xml:space="preserve">
+    <value>محركات البحث</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
+    <value>تحرك</value>
+    <comment>up buttom</comment>
+  </data>
+  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
+    <value>نمط URL</value>
+    <comment>url col</comment>
+  </data>
+  <data name="InsertCalendarDialog.Text" xml:space="preserve">
+    <value>أدخل التقويم</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="InsertCalendarDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
+    <value>شكل</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_largeRadio.Text" xml:space="preserve">
+    <value>كبير</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertCalendarDialog_monthLabel.Text" xml:space="preserve">
+    <value>شهر</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertCalendarDialog_smallRadio.Text" xml:space="preserve">
+    <value>صغير</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertCalendarDialog_yearLabel.Text" xml:space="preserve">
+    <value>عام</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribCalendarButton_Label" xml:space="preserve">
+    <value>التقويم</value>
+    <comment>Ribbon OneMore menu item, snippets</comment>
+  </data>
+  <data name="CustomStyle_Screentip" xml:space="preserve">
+    <value>{0} (Ctrl + Alt + Shift + {1})</value>
+    <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="TocDialog.Text" xml:space="preserve">
+    <value>جدول المحتويات</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TocDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>button</comment>
+  </data>
+  <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
+    <value>أضف صفحة مع جدول أقسام في دفتر الملاحظات هذا</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>button</comment>
+  </data>
+  <data name="TocDialog_pageRadio.Text" xml:space="preserve">
+    <value>أدخل جدول العناوين في هذه الصفحة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_pagesBox.Text" xml:space="preserve">
+    <value>تضمين صفحات في كل قسم</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
+    <value>أضف صفحة مع جدول الصفحات في هذا القسم</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TocDialog_topBox.Text" xml:space="preserve">
+    <value>أضف ارتباطًا إلى كل عنوان للانتقال إلى أعلى الصفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocCommand_TOC" xml:space="preserve">
+    <value>جدول المحتويات</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
+    <value>جدول المحتويات - مفكرة {0}</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_TOCSections" xml:space="preserve">
+    <value>جدول المحتويات - القسم {0}</value>
+    <comment>page name</comment>
+  </data>
+  <data name="InsertTocCommand_Top" xml:space="preserve">
+    <value>أعلى الصفحة</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="TextToTableDialog.Text" xml:space="preserve">
+    <value>تحويل النص إلى جدول</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TextToTableDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="TextToTableDialog_columnsLabel.Text" xml:space="preserve">
+    <value>عدد الأعمدة:</value>
+    <comment>label</comment>
+  </data>
+  <data name="TextToTableDialog_commasRadio.Text" xml:space="preserve">
+    <value>فواصل</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TextToTableDialog_group1.Text" xml:space="preserve">
+    <value>نص منفصل في</value>
+    <comment>group</comment>
+  </data>
+  <data name="TextToTableDialog_group2.Text" xml:space="preserve">
+    <value>حجم الجدول</value>
+    <comment>group</comment>
+  </data>
+  <data name="TextToTableDialog_headerBox.Text" xml:space="preserve">
+    <value>الصف الأول عبارة عن رأس</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TextToTableDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="TextToTableDialog_otherRadio.Text" xml:space="preserve">
+    <value>آخر</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TextToTableDialog_paragraphsRadio.Text" xml:space="preserve">
+    <value>الفقرات</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TextToTableDialog_rowsLabel.Text" xml:space="preserve">
+    <value>عدد الصفوف:</value>
+    <comment>label</comment>
+  </data>
+  <data name="TextToTableDialog_tabsRadio.Text" xml:space="preserve">
+    <value>نوافذ التبويب</value>
+    <comment>radio</comment>
+  </data>
+  <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
+    <value>إزالة الاقتباسات من السلاسل الكاملة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TextToTable_NoText" xml:space="preserve">
+    <value>لم يتم تحديد نص</value>
+    <comment>info message</comment>
+  </data>
+  <data name="ribTextToTableButton_Label" xml:space="preserve">
+    <value>تحويل النص إلى جدول</value>
+    <comment>Ribbon OneMore menu item, extras</comment>
+  </data>
+  <data name="XmlDialog.Text" xml:space="preserve">
+    <value>OneMore XML</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="XmlDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="XmlDialog_currNotebookButton.Text" xml:space="preserve">
+    <value>دفتر الملاحظات الحالي</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="XmlDialog_currSectionButton.Text" xml:space="preserve">
+    <value>القسم الحالي</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="XmlDialog_hideBox.Text" xml:space="preserve">
+    <value>إخفاء السمات التي تم تحريرها بواسطة (قم بإلغاء التحديد لتحرير الصفحة)</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">
+    <value>قم بإزالة LF من CDATA</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="XmlDialog_hierTab.Text" xml:space="preserve">
+    <value>التسلسل الهرمي</value>
+    <comment>tab</comment>
+  </data>
+  <data name="XmlDialog_notebooksHierButton.Text" xml:space="preserve">
+    <value>دفاتر الملاحظات</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="XmlDialog_okButton.Text" xml:space="preserve">
+    <value>تحديث الصفحة</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="XmlDialog_pageLinkLabel.Text" xml:space="preserve">
+    <value>حلقة الوصل:</value>
+    <comment>label</comment>
+  </data>
+  <data name="XmlDialog_pageNameLabel.Text" xml:space="preserve">
+    <value>اسم:</value>
+    <comment>label</comment>
+  </data>
+  <data name="XmlDialog_pagePathLabel.Text" xml:space="preserve">
+    <value>مسار:</value>
+    <comment>label</comment>
+  </data>
+  <data name="XmlDialog_pagesHierButton.Text" xml:space="preserve">
+    <value>الصفحات</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="XmlDialog_pageTab.Text" xml:space="preserve">
+    <value>الصفحة</value>
+    <comment>tab</comment>
+  </data>
+  <data name="XmlDialog_sectionsHierButton.Text" xml:space="preserve">
+    <value>الأقسام</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="XmlDialog_selectButton.Text" xml:space="preserve">
+    <value>اختر الكل</value>
+    <comment>button</comment>
+  </data>
+  <data name="XmlDialog_wrapBox.Text" xml:space="preserve">
+    <value>دوران النص</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Plugin_InvalidSchema" xml:space="preserve">
+    <value>تم اكتشاف ملف XML غير صالح. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="FormulaCommand_Exception" xml:space="preserve">
+    <value>{0} (العمود {1})</value>
+    <comment>exception message</comment>
+  </data>
+  <data name="FormulaCommand_Linear" xml:space="preserve">
+    <value>يجب أن تكون الخلايا المحددة في نفس الصف أو في نفس العمود</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="FormulaCommand_SelectOne" xml:space="preserve">
+    <value>حدد خلية جدول واحدة أو أكثر</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
+    <value>معادلة:</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
+    <value>يجب أن يتم تطبيق الصيغة التي تم إدخالها على الخلية الأولى المحددة. </value>
+  </data>
+  <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
+    <value>الخلايا المحددة:</value>
+    <comment>label</comment>
+  </data>
+  <data name="FormulaDialog_status_Invalid" xml:space="preserve">
+    <value>غير صالحة</value>
+    <comment>label</comment>
+  </data>
+  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
+    <value>توقع قوس الإغلاق</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
+    <value>يجب أن يكون نطاق الخلايا داخل عمود واحد أو داخل صف واحد</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
+    <value>معامل غير صالح</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
+    <value>يحتوي المعامل على عدة نقاط عشرية</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
+    <value>توقع معامل</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
+    <value>توقع عامل</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
+    <value>وظيفة غير محددة \"{0}\"</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
+    <value>رمز غير محدد \"{0}\"</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
+    <value>تمت مصادفة حرف غير متوقع \"{0}\"</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
+    <value>أقواس إغلاق بدون مطابقة أقواس مفتوحة</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
+    <value>عدد خاطئ لمعلمات الوظيفة</value>
+    <comment>error</comment>
+  </data>
+  <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
+    <value>الصيغ المحذوفة من {0} خلية (خلايا)</value>
+    <comment>delete command message</comment>
+  </data>
+  <data name="DeleteFormulaCommand_NoFormulas" xml:space="preserve">
+    <value>الصيغة غير موجودة. </value>
+    <comment>delete command message</comment>
+  </data>
+  <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
+    <value>لا توجد صيغ موجودة في هذه الصفحة</value>
+    <comment>highlight command message</comment>
+  </data>
+  <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
+    <value>لم يتم العثور على صيغة في الجدول المحدد</value>
+    <comment>recalculate command message</comment>
+  </data>
+  <data name="ribWordCountButton_Label" xml:space="preserve">
+    <value>عدد الكلمات</value>
+    <comment>Ribbon OneMore menu extras</comment>
+  </data>
+  <data name="AddCaptionCommand_Captioned" xml:space="preserve">
+    <value>الصورة لديها بالفعل تسمية توضيحية</value>
+    <comment>info message</comment>
+  </data>
+  <data name="WordCountCommand_Count" xml:space="preserve">
+    <value>إجمالي الكلمات في الصفحة: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AddFormulaCommand_Calculated" xml:space="preserve">
+    <value>محسوب</value>
+    <comment>tag name</comment>
+  </data>
+  <data name="ExportDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>button</comment>
+  </data>
+  <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
+    <value>مجلد:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
+    <value>ملف HTML (* .htm)\n</value>
+    <comment>combo box</comment>
+  </data>
+  <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
+    <value>شكل:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_groupBox.Text" xml:space="preserve">
+    <value>تصدير صفحات {0}</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>button</comment>
+  </data>
+  <data name="ExportDialog_Text" xml:space="preserve">
+    <value>تصدير الصفحات</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SaveAsMany_Success" xml:space="preserve">
+    <value>تم حفظ {0} من الصفحات في {1}</value>
+    <comment>save many message</comment>
+  </data>
+  <data name="Command_Error" xml:space="preserve">
+    <value>خطأ في تشغيل الأمر {0}</value>
+    <comment>logged and displayed in messagebox</comment>
+  </data>
+  <data name="Command_ErrorMsg" xml:space="preserve">
+    <value>{0}. </value>
+    <comment>messagebox (0 arg is Command_Error)</comment>
+  </data>
+  <data name="ImportDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
+    <value>ملف:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
+    <value>حدد ملف Word أو Powerpoint</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportDialog_okButton.text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportDialog_powerAppendButton.Text" xml:space="preserve">
+    <value>إلحاق بهذه الصفحة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportDialog_powerCreateButton.Text" xml:space="preserve">
+    <value>قم بإنشاء صفحة جديدة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
+    <value>خيارات Powerpoint</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ImportDialog_powerSectionButton.Text" xml:space="preserve">
+    <value>قم بإنشاء قسم جديد بصفحة لكل شريحة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportDialog_Text" xml:space="preserve">
+    <value>استيراد</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportDialog_wordAppendButton.Text" xml:space="preserve">
+    <value>إلحاق بهذه الصفحة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportDialog_wordCreateButton.Text" xml:space="preserve">
+    <value>قم بإنشاء صفحة جديدة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
+    <value>خيارات Word</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
+    <value>ملفات Word (* .doc) | * .docx | ملفات Powerpoint (* .pptx) | * .pptx</value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
+    <value>اختر الملف المراد استيراده</value>
+    <comment>openfiledialog title</comment>
+  </data>
+  <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
+    <value>منازل عشرية:</value>
+    <comment>label</comment>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>General OK label</comment>
+  </data>
+  <data name="SectionGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sectiongroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchDialog_allButton.Text" xml:space="preserve">
+    <value>في جميع أجهزة الكمبيوتر المحمولة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchDialog_copyButton.Text" xml:space="preserve">
+    <value>نسخ</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
+    <value>تجد:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
+    <value>أدخل كلمة رئيسية واحدة أو أكثر ، \"عبارات مقتبسة\" ، واستخدم حرف AND و OR</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="SearchDialog_moveButton.Text" xml:space="preserve">
+    <value>نقل</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchDialog_notebookButton.Text" xml:space="preserve">
+    <value>في هذا دفتر الملاحظات</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SearchDialog_sectionButton.Text" xml:space="preserve">
+    <value>في هذا القسم</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SearchDialog_Title" xml:space="preserve">
+    <value>بحث ونقل / نسخ</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SearchQF_DescriptionCopy" xml:space="preserve">
+    <value>اختر الموقع حيث يجب نسخ الصفحات المحددة</value>
+    <comment>QuickFiling description</comment>
+  </data>
+  <data name="SearchQF_Title" xml:space="preserve">
+    <value>اختر موقعا</value>
+    <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchQF_DescriptionMove" xml:space="preserve">
+    <value>اختر الموقع حيث يجب نقل الصفحات المحددة</value>
+    <comment>QuickFiling description</comment>
+  </data>
+  <data name="ribSearchButton_Label" xml:space="preserve">
+    <value>بحث ونسخ / نقل</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribSearchButton_Screentip" xml:space="preserve">
+    <value>صفحات البحث عن الكلمات الرئيسية ونسخ / نقل إلى قسم آخر (Alt + F)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
+    <value>أضف حاشية سفلية</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCleanMenu" xml:space="preserve">
+    <value>قائمة نظيفة</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDecreaseFontSizeButton" xml:space="preserve">
+    <value>... تصغير حجم النص</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribEditMenu" xml:space="preserve">
+    <value>عدل القائمة</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribIncreaseFontSizeButton" xml:space="preserve">
+    <value>... زيادة حجم النص</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
+    <value>اختر أوامر لعرضها في قائمة سياق الصفحة. </value>
+    <comment>intro</comment>
+  </data>
+  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
+    <value>لا تدقيق إملائي</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
+    <value>لصق نص منسق</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">
+    <value>... إزالة معلومات المؤلف</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemoveCitationsButton" xml:space="preserve">
+    <value>... إزالة الاقتباسات التي تم لصقها</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemoveEmptyButton" xml:space="preserve">
+    <value>... إزالة العناوين والفقرات الفارغة</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemoveSpacingButton" xml:space="preserve">
+    <value>... إزالة تباعد الفقرات</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSnippetsMenu" xml:space="preserve">
+    <value>قائمة المقتطفات</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_Title" xml:space="preserve">
+    <value>خيارات قائمة السياق</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="ContextMenuSheet_ribLowercaseButton" xml:space="preserve">
+    <value>... إلى الأحرف الصغيرة</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribUppercaseButton" xml:space="preserve">
+    <value>... إلى الحالة العليا</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribTrimButton" xml:space="preserve">
+    <value>... تقليم المسافة البيضاء</value>
+    <comment>option</comment>
+  </data>
+  <data name="HighlightsSheet_Title" xml:space="preserve">
+    <value>تدوير خيارات التظليل</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="ribEditMenu_Label" xml:space="preserve">
+    <value>تعديل</value>
+    <comment>OneMore Ribbon menu item</comment>
+  </data>
+  <data name="ribHighlightButton_Label" xml:space="preserve">
+    <value>قلم تمييز دوار</value>
+    <comment>menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribHighlightButton" xml:space="preserve">
+    <value>... الدورية تمييز</value>
+    <comment>context menu</comment>
+  </data>
+  <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
+    <value>تحرير الأوامر</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
+    <value>إظهار الرموز لأوامر التحرير فقط</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
+    <value>أوامر الصيغة</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
+    <value>إظهار الرموز لأوامر الصيغ فقط</value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
+    <value>اختر الأوامر المراد تضمينها في شريط الشريط وما إذا كنت تريد عرض الرموز أو الرموز والتسميات. </value>
+    <comment>settings dialog, ribbon bar options</comment>
+  </data>
+  <data name="RibbonBarSheet_Title" xml:space="preserve">
+    <value>خيارات شريط الشريط</value>
+    <comment>settings dialog</comment>
+  </data>
+  <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
+    <value>ثيمات</value>
+    <comment>group</comment>
+  </data>
+  <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
+    <value>أدخل كتلة التعليمات البرمجية (F6)</value>
+    <comment>menu</comment>
+  </data>
+  <data name="SettingsDialog_Restart" xml:space="preserve">
+    <value>تتطلب بعض التغييرات إعادة تشغيل OneNote. </value>
+    <comment>restart message</comment>
+  </data>
+</root>

@@ -114,6 +114,13 @@
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
+    <Compile Include="Commands\Extras\InsertCellsCommand.cs" />
+    <Compile Include="Commands\Extras\InsertCellsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
+      <DependentUpon>InsertCellsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Formula\Formula.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
@@ -515,6 +522,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Commands\Extras\InsertCellsDialog.resx">
+      <DependentUpon>InsertCellsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </EmbeddedResource>

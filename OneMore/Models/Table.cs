@@ -9,6 +9,15 @@ namespace River.OneMoreAddIn.Models
 	using System.Xml.Linq;
 
 
+	internal enum TableSelectionRange
+	{
+		Single,
+		Columns,
+		Rows,
+		Rectangular
+	}
+
+
 	/// <summary>
 	/// Helper class to construct a OneNote table
 	/// </summary>
@@ -88,6 +97,14 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets the indexed row.
+		/// </summary>
+		/// <param name="i"></param>
+		/// <returns></returns>
+		public TableRow this[int i] => rows[i];
+
+
+		/// <summary>
 		/// Adds a column definition to the table
 		/// </summary>
 		/// <param name="width">Required width of the column</param>
@@ -142,14 +159,61 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public IEnumerable<TableCell> GetSelectedCells()
+		public IEnumerable<TableCell> GetSelectedCells(out TableSelectionRange range)
 		{
-			return
+			var selections =
 				from r in rows
 				let cells = r.Cells
 				from c in cells
 				where c.Selected == Selection.all || c.Selected == Selection.partial
 				select c;
+
+			range = InferRangeType(selections);
+
+			return selections;
+		}
+
+
+		private TableSelectionRange InferRangeType(IEnumerable<TableCell> cells)
+		{
+			if (cells.Count() == 1)
+			{
+				return TableSelectionRange.Single;
+			}
+
+			var col = -1;
+			var row = -1;
+
+			// cells should be in order, from A1, A2, .. B1, B2, .. C1, C2, ..
+			foreach (var cell in cells)
+			{
+				// record first column and then notice when there are multiple cols selected
+				if (col < 0)
+					col = cell.ColNum;
+				else if (col != int.MaxValue && col != cell.ColNum)
+					col = int.MaxValue;
+
+				// record first row and then notice when there are multiple rows selected
+				if (row < 0)
+					row = cell.RowNum;
+				else if (row != int.MaxValue && row != cell.RowNum)
+					row = int.MaxValue;
+
+				// if both multi cols and multi rows then must be rectangular
+				if (col == int.MaxValue && row == int.MaxValue)
+					break;
+			}
+
+			if (col == int.MaxValue && row == int.MaxValue)
+			{
+				return TableSelectionRange.Rectangular;
+			}
+			else if (col == int.MaxValue)
+			{
+				return TableSelectionRange.Columns;
+			}
+
+			return TableSelectionRange.Rows;
 		}
 
 

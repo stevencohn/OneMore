@@ -48,10 +48,21 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets the XElement of this cell; used for moving cells, preserving metadata
+		/// such as formulas and styles
+		/// </summary>
+		/// <returns></returns>
+		public XElement GetContent()
+		{
+			return Root.Element(ns + "OEChildren");
+		}
+
+
+		/// <summary>
 		/// Gets the value stored in this cell
 		/// </summary>
 		/// <returns>A string value</returns>
-		public string GetContent()
+		public string GetText()
 		{
 			var text = Root.Elements(ns + "OEChildren")
 				.Elements(ns + "OE")
@@ -167,7 +178,7 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="value">The meta value</param>
 		public void SetMeta(string name, string value)
 		{
-			if (GetContent() == null)
+			if (GetText() == null)
 			{
 				SetContent(string.Empty);
 			}
@@ -196,7 +207,7 @@ namespace River.OneMoreAddIn.Models
 		{
 			//<one:Tag index="0" completed="true" disabled="false" />
 
-			if (GetContent() == null)
+			if (GetText() == null)
 			{
 				SetContent(string.Empty);
 			}

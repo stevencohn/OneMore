@@ -5,15 +5,6 @@
 namespace River.OneMoreAddIn.Commands.Formula
 {
 
-	internal enum FormulaRangeType
-	{
-		Single,
-		Columns,
-		Rows,
-		Rectangular
-	}
-
-
 	internal enum FormulaFormat
 	{
 		Number,

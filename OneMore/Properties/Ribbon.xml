@@ -330,6 +330,12 @@
                 getEnabled="GetBodyContext"
                 onAction="TextToTableCmd"/>
               <button
+                id="ribInsertCellsButton"
+                imageMso="TableInsertCellsDialog"
+                label="Insert Table Cells"
+                getEnabled="GetBodyContext"
+                onAction="InsertCellsCmd"/>
+              <button
                 id="ribPronunciateButton"
                 getLabel="GetRibbonLabel"
                 imageMso="SpeakOnEnter"

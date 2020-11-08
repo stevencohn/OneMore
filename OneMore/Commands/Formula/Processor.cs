@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 			var cell = table.GetCell(e.Name.ToUpper());
 			if (cell != null)
 			{
-				var text = cell.GetContent()
+				var text = cell.GetText()
 					.Replace("$", string.Empty)
 					.Replace("%", string.Empty);
 

@@ -70,6 +70,14 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets the indexed cell.
+		/// </summary>
+		/// <param name="i"></param>
+		/// <returns></returns>
+		public TableCell this[int i] => cells[i];
+
+
+		/// <summary>
 		/// Gets the row number, position in the table, starting at 1
 		/// </summary>
 		public int RowNum { get; private set; }

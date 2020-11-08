@@ -51,10 +51,9 @@ namespace River.OneMoreAddIn
 				}
 
 				var table = new Table(anchor.FirstAncestor(ns + "Table"));
-				var cells = table.GetSelectedCells().ToList();
+				var cells = table.GetSelectedCells(out var range).ToList();
 
-				var rangeType = InferRangeType(cells);
-				if (rangeType == FormulaRangeType.Rectangular)
+				if (range == TableSelectionRange.Rectangular)
 				{
 					UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_Linear);
 					return;
@@ -98,7 +97,7 @@ namespace River.OneMoreAddIn
 
 					StoreFormula(cells,
 						dialog.Formula, dialog.Format, dialog.DecimalPlaces,
-						rangeType, tagIndex);
+						range, tagIndex);
 
 					var processor = new Processor(table);
 					processor.Execute(cells);
@@ -109,50 +108,12 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private FormulaRangeType InferRangeType(IEnumerable<TableCell> cells)
-		{
-			if (cells.Count() == 1)
-			{
-				return FormulaRangeType.Single;
-			}
-
-			var col = -1;
-			var row = -1;
-			foreach (var cell in cells)
-			{
-				if (col < 0)
-					col = cell.ColNum;
-				else if (col != int.MaxValue && col != cell.ColNum)
-					col = int.MaxValue;
-
-				if (row < 0)
-					row = cell.RowNum;
-				else if (row != int.MaxValue && row != cell.RowNum)
-					row = int.MaxValue;
-
-				if (col == int.MaxValue && row == int.MaxValue)
-					break;
-			}
-
-			if (col == int.MaxValue && row == int.MaxValue)
-			{
-				return FormulaRangeType.Rectangular;
-			}
-			else if (col == int.MaxValue)
-			{
-				return FormulaRangeType.Columns;
-			}
-
-			return FormulaRangeType.Rows;
-		}
-
-
 		private void StoreFormula(
 			IEnumerable<TableCell> cells,
 			string expression, FormulaFormat format, int dplaces,
-			FormulaRangeType rangeType, string tagIndex)
+			TableSelectionRange rangeType, string tagIndex)
 		{
-			if (rangeType == FormulaRangeType.Single)
+			if (rangeType == TableSelectionRange.Single)
 			{
 				var cell = cells.First();
 
@@ -179,7 +140,7 @@ namespace River.OneMoreAddIn
 						string col;
 						string row;
 
-						if (rangeType == FormulaRangeType.Columns)
+						if (rangeType == TableSelectionRange.Columns)
 						{
 							col = TableCell.IndexToLetters(
 								TableCell.LettersToIndex(match.Groups[1].Value) + offset);

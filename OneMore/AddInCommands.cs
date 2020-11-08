@@ -72,6 +72,9 @@ namespace River.OneMoreAddIn
 		public void InsertCalendarCmd(IRibbonControl control)
 			=> factory.Run<InsertCalendarCommand>();
 
+		public void InsertCellsCmd(IRibbonControl control)
+			=> factory.Run<InsertCellsCommand>();
+
 		public void InsertCodeBlockCmd(IRibbonControl control)
 			=> factory.Run<InsertCodeBlockCommand>();
 
