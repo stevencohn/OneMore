@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 		public async Task<bool> Update()
 		{
 			// presume the msi has one of these two keywords in its name
-			var key = Environment.Is64BitProcess ? "x64" : "x32";
+			var key = Environment.Is64BitProcess ? "x64" : "x86";
 
 			var asset = release.assets.FirstOrDefault(a => a.browser_download_url.Contains(key));
 

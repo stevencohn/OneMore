@@ -2108,4 +2108,32 @@ ISO-code then comma then language name</comment>
     <value>Bei einigen Änderungen muss OneNote neu gestartet werden. </value>
     <comment>restart message</comment>
   </data>
+  <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
+    <value>Wählen Sie eine oder mehrere Tabellenzellen aus</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertCellsDialog.Text" xml:space="preserve">
+    <value>Zellen einfügen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="InsertCellsDialog_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertCellsDialog_numLabel.Text" xml:space="preserve">
+    <value>Anzahl der einzufügenden Zellen:</value>
+    <comment>numeric label</comment>
+  </data>
+  <data name="InsertCellsDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
+    <value>Verschieben Sie die Zellen nach unten</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
+    <value>Verschieben Sie die Zellen nach rechts</value>
+    <comment>radio</comment>
+  </data>
 </root>

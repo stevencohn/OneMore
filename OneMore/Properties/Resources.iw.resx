@@ -2108,4 +2108,32 @@ ISO-code then comma then language name</comment>
     <value>חלק מהשינויים מחייבים הפעלה מחדש של OneNote. </value>
     <comment>restart message</comment>
   </data>
+  <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
+    <value>בחר תאי טבלה אחד או יותר</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertCellsDialog.Text" xml:space="preserve">
+    <value>הכנס תאים</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="InsertCellsDialog_cancelButton.Text" xml:space="preserve">
+    <value>לְבַטֵל</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertCellsDialog_numLabel.Text" xml:space="preserve">
+    <value>מספר התאים להכניס:</value>
+    <comment>numeric label</comment>
+  </data>
+  <data name="InsertCellsDialog_okButton.Text" xml:space="preserve">
+    <value>בסדר</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
+    <value>הסט את התאים כלפי מטה</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
+    <value>הסט תאים ימינה</value>
+    <comment>radio</comment>
+  </data>
 </root>
