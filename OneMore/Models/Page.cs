@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Linq;
 	using System.Media;
 	using System.Text.RegularExpressions;
+	using System.Xml;
 	using System.Xml.Linq;
 
 
@@ -196,6 +197,55 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public bool EditSelected(Func<string, XElement> edit)
+		{
+			var updated = false;
+			var cursor = GetEmptyCursor();
+
+			if (cursor != null)
+			{
+				// T elements can only be a child of an OE but can also have other T siblings...
+				// OneNote handles nested spans by normalizing them into sequential spans
+
+				// is there a preceding T?
+				if ((cursor.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
+				{
+					prev.EditLastWord(edit);
+					updated = true;
+				}
+
+				// is there a following T?
+				if ((cursor.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
+				{
+					next.EditFirstWord(edit);
+					updated = true;
+				}
+			}
+			else
+			{
+				// detect all selected text runs
+				var runs = Root.Descendants(Namespace + "T")
+					.Where(e => e.Attributes("selected").Any(a => a.Value == "all")
+						&& e.FirstNode?.NodeType == XmlNodeType.CDATA)
+					.Select(e => e.FirstNode as XCData);
+
+				if (runs?.Any() == true)
+				{
+					foreach (var run in runs)
+					{
+						// blindly wrap; OneNote will normalize nested styles
+						var v = edit(run.Value).ToString(SaveOptions.DisableFormatting);
+						run.Value = v;
+					}
+
+					updated = true;
+				}
+			}
+
+			return updated;
+		}
+
+
 		/// <summary>
 		/// Ensures the page contains at least one OEChildren elements and returns it
 		/// </summary>
@@ -276,6 +326,28 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Gets the T element of a zero-width selection. Visually, this appears as the current
+		/// cursor insertion point and can be used to infer the current word or phrase in text.
+		/// </summary>
+		/// <returns>
+		/// The one:T XElement or null if there is a selected range greater than zero
+		/// </returns>
+		public XElement GetEmptyCursor()
+		{
+			return Root.Descendants(Namespace + "T")
+				.FirstOrDefault(e =>
+					e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
+					e.FirstNode.NodeType == XmlNodeType.CDATA &&
+					((XCData)e.FirstNode).Value.Length == 0);
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public Style GetQuickStyle(StandardStyles key)
 		{
 			string name = key.ToName();

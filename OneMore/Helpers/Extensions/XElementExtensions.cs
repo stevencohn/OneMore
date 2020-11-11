@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Linq;
@@ -132,6 +133,112 @@ namespace River.OneMoreAddIn
 			}
 
 			return xml;
+		}
+
+
+		public static void EditFirstWord(this XElement element, Func<string, XElement> edit)
+		{
+			var cdata = element.GetCData();
+
+			if (cdata.IsEmpty())
+			{
+				return;
+			}
+
+			// copy the first word and edit it...
+
+			var wrapper = cdata.GetWrapper();
+
+			// OneNote is very conservative with styles and excludes prior and following
+			// whitespace when applying css to words; so we don't need to worry about whitespace
+
+			// get text node or span element but not others like <br/>
+			var node = wrapper.Nodes().FirstOrDefault(n =>
+				// text nodes that have at least one word character
+				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
+				// span elements that have at least one word character
+				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")
+					&& Regex.IsMatch((n as XElement).Value, @"\w")));
+
+			if (node == null)
+			{
+				return;
+			}
+
+			// extract first word, edit, re-add
+			if (node.NodeType == XmlNodeType.Text)
+			{
+				var pair = (node as XText).Value.ExtractFirstWord();
+				(node as XText).Value = pair.Item2;
+				node.AddBeforeSelf(edit(pair.Item1));
+			}
+			else
+			{
+				var pair = (node as XElement).Value.ExtractFirstWord();
+				(node as XElement).Value = pair.Item2;
+				node.AddBeforeSelf(edit(pair.Item1));
+			}
+
+			// update the CData (our local wrapped copy)
+			cdata = new XCData(wrapper.GetInnerXml());
+
+			// update the element's content
+			element.DescendantNodes()
+				.First(e => e.NodeType == XmlNodeType.CDATA)
+				.ReplaceWith(cdata);
+		}
+
+
+		public static void EditLastWord(this XElement element, Func<string, XElement> edit)
+		{
+			var cdata = element.GetCData();
+
+			if (cdata.IsEmpty())
+			{
+				return;
+			}
+
+			// copy the last word and edit it...
+
+			var wrapper = cdata.GetWrapper();
+
+			// OneNote is very conservative with styles and excludes prior and following
+			// whitespace when applying css to words; so we don't need to worry about whitespace
+
+			// get text node or span element but not others like <br/>
+			var node = wrapper.Nodes().LastOrDefault(n =>
+				// text nodes that have at least one word character
+				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
+				// span elements that have at least one word character
+				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")
+					&& Regex.IsMatch((n as XElement).Value, @"\w")));
+
+			if (node == null)
+			{
+				return;
+			}
+
+			// extract last word, edit, re-add
+			if (node.NodeType == XmlNodeType.Text)
+			{
+				var pair = (node as XText).Value.ExtractLastWord();
+				(node as XText).Value = pair.Item2;
+				node.AddAfterSelf(edit(pair.Item1));
+			}
+			else
+			{
+				var pair = (node as XElement).Value.ExtractLastWord();
+				(node as XElement).Value = pair.Item2;
+				node.AddAfterSelf(edit(pair.Item1));
+			}
+
+			// update the CData (our local wrapped copy)
+			cdata = new XCData(wrapper.GetInnerXml());
+
+			// update the element's content
+			element.DescendantNodes()
+				.First(e => e.NodeType == XmlNodeType.CDATA)
+				.ReplaceWith(cdata);
 		}
 
 

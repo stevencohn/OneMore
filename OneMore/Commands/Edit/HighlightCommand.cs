@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using System.Linq;
-	using System.Text;
 	using System.Xml;
 	using System.Xml.Linq;
 
@@ -22,7 +21,7 @@ namespace River.OneMoreAddIn
 		public override void Execute(params object[] args)
 		{
 
-			//System.Diagnostics.Debugger.Launch();
+			System.Diagnostics.Debugger.Launch();
 
 
 			using (var one = new OneNote(out var page, out var ns))
@@ -42,47 +41,47 @@ namespace River.OneMoreAddIn
 				}
 
 				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-
 				var color = GetColor(index, dark);
 
-				// zero-length selection?
-				var cursor = page.Root.Descendants(ns + "T")
-					.FirstOrDefault(e =>
-						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
-						e.FirstNode.NodeType == XmlNodeType.CDATA &&
-						((XCData)e.FirstNode).Value.Length == 0);
+				//updated = page.EditSelected((s) =>
+				//{
+				//	var o = s.StartsWith("<") && s.EndsWith(">")
+				//		? (XNode)XElement.Parse(s)
+				//		: new XText(s);
+
+				//	return new XElement("span",
+				//		new XAttribute("style", $"background:{color}"),
+				//		o);
+				//});
+
+				var cursor = page.GetEmptyCursor();
 
 				if (cursor != null)
 				{
-					// detect current word from zero-length selection
-					var word = new StringBuilder();
+					// T elements can only be a child of an OE but can also have other T siblings...
 
+					// is there a preceding T?
 					if ((cursor.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
 					{
-						word.Append(prev.ExtractLastWord());
-						if (prev.GetCData().Value.Length == 0)
+						prev.EditLastWord((s) =>
 						{
-							prev.Remove();
-						}
+							return new XElement("span",
+								new XAttribute("style", $"background:{color}"),
+								s);
+						});
+
+						updated = true;
 					}
 
+					// is there a following T?
 					if ((cursor.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
 					{
-						word.Append(next.ExtractFirstWord());
-						if (next.GetCData().Value.Length == 0)
+						next.EditFirstWord((s) =>
 						{
-							next.Remove();
-						}
-					}
-
-					if (word.Length > 0)
-					{
-						var text = $"<span style='background:{color}'>{word}</span>";
-
-						cursor.DescendantNodes()
-							.OfType<XCData>()
-							.First()
-							.Value = text;
+							return new XElement("span",
+								new XAttribute("style", $"background:{color}"),
+								s);
+						});
 
 						updated = true;
 					}
@@ -122,11 +121,11 @@ namespace River.OneMoreAddIn
 			{
 				switch (index)
 				{
-					case 1: return "#008000";	// Dark Green
-					case 2: return "#00B0F0";	// Turquoise
-					case 3: return "#800080";	// Dark Purple
-					case 4: return "#0000FF";	// Blue
-					default: return "#808000";	// Dark Yellow
+					case 1: return "#008000";   // Dark Green
+					case 2: return "#00B0F0";   // Turquoise
+					case 3: return "#800080";   // Dark Purple
+					case 4: return "#0000FF";   // Blue
+					default: return "#808000";  // Dark Yellow
 				}
 			}
 
@@ -142,11 +141,11 @@ namespace River.OneMoreAddIn
 			{
 				switch (index)
 				{
-					case 1: return "#CCFFCC";	// Light Green
-					case 2: return "#CCFFFF";	// Sky Blue
-					case 3: return "#FF99CC";	// Pink
-					case 4: return "#99CCFF";	// Light Blue
-					default: return "#FFFF99";	// Light Yellow
+					case 1: return "#CCFFCC";   // Light Green
+					case 2: return "#CCFFFF";   // Sky Blue
+					case 3: return "#FF99CC";   // Pink
+					case 4: return "#99CCFF";   // Light Blue
+					default: return "#FFFF99";  // Light Yellow
 				}
 			}
 
@@ -154,22 +153,22 @@ namespace River.OneMoreAddIn
 			{
 				switch (index)
 				{
-					case 1: return "#92D050";	// Lime
-					case 2: return "#33CCCC";	// Teal
-					case 3: return "#CC99FF";	// Lavender
-					case 4: return "#00B0F0";	// Turquoise
-					default: return "#FFC000";	// Gold
+					case 1: return "#92D050";   // Lime
+					case 2: return "#33CCCC";   // Teal
+					case 3: return "#CC99FF";   // Lavender
+					case 4: return "#00B0F0";   // Turquoise
+					default: return "#FFC000";  // Gold
 				}
 			}
 
 			// theme "Normal"
 			switch (index)
 			{
-				case 1: return "#00FF00";	// Light Green
-				case 2: return "#00FFFF";	// Sky Blue
-				case 3: return "#FF00CC";	// Pink
-				case 4: return "#0000FF";	// Light Blue
-				default: return "#FFFF00";	// Light Yellow
+				case 1: return "#00FF00";   // Light Green
+				case 2: return "#00FFFF";   // Sky Blue
+				case 3: return "#FF00CC";   // Pink
+				case 4: return "#0000FF";   // Light Blue
+				default: return "#FFFF00";  // Light Yellow
 			}
 		}
 
