@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn
 
 			// get text node or span element but not others like <br/>
 			// Note the use of Reverse() here so we get the last node with content
-			var node = wrapper.Nodes().Reverse().FirstOrDefault(n =>
+			var node = wrapper.Nodes().LastOrDefault(n =>
 				// text nodes that have at least one word character
 				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
 				// span elements that have at least one word character

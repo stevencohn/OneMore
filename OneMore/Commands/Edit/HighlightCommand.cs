@@ -21,6 +21,10 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
+
+			//System.Diagnostics.Debugger.Launch();
+
+
 			using (var one = new OneNote(out var page, out var ns))
 			{
 				var updated = false;
@@ -73,12 +77,12 @@ namespace River.OneMoreAddIn
 
 					if (word.Length > 0)
 					{
-						var text = $"<span style='background:{color}'>{word.ToString()}</span>";
+						var text = $"<span style='background:{color}'>{word}</span>";
 
 						cursor.DescendantNodes()
 							.OfType<XCData>()
 							.First()
-							.ReplaceWith(new XCData(text));
+							.Value = text;
 
 						updated = true;
 					}
