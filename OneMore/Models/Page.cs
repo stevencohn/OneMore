@@ -157,6 +157,12 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Used by the ribbon to enable/disable items based on whether the focus is currently
+		/// on the page body or elsewhere such as the title.
+		/// </summary>
+		/// <param name="feedback"></param>
+		/// <returns></returns>
 		public bool ConfirmBodyContext(bool feedback = false)
 		{
 			var found = Root.Elements(Namespace + "Outline")?
@@ -177,6 +183,11 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Used by the ribbon to enable/disable items based on whether an image is selected.
+		/// </summary>
+		/// <param name="feedback"></param>
+		/// <returns></returns>
 		public bool ConfirmImageSelected(bool feedback = false)
 		{
 			var found = Root.Descendants(Namespace + "Image")?
@@ -197,10 +208,19 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public bool EditSelected(Func<string, XElement> edit)
+		/// <summary>
+		/// Invokes an edit function on the selected text. The selection may be either infered
+		/// from the current cursor position or explicitly highlighted as a selected region.
+		/// No assumptions are made as to the resultant content
+		/// </summary>
+		/// <param name="edit">
+		/// A Func that accepts a string and returns an XNode so could be either XElement or XText
+		/// </param>
+		/// <returns></returns>
+		public bool EditSelected(Func<string, XNode> edit)
 		{
 			var updated = false;
-			var cursor = GetEmptyCursor();
+			var cursor = GetTextCursor();
 
 			if (cursor != null)
 			{
@@ -223,19 +243,17 @@ namespace River.OneMoreAddIn.Models
 			}
 			else
 			{
-				// detect all selected text runs
-				var runs = Root.Descendants(Namespace + "T")
+				// detect all selected text (cdata within T runs)
+				var cdatas = Root.Descendants(Namespace + "T")
 					.Where(e => e.Attributes("selected").Any(a => a.Value == "all")
 						&& e.FirstNode?.NodeType == XmlNodeType.CDATA)
 					.Select(e => e.FirstNode as XCData);
 
-				if (runs?.Any() == true)
+				if (cdatas?.Any() == true)
 				{
-					foreach (var run in runs)
+					foreach (var cdata in cdatas)
 					{
-						// blindly wrap; OneNote will normalize nested styles
-						var v = edit(run.Value).ToString(SaveOptions.DisableFormatting);
-						run.Value = v;
+						cdata.Value = edit(cdata.Value).ToString(SaveOptions.DisableFormatting);
 					}
 
 					updated = true;
@@ -327,13 +345,26 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets the content value of the named meta entry on the page
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public string GetMetaContent(string name)
+		{
+			return Root.Elements(Namespace + "Meta")
+				.FirstOrDefault(e => e.Attribute("name").Value == name)?
+				.Attribute("content").Value;
+		}
+
+
+		/// <summary>
 		/// Gets the T element of a zero-width selection. Visually, this appears as the current
 		/// cursor insertion point and can be used to infer the current word or phrase in text.
 		/// </summary>
 		/// <returns>
 		/// The one:T XElement or null if there is a selected range greater than zero
 		/// </returns>
-		public XElement GetEmptyCursor()
+		public XElement GetTextCursor()
 		{
 			return Root.Descendants(Namespace + "T")
 				.FirstOrDefault(e =>
@@ -487,6 +518,48 @@ namespace River.OneMoreAddIn.Models
 					new XAttribute("selected", "all"),
 					new XCData(string.Empty)
 					));
+			}
+		}
+
+
+		/// <summary>
+		/// Adds a Meta element to the page (in the proper schema sequence) with the
+		/// specified name and value.
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="value"></param>
+		public void SetMeta(string name, string value)
+		{
+			var meta = Root.Elements(Namespace + "Meta")
+				.FirstOrDefault(e => e.Attribute("name").Value == name);
+
+			if (meta == null)
+			{
+				meta = new XElement(Namespace + "Meta",
+					new XAttribute("name", name),
+					new XAttribute("content", value)
+					);
+
+				// add into schema sequence...
+				var after = Root.Elements(Namespace + "QuickStyleDef").LastOrDefault();
+
+				if (after == null)
+				{
+					after = Root.Elements(Namespace + "TagDef").LastOrDefault();
+				}
+
+				if (after == null)
+				{
+					Root.AddFirst(meta);
+				}
+				else
+				{
+					after.AddAfterSelf(meta);
+				}
+			}
+			else
+			{
+				meta.Attribute("content").Value = value;
 			}
 		}
 	}

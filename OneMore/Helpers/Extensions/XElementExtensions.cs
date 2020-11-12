@@ -132,11 +132,14 @@ namespace River.OneMoreAddIn
 				xml = reader.ReadInnerXml();
 			}
 
+			// undo what XCData.GetWrapper did to <br/> elements
+			xml = Regex.Replace(xml, @"<\s*br\s*/>", "<br>" + Environment.NewLine);
+
 			return xml;
 		}
 
 
-		public static void EditFirstWord(this XElement element, Func<string, XElement> edit)
+		public static void EditFirstWord(this XElement element, Func<string, XNode> edit)
 		{
 			var cdata = element.GetCData();
 
@@ -189,7 +192,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static void EditLastWord(this XElement element, Func<string, XElement> edit)
+		public static void EditLastWord(this XElement element, Func<string, XNode> edit)
 		{
 			var cdata = element.GetCData();
 
