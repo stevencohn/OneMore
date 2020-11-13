@@ -4274,6 +4274,105 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Heading 1.
+        /// </summary>
+        internal static string SplitDialog_byHeading1Box_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_byHeading1Box.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link headings to new pages and move content to each page.
+        /// </summary>
+        internal static string SplitDialog_byHeading1Label_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_byHeading1Label.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page (wiki) links.
+        /// </summary>
+        internal static string SplitDialog_byLinksBox_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_byLinksBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move content to each linked page.
+        /// </summary>
+        internal static string SplitDialog_byLinksLabel_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_byLinksLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SplitDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string SplitDialog_filterGroup_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_filterGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string SplitDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split by.
+        /// </summary>
+        internal static string SplitDialog_splitByGroup_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_splitByGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply only to tagged headings and links.
+        /// </summary>
+        internal static string SplitDialog_taggedBox_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_taggedBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag:.
+        /// </summary>
+        internal static string SplitDialog_tagLabel_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog_tagLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Page.
+        /// </summary>
+        internal static string SplitDialog_Text {
+            get {
+                return ResourceManager.GetString("SplitDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Sports {

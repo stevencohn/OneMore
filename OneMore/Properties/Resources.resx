@@ -2169,4 +2169,48 @@ XML File (*.xml)</value>
     <value>Shift cells right</value>
     <comment>radio</comment>
   </data>
+  <data name="SplitDialog.Text" xml:space="preserve">
+    <value>Split Page</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SplitDialog_byHeading1Box.Text" xml:space="preserve">
+    <value>Heading 1</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_byHeading1Label.Text" xml:space="preserve">
+    <value>Link headings to new pages and move content to each page</value>
+    <comment>label</comment>
+  </data>
+  <data name="SplitDialog_byLinksBox.Text" xml:space="preserve">
+    <value>Page (wiki) links</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_byLinksLabel.Text" xml:space="preserve">
+    <value>Move content to each linked page</value>
+    <comment>label</comment>
+  </data>
+  <data name="SplitDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
+    <value>Filter</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SplitDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
+    <value>Split by</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SplitDialog_taggedBox.Text" xml:space="preserve">
+    <value>Apply only to tagged headings and links</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
+    <value>Tag:</value>
+    <comment>label</comment>
+  </data>
 </root>

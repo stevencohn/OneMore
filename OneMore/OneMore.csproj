@@ -121,6 +121,13 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Extras\SplitCommand.cs" />
+    <Compile Include="Commands\Extras\SplitDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Extras\SplitDialog.Designer.cs">
+      <DependentUpon>SplitDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Formula\Formula.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
@@ -524,6 +531,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Commands\Extras\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Extras\SplitDialog.resx">
+      <DependentUpon>SplitDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>

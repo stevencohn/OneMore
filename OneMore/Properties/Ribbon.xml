@@ -359,6 +359,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="SearchCmd"/>
               <button
+                id="ribSplitButton"
+                imageMso="MasterDocumentSplitSubdocuments"
+                label="Split Page"
+                getEnabled="GetBodyContext"
+                onAction="SplitCmd"/>
+              <button
                 id="ribStrikeoutTasksButton"
                 imageMso="Strikethrough"
                 getLabel="GetRibbonLabel"

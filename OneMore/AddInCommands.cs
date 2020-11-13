@@ -186,6 +186,9 @@ namespace River.OneMoreAddIn
 		public void SortCmd(IRibbonControl control)
 			=> factory.Run<SortCommand>();
 
+		public void SplitCmd(IRibbonControl control)
+			=> factory.Run<SplitCommand>();
+
 		public void StrikeoutCmd(IRibbonControl control)
 			=> factory.Run<StrikeoutCommand>();
 
