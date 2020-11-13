@@ -155,7 +155,8 @@ namespace River.OneMoreAddIn
 
 			var cdata = element.GetCData();
 
-			if (cdata.IsEmpty())
+			// could be null if element only contains a <br>
+			if (cdata == null || cdata.IsEmpty())
 			{
 				return string.Empty;
 			}
@@ -231,7 +232,8 @@ namespace River.OneMoreAddIn
 
 			var cdata = element.GetCData();
 
-			if (cdata.IsEmpty())
+			// could be null if element only contains a <br>
+			if (cdata == null || cdata.IsEmpty())
 			{
 				return string.Empty;
 			}
