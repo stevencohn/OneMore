@@ -225,9 +225,6 @@ namespace River.OneMoreAddIn.Models
 			var updated = false;
 			var cursor = GetTextCursor();
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			if (cursor != null)
 			{
 				// T elements can only be a child of an OE but can also have other T siblings...
