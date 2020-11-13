@@ -214,10 +214,13 @@ namespace River.OneMoreAddIn.Models
 		/// No assumptions are made as to the resultant content
 		/// </summary>
 		/// <param name="edit">
-		/// A Func that accepts a string and returns an XNode so could be either XElement or XText
+		/// A Func that accepts an XNode and returns an XNode. The accepted XNode is either an
+		/// XText or a "span" XElement. The returned XNode can be either the original unmodified,
+		/// the original modified, or a new XNode. Regardless, the returned XNode will replace
+		/// the current XNode in the content.
 		/// </param>
 		/// <returns></returns>
-		public bool EditSelected(Func<string, XNode> edit)
+		public bool EditSelected(Func<XNode, XNode> edit)
 		{
 			var updated = false;
 			var cursor = GetTextCursor();
@@ -225,19 +228,142 @@ namespace River.OneMoreAddIn.Models
 			if (cursor != null)
 			{
 				// T elements can only be a child of an OE but can also have other T siblings...
-				// OneNote handles nested spans by normalizing them into sequential spans
+				// Each T will have one CDATA with one or more XText and SPAN XElements.
+				// OneNote handles nested spans by normalizing them into consecutive spans
+
+				// Just FYI, because we use XElement.Parse to build the DOM, XText nodes will be
+				// singular but may be surrounded by SPAN elements; i.e., there shouldn't be two
+				// consecutive XText nodes next to each other
 
 				// is there a preceding T?
 				if ((cursor.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
 				{
-					prev.EditLastWord(edit);
+					var cdata = prev.GetCData();
+					var wrapper = cdata.GetWrapper();
+					var nodes = wrapper.Nodes().ToList();
+
+					// reverse, extracting text and stopping when matching word delimiter
+					for (var i = nodes.Count - 1; i >= 0; i--)
+					{
+						if (nodes[i] is XText text)
+						{
+							// ends with delimiter so can't be part of current word
+							if (text.Value.EndsWithWhitespace())
+								break;
+
+							// extract last word and pump through the editor
+							var pair = text.Value.ExtractLastWord();
+							if (pair.Item1 == null)
+							{
+								// entire content of this XText
+								edit(text);
+							}
+							else
+							{
+								// last word of this XText
+								text.Value = pair.Item2;
+								text.AddAfterSelf(edit(new XText(pair.Item1)));
+							}
+
+							// remaining text has a word delimiter
+							if (text.Value.StartsWithWhitespace())
+								break;
+						}
+						else if (nodes[i] is XElement span)
+						{
+							// ends with delimiter so can't be part of current word
+							if (span.Value.EndsWithWhitespace())
+								break;
+
+							// extract last word and pump through editor
+							var word = span.ExtractLastWord();
+							if (word == null)
+							{
+								// edit entire contents of SPAN
+								edit(span);
+							}
+							else
+							{
+								// last word of this SPAN
+								var spawn = new XElement(span.Name, span.Attributes(), word);
+								edit(spawn);
+								span.AddAfterSelf(spawn);
+							}
+
+							// remaining text has a word delimiter
+							if (span.Value.StartsWithWhitespace())
+								break;
+						}
+					}
+
+					// rebuild CDATA with edited content
+					cdata.Value = wrapper.GetInnerXml();
 					updated = true;
 				}
 
 				// is there a following T?
 				if ((cursor.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
 				{
-					next.EditFirstWord(edit);
+					var cdata = next.GetCData();
+					var wrapper = cdata.GetWrapper();
+					var nodes = wrapper.Nodes().ToList();
+
+					// extract text and stop when matching word delimiter
+					for (var i = 0; i < nodes.Count; i++)
+					{
+						if (nodes[i] is XText text)
+						{
+							// starts with delimiter so can't be part of current word
+							if (text.Value.StartsWithWhitespace())
+								break;
+
+							// extract first word and pump through editor
+							var pair = text.Value.ExtractFirstWord();
+							if (pair.Item1 == null)
+							{
+								// entire content of this XText
+								edit(text);
+							}
+							else
+							{
+								// first word of this XText
+								text.Value = pair.Item2;
+								text.AddBeforeSelf(edit(new XText(pair.Item1)));
+							}
+
+							// remaining text has a word delimiter
+							if (text.Value.EndsWithWhitespace())
+								break;
+						}
+						else if (nodes[i] is XElement span)
+						{
+							// ends with delimiter so can't be part of current word
+							if (span.Value.StartsWithWhitespace())
+								break;
+
+							// extract first word and pump through editor
+							var word = span.ExtractFirstWord();
+							if (word == null)
+							{
+								// eidt entire contents of SPAN
+								edit(span);
+							}
+							else
+							{
+								// first word of this SPAN
+								var spawn = new XElement(span.Name, span.Attributes(), word);
+								edit(spawn);
+								span.AddBeforeSelf(spawn);
+							}
+
+							// remaining text has a word delimiter
+							if (span.Value.EndsWithWhitespace())
+								break;
+						}
+					}
+
+					// rebuild CDATA with edited content
+					cdata.Value = wrapper.GetInnerXml();
 					updated = true;
 				}
 			}
@@ -253,7 +379,20 @@ namespace River.OneMoreAddIn.Models
 				{
 					foreach (var cdata in cdatas)
 					{
-						cdata.Value = edit(cdata.Value).ToString(SaveOptions.DisableFormatting);
+						// edit every XText and SPAN in the T wrapper
+						var wrapper = cdata.GetWrapper();
+						foreach (var node in wrapper.Nodes())
+						{
+							node.ReplaceWith(edit(node));
+						}
+
+						var text = wrapper.GetInnerXml();
+
+						// special case for <br> + EOL
+						text = text.Replace("<br>", "<br>\n");
+
+						// build CDATA with editing content
+						cdata.Value = text;
 					}
 
 					updated = true;

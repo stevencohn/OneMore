@@ -18,6 +18,30 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
+		/// Determines if the string ends with whitespace, either chars or HTML escapes
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool EndsWithWhitespace(this string value)
+		{
+			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
+			return Regex.IsMatch(value, @"([\s]|&#160;|&nbsp;)$");
+		}
+
+
+		/// <summary>
+		/// Determines if the string starts with whitespace, either chars or HTML escapes
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool StartsWithWhitespace(this string value)
+		{
+			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
+			return Regex.IsMatch(value, @"^([\s]|&#160;|&nbsp;)");
+		}
+
+
+		/// <summary>
 		/// Compares this string with a given string ignoring case.
 		/// </summary>
 		/// <param name="s">The current string</param>
@@ -55,11 +79,15 @@ namespace River.OneMoreAddIn
 		{
 			if (!string.IsNullOrEmpty(s))
 			{
-				var match = Regex.Match(s, @"^(\w+)\b*");
+				// capture first word preceding whitespace char or esc sequence
+				var match = Regex.Match(s, @"^(?<word>\w+)(?:[\s]|&#160;|&nbsp;)");
 				if (match.Success)
 				{
-					var capture = match.Captures[0];
-					return (capture.Value, s.Remove(capture.Index, capture.Length));
+					var capture = match.Groups["word"];
+					if (capture.Length > 0)
+					{
+						return (capture.Value, s.Remove(capture.Index, capture.Length));
+					}
 				}
 			}
 
@@ -79,11 +107,15 @@ namespace River.OneMoreAddIn
 		{
 			if (!string.IsNullOrEmpty(s))
 			{
-				var match = Regex.Match(s, @"\b*(\w+)$");
+				// use greedy match, skip text and last whitespace to capture last word
+				var match = Regex.Match(s, @".*(?:[\s]|&#160;|&nbsp;)(?<word>.*)$");
 				if (match.Success)
 				{
-					var capture = match.Captures[0];
-					return (capture.Value, s.Remove(capture.Index, capture.Length));
+					var capture = match.Groups["word"];
+					if (capture.Length > 0)
+					{
+						return (capture.Value, s.Remove(capture.Index, capture.Length));
+					}
 				}
 			}
 

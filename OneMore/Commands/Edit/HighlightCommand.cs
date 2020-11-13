@@ -38,8 +38,15 @@ namespace River.OneMoreAddIn
 
 				updated = page.EditSelected((s) =>
 				{
-					// s may be a string or a sequence of spans so this is an easy way to wrap it
-					return XElement.Parse($"<span style='background:{color}'>{s}</span>");
+					if (s is XText text)
+					{
+						return new XElement("span", new XAttribute("style", $"background:{color}"), text);
+					}
+
+					var span = (XElement)s;
+					span.ReadAttributeValue("style", out var style, string.Empty);
+					span.SetAttributeValue("style", $"{style};background:{color}");
+					return span;
 				});
 
 				if (updated)

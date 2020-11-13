@@ -24,11 +24,7 @@ namespace River.OneMoreAddIn
 
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				var cursor = page.Root.Descendants(ns + "T")
-					.FirstOrDefault(e =>
-						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
-						e.FirstNode.NodeType == XmlNodeType.CDATA &&
-						((XCData)e.FirstNode).Value.Length == 0);
+				var cursor = page.GetTextCursor();
 
 				if (cursor != null)
 				{
