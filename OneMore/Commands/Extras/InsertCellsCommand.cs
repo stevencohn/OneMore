@@ -138,9 +138,6 @@ namespace River.OneMoreAddIn.Commands
 			var minRow = cells.Min(c => c.RowNum) - 1;
 			var maxRow = cells.Max(c => c.RowNum) - 1;
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			var cols = table[0].Cells.Count();
 
 			// if selected one col then move all visible content in desired direction
