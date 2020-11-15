@@ -87,6 +87,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Replace hyperlinked URLs with their Web page titles
 * Search for keywords and copy/move selected pages (Alt + F)
 * Sort pages, sections, or notebooks
+* Split current page into multiple pages
 * Toggle strikethrough text next to all completed/incompleted tags
 
 [Tools](../../wiki/Tools)
