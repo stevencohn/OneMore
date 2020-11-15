@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn
 				{
 					var childPage = one.GetPage(selection.Attribute("ID").Value);
 
-					var styles = MergeQuickStyles(childPage.Root);
+					var map = page.MergeQuickStyles(childPage);
 
 					var childOutlines = childPage.Root.Elements(ns + "Outline");
 					if (childOutlines == null || !childOutlines.Any())
@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn
 						childOutline.Attributes("objectID").Remove();
 						childOutline.Descendants().Attributes("objectID").Remove();
 
-						AdjustQuickStyles(styles, childOutline);
+						page.ApplyStyleMapping(map, childOutline);
 
 						page.Root.Add(childOutline);
 					}
@@ -158,67 +158,6 @@ namespace River.OneMoreAddIn
 			}
 
 			return offset;
-		}
-
-
-		private List<QuickStyleMapping> MergeQuickStyles(XElement childPage)
-		{
-			var styleRefs = childPage.Elements(ns + "QuickStyleDef")
-				.Where(p => p.Attribute("name")?.Value != "PageTitle")
-				.Select(p => new QuickStyleMapping(p))
-				.ToList();
-
-			// next available index; O(n) is OK here; there should only be a few
-			var index = quickmap.Max(q => q.Style.Index) + 1;
-
-			foreach (var styleRef in styleRefs)
-			{
-				var quickie = quickmap.Find(q => q.Style.Equals(styleRef.Style));
-				if (quickie == null)
-				{
-					// no match so add it and set index to maxIndex+1
-					// O(n) is OK here; there should only be a few
-					styleRef.Style.Index = index++;
-					styleRef.Element.Attribute("index").Value = styleRef.Style.Index.ToString();
-					quickmap.Add(styleRef);
-
-					var last = page.Root.Elements(ns + "QuickStyleDef").LastOrDefault();
-					if (last != null)
-					{
-						last.AddAfterSelf(styleRef.Element);
-					}
-					else
-					{
-						page.Root.AddFirst(styleRef.Element);
-					}
-				}
-
-				// else if found then the index may differ but keep it so it can be mapped
-				// to content later...
-			}
-
-			return styleRefs;
-		}
-
-
-		private static void AdjustQuickStyles(List<QuickStyleMapping> styles, XElement childOutline)
-		{
-			// reverse sort the styles so logic doesn't overwrite subsequent index references
-			foreach (var style in styles.OrderByDescending(s => s.Style.Index))
-			{
-				if (style.OriginalIndex != style.Style.Index.ToString())
-				{
-					// apply new index to child outline elements
-					var elements = childOutline.Descendants()
-						.Where(e => e.Attribute("quickStyleIndex")?.Value == style.OriginalIndex);
-
-					var index = style.Style.Index.ToString();
-					foreach (var element in elements)
-					{
-						element.Attribute("quickStyleIndex").Value = index;
-					}
-				}
-			}
 		}
 	}
 }

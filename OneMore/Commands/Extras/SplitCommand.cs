@@ -109,20 +109,18 @@ namespace River.OneMoreAddIn.Commands
 
 					// add new hyperlinked run
 					var link = one.GetHyperlink(target.PageId, string.Empty);
+					var run = new XElement(ns + "T",
+							new XCData($"<a href=\"{link}\">{header.Text}</a>"));
 
 					var tags = header.Root.Elements(ns + "Tag");
 					if (tags.Any())
 					{
 						// schema sequence, must follow Tag elements
-						tags.Last().AddAfterSelf(new XElement(ns + "T",
-							new XCData($"<a href=\"{link}\">{header.Text}</a>")
-							));
+						tags.Last().AddAfterSelf(run);
 					}
 					else
 					{
-						header.Root.AddFirst(new XElement(ns + "T",
-							new XCData($"<a href=\"{link}\">{header.Text}</a>")
-							));
+						header.Root.AddFirst(run);
 					}
 				}
 
