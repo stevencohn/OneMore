@@ -15,25 +15,9 @@ namespace River.OneMoreAddIn
 
 		private const int OutlineMargin = 30;
 
-
-		private class QuickRef
-		{
-			public XElement Element { get; private set; }
-			public QuickStyleDef Style { get; private set; }
-			public string OriginalIndex { get; private set; }
-
-			public QuickRef(XElement element)
-			{
-				Element = element;
-				Style = new QuickStyleDef(element);
-				OriginalIndex = Style.Index.ToString();
-			}
-		}
-
-
 		private Page page;
 		private XNamespace ns;
-		private List<QuickRef> quickies;
+		private List<QuickStyleMapping> quickmap;
 
 
 		public MergeCommand()
@@ -77,9 +61,7 @@ namespace River.OneMoreAddIn
 
 				page = one.GetPage(active.Attribute("ID").Value);
 
-				quickies = page.Root.Elements(ns + "QuickStyleDef")
-					.Select(p => new QuickRef(p))
-					.ToList();
+				quickmap = page.GetQuickStyleMap();
 
 				var offset = GetPageBottomOffset();
 
@@ -179,32 +161,26 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private List<QuickRef> MergeQuickStyles(XElement childPage)
+		private List<QuickStyleMapping> MergeQuickStyles(XElement childPage)
 		{
 			var styleRefs = childPage.Elements(ns + "QuickStyleDef")
 				.Where(p => p.Attribute("name")?.Value != "PageTitle")
-				.Select(p => new QuickRef(p))
+				.Select(p => new QuickStyleMapping(p))
 				.ToList();
 
 			// next available index; O(n) is OK here; there should only be a few
-			var index = quickies.Max(q => q.Style.Index) + 1;
+			var index = quickmap.Max(q => q.Style.Index) + 1;
 
 			foreach (var styleRef in styleRefs)
 			{
-				var quickie = quickies.Find(q => q.Style.Equals(styleRef.Style));
-				var same = false;
-				if (quickie != null)
-				{
-					// found match but is it the same index?
-					same = quickie.Style.Index == styleRef.Style.Index;
-				}
-				else
+				var quickie = quickmap.Find(q => q.Style.Equals(styleRef.Style));
+				if (quickie == null)
 				{
 					// no match so add it and set index to maxIndex+1
 					// O(n) is OK here; there should only be a few
 					styleRef.Style.Index = index++;
 					styleRef.Element.Attribute("index").Value = styleRef.Style.Index.ToString();
-					quickies.Add(styleRef);
+					quickmap.Add(styleRef);
 
 					var last = page.Root.Elements(ns + "QuickStyleDef").LastOrDefault();
 					if (last != null)
@@ -216,29 +192,30 @@ namespace River.OneMoreAddIn
 						page.Root.AddFirst(styleRef.Element);
 					}
 				}
+
+				// else if found then the index may differ but keep it so it can be mapped
+				// to content later...
 			}
 
 			return styleRefs;
 		}
 
 
-		private static void AdjustQuickStyles(List<QuickRef> styles, XElement childOutline)
+		private static void AdjustQuickStyles(List<QuickStyleMapping> styles, XElement childOutline)
 		{
-			// need to reverse sort the styles so the logic doesn't continually overwrite
-			// subsequent index references
-
+			// reverse sort the styles so logic doesn't overwrite subsequent index references
 			foreach (var style in styles.OrderByDescending(s => s.Style.Index))
 			{
 				if (style.OriginalIndex != style.Style.Index.ToString())
 				{
 					// apply new index to child outline elements
-
 					var elements = childOutline.Descendants()
 						.Where(e => e.Attribute("quickStyleIndex")?.Value == style.OriginalIndex);
 
+					var index = style.Style.Index.ToString();
 					foreach (var element in elements)
 					{
-						element.Attribute("quickStyleIndex").Value = style.Style.Index.ToString();
+						element.Attribute("quickStyleIndex").Value = index;
 					}
 				}
 			}

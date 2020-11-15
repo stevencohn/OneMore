@@ -52,8 +52,10 @@ namespace River.OneMoreAddIn.Models
 
 				foreach (var block in blocks)
 				{
-					// get first T as heading text, filtering out any OEChildren (indented text)
-					var text = block.Elements(Namespace + "T").FirstOrDefault()?.Value;
+					// concat text from each T in block; handles when cursor bisects heading
+					var text = block.Elements(Namespace + "T")
+						.Select(e => e.Value).Aggregate((x, y) => $"{x}{y}");
+
 					if (text == null)
 					{
 						continue;

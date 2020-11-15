@@ -85,6 +85,19 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Appends content to the current page
+		/// </summary>
+		/// <param name="content"></param>
+		/// <returns></returns>
+		public XElement AddContent(IEnumerable<XElement> content)
+		{
+			var container = EnsureContentContainer();
+			container.Add(content);
+			return container;
+		}
+
+
+		/// <summary>
 		/// Appends HTML content to the current page
 		/// </summary>
 		/// <param name="html"></param>
@@ -116,6 +129,25 @@ namespace River.OneMoreAddIn.Models
 				}
 
 				current.AddAfterSelf(content);
+			}
+		}
+
+
+		/// <summary>
+		/// Adds the given QuickStyleDef element in the proper document order, just after
+		/// the TagDef elements if there are any
+		/// </summary>
+		/// <param name="def"></param>
+		public void AddQuickStyleDef(XElement def)
+		{
+			var tagdef = Root.Elements(Namespace + "TagDef").LastOrDefault();
+			if (tagdef == null)
+			{
+				Root.AddFirst(def);
+			}
+			else
+			{
+				tagdef.AddAfterSelf(def);
 			}
 		}
 
@@ -154,6 +186,36 @@ namespace River.OneMoreAddIn.Models
 				));
 
 			return index.ToString();
+		}
+
+
+		/// <summary>
+		/// Apply the given quick style mappings to all descendents of the specified outline.
+		/// </summary>
+		/// <param name="mapping"></param>
+		/// <param name="outline"></param>
+		public void ApplyStyleMapping(List<QuickStyleMapping> mapping, XElement outline)
+		{
+			// reverse sort the styles so logic doesn't overwrite subsequent index references
+			foreach (var map in mapping.OrderByDescending(s => s.Style.Index))
+			{
+				if (map.OriginalIndex != map.Style.Index.ToString())
+				{
+					// apply new index to child outline elements
+					var elements = outline.Descendants()
+						.Where(e => e.Attribute("quickStyleIndex")?.Value == map.OriginalIndex);
+
+					if (elements?.Any() == true)
+					{
+						var index = map.Style.Index.ToString();
+
+						foreach (var element in elements)
+						{
+							element.Attribute("quickStyleIndex").Value = index;
+						}
+					}
+				}
+			}
 		}
 
 
@@ -579,6 +641,19 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets the quick style mappings for the current page. Used to copy or merge
+		/// copy on this page
+		/// </summary>
+		/// <returns></returns>
+		public List<QuickStyleMapping> GetQuickStyleMap()
+		{
+			return Root.Elements(Namespace + "QuickStyleDef")
+				.Select(p => new QuickStyleMapping(p))
+				.ToList();
+		}
+
+
+		/// <summary>
 		/// Gets a Color value specifying the background color of the page
 		/// </summary>
 		/// <returns></returns>
@@ -622,6 +697,42 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return null;
+		}
+
+
+		/// <summary>
+		/// Merges the given quick styles from a source page with the quick styles on the
+		/// current page, adjusting index values to avoid collisions with pre-existing styles
+		/// </summary>
+		/// <param name="quickmap">
+		/// The quick style mappings from the source page to merge into this page. The index
+		/// values of the Style property are updated for each quick style
+		/// </param>
+		public List<QuickStyleMapping> MergeQuickStyles(Page sourcePage)
+		{
+			var sourcemap = sourcePage.GetQuickStyleMap();
+			var map = GetQuickStyleMap();
+
+			var index = map.Max(q => q.Style.Index) + 1;
+
+			foreach (var source in sourcemap)
+			{
+				var quick = map.Find(q => q.Style.Equals(source.Style));
+				if (quick == null)
+				{
+					// no match so add it and set index to maxIndex+1
+					// O(n) is OK here; there should only be a few
+					source.Style.Index = index++;
+					source.Element.Attribute("index").Value = source.Style.Index.ToString();
+					map.Add(source);
+					AddQuickStyleDef(source.Element);
+				}
+
+				// else if found then the index may differ but keep it so it can be mapped
+				// to content later...
+			}
+
+			return map;
 		}
 
 

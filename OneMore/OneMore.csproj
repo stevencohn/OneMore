@@ -340,6 +340,7 @@
     <Compile Include="Helpers\Office\PowerPoint.cs" />
     <Compile Include="Helpers\Office\Word.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
+    <Compile Include="Models\QuickStyleMapping.cs" />
     <Compile Include="Settings\ContextMenuSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
