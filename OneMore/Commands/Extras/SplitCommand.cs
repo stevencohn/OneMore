@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					using (one = new OneNote(out page, out ns))
+					using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 					{
 						SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
 					}
