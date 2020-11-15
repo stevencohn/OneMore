@@ -20,9 +20,23 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Reference to the containing Outline on the page;
+		/// used by Split and Merge
+		/// </summary>
+		public XElement Outline;
+
+
+		/// <summary>
 		/// The extracted text of the heading, or null
 		/// </summary>
 		public string Text;
+
+
+		/// <summary>
+		/// True if the header is an internal OneNote hyperlink to another page;
+		/// used by Split and Merge
+		/// </summary>
+		public bool IsHyper;
 
 
 		/// <summary>

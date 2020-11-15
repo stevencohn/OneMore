@@ -14,9 +14,10 @@ namespace River.OneMoreAddIn.Models
 	public class QuickStyleMapping
 	{
 		/// <summary>
-		/// Gets the QuickStyleDef element
+		/// Gets or sets the QuickStyleDef element. The setter is used to deep-clone the
+		/// original so the source page is not affected when merging styles
 		/// </summary>
-		public XElement Element { get; private set; }
+		public XElement Element { get; set; }
 
 
 		/// <summary>

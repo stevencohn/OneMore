@@ -23,22 +23,13 @@ namespace River.OneMoreAddIn.Commands
 		//	page-id={C9709FD9-6044-4A82-BB2E-E829884B364A}&amp;
 		//	end&amp;base-path=https://d..."
 
-		private const string LinkHint = "<a href=\"onenote:#";
+		private const string LinkPattern = @"\<a\s*?href=""onenote\:#";
 		private const string IDPattern = @"section-id=(?<sid>{.*?}).*?page-id=(?<pid>{.*?})";
 
 		private Dictionary<string, string> hyperlinks;
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
-
-		private class Header
-		{
-			public XElement Root;
-			public XElement Outline;
-			public string Text;
-			public int Level;
-			public bool IsHyper;
-		}
 
 
 		public SplitCommand()
@@ -70,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (headers.Any(h => h.Root.GetCData().Value.StartsWith(LinkHint)))
+			if (headers.Any(h => Regex.IsMatch(h.Root.GetCData().Value, LinkPattern)))
 			{
 				BuildHyperlinkCache();
 			}
@@ -104,6 +95,7 @@ namespace River.OneMoreAddIn.Commands
 					content = content.TakeWhile(e => e != mark);
 				}
 
+				// copy content along with related quick styles
 				var container = target.AddContent(content);
 				var map = target.MergeQuickStyles(page);
 				target.ApplyStyleMapping(map, container);
@@ -117,9 +109,21 @@ namespace River.OneMoreAddIn.Commands
 
 					// add new hyperlinked run
 					var link = one.GetHyperlink(target.PageId, string.Empty);
-					header.Root.AddFirst(new XElement(ns + "T",
-						new XCData($"<a href=\"{link}\">{header.Text}</a>")
-						));
+
+					var tags = header.Root.Elements(ns + "Tag");
+					if (tags.Any())
+					{
+						// schema sequence, must follow Tag elements
+						tags.Last().AddAfterSelf(new XElement(ns + "T",
+							new XCData($"<a href=\"{link}\">{header.Text}</a>")
+							));
+					}
+					else
+					{
+						header.Root.AddFirst(new XElement(ns + "T",
+							new XCData($"<a href=\"{link}\">{header.Text}</a>")
+							));
+					}
 				}
 
 				// remove content from current page
@@ -130,31 +134,32 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private List<Header> GetHeaders(bool byHeading, int tagSymbol)
+		private List<Heading> GetHeaders(bool byHeading, int tagSymbol)
 		{
-			List<Header> headers;
+			List<Heading> headers;
 
 			if (byHeading)
 			{
+				// find all H1 headings
 				headers = page.GetHeadings(one)
 					.Where(h => h.Level == 0)
-					.Select(h => new Header
+					.Select(h => new Heading
 					{
 						Root = h.Root,
 
 						IsHyper = h.Root.FirstNode.NodeType == XmlNodeType.CDATA &&
-								((XCData)h.Root.FirstNode).Value.StartsWith(LinkHint)
+								Regex.IsMatch(((XCData)h.Root.FirstNode).Value, LinkPattern)
 					})
 					.ToList();
 			}
 			else
 			{
+				// find all internal OneNote hyperlinks, regardless of syyle
 				headers = page.Root.Descendants(ns + "T")
 					.Where(e =>
 						e.FirstNode.NodeType == XmlNodeType.CDATA &&
-						((XCData)e.FirstNode).Value.StartsWith(LinkHint) &&
-						e.Parent.Elements().Count() == 1)
-					.Select(e => new Header { Root = e.Parent, IsHyper = true })
+						Regex.IsMatch(((XCData)e.FirstNode).Value, LinkPattern))
+					.Select(e => new Heading { Root = e.Parent, IsHyper = true })
 					.ToList();
 			}
 
@@ -173,9 +178,11 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var header in headers)
 			{
+				// get header text, possibly bisected by insertion cursor
 				header.Text = header.Root.Elements(ns + "T")
 					.Select(e => e.Value).Aggregate((x, y) => $"{x}{y}");
 
+				// determine heading's document level, to be compare in relation to other headings
 				var level = 0;
 				var outline = header.Root.Parent;
 				while (outline != null && outline.Name.LocalName != "Outline")
@@ -217,7 +224,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Page GetTargetPage(Header header)
+		private Page GetTargetPage(Heading header)
 		{
 			// first test if heading is a link to a page in this section
 			var cdata = header.Root.GetCData();

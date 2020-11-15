@@ -723,7 +723,10 @@ namespace River.OneMoreAddIn.Models
 					// no match so add it and set index to maxIndex+1
 					// O(n) is OK here; there should only be a few
 					source.Style.Index = index++;
+
+					source.Element = new XElement(source.Element);
 					source.Element.Attribute("index").Value = source.Style.Index.ToString();
+
 					map.Add(source);
 					AddQuickStyleDef(source.Element);
 				}
