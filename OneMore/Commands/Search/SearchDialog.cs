@@ -209,9 +209,12 @@ namespace River.OneMoreAddIn.Commands.Search
 		private void TreeMouseDown(object sender, MouseEventArgs e)
 		{
 			var node = resultTree.GetNodeAt(e.X, e.Y);
-			if (MakeNodeBounds(node).Contains(e.X, e.Y))
+			if (node != null)
 			{
-				resultTree.SelectedNode = node;
+				if (MakeNodeBounds(node).Contains(e.X, e.Y))
+				{
+					resultTree.SelectedNode = node;
+				}
 			}
 		}
 
