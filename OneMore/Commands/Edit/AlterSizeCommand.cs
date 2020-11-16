@@ -30,31 +30,33 @@ namespace River.OneMoreAddIn
 
 			using (var one = new OneNote(out page, out ns))
 			{
-				if (page != null)
+				if (page == null)
 				{
-					// determine if range is selected or entire page
+					return;
+				}
 
-					selected = page.Root.Element(ns + "Outline").Descendants(ns + "T")
-						.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
-						.Any(e => e.GetCData().Value.Length > 0);
+				// determine if range is selected or entire page
 
-					var count = 0;
+				selected = page.Root.Element(ns + "Outline").Descendants(ns + "T")
+					.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
+					.Any(e => e.GetCData().Value.Length > 0);
 
-					if (selected)
-					{
-						count += AlterSelections();
-					}
-					else
-					{
-						count += AlterByName();
-						count += AlterElementsByValue();
-						count += AlterCDataByValue();
-					}
+				var count = 0;
 
-					if (count > 0)
-					{
-						one.Update(page);
-					}
+				if (selected)
+				{
+					count += AlterSelections();
+				}
+				else
+				{
+					count += AlterByName();
+					count += AlterElementsByValue();
+					count += AlterCDataByValue();
+				}
+
+				if (count > 0)
+				{
+					one.Update(page);
 				}
 			}
 		}
@@ -65,22 +67,26 @@ namespace River.OneMoreAddIn
 			var elements = page.Root.Element(ns + "Outline").Descendants(ns + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value == "all"));
 
-			var count = 0;
-
-			if (!elements.IsNullOrEmpty())
+			if (elements.IsNullOrEmpty())
 			{
-				var analyzer = new StyleAnalyzer(page.Root, true);
+				return 0;
+			}
 
-				foreach (var element in elements)
-				{
-					analyzer.Clear();
-					var style = new Style(analyzer.CollectStyleProperties(element));
-					style.FontSize = (ParseFontSize(style.FontSize) + delta).ToString("#0.0") + "pt";
+			var count = 0;
+			var analyzer = new StyleAnalyzer(page.Root, true);
 
-					var stylizer = new Stylizer(style);
-					stylizer.ApplyStyle(element);
-					count++;
-				}
+			foreach (var element in elements)
+			{
+				analyzer.Clear();
+				var style = new Style(analyzer.CollectStyleProperties(element));
+
+				// add .05 to compensate for unpredictable behavior; there are cases where going
+				// from 11pt to 12pt actually causes OneNote to calculate 9pt :-(
+				style.FontSize = (ParseFontSize(style.FontSize) + delta).ToString("#0") + ".05pt";
+
+				var stylizer = new Stylizer(style);
+				stylizer.ApplyStyle(element);
+				count++;
 			}
 
 			return count;
@@ -118,7 +124,7 @@ namespace River.OneMoreAddIn
 						var attr = element.Attribute("fontSize");
 						if (attr != null && double.TryParse(attr.Value, out var size))
 						{
-							attr.Value = (size + delta).ToString("#0.0");
+							attr.Value = (size + delta).ToString("#0") + ".05";
 							count++;
 						}
 					}
@@ -239,7 +245,7 @@ namespace River.OneMoreAddIn
 				if (properties.ContainsKey("font-size"))
 				{
 					properties["font-size"] =
-						(ParseFontSize(properties["font-size"]) + delta).ToString("#0.0") + "pt";
+						(ParseFontSize(properties["font-size"]) + delta).ToString("#0") + ".05pt";
 
 					attr.Value =
 						string.Join(";", properties.Select(p => p.Key + ":" + p.Value).ToArray());
