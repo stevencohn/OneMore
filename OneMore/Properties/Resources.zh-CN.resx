@@ -2120,4 +2120,101 @@ XML档案（* .xml）</value>
     <value>向右移动单元格</value>
     <comment>radio</comment>
   </data>
+  <data name="PhoneticsDialog.Text" xml:space="preserve">
+    <value>语音学</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
+    <value>语言</value>
+    <comment>label</comment>
+  </data>
+  <data name="PhoneticsDialog_languages" xml:space="preserve">
+    <value>zh，英语\n</value>
+    <comment>Recognized languages, one per line.
+ISO-code then comma then language name</comment>
+  </data>
+  <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
+    <value>字</value>
+    <comment>label</comment>
+  </data>
+  <data name="TextToTable_NoText" xml:space="preserve">
+    <value>没有选择文字</value>
+    <comment>info message</comment>
+  </data>
+  <data name="SplitDialog.Text" xml:space="preserve">
+    <value>分页</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SplitDialog_byHeading1Box.Text" xml:space="preserve">
+    <value>标题1</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_byHeading1Label.Text" xml:space="preserve">
+    <value>将标题链接到新页面并将内容移动到每个页面</value>
+    <comment>label</comment>
+  </data>
+  <data name="SplitDialog_byLinksBox.Text" xml:space="preserve">
+    <value>页面（Wiki）链接</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_byLinksLabel.Text" xml:space="preserve">
+    <value>将内容移动到每个链接的页面</value>
+    <comment>label</comment>
+  </data>
+  <data name="SplitDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
+    <value>过滤</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SplitDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
+    <value>分割为</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SplitDialog_taggedBox.Text" xml:space="preserve">
+    <value>仅适用于标记的标题和链接</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
+    <value>标签：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribInsertCellsButton_Label" xml:space="preserve">
+    <value>插入表格储存格</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribSplitButton_Label" xml:space="preserve">
+    <value>分页</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribImportButton_Label" xml:space="preserve">
+    <value>进口</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
+    <value>删除/清理现有编号</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
+    <value>选择编号样式</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
+    <value>编号</value>
+    <comment>group</comment>
+  </data>
 </root>

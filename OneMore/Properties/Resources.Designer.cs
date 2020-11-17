@@ -2103,9 +2103,27 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove/cleanup existing numbering.
         /// </summary>
-        internal static string PageNumberingDialog_cleanCheckbox_Text {
+        internal static string PageNumberingDialog_cleanBox_Text {
             get {
-                return ResourceManager.GetString("PageNumberingDialog_cleanCheckbox.Text", resourceCulture);
+                return ResourceManager.GetString("PageNumberingDialog_cleanBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the numbering style.
+        /// </summary>
+        internal static string PageNumberingDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("PageNumberingDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numbering.
+        /// </summary>
+        internal static string PageNumberingDialog_numberingGroup_Text {
+            get {
+                return ResourceManager.GetString("PageNumberingDialog_numberingGroup.Text", resourceCulture);
             }
         }
         
@@ -3140,6 +3158,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        internal static string ribImportButton_Label {
+            get {
+                return ResourceManager.GetString("ribImportButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Increase Font Size.
         /// </summary>
         internal static string ribIncreaseFontSizeButton_Label {
@@ -3163,6 +3190,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInfoBlockButton_Label {
             get {
                 return ResourceManager.GetString("ribInfoBlockButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Table Cells.
+        /// </summary>
+        internal static string ribInsertCellsButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertCellsButton_Label", resourceCulture);
             }
         }
         
@@ -3595,6 +3631,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSortButton_Label {
             get {
                 return ResourceManager.GetString("ribSortButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Page.
+        /// </summary>
+        internal static string ribSplitButton_Label {
+            get {
+                return ResourceManager.GetString("ribSplitButton_Label", resourceCulture);
             }
         }
         

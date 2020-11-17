@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml;
@@ -347,7 +348,9 @@ namespace River.OneMoreAddIn
 			{
 				try
 				{
-					value = (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(attr.Value);
+					value = (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(
+						null, CultureInfo.InvariantCulture,
+						attr.Value);
 				}
 				catch
 				{

@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Drawing;
+	using System.Globalization;
 
 
 	/// <summary>
@@ -142,8 +143,8 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public virtual string FontSize
 		{
-			get { return fontSize.ToString("0.0#"); }
-			set { fontSize = Convert.ToDouble(value); }
+			get { return fontSize.ToString("0.0#", CultureInfo.InvariantCulture); }
+			set { fontSize = Convert.ToDouble(value, CultureInfo.InvariantCulture); }
 		}
 
 		/// <summary>
@@ -181,8 +182,8 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public virtual string SpaceBefore
 		{
-			get { return spaceBefore.ToString("0.0#"); }
-			set { spaceBefore = Convert.ToDouble(value); }
+			get { return spaceBefore.ToString("0.0#", CultureInfo.InvariantCulture); }
+			set { spaceBefore = Convert.ToDouble(value, CultureInfo.InvariantCulture); }
 		}
 
 		/// <summary>
@@ -190,8 +191,8 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public virtual string SpaceAfter
 		{
-			get { return spaceAfter.ToString("0.0#"); }
-			set { spaceAfter = Convert.ToDouble(value); }
+			get { return spaceAfter.ToString("0.0#", CultureInfo.InvariantCulture); }
+			set { spaceAfter = Convert.ToDouble(value, CultureInfo.InvariantCulture); }
 		}
 
 

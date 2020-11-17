@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System.Globalization;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -44,7 +45,7 @@ namespace River.OneMoreAddIn
 						var attr = element.Attribute("quickStyleIndex");
 						if (attr != null)
 						{
-							var index = int.Parse(attr.Value);
+							var index = int.Parse(attr.Value, CultureInfo.InvariantCulture);
 							if (quickStyles.Any(s => s.Index == index))
 							{
 								element.Remove();

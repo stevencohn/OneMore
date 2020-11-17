@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.Collections.Specialized;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Text;
 	using System.Text.RegularExpressions;
 
@@ -262,7 +263,7 @@ namespace River.OneMoreAddIn
 				size = match.Groups[match.Groups.Count - 1].Value;
 				if (!string.IsNullOrEmpty(size))
 				{
-					return double.Parse(size);
+					return double.Parse(size, CultureInfo.InvariantCulture);
 				}
 			}
 
@@ -277,7 +278,7 @@ namespace River.OneMoreAddIn
 				return 0;
 			}
 
-			if (double.TryParse(space, out var value))
+			if (double.TryParse(space, NumberStyles.Any, CultureInfo.InvariantCulture, out var value))
 			{
 				return value;
 			}

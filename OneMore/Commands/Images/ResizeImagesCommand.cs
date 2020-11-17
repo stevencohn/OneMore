@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -75,8 +76,8 @@ namespace River.OneMoreAddIn
 		private void ResizeOne(XElement image)
 		{
 			var size = image.Element(ns + "Size");
-			int width = (int)decimal.Parse(size.Attribute("width").Value);
-			int height = (int)decimal.Parse(size.Attribute("height").Value);
+			int width = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
+			int height = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
 			using (var dialog = new Dialogs.ResizeImagesDialog(width, height))
 			{
@@ -85,8 +86,8 @@ namespace River.OneMoreAddIn
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
-					size.Attribute("width").Value = dialog.WidthPixels.ToString();
-					size.Attribute("height").Value = dialog.HeightPixels.ToString();
+					size.Attribute("width").Value = dialog.WidthPixels.ToString(CultureInfo.InvariantCulture);
+					size.Attribute("height").Value = dialog.HeightPixels.ToString(CultureInfo.InvariantCulture);
 
 					one.Update(page);
 				}
@@ -101,18 +102,18 @@ namespace River.OneMoreAddIn
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
-					var width = dialog.WidthPixels.ToString();
+					var width = dialog.WidthPixels.ToString(CultureInfo.InvariantCulture);
 
 					foreach (var image in images)
 					{
 						var size = image.Element(ns + "Size");
-						var imageWidth = (int)decimal.Parse(size.Attribute("width").Value);
-						var imageHeight = (int)decimal.Parse(size.Attribute("height").Value);
+						var imageWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
+						var imageHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
 						size.Attribute("width").Value = width;
 
 						size.Attribute("height").Value =
-							((int)(imageHeight * (dialog.WidthPixels / imageWidth))).ToString();
+							((int)(imageHeight * (dialog.WidthPixels / imageWidth))).ToString(CultureInfo.InvariantCulture);
 					}
 
 					one.Update(page);

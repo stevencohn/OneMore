@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.Globalization;
 	using System.Runtime.InteropServices;
 	using System.Timers;
 
@@ -50,6 +51,11 @@ namespace River.OneMoreAddIn
 			UIHelper.PrepareUI();
 
 			var thread = System.Threading.Thread.CurrentThread;
+			Culture = thread.CurrentUICulture;
+
+			//Culture = CultureInfo.GetCultureInfo("fr-FR");
+			//thread.CurrentCulture = Culture;
+			//thread.CurrentUICulture = Culture;
 
 			logger.WriteLine();
 			logger.Start(
@@ -58,6 +64,13 @@ namespace River.OneMoreAddIn
 				$"v{AssemblyInfo.Version}, OneNote {Office.GetOneNoteVersion()}, " +
 				$"Office {Office.GetOfficeVersion()}");
 		}
+
+
+		/// <summary>
+		/// Gets the thread culture for use in subsequent threads; used primarily for 
+		/// debugging when explicitly setting the culture in the AddIn() constructor
+		/// </summary>
+		public static CultureInfo Culture { get; private set; }
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

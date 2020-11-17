@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Settings
 {
 	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.Globalization;
 	using System.Xml.Linq;
 
 
@@ -85,7 +86,8 @@ namespace River.OneMoreAddIn.Settings
 				{
 					var converter = TypeDescriptor.GetConverter(typeof(T));
 					return properties.ContainsKey(name)
-						? (T)converter.ConvertFromString((string)properties[name])
+						? (T)converter.ConvertFromString(
+							null, CultureInfo.InvariantCulture, (string)properties[name])
 						: default;
 				}
 			}

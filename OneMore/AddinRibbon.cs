@@ -406,7 +406,7 @@ namespace River.OneMoreAddIn
 			try
 			{
 				//logger.WriteLine($"GetString({resId})");
-				return Resx.ResourceManager.GetString(resId);
+				return Resx.ResourceManager.GetString(resId, AddIn.Culture);
 			}
 			catch (Exception exc)
 			{

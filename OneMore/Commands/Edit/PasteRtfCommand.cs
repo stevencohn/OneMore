@@ -8,6 +8,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Text;
@@ -664,7 +665,7 @@ namespace River.OneMoreAddIn
 			{
 				if (double.TryParse(parts[i], out var value))
 				{
-					parts[i] = Math.Ceiling(value * DeltaSize).ToString();
+					parts[i] = Math.Ceiling(value * DeltaSize).ToString(CultureInfo.InvariantCulture);
 				}
 				else
 				{

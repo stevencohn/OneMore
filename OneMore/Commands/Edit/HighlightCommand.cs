@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Settings;
+	using System.Globalization;
 	using System.Xml.Linq;
 
 
@@ -51,7 +52,7 @@ namespace River.OneMoreAddIn
 
 				if (updated)
 				{
-					page.SetMeta(MetaName, index.ToString());
+					page.SetMeta(MetaName, index.ToString(CultureInfo.InvariantCulture));
 					one.Update(page);
 				}
 			}

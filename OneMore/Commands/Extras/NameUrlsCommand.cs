@@ -160,7 +160,7 @@ namespace River.OneMoreAddIn
 							if (match.Success)
 							{
 								// we found a <title></title> match
-								title = match.Groups[1].Value.ToString();
+								title = match.Groups[1].Value;
 							}
 							else if (contents.Contains("</head>"))
 							{

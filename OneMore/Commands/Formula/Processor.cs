@@ -60,8 +60,8 @@ namespace River.OneMoreAddIn.Commands.Formula
 			if (cell != null)
 			{
 				var text = cell.GetText()
-					.Replace("$", string.Empty)
-					.Replace("%", string.Empty);
+					.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
+					.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
 
 				if (double.TryParse(text, out var value))
 				{
@@ -88,21 +88,23 @@ namespace River.OneMoreAddIn.Commands.Formula
 			switch (formula.Format)
 			{
 				case FormulaFormat.Currency:
-					text = result.ToString($"C{dplaces}");
+					text = result.ToString($"C{dplaces}", AddIn.Culture);
 					break;
 
 				case FormulaFormat.Number:
-					text = result.ToString($"N{dplaces}");
+					text = result.ToString($"N{dplaces}", AddIn.Culture);
 					break;
 
 				case FormulaFormat.Percentage:
-					text = $"{(result / 100):P}";
+					text = (result / 100).ToString("P", AddIn.Culture);
 					break;
 			}
 
 			cell.SetContent(text);
 
-			//logger.WriteLine($"Cell {cell.Coordinates} calculated result = ({text})");
+			//logger.WriteLine(
+			//	$"Cell {cell.Coordinates} calculated {result}, " +
+			//	$"formatted \"{text}\" for culture {AddIn.Culture.Name}");
 		}
 	}
 }

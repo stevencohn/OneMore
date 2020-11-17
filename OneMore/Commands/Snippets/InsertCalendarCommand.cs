@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn
 			// headers...
 
 			var header = table.Rows.First();
-			var format = CultureInfo.CurrentUICulture.DateTimeFormat;
+			var format = AddIn.Culture.DateTimeFormat;
 			var dow = 0;
 			foreach (var cell in header.Cells)
 			{
@@ -188,7 +188,7 @@ namespace River.OneMoreAddIn
 		{
 			var quick = page.GetQuickStyle(Styles.StandardStyles.Heading2);
 
-			var format = CultureInfo.CurrentUICulture.DateTimeFormat;
+			var format = AddIn.Culture.DateTimeFormat;
 			var monthName = format.GetMonthName(month);
 
 			return new XElement(ns + "OE",

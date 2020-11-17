@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -28,7 +29,7 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
-				var index = style.Index.ToString();
+				var index = style.Index.ToString(CultureInfo.InvariantCulture);
 				var pattern = new Regex(Resx.RemoveCitations_FromUrl);
 
 				var elements =

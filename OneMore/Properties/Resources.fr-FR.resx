@@ -299,7 +299,7 @@
     <comment>DO NOT TRANSLATE</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Diminuer la taille de la police de la page (Ctrl + Alt + Moins)</value>
+    <value>Diminuer la taille de la police de la page (Ctrl + Alt + Shift)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribFootnoteButton_Screentip" xml:space="preserve">
@@ -307,7 +307,7 @@
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
-    <value>Supprimer la note de bas de page (Ctrl + Maj + F)</value>
+    <value>Supprimer la note de bas de page (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
@@ -319,11 +319,11 @@
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Insérer une seule ligne horizontale (Maj + Alt + Moins)</value>
+    <value>Insérer une seule ligne horizontale (Shift + Alt + Moins)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Convertir le texte en minuscules (Ctrl + Maj + U)</value>
+    <value>Convertir le texte en minuscules (Ctrl + Shift + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
@@ -466,7 +466,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribInfoBlockButton_Label" xml:space="preserve">
-    <value>Bloc d\u0027informations</value>
+    <value>Bloc d'informations</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
@@ -538,7 +538,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribWarnBlockButton_Label" xml:space="preserve">
-    <value>Bloc d\u0027avertissement</value>
+    <value>Bloc d'avertissement</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribYellowStatusButton_Label" xml:space="preserve">
@@ -558,11 +558,11 @@
     <comment>message box message</comment>
   </data>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
-    <value>Aucun fichier journal n\u0027est disponible</value>
+    <value>Aucun fichier journal n'est disponible</value>
     <comment>message box message</comment>
   </data>
   <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>C\u0027est parfait</value>
+    <value>C'est parfait</value>
     <comment>message box title</comment>
   </data>
   <data name="ClearLog_Title" xml:space="preserve">
@@ -590,7 +590,7 @@
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>OK button</comment>
   </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
@@ -622,7 +622,7 @@
     <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
-    <value>Après avoir choisi une couleur de page, chargez l\u0027un des styles prédéfinis ou personnalisez vos propres styles afin que tout le contenu ait un contraste suffisant pour être visible.</value>
+    <value>Après avoir choisi une couleur de page, chargez l'un des styles prédéfinis ou personnalisez vos propres styles afin que tout le contenu ait un contraste suffisant pour être visible.</value>
     <comment>instructions</comment>
   </data>
   <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
@@ -630,7 +630,7 @@
     <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
@@ -642,7 +642,9 @@
     <comment>message box</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
-    <value>Nombre\n</value>
+    <value>Nombre
+Devise
+Pourcentage</value>
     <comment>formats, one per line</comment>
   </data>
   <data name="FormulaDialog.Text" xml:space="preserve">
@@ -666,15 +668,15 @@
     <comment>status label</comment>
   </data>
   <data name="FormulaDialog_status_Empty" xml:space="preserve">
-    <value>\u003cvide\u003e</value>
+    <value>&lt;vide&gt;</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>OK button</comment>
   </data>
   <data name="FormulaDialog_status_OK" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>label</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
@@ -686,15 +688,15 @@
     <comment>cancel button</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
-    <value>Réorganisez l\u0027affichage des styles dans la galerie. </value>
+    <value>Réorganisez l'affichage des styles dans la galerie. </value>
     <comment>instructions</comment>
   </data>
   <data name="ReorderDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>Redimensionner l\u0027image</value>
+    <value>Redimensionner l'image</value>
     <comment>dialog title</comment>
   </data>
   <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
@@ -726,7 +728,7 @@
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
@@ -770,7 +772,7 @@
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
@@ -818,7 +820,7 @@
     <comment>radio</comment>
   </data>
   <data name="SortDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
@@ -850,7 +852,7 @@
     <comment>instructions</comment>
   </data>
   <data name="EmojiDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="Emoji_Architecture" xml:space="preserve">
@@ -1014,7 +1016,7 @@
     <comment>radio button</comment>
   </data>
   <data name="OutlineDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
@@ -1034,7 +1036,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="SaveAs_Error" xml:space="preserve">
-    <value>Erreur lors de l\u0027enregistrement de la page sous {0}</value>
+    <value>Erreur lors de l'enregistrement de la page sous {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
@@ -1042,7 +1044,7 @@
     <comment>Save as dialog filename filter string</comment>
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>L\u0027extension de fichier doit être l\u0027un des .htm, .docx, .pdf ou .xml</value>
+    <value>L'extension de fichier doit être l'un des .htm, .docx, .pdf ou .xml</value>
     <comment>Save as dialog invalid file type message</comment>
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
@@ -1062,11 +1064,11 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Afficher / masquer la date et l\u0027heure de la page</value>
+    <value>Afficher / masquer la date et l'heure de la page</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
-    <value>Afficher / masquer la date et l\u0027heure de la page sous le titre</value>
+    <value>Afficher / masquer la date et l'heure de la page sous le titre</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
@@ -1074,7 +1076,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Label" xml:space="preserve">
-    <value>Supprimer les informations sur l\u0027auteur</value>
+    <value>Supprimer les informations sur l'auteur</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
@@ -1129,7 +1131,7 @@
     <value>Annuler</value>
     <comment>cancel button</comment>
   </data>
-  <data name="PageNumberingDialog_cleanCheckbox.Text" xml:space="preserve">
+  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
     <value>Supprimer / nettoyer la numérotation existante</value>
     <comment>checkbox</comment>
   </data>
@@ -1138,7 +1140,7 @@
     <comment>radio button</comment>
   </data>
   <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
@@ -1170,12 +1172,24 @@
     <comment>label</comment>
   </data>
   <data name="PhoneticsDialog_languages" xml:space="preserve">
-    <value>en, anglais\n</value>
+    <value>en,English
+hi,Hindi
+es,Spanish
+fr,French
+ja,Japanese
+ru,Russian
+de,German
+it,Italian
+ko,Korean
+pt-BR,Brazilian Portuguese
+ar,Arabic
+tr,Turkish
+zh-CN,Chinese (Simplified)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
   <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
@@ -1207,7 +1221,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Recadrer l\u0027image</value>
+    <value>Recadrer l'image</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -1223,7 +1237,7 @@ ISO-code then comma then language name</comment>
     <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
-    <value>Taille de l\u0027image: {0} x {1}</value>
+    <value>Taille de l'image: {0} x {1}</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_noSelection" xml:space="preserve">
@@ -1235,7 +1249,7 @@ ISO-code then comma then language name</comment>
     <comment>Crop command error message</comment>
   </data>
   <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
-    <value>Supprimer l\u0027espacement des paragraphes</value>
+    <value>Supprimer l'espacement des paragraphes</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
   </data>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
@@ -1243,19 +1257,19 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Clean...</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
-    <value>Supprimer l\u0027espacement</value>
+    <value>Supprimer l'espacement</value>
     <comment>dialog title</comment>
   </data>
   <data name="RemoveSpacingDialog_afterBox.Text" xml:space="preserve">
-    <value>Supprimer l\u0027espacement après les paragraphes</value>
+    <value>Supprimer l'espacement après les paragraphes</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_beforeBox.Text" xml:space="preserve">
-    <value>Supprimer l\u0027espacement avant les paragraphes</value>
+    <value>Supprimer l'espacement avant les paragraphes</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_betweenBox.Text" xml:space="preserve">
-    <value>Supprimer l\u0027espacement entre les lignes</value>
+    <value>Supprimer l'espacement entre les lignes</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_cancelButton.Text" xml:space="preserve">
@@ -1267,11 +1281,11 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="TimestampDialog.Text" xml:space="preserve">
-    <value>Afficher / masquer la date et l\u0027heure</value>
+    <value>Afficher / masquer la date et l'heure</value>
     <comment>dialog title</comment>
   </data>
   <data name="TimestampDialog_cancelButton.Text" xml:space="preserve">
@@ -1279,11 +1293,11 @@ ISO-code then comma then language name</comment>
     <comment>cancel button</comment>
   </data>
   <data name="TimestampDialog_hideRadio.Text" xml:space="preserve">
-    <value>Masquer la date et l\u0027heure</value>
+    <value>Masquer la date et l'heure</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="TimestampDialog_pageRadio.Text" xml:space="preserve">
@@ -1299,7 +1313,7 @@ ISO-code then comma then language name</comment>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_showRadio.Text" xml:space="preserve">
-    <value>Afficher la date et l\u0027heure</value>
+    <value>Afficher la date et l'heure</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_toggleGroup.Text" xml:space="preserve">
@@ -1351,7 +1365,7 @@ ISO-code then comma then language name</comment>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
-    <value>Supprimer l\u0027espacement des paragraphes</value>
+    <value>Supprimer l'espacement des paragraphes</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
@@ -1371,15 +1385,15 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
-    <value>Supprimer l\u0027écrêtage d\u0027écran et coller les citations d\u0027URL</value>
+    <value>Supprimer l'écrêtage d'écran et coller les citations d'URL</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
-    <value>Coupure d\u0027écran</value>
+    <value>Coupure d'écran</value>
     <comment>Screen clipping citation</comment>
   </data>
   <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>Depuis \u003c\u003c a \\ shref \u003d. +? \u003c/a\u003e\u003e</value>
+    <value>Depuis &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
     <comment>From &lt;URL&gt; pattern match</comment>
   </data>
   <data name="PluginDialog.Text" xml:space="preserve">
@@ -1391,7 +1405,7 @@ ISO-code then comma then language name</comment>
     <comment>cancel button</comment>
   </data>
   <data name="PluginDialog_childBox.Text" xml:space="preserve">
-    <value>Créer en tant qu\u0027enfant de la page actuelle</value>
+    <value>Créer en tant qu'enfant de la page actuelle</value>
     <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_createRadio.Text" xml:space="preserve">
@@ -1415,7 +1429,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="Plugin_NoChanges" xml:space="preserve">
-    <value>Le plugin s\u0027est terminé avec succès mais aucune modification n\u0027a été trouvée</value>
+    <value>Le plugin s'est terminé avec succès mais aucune modification n'a été trouvée</value>
     <comment>warning message</comment>
   </data>
   <data name="Plugin_NoUpdate" xml:space="preserve">
@@ -1431,11 +1445,11 @@ ISO-code then comma then language name</comment>
     <comment>Open File Dialog title</comment>
   </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
-    <value>Le plug-in ne s\u0027est pas terminé correctement. </value>
+    <value>Le plug-in ne s'est pas terminé correctement. </value>
     <comment>error message</comment>
   </data>
   <data name="Plugin_WritingTemp" xml:space="preserve">
-    <value>Erreur d\u0027écriture dans le fichier temporaire. </value>
+    <value>Erreur d'écriture dans le fichier temporaire. </value>
     <comment>error message</comment>
   </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1466,7 +1480,7 @@ ISO-code then comma then language name</comment>
     <comment>icon col</comment>
   </data>
   <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>Les modèles d\u0027URL doivent contenir un jeton de remplacement de chaîne, tel que \u0026 q \u003d {0}</value>
+    <value>Les modèles d'URL doivent contenir un jeton de remplacement de chaîne, tel que &amp; q = {0}</value>
     <comment>intro label</comment>
   </data>
   <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
@@ -1474,7 +1488,7 @@ ISO-code then comma then language name</comment>
     <comment>name col</comment>
   </data>
   <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
@@ -1490,7 +1504,7 @@ ISO-code then comma then language name</comment>
     <comment>up buttom</comment>
   </data>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>Modèle d\u0027URL</value>
+    <value>Modèle d'URL</value>
     <comment>url col</comment>
   </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
@@ -1514,7 +1528,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>button</comment>
   </data>
   <data name="InsertCalendarDialog_smallRadio.Text" xml:space="preserve">
@@ -1530,7 +1544,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, snippets</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
-    <value>{0} (Ctrl + Alt + Maj + {1})</value>
+    <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
   <data name="TocDialog.Text" xml:space="preserve">
@@ -1546,7 +1560,7 @@ ISO-code then comma then language name</comment>
     <comment>radio</comment>
   </data>
   <data name="TocDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>button</comment>
   </data>
   <data name="TocDialog_pageRadio.Text" xml:space="preserve">
@@ -1610,7 +1624,7 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="TextToTableDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>ok button</comment>
   </data>
   <data name="TextToTableDialog_otherRadio.Text" xml:space="preserve">
@@ -1634,7 +1648,7 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
-    <value>Aucun texte n\u0027est sélectionné</value>
+    <value>Aucun texte n'est sélectionné</value>
     <comment>info message</comment>
   </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
@@ -1733,7 +1747,14 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>La formule saisie doit s\u0027appliquer à la première cellule sélectionnée. </value>
+    <value>La formule saisie doit s'appliquer à la première cellule sélectionnée. Cette formule sera incrémentée automatiquement pour les cellules sélectionnées supplémentaires.
+
+Fonctions: abs, acos, asin, atan, atan2, average, plafond, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, somme, tan, tanh, trunc, variance
+
+Opérateurs: + - / * ^
+Référence de cellule: A1, A2, ... ZZZ999
+Plage de cellules: A1: A22
+Symboles: PI, E</value>
   </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Cellules sélectionnées:</value>
@@ -1756,7 +1777,7 @@ ISO-code then comma then language name</comment>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>L\u0027opérande contient plusieurs points décimaux</value>
+    <value>L'opérande contient plusieurs points décimaux</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrOperandExpected" xml:space="preserve">
@@ -1808,7 +1829,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu extras</comment>
   </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
-    <value>L\u0027image a déjà une légende</value>
+    <value>L'image a déjà une légende</value>
     <comment>info message</comment>
   </data>
   <data name="WordCountCommand_Count" xml:space="preserve">
@@ -1828,7 +1849,10 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>Fichier HTML (* .htm)\n</value>
+    <value>HTML File (*.htm)
+PDF File (*.pdf)
+Word File (*.docx)
+XML File (*.xml)</value>
     <comment>combo box</comment>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
@@ -1840,7 +1864,7 @@ ISO-code then comma then language name</comment>
     <comment>group box title</comment>
   </data>
   <data name="ExportDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>button</comment>
   </data>
   <data name="ExportDialog_Text" xml:space="preserve">
@@ -1852,7 +1876,7 @@ ISO-code then comma then language name</comment>
     <comment>save many message</comment>
   </data>
   <data name="Command_Error" xml:space="preserve">
-    <value>Erreur lors de l\u0027exécution de la commande {0}</value>
+    <value>Erreur lors de l'exécution de la commande {0}</value>
     <comment>logged and displayed in messagebox</comment>
   </data>
   <data name="Command_ErrorMsg" xml:space="preserve">
@@ -1872,7 +1896,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>button</comment>
   </data>
   <data name="ImportDialog_powerAppendButton.Text" xml:space="preserve">
@@ -1920,7 +1944,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>General OK label</comment>
   </data>
   <data name="SectionGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1966,15 +1990,15 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
-    <value>Choisissez l\u0027emplacement où les pages sélectionnées doivent être copiées</value>
+    <value>Choisissez l'emplacement où les pages sélectionnées doivent être copiées</value>
     <comment>QuickFiling description</comment>
   </data>
   <data name="SearchQF_Title" xml:space="preserve">
-    <value>Sélectionnez l\u0027emplacement</value>
+    <value>Sélectionnez l'emplacement</value>
     <comment>QuickFiling title</comment>
   </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
-    <value>Choisissez l\u0027emplacement où les pages sélectionnées doivent être déplacées</value>
+    <value>Choisissez l'emplacement où les pages sélectionnées doivent être déplacées</value>
     <comment>QuickFiling description</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
@@ -2021,7 +2045,7 @@ ISO-code then comma then language name</comment>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">
-    <value>... Supprimer les informations sur l\u0027auteur</value>
+    <value>... Supprimer les informations sur l'auteur</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveCitationsButton" xml:space="preserve">
@@ -2033,7 +2057,7 @@ ISO-code then comma then language name</comment>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveSpacingButton" xml:space="preserve">
-    <value>... Supprimer l\u0027espacement des paragraphes</value>
+    <value>... Supprimer l'espacement des paragraphes</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribSnippetsMenu" xml:space="preserve">
@@ -2077,7 +2101,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
-    <value>Afficher uniquement les icônes pour les commandes d\u0027édition</value>
+    <value>Afficher uniquement les icônes pour les commandes d'édition</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
@@ -2125,7 +2149,7 @@ ISO-code then comma then language name</comment>
     <comment>numeric label</comment>
   </data>
   <data name="InsertCellsDialog_okButton.Text" xml:space="preserve">
-    <value>D\u0027accord</value>
+    <value>D'accord</value>
     <comment>button</comment>
   </data>
   <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
@@ -2135,5 +2159,69 @@ ISO-code then comma then language name</comment>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>Décaler les cellules vers la droite</value>
     <comment>radio</comment>
+  </data>
+  <data name="SplitDialog.Text" xml:space="preserve">
+    <value>Page divisée</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SplitDialog_byHeading1Box.Text" xml:space="preserve">
+    <value>Titre 1</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_byHeading1Label.Text" xml:space="preserve">
+    <value>Liez les en-têtes aux nouvelles pages et déplacez le contenu vers chaque page</value>
+    <comment>label</comment>
+  </data>
+  <data name="SplitDialog_byLinksBox.Text" xml:space="preserve">
+    <value>Liens de page (wiki)</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_byLinksLabel.Text" xml:space="preserve">
+    <value>Déplacer le contenu vers chaque page liée</value>
+    <comment>label</comment>
+  </data>
+  <data name="SplitDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
+    <value>Filtre</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SplitDialog_okButton.Text" xml:space="preserve">
+    <value>D'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
+    <value>Divisé par</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SplitDialog_taggedBox.Text" xml:space="preserve">
+    <value>Appliquer uniquement aux en-têtes et aux liens balisés</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
+    <value>Marque:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribInsertCellsButton_Label" xml:space="preserve">
+    <value>Insérer des cellules de tableau</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribSplitButton_Label" xml:space="preserve">
+    <value>Page divisée</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribImportButton_Label" xml:space="preserve">
+    <value>Importer</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
+    <value>Choisissez le style de num&amp;#233;rotation</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
+    <value>Numérotage</value>
+    <comment>group</comment>
   </data>
 </root>

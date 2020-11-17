@@ -36,8 +36,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 			for (int i = 1; i <= 12; i++)
 			{
-				monthBox.Items.Add(
-					CultureInfo.CurrentUICulture.DateTimeFormat.GetMonthName(i));
+				monthBox.Items.Add(AddIn.Culture.DateTimeFormat.GetMonthName(i));
 			}
 
 			monthBox.SelectedIndex = DateTime.Now.Month - 1;

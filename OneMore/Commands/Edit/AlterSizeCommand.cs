@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -122,10 +123,14 @@ namespace River.OneMoreAddIn
 					if (element != null)
 					{
 						var attr = element.Attribute("fontSize");
-						if (attr != null && double.TryParse(attr.Value, out var size))
+						if (attr != null)
 						{
-							attr.Value = (size + delta).ToString("#0") + ".05";
-							count++;
+							if (double.TryParse(
+								attr.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var size))
+							{
+								attr.Value = (size + delta).ToString("#0") + ".05";
+								count++;
+							}
 						}
 					}
 				}
@@ -260,13 +265,15 @@ namespace River.OneMoreAddIn
 
 		private static double ParseFontSize(string size)
 		{
-			var match = Regex.Match(size, @"^([0-9]+(?:\.[0-9]+)?)(?:pt){0,1}");
+			var match = Regex.Match(size, 
+				@"^([0-9]+(?:\" + AddIn.Culture.NumberFormat.NumberDecimalSeparator + "[0-9]+)?)(?:pt){0,1}");
+
 			if (match.Success)
 			{
 				size = match.Groups[match.Groups.Count - 1].Value;
 				if (!string.IsNullOrEmpty(size))
 				{
-					return double.Parse(size);
+					return double.Parse(size, CultureInfo.InvariantCulture);
 				}
 			}
 

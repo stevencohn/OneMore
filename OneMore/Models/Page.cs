@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Models
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Media;
 	using System.Text.RegularExpressions;
@@ -517,7 +518,7 @@ namespace River.OneMoreAddIn.Models
 				var attr = element.Attribute("width");
 				if (attr != null)
 				{
-					var outlinePoints = double.Parse(attr.Value);
+					var outlinePoints = double.Parse(attr.Value, CultureInfo.InvariantCulture);
 
 					// measure line to ensure page width is sufficient
 

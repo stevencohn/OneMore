@@ -332,7 +332,7 @@
               <button
                 id="ribInsertCellsButton"
                 imageMso="TableInsertCellsDialog"
-                label="Insert Table Cells"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertCellsCmd"/>
               <button
@@ -361,7 +361,7 @@
               <button
                 id="ribSplitButton"
                 imageMso="MasterDocumentSplitSubdocuments"
-                label="Split Page"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="SplitCmd"/>
               <button
@@ -380,7 +380,7 @@
             <button
               id="ribImportButton"
               imageMso="FileOpen"
-              label="Import"
+              getLabel="GetRibbonLabel"
               getEnabled="GetOfficeInstalled"
               onAction="ImportCmd"/>
             <button

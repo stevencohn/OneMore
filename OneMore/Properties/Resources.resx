@@ -1139,7 +1139,7 @@ Notebooks</value>
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="PageNumberingDialog_cleanCheckbox.Text" xml:space="preserve">
+  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
     <value>Remove/cleanup existing numbering</value>
     <comment>checkbox</comment>
   </data>
@@ -2212,5 +2212,25 @@ XML File (*.xml)</value>
   <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
     <value>Tag:</value>
     <comment>label</comment>
+  </data>
+  <data name="ribInsertCellsButton_Label" xml:space="preserve">
+    <value>Insert Table Cells</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribSplitButton_Label" xml:space="preserve">
+    <value>Split Page</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribImportButton_Label" xml:space="preserve">
+    <value>Import</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
+    <value>Choose the numbering style</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
+    <value>Numbering</value>
+    <comment>group</comment>
   </data>
 </root>

@@ -612,6 +612,9 @@
     <EmbeddedResource Include="Dialogs\TocDialog.resx">
       <DependentUpon>TocDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings\ContextMenuSheet.resx">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>
     </EmbeddedResource>
