@@ -376,7 +376,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="WordCountCmd"/>
             </menu>
-            <menuSeparator id="sepSpecial" getTitle="GetRibbonLabel" />
+            <menuSeparator id="sepTools" getTitle="GetRibbonLabel" />
             <button
               id="ribImportButton"
               imageMso="FileOpen"

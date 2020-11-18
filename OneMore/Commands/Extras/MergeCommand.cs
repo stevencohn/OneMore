@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -87,18 +88,20 @@ namespace River.OneMoreAddIn
 					}
 
 					var topOffset = childOutlines.Elements(ns + "Position")
-						.Min(p => double.Parse(p.Attribute("y").Value));
+						.Min(p => double.Parse(p.Attribute("y").Value, CultureInfo.InvariantCulture));
 
 					foreach (var childOutline in childOutlines)
 					{
 						// adjust position relative to new parent page outlines
 						var position = childOutline.Elements(ns + "Position").FirstOrDefault();
-						var y = double.Parse(position.Attribute("y").Value) - topOffset + offset + OutlineMargin;
+						var y = double.Parse(position.Attribute("y").Value, CultureInfo.InvariantCulture)
+							- topOffset + offset + OutlineMargin;
+
 						position.Attribute("y").Value = y.ToString("#0.0");
 
 						// keep track of lowest bottom
 						var size = childOutline.Elements(ns + "Size").FirstOrDefault();
-						var bottom = y + double.Parse(size.Attribute("height").Value);
+						var bottom = y + double.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 						if (bottom > maxOffset)
 						{
 							maxOffset = bottom;
@@ -146,8 +149,8 @@ namespace River.OneMoreAddIn
 					var size = outline.Elements(ns + "Size").FirstOrDefault();
 					if (size != null)
 					{
-						var bottom = double.Parse(position.Attribute("y").Value)
-							+ double.Parse(size.Attribute("height").Value);
+						var bottom = double.Parse(position.Attribute("y").Value, CultureInfo.InvariantCulture)
+							+ double.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
 						if (bottom > offset)
 						{

@@ -1332,8 +1332,8 @@ ISO-code then comma then language name</comment>
     <value>Contenu</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
-  <data name="sepSpecial_Label" xml:space="preserve">
-    <value>Spécial</value>
+  <data name="sepTools_Label" xml:space="preserve">
+    <value>Outils</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="sepText_Label" xml:space="preserve">

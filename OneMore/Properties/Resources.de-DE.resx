@@ -665,10 +665,6 @@
     <value>Status:</value>
     <comment>status label</comment>
   </data>
-  <data name="FormulaDialog_status_Empty" xml:space="preserve">
-    <value>\u003cleer\u003e</value>
-    <comment>label</comment>
-  </data>
   <data name="FormulaDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>OK button</comment>
@@ -1318,8 +1314,8 @@ ISO-code then comma then language name</comment>
     <value>Inhalt</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
-  <data name="sepSpecial_Label" xml:space="preserve">
-    <value>Besondere</value>
+  <data name="sepTools_Label" xml:space="preserve">
+    <value>Werkzeuge</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="sepText_Label" xml:space="preserve">
@@ -1377,10 +1373,6 @@ ISO-code then comma then language name</comment>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
     <value>Bildschirmausschnitt</value>
     <comment>Screen clipping citation</comment>
-  </data>
-  <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>Von \u003c\u003c a \\ shref \u003d. +? \u003c/a\u003e\u003e</value>
-    <comment>From &lt;URL&gt; pattern match</comment>
   </data>
   <data name="PluginDialog.Text" xml:space="preserve">
     <value>Plugin ausführen</value>
@@ -1464,10 +1456,6 @@ ISO-code then comma then language name</comment>
   <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
     <value>Symbol</value>
     <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>URL-Muster müssen ein Zeichenfolgenersetzungstoken enthalten, z. B. \u0026 q \u003d {0}</value>
-    <comment>intro label</comment>
   </data>
   <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
     <value>Name</value>
@@ -1773,10 +1761,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
     <value>Undefiniertes Symbol \"{0}\"</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>Unerwartetes Zeichen gefunden \u0027{0}\u0027</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
@@ -2135,5 +2119,89 @@ ISO-code then comma then language name</comment>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>Verschieben Sie die Zellen nach rechts</value>
     <comment>radio</comment>
+  </data>
+  <data name="FormulaDialog_status_Empty" xml:space="preserve">
+    <value>&lt;leer&gt;</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
+    <value>Vorhandene Nummerierung entfernen / bereinigen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="RemoveCitations_FromUrl" xml:space="preserve">
+    <value>Von &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
+    <comment>From &lt;URL&gt; pattern match</comment>
+  </data>
+  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
+    <value>URL-Muster müssen ein Zeichenfolgenersetzungstoken enthalten, z. B. &amp;q={0}</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
+    <value>Unerwartetes Zeichen gefunden '{0}'</value>
+    <comment>error</comment>
+  </data>
+  <data name="SplitDialog.Text" xml:space="preserve">
+    <value>Seite teilen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SplitDialog_byHeading1Box.Text" xml:space="preserve">
+    <value>Überschrift 1</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_byHeading1Label.Text" xml:space="preserve">
+    <value>Verknüpfen Sie Überschriften mit neuen Seiten und verschieben Sie den Inhalt auf jede Seite</value>
+    <comment>label</comment>
+  </data>
+  <data name="SplitDialog_byLinksBox.Text" xml:space="preserve">
+    <value>Seitenlinks (Wiki)</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_byLinksLabel.Text" xml:space="preserve">
+    <value>Verschieben Sie Inhalte auf jede verknüpfte Seite</value>
+    <comment>label</comment>
+  </data>
+  <data name="SplitDialog_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
+    <value>Filter</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SplitDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
+    <value>Geteilt durch</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SplitDialog_taggedBox.Text" xml:space="preserve">
+    <value>Gilt nur für markierte Überschriften und Links</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
+    <value>Etikett:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribInsertCellsButton_Label" xml:space="preserve">
+    <value>Tabellenzellen einfügen</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribSplitButton_Label" xml:space="preserve">
+    <value>Seite teilen</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribImportButton_Label" xml:space="preserve">
+    <value>Importieren</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
+    <value>Wählen Sie den Nummerierungsstil</value>
+    <comment>label</comment>
+  </data>
+  <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
+    <value>Nummerierung</value>
+    <comment>group</comment>
   </data>
 </root>

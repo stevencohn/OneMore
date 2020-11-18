@@ -4133,20 +4133,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special.
-        /// </summary>
-        internal static string sepSpecial_Label {
-            get {
-                return ResourceManager.GetString("sepSpecial_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Text.
         /// </summary>
         internal static string sepText_Label {
             get {
                 return ResourceManager.GetString("sepText_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        internal static string sepTools_Label {
+            get {
+                return ResourceManager.GetString("sepTools_Label", resourceCulture);
             }
         }
         

@@ -1304,8 +1304,8 @@ OneNote 将自动关闭</value>
     <value>内容</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
-  <data name="sepSpecial_Label" xml:space="preserve">
-    <value>特别</value>
+  <data name="sepTools_Label" xml:space="preserve">
+    <value>工具类</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="sepText_Label" xml:space="preserve">

@@ -25,7 +25,19 @@ namespace River.OneMoreAddIn.Dialogs
 				var control = Controls.Find(key, true).FirstOrDefault();
 				if (control != null)
 				{
-					control.Text = Resx.ResourceManager.GetString($"{Name}_{key}.Text", AddIn.Culture);
+					var resid = $"{Name}_{key}.Text";
+					try
+					{
+						var text = Resx.ResourceManager.GetString(resid, AddIn.Culture);
+						if (!string.IsNullOrEmpty(text))
+						{
+							control.Text = text;
+						}
+					}
+					catch
+					{
+						Logger.Current.WriteLine($"Error translating resource {resid}");
+					}
 				}
 			}
 		}

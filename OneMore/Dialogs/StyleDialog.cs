@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -165,8 +166,8 @@ namespace River.OneMoreAddIn
 
 			applyColorsBox.Checked = selection.ApplyColors;
 
-			spaceAfterSpinner.Value = (decimal)double.Parse(selection.SpaceAfter);
-			spaceBeforeSpinner.Value = (decimal)double.Parse(selection.SpaceBefore);
+			spaceAfterSpinner.Value = (decimal)double.Parse(selection.SpaceAfter, CultureInfo.InvariantCulture);
+			spaceBeforeSpinner.Value = (decimal)double.Parse(selection.SpaceBefore, CultureInfo.InvariantCulture);
 
 			allowEvents = true;
 
