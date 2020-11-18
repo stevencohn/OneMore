@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Models
 {
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -26,6 +27,7 @@ namespace River.OneMoreAddIn.Models
 		private readonly XElement columns;
 		private readonly List<TableRow> rows;
 		private int numCells;
+		private System.IFormatProvider cultureinfo;
 
 
 		/// <summary>
@@ -231,7 +233,7 @@ namespace River.OneMoreAddIn.Models
 			var column = columns.Elements(ns + "Column").Skip(index)?.FirstOrDefault();
 			if (column != null)
 			{
-				column.SetAttributeValue("width", width.ToString("0.0#"));
+				column.SetAttributeValue("width", width.ToString("0.0#", CultureInfo.InvariantCulture));
 				column.SetAttributeValue("isLocked", "true");
 			}
 		}

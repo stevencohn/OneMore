@@ -531,7 +531,7 @@ namespace River.OneMoreAddIn.Models
 
 							if (stringPoints > outlinePoints)
 							{
-								attr.Value = stringPoints.ToString("#0.00");
+								attr.Value = stringPoints.ToString("#0.00", CultureInfo.InvariantCulture);
 
 								// must include isSetByUser or width doesn't take effect!
 								if (element.Attribute("isSetByUser") == null)

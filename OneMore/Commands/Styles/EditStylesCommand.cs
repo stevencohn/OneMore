@@ -32,6 +32,9 @@ namespace River.OneMoreAddIn
 			var styles = provider.GetStyles();
 			DialogResult result;
 
+
+			System.Diagnostics.Debugger.Launch();
+
 			using (var dialog = new StyleDialog(styles, pageColor))
 			{
 				result = dialog.ShowDialog(owner);

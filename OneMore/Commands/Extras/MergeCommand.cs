@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn
 						var y = double.Parse(position.Attribute("y").Value, CultureInfo.InvariantCulture)
 							- topOffset + offset + OutlineMargin;
 
-						position.Attribute("y").Value = y.ToString("#0.0");
+						position.Attribute("y").Value = y.ToString("#0.0", CultureInfo.InvariantCulture);
 
 						// keep track of lowest bottom
 						var size = childOutline.Elements(ns + "Size").FirstOrDefault();

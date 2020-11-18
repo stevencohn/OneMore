@@ -80,6 +80,15 @@ namespace River.OneMoreAddIn
 		{
 			InitializeComponent();
 
+			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
+			{
+				for (int i = 0; i < sizeBox.Items.Count; i++)
+				{
+					sizeBox.Items[i] = sizeBox.Items[i].ToString()
+						.Replace(".", AddIn.Culture.NumberFormat.NumberDecimalSeparator);
+				}
+			}
+
 			styleTypeBox.SelectedIndex = (int)StyleType.Paragraph;
 			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
 			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString());
@@ -155,7 +164,9 @@ namespace River.OneMoreAddIn
 			styleTypeBox.SelectedIndex = (int)selection.StyleType;
 			familyBox.Text = selection.FontFamily;
 
-			sizeBox.Text = selection.FontSize;
+			// normalize number to remove ".0"
+			sizeBox.Text = double.Parse(selection.FontSize, CultureInfo.InvariantCulture)
+				.ToString("0.#", AddIn.Culture);
 
 			boldButton.Checked = selection.IsBold;
 			italicButton.Checked = selection.IsItalic;
@@ -166,8 +177,19 @@ namespace River.OneMoreAddIn
 
 			applyColorsBox.Checked = selection.ApplyColors;
 
-			spaceAfterSpinner.Value = (decimal)double.Parse(selection.SpaceAfter, CultureInfo.InvariantCulture);
-			spaceBeforeSpinner.Value = (decimal)double.Parse(selection.SpaceBefore, CultureInfo.InvariantCulture);
+			if (double.TryParse(selection.SpaceAfter, NumberStyles.Any, CultureInfo.InvariantCulture, out var sa))
+			{
+				var dsa = (decimal)sa;
+				if (dsa >= spaceAfterSpinner.Minimum && dsa <= spaceAfterSpinner.Maximum)
+					spaceAfterSpinner.Value = dsa;
+			}
+
+			if (double.TryParse(selection.SpaceBefore, NumberStyles.Any, CultureInfo.InvariantCulture, out var sb))
+			{
+				var dsb = (decimal)sb;
+				if (dsb >= spaceBeforeSpinner.Minimum && dsb <= spaceBeforeSpinner.Maximum)
+					spaceBeforeSpinner.Value = dsb;
+			}
 
 			allowEvents = true;
 
@@ -212,7 +234,7 @@ namespace River.OneMoreAddIn
 
 			var offset = superButton.Checked || subButton.Checked;
 
-			if (!float.TryParse(sizeBox.Text, out var sampleFontSize))
+			if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var sampleFontSize))
 			{
 				sampleFontSize = (float)StyleBase.DefaultFontSize;
 			}
@@ -356,7 +378,7 @@ namespace River.OneMoreAddIn
 			{
 				var save = selection.Font;
 
-				if (!float.TryParse(sizeBox.Text, out var size))
+				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var size))
 				{
 					size = (float)StyleBase.DefaultFontSize;
 				}
@@ -377,12 +399,12 @@ namespace River.OneMoreAddIn
 			{
 				var save = selection.Font;
 
-				if (!float.TryParse(sizeBox.Text, out var size))
+				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var size))
 				{
 					size = (float)StyleBase.DefaultFontSize;
 				}
 
-				selection.FontSize = size.ToString("0.0#");
+				selection.FontSize = size.ToString("0.0#", CultureInfo.InvariantCulture);
 				selection.Font = MakeFont(size);
 
 				save.Dispose();
@@ -398,7 +420,7 @@ namespace River.OneMoreAddIn
 			{
 				var save = selection.Font;
 
-				if (!float.TryParse(sizeBox.Text, out var size))
+				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var size))
 				{
 					size = (float)StyleBase.DefaultFontSize;
 				}
@@ -501,13 +523,13 @@ namespace River.OneMoreAddIn
 
 		private void ChangeSpaceAfter(object sender, EventArgs e)
 		{
-			selection.SpaceAfter = spaceAfterSpinner.Value.ToString("#0.0");
+			selection.SpaceAfter = spaceAfterSpinner.Value.ToString("#0.0", CultureInfo.InvariantCulture);
 
 		}
 
 		private void ChangeSpaceBefore(object sender, EventArgs e)
 		{
-			selection.SpaceBefore = spaceBeforeSpinner.Value.ToString("#0.0");
+			selection.SpaceBefore = spaceBeforeSpinner.Value.ToString("#0.0", CultureInfo.InvariantCulture);
 		}
 
 

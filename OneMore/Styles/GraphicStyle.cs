@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Globalization;
 	using Drawing = System.Drawing;
 
 
@@ -126,7 +127,7 @@ namespace River.OneMoreAddIn
 			return new Style(this)
 			{
 				FontFamily = Font.FontFamily.Name,
-				FontSize = Font.Size.ToString("#0.0"),
+				FontSize = Font.Size.ToString("#0.0", CultureInfo.InvariantCulture),
 				IsBold = Font.Bold,
 				IsItalic = Font.Italic,
 				IsUnderline = Font.Underline,
