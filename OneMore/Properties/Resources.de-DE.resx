@@ -545,7 +545,7 @@
     <value>Gelber Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="AboutDialoge.Text" xml:space="preserve">
+  <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-In</value>
     <comment>dialog title bar</comment>
   </data>

@@ -545,7 +545,7 @@
     <value>Statut jaune</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="AboutDialoge.Text" xml:space="preserve">
+  <data name="AboutDialog.Text" xml:space="preserve">
     <value>Complément OneMore</value>
     <comment>dialog title bar</comment>
   </data>

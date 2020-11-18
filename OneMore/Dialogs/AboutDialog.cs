@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.AboutDialoge_Text;
+				Text = Resx.AboutDialog_Text;
 
 				Localize(new string[]
 				{

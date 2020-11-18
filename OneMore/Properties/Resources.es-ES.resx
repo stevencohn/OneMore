@@ -121,26 +121,26 @@
     <value>OneMoreAddIn</value>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
-    <value>显示XML</value>
+    <value>Mostrar XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
-    <value>显示层次结构和当前页面的XML (Ctrl + Shift + Alt + X)</value>
+    <value>Mostrar XML de jerarquía y página actual (Ctrl + Shift + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
-    <value>多一个</value>
+    <value>Uno mas</value>
     <comment>Ribbon Group</comment>
   </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
-    <value>多一个</value>
+    <value>Uno mas</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>没有拼写检查</value>
+    <value>Sin revisión ortográfica</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>禁用整个页面的拼写检查 (F4)</value>
+    <value>Desactivar el corrector ortográfico para toda la página (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -279,15 +279,15 @@
     <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ribTrimButton_Label" xml:space="preserve">
-    <value>修剪空白</value>
+    <value>Recortar el espacio en blanco</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribTrimButton_Screentip" xml:space="preserve">
-    <value>修剪所选文本的尾随空格</value>
+    <value>Recortar los espacios en blanco finales del texto seleccionado</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
-    <value>Favorites.xml</value>
+    <value>Favoritos.xml</value>
     <comment>FILENAME</comment>
   </data>
   <data name="oneNamespace" xml:space="preserve">
@@ -299,43 +299,43 @@
     <comment>DO NOT TRANSLATE</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>缩小页面字体大小 (Ctrl + Alt + Minus)</value>
+    <value>Reducir el tamaño de fuente de la página (Ctrl + Alt + Menos)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribFootnoteButton_Screentip" xml:space="preserve">
-    <value>添加脚注 (Ctrl + Alt + F)</value>
+    <value>Agregar nota al pie (Ctrl + Alt + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
-    <value>删除脚注 (Ctrl + Shift + F)</value>
+    <value>Eliminar nota al pie (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>增加字体大小 (Ctrl + Alt + Plus)</value>
+    <value>Aumentar el tamaño de fuente de la página (Ctrl + Alt + Más)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>插入双水平线 (Shift + Alt + Equals)</value>
+    <value>Insertar doble línea horizontal (Mayús + Alt + Igual)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>插入水平线 (Shift + Alt + Minus)</value>
+    <value>Insertar una sola línea horizontal (Mayús + Alt + Menos)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>将文本转换为小写 (Ctrl + Shift + U)</value>
+    <value>Convertir texto a minúsculas (Ctrl + Shift + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>粘贴富文本 (Ctrl + Alt + V)</value>
+    <value>Pegar texto enriquecido (Ctrl + Alt + V)</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribReplaceButton_Screentip" xml:space="preserve">
-    <value>搜索和替换 (Ctrl + H)</value>
+    <value>Buscar y reemplazar (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>将文本转换为大写 (Ctrl + Shift + Alt + U)</value>
+    <value>Convertir texto a mayúsculas (Ctrl + Shift + Alt + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -358,386 +358,384 @@
     <comment>FILENAME</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
-    <value>关于一个</value>
+    <value>Acerca de OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
-    <value>添加配方</value>
+    <value>Agregar fórmula</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>在选定的表格单元格中添加/编辑公式（F5）</value>
+    <value>Agregar / editar fórmula en celdas de tabla seleccionadas (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>将样式应用于页面</value>
+    <value>Aplicar estilos a la página</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
   <data name="ribBlueStatusButton_Label" xml:space="preserve">
-    <value>蓝色状态</value>
+    <value>Estado azul</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribCaptionButton_Label" xml:space="preserve">
-    <value>添加字幕</value>
+    <value>Añadir un subtitulo</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
   <data name="ribCodeBlockButton_Label" xml:space="preserve">
-    <value>代码块</value>
+    <value>Bloque de código</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribCollapseButton_Label" xml:space="preserve">
-    <value>收合页面</value>
+    <value>Contraer páginas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCreateStyleButton_Label" xml:space="preserve">
-    <value>通过选择创建样式</value>
+    <value>Crear estilo a partir de la selección</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>定制风格</value>
+    <value>Estilos personalizados</value>
     <comment>Ribbon main custom styles button</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Label" xml:space="preserve">
-    <value>缩小字体</value>
+    <value>Disminuir tamaño de fuente</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
-    <value>删除公式</value>
+    <value>Eliminar fórmula</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribDeleteFormulaButton_Screentip" xml:space="preserve">
-    <value>从选定的表格单元格中删除公式</value>
+    <value>Eliminar fórmula de las celdas de la tabla seleccionadas</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>编辑样式</value>
+    <value>Editar estilos</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
   <data name="ribExpandButton_Label" xml:space="preserve">
-    <value>展开/折叠</value>
+    <value>Expandir el colapso</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
-    <value>额外</value>
+    <value>Extras</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
-    <value>喜爱</value>
+    <value>Favoritos</value>
     <comment>Ribbon main favorites button</comment>
   </data>
   <data name="ribFlagTitleButton_Label" xml:space="preserve">
-    <value>在页面标题中添加图标</value>
+    <value>Agregar icono al título de la página</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFootnoteButton_Label" xml:space="preserve">
-    <value>添加脚注</value>
+    <value>Agregar nota al pie</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFootnoteRemoveButton_Label" xml:space="preserve">
-    <value>删除脚注</value>
+    <value>Eliminar nota al pie</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>式</value>
+    <value>Fórmula</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
-    <value>灰色状态</value>
+    <value>Estado gris</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribGreenStatusButton_Label" xml:space="preserve">
-    <value>绿色状态</value>
+    <value>Estado verde</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>高亮配方</value>
+    <value>Fórmula de resaltado</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>当前表中具有公式的高级单元格</value>
+    <value>Celdas altas con fórmula en la tabla actual</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
-    <value>图片</value>
+    <value>Imagenes</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
-    <value>增加字体大小</value>
+    <value>Aumenta el tamaño de la fuente</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribInfoBlockButton_Label" xml:space="preserve">
-    <value>信息块</value>
+    <value>Bloque de información</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
-    <value>双水平线</value>
+    <value>Línea horizontal doble</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>水平线</value>
+    <value>Linea horizontal</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
-    <value>小写</value>
+    <value>A minúsculas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribMergeButton_Label" xml:space="preserve">
-    <value>合并页面</value>
+    <value>Combinar páginas</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>用网页标题替换网址</value>
+    <value>Reemplazar URL con títulos de páginas web</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
-    <value>更多</value>
+    <value>Más</value>
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>设置页面颜色</value>
+    <value>Establecer color de página</value>
     <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
-    <value>粘贴富文本</value>
+    <value>Pegar texto enriquecido</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>重新计算公式</value>
+    <value>Recalcular fórmula</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>重新计算当前表中的所有公式（Shift + F5）</value>
+    <value>Volver a calcular todas las fórmulas de la tabla actual (Mayús + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribRedStatusButton_Label" xml:space="preserve">
-    <value>红色状态</value>
+    <value>Estado rojo</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribReplaceButton_Label" xml:space="preserve">
-    <value>搜索和替换</value>
+    <value>Buscar y reemplazar</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>调整大小</value>
+    <value>Redimensionar</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
-    <value>片段</value>
+    <value>Fragmentos</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
-    <value>分类</value>
+    <value>Ordenar</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
-    <value>目录</value>
+    <value>Tabla de contenido</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
-    <value>大写</value>
+    <value>A MAYÚSCULAS</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribWarnBlockButton_Label" xml:space="preserve">
-    <value>警告块</value>
+    <value>Bloque de advertencia</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribYellowStatusButton_Label" xml:space="preserve">
-    <value>黄色状态</value>
+    <value>Estado amarillo</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>OneMore 外接程序</value>
+    <value>Complemento OneMore</value>
     <comment>dialog title bar</comment>
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
-    <value>清除日志文件</value>
+    <value>Borrar el archivo de registro</value>
     <comment>hyperlink to clear the log file</comment>
   </data>
   <data name="ClearLog_Message" xml:space="preserve">
-    <value>是否现在清除日志文件？</value>
+    <value>¿Borrar el archivo de registro ahora?</value>
     <comment>message box message</comment>
   </data>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
-    <value>没有可用的日志文件</value>
+    <value>No hay ningún archivo de registro disponible</value>
     <comment>message box message</comment>
   </data>
   <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>一切都很好</value>
+    <value>Está todo bien</value>
     <comment>message box title</comment>
   </data>
   <data name="ClearLog_Title" xml:space="preserve">
-    <value>确认</value>
+    <value>Confirmar</value>
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_copyLabel.Text" xml:space="preserve">
-    <value>版权 @ 2016-{0} Steven M Cohn</value>
+    <value>Copyright @ 2016-{0} Steven M Cohn</value>
     <comment>copyright to current year</comment>
   </data>
   <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>您拥有最新版本</value>
+    <value>Tienes la última versión</value>
     <comment>message box message</comment>
   </data>
   <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>你可以走了</value>
+    <value>¡Eres bueno para ir!</value>
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>新版本可用:
-
-    {0} - "{1}"
-
-是否立即更新?
-OneNote 将自动关闭</value>
+    <value>Una nueva version esta disponible:
+{0} - "{1}"
+¿Quieres actualizar ahora?
+OneNote se cerrará automáticamente</value>
     <comment>message box message showing verison tag and name</comment>
   </data>
   <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
-    <value>更新 OneMore</value>
+    <value>Actualizar OneMore</value>
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>OK button</comment>
   </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
-    <value>OneMore Add-in for OneNote 2016</value>
+    <value>Complemento OneMore para OneNote 2016</value>
     <comment>Add-in full name</comment>
   </data>
   <data name="AboutDialog_updateLink.Text" xml:space="preserve">
-    <value>检查更新</value>
+    <value>Buscar actualizaciones</value>
     <comment>check online for available updates to add-in</comment>
   </data>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>版本 {0}</value>
+    <value>Versión {0}</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>更改页面颜色</value>
+    <value>Cambiar el color de la página</value>
     <comment>dialog title</comment>
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>自订背景...</value>
+    <value>Fondo personalizado...</value>
     <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>黑暗的背景</value>
+    <value>Fondo oscuro</value>
     <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
-    <value>选择页面颜色后，加载预定义的样式之一或自定义样式，以便所有内容具有足够的对比度以使其可见。</value>
+    <value>Después de elegir un color de página, cargue uno de los estilos predefinidos o personalice sus propios estilos para que todo el contenido tenga suficiente contraste para ser visible.</value>
     <comment>instructions</comment>
   </data>
   <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>浅色背景</value>
+    <value>Fondo claro</value>
     <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
-    <value>页面颜色</value>
+    <value>Color de página</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>从同一行或列中选择一个或多个单元格</value>
+    <value>Seleccione una o más celdas de la misma fila o columna</value>
     <comment>message box</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
-    <value>数
-货币
-百分比</value>
+    <value>Número
+Moneda
+Porcentaje</value>
     <comment>formats, one per line</comment>
   </data>
   <data name="FormulaDialog.Text" xml:space="preserve">
-    <value>式</value>
+    <value>Fórmula</value>
     <comment>dialog title</comment>
   </data>
   <data name="FormulaDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>Cancel button</comment>
   </data>
   <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>帮帮我</value>
+    <value>Ayuda</value>
     <comment>help checkbox button</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
-    <value>格式:</value>
+    <value>Formato:</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
-    <value>状态：</value>
+    <value>Estado:</value>
     <comment>status label</comment>
   </data>
   <data name="FormulaDialog_status_Empty" xml:space="preserve">
-    <value>&lt;空&gt;</value>
+    <value>&amp;lt;vacío&amp;gt;</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>OK button</comment>
   </data>
-  <data name="FormulaDialog_rangeLabel.Text" xml:space="preserve">
-    <value>范围:</value>
+  <data name="FormulaDialog_status_OK" xml:space="preserve">
+    <value>Okay</value>
     <comment>label</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>重新排序自定义样式</value>
+    <value>Reordenar estilos personalizados</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
-    <value>重新排列样式在图库中的显示顺序。 同时更改目录中标题的顺序</value>
+    <value>Reordene cómo aparecen los estilos en la galería. </value>
     <comment>instructions</comment>
   </data>
   <data name="ReorderDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>调整图像大小</value>
+    <value>Cambiar el tamaño de la imagen</value>
     <comment>dialog title</comment>
   </data>
   <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>绝对</value>
+    <value>Absoluto</value>
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>页面上的所有图像</value>
+    <value>todas las imágenes en la página</value>
     <comment>info label</comment>
   </data>
   <data name="ResizeImagesDialog_aspectBox.Text" xml:space="preserve">
-    <value>保持纵横比</value>
+    <value>Mantener la relación de aspecto</value>
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>适用于</value>
+    <value>Aplicar para</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>目前的规模</value>
+    <value>Tamaño actual</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>高度</value>
+    <value>Altura</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>原始尺寸</value>
+    <value>Tamaño original</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
@@ -749,15 +747,15 @@ OneNote 将自动关闭</value>
     <comment>percent sign</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
-    <value>百分比</value>
+    <value>Porcentaje</value>
     <comment>radio</comment>
   </data>
   <data name="ResizeImagesDialog_presetLabel.Text" xml:space="preserve">
-    <value>宽度</value>
+    <value>Anchura</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>预设值</value>
+    <value>Preestablecido</value>
     <comment>radio</comment>
   </data>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
@@ -765,862 +763,903 @@ OneNote 将自动关闭</value>
     <comment>width x height</comment>
   </data>
   <data name="ResizeImagesDialog_widthLabel.Text" xml:space="preserve">
-    <value>宽度</value>
+    <value>Anchura</value>
     <comment>label</comment>
   </data>
   <data name="SearchAndReplaceDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
-    <value>相符</value>
+    <value>Caso de partido</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchAndReplaceDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
-    <value>搜索和替换</value>
+    <value>Buscar y reemplazar</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchAndReplaceDialog_whatLabel.Text" xml:space="preserve">
-    <value>要找什么:</value>
+    <value>Encontrar que:</value>
     <comment>label</comment>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
-    <value>用。。。来代替:</value>
+    <value>Reemplazar con:</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
-    <value>分类</value>
+    <value>Ordenar</value>
     <comment>dialog title</comment>
   </data>
   <data name="SortDialog_ascButton.Text" xml:space="preserve">
-    <value>上升</value>
+    <value>Ascendente</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="SortDialog_createdButton.Text" xml:space="preserve">
-    <value>创建日期</value>
+    <value>fecha de creacion</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_desButton.Text" xml:space="preserve">
-    <value>降序</value>
+    <value>Descendiendo</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_direcitonLabel.Text" xml:space="preserve">
-    <value>方向:</value>
+    <value>Dirección:</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog_modifiedButton.Text" xml:space="preserve">
-    <value>修改日期</value>
+    <value>Fecha modificada</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_nameButton.Text" xml:space="preserve">
-    <value>名称</value>
+    <value>Nombre</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
-    <value>将注释固定在顶部和
-底部快速注释</value>
+    <value>Fijar notas en la parte superior y
+Notas rápidas al final</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>本节中的页面
-本笔记本中的章节
-笔记本电脑</value>
+    <value>Páginas en esta sección
+Secciones de este cuaderno
+Cuadernos</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
-    <value>范围:</value>
+    <value>Alcance:</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog_sortLabel.Text" xml:space="preserve">
-    <value>排序方式:</value>
+    <value>Ordenar por:</value>
     <comment>label</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>标题图标</value>
+    <value>Iconos de título</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>选择一个或多个图标以添加到页面标题</value>
+    <value>Seleccione uno o más iconos para agregar al título de la página</value>
     <comment>instructions</comment>
   </data>
   <data name="EmojiDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="Emoji_Architecture" xml:space="preserve">
-    <value>建筑</value>
+    <value>Arquitectura</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Automobile" xml:space="preserve">
-    <value>汽车</value>
+    <value>Automóvil</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Bullet" xml:space="preserve">
-    <value>子弹</value>
+    <value>Bala</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Calendar" xml:space="preserve">
-    <value>日历</value>
+    <value>Calendario</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Circle" xml:space="preserve">
-    <value>圈</value>
+    <value>Circulo</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CrossMark" xml:space="preserve">
-    <value>交叉</value>
+    <value>Marca de la cruz</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cycling" xml:space="preserve">
-    <value>自行车</value>
+    <value>Ciclismo</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Email" xml:space="preserve">
-    <value>电子邮件</value>
+    <value>Correo electrónico</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Family" xml:space="preserve">
-    <value>家庭</value>
+    <value>Familia</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Financial" xml:space="preserve">
-    <value>金融</value>
+    <value>Financiero</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Hammer" xml:space="preserve">
-    <value>锤子</value>
+    <value>Martillo</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
-    <value>图片</value>
+    <value>Imagenes</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Important" xml:space="preserve">
-    <value>重要</value>
+    <value>Importante</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
-    <value>日志</value>
+    <value>diario</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
-    <value>备忘录</value>
+    <value>Memorándum</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Passwords" xml:space="preserve">
-    <value>密码</value>
+    <value>Contraseñas</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Pencil" xml:space="preserve">
-    <value>铅笔</value>
+    <value>Lápiz</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
-    <value>销</value>
+    <value>Chincheta</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Shazam" xml:space="preserve">
-    <value>Shazam!</value>
+    <value>¡Shazam!</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Smiley" xml:space="preserve">
-    <value>微笑</value>
+    <value>Smiley</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Software" xml:space="preserve">
-    <value>软件</value>
+    <value>Software</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Sports" xml:space="preserve">
-    <value>体育</value>
+    <value>Deportes</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Star" xml:space="preserve">
-    <value>星</value>
+    <value>Estrella</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Summary" xml:space="preserve">
-    <value>摘要</value>
+    <value>Resumen</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>任务</value>
+    <value>Tareas</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
-    <value>旅行</value>
+    <value>Viajar</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
-    <value>手表</value>
+    <value>Reloj</value>
     <comment>emoji</comment>
   </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
-    <value>大纲格式</value>
+    <value>Formato de esquema</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
-    <value>大纲格式</value>
+    <value>Formato de esquema</value>
     <comment>dialog title</comment>
   </data>
   <data name="OutlineDialog_alphaRadio.Text" xml:space="preserve">
-    <value>字母和数字</value>
+    <value>Alfanumérico</value>
     <comment>radio button</comment>
   </data>
   <data name="OutlineDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
-    <value>删除现有号码</value>
+    <value>Eliminar/limpiar la numeración existente</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_indentationsGroup.Text" xml:space="preserve">
-    <value>缩进</value>
+    <value>Sangrías</value>
     <comment>group box title</comment>
   </data>
   <data name="OutlineDialog_indentBox.Text" xml:space="preserve">
-    <value>缩进标题下方的内容</value>
+    <value>Aplicar sangría al contenido debajo de los títulos</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_indentTagBox.Text" xml:space="preserve">
-    <value>仅在标记的标题/段落下方缩进</value>
+    <value>Sangría solo debajo de los encabezados/párrafos etiquetados</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_indentTagBox.Tooltip" xml:space="preserve">
-    <value>在仅带标记的标题或无标记的段落下方缩进内容</value>
+    <value>Sangra el contenido debajo solo de los encabezados etiquetados o párrafos no etiquetados</value>
     <comment>tooltip</comment>
   </data>
   <data name="OutlineDialog_numberingBox.Text" xml:space="preserve">
-    <value>添加编号</value>
+    <value>Agregar numeración</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_numberingBox.Tooltip" xml:space="preserve">
-    <value>适用于标准和自定义标题</value>
+    <value>Aplicado a títulos estándar y personalizados</value>
     <comment>tooltip</comment>
   </data>
   <data name="OutlineDialog_numberingGroup.Text" xml:space="preserve">
-    <value>编号</value>
+    <value>Numeración</value>
     <comment>group box title</comment>
   </data>
   <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
-    <value>数字</value>
+    <value>Numérico</value>
     <comment>radio button</comment>
   </data>
   <data name="OutlineDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
-    <value>移除标签</value>
+    <value>Quitar etiquetas</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
-    <value>标签:</value>
+    <value>Etiqueta:</value>
     <comment>label</comment>
   </data>
   <data name="ribExportButton_Label" xml:space="preserve">
-    <value>出口</value>
+    <value>Exportar</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribExportButton_Screentip" xml:space="preserve">
-    <value>将页面导出为HTML，PDF，Word或XML</value>
+    <value>Exportar página (s) como HTML, PDF, Word o XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="SaveAs_Error" xml:space="preserve">
-    <value>将页面另存为{0}时出错</value>
+    <value>Error al guardar la página como {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>HTML圆角| .htm | HML圆角| .hml</value>
+    <value>Archivo HTML|*.htm|Archivo Word|*.docx|Archivo PDF|*.pdf|Archivo XML|*.xml</value>
     <comment>Save as dialog filename filter string</comment>
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>文件类型必须为.htm或.xml</value>
+    <value>La extensión del archivo debe ser .htm, .docx, .pdf o .xml</value>
     <comment>Save as dialog invalid file type message</comment>
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
-    <value>页面已保存到{0}</value>
+    <value>Página guardada en {0}</value>
     <comment>Save as dialog success message</comment>
   </data>
   <data name="SaveAs_Title" xml:space="preserve">
-    <value>将页面另存为...</value>
+    <value>Guardar pagina como...</value>
     <comment>Save as dialog title</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>删除空的段落和标题</value>
+    <value>Eliminar párrafos y encabezados vacíos</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>删除段落之间多余的空行并删除空标题</value>
+    <value>Elimina las líneas vacías adicionales entre el párrafo y elimina los encabezados vacíos</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>显示/隐藏页面日期和时间戳</value>
+    <value>Mostrar/ocultar marcas de fecha y hora de la página</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
-    <value>在标题下方显示/隐藏页面日期和时间戳</value>
+    <value>Mostrar/ocultar las marcas de fecha y hora de la página debajo del título</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
-    <value>清洁</value>
+    <value>Limpiar</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Label" xml:space="preserve">
-    <value>删除作者信息</value>
+    <value>Eliminar información del autor</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
-    <value>在此页面上删除所有作者的信息</value>
+    <value>Eliminar información de todos los autores en esta página</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
-    <value>编号</value>
+    <value>Numeración</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
-    <value>号码页</value>
+    <value>Páginas de números</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberPagesButton_Screentip" xml:space="preserve">
-    <value>添加或更新此部分中所有页面的数量</value>
+    <value>Agregar o actualizar el número de todas las páginas de esta sección</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberSectionsButton_Label" xml:space="preserve">
-    <value>编号部分</value>
+    <value>Secciones numéricas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
-    <value>添加或更新此笔记本中所有部分的编号</value>
+    <value>Agregar o actualizar la numeración de todas las secciones de este cuaderno</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
-    <value>删除页码</value>
+    <value>Eliminar números de página</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Screentip" xml:space="preserve">
-    <value>从此部分的所有页面中删除数字</value>
+    <value>Eliminar números de todas las páginas de esta sección</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Label" xml:space="preserve">
-    <value>删除区号</value>
+    <value>Eliminar números de sección</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Screentip" xml:space="preserve">
-    <value>从此笔记本的所有部分中删除数字</value>
+    <value>Eliminar números de todas las secciones de este cuaderno</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="PageNumberingDialog.Text" xml:space="preserve">
-    <value>页码</value>
+    <value>Numeración de páginas</value>
     <comment>dialog title</comment>
   </data>
   <data name="PageNumberingDialog_alphaRadio.Text" xml:space="preserve">
-    <value>字母数字</value>
+    <value>Alfanumérico</value>
     <comment>radio button</comment>
   </data>
   <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
-  <data name="PageNumberingDialog_cleanCheckbox.Text" xml:space="preserve">
-    <value>删除/清理现有编号</value>
+  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
+    <value>Eliminar/limpiar la numeración existente</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
-    <value>数字</value>
+    <value>Numérico</value>
     <comment>radio button</comment>
   </data>
   <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
-    <value>编号页{0}</value>
+    <value>Página de numeración {0}</value>
     <comment>progress status dialog</comment>
   </data>
   <data name="RemovingPageNumber_Message" xml:space="preserve">
-    <value>从页面{0}中删除号码</value>
+    <value>Eliminando número de la página {0}</value>
     <comment>progress status dialog</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
-    <value>删除线完成标记</value>
+    <value>Tachado Completado para hacer etiquetas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
-    <value>切换标记有完整或不完整的待办事项标签的文本的删除线</value>
+    <value>Alternar tacha en el texto marcado con etiquetas de tareas pendientes completas o incompletas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="PhoneticsDialog.Text" xml:space="preserve">
+    <value>Fonética</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
+    <value>Idioma</value>
+    <comment>label</comment>
+  </data>
+  <data name="PhoneticsDialog_languages" xml:space="preserve">
+    <value>en, inglés
+hola hindi
+es, español
+fr, francés
+ja, japonés
+ru, ruso
+de, alemán
+eso, italiano
+ko, coreano
+pt-BR, portugués brasileño
+ar, árabe
+tr, turco
+zh-CN, chino (simplificado)</value>
+    <comment>Recognized languages, one per line.
+ISO-code then comma then language name</comment>
+  </data>
+  <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
+    <value>Palabra</value>
+    <comment>label</comment>
+  </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
-    <value>插入发音</value>
+    <value>Insertar pronunciación</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
-    <value>所选单词不能为空</value>
+    <value>La palabra seleccionada no puede estar vacía</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_FullWord" xml:space="preserve">
-    <value>必须选择完整的单词</value>
+    <value>Debe seleccionar una palabra completa</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>无法获取单词{0}的定义
-稍后再试</value>
+    <value>No se pudo obtener la definición de la palabra {0}
+Vuelve a intentarlo más tarde</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>找不到单词{0}</value>
+    <value>No se pudo encontrar la palabra {0}</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>作物</value>
+    <value>Cosecha</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>裁剪图片</value>
+    <value>Delimitar imagen</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
-    <value>选择的左上方：{0}，{1}。 边界矩形大小：{2} x {3}。</value>
+    <value>Selección superior izquierda: {0}, {1}. </value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
-    <value>作物</value>
+    <value>Cosecha</value>
     <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
-    <value>图片尺寸：{0} x {1}</value>
+    <value>Tamaño de imagen: {0} x {1}</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>没有选择</value>
+    <value>Sin selección</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImage_oneImage" xml:space="preserve">
-    <value>选择一张图像进行裁剪</value>
+    <value>Seleccione una imagen para recortar</value>
     <comment>Crop command error message</comment>
   </data>
   <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
-    <value>删除段落间距</value>
+    <value>Eliminar el espaciado de párrafos</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
   </data>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
-    <value>删除段落，标题和行间距</value>
+    <value>Eliminar el interlineado, el encabezado y el párrafo</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
-    <value>删除间距</value>
+    <value>Quitar espaciado</value>
     <comment>dialog title</comment>
   </data>
   <data name="RemoveSpacingDialog_afterBox.Text" xml:space="preserve">
-    <value>删除段落后的空格</value>
+    <value>Eliminar el espacio después de los párrafos</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_beforeBox.Text" xml:space="preserve">
-    <value>删除段落前的空格</value>
+    <value>Eliminar el espacio antes de los párrafos</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_betweenBox.Text" xml:space="preserve">
-    <value>删除行间距</value>
+    <value>Eliminar el espacio entre líneas</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="RemoveSpacingDialog_headingsBox.Text" xml:space="preserve">
-    <value>包括标题</value>
+    <value>Incluir encabezados</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="TimestampDialog.Text" xml:space="preserve">
-    <value>显示/隐藏日期和时间</value>
+    <value>Mostrar/Ocultar fecha y hora</value>
     <comment>dialog title</comment>
   </data>
   <data name="TimestampDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="TimestampDialog_hideRadio.Text" xml:space="preserve">
-    <value>隐藏日期和时间</value>
+    <value>Ocultar fecha y hora</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="TimestampDialog_pageRadio.Text" xml:space="preserve">
-    <value>这一页</value>
+    <value>Esta página</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_scopeGroup.Text" xml:space="preserve">
-    <value>范围</value>
+    <value>Alcance</value>
     <comment>group box</comment>
   </data>
   <data name="TimestampDialog_sectionRadio.Text" xml:space="preserve">
-    <value>本节中的所有页面</value>
+    <value>Todas las páginas de esta sección</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_showRadio.Text" xml:space="preserve">
-    <value>显示日期和时间</value>
+    <value>Mostrar fecha y hora</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_toggleGroup.Text" xml:space="preserve">
-    <value>切换</value>
+    <value>Palanca</value>
     <comment>group box</comment>
   </data>
   <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
-    <value>全选</value>
+    <value>Seleccionar todo</value>
     <comment>select all button</comment>
   </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
-    <value>重新设置</value>
+    <value>Reiniciar ajustes</value>
     <comment>system menu</comment>
   </data>
   <data name="sepContent_Label" xml:space="preserve">
-    <value>内容</value>
+    <value>Contenido</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="sepTools_Label" xml:space="preserve">
-    <value>工具类</value>
+    <value>Herramientas</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="sepText_Label" xml:space="preserve">
-    <value>文本</value>
+    <value>Texto</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
-    <value>运行插件</value>
+    <value>Ejecutar complemento</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
-    <value>运行插件</value>
+    <value>Ejecutar complemento</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
-    <value>清洁...</value>
+    <value>Limpiar...</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxLowercaseButton_Label" xml:space="preserve">
-    <value>小写</value>
+    <value>A minúsculas</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
-    <value>没有拼写检查</value>
+    <value>Sin revisión ortográfica</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>删除空的段落和标题</value>
+    <value>Eliminar párrafos y encabezados vacíos</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
-    <value>删除段落间距</value>
+    <value>Eliminar el espaciado de párrafos</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
-    <value>大写</value>
+    <value>A MAYÚSCULAS</value>
     <comment>Context menu</comment>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
-    <value>OneMore</value>
+    <value>Uno mas</value>
     <comment>dialog title</comment>
   </data>
   <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
-    <value>删除粘贴的引文</value>
+    <value>Eliminar citas pegadas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
-    <value>删除屏幕剪辑并粘贴URL引用</value>
+    <value>Eliminar el recorte de pantalla y pegar citas de URL</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
-    <value>屏幕剪辑</value>
+    <value>Recorte de pantalla</value>
     <comment>Screen clipping citation</comment>
   </data>
   <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>从 &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
+    <value>De &amp;lt;&lt;a\shref=.+?&amp;lt;/a&gt;&amp;gt;</value>
     <comment>From &lt;URL&gt; pattern match</comment>
   </data>
   <data name="PluginDialog.Text" xml:space="preserve">
-    <value>运行插件</value>
+    <value>Ejecutar complemento</value>
     <comment>dialog title</comment>
   </data>
   <data name="PluginDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="PluginDialog_childBox.Text" xml:space="preserve">
-    <value>创建为当前页面的子代</value>
+    <value>Crear como hijo de la página actual</value>
     <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_createRadio.Text" xml:space="preserve">
-    <value>创建一个名为</value>
+    <value>Crea una nueva página llamada</value>
     <comment>radio button</comment>
   </data>
   <data name="PluginDialog_okButton.Text" xml:space="preserve">
-    <value>执行</value>
+    <value>correr</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>插件命令</value>
+    <value>Comando de complemento</value>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
-    <value>更新当前页面</value>
+    <value>Actualizar la página actual</value>
     <comment>radio button</comment>
   </data>
   <data name="PluginDialog_argsLabel.Text" xml:space="preserve">
-    <value>争论</value>
+    <value>Argumentos</value>
     <comment>label</comment>
   </data>
   <data name="Plugin_NoChanges" xml:space="preserve">
-    <value>插件已成功完成，但未找到任何更改</value>
+    <value>El complemento se completó correctamente pero no se encontraron cambios</value>
     <comment>warning message</comment>
   </data>
   <data name="Plugin_NoUpdate" xml:space="preserve">
-    <value>更新页面时出错。 查看日志文件</value>
+    <value>Error al actualizar la página. </value>
     <comment>error message</comment>
   </data>
   <data name="Plugin_Running" xml:space="preserve">
-    <value>正在运行{0} {1} \“ {2} \”</value>
+    <value>Ejecutando {0} {1} \"{2}\"</value>
     <comment>running message</comment>
   </data>
   <data name="Plugin_Title" xml:space="preserve">
-    <value>添加在</value>
+    <value>Enchufar</value>
     <comment>Open File Dialog title</comment>
   </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
-    <value>插件没有成功完成。 请参阅日志文件。</value>
+    <value>El complemento no se completó correctamente. </value>
     <comment>error message</comment>
   </data>
   <data name="Plugin_WritingTemp" xml:space="preserve">
-    <value>写入临时文件时出错。 请参阅日志文件。</value>
+    <value>Error al escribir en el archivo temporal. </value>
     <comment>error message</comment>
   </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
-    <value>删除</value>
+    <value>Eliminar</value>
     <comment>delete button</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>删除：</value>
+    <value>Eliminar:</value>
     <comment>delete label</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
-    <value>删除{0}？</value>
+    <value>¿Eliminar {0}?</value>
     <comment>delete confirmation message</comment>
   </data>
   <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>下移</value>
+    <value>Mover hacia abajo</value>
     <comment>down buttom</comment>
   </data>
   <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>图标</value>
+    <value>Icono</value>
     <comment>icon col</comment>
   </data>
   <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>网址格式必须包含字符串替换令牌，例如＆q = {0}</value>
+    <value>Los patrones de URL deben contener un token de reemplazo de cadena, como &amp;q={0}</value>
     <comment>intro label</comment>
   </data>
   <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
-    <value>名称</value>
+    <value>Nombre</value>
     <comment>name col</comment>
   </data>
   <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>刷新图标</value>
+    <value>Actualizar iconos</value>
     <comment>refresh button</comment>
   </data>
   <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>搜索引擎</value>
+    <value>Los motores de búsqueda</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>提升</value>
+    <value>Ascender</value>
     <comment>up buttom</comment>
   </data>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>网址格式</value>
+    <value>Patrón de URL</value>
     <comment>url col</comment>
   </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
-    <value>插入日历</value>
+    <value>Insertar calendario</value>
     <comment>dialog title</comment>
   </data>
   <data name="InsertCalendarDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>格式</value>
+    <value>Formato</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_largeRadio.Text" xml:space="preserve">
-    <value>大</value>
+    <value>Grande</value>
     <comment>radio</comment>
   </data>
   <data name="InsertCalendarDialog_monthLabel.Text" xml:space="preserve">
-    <value>月</value>
+    <value>Mes</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>button</comment>
   </data>
   <data name="InsertCalendarDialog_smallRadio.Text" xml:space="preserve">
-    <value>小</value>
+    <value>Pequeño</value>
     <comment>radio</comment>
   </data>
   <data name="InsertCalendarDialog_yearLabel.Text" xml:space="preserve">
-    <value>年</value>
+    <value>Año</value>
     <comment>label</comment>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
-    <value>日历</value>
+    <value>Calendario</value>
     <comment>Ribbon OneMore menu item, snippets</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
-    <value>{0} (Ctrl+Alt+Shift + {1})</value>
+    <value>{0} (Ctrl + Alt + Mayús + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
   <data name="TocDialog.Text" xml:space="preserve">
-    <value>目录</value>
+    <value>Tabla de contenido</value>
     <comment>dialog title</comment>
   </data>
   <data name="TocDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>在此笔记本中添加带有部分表的页面</value>
+    <value>Agregar página con tabla de secciones en este cuaderno</value>
     <comment>radio</comment>
   </data>
   <data name="TocDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>button</comment>
   </data>
   <data name="TocDialog_pageRadio.Text" xml:space="preserve">
-    <value>在此页上插入标题表</value>
+    <value>Insertar tabla de títulos en esta página</value>
     <comment>radio</comment>
   </data>
   <data name="TocDialog_pagesBox.Text" xml:space="preserve">
-    <value>在每个部分中包含页面</value>
+    <value>Incluir páginas en cada sección</value>
     <comment>checkbox</comment>
   </data>
   <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>在此部分中添加带有页表的页面</value>
+    <value>Agregar página con tabla de páginas en esta sección</value>
     <comment>radio</comment>
   </data>
   <data name="TocDialog_topBox.Text" xml:space="preserve">
-    <value>将链接添加到每个标题以跳至页面顶部</value>
+    <value>Agregue un enlace a cada encabezado para saltar a la parte superior de la página</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
-    <value>目录</value>
+    <value>Tabla de contenido</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>目录-笔记本{0}</value>
+    <value>Tabla de contenido: cuaderno {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>目录-第{0}节</value>
+    <value>Tabla de contenido: sección {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
-    <value>页面顶部</value>
+    <value>Parte superior de la página</value>
     <comment>hyperlink</comment>
   </data>
   <data name="TextToTableDialog.Text" xml:space="preserve">
-    <value>将文本转换为表格</value>
+    <value>Convertir texto en tabla</value>
     <comment>dialog title</comment>
   </data>
   <data name="TextToTableDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="TextToTableDialog_columnsLabel.Text" xml:space="preserve">
-    <value>列数：</value>
+    <value>Número de columnas:</value>
     <comment>label</comment>
   </data>
   <data name="TextToTableDialog_commasRadio.Text" xml:space="preserve">
-    <value>逗号</value>
+    <value>Comas</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_group1.Text" xml:space="preserve">
-    <value>分隔文字</value>
+    <value>Texto separado en</value>
     <comment>group</comment>
   </data>
   <data name="TextToTableDialog_group2.Text" xml:space="preserve">
-    <value>工作台尺寸</value>
+    <value>Tamaño de la mesa</value>
     <comment>group</comment>
   </data>
   <data name="TextToTableDialog_headerBox.Text" xml:space="preserve">
-    <value>第一行是标题</value>
+    <value>La primera fila es un encabezado</value>
     <comment>checkbox</comment>
   </data>
   <data name="TextToTableDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>ok button</comment>
   </data>
   <data name="TextToTableDialog_otherRadio.Text" xml:space="preserve">
-    <value>其他</value>
+    <value>Otro</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_paragraphsRadio.Text" xml:space="preserve">
-    <value>段落</value>
+    <value>Párrafos</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_rowsLabel.Text" xml:space="preserve">
-    <value>行数：</value>
+    <value>Número de filas:</value>
     <comment>label</comment>
   </data>
   <data name="TextToTableDialog_tabsRadio.Text" xml:space="preserve">
-    <value>标签</value>
+    <value>Pestañas</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
-    <value>从完整的字符串中删除引号</value>
+    <value>Eliminar comillas de cadenas completas</value>
     <comment>checkbox</comment>
   </data>
+  <data name="TextToTable_NoText" xml:space="preserve">
+    <value>No hay texto seleccionado</value>
+    <comment>info message</comment>
+  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
-    <value>显示/隐藏日期和时间</value>
+    <value>Convertir texto en tabla</value>
     <comment>Ribbon OneMore menu item, extras</comment>
   </data>
   <data name="XmlDialog.Text" xml:space="preserve">
@@ -1628,703 +1667,676 @@ OneNote 将自动关闭</value>
     <comment>dialog title</comment>
   </data>
   <data name="XmlDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
   <data name="XmlDialog_currNotebookButton.Text" xml:space="preserve">
-    <value>当前笔记本</value>
+    <value>Cuaderno actual</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>当前部分</value>
+    <value>Sección actual</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_hideBox.Text" xml:space="preserve">
-    <value>隐藏编辑者属性（取消选中以编辑页面）</value>
+    <value>Ocultar atributos editados por (desmarque para editar la página)</value>
     <comment>checkbox</comment>
   </data>
   <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">
-    <value>从CDATA删除LF</value>
+    <value>Quitar LF de CDATA</value>
     <comment>checkbox</comment>
   </data>
   <data name="XmlDialog_hierTab.Text" xml:space="preserve">
-    <value>层次结构</value>
+    <value>Jerarquía</value>
     <comment>tab</comment>
   </data>
   <data name="XmlDialog_notebooksHierButton.Text" xml:space="preserve">
-    <value>笔记本电脑</value>
+    <value>Cuadernos</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_okButton.Text" xml:space="preserve">
-    <value>更新页面</value>
+    <value>Actualizar página</value>
     <comment>ok button</comment>
   </data>
   <data name="XmlDialog_pageLinkLabel.Text" xml:space="preserve">
-    <value>链接：</value>
+    <value>Enlace:</value>
     <comment>label</comment>
   </data>
   <data name="XmlDialog_pageNameLabel.Text" xml:space="preserve">
-    <value>名称：</value>
+    <value>Nombre:</value>
     <comment>label</comment>
   </data>
   <data name="XmlDialog_pagePathLabel.Text" xml:space="preserve">
-    <value>路径：</value>
+    <value>Camino:</value>
     <comment>label</comment>
   </data>
   <data name="XmlDialog_pagesHierButton.Text" xml:space="preserve">
-    <value>页数</value>
+    <value>Páginas</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_pageTab.Text" xml:space="preserve">
-    <value>页</value>
+    <value>Página</value>
     <comment>tab</comment>
   </data>
   <data name="XmlDialog_sectionsHierButton.Text" xml:space="preserve">
-    <value>栏目</value>
+    <value>Secciones</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_selectButton.Text" xml:space="preserve">
-    <value>全选</value>
+    <value>Seleccionar todo</value>
     <comment>button</comment>
   </data>
   <data name="XmlDialog_wrapBox.Text" xml:space="preserve">
-    <value>自动换行</value>
+    <value>Ajustar texto</value>
     <comment>checkbox</comment>
   </data>
+  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
-    <value>检测到无效的XML。 检查日志文件以获取详细信息</value>
+    <value>XML no válido detectado. </value>
     <comment>error message</comment>
   </data>
   <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0}（第{1}列）</value>
+    <value>{0} (columna {1})</value>
     <comment>exception message</comment>
   </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
-    <value>所选单元格必须在同一行或同一列中</value>
+    <value>Las celdas seleccionadas deben estar en la misma fila o en la misma columna</value>
     <comment>warning message</comment>
   </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
-    <value>选择一个或多个表格单元格</value>
+    <value>Seleccione una o más celdas de la tabla</value>
     <comment>warning message</comment>
   </data>
   <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
-    <value>式：</value>
+    <value>Fórmula:</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>输入的公式应适用于第一个选定的单元格。 对于其他选定的单元格，此公式将自动增加。
-
-功能：abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
-
-运营商： + - / * ^
-单元格参考： A1, A2, ... ZZZ999
-单元格范围： A1:A22
-符号： PI, E</value>
+    <value>La fórmula ingresada debe aplicarse a la primera celda seleccionada. 
+Funciones: abs, acos, asin, atan, atan2, average, techo, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, 
+Operadores: + - / * ^
+Referencia de celda: A1, A2, ... ZZZ999
+Rango de celda: A1: A22
+Símbolos: PI, E</value>
   </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
-    <value>选定的单元格：</value>
+    <value>Celdas seleccionadas:</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>无效</value>
-    <comment>label</comment>
-  </data>
-  <data name="FormulaDialog_status_OK" xml:space="preserve">
-    <value>好</value>
+    <value>Inválido</value>
     <comment>label</comment>
   </data>
   <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>预计要加上圆括号</value>
+    <value>Se espera un paréntesis de cierre</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>单元格范围必须在一列或一行内</value>
+    <value>El rango de celdas debe estar dentro de una columna o dentro de una fila</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>无效的操作数</value>
+    <value>Operando inválido</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>操作数包含多个小数点</value>
+    <value>El operando contiene varios puntos decimales</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>预期操作数</value>
+    <value>Operando esperado</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>运营商期望</value>
+    <value>Operador esperado</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>未定义函数 “{0}”</value>
+    <value>Función no definida "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>未定义符号 “{0}”</value>
+    <value>Símbolo no definido "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>遇到意外字符“ {0}”</value>
+    <value>Se encontró un carácter inesperado '{0}'</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>右括号不匹配右括号</value>
+    <value>Paréntesis de cierre sin emparejar el paréntesis abierto</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>功能参数数量错误</value>
+    <value>Número incorrecto de parámetros de función</value>
     <comment>error</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
-    <value>已从{0}个单元格中删除了公式</value>
+    <value>Fórmulas eliminadas de {0} celda (s)</value>
     <comment>delete command message</comment>
   </data>
   <data name="DeleteFormulaCommand_NoFormulas" xml:space="preserve">
-    <value>找不到公式。 选择一个或多个包含公式的表格单元格。</value>
+    <value>Fórmula no encontrada. </value>
     <comment>delete command message</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
-    <value>在此页面上找不到公式</value>
+    <value>No se encontraron fórmulas en esta página</value>
     <comment>highlight command message</comment>
   </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
-    <value>在所选表格中找不到公式</value>
+    <value>No se encontró ninguna fórmula en la tabla seleccionada</value>
     <comment>recalculate command message</comment>
   </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
-    <value>字数</value>
+    <value>El recuento de palabras</value>
     <comment>Ribbon OneMore menu extras</comment>
   </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
-    <value>图片已经有标题</value>
+    <value>La imagen ya tiene un título</value>
     <comment>info message</comment>
   </data>
   <data name="WordCountCommand_Count" xml:space="preserve">
-    <value>页面总字数：{0}</value>
+    <value>Total de palabras en la página: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
-    <value>已计算</value>
+    <value>Calculado</value>
     <comment>tag name</comment>
   </data>
   <data name="ExportDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>夹：</value>
+    <value>Carpeta:</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>HTML档案（* .htm）
-PDF档案（* .pdf）
-Word文件（* .docx）
-XML档案（* .xml）</value>
+    <value>Archivo HTML (*.htm)
+Archivo PDF (*.pdf)
+Archivo de Word (*.docx)
+Archivo XML (*.xml)</value>
     <comment>combo box</comment>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>格式：</value>
+    <value>Formato:</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
-    <value>导出{0}页</value>
+    <value>Exportar {0} páginas</value>
     <comment>group box title</comment>
   </data>
   <data name="ExportDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>button</comment>
   </data>
   <data name="ExportDialog_Text" xml:space="preserve">
-    <value>导出页面</value>
+    <value>Exportar páginas</value>
     <comment>dialog title</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>已将{0}页保存到{1}</value>
+    <value>Páginas {0} guardadas en {1}</value>
     <comment>save many message</comment>
   </data>
   <data name="Command_Error" xml:space="preserve">
-    <value>运行命令{0}时出错</value>
+    <value>Error al ejecutar el comando {0}</value>
     <comment>logged and displayed in messagebox</comment>
   </data>
   <data name="Command_ErrorMsg" xml:space="preserve">
-    <value>{0}。 请参阅日志文件以获取详细信息</value>
+    <value>{0}. </value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
   <data name="ImportDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
-    <value>文件：</value>
+    <value>Archivo:</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>选择一个Word或Powerpoint文件</value>
+    <value>Seleccione un archivo de Word o Powerpoint</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>button</comment>
   </data>
   <data name="ImportDialog_powerAppendButton.Text" xml:space="preserve">
-    <value>附加到此页面</value>
+    <value>Agregar a esta página</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_powerCreateButton.Text" xml:space="preserve">
-    <value>创建一个新页面</value>
+    <value>Crea una nueva pagina</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
-    <value>简报选项</value>
+    <value>Opciones de PowerPoint</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_powerSectionButton.Text" xml:space="preserve">
-    <value>为每张幻灯片创建一个带有页面的新部分</value>
+    <value>Cree una nueva sección con una página para cada diapositiva</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_Text" xml:space="preserve">
-    <value>进口</value>
+    <value>Importar</value>
     <comment>dialog title</comment>
   </data>
   <data name="ImportDialog_wordAppendButton.Text" xml:space="preserve">
-    <value>附加到此页面</value>
+    <value>Agregar a esta página</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_wordCreateButton.Text" xml:space="preserve">
-    <value>创建一个新页面</value>
+    <value>Crea una nueva pagina</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
-    <value>Word选项</value>
+    <value>Opciones de Word</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word文件（* .doc）| * .docx | PowerPoint文件（* .pptx）| * .pptx</value>
+    <value>Archivos de Word (*.doc)|*.docx|Archivos de Powerpoint (*.pptx)|*.pptx</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
-    <value>选择要导入的文件</value>
+    <value>Elija el archivo para importar</value>
     <comment>openfiledialog title</comment>
   </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
-    <value>小数位数：</value>
+    <value>Lugares decimales:</value>
     <comment>label</comment>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>接受</value>
+    <value>Okay</value>
     <comment>General OK label</comment>
   </data>
+  <data name="SectionGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sectiongroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SearchDialog_allButton.Text" xml:space="preserve">
-    <value>在所有笔记本电脑中</value>
+    <value>En todos los cuadernos</value>
     <comment>radio</comment>
   </data>
   <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="SearchDialog_copyButton.Text" xml:space="preserve">
-    <value>复制</value>
+    <value>Copiar</value>
     <comment>button</comment>
   </data>
   <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>找：</value>
+    <value>Encontrar:</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>输入一个或多个关键字，“带引号的短语”，并使用大写的AND和OR</value>
+    <value>Ingrese una o más palabras clave, "frases entre comillas" y use mayúsculas Y y O</value>
     <comment>intro label</comment>
   </data>
   <data name="SearchDialog_moveButton.Text" xml:space="preserve">
-    <value>移动</value>
+    <value>Moverse</value>
     <comment>button</comment>
   </data>
   <data name="SearchDialog_notebookButton.Text" xml:space="preserve">
-    <value>在这个笔记本上</value>
+    <value>En este cuaderno</value>
     <comment>radio</comment>
   </data>
   <data name="SearchDialog_sectionButton.Text" xml:space="preserve">
-    <value>在这个部分</value>
+    <value>En esta sección</value>
     <comment>radio</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
-    <value>搜索和移动/复制</value>
+    <value>Buscar y mover / copiar</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SearchQF_Title" xml:space="preserve">
-    <value>选择位置</value>
-    <comment>QuickFiling title</comment>
-  </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
-    <value>选择应该复制所选页面的位置</value>
+    <value>Elija la ubicación donde se deben copiar las páginas seleccionadas</value>
     <comment>QuickFiling description</comment>
   </data>
+  <data name="SearchQF_Title" xml:space="preserve">
+    <value>Seleccionar ubicación</value>
+    <comment>QuickFiling title</comment>
+  </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
-    <value>选择应该移动选定页面的位置</value>
+    <value>Elija la ubicación donde se deben mover las páginas seleccionadas</value>
     <comment>QuickFiling description</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>搜索和复制/移动</value>
+    <value>Buscar y copiar/mover</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>在页面上搜索关键字，然后将其复制/移动到另一部分（Alt + F）</value>
+    <value>Buscar páginas por palabras clave y copiar/mover a otra sección (Alt + F)</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
-    <value>添加脚注</value>
+    <value>Agregar nota al pie</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribCleanMenu" xml:space="preserve">
-    <value>清洁菜单</value>
+    <value>Menú Limpio</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribDecreaseFontSizeButton" xml:space="preserve">
-    <value>...减小文字大小</value>
+    <value>... Disminuir el tamaño del texto</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribEditMenu" xml:space="preserve">
-    <value>编辑菜单</value>
+    <value>Menú de edición</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribIncreaseFontSizeButton" xml:space="preserve">
-    <value>...增加文字大小</value>
+    <value>... Aumentar el tamaño del texto</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>选择要在“页面”上下文菜单中显示的命令。 菜单项包括该菜单中的所有命令。 重新启动OneNote以查看更改。</value>
+    <value>Elija comandos para mostrar en el menú contextual de la página. </value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>没有拼写检查</value>
+    <value>Sin revisión ortográfica</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
-    <value>粘贴富文本</value>
+    <value>Pegar texto enriquecido</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">
-    <value>...删除作者信息</value>
+    <value>... Quitar la información del autor</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveCitationsButton" xml:space="preserve">
-    <value>...删除粘贴的引文</value>
+    <value>... Quitar citas pegadas</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveEmptyButton" xml:space="preserve">
-    <value>...删除空的段落和标题</value>
+    <value>... Eliminar párrafos y encabezados vacíos</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveSpacingButton" xml:space="preserve">
-    <value>...删除段落间距</value>
+    <value>... Quitar el espaciado de párrafos</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribSnippetsMenu" xml:space="preserve">
-    <value>片段菜单</value>
+    <value>Menú de fragmentos</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
-    <value>上下文菜单选项</value>
+    <value>Opciones del menú contextual</value>
     <comment>sheet</comment>
   </data>
   <data name="ContextMenuSheet_ribLowercaseButton" xml:space="preserve">
-    <value>...小写</value>
+    <value>... A minúsculas</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribUppercaseButton" xml:space="preserve">
-    <value>...大写</value>
+    <value>... A MAYÚSCULAS</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribTrimButton" xml:space="preserve">
-    <value>...修剪空白</value>
+    <value>... Recortar el espacio en blanco</value>
     <comment>option</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
-    <value>旋转荧光笔选项</value>
+    <value>Opciones de resaltador giratorio</value>
     <comment>sheet intro</comment>
   </data>
   <data name="ribEditMenu_Label" xml:space="preserve">
-    <value>编辑</value>
+    <value>Editar</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
-    <value>旋转荧光笔</value>
-    <comment>Ribbon OneMore menu item, Edit...</comment>
+    <value>Resaltador giratorio</value>
+    <comment>menu</comment>
   </data>
   <data name="ContextMenuSheet_ribHighlightButton" xml:space="preserve">
-    <value>...旋转荧光笔</value>
+    <value>... Resaltador giratorio</value>
     <comment>context menu</comment>
   </data>
   <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>编辑指令</value>
+    <value>Editar comandos</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
-    <value>仅显示用于编辑命令的图标</value>
+    <value>Mostrar solo iconos para los comandos de edición</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>公式命令</value>
+    <value>Comandos de fórmula</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
-    <value>仅显示公式命令的图标</value>
+    <value>Mostrar solo iconos para comandos de fórmula</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>选择要包含在功能区栏中的命令，以及显示图标还是显示图标和标签。 重新启动OneNote以查看更改。</value>
+    <value>Elija qué comandos incluir en la barra de la cinta y si mostrar iconos o iconos y etiquetas. </value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
-    <value>色带栏选项</value>
+    <value>Opciones de la barra de cinta</value>
     <comment>settings dialog</comment>
   </data>
   <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
-    <value>主题</value>
+    <value>Temas</value>
     <comment>group</comment>
   </data>
   <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
-    <value>插入代码块（F6）</value>
+    <value>Insertar un bloque de código (F6)</value>
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>某些更改要求重新启动OneNote。 在您方便时重新启动OneNote。</value>
+    <value>Algunos cambios requieren que se reinicie OneNote. </value>
     <comment>restart message</comment>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
-    <value>选择一个或多个表格单元格</value>
+    <value>Seleccione una o más celdas de la tabla</value>
     <comment>message</comment>
   </data>
   <data name="InsertCellsDialog.Text" xml:space="preserve">
-    <value>插入单元格</value>
+    <value>Insertar celdas</value>
     <comment>dialog title</comment>
   </data>
   <data name="InsertCellsDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="InsertCellsDialog_numLabel.Text" xml:space="preserve">
-    <value>要插入的单元格数量：</value>
+    <value>Número de celdas para insertar:</value>
     <comment>numeric label</comment>
   </data>
   <data name="InsertCellsDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>button</comment>
   </data>
   <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
-    <value>下移单元格</value>
+    <value>Desplazar celdas hacia abajo</value>
     <comment>radio</comment>
   </data>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
-    <value>向右移动单元格</value>
+    <value>Desplazar celdas a la derecha</value>
     <comment>radio</comment>
   </data>
-  <data name="PhoneticsDialog.Text" xml:space="preserve">
-    <value>语音学</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
-    <value>语言</value>
-    <comment>label</comment>
-  </data>
-  <data name="PhoneticsDialog_languages" xml:space="preserve">
-    <value>zh，英语\n</value>
-    <comment>Recognized languages, one per line.
-ISO-code then comma then language name</comment>
-  </data>
-  <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
-    <value>字</value>
-    <comment>label</comment>
-  </data>
-  <data name="TextToTable_NoText" xml:space="preserve">
-    <value>没有选择文字</value>
-    <comment>info message</comment>
-  </data>
   <data name="SplitDialog.Text" xml:space="preserve">
-    <value>分页</value>
+    <value>Página dividida</value>
     <comment>dialog title</comment>
   </data>
   <data name="SplitDialog_byHeading1Box.Text" xml:space="preserve">
-    <value>标题1</value>
+    <value>Título 1</value>
     <comment>checkbox</comment>
   </data>
   <data name="SplitDialog_byHeading1Label.Text" xml:space="preserve">
-    <value>将标题链接到新页面并将内容移动到每个页面</value>
+    <value>Vincular encabezados a páginas nuevas y mover contenido a cada página</value>
     <comment>label</comment>
   </data>
   <data name="SplitDialog_byLinksBox.Text" xml:space="preserve">
-    <value>页面（Wiki）链接</value>
+    <value>Enlaces de página (wiki)</value>
     <comment>checkbox</comment>
   </data>
   <data name="SplitDialog_byLinksLabel.Text" xml:space="preserve">
-    <value>将内容移动到每个链接的页面</value>
+    <value>Mover contenido a cada página vinculada</value>
     <comment>label</comment>
   </data>
   <data name="SplitDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
-    <value>过滤</value>
+    <value>Filtrar</value>
     <comment>group box</comment>
   </data>
   <data name="SplitDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>button</comment>
   </data>
   <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
-    <value>分割为</value>
+    <value>Dividido por</value>
     <comment>group box</comment>
   </data>
   <data name="SplitDialog_taggedBox.Text" xml:space="preserve">
-    <value>仅适用于标记的标题和链接</value>
+    <value>Aplicar solo a encabezados y enlaces etiquetados</value>
     <comment>checkbox</comment>
   </data>
   <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
-    <value>标签：</value>
+    <value>Etiqueta:</value>
     <comment>label</comment>
   </data>
   <data name="ribInsertCellsButton_Label" xml:space="preserve">
-    <value>插入表格储存格</value>
+    <value>Insertar celdas de tabla</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
-    <value>分页</value>
+    <value>Página dividida</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>进口</value>
+    <value>Importar</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
-    <value>删除/清理现有编号</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
-    <value>选择编号样式</value>
+    <value>Elija el estilo de numeración</value>
     <comment>label</comment>
   </data>
   <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
-    <value>编号</value>
+    <value>Numeración</value>
     <comment>group</comment>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
-    <value>之后的空间：</value>
+    <value>Espacio después:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
-    <value>应用颜色</value>
+    <value>Aplicar colores</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_backColorButton.ToolTipText" xml:space="preserve">
-    <value>突出显示颜色</value>
+    <value>Resaltar color</value>
     <comment>button tip</comment>
   </data>
   <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
-    <value>前空格：</value>
+    <value>Espacio antes:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_boldButton.Text" xml:space="preserve">
-    <value>胆大</value>
+    <value>Negrita</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_colorButton.ToolTipText" xml:space="preserve">
-    <value>文字颜色</value>
+    <value>Color de texto</value>
     <comment>button tip</comment>
   </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
-    <value>默认值（黑色）</value>
+    <value>Por defecto (negro)</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
-    <value>删除</value>
+    <value>Eliminar</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
-    <value>文件</value>
+    <value>Archivo</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
-    <value>字型：</value>
+    <value>Fuente:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
-    <value>斜体</value>
+    <value>Itálico</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_loadButton.Text" xml:space="preserve">
-    <value>打开...</value>
+    <value>Abierto...</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>样式名称：</value>
+    <value>Nombre de estilo:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
-    <value>新风格</value>
+    <value>Nuevo estilo</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>新的自定义样式</value>
+    <value>Nuevo estilo personalizado</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
+    <value>Okay</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
-    <value>重新排序</value>
+    <value>Reordenar</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
-    <value>另存为...</value>
+    <value>Guardar como...</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
-    <value>删除线</value>
+    <value>Tachado</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>字符-段落中的单词
-段落-整个段落
-标题-包含在目录中</value>
+    <value>Carácter - palabras en párrafo
+Párrafo - párrafo completo
+Encabezado - incluir en TOC</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
-    <value>样式类型：</value>
+    <value>Tipo de estilo:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_subButton.Text" xml:space="preserve">
-    <value>下标</value>
+    <value>Subíndice</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_superButton.Text" xml:space="preserve">
-    <value>上标</value>
+    <value>Sobrescrito</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>自定义样式</value>
+    <value>Estilos personalizados</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_transparentToolStripMenuItem.Text" xml:space="preserve">
-    <value>透明</value>
+    <value>Transparente</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_underlineButton.Text" xml:space="preserve">
-    <value>强调</value>
+    <value>Subrayar</value>
     <comment>button</comment>
   </data>
 </root>

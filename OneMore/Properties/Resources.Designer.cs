@@ -151,6 +151,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore Add-in.
+        /// </summary>
+        internal static string AboutDialog_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore Add-in for OneNote 2016.
         /// </summary>
         internal static string AboutDialog_titleLabel_Text {
@@ -174,15 +183,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string AboutDialog_versionLabel_Text {
             get {
                 return ResourceManager.GetString("AboutDialog_versionLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OneMore Add-in.
-        /// </summary>
-        internal static string AboutDialoge_Text {
-            get {
-                return ResourceManager.GetString("AboutDialoge.Text", resourceCulture);
             }
         }
         
