@@ -4,7 +4,10 @@
 
 namespace River.OneMoreAddIn.Dialogs
 {
+	using System;
+	using System.ComponentModel;
 	using System.Linq;
+	using System.Reflection;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -18,25 +21,72 @@ namespace River.OneMoreAddIn.Dialogs
 		}
 
 
+		/// <summary>
+		/// Set the Text property, or specified property, for each named control.
+		/// </summary>
+		/// <param name="keys">
+		/// A string array; each item is the name of the control to set the Text property, or can
+		/// specified the controlName.propertyName to set a named property rather than Text
+		/// </param>
 		protected void Localize(string[] keys)
 		{
 			foreach (var key in keys)
 			{
-				var control = Controls.Find(key, true).FirstOrDefault();
+				// named control and default Text property
+				var k = key;
+				var p = "Text";
+
+				var dot = key.IndexOf('.');
+				if (dot > 0)
+				{
+					// specific named property for this control
+					k = key.Substring(0, dot);
+					p = key.Substring(dot + 1);
+				}
+
+				// Name will be the dialog class name, k is the control name, p is the property
+				var resid = $"{Name}_{k}.{p}";
+				string text;
+
+				try
+				{
+					text = Resx.ResourceManager.GetString(resid, AddIn.Culture);
+					if (string.IsNullOrEmpty(text))
+					{
+						Logger.Current.WriteLine($"resource not found {resid}");
+						return;
+					}
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine($"error loading resource {resid}", exc);
+					return;
+				}
+
+				var control = Controls.Find(k, true).FirstOrDefault();
 				if (control != null)
 				{
-					var resid = $"{Name}_{key}.Text";
-					try
+					var prop = control.GetType().GetProperty(p);
+					if (prop != null)
+						prop.SetValue(control, text, null);
+					else
+						Logger.Current.WriteLine($"cannot find control property {k}.{p}");
+				}
+				else
+				{
+					var bindings = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+
+					if (GetType().GetField(k, bindings)?.GetValue(this) is Component comp)
 					{
-						var text = Resx.ResourceManager.GetString(resid, AddIn.Culture);
-						if (!string.IsNullOrEmpty(text))
-						{
-							control.Text = text;
-						}
+						var prop = comp.GetType().GetProperty(p, bindings);
+						if (prop != null)
+							prop.SetValue(comp, text, null);
+						else
+							Logger.Current.WriteLine($"cannot find component property {k}.{p}");
 					}
-					catch
+					else
 					{
-						Logger.Current.WriteLine($"Error translating resource {resid}");
+						Logger.Current.WriteLine($"cannot translate {k}, name not found");
 					}
 				}
 			}

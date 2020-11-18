@@ -2217,4 +2217,114 @@ ISO-code then comma then language name</comment>
     <value>编号</value>
     <comment>group</comment>
   </data>
+  <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
+    <value>之后的空间：</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
+    <value>应用颜色</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_backColorButton.ToolTipText" xml:space="preserve">
+    <value>突出显示颜色</value>
+    <comment>button tip</comment>
+  </data>
+  <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
+    <value>前空格：</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_boldButton.Text" xml:space="preserve">
+    <value>胆大</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_colorButton.ToolTipText" xml:space="preserve">
+    <value>文字颜色</value>
+    <comment>button tip</comment>
+  </data>
+  <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
+    <value>默认值（黑色）</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
+    <value>删除</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
+    <value>文件</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
+    <value>字型：</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_italicButton.Text" xml:space="preserve">
+    <value>斜体</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_loadButton.Text" xml:space="preserve">
+    <value>打开...</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
+    <value>样式名称：</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
+    <value>新风格</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_NewText" xml:space="preserve">
+    <value>新的自定义样式</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
+    <value>重新排序</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_saveButton.Text" xml:space="preserve">
+    <value>另存为...</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
+    <value>删除线</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
+    <value>字符-段落中的单词
+段落-整个段落
+标题-包含在目录中</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
+    <value>样式类型：</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_subButton.Text" xml:space="preserve">
+    <value>下标</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_superButton.Text" xml:space="preserve">
+    <value>上标</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_Text" xml:space="preserve">
+    <value>自定义样式</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_transparentToolStripMenuItem.Text" xml:space="preserve">
+    <value>透明</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_underlineButton.Text" xml:space="preserve">
+    <value>强调</value>
+    <comment>button</comment>
+  </data>
 </root>

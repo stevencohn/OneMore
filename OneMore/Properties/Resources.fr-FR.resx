@@ -2224,4 +2224,114 @@ XML File (*.xml)</value>
     <value>Numérotage</value>
     <comment>group</comment>
   </data>
+  <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
+    <value>Espace après:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
+    <value>Appliquer des couleurs</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_backColorButton.ToolTipText" xml:space="preserve">
+    <value>Couleur de surbrillance</value>
+    <comment>button tip</comment>
+  </data>
+  <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
+    <value>Espace avant:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_boldButton.Text" xml:space="preserve">
+    <value>Audacieux</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_colorButton.ToolTipText" xml:space="preserve">
+    <value>Couleur du texte</value>
+    <comment>button tip</comment>
+  </data>
+  <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Par défaut (noir)</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
+    <value>Supprimer</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
+    <value>Fichier</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
+    <value>Police de caractère:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_italicButton.Text" xml:space="preserve">
+    <value>Italique</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_loadButton.Text" xml:space="preserve">
+    <value>Ouvert...</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
+    <value>Nom du style:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
+    <value>Nouveau style</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_NewText" xml:space="preserve">
+    <value>Nouveau style personnalisé</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>D'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
+    <value>Réorganiser</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_saveButton.Text" xml:space="preserve">
+    <value>Enregistrer sous...</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
+    <value>Barré</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
+    <value>Caractère - mots dans le paragraphe
+Paragraphe - paragraphe entier
+Titre - inclure dans la table des matières</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
+    <value>Type de style:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_subButton.Text" xml:space="preserve">
+    <value>Indice</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_superButton.Text" xml:space="preserve">
+    <value>Exposant</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_Text" xml:space="preserve">
+    <value>Styles personnalisés</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_transparentToolStripMenuItem.Text" xml:space="preserve">
+    <value>Transparent</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_underlineButton.Text" xml:space="preserve">
+    <value>Souligner</value>
+    <comment>button</comment>
+  </data>
 </root>

@@ -2204,4 +2204,114 @@ ISO-code then comma then language name</comment>
     <value>Nummerierung</value>
     <comment>group</comment>
   </data>
+  <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
+    <value>Leerzeichen nach:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
+    <value>Farben auftragen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_backColorButton.ToolTipText" xml:space="preserve">
+    <value>Hervorhebungsfarbe</value>
+    <comment>button tip</comment>
+  </data>
+  <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
+    <value>Leerzeichen vor:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_boldButton.Text" xml:space="preserve">
+    <value>Fett gedruckt</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_colorButton.ToolTipText" xml:space="preserve">
+    <value>Textfarbe</value>
+    <comment>button tip</comment>
+  </data>
+  <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Standard (Schwarz)</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
+    <value>Löschen</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
+    <value>Datei</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
+    <value>Schriftart:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_italicButton.Text" xml:space="preserve">
+    <value>Kursiv</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_loadButton.Text" xml:space="preserve">
+    <value>Öffnen...</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
+    <value>Stilname:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
+    <value>Neuer Stil</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_NewText" xml:space="preserve">
+    <value>Neuer benutzerdefinierter Stil</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
+    <value>Nachbestellen</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_saveButton.Text" xml:space="preserve">
+    <value>Speichern als...</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
+    <value>Durchgestrichen</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
+    <value>Zeichen - Wörter im Absatz
+Absatz - ganzer Absatz
+Überschrift - in Inhaltsverzeichnis aufnehmen</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
+    <value>Stiltyp:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_subButton.Text" xml:space="preserve">
+    <value>Index</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_superButton.Text" xml:space="preserve">
+    <value>Hochgestellt</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_Text" xml:space="preserve">
+    <value>Benutzerdefinierte Stile</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_transparentToolStripMenuItem.Text" xml:space="preserve">
+    <value>Transparent</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_underlineButton.Text" xml:space="preserve">
+    <value>Unterstreichen</value>
+    <comment>button</comment>
+  </data>
 </root>

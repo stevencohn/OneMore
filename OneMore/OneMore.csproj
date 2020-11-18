@@ -416,10 +416,10 @@
     <Compile Include="Dialogs\FontComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Dialogs\StyleDialog.cs">
+    <Compile Include="Commands\Styles\StyleDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\StyleDialog.Designer.cs">
+    <Compile Include="Commands\Styles\StyleDialog.Designer.cs">
       <DependentUpon>StyleDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Extensions\ExceptionExtensions.cs" />
@@ -597,7 +597,7 @@
     <EmbeddedResource Include="Dialogs\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\StyleDialog.resx">
+    <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
       <DependentUpon>StyleDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TagPickerDialog.resx">

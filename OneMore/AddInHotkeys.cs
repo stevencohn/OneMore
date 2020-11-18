@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Commands;
 	using System.Windows.Forms;
 
 

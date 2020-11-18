@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using System.Drawing;
 	using System.Windows.Forms;
@@ -28,20 +28,13 @@ namespace River.OneMoreAddIn
 			}
 
 			var provider = new StyleProvider();
-
 			var styles = provider.GetStyles();
-			DialogResult result;
-
-
-			System.Diagnostics.Debugger.Launch();
 
 			using (var dialog = new StyleDialog(styles, pageColor))
 			{
-				result = dialog.ShowDialog(owner);
-
-				if (result == DialogResult.OK)
+				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					// save styles to remove delete items and preserve ordering
+					// save styles to remove deleted items and preserve ordering
 					styles = dialog.GetStyles();
 					StyleProvider.Save(styles);
 					ribbon.Invalidate();

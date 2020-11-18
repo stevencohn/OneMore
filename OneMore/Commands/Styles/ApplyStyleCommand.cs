@@ -4,7 +4,7 @@
 
 #pragma warning disable S125 // Sections of code should not be commented out
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System.Linq;

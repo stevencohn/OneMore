@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;

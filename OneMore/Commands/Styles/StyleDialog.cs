@@ -2,8 +2,9 @@
 // Copyright © 2016 Steven M Cohn.  Yada yada...
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -11,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -21,7 +23,7 @@ namespace River.OneMoreAddIn
 	/// All other local disposables are handled.
 	/// </remarks>
 
-	internal partial class StyleDialog : Form
+	internal partial class StyleDialog : LocalizableForm
 	{
 		private GraphicStyle selection;
 		private Color pageColor;
@@ -43,7 +45,7 @@ namespace River.OneMoreAddIn
 			allowEvents = false;
 			this.pageColor = pageColor;
 
-			Text = "New Custom Style";
+			Text = Resx.StyleDialog_NewText;
 			mainTools.Visible = false;
 			loadButton.Enabled = false;
 			saveButton.Enabled = false;
@@ -64,6 +66,7 @@ namespace River.OneMoreAddIn
 		{
 			Initialize();
 
+			Text = Resx.StyleDialog_Text;
 			allowEvents = false;
 			LoadStyles(styles);
 
@@ -79,6 +82,43 @@ namespace River.OneMoreAddIn
 		private void Initialize()
 		{
 			InitializeComponent();
+
+			//if (NeedsLocalizing())
+			{
+				Localize(new string[]
+				{
+					// menu
+					"FileMenu",
+					"loadButton",
+					"newStyleButton",
+					"saveButton",
+					"reorderButton",
+					"deleteButton",
+					// toolstrip
+					"boldButton",
+					"italicButton",
+					"underlineButton",
+					"strikeButton",
+					"superButton",
+					"subButton",
+					"colorButton.ToolTipText",
+					"backColorButton.ToolTipText",
+					"defaultBlackToolStripMenuItem",
+					"transparentToolStripMenuItem",
+					// labels
+					"beforeLabel",
+					"afterLabel",
+					"nameLabel",
+					"fontLabel",
+					"styleTypeLabel",
+					"applyColorsBox",
+					"okButton",
+					"cancelButton"
+				});
+
+				styleTypeBox.Items.Clear();
+				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split(new char[] { '\n' }));
+			}
 
 			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
 			{

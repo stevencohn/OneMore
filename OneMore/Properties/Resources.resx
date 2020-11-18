@@ -2233,4 +2233,114 @@ XML File (*.xml)</value>
     <value>Numbering</value>
     <comment>group</comment>
   </data>
+  <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
+    <value>Space After:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
+    <value>Apply colors</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="StyleDialog_backColorButton.ToolTipText" xml:space="preserve">
+    <value>Highlight Color</value>
+    <comment>button tip</comment>
+  </data>
+  <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
+    <value>Space Before:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_boldButton.Text" xml:space="preserve">
+    <value>Bold</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_colorButton.ToolTipText" xml:space="preserve">
+    <value>Text Color</value>
+    <comment>button tip</comment>
+  </data>
+  <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Default (Black)</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
+    <value>Delete</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
+    <value>File</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
+    <value>Font:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_italicButton.Text" xml:space="preserve">
+    <value>Italic</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_loadButton.Text" xml:space="preserve">
+    <value>Open...</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
+    <value>Style Name:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
+    <value>New Style</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_NewText" xml:space="preserve">
+    <value>New Custom Style</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
+    <value>Reorder</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_saveButton.Text" xml:space="preserve">
+    <value>Save as...</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
+    <value>Strikethrough</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
+    <value>Character - words in paragraph
+Paragraph - entire paragraph
+Heading - include in TOC</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
+    <value>Style Type:</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_subButton.Text" xml:space="preserve">
+    <value>Subscript</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_superButton.Text" xml:space="preserve">
+    <value>Superscript</value>
+    <comment>button</comment>
+  </data>
+  <data name="StyleDialog_Text" xml:space="preserve">
+    <value>Custom Styles</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_transparentToolStripMenuItem.Text" xml:space="preserve">
+    <value>Transparent</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="StyleDialog_underlineButton.Text" xml:space="preserve">
+    <value>Underline</value>
+    <comment>button</comment>
+  </data>
 </root>

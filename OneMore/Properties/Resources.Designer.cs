@@ -4448,6 +4448,251 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Space After:.
+        /// </summary>
+        internal static string StyleDialog_afterLabel_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_afterLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply colors.
+        /// </summary>
+        internal static string StyleDialog_applyColorsBox_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_applyColorsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight Color.
+        /// </summary>
+        internal static string StyleDialog_backColorButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("StyleDialog_backColorButton.ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Space Before:.
+        /// </summary>
+        internal static string StyleDialog_beforeLabel_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_beforeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bold.
+        /// </summary>
+        internal static string StyleDialog_boldButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_boldButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string StyleDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Color.
+        /// </summary>
+        internal static string StyleDialog_colorButton_ToolTipText {
+            get {
+                return ResourceManager.GetString("StyleDialog_colorButton.ToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default (Black).
+        /// </summary>
+        internal static string StyleDialog_defaultBlackToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_defaultBlackToolStripMenuItem.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string StyleDialog_deleteButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_deleteButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string StyleDialog_FileMenu_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_FileMenu.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font:.
+        /// </summary>
+        internal static string StyleDialog_fontLabel_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_fontLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italic.
+        /// </summary>
+        internal static string StyleDialog_italicButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_italicButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open....
+        /// </summary>
+        internal static string StyleDialog_loadButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_loadButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style Name:.
+        /// </summary>
+        internal static string StyleDialog_nameLabel_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_nameLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Style.
+        /// </summary>
+        internal static string StyleDialog_newStyleButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_newStyleButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Custom Style.
+        /// </summary>
+        internal static string StyleDialog_NewText {
+            get {
+                return ResourceManager.GetString("StyleDialog_NewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string StyleDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reorder.
+        /// </summary>
+        internal static string StyleDialog_reorderButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_reorderButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as....
+        /// </summary>
+        internal static string StyleDialog_saveButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_saveButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strikethrough.
+        /// </summary>
+        internal static string StyleDialog_strikeButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_strikeButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Character - words in paragraph
+        ///Paragraph - entire paragraph
+        ///Heading - include in TOC.
+        /// </summary>
+        internal static string StyleDialog_styleTypeBox_Items {
+            get {
+                return ResourceManager.GetString("StyleDialog_styleTypeBox_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style Type:.
+        /// </summary>
+        internal static string StyleDialog_styleTypeLabel_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_styleTypeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscript.
+        /// </summary>
+        internal static string StyleDialog_subButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_subButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Superscript.
+        /// </summary>
+        internal static string StyleDialog_superButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_superButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Styles.
+        /// </summary>
+        internal static string StyleDialog_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transparent.
+        /// </summary>
+        internal static string StyleDialog_transparentToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_transparentToolStripMenuItem.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underline.
+        /// </summary>
+        internal static string StyleDialog_underlineButton_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_underlineButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Subscript {
