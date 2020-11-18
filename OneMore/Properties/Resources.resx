@@ -2343,4 +2343,72 @@ Heading - include in TOC</value>
     <value>Underline</value>
     <comment>button</comment>
   </data>
+  <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
+    <value>Deep:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
+    <value>Faded:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
+    <value>The highlighter command will cycle through the colors of the chosen theme. Colors shown here are for light background pages. Dark background pages use automatic highlight colors</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
+    <value>Bright:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
+    <value>Delete</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
+    <value>Delete:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
+    <value>Move down</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
+    <value>URL Patterns must contain a string replacement token, such as &amp;q={0}</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
+    <value>Move up</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
+    <value>Context Menu</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
+    <value>Highlighter Themes</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
+    <value>Ribbon Bar</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
+    <value>Search Engines</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_Text" xml:space="preserve">
+    <value>OneMore Settings</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

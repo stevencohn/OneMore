@@ -1499,6 +1499,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deep:.
+        /// </summary>
+        internal static string HighlightsSheet_deepRadio_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_deepRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faded:.
+        /// </summary>
+        internal static string HighlightsSheet_fadedRadio_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_fadedRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The highlighter command will cycle through the colors of the chosen theme. Colors shown here are for light background pages. Dark background pages use automatic highlight colors.
+        /// </summary>
+        internal static string HighlightsSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bright:.
+        /// </summary>
+        internal static string HighlightsSheet_normalRadio_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_normalRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Themes.
         /// </summary>
         internal static string HighlightsSheet_themeGroup_Text {
@@ -4077,6 +4113,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string SearchEngineSheet_deleteButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineSheet_deleteButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete:.
+        /// </summary>
+        internal static string SearchEngineSheet_deleteLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineSheet_deleteLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move down.
+        /// </summary>
+        internal static string SearchEngineSheet_downButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineSheet_downButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL Patterns must contain a string replacement token, such as &amp;q={0}.
+        /// </summary>
+        internal static string SearchEngineSheet_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineSheet_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string SearchEngineSheet_refreshButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineSheet_refreshButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move up.
+        /// </summary>
+        internal static string SearchEngineSheet_upButton_Text {
+            get {
+                return ResourceManager.GetString("SearchEngineSheet_upButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pick the location where selected pages should be copied.
         /// </summary>
         internal static string SearchQF_DescriptionCopy {
@@ -4151,11 +4241,74 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SettingsDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Context Menu.
+        /// </summary>
+        internal static string SettingsDialog_contextNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_contextNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highlighter Themes.
+        /// </summary>
+        internal static string SettingsDialog_highlightNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_highlightNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string SettingsDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some changes require OneNote to be restarted. Restart OneNote at your convenience..
         /// </summary>
         internal static string SettingsDialog_Restart {
             get {
                 return ResourceManager.GetString("SettingsDialog_Restart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ribbon Bar.
+        /// </summary>
+        internal static string SettingsDialog_ribbonNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_ribbonNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Engines.
+        /// </summary>
+        internal static string SettingsDialog_searchNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_searchNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Settings.
+        /// </summary>
+        internal static string SettingsDialog_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_Text", resourceCulture);
             }
         }
         

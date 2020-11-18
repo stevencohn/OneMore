@@ -2314,4 +2314,72 @@ Absatz - ganzer Absatz
     <value>Unterstreichen</value>
     <comment>button</comment>
   </data>
+  <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
+    <value>Tief:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
+    <value>Verblasst:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
+    <value>Mit dem Befehl Textmarker werden die Farben des ausgewählten Themas durchlaufen. </value>
+    <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
+    <value>Hell:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
+    <value>Löschen</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
+    <value>Löschen:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
+    <value>Sich abwärts bewegen</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
+    <value>URL-Muster müssen ein Zeichenfolgenersetzungstoken enthalten, z. B. &amp;q={0}</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>Aktualisierung</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
+    <value>Bewegen Sie sich nach oben</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
+    <value>Kontextmenü</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
+    <value>Textmarker-Themen</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
+    <value>Bandmass</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
+    <value>Suchmaschinen</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_Text" xml:space="preserve">
+    <value>OneMore-Einstellungen</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

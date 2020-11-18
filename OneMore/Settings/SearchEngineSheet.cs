@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Settings
 			Name = "SearchEngineSheet";
 			Title = Resx.SearchEngineDialog_Text;
 
-			if (NeedsLocalizing())
+			//if (NeedsLocalizing())
 			{
 				Localize(new string[]
 				{

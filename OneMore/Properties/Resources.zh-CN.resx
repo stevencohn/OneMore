@@ -2327,4 +2327,72 @@ ISO-code then comma then language name</comment>
     <value>强调</value>
     <comment>button</comment>
   </data>
+  <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
+    <value>深：</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
+    <value>褪色：</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
+    <value>荧光笔命令将循环显示所选主题的颜色。</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
+    <value>亮：</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
+    <value>删除</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
+    <value>删除：</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
+    <value>下移</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
+    <value>网址格式必须包含字符串替换令牌，例如＆q={0}</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>刷新</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
+    <value>提升</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
+    <value>上下文菜单</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
+    <value>荧光笔主题</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
+    <value>色带栏</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
+    <value>搜索引擎</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_Text" xml:space="preserve">
+    <value>OneMore设置</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

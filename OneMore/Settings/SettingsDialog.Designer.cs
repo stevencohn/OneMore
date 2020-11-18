@@ -153,6 +153,7 @@
 			this.MinimizeBox = false;
 			this.Name = "SettingsDialog";
 			this.Padding = new System.Windows.Forms.Padding(15);
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "OneMore Settings";
 			this.TopMost = true;

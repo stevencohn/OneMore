@@ -2339,4 +2339,72 @@ Encabezado - incluir en TOC</value>
     <value>Subrayar</value>
     <comment>button</comment>
   </data>
+  <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
+    <value>Profundo:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
+    <value>Descolorido:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
+    <value>El comando del resaltador recorrerá los colores del tema elegido. </value>
+    <comment>textbox</comment>
+  </data>
+  <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
+    <value>Brillante:</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
+    <value>Eliminar</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
+    <value>Eliminar:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
+    <value>Mover hacia abajo</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
+    <value>Los patrones de URL deben contener un token de reemplazo de cadena, como &amp;q={0}</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>Actualizar</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
+    <value>Ascender</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
+    <value>Menú de contexto</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
+    <value>Temas de resaltado</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>button</comment>
+  </data>
+  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
+    <value>Barra de la cinta</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
+    <value>Los motores de búsqueda</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="SettingsDialog_Text" xml:space="preserve">
+    <value>Configuración de OneMore</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

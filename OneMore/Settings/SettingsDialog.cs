@@ -21,8 +21,23 @@ namespace River.OneMoreAddIn.Settings
 		{
 			InitializeComponent();
 
-			provider = new SettingsProvider();
+			if (NeedsLocalizing())
+			{
+				Text = Resx.SettingsDialog_Text;
 
+				Localize(new string[]
+				{
+					"okButton",
+					"cancelButton"
+				});
+
+				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
+				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
+				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
+				navTree.Nodes["searchNode"].Text = Resx.SettingsDialog_searchNode_Text;
+			}
+
+			provider = new SettingsProvider();
 			sheets = new Dictionary<int, SheetBase>();
 
 			navTree.SelectedNode = navTree.Nodes[0];

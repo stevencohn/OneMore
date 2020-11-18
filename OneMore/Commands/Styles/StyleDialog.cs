@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			//if (NeedsLocalizing())
+			if (NeedsLocalizing())
 			{
 				Localize(new string[]
 				{

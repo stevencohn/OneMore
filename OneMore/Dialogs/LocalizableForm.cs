@@ -75,14 +75,23 @@ namespace River.OneMoreAddIn.Dialogs
 				else
 				{
 					var bindings = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+					var component = GetType().GetField(k, bindings)?.GetValue(this);
 
-					if (GetType().GetField(k, bindings)?.GetValue(this) is Component comp)
+					if (component is Component comp)
 					{
 						var prop = comp.GetType().GetProperty(p, bindings);
 						if (prop != null)
 							prop.SetValue(comp, text, null);
 						else
-							Logger.Current.WriteLine($"cannot find component property {k}.{p}");
+							Logger.Current.WriteLine($"cannot find Component property {k}.{p}");
+					}
+					else if (component is TreeNode node)
+					{
+						var prop = node.GetType().GetProperty(p, bindings);
+						if (prop != null)
+							prop.SetValue(node, text, null);
+						else
+							Logger.Current.WriteLine($"cannot find TreeNode property {k}.{p}");
 					}
 					else
 					{
