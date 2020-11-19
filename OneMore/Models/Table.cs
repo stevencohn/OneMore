@@ -27,7 +27,6 @@ namespace River.OneMoreAddIn.Models
 		private readonly XElement columns;
 		private readonly List<TableRow> rows;
 		private int numCells;
-		private System.IFormatProvider cultureinfo;
 
 
 		/// <summary>
@@ -116,7 +115,7 @@ namespace River.OneMoreAddIn.Models
 		{
 			var column = new XElement(ns + "Column",
 				new XAttribute("index", numCells),
-				new XAttribute("width", width.ToString("0.0#"))
+				new XAttribute("width", width.ToString("0.0#", CultureInfo.InvariantCulture))
 				);
 
 			if (locked)
