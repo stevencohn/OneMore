@@ -119,6 +119,7 @@
   </resheader>
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
+    <comment>SKIP</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>Show XML</value>
@@ -227,11 +228,11 @@
   </data>
   <data name="CustomColorsFilesname" xml:space="preserve">
     <value>CustomColors.xml</value>
-    <comment>FILENAME</comment>
+    <comment>SKIP, filename</comment>
   </data>
   <data name="CustomStylesFilename" xml:space="preserve">
     <value>CustomStyles.xml</value>
-    <comment>FILENAME</comment>
+    <comment>SKIP, filename</comment>
   </data>
   <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -288,15 +289,15 @@
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
-    <comment>FILENAME</comment>
+    <comment>SKIP, filename</comment>
   </data>
   <data name="oneNamespace" xml:space="preserve">
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
-    <comment>DO NOT TRANSLATE</comment>
+    <comment>SKIP</comment>
   </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
-    <comment>DO NOT TRANSLATE</comment>
+    <comment>SKIP</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>Decrease page font size (Ctrl + Alt + Minus)</value>
