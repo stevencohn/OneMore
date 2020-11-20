@@ -122,26 +122,26 @@
     <comment>SKIP</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
-    <value>Show XML</value>
+    <value>Toon XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
-    <value>Show XML of hierarchy and current page (Ctrl + Shift + Alt + X)</value>
+    <value>Toon XML van hiërarchie en huidige pagina (Ctrl + Shift + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
-    <value>OneMore</value>
+    <value>Nog een</value>
     <comment>Ribbon Group</comment>
   </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
-    <value>OneMore</value>
+    <value>Nog een</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>No Spell Check</value>
+    <value>Geen spellingcontrole</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Disable spell check for entire page (F4)</value>
+    <value>Schakel de spellingcontrole uit voor de hele pagina (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -280,11 +280,11 @@
     <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ribTrimButton_Label" xml:space="preserve">
-    <value>Trim Whitespace</value>
+    <value>Witruimte inkorten</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribTrimButton_Screentip" xml:space="preserve">
-    <value>Trim trailing whitespace from selected text</value>
+    <value>Snijd de witruimte achter uit de geselecteerde tekst</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
@@ -300,43 +300,43 @@
     <comment>SKIP</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Decrease page font size (Ctrl + Alt + Minus)</value>
+    <value>Lettergrootte van pagina verkleinen (Ctrl + Alt + Min)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribFootnoteButton_Screentip" xml:space="preserve">
-    <value>Add footnote (Ctrl + Alt + F)</value>
+    <value>Voetnoot toevoegen (Ctrl + Alt + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
-    <value>Remove footnote (Ctrl + Shift + F)</value>
+    <value>Voetnoot verwijderen (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Increase page font size (Ctrl + Alt + Plus)</value>
+    <value>Vergroot de lettergrootte van de pagina (Ctrl + Alt + Plus)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>Insert double horizontal line (Shift + Alt + Equals)</value>
+    <value>Dubbele horizontale lijn invoegen (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Insert single horizontal line (Shift + Alt + Minus)</value>
+    <value>Enkele horizontale lijn invoegen (Shift + Alt + Minus)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Convert text to lowercase (Ctrl + Shift + U)</value>
+    <value>Tekst naar kleine letters converteren (Ctrl + Shift + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
-    <value>Paste rich text (Ctrl + Alt + V)</value>
+    <value>Tekst met opmaak plakken (Ctrl + Alt + V)</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribReplaceButton_Screentip" xml:space="preserve">
-    <value>Search and replace (Ctrl + H)</value>
+    <value>Zoeken en vervangen (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>Convert text to uppercase (Ctrl + Shift + Alt + U)</value>
+    <value>Tekst converteren naar hoofdletters (Ctrl + Shift + Alt + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -356,239 +356,237 @@
   </data>
   <data name="SettingsFilename" xml:space="preserve">
     <value>Settings.xml</value>
-    <comment>SKIP, filename</comment>
+    <comment>FILENAME</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
-    <value>About OneMore</value>
+    <value>Over OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
-    <value>Add Formula</value>
+    <value>Formule toevoegen</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>Add/edit formula in selected table cells (F5)</value>
+    <value>Formule toevoegen/bewerken in geselecteerde tabelcellen (F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribApplyStylesButton_Label" xml:space="preserve">
-    <value>Apply Styles to Page</value>
+    <value>Pas stijlen toe op pagina</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
   <data name="ribBlueStatusButton_Label" xml:space="preserve">
-    <value>Blue Status</value>
+    <value>Blauwe status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribCaptionButton_Label" xml:space="preserve">
-    <value>Add Caption</value>
+    <value>Bijschrift toevoegen</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
   <data name="ribCodeBlockButton_Label" xml:space="preserve">
-    <value>Code block</value>
+    <value>Code blok</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribCollapseButton_Label" xml:space="preserve">
-    <value>Collapse Pages</value>
+    <value>Pagina's samenvouwen</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCreateStyleButton_Label" xml:space="preserve">
-    <value>Create Style from Selection</value>
+    <value>Maak een stijl op basis van selectie</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>Custom Styles</value>
+    <value>Aangepaste stijlen</value>
     <comment>Ribbon main custom styles button</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Label" xml:space="preserve">
-    <value>Decrease Font Size</value>
+    <value>Verlaag de lettergrootte</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
-    <value>Delete Formula</value>
+    <value>Formule verwijderen</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribDeleteFormulaButton_Screentip" xml:space="preserve">
-    <value>Delete formula from selected table cell(s)</value>
+    <value>Formule verwijderen uit geselecteerde tabelcel (len)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribEditStylesButton_Label" xml:space="preserve">
-    <value>Edit Styles</value>
+    <value>Stijlen bewerken</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
   <data name="ribExpandButton_Label" xml:space="preserve">
-    <value>Expand/Collapse</value>
+    <value>Uitvouwen/samenvouwen</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
-    <value>Extras</value>
+    <value>Extra's</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
-    <value>Favorites</value>
+    <value>Favorieten</value>
     <comment>Ribbon main favorites button</comment>
   </data>
   <data name="ribFlagTitleButton_Label" xml:space="preserve">
-    <value>Add Icon to Page Title</value>
+    <value>Pictogram toevoegen aan paginatitel</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFootnoteButton_Label" xml:space="preserve">
-    <value>Add Footnote</value>
+    <value>Voetnoot toevoegen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFootnoteRemoveButton_Label" xml:space="preserve">
-    <value>Remove Footnote</value>
+    <value>Voetnoot verwijderen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>Formula</value>
+    <value>Formule</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
-    <value>Gray Status</value>
+    <value>Grijze status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribGreenStatusButton_Label" xml:space="preserve">
-    <value>Green Status</value>
+    <value>Groene status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Highlight Formula</value>
+    <value>Markeer formule</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>High cells with formula in current table</value>
+    <value>Hoge cellen met formule in huidige tabel</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
-    <value>Images</value>
+    <value>Afbeeldingen</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
-    <value>Increase Font Size</value>
+    <value>Vergroot de lettergrootte</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribInfoBlockButton_Label" xml:space="preserve">
-    <value>Info block</value>
+    <value>Info blok</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
-    <value>Double Horizontal Line</value>
+    <value>Dubbele horizontale lijn</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
-    <value>Horizontal Line</value>
+    <value>Horizontale lijn</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
-    <value>To lowercase</value>
+    <value>Kleine letters</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribMergeButton_Label" xml:space="preserve">
-    <value>Merge Pages</value>
+    <value>Pagina's samenvoegen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribNameUrlsButton_Label" xml:space="preserve">
-    <value>Replace URLs with Web Page Titles</value>
+    <value>Vervang URL's door titels van webpagina's</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
-    <value>More</value>
+    <value>Meer</value>
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Set Page Color</value>
+    <value>Paginakleur instellen</value>
     <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
-    <value>Paste Rich Text</value>
+    <value>Plak Rich Text</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
-    <value>Recalculate Formula</value>
+    <value>Bereken de formule opnieuw</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
-    <value>Recalculate all formula in the current table (Shift + F5)</value>
+    <value>Bereken alle formules in de huidige tabel opnieuw (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribRedStatusButton_Label" xml:space="preserve">
-    <value>Red Status</value>
+    <value>Rode status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribReplaceButton_Label" xml:space="preserve">
-    <value>Search and Replace</value>
+    <value>Zoek en vervang</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>Resize</value>
+    <value>Formaat wijzigen</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
-    <value>Snippets</value>
+    <value>Fragmenten</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
-    <value>Sort</value>
+    <value>Soort</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
-    <value>Table of Contents</value>
+    <value>Inhoudsopgave</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
-    <value>To UPPERCASE</value>
+    <value>In HOOFDLETTERS</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribWarnBlockButton_Label" xml:space="preserve">
-    <value>Warning block</value>
+    <value>Waarschuwingsblok</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribYellowStatusButton_Label" xml:space="preserve">
-    <value>Yellow Status</value>
+    <value>Gele status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>OneMore Add-in</value>
+    <value>OneMore-invoegtoepassing</value>
     <comment>dialog title bar</comment>
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
-    <value>Clear the log file</value>
+    <value>Wis het logbestand</value>
     <comment>hyperlink to clear the log file</comment>
   </data>
   <data name="ClearLog_Message" xml:space="preserve">
-    <value>Clear the log file now?</value>
+    <value>Wilt u het logbestand nu wissen?</value>
     <comment>message box message</comment>
   </data>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
-    <value>No log file is available</value>
+    <value>Er is geen logboekbestand beschikbaar</value>
     <comment>message box message</comment>
   </data>
   <data name="ClearLog_NoneTitle" xml:space="preserve">
-    <value>It's all good</value>
+    <value>Het is al goed</value>
     <comment>message box title</comment>
   </data>
   <data name="ClearLog_Title" xml:space="preserve">
-    <value>Confirm</value>
+    <value>Bevestigen</value>
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_copyLabel.Text" xml:space="preserve">
-    <value>Copyright @ 2016-{0} Steven M Cohn</value>
+    <value>Copyright @ 2016- {0} Steven M Cohn</value>
     <comment>copyright to current year</comment>
   </data>
   <data name="AboutDialog_LatestMessage" xml:space="preserve">
-    <value>You have the latest version</value>
+    <value>Je hebt de nieuwste versie</value>
     <comment>message box message</comment>
   </data>
   <data name="AboutDialog_LatestTitle" xml:space="preserve">
-    <value>You're good to go!</value>
+    <value>Je bent klaar om te gaan!</value>
     <comment>message box title</comment>
   </data>
   <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
-    <value>A new version is available:
-
-    {0} - "{1}"
-
-Do you want to update now?
-OneNote will close automatically</value>
+    <value>Er is een nieuwe versie beschikbaar:
+{0} - "{1}"
+Wil je nu updaten?
+OneNote wordt automatisch gesloten</value>
     <comment>message box message showing verison tag and name</comment>
   </data>
   <data name="AboutDialog_NewVersionTitle" xml:space="preserve">
@@ -600,39 +598,39 @@ OneNote will close automatically</value>
     <comment>OK button</comment>
   </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
-    <value>OneMore Add-in for OneNote 2016</value>
+    <value>OneMore-invoegtoepassing voor OneNote 2016</value>
     <comment>Add-in full name</comment>
   </data>
   <data name="AboutDialog_updateLink.Text" xml:space="preserve">
-    <value>Check for Updates</value>
+    <value>Controleer op updates</value>
     <comment>check online for available updates to add-in</comment>
   </data>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versie {0}</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Change Page Color</value>
+    <value>Wijzig de paginakleur</value>
     <comment>dialog title</comment>
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Custom background...</value>
+    <value>Eigen achtergrond...</value>
     <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Dark background</value>
+    <value>Donkere achtergrond</value>
     <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
-    <value>After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible.</value>
+    <value>Nadat u een paginakleur heeft gekozen, laadt u een van de voorgedefinieerde stijlen of past u uw eigen stijlen aan, zodat alle inhoud voldoende contrast heeft om zichtbaar te zijn.</value>
     <comment>instructions</comment>
   </data>
   <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Light background</value>
+    <value>Lichte achtergrond</value>
     <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
@@ -640,41 +638,41 @@ OneNote will close automatically</value>
     <comment>ok button</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
-    <value>Page Color</value>
+    <value>Paginakleur</value>
     <comment>color popup dialog title</comment>
   </data>
   <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>Select one or more cells from the same row or the same column</value>
+    <value>Selecteer een of meer cellen uit dezelfde rij of dezelfde kolom</value>
     <comment>message box</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
-    <value>Number
-Currency
+    <value>Aantal
+Valuta
 Percentage</value>
     <comment>formats, one per line</comment>
   </data>
   <data name="FormulaDialog.Text" xml:space="preserve">
-    <value>Formula</value>
+    <value>Formule</value>
     <comment>dialog title</comment>
   </data>
   <data name="FormulaDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>Cancel button</comment>
   </data>
   <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
-    <value>Help</value>
+    <value>Helpen</value>
     <comment>help checkbox button</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format:</value>
+    <value>Formaat:</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
-    <value>Status:</value>
+    <value>Toestand:</value>
     <comment>status label</comment>
   </data>
   <data name="FormulaDialog_status_Empty" xml:space="preserve">
-    <value>&lt;empty&gt;</value>
+    <value>&lt;leeg&gt;</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_okButton.Text" xml:space="preserve">
@@ -686,15 +684,15 @@ Percentage</value>
     <comment>label</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
-    <value>Reorder Custom Styles</value>
+    <value>Herschik aangepaste stijlen</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
-    <value>Reorder how styles appear in the gallery. Also changes the order of headings in a TOC</value>
+    <value>Herschik hoe stijlen in de galerij worden weergegeven. </value>
     <comment>instructions</comment>
   </data>
   <data name="ReorderDialog_okButton.Text" xml:space="preserve">
@@ -702,35 +700,35 @@ Percentage</value>
     <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>Resize Image</value>
+    <value>Formaat afbeelding wijzigen</value>
     <comment>dialog title</comment>
   </data>
   <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>Absolute</value>
+    <value>Absoluut</value>
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>all images on page</value>
+    <value>alle afbeeldingen op pagina</value>
     <comment>info label</comment>
   </data>
   <data name="ResizeImagesDialog_aspectBox.Text" xml:space="preserve">
-    <value>Maintain aspect ratio</value>
+    <value>Behoud de aspectverhouding</value>
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>Apply to</value>
+    <value>Van toepassing op</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>Current size</value>
+    <value>Huidige grootte</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>Height</value>
+    <value>Hoogte</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_okButton.Text" xml:space="preserve">
@@ -738,7 +736,7 @@ Percentage</value>
     <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Original size</value>
+    <value>Originele grootte</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
@@ -754,11 +752,11 @@ Percentage</value>
     <comment>radio</comment>
   </data>
   <data name="ResizeImagesDialog_presetLabel.Text" xml:space="preserve">
-    <value>Width</value>
+    <value>Breedte</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
-    <value>Preset</value>
+    <value>Vooraf ingesteld</value>
     <comment>radio</comment>
   </data>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
@@ -766,11 +764,11 @@ Percentage</value>
     <comment>width x height</comment>
   </data>
   <data name="ResizeImagesDialog_widthLabel.Text" xml:space="preserve">
-    <value>Width</value>
+    <value>Breedte</value>
     <comment>label</comment>
   </data>
   <data name="SearchAndReplaceDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
@@ -782,47 +780,47 @@ Percentage</value>
     <comment>ok button</comment>
   </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
-    <value>Search and Replace</value>
+    <value>Zoek en vervang</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchAndReplaceDialog_whatLabel.Text" xml:space="preserve">
-    <value>Find what:</value>
+    <value>Vind wat:</value>
     <comment>label</comment>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
-    <value>Replace with:</value>
+    <value>Vervangen door:</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
-    <value>Sort</value>
+    <value>Soort</value>
     <comment>dialog title</comment>
   </data>
   <data name="SortDialog_ascButton.Text" xml:space="preserve">
-    <value>Ascending</value>
+    <value>Oplopend</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="SortDialog_createdButton.Text" xml:space="preserve">
-    <value>Date Created</value>
+    <value>Datum gecreeërd</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_desButton.Text" xml:space="preserve">
-    <value>Descending</value>
+    <value>Aflopend</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_direcitonLabel.Text" xml:space="preserve">
-    <value>Direction:</value>
+    <value>Richting:</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog_modifiedButton.Text" xml:space="preserve">
-    <value>Date Modified</value>
+    <value>Datum gewijzigd</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_nameButton.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Naam</value>
     <comment>radio</comment>
   </data>
   <data name="SortDialog_okButton.Text" xml:space="preserve">
@@ -830,34 +828,34 @@ Percentage</value>
     <comment>ok button</comment>
   </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
-    <value>Pin Notes to top and
-Quick Notes to bottom</value>
+    <value>Pin Notes naar boven en
+Snelle notities onderaan</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Pages in this section
-Sections in this notebook
+    <value>Pagina's in deze sectie
+Secties in dit notitieboek
 Notebooks</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
-    <value>Scope:</value>
+    <value>Toepassingsgebied:</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog_sortLabel.Text" xml:space="preserve">
-    <value>Sort by:</value>
+    <value>Sorteer op:</value>
     <comment>label</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>TItle Icons</value>
+    <value>Titel Pictogrammen</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Select on or more icons to add to page title</value>
+    <value>Selecteer een of meer pictogrammen om toe te voegen aan de paginatitel</value>
     <comment>instructions</comment>
   </data>
   <data name="EmojiDialog_okButton.Text" xml:space="preserve">
@@ -865,59 +863,59 @@ Notebooks</value>
     <comment>ok button</comment>
   </data>
   <data name="Emoji_Architecture" xml:space="preserve">
-    <value>Architecture</value>
+    <value>Architectuur</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Automobile" xml:space="preserve">
-    <value>Automobile</value>
+    <value>Auto</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Bullet" xml:space="preserve">
-    <value>Bullet</value>
+    <value>Kogel</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Calendar" xml:space="preserve">
-    <value>Calendar</value>
+    <value>Kalender</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Circle" xml:space="preserve">
-    <value>Circle</value>
+    <value>Cirkel</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_CrossMark" xml:space="preserve">
-    <value>Cross Mark</value>
+    <value>Kruisteken</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Cycling" xml:space="preserve">
-    <value>Cycling</value>
+    <value>Wielersport</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Family" xml:space="preserve">
-    <value>Family</value>
+    <value>Familie</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Financial" xml:space="preserve">
-    <value>Financial</value>
+    <value>Financieel</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Hammer" xml:space="preserve">
-    <value>Hammer</value>
+    <value>Hamer</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
-    <value>Images</value>
+    <value>Afbeeldingen</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Important" xml:space="preserve">
-    <value>Important</value>
+    <value>Belangrijk</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Journal" xml:space="preserve">
-    <value>Journal</value>
+    <value>logboek</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -925,15 +923,15 @@ Notebooks</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Passwords" xml:space="preserve">
-    <value>Passwords</value>
+    <value>Wachtwoorden</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Pencil" xml:space="preserve">
-    <value>Pencil</value>
+    <value>Potlood</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
-    <value>Pushpin</value>
+    <value>Punaise</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Shazam" xml:space="preserve">
@@ -949,79 +947,79 @@ Notebooks</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Sports" xml:space="preserve">
-    <value>Sports</value>
+    <value>Sport</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Star" xml:space="preserve">
-    <value>Star</value>
+    <value>Ster</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Summary" xml:space="preserve">
-    <value>Summary</value>
+    <value>Samenvatting</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Tasks" xml:space="preserve">
-    <value>Tasks</value>
+    <value>Taken</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Travel" xml:space="preserve">
-    <value>Travel</value>
+    <value>Reizen</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
-    <value>Watch</value>
+    <value>Kijk maar</value>
     <comment>emoji</comment>
   </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
-    <value>Outline Formatting</value>
+    <value>Overzichtsopmaak</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
-    <value>Outline Formatting</value>
+    <value>Overzichtsopmaak</value>
     <comment>dialog title</comment>
   </data>
   <data name="OutlineDialog_alphaRadio.Text" xml:space="preserve">
-    <value>Alpha-numeric</value>
+    <value>Alfanumeriek</value>
     <comment>radio button</comment>
   </data>
   <data name="OutlineDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
-    <value>Remove/cleanup existing numbering</value>
+    <value>Bestaande nummering verwijderen/opschonen</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_indentationsGroup.Text" xml:space="preserve">
-    <value>Indentations</value>
+    <value>Inkepingen</value>
     <comment>group box title</comment>
   </data>
   <data name="OutlineDialog_indentBox.Text" xml:space="preserve">
-    <value>Indent content below headings</value>
+    <value>Inhoud onder koppen inspringen</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_indentTagBox.Text" xml:space="preserve">
-    <value>Indent only below tagged headings/paragraphs</value>
+    <value>Alleen inspringen onder getagde koppen / alinea's</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_indentTagBox.Tooltip" xml:space="preserve">
-    <value>Indents content below only tagged headings or non-tagged paragraphs</value>
+    <value>Laat de inhoud hieronder alleen inspringen met getagde koppen of niet-getagde alinea's</value>
     <comment>tooltip</comment>
   </data>
   <data name="OutlineDialog_numberingBox.Text" xml:space="preserve">
-    <value>Add Numbering</value>
+    <value>Nummering toevoegen</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_numberingBox.Tooltip" xml:space="preserve">
-    <value>Applied to both standard and custom Headings</value>
+    <value>Toegepast op zowel standaard als aangepaste koppen</value>
     <comment>tooltip</comment>
   </data>
   <data name="OutlineDialog_numberingGroup.Text" xml:space="preserve">
-    <value>Numbering</value>
+    <value>Nummering</value>
     <comment>group box title</comment>
   </data>
   <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
-    <value>Numeric</value>
+    <value>Numeriek</value>
     <comment>radio button</comment>
   </data>
   <data name="OutlineDialog_okButton.Text" xml:space="preserve">
@@ -1029,123 +1027,123 @@ Notebooks</value>
     <comment>ok button</comment>
   </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
-    <value>Remove tags</value>
+    <value>Verwijder tags</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
-    <value>Tag:</value>
+    <value>Label:</value>
     <comment>label</comment>
   </data>
   <data name="ribExportButton_Label" xml:space="preserve">
-    <value>Export</value>
+    <value>Exporteren</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribExportButton_Screentip" xml:space="preserve">
-    <value>Export page(s) as HTML, PDF, Word or XML</value>
+    <value>Exporteer pagina ('s) als HTML, PDF, Word of XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="SaveAs_Error" xml:space="preserve">
-    <value>Error saving page as {0}</value>
+    <value>Fout bij opslaan van pagina als {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml</value>
+    <value>HTML-bestand|*.htm|Word-bestand|*.docx|PDF-bestand|*.pdf|XML-bestand|*.xml</value>
     <comment>Save as dialog filename filter string</comment>
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>File extension must be one of .htm, .docx, .pdf, or .xml</value>
+    <value>De bestandsextensie moet .htm, .docx, .pdf of .xml zijn</value>
     <comment>Save as dialog invalid file type message</comment>
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
-    <value>Page saved to {0}</value>
+    <value>Pagina opgeslagen in {0}</value>
     <comment>Save as dialog success message</comment>
   </data>
   <data name="SaveAs_Title" xml:space="preserve">
-    <value>Save Page as...</value>
+    <value>Sla pagina op als...</value>
     <comment>Save as dialog title</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Remove empty paragraphs and headers</value>
+    <value>Verwijder lege alinea's en kopteksten</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>Remove extra empty lines between paragraph and remove empty headers</value>
+    <value>Verwijder extra lege regels tussen alinea's en verwijder lege kopteksten</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Show/Hide Page Date and Time Stamps</value>
+    <value>Toon / verberg pagina Datum- en tijdstempels</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribToggleDttmButton_Screentip" xml:space="preserve">
-    <value>Show/hide page date and time stamps below title</value>
+    <value>Toon / verberg pagina datum- en tijdstempels onder titel</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
-    <value>Clean</value>
+    <value>Schoon</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Label" xml:space="preserve">
-    <value>Remove Author Information</value>
+    <value>Verwijder auteursinformatie</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
-    <value>Remove information for all authors on this page</value>
+    <value>Verwijder informatie voor alle auteurs op deze pagina</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
-    <value>Numbering</value>
+    <value>Nummering</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
-    <value>Number Pages</value>
+    <value>Aantal pagina's</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberPagesButton_Screentip" xml:space="preserve">
-    <value>Add or update number of all pages in this section</value>
+    <value>Voeg alle pagina's in deze sectie toe of werk ze bij</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberSectionsButton_Label" xml:space="preserve">
-    <value>Number Sections</value>
+    <value>Nummer secties</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
-    <value>Add or update numbering of all sections in this notebook</value>
+    <value>Voeg de nummering van alle secties in dit notitieboek toe of werk deze bij</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
-    <value>Remove Page Numbers</value>
+    <value>Verwijder paginanummers</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemovePageNumbersButton_Screentip" xml:space="preserve">
-    <value>Remove numbers from all pages in this section</value>
+    <value>Verwijder nummers van alle pagina's in deze sectie</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Label" xml:space="preserve">
-    <value>Remove Section Numbers</value>
+    <value>Verwijder sectienummers</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Screentip" xml:space="preserve">
-    <value>Remove numbers from all sectionsin this notebook</value>
+    <value>Verwijder nummers uit alle secties in dit notitieboekje</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="PageNumberingDialog.Text" xml:space="preserve">
-    <value>Page Numbering</value>
+    <value>Paginanummering</value>
     <comment>dialog title</comment>
   </data>
   <data name="PageNumberingDialog_alphaRadio.Text" xml:space="preserve">
-    <value>Alpha-numeric</value>
+    <value>Alfanumeriek</value>
     <comment>radio button</comment>
   </data>
   <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
-    <value>Remove/cleanup existing numbering</value>
+    <value>Bestaande nummering verwijderen/opschonen</value>
     <comment>checkbox</comment>
   </data>
   <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
-    <value>Numeric</value>
+    <value>Numeriek</value>
     <comment>radio button</comment>
   </data>
   <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
@@ -1153,47 +1151,47 @@ Notebooks</value>
     <comment>ok button</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
-    <value>Numbering page {0}</value>
+    <value>Nummeringspagina {0}</value>
     <comment>progress status dialog</comment>
   </data>
   <data name="RemovingPageNumber_Message" xml:space="preserve">
-    <value>Removing number from page {0}</value>
+    <value>Nummer verwijderen van pagina {0}</value>
     <comment>progress status dialog</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
-    <value>Strikethrough Completed To Do Tags</value>
+    <value>Doorhalen voltooid om tags te doen</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
-    <value>Toggle strikethough of text marked with complete or incomplete To Do tags</value>
+    <value>Schakel het doorhalen van tekst die is gemarkeerd met complete of onvolledige Taken-tags in of uit</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="PhoneticsDialog.Text" xml:space="preserve">
-    <value>Phonetics</value>
+    <value>Fonetiek</value>
     <comment>dialog title</comment>
   </data>
   <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
-    <value>Language</value>
+    <value>Taal</value>
     <comment>label</comment>
   </data>
   <data name="PhoneticsDialog_languages" xml:space="preserve">
-    <value>en,English
-hi,Hindi
-es,Spanish
-fr,French
-ja,Japanese
-ru,Russian
-de,German
-it,Italian
-ko,Korean
-pt-BR,Brazilian Portuguese
-ar,Arabic
-tr,Turkish
-zh-CN,Chinese (Simplified)</value>
+    <value>en, Engels
+hoi, Hindi
+es, Spaans
+fr, Frans
+ja, Japans
+ru, Russisch
+de, Duits
+it, Italiaans
+ko, Koreaans
+pt-BR, Braziliaans Portugees
+ar, Arabisch
+tr, Turks
+zh-CN, Chinees (vereenvoudigd)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
@@ -1202,92 +1200,92 @@ ISO-code then comma then language name</comment>
     <comment>ok button</comment>
   </data>
   <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
-    <value>Word</value>
+    <value>Woord</value>
     <comment>label</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
-    <value>Insert Pronunciation</value>
+    <value>Uitspraak invoegen</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
-    <value>Selected word cannot be empty</value>
+    <value>Het geselecteerde woord mag niet leeg zijn</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_FullWord" xml:space="preserve">
-    <value>Must select a full word</value>
+    <value>U moet een volledig woord selecteren</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
-    <value>Could not fetch definition of word {0}
-Try again later</value>
+    <value>Kan definitie van woord {0} niet ophalen
+Probeer het later nog eens</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
-    <value>Could not find word {0}</value>
+    <value>Kan woord {0} niet vinden</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Crop</value>
+    <value>Bijsnijden</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Crop Image</value>
+    <value>Afbeelding bijsnijden</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
-    <value>Selection top left: {0}, {1}. Bounding rectangle size: {2} x {3}.</value>
+    <value>Selectie linksboven: {0}, {1}. Formaat begrenzende rechthoek: {2} x {3}.</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
-    <value>Crop</value>
+    <value>Bijsnijden</value>
     <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
-    <value>Image size: {0} x {1}</value>
+    <value>Afbeeldingsgrootte: {0} x {1}</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImageDialog_noSelection" xml:space="preserve">
-    <value>No selection</value>
+    <value>Geen selectie</value>
     <comment>status bar text</comment>
   </data>
   <data name="CropImage_oneImage" xml:space="preserve">
-    <value>Select one image to crop</value>
+    <value>Selecteer een afbeelding om bij te snijden</value>
     <comment>Crop command error message</comment>
   </data>
   <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
-    <value>Remove Paragraph Spacing</value>
+    <value>Verwijder alinea-afstand</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
   </data>
   <data name="ribRemoveSpacingButton_Screentip" xml:space="preserve">
-    <value>Remove paragraph, heading, and line spacing</value>
+    <value>Verwijder alinea-, kop- en regelafstand</value>
     <comment>Ribbon OneMore menu item, Clean...</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
-    <value>Remove Spacing</value>
+    <value>Tussenruimte verwijderen</value>
     <comment>dialog title</comment>
   </data>
   <data name="RemoveSpacingDialog_afterBox.Text" xml:space="preserve">
-    <value>Remove spacing after paragraphs</value>
+    <value>Verwijder spaties na alinea's</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_beforeBox.Text" xml:space="preserve">
-    <value>Remove spacing before paragraphs</value>
+    <value>Verwijder spaties vóór alinea's</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_betweenBox.Text" xml:space="preserve">
-    <value>Remove spacing between lines</value>
+    <value>Verwijder de afstand tussen regels</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="RemoveSpacingDialog_headingsBox.Text" xml:space="preserve">
-    <value>Include headings</value>
+    <value>Voeg koppen toe</value>
     <comment>checkbox</comment>
   </data>
   <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
@@ -1295,15 +1293,15 @@ Try again later</value>
     <comment>ok button</comment>
   </data>
   <data name="TimestampDialog.Text" xml:space="preserve">
-    <value>Show/Hide Date and Time</value>
+    <value>Datum en tijd weergeven/verbergen</value>
     <comment>dialog title</comment>
   </data>
   <data name="TimestampDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="TimestampDialog_hideRadio.Text" xml:space="preserve">
-    <value>Hide date and time</value>
+    <value>Verberg datum en tijd</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_okButton.Text" xml:space="preserve">
@@ -1311,190 +1309,190 @@ Try again later</value>
     <comment>ok button</comment>
   </data>
   <data name="TimestampDialog_pageRadio.Text" xml:space="preserve">
-    <value>This page</value>
+    <value>Deze pagina</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Scope</value>
+    <value>Reikwijdte</value>
     <comment>group box</comment>
   </data>
   <data name="TimestampDialog_sectionRadio.Text" xml:space="preserve">
-    <value>All pages in this section</value>
+    <value>Alle pagina's in deze sectie</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_showRadio.Text" xml:space="preserve">
-    <value>Show date and time</value>
+    <value>Toon datum en tijd</value>
     <comment>radio button</comment>
   </data>
   <data name="TimestampDialog_toggleGroup.Text" xml:space="preserve">
-    <value>Toggle</value>
+    <value>Wissel</value>
     <comment>group box</comment>
   </data>
   <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
-    <value>Select All</value>
+    <value>Selecteer alles</value>
     <comment>select all button</comment>
   </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
-    <value>Reset Settings</value>
+    <value>Reset instellingen</value>
     <comment>system menu</comment>
   </data>
   <data name="sepContent_Label" xml:space="preserve">
-    <value>Content</value>
+    <value>Inhoud</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="sepTools_Label" xml:space="preserve">
-    <value>Tools</value>
+    <value>Gereedschap</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="sepText_Label" xml:space="preserve">
-    <value>Text</value>
+    <value>Tekst</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
-    <value>Run Plugin</value>
+    <value>Voer de plug-in uit</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
-    <value>Run Plugin</value>
+    <value>Voer de plug-in uit</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
-    <value>Clean...</value>
+    <value>Schoon...</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxLowercaseButton_Label" xml:space="preserve">
-    <value>To lowercase</value>
+    <value>Kleine letters</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
-    <value>No Spell Check</value>
+    <value>Geen spellingcontrole</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Remove Empty Paragraphs and Headings</value>
+    <value>Verwijder lege alinea's en koppen</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
-    <value>Remove Paragraph Spacing</value>
+    <value>Verwijder alinea-afstand</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
-    <value>To UPPERCASE</value>
+    <value>In HOOFDLETTERS</value>
     <comment>Context menu</comment>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
-    <value>OneMore</value>
+    <value>Nog een</value>
     <comment>dialog title</comment>
   </data>
   <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
-    <value>Remove Pasted Citations</value>
+    <value>Verwijder geplakte citaten</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
-    <value>Remove screen clipping and paste URL citations</value>
+    <value>Verwijder schermknipsels en plak URL-citaten</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="RemoveCitations_Clippings" xml:space="preserve">
-    <value>Screen clipping</value>
+    <value>Scherm knippen</value>
     <comment>Screen clipping citation</comment>
   </data>
   <data name="RemoveCitations_FromUrl" xml:space="preserve">
-    <value>From &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
+    <value>Van &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
     <comment>From &lt;URL&gt; pattern match</comment>
   </data>
   <data name="PluginDialog.Text" xml:space="preserve">
-    <value>Run Plugin</value>
+    <value>Voer de plug-in uit</value>
     <comment>dialog title</comment>
   </data>
   <data name="PluginDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="PluginDialog_childBox.Text" xml:space="preserve">
-    <value>Create as child of current page</value>
+    <value>Maak aan als kind van huidige pagina</value>
     <comment>checkbox</comment>
   </data>
   <data name="PluginDialog_createRadio.Text" xml:space="preserve">
-    <value>Create a new page named</value>
+    <value>Maak een nieuwe pagina met de naam</value>
     <comment>radio button</comment>
   </data>
   <data name="PluginDialog_okButton.Text" xml:space="preserve">
-    <value>Run</value>
+    <value>Rennen</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Plugin Command</value>
+    <value>Plugin-opdracht</value>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
-    <value>Update current page</value>
+    <value>Update huidige pagina</value>
     <comment>radio button</comment>
   </data>
   <data name="PluginDialog_argsLabel.Text" xml:space="preserve">
-    <value>Arguments</value>
+    <value>Argumenten</value>
     <comment>label</comment>
   </data>
   <data name="Plugin_NoChanges" xml:space="preserve">
-    <value>Plugin completed successfully but no changes were found</value>
+    <value>De plug-in is succesvol voltooid, maar er zijn geen wijzigingen gevonden</value>
     <comment>warning message</comment>
   </data>
   <data name="Plugin_NoUpdate" xml:space="preserve">
-    <value>Error updating page. See log file</value>
+    <value>Fout bij updaten van pagina. </value>
     <comment>error message</comment>
   </data>
   <data name="Plugin_Running" xml:space="preserve">
-    <value>Running {0} {1} \"{2}\"</value>
+    <value>Bezig met {0} {1} \"{2}\"</value>
     <comment>running message</comment>
   </data>
   <data name="Plugin_Title" xml:space="preserve">
-    <value>Plugin</value>
+    <value>Inpluggen</value>
     <comment>Open File Dialog title</comment>
   </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
-    <value>Plugin did not complete successfully. See log file.</value>
+    <value>De plug-in is niet succesvol voltooid. </value>
     <comment>error message</comment>
   </data>
   <data name="Plugin_WritingTemp" xml:space="preserve">
-    <value>Error writing to temp file. See log file.</value>
+    <value>Fout bij schrijven naar tijdelijk bestand. </value>
     <comment>error message</comment>
   </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
-    <value>Delete</value>
+    <value>Verwijderen</value>
     <comment>delete button</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>Delete:</value>
+    <value>Verwijderen:</value>
     <comment>delete label</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
-    <value>Delete {0}?</value>
+    <value>{0} verwijderen?</value>
     <comment>delete confirmation message</comment>
   </data>
   <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>Move down</value>
+    <value>Naar beneden verplaatsen</value>
     <comment>down buttom</comment>
   </data>
   <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>Icon</value>
+    <value>Icoon</value>
     <comment>icon col</comment>
   </data>
   <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>URL Patterns must contain a string replacement token, such as &amp;q={0}</value>
+    <value>URL-patronen moeten een tekenreeksvervangingstoken bevatten, zoals &amp;q={0}</value>
     <comment>intro label</comment>
   </data>
   <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
+    <value>Naam</value>
     <comment>name col</comment>
   </data>
   <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
@@ -1502,39 +1500,39 @@ Try again later</value>
     <comment>ok button</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>Refresh icons</value>
+    <value>Vernieuw pictogrammen</value>
     <comment>refresh button</comment>
   </data>
   <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>Search Engines</value>
+    <value>Zoekmachines</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>Move up</value>
+    <value>Ga naar boven</value>
     <comment>up buttom</comment>
   </data>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>URL Pattern</value>
+    <value>URL-patroon</value>
     <comment>url col</comment>
   </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
-    <value>Insert Calendar</value>
+    <value>Agenda invoegen</value>
     <comment>dialog title</comment>
   </data>
   <data name="InsertCalendarDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format</value>
+    <value>Formaat</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_largeRadio.Text" xml:space="preserve">
-    <value>Large</value>
+    <value>Groot</value>
     <comment>radio</comment>
   </data>
   <data name="InsertCalendarDialog_monthLabel.Text" xml:space="preserve">
-    <value>Month</value>
+    <value>Maand</value>
     <comment>label</comment>
   </data>
   <data name="InsertCalendarDialog_okButton.Text" xml:space="preserve">
@@ -1542,31 +1540,31 @@ Try again later</value>
     <comment>button</comment>
   </data>
   <data name="InsertCalendarDialog_smallRadio.Text" xml:space="preserve">
-    <value>Small</value>
+    <value>Klein</value>
     <comment>radio</comment>
   </data>
   <data name="InsertCalendarDialog_yearLabel.Text" xml:space="preserve">
-    <value>Year</value>
+    <value>Jaar</value>
     <comment>label</comment>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
-    <value>Calendar</value>
+    <value>Kalender</value>
     <comment>Ribbon OneMore menu item, snippets</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
-    <value>{0} (Ctrl+Alt+Shift + {1})</value>
+    <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
   <data name="TocDialog.Text" xml:space="preserve">
-    <value>Table of Contents</value>
+    <value>Inhoudsopgave</value>
     <comment>dialog title</comment>
   </data>
   <data name="TocDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Add page with table of sections in this notebook</value>
+    <value>Voeg een pagina toe met een tabel met secties in dit notitieboekje</value>
     <comment>radio</comment>
   </data>
   <data name="TocDialog_okButton.Text" xml:space="preserve">
@@ -1574,63 +1572,63 @@ Try again later</value>
     <comment>button</comment>
   </data>
   <data name="TocDialog_pageRadio.Text" xml:space="preserve">
-    <value>Insert table of headings on this page</value>
+    <value>Voeg een tabel met koppen in op deze pagina</value>
     <comment>radio</comment>
   </data>
   <data name="TocDialog_pagesBox.Text" xml:space="preserve">
-    <value>Include pages in each section</value>
+    <value>Voeg pagina's toe aan elke sectie</value>
     <comment>checkbox</comment>
   </data>
   <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Add page with table of pages in this section</value>
+    <value>Voeg een pagina met een paginatabel toe in deze sectie</value>
     <comment>radio</comment>
   </data>
   <data name="TocDialog_topBox.Text" xml:space="preserve">
-    <value>Add link to each heading to jump to top of page</value>
+    <value>Voeg een link toe aan elke kop om naar de bovenkant van de pagina te gaan</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
-    <value>Table of Contents</value>
+    <value>Inhoudsopgave</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCNotebook" xml:space="preserve">
-    <value>Table of Contents - Notebook {0}</value>
+    <value>Inhoudsopgave - Kladblok {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_TOCSections" xml:space="preserve">
-    <value>Table of Contents - Section {0}</value>
+    <value>Inhoudsopgave - sectie {0}</value>
     <comment>page name</comment>
   </data>
   <data name="InsertTocCommand_Top" xml:space="preserve">
-    <value>Top of page</value>
+    <value>Bovenaan de pagina</value>
     <comment>hyperlink</comment>
   </data>
   <data name="TextToTableDialog.Text" xml:space="preserve">
-    <value>Convert Text to Table</value>
+    <value>Converteer tekst naar tabel</value>
     <comment>dialog title</comment>
   </data>
   <data name="TextToTableDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="TextToTableDialog_columnsLabel.Text" xml:space="preserve">
-    <value>Number of columns:</value>
+    <value>Aantal columns:</value>
     <comment>label</comment>
   </data>
   <data name="TextToTableDialog_commasRadio.Text" xml:space="preserve">
-    <value>Commas</value>
+    <value>Komma's</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_group1.Text" xml:space="preserve">
-    <value>Separate text at</value>
+    <value>Aparte tekst op</value>
     <comment>group</comment>
   </data>
   <data name="TextToTableDialog_group2.Text" xml:space="preserve">
-    <value>Table size</value>
+    <value>Tafel maat</value>
     <comment>group</comment>
   </data>
   <data name="TextToTableDialog_headerBox.Text" xml:space="preserve">
-    <value>First row is a header</value>
+    <value>De eerste rij is een koptekst</value>
     <comment>checkbox</comment>
   </data>
   <data name="TextToTableDialog_okButton.Text" xml:space="preserve">
@@ -1638,31 +1636,31 @@ Try again later</value>
     <comment>ok button</comment>
   </data>
   <data name="TextToTableDialog_otherRadio.Text" xml:space="preserve">
-    <value>Other</value>
+    <value>Andere</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_paragraphsRadio.Text" xml:space="preserve">
-    <value>Paragraphs</value>
+    <value>Paragrafen</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_rowsLabel.Text" xml:space="preserve">
-    <value>Number of rows:</value>
+    <value>Aantal rijen:</value>
     <comment>label</comment>
   </data>
   <data name="TextToTableDialog_tabsRadio.Text" xml:space="preserve">
-    <value>Tabs</value>
+    <value>Tabbladen</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
-    <value>Remove quotes from complete strings</value>
+    <value>Verwijder aanhalingstekens uit volledige strings</value>
     <comment>checkbox</comment>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
-    <value>No text is selected</value>
+    <value>Er is geen tekst geselecteerd</value>
     <comment>info message</comment>
   </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
-    <value>Convert Text to Table</value>
+    <value>Converteer tekst naar tabel</value>
     <comment>Ribbon OneMore menu item, extras</comment>
   </data>
   <data name="XmlDialog.Text" xml:space="preserve">
@@ -1670,27 +1668,27 @@ Try again later</value>
     <comment>dialog title</comment>
   </data>
   <data name="XmlDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
   <data name="XmlDialog_currNotebookButton.Text" xml:space="preserve">
-    <value>Current Notebook</value>
+    <value>Huidige notebook</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>Current Section</value>
+    <value>Huidige sectie</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_hideBox.Text" xml:space="preserve">
-    <value>Hide edited-by attributes (uncheck to edit page)</value>
+    <value>Verberg door bewerkte kenmerken (vink uit om pagina te bewerken)</value>
     <comment>checkbox</comment>
   </data>
   <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">
-    <value>Remove LF from CDATA</value>
+    <value>Verwijder LF uit CDATA</value>
     <comment>checkbox</comment>
   </data>
   <data name="XmlDialog_hierTab.Text" xml:space="preserve">
-    <value>Hierarchy</value>
+    <value>Hiërarchie</value>
     <comment>tab</comment>
   </data>
   <data name="XmlDialog_notebooksHierButton.Text" xml:space="preserve">
@@ -1698,179 +1696,177 @@ Try again later</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_okButton.Text" xml:space="preserve">
-    <value>Update Page</value>
+    <value>Update pagina</value>
     <comment>ok button</comment>
   </data>
   <data name="XmlDialog_pageLinkLabel.Text" xml:space="preserve">
-    <value>Link:</value>
+    <value>Koppeling:</value>
     <comment>label</comment>
   </data>
   <data name="XmlDialog_pageNameLabel.Text" xml:space="preserve">
-    <value>Name:</value>
+    <value>Naam:</value>
     <comment>label</comment>
   </data>
   <data name="XmlDialog_pagePathLabel.Text" xml:space="preserve">
-    <value>Path:</value>
+    <value>Pad:</value>
     <comment>label</comment>
   </data>
   <data name="XmlDialog_pagesHierButton.Text" xml:space="preserve">
-    <value>Pages</value>
+    <value>Pagina's</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Page</value>
+    <value>Bladzijde</value>
     <comment>tab</comment>
   </data>
   <data name="XmlDialog_sectionsHierButton.Text" xml:space="preserve">
-    <value>Sections</value>
+    <value>Secties</value>
     <comment>hier button</comment>
   </data>
   <data name="XmlDialog_selectButton.Text" xml:space="preserve">
-    <value>Select all</value>
+    <value>Selecteer alles</value>
     <comment>button</comment>
   </data>
   <data name="XmlDialog_wrapBox.Text" xml:space="preserve">
-    <value>Wrap text</value>
+    <value>Omloop tekst</value>
     <comment>checkbox</comment>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
-    <value>Invalid XML detected. Check log file for details</value>
+    <value>Ongeldige XML gedetecteerd. </value>
     <comment>error message</comment>
   </data>
   <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0} (column {1})</value>
+    <value>{0} (kolom {1})</value>
     <comment>exception message</comment>
   </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
-    <value>Selected cells must be in the same row or in the same column</value>
+    <value>Geselecteerde cellen moeten in dezelfde rij of in dezelfde kolom staan</value>
     <comment>warning message</comment>
   </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
-    <value>Select one or more table cells</value>
+    <value>Selecteer een of meer tabelcellen</value>
     <comment>warning message</comment>
   </data>
   <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
-    <value>Formula:</value>
+    <value>Formule:</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>Entered formula should apply to the first selected cell. This formula will be incremented automatically for additional selected cells.
-
-Functions: abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
-
-Operators: + - / * ^
-Cell reference: A1, A2, ... ZZZ999
-Cell range: A1:A22
-Symbols: PI, E</value>
+    <value>De ingevoerde formule moet van toepassing zijn op de eerste geselecteerde cel. 
+Functies: abs, acos, asin, atan, atan2, gemiddelde, plafond, cos, cosh, exp, verdieping, logboek, log10, max, mediaan, min, modus, pow, bereik, rond, teken, sin, sinh, sqrt, 
+Operatoren: + - / * ^
+Celverwijzing: A1, A2, ... ZZZ999
+Celbereik: A1: A22
+Symbolen: PI, E</value>
   </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
-    <value>Selected cells:</value>
+    <value>Geselecteerde cellen:</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_status_Invalid" xml:space="preserve">
-    <value>Invalid</value>
+    <value>Ongeldig</value>
     <comment>label</comment>
   </data>
   <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>Closing parenthesis expected</value>
+    <value>Haakje sluiten wordt verwacht</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>Cell range must be within one column or within one row</value>
+    <value>Het celbereik moet binnen één kolom of binnen één rij vallen</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>Invalid operand</value>
+    <value>Ongeldige operand</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>Operand contains multiple decimal points</value>
+    <value>Operand bevat meerdere decimale punten</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>Operand expected</value>
+    <value>Operand verwacht</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>Operator expected</value>
+    <value>Operator verwacht</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>Undefined function "{0}"</value>
+    <value>Ongedefinieerde functie "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>Undefined symbol "{0}"</value>
+    <value>Ongedefinieerd symbool "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>Unexpected character encountered '{0}'</value>
+    <value>Onverwacht teken '{0}' aangetroffen</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>Closing parenthesis without matching open parenthesis</value>
+    <value>Haakjes sluiten zonder overeenkomende open haakjes</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>Wrong number of function parameters</value>
+    <value>Verkeerd aantal functieparameters</value>
     <comment>error</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
-    <value>Deleted formulas from {0} cell(s)</value>
+    <value>Formules verwijderd uit {0} cel (len)</value>
     <comment>delete command message</comment>
   </data>
   <data name="DeleteFormulaCommand_NoFormulas" xml:space="preserve">
-    <value>Formula not found. Select one or more table cells containing formulas.</value>
+    <value>Formule niet gevonden. </value>
     <comment>delete command message</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
-    <value>No formulas found on this page</value>
+    <value>Geen formules gevonden op deze pagina</value>
     <comment>highlight command message</comment>
   </data>
   <data name="RecalculateFormulaCommand_NoFormula" xml:space="preserve">
-    <value>No formula found in the selected table</value>
+    <value>Geen formule gevonden in de geselecteerde tabel</value>
     <comment>recalculate command message</comment>
   </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
-    <value>Word Count</value>
+    <value>Aantal woorden</value>
     <comment>Ribbon OneMore menu extras</comment>
   </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
-    <value>Image already has a caption</value>
+    <value>Afbeelding heeft al een bijschrift</value>
     <comment>info message</comment>
   </data>
   <data name="WordCountCommand_Count" xml:space="preserve">
-    <value>Total words on page: {0}</value>
+    <value>Totaal aantal woorden op pagina: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
-    <value>Calculated</value>
+    <value>Berekend</value>
     <comment>tag name</comment>
   </data>
   <data name="ExportDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
-    <value>Folder:</value>
+    <value>Map:</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>HTML File (*.htm)
-PDF File (*.pdf)
-Word File (*.docx)
-XML File (*.xml)</value>
+    <value>HTML-bestand (*.htm)
+PDF-bestand (*.pdf)
+Word-bestand (*.docx)
+XML-bestand (*.xml)</value>
     <comment>combo box</comment>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format:</value>
+    <value>Formaat:</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
-    <value>Export {0} Pages</value>
+    <value>Exporteer {0} pagina's</value>
     <comment>group box title</comment>
   </data>
   <data name="ExportDialog_okButton.Text" xml:space="preserve">
@@ -1878,31 +1874,31 @@ XML File (*.xml)</value>
     <comment>button</comment>
   </data>
   <data name="ExportDialog_Text" xml:space="preserve">
-    <value>Export Pages</value>
+    <value>Pagina's exporteren</value>
     <comment>dialog title</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>Saved {0} pages to {1}</value>
+    <value>Opgeslagen {0} pagina's in {1}</value>
     <comment>save many message</comment>
   </data>
   <data name="Command_Error" xml:space="preserve">
-    <value>Error running command {0}</value>
+    <value>Fout bij het uitvoeren van opdracht {0}</value>
     <comment>logged and displayed in messagebox</comment>
   </data>
   <data name="Command_ErrorMsg" xml:space="preserve">
-    <value>{0}. See log file for details</value>
+    <value>{0}. </value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
   <data name="ImportDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
-    <value>File:</value>
+    <value>Het dossier:</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Select a Word or Powerpoint file</value>
+    <value>Selecteer een Word- of Powerpoint-bestand</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
@@ -1910,47 +1906,47 @@ XML File (*.xml)</value>
     <comment>button</comment>
   </data>
   <data name="ImportDialog_powerAppendButton.Text" xml:space="preserve">
-    <value>Append to this page</value>
+    <value>Toevoegen aan deze pagina</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_powerCreateButton.Text" xml:space="preserve">
-    <value>Create a new page</value>
+    <value>Maak een nieuwe pagina</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
-    <value>Powerpoint Options</value>
+    <value>Powerpoint-opties</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_powerSectionButton.Text" xml:space="preserve">
-    <value>Create a new section with a page for each slide</value>
+    <value>Maak een nieuwe sectie met een pagina voor elke dia</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_Text" xml:space="preserve">
-    <value>Import</value>
+    <value>Importeren</value>
     <comment>dialog title</comment>
   </data>
   <data name="ImportDialog_wordAppendButton.Text" xml:space="preserve">
-    <value>Append to this page</value>
+    <value>Toevoegen aan deze pagina</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_wordCreateButton.Text" xml:space="preserve">
-    <value>Create a new page</value>
+    <value>Maak een nieuwe pagina</value>
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
-    <value>Word Options</value>
+    <value>Word-opties</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx</value>
+    <value>Word-bestanden (*.doc)|*.docx|Powerpoint-bestanden (*.pptx)|*.pptx</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
-    <value>Choose file to import</value>
+    <value>Kies een bestand om te importeren</value>
     <comment>openfiledialog title</comment>
   </data>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
-    <value>Decimal places:</value>
+    <value>Decimalen:</value>
     <comment>label</comment>
   </data>
   <data name="OK" xml:space="preserve">
@@ -1964,198 +1960,198 @@ XML File (*.xml)</value>
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SearchDialog_allButton.Text" xml:space="preserve">
-    <value>In all notebooks</value>
+    <value>In alle notitieboekjes</value>
     <comment>radio</comment>
   </data>
   <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="SearchDialog_copyButton.Text" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopiëren</value>
     <comment>button</comment>
   </data>
   <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>Find:</value>
+    <value>Vind:</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</value>
+    <value>Voer een of meer trefwoorden in, "zinnen tussen aanhalingstekens", en gebruik hoofdletters EN en OF</value>
     <comment>intro label</comment>
   </data>
   <data name="SearchDialog_moveButton.Text" xml:space="preserve">
-    <value>Move</value>
+    <value>Actie</value>
     <comment>button</comment>
   </data>
   <data name="SearchDialog_notebookButton.Text" xml:space="preserve">
-    <value>In this notebook</value>
+    <value>In dit notitieboekje</value>
     <comment>radio</comment>
   </data>
   <data name="SearchDialog_sectionButton.Text" xml:space="preserve">
-    <value>In this section</value>
+    <value>In deze sectie</value>
     <comment>radio</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
-    <value>Search and Move/Copy</value>
+    <value>Zoeken en verplaatsen / kopiëren</value>
     <comment>dialog title</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
-    <value>Pick the location where selected pages should be copied</value>
+    <value>Kies de locatie waar geselecteerde pagina's moeten worden gekopieerd</value>
     <comment>QuickFiling description</comment>
   </data>
   <data name="SearchQF_Title" xml:space="preserve">
-    <value>Select Location</value>
+    <value>Selecteer een locatie</value>
     <comment>QuickFiling title</comment>
   </data>
   <data name="SearchQF_DescriptionMove" xml:space="preserve">
-    <value>Pick the location where selected pages should be moved</value>
+    <value>Kies de locatie waar geselecteerde pagina's moeten worden verplaatst</value>
     <comment>QuickFiling description</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>Search and Copy/Move</value>
+    <value>Zoeken en kopiëren / verplaatsen</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>Search pages for keywords and copy/move to another section (Alt + F)</value>
+    <value>Zoek pagina's op trefwoorden en kopieer / ga naar een andere sectie (Alt + F)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
-    <value>Add Footnote</value>
+    <value>Voetnoot toevoegen</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribCleanMenu" xml:space="preserve">
-    <value>Clean Menu</value>
+    <value>Schoon menu</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribDecreaseFontSizeButton" xml:space="preserve">
-    <value>... Decrease Text Size</value>
+    <value>... Verklein de tekstgrootte</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribEditMenu" xml:space="preserve">
-    <value>Edit Menu</value>
+    <value>Menu Bewerken</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribIncreaseFontSizeButton" xml:space="preserve">
-    <value>... Increase Text Size</value>
+    <value>... Vergroot de tekstgrootte</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes.</value>
+    <value>Kies opdrachten om weer te geven in het pagina-contextmenu. </value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>No Spell Check</value>
+    <value>Geen spellingcontrole</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
-    <value>Paste Rich Text</value>
+    <value>Plak Rich Text</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">
-    <value>... Remove Author Information</value>
+    <value>... Auteursinformatie verwijderen</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveCitationsButton" xml:space="preserve">
-    <value>... Remove Pasted Citations</value>
+    <value>... Verwijder geplakte citaten</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveEmptyButton" xml:space="preserve">
-    <value>... Remove Empty Paragraphs and Headings</value>
+    <value>... Verwijder lege alinea's en koppen</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveSpacingButton" xml:space="preserve">
-    <value>... Remove Paragraph Spacing</value>
+    <value>... Alinea-afstand verwijderen</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribSnippetsMenu" xml:space="preserve">
-    <value>Snippets Menu</value>
+    <value>Snippets-menu</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
-    <value>Context Menu Options</value>
+    <value>Contextmenu-opties</value>
     <comment>sheet</comment>
   </data>
   <data name="ContextMenuSheet_ribLowercaseButton" xml:space="preserve">
-    <value>... To lowercase</value>
+    <value>... in kleine letters</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribUppercaseButton" xml:space="preserve">
-    <value>... To UPPERCASE</value>
+    <value>... in HOOFDLETTERS</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribTrimButton" xml:space="preserve">
-    <value>... Trim Whitespace</value>
+    <value>... Witruimte inkorten</value>
     <comment>option</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
-    <value>Rotating Highlighter Options</value>
+    <value>Roterende markeerstiftopties</value>
     <comment>sheet intro</comment>
   </data>
   <data name="ribEditMenu_Label" xml:space="preserve">
-    <value>Edit</value>
+    <value>Bewerk</value>
     <comment>OneMore Ribbon menu item</comment>
   </data>
   <data name="ribHighlightButton_Label" xml:space="preserve">
-    <value>Rotating Highlighter</value>
+    <value>Roterende markeerstift</value>
     <comment>menu</comment>
   </data>
   <data name="ContextMenuSheet_ribHighlightButton" xml:space="preserve">
-    <value>... Rotating Highlighter</value>
+    <value>... Roterende markeerstift</value>
     <comment>context menu</comment>
   </data>
   <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
-    <value>Edit Commands</value>
+    <value>Bewerk commando's</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
-    <value>Show only icons for edit commands</value>
+    <value>Alleen pictogrammen weergeven voor bewerkingsopdrachten</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
-    <value>Formula Commands</value>
+    <value>Formuleopdrachten</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_formulaIconBox.Text" xml:space="preserve">
-    <value>Show only icons for formula commands</value>
+    <value>Alleen pictogrammen weergeven voor formuleopdrachten</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
-    <value>Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes.</value>
+    <value>Kies welke opdrachten u in de lintbalk wilt opnemen en of u pictogrammen of pictogrammen en labels wilt weergeven. </value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
   <data name="RibbonBarSheet_Title" xml:space="preserve">
-    <value>Ribbon Bar Options</value>
+    <value>Ribbon Bar-opties</value>
     <comment>settings dialog</comment>
   </data>
   <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
-    <value>Themes</value>
+    <value>Thema's</value>
     <comment>group</comment>
   </data>
   <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
-    <value>Insert a code block (F6)</value>
+    <value>Voeg een codeblok in (F6)</value>
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>Some changes require OneNote to be restarted. Restart OneNote at your convenience.</value>
+    <value>Bij sommige wijzigingen moet OneNote opnieuw worden gestart. </value>
     <comment>restart message</comment>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
-    <value>Select one or more table cells</value>
+    <value>Selecteer een of meer tabelcellen</value>
     <comment>message</comment>
   </data>
   <data name="InsertCellsDialog.Text" xml:space="preserve">
-    <value>Insert Cells</value>
+    <value>Cellen invoegen</value>
     <comment>dialog title</comment>
   </data>
   <data name="InsertCellsDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="InsertCellsDialog_numLabel.Text" xml:space="preserve">
-    <value>Number of cells to insert:</value>
+    <value>Aantal in te voegen cellen:</value>
     <comment>numeric label</comment>
   </data>
   <data name="InsertCellsDialog_okButton.Text" xml:space="preserve">
@@ -2163,35 +2159,35 @@ XML File (*.xml)</value>
     <comment>button</comment>
   </data>
   <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
-    <value>Shift cells down</value>
+    <value>Verplaats cellen naar beneden</value>
     <comment>radio</comment>
   </data>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
-    <value>Shift cells right</value>
+    <value>Schuif cellen naar rechts</value>
     <comment>radio</comment>
   </data>
   <data name="SplitDialog.Text" xml:space="preserve">
-    <value>Split Page</value>
+    <value>Pagina splitsen</value>
     <comment>dialog title</comment>
   </data>
   <data name="SplitDialog_byHeading1Box.Text" xml:space="preserve">
-    <value>Heading 1</value>
+    <value>Koptekst 1</value>
     <comment>checkbox</comment>
   </data>
   <data name="SplitDialog_byHeading1Label.Text" xml:space="preserve">
-    <value>Link headings to new pages and move content to each page</value>
+    <value>Koppel koppen aan nieuwe pagina's en verplaats inhoud naar elke pagina</value>
     <comment>label</comment>
   </data>
   <data name="SplitDialog_byLinksBox.Text" xml:space="preserve">
-    <value>Page (wiki) links</value>
+    <value>Pagina (wiki) links</value>
     <comment>checkbox</comment>
   </data>
   <data name="SplitDialog_byLinksLabel.Text" xml:space="preserve">
-    <value>Move content to each linked page</value>
+    <value>Verplaats inhoud naar elke gekoppelde pagina</value>
     <comment>label</comment>
   </data>
   <data name="SplitDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
@@ -2203,83 +2199,83 @@ XML File (*.xml)</value>
     <comment>button</comment>
   </data>
   <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
-    <value>Split by</value>
+    <value>Gesplitst door</value>
     <comment>group box</comment>
   </data>
   <data name="SplitDialog_taggedBox.Text" xml:space="preserve">
-    <value>Apply only to tagged headings and links</value>
+    <value>Alleen van toepassing op getagde koppen en links</value>
     <comment>checkbox</comment>
   </data>
   <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
-    <value>Tag:</value>
+    <value>Label:</value>
     <comment>label</comment>
   </data>
   <data name="ribInsertCellsButton_Label" xml:space="preserve">
-    <value>Insert Table Cells</value>
+    <value>Voeg tabelcellen in</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
-    <value>Split Page</value>
+    <value>Pagina splitsen</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>Import</value>
+    <value>Importeren</value>
     <comment>ribbon item</comment>
   </data>
   <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
-    <value>Choose the numbering style</value>
+    <value>Kies de nummeringsstijl</value>
     <comment>label</comment>
   </data>
   <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
-    <value>Numbering</value>
+    <value>Nummering</value>
     <comment>group</comment>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
-    <value>Space After:</value>
+    <value>Ruimte na:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
-    <value>Apply colors</value>
+    <value>Pas kleuren toe</value>
     <comment>checkbox</comment>
   </data>
   <data name="StyleDialog_backColorButton.ToolTipText" xml:space="preserve">
-    <value>Highlight Color</value>
+    <value>Markeer kleur</value>
     <comment>button tip</comment>
   </data>
   <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
-    <value>Space Before:</value>
+    <value>Ruimte voor:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_boldButton.Text" xml:space="preserve">
-    <value>Bold</value>
+    <value>Stoutmoedig</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_colorButton.ToolTipText" xml:space="preserve">
-    <value>Text Color</value>
+    <value>Tekst kleur</value>
     <comment>button tip</comment>
   </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
-    <value>Default (Black)</value>
+    <value>Standaard (zwart)</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
-    <value>Delete</value>
+    <value>Verwijderen</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
-    <value>File</value>
+    <value>het dossier</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
-    <value>Font:</value>
+    <value>Lettertype:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
-    <value>Italic</value>
+    <value>Cursief</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_loadButton.Text" xml:space="preserve">
@@ -2287,15 +2283,15 @@ XML File (*.xml)</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>Style Name:</value>
+    <value>Stijl naam:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
-    <value>New Style</value>
+    <value>Nieuwe stijl</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
-    <value>New Custom Style</value>
+    <value>Nieuwe aangepaste stijl</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
@@ -2303,29 +2299,29 @@ XML File (*.xml)</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
-    <value>Reorder</value>
+    <value>Opnieuw ordenen</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
-    <value>Save as...</value>
+    <value>Opslaan als...</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
-    <value>Strikethrough</value>
+    <value>Doorhalen</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Character - words in paragraph
-Paragraph - entire paragraph
-Heading - include in TOC</value>
+    <value>Karakter - woorden in alinea
+Paragraaf - hele paragraaf
+Kop - opnemen in inhoudsopgave</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
-    <value>Style Type:</value>
+    <value>Stijl type:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_subButton.Text" xml:space="preserve">
-    <value>Subscript</value>
+    <value>Abonnement</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_superButton.Text" xml:space="preserve">
@@ -2333,67 +2329,67 @@ Heading - include in TOC</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_Text" xml:space="preserve">
-    <value>Custom Styles</value>
+    <value>Aangepaste stijlen</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_transparentToolStripMenuItem.Text" xml:space="preserve">
-    <value>Transparent</value>
+    <value>Transparant</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_underlineButton.Text" xml:space="preserve">
-    <value>Underline</value>
+    <value>Onderstrepen</value>
     <comment>button</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
-    <value>Deep:</value>
+    <value>Diep:</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Faded:</value>
+    <value>Vervaagd:</value>
     <comment>radio</comment>
   </data>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
-    <value>The highlighter command will cycle through the colors of the chosen theme. Colors shown here are for light background pages. Dark background pages use automatic highlight colors</value>
+    <value>De markeerstiftopdracht bladert door de kleuren van het gekozen thema. </value>
     <comment>textbox</comment>
   </data>
   <data name="HighlightsSheet_normalRadio.Text" xml:space="preserve">
-    <value>Bright:</value>
+    <value>Helder:</value>
     <comment>radio</comment>
   </data>
   <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
-    <value>Delete</value>
+    <value>Verwijderen</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Delete:</value>
+    <value>Verwijderen:</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
-    <value>Move down</value>
+    <value>Naar beneden verplaatsen</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>URL Patterns must contain a string replacement token, such as &amp;q={0}</value>
+    <value>URL-patronen moeten een tekenreeksvervangingstoken bevatten, zoals &amp;q={0}</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Vernieuwen</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
-    <value>Move up</value>
+    <value>Ga naar boven</value>
     <comment>button</comment>
   </data>
   <data name="SettingsDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>annuleren</value>
     <comment>button</comment>
   </data>
   <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
-    <value>Context Menu</value>
+    <value>Contextmenu</value>
     <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
-    <value>Highlighter Themes</value>
+    <value>Markeerstiftthema's</value>
     <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_okButton.Text" xml:space="preserve">
@@ -2401,15 +2397,15 @@ Heading - include in TOC</value>
     <comment>button</comment>
   </data>
   <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
-    <value>Ribbon Bar</value>
+    <value>Lintbalk</value>
     <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
-    <value>Search Engines</value>
+    <value>Zoekmachines</value>
     <comment>treenode</comment>
   </data>
   <data name="SettingsDialog_Text" xml:space="preserve">
-    <value>OneMore Settings</value>
+    <value>OneMore-instellingen</value>
     <comment>dialog title</comment>
   </data>
 </root>
