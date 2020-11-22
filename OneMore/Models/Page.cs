@@ -23,6 +23,9 @@ namespace River.OneMoreAddIn.Models
 	internal partial class Page
 	{
 
+		public static readonly string TaggingMetaName = "omTaggingLabels";
+
+
 		/// <summary>
 		/// Initialize a new instance with the given page
 		/// </summary>

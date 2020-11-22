@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Dialogs;
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -58,12 +59,25 @@ namespace River.OneMoreAddIn.Commands
 			UIHelper.SetForegroundWindow(this);
 		}
 
+		public List<string> Tags
+		{
+			get
+			{
+				return tagsFlow.Controls.OfType<TagLabel>().ToList().ConvertAll(t => t.Label);
+			}
+
+			set
+			{
+				tagsFlow.Controls.AddRange(value.ConvertAll(t => new TagLabel(t)).ToArray());
+			}
+		}
+
 
 		private void FetchRecentTags()
 		{
 			using (var one = new OneNote())
 			{
-				var root = one.SearchMeta(string.Empty, "TaggingKit.PageTags"); // "omTaggingLabels");
+				var root = one.SearchMeta(string.Empty, Page.TaggingMetaName);
 				var ns = root.GetNamespaceOfPrefix("one");
 				var pages = root.Descendants(ns + "Page")
 					.OrderByDescending(e => e.Attribute("lastModifiedTime").Value);
@@ -123,17 +137,18 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Margin = new Padding(4),
 				Text = text,
-				BackColor = SystemColors.ControlLight
+				BackColor = SystemColors.ControlLight,
+				Cursor = Cursors.Hand
 			};
 
 			label.Click += (sender, e) =>
 			{
-				tagsFlow.Controls.Add(MakeTag(((Label)sender).Text));
+				AddTag(((Label)sender).Text);
 			};
 
 			label.MouseEnter += (sender, e) =>
 			{
-				((Label)sender).BackColor = SystemColors.MenuHighlight;
+				((Label)sender).BackColor = Color.FromKnownColor(KnownColor.LightSkyBlue);
 			};
 
 			label.MouseLeave += (sender, e) =>
@@ -153,18 +168,25 @@ namespace River.OneMoreAddIn.Commands
 				var parts = text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 				foreach (var part in parts)
 				{
-					tagsFlow.Controls.Add(MakeTag(part));
+					AddTag(part);
 				}
 
 				tagBox.Text = string.Empty;
 			}
 		}
 
-		private TagLabel MakeTag(string text)
+		private void AddTag(string text)
 		{
-			var tag = new TagLabel(text);
-			tag.Deleting += DeleteTag;
-			return tag;
+			if (!tagsFlow.Controls.ContainsKey(text))
+			{
+				var tag = new TagLabel(text)
+				{
+					Name = text
+				};
+
+				tag.Deleting += DeleteTag;
+				tagsFlow.Controls.Add(tag);
+			}
 		}
 
 		private void DeleteTag(object sender, EventArgs e)
