@@ -192,6 +192,9 @@ namespace River.OneMoreAddIn
 		public void StrikeoutCmd(IRibbonControl control)
 			=> factory.Run<StrikeoutCommand>();
 
+		public void TaggingCmd(IRibbonControl control)
+			=> factory.Run<TaggingCommand>();
+
 		public void TextToTableCmd(IRibbonControl control)
 			=> factory.Run<TextToTableCommand>();
 

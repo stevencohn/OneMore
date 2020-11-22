@@ -46,6 +46,11 @@
 
           <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" getImage="GetOneMoreRibbonImage">
             <button
+              id="ribTaggingButton"
+              imageMso="AdpPrimaryKey"
+              label="Tag Page"
+              onAction="TaggingCmd"/>
+            <button
               id="ribCollapseButton"
               imageMso="CollapseAll"
               getLabel="GetRibbonLabel"

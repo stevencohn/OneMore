@@ -635,6 +635,19 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Search the hierarchy node for the specified meta tag
+		/// </summary>
+		/// <param name="nodeId">The root node: notebook, section, or page</param>
+		/// <param name="name">The search string, meta key name</param>
+		/// <returns>A hierarchy XML starting at the given node.</returns>
+		public XElement SearchMeta(string nodeId, string name)
+		{
+			onenote.FindMeta(nodeId, name, out var xml, false, XMLSchema.xs2013);
+			return XElement.Parse(xml);
+		}
+
+
+		/// <summary>
 		/// Special helper for DiagnosticsCommand
 		/// </summary>
 		/// <param name="builder"></param>
