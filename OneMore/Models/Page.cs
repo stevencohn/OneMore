@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Models
 	internal partial class Page
 	{
 
+		public static readonly string HighlightMetaName = "omHighlightIndex";
 		public static readonly string TaggingMetaName = "omTaggingLabels";
 
 

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using System.Globalization;
 	using System.Xml.Linq;
@@ -11,7 +12,6 @@ namespace River.OneMoreAddIn
 
 	internal class HighlightCommand : Command
 	{
-		private const string MetaName = "omHighlightIndex";
 
 		public HighlightCommand()
 		{
@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn
 				var updated = false;
 				var index = 0;
 
-				var meta = page.GetMetaContent(MetaName);
+				var meta = page.GetMetaContent(Page.HighlightMetaName);
 				if (meta != null)
 				{
 					if (int.TryParse(meta, out index))
@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn
 
 				if (updated)
 				{
-					page.SetMeta(MetaName, index.ToString(CultureInfo.InvariantCulture));
+					page.SetMeta(Page.HighlightMetaName, index.ToString(CultureInfo.InvariantCulture));
 					one.Update(page);
 				}
 			}

@@ -68,7 +68,10 @@ namespace River.OneMoreAddIn.Commands
 
 			set
 			{
-				tagsFlow.Controls.AddRange(value.ConvertAll(t => new TagLabel(t)).ToArray());
+				foreach (var tag in value)
+				{
+					AddTag(tag);
+				}
 			}
 		}
 

@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Linq;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
 
 
 	internal class TaggingCommand : Command
@@ -40,7 +39,10 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
-					var tags = dialog.Tags;
+					content = string.Join(",", dialog.Tags);
+					page.SetMeta(Page.TaggingMetaName, content);
+
+					one.Update(page);
 				}
 			}
 		}
