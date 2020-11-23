@@ -74,19 +74,17 @@ namespace River.OneMoreAddIn
 		{
 			private readonly BlockingCollection<Action> jobs;
 			private readonly CancellationTokenSource source;
-			private readonly OneNote one;
 			private bool disposed = false;
 
 
 			/// <summary>
-			/// Initialize a new instance for the given OneNote wrapper, which should be "this".
+			/// Initialize a new instance
 			/// </summary>
 			/// <param name="one"></param>
-			public OneNoteDispatcher(OneNote one)
+			public OneNoteDispatcher()
 			{
 				jobs = new BlockingCollection<Action>();
 				source = new CancellationTokenSource();
-				this.one = one;
 			}
 
 
@@ -129,13 +127,14 @@ namespace River.OneMoreAddIn
 			/// as they are added to the blocking queue.
 			/// </summary>
 			/// <returns></returns>
-			public Task Run()
+			public void Run()
 			{
+				var token = source.Token;
+
 				var factory = new TaskFactory(
 					TaskCreationOptions.LongRunning, TaskContinuationOptions.None);
 
-				var token = source.Token;
-				return factory.StartNew(() =>
+				factory.StartNew(() =>
 				{
 					try
 					{
@@ -765,14 +764,14 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Must be called prior to calling the Execute method. Used by modal dialogsg to prepare
-		/// for actions that will affect OneNote while the dialog is visible.
+		/// Must be called from a Command thread prior to opening a modal dialog that will then
+		/// dispatch actions
 		/// </summary>
 		public void StartDispatcher()
 		{
 			if (dispatcher == null)
 			{
-				dispatcher = new OneNoteDispatcher(this);
+				dispatcher = new OneNoteDispatcher();
 				dispatcher.Run();
 			}
 		}
