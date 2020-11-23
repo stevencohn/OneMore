@@ -10,8 +10,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
-
+	using System.Xml.Linq;
 
 	internal partial class TaggingDialog : LocalizableForm
 	{
@@ -50,6 +52,7 @@ namespace River.OneMoreAddIn.Commands
 			InitializeComponent();
 			tagBox.TagsChanged += AcceptInput;
 			FetchRecentTags();
+			FetchPageWords();
 		}
 
 
@@ -129,7 +132,51 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic))
 			{
-				//
+				var builder = new StringBuilder();
+
+				var runs = page.Root.Elements(ns + "Outline").Descendants(ns + "T");
+				foreach (var run in runs)
+				{
+					var cdata = run.GetCData();
+					if (cdata.Value.Contains("<"))
+					{
+						var wrapper = cdata.GetWrapper();
+						var text = wrapper.Value.Trim();
+						if (text.Length > 0)
+						{
+							builder.Append(" ");
+							builder.Append(text);
+						}
+					}
+					else
+					{
+						var text = cdata.Value.Trim();
+						if (text.Length > 0)
+						{
+							builder.Append(" ");
+							builder.Append(text);
+						}
+					}
+				}
+
+				var content = builder.ToString();
+
+				content = Regex.Replace(content, @"[^\s\p{L}\p{N}\p{Nd}]", string.Empty).ToLower();
+
+				var words = content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+					.GroupBy(w => w.ToLower())
+					.Select(g => new
+					{
+						Word = g.Key,
+						Count = g.Count()
+					})
+					.OrderByDescending(g => g.Count)
+					.Take(20);
+
+				foreach (var word in words)
+				{
+					wordsFlow.Controls.Add(MakeLabel($"{word.Word} ({word.Count})"));
+				}
 			}
 		}
 
@@ -138,7 +185,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var label = new Label
 			{
+				AutoSize = true,
 				Margin = new Padding(4),
+				Padding = new Padding(4),
 				Text = text,
 				BackColor = SystemColors.ControlLight,
 				Cursor = Cursors.Hand

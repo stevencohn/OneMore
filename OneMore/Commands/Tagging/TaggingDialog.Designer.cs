@@ -79,15 +79,15 @@ namespace River.OneMoreAddIn.Commands
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tagsFlow.AutoScroll = true;
-			this.tagsFlow.Location = new System.Drawing.Point(13, 96);
+			this.tagsFlow.Location = new System.Drawing.Point(13, 100);
 			this.tagsFlow.Name = "tagsFlow";
-			this.tagsFlow.Size = new System.Drawing.Size(752, 98);
+			this.tagsFlow.Size = new System.Drawing.Size(752, 94);
 			this.tagsFlow.TabIndex = 4;
 			// 
 			// addButton
 			// 
 			this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.addButton.Location = new System.Drawing.Point(665, 64);
+			this.addButton.Location = new System.Drawing.Point(665, 68);
 			this.addButton.Name = "addButton";
 			this.addButton.Size = new System.Drawing.Size(100, 30);
 			this.addButton.TabIndex = 1;
@@ -99,15 +99,15 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.tagBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tagBox.Location = new System.Drawing.Point(13, 64);
+			this.tagBox.Location = new System.Drawing.Point(17, 68);
 			this.tagBox.Name = "tagBox";
-			this.tagBox.Size = new System.Drawing.Size(646, 26);
+			this.tagBox.Size = new System.Drawing.Size(642, 26);
 			this.tagBox.TabIndex = 0;
 			// 
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(13, 41);
+			this.introLabel.Location = new System.Drawing.Point(13, 45);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(206, 20);
 			this.introLabel.TabIndex = 1;
@@ -117,8 +117,9 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.tagLabel.AutoSize = true;
 			this.tagLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tagLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.tagLabel.ForeColor = System.Drawing.SystemColors.GrayText;
 			this.tagLabel.Location = new System.Drawing.Point(13, 19);
+			this.tagLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
 			this.tagLabel.Name = "tagLabel";
 			this.tagLabel.Size = new System.Drawing.Size(94, 22);
 			this.tagLabel.TabIndex = 0;
@@ -150,7 +151,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.suggestionSplits.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.suggestionSplits.IsSplitterFixed = true;
-			this.suggestionSplits.Location = new System.Drawing.Point(10, 32);
+			this.suggestionSplits.Location = new System.Drawing.Point(10, 38);
+			this.suggestionSplits.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
 			this.suggestionSplits.Name = "suggestionSplits";
 			this.suggestionSplits.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
@@ -161,8 +163,8 @@ namespace River.OneMoreAddIn.Commands
 			// suggestionSplits.Panel2
 			// 
 			this.suggestionSplits.Panel2.Controls.Add(this.wordsGroup);
-			this.suggestionSplits.Size = new System.Drawing.Size(758, 354);
-			this.suggestionSplits.SplitterDistance = 178;
+			this.suggestionSplits.Size = new System.Drawing.Size(758, 348);
+			this.suggestionSplits.SplitterDistance = 174;
 			this.suggestionSplits.SplitterWidth = 1;
 			this.suggestionSplits.TabIndex = 8;
 			// 
@@ -173,7 +175,7 @@ namespace River.OneMoreAddIn.Commands
 			this.recentGroup.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.recentGroup.Location = new System.Drawing.Point(0, 0);
 			this.recentGroup.Name = "recentGroup";
-			this.recentGroup.Size = new System.Drawing.Size(758, 178);
+			this.recentGroup.Size = new System.Drawing.Size(758, 174);
 			this.recentGroup.TabIndex = 6;
 			this.recentGroup.TabStop = false;
 			this.recentGroup.Text = "Recently used";
@@ -185,7 +187,7 @@ namespace River.OneMoreAddIn.Commands
 			this.recentFlow.Location = new System.Drawing.Point(3, 22);
 			this.recentFlow.Name = "recentFlow";
 			this.recentFlow.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.recentFlow.Size = new System.Drawing.Size(752, 153);
+			this.recentFlow.Size = new System.Drawing.Size(752, 149);
 			this.recentFlow.TabIndex = 5;
 			// 
 			// wordsGroup
@@ -195,7 +197,7 @@ namespace River.OneMoreAddIn.Commands
 			this.wordsGroup.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.wordsGroup.Location = new System.Drawing.Point(0, 0);
 			this.wordsGroup.Name = "wordsGroup";
-			this.wordsGroup.Size = new System.Drawing.Size(758, 175);
+			this.wordsGroup.Size = new System.Drawing.Size(758, 173);
 			this.wordsGroup.TabIndex = 7;
 			this.wordsGroup.TabStop = false;
 			this.wordsGroup.Text = "Common words on this page";
@@ -207,7 +209,7 @@ namespace River.OneMoreAddIn.Commands
 			this.wordsFlow.Location = new System.Drawing.Point(3, 22);
 			this.wordsFlow.Name = "wordsFlow";
 			this.wordsFlow.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.wordsFlow.Size = new System.Drawing.Size(752, 150);
+			this.wordsFlow.Size = new System.Drawing.Size(752, 148);
 			this.wordsFlow.TabIndex = 5;
 			// 
 			// suggestionsLabel
@@ -215,10 +217,12 @@ namespace River.OneMoreAddIn.Commands
 			this.suggestionsLabel.AutoSize = true;
 			this.suggestionsLabel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.suggestionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.suggestionsLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.suggestionsLabel.ForeColor = System.Drawing.SystemColors.GrayText;
 			this.suggestionsLabel.Location = new System.Drawing.Point(10, 10);
+			this.suggestionsLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
 			this.suggestionsLabel.Name = "suggestionsLabel";
-			this.suggestionsLabel.Size = new System.Drawing.Size(120, 22);
+			this.suggestionsLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
+			this.suggestionsLabel.Size = new System.Drawing.Size(120, 28);
 			this.suggestionsLabel.TabIndex = 1;
 			this.suggestionsLabel.Text = "Suggestions";
 			// 

@@ -480,6 +480,7 @@
     <Compile Include="Styles\XmlStyleBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Commands\Tagging\x.png" />
     <Content Include="Properties\Emoji\Architecture.png" />
     <None Include="Properties\Emoji\Automobile.png" />
     <Content Include="Properties\Emoji\Bullet.png" />
@@ -496,6 +497,8 @@
     <Content Include="Properties\Emoji\Journal.png" />
     <None Include="Properties\Emoji\Memo.png" />
     <None Include="Properties\Emoji\Passwords.png" />
+    <Content Include="Properties\Images\Label.png" />
+    <Content Include="Properties\Images\LabelSearch.png" />
     <Content Include="Properties\Emoji\Pencil.png" />
     <Content Include="Properties\Emoji\Pushpin.png" />
     <None Include="Properties\Emoji\Shazam.png" />
@@ -511,7 +514,10 @@
     <Content Include="Properties\Images\Delete.png" />
     <Content Include="Properties\Images\DoubleLine.png" />
     <Content Include="Properties\Images\DownArrow.png" />
+    <Content Include="Properties\Images\EditRibbon.png" />
     <Content Include="Properties\Images\FontColor.png" />
+    <Content Include="Properties\Images\FormulaRibbon.png" />
+    <Content Include="Properties\Images\HighlightDeep.png" />
     <Content Include="Properties\Images\HighlightFaded.png" />
     <Content Include="Properties\Images\HighlightNormal.png" />
     <Content Include="Properties\Images\Italic.png" />
@@ -523,8 +529,10 @@
     <Content Include="Properties\Images\Refresh.png" />
     <Content Include="Properties\Images\Reorder.png" />
     <Content Include="Properties\Images\SaveAs.png" />
+    <Content Include="Properties\Images\Search.png" />
     <Content Include="Properties\Images\SectionGroup.png" />
     <Content Include="Properties\Images\SectionMask.png" />
+    <Content Include="Properties\Images\SelectAll.png" />
     <Content Include="Properties\Images\Strikethrough.png" />
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
@@ -535,6 +543,7 @@
     <Content Include="Properties\Images\Logo.png" />
     <Content Include="Properties\Images\NoSpellCheck.png" />
     <Content Include="Properties\CustomStyles.xml" />
+    <Content Include="Properties\Images\WrapText.png" />
     <Content Include="Properties\Ribbon.xml">
       <SubType>Designer</SubType>
     </Content>
