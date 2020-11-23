@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Models
 	{
 
 		public static readonly string HighlightMetaName = "omHighlightIndex";
+		public static readonly string TagBoxMetaName = "omTagBox";
 		public static readonly string TaggingMetaName = "omTaggingLabels";
 
 
