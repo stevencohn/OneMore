@@ -12,8 +12,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Web;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+
 
 	internal partial class TaggingDialog : LocalizableForm
 	{
@@ -399,6 +401,8 @@ namespace River.OneMoreAddIn.Commands
 			#endregion Blacklist
 		};
 
+		private const int PoolSize = 20;
+
 
 		public TaggingDialog()
 		{
@@ -414,6 +418,7 @@ namespace River.OneMoreAddIn.Commands
 			Location = new Point(Location.X, Location.Y - (Height / 5));
 			UIHelper.SetForegroundWindow(this);
 		}
+
 
 		public List<string> Tags
 		{
@@ -436,6 +441,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote())
 			{
+				// builds a hierarchy of all notebooks with notebook/section/page nodes
+				// and each Page has a Meta of tags
+
 				var root = one.SearchMeta(string.Empty, Page.TaggingMetaName);
 				var ns = root.GetNamespaceOfPrefix("one");
 				var pages = root.Descendants(ns + "Page")
@@ -449,8 +457,10 @@ namespace River.OneMoreAddIn.Commands
 					var meta = page.Element(ns + "Meta");
 					if (meta != null)
 					{
-						var parts = meta.Attribute("content").Value
-							.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+						// tags are entered in user's language so split on their separator
+						var parts = meta.Attribute("content").Value.Split(
+							new string[] { AddIn.Culture.TextInfo.ListSeparator },
+							StringSplitOptions.RemoveEmptyEntries);
 
 						foreach (var part in parts)
 						{
@@ -461,12 +471,12 @@ namespace River.OneMoreAddIn.Commands
 								tags.Add(key, p);
 
 								count++;
-								if (count > 19) break;
+								if (count >= PoolSize) break;
 							}
 						}
 					}
 
-					if (count > 19) break;
+					if (count >= PoolSize) break;
 				}
 
 				if (tags.Count > 0)
@@ -487,6 +497,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var builder = new StringBuilder();
 
+				// collect all visible text into one StringBuilder
+
 				var runs = page.Root.Elements(ns + "Outline")
 					.Where(e => !e.Elements(ns + "Meta")
 								.Any(m => m.Attribute("name").Value == Page.TagBankMetaName))
@@ -502,7 +514,7 @@ namespace River.OneMoreAddIn.Commands
 						if (text.Length > 0)
 						{
 							builder.Append(" ");
-							builder.Append(text);
+							builder.Append(HttpUtility.HtmlDecode(text));
 						}
 					}
 					else
@@ -511,10 +523,12 @@ namespace River.OneMoreAddIn.Commands
 						if (text.Length > 0)
 						{
 							builder.Append(" ");
-							builder.Append(text);
+							builder.Append(HttpUtility.HtmlDecode(text));
 						}
 					}
 				}
+
+				// split text into individual words, discarding all non-word chars and numbers
 
 				var words = Regex.Split(builder.ToString(), @"\W")
 					.Select(w=> w.Trim().ToLower()).Where(w =>
@@ -528,7 +542,7 @@ namespace River.OneMoreAddIn.Commands
 						Count = g.Count()
 					})
 					.OrderByDescending(g => g.Count)
-					.Take(20);
+					.Take(PoolSize);
 
 				foreach (var word in words)
 				{
@@ -576,7 +590,7 @@ namespace River.OneMoreAddIn.Commands
 			var text = tagBox.Text.Trim();
 			if (text.Length > 0)
 			{
-				// some languages use ';' as a list separator, most others use ','
+				// some languages use ';' as a list separator, most others use ',' (So use both!)
 				var parts = text.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 				foreach (var part in parts)
 				{
@@ -596,16 +610,31 @@ namespace River.OneMoreAddIn.Commands
 					Name = text
 				};
 
-				tag.Deleting += DeleteTag;
+				tag.Deleting += (sender, e) =>
+				{
+					tagsFlow.Controls.Remove(sender as TagLabel);
+					clearLabel.Enabled = tagsFlow.Controls.Count > 0;
+				};
+
 				tagsFlow.Controls.Add(tag);
+
+				clearLabel.Enabled = true;
 			}
 		}
 
-		private void DeleteTag(object sender, EventArgs e)
-		{
-			var tag = sender as TagLabel;
-			tagsFlow.Controls.Remove(tag);
 
+		private void RemoveAllTags(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var result = MessageBox.Show(this,
+				"Remove all tags from the current page?",
+				"Confirm",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+			if (result == DialogResult.Yes)
+			{
+				tagsFlow.Controls.Clear();
+				clearLabel.Enabled = false;
+			}
 		}
 	}
 }

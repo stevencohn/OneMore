@@ -36,7 +36,9 @@ namespace River.OneMoreAddIn.Commands
 					var content = page.GetMetaContent(Page.TaggingMetaName);
 					if (!string.IsNullOrEmpty(content))
 					{
-						var parts = content.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+						var parts = content.Split(
+								new string[] { AddIn.Culture.TextInfo.ListSeparator },
+								StringSplitOptions.RemoveEmptyEntries)
 							.Select(s => s.Trim())
 							.ToList();
 
@@ -48,7 +50,9 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
-					page.SetMeta(Page.TaggingMetaName, string.Join(",", dialog.Tags));
+					// tags will appear in user's lanuage so need to use appropriate separator
+					page.SetMeta(Page.TaggingMetaName,
+						string.Join(AddIn.Culture.TextInfo.ListSeparator, dialog.Tags));
 
 					if (dialog.Tags.Any())
 					{
@@ -74,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			var content = $"<span style='font-weight:bold'>{string.Join(sep, words)}</span>";
 
 			var quickIndex = MakeQuickStyle(page);
-			var tagIndex = MakeRibbonTagDef(page);
+			var tagIndex = MakeRibbonTagDef(page, BankType);
 
 			var outline = page.Root.Elements(ns + "Outline")
 				.FirstOrDefault(e => e.Elements().Any(x =>
@@ -146,12 +150,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private string MakeRibbonTagDef(Page page)
+		private string MakeRibbonTagDef(Page page, int tagType)
 		{
 			var index = page.GetTagDefIndex(RibbonSymbol);
 			if (index == null)
 			{
-				index = page.AddTagDef(RibbonSymbol, "Page Tags", BankType);
+				index = page.AddTagDef(RibbonSymbol, "Page Tags", tagType);
 			}
 
 			return index;
