@@ -121,9 +121,9 @@ namespace River.OneMoreAddIn.Commands
 			this.tagLabel.Location = new System.Drawing.Point(13, 19);
 			this.tagLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 4);
 			this.tagLabel.Name = "tagLabel";
-			this.tagLabel.Size = new System.Drawing.Size(94, 22);
+			this.tagLabel.Size = new System.Drawing.Size(107, 22);
 			this.tagLabel.TabIndex = 0;
-			this.tagLabel.Text = "Hashtags";
+			this.tagLabel.Text = "Page Tags";
 			// 
 			// splitter
 			// 
@@ -278,7 +278,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Name = "TaggingDialog";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Page Hashtags";
+			this.Text = "Page Tags";
 			this.entryPanel.ResumeLayout(false);
 			this.entryPanel.PerformLayout();
 			this.suggestionPanel.ResumeLayout(false);

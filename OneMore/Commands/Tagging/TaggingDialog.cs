@@ -475,7 +475,7 @@ namespace River.OneMoreAddIn.Commands
 
 					foreach (var s in sorted)
 					{
-						recentFlow.Controls.Add(MakeLabel(s.Value));
+						recentFlow.Controls.Add(MakeLabel(s.Value, s.Value));
 					}
 				}
 			}
@@ -489,7 +489,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var runs = page.Root.Elements(ns + "Outline")
 					.Where(e => !e.Elements(ns + "Meta")
-								.Any(m => m.Attribute("name").Value == Page.TagBoxMetaName))
+								.Any(m => m.Attribute("name").Value == Page.TagBankMetaName))
 					.Descendants(ns + "T");
 
 				foreach (var run in runs)
@@ -516,13 +516,12 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				var content = builder.ToString();
-
-				content = Regex.Replace(content, @"[^\s\p{L}\p{N}\p{Nd}]", string.Empty).ToLower();
-
-				var words = content.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-					.Where(w => w.Length > 1 && !Blacklist.Contains(w) && !Regex.Match(w, @"^\s*[\p{N}]+\s*$").Success)
-					.GroupBy(w => w.ToLower())
+				var words = Regex.Split(builder.ToString(), @"\W")
+					.Select(w=> w.Trim().ToLower()).Where(w =>
+						w.Length > 1 && 
+						!Blacklist.Contains(w) && 
+						!Regex.Match(w, @"^\s*\d+\s*$").Success)
+					.GroupBy(w => w)
 					.Select(g => new
 					{
 						Word = g.Key,
@@ -533,19 +532,21 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var word in words)
 				{
-					wordsFlow.Controls.Add(MakeLabel($"{word.Word} ({word.Count})"));
+					wordsFlow.Controls.Add(MakeLabel(word.Word, $"{word.Word} ({word.Count})"));
 				}
 			}
 		}
 
 
-		private Label MakeLabel(string text)
+		private Label MakeLabel(string value, string text)
 		{
 			var label = new Label
 			{
+				Name = value,
+				Tag = value,
 				AutoSize = true,
 				Margin = new Padding(4),
-				Padding = new Padding(4),
+				Padding = new Padding(4, 5, 4, 5),
 				Text = text,
 				BackColor = SystemColors.ControlLight,
 				Cursor = Cursors.Hand
@@ -553,7 +554,7 @@ namespace River.OneMoreAddIn.Commands
 
 			label.Click += (sender, e) =>
 			{
-				AddTag(((Label)sender).Text);
+				AddTag(((Label)sender).Tag as string);
 			};
 
 			label.MouseEnter += (sender, e) =>
@@ -575,7 +576,8 @@ namespace River.OneMoreAddIn.Commands
 			var text = tagBox.Text.Trim();
 			if (text.Length > 0)
 			{
-				var parts = text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+				// some languages use ';' as a list separator, most others use ','
+				var parts = text.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 				foreach (var part in parts)
 				{
 					AddTag(part);

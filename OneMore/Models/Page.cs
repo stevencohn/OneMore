@@ -23,8 +23,11 @@ namespace River.OneMoreAddIn.Models
 	internal partial class Page
 	{
 
+		// Page meta to keep track of rotating highlighter index
 		public static readonly string HighlightMetaName = "omHighlightIndex";
-		public static readonly string TagBoxMetaName = "omTagBox";
+		// Outline meta to mark visible word bank
+		public static readonly string TagBankMetaName = "omTaggingBank";
+		// Page meta to specify page tag list
 		public static readonly string TaggingMetaName = "omTaggingLabels";
 
 
@@ -165,7 +168,7 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="symbol">The symbol of the tag</param>
 		/// <param name="name">The name to apply to the new tag</param>
 		/// <returns>The index of the new tag or of the existing tag with the same symbol</returns>
-		public string AddTag(string symbol, string name)
+		public string AddTagDef(string symbol, string name, int tagType = 0)
 		{
 			//<one:TagDef index="0" type="0" symbol="140" fontColor="automatic" highlightColor="none" name="Calculated" />
 			var tags = Root.Elements(Namespace + "TagDef");
@@ -184,7 +187,7 @@ namespace River.OneMoreAddIn.Models
 
 			Root.AddFirst(new XElement(Namespace + "TagDef",
 				new XAttribute("index", index.ToString()),
-				new XAttribute("type", "0"),
+				new XAttribute("type", tagType.ToString()),
 				new XAttribute("symbol", symbol),
 				new XAttribute("fontColor", "automatic"),
 				new XAttribute("highlightColor", "none"),
@@ -692,7 +695,7 @@ namespace River.OneMoreAddIn.Models
 		/// </summary>
 		/// <param name="symbol">The symbol of the tag to find</param>
 		/// <returns>The index value or null if not found</returns>
-		public string GetTagIndex(string symbol)
+		public string GetTagDefIndex(string symbol)
 		{
 			var tag = Root.Elements(Namespace + "TagDef")
 				.FirstOrDefault(e => e.Attribute("symbol").Value == symbol);

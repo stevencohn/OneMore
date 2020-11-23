@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn
 						dialog.DecimalPlaces = formula.DecimalPlaces;
 					}
 
-					var tagIndex = page.GetTagIndex(BoltSymbol);
+					var tagIndex = page.GetTagDefIndex(BoltSymbol);
 					if (!string.IsNullOrEmpty(tagIndex))
 					{
 						if (cell.HasTag(tagIndex))
@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn
 
 					if (dialog.Tagged)
 					{
-						tagIndex = page.AddTag(BoltSymbol, Resx.AddFormulaCommand_Calculated);
+						tagIndex = page.AddTagDef(BoltSymbol, Resx.AddFormulaCommand_Calculated);
 					}
 
 					StoreFormula(cells,
