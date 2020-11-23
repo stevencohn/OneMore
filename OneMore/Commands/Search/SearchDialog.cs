@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands.Search
 	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Collections.Generic;
-	using System.Diagnostics;
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -17,8 +16,10 @@ namespace River.OneMoreAddIn.Commands.Search
 
 	internal partial class SearchDialog : LocalizableForm
 	{
+		private OneNote one;
 
-		public SearchDialog()
+
+		public SearchDialog(OneNote one)
 		{
 			InitializeComponent();
 
@@ -40,6 +41,7 @@ namespace River.OneMoreAddIn.Commands.Search
 			}
 
 			SelectedPages = new List<string>();
+			this.one = one;
 		}
 
 
@@ -53,6 +55,15 @@ namespace River.OneMoreAddIn.Commands.Search
 		{
 			Location = new Point(Location.X, Location.Y - (Height / 5));
 			UIHelper.SetForegroundWindow(this);
+		}
+
+
+		protected override void OnClosed(EventArgs e)
+		{
+			one.Dispose();
+			one = null;
+
+			base.OnClosed(e);
 		}
 
 
@@ -229,14 +240,10 @@ namespace River.OneMoreAddIn.Commands.Search
 				{
 					var pageId = element.Attribute("ID").Value;
 
-					using (var one = new OneNote())
+					one.Dispatch(() =>
 					{
-						// TODO: there must be a better way to do it than this...
-						// Invoke or SynchronizationContext???
-
-						var link = one.GetHyperlink(pageId, string.Empty);
-						Process.Start(new ProcessStartInfo(link));
-					}
+						one.NavigateTo(pageId);
+					});
 				}
 			}
 		}

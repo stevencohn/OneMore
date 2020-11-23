@@ -9,10 +9,13 @@ namespace River.OneMoreAddIn
 	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Concurrent;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Text;
+	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -60,9 +63,107 @@ namespace River.OneMoreAddIn
 		}
 
 
+		#region OneNoteDispatcher
+		/// <summary>
+		/// OneNote is an MTA application and commands run in that MTA space. Windows Forms, will
+		/// also run as MTA but in a different thread and commands to the OneNote API will block
+		/// when invoked from a Windows Form. So this class acts as a dispatcher back to the original
+		/// command thread. It only runs when explicitly started using the one.StartDispatcher call.
+		/// </summary>
+		private class OneNoteDispatcher : IDisposable
+		{
+			private readonly BlockingCollection<Action> jobs;
+			private readonly CancellationTokenSource source;
+			private readonly OneNote one;
+			private bool disposed = false;
+
+
+			/// <summary>
+			/// Initialize a new instance for the given OneNote wrapper, which should be "this".
+			/// </summary>
+			/// <param name="one"></param>
+			public OneNoteDispatcher(OneNote one)
+			{
+				jobs = new BlockingCollection<Action>();
+				source = new CancellationTokenSource();
+				this.one = one;
+			}
+
+
+			protected virtual void Dispose(bool disposing)
+			{
+				if (!disposed)
+				{
+					if (disposing)
+					{
+						if (jobs.Any())
+						{
+							jobs.CompleteAdding();
+							source.Cancel();
+						}
+					}
+
+					disposed = true;
+				}
+			}
+
+			public void Dispose()
+			{
+				Dispose(true);
+			}
+
+
+			/// <summary>
+			/// Executes the given action by pushing it onto the job queue and letting the job
+			/// engine take care of it.
+			/// </summary>
+			/// <param name="action"></param>
+			public void Execute(Action action)
+			{
+				jobs.Add(action);
+			}
+
+
+			/// <summary>
+			/// Called by one.StartDispatcher, this sets up the job engine to execute actions
+			/// as they are added to the blocking queue.
+			/// </summary>
+			/// <returns></returns>
+			public Task Run()
+			{
+				var factory = new TaskFactory(
+					TaskCreationOptions.LongRunning, TaskContinuationOptions.None);
+
+				var token = source.Token;
+				return factory.StartNew(() =>
+				{
+					try
+					{
+						while (!jobs.IsCompleted)
+						{
+							var action = jobs.Take();
+
+							if (!token.IsCancellationRequested)
+							{
+								action();
+							}
+						}
+					}
+					catch (Exception exc)
+					{
+						Logger.Current.WriteLine(exc);
+					}
+				},
+				token);
+			}
+		}
+		#endregion OneNoteDispatcher
+
+
 		public const string Prefix = "one";
 
 		private Application onenote;
+		private OneNoteDispatcher dispatcher = null;
 		private readonly ILogger logger;
 		private bool disposed;
 
@@ -101,6 +202,12 @@ namespace River.OneMoreAddIn
 			{
 				if (disposing)
 				{
+					if (dispatcher != null)
+					{
+						dispatcher.Dispose();
+						dispatcher = null;
+					}
+
 					onenote = null;
 				}
 
@@ -593,6 +700,16 @@ namespace River.OneMoreAddIn
 		// Utilities...
 
 		/// <summary>
+		/// Used to dispatch actions from a modal Forms dialog to affect OneNote.
+		/// </summary>
+		/// <param name="pageId"></param>
+		public void Dispatch(Action action)
+		{
+			dispatcher.Execute(action);
+		}
+
+
+		/// <summary>
 		/// Exports the specified page to a file using the given format
 		/// </summary>
 		/// <param name="pageId">The page ID</param>
@@ -644,6 +761,20 @@ namespace River.OneMoreAddIn
 		{
 			onenote.FindMeta(nodeId, name, out var xml, false, XMLSchema.xs2013);
 			return XElement.Parse(xml);
+		}
+
+
+		/// <summary>
+		/// Must be called prior to calling the Execute method. Used by modal dialogsg to prepare
+		/// for actions that will affect OneNote while the dialog is visible.
+		/// </summary>
+		public void StartDispatcher()
+		{
+			if (dispatcher == null)
+			{
+				dispatcher = new OneNoteDispatcher(this);
+				dispatcher.Run();
+			}
 		}
 
 

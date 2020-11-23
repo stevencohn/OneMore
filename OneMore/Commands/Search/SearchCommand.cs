@@ -31,27 +31,30 @@ namespace River.OneMoreAddIn
 
 			copying = false;
 
-			using (var dialog = new SearchDialog())
-			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				copying = dialog.CopySelections;
-				pageIds = dialog.SelectedPages;
-			}
-
-			// choose where to copy/move the selected pages
-			// This needs to be done here, on this thread; I've tried to play threading tricks
-			// to do this from the SearchDialog but could find a way to prevent hanging
-
-			var desc = copying
-				? Resx.SearchQF_DescriptionCopy
-				: Resx.SearchQF_DescriptionMove;
-
 			using (var one = new OneNote())
 			{
+				// start background navigator in base thread
+				one.StartDispatcher();
+
+				using (var dialog = new SearchDialog(one))
+				{
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					{
+						return;
+					}
+
+					copying = dialog.CopySelections;
+					pageIds = dialog.SelectedPages;
+				}
+
+				// choose where to copy/move the selected pages
+				// This needs to be done here, on this thread; I've tried to play threading tricks
+				// to do this from the SearchDialog but could find a way to prevent hanging
+
+				var desc = copying
+					? Resx.SearchQF_DescriptionCopy
+					: Resx.SearchQF_DescriptionMove;
+
 				one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 			}
 		}
