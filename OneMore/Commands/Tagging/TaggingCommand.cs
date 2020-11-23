@@ -50,7 +50,14 @@ namespace River.OneMoreAddIn.Commands
 
 					page.SetMeta(Page.TaggingMetaName, string.Join(",", dialog.Tags));
 
-					MakeWordBank(page, ns, dialog.Tags);
+					if (dialog.Tags.Any())
+					{
+						MakeWordBank(page, ns, dialog.Tags);
+					}
+					else
+					{
+						RemoveWordBank(one, page, ns);
+					}
 
 					one.Update(page);
 				}
@@ -60,7 +67,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MakeWordBank(Page page, XNamespace ns, List<string> words)
 		{
-			var content = string.Join(AddIn.Culture.TextInfo.ListSeparator, words);
+			var sep = AddIn.Culture.TextInfo.IsRightToLeft
+				? $" {AddIn.Culture.TextInfo.ListSeparator}"
+				: $"{AddIn.Culture.TextInfo.ListSeparator} ";
+
+			var content = $"<span style='font-weight:bold'>{string.Join(sep, words)}</span>";
 
 			var quickIndex = MakeQuickStyle(page);
 			var tagIndex = MakeRibbonTagDef(page);
@@ -79,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 					new XAttribute("completed", "true"),
 					new XAttribute("disabled", "false"));
 
-				cdata = new XCData(content); // $"<span style='font-weight:bold'>{content}</span>");
+				cdata = new XCData(content);
 
 				outline = new XElement(ns + "Outline",
 					new XElement(ns + "Position",
@@ -108,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 				cdata = outline.Descendants(ns + "T").FirstOrDefault().GetCData();
 				if (cdata != null)
 				{
-					cdata.Value = content; // $"<span style='font-weight:bold'>{content}</span>";
+					cdata.Value = content;
 				}
 			}
 		}
@@ -144,6 +155,26 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return index;
+		}
+
+
+		public void RemoveWordBank(OneNote one, Page page, XNamespace ns)
+		{
+			var outline = page.Root.Elements(ns + "Outline")
+				.FirstOrDefault(e => e.Elements().Any(x =>
+					x.Name.LocalName == "Meta" &&
+					x.Attribute("name").Value == Page.TagBankMetaName));
+
+			if (outline != null)
+			{
+				if (outline.ReadAttributeValue("objectID", out string id))
+				{
+					one.DeleteContent(page.PageId, id);
+				}
+
+				// remove it from the DOM so it doesn't get added back in!
+				outline.Remove();
+			}
 		}
 	}
 }
