@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 			this.entryPanel.Location = new System.Drawing.Point(0, 0);
 			this.entryPanel.Name = "entryPanel";
 			this.entryPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.entryPanel.Size = new System.Drawing.Size(778, 267);
+			this.entryPanel.Size = new System.Drawing.Size(778, 246);
 			this.entryPanel.TabIndex = 0;
 			// 
 			// clearLabel
@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearLabel.AutoSize = true;
 			this.clearLabel.Enabled = false;
 			this.clearLabel.LinkColor = System.Drawing.Color.DodgerBlue;
-			this.clearLabel.Location = new System.Drawing.Point(685, 237);
+			this.clearLabel.Location = new System.Drawing.Point(685, 216);
 			this.clearLabel.Name = "clearLabel";
 			this.clearLabel.Size = new System.Drawing.Size(87, 20);
 			this.clearLabel.TabIndex = 5;
@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Commands
 			this.tagsFlow.AutoScroll = true;
 			this.tagsFlow.Location = new System.Drawing.Point(13, 100);
 			this.tagsFlow.Name = "tagsFlow";
-			this.tagsFlow.Size = new System.Drawing.Size(752, 134);
+			this.tagsFlow.Size = new System.Drawing.Size(752, 113);
 			this.tagsFlow.TabIndex = 4;
 			// 
 			// addButton
@@ -145,7 +145,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.splitter.BackColor = System.Drawing.SystemColors.ActiveCaption;
 			this.splitter.Dock = System.Windows.Forms.DockStyle.Top;
-			this.splitter.Location = new System.Drawing.Point(0, 267);
+			this.splitter.Location = new System.Drawing.Point(0, 246);
 			this.splitter.Name = "splitter";
 			this.splitter.Size = new System.Drawing.Size(778, 6);
 			this.splitter.TabIndex = 1;
@@ -157,10 +157,10 @@ namespace River.OneMoreAddIn.Commands
 			this.suggestionPanel.Controls.Add(this.suggestionSplits);
 			this.suggestionPanel.Controls.Add(this.suggestionsLabel);
 			this.suggestionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.suggestionPanel.Location = new System.Drawing.Point(0, 273);
+			this.suggestionPanel.Location = new System.Drawing.Point(0, 252);
 			this.suggestionPanel.Name = "suggestionPanel";
 			this.suggestionPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.suggestionPanel.Size = new System.Drawing.Size(778, 336);
+			this.suggestionPanel.Size = new System.Drawing.Size(778, 357);
 			this.suggestionPanel.TabIndex = 2;
 			// 
 			// suggestionSplits
@@ -179,8 +179,8 @@ namespace River.OneMoreAddIn.Commands
 			// suggestionSplits.Panel2
 			// 
 			this.suggestionSplits.Panel2.Controls.Add(this.wordsGroup);
-			this.suggestionSplits.Size = new System.Drawing.Size(758, 288);
-			this.suggestionSplits.SplitterDistance = 144;
+			this.suggestionSplits.Size = new System.Drawing.Size(758, 309);
+			this.suggestionSplits.SplitterDistance = 154;
 			this.suggestionSplits.SplitterWidth = 1;
 			this.suggestionSplits.TabIndex = 8;
 			// 
@@ -191,7 +191,7 @@ namespace River.OneMoreAddIn.Commands
 			this.recentGroup.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.recentGroup.Location = new System.Drawing.Point(0, 0);
 			this.recentGroup.Name = "recentGroup";
-			this.recentGroup.Size = new System.Drawing.Size(758, 144);
+			this.recentGroup.Size = new System.Drawing.Size(758, 154);
 			this.recentGroup.TabIndex = 6;
 			this.recentGroup.TabStop = false;
 			this.recentGroup.Text = "Recently used";
@@ -203,7 +203,7 @@ namespace River.OneMoreAddIn.Commands
 			this.recentFlow.Location = new System.Drawing.Point(3, 22);
 			this.recentFlow.Name = "recentFlow";
 			this.recentFlow.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.recentFlow.Size = new System.Drawing.Size(752, 119);
+			this.recentFlow.Size = new System.Drawing.Size(752, 129);
 			this.recentFlow.TabIndex = 5;
 			// 
 			// wordsGroup
@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 			this.wordsGroup.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.wordsGroup.Location = new System.Drawing.Point(0, 0);
 			this.wordsGroup.Name = "wordsGroup";
-			this.wordsGroup.Size = new System.Drawing.Size(758, 143);
+			this.wordsGroup.Size = new System.Drawing.Size(758, 154);
 			this.wordsGroup.TabIndex = 7;
 			this.wordsGroup.TabStop = false;
 			this.wordsGroup.Text = "Common words on this page";
@@ -225,7 +225,7 @@ namespace River.OneMoreAddIn.Commands
 			this.wordsFlow.Location = new System.Drawing.Point(3, 22);
 			this.wordsFlow.Name = "wordsFlow";
 			this.wordsFlow.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.wordsFlow.Size = new System.Drawing.Size(752, 118);
+			this.wordsFlow.Size = new System.Drawing.Size(752, 129);
 			this.wordsFlow.TabIndex = 5;
 			// 
 			// suggestionsLabel

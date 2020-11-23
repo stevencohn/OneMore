@@ -528,9 +528,23 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
+				// collect OCR text, e.g. <one:OCRText><![CDATA[...
+
+				var data = page.Root.Elements(ns + "Outline").Descendants(ns + "OCRText")
+					.Select(e => e.GetCData());
+
+				foreach (var cdata in data)
+				{
+					builder.Append(" ");
+					builder.Append(cdata.Value);
+				}
+
+
 				// split text into individual words, discarding all non-word chars and numbers
 
-				var words = Regex.Split(builder.ToString(), @"\W")
+				var alltext = builder.Replace("\n", string.Empty).ToString();
+
+				var words = Regex.Split(alltext, @"\W")
 					.Select(w=> w.Trim().ToLower()).Where(w =>
 						w.Length > 1 && 
 						!Blacklist.Contains(w) && 
