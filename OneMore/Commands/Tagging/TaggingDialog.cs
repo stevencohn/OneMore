@@ -445,6 +445,7 @@ namespace River.OneMoreAddIn.Commands
 				// and each Page has a Meta of tags
 
 				var root = one.SearchMeta(string.Empty, Page.TaggingMetaName);
+
 				var ns = root.GetNamespaceOfPrefix("one");
 				var pages = root.Descendants(ns + "Page")
 					.OrderByDescending(e => e.Attribute("lastModifiedTime").Value);
@@ -454,7 +455,9 @@ namespace River.OneMoreAddIn.Commands
 				var count = 0;
 				foreach (var page in pages)
 				{
-					var meta = page.Element(ns + "Meta");
+					var meta = page.Elements(ns + "Meta")
+						.FirstOrDefault(e => e.Attribute("name").Value == Page.TaggingMetaName);
+
 					if (meta != null)
 					{
 						// tags are entered in user's language so split on their separator
@@ -481,11 +484,17 @@ namespace River.OneMoreAddIn.Commands
 
 				if (tags.Count > 0)
 				{
-					var sorted = tags.OrderBy(k => k.Key.StartsWith("#") ? k.Key.Substring(1) : k.Key);
+					//var sorted = tags.OrderBy(k => k.Key.StartsWith("#") ? k.Key.Substring(1) : k.Key);
 
-					foreach (var s in sorted)
+					//foreach (var s in sorted)
+					//{
+					//	recentFlow.Controls.Add(MakeLabel(s.Value, s.Value));
+					//}
+
+					// keep order of most recent first
+					foreach (var value in tags.Values)
 					{
-						recentFlow.Controls.Add(MakeLabel(s.Value, s.Value));
+						recentFlow.Controls.Add(MakeLabel(value, value));
 					}
 				}
 			}
