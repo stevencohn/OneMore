@@ -38,6 +38,24 @@ namespace River.OneMoreAddIn
 
 		public const int TVM_GETITEM = 0x110C;
 
+		public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+		public const uint SWP_NOSIZE = 0x0001; // doesn't prevent size, just ignores SetWindowPos arg
+		public const uint SWP_NOMOVE = 0x0002; // doesn't prevent move, just ignores SetWindowPos arg
+		public const uint TOPMOST_FLAGS = SWP_NOMOVE | SWP_NOSIZE;
+
+
+		/// <summary>
+		/// Specifies the position and size of a window
+		/// </summary>
+		[StructLayout(LayoutKind.Sequential)]
+		public struct Rectangle
+		{
+			public int Left;
+			public int Top;
+			public int Right;
+			public int Bottom;
+		}
+
 
 		/// <summary>
 		/// Specifies the attributes of a node in a TreeView
@@ -88,6 +106,10 @@ namespace River.OneMoreAddIn
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
 
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowrect
+		[DllImport("user32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool GetWindowRect(IntPtr hWnd, ref Rectangle lpRect);
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid
 		[DllImport("user32.dll", SetLastError = true)]
@@ -109,6 +131,11 @@ namespace River.OneMoreAddIn
 		public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
 
 
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setfocus
+		[DllImport("user32.dll", SetLastError = true)]
+		public static extern IntPtr SetFocus(IntPtr hWnd);
+		
+
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setforegroundwindow
 		[DllImport("user32.dll")]
 		[return: MarshalAs(UnmanagedType.Bool)]
@@ -120,6 +147,13 @@ namespace River.OneMoreAddIn
 		public static extern bool SetProcessDPIAware();
 
 
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool SetWindowPos(
+			IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+		
+		
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwineventhook
 		[DllImport("user32.dll")]
 		public static extern IntPtr SetWinEventHook(

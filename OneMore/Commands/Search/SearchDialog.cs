@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands.Search
 		private OneNote one;
 
 
-		public SearchDialog(OneNote one)
+		public SearchDialog()
 		{
 			InitializeComponent();
 
@@ -41,7 +41,8 @@ namespace River.OneMoreAddIn.Commands.Search
 			}
 
 			SelectedPages = new List<string>();
-			this.one = one;
+
+			one = new OneNote();
 		}
 
 
@@ -55,15 +56,6 @@ namespace River.OneMoreAddIn.Commands.Search
 		{
 			Location = new Point(Location.X, Location.Y - (Height / 5));
 			UIHelper.SetForegroundWindow(this);
-		}
-
-
-		protected override void OnClosed(EventArgs e)
-		{
-			one.Dispose();
-			one = null;
-
-			base.OnClosed(e);
 		}
 
 
@@ -237,13 +229,10 @@ namespace River.OneMoreAddIn.Commands.Search
 				{
 					var pageId = element.Attribute("ID").Value;
 
-					one.Dispatch(() =>
+					if (!pageId.Equals(one.CurrentPageId))
 					{
-						if (!pageId.Equals(one.CurrentPageId))
-						{
-							one.NavigateTo(pageId);
-						}
-					});
+						one.NavigateTo(pageId);
+					}
 				}
 			}
 		}
@@ -282,6 +271,12 @@ namespace River.OneMoreAddIn.Commands.Search
 		{
 			CopySelections = false;
 			DialogResult = DialogResult.OK;
+			Close();
+		}
+
+		private void Nevermind(object sender, EventArgs e)
+		{
+			DialogResult = DialogResult.Cancel;
 			Close();
 		}
 	}

@@ -65,6 +65,12 @@ namespace River.OneMoreAddIn
 
 		#region OneNoteDispatcher
 		/// <summary>
+		/// This was a failed attempt at allowing a modal dialog to control OneNote. But it seems as
+		/// though it's a crapshoot - it may work for the first one or two calls but then the OneNote
+		/// main UI thread locks up, queuing all requests and when the modal dialog is closed then the
+		/// UI finally updates with the last request. So instead, OneMore uses the RunModeless method
+		/// from the custom Form base.
+		/// 
 		/// OneNote is an MTA application and commands run in that MTA space. Windows Forms, will
 		/// also run as MTA but in a different thread and commands to the OneNote API will block
 		/// when invoked from a Windows Form. So this class acts as a dispatcher back to the original

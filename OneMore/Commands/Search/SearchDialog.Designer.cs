@@ -83,6 +83,7 @@
 			this.cancelButton.TabIndex = 8;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
+			this.cancelButton.Click += new System.EventHandler(this.Nevermind);
 			// 
 			// searchButton
 			// 
@@ -197,14 +198,13 @@
 			this.Controls.Add(this.findBox);
 			this.Controls.Add(this.findLabel);
 			this.Controls.Add(this.introLabel);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(722, 739);
 			this.Name = "SearchDialog";
 			this.Padding = new System.Windows.Forms.Padding(22, 23, 22, 15);
-			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Search and Move or Copy";
 			this.TopMost = true;
 			this.ResumeLayout(false);

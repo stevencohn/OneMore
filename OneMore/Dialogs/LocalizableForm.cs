@@ -8,13 +8,23 @@ namespace River.OneMoreAddIn.Dialogs
 	using System.ComponentModel;
 	using System.Linq;
 	using System.Reflection;
+	using System.Threading;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
+
 
 
 	internal class LocalizableForm : Form, IOneMoreWindow
 	{
 
+		public event EventHandler ModelessClosed;
+
+
+		/// <summary>
+		/// Determines if the main OneNote thread culture differs from our default design-time
+		/// language, English. If true, then the Localize method should be called.
+		/// </summary>
+		/// <returns></returns>
 		protected static bool NeedsLocalizing()
 		{
 			return AddIn.Culture.TwoLetterISOLanguageName != "en";
@@ -99,6 +109,51 @@ namespace River.OneMoreAddIn.Dialogs
 					}
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// In order for a dialog to interact with OneNote, it must run modeless so it doesn't
+		/// blocks the OneNote main UI thread. This method runs the current form as a modeless
+		/// window and invokes the specified callbacks upon OK and Cancel.
+		/// </summary>
+		/// <param name="closedAction">
+		/// An event handler to run when the modeless dialog is closed
+		/// </param>
+		public void RunModeless(EventHandler closedAction = null)
+		{
+			StartPosition = FormStartPosition.Manual;
+			TopMost = true;
+
+			var rect = new Native.Rectangle();
+			using (var one = new OneNote())
+			{
+				Native.GetWindowRect(one.WindowHandle, ref rect);
+			}
+
+			Location = new System.Drawing.Point(
+				(rect.Left + (rect.Right - rect.Left) / 2) - (Width / 2),
+				(rect.Top + (rect.Bottom - rect.Top) / 2) - (Height / 2)
+				);
+
+			if (closedAction != null)
+			{
+				ModelessClosed += (sender, e) => { closedAction(sender, e); };
+			}
+
+			var thread = new Thread(() =>
+			{
+				Application.Run(this);
+			});
+
+			thread.Start();
+		}
+
+
+		protected override void OnFormClosed(FormClosedEventArgs e)
+		{
+			base.OnFormClosed(e);
+			ModelessClosed?.Invoke(this, e);
 		}
 	}
 }

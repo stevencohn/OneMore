@@ -31,32 +31,34 @@ namespace River.OneMoreAddIn
 
 			copying = false;
 
-			using (var one = new OneNote())
+			var dialog = new SearchDialog();
+			dialog.RunModeless((sender, e) =>
 			{
-				// start background navigator in base thread
-				one.StartDispatcher();
-
-				using (var dialog = new SearchDialog(one))
+				var d = sender as SearchDialog;
+				if (d?.DialogResult == DialogResult.OK)
 				{
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
-					{
-						return;
-					}
-
 					copying = dialog.CopySelections;
 					pageIds = dialog.SelectedPages;
+
+					// choose where to copy/move the selected pages
+					// This needs to be done here, on this thread; I've tried to play threading tricks
+					// to do this from the SearchDialog but could find a way to prevent hanging
+
+					var desc = copying
+						? Resx.SearchQF_DescriptionCopy
+						: Resx.SearchQF_DescriptionMove;
+
+					using (var one = new OneNote())
+					{
+						one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
+					}
 				}
+			});
 
-				// choose where to copy/move the selected pages
-				// This needs to be done here, on this thread; I've tried to play threading tricks
-				// to do this from the SearchDialog but could find a way to prevent hanging
-
-				var desc = copying
-					? Resx.SearchQF_DescriptionCopy
-					: Resx.SearchQF_DescriptionMove;
-
-				one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
-			}
+			// these don't seem to do anything for a modeless dialog without an owner :-(
+			// BUT they are needed otherwise OneNote will not terminate successfully!
+			dialog.Activate();
+			dialog.Focus();
 		}
 
 
