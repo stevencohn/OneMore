@@ -206,6 +206,7 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Search and Move or Copy";
+			this.TopMost = true;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

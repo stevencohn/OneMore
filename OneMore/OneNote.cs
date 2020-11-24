@@ -734,12 +734,13 @@ namespace River.OneMoreAddIn
 		/// <param name="uri">A pageId, sectionId, notebookId, onenote:URL, or Web URL</param>
 		public void NavigateTo(string uri)
 		{
-			if (uri.StartsWith("onenote:"))
+			if (uri.StartsWith("onenote:") || uri.StartsWith("http"))
 			{
 				onenote.NavigateToUrl(uri);
 			}
 			else
 			{
+				// must be an ID
 				onenote.NavigateTo(uri);
 			}
 		}

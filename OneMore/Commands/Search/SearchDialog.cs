@@ -87,35 +87,32 @@ namespace River.OneMoreAddIn.Commands.Search
 		{
 			resultTree.Nodes.Clear();
 
-			using (var one = new OneNote())
+			string startId = string.Empty;
+			if (notebookButton.Checked)
+				startId = one.CurrentNotebookId;
+			else if (sectionButton.Checked)
+				startId = one.CurrentSectionId;
+
+			var xml = one.Search(startId, findBox.Text);
+			var results = XElement.Parse(xml);
+
+			// remove recyclebin nodes
+			results.Descendants()
+				.Where(n => n.Name.LocalName == "UnfiledNotes" ||
+							n.Attribute("isRecycleBin") != null ||
+							n.Attribute("isInRecycleBin") != null)
+				.Remove();
+
+			if (results.HasElements)
 			{
-				string startId = string.Empty;
-				if (notebookButton.Checked)
-					startId = one.CurrentNotebookId;
-				else if (sectionButton.Checked)
-					startId = one.CurrentSectionId;
-
-				var xml = one.Search(startId, findBox.Text);
-				var results = XElement.Parse(xml);
-
-				// remove recyclebin nodes
-				results.Descendants()
-					.Where(n => n.Name.LocalName == "UnfiledNotes" ||
-								n.Attribute("isRecycleBin") != null ||
-								n.Attribute("isInRecycleBin") != null)
-					.Remove();
-
-				if (results.HasElements)
+				resultTree.BeginUpdate();
+				DisplayResults(results, one.GetNamespace(results), resultTree.Nodes);
+				if (resultTree.Nodes.Count > 0)
 				{
-					resultTree.BeginUpdate();
-					DisplayResults(results, one.GetNamespace(results), resultTree.Nodes);
-					if (resultTree.Nodes.Count > 0)
-					{
-						resultTree.ExpandAll();
-						resultTree.Nodes[0].EnsureVisible();
-					}
-					resultTree.EndUpdate();
+					resultTree.ExpandAll();
+					resultTree.Nodes[0].EnsureVisible();
 				}
+				resultTree.EndUpdate();
 			}
 		}
 
@@ -242,7 +239,10 @@ namespace River.OneMoreAddIn.Commands.Search
 
 					one.Dispatch(() =>
 					{
-						one.NavigateTo(pageId);
+						if (!pageId.Equals(one.CurrentPageId))
+						{
+							one.NavigateTo(pageId);
+						}
 					});
 				}
 			}
