@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Settings
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine($"Error reading {path}", exc);
+					Logger.Current.WriteLine($"error reading {path}", exc);
 				}
 			}
 

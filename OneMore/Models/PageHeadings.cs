@@ -146,7 +146,7 @@ namespace River.OneMoreAddIn.Models
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine("Error getting hyperlink", exc);
+					Logger.Current.WriteLine("error getting hyperlink", exc);
 				}
 			}
 

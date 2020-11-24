@@ -140,17 +140,25 @@ namespace River.OneMoreAddIn
 					{
 						while (!jobs.IsCompleted)
 						{
-							var action = jobs.Take();
+							var action = jobs.Take(token);
 
 							if (!token.IsCancellationRequested)
 							{
-								action();
+								try
+								{
+									Logger.Current.WriteLine("running dispatched action");
+									action();
+								}
+								catch (Exception exc)
+								{
+									Logger.Current.WriteLine("error running dispatched action", exc);
+								}
 							}
 						}
 					}
 					catch (Exception exc)
 					{
-						Logger.Current.WriteLine(exc);
+						Logger.Current.WriteLine("error in dispatcher", exc);
 					}
 				},
 				token);
@@ -558,7 +566,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"ERROR deleting page object {objectId}", exc);
+				logger.WriteLine($"error deleting page object {objectId}", exc);
 			}
 		}
 
@@ -575,7 +583,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"ERROR deleting hierarchy object {objectId}", exc);
+				logger.WriteLine($"error deleting hierarchy object {objectId}", exc);
 			}
 		}
 
@@ -604,7 +612,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("ERROR updating page content", exc);
+				logger.WriteLine("error updating page content", exc);
 				logger.WriteLine(element.ToString());
 				logger.WriteLine();
 			}
@@ -625,7 +633,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("ERROR updating hierarchy", exc);
+				logger.WriteLine("error updating hierarchy", exc);
 				logger.WriteLine(element.ToString());
 				logger.WriteLine();
 			}

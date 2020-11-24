@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine("Error creating " + path, exc);
+					Logger.Current.WriteLine("error creating " + path, exc);
 					return false;
 				}
 			}

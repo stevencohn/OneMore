@@ -109,13 +109,13 @@ namespace River.OneMoreAddIn
 					catch
 					{
 						watch.Stop();
-						logger.WriteLine($"Cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
+						logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
 						return 0;
 					}
 
 					if (title != null)
 					{
-						logger.WriteLine($"Resolved {href} in {watch.ElapsedMilliseconds}ms");
+						logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
 						a.Value = HttpUtility.HtmlDecode(title);
 						cdata.ReplaceWith(wrapper.GetInnerXml());
 						return 1;

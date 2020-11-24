@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine($"Error cleaning up {target}", exc);
+					Logger.Current.WriteLine($"error cleaning up {target}", exc);
 				}
 			}
 
@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine($"Error cleaning up {target}", exc);
+					Logger.Current.WriteLine($"error cleaning up {target}", exc);
 				}
 			}
 			return null;

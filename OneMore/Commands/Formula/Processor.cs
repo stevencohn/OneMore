@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 				var formula = new Formula(cell);
 				if (!formula.Valid)
 				{
-					logger.WriteLine($"Cell {cell.Coordinates} is missing its formula");
+					logger.WriteLine($"cell {cell.Coordinates} is missing its formula");
 					continue;
 				}
 
@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands.Formula
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"Error calculating {cell.Coordinates} formula '{formula}'", exc);
+					logger.WriteLine($"error calculating {cell.Coordinates} formula '{formula}'", exc);
 					UIHelper.ShowError(exc.Message);
 				}
 			}

@@ -66,12 +66,12 @@ namespace River.OneMoreAddIn
 			if (word.Length > 0)
 			{
 				var url = string.Format(uri, word.ToString());
-				logger.WriteLine($"Search query {url}");
+				logger.WriteLine($"search query {url}");
 				System.Diagnostics.Process.Start(url);
 			}
 			else
 			{
-				logger.WriteLine("Search phrase is empty");
+				logger.WriteLine("search phrase is empty");
 			}
 		}
 	}

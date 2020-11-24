@@ -354,7 +354,7 @@ namespace River.OneMoreAddIn
 				}
 				catch
 				{
-					Logger.Current.WriteLine($"Error translating {name}:{typeof(T).Name} '{attr.Value}'");
+					Logger.Current.WriteLine($"error translating {name}:{typeof(T).Name} '{attr.Value}'");
 					value = defaultV;
 					return false;
 				}

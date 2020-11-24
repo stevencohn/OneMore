@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("Error fetching latest release", exc);
+				Logger.Current.WriteLine("error fetching latest release", exc);
 				return false;
 			}
 
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 
 			if (asset == null)
 			{
-				Logger.Current.WriteLine($"Did not find installer asset for {key}");
+				Logger.Current.WriteLine($"did not find installer asset for {key}");
 				return false;
 			}
 
@@ -102,7 +102,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 			catch (Exception exc)
 			{
 				Logger.Current.WriteLine(
-					$"Error downloading latest installer from {asset.browser_download_url}", exc);
+					$"error downloading latest installer from {asset.browser_download_url}", exc);
 
 				return false;
 			}

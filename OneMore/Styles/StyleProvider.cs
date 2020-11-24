@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine($"Error reading {path}", exc);
+					Logger.Current.WriteLine($"error reading {path}", exc);
 				}
 			}
 
@@ -120,7 +120,7 @@ namespace River.OneMoreAddIn
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine($"Error loading theme {path}", exc);
+					Logger.Current.WriteLine($"error loading theme {path}", exc);
 				}
 			}
 

@@ -132,7 +132,7 @@ namespace River.OneMoreAddIn.Settings
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine($"Error getting favicon for {engine.Uri}", exc);
+				Logger.Current.WriteLine($"error getting favicon for {engine.Uri}", exc);
 			}
 		}
 

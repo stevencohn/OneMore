@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn
 			catch (Exception exc)
 			{
 				logger.WriteLine(
-					$"Error creating font({FontFamily}, {fontSize}, {fontStyle})", exc);
+					$"error creating font({FontFamily}, {fontSize}, {fontStyle})", exc);
 
 				Font = new Drawing.Font(
 					DefaultFontFamily, (float)DefaultFontSize * scaleFactor, fontStyle);
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"Error translating color {Color}", exc);
+				logger.WriteLine($"error translating color {Color}", exc);
 				Foreground = Drawing.Color.Black;
 			}
 
@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"Error translating highlight {Highlight}", exc);
+				logger.WriteLine($"error translating highlight {Highlight}", exc);
 				Background = Drawing.Color.Transparent;
 			}
 		}

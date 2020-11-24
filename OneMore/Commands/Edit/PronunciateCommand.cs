@@ -139,13 +139,13 @@ namespace River.OneMoreAddIn
 				}
 				//catch (HttpRequestException exc) // when (..)
 				//{
-				//	logger.WriteLine("Error fetching definition", exc);
+				//	logger.WriteLine("error fetching definition", exc);
 				//	logger.WriteLine($"retrying {(200 & retries)}ms");
 				//	await Task.Delay(200 * retries);
 				//}
 				catch (Exception exc)
 				{
-					logger.WriteLine("Error fetching definition", exc);
+					logger.WriteLine("error fetching definition", exc);
 					logger.WriteLine($"retrying {(200 & retries)}ms");
 					await Task.Delay(200 * retries);
 				}
@@ -173,7 +173,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("Error deserializing json", exc);
+				logger.WriteLine("error deserializing json", exc);
 			}
 
 			return null;

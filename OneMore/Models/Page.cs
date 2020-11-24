@@ -243,7 +243,7 @@ namespace River.OneMoreAddIn.Models
 			{
 				if (feedback)
 				{
-					Logger.Current.WriteLine("Could not confirm body context");
+					Logger.Current.WriteLine("could not confirm body context");
 					SystemSounds.Exclamation.Play();
 				}
 
@@ -268,7 +268,7 @@ namespace River.OneMoreAddIn.Models
 			{
 				if (feedback)
 				{
-					Logger.Current.WriteLine("Could not confirm image selections");
+					Logger.Current.WriteLine("could not confirm image selections");
 					SystemSounds.Exclamation.Play();
 				}
 

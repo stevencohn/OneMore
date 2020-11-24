@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"ERROR publishig page as {formatName}", exc);
+				logger.WriteLine($"error publishig page as {formatName}", exc);
 				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, formatName) + "\n\n" + exc.Message);
 			}
 		}
@@ -187,7 +187,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("ERROR publishig page as XML", exc);
+				logger.WriteLine("error publishig page as XML", exc);
 				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, "XML") + "\n\n" + exc.Message);
 			}
 		}

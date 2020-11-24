@@ -224,7 +224,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"Error cleaning up {outpath}", exc);
+				logger.WriteLine($"error cleaning up {outpath}", exc);
 			}
 		}
 
@@ -280,14 +280,14 @@ namespace River.OneMoreAddIn
 
 						if (result == DialogResult.Cancel)
 						{
-							logger.WriteLine("Clicked cancel");
+							logger.WriteLine("clicked cancel");
 							thread.Abort();
 							return false;
 						}
 					}
 					catch (Exception exc)
 					{
-						logger.WriteLine("Error importing", exc);
+						logger.WriteLine("error importing", exc);
 					}
 				}
 			}

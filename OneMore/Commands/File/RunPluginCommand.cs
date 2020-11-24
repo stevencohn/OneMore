@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 				catch (Exception exc)
 				{
 					UIHelper.ShowError(Resx.Plugin_WritingTemp);
-					logger.WriteLine("Error writing to temp file", exc);
+					logger.WriteLine("error writing to temp file", exc);
 					return;
 				}
 
@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine("Error updating page", exc);
+					logger.WriteLine("error updating page", exc);
 					UIHelper.ShowError(Resx.Plugin_NoUpdate);
 				}
 				finally
@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 			name = name.Substring(Math.Max(0, name.Length - 32));
 
 			var path = Path.Combine(Path.GetTempPath(), $"{name}.xml");
-			logger.WriteLine($"Plugin working file is {path}");
+			logger.WriteLine($"plugin working file is {path}");
 
 			return path;
 		}
@@ -179,14 +179,14 @@ namespace River.OneMoreAddIn.Commands
 
 						if (result == DialogResult.Cancel)
 						{
-							logger.WriteLine("Clicked cancel");
+							logger.WriteLine("clicked cancel");
 							process.Kill();
 							return false;
 						}
 					}
 					catch (Exception exc)
 					{
-						logger.WriteLine("Error running Execute(string)", exc);
+						logger.WriteLine("error running Execute(string)", exc);
 					}
 					finally
 					{
@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Process StartPlugin(string path)
 		{
-			logger.WriteLine($"Running {command} {arguments} \"{path}\"");
+			logger.WriteLine($"running {command} {arguments} \"{path}\"");
 
 			Process process = null;
 
@@ -234,11 +234,11 @@ namespace River.OneMoreAddIn.Commands
 				process.BeginOutputReadLine();
 				process.BeginErrorReadLine();
 
-				logger.WriteLine($"Plugin process started PID:{process.Id}");
+				logger.WriteLine($"plugin process started PID:{process.Id}");
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("Error running RunPlugin(string)", exc);
+				logger.WriteLine("error running RunPlugin(string)", exc);
 
 				if (process != null)
 				{
@@ -252,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Process_Exited(object sender, EventArgs e)
 		{
-			logger.WriteLine("Plugin process exited");
+			logger.WriteLine("plugin process exited");
 			progressDialog.DialogResult = DialogResult.OK;
 			progressDialog.Close();
 		}
@@ -280,7 +280,7 @@ namespace River.OneMoreAddIn.Commands
 			bool valid = true;
 			document.Validate(schemas, (o, e) =>
 			{
-				logger.WriteLine($"Schema validation {e.Severity}", e.Exception);
+				logger.WriteLine($"schema validation {e.Severity}", e.Exception);
 				valid = false;
 			});
 
@@ -344,7 +344,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"Error deleting {workPath}", exc);
+					logger.WriteLine($"error deleting {workPath}", exc);
 				}
 			}
 		}

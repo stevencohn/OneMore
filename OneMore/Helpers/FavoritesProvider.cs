@@ -140,7 +140,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"Cannot save {path}");
+				logger.WriteLine($"cannot save {path}");
 				logger.WriteLine(exc);
 			}
 		}
@@ -200,7 +200,7 @@ namespace River.OneMoreAddIn
 						}
 						catch (Exception exc)
 						{
-							logger.WriteLine($"Cannot save {path}");
+							logger.WriteLine($"cannot save {path}");
 							logger.WriteLine(exc);
 						}
 					}

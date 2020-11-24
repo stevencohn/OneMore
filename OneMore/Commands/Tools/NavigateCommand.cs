@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn
 					retry++;
 					var ms = 250 * retry;
 
-					logger.WriteLine($"ERROR navigating to {pageTag}, retyring in {ms}ms", exc);
+					logger.WriteLine($"error navigating to {pageTag}, retyring in {ms}ms", exc);
 					System.Threading.Thread.Sleep(ms);
 				}
 			}

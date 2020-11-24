@@ -43,10 +43,9 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.Image = global::River.OneMoreAddIn.Properties.Resources.Logo;
-			this.pictureBox1.Location = new System.Drawing.Point(8, 8);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(83, 81);
+			this.pictureBox1.Size = new System.Drawing.Size(124, 125);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
@@ -54,11 +53,10 @@
 			// titleLabel
 			// 
 			this.titleLabel.AutoSize = true;
-			this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.titleLabel.Location = new System.Drawing.Point(104, 17);
-			this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.titleLabel.Location = new System.Drawing.Point(156, 26);
 			this.titleLabel.Name = "titleLabel";
-			this.titleLabel.Size = new System.Drawing.Size(193, 15);
+			this.titleLabel.Size = new System.Drawing.Size(312, 25);
 			this.titleLabel.TabIndex = 1;
 			this.titleLabel.Text = "OneMore Add-in for OneNote 2016";
 			// 
@@ -66,11 +64,10 @@
 			// 
 			this.versionLabel.AutoSize = true;
 			this.versionLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.versionLabel.Location = new System.Drawing.Point(104, 32);
-			this.versionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.versionLabel.Location = new System.Drawing.Point(156, 49);
 			this.versionLabel.Name = "versionLabel";
-			this.versionLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-			this.versionLabel.Size = new System.Drawing.Size(63, 20);
+			this.versionLabel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+			this.versionLabel.Size = new System.Drawing.Size(99, 33);
 			this.versionLabel.TabIndex = 2;
 			this.versionLabel.Text = "Version 1.0";
 			// 
@@ -78,11 +75,10 @@
 			// 
 			this.copyLabel.AutoSize = true;
 			this.copyLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.copyLabel.Location = new System.Drawing.Point(104, 52);
-			this.copyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.copyLabel.Location = new System.Drawing.Point(156, 80);
 			this.copyLabel.Name = "copyLabel";
-			this.copyLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-			this.copyLabel.Size = new System.Drawing.Size(214, 20);
+			this.copyLabel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+			this.copyLabel.Size = new System.Drawing.Size(330, 33);
 			this.copyLabel.TabIndex = 3;
 			this.copyLabel.Text = "Copyright @ 2016-2020 Steven M Cohn";
 			// 
@@ -90,10 +86,9 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(306, 155);
-			this.okButton.Margin = new System.Windows.Forms.Padding(2);
+			this.okButton.Location = new System.Drawing.Point(471, 238);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(69, 27);
+			this.okButton.Size = new System.Drawing.Size(104, 42);
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
@@ -104,10 +99,11 @@
 			this.logLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.logLabel.AutoSize = true;
 			this.logLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.logLabel.Location = new System.Drawing.Point(9, 155);
-			this.logLabel.MaximumSize = new System.Drawing.Size(280, 0);
+			this.logLabel.Location = new System.Drawing.Point(14, 238);
+			this.logLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.logLabel.MaximumSize = new System.Drawing.Size(420, 0);
 			this.logLabel.Name = "logLabel";
-			this.logLabel.Size = new System.Drawing.Size(43, 13);
+			this.logLabel.Size = new System.Drawing.Size(65, 20);
 			this.logLabel.TabIndex = 5;
 			this.logLabel.TabStop = true;
 			this.logLabel.Text = "tempfile";
@@ -118,10 +114,9 @@
 			this.clearLogLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.clearLogLabel.AutoSize = true;
 			this.clearLogLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.clearLogLabel.Location = new System.Drawing.Point(8, 172);
-			this.clearLogLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.clearLogLabel.Location = new System.Drawing.Point(12, 265);
 			this.clearLogLabel.Name = "clearLogLabel";
-			this.clearLogLabel.Size = new System.Drawing.Size(82, 13);
+			this.clearLogLabel.Size = new System.Drawing.Size(122, 20);
 			this.clearLogLabel.TabIndex = 6;
 			this.clearLogLabel.TabStop = true;
 			this.clearLogLabel.Text = "Clear the log file";
@@ -131,11 +126,10 @@
 			// 
 			this.homeLink.AutoSize = true;
 			this.homeLink.LinkColor = System.Drawing.SystemColors.Highlight;
-			this.homeLink.Location = new System.Drawing.Point(104, 72);
-			this.homeLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.homeLink.Location = new System.Drawing.Point(156, 119);
 			this.homeLink.Name = "homeLink";
-			this.homeLink.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-			this.homeLink.Size = new System.Drawing.Size(205, 23);
+			this.homeLink.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
+			this.homeLink.Size = new System.Drawing.Size(291, 35);
 			this.homeLink.TabIndex = 7;
 			this.homeLink.TabStop = true;
 			this.homeLink.Text = "https://github.com/stevencohn/OneMore";
@@ -145,11 +139,10 @@
 			// 
 			this.updateLink.AutoSize = true;
 			this.updateLink.LinkColor = System.Drawing.SystemColors.Highlight;
-			this.updateLink.Location = new System.Drawing.Point(104, 95);
-			this.updateLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.updateLink.Location = new System.Drawing.Point(156, 154);
 			this.updateLink.Name = "updateLink";
-			this.updateLink.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-			this.updateLink.Size = new System.Drawing.Size(96, 23);
+			this.updateLink.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
+			this.updateLink.Size = new System.Drawing.Size(142, 35);
 			this.updateLink.TabIndex = 11;
 			this.updateLink.TabStop = true;
 			this.updateLink.Text = "Check for Updates";
@@ -158,11 +151,11 @@
 			// AboutDialog
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(384, 191);
+			this.ClientSize = new System.Drawing.Size(588, 294);
 			this.Controls.Add(this.updateLink);
 			this.Controls.Add(this.homeLink);
 			this.Controls.Add(this.clearLogLabel);
@@ -173,7 +166,6 @@
 			this.Controls.Add(this.titleLabel);
 			this.Controls.Add(this.pictureBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "AboutDialog";

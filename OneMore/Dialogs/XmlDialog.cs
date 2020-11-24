@@ -386,7 +386,7 @@ namespace River.OneMoreAddIn.Dialogs
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine("Error updating page content", exc);
+					logger.WriteLine("error updating page content", exc);
 				}
 			}
 		}

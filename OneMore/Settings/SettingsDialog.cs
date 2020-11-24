@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Settings
 
 			UIHelper.ShowMessage(Resx.SettingsDialog_Restart);
 
-			Logger.Current.WriteLine("User settings saved");
+			Logger.Current.WriteLine("user settings saved");
 		}
 	}
 }

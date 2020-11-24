@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("Error extending context menu", exc);
+				logger.WriteLine("error extending context menu", exc);
 				return root.ToString(SaveOptions.DisableFormatting);
 			}
 		}

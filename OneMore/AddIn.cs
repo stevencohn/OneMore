@@ -146,7 +146,7 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				logger.WriteLine("Shutting down UI");
+				logger.WriteLine("shutting down UI");
 
 				HotkeyManager.Unregister();
 
@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn
 			{
 				if (trash.Count > 0)
 				{
-					logger.WriteLine($"Disposing {trash.Count} streams");
+					logger.WriteLine($"disposing {trash.Count} streams");
 
 					foreach (var item in trash)
 					{
@@ -181,7 +181,7 @@ namespace River.OneMoreAddIn
 				logger.WriteLine(exc);
 			}
 
-			logger.WriteLine("Closing log");
+			logger.WriteLine("closing log");
 			logger.Dispose();
 			logger = null;
 

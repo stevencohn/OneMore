@@ -136,7 +136,7 @@ namespace River.OneMoreAddIn.Dialogs
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine("Error running OpenFileDialog", exc);
+				Logger.Current.WriteLine("error running OpenFileDialog", exc);
 			}
 		}
 	}
