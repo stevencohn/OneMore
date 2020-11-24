@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class TaggingDialog : LocalizableForm
 	{
 
-		#region TagsTExtBox
+		#region TagsTextBox
 		/// <summary>
 		/// The default TextBox.KeyPressed/Up/Down handlers don't really prevent the accept
 		/// button from being bubbled up to the dialog so this class provides an alternate method
@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 				return base.ProcessCmdKey(ref m, k);
 			}
 		}
-		#endregion TagsTExtBox
+		#endregion TagsTextBox
 
 
 		private static readonly string[] Blacklist = new[]
