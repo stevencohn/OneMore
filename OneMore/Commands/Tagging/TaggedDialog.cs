@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Dialogs;
+	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
@@ -12,16 +13,21 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class TaggedDialog : LocalizableForm
 	{
+		private readonly string separator;
+
+
 		public TaggedDialog()
 		{
 			InitializeComponent();
 
 			filterBox.PressedEnter += AcceptInput;
 			scopeBox.SelectedIndex = 0;
+
+			separator = AddIn.Culture.TextInfo.ListSeparator;
 		}
 
 
-		private void ChangeScope(object sender, System.EventArgs e)
+		private void ChangeScope(object sender, EventArgs e)
 		{
 			tagsFlow.Controls.Clear();
 
@@ -48,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ChangeTagSelection(object sender, System.EventArgs e)
+		private void ChangeTagSelection(object sender, EventArgs e)
 		{
 			var box = sender as TagCheckBox;
 			if (box.Checked)
@@ -59,19 +65,27 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					filterBox.Text = $"{FormatFilter(filterBox.Text)}, {box.Text}";
+					// check if user already type in this tag
+					var tags = filterBox.Text.Split(
+						new string[] { separator }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+					if (!tags.Any(t => t.Equals(box.Text, StringComparison.CurrentCultureIgnoreCase)))
+					{
+						filterBox.Text = $"{FormatFilter(filterBox.Text)}{separator} {box.Text}";
+					}
 				}
+
 				clearLabel.Enabled = true;
 			}
 			else
 			{
 				var text = Regex.Replace(
-					FormatFilter(filterBox.Text), $@"(?:\s|^)\-?{box.Text}(?:,|$)", string.Empty);
+					FormatFilter(filterBox.Text), $@"(?:\s|^)\-?{box.Text}(?:{separator}|$)", string.Empty);
 
 				// removing entry at end of string will leave a comma at end of string
-				filterBox.Text = text.EndsWith(",")
-					? text.Substring(0, text.Length - 1)
-					: text;
+				filterBox.Text = text.EndsWith(separator)
+					? text.Substring(0, text.Length - 1).Trim()
+					: text.Trim();
 
 				var count = 0;
 				foreach (TagCheckBox tag in tagsFlow.Controls)
@@ -97,19 +111,19 @@ namespace River.OneMoreAddIn.Commands
 			var text = Regex.Replace(filter.Trim(), @"[ ]{2,}", " ");
 
 			// clean up spaces preceding commas
-			text = Regex.Replace(text, @"\s+,", ",");
+			text = Regex.Replace(text, $@"\s+{separator}", ",");
 
 			// clean up spaces after the negation operator
 			text = Regex.Replace(text, @"\-\s+", "-");
 
 			// clean up extra commas at start or end of string
-			text = Regex.Replace(text, @"(^\s?,\s?)|(\s?,\s?$)", string.Empty);
+			text = Regex.Replace(text, $@"(^\s?{separator}\s?)|(\s?{separator}\s?$)", string.Empty);
 
 			return text;
 		}
 
 
-		private void ClearFilters(object sender, System.EventArgs e)
+		private void ClearFilters(object sender, EventArgs e)
 		{
 			filterBox.Text = string.Empty;
 			foreach (TagCheckBox tag in tagsFlow.Controls)
@@ -119,17 +133,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void AcceptInput(object sender, System.EventArgs e)
+		private void AcceptInput(object sender, EventArgs e)
 		{
 			var tags = FormatFilter(filterBox.Text)
-				.Split(new char[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries).ToList();
+				.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
 			var negtags = tags.Where(t => t[0] == '-').ToList();
 			tags = tags.Except(negtags).ToList();
 		}
 
 
-		private void Cancel(object sender, System.EventArgs e)
+		private void Cancel(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
