@@ -121,10 +121,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void AcceptInput(object sender, System.EventArgs e)
 		{
-			// clean up spaces preceding commas
-			var text = Regex.Replace(filterBox.Text.Trim(), @"\s+,", string.Empty);
-			// ensure the negation operator is not followed by whitespace
-			filterBox.Text = Regex.Replace(text, @"\-\s+", "-");
+			var tags = FormatFilter(filterBox.Text)
+				.Split(new char[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries).ToList();
+
+			var negtags = tags.Where(t => t[0] == '-').ToList();
+			tags = tags.Except(negtags).ToList();
 		}
 
 
