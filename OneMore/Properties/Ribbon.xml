@@ -51,6 +51,11 @@
               label="Tag Page"
               onAction="TaggingCmd"/>
             <button
+              id="ribTaggedButton"
+              image="Label"
+              label="Find Tagged Pages"
+              onAction="TaggedCmd"/>
+            <button
               id="ribCollapseButton"
               imageMso="CollapseAll"
               getLabel="GetRibbonLabel"

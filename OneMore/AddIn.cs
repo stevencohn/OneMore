@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn
 		private IRibbonUI ribbon;                   // the ribbon control
 		private ILogger logger;                     // our diagnostic logger
 		private CommandFactory factory;
-		private readonly Process process;           // current process, to kill if necessary
+		private Process process;				    // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
 
 
@@ -191,38 +191,8 @@ namespace River.OneMoreAddIn
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
 
-			var stopTimer = new Timer();
-			stopTimer.Elapsed += StopTimer_Elapsed;
-			stopTimer.Interval = 2000;
-			stopTimer.Start();
-		}
-
-
-		private void StopTimer_Elapsed(object sender, ElapsedEventArgs e)
-		{
-#if FORCEDKILL
-			var procs = Process.GetProcessesByName("ONENOTE");
-			if (procs.Length > 0)
-			{
-				foreach (var proc in procs)
-				{
-					// TODO: there must be a friendlier way to do this?!
-					proc.Kill();
-				}
-			}
-#endif
-			try
-			{
-				if (process != null)
-				{
-					process.Kill();
-					process.Dispose();
-				}
-			}
-			catch
-			{
-				// we're leaving anyway, so fuhgettaboutit
-			}
+			// this is a hack, modeless dialogs seem to keep OneNote open :-(
+			Environment.Exit(0);
 		}
 	}
 }

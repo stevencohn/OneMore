@@ -136,6 +136,8 @@ namespace River.OneMoreAddIn.Dialogs
 				(rect.Top + (rect.Bottom - rect.Top) / 2) - (Height / 2)
 				);
 
+			Shown += ForceForeground;
+
 			if (closedAction != null)
 			{
 				ModelessClosed += (sender, e) => { closedAction(sender, e); };
@@ -147,6 +149,14 @@ namespace River.OneMoreAddIn.Dialogs
 			});
 
 			thread.Start();
+		}
+
+
+		private void ForceForeground(object sender, EventArgs e)
+		{
+			// modeless dialogs would appear behind the OneNote window by default so this
+			// forces the dialog to the foreground
+			UIHelper.SetForegroundWindow(this);
 		}
 
 

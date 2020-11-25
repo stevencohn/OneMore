@@ -52,13 +52,6 @@ namespace River.OneMoreAddIn.Commands.Search
 		public List<string> SelectedPages { get; private set; }
 
 
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new Point(Location.X, Location.Y - (Height / 5));
-			UIHelper.SetForegroundWindow(this);
-		}
-
-
 		private void ChangeQuery(object sender, EventArgs e)
 		{
 			searchButton.Enabled = findBox.Text.Trim().Length > 0;

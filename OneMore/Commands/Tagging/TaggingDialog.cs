@@ -20,35 +20,6 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class TaggingDialog : LocalizableForm
 	{
 
-		#region TagsTextBox
-		/// <summary>
-		/// The default TextBox.KeyPressed/Up/Down handlers don't really prevent the accept
-		/// button from being bubbled up to the dialog so this class provides an alternate method
-		/// of intercepting the Enter key with its own event handler.
-		/// </summary>
-		private class TagsTextBox : TextBox
-		{
-			private const int WM_KEYDOWN = 256;
-
-			public event EventHandler TagsChanged;
-
-			protected override bool ProcessCmdKey(ref Message m, Keys k)
-			{
-				if (m.Msg == WM_KEYDOWN && k == Keys.Enter)
-				{
-					if (TagsChanged != null)
-						TagsChanged(this, new EventArgs());
-
-					// stop further interpretation
-					return true;
-				}
-				// else default handlers...
-				return base.ProcessCmdKey(ref m, k);
-			}
-		}
-		#endregion TagsTextBox
-
-
 		private static readonly string[] Blacklist = new[]
 		{
 			#region Blacklist
@@ -407,7 +378,7 @@ namespace River.OneMoreAddIn.Commands
 		public TaggingDialog()
 		{
 			InitializeComponent();
-			tagBox.TagsChanged += AcceptInput;
+			tagBox.PressedEnter += AcceptInput;
 			FetchRecentTags();
 			FetchPageWords();
 		}
@@ -424,7 +395,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			get
 			{
-				return tagsFlow.Controls.OfType<TagLabel>().ToList().ConvertAll(t => t.Label);
+				return tagsFlow.Controls.OfType<TagControl>().ToList().ConvertAll(t => t.Label);
 			}
 
 			set
@@ -439,66 +410,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private void FetchRecentTags()
 		{
-			using (var one = new OneNote())
+			var tags = TagHelpers.FetchRecentTags(OneNote.Scope.Notebooks, PoolSize);
+
+			if (tags.Count > 0)
 			{
-				// builds a hierarchy of all notebooks with notebook/section/page nodes
-				// and each Page has a Meta of tags
-
-				var root = one.SearchMeta(string.Empty, Page.TaggingMetaName);
-
-				var ns = root.GetNamespaceOfPrefix("one");
-				var pages = root.Descendants(ns + "Page")
-					.OrderByDescending(e => e.Attribute("lastModifiedTime").Value);
-
-				var tags = new Dictionary<string, string>();
-
-				var count = 0;
-				foreach (var page in pages)
+				// keep order of most recent first
+				foreach (var value in tags.Values)
 				{
-					var meta = page.Elements(ns + "Meta")
-						.FirstOrDefault(e => e.Attribute("name").Value == Page.TaggingMetaName);
-
-					if (meta != null)
-					{
-						// tags are entered in user's language so split on their separator
-						var parts = meta.Attribute("content").Value.Split(
-							new string[] { AddIn.Culture.TextInfo.ListSeparator },
-							StringSplitOptions.RemoveEmptyEntries);
-
-						foreach (var part in parts)
-						{
-							var p = part.Trim();
-							var key = p.ToLower();
-							if (!tags.ContainsKey(key))
-							{
-								tags.Add(key, p);
-
-								count++;
-								if (count >= PoolSize) break;
-							}
-						}
-					}
-
-					if (count >= PoolSize) break;
-				}
-
-				if (tags.Count > 0)
-				{
-					//var sorted = tags.OrderBy(k => k.Key.StartsWith("#") ? k.Key.Substring(1) : k.Key);
-
-					//foreach (var s in sorted)
-					//{
-					//	recentFlow.Controls.Add(MakeLabel(s.Value, s.Value));
-					//}
-
-					// keep order of most recent first
-					foreach (var value in tags.Values)
-					{
-						recentFlow.Controls.Add(MakeLabel(value, value));
-					}
+					recentFlow.Controls.Add(MakeLabel(value, value));
 				}
 			}
 		}
+
 
 		private void FetchPageWords()
 		{
@@ -628,14 +551,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!tagsFlow.Controls.ContainsKey(text))
 			{
-				var tag = new TagLabel(text)
+				var tag = new TagControl(text)
 				{
 					Name = text
 				};
 
 				tag.Deleting += (sender, e) =>
 				{
-					tagsFlow.Controls.Remove(sender as TagLabel);
+					tagsFlow.Controls.Remove(sender as TagControl);
 					clearLabel.Enabled = tagsFlow.Controls.Count > 0;
 				};
 

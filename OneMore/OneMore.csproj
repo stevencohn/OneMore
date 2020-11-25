@@ -136,6 +136,13 @@
     <Compile Include="Commands\Search\SearchDialog.Designer.cs">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\TaggedCommand.cs" />
+    <Compile Include="Commands\Tagging\TaggedDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\TaggedDialog.Designer.cs">
+      <DependentUpon>TaggedDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tagging\TaggingCommand.cs" />
     <Compile Include="Commands\Tagging\TaggingDialog.cs">
       <SubType>Form</SubType>
@@ -143,13 +150,20 @@
     <Compile Include="Commands\Tagging\TaggingDialog.Designer.cs">
       <DependentUpon>TaggingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tagging\TagLabel.cs">
+    <Compile Include="Commands\Tagging\TagControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Tagging\TagLabel.Designer.cs">
-      <DependentUpon>TagLabel.cs</DependentUpon>
+    <Compile Include="Commands\Tagging\TagControl.Designer.cs">
+      <DependentUpon>TagControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\TagCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\TagHelpers.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
+    <Compile Include="Dialogs\FormTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dialogs\ImportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -561,11 +575,14 @@
     <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\TaggedDialog.resx">
+      <DependentUpon>TaggedDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tagging\TaggingDialog.resx">
       <DependentUpon>TaggingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tagging\TagLabel.resx">
-      <DependentUpon>TagLabel.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Tagging\TagControl.resx">
+      <DependentUpon>TagControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>

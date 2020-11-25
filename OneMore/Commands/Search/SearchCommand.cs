@@ -27,15 +27,13 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
-			// search for keywords and find page
-
 			copying = false;
 
 			var dialog = new SearchDialog();
 			dialog.RunModeless((sender, e) =>
 			{
 				var d = sender as SearchDialog;
-				if (d?.DialogResult == DialogResult.OK)
+				if (d.DialogResult == DialogResult.OK)
 				{
 					copying = dialog.CopySelections;
 					pageIds = dialog.SelectedPages;
@@ -54,11 +52,6 @@ namespace River.OneMoreAddIn
 					}
 				}
 			});
-
-			// these don't seem to do anything for a modeless dialog without an owner :-(
-			// BUT they are needed otherwise OneNote will not terminate successfully!
-			dialog.Activate();
-			dialog.Focus();
 		}
 
 

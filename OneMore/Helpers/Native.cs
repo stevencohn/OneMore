@@ -29,6 +29,9 @@ namespace River.OneMoreAddIn
 		public const uint EVENT_SYSTEM_MINIMIZESTART = 22;
 		public const uint EVENT_SYSTEM_MINIMIZEEND = 23;
 
+		public const int IDC_HAND = 32649;
+		public const int WM_SETCURSOR = 0x0020;
+
 		public const int TVIF_STATE = 0x8;
 		public const int TVIS_STATEIMAGEMASK = 0xF000;
 
@@ -100,6 +103,15 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmenu
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+
+
+		[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		public static extern IntPtr LoadCursor(IntPtr hInstance, int lpCursorName);
+
+
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		public static extern IntPtr SetCursor(IntPtr hCursor);
+
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowrect
 		[DllImport("user32.dll", SetLastError = true)]

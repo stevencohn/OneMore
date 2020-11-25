@@ -1,7 +1,7 @@
 ﻿
 namespace River.OneMoreAddIn.Commands
 {
-	partial class TagLabel
+	partial class TagControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TagLabel));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TagControl));
 			this.label = new System.Windows.Forms.Label();
 			this.xButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
