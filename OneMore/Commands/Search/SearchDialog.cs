@@ -140,11 +140,12 @@ namespace River.OneMoreAddIn.Commands.Search
 			var color = SystemBrushes.ControlText;
 			var bounds = MakeNodeBounds(e.Node);
 
-			// draw the selection background
+			// hide the selection background by drawing it using the Window background color
 			if ((e.State & TreeNodeStates.Selected) != 0)
 			{
-				e.Graphics.FillRectangle(SystemBrushes.Highlight, bounds);
-				color = SystemBrushes.HighlightText;
+				// expand bounds to fill gap between checkbox and label
+				e.Graphics.FillRectangle(SystemBrushes.Window,
+					bounds.Left - 4, bounds.Top, bounds.Width + 4, bounds.Height);
 			}
 
 			if (isContainer)

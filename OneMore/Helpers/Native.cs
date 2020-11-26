@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn
 		/// Specifies the attributes of a node in a TreeView
 		/// </summary>
 		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-		public struct TreeViewItemProps
+		public struct TreeItem
 		{
 			public int Mask;
 			public IntPtr ItemHandle;
@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn
 
 
 		[DllImport("user32.dll", CharSet = CharSet.Auto)]
-		public static extern IntPtr SendMessage(HandleRef hWnd, int msg, int wParam, ref TreeViewItemProps lParam);
+		public static extern IntPtr SendMessage(HandleRef hWnd, int msg, int wParam, ref TreeItem lParam);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey

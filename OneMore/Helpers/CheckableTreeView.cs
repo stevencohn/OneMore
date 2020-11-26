@@ -58,13 +58,13 @@ namespace River.OneMoreAddIn
 				if (CheckBoxes)
 				{
 					// get information about the node
-					var props = (Native.TreeViewItemProps)m.GetLParam(typeof(Native.TreeViewItemProps));
+					var props = (Native.TreeItem)m.GetLParam(typeof(Native.TreeItem));
 					HideCheckBox(props);
 				}
 			}
 		}
 
-		protected void HideCheckBox(Native.TreeViewItemProps props)
+		protected void HideCheckBox(Native.TreeItem props)
 		{
 			if (props.ItemHandle != IntPtr.Zero)
 			{
@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn
 				// get the item's properties...
 
 				var treehref = new HandleRef(this, Handle);
-				var currentProps = new Native.TreeViewItemProps
+				var currentProps = new Native.TreeItem
 				{
 					ItemHandle = props.ItemHandle,
 					StateMask = Native.TVIS_STATEIMAGEMASK,
@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn
 				bool needToHide = result.ToInt32() > 0 && currentProps.State != 0;
 				if (needToHide)
 				{
-					var updatedProps = new Native.TreeViewItemProps
+					var updatedProps = new Native.TreeItem
 					{
 						ItemHandle = props.ItemHandle,
 						Mask = Native.TVIF_STATE,

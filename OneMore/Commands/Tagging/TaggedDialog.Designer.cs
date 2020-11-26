@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 			if (disposing && (components != null))
 			{
 				components.Dispose();
+
+				one.Dispose();
 			}
 			base.Dispose(disposing);
 		}
@@ -39,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 			this.searchPanel = new System.Windows.Forms.Panel();
 			this.clearLabel = new System.Windows.Forms.LinkLabel();
 			this.tagsFlow = new System.Windows.Forms.FlowLayoutPanel();
-			this.resultTree = new River.OneMoreAddIn.CheckableTreeView();
+			this.resultTree = new River.OneMoreAddIn.HierarchyView();
 			this.resultPanel = new System.Windows.Forms.Panel();
 			this.splitContainer = new System.Windows.Forms.SplitContainer();
 			this.searchPanel.SuspendLayout();
@@ -60,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 			this.searchButton.Size = new System.Drawing.Size(60, 28);
 			this.searchButton.TabIndex = 0;
 			this.searchButton.UseVisualStyleBackColor = true;
-			this.searchButton.Click += new System.EventHandler(this.AcceptInput);
+			this.searchButton.Click += new System.EventHandler(this.Search);
 			// 
 			// filterBox
 			// 
@@ -170,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.resultTree.CheckBoxes = true;
 			this.resultTree.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
-			this.resultTree.HideSelection = false;
+			this.resultTree.HotTracking = true;
 			this.resultTree.Location = new System.Drawing.Point(23, 23);
 			this.resultTree.Margin = new System.Windows.Forms.Padding(10);
 			this.resultTree.Name = "resultTree";
@@ -179,6 +181,7 @@ namespace River.OneMoreAddIn.Commands
 			this.resultTree.Size = new System.Drawing.Size(732, 275);
 			this.resultTree.Suspend = false;
 			this.resultTree.TabIndex = 15;
+			this.resultTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.ClickNode);
 			// 
 			// resultPanel
 			// 
@@ -249,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Panel searchPanel;
 		private System.Windows.Forms.FlowLayoutPanel tagsFlow;
 		private System.Windows.Forms.LinkLabel clearLabel;
-		private CheckableTreeView resultTree;
+		private HierarchyView resultTree;
 		private System.Windows.Forms.Panel resultPanel;
 		private System.Windows.Forms.SplitContainer splitContainer;
 	}
