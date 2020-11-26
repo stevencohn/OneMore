@@ -11,6 +11,11 @@ namespace River.OneMoreAddIn
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	/// <summary>
+	/// Specialized TreeView to display OneNote hierarchies, starting at any level, with icons for
+	/// notebooks, section groups, and sections, and possibly checkboxes for pages. Pages can also
+	/// be hyperlinked.
+	/// </summary>
 	internal class HierarchyView : TreeView
 	{
 		private const int CheckboxMargin = 4;	// space between checkbox and label
@@ -149,7 +154,8 @@ namespace River.OneMoreAddIn
 				bounds.Left - CheckboxMargin, bounds.Top,
 				bounds.Width + CheckboxMargin, bounds.Height);
 
-			// notebooks, sectiongroups, and sections have icons
+			// notebooks, sectiongroups, and sections have icons...
+
 			switch (node?.HierarchyLevel)
 			{
 				case HierarchyLevels.SectionGroup:
@@ -175,7 +181,8 @@ namespace River.OneMoreAddIn
 					break;
 			}
 
-			// draw the label
+			// draw the label...
+
 			Brush brush;
 			Font font;
 
@@ -199,6 +206,7 @@ namespace River.OneMoreAddIn
 		{
 			if (checkboxed)
 			{
+				// shift bounds to right of checkbox, plus margin
 				return new Rectangle(
 					node.Bounds.Left + CheckboxMargin,
 					node.Bounds.Top,
@@ -206,10 +214,11 @@ namespace River.OneMoreAddIn
 					node.Bounds.Height);
 			}
 
+			// expand to include image
 			return new Rectangle(
 				node.Bounds.Left,
 				node.Bounds.Top,
-				node.Bounds.Width + ImageWidth,     // include space for image
+				node.Bounds.Width + ImageWidth,
 				node.Bounds.Height);
 		}
 	}

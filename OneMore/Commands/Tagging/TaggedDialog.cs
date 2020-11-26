@@ -182,14 +182,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (results.HasElements)
 			{
-				//resultTree.BeginUpdate();
+				resultTree.BeginUpdate();
 				DisplayResults(results, one.GetNamespace(results), resultTree.Nodes);
 				if (resultTree.Nodes.Count > 0)
 				{
 					resultTree.ExpandAll();
 					resultTree.Nodes[0].EnsureVisible();
 				}
-				//resultTree.EndUpdate();
+				resultTree.EndUpdate();
 			}
 		}
 

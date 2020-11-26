@@ -68,6 +68,12 @@ namespace River.OneMoreAddIn
 		#endregion Standard constructors
 
 
+		/// <summary>
+		/// Initialize the instance with the specified label for the given XML root that describes
+		/// the page including its name and ID, and probably associated meta tags
+		/// </summary>
+		/// <param name="label"></param>
+		/// <param name="root"></param>
 		public HierarchyNode(string label, XElement root)
 			: this(label)
 		{
@@ -87,15 +93,29 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Gets or sets whether this node should show or hide its checkbox; set to false for
+		/// notebooks, section groups, and sections. Set to true for pages
+		/// </summary>
 		public bool ShowCheckBox { get; set; }
 
 
+		/// <summary>
+		/// Gets the hierarchy level of this node, based on its XML description.
+		/// </summary>
 		public HierarchyLevels HierarchyLevel { get; private set; }
 
 
+		/// <summary>
+		/// Gets or sets whether this node should appear hyperlinked (hot) on mouse over; this is
+		/// typically enabled for pages to enable navigation.
+		/// </summary>
 		public bool Hyperlinked { get; set; }
 
 
+		/// <summary>
+		/// Gets a reference to the node's XML
+		/// </summary>
 		public XElement Root { get; private set; }
 	}
 }
