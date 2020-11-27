@@ -67,26 +67,36 @@ namespace River.OneMoreAddIn.Commands
 
 		public void IndexPages(List<string> pageIds)
 		{
-			using (var progress = new ProgressDialog())
-			{
-				progress.SetMaximum(pageIds.Count);
-				progress.Show(owner);
+			//using (var progress = new ProgressDialog())
+			//{
+			//	progress.SetMaximum(pageIds.Count);
+			//	progress.Show(owner);
 
 				// create a new page to get a new ID
 				one.CreatePage(sectionId, out var indexId);
 				var indexPage = one.GetPage(indexId);
+
 				indexPage.Title = "Page Index";
+
+				var container = indexPage.EnsureContentContainer();
 
 				foreach (var pageId in pageIds)
 				{
 					// get the page to copy
 					var page = one.GetPage(pageId);
-					progress.SetMessage(page.Title);
+					var ns = page.Namespace;
 
+					//progress.SetMessage(page.Title);
 
+					var link = one.GetHyperlink(page.PageId, string.Empty);
 
-					progress.Increment();
-				}
+					container.Add(new XElement(ns + "OE",
+						new XElement(ns + "T",
+							new XCData($"<a href=\"{link}\">{page.Title}</a>"))
+						));
+
+					//progress.Increment();
+				//}
 
 				one.Update(indexPage);
 				one.NavigateTo(indexId);

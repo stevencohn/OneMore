@@ -25,15 +25,10 @@ namespace River.OneMoreAddIn
 			{
 				var cdatas = page.Root
 					.Descendants(ns + "Outline")
-					.Where(e => e.Elements(ns + "Meta").Attributes("name").Equals(Page.TagBankMetaName))
+					.Where(e => !e.Elements(ns + "Meta")
+						.Any(m => m.Attribute("name").Value.Equals(Page.TagBankMetaName)))
 					.DescendantNodes().OfType<XCData>();
 
-				/*
-  <one:Outline>
-    <one:Position x="235.0" y="43.0" z="0" />
-    <one:Size width="400.0000305175781" height="10.98629760742187" isSetByUser="true" />
-    <one:Meta name="omTaggingBank" content="1" />
-				*/
 				var count = 0;
 				foreach (var cdata in cdatas)
 				{
