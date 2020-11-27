@@ -16,6 +16,13 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class TaggedDialog : LocalizableForm
 	{
+		public enum Commands
+		{
+			Index,
+			Copy,
+			Move
+		}
+
 		private readonly string separator;
 		private readonly OneNote one;
 		private bool editing = false;
@@ -29,10 +36,17 @@ namespace River.OneMoreAddIn.Commands
 			scopeBox.SelectedIndex = 0;
 
 			separator = AddIn.Culture.TextInfo.ListSeparator;
+			SelectedPages = new List<string>();
 
 			// disposed in Dispose()
 			one = new OneNote();
 		}
+
+
+		public Commands Command { get; private set; }
+
+
+		public List<string> SelectedPages { get; private set; }
 
 
 		private void ChangedFilter(object sender, EventArgs e)
@@ -185,7 +199,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Search(object sender, EventArgs e)
 		{
-			toolStrip.Enabled = false;
+			checkAllLabel.Enabled = false;
+			clearAllLabel.Enabled = false;
 			resultTree.Nodes.Clear();
 
 			var text = filterBox.Text.ToLower();
@@ -194,16 +209,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var includedTags = FormatFilter(filterBox.Text.ToLower())
+			var filters = FormatFilter(filterBox.Text.ToLower())
 				.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries)
 				.Select(v => v.Trim())
 				.ToList();
 
-			var excludedTags = includedTags.Where(t => t[0] == '-')
-				.Select(t => t.Substring(1).Trim())
-				.ToList();
-
-			includedTags = includedTags.Except(excludedTags).ToList();
+			var includedTags = filters.Where(f => f[0] != '-').ToList();
+			var excludedTags = filters.Where(f => f[0] == '-').Select(f => f.Substring(1)).ToList();
 
 			var scopeId = string.Empty;
 			switch (scopeBox.SelectedIndex)
@@ -246,9 +258,6 @@ namespace River.OneMoreAddIn.Commands
 					if ((excludedTags.Count > 0 && tags.Any(t => excludedTags.Contains(t))) ||
 						(includedTags.Count > 0 && !tags.Any(t => includedTags.Contains(t))))
 					{
-						Logger.Current.WriteLine(
-							$"dead '{string.Join(",", tags)}'");
-
 						dead.Add(meta.Parent);
 					}
 				}
@@ -274,27 +283,78 @@ namespace River.OneMoreAddIn.Commands
 			if (results.HasElements)
 			{
 				resultTree.Populate(results, one.GetNamespace(results));
-				toolStrip.Enabled = true;
+
+				checkAllLabel.Enabled = true;
+				clearAllLabel.Enabled = true;
 			}
 		}
 
 
-		private void ToggleChecks(object sender, EventArgs e)
+		private void TreeAfterCheck(object sender, TreeViewEventArgs e)
 		{
-			ToggleChecks(resultTree.Nodes, sender == checkAllButton);
+			var node = e.Node as HierarchyNode;
+			var id = node.Root.Attribute("ID").Value;
+
+			if (node.Checked)
+			{
+				if (!SelectedPages.Contains(id))
+				{
+					SelectedPages.Add(id);
+				}
+			}
+			else if (SelectedPages.Contains(id))
+			{
+				SelectedPages.Remove(id);
+			}
+
+			indexButton.Enabled = copyButton.Enabled = moveButton.Enabled = SelectedPages.Count > 0;
+		}
+
+
+		private void ToggleChecks(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			ToggleChecks(resultTree.Nodes, sender == checkAllLabel);
 		}
 
 
 		private void ToggleChecks(TreeNodeCollection nodes, bool check)
 		{
-			foreach (TreeNode node in nodes)
+			foreach (HierarchyNode node in nodes)
 			{
-				node.Checked = check;
+				if (node.ShowCheckBox)
+				{
+					node.Checked = check;
+				}
+
 				if (node.Nodes?.Count > 0)
 				{
 					ToggleChecks(node.Nodes, check);
 				}
 			}
+		}
+
+
+		private void IndexPressed(object sender, EventArgs e)
+		{
+			Command = Commands.Index;
+			DialogResult = DialogResult.OK;
+			Close();
+		}
+
+
+		private void CopyPressed(object sender, EventArgs e)
+		{
+			Command = Commands.Copy;
+			DialogResult = DialogResult.OK;
+			Close();
+		}
+
+
+		private void MovePressed(object sender, EventArgs e)
+		{
+			Command = Commands.Move;
+			DialogResult = DialogResult.OK;
+			Close();
 		}
 
 

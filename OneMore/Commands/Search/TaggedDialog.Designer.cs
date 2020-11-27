@@ -43,19 +43,14 @@ namespace River.OneMoreAddIn.Commands
 			this.tagsFlow = new System.Windows.Forms.FlowLayoutPanel();
 			this.resultTree = new River.OneMoreAddIn.HierarchyView();
 			this.resultPanel = new System.Windows.Forms.Panel();
-			this.toolStrip = new River.OneMoreAddIn.ScaledToolStrip();
-			this.toolSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.checkNoneButton = new System.Windows.Forms.ToolStripButton();
-			this.checkAllButton = new System.Windows.Forms.ToolStripButton();
-			this.toolSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.indexButton = new System.Windows.Forms.ToolStripButton();
-			this.toolSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-			this.copyToButton = new System.Windows.Forms.ToolStripButton();
-			this.moveToButton = new System.Windows.Forms.ToolStripButton();
+			this.clearAllLabel = new System.Windows.Forms.LinkLabel();
+			this.checkAllLabel = new System.Windows.Forms.LinkLabel();
+			this.indexButton = new System.Windows.Forms.Button();
+			this.copyButton = new System.Windows.Forms.Button();
+			this.moveButton = new System.Windows.Forms.Button();
 			this.splitContainer = new System.Windows.Forms.SplitContainer();
 			this.searchPanel.SuspendLayout();
 			this.resultPanel.SuspendLayout();
-			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
 			this.splitContainer.Panel1.SuspendLayout();
 			this.splitContainer.Panel2.SuspendLayout();
@@ -124,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(647, 280);
+			this.cancelButton.Location = new System.Drawing.Point(647, 327);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -148,7 +143,7 @@ namespace River.OneMoreAddIn.Commands
 			this.searchPanel.MinimumSize = new System.Drawing.Size(700, 200);
 			this.searchPanel.Name = "searchPanel";
 			this.searchPanel.Padding = new System.Windows.Forms.Padding(20, 20, 20, 9);
-			this.searchPanel.Size = new System.Drawing.Size(778, 307);
+			this.searchPanel.Size = new System.Drawing.Size(778, 260);
 			this.searchPanel.TabIndex = 13;
 			// 
 			// clearLabel
@@ -157,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearLabel.AutoSize = true;
 			this.clearLabel.Enabled = false;
 			this.clearLabel.LinkColor = System.Drawing.Color.DodgerBlue;
-			this.clearLabel.Location = new System.Drawing.Point(690, 276);
+			this.clearLabel.Location = new System.Drawing.Point(690, 229);
 			this.clearLabel.Name = "clearLabel";
 			this.clearLabel.Size = new System.Drawing.Size(65, 20);
 			this.clearLabel.TabIndex = 13;
@@ -174,7 +169,7 @@ namespace River.OneMoreAddIn.Commands
 			this.tagsFlow.Location = new System.Drawing.Point(22, 94);
 			this.tagsFlow.Margin = new System.Windows.Forms.Padding(3, 9, 3, 3);
 			this.tagsFlow.Name = "tagsFlow";
-			this.tagsFlow.Size = new System.Drawing.Size(732, 179);
+			this.tagsFlow.Size = new System.Drawing.Size(732, 132);
 			this.tagsFlow.TabIndex = 12;
 			// 
 			// resultTree
@@ -185,114 +180,103 @@ namespace River.OneMoreAddIn.Commands
 			this.resultTree.CheckBoxes = true;
 			this.resultTree.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
 			this.resultTree.HotTracking = true;
-			this.resultTree.Location = new System.Drawing.Point(18, 45);
+			this.resultTree.Location = new System.Drawing.Point(18, 40);
 			this.resultTree.Margin = new System.Windows.Forms.Padding(10);
 			this.resultTree.Name = "resultTree";
 			this.resultTree.ShowLines = false;
 			this.resultTree.ShowRootLines = false;
-			this.resultTree.Size = new System.Drawing.Size(741, 220);
+			this.resultTree.Size = new System.Drawing.Size(741, 272);
 			this.resultTree.Suspend = false;
 			this.resultTree.TabIndex = 15;
+			this.resultTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeAfterCheck);
 			this.resultTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.ClickNode);
 			// 
 			// resultPanel
 			// 
-			this.resultPanel.Controls.Add(this.toolStrip);
+			this.resultPanel.Controls.Add(this.clearAllLabel);
+			this.resultPanel.Controls.Add(this.checkAllLabel);
+			this.resultPanel.Controls.Add(this.indexButton);
+			this.resultPanel.Controls.Add(this.copyButton);
+			this.resultPanel.Controls.Add(this.moveButton);
 			this.resultPanel.Controls.Add(this.resultTree);
 			this.resultPanel.Controls.Add(this.cancelButton);
 			this.resultPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.resultPanel.Location = new System.Drawing.Point(0, 0);
 			this.resultPanel.Name = "resultPanel";
 			this.resultPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.resultPanel.Size = new System.Drawing.Size(778, 333);
+			this.resultPanel.Size = new System.Drawing.Size(778, 380);
 			this.resultPanel.TabIndex = 16;
 			// 
-			// toolStrip
+			// clearAllLabel
 			// 
-			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
-			this.toolStrip.Enabled = false;
-			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolSeparator1,
-            this.checkNoneButton,
-            this.checkAllButton,
-            this.toolSeparator2,
-            this.indexButton,
-            this.toolSeparator3,
-            this.copyToButton,
-            this.moveToButton});
-			this.toolStrip.Location = new System.Drawing.Point(24, 10);
-			this.toolStrip.Name = "toolStrip";
-			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(289, 45);
-			this.toolStrip.TabIndex = 16;
-			this.toolStrip.Text = "Tool Strip";
+			this.clearAllLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.clearAllLabel.AutoSize = true;
+			this.clearAllLabel.Enabled = false;
+			this.clearAllLabel.LinkColor = System.Drawing.Color.DodgerBlue;
+			this.clearAllLabel.Location = new System.Drawing.Point(615, 10);
+			this.clearAllLabel.Name = "clearAllLabel";
+			this.clearAllLabel.Size = new System.Drawing.Size(139, 20);
+			this.clearAllLabel.TabIndex = 21;
+			this.clearAllLabel.TabStop = true;
+			this.clearAllLabel.Text = "Uncheck all pages";
+			this.clearAllLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleChecks);
 			// 
-			// toolSeparator1
+			// checkAllLabel
 			// 
-			this.toolSeparator1.Name = "toolSeparator1";
-			this.toolSeparator1.Size = new System.Drawing.Size(6, 45);
-			// 
-			// checkNoneButton
-			// 
-			this.checkNoneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.checkNoneButton.Image = ((System.Drawing.Image)(resources.GetObject("checkNoneButton.Image")));
-			this.checkNoneButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.checkNoneButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
-			this.checkNoneButton.Name = "checkNoneButton";
-			this.checkNoneButton.Size = new System.Drawing.Size(34, 40);
-			this.checkNoneButton.Text = "Unselect all pages";
-			this.checkNoneButton.Click += new System.EventHandler(this.ToggleChecks);
-			// 
-			// checkAllButton
-			// 
-			this.checkAllButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.checkAllButton.Image = ((System.Drawing.Image)(resources.GetObject("checkAllButton.Image")));
-			this.checkAllButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.checkAllButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
-			this.checkAllButton.Name = "checkAllButton";
-			this.checkAllButton.Size = new System.Drawing.Size(34, 40);
-			this.checkAllButton.Text = "Select all pages";
-			this.checkAllButton.Click += new System.EventHandler(this.ToggleChecks);
-			// 
-			// toolSeparator2
-			// 
-			this.toolSeparator2.Name = "toolSeparator2";
-			this.toolSeparator2.Size = new System.Drawing.Size(6, 45);
+			this.checkAllLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkAllLabel.AutoSize = true;
+			this.checkAllLabel.Enabled = false;
+			this.checkAllLabel.LinkColor = System.Drawing.Color.DodgerBlue;
+			this.checkAllLabel.Location = new System.Drawing.Point(478, 10);
+			this.checkAllLabel.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
+			this.checkAllLabel.Name = "checkAllLabel";
+			this.checkAllLabel.Size = new System.Drawing.Size(121, 20);
+			this.checkAllLabel.TabIndex = 20;
+			this.checkAllLabel.TabStop = true;
+			this.checkAllLabel.Text = "Check all pages";
+			this.checkAllLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleChecks);
 			// 
 			// indexButton
 			// 
-			this.indexButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.indexButton.Image = ((System.Drawing.Image)(resources.GetObject("indexButton.Image")));
-			this.indexButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.indexButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
+			this.indexButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.indexButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.indexButton.Enabled = false;
+			this.indexButton.Location = new System.Drawing.Point(269, 326);
+			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.indexButton.Name = "indexButton";
-			this.indexButton.Size = new System.Drawing.Size(34, 40);
-			this.indexButton.Text = "Create index page";
+			this.indexButton.Size = new System.Drawing.Size(112, 35);
+			this.indexButton.TabIndex = 19;
+			this.indexButton.Text = "Index";
+			this.indexButton.UseVisualStyleBackColor = true;
+			this.indexButton.Click += new System.EventHandler(this.IndexPressed);
 			// 
-			// toolSeparator3
+			// copyButton
 			// 
-			this.toolSeparator3.Name = "toolSeparator3";
-			this.toolSeparator3.Size = new System.Drawing.Size(6, 45);
+			this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.copyButton.Enabled = false;
+			this.copyButton.Location = new System.Drawing.Point(395, 326);
+			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
+			this.copyButton.Name = "copyButton";
+			this.copyButton.Size = new System.Drawing.Size(112, 35);
+			this.copyButton.TabIndex = 18;
+			this.copyButton.Text = "Copy";
+			this.copyButton.UseVisualStyleBackColor = true;
+			this.copyButton.Click += new System.EventHandler(this.CopyPressed);
 			// 
-			// copyToButton
+			// moveButton
 			// 
-			this.copyToButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.copyToButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToButton.Image")));
-			this.copyToButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.copyToButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
-			this.copyToButton.Name = "copyToButton";
-			this.copyToButton.Size = new System.Drawing.Size(34, 40);
-			this.copyToButton.Text = "Copy pages to...";
-			// 
-			// moveToButton
-			// 
-			this.moveToButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.moveToButton.Image = ((System.Drawing.Image)(resources.GetObject("moveToButton.Image")));
-			this.moveToButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.moveToButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
-			this.moveToButton.Name = "moveToButton";
-			this.moveToButton.Size = new System.Drawing.Size(34, 40);
-			this.moveToButton.Text = "Move pages to...";
+			this.moveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.moveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.moveButton.Enabled = false;
+			this.moveButton.Location = new System.Drawing.Point(521, 327);
+			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
+			this.moveButton.Name = "moveButton";
+			this.moveButton.Size = new System.Drawing.Size(112, 35);
+			this.moveButton.TabIndex = 17;
+			this.moveButton.Text = "Move";
+			this.moveButton.UseVisualStyleBackColor = true;
+			this.moveButton.Click += new System.EventHandler(this.MovePressed);
 			// 
 			// splitContainer
 			// 
@@ -313,7 +297,7 @@ namespace River.OneMoreAddIn.Commands
 			this.splitContainer.Panel2.Controls.Add(this.resultPanel);
 			this.splitContainer.Panel2MinSize = 200;
 			this.splitContainer.Size = new System.Drawing.Size(778, 645);
-			this.splitContainer.SplitterDistance = 307;
+			this.splitContainer.SplitterDistance = 260;
 			this.splitContainer.SplitterWidth = 5;
 			this.splitContainer.TabIndex = 17;
 			// 
@@ -335,8 +319,6 @@ namespace River.OneMoreAddIn.Commands
 			this.searchPanel.PerformLayout();
 			this.resultPanel.ResumeLayout(false);
 			this.resultPanel.PerformLayout();
-			this.toolStrip.ResumeLayout(false);
-			this.toolStrip.PerformLayout();
 			this.splitContainer.Panel1.ResumeLayout(false);
 			this.splitContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
@@ -359,14 +341,10 @@ namespace River.OneMoreAddIn.Commands
 		private HierarchyView resultTree;
 		private System.Windows.Forms.Panel resultPanel;
 		private System.Windows.Forms.SplitContainer splitContainer;
-		private ScaledToolStrip toolStrip;
-		private System.Windows.Forms.ToolStripButton checkNoneButton;
-		private System.Windows.Forms.ToolStripButton checkAllButton;
-		private System.Windows.Forms.ToolStripButton indexButton;
-		private System.Windows.Forms.ToolStripButton copyToButton;
-		private System.Windows.Forms.ToolStripButton moveToButton;
-		private System.Windows.Forms.ToolStripSeparator toolSeparator1;
-		private System.Windows.Forms.ToolStripSeparator toolSeparator2;
-		private System.Windows.Forms.ToolStripSeparator toolSeparator3;
+		private System.Windows.Forms.LinkLabel clearAllLabel;
+		private System.Windows.Forms.LinkLabel checkAllLabel;
+		private System.Windows.Forms.Button indexButton;
+		private System.Windows.Forms.Button copyButton;
+		private System.Windows.Forms.Button moveButton;
 	}
 }

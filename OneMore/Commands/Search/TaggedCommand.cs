@@ -4,42 +4,36 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Commands.Search;
 	using System;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal class SearchCommand : Command
+	internal class TaggedCommand : Command
 	{
-		private bool copying;
+		private TaggedDialog.Commands command;
 		private List<string> pageIds;
 
 
-		public SearchCommand()
+		public TaggedCommand()
 		{
 		}
 
 
 		public override void Execute(params object[] args)
 		{
-			copying = false;
+			var dialog = new TaggedDialog();
 
-			var dialog = new SearchDialog();
 			dialog.RunModeless((sender, e) =>
 			{
-				var d = sender as SearchDialog;
+				var d = sender as TaggedDialog;
 				if (d.DialogResult == DialogResult.OK)
 				{
-					copying = dialog.CopySelections;
+					command = dialog.Command;
 					pageIds = dialog.SelectedPages;
 
-					// choose where to copy/move the selected pages
-					// This needs to be done here, on this thread; I've tried to play threading tricks
-					// to do this from the SearchDialog but could find a way to prevent hanging
-
-					var desc = copying
+					var desc = command == TaggedDialog.Commands.Copy
 						? Resx.SearchQF_DescriptionCopy
 						: Resx.SearchQF_DescriptionMove;
 
@@ -48,7 +42,8 @@ namespace River.OneMoreAddIn.Commands
 						one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 					}
 				}
-			});
+			},
+			20);
 		}
 
 
@@ -60,8 +55,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var action = copying ? "copying" : "moving";
-			logger.Start($"..{action} {pageIds.Count} pages");
+			logger.Start($"..{command} {pageIds.Count} pages");
 
 			try
 			{
@@ -69,13 +63,19 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var service = new SearchServices(owner, one, sectionId);
 
-					if (copying)
+					switch (command)
 					{
-						service.CopyPages(pageIds);
-					}
-					else
-					{
-						service.MovePages(pageIds);
+						case TaggedDialog.Commands.Index:
+							service.IndexPages(pageIds);
+							break;
+
+						case TaggedDialog.Commands.Copy:
+							service.CopyPages(pageIds);
+							break;
+
+						case TaggedDialog.Commands.Move:
+							service.MovePages(pageIds);
+							break;
 					}
 				}
 			}

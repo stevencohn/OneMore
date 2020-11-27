@@ -136,30 +136,31 @@
     <Compile Include="Commands\Search\SearchDialog.Designer.cs">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tagging\TaggedCommand.cs" />
-    <Compile Include="Commands\Tagging\TaggedDialog.cs">
+    <Compile Include="Commands\Search\SearchServices.cs" />
+    <Compile Include="Commands\Search\TaggedCommand.cs" />
+    <Compile Include="Commands\Search\TaggedDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Tagging\TaggedDialog.Designer.cs">
+    <Compile Include="Commands\Search\TaggedDialog.Designer.cs">
       <DependentUpon>TaggedDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tagging\TaggingCommand.cs" />
-    <Compile Include="Commands\Tagging\TaggingDialog.cs">
+    <Compile Include="Commands\Search\TaggingCommand.cs" />
+    <Compile Include="Commands\Search\TaggingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Tagging\TaggingDialog.Designer.cs">
+    <Compile Include="Commands\Search\TaggingDialog.Designer.cs">
       <DependentUpon>TaggingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tagging\TagControl.cs">
+    <Compile Include="Commands\Search\TagControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Tagging\TagControl.Designer.cs">
+    <Compile Include="Commands\Search\TagControl.Designer.cs">
       <DependentUpon>TagControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tagging\TagCheckBox.cs">
+    <Compile Include="Commands\Search\TagCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Commands\Tagging\TagHelpers.cs" />
+    <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
     <Compile Include="Dialogs\FormTextBox.cs">
       <SubType>Component</SubType>
@@ -498,7 +499,7 @@
     <Compile Include="Styles\XmlStyleBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Commands\Tagging\x.png" />
+    <Content Include="Commands\Search\x.png" />
     <Content Include="Properties\Emoji\Architecture.png" />
     <None Include="Properties\Emoji\Automobile.png" />
     <Content Include="Properties\Emoji\Bullet.png" />
@@ -579,13 +580,13 @@
     <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tagging\TaggedDialog.resx">
+    <EmbeddedResource Include="Commands\Search\TaggedDialog.resx">
       <DependentUpon>TaggedDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tagging\TaggingDialog.resx">
+    <EmbeddedResource Include="Commands\Search\TaggingDialog.resx">
       <DependentUpon>TaggingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tagging\TagControl.resx">
+    <EmbeddedResource Include="Commands\Search\TagControl.resx">
       <DependentUpon>TagControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImportDialog.resx">

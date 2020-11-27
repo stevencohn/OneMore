@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Linq;
 	using System.Xml.Linq;
@@ -22,8 +23,17 @@ namespace River.OneMoreAddIn
 		{
 			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection))
 			{
-				var cdatas = page.Root.DescendantNodes().OfType<XCData>();
+				var cdatas = page.Root
+					.Descendants(ns + "Outline")
+					.Where(e => e.Elements(ns + "Meta").Attributes("name").Equals(Page.TagBankMetaName))
+					.DescendantNodes().OfType<XCData>();
 
+				/*
+  <one:Outline>
+    <one:Position x="235.0" y="43.0" z="0" />
+    <one:Size width="400.0000305175781" height="10.98629760742187" isSetByUser="true" />
+    <one:Meta name="omTaggingBank" content="1" />
+				*/
 				var count = 0;
 				foreach (var cdata in cdatas)
 				{

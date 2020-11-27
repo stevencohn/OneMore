@@ -120,6 +120,9 @@ namespace River.OneMoreAddIn.Dialogs
 		/// <param name="closedAction">
 		/// An event handler to run when the modeless dialog is closed
 		/// </param>
+		/// <param name="topDelta">
+		/// Optionally percentage of the dialog height to subtract from the top coordinate, 0-100
+		/// </param>
 		public void RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
 			StartPosition = FormStartPosition.Manual;
@@ -131,9 +134,11 @@ namespace River.OneMoreAddIn.Dialogs
 				Native.GetWindowRect(one.WindowHandle, ref rect);
 			}
 
+			var yoffset = (int)(Height * topDelta / 100.0);
+
 			Location = new System.Drawing.Point(
-				(rect.Left + (rect.Right - rect.Left) / 2) - (Width / 2),
-				(rect.Top + (rect.Bottom - rect.Top) / 2) - ((Height / 2) + (Height * (topDelta / 100)))
+				(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
+				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
 				);
 
 			Shown += ForceForeground;
