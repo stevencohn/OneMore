@@ -43,9 +43,17 @@ namespace River.OneMoreAddIn.Commands
 			this.tagsFlow = new System.Windows.Forms.FlowLayoutPanel();
 			this.resultTree = new River.OneMoreAddIn.HierarchyView();
 			this.resultPanel = new System.Windows.Forms.Panel();
+			this.toolStrip = new River.OneMoreAddIn.ScaledToolStrip();
+			this.refreshButton = new System.Windows.Forms.ToolStripButton();
+			this.checkNoneButton = new System.Windows.Forms.ToolStripButton();
+			this.checkAllButton = new System.Windows.Forms.ToolStripButton();
+			this.indexButton = new System.Windows.Forms.ToolStripButton();
+			this.copyToButton = new System.Windows.Forms.ToolStripButton();
+			this.moveToButton = new System.Windows.Forms.ToolStripButton();
 			this.splitContainer = new System.Windows.Forms.SplitContainer();
 			this.searchPanel.SuspendLayout();
 			this.resultPanel.SuspendLayout();
+			this.toolStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
 			this.splitContainer.Panel1.SuspendLayout();
 			this.splitContainer.Panel2.SuspendLayout();
@@ -185,6 +193,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// resultPanel
 			// 
+			this.resultPanel.Controls.Add(this.toolStrip);
 			this.resultPanel.Controls.Add(this.resultTree);
 			this.resultPanel.Controls.Add(this.cancelButton);
 			this.resultPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -192,6 +201,83 @@ namespace River.OneMoreAddIn.Commands
 			this.resultPanel.Name = "resultPanel";
 			this.resultPanel.Size = new System.Drawing.Size(778, 367);
 			this.resultPanel.TabIndex = 16;
+			// 
+			// toolStrip
+			// 
+			this.toolStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
+			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshButton,
+            this.checkNoneButton,
+            this.checkAllButton,
+            this.indexButton,
+            this.copyToButton,
+            this.moveToButton});
+			this.toolStrip.Location = new System.Drawing.Point(28, 316);
+			this.toolStrip.Name = "toolStrip";
+			this.toolStrip.Size = new System.Drawing.Size(234, 25);
+			this.toolStrip.TabIndex = 16;
+			this.toolStrip.Text = "scaledToolStrip1";
+			// 
+			// refreshButton
+			// 
+			this.refreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.refreshButton.Image = ((System.Drawing.Image)(resources.GetObject("refreshButton.Image")));
+			this.refreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.refreshButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
+			this.refreshButton.Name = "refreshButton";
+			this.refreshButton.Size = new System.Drawing.Size(34, 20);
+			this.refreshButton.Text = "Refresh results";
+			// 
+			// checkNoneButton
+			// 
+			this.checkNoneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.checkNoneButton.Image = ((System.Drawing.Image)(resources.GetObject("checkNoneButton.Image")));
+			this.checkNoneButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.checkNoneButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
+			this.checkNoneButton.Name = "checkNoneButton";
+			this.checkNoneButton.Size = new System.Drawing.Size(34, 20);
+			this.checkNoneButton.Text = "Unselect all pages";
+			// 
+			// checkAllButton
+			// 
+			this.checkAllButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.checkAllButton.Image = ((System.Drawing.Image)(resources.GetObject("checkAllButton.Image")));
+			this.checkAllButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.checkAllButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
+			this.checkAllButton.Name = "checkAllButton";
+			this.checkAllButton.Size = new System.Drawing.Size(34, 20);
+			this.checkAllButton.Text = "Select all pages";
+			// 
+			// indexButton
+			// 
+			this.indexButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.indexButton.Image = ((System.Drawing.Image)(resources.GetObject("indexButton.Image")));
+			this.indexButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.indexButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
+			this.indexButton.Name = "indexButton";
+			this.indexButton.Size = new System.Drawing.Size(34, 20);
+			this.indexButton.Text = "Create index page";
+			// 
+			// copyToButton
+			// 
+			this.copyToButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.copyToButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToButton.Image")));
+			this.copyToButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.copyToButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
+			this.copyToButton.Name = "copyToButton";
+			this.copyToButton.Size = new System.Drawing.Size(34, 20);
+			this.copyToButton.Text = "Copy pages to...";
+			// 
+			// moveToButton
+			// 
+			this.moveToButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.moveToButton.Image = ((System.Drawing.Image)(resources.GetObject("moveToButton.Image")));
+			this.moveToButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.moveToButton.Margin = new System.Windows.Forms.Padding(0, 2, 2, 3);
+			this.moveToButton.Name = "moveToButton";
+			this.moveToButton.Size = new System.Drawing.Size(34, 20);
+			this.moveToButton.Text = "Move pages to...";
 			// 
 			// splitContainer
 			// 
@@ -233,6 +319,9 @@ namespace River.OneMoreAddIn.Commands
 			this.searchPanel.ResumeLayout(false);
 			this.searchPanel.PerformLayout();
 			this.resultPanel.ResumeLayout(false);
+			this.resultPanel.PerformLayout();
+			this.toolStrip.ResumeLayout(false);
+			this.toolStrip.PerformLayout();
 			this.splitContainer.Panel1.ResumeLayout(false);
 			this.splitContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
@@ -255,5 +344,12 @@ namespace River.OneMoreAddIn.Commands
 		private HierarchyView resultTree;
 		private System.Windows.Forms.Panel resultPanel;
 		private System.Windows.Forms.SplitContainer splitContainer;
+		private ScaledToolStrip toolStrip;
+		private System.Windows.Forms.ToolStripButton refreshButton;
+		private System.Windows.Forms.ToolStripButton checkNoneButton;
+		private System.Windows.Forms.ToolStripButton checkAllButton;
+		private System.Windows.Forms.ToolStripButton indexButton;
+		private System.Windows.Forms.ToolStripButton copyToButton;
+		private System.Windows.Forms.ToolStripButton moveToButton;
 	}
 }

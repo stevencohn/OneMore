@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System.Drawing;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -18,7 +19,7 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class HierarchyView : TreeView
 	{
-		private const int CheckboxMargin = 4;	// space between checkbox and label
+		private const int CheckboxMargin = 4;   // space between checkbox and label
 		private const int ImageWidth = 28;      // width of image plus margins
 
 
@@ -44,9 +45,97 @@ namespace River.OneMoreAddIn
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Populate...
+
+		/// <summary>
+		/// Provides a default mechanism for populating the hiearchy view given search results XML
+		/// </summary>
+		/// <param name="results">
+		/// XML returned from one.Search or one.SearchMeta
+		/// </param>
+		/// <param name="ns"></param>
+		public void Populate(XElement results, XNamespace ns)
+		{
+			BeginUpdate();
+
+			DisplayResults(results, ns, Nodes);
+
+			if (Nodes.Count > 0)
+			{
+				ExpandAll();
+				Nodes[0].EnsureVisible();
+			}
+
+			EndUpdate();
+		}
+
+
+		private void DisplayResults(XElement root, XNamespace ns, TreeNodeCollection nodes)
+		{
+			TreeNode node;
+
+			if (root.Name.LocalName == "Page")
+			{
+				node = new HierarchyNode(root.Attribute("name").Value, root)
+				{
+					Hyperlinked = true
+				};
+
+				nodes.Add(node);
+				return;
+			}
+
+			if (root.Name.LocalName == "Notebooks")
+			{
+				foreach (var element in root.Elements())
+				{
+					DisplayResults(element, ns, nodes);
+				}
+				return;
+			}
+
+			node = new HierarchyNode(root.Attribute("name")?.Value, root);
+			nodes.Add(node);
+
+			foreach (var element in root.Elements())
+			{
+				DisplayResults(element, ns, node.Nodes);
+			}
+		}
+
+		#region Results XML
+		/*
+		<one:Notebooks xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote">
+			<one:Notebook name="Personal" nickname="Personal" ID="{CAE56365-6026-4E6C-A313-667D6FEBE5D8}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Personal/" lastModifiedTime="2020-11-25T18:12:56.000Z" color="#F6B078">
+			<one:Section name="OneMore" ID="{B49560C5-7EEF-41CB-9B62-A1999A367EC1}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Personal/OneMore.one" lastModifiedTime="2020-11-25T18:12:56.000Z" color="#B49EDE">
+				<one:Page ID="{B49560C5-7EEF-41CB-9B62-A1999A367EC1}{1}{E1949357495378378527691939956701555580463441}" name="OneNoteTaggingKit" dateTime="2020-11-03T22:18:37.000Z" lastModifiedTime="2020-11-25T18:12:56.000Z" pageLevel="2">
+				<one:Meta name="omTaggingLabels" content="OneNoteTaggingKit" />
+				<one:Meta name="" content="" />
+				</one:Page>
+			</one:Section>
+			</one:Notebook>
+			<one:Notebook name="Flux" nickname="Flux" ID="{853348FB-82D9-44E4-93FE-60EBFBE72E9C}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/" lastModifiedTime="2020-11-25T18:13:39.000Z" color="#F5F96F" isCurrentlyViewed="true">
+			<one:Section name="King" ID="{D20A5AAE-3E10-08C5-0E4F-6806D7C9C11A}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/King.one" lastModifiedTime="2020-11-25T18:13:34.000Z" color="#8AA8E4" isCurrentlyViewed="true">
+				<one:Page ID="{D20A5AAE-3E10-08C5-0E4F-6806D7C9C11A}{1}{E1811519588813354923720177303100143448474111}" name="OTK at Title" dateTime="2020-03-03T23:35:47.000Z" lastModifiedTime="2020-11-25T18:13:28.000Z" pageLevel="1">
+				<one:Meta name="omTaggingLabels" content="cheese,apples,cream" />
+				<one:Meta name="TaggingKit.PageTags" content="#Cheese, #cheese, #Grape, #grape, #Orange, #orange, -âœ©-" />
+				</one:Page>
+				<one:Page ID="{D20A5AAE-3E10-08C5-0E4F-6806D7C9C11A}{1}{E1823918871045154751520113206231786064788801}" name="Splitter" dateTime="2020-03-03T23:36:27.000Z" lastModifiedTime="2020-11-25T14:52:58.000Z" pageLevel="1" isCurrentlyViewed="true">
+				<one:Meta name="TaggingKit.PageTags" content="" />
+				<one:Meta name="omLabels" content="fish;orange;" />
+				<one:Meta name="omTaggingLabels" content="Wonder Woman, Apples, orange" />
+				<one:Meta name="omHighlightIndex" content="1" />
+				</one:Page>
+			</one:Section>
+			</one:Notebook>
+		</one:Notebooks>
+		*/
+		#endregion Results XML
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Manage node checkboxes...
 
-		#region Checkboxes
 		/// <summary>
 		/// Intercepts the SETITEM message and modifies the TVITEM as appropriate for the desired
 		/// state of the node
@@ -133,7 +222,6 @@ namespace River.OneMoreAddIn
 				}
 			}
 		}
-		#endregion Checkboxes
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
