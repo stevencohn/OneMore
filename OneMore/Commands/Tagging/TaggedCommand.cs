@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					//
 				}
-			});
+			}, 30);
 		}
 	}
 }

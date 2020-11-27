@@ -120,7 +120,7 @@ namespace River.OneMoreAddIn.Dialogs
 		/// <param name="closedAction">
 		/// An event handler to run when the modeless dialog is closed
 		/// </param>
-		public void RunModeless(EventHandler closedAction = null)
+		public void RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
 			StartPosition = FormStartPosition.Manual;
 			TopMost = true;
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 			Location = new System.Drawing.Point(
 				(rect.Left + (rect.Right - rect.Left) / 2) - (Width / 2),
-				(rect.Top + (rect.Bottom - rect.Top) / 2) - (Height / 2)
+				(rect.Top + (rect.Bottom - rect.Top) / 2) - ((Height / 2) + (Height * (topDelta / 100)))
 				);
 
 			Shown += ForceForeground;

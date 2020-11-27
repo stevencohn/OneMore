@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly string separator;
 		private readonly OneNote one;
+		private bool editing = false;
 
 
 		public TaggedDialog()
@@ -26,12 +28,32 @@ namespace River.OneMoreAddIn.Commands
 			filterBox.PressedEnter += Search;
 			scopeBox.SelectedIndex = 0;
 
-			toolStrip.ImageScalingSize = new System.Drawing.Size(16, 16);
-
 			separator = AddIn.Culture.TextInfo.ListSeparator;
 
-			// dispose in Dispose()
+			// disposed in Dispose()
 			one = new OneNote();
+		}
+
+
+		private void ChangedFilter(object sender, EventArgs e)
+		{
+			var enabled = filterBox.Text.Trim().Length > 0;
+			searchButton.Enabled = enabled;
+
+			if (enabled)
+			{
+				var tags = FormatFilter(filterBox.Text.ToLower())
+					.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries)
+					.Select(v => Regex.Replace(v.Trim(), @"^-", string.Empty))
+					.ToList();
+
+				editing = true;
+				foreach (TagCheckBox tag in tagsFlow.Controls)
+				{
+					tag.Checked = tags.Contains(tag.Text);
+				}
+				editing = false;
+			}
 		}
 
 
@@ -64,6 +86,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeTagSelection(object sender, EventArgs e)
 		{
+			if (editing)
+			{
+				return;
+			}
+
 			var box = sender as TagCheckBox;
 			if (box.Checked)
 			{
@@ -158,13 +185,25 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Search(object sender, EventArgs e)
 		{
+			toolStrip.Enabled = false;
 			resultTree.Nodes.Clear();
 
-			var tags = FormatFilter(filterBox.Text)
-				.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries).ToList();
+			var text = filterBox.Text.ToLower();
+			if (string.IsNullOrEmpty(text))
+			{
+				return;
+			}
 
-			var negtags = tags.Where(t => t[0] == '-').ToList();
-			tags = tags.Except(negtags).ToList();
+			var includedTags = FormatFilter(filterBox.Text.ToLower())
+				.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries)
+				.Select(v => v.Trim())
+				.ToList();
+
+			var excludedTags = includedTags.Where(t => t[0] == '-')
+				.Select(t => t.Substring(1).Trim())
+				.ToList();
+
+			includedTags = includedTags.Except(excludedTags).ToList();
 
 			var scopeId = string.Empty;
 			switch (scopeBox.SelectedIndex)
@@ -174,6 +213,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var results = one.SearchMeta(scopeId, Page.TaggingMetaName);
+			var ns = one.GetNamespace(results);
 
 			// remove recyclebin nodes
 			results.Descendants()
@@ -182,9 +222,78 @@ namespace River.OneMoreAddIn.Commands
 							n.Attribute("isInRecycleBin") != null)
 				.Remove();
 
+			// filter
+			var metas = results.Descendants(ns + "Meta")
+				.Where(m => m.Attribute("name").Value == Page.TaggingMetaName);
+
+			if (metas == null)
+			{
+				return;
+			}
+
+			// filter out unmatched pages, keep track in separate list because metas can't be
+			// modified while enumerating
+			var dead = new List<XElement>();
+			foreach (var meta in metas)
+			{
+				var tags = meta.Attribute("content").Value.ToLower()
+					.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries)
+					.Select(v => v.Trim())
+					.ToList();
+
+				if (tags.Count > 0)
+				{
+					if ((excludedTags.Count > 0 && tags.Any(t => excludedTags.Contains(t))) ||
+						(includedTags.Count > 0 && !tags.Any(t => includedTags.Contains(t))))
+					{
+						Logger.Current.WriteLine(
+							$"dead '{string.Join(",", tags)}'");
+
+						dead.Add(meta.Parent);
+					}
+				}
+			}
+
+			// remove unmatched pages
+			dead.ForEach(d => d.Remove());
+
+			// remove empty leaf nodes
+			var pruning = true;
+			while (pruning)
+			{
+				var elements = results.Descendants()
+					.Where(d => d.Name.LocalName != "Meta" && !d.HasElements);
+
+				pruning = elements.Any();
+				if (pruning)
+				{
+					elements.Remove();
+				}
+			}
+
 			if (results.HasElements)
 			{
 				resultTree.Populate(results, one.GetNamespace(results));
+				toolStrip.Enabled = true;
+			}
+		}
+
+
+		private void ToggleChecks(object sender, EventArgs e)
+		{
+			ToggleChecks(resultTree.Nodes, sender == checkAllButton);
+		}
+
+
+		private void ToggleChecks(TreeNodeCollection nodes, bool check)
+		{
+			foreach (TreeNode node in nodes)
+			{
+				node.Checked = check;
+				if (node.Nodes?.Count > 0)
+				{
+					ToggleChecks(node.Nodes, check);
+				}
 			}
 		}
 
