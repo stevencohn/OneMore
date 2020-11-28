@@ -1125,10 +1125,6 @@
     <value>Stornieren</value>
     <comment>cancel button</comment>
   </data>
-  <data name="PageNumberingDialog_cleanCheckbox.Text" xml:space="preserve">
-    <value>Vorhandene Nummerierung entfernen / bereinigen</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
     <value>Numerisch</value>
     <comment>radio button</comment>
@@ -1913,10 +1909,6 @@ ISO-code then comma then language name</comment>
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchDialog_allButton.Text" xml:space="preserve">
-    <value>In allen Notizbüchern</value>
-    <comment>radio</comment>
-  </data>
   <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
     <value>Stornieren</value>
     <comment>button</comment>
@@ -1936,14 +1928,6 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialog_moveButton.Text" xml:space="preserve">
     <value>Bewegung</value>
     <comment>button</comment>
-  </data>
-  <data name="SearchDialog_notebookButton.Text" xml:space="preserve">
-    <value>In diesem Notizbuch</value>
-    <comment>radio</comment>
-  </data>
-  <data name="SearchDialog_sectionButton.Text" xml:space="preserve">
-    <value>In diesem Abschnitt</value>
-    <comment>radio</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>Suchen und Verschieben / Kopieren</value>
@@ -2381,5 +2365,69 @@ Absatz - ganzer Absatz
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>OneMore-Einstellungen</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchDialog_scopeBox.Items" xml:space="preserve">
+    <value>In allen Notizbüchern
+In diesem Notizbuch
+In diesem Abschnitt</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
+    <value>Überprüfen Sie alle Seiten</value>
+    <comment>check all nodes link label</comment>
+  </data>
+  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
+    <value>Deaktivieren Sie alle Seiten</value>
+    <comment>uncheck all nodes llnk label</comment>
+  </data>
+  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
+    <value>Alles löschen</value>
+    <comment>clear tags link label</comment>
+  </data>
+  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
+    <value>Kopieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
+    <value>Index</value>
+    <comment>index button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    Geben Sie ein oder mehrere durch Kommas getrennte Tags ein. 
+    EDIT label
+  </data>
+  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
+    <value>Bewegung</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
+    <value>In allen Notizbüchern
+In diesem Notizbuch
+In diesem Abschnitt</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
+    <value>Stichworte:</value>
+    <comment>label</comment>
+  </data>
+  <data name="TaggedDialog_Title" xml:space="preserve">
+    <value>Suchen Sie nach markierten Seiten</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribSearchMenu_Label" xml:space="preserve">
+    <value>Suche</value>
+    <comment>ribbon menu item</comment>
+  </data>
+  <data name="ribTaggedButton_Label" xml:space="preserve">
+    <value>Suchen Sie nach markierten Seiten</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="ribTaggingButton_Label" xml:space="preserve">
+    <value>Tag-Seite</value>
+    <comment>menu item</comment>
   </data>
 </root>

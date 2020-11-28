@@ -546,8 +546,8 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>الوظيفة الإضافية OneMore</value>
-    <comment>dialog title bar</comment>
+    الوظيفة الإضافية OneMore
+    dialog title bar EDIT
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
     <value>امسح ملف السجل</value>
@@ -1958,10 +1958,6 @@ ISO-code then comma then language name</comment>
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchDialog_allButton.Text" xml:space="preserve">
-    <value>في جميع أجهزة الكمبيوتر المحمولة</value>
-    <comment>radio</comment>
-  </data>
   <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
     <value>إلغاء</value>
     <comment>button</comment>
@@ -1981,14 +1977,6 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialog_moveButton.Text" xml:space="preserve">
     <value>نقل</value>
     <comment>button</comment>
-  </data>
-  <data name="SearchDialog_notebookButton.Text" xml:space="preserve">
-    <value>في هذا دفتر الملاحظات</value>
-    <comment>radio</comment>
-  </data>
-  <data name="SearchDialog_sectionButton.Text" xml:space="preserve">
-    <value>في هذا القسم</value>
-    <comment>radio</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>بحث ونقل / نسخ</value>
@@ -2406,5 +2394,69 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>إعدادات OneMore</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchDialog_scopeBox.Items" xml:space="preserve">
+    <value>في جميع أجهزة الكمبيوتر المحمولة
+في هذا دفتر الملاحظات
+في هذا القسم</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
+    <value>تحقق من كل الصفحات</value>
+    <comment>check all nodes link label</comment>
+  </data>
+  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
+    <value>قم بإلغاء تحديد كل الصفحات</value>
+    <comment>uncheck all nodes llnk label</comment>
+  </data>
+  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
+    <value>امسح الكل</value>
+    <comment>clear tags link label</comment>
+  </data>
+  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
+    <value>نسخ</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
+    <value>فهرس</value>
+    <comment>index button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    أدخل علامة أو أكثر مفصولة بفواصل. 
+    EDIT label
+  </data>
+  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
+    <value>نقل</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
+    <value>في جميع أجهزة الكمبيوتر المحمولة
+في هذا دفتر الملاحظات
+في هذا القسم</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
+    <value>العلامات:</value>
+    <comment>label</comment>
+  </data>
+  <data name="TaggedDialog_Title" xml:space="preserve">
+    <value>البحث عن الصفحات ذات العلامات</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribSearchMenu_Label" xml:space="preserve">
+    <value>بحث</value>
+    <comment>ribbon menu item</comment>
+  </data>
+  <data name="ribTaggedButton_Label" xml:space="preserve">
+    <value>البحث عن الصفحات ذات العلامات</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="ribTaggingButton_Label" xml:space="preserve">
+    <value>صفحة العلامة</value>
+    <comment>menu item</comment>
   </data>
 </root>

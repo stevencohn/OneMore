@@ -3655,6 +3655,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string ribSearchMenu_Label {
+            get {
+                return ResourceManager.GetString("ribSearchMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show XML.
         /// </summary>
         internal static string ribShowXmlButton_Label {
@@ -3714,6 +3723,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribStrikeoutTasksButton_Screentip {
             get {
                 return ResourceManager.GetString("ribStrikeoutTasksButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Tagged Pages.
+        /// </summary>
+        internal static string ribTaggedButton_Label {
+            get {
+                return ResourceManager.GetString("ribTaggedButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag Page.
+        /// </summary>
+        internal static string ribTaggingButton_Label {
+            get {
+                return ResourceManager.GetString("ribTaggingButton_Label", resourceCulture);
             }
         }
         
@@ -4934,7 +4961,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter one or more tags separated by commas. Use -tag to exclude individual tags.
+        ///   Looks up a localized string similar to Enter one or more tags separated by commas. Use the minus operator to exclude individual tags.
         /// </summary>
         internal static string TaggedDialog_introLabel_Text {
             get {

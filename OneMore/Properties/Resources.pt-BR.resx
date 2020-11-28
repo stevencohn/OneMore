@@ -1959,10 +1959,6 @@ Arquivo XML (* .xml)</value>
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchDialog_allButton.Text" xml:space="preserve">
-    <value>Em todos os notebooks</value>
-    <comment>radio</comment>
-  </data>
   <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
     <comment>button</comment>
@@ -1982,14 +1978,6 @@ Arquivo XML (* .xml)</value>
   <data name="SearchDialog_moveButton.Text" xml:space="preserve">
     <value>Mover</value>
     <comment>button</comment>
-  </data>
-  <data name="SearchDialog_notebookButton.Text" xml:space="preserve">
-    <value>Neste caderno</value>
-    <comment>radio</comment>
-  </data>
-  <data name="SearchDialog_sectionButton.Text" xml:space="preserve">
-    <value>Nesta secção</value>
-    <comment>radio</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>Pesquisar e mover/copiar</value>
@@ -2407,5 +2395,69 @@ Título - incluir no TOC</value>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>Configurações OneMore</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchDialog_scopeBox.Items" xml:space="preserve">
+    <value>Em todos os notebooks
+Neste caderno
+Nesta secção</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
+    <value>Verifique todas as páginas</value>
+    <comment>check all nodes link label</comment>
+  </data>
+  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
+    <value>Desmarque todas as páginas</value>
+    <comment>uncheck all nodes llnk label</comment>
+  </data>
+  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
+    <value>Limpar tudo</value>
+    <comment>clear tags link label</comment>
+  </data>
+  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
+    <value>cópia de</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
+    <value>Índice</value>
+    <comment>index button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    Insira uma ou mais tags separadas por vírgulas. 
+    EDIT label
+  </data>
+  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
+    <value>Mover</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
+    <value>Em todos os notebooks
+Neste caderno
+Nesta secção</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
+    <value>Tag:</value>
+    <comment>label</comment>
+  </data>
+  <data name="TaggedDialog_Title" xml:space="preserve">
+    <value>Encontre páginas marcadas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribSearchMenu_Label" xml:space="preserve">
+    <value>Pesquisa</value>
+    <comment>ribbon menu item</comment>
+  </data>
+  <data name="ribTaggedButton_Label" xml:space="preserve">
+    <value>Encontre páginas marcadas</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="ribTaggingButton_Label" xml:space="preserve">
+    <value>Página de tag</value>
+    <comment>menu item</comment>
   </data>
 </root>

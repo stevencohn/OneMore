@@ -46,16 +46,6 @@
 
           <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" getImage="GetOneMoreRibbonImage">
             <button
-              id="ribTaggingButton"
-              image="Label"
-              label="Tag Page"
-              onAction="TaggingCmd"/>
-            <button
-              id="ribTaggedButton"
-              image="Label"
-              label="Find Tagged Pages"
-              onAction="TaggedCmd"/>
-            <button
               id="ribCollapseButton"
               imageMso="CollapseAll"
               getLabel="GetRibbonLabel"
@@ -73,12 +63,6 @@
               getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
               onAction="PasteRtfCmd"/>
-            <button
-              id="ribReplaceButton"
-              imageMso="ReplaceDialog"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="SearchAndReplaceCmd"/>
             <button
               id="ribSortButton"
               imageMso="SortUp"
@@ -231,6 +215,30 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemovePageNumbersCmd"/>
             </menu>
+            <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI">
+              <button
+                id="ribReplaceButton"
+                imageMso="ReplaceDialog"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="SearchAndReplaceCmd"/>
+              <button
+                id="ribSearchButton"
+                imageMso="FileFind"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="SearchCmd"/>
+              <button
+                id="ribTaggingButton"
+                image="Label"
+                getLabel="GetRibbonLabel"
+                onAction="TaggingCmd"/>
+              <button
+                id="ribTaggedButton"
+                image="LabelSearch"
+                getLabel="GetRibbonLabel"
+                onAction="TaggedCmd"/>
+            </menu>
             <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
               <button
                 id="ribInsertSingleLineButton"
@@ -362,12 +370,6 @@
                 imageMso="AutoSigWebInsertHyperlink"
                 getLabel="GetRibbonLabel"
                 onAction="NameUrlsCmd"/>
-              <button
-                id="ribSearchButton"
-                imageMso="FileFind"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="SearchCmd"/>
               <button
                 id="ribSplitButton"
                 imageMso="MasterDocumentSplitSubdocuments"

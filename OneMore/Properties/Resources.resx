@@ -2437,7 +2437,7 @@ Heading - include in TOC</value>
     <comment>index button</comment>
   </data>
   <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Enter one or more tags separated by commas. Use -tag to exclude individual tags</value>
+    <value>Enter one or more tags separated by commas. Use the minus operator to exclude individual tags</value>
     <comment>label</comment>
   </data>
   <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
@@ -2457,5 +2457,17 @@ In this section</value>
   <data name="TaggedDialog_Title" xml:space="preserve">
     <value>Find Tagged Pages</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribSearchMenu_Label" xml:space="preserve">
+    <value>Search</value>
+    <comment>ribbon menu item</comment>
+  </data>
+  <data name="ribTaggedButton_Label" xml:space="preserve">
+    <value>Find Tagged Pages</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="ribTaggingButton_Label" xml:space="preserve">
+    <value>Tag Page</value>
+    <comment>menu item</comment>
   </data>
 </root>

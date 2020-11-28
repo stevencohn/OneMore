@@ -680,10 +680,6 @@ OneNote 将自动关闭</value>
     <value>接受</value>
     <comment>OK button</comment>
   </data>
-  <data name="FormulaDialog_rangeLabel.Text" xml:space="preserve">
-    <value>范围:</value>
-    <comment>label</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>重新排序自定义样式</value>
     <comment>dialog title</comment>
@@ -1138,10 +1134,6 @@ OneNote 将自动关闭</value>
   <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
     <value>取消</value>
     <comment>cancel button</comment>
-  </data>
-  <data name="PageNumberingDialog_cleanCheckbox.Text" xml:space="preserve">
-    <value>删除/清理现有编号</value>
-    <comment>checkbox</comment>
   </data>
   <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
     <value>数字</value>
@@ -1916,10 +1908,6 @@ XML档案（* .xml）</value>
     <value>接受</value>
     <comment>General OK label</comment>
   </data>
-  <data name="SearchDialog_allButton.Text" xml:space="preserve">
-    <value>在所有笔记本电脑中</value>
-    <comment>radio</comment>
-  </data>
   <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
     <value>取消</value>
     <comment>button</comment>
@@ -1939,14 +1927,6 @@ XML档案（* .xml）</value>
   <data name="SearchDialog_moveButton.Text" xml:space="preserve">
     <value>移动</value>
     <comment>button</comment>
-  </data>
-  <data name="SearchDialog_notebookButton.Text" xml:space="preserve">
-    <value>在这个笔记本上</value>
-    <comment>radio</comment>
-  </data>
-  <data name="SearchDialog_sectionButton.Text" xml:space="preserve">
-    <value>在这个部分</value>
-    <comment>radio</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>搜索和移动/复制</value>
@@ -2394,5 +2374,69 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>OneMore设置</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="SearchDialog_scopeBox.Items" xml:space="preserve">
+    <value>在所有笔记本中
+在这个笔记本上
+在这个部分</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
+    <value>检查所有页面</value>
+    <comment>check all nodes link label</comment>
+  </data>
+  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
+    <value>取消选中所有页面</value>
+    <comment>uncheck all nodes llnk label</comment>
+  </data>
+  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
+    <value>全部清除</value>
+    <comment>clear tags link label</comment>
+  </data>
+  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
+    <value>复制</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
+    <value>指数</value>
+    <comment>index button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    输入一个或多个用逗号分隔的标签。
+    EDIT label
+  </data>
+  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
+    <value>移动</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
+    <value>在所有笔记本中
+在这个笔记本上
+在这个部分</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
+    <value>标签：</value>
+    <comment>label</comment>
+  </data>
+  <data name="TaggedDialog_Title" xml:space="preserve">
+    <value>查找标记页面</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribSearchMenu_Label" xml:space="preserve">
+    <value>搜索</value>
+    <comment>ribbon menu item</comment>
+  </data>
+  <data name="ribTaggedButton_Label" xml:space="preserve">
+    <value>查找标记页面</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="ribTaggingButton_Label" xml:space="preserve">
+    <value>标签页</value>
+    <comment>menu item</comment>
   </data>
 </root>
