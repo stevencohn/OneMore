@@ -1963,10 +1963,6 @@ XML File (*.xml)</value>
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchDialog_allButton.Text" xml:space="preserve">
-    <value>In all notebooks</value>
-    <comment>radio</comment>
-  </data>
   <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
     <comment>button</comment>
@@ -1987,13 +1983,11 @@ XML File (*.xml)</value>
     <value>Move</value>
     <comment>button</comment>
   </data>
-  <data name="SearchDialog_notebookButton.Text" xml:space="preserve">
-    <value>In this notebook</value>
-    <comment>radio</comment>
-  </data>
-  <data name="SearchDialog_sectionButton.Text" xml:space="preserve">
-    <value>In this section</value>
-    <comment>radio</comment>
+  <data name="SearchDialog_scopeBox.Items" xml:space="preserve">
+    <value>In all notebooks
+In this notebook
+In this section</value>
+    <comment>drop down</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>Search and Move/Copy</value>
@@ -2417,5 +2411,51 @@ Heading - include in TOC</value>
   </data>
   <data name="LabelSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\labelsearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TaggedDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
+    <value>Check all pages</value>
+    <comment>check all nodes link label</comment>
+  </data>
+  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
+    <value>Uncheck all pages</value>
+    <comment>uncheck all nodes llnk label</comment>
+  </data>
+  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
+    <value>Clear all</value>
+    <comment>clear tags link label</comment>
+  </data>
+  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
+    <value>Copy</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
+    <value>Index</value>
+    <comment>index button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    <value>Enter one or more tags separated by commas. Use -tag to exclude individual tags</value>
+    <comment>label</comment>
+  </data>
+  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
+    <value>Move</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
+    <value>In all notebooks
+In this notebook
+In this section</value>
+    <comment>drop down</comment>
+  </data>
+  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
+    <value>Tags:</value>
+    <comment>label</comment>
+  </data>
+  <data name="TaggedDialog_Title" xml:space="preserve">
+    <value>Find Tagged Pages</value>
+    <comment>dialog title</comment>
   </data>
 </root>

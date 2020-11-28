@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands.Search
 	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Collections.Generic;
-	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -31,15 +30,16 @@ namespace River.OneMoreAddIn.Commands.Search
 				{
 					"introLabel",
 					"findLabel",
-					"allButton",
-					"notebookButton",
-					"sectionButton",
 					"moveButton",
 					"copyButton",
 					"cancelButton"
 				});
+
+				scopeBox.Items.Clear();
+				scopeBox.Items.AddRange(Resx.SearchDialog_scopeBox_Items.Split(new char[] { '\n' }));
 			}
 
+			scopeBox.SelectedIndex = 0;
 			SelectedPages = new List<string>();
 
 			one = new OneNote();
@@ -73,10 +73,11 @@ namespace River.OneMoreAddIn.Commands.Search
 			resultTree.Nodes.Clear();
 
 			string startId = string.Empty;
-			if (notebookButton.Checked)
-				startId = one.CurrentNotebookId;
-			else if (sectionButton.Checked)
-				startId = one.CurrentSectionId;
+			switch (scopeBox.SelectedIndex)
+			{
+				case 1: startId = one.CurrentNotebookId; break;
+				case 2: startId = one.CurrentSectionId; break;
+			}
 
 			var xml = one.Search(startId, findBox.Text);
 			var results = XElement.Parse(xml);

@@ -60,13 +60,12 @@ namespace River.OneMoreAddIn.Commands
 			// searchButton
 			// 
 			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.searchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.searchButton.Enabled = false;
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
 			this.searchButton.Location = new System.Drawing.Point(508, 52);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.Size = new System.Drawing.Size(60, 32);
-			this.searchButton.TabIndex = 0;
+			this.searchButton.TabIndex = 1;
 			this.searchButton.UseVisualStyleBackColor = true;
 			this.searchButton.Click += new System.EventHandler(this.Search);
 			// 
@@ -77,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 			this.filterBox.Location = new System.Drawing.Point(80, 52);
 			this.filterBox.Name = "filterBox";
 			this.filterBox.Size = new System.Drawing.Size(424, 26);
-			this.filterBox.TabIndex = 1;
+			this.filterBox.TabIndex = 0;
 			this.filterBox.TextChanged += new System.EventHandler(this.ChangedFilter);
 			// 
 			// tagsLabel
@@ -102,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 			this.scopeBox.Location = new System.Drawing.Point(574, 52);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(180, 28);
-			this.scopeBox.TabIndex = 10;
+			this.scopeBox.TabIndex = 2;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
 			// 
 			// introLabel
@@ -123,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
-			this.cancelButton.TabIndex = 12;
+			this.cancelButton.TabIndex = 5;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
@@ -155,7 +154,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearLabel.Location = new System.Drawing.Point(690, 229);
 			this.clearLabel.Name = "clearLabel";
 			this.clearLabel.Size = new System.Drawing.Size(65, 20);
-			this.clearLabel.TabIndex = 13;
+			this.clearLabel.TabIndex = 3;
 			this.clearLabel.TabStop = true;
 			this.clearLabel.Text = "Clear all";
 			this.clearLabel.Click += new System.EventHandler(this.ClearFilters);
@@ -216,7 +215,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearAllLabel.Location = new System.Drawing.Point(615, 10);
 			this.clearAllLabel.Name = "clearAllLabel";
 			this.clearAllLabel.Size = new System.Drawing.Size(139, 20);
-			this.clearAllLabel.TabIndex = 21;
+			this.clearAllLabel.TabIndex = 1;
 			this.clearAllLabel.TabStop = true;
 			this.clearAllLabel.Text = "Uncheck all pages";
 			this.clearAllLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleChecks);
@@ -231,7 +230,7 @@ namespace River.OneMoreAddIn.Commands
 			this.checkAllLabel.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
 			this.checkAllLabel.Name = "checkAllLabel";
 			this.checkAllLabel.Size = new System.Drawing.Size(121, 20);
-			this.checkAllLabel.TabIndex = 20;
+			this.checkAllLabel.TabIndex = 0;
 			this.checkAllLabel.TabStop = true;
 			this.checkAllLabel.Text = "Check all pages";
 			this.checkAllLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleChecks);
@@ -245,7 +244,7 @@ namespace River.OneMoreAddIn.Commands
 			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.indexButton.Name = "indexButton";
 			this.indexButton.Size = new System.Drawing.Size(112, 35);
-			this.indexButton.TabIndex = 19;
+			this.indexButton.TabIndex = 2;
 			this.indexButton.Text = "Index";
 			this.indexButton.UseVisualStyleBackColor = true;
 			this.indexButton.Click += new System.EventHandler(this.IndexPressed);
@@ -259,7 +258,7 @@ namespace River.OneMoreAddIn.Commands
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.copyButton.Name = "copyButton";
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
-			this.copyButton.TabIndex = 18;
+			this.copyButton.TabIndex = 3;
 			this.copyButton.Text = "Copy";
 			this.copyButton.UseVisualStyleBackColor = true;
 			this.copyButton.Click += new System.EventHandler(this.CopyPressed);
@@ -273,7 +272,7 @@ namespace River.OneMoreAddIn.Commands
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.moveButton.Name = "moveButton";
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
-			this.moveButton.TabIndex = 17;
+			this.moveButton.TabIndex = 4;
 			this.moveButton.Text = "Move";
 			this.moveButton.UseVisualStyleBackColor = true;
 			this.moveButton.Click += new System.EventHandler(this.MovePressed);

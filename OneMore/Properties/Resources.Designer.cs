@@ -3935,15 +3935,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In all notebooks.
-        /// </summary>
-        internal static string SearchDialog_allButton_Text {
-            get {
-                return ResourceManager.GetString("SearchDialog_allButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string SearchDialog_cancelButton_Text {
@@ -3989,20 +3980,13 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In this notebook.
+        ///   Looks up a localized string similar to In all notebooks
+        ///In this notebook
+        ///In this section.
         /// </summary>
-        internal static string SearchDialog_notebookButton_Text {
+        internal static string SearchDialog_scopeBox_Items {
             get {
-                return ResourceManager.GetString("SearchDialog_notebookButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to In this section.
-        /// </summary>
-        internal static string SearchDialog_sectionButton_Text {
-            get {
-                return ResourceManager.GetString("SearchDialog_sectionButton.Text", resourceCulture);
+                return ResourceManager.GetString("SearchDialog_scopeBox.Items", resourceCulture);
             }
         }
         
@@ -4892,6 +4876,107 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Superscript", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string TaggedDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check all pages.
+        /// </summary>
+        internal static string TaggedDialog_checkAllLabel_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_checkAllLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncheck all pages.
+        /// </summary>
+        internal static string TaggedDialog_clearAllLabel_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_clearAllLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear all.
+        /// </summary>
+        internal static string TaggedDialog_clearLabel_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_clearLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        internal static string TaggedDialog_copyButton_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_copyButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        internal static string TaggedDialog_indexButton_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_indexButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter one or more tags separated by commas. Use -tag to exclude individual tags.
+        /// </summary>
+        internal static string TaggedDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        internal static string TaggedDialog_moveButton_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_moveButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In all notebooks
+        ///In this notebook
+        ///In this section.
+        /// </summary>
+        internal static string TaggedDialog_scopeBox_Items {
+            get {
+                return ResourceManager.GetString("TaggedDialog_scopeBox.Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags:.
+        /// </summary>
+        internal static string TaggedDialog_tagsLabel_Text {
+            get {
+                return ResourceManager.GetString("TaggedDialog_tagsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Tagged Pages.
+        /// </summary>
+        internal static string TaggedDialog_Title {
+            get {
+                return ResourceManager.GetString("TaggedDialog_Title", resourceCulture);
             }
         }
         

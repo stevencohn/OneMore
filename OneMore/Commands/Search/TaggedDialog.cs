@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class TaggedDialog : LocalizableForm
@@ -31,6 +32,27 @@ namespace River.OneMoreAddIn.Commands
 		public TaggedDialog()
 		{
 			InitializeComponent();
+
+			//if (NeedsLocalizing())
+			{
+				Text = Resx.TaggedDialog_Title;
+
+				Localize(new string[]
+				{
+					"introLabel",
+					"tagsLabel",
+					"clearLabel",
+					"checkAllLabel",
+					"clearAllLabel",
+					"indexButton",
+					"moveButton",
+					"copyButton",
+					"cancelButton"
+				});
+
+				scopeBox.Items.Clear();
+				scopeBox.Items.AddRange(Resx.TaggedDialog_scopeBox_Items.Split(new char[] { '\n' }));
+			}
 
 			filterBox.PressedEnter += Search;
 			scopeBox.SelectedIndex = 0;
