@@ -59,6 +59,14 @@ namespace River.OneMoreAddIn
 				Keys.H, Hotmods.Control);
 
 			HotkeyManager.RegisterHotKey(() =>
+				TaggedCmd(null),
+				Keys.T, Hotmods.ControlAlt);
+
+			HotkeyManager.RegisterHotKey(() =>
+				TaggingCmd(null),
+				Keys.T, Hotmods.Alt);
+
+			HotkeyManager.RegisterHotKey(() =>
 				ToLowercaseCmd(null),
 				Keys.U, Hotmods.ControlShift);
 

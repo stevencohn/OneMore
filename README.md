@@ -37,7 +37,6 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 [Edit Commands](../../wiki/Edit-Commands)
 * Disable spell-check on the current page (F4)
 * Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
-* Search and replace text on the current page (Ctrl+H)
 * Change selected text to UPPERCASE or lowercase
 * Increase/Decrease the font size of all content on the current page
 
@@ -66,6 +65,13 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Remove numbering from sections
 * Remove numbering from pages
 
+[Search commands](../../wiki/Search-Commands)
+
+* Search and replace text on the current page (Ctrl+H)
+* Search for keywords and copy or move selected pages (Alt + F)
+* Add arbitrary tags to a page
+* Search arbitrary page tags to index, copy, or move selected pages
+
 [Snippets commands](../../wiki/Snippets-Commands)
 
 * Insert single or double horizontal line
@@ -85,7 +91,6 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
 * Replace hyperlinked URLs with their Web page titles
-* Search for keywords and copy/move selected pages (Alt + F)
 * Sort pages, sections, or notebooks
 * Split current page into multiple pages
 * Toggle strikethrough text next to all completed/incompleted tags
