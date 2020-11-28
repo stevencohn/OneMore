@@ -44,7 +44,8 @@ namespace River.OneMoreAddIn.Commands
 						one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 					}
 				}
-			});
+			},
+			20);
 		}
 
 

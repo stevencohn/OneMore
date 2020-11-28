@@ -75,6 +75,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var enabled = filterBox.Text.Trim().Length > 0;
 			searchButton.Enabled = enabled;
+			clearLabel.Enabled = enabled;
 
 			if (enabled)
 			{
