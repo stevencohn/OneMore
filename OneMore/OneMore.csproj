@@ -409,7 +409,6 @@
     </Compile>
     <Compile Include="Settings\SettingsProvider.cs" />
     <Compile Include="Helpers\Extensions\IEnumerableExtensions.cs" />
-    <Compile Include="Helpers\CheckableTreeView.cs" />
     <Compile Include="Settings\SheetBase.cs">
       <SubType>UserControl</SubType>
     </Compile>

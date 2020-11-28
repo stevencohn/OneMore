@@ -35,10 +35,6 @@ namespace River.OneMoreAddIn.Commands
 					copying = dialog.CopySelections;
 					pageIds = dialog.SelectedPages;
 
-					// choose where to copy/move the selected pages
-					// This needs to be done here, on this thread; I've tried to play threading tricks
-					// to do this from the SearchDialog but could find a way to prevent hanging
-
 					var desc = copying
 						? Resx.SearchQF_DescriptionCopy
 						: Resx.SearchQF_DescriptionMove;

@@ -16,8 +16,9 @@ namespace River.OneMoreAddIn.Dialogs
 
 	internal class LocalizableForm : Form, IOneMoreWindow
 	{
-
 		public event EventHandler ModelessClosed;
+
+		protected ILogger logger = Logger.Current;
 
 
 		/// <summary>
@@ -63,13 +64,13 @@ namespace River.OneMoreAddIn.Dialogs
 					text = Resx.ResourceManager.GetString(resid, AddIn.Culture);
 					if (string.IsNullOrEmpty(text))
 					{
-						Logger.Current.WriteLine($"resource not found {resid}");
+						logger.WriteLine($"resource not found {resid}");
 						return;
 					}
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine($"error loading resource {resid}", exc);
+					logger.WriteLine($"error loading resource {resid}", exc);
 					return;
 				}
 
@@ -80,7 +81,7 @@ namespace River.OneMoreAddIn.Dialogs
 					if (prop != null)
 						prop.SetValue(control, text, null);
 					else
-						Logger.Current.WriteLine($"cannot find control property {k}.{p}");
+						logger.WriteLine($"cannot find control property {k}.{p}");
 				}
 				else
 				{
@@ -93,7 +94,7 @@ namespace River.OneMoreAddIn.Dialogs
 						if (prop != null)
 							prop.SetValue(comp, text, null);
 						else
-							Logger.Current.WriteLine($"cannot find Component property {k}.{p}");
+							logger.WriteLine($"cannot find Component property {k}.{p}");
 					}
 					else if (component is TreeNode node)
 					{
@@ -101,11 +102,11 @@ namespace River.OneMoreAddIn.Dialogs
 						if (prop != null)
 							prop.SetValue(node, text, null);
 						else
-							Logger.Current.WriteLine($"cannot find TreeNode property {k}.{p}");
+							logger.WriteLine($"cannot find TreeNode property {k}.{p}");
 					}
 					else
 					{
-						Logger.Current.WriteLine($"cannot translate {k}, name not found");
+						logger.WriteLine($"cannot translate {k}, name not found");
 					}
 				}
 			}

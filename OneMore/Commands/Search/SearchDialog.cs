@@ -90,143 +90,21 @@ namespace River.OneMoreAddIn.Commands.Search
 
 			if (results.HasElements)
 			{
-				resultTree.BeginUpdate();
-				DisplayResults(results, one.GetNamespace(results), resultTree.Nodes);
-				if (resultTree.Nodes.Count > 0)
-				{
-					resultTree.ExpandAll();
-					resultTree.Nodes[0].EnsureVisible();
-				}
-				resultTree.EndUpdate();
+				resultTree.Populate(results, one.GetNamespace(results));
 			}
 		}
 
 
-		private void DisplayResults(XElement root, XNamespace ns, TreeNodeCollection nodes)
+		private void ClickNode(object sender, TreeNodeMouseClickEventArgs e)
 		{
-			TreeNode node;
-
-			if (root.Name.LocalName == "Page")
+			// thanksfully, Bounds specifies bounds of label
+			var node = e.Node as HierarchyNode;
+			if (node.Hyperlinked && e.Node.Bounds.Contains(e.Location))
 			{
-				node = new TreeNode(root.Attribute("name").Value) { Tag = root };
-				nodes.Add(node);
-				return;
-			}
-
-			if (root.Name.LocalName == "Notebooks")
-			{
-				foreach (var element in root.Elements())
+				var pageId = node.Root.Attribute("ID").Value;
+				if (!pageId.Equals(one.CurrentPageId))
 				{
-					DisplayResults(element, ns, nodes);
-				}
-				return;
-			}
-
-			node = new UncheckableTreeNode(root.Attribute("name")?.Value) { Tag = root };
-			nodes.Add(node);
-
-			foreach (var element in root.Elements())
-			{
-				DisplayResults(element, ns, node.Nodes);
-			}
-		}
-
-
-		private void TreeDrawNode(object sender, DrawTreeNodeEventArgs e)
-		{
-			var element = e.Node.Tag as XElement;
-			var isContainer = element.Name.LocalName != "Page";
-
-			var color = SystemBrushes.ControlText;
-			var bounds = MakeNodeBounds(e.Node);
-
-			// hide the selection background by drawing it using the Window background color
-			if ((e.State & TreeNodeStates.Selected) != 0)
-			{
-				// expand bounds to fill gap between checkbox and label
-				e.Graphics.FillRectangle(SystemBrushes.Window,
-					bounds.Left - 4, bounds.Top, bounds.Width + 4, bounds.Height);
-			}
-
-			if (isContainer)
-			{
-				var image = Resx.SectionGroup;
-				if (element.Name.LocalName == "Notebook" || element.Name.LocalName == "Section")
-				{
-					image = element.Name.LocalName == "Notebook" ? Resx.NotebookMask : Resx.SectionMask;
-					image.MapColor(Color.Black, ColorTranslator.FromHtml(element.Attribute("color").Value));
-				}
-
-				e.Graphics.DrawImage(image, bounds.Left, bounds.Top);
-			}
-
-			// draw the node text
-			var font = e.Node.NodeFont ?? ((TreeView)sender).Font;
-			var left = isContainer ? bounds.Left + 20 : bounds.Left;
-			e.Graphics.DrawString(e.Node.Text, font, color, left, bounds.Top);
-
-			if (isContainer)
-			{
-				// draw the focus rectangle
-				if ((e.State & TreeNodeStates.Focused) != 0)
-				{
-					using (var pen = new Pen(Color.Black))
-					{
-						pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-						bounds.Size = new Size(bounds.Width - 1, bounds.Height - 1);
-						e.Graphics.DrawRectangle(pen, bounds);
-					}
-				}
-			}
-		}
-
-		private Rectangle MakeNodeBounds(TreeNode node)
-		{
-			var element = node.Tag as XElement;
-			if (element.Name.LocalName == "Page")
-			{
-				return new Rectangle(
-					node.Bounds.Left + 4,   // offset from checkbox
-					node.Bounds.Top,
-					node.Bounds.Width + 2,
-					node.Bounds.Height);
-			}
-
-			return new Rectangle(
-				node.Bounds.Left,
-				node.Bounds.Top,
-				node.Bounds.Width + 24,     // include space for image
-				node.Bounds.Height);
-		}
-
-
-		private void TreeMouseDown(object sender, MouseEventArgs e)
-		{
-			var node = resultTree.GetNodeAt(e.X, e.Y);
-			if (node != null)
-			{
-				if (MakeNodeBounds(node).Contains(e.X, e.Y))
-				{
-					resultTree.SelectedNode = node;
-				}
-			}
-		}
-
-
-		private void TreeDoubleClick(object sender, EventArgs e)
-		{
-			var node = resultTree.SelectedNode;
-			if (node != null)
-			{
-				var element = node.Tag as XElement;
-				if (element?.Name.LocalName == "Page")
-				{
-					var pageId = element.Attribute("ID").Value;
-
-					if (!pageId.Equals(one.CurrentPageId))
-					{
-						one.NavigateTo(pageId);
-					}
+					one.NavigateTo(pageId);
 				}
 			}
 		}
@@ -234,10 +112,10 @@ namespace River.OneMoreAddIn.Commands.Search
 
 		private void TreeAfterCheck(object sender, TreeViewEventArgs e)
 		{
-			var element = e.Node.Tag as XElement;
-			var id = element.Attribute("ID").Value;
+			var node = e.Node as HierarchyNode;
+			var id = node.Root.Attribute("ID").Value;
 
-			if (e.Node.Checked)
+			if (node.Checked)
 			{
 				if (!SelectedPages.Contains(id))
 				{

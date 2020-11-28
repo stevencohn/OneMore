@@ -39,7 +39,7 @@
 			this.sectionButton = new System.Windows.Forms.RadioButton();
 			this.copyButton = new System.Windows.Forms.Button();
 			this.moveButton = new System.Windows.Forms.Button();
-			this.resultTree = new River.OneMoreAddIn.CheckableTreeView();
+			this.resultTree = new River.OneMoreAddIn.HierarchyView();
 			this.SuspendLayout();
 			// 
 			// introLabel
@@ -169,6 +169,7 @@
 			this.resultTree.CheckBoxes = true;
 			this.resultTree.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
 			this.resultTree.HideSelection = false;
+			this.resultTree.HotTracking = true;
 			this.resultTree.Location = new System.Drawing.Point(32, 209);
 			this.resultTree.Name = "resultTree";
 			this.resultTree.ShowLines = false;
@@ -177,9 +178,7 @@
 			this.resultTree.Suspend = false;
 			this.resultTree.TabIndex = 5;
 			this.resultTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeAfterCheck);
-			this.resultTree.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.TreeDrawNode);
-			this.resultTree.DoubleClick += new System.EventHandler(this.TreeDoubleClick);
-			this.resultTree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TreeMouseDown);
+			this.resultTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.ClickNode);
 			// 
 			// SearchDialog
 			// 
@@ -224,6 +223,6 @@
 		private System.Windows.Forms.RadioButton sectionButton;
 		private System.Windows.Forms.Button copyButton;
 		private System.Windows.Forms.Button moveButton;
-		private CheckableTreeView resultTree;
+		private River.OneMoreAddIn.HierarchyView resultTree;
 	}
 }

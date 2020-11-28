@@ -508,7 +508,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets the ID of the parent hierachy object that owns the specified object
+		/// Gets the ID of the parent hierachy object that owns the specified object; used when
+		/// copying/moving pages from section to section
 		/// </summary>
 		/// <param name="objectId">The ID of the object whose parent you want to find</param>
 		/// <returns>The ID of the parent or null if not found (e.g. parent of a notebook)</returns>

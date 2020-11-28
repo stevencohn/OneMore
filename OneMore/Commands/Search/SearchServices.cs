@@ -28,12 +28,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public void CopyPages(List<string> pageIds)
 		{
+			string lastId = null;
+
 			using (var progress = new ProgressDialog())
 			{
 				progress.SetMaximum(pageIds.Count);
 				progress.Show(owner);
-
-				string lastId = null;
 
 				foreach (var pageId in pageIds)
 				{
@@ -59,7 +59,11 @@ namespace River.OneMoreAddIn.Commands
 
 					progress.Increment();
 				}
+			}
 
+			// navigate after progress dialog is closed otherwise it will hang!
+			if (lastId != null)
+			{
 				one.NavigateTo(lastId);
 			}
 		}
@@ -67,13 +71,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public void IndexPages(List<string> pageIds)
 		{
-			//using (var progress = new ProgressDialog())
-			//{
-			//	progress.SetMaximum(pageIds.Count);
-			//	progress.Show(owner);
+			string indexId = null;
+
+			using (var progress = new ProgressDialog())
+			{
+				progress.SetMaximum(pageIds.Count);
+				progress.Show(owner);
 
 				// create a new page to get a new ID
-				one.CreatePage(sectionId, out var indexId);
+				one.CreatePage(sectionId, out indexId);
 				var indexPage = one.GetPage(indexId);
 
 				indexPage.Title = "Page Index";
@@ -86,7 +92,8 @@ namespace River.OneMoreAddIn.Commands
 					var page = one.GetPage(pageId);
 					var ns = page.Namespace;
 
-					//progress.SetMessage(page.Title);
+					progress.SetMessage(page.Title);
+					progress.Increment(1);
 
 					var link = one.GetHyperlink(page.PageId, string.Empty);
 
@@ -94,11 +101,14 @@ namespace River.OneMoreAddIn.Commands
 						new XElement(ns + "T",
 							new XCData($"<a href=\"{link}\">{page.Title}</a>"))
 						));
-
-					//progress.Increment();
-				//}
+				}
 
 				one.Update(indexPage);
+			}
+
+			// navigate after progress dialog is closed otherwise it will hang!
+			if (indexId != null)
+			{
 				one.NavigateTo(indexId);
 			}
 		}
@@ -178,7 +188,8 @@ namespace River.OneMoreAddIn.Commands
 				// update target section
 				one.UpdateHierarchy(section);
 
-				one.NavigateTo(pageIds.Last());
+				// navigate after progress dialog is closed otherwise it will hang!
+				one.NavigateTo(sectionId);
 			}
 		}
 	}
