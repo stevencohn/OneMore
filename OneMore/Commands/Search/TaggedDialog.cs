@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			//if (NeedsLocalizing())
+			if (NeedsLocalizing())
 			{
 				Text = Resx.TaggedDialog_Title;
 
