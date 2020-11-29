@@ -2,13 +2,13 @@
 // Copyright © 2018 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SearchAndReplaceDialog : LocalizableForm
+	internal partial class SearchAndReplaceDialog : Dialogs.LocalizableForm
 	{
 		public SearchAndReplaceDialog ()
 		{
