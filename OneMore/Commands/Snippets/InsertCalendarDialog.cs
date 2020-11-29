@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Drawing;
@@ -10,9 +10,9 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class CalendarDialog : LocalizableForm
+	internal partial class InsertCalendarDialog : Dialogs.LocalizableForm
 	{
-		public CalendarDialog()
+		public InsertCalendarDialog()
 		{
 			InitializeComponent();
 

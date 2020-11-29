@@ -1,6 +1,6 @@
-﻿namespace River.OneMoreAddIn.Dialogs
+﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class CalendarDialog
+	partial class InsertCalendarDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalendarDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InsertCalendarDialog));
 			this.yearLabel = new System.Windows.Forms.Label();
 			this.yearBox = new System.Windows.Forms.NumericUpDown();
 			this.monthLabel = new System.Windows.Forms.Label();

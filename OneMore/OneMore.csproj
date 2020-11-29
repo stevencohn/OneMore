@@ -219,11 +219,11 @@
     <Compile Include="Commands\Extras\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
     <Compile Include="Commands\Images\ResizeImagesCommand.cs" />
-    <Compile Include="Dialogs\CalendarDialog.cs">
+    <Compile Include="Commands\Snippets\InsertCalendarDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\CalendarDialog.Designer.cs">
-      <DependentUpon>CalendarDialog.cs</DependentUpon>
+    <Compile Include="Commands\Snippets\InsertCalendarDialog.Designer.cs">
+      <DependentUpon>InsertCalendarDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ExportDialog.cs">
       <SubType>Form</SubType>
@@ -300,11 +300,11 @@
     <Compile Include="Dialogs\TimestampDialog.Designer.cs">
       <DependentUpon>TimestampDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TocDialog.cs">
+    <Compile Include="Commands\Snippets\InsertTocDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TocDialog.Designer.cs">
-      <DependentUpon>TocDialog.cs</DependentUpon>
+    <Compile Include="Commands\Snippets\InsertTocDialog.Designer.cs">
+      <DependentUpon>InsertTocDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HierarchyNode.cs" />
     <Compile Include="Helpers\HierarchyView.cs">
@@ -595,8 +595,8 @@
     <EmbeddedResource Include="Commands\Tools\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CalendarDialog.resx">
-      <DependentUpon>CalendarDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Snippets\InsertCalendarDialog.resx">
+      <DependentUpon>InsertCalendarDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\ChangePageColorDialog.resx">
       <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
@@ -658,8 +658,8 @@
     <EmbeddedResource Include="Dialogs\TimestampDialog.resx">
       <DependentUpon>TimestampDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TocDialog.resx">
-      <DependentUpon>TocDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Snippets\InsertTocDialog.resx">
+      <DependentUpon>InsertTocDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ar-SA.resx">
       <SubType>Designer</SubType>

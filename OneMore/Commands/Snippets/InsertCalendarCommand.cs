@@ -2,12 +2,10 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
-	using System.Globalization;
 	using System.Linq;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -34,7 +32,7 @@ namespace River.OneMoreAddIn
 			int year;
 			int month;
 			bool large;
-			using (var dialog = new CalendarDialog())
+			using (var dialog = new InsertCalendarDialog())
 			{
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{

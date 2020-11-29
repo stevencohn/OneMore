@@ -2,14 +2,14 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 
 
-	internal partial class TocDialog : LocalizableForm
+	internal partial class InsertTocDialog : Dialogs.LocalizableForm
 	{
-		public TocDialog()
+		public InsertTocDialog()
 		{
 			InitializeComponent();
 
