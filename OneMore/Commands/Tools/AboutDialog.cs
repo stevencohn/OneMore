@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Updater;
 	using System;
@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class AboutDialog : LocalizableForm
+	internal partial class AboutDialog : Dialogs.LocalizableForm
 	{
 
 		public AboutDialog()

@@ -4,7 +4,7 @@
 
 #pragma warning disable CS3001  // Type is not CLS-compliant
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Dialogs
 	/// <summary>
 	/// A dialog to view page and hierarchy XML and update page XML if desired.
 	/// </summary>
-	internal partial class XmlDialog : LocalizableForm
+	internal partial class ShowXmlDialog : Dialogs.LocalizableForm
 	{
 
 		private OneNote one;
@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Dialogs
 		private int findIndex = -1;
 
 
-		public XmlDialog()
+		public ShowXmlDialog()
 		{
 			InitializeComponent();
 

@@ -1,6 +1,6 @@
-﻿namespace River.OneMoreAddIn.Dialogs
+﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class XmlDialog
+	partial class ShowXmlDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -33,7 +33,7 @@
 		/// </summary>
 		private void InitializeComponent ()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XmlDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowXmlDialog));
 			this.tabs = new System.Windows.Forms.TabControl();
 			this.pageTab = new System.Windows.Forms.TabPage();
 			this.pageBox = new System.Windows.Forms.RichTextBox();

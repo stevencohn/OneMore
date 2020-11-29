@@ -417,10 +417,10 @@
     <Compile Include="Helpers\Updater\Updater.cs" />
     <Compile Include="Helpers\Extensions\XCDataExtensions.cs" />
     <Compile Include="Helpers\Extensions\XElementExtensions.cs" />
-    <Compile Include="Dialogs\AboutDialog.cs">
+    <Compile Include="Commands\Tools\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\AboutDialog.Designer.cs">
+    <Compile Include="Commands\Tools\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\CropImageDialog.cs">
@@ -488,11 +488,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="Helpers\Win32WindowHandle.cs" />
-    <Compile Include="Dialogs\XmlDialog.cs">
+    <Compile Include="Commands\Tools\ShowXmlDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\XmlDialog.Designer.cs">
-      <DependentUpon>XmlDialog.cs</DependentUpon>
+    <Compile Include="Commands\Tools\ShowXmlDialog.Designer.cs">
+      <DependentUpon>ShowXmlDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Styles\Stylizer.cs" />
     <Compile Include="Styles\XmlStyleBase.cs" />
@@ -592,7 +592,7 @@
       <DependentUpon>ImportDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\AboutDialog.resx">
+    <EmbeddedResource Include="Commands\Tools\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CalendarDialog.resx">
@@ -698,8 +698,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\XmlDialog.resx">
-      <DependentUpon>XmlDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Tools\ShowXmlDialog.resx">
+      <DependentUpon>ShowXmlDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings\SheetBase.resx">
       <DependentUpon>SheetBase.cs</DependentUpon>
