@@ -845,22 +845,6 @@ Cuadernos</value>
     <value>Ordenar por:</value>
     <comment>label</comment>
   </data>
-  <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Iconos de título</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="EmojiDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Seleccione uno o más iconos para agregar al título de la página</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="EmojiDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
-  </data>
   <data name="Emoji_Architecture" xml:space="preserve">
     <value>Arquitectura</value>
     <comment>emoji</comment>
@@ -1125,30 +1109,6 @@ Cuadernos</value>
     <value>Eliminar números de todas las secciones de este cuaderno</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="PageNumberingDialog.Text" xml:space="preserve">
-    <value>Numeración de páginas</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="PageNumberingDialog_alphaRadio.Text" xml:space="preserve">
-    <value>Alfanumérico</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
-    <value>Eliminar/limpiar la numeración existente</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
-    <value>Numérico</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
-  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Página de numeración {0}</value>
     <comment>progress status dialog</comment>
@@ -1164,43 +1124,6 @@ Cuadernos</value>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>Alternar tacha en el texto marcado con etiquetas de tareas pendientes completas o incompletas</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="PhoneticsDialog.Text" xml:space="preserve">
-    <value>Fonética</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
-    <value>Idioma</value>
-    <comment>label</comment>
-  </data>
-  <data name="PhoneticsDialog_languages" xml:space="preserve">
-    <value>en, inglés
-hola hindi
-es, español
-fr, francés
-ja, japonés
-ru, ruso
-de, alemán
-eso, italiano
-ko, coreano
-pt-BR, portugués brasileño
-ar, árabe
-tr, turco
-zh-CN, chino (simplificado)</value>
-    <comment>Recognized languages, one per line.
-ISO-code then comma then language name</comment>
-  </data>
-  <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
-    <value>Palabra</value>
-    <comment>label</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Insertar pronunciación</value>
@@ -1290,42 +1213,6 @@ Vuelve a intentarlo más tarde</value>
   <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
     <value>Okay</value>
     <comment>ok button</comment>
-  </data>
-  <data name="TimestampDialog.Text" xml:space="preserve">
-    <value>Mostrar/Ocultar fecha y hora</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TimestampDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="TimestampDialog_hideRadio.Text" xml:space="preserve">
-    <value>Ocultar fecha y hora</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="TimestampDialog_pageRadio.Text" xml:space="preserve">
-    <value>Esta página</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Alcance</value>
-    <comment>group box</comment>
-  </data>
-  <data name="TimestampDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Todas las páginas de esta sección</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_showRadio.Text" xml:space="preserve">
-    <value>Mostrar fecha y hora</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_toggleGroup.Text" xml:space="preserve">
-    <value>Palanca</value>
-    <comment>group box</comment>
   </data>
   <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
     <value>Seleccionar todo</value>
@@ -1554,38 +1441,6 @@ Vuelve a intentarlo más tarde</value>
     <value>{0} (Ctrl + Alt + Mayús + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
-  <data name="TocDialog.Text" xml:space="preserve">
-    <value>Tabla de contenido</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TocDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
-  <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Agregar página con tabla de secciones en este cuaderno</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
-  </data>
-  <data name="TocDialog_pageRadio.Text" xml:space="preserve">
-    <value>Insertar tabla de títulos en esta página</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_pagesBox.Text" xml:space="preserve">
-    <value>Incluir páginas en cada sección</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Agregar página con tabla de páginas en esta sección</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_topBox.Text" xml:space="preserve">
-    <value>Agregue un enlace a cada encabezado para saltar a la parte superior de la página</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Tabla de contenido</value>
     <comment>page name</comment>
@@ -1661,74 +1516,6 @@ Vuelve a intentarlo más tarde</value>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Convertir texto en tabla</value>
     <comment>Ribbon OneMore menu item, extras</comment>
-  </data>
-  <data name="XmlDialog.Text" xml:space="preserve">
-    <value>OneMore XML</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="XmlDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="XmlDialog_currNotebookButton.Text" xml:space="preserve">
-    <value>Cuaderno actual</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>Sección actual</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_hideBox.Text" xml:space="preserve">
-    <value>Ocultar atributos editados por (desmarque para editar la página)</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">
-    <value>Quitar LF de CDATA</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="XmlDialog_hierTab.Text" xml:space="preserve">
-    <value>Jerarquía</value>
-    <comment>tab</comment>
-  </data>
-  <data name="XmlDialog_notebooksHierButton.Text" xml:space="preserve">
-    <value>Cuadernos</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_okButton.Text" xml:space="preserve">
-    <value>Actualizar página</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="XmlDialog_pageLinkLabel.Text" xml:space="preserve">
-    <value>Enlace:</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pageNameLabel.Text" xml:space="preserve">
-    <value>Nombre:</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pagePathLabel.Text" xml:space="preserve">
-    <value>Camino:</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pagesHierButton.Text" xml:space="preserve">
-    <value>Páginas</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Página</value>
-    <comment>tab</comment>
-  </data>
-  <data name="XmlDialog_sectionsHierButton.Text" xml:space="preserve">
-    <value>Secciones</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_selectButton.Text" xml:space="preserve">
-    <value>Seleccionar todo</value>
-    <comment>button</comment>
-  </data>
-  <data name="XmlDialog_wrapBox.Text" xml:space="preserve">
-    <value>Ajustar texto</value>
-    <comment>checkbox</comment>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -2209,14 +1996,6 @@ Archivo XML (*.xml)</value>
     <value>Importar</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
-    <value>Elija el estilo de numeración</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
-    <value>Numeración</value>
-    <comment>group</comment>
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Espacio después:</value>
     <comment>label</comment>
@@ -2458,5 +2237,226 @@ En esta sección</value>
   <data name="ribTaggingButton_Label" xml:space="preserve">
     <value>Página de etiqueta</value>
     <comment>menu item</comment>
+  </data>
+  <data name="AddTitleIconDialog.Text" xml:space="preserve">
+    <value>Iconos de título</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddTitleIconDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
+    <value>Seleccione uno o más iconos para agregar al título de la página</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="AddTitleIconDialog_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="NumberPagesDialog.Text" xml:space="preserve">
+    <value>Numeración de páginas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="NumberPagesDialog_alphaRadio.Text" xml:space="preserve">
+    <value>Alfanumérico</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="NumberPagesDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
+    <value>Eliminar / limpiar la numeración existente</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NumberPagesDialog_numRadio.Text" xml:space="preserve">
+    <value>Numérico</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="NumberPagesDialog_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PronunciateDialog.Text" xml:space="preserve">
+    <value>Fonética</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PronunciateDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
+    <value>Idioma</value>
+    <comment>label</comment>
+  </data>
+  <data name="PronunciateDialog_languages" xml:space="preserve">
+    <value>en, inglés
+hola hindi
+es, español
+fr, francés
+ja, japonés
+ru, ruso
+de, alemán
+eso, italiano
+ko, coreano
+pt-BR, portugués brasileño
+ar, árabe
+tr, turco
+zh-CN, chino (simplificado)</value>
+    <comment>Recognized languages, one per line.
+ISO-code then comma then language name</comment>
+  </data>
+  <data name="PronunciateDialog_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
+    <value>Palabra</value>
+    <comment>label</comment>
+  </data>
+  <data name="ToggleDttmDialog.Text" xml:space="preserve">
+    <value>Mostrar / Ocultar fecha y hora</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ToggleDttmDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ToggleDttmDialog_hideRadio.Text" xml:space="preserve">
+    <value>Ocultar fecha y hora</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
+    <value>Esta página</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
+    <value>Alcance</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
+    <value>Todas las páginas de esta sección</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
+    <value>Mostrar fecha y hora</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_toggleGroup.Text" xml:space="preserve">
+    <value>Palanca</value>
+    <comment>group box</comment>
+  </data>
+  <data name="InsertTocDialog.Text" xml:space="preserve">
+    <value>Tabla de contenido</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="InsertTocDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Agregar página con tabla de secciones en este cuaderno</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
+    <value>Insertar tabla de títulos en esta página</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>Incluir páginas en cada sección</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
+    <value>Agregar página con tabla de páginas en esta sección</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
+    <value>Agregue un enlace a cada encabezado para saltar a la parte superior de la página</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog.Text" xml:space="preserve">
+    <value>OneMore XML</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ShowXmlDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
+    <value>Cuaderno actual</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
+    <value>Sección actual</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
+    <value>Ocultar atributos editados por (desmarque para editar la página)</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
+    <value>Quitar LF de CDATA</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_hierTab.Text" xml:space="preserve">
+    <value>Jerarquía</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
+    <value>Cuadernos</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
+    <value>Actualizar página</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ShowXmlDialog_pageLinkLabel.Text" xml:space="preserve">
+    <value>Enlace:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pageNameLabel.Text" xml:space="preserve">
+    <value>Nombre:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
+    <value>Camino:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pagesHierButton.Text" xml:space="preserve">
+    <value>Páginas</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
+    <value>Página</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_sectionsHierButton.Text" xml:space="preserve">
+    <value>Secciones</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
+    <value>Seleccionar todo</value>
+    <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
+    <value>Ajustar texto</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NumberPagesDialog_introLabel.Text" xml:space="preserve">
+    <value>Elija el estilo de numeración</value>
+    <comment>label</comment>
+  </data>
+  <data name="NumberPagesDialog_numberingGroup.Text" xml:space="preserve">
+    <value>Numeración</value>
+    <comment>group</comment>
   </data>
 </root>

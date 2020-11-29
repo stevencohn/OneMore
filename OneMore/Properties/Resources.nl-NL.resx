@@ -846,22 +846,6 @@ Notebooks</value>
     <value>Sorteer op:</value>
     <comment>label</comment>
   </data>
-  <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Titel Pictogrammen</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="EmojiDialog_cancelButton.Text" xml:space="preserve">
-    <value>annuleren</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>Selecteer een of meer pictogrammen om toe te voegen aan de paginatitel</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="EmojiDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>ok button</comment>
-  </data>
   <data name="Emoji_Architecture" xml:space="preserve">
     <value>Architectuur</value>
     <comment>emoji</comment>
@@ -1126,30 +1110,6 @@ Notebooks</value>
     <value>Verwijder nummers uit alle secties in dit notitieboekje</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="PageNumberingDialog.Text" xml:space="preserve">
-    <value>Paginanummering</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="PageNumberingDialog_alphaRadio.Text" xml:space="preserve">
-    <value>Alfanumeriek</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
-    <value>annuleren</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
-    <value>Bestaande nummering verwijderen/opschonen</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
-    <value>Numeriek</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>ok button</comment>
-  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Nummeringspagina {0}</value>
     <comment>progress status dialog</comment>
@@ -1165,43 +1125,6 @@ Notebooks</value>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>Schakel het doorhalen van tekst die is gemarkeerd met complete of onvolledige Taken-tags in of uit</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="PhoneticsDialog.Text" xml:space="preserve">
-    <value>Fonetiek</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
-    <value>annuleren</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
-    <value>Taal</value>
-    <comment>label</comment>
-  </data>
-  <data name="PhoneticsDialog_languages" xml:space="preserve">
-    <value>en, Engels
-hoi, Hindi
-es, Spaans
-fr, Frans
-ja, Japans
-ru, Russisch
-de, Duits
-it, Italiaans
-ko, Koreaans
-pt-BR, Braziliaans Portugees
-ar, Arabisch
-tr, Turks
-zh-CN, Chinees (vereenvoudigd)</value>
-    <comment>Recognized languages, one per line.
-ISO-code then comma then language name</comment>
-  </data>
-  <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
-    <value>Woord</value>
-    <comment>label</comment>
   </data>
   <data name="ribPronunciateButton_Label" xml:space="preserve">
     <value>Uitspraak invoegen</value>
@@ -1291,42 +1214,6 @@ Probeer het later nog eens</value>
   <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>ok button</comment>
-  </data>
-  <data name="TimestampDialog.Text" xml:space="preserve">
-    <value>Datum en tijd weergeven/verbergen</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TimestampDialog_cancelButton.Text" xml:space="preserve">
-    <value>annuleren</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="TimestampDialog_hideRadio.Text" xml:space="preserve">
-    <value>Verberg datum en tijd</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="TimestampDialog_pageRadio.Text" xml:space="preserve">
-    <value>Deze pagina</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_scopeGroup.Text" xml:space="preserve">
-    <value>Reikwijdte</value>
-    <comment>group box</comment>
-  </data>
-  <data name="TimestampDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Alle pagina's in deze sectie</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_showRadio.Text" xml:space="preserve">
-    <value>Toon datum en tijd</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_toggleGroup.Text" xml:space="preserve">
-    <value>Wissel</value>
-    <comment>group box</comment>
   </data>
   <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
     <value>Selecteer alles</value>
@@ -1555,38 +1442,6 @@ Probeer het later nog eens</value>
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
-  <data name="TocDialog.Text" xml:space="preserve">
-    <value>Inhoudsopgave</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TocDialog_cancelButton.Text" xml:space="preserve">
-    <value>annuleren</value>
-    <comment>button</comment>
-  </data>
-  <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Voeg een pagina toe met een tabel met secties in dit notitieboekje</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
-  </data>
-  <data name="TocDialog_pageRadio.Text" xml:space="preserve">
-    <value>Voeg een tabel met koppen in op deze pagina</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_pagesBox.Text" xml:space="preserve">
-    <value>Voeg pagina's toe aan elke sectie</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Voeg een pagina met een paginatabel toe in deze sectie</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_topBox.Text" xml:space="preserve">
-    <value>Voeg een link toe aan elke kop om naar de bovenkant van de pagina te gaan</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Inhoudsopgave</value>
     <comment>page name</comment>
@@ -1662,74 +1517,6 @@ Probeer het later nog eens</value>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Converteer tekst naar tabel</value>
     <comment>Ribbon OneMore menu item, extras</comment>
-  </data>
-  <data name="XmlDialog.Text" xml:space="preserve">
-    <value>OneMore XML</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="XmlDialog_cancelButton.Text" xml:space="preserve">
-    <value>annuleren</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="XmlDialog_currNotebookButton.Text" xml:space="preserve">
-    <value>Huidige notebook</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>Huidige sectie</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_hideBox.Text" xml:space="preserve">
-    <value>Verberg door bewerkte kenmerken (vink uit om pagina te bewerken)</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">
-    <value>Verwijder LF uit CDATA</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="XmlDialog_hierTab.Text" xml:space="preserve">
-    <value>Hiërarchie</value>
-    <comment>tab</comment>
-  </data>
-  <data name="XmlDialog_notebooksHierButton.Text" xml:space="preserve">
-    <value>Notebooks</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_okButton.Text" xml:space="preserve">
-    <value>Update pagina</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="XmlDialog_pageLinkLabel.Text" xml:space="preserve">
-    <value>Koppeling:</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pageNameLabel.Text" xml:space="preserve">
-    <value>Naam:</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pagePathLabel.Text" xml:space="preserve">
-    <value>Pad:</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pagesHierButton.Text" xml:space="preserve">
-    <value>Pagina's</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_pageTab.Text" xml:space="preserve">
-    <value>Bladzijde</value>
-    <comment>tab</comment>
-  </data>
-  <data name="XmlDialog_sectionsHierButton.Text" xml:space="preserve">
-    <value>Secties</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_selectButton.Text" xml:space="preserve">
-    <value>Selecteer alles</value>
-    <comment>button</comment>
-  </data>
-  <data name="XmlDialog_wrapBox.Text" xml:space="preserve">
-    <value>Omloop tekst</value>
-    <comment>checkbox</comment>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -2210,14 +1997,6 @@ XML-bestand (*.xml)</value>
     <value>Importeren</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
-    <value>Kies de nummeringsstijl</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
-    <value>Nummering</value>
-    <comment>group</comment>
-  </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Ruimte na:</value>
     <comment>label</comment>
@@ -2459,5 +2238,226 @@ In deze sectie</value>
   <data name="ribTaggingButton_Label" xml:space="preserve">
     <value>Tag pagina</value>
     <comment>menu item</comment>
+  </data>
+  <data name="AddTitleIconDialog.Text" xml:space="preserve">
+    <value>Titel Pictogrammen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddTitleIconDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
+    <value>Selecteer een of meer pictogrammen om toe te voegen aan de paginatitel</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="AddTitleIconDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="NumberPagesDialog.Text" xml:space="preserve">
+    <value>Paginanummering</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="NumberPagesDialog_alphaRadio.Text" xml:space="preserve">
+    <value>Alfanumeriek</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="NumberPagesDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
+    <value>Bestaande nummering verwijderen / opschonen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NumberPagesDialog_numRadio.Text" xml:space="preserve">
+    <value>Numeriek</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="NumberPagesDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PronunciateDialog.Text" xml:space="preserve">
+    <value>Fonetiek</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PronunciateDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
+    <value>Taal</value>
+    <comment>label</comment>
+  </data>
+  <data name="PronunciateDialog_languages" xml:space="preserve">
+    <value>en, Engels
+hoi, Hindi
+es, Spaans
+fr, Frans
+ja, Japans
+ru, Russisch
+de, Duits
+it, Italiaans
+ko, Koreaans
+pt-BR, Braziliaans Portugees
+ar, Arabisch
+tr, Turks
+zh-CN, Chinees (vereenvoudigd)</value>
+    <comment>Recognized languages, one per line.
+ISO-code then comma then language name</comment>
+  </data>
+  <data name="PronunciateDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
+    <value>Woord</value>
+    <comment>label</comment>
+  </data>
+  <data name="ToggleDttmDialog.Text" xml:space="preserve">
+    <value>Datum en tijd weergeven / verbergen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ToggleDttmDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ToggleDttmDialog_hideRadio.Text" xml:space="preserve">
+    <value>Verberg datum en tijd</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
+    <value>Deze pagina</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
+    <value>Reikwijdte</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
+    <value>Alle pagina's in deze sectie</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
+    <value>Toon datum en tijd</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_toggleGroup.Text" xml:space="preserve">
+    <value>Wissel</value>
+    <comment>group box</comment>
+  </data>
+  <data name="InsertTocDialog.Text" xml:space="preserve">
+    <value>Inhoudsopgave</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="InsertTocDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Voeg een pagina toe met een tabel met secties in dit notitieboekje</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
+    <value>Voeg een tabel met koppen in op deze pagina</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>Voeg pagina's toe aan elke sectie</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
+    <value>Voeg een pagina met een paginatabel toe in deze sectie</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
+    <value>Voeg een link toe aan elke kop om naar de bovenkant van de pagina te gaan</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog.Text" xml:space="preserve">
+    <value>OneMore XML</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ShowXmlDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
+    <value>Huidige notebook</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
+    <value>Huidige sectie</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
+    <value>Verberg door bewerkte attributen (vink uit om pagina te bewerken)</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
+    <value>Verwijder LF uit CDATA</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_hierTab.Text" xml:space="preserve">
+    <value>Hiërarchie</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
+    <value>Notebooks</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
+    <value>Update pagina</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ShowXmlDialog_pageLinkLabel.Text" xml:space="preserve">
+    <value>Koppeling:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pageNameLabel.Text" xml:space="preserve">
+    <value>Naam:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
+    <value>Pad:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pagesHierButton.Text" xml:space="preserve">
+    <value>Pagina's</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
+    <value>Bladzijde</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_sectionsHierButton.Text" xml:space="preserve">
+    <value>Secties</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
+    <value>Selecteer alles</value>
+    <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
+    <value>Omloop tekst</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NumberPagesDialog_introLabel.Text" xml:space="preserve">
+    <value>Kies de nummeringsstijl</value>
+    <comment>label</comment>
+  </data>
+  <data name="NumberPagesDialog_numberingGroup.Text" xml:space="preserve">
+    <value>Nummering</value>
+    <comment>group</comment>
   </data>
 </root>
