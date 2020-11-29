@@ -634,7 +634,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ReorderStyles(object sender, EventArgs e)
 		{
-			using (var dialog = new Dialogs.ReorderDialog(namesBox.Items))
+			using (var dialog = new ReorderDialog(namesBox.Items))
 			{
 				var result = dialog.ShowDialog(this);
 				if (result == DialogResult.OK)

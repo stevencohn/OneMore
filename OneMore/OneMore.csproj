@@ -338,10 +338,10 @@
     <Compile Include="Commands\Styles\ChangePageColorDialog.Designer.cs">
       <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ReorderDialog.cs">
+    <Compile Include="Commands\Styles\ReorderDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ReorderDialog.Designer.cs">
+    <Compile Include="Commands\Styles\ReorderDialog.Designer.cs">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ScaledToolStrip.cs">
@@ -631,7 +631,7 @@
     <EmbeddedResource Include="Commands\Clean\RemoveSpacingDialog.resx">
       <DependentUpon>RemoveSpacingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
+    <EmbeddedResource Include="Commands\Styles\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Images\ResizeImagesDialog.resx">

@@ -2,7 +2,7 @@
 // Copyright © 2018 Steven M Cohn.  Yada yada...
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System.Drawing;
 	using System.Linq;
@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ReorderDialog : LocalizableForm
+	internal partial class ReorderDialog : Dialogs.LocalizableForm
 	{
 
 		public ReorderDialog(ComboBox.ObjectCollection items)
