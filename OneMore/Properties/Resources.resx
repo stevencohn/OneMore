@@ -1128,27 +1128,27 @@ Notebooks</value>
     <value>Remove numbers from all sectionsin this notebook</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="PageNumberingDialog.Text" xml:space="preserve">
+  <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Page Numbering</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PageNumberingDialog_alphaRadio.Text" xml:space="preserve">
+  <data name="NumberPagesDialog_alphaRadio.Text" xml:space="preserve">
     <value>Alpha-numeric</value>
     <comment>radio button</comment>
   </data>
-  <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
+  <data name="NumberPagesDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
+  <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
     <value>Remove/cleanup existing numbering</value>
     <comment>checkbox</comment>
   </data>
-  <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
+  <data name="NumberPagesDialog_numRadio.Text" xml:space="preserve">
     <value>Numeric</value>
     <comment>radio button</comment>
   </data>
-  <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
+  <data name="NumberPagesDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>ok button</comment>
   </data>
@@ -2220,11 +2220,11 @@ In this section</value>
     <value>Import</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
+  <data name="NumberPagesDialog_introLabel.Text" xml:space="preserve">
     <value>Choose the numbering style</value>
     <comment>label</comment>
   </data>
-  <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
+  <data name="NumberPagesDialog_numberingGroup.Text" xml:space="preserve">
     <value>Numbering</value>
     <comment>group</comment>
   </data>

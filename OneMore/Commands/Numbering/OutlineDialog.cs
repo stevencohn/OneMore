@@ -5,7 +5,7 @@
 #pragma warning disable CS3003  // Type is not CLS-compliant
 #pragma warning disable IDE1006 // Words must begin with upper case
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class OutlineDialog : LocalizableForm
+	internal partial class OutlineDialog : Dialogs.LocalizableForm
 	{
 		private const int SysMenuId = 1000;
 
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Dialogs
 					TagSymbol = settings.Get<int>("tagSymbol");
 					if (TagSymbol > 0)
 					{
-						using (var dialog = new TagPickerDialog(0, 0))
+						using (var dialog = new Dialogs.TagPickerDialog(0, 0))
 						{
 							var glyph = dialog.GetGlyph(TagSymbol);
 							if (glyph != null)
@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn.Dialogs
 		{
 			var location = PointToScreen(tagButton.Location);
 
-			using (var dialog = new TagPickerDialog(
+			using (var dialog = new Dialogs.TagPickerDialog(
 				location.X + tagButton.Bounds.Location.X - tagButton.Width,
 				location.Y + tagButton.Bounds.Location.Y))
 			{

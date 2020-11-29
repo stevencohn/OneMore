@@ -237,20 +237,20 @@
     <Compile Include="Commands\Formulas\FormulaDialog.Designer.cs">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\OutlineDialog.cs">
+    <Compile Include="Commands\Numbering\OutlineDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\OutlineDialog.Designer.cs">
+    <Compile Include="Commands\Numbering\OutlineDialog.Designer.cs">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\LocalizableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PageNumberingDialog.cs">
+    <Compile Include="Commands\Numbering\NumberPagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PageNumberingDialog.Designer.cs">
-      <DependentUpon>PageNumberingDialog.cs</DependentUpon>
+    <Compile Include="Commands\Numbering\NumberPagesDialog.Designer.cs">
+      <DependentUpon>NumberPagesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Edit\PronunciateDialog.cs">
       <SubType>Form</SubType>
@@ -616,11 +616,11 @@
     <EmbeddedResource Include="Commands\Formulas\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\OutlineDialog.resx">
+    <EmbeddedResource Include="Commands\Numbering\OutlineDialog.resx">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PageNumberingDialog.resx">
-      <DependentUpon>PageNumberingDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Numbering\NumberPagesDialog.resx">
+      <DependentUpon>NumberPagesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Edit\PronunciateDialog.resx">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>

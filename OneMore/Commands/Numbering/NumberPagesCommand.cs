@@ -2,9 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -24,7 +23,7 @@ namespace River.OneMoreAddIn
 		private OneNote one;
 		private XNamespace ns;
 		private RemovePageNumbersCommand cleaner;
-		private ProgressDialog progress;
+		private Dialogs.ProgressDialog progress;
 
 
 		public NumberPagesCommand()
@@ -34,7 +33,7 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
-			using (var dialog = new PageNumberingDialog())
+			using (var dialog = new NumberPagesDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
@@ -63,7 +62,7 @@ namespace River.OneMoreAddIn
 								cleaner = new RemovePageNumbersCommand();
 							}
 
-							using (progress = new ProgressDialog())
+							using (progress = new Dialogs.ProgressDialog())
 							{
 								progress.SetMaximum(pages.Count);
 								progress.Show(owner);

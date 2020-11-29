@@ -8,7 +8,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Linq;
 	using System.Net;

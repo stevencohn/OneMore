@@ -22,7 +22,6 @@ namespace River.OneMoreAddIn.Commands
 	{
 
 		private OneNote one;
-		private readonly ILogger logger;
 		private int findIndex = -1;
 
 
@@ -61,8 +60,6 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton"
 				});
 			}
-
-			logger = Logger.Current;
 
 			Width = Math.Min(2000, (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8));
 			Height = Math.Min(1500, (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));

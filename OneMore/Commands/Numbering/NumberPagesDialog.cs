@@ -5,22 +5,22 @@
 #pragma warning disable CS3003  // Type is not CLS-compliant
 #pragma warning disable IDE1006 // Words must begin with upper case
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class PageNumberingDialog : LocalizableForm
+	internal partial class NumberPagesDialog : Dialogs.LocalizableForm
 	{
-		public PageNumberingDialog()
+		public NumberPagesDialog()
 		{
 			InitializeComponent();
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.PageNumberingDialog_Text;
+				Text = Resx.NumberPagesDialog_Text;
 
 				Localize(new string[]
 				{

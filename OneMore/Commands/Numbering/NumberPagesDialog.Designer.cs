@@ -1,6 +1,6 @@
-﻿namespace River.OneMoreAddIn.Dialogs
+﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class PageNumberingDialog
+	partial class NumberPagesDialog
 	{
 		/// <summary>
 		/// Required designer variable.

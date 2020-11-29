@@ -2021,6 +2021,78 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alpha-numeric.
+        /// </summary>
+        internal static string NumberPagesDialog_alphaRadio_Text {
+            get {
+                return ResourceManager.GetString("NumberPagesDialog_alphaRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string NumberPagesDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("NumberPagesDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove/cleanup existing numbering.
+        /// </summary>
+        internal static string NumberPagesDialog_cleanBox_Text {
+            get {
+                return ResourceManager.GetString("NumberPagesDialog_cleanBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the numbering style.
+        /// </summary>
+        internal static string NumberPagesDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("NumberPagesDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numbering.
+        /// </summary>
+        internal static string NumberPagesDialog_numberingGroup_Text {
+            get {
+                return ResourceManager.GetString("NumberPagesDialog_numberingGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numeric.
+        /// </summary>
+        internal static string NumberPagesDialog_numRadio_Text {
+            get {
+                return ResourceManager.GetString("NumberPagesDialog_numRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string NumberPagesDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("NumberPagesDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Numbering.
+        /// </summary>
+        internal static string NumberPagesDialog_Text {
+            get {
+                return ResourceManager.GetString("NumberPagesDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string OK {
@@ -2207,78 +2279,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PageColorDialog_Text {
             get {
                 return ResourceManager.GetString("PageColorDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Alpha-numeric.
-        /// </summary>
-        internal static string PageNumberingDialog_alphaRadio_Text {
-            get {
-                return ResourceManager.GetString("PageNumberingDialog_alphaRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string PageNumberingDialog_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("PageNumberingDialog_cancelButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove/cleanup existing numbering.
-        /// </summary>
-        internal static string PageNumberingDialog_cleanBox_Text {
-            get {
-                return ResourceManager.GetString("PageNumberingDialog_cleanBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose the numbering style.
-        /// </summary>
-        internal static string PageNumberingDialog_introLabel_Text {
-            get {
-                return ResourceManager.GetString("PageNumberingDialog_introLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Numbering.
-        /// </summary>
-        internal static string PageNumberingDialog_numberingGroup_Text {
-            get {
-                return ResourceManager.GetString("PageNumberingDialog_numberingGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Numeric.
-        /// </summary>
-        internal static string PageNumberingDialog_numRadio_Text {
-            get {
-                return ResourceManager.GetString("PageNumberingDialog_numRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string PageNumberingDialog_okButton_Text {
-            get {
-                return ResourceManager.GetString("PageNumberingDialog_okButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Page Numbering.
-        /// </summary>
-        internal static string PageNumberingDialog_Text {
-            get {
-                return ResourceManager.GetString("PageNumberingDialog.Text", resourceCulture);
             }
         }
         
