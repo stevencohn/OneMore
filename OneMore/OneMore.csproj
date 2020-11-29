@@ -373,43 +373,43 @@
     <Compile Include="Helpers\Office\Word.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Models\QuickStyleMapping.cs" />
-    <Compile Include="Settings\ContextMenuSheet.cs">
+    <Compile Include="Commands\Tools\Settings\ContextMenuSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\ContextMenuSheet.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\ContextMenuSheet.Designer.cs">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\FadingLabel.cs">
+    <Compile Include="Commands\Tools\Settings\FadingLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Settings\HighlightsSheet.cs">
+    <Compile Include="Commands\Tools\Settings\HighlightsSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\HighlightsSheet.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\HighlightsSheet.Designer.cs">
       <DependentUpon>HighlightsSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\RibbonBarSheet.cs">
+    <Compile Include="Commands\Tools\Settings\RibbonBarSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\RibbonBarSheet.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\RibbonBarSheet.Designer.cs">
       <DependentUpon>RibbonBarSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SearchEngineSheet.cs">
+    <Compile Include="Commands\Tools\Settings\SearchEngineSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\SearchEngineSheet.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\SearchEngineSheet.Designer.cs">
       <DependentUpon>SearchEngineSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SettingsCollection.cs" />
-    <Compile Include="Settings\SettingsDialog.cs">
+    <Compile Include="Commands\Tools\Settings\SettingsCollection.cs" />
+    <Compile Include="Commands\Tools\Settings\SettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings\SettingsDialog.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\SettingsDialog.Designer.cs">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SettingsProvider.cs" />
+    <Compile Include="Commands\Tools\Settings\SettingsProvider.cs" />
     <Compile Include="Helpers\Extensions\IEnumerableExtensions.cs" />
-    <Compile Include="Settings\SheetBase.cs">
+    <Compile Include="Commands\Tools\Settings\SheetBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Helpers\Updater\GitAsset.cs" />
@@ -675,19 +675,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.nl-NL.resx" />
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
-    <EmbeddedResource Include="Settings\ContextMenuSheet.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\ContextMenuSheet.resx">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\HighlightsSheet.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\HighlightsSheet.resx">
       <DependentUpon>HighlightsSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\RibbonBarSheet.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\RibbonBarSheet.resx">
       <DependentUpon>RibbonBarSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\SearchEngineSheet.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\SearchEngineSheet.resx">
       <DependentUpon>SearchEngineSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\SettingsDialog.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
@@ -701,7 +701,7 @@
     <EmbeddedResource Include="Commands\Tools\ShowXmlDialog.resx">
       <DependentUpon>ShowXmlDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\SheetBase.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\SheetBase.resx">
       <DependentUpon>SheetBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
