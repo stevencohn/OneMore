@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RunPluginDialog : Dialogs.LocalizableForm
+	internal partial class RunPluginDialog : UI.LocalizableForm
 	{
 		private const int SysMenuId = 1000;
 

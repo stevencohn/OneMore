@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SplitDialog : Dialogs.LocalizableForm
+	internal partial class SplitDialog : UI.LocalizableForm
 	{
 		public SplitDialog()
 		{
@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(tagButton.Location);
 
-			using (var dialog = new Dialogs.TagPickerDialog(
+			using (var dialog = new UI.TagPickerDialog(
 				location.X + tagButton.Bounds.Location.X - tagButton.Width,
 				location.Y + tagButton.Bounds.Location.Y))
 			{

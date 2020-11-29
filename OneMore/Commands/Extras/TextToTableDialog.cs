@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class TextToTableDialog : Dialogs.LocalizableForm
+	internal partial class TextToTableDialog : UI.LocalizableForm
 	{
 		public enum Delimeter
 		{

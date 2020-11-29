@@ -1,4 +1,8 @@
-﻿namespace River.OneMoreAddIn
+﻿//************************************************************************************************
+// Copyright © 2016 Steven M Cohn.  Yada yada...
+//************************************************************************************************
+
+namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.Drawing;

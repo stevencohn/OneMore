@@ -31,7 +31,7 @@
 			this.gridView = new System.Windows.Forms.DataGridView();
 			this.introPanel = new System.Windows.Forms.Panel();
 			this.introLabel = new System.Windows.Forms.Label();
-			this.toolStrip = new River.OneMoreAddIn.ScaledToolStrip();
+			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.upButton = new System.Windows.Forms.ToolStripButton();
 			this.downButton = new System.Windows.Forms.ToolStripButton();
 			this.refreshButton = new System.Windows.Forms.ToolStripButton();
@@ -205,7 +205,7 @@
 		private System.Windows.Forms.DataGridView gridView;
 		private System.Windows.Forms.Panel introPanel;
 		private System.Windows.Forms.Label introLabel;
-		private ScaledToolStrip toolStrip;
+		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton upButton;

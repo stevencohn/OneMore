@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
@@ -17,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
-	internal partial class TaggingDialog : LocalizableForm
+	internal partial class TaggingDialog : UI.LocalizableForm
 	{
 
 		private static readonly string[] Blacklist = new[]

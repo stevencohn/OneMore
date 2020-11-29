@@ -162,7 +162,7 @@
     </Compile>
     <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
-    <Compile Include="Dialogs\FormTextBox.cs">
+    <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\File\ImportDialog.cs">
@@ -243,7 +243,7 @@
     <Compile Include="Commands\Numbering\OutlineDialog.Designer.cs">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\LocalizableForm.cs">
+    <Compile Include="UI\LocalizableForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Commands\Numbering\NumberPagesDialog.cs">
@@ -258,10 +258,10 @@
     <Compile Include="Commands\Edit\PronunciateDialog.Designer.cs">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ProgressDialog.cs">
+    <Compile Include="UI\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ProgressDialog.Designer.cs">
+    <Compile Include="UI\ProgressDialog.Designer.cs">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Clean\RemoveSpacingDialog.cs">
@@ -282,10 +282,10 @@
     <Compile Include="Commands\File\RunPluginDialog.Designer.cs">
       <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TagPickerDialog.cs">
+    <Compile Include="UI\TagPickerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TagPickerDialog.Designer.cs">
+    <Compile Include="UI\TagPickerDialog.Designer.cs">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Extras\TextToTableDialog.cs">
@@ -306,8 +306,8 @@
     <Compile Include="Commands\Snippets\InsertTocDialog.Designer.cs">
       <DependentUpon>InsertTocDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\HierarchyNode.cs" />
-    <Compile Include="Helpers\HierarchyView.cs">
+    <Compile Include="UI\HierarchyNode.cs" />
+    <Compile Include="UI\HierarchyView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Helpers\GalleryTileFactory.cs" />
@@ -344,7 +344,7 @@
     <Compile Include="Commands\Styles\ReorderDialog.Designer.cs">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ScaledToolStrip.cs">
+    <Compile Include="UI\ScaledToolStrip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\SearchAndReplace\SearchAndReplaceDialog.cs">
@@ -359,7 +359,7 @@
     <Compile Include="Commands\Tools\SortDialog.Designer.cs">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\BasicColors.cs" />
+    <Compile Include="UI\BasicColors.cs" />
     <Compile Include="Helpers\Extensions\ColorExtensions.cs" />
     <Compile Include="Helpers\Hotkeys\Hotkey.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
@@ -429,7 +429,7 @@
     <Compile Include="Commands\Images\CropImageDialog.Designer.cs">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ColorDialogEx.cs">
+    <Compile Include="UI\ColorDialogEx.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Extras\AddTitleIconDialog.cs">
@@ -438,13 +438,13 @@
     <Compile Include="Commands\Extras\AddTitleIconDialog.Designer.cs">
       <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FlatToggleButton.cs">
+    <Compile Include="UI\FlatToggleButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dialogs\FlatToggleButton.Designer.cs">
+    <Compile Include="UI\FlatToggleButton.Designer.cs">
       <DependentUpon>FlatToggleButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FontComboBox.cs">
+    <Compile Include="UI\FontComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Styles\StyleDialog.cs">
@@ -610,7 +610,7 @@
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\FlatToggleButton.resx">
+    <EmbeddedResource Include="UI\FlatToggleButton.resx">
       <DependentUpon>FlatToggleButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Formulas\FormulaDialog.resx">
@@ -625,7 +625,7 @@
     <EmbeddedResource Include="Commands\Edit\PronunciateDialog.resx">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ProgressDialog.resx">
+    <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Clean\RemoveSpacingDialog.resx">
@@ -649,7 +649,7 @@
     <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
       <DependentUpon>StyleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TagPickerDialog.resx">
+    <EmbeddedResource Include="UI\TagPickerDialog.resx">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Extras\TextToTableDialog.resx">

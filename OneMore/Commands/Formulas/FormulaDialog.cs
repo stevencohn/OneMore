@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class FormulaDialog : Dialogs.LocalizableForm
+	internal partial class FormulaDialog : UI.LocalizableForm
 	{
 		private readonly int helpHeight;
 		private readonly Calculator calculator;

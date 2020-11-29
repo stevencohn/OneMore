@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class PronunciateDialog : Dialogs.LocalizableForm
+	internal partial class PronunciateDialog : UI.LocalizableForm
 	{
 		private class LanguageItem
 		{

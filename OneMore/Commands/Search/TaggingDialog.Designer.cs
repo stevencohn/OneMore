@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 			this.clearLabel = new System.Windows.Forms.LinkLabel();
 			this.tagsFlow = new System.Windows.Forms.FlowLayoutPanel();
 			this.addButton = new System.Windows.Forms.Button();
-			this.tagBox = new River.OneMoreAddIn.Dialogs.FormTextBox();
+			this.tagBox = new River.OneMoreAddIn.UI.FormTextBox();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.tagLabel = new System.Windows.Forms.Label();
 			this.splitter = new System.Windows.Forms.Splitter();
@@ -315,7 +315,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Panel entryPanel;
 		private System.Windows.Forms.FlowLayoutPanel tagsFlow;
 		private System.Windows.Forms.Button addButton;
-		private River.OneMoreAddIn.Dialogs.FormTextBox tagBox;
+		private River.OneMoreAddIn.UI.FormTextBox tagBox;
 		private System.Windows.Forms.Label introLabel;
 		private System.Windows.Forms.Label tagLabel;
 		private System.Windows.Forms.Splitter splitter;

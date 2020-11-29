@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SearchAndReplaceDialog : Dialogs.LocalizableForm
+	internal partial class SearchAndReplaceDialog : UI.LocalizableForm
 	{
 		public SearchAndReplaceDialog ()
 		{

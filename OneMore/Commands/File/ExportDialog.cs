@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ExportDialog : Dialogs.LocalizableForm
+	internal partial class ExportDialog : UI.LocalizableForm
 	{
 		public ExportDialog(int pageCount)
 		{

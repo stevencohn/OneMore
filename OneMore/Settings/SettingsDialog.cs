@@ -4,14 +4,13 @@
 
 namespace River.OneMoreAddIn.Settings
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SettingsDialog : LocalizableForm
+	internal partial class SettingsDialog : UI.LocalizableForm
 	{
 		private readonly Dictionary<int, SheetBase> sheets;
 		private readonly SettingsProvider provider;

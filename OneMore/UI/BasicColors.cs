@@ -4,7 +4,7 @@
 
 using System.Linq;
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.UI
 {
 	#region LinqPad
 	/*

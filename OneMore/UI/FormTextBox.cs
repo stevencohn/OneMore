@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.Windows.Forms;

@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Accepts an image, lets the user create a single crop region,
 	/// and crops the image to that region
 	/// </summary>
-	internal partial class CropImageDialog : Dialogs.LocalizableForm
+	internal partial class CropImageDialog : UI.LocalizableForm
 	{
 
 		#region Supporting classes

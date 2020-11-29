@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -51,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 							.Select(e => e.Attribute("ID").Value)
 							.ToList();
 
-						using (var progress = new ProgressDialog())
+						using (var progress = new UI.ProgressDialog())
 						{
 							progress.SetMaximum(pageIds.Count);
 							progress.Show(owner);

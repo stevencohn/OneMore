@@ -4,7 +4,7 @@
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.Threading;

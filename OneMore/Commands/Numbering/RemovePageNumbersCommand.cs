@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 						.Select(e => e.Attribute("ID").Value)
 						.ToList();
 
-					using (var progress = new Dialogs.ProgressDialog())
+					using (var progress = new UI.ProgressDialog())
 					{
 						progress.SetMaximum(pageIds.Count);
 						progress.Show(owner);

@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ResizeImagesDialog : Dialogs.LocalizableForm
+	internal partial class ResizeImagesDialog : UI.LocalizableForm
 	{
 		private readonly SettingsProvider settings;
 		private readonly int currentWidth;

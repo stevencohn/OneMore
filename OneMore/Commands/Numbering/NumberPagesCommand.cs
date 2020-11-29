@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote one;
 		private XNamespace ns;
 		private RemovePageNumbersCommand cleaner;
-		private Dialogs.ProgressDialog progress;
+		private UI.ProgressDialog progress;
 
 
 		public NumberPagesCommand()
@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 								cleaner = new RemovePageNumbersCommand();
 							}
 
-							using (progress = new Dialogs.ProgressDialog())
+							using (progress = new UI.ProgressDialog())
 							{
 								progress.SetMaximum(pages.Count);
 								progress.Show(owner);

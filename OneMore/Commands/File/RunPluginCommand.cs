@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool asChildPage;
 		private string pageName;
 
-		private Dialogs.ProgressDialog progressDialog = null;
+		private UI.ProgressDialog progressDialog = null;
 		private CancellationTokenSource source = null;
 
 
@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (source = new CancellationTokenSource())
 			{
-				using (progressDialog = new Dialogs.ProgressDialog(source))
+				using (progressDialog = new UI.ProgressDialog(source))
 				{
 					progressDialog.SetMaximum(MaxTimeoutSeconds);
 					progressDialog.SetMessage(string.Format(Resx.Plugin_Running, command, arguments, workPath));

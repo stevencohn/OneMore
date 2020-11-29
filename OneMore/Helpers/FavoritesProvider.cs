@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
-	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.IO;
 	using System.Linq;

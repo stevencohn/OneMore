@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -23,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 	/// All other local disposables are handled.
 	/// </remarks>
 
-	internal partial class StyleDialog : LocalizableForm
+	internal partial class StyleDialog : UI.LocalizableForm
 	{
 		private GraphicStyle selection;
 		private Color pageColor;
@@ -534,7 +533,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(toolStrip.Location);
 
-			using (var dialog = new ColorDialogEx(title,
+			using (var dialog = new UI.ColorDialogEx(title,
 				location.X + bounds.Location.X,
 				location.Y + bounds.Height + 4))
 			{

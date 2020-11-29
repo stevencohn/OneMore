@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Disposables taken care of in OnClosed.
 	/// </remarks>
 
-	internal partial class AddTitleIconDialog : Dialogs.LocalizableForm
+	internal partial class AddTitleIconDialog : UI.LocalizableForm
 	{
 		private readonly (string code, string html, string name, Image image)[] icons =
 		{

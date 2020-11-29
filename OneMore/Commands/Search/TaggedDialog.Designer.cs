@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaggedDialog));
 			this.searchButton = new System.Windows.Forms.Button();
-			this.filterBox = new River.OneMoreAddIn.Dialogs.FormTextBox();
+			this.filterBox = new River.OneMoreAddIn.UI.FormTextBox();
 			this.tagsLabel = new System.Windows.Forms.Label();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
 			this.introLabel = new System.Windows.Forms.Label();
@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 			this.searchPanel = new System.Windows.Forms.Panel();
 			this.clearLabel = new System.Windows.Forms.LinkLabel();
 			this.tagsFlow = new System.Windows.Forms.FlowLayoutPanel();
-			this.resultTree = new River.OneMoreAddIn.HierarchyView();
+			this.resultTree = new River.OneMoreAddIn.UI.HierarchyView();
 			this.resultPanel = new System.Windows.Forms.Panel();
 			this.clearAllLabel = new System.Windows.Forms.LinkLabel();
 			this.checkAllLabel = new System.Windows.Forms.LinkLabel();
@@ -329,7 +329,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion
 
 		private System.Windows.Forms.Button searchButton;
-		private River.OneMoreAddIn.Dialogs.FormTextBox filterBox;
+		private River.OneMoreAddIn.UI.FormTextBox filterBox;
 		private System.Windows.Forms.Label tagsLabel;
 		private System.Windows.Forms.ComboBox scopeBox;
 		private System.Windows.Forms.Label introLabel;
@@ -337,7 +337,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Panel searchPanel;
 		private System.Windows.Forms.FlowLayoutPanel tagsFlow;
 		private System.Windows.Forms.LinkLabel clearLabel;
-		private HierarchyView resultTree;
+		private UI.HierarchyView resultTree;
 		private System.Windows.Forms.Panel resultPanel;
 		private System.Windows.Forms.SplitContainer splitContainer;
 		private System.Windows.Forms.LinkLabel clearAllLabel;

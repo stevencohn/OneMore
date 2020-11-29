@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ChangePageColorDialog : Dialogs.LocalizableForm
+	internal partial class ChangePageColorDialog : UI.LocalizableForm
 	{
 		private readonly Color DarkColor = Color.FromArgb(0x21, 0x21, 0x21);
 
@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var location = PointToScreen(customButton.Location);
 
-				using (var dialog = new ColorDialogEx(Resx.PageColorDialog_Text,
+				using (var dialog = new UI.ColorDialogEx(Resx.PageColorDialog_Text,
 					location.X + customButton.Bounds.Location.X + (customButton.Width / 2),
 					location.Y - 200))
 				{

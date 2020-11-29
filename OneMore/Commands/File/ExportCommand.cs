@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 
 			string formatName = format.ToString();
 
-			using (var progress = new Dialogs.ProgressDialog())
+			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIDs.Count);
 				progress.Show(owner);

@@ -46,8 +46,8 @@
 			this.styleTypeLabel = new System.Windows.Forms.Label();
 			this.styleTypeBox = new System.Windows.Forms.ComboBox();
 			this.applyColorsBox = new System.Windows.Forms.CheckBox();
-			this.familyBox = new River.OneMoreAddIn.FontComboBox();
-			this.toolStrip = new River.OneMoreAddIn.ScaledToolStrip();
+			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
+			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.boldButton = new System.Windows.Forms.ToolStripButton();
 			this.italicButton = new System.Windows.Forms.ToolStripButton();
 			this.underlineButton = new System.Windows.Forms.ToolStripButton();
@@ -58,7 +58,7 @@
 			this.transparentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.colorButton = new System.Windows.Forms.ToolStripSplitButton();
 			this.defaultBlackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.mainTools = new River.OneMoreAddIn.ScaledToolStrip();
+			this.mainTools = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.FileMenu = new System.Windows.Forms.ToolStripDropDownButton();
 			this.loadButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -786,14 +786,14 @@
 
 		#endregion
 
-		private FontComboBox familyBox;
+		private UI.FontComboBox familyBox;
 		private System.Windows.Forms.ComboBox sizeBox;
 		private System.Windows.Forms.Label beforeLabel;
 		private System.Windows.Forms.Label afterLabel;
 		private System.Windows.Forms.Label nameLabel;
 		private System.Windows.Forms.TextBox nameBox;
 		private System.Windows.Forms.Label fontLabel;
-		private ScaledToolStrip toolStrip;
+		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripSplitButton colorButton;
 		private System.Windows.Forms.NumericUpDown spaceBeforeSpinner;
 		private System.Windows.Forms.NumericUpDown spaceAfterSpinner;
@@ -804,7 +804,7 @@
 		private System.Windows.Forms.ComboBox namesBox;
 		private System.Windows.Forms.ToolStripMenuItem transparentToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem defaultBlackToolStripMenuItem;
-		private ScaledToolStrip mainTools;
+		private UI.ScaledToolStrip mainTools;
 		private System.Windows.Forms.ToolStripButton reorderButton;
 		private System.Windows.Forms.ToolStripButton deleteButton;
 		private System.Windows.Forms.Panel panel1;

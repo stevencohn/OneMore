@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn.  Yada yada...
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.UI
 {
 	using System.Drawing;
 	using System.Windows.Forms;

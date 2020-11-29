@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class OutlineDialog : Dialogs.LocalizableForm
+	internal partial class OutlineDialog : UI.LocalizableForm
 	{
 		private const int SysMenuId = 1000;
 
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 					TagSymbol = settings.Get<int>("tagSymbol");
 					if (TagSymbol > 0)
 					{
-						using (var dialog = new Dialogs.TagPickerDialog(0, 0))
+						using (var dialog = new UI.TagPickerDialog(0, 0))
 						{
 							var glyph = dialog.GetGlyph(TagSymbol);
 							if (glyph != null)
@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(tagButton.Location);
 
-			using (var dialog = new Dialogs.TagPickerDialog(
+			using (var dialog = new UI.TagPickerDialog(
 				location.X + tagButton.Bounds.Location.X - tagButton.Width,
 				location.Y + tagButton.Bounds.Location.Y))
 			{
