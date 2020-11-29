@@ -30,20 +30,17 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		protected override bool ProcessCmdKey(ref Message m, Keys k)
+		protected override bool ProcessCmdKey(ref Message m, Keys keyData)
 		{
-			if (m.Msg == WM_KEYDOWN && k == Keys.Enter)
+			if (m.Msg == WM_KEYDOWN && keyData == Keys.Enter)
 			{
-				if (PressedEnter != null)
-				{
-					PressedEnter(this, new EventArgs());
-				}
+				PressedEnter?.Invoke(this, new EventArgs());
 
 				// stop further interpretation
 				return true;
 			}
 			// else default handlers...
-			return base.ProcessCmdKey(ref m, k);
+			return base.ProcessCmdKey(ref m, keyData);
 		}
 	}
 }

@@ -101,10 +101,10 @@ namespace River.OneMoreAddIn
 			using (var one = new OneNote())
 			{
 				var section = one.GetSection();
-				var ns = one.GetNamespace(section);
+				var sns = one.GetNamespace(section);
 
 				var count =
-					section.Elements(ns + "Page")
+					section.Elements(sns + "Page")
 					.Count(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
 
 				return count > 1;
