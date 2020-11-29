@@ -2303,72 +2303,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string PhoneticsDialog_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("PhoneticsDialog_cancelButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Language.
-        /// </summary>
-        internal static string PhoneticsDialog_languageLabel_Text {
-            get {
-                return ResourceManager.GetString("PhoneticsDialog_languageLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to en,English
-        ///hi,Hindi
-        ///es,Spanish
-        ///fr,French
-        ///ja,Japanese
-        ///ru,Russian
-        ///de,German
-        ///it,Italian
-        ///ko,Korean
-        ///pt-BR,Brazilian Portuguese
-        ///ar,Arabic
-        ///tr,Turkish
-        ///zh-CN,Chinese (Simplified).
-        /// </summary>
-        internal static string PhoneticsDialog_languages {
-            get {
-                return ResourceManager.GetString("PhoneticsDialog_languages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string PhoneticsDialog_okButton_Text {
-            get {
-                return ResourceManager.GetString("PhoneticsDialog_okButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phonetics.
-        /// </summary>
-        internal static string PhoneticsDialog_Text {
-            get {
-                return ResourceManager.GetString("PhoneticsDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Word.
-        /// </summary>
-        internal static string PhoneticsDialog_wordLabel_Text {
-            get {
-                return ResourceManager.GetString("PhoneticsDialog_wordLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid XML detected. Check log file for details.
         /// </summary>
         internal static string Plugin_InvalidSchema {
@@ -2555,6 +2489,72 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Pronunciate_NoWord {
             get {
                 return ResourceManager.GetString("Pronunciate_NoWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string PronunciateDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("PronunciateDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string PronunciateDialog_languageLabel_Text {
+            get {
+                return ResourceManager.GetString("PronunciateDialog_languageLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to en,English
+        ///hi,Hindi
+        ///es,Spanish
+        ///fr,French
+        ///ja,Japanese
+        ///ru,Russian
+        ///de,German
+        ///it,Italian
+        ///ko,Korean
+        ///pt-BR,Brazilian Portuguese
+        ///ar,Arabic
+        ///tr,Turkish
+        ///zh-CN,Chinese (Simplified).
+        /// </summary>
+        internal static string PronunciateDialog_languages {
+            get {
+                return ResourceManager.GetString("PronunciateDialog_languages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string PronunciateDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("PronunciateDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phonetics.
+        /// </summary>
+        internal static string PronunciateDialog_Text {
+            get {
+                return ResourceManager.GetString("PronunciateDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word.
+        /// </summary>
+        internal static string PronunciateDialog_wordLabel_Text {
+            get {
+                return ResourceManager.GetString("PronunciateDialog_wordLabel.Text", resourceCulture);
             }
         }
         

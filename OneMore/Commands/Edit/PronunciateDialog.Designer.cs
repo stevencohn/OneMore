@@ -1,6 +1,6 @@
-﻿namespace River.OneMoreAddIn.Dialogs
+﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class PhoneticsDialog
+	partial class PronunciateDialog
 	{
 		/// <summary>
 		/// Required designer variable.

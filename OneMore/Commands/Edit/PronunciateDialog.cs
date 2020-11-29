@@ -4,7 +4,7 @@
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class PhoneticsDialog : LocalizableForm
+	internal partial class PronunciateDialog : Dialogs.LocalizableForm
 	{
 		private class LanguageItem
 		{
@@ -24,13 +24,13 @@ namespace River.OneMoreAddIn.Dialogs
 		private readonly List<LanguageItem> languages;
 
 
-		public PhoneticsDialog()
+		public PronunciateDialog()
 		{
 			InitializeComponent();
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.PhoneticsDialog_Text;
+				Text = Resx.PronunciateDialog_Text;
 
 				Localize(new string[]
 				{
@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Dialogs
 			}
 
 			languages =
-				(from a in Resx.PhoneticsDialog_languages.Split('\n')
+				(from a in Resx.PronunciateDialog_languages.Split('\n')
 				 let b = a.Split(',')
 				 orderby b[1]
 				 select new LanguageItem

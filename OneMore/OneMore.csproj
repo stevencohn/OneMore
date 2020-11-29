@@ -252,11 +252,11 @@
     <Compile Include="Dialogs\PageNumberingDialog.Designer.cs">
       <DependentUpon>PageNumberingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\PhoneticsDialog.cs">
+    <Compile Include="Commands\Edit\PronunciateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PhoneticsDialog.Designer.cs">
-      <DependentUpon>PhoneticsDialog.cs</DependentUpon>
+    <Compile Include="Commands\Edit\PronunciateDialog.Designer.cs">
+      <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ProgressDialog.cs">
       <SubType>Form</SubType>
@@ -622,8 +622,8 @@
     <EmbeddedResource Include="Dialogs\PageNumberingDialog.resx">
       <DependentUpon>PageNumberingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PhoneticsDialog.resx">
-      <DependentUpon>PhoneticsDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Edit\PronunciateDialog.resx">
+      <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>

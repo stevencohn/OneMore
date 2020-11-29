@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.XmlDialog_Text;
+				Text = Resx.ShowXmlDialog_Text;
 
 				Localize(new string[]
 				{

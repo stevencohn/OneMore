@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.TimestampDialog_Text;
+				Text = Resx.ToggleDttmDialog_Text;
 
 				Localize(new string[]
 				{

@@ -1168,19 +1168,19 @@ Notebooks</value>
     <value>Toggle strikethough of text marked with complete or incomplete To Do tags</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="PhoneticsDialog.Text" xml:space="preserve">
+  <data name="PronunciateDialog.Text" xml:space="preserve">
     <value>Phonetics</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
+  <data name="PronunciateDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
+  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
     <value>Language</value>
     <comment>label</comment>
   </data>
-  <data name="PhoneticsDialog_languages" xml:space="preserve">
+  <data name="PronunciateDialog_languages" xml:space="preserve">
     <value>en,English
 hi,Hindi
 es,Spanish
@@ -1197,11 +1197,11 @@ zh-CN,Chinese (Simplified)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
-  <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
+  <data name="PronunciateDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>ok button</comment>
   </data>
-  <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
+  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
     <value>Word</value>
     <comment>label</comment>
   </data>
