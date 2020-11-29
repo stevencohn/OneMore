@@ -2,9 +2,9 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Commands.Formula;
+	using River.OneMoreAddIn.Commands.Formulas;
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
-				using (var dialog = new Dialogs.FormulaDialog())
+				using (var dialog = new FormulaDialog())
 				{
 					// display selected cell names
 					dialog.SetCellNames(

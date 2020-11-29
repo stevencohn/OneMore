@@ -14,7 +14,7 @@
 
 #pragma warning disable S1066 // Collapsible "if" statements should be merged
 
-namespace River.OneMoreAddIn.Commands.Formula
+namespace River.OneMoreAddIn.Commands.Formulas
 {
 	using System;
 	using System.Collections.Generic;

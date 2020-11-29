@@ -2,16 +2,16 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Commands.Formula;
+	using River.OneMoreAddIn.Commands.Formulas;
 	using System;
 	using System.Drawing;
 	using System.Text.RegularExpressions;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class FormulaDialog : LocalizableForm
+	internal partial class FormulaDialog : Dialogs.LocalizableForm
 	{
 		private readonly int helpHeight;
 		private readonly Calculator calculator;

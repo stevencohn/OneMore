@@ -4,7 +4,7 @@
 
 #pragma warning disable S125 // Sections of code should not be commented out
 
-namespace River.OneMoreAddIn.Commands.Formula
+namespace River.OneMoreAddIn.Commands.Formulas
 {
 	using System;
 	using System.Collections.Generic;

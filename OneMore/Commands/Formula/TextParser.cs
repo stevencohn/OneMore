@@ -12,7 +12,7 @@
  * Copyright (c) 2010 Jonathan Wood
  */
 
-namespace River.OneMoreAddIn.Commands.Formula
+namespace River.OneMoreAddIn.Commands.Formulas
 {
 	using System;
 

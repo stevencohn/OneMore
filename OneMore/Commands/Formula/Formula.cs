@@ -1,5 +1,8 @@
-﻿
-namespace River.OneMoreAddIn.Commands.Formula
+﻿//************************************************************************************************
+// Copyright © 2020 Steven M Cohn.  All rights reserved.
+//************************************************************************************************
+
+namespace River.OneMoreAddIn.Commands.Formulas
 {
 	using River.OneMoreAddIn.Models;
 	using System;

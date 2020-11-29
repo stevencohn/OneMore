@@ -231,10 +231,10 @@
     <Compile Include="Commands\File\ExportDialog.Designer.cs">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FormulaDialog.cs">
+    <Compile Include="Commands\Formula\FormulaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\FormulaDialog.Designer.cs">
+    <Compile Include="Commands\Formula\FormulaDialog.Designer.cs">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\OutlineDialog.cs">
@@ -613,7 +613,7 @@
     <EmbeddedResource Include="Dialogs\FlatToggleButton.resx">
       <DependentUpon>FlatToggleButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\FormulaDialog.resx">
+    <EmbeddedResource Include="Commands\Formula\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\OutlineDialog.resx">

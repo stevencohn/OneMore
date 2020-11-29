@@ -5,7 +5,7 @@
  * Based on the C# Expression Evaluator by Jonathan Wood, 2010
  */
 
-namespace River.OneMoreAddIn.Commands.Formula
+namespace River.OneMoreAddIn.Commands.Formulas
 {
 	using System;
 

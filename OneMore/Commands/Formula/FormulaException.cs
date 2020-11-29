@@ -9,7 +9,7 @@
 #pragma warning disable CA2237 // Mark ISerializable types with serializable
 #pragma warning disable S3871 // Exception types should be "public"
 
-namespace River.OneMoreAddIn.Commands.Formula
+namespace River.OneMoreAddIn.Commands.Formulas
 {
 	using System;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
