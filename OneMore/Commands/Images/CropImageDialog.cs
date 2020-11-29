@@ -5,7 +5,7 @@
 
 #define xLogging
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Dialogs
 	/// Accepts an image, lets the user create a single crop region,
 	/// and crops the image to that region
 	/// </summary>
-	internal partial class CropImageDialog : LocalizableForm
+	internal partial class CropImageDialog : Dialogs.LocalizableForm
 	{
 
 		#region Supporting classes

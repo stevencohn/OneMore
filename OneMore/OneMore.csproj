@@ -270,10 +270,10 @@
     <Compile Include="Commands\Clean\RemoveSpacingDialog.Designer.cs">
       <DependentUpon>RemoveSpacingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ResizeImagesDialog.cs">
+    <Compile Include="Commands\Images\ResizeImagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ResizeImagesDialog.Designer.cs">
+    <Compile Include="Commands\Images\ResizeImagesDialog.Designer.cs">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\RunPluginDialog.cs">
@@ -423,10 +423,10 @@
     <Compile Include="Commands\Tools\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\CropImageDialog.cs">
+    <Compile Include="Commands\Images\CropImageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\CropImageDialog.Designer.cs">
+    <Compile Include="Commands\Images\CropImageDialog.Designer.cs">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ColorDialogEx.cs">
@@ -601,7 +601,7 @@
     <EmbeddedResource Include="Commands\Styles\ChangePageColorDialog.resx">
       <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CropImageDialog.resx">
+    <EmbeddedResource Include="Commands\Images\CropImageDialog.resx">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EmojiDialog.resx">
@@ -634,7 +634,7 @@
     <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ResizeImagesDialog.resx">
+    <EmbeddedResource Include="Commands\Images\ResizeImagesDialog.resx">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\RunPluginDialog.resx">

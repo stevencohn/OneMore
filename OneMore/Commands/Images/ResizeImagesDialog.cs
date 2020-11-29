@@ -5,7 +5,7 @@
 #pragma warning disable CS3003  // Type is not CLS-compliant
 #pragma warning disable IDE1006 // must begin with upper case
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ResizeImagesDialog : LocalizableForm
+	internal partial class ResizeImagesDialog : Dialogs.LocalizableForm
 	{
 		private readonly SettingsProvider settings;
 		private readonly int currentWidth;
