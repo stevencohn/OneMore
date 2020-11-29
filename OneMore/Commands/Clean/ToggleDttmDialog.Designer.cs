@@ -1,6 +1,6 @@
-﻿namespace River.OneMoreAddIn.Dialogs
+﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class TimestampDialog
+	partial class ToggleDttmDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimestampDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToggleDttmDialog));
 			this.hideRadio = new System.Windows.Forms.RadioButton();
 			this.showRadio = new System.Windows.Forms.RadioButton();
 			this.toggleGroup = new System.Windows.Forms.GroupBox();

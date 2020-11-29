@@ -5,15 +5,15 @@
 #pragma warning disable CS3003  // Type is not CLS-compliant
 #pragma warning disable IDE1006 // Words must begin with upper case
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class TimestampDialog : LocalizableForm
+	internal partial class ToggleDttmDialog : Dialogs.LocalizableForm
 	{
-		public TimestampDialog()
+		public ToggleDttmDialog()
 		{
 			InitializeComponent();
 

@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
-			using (var dialog = new TimestampDialog())
+			using (var dialog = new ToggleDttmDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{

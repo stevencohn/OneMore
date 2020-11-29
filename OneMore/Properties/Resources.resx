@@ -1294,39 +1294,39 @@ Try again later</value>
     <value>OK</value>
     <comment>ok button</comment>
   </data>
-  <data name="TimestampDialog.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog.Text" xml:space="preserve">
     <value>Show/Hide Date and Time</value>
     <comment>dialog title</comment>
   </data>
-  <data name="TimestampDialog_cancelButton.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="TimestampDialog_hideRadio.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog_hideRadio.Text" xml:space="preserve">
     <value>Hide date and time</value>
     <comment>radio button</comment>
   </data>
-  <data name="TimestampDialog_okButton.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>ok button</comment>
   </data>
-  <data name="TimestampDialog_pageRadio.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
     <value>This page</value>
     <comment>radio button</comment>
   </data>
-  <data name="TimestampDialog_scopeGroup.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
     <value>Scope</value>
     <comment>group box</comment>
   </data>
-  <data name="TimestampDialog_sectionRadio.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
     <value>All pages in this section</value>
     <comment>radio button</comment>
   </data>
-  <data name="TimestampDialog_showRadio.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Show date and time</value>
     <comment>radio button</comment>
   </data>
-  <data name="TimestampDialog_toggleGroup.Text" xml:space="preserve">
+  <data name="ToggleDttmDialog_toggleGroup.Text" xml:space="preserve">
     <value>Toggle</value>
     <comment>group box</comment>
   </data>
@@ -1557,35 +1557,35 @@ Try again later</value>
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
-  <data name="TocDialog.Text" xml:space="preserve">
+  <data name="InsertTocDialog.Text" xml:space="preserve">
     <value>Table of Contents</value>
     <comment>dialog title</comment>
   </data>
-  <data name="TocDialog_cancelButton.Text" xml:space="preserve">
+  <data name="InsertTocDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
     <comment>button</comment>
   </data>
-  <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
+  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
     <value>Add page with table of sections in this notebook</value>
     <comment>radio</comment>
   </data>
-  <data name="TocDialog_okButton.Text" xml:space="preserve">
+  <data name="InsertTocDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>button</comment>
   </data>
-  <data name="TocDialog_pageRadio.Text" xml:space="preserve">
+  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
     <value>Insert table of headings on this page</value>
     <comment>radio</comment>
   </data>
-  <data name="TocDialog_pagesBox.Text" xml:space="preserve">
+  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
     <value>Include pages in each section</value>
     <comment>checkbox</comment>
   </data>
-  <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
+  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>Add page with table of pages in this section</value>
     <comment>radio</comment>
   </data>
-  <data name="TocDialog_topBox.Text" xml:space="preserve">
+  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Add link to each heading to jump to top of page</value>
     <comment>checkbox</comment>
   </data>
@@ -1665,71 +1665,71 @@ Try again later</value>
     <value>Convert Text to Table</value>
     <comment>Ribbon OneMore menu item, extras</comment>
   </data>
-  <data name="XmlDialog.Text" xml:space="preserve">
+  <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="XmlDialog_cancelButton.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="XmlDialog_currNotebookButton.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
     <value>Current Notebook</value>
     <comment>hier button</comment>
   </data>
-  <data name="XmlDialog_currSectionButton.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
     <value>Current Section</value>
     <comment>hier button</comment>
   </data>
-  <data name="XmlDialog_hideBox.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
     <value>Hide edited-by attributes (uncheck to edit page)</value>
     <comment>checkbox</comment>
   </data>
-  <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
     <value>Remove LF from CDATA</value>
     <comment>checkbox</comment>
   </data>
-  <data name="XmlDialog_hierTab.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_hierTab.Text" xml:space="preserve">
     <value>Hierarchy</value>
     <comment>tab</comment>
   </data>
-  <data name="XmlDialog_notebooksHierButton.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
     <value>Notebooks</value>
     <comment>hier button</comment>
   </data>
-  <data name="XmlDialog_okButton.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
     <value>Update Page</value>
     <comment>ok button</comment>
   </data>
-  <data name="XmlDialog_pageLinkLabel.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_pageLinkLabel.Text" xml:space="preserve">
     <value>Link:</value>
     <comment>label</comment>
   </data>
-  <data name="XmlDialog_pageNameLabel.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_pageNameLabel.Text" xml:space="preserve">
     <value>Name:</value>
     <comment>label</comment>
   </data>
-  <data name="XmlDialog_pagePathLabel.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
     <value>Path:</value>
     <comment>label</comment>
   </data>
-  <data name="XmlDialog_pagesHierButton.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_pagesHierButton.Text" xml:space="preserve">
     <value>Pages</value>
     <comment>hier button</comment>
   </data>
-  <data name="XmlDialog_pageTab.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
     <value>Page</value>
     <comment>tab</comment>
   </data>
-  <data name="XmlDialog_sectionsHierButton.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_sectionsHierButton.Text" xml:space="preserve">
     <value>Sections</value>
     <comment>hier button</comment>
   </data>
-  <data name="XmlDialog_selectButton.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Select all</value>
     <comment>button</comment>
   </data>
-  <data name="XmlDialog_wrapBox.Text" xml:space="preserve">
+  <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Wrap text</value>
     <comment>checkbox</comment>
   </data>

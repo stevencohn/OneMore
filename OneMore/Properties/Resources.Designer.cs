@@ -1850,6 +1850,78 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string InsertTocDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add page with table of sections in this notebook.
+        /// </summary>
+        internal static string InsertTocDialog_notebookRadio_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_notebookRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string InsertTocDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert table of headings on this page.
+        /// </summary>
+        internal static string InsertTocDialog_pageRadio_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_pageRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include pages in each section.
+        /// </summary>
+        internal static string InsertTocDialog_pagesBox_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_pagesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add page with table of pages in this section.
+        /// </summary>
+        internal static string InsertTocDialog_sectionRadio_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Contents.
+        /// </summary>
+        internal static string InsertTocDialog_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add link to each heading to jump to top of page.
+        /// </summary>
+        internal static string InsertTocDialog_topBox_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_topBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Italic {
@@ -4363,6 +4435,159 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ShowXmlDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Notebook.
+        /// </summary>
+        internal static string ShowXmlDialog_currNotebookButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_currNotebookButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Section.
+        /// </summary>
+        internal static string ShowXmlDialog_currSectionButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_currSectionButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide edited-by attributes (uncheck to edit page).
+        /// </summary>
+        internal static string ShowXmlDialog_hideBox_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_hideBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove LF from CDATA.
+        /// </summary>
+        internal static string ShowXmlDialog_hideLFBox_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_hideLFBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hierarchy.
+        /// </summary>
+        internal static string ShowXmlDialog_hierTab_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_hierTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notebooks.
+        /// </summary>
+        internal static string ShowXmlDialog_notebooksHierButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_notebooksHierButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Page.
+        /// </summary>
+        internal static string ShowXmlDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link:.
+        /// </summary>
+        internal static string ShowXmlDialog_pageLinkLabel_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_pageLinkLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        internal static string ShowXmlDialog_pageNameLabel_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_pageNameLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path:.
+        /// </summary>
+        internal static string ShowXmlDialog_pagePathLabel_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_pagePathLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages.
+        /// </summary>
+        internal static string ShowXmlDialog_pagesHierButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_pagesHierButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string ShowXmlDialog_pageTab_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_pageTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sections.
+        /// </summary>
+        internal static string ShowXmlDialog_sectionsHierButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_sectionsHierButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string ShowXmlDialog_selectButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_selectButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore XML.
+        /// </summary>
+        internal static string ShowXmlDialog_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrap text.
+        /// </summary>
+        internal static string ShowXmlDialog_wrapBox_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_wrapBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Smiley {
@@ -5156,153 +5381,81 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string TimestampDialog_cancelButton_Text {
+        internal static string ToggleDttmDialog_cancelButton_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog_cancelButton.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog_cancelButton.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Hide date and time.
         /// </summary>
-        internal static string TimestampDialog_hideRadio_Text {
+        internal static string ToggleDttmDialog_hideRadio_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog_hideRadio.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog_hideRadio.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
-        internal static string TimestampDialog_okButton_Text {
+        internal static string ToggleDttmDialog_okButton_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog_okButton.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog_okButton.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to This page.
         /// </summary>
-        internal static string TimestampDialog_pageRadio_Text {
+        internal static string ToggleDttmDialog_pageRadio_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog_pageRadio.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog_pageRadio.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Scope.
         /// </summary>
-        internal static string TimestampDialog_scopeGroup_Text {
+        internal static string ToggleDttmDialog_scopeGroup_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog_scopeGroup.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog_scopeGroup.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to All pages in this section.
         /// </summary>
-        internal static string TimestampDialog_sectionRadio_Text {
+        internal static string ToggleDttmDialog_sectionRadio_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog_sectionRadio.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog_sectionRadio.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Show date and time.
         /// </summary>
-        internal static string TimestampDialog_showRadio_Text {
+        internal static string ToggleDttmDialog_showRadio_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog_showRadio.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog_showRadio.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Show/Hide Date and Time.
         /// </summary>
-        internal static string TimestampDialog_Text {
+        internal static string ToggleDttmDialog_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Toggle.
         /// </summary>
-        internal static string TimestampDialog_toggleGroup_Text {
+        internal static string ToggleDttmDialog_toggleGroup_Text {
             get {
-                return ResourceManager.GetString("TimestampDialog_toggleGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string TocDialog_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("TocDialog_cancelButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add page with table of sections in this notebook.
-        /// </summary>
-        internal static string TocDialog_notebookRadio_Text {
-            get {
-                return ResourceManager.GetString("TocDialog_notebookRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string TocDialog_okButton_Text {
-            get {
-                return ResourceManager.GetString("TocDialog_okButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert table of headings on this page.
-        /// </summary>
-        internal static string TocDialog_pageRadio_Text {
-            get {
-                return ResourceManager.GetString("TocDialog_pageRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Include pages in each section.
-        /// </summary>
-        internal static string TocDialog_pagesBox_Text {
-            get {
-                return ResourceManager.GetString("TocDialog_pagesBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add page with table of pages in this section.
-        /// </summary>
-        internal static string TocDialog_sectionRadio_Text {
-            get {
-                return ResourceManager.GetString("TocDialog_sectionRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Table of Contents.
-        /// </summary>
-        internal static string TocDialog_Text {
-            get {
-                return ResourceManager.GetString("TocDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add link to each heading to jump to top of page.
-        /// </summary>
-        internal static string TocDialog_topBox_Text {
-            get {
-                return ResourceManager.GetString("TocDialog_topBox.Text", resourceCulture);
+                return ResourceManager.GetString("ToggleDttmDialog_toggleGroup.Text", resourceCulture);
             }
         }
         
@@ -5352,159 +5505,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string WordCountCommand_Count {
             get {
                 return ResourceManager.GetString("WordCountCommand_Count", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string XmlDialog_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_cancelButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current Notebook.
-        /// </summary>
-        internal static string XmlDialog_currNotebookButton_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_currNotebookButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current Section.
-        /// </summary>
-        internal static string XmlDialog_currSectionButton_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_currSectionButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide edited-by attributes (uncheck to edit page).
-        /// </summary>
-        internal static string XmlDialog_hideBox_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_hideBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove LF from CDATA.
-        /// </summary>
-        internal static string XmlDialog_hideLFBox_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_hideLFBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hierarchy.
-        /// </summary>
-        internal static string XmlDialog_hierTab_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_hierTab.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Notebooks.
-        /// </summary>
-        internal static string XmlDialog_notebooksHierButton_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_notebooksHierButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Page.
-        /// </summary>
-        internal static string XmlDialog_okButton_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_okButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Link:.
-        /// </summary>
-        internal static string XmlDialog_pageLinkLabel_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_pageLinkLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name:.
-        /// </summary>
-        internal static string XmlDialog_pageNameLabel_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_pageNameLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Path:.
-        /// </summary>
-        internal static string XmlDialog_pagePathLabel_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_pagePathLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pages.
-        /// </summary>
-        internal static string XmlDialog_pagesHierButton_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_pagesHierButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Page.
-        /// </summary>
-        internal static string XmlDialog_pageTab_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_pageTab.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sections.
-        /// </summary>
-        internal static string XmlDialog_sectionsHierButton_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_sectionsHierButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select all.
-        /// </summary>
-        internal static string XmlDialog_selectButton_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_selectButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OneMore XML.
-        /// </summary>
-        internal static string XmlDialog_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wrap text.
-        /// </summary>
-        internal static string XmlDialog_wrapBox_Text {
-            get {
-                return ResourceManager.GetString("XmlDialog_wrapBox.Text", resourceCulture);
             }
         }
     }

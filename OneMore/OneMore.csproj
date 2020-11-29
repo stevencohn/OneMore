@@ -264,10 +264,10 @@
     <Compile Include="Dialogs\ProgressDialog.Designer.cs">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\RemoveSpacingDialog.cs">
+    <Compile Include="Commands\Clean\RemoveSpacingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\RemoveSpacingDialog.Designer.cs">
+    <Compile Include="Commands\Clean\RemoveSpacingDialog.Designer.cs">
       <DependentUpon>RemoveSpacingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ResizeImagesDialog.cs">
@@ -294,11 +294,11 @@
     <Compile Include="Dialogs\TextToTableDialog.Designer.cs">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TimestampDialog.cs">
+    <Compile Include="Commands\Clean\ToggleDttmDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TimestampDialog.Designer.cs">
-      <DependentUpon>TimestampDialog.cs</DependentUpon>
+    <Compile Include="Commands\Clean\ToggleDttmDialog.Designer.cs">
+      <DependentUpon>ToggleDttmDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\InsertTocDialog.cs">
       <SubType>Form</SubType>
@@ -628,7 +628,7 @@
     <EmbeddedResource Include="Dialogs\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\RemoveSpacingDialog.resx">
+    <EmbeddedResource Include="Commands\Clean\RemoveSpacingDialog.resx">
       <DependentUpon>RemoveSpacingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
@@ -655,8 +655,8 @@
     <EmbeddedResource Include="Dialogs\TextToTableDialog.resx">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TimestampDialog.resx">
-      <DependentUpon>TimestampDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Clean\ToggleDttmDialog.resx">
+      <DependentUpon>ToggleDttmDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Snippets\InsertTocDialog.resx">
       <DependentUpon>InsertTocDialog.cs</DependentUpon>
