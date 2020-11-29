@@ -332,10 +332,10 @@
     <Compile Include="Commands\Tools\SortCommand.cs" />
     <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />
-    <Compile Include="Dialogs\ChangePageColorDialog.cs">
+    <Compile Include="Commands\Styles\ChangePageColorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ChangePageColorDialog.Designer.cs">
+    <Compile Include="Commands\Styles\ChangePageColorDialog.Designer.cs">
       <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ReorderDialog.cs">
@@ -598,7 +598,7 @@
     <EmbeddedResource Include="Dialogs\CalendarDialog.resx">
       <DependentUpon>CalendarDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ChangePageColorDialog.resx">
+    <EmbeddedResource Include="Commands\Styles\ChangePageColorDialog.resx">
       <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CropImageDialog.resx">

@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Drawing;
@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ChangePageColorDialog : LocalizableForm
+	internal partial class ChangePageColorDialog : Dialogs.LocalizableForm
 	{
 		private readonly Color DarkColor = Color.FromArgb(0x21, 0x21, 0x21);
 
