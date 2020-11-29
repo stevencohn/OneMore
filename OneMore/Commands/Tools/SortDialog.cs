@@ -4,14 +4,14 @@
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SortDialog : LocalizableForm
+	internal partial class SortDialog : Dialogs.LocalizableForm
 	{
 
 		public enum Sortings

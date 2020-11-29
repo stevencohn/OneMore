@@ -353,10 +353,10 @@
     <Compile Include="Commands\SearchAndReplace\SearchAndReplaceDialog.Designer.cs">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SortDialog.cs">
+    <Compile Include="Commands\Tools\SortDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\SortDialog.Designer.cs">
+    <Compile Include="Commands\Tools\SortDialog.Designer.cs">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BasicColors.cs" />
@@ -643,7 +643,7 @@
     <EmbeddedResource Include="Commands\SearchAndReplace\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SortDialog.resx">
+    <EmbeddedResource Include="Commands\Tools\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
