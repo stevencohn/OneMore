@@ -5,7 +5,7 @@
 #pragma warning disable CS3003  // Type is not CLS-compliant
 #pragma warning disable IDE1006 // Words must begin with upper case
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RunPluginDialog : LocalizableForm
+	internal partial class RunPluginDialog : Dialogs.LocalizableForm
 	{
 		private const int SysMenuId = 1000;
 

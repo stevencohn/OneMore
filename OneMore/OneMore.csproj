@@ -165,10 +165,10 @@
     <Compile Include="Dialogs\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Dialogs\ImportDialog.cs">
+    <Compile Include="Commands\File\ImportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ImportDialog.Designer.cs">
+    <Compile Include="Commands\File\ImportDialog.Designer.cs">
       <DependentUpon>ImportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\ImportCommand.cs" />
@@ -225,10 +225,10 @@
     <Compile Include="Commands\Snippets\InsertCalendarDialog.Designer.cs">
       <DependentUpon>InsertCalendarDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ExportDialog.cs">
+    <Compile Include="Commands\File\ExportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ExportDialog.Designer.cs">
+    <Compile Include="Commands\File\ExportDialog.Designer.cs">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\FormulaDialog.cs">
@@ -276,10 +276,10 @@
     <Compile Include="Commands\Images\ResizeImagesDialog.Designer.cs">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\RunPluginDialog.cs">
+    <Compile Include="Commands\File\RunPluginDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\RunPluginDialog.Designer.cs">
+    <Compile Include="Commands\File\RunPluginDialog.Designer.cs">
       <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\TagPickerDialog.cs">
@@ -588,7 +588,7 @@
     <EmbeddedResource Include="Commands\Search\TagControl.resx">
       <DependentUpon>TagControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ImportDialog.resx">
+    <EmbeddedResource Include="Commands\File\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -607,7 +607,7 @@
     <EmbeddedResource Include="Dialogs\EmojiDialog.resx">
       <DependentUpon>EmojiDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ExportDialog.resx">
+    <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FlatToggleButton.resx">
@@ -637,7 +637,7 @@
     <EmbeddedResource Include="Commands\Images\ResizeImagesDialog.resx">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\RunPluginDialog.resx">
+    <EmbeddedResource Include="Commands\File\RunPluginDialog.resx">
       <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SearchAndReplaceDialog.resx">

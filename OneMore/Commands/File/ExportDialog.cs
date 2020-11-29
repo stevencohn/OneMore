@@ -4,7 +4,7 @@
 
 #pragma warning disable CS3003 // Type is not CLS-compliant
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Threading;
@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Dialogs
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ExportDialog : LocalizableForm
+	internal partial class ExportDialog : Dialogs.LocalizableForm
 	{
 		public ExportDialog(int pageCount)
 		{
