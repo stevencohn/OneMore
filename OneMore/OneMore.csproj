@@ -288,10 +288,10 @@
     <Compile Include="Dialogs\TagPickerDialog.Designer.cs">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TextToTableDialog.cs">
+    <Compile Include="Commands\Extras\TextToTableDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TextToTableDialog.Designer.cs">
+    <Compile Include="Commands\Extras\TextToTableDialog.Designer.cs">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Clean\ToggleDttmDialog.cs">
@@ -432,11 +432,11 @@
     <Compile Include="Dialogs\ColorDialogEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Dialogs\EmojiDialog.cs">
+    <Compile Include="Commands\Extras\AddTitleIconDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\EmojiDialog.Designer.cs">
-      <DependentUpon>EmojiDialog.cs</DependentUpon>
+    <Compile Include="Commands\Extras\AddTitleIconDialog.Designer.cs">
+      <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\FlatToggleButton.cs">
       <SubType>UserControl</SubType>
@@ -604,8 +604,8 @@
     <EmbeddedResource Include="Commands\Images\CropImageDialog.resx">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\EmojiDialog.resx">
-      <DependentUpon>EmojiDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Extras\AddTitleIconDialog.resx">
+      <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>
@@ -652,7 +652,7 @@
     <EmbeddedResource Include="Dialogs\TagPickerDialog.resx">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TextToTableDialog.resx">
+    <EmbeddedResource Include="Commands\Extras\TextToTableDialog.resx">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Clean\ToggleDttmDialog.resx">

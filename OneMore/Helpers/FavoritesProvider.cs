@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn
 			{
 				var info = one.GetPageInfo();
 
-				var name = EmojiDialog.RemoveEmojis(info.Name);
+				var name = Commands.AddTitleIconDialog.RemoveEmojis(info.Name);
 				if (name.Length > 50)
 				{
 					name = name.Substring(0, 50) + "...";

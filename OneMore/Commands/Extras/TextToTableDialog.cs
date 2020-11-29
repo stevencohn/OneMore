@@ -2,14 +2,14 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Drawing;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class TextToTableDialog : LocalizableForm
+	internal partial class TextToTableDialog : Dialogs.LocalizableForm
 	{
 		public enum Delimeter
 		{

@@ -4,7 +4,7 @@
 
 #pragma warning disable IDE0042 // variable can be deconstructed
 
-namespace River.OneMoreAddIn.Dialogs
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Dialogs
 	/// Disposables taken care of in OnClosed.
 	/// </remarks>
 
-	internal partial class EmojiDialog : LocalizableForm
+	internal partial class AddTitleIconDialog : Dialogs.LocalizableForm
 	{
 		private readonly (string code, string html, string name, Image image)[] icons =
 		{
@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Dialogs
 		};
 
 
-		public EmojiDialog()
+		public AddTitleIconDialog()
 		{
 			InitializeComponent();
 
@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Dialogs
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.EmojiDialog_Text;
+				Text = Resx.AddTitleIconDialog_Text;
 
 				Localize(new string[]
 				{

@@ -223,6 +223,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string AddTitleIconDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("AddTitleIconDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select on or more icons to add to page title.
+        /// </summary>
+        internal static string AddTitleIconDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("AddTitleIconDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string AddTitleIconDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("AddTitleIconDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TItle Icons.
+        /// </summary>
+        internal static string AddTitleIconDialog_Text {
+            get {
+                return ResourceManager.GetString("AddTitleIconDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Architecture {
@@ -1153,42 +1189,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Emoji_Watch {
             get {
                 return ResourceManager.GetString("Emoji_Watch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string EmojiDialog_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_cancelButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select on or more icons to add to page title.
-        /// </summary>
-        internal static string EmojiDialog_introLabel_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_introLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string EmojiDialog_okButton_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_okButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TItle Icons.
-        /// </summary>
-        internal static string EmojiDialog_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog.Text", resourceCulture);
             }
         }
         

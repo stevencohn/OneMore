@@ -848,19 +848,19 @@ Notebooks</value>
     <value>Sort by:</value>
     <comment>label</comment>
   </data>
-  <data name="EmojiDialog.Text" xml:space="preserve">
+  <data name="AddTitleIconDialog.Text" xml:space="preserve">
     <value>TItle Icons</value>
     <comment>dialog title</comment>
   </data>
-  <data name="EmojiDialog_cancelButton.Text" xml:space="preserve">
+  <data name="AddTitleIconDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
+  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
     <value>Select on or more icons to add to page title</value>
     <comment>instructions</comment>
   </data>
-  <data name="EmojiDialog_okButton.Text" xml:space="preserve">
+  <data name="AddTitleIconDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>ok button</comment>
   </data>

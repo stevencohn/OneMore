@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 					if (sorting == SortDialog.Sortings.ByName)
 					{
 						pages = pages.OrderByDescending(
-							p => EmojiDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
+							p => AddTitleIconDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
 					}
 					else
 					{
@@ -124,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 					if (sorting == SortDialog.Sortings.ByName)
 					{
 						pages = pages.OrderBy(
-							p => EmojiDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
+							p => AddTitleIconDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
 					}
 					else
 					{
