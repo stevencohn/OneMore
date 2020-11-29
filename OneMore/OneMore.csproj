@@ -128,7 +128,7 @@
     <Compile Include="Commands\Extras\SplitDialog.Designer.cs">
       <DependentUpon>SplitDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Formula\Formula.cs" />
+    <Compile Include="Commands\Formulas\Formula.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
       <SubType>Form</SubType>
@@ -176,22 +176,22 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Extras\WordCountCommand.cs" />
     <Compile Include="Commands\Extras\TextToTableCommand.cs" />
-    <Compile Include="Commands\Formula\Calculator.cs" />
-    <Compile Include="Commands\Formula\FormulaException.cs" />
-    <Compile Include="Commands\Formula\FunctionEventArgs.cs" />
-    <Compile Include="Commands\Formula\MathFunctions.cs" />
-    <Compile Include="Commands\Formula\SymbolEventArgs.cs" />
-    <Compile Include="Commands\Formula\TextParser.cs" />
+    <Compile Include="Commands\Formulas\Calculator.cs" />
+    <Compile Include="Commands\Formulas\FormulaException.cs" />
+    <Compile Include="Commands\Formulas\FunctionEventArgs.cs" />
+    <Compile Include="Commands\Formulas\MathFunctions.cs" />
+    <Compile Include="Commands\Formulas\SymbolEventArgs.cs" />
+    <Compile Include="Commands\Formulas\TextParser.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />
     <Compile Include="Commands\Clean\ToggleDttmCommand.cs" />
-    <Compile Include="Commands\Formula\Processor.cs" />
-    <Compile Include="Commands\Formula\DeleteFormulaCommand.cs" />
-    <Compile Include="Commands\Formula\FormulaEnums.cs" />
-    <Compile Include="Commands\Formula\HighlightFormulaCommand.cs" />
-    <Compile Include="Commands\Formula\RecalculateFormulaCommand.cs" />
+    <Compile Include="Commands\Formulas\Processor.cs" />
+    <Compile Include="Commands\Formulas\DeleteFormulaCommand.cs" />
+    <Compile Include="Commands\Formulas\FormulaEnums.cs" />
+    <Compile Include="Commands\Formulas\HighlightFormulaCommand.cs" />
+    <Compile Include="Commands\Formulas\RecalculateFormulaCommand.cs" />
     <Compile Include="Commands\Images\CropImageCommand.cs" />
     <Compile Include="Commands\Numbering\NumberPagesCommand.cs" />
     <Compile Include="Commands\Numbering\NumberSectionsCommand.cs" />
@@ -215,7 +215,7 @@
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
     <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
-    <Compile Include="Commands\Formula\AddFormulaCommand.cs" />
+    <Compile Include="Commands\Formulas\AddFormulaCommand.cs" />
     <Compile Include="Commands\Extras\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
     <Compile Include="Commands\Images\ResizeImagesCommand.cs" />
@@ -231,10 +231,10 @@
     <Compile Include="Commands\File\ExportDialog.Designer.cs">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Formula\FormulaDialog.cs">
+    <Compile Include="Commands\Formulas\FormulaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Formula\FormulaDialog.Designer.cs">
+    <Compile Include="Commands\Formulas\FormulaDialog.Designer.cs">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\OutlineDialog.cs">
@@ -613,7 +613,7 @@
     <EmbeddedResource Include="Dialogs\FlatToggleButton.resx">
       <DependentUpon>FlatToggleButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Formula\FormulaDialog.resx">
+    <EmbeddedResource Include="Commands\Formulas\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\OutlineDialog.resx">
