@@ -438,12 +438,6 @@
     <Compile Include="Commands\Extras\AddTitleIconDialog.Designer.cs">
       <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FlatToggleButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\FlatToggleButton.Designer.cs">
-      <DependentUpon>FlatToggleButton.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\FontComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -548,13 +542,14 @@
     <Content Include="Properties\Images\Reorder.png" />
     <Content Include="Properties\Images\SaveAs.png" />
     <Content Include="Properties\Images\Search.png" />
+    <Content Include="Properties\Images\SearchTag.png" />
     <Content Include="Properties\Images\SectionGroup.png" />
     <Content Include="Properties\Images\SectionMask.png" />
     <Content Include="Properties\Images\SelectAll.png" />
     <Content Include="Properties\Images\Strikethrough.png" />
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
-    <Content Include="Properties\Images\TagMap.png" />
+    <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />
     <Content Include="Properties\Images\UpArrow.png" />
@@ -609,9 +604,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\FlatToggleButton.resx">
-      <DependentUpon>FlatToggleButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Formulas\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
