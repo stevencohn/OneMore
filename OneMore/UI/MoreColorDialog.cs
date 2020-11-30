@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.UI
 	/// Customized ColorDialog that provides a means to set its screen location.
 	/// </summary>
 
-	internal class ColorDialogEx : ColorDialog
+	internal class MoreColorDialog : ColorDialog
 	{
 		#region Win32
 		private const Int32 WM_INITDIALOG = 0x0110;
@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.UI
 		private readonly int x;
 		private readonly int y;
 
-		public ColorDialogEx(string title, int x, int y)
+		public MoreColorDialog(string title, int x, int y)
 			: base()
 		{
 			FullOpen = false;

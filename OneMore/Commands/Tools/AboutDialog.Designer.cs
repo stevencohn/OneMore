@@ -33,10 +33,10 @@
 			this.versionLabel = new System.Windows.Forms.Label();
 			this.copyLabel = new System.Windows.Forms.Label();
 			this.okButton = new System.Windows.Forms.Button();
-			this.logLabel = new System.Windows.Forms.LinkLabel();
-			this.clearLogLabel = new System.Windows.Forms.LinkLabel();
-			this.homeLink = new System.Windows.Forms.LinkLabel();
-			this.updateLink = new System.Windows.Forms.LinkLabel();
+			this.logLabel = new UI.MoreLinkLabel();
+			this.clearLogLabel = new UI.MoreLinkLabel();
+			this.homeLink = new UI.MoreLinkLabel();
+			this.updateLink = new UI.MoreLinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -186,9 +186,9 @@
 		private System.Windows.Forms.Label versionLabel;
 		private System.Windows.Forms.Label copyLabel;
 		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.LinkLabel logLabel;
-		private System.Windows.Forms.LinkLabel clearLogLabel;
-		private System.Windows.Forms.LinkLabel homeLink;
-		private System.Windows.Forms.LinkLabel updateLink;
+		private UI.MoreLinkLabel logLabel;
+		private UI.MoreLinkLabel clearLogLabel;
+		private UI.MoreLinkLabel homeLink;
+		private UI.MoreLinkLabel updateLink;
 	}
 }

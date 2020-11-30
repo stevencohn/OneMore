@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaggingDialog));
 			this.entryPanel = new System.Windows.Forms.Panel();
-			this.clearLabel = new System.Windows.Forms.LinkLabel();
+			this.clearLabel = new UI.MoreLinkLabel();
 			this.tagsFlow = new System.Windows.Forms.FlowLayoutPanel();
 			this.addButton = new System.Windows.Forms.Button();
 			this.tagBox = new River.OneMoreAddIn.UI.FormTextBox();
@@ -329,6 +329,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.FlowLayoutPanel recentFlow;
 		private System.Windows.Forms.Label suggestionsLabel;
 		private System.Windows.Forms.SplitContainer suggestionSplits;
-		private System.Windows.Forms.LinkLabel clearLabel;
+		private UI.MoreLinkLabel clearLabel;
 	}
 }

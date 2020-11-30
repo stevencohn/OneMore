@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var location = PointToScreen(customButton.Location);
 
-				using (var dialog = new UI.ColorDialogEx(Resx.PageColorDialog_Text,
+				using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
 					location.X + customButton.Bounds.Location.X + (customButton.Width / 2),
 					location.Y - 200))
 				{

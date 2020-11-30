@@ -533,7 +533,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var location = PointToScreen(toolStrip.Location);
 
-			using (var dialog = new UI.ColorDialogEx(title,
+			using (var dialog = new UI.MoreColorDialog(title,
 				location.X + bounds.Location.X,
 				location.Y + bounds.Height + 4))
 			{

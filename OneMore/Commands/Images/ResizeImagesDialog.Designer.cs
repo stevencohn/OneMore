@@ -45,8 +45,8 @@
 			this.presetUpDown = new System.Windows.Forms.NumericUpDown();
 			this.presetLabel = new System.Windows.Forms.Label();
 			this.origLabel = new System.Windows.Forms.Label();
-			this.sizeLink = new System.Windows.Forms.LinkLabel();
-			this.origSizeLink = new System.Windows.Forms.LinkLabel();
+			this.sizeLink = new UI.MoreLinkLabel();
+			this.origSizeLink = new UI.MoreLinkLabel();
 			this.allLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pctUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).BeginInit();
@@ -338,8 +338,8 @@
 		private System.Windows.Forms.NumericUpDown presetUpDown;
 		private System.Windows.Forms.Label presetLabel;
 		private System.Windows.Forms.Label origLabel;
-		private System.Windows.Forms.LinkLabel sizeLink;
-		private System.Windows.Forms.LinkLabel origSizeLink;
+		private UI.MoreLinkLabel sizeLink;
+		private UI.MoreLinkLabel origSizeLink;
 		private System.Windows.Forms.Label allLabel;
 	}
 }

@@ -258,6 +258,9 @@
     <Compile Include="Commands\Edit\PronunciateDialog.Designer.cs">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\MoreLinkLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,7 +432,7 @@
     <Compile Include="Commands\Images\CropImageDialog.Designer.cs">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ColorDialogEx.cs">
+    <Compile Include="UI\MoreColorDialog.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Extras\AddTitleIconDialog.cs">
