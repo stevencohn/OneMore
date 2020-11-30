@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands.Search
 {
-	using River.OneMoreAddIn.Dialogs;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;

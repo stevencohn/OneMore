@@ -6,9 +6,8 @@
 #pragma warning disable S1075   // URIs should not be hardcoded
 #pragma warning disable S3459   // Unassigned members should be removed
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using System.Linq;
 	using System.Net;
@@ -75,7 +74,7 @@ namespace River.OneMoreAddIn
 				}
 
 				string isoCode;
-				using (var dialog = new PhoneticsDialog())
+				using (var dialog = new PronunciateDialog())
 				{
 					dialog.Word = word;
 

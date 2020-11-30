@@ -16,7 +16,6 @@ namespace River.OneMoreAddIn
 	using System.Diagnostics;
 	using System.Globalization;
 	using System.Runtime.InteropServices;
-	using System.Timers;
 
 
 	/// <summary>
@@ -31,7 +30,7 @@ namespace River.OneMoreAddIn
 		private IRibbonUI ribbon;                   // the ribbon control
 		private ILogger logger;                     // our diagnostic logger
 		private CommandFactory factory;
-		private Process process;				    // current process, to kill if necessary
+		private Process process;                    // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
 
 

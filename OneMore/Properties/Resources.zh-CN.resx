@@ -843,22 +843,6 @@ OneNote 将自动关闭</value>
     <value>排序方式:</value>
     <comment>label</comment>
   </data>
-  <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>标题图标</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="EmojiDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
-    <value>选择一个或多个图标以添加到页面标题</value>
-    <comment>instructions</comment>
-  </data>
-  <data name="EmojiDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>ok button</comment>
-  </data>
   <data name="Emoji_Architecture" xml:space="preserve">
     <value>建筑</value>
     <comment>emoji</comment>
@@ -1123,26 +1107,6 @@ OneNote 将自动关闭</value>
     <value>从此笔记本的所有部分中删除数字</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="PageNumberingDialog.Text" xml:space="preserve">
-    <value>页码</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="PageNumberingDialog_alphaRadio.Text" xml:space="preserve">
-    <value>字母数字</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="PageNumberingDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="PageNumberingDialog_numRadio.Text" xml:space="preserve">
-    <value>数字</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="PageNumberingDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
-  </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>编号页{0}</value>
     <comment>progress status dialog</comment>
@@ -1247,42 +1211,6 @@ OneNote 将自动关闭</value>
   <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
     <value>好</value>
     <comment>ok button</comment>
-  </data>
-  <data name="TimestampDialog.Text" xml:space="preserve">
-    <value>显示/隐藏日期和时间</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TimestampDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="TimestampDialog_hideRadio.Text" xml:space="preserve">
-    <value>隐藏日期和时间</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="TimestampDialog_pageRadio.Text" xml:space="preserve">
-    <value>这一页</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_scopeGroup.Text" xml:space="preserve">
-    <value>范围</value>
-    <comment>group box</comment>
-  </data>
-  <data name="TimestampDialog_sectionRadio.Text" xml:space="preserve">
-    <value>本节中的所有页面</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_showRadio.Text" xml:space="preserve">
-    <value>显示日期和时间</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="TimestampDialog_toggleGroup.Text" xml:space="preserve">
-    <value>切换</value>
-    <comment>group box</comment>
   </data>
   <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
     <value>全选</value>
@@ -1511,38 +1439,6 @@ OneNote 将自动关闭</value>
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
-  <data name="TocDialog.Text" xml:space="preserve">
-    <value>目录</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TocDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
-  <data name="TocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>在此笔记本中添加带有部分表的页面</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
-  </data>
-  <data name="TocDialog_pageRadio.Text" xml:space="preserve">
-    <value>在此页上插入标题表</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_pagesBox.Text" xml:space="preserve">
-    <value>在每个部分中包含页面</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="TocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>在此部分中添加带有页表的页面</value>
-    <comment>radio</comment>
-  </data>
-  <data name="TocDialog_topBox.Text" xml:space="preserve">
-    <value>将链接添加到每个标题以跳至页面顶部</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>目录</value>
     <comment>page name</comment>
@@ -1614,74 +1510,6 @@ OneNote 将自动关闭</value>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>显示/隐藏日期和时间</value>
     <comment>Ribbon OneMore menu item, extras</comment>
-  </data>
-  <data name="XmlDialog.Text" xml:space="preserve">
-    <value>OneMore XML</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="XmlDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="XmlDialog_currNotebookButton.Text" xml:space="preserve">
-    <value>当前笔记本</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>当前部分</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_hideBox.Text" xml:space="preserve">
-    <value>隐藏编辑者属性（取消选中以编辑页面）</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="XmlDialog_hideLFBox.Text" xml:space="preserve">
-    <value>从CDATA删除LF</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="XmlDialog_hierTab.Text" xml:space="preserve">
-    <value>层次结构</value>
-    <comment>tab</comment>
-  </data>
-  <data name="XmlDialog_notebooksHierButton.Text" xml:space="preserve">
-    <value>笔记本电脑</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_okButton.Text" xml:space="preserve">
-    <value>更新页面</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="XmlDialog_pageLinkLabel.Text" xml:space="preserve">
-    <value>链接：</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pageNameLabel.Text" xml:space="preserve">
-    <value>名称：</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pagePathLabel.Text" xml:space="preserve">
-    <value>路径：</value>
-    <comment>label</comment>
-  </data>
-  <data name="XmlDialog_pagesHierButton.Text" xml:space="preserve">
-    <value>页数</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_pageTab.Text" xml:space="preserve">
-    <value>页</value>
-    <comment>tab</comment>
-  </data>
-  <data name="XmlDialog_sectionsHierButton.Text" xml:space="preserve">
-    <value>栏目</value>
-    <comment>hier button</comment>
-  </data>
-  <data name="XmlDialog_selectButton.Text" xml:space="preserve">
-    <value>全选</value>
-    <comment>button</comment>
-  </data>
-  <data name="XmlDialog_wrapBox.Text" xml:space="preserve">
-    <value>自动换行</value>
-    <comment>checkbox</comment>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>检测到无效的XML。 检查日志文件以获取详细信息</value>
@@ -2100,31 +1928,6 @@ XML档案（* .xml）</value>
     <value>向右移动单元格</value>
     <comment>radio</comment>
   </data>
-  <data name="PhoneticsDialog.Text" xml:space="preserve">
-    <value>语音学</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="PhoneticsDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="PhoneticsDialog_languageLabel.Text" xml:space="preserve">
-    <value>语言</value>
-    <comment>label</comment>
-  </data>
-  <data name="PhoneticsDialog_languages" xml:space="preserve">
-    <value>zh，英语\n</value>
-    <comment>Recognized languages, one per line.
-ISO-code then comma then language name</comment>
-  </data>
-  <data name="PhoneticsDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
-  </data>
-  <data name="PhoneticsDialog_wordLabel.Text" xml:space="preserve">
-    <value>字</value>
-    <comment>label</comment>
-  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>没有选择文字</value>
     <comment>info message</comment>
@@ -2184,18 +1987,6 @@ ISO-code then comma then language name</comment>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>进口</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="PageNumberingDialog_cleanBox.Text" xml:space="preserve">
-    <value>删除/清理现有编号</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="PageNumberingDialog_introLabel.Text" xml:space="preserve">
-    <value>选择编号样式</value>
-    <comment>label</comment>
-  </data>
-  <data name="PageNumberingDialog_numberingGroup.Text" xml:space="preserve">
-    <value>编号</value>
-    <comment>group</comment>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>之后的空间：</value>
@@ -2438,5 +2229,226 @@ ISO-code then comma then language name</comment>
   <data name="ribTaggingButton_Label" xml:space="preserve">
     <value>标签页</value>
     <comment>menu item</comment>
+  </data>
+  <data name="AddTitleIconDialog.Text" xml:space="preserve">
+    <value>标题图标</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddTitleIconDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
+    <value>选择一个或多个图标以添加到页面标题</value>
+    <comment>instructions</comment>
+  </data>
+  <data name="AddTitleIconDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="NumberPagesDialog.Text" xml:space="preserve">
+    <value>页码</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="NumberPagesDialog_alphaRadio.Text" xml:space="preserve">
+    <value>字母数字</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="NumberPagesDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
+    <value>删除/清理现有编号</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NumberPagesDialog_numRadio.Text" xml:space="preserve">
+    <value>数字</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="NumberPagesDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PronunciateDialog.Text" xml:space="preserve">
+    <value>语音学</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PronunciateDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
+    <value>语言</value>
+    <comment>label</comment>
+  </data>
+  <data name="PronunciateDialog_languages" xml:space="preserve">
+    <value>zh，英语
+嗨，印地语
+es，西班牙语
+fr，法语
+ja，日语
+ru，俄语
+德，德国
+它，意大利语
+朝鲜语
+pt-BR，巴西葡萄牙语
+ar，阿拉伯语
+tr，土耳其文
+zh-CN，中文（简体）</value>
+    <comment>Recognized languages, one per line.
+ISO-code then comma then language name</comment>
+  </data>
+  <data name="PronunciateDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
+    <value>字</value>
+    <comment>label</comment>
+  </data>
+  <data name="ToggleDttmDialog.Text" xml:space="preserve">
+    <value>显示/隐藏日期和时间</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ToggleDttmDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ToggleDttmDialog_hideRadio.Text" xml:space="preserve">
+    <value>隐藏日期和时间</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
+    <value>这一页</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
+    <value>范围</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
+    <value>本节中的所有页面</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
+    <value>显示日期和时间</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="ToggleDttmDialog_toggleGroup.Text" xml:space="preserve">
+    <value>切换</value>
+    <comment>group box</comment>
+  </data>
+  <data name="InsertTocDialog.Text" xml:space="preserve">
+    <value>目录</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="InsertTocDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
+    <value>在此笔记本中添加带有部分表的页面</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
+    <value>在此页上插入标题表</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>在每个部分中包含页面</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
+    <value>在此部分中添加带有页表的页面</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
+    <value>将链接添加到每个标题以跳至页面顶部</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog.Text" xml:space="preserve">
+    <value>OneMore XML</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ShowXmlDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
+    <value>当前笔记本</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
+    <value>当前部分</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
+    <value>隐藏编辑者属性（取消选中以编辑页面）</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_hideLFBox.Text" xml:space="preserve">
+    <value>从CDATA删除LF</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_hierTab.Text" xml:space="preserve">
+    <value>层次结构</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
+    <value>笔记本电脑</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
+    <value>更新页面</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ShowXmlDialog_pageLinkLabel.Text" xml:space="preserve">
+    <value>链接：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pageNameLabel.Text" xml:space="preserve">
+    <value>名称：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
+    <value>路径：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ShowXmlDialog_pagesHierButton.Text" xml:space="preserve">
+    <value>页数</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
+    <value>页</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_sectionsHierButton.Text" xml:space="preserve">
+    <value>栏目</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
+    <value>全选</value>
+    <comment>button</comment>
+  </data>
+  <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
+    <value>自动换行</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="NumberPagesDialog_introLabel.Text" xml:space="preserve">
+    <value>选择编号样式</value>
+    <comment>label</comment>
+  </data>
+  <data name="NumberPagesDialog_numberingGroup.Text" xml:space="preserve">
+    <value>编号</value>
+    <comment>group</comment>
   </data>
 </root>

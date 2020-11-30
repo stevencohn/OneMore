@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn
 			int width = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
 			int height = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
-			using (var dialog = new Dialogs.ResizeImagesDialog(width, height))
+			using (var dialog = new ResizeImagesDialog(width, height))
 			{
 				dialog.SetOriginalSize(GetOriginalSize(image, ns));
 
@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn
 
 		private void ResizeMany(IEnumerable<XElement> images)
 		{
-			using (var dialog = new Dialogs.ResizeImagesDialog(1, 1, true))
+			using (var dialog = new ResizeImagesDialog(1, 1, true))
 			{
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)

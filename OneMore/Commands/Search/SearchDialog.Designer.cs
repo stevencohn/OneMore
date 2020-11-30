@@ -36,7 +36,7 @@
 			this.searchButton = new System.Windows.Forms.Button();
 			this.copyButton = new System.Windows.Forms.Button();
 			this.moveButton = new System.Windows.Forms.Button();
-			this.resultTree = new River.OneMoreAddIn.HierarchyView();
+			this.resultTree = new River.OneMoreAddIn.UI.HierarchyView();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
@@ -197,7 +197,7 @@
 		private System.Windows.Forms.Button searchButton;
 		private System.Windows.Forms.Button copyButton;
 		private System.Windows.Forms.Button moveButton;
-		private River.OneMoreAddIn.HierarchyView resultTree;
+		private River.OneMoreAddIn.UI.HierarchyView resultTree;
 		private System.Windows.Forms.ComboBox scopeBox;
 	}
 }

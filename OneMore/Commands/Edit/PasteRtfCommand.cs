@@ -5,7 +5,7 @@
 #define Hx
 #define Zx
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Globalization;

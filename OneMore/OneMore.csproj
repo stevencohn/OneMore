@@ -128,7 +128,7 @@
     <Compile Include="Commands\Extras\SplitDialog.Designer.cs">
       <DependentUpon>SplitDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Formula\Formula.cs" />
+    <Compile Include="Commands\Formulas\Formula.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
       <SubType>Form</SubType>
@@ -162,13 +162,13 @@
     </Compile>
     <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
-    <Compile Include="Dialogs\FormTextBox.cs">
+    <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Dialogs\ImportDialog.cs">
+    <Compile Include="Commands\File\ImportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ImportDialog.Designer.cs">
+    <Compile Include="Commands\File\ImportDialog.Designer.cs">
       <DependentUpon>ImportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\ImportCommand.cs" />
@@ -176,22 +176,22 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Extras\WordCountCommand.cs" />
     <Compile Include="Commands\Extras\TextToTableCommand.cs" />
-    <Compile Include="Commands\Formula\Calculator.cs" />
-    <Compile Include="Commands\Formula\FormulaException.cs" />
-    <Compile Include="Commands\Formula\FunctionEventArgs.cs" />
-    <Compile Include="Commands\Formula\MathFunctions.cs" />
-    <Compile Include="Commands\Formula\SymbolEventArgs.cs" />
-    <Compile Include="Commands\Formula\TextParser.cs" />
+    <Compile Include="Commands\Formulas\Calculator.cs" />
+    <Compile Include="Commands\Formulas\FormulaException.cs" />
+    <Compile Include="Commands\Formulas\FunctionEventArgs.cs" />
+    <Compile Include="Commands\Formulas\MathFunctions.cs" />
+    <Compile Include="Commands\Formulas\SymbolEventArgs.cs" />
+    <Compile Include="Commands\Formulas\TextParser.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />
     <Compile Include="Commands\Clean\ToggleDttmCommand.cs" />
-    <Compile Include="Commands\Formula\Processor.cs" />
-    <Compile Include="Commands\Formula\DeleteFormulaCommand.cs" />
-    <Compile Include="Commands\Formula\FormulaEnums.cs" />
-    <Compile Include="Commands\Formula\HighlightFormulaCommand.cs" />
-    <Compile Include="Commands\Formula\RecalculateFormulaCommand.cs" />
+    <Compile Include="Commands\Formulas\Processor.cs" />
+    <Compile Include="Commands\Formulas\DeleteFormulaCommand.cs" />
+    <Compile Include="Commands\Formulas\FormulaEnums.cs" />
+    <Compile Include="Commands\Formulas\HighlightFormulaCommand.cs" />
+    <Compile Include="Commands\Formulas\RecalculateFormulaCommand.cs" />
     <Compile Include="Commands\Images\CropImageCommand.cs" />
     <Compile Include="Commands\Numbering\NumberPagesCommand.cs" />
     <Compile Include="Commands\Numbering\NumberSectionsCommand.cs" />
@@ -215,99 +215,102 @@
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
     <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
-    <Compile Include="Commands\Formula\AddFormulaCommand.cs" />
+    <Compile Include="Commands\Formulas\AddFormulaCommand.cs" />
     <Compile Include="Commands\Extras\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
     <Compile Include="Commands\Images\ResizeImagesCommand.cs" />
-    <Compile Include="Dialogs\CalendarDialog.cs">
+    <Compile Include="Commands\Snippets\InsertCalendarDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\CalendarDialog.Designer.cs">
-      <DependentUpon>CalendarDialog.cs</DependentUpon>
+    <Compile Include="Commands\Snippets\InsertCalendarDialog.Designer.cs">
+      <DependentUpon>InsertCalendarDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ExportDialog.cs">
+    <Compile Include="Commands\File\ExportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ExportDialog.Designer.cs">
+    <Compile Include="Commands\File\ExportDialog.Designer.cs">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FormulaDialog.cs">
+    <Compile Include="Commands\Formulas\FormulaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\FormulaDialog.Designer.cs">
+    <Compile Include="Commands\Formulas\FormulaDialog.Designer.cs">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\OutlineDialog.cs">
+    <Compile Include="Commands\Numbering\OutlineDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\OutlineDialog.Designer.cs">
+    <Compile Include="Commands\Numbering\OutlineDialog.Designer.cs">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\LocalizableForm.cs">
+    <Compile Include="UI\LocalizableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PageNumberingDialog.cs">
+    <Compile Include="Commands\Numbering\NumberPagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PageNumberingDialog.Designer.cs">
-      <DependentUpon>PageNumberingDialog.cs</DependentUpon>
+    <Compile Include="Commands\Numbering\NumberPagesDialog.Designer.cs">
+      <DependentUpon>NumberPagesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\PhoneticsDialog.cs">
+    <Compile Include="Commands\Edit\PronunciateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\PhoneticsDialog.Designer.cs">
-      <DependentUpon>PhoneticsDialog.cs</DependentUpon>
+    <Compile Include="Commands\Edit\PronunciateDialog.Designer.cs">
+      <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ProgressDialog.cs">
+    <Compile Include="UI\MoreLinkLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ProgressDialog.Designer.cs">
+    <Compile Include="UI\ProgressDialog.Designer.cs">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\RemoveSpacingDialog.cs">
+    <Compile Include="Commands\Clean\RemoveSpacingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\RemoveSpacingDialog.Designer.cs">
+    <Compile Include="Commands\Clean\RemoveSpacingDialog.Designer.cs">
       <DependentUpon>RemoveSpacingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ResizeImagesDialog.cs">
+    <Compile Include="Commands\Images\ResizeImagesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ResizeImagesDialog.Designer.cs">
+    <Compile Include="Commands\Images\ResizeImagesDialog.Designer.cs">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\RunPluginDialog.cs">
+    <Compile Include="Commands\File\RunPluginDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\RunPluginDialog.Designer.cs">
+    <Compile Include="Commands\File\RunPluginDialog.Designer.cs">
       <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TagPickerDialog.cs">
+    <Compile Include="UI\TagPickerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TagPickerDialog.Designer.cs">
+    <Compile Include="UI\TagPickerDialog.Designer.cs">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TextToTableDialog.cs">
+    <Compile Include="Commands\Extras\TextToTableDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TextToTableDialog.Designer.cs">
+    <Compile Include="Commands\Extras\TextToTableDialog.Designer.cs">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TimestampDialog.cs">
+    <Compile Include="Commands\Clean\ToggleDttmDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TimestampDialog.Designer.cs">
-      <DependentUpon>TimestampDialog.cs</DependentUpon>
+    <Compile Include="Commands\Clean\ToggleDttmDialog.Designer.cs">
+      <DependentUpon>ToggleDttmDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\TocDialog.cs">
+    <Compile Include="Commands\Snippets\InsertTocDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\TocDialog.Designer.cs">
-      <DependentUpon>TocDialog.cs</DependentUpon>
+    <Compile Include="Commands\Snippets\InsertTocDialog.Designer.cs">
+      <DependentUpon>InsertTocDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\HierarchyNode.cs" />
-    <Compile Include="Helpers\HierarchyView.cs">
+    <Compile Include="UI\HierarchyNode.cs" />
+    <Compile Include="UI\HierarchyView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Helpers\GalleryTileFactory.cs" />
@@ -332,34 +335,34 @@
     <Compile Include="Commands\Tools\SortCommand.cs" />
     <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />
-    <Compile Include="Dialogs\ChangePageColorDialog.cs">
+    <Compile Include="Commands\Styles\ChangePageColorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ChangePageColorDialog.Designer.cs">
+    <Compile Include="Commands\Styles\ChangePageColorDialog.Designer.cs">
       <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ReorderDialog.cs">
+    <Compile Include="Commands\Styles\ReorderDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ReorderDialog.Designer.cs">
+    <Compile Include="Commands\Styles\ReorderDialog.Designer.cs">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ScaledToolStrip.cs">
+    <Compile Include="UI\ScaledToolStrip.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Dialogs\SearchAndReplaceDialog.cs">
+    <Compile Include="Commands\SearchAndReplace\SearchAndReplaceDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\SearchAndReplaceDialog.Designer.cs">
+    <Compile Include="Commands\SearchAndReplace\SearchAndReplaceDialog.Designer.cs">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SortDialog.cs">
+    <Compile Include="Commands\Tools\SortDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\SortDialog.Designer.cs">
+    <Compile Include="Commands\Tools\SortDialog.Designer.cs">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\BasicColors.cs" />
+    <Compile Include="UI\BasicColors.cs" />
     <Compile Include="Helpers\Extensions\ColorExtensions.cs" />
     <Compile Include="Helpers\Hotkeys\Hotkey.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
@@ -373,43 +376,43 @@
     <Compile Include="Helpers\Office\Word.cs" />
     <Compile Include="Helpers\PathFactory.cs" />
     <Compile Include="Models\QuickStyleMapping.cs" />
-    <Compile Include="Settings\ContextMenuSheet.cs">
+    <Compile Include="Commands\Tools\Settings\ContextMenuSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\ContextMenuSheet.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\ContextMenuSheet.Designer.cs">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\FadingLabel.cs">
+    <Compile Include="Commands\Tools\Settings\FadingLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Settings\HighlightsSheet.cs">
+    <Compile Include="Commands\Tools\Settings\HighlightsSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\HighlightsSheet.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\HighlightsSheet.Designer.cs">
       <DependentUpon>HighlightsSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\RibbonBarSheet.cs">
+    <Compile Include="Commands\Tools\Settings\RibbonBarSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\RibbonBarSheet.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\RibbonBarSheet.Designer.cs">
       <DependentUpon>RibbonBarSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SearchEngineSheet.cs">
+    <Compile Include="Commands\Tools\Settings\SearchEngineSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Settings\SearchEngineSheet.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\SearchEngineSheet.Designer.cs">
       <DependentUpon>SearchEngineSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SettingsCollection.cs" />
-    <Compile Include="Settings\SettingsDialog.cs">
+    <Compile Include="Commands\Tools\Settings\SettingsCollection.cs" />
+    <Compile Include="Commands\Tools\Settings\SettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings\SettingsDialog.Designer.cs">
+    <Compile Include="Commands\Tools\Settings\SettingsDialog.Designer.cs">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings\SettingsProvider.cs" />
+    <Compile Include="Commands\Tools\Settings\SettingsProvider.cs" />
     <Compile Include="Helpers\Extensions\IEnumerableExtensions.cs" />
-    <Compile Include="Settings\SheetBase.cs">
+    <Compile Include="Commands\Tools\Settings\SheetBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Helpers\Updater\GitAsset.cs" />
@@ -417,34 +420,28 @@
     <Compile Include="Helpers\Updater\Updater.cs" />
     <Compile Include="Helpers\Extensions\XCDataExtensions.cs" />
     <Compile Include="Helpers\Extensions\XElementExtensions.cs" />
-    <Compile Include="Dialogs\AboutDialog.cs">
+    <Compile Include="Commands\Tools\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\AboutDialog.Designer.cs">
+    <Compile Include="Commands\Tools\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\CropImageDialog.cs">
+    <Compile Include="Commands\Images\CropImageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\CropImageDialog.Designer.cs">
+    <Compile Include="Commands\Images\CropImageDialog.Designer.cs">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ColorDialogEx.cs">
+    <Compile Include="UI\MoreColorDialog.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Dialogs\EmojiDialog.cs">
+    <Compile Include="Commands\Extras\AddTitleIconDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\EmojiDialog.Designer.cs">
-      <DependentUpon>EmojiDialog.cs</DependentUpon>
+    <Compile Include="Commands\Extras\AddTitleIconDialog.Designer.cs">
+      <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FlatToggleButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Dialogs\FlatToggleButton.Designer.cs">
-      <DependentUpon>FlatToggleButton.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\FontComboBox.cs">
+    <Compile Include="UI\FontComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Styles\StyleDialog.cs">
@@ -488,11 +485,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="Helpers\Win32WindowHandle.cs" />
-    <Compile Include="Dialogs\XmlDialog.cs">
+    <Compile Include="Commands\Tools\ShowXmlDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\XmlDialog.Designer.cs">
-      <DependentUpon>XmlDialog.cs</DependentUpon>
+    <Compile Include="Commands\Tools\ShowXmlDialog.Designer.cs">
+      <DependentUpon>ShowXmlDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Styles\Stylizer.cs" />
     <Compile Include="Styles\XmlStyleBase.cs" />
@@ -548,13 +545,14 @@
     <Content Include="Properties\Images\Reorder.png" />
     <Content Include="Properties\Images\SaveAs.png" />
     <Content Include="Properties\Images\Search.png" />
+    <Content Include="Properties\Images\SearchTag.png" />
     <Content Include="Properties\Images\SectionGroup.png" />
     <Content Include="Properties\Images\SectionMask.png" />
     <Content Include="Properties\Images\SelectAll.png" />
     <Content Include="Properties\Images\Strikethrough.png" />
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
-    <Content Include="Properties\Images\TagMap.png" />
+    <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />
     <Content Include="Properties\Images\UpArrow.png" />
@@ -588,78 +586,75 @@
     <EmbeddedResource Include="Commands\Search\TagControl.resx">
       <DependentUpon>TagControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ImportDialog.resx">
+    <EmbeddedResource Include="Commands\File\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\AboutDialog.resx">
+    <EmbeddedResource Include="Commands\Tools\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CalendarDialog.resx">
-      <DependentUpon>CalendarDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Snippets\InsertCalendarDialog.resx">
+      <DependentUpon>InsertCalendarDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ChangePageColorDialog.resx">
+    <EmbeddedResource Include="Commands\Styles\ChangePageColorDialog.resx">
       <DependentUpon>ChangePageColorDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CropImageDialog.resx">
+    <EmbeddedResource Include="Commands\Images\CropImageDialog.resx">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\EmojiDialog.resx">
-      <DependentUpon>EmojiDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Extras\AddTitleIconDialog.resx">
+      <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ExportDialog.resx">
+    <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\FlatToggleButton.resx">
-      <DependentUpon>FlatToggleButton.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\FormulaDialog.resx">
+    <EmbeddedResource Include="Commands\Formulas\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\OutlineDialog.resx">
+    <EmbeddedResource Include="Commands\Numbering\OutlineDialog.resx">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PageNumberingDialog.resx">
-      <DependentUpon>PageNumberingDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Numbering\NumberPagesDialog.resx">
+      <DependentUpon>NumberPagesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\PhoneticsDialog.resx">
-      <DependentUpon>PhoneticsDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Edit\PronunciateDialog.resx">
+      <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ProgressDialog.resx">
+    <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\RemoveSpacingDialog.resx">
+    <EmbeddedResource Include="Commands\Clean\RemoveSpacingDialog.resx">
       <DependentUpon>RemoveSpacingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ReorderDialog.resx">
+    <EmbeddedResource Include="Commands\Styles\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ResizeImagesDialog.resx">
+    <EmbeddedResource Include="Commands\Images\ResizeImagesDialog.resx">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\RunPluginDialog.resx">
+    <EmbeddedResource Include="Commands\File\RunPluginDialog.resx">
       <DependentUpon>RunPluginDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SearchAndReplaceDialog.resx">
+    <EmbeddedResource Include="Commands\SearchAndReplace\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SortDialog.resx">
+    <EmbeddedResource Include="Commands\Tools\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
       <DependentUpon>StyleDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TagPickerDialog.resx">
+    <EmbeddedResource Include="UI\TagPickerDialog.resx">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TextToTableDialog.resx">
+    <EmbeddedResource Include="Commands\Extras\TextToTableDialog.resx">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TimestampDialog.resx">
-      <DependentUpon>TimestampDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Clean\ToggleDttmDialog.resx">
+      <DependentUpon>ToggleDttmDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\TocDialog.resx">
-      <DependentUpon>TocDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Snippets\InsertTocDialog.resx">
+      <DependentUpon>InsertTocDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ar-SA.resx">
       <SubType>Designer</SubType>
@@ -675,19 +670,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.nl-NL.resx" />
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
-    <EmbeddedResource Include="Settings\ContextMenuSheet.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\ContextMenuSheet.resx">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\HighlightsSheet.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\HighlightsSheet.resx">
       <DependentUpon>HighlightsSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\RibbonBarSheet.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\RibbonBarSheet.resx">
       <DependentUpon>RibbonBarSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\SearchEngineSheet.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\SearchEngineSheet.resx">
       <DependentUpon>SearchEngineSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\SettingsDialog.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
@@ -698,10 +693,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\XmlDialog.resx">
-      <DependentUpon>XmlDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Tools\ShowXmlDialog.resx">
+      <DependentUpon>ShowXmlDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings\SheetBase.resx">
+    <EmbeddedResource Include="Commands\Tools\Settings\SheetBase.resx">
       <DependentUpon>SheetBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

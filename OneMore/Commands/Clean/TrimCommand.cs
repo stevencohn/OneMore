@@ -2,7 +2,7 @@
 // Copyright © 2019 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
 	using System.Text.RegularExpressions;

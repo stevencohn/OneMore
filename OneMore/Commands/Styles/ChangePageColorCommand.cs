@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 				var currentColor = page.GetPageColor(out _, out _);
 				var currentlydDark = currentColor.GetBrightness() < 0.5;
 
-				using (var dialog = new Dialogs.ChangePageColorDialog(currentColor))
+				using (var dialog = new ChangePageColorDialog(currentColor))
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
