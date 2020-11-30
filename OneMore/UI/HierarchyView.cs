@@ -22,6 +22,9 @@ namespace River.OneMoreAddIn.UI
 		private const int CheckboxMargin = 4;   // space between checkbox and label
 		private const int ImageWidth = 28;      // width of image plus margins
 
+		private readonly IntPtr hcursor;
+		private readonly IntPtr pcursor;
+
 
 		/// <summary>
 		/// Initializes a new instance
@@ -35,6 +38,9 @@ namespace River.OneMoreAddIn.UI
 			HotTracking = true;
 			ShowLines = false;
 			ShowRootLines = false;
+
+			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
+			pcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_ARROW);
 		}
 
 
@@ -143,6 +149,19 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="m"></param>
 		protected override void WndProc(ref Message m)
 		{
+			if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero && Cursor == Cursors.Hand)
+			{
+				var point = PointToClient(Cursor.Position);
+				var info = HitTest(point);
+				if (info.Node is HierarchyNode node)
+				{
+					var rec = AdjustBounds(node, node.ShowCheckBox);
+					Native.SetCursor(rec.Contains(point) ? hcursor : pcursor);
+					m.Result = IntPtr.Zero; // indicate handled
+					return;
+				}
+			}
+
 			base.WndProc(ref m);
 
 			// trap TVM_SETITEM message
@@ -278,11 +297,13 @@ namespace River.OneMoreAddIn.UI
 			{
 				brush = SystemBrushes.HotTrack;
 				font = new Font(e.Node.NodeFont ?? Font, FontStyle.Underline);
+				//Cursor = Cursors.Hand;
 			}
 			else
 			{
 				brush = SystemBrushes.ControlText;
 				font = e.Node.NodeFont ?? Font;
+				//Cursor = Cursors.Default;
 			}
 
 			var left = node?.HierarchyLevel < HierarchyLevels.Page ? bounds.Left + 20 : bounds.Left;
