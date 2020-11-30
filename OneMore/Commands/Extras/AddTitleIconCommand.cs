@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
 	using System.Windows.Forms;
@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn
 		{
 			string[] codes = null;
 
-			using (var dialog = new Dialogs.EmojiDialog())
+			using (var dialog = new AddTitleIconDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{

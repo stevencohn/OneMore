@@ -2,9 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace River.OneMoreAddIn
 			bool addTopLinks;
 			bool includePages;
 
-			using (var dialog = new TocDialog())
+			using (var dialog = new InsertTocDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{

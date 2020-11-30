@@ -2,9 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
 	using System;
@@ -18,7 +17,7 @@ namespace River.OneMoreAddIn
 	internal class ImportCommand : Command
 	{
 		private const int MaxWait = 15;
-		private ProgressDialog progressDialog;
+		private UI.ProgressDialog progressDialog;
 
 
 		public ImportCommand()
@@ -257,7 +256,7 @@ namespace River.OneMoreAddIn
 		{
 			using (var source = new CancellationTokenSource())
 			{
-				using (progressDialog = new ProgressDialog(source))
+				using (progressDialog = new UI.ProgressDialog(source))
 				{
 					progressDialog.SetMaximum(MaxWait);
 					progressDialog.SetMessage($"Importing {path}...");

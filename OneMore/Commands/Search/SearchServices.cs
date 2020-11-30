@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -30,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			string lastId = null;
 
-			using (var progress = new ProgressDialog())
+			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIds.Count);
 				progress.Show(owner);
@@ -73,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			string indexId = null;
 
-			using (var progress = new ProgressDialog())
+			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIds.Count);
 				progress.Show(owner);
@@ -122,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var updated = false;
 
-			using (var progress = new ProgressDialog())
+			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIds.Count);
 				progress.Show(owner);

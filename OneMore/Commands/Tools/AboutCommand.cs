@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 
 	internal class AboutCommand : Command
@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn
 
 		public override void Execute(params object[] args)
 		{
-			using (var dialog = new Dialogs.AboutDialog())
+			using (var dialog = new AboutDialog())
 			{
 				dialog.ShowDialog(owner);
 			}

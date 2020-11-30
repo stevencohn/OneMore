@@ -2,7 +2,7 @@
 // Copyright © 2018 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
 	using System.Windows.Forms;
@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn
 			string withText;
 			bool matchCase;
 
-			using (var dialog = new Dialogs.SearchAndReplaceDialog())
+			using (var dialog = new SearchAndReplaceDialog())
 			{
 				result = dialog.ShowDialog(owner);
 

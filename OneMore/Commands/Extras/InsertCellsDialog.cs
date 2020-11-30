@@ -6,12 +6,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class InsertCellsDialog : LocalizableForm
+	internal partial class InsertCellsDialog : UI.LocalizableForm
 	{
 		public InsertCellsDialog()
 		{

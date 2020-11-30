@@ -29,7 +29,9 @@ namespace River.OneMoreAddIn
 		public const uint EVENT_SYSTEM_MINIMIZESTART = 22;
 		public const uint EVENT_SYSTEM_MINIMIZEEND = 23;
 
+		public const int IDC_ARROW = 32512;
 		public const int IDC_HAND = 32649;
+		public const int IDC_SIZENS = 32645;
 		public const int WM_SETCURSOR = 0x0020;
 
 		public const int TVIF_STATE = 0x8;

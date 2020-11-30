@@ -2,9 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 
@@ -39,7 +38,7 @@ namespace River.OneMoreAddIn
 						.Select(e => e.Attribute("ID").Value)
 						.ToList();
 
-					using (var progress = new ProgressDialog())
+					using (var progress = new UI.ProgressDialog())
 					{
 						progress.SetMaximum(pageIds.Count);
 						progress.Show(owner);

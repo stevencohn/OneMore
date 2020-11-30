@@ -2,9 +2,8 @@
 // Copyright © 2019 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Dialogs;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -108,7 +107,7 @@ namespace River.OneMoreAddIn
 					if (sorting == SortDialog.Sortings.ByName)
 					{
 						pages = pages.OrderByDescending(
-							p => EmojiDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
+							p => AddTitleIconDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
 					}
 					else
 					{
@@ -124,7 +123,7 @@ namespace River.OneMoreAddIn
 					if (sorting == SortDialog.Sortings.ByName)
 					{
 						pages = pages.OrderBy(
-							p => EmojiDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
+							p => AddTitleIconDialog.RemoveEmojis(p.Page.Attribute("name").Value)).ToList();
 					}
 					else
 					{
