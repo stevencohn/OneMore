@@ -326,6 +326,12 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public static string TextValue(this XElement element)
+		{
+			return element.Value.ToXmlWrapper().Value;
+		}
+
+
 		public static bool ReadAttributeValue(
 			this XElement element, string name, out string value, string defaultV = null)
 		{

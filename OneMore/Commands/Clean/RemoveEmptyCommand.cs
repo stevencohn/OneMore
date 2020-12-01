@@ -4,6 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
+	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
 	using System.Xml.Linq;
@@ -25,27 +27,27 @@ namespace River.OneMoreAddIn.Commands
 			using (var one = new OneNote(out var page, out var ns))
 			{
 
-				// first un-indent indented lines so we can then easily check if there are consecutive
+				// un-indent indented lines so we can then easily check if there are consecutive
 				// empty lines that need to be collapse...
 
-				var children = page.Root.Elements(ns + "Outline")?.Elements(ns + "OEChildren");
-				if (children == null)
+				var children = page.Root
+					.Elements(ns + "Outline").Elements(ns + "OEChildren")
+					.Where(e => !e.Parent.Elements(ns + "Meta")
+						.Any(m => m.Attribute("name").Value.Equals(Page.TagBankMetaName)))
+					.ToList();
+
+				if (children.Any())
 				{
-					return;
+					UndentEmptyLines(children.First().Parent, children, ns);
 				}
 
-				foreach (var child in children)
-				{
-					UndentEmptyLines(child, ns);
-				}
-
-				// second, find consecutive empty lines that need to be collapsed...
+				// find consecutive empty lines that need to be collapsed...
 
 				var elements =
 					(from e in page.Root.Descendants(page.Namespace + "OE")
 					 where e.Elements().Count() == 1
 					 let t = e.Elements().First()
-					 where (t != null) && (t.Name.LocalName == "T") && (t.Value.Length == 0)
+					 where (t != null) && (t.Name.LocalName == "T") && (t.TextValue().Trim().Length == 0)
 					 select e)
 					.ToList();
 
@@ -96,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 								prev.Elements().Count() == 1)
 							{
 								var t = prev.Elements().First();
-								if (t.Name.LocalName == "T" && t.Value.Length == 0)
+								if (t.Name.LocalName == "T" && t.TextValue().Trim().Length == 0)
 								{
 									// remove consecutive empty line
 									element.Remove();
@@ -115,34 +117,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void UndentEmptyLines(XElement parent, XNamespace ns)
+		private void UndentEmptyLines(XElement parent, List<XElement> children, XNamespace ns)
 		{
-			var children = parent.Elements(ns + "OE")?.Elements(ns + "OEChildren");
-			if (children == null)
+			// recursively find indented lines and unindent them
+
+			for (var i = 0; i < children.Count; i++)
 			{
-				return;
-			}
-
-			foreach (var child in children)
-			{
-				if (!child.HasElements)
+				var child = children[i];
+				if (child.HasElements)
 				{
-					continue;
-				}
+					UndentEmptyLines(child, child.Elements(ns + "OE").Elements(ns + "OEChildren").ToList(), ns);
 
-				var oe = child.Elements(ns + "OE").FirstOrDefault();
-				if (oe.NextNode == null && oe.Value.Trim() == string.Empty)
-				{
-					child.Remove();
-					parent.Add(oe);
-				}
-
-				var grands = child.Elements(ns + "OE")?.Elements(ns + "OEChildren");
-				if (grands != null)
-				{
-					foreach (var grand in grands)
+					if (child.TextValue().Trim() == string.Empty)
 					{
-						UndentEmptyLines(grand, ns);
+						var kids = child.Elements();
+						child.Remove();
+						parent.Add(kids);
 					}
 				}
 			}
