@@ -4,11 +4,17 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
+	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Collapse multiple consecutive empty lines into a single empty line. Also removes empty
+	/// headers, custom and standard.
+	/// </summary>
 	internal class RemoveEmptyCommand : Command
 	{
 		public RemoveEmptyCommand()
@@ -20,11 +26,28 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
+
+				// un-indent indented lines so we can then easily check if there are consecutive
+				// empty lines that need to be collapse...
+
+				var children = page.Root
+					.Elements(ns + "Outline").Elements(ns + "OEChildren")
+					.Where(e => !e.Parent.Elements(ns + "Meta")
+						.Any(m => m.Attribute("name").Value.Equals(Page.TagBankMetaName)))
+					.ToList();
+
+				if (children.Any())
+				{
+					UndentEmptyLines(children.First().Parent, children, ns);
+				}
+
+				// find consecutive empty lines that need to be collapsed...
+
 				var elements =
 					(from e in page.Root.Descendants(page.Namespace + "OE")
 					 where e.Elements().Count() == 1
 					 let t = e.Elements().First()
-					 where (t != null) && (t.Name.LocalName == "T") && (t.Value.Length == 0)
+					 where (t != null) && (t.Name.LocalName == "T") && (t.TextValue().Trim().Length == 0)
 					 select e)
 					.ToList();
 
@@ -48,6 +71,7 @@ namespace River.OneMoreAddIn.Commands
 							var index = int.Parse(attr.Value, CultureInfo.InvariantCulture);
 							if (quickStyles.Any(s => s.Index == index))
 							{
+								// remove empty standard heading
 								element.Remove();
 								modified = true;
 								continue;
@@ -58,6 +82,7 @@ namespace River.OneMoreAddIn.Commands
 						var style = new Style(element.CollectStyleProperties(true));
 						if (customStyles.Any(s => s.Equals(style)))
 						{
+							// remove empty custom heading
 							element.Remove();
 							modified = true;
 							continue;
@@ -73,8 +98,9 @@ namespace River.OneMoreAddIn.Commands
 								prev.Elements().Count() == 1)
 							{
 								var t = prev.Elements().First();
-								if (t.Name.LocalName == "T" && t.Value.Length == 0)
+								if (t.Name.LocalName == "T" && t.TextValue().Trim().Length == 0)
 								{
+									// remove consecutive empty line
 									element.Remove();
 									modified = true;
 								}
@@ -89,5 +115,53 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 		}
+
+
+		private void UndentEmptyLines(XElement parent, List<XElement> children, XNamespace ns)
+		{
+			// recursively find indented lines and unindent them
+
+			for (var i = 0; i < children.Count; i++)
+			{
+				var child = children[i];
+				if (child.HasElements)
+				{
+					UndentEmptyLines(child, child.Elements(ns + "OE").Elements(ns + "OEChildren").ToList(), ns);
+
+					if (child.TextValue().Trim() == string.Empty)
+					{
+						var kids = child.Elements();
+						child.Remove();
+						parent.Add(kids);
+					}
+				}
+			}
+		}
 	}
 }
+/*
+    <one:OEChildren selected="partial">
+      <one:OE alignment="left" quickStyleIndex="2" selected="partial">
+        <one:T selected="all"><![CDATA[test]]></one:T>
+        <one:OEChildren>
+          <one:OE alignment="left" quickStyleIndex="2">
+            <one:T><![CDATA[]]></one:T>
+            <one:OEChildren>
+              <one:OE alignment="left" quickStyleIndex="2">
+                <one:T><![CDATA[]]></one:T>
+              </one:OE>
+            </one:OEChildren>
+          </one:OE>
+        </one:OEChildren>
+      </one:OE>
+      <one:OE alignment="left" quickStyleIndex="2">
+        <one:T><![CDATA[]]></one:T>
+      </one:OE>
+      <one:OE alignment="left" quickStyleIndex="2">
+        <one:T><![CDATA[Foo]]></one:T>
+      </one:OE>
+      <one:OE alignment="left" quickStyleIndex="2">
+        <one:T><![CDATA[]]></one:T>
+      </one:OE>
+    </one:OEChildren>
+*/
