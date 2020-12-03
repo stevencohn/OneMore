@@ -29,8 +29,8 @@ namespace River.OneMoreAddIn.Commands
 				logger.StartClock();
 
 				var modified = OutdentEmptyLines(page, ns);
-				modified = modified || CollapseEmptyLines(page, ns);
-				modified = modified || IndentEmptyLines(page, ns);
+				modified = CollapseEmptyLines(page, ns) || modified;
+				modified = IndentEmptyLines(page, ns) || modified;
 
 				logger.WriteTime("removed empty lines, now saving...");
 
