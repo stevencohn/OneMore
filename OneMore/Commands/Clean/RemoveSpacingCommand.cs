@@ -43,6 +43,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
+				logger.StartClock();
+
 				var elements =
 					(from e in page.Root.Descendants(page.Namespace + "OE")
 					 where e.Elements().Count() == 1
@@ -98,6 +100,8 @@ namespace River.OneMoreAddIn.Commands
 						// normal paragraph
 						modified |= CleanElement(element);
 					}
+
+					logger.WriteTime("removed spacing, now saving...");
 
 					if (modified)
 					{

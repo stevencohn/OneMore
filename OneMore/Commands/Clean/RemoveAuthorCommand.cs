@@ -18,6 +18,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
+				logger.StartClock();
+
 				var count = 0;
 
 				// these are all the elements that might have editedByAttributes
@@ -45,6 +47,8 @@ namespace River.OneMoreAddIn.Commands
 					count += atts.Count;
 					atts.ForEach(a => a.Remove());
 				}
+
+				logger.WriteTime("removed authors, now saving...");
 
 				// TODO: This is removing authorship from OEs that wrap Images but
 				// OneNote isn't saving those changes. I don't know why...
