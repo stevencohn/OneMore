@@ -21,6 +21,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
+				logger.StartClock();
+
 				var style = page.GetQuickStyles()
 					.FirstOrDefault(s => s.Name == "cite");
 
@@ -47,8 +49,12 @@ namespace River.OneMoreAddIn.Commands
 						element.Remove();
 					}
 
+					logger.WriteTime("removed citations, now saving...");
+
 					one.Update(page);
 				}
+
+				logger.StopClock();
 			}
 		}
 	}
