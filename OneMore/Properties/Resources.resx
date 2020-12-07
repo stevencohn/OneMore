@@ -2470,4 +2470,8 @@ In this section</value>
     <value>Tag Page</value>
     <comment>menu item</comment>
   </data>
+  <data name="ribInsertDateButton_Label" xml:space="preserve">
+    <value>Sortable Date</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

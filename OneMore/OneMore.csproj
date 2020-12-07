@@ -161,6 +161,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Search\TagHelpers.cs" />
+    <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>

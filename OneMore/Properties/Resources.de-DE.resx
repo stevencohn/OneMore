@@ -2442,4 +2442,8 @@ ISO-code then comma then language name</comment>
     <value>Nummerierung</value>
     <comment>group</comment>
   </data>
+  <data name="ribInsertDateButton_Label" xml:space="preserve">
+    <value>Sortierbares Datum</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

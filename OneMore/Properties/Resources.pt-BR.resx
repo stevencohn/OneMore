@@ -2460,4 +2460,8 @@ ISO-code then comma then language name</comment>
     <value>Numeração</value>
     <comment>group</comment>
   </data>
+  <data name="ribInsertDateButton_Label" xml:space="preserve">
+    <value>Data Classificável</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

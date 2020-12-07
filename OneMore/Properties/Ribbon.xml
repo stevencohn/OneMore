@@ -266,6 +266,11 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertCalendarCmd"/>
               <button
+                id="ribInsertDateButton"
+                imageMso="HeaderFooterCurrentDate"
+                getLabel="GetRibbonLabel"
+                onAction="InsertDateCmd"/>
+              <button
                 id="ribCodeBlockButton"
                 imageMso="CodeEdit"
                 getLabel="GetRibbonLabel"

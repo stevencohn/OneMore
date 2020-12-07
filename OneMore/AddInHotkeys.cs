@@ -35,6 +35,10 @@ namespace River.OneMoreAddIn
 				Keys.F6);
 
 			HotkeyManager.RegisterHotKey(() =>
+				InsertDateCmd(null),
+				Keys.D, Hotmods.ControlShift);
+
+			HotkeyManager.RegisterHotKey(() =>
 				InsertHorizontalLineCmd(null),
 				Keys.OemMinus, Hotmods.AltShift);
 

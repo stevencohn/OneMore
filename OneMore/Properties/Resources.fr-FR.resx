@@ -2454,4 +2454,8 @@ ISO-code then comma then language name</comment>
     <value>Numérotage</value>
     <comment>group</comment>
   </data>
+  <data name="ribInsertDateButton_Label" xml:space="preserve">
+    <value>Date triable</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

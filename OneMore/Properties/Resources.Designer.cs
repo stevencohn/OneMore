@@ -3331,6 +3331,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sortable Date.
+        /// </summary>
+        internal static string ribInsertDateButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertDateButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double Horizontal Line.
         /// </summary>
         internal static string ribInsertDoubleLineButton_Label {

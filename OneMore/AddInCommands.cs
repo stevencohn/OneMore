@@ -78,6 +78,9 @@ namespace River.OneMoreAddIn
 		public void InsertCodeBlockCmd(IRibbonControl control)
 			=> factory.Run<InsertCodeBlockCommand>();
 
+		public void InsertDateCmd(IRibbonControl control)
+			=> factory.Run<InsertDateCommand>();
+
 		public void InsertDoubleHorizontalLineCmd(IRibbonControl control)
 			=> factory.Run<InsertLineCommand>('═');
 

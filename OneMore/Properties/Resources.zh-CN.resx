@@ -2451,4 +2451,8 @@ ISO-code then comma then language name</comment>
     <value>编号</value>
     <comment>group</comment>
   </data>
+  <data name="ribInsertDateButton_Label" xml:space="preserve">
+    <value>可排序日期</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
