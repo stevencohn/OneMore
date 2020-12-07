@@ -2446,4 +2446,12 @@ ISO-code then comma then language name</comment>
     <value>Sortierbares Datum</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribTrimLeadingButton_Label" xml:space="preserve">
+    <value>Trimmen Sie führende Leerzeichen</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
+    <value>Schneiden Sie führende Leerzeichen aus dem ausgewählten Text</value>
+    <comment>ribbon item tootp</comment>
+  </data>
 </root>

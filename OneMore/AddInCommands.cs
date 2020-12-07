@@ -214,7 +214,10 @@ namespace River.OneMoreAddIn
 			=> factory.Run<ToCaseCommand>(true);
 
 		public void TrimCmd(IRibbonControl control)
-			=> factory.Run<TrimCommand>();
+			=> factory.Run<TrimCommand>(false);
+
+		public void TrimLeadingCmd(IRibbonControl control)
+			=> factory.Run<TrimCommand>(true);
 
 		public void WordCountCmd(IRibbonControl control)
 			=> factory.Run<WordCountCommand>();

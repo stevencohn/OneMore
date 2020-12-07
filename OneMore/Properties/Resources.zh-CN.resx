@@ -2455,4 +2455,12 @@ ISO-code then comma then language name</comment>
     <value>可排序日期</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribTrimLeadingButton_Label" xml:space="preserve">
+    <value>修剪领先的空白</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
+    <value>修剪所选文本中的前导空白</value>
+    <comment>ribbon item tootp</comment>
+  </data>
 </root>

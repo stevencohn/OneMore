@@ -2474,4 +2474,12 @@ In this section</value>
     <value>Sortable Date</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribTrimLeadingButton_Label" xml:space="preserve">
+    <value>Trim Leading Whitespace</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
+    <value>Trim leading whitespace from selected text</value>
+    <comment>ribbon item tootp</comment>
+  </data>
 </root>

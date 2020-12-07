@@ -2463,4 +2463,12 @@ ISO-code then comma then language name</comment>
     <value>تاريخ قابل للفرز</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribTrimLeadingButton_Label" xml:space="preserve">
+    <value>تقليم المسافة البيضاء البادئة</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
+    <value>اقتطاع المسافة البيضاء البادئة من النص المحدد</value>
+    <comment>ribbon item tootp</comment>
+  </data>
 </root>

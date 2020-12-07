@@ -2463,4 +2463,12 @@ ISO-code then comma then language name</comment>
     <value>Fecha clasificable</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribTrimLeadingButton_Label" xml:space="preserve">
+    <value>Recortar el espacio en blanco principal</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
+    <value>Recortar los espacios en blanco iniciales del texto seleccionado</value>
+    <comment>ribbon item tootp</comment>
+  </data>
 </root>

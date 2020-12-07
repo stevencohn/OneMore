@@ -2464,4 +2464,12 @@ ISO-code then comma then language name</comment>
     <value>Sorteerbare datum</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribTrimLeadingButton_Label" xml:space="preserve">
+    <value>Voorafgaande witruimte bijsnijden</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
+    <value>Snijd de witruimte voor uit de geselecteerde tekst</value>
+    <comment>ribbon item tootp</comment>
+  </data>
 </root>

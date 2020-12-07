@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override void Execute(params object[] args)
 		{
+			var leading = (bool)args[0];
+
 			using (var one = new OneNote(out var page, out var ns))
 			{
 				var selections =
@@ -47,18 +49,38 @@ namespace River.OneMoreAddIn.Commands
 							{
 								var wrapper = cdata.GetWrapper();
 
-								var text = wrapper.DescendantNodes().OfType<XText>().LastOrDefault();
-								if (text?.Value.Length > 0)
+								if (leading)
 								{
-									var match = Regex.Match(text.Value, @"([\s]|&#160;|&nbsp;)+$");
-									if (match.Success)
+									var text = wrapper.DescendantNodes().OfType<XText>().FirstOrDefault();
+									if (text?.Value.Length > 0)
 									{
-										text.ReplaceWith(text.Value.Substring(0, match.Index));
+										var match = Regex.Match(text.Value, @"^([\s]|&#160;|&nbsp;)+");
+										if (match.Success)
+										{
+											text.ReplaceWith(text.Value.Substring(match.Length));
 
-										selection.FirstNode.ReplaceWith(
-											new XCData(wrapper.GetInnerXml()));
+											selection.FirstNode.ReplaceWith(
+												new XCData(wrapper.GetInnerXml()));
 
-										count++;
+											count++;
+										}
+									}
+								}
+								else
+								{
+									var text = wrapper.DescendantNodes().OfType<XText>().LastOrDefault();
+									if (text?.Value.Length > 0)
+									{
+										var match = Regex.Match(text.Value, @"([\s]|&#160;|&nbsp;)+$");
+										if (match.Success)
+										{
+											text.ReplaceWith(text.Value.Substring(0, match.Index));
+
+											selection.FirstNode.ReplaceWith(
+												new XCData(wrapper.GetInnerXml()));
+
+											count++;
+										}
 									}
 								}
 							}

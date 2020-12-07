@@ -3880,6 +3880,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trim Leading Whitespace.
+        /// </summary>
+        internal static string ribTrimLeadingButton_Label {
+            get {
+                return ResourceManager.GetString("ribTrimLeadingButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trim leading whitespace from selected text.
+        /// </summary>
+        internal static string ribTrimLeadingButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribTrimLeadingButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To UPPERCASE.
         /// </summary>
         internal static string ribUppercaseButton_Label {

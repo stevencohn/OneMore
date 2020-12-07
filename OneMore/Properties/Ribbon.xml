@@ -105,6 +105,12 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="TrimCmd"/>
+              <button
+                id="ribTrimLeadingButton"
+                imageMso="CustomAutoTextGallery"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="TrimLeadingCmd"/>
             </menu>
             <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage">
               <button
