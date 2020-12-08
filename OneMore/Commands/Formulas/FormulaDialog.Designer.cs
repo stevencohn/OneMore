@@ -79,7 +79,7 @@
 			this.cancelButton.Location = new System.Drawing.Point(504, 209);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 4;
+			this.cancelButton.TabIndex = 5;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
@@ -91,7 +91,7 @@
 			this.okButton.Location = new System.Drawing.Point(398, 209);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 3;
+			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
@@ -168,7 +168,7 @@
 			this.helpButton.Location = new System.Drawing.Point(17, 213);
 			this.helpButton.Name = "helpButton";
 			this.helpButton.Size = new System.Drawing.Size(52, 30);
-			this.helpButton.TabIndex = 9;
+			this.helpButton.TabIndex = 6;
 			this.helpButton.TabStop = false;
 			this.helpButton.Text = "Help";
 			this.helpButton.UseVisualStyleBackColor = true;
@@ -199,7 +199,7 @@
 			this.tagBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.Size = new System.Drawing.Size(154, 24);
-			this.tagBox.TabIndex = 2;
+			this.tagBox.TabIndex = 3;
 			this.tagBox.Text = "Tag formula cells";
 			this.tagBox.UseVisualStyleBackColor = true;
 			// 
@@ -223,7 +223,7 @@
             0});
 			this.decimalBox.Name = "decimalBox";
 			this.decimalBox.Size = new System.Drawing.Size(99, 26);
-			this.decimalBox.TabIndex = 19;
+			this.decimalBox.TabIndex = 2;
 			// 
 			// FormulaDialog
 			// 
