@@ -576,11 +576,20 @@ namespace River.OneMoreAddIn.Models
 		/// </returns>
 		public XElement GetTextCursor()
 		{
-			return Root.Descendants(Namespace + "T")
-				.FirstOrDefault(e =>
+			var selected = Root.Descendants(Namespace + "T")
+				.Where(e =>
 					e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
 					e.FirstNode.NodeType == XmlNodeType.CDATA &&
 					((XCData)e.FirstNode).Value.Length == 0);
+
+			if (selected?.Count() == 1)
+			{
+				// exactly one [] is selected so must be just insertion cursor
+				return selected.First();
+			}
+
+			// zero or more than one empty cdata are selected
+			return null;
 		}
 
 
