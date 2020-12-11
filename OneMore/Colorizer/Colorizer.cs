@@ -1,0 +1,128 @@
+﻿//************************************************************************************************
+// Copyright © 2020 Steven M Cohn.  All rights reserved.
+//************************************************************************************************                
+
+namespace River.OneMoreAddIn.Colorizer
+{
+	using System.IO;
+	using System.Reflection;
+	using System.Text;
+	using System.Web;
+	using System.Xml.Linq;
+
+
+	/// <summary>
+	/// This colorizer is suited specifically to generating OneNote content
+	/// </summary>
+	internal class Colorizer
+	{
+		private readonly Parser parser;
+		private readonly ITheme theme;
+
+
+		/// <summary>
+		/// Initializes a new instance for the specified language.
+		/// </summary>
+		/// <param name="languageName">
+		/// The language name; should match the name of the language definition file
+		/// </param>
+		public Colorizer(string languageName)
+		{
+			var rootPath = Path.Combine(
+				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+				"Colorizer");
+
+			var path = Path.Combine(rootPath, $@"Languages\{languageName}.json");
+
+			if (!File.Exists(path))
+			{
+				throw new FileNotFoundException(path);
+			}
+
+			parser = new Parser(Compiler.Compile(Provider.LoadLanguage(path)));
+
+			theme = Provider.LoadTheme(Path.Combine(rootPath, $@"Themes\light-theme.json"));
+		}
+
+
+		/// <summary>
+		/// Colorizes the given source code for the current language, producing OneNote
+		/// content.
+		/// </summary>
+		/// <param name="source">The original source code text</param>
+		/// <returns>An XElement describing an OEChildren hierarchy</returns>
+		public XElement Colorize(string source, XNamespace ns)
+		{
+			var container = new XElement(ns + "OEChildren");
+			var builder = new StringBuilder();
+
+			parser.Parse(source, (code, scope) =>
+			{
+				if (string.IsNullOrEmpty(code))
+				{
+					// end-of-line
+					container.Add(new XElement(ns + "OE",
+						new XElement(ns + "T",
+							new XCData(builder.ToString()))
+						));
+
+					builder.Clear();
+				}
+				else
+				{
+					if (scope == null)
+					{
+						// plain text prior to capture
+						builder.Append(code.Replace("\t", " "));
+					}
+					else
+					{
+						var style = theme.GetStyle(scope);
+						builder.Append(style == null ? code : style.Apply(code));
+					}
+				}
+			});
+
+			return container;
+		}
+
+
+		/// <summary>
+		/// Colorizes the given source code for the current language, producting
+		/// raw HTML-style text with span elements and style attributes.
+		/// </summary>
+		/// <param name="source">The original source code text</param>
+		/// <returns></returns>
+		public string ColorizeOne(string source)
+		{
+			var builder = new StringBuilder();
+
+			parser.Parse(source, (code, scope) =>
+			{
+				if (string.IsNullOrEmpty(code) && parser.HasMoreCaptures)
+				{
+					// end-of-line
+					builder.Append("<br/>");
+				}
+				else
+				{
+					code = HttpUtility.HtmlEncode(code);
+
+					if (scope == null)
+					{
+						// plain text prior to capture
+						// simple conversion of tabs to spaces (shouldn't be tabs in OneNote)
+						builder.Append(code.Replace("\t", " "));
+					}
+					else
+					{
+						var style = theme.GetStyle(scope);
+						builder.Append(style == null ? code : style.Apply(code));
+					}
+				}
+			});
+
+			return builder.ToString();
+		}
+	}
+}

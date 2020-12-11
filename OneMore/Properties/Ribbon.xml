@@ -114,6 +114,11 @@
             </menu>
             <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage">
               <button
+                id="ribColorizeButton"
+                imageMso="SmartArtChangeColorsGallery"
+                label="Colorize"
+                onAction="ColorizeCmd"/>
+              <button
                 id="ribHighlightButton"
                 imageMso="AppointmentColorDialog"
                 getLabel="GetRibbonLabel"

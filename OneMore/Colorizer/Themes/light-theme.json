@@ -1,0 +1,234 @@
+{
+  "colors": {
+    "Black": "#000000",
+    "Blue": "#0000FF",
+    "DarkCyan": "#008B8B",
+    "DarkOliveGreen": "#556B2F",
+    "DullRed": "#A31515",
+    "Gray": "#808080",
+    "Green": "#008000",
+    "Magenta": "#FF00FF",
+    "MediumTurqoise": "#48D1CC",
+    "Navy": "#000080",
+    "OliveDrab": "#6B8E23",
+    "OrangeRed": "#FF4500",
+    "PowderBlue": "#B0E0E6",
+    "Purple": "#800080",
+    "Red": "#FF0000",
+    "Teal": "#008080",
+    "White": "#FFFFFF",
+    "Yellow": "#FFFF00"
+  },
+  "styles": [
+    {
+      "name": "PlainText",
+      "foreground": "Black"
+    },
+    {
+      "name": "Attribute",
+      "foreground": "DarkCyan",
+      "italic": true
+    },
+    {
+      "name": "BuiltinFunction",
+      "foreground": "OliveDrab",
+      "bold": true
+    },
+    {
+      "name": "BuiltinValue",
+      "foreground": "DarkOliveGreen",
+      "bold": true
+    },
+    {
+      "name": "ClassName",
+      "foreground": "MediumTurqoise"
+    },
+    {
+      "name": "Comment",
+      "foreground": "Green"
+    },
+    {
+      "name": "Constructor",
+      "foreground": "Purple"
+    },
+    {
+      "name": "ControlKeyword",
+      "foreground": "Blue"
+    },
+    {
+      "name": "CssPropertyName",
+      "foreground": "Red"
+    },
+    {
+      "name": "CssPropertyValue",
+      "foreground": "Blue"
+    },
+    {
+      "name": "CssSelector",
+      "foreground": "DullRed"
+    },
+    {
+      "name": "Delimeter"
+    },
+    {
+      "name": "HtmlServerSideScript",
+      "background": "Yellow"
+    },
+    {
+      "name": "HtmlComment",
+      "foreground": "Green"
+    },
+    {
+      "name": "HtmlTagDelimeter",
+      "foreground": "Blue"
+    },
+    {
+      "name": "HtmlElementName",
+      "foreground": "DullRed"
+    },
+    {
+      "name": "HtmlAttributeName",
+      "foreground": "Red"
+    },
+    {
+      "name": "HtmlAttributeValue",
+      "foreground": "Blue"
+    },
+    {
+      "name": "HtmlEntity",
+      "foreground": "Red"
+    },
+    {
+      "name": "HtmlOperator",
+      "foreground": "Blue"
+    },
+    {
+      "name": "Keyword",
+      "foreground": "Blue"
+    },
+    {
+      "name": "MarkdownBold",
+      "bold": true
+    },
+    {
+      "name": "MarkdownCode",
+      "foreground": "Teal"
+    },
+    {
+      "name": "MarkdownEmph",
+      "italic": true
+    },
+    {
+      "name": "MarkdownListItem",
+      "bold": true
+    },
+    {
+      "name": "MarkdownHeader",
+      "foreground": "Blue",
+      "bold": true
+    },
+    {
+      "name": "Namespace",
+      "foreground": "Navy"
+    },
+    {
+      "name": "Number",
+      "foreground": "PowderBlue"
+    },
+    {
+      "name": "Operator"
+    },
+    {
+      "name": "PowerShellAttribute",
+      "foreground": "PowderBlue"
+    },
+    {
+      "name": "PowerShellOperator",
+      "foreground": "Gray"
+    },
+    {
+      "name": "PowerShellType",
+      "foreground": "Teal"
+    },
+    {
+      "name": "PowerShellVariable",
+      "foreground": "OrangeRed"
+    },
+    {
+      "name": "Predefined",
+      "foreground": "Navy"
+    },
+    {
+      "name": "PsuedoKeyword",
+      "foreground": "Navy"
+    },
+    {
+      "name": "PreprocessorKeyword",
+      "foreground": "Blue"
+    },
+    {
+      "name": "SpecialCharacter"
+    },
+    {
+      "name": "SqlSystemFunction",
+      "foreground": "Magenta"
+    },
+    {
+      "name": "String",
+      "foreground": "DullRed"
+    },
+    {
+      "name": "StringCSharpVerbatim",
+      "foreground": "DullRed"
+    },
+    {
+      "name": "StringEscape",
+      "foreground": "Gray"
+    },
+    {
+      "name": "Type",
+      "foreground": "Teal"
+    },
+    {
+      "name": "TypeVariable",
+      "foreground": "Teal",
+      "italic": true
+    },
+    {
+      "name": "XmlAttribute",
+      "foreground": "Red"
+    },
+    {
+      "name": "XmlAttributeQuotes",
+      "foreground": "Black"
+    },
+    {
+      "name": "XmlAttributeValue",
+      "foreground": "Blue"
+    },
+    {
+      "name": "XmlCDataSection",
+      "foreground": "Gray"
+    },
+    {
+      "name": "XmlComment",
+      "foreground": "Green"
+    },
+    {
+      "name": "XmlDelimiter",
+      "foreground": "Blue"
+    },
+    {
+      "name": "XmlDocTag",
+      "foreground": "Gray"
+    },
+    {
+      "name": "XmlDocComment",
+      "foreground": "Green"
+    },
+    {
+      "name": "XmlName",
+      "foreground": "DullRed"
+    }
+  ]
+}
