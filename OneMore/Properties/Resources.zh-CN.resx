@@ -2463,4 +2463,12 @@ ISO-code then comma then language name</comment>
     <value>修剪所选文本中的前导空白</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ContextMenuSheet_ribColorizeMenu" xml:space="preserve">
+    <value>...着色</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ribColorizeMenu_Label" xml:space="preserve">
+    <value>上色</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
