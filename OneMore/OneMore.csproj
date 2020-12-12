@@ -585,6 +585,9 @@
     <None Include="Colorizer\Languages\python.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Colorizer\Themes\dark-theme.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Colorizer\Themes\light-theme.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

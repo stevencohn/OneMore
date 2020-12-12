@@ -19,10 +19,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override void Execute(params object[] args)
 		{
-			var colorizer = new Colorizer(args[0] as string);
-
 			using (var one = new OneNote(out var page, out var ns))
 			{
+				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+
+				var colorizer = new Colorizer(args[0] as string, dark ? "dark" : "light");
+
 				var runs = page.Root.Descendants(ns + "T")
 					.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 

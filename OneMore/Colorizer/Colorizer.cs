@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <param name="languageName">
 		/// The language name; should match the name of the language definition file
 		/// </param>
-		public Colorizer(string languageName)
+		public Colorizer(string languageName, string themeName = "light")
 		{
 			var root = GetColorizerDirectory();
 			var path = Path.Combine(root, $@"Languages\{languageName}.json");
@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Colorizer
 
 			parser = new Parser(Compiler.Compile(Provider.LoadLanguage(path)));
 
-			theme = Provider.LoadTheme(Path.Combine(root, $@"Themes\light-theme.json"));
+			theme = Provider.LoadTheme(Path.Combine(root, $@"Themes\{themeName}-theme.json"));
 		}
 
 
