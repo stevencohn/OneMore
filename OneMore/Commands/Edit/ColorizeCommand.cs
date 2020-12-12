@@ -30,10 +30,6 @@ namespace River.OneMoreAddIn.Commands
 
 				if (runs != null)
 				{
-
-					System.Diagnostics.Debugger.Launch();
-
-
 					foreach (var run in runs.ToList())
 					{
 						var cdata = run.GetCData();
