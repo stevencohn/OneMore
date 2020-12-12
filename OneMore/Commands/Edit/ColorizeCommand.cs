@@ -17,7 +17,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public override void Execute(params object[] args)
 		{
-			var colorizer = new Colorizer("powershell");
+			var names = Colorizer.LoadLanguageNames();
+
+			Colorize("csharp");
+		}
+
+
+		private void Colorize(string languageName)
+		{
+			var colorizer = new Colorizer(languageName);
 
 			using (var one = new OneNote(out var page, out var ns))
 			{

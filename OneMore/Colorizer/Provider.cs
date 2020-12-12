@@ -46,18 +46,22 @@ namespace River.OneMoreAddIn.Colorizer
 		/// </summary>
 		/// <param name="dirPath">The directory path containing the language definition files</param>
 		/// <returns></returns>
-		public static IEnumerable<string> LoadLanguageNames(string dirPath)
+		public static IDictionary<string, string> LoadLanguageNames(string dirPath)
 		{
 			if (!Directory.Exists(dirPath))
 			{
 				throw new DirectoryNotFoundException(dirPath);
 			}
 
+			var names = new SortedDictionary<string, string>();
+
 			foreach (var file in Directory.GetFiles(dirPath, "*.json"))
 			{
-				var language = Provider.LoadLanguage(file);
-				yield return language.Name;
+				var language = LoadLanguage(file);
+				names.Add(language.Name, Path.GetFileNameWithoutExtension(file));
 			}
+
+			return names;
 		}
 
 
