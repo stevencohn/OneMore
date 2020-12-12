@@ -5,8 +5,10 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Colorizer;
-	using System.IO;
+	using System;
+	using System.Collections.Generic;
 	using System.Linq;
+	using System.Xml.Linq;
 
 
 	internal class ColorizeCommand : Command
@@ -29,11 +31,45 @@ namespace River.OneMoreAddIn.Commands
 
 				if (runs != null)
 				{
-					foreach (var run in runs)
+
+					System.Diagnostics.Debugger.Launch();
+
+
+					foreach (var run in runs.ToList())
 					{
 						var cdata = run.GetCData();
-						cdata.Value = colorizer.ColorizeOne(run.GetCData().GetWrapper().Value);
-						updated = true;
+
+						if (cdata.Value.Contains("<br>"))
+						{
+							// special handling to expand soft line breaks (Shift + Enter) and
+							// split the line into multiple ines...
+
+							var text = cdata.GetWrapper().Value;
+							var lines = text.Split(new char[] { '\n' });
+
+							// update current cdata with first line
+							cdata.Value = colorizer.ColorizeOne(lines[0]);
+
+							// collect subsequent lines from soft-breaks
+							var elements = new List<XElement>();
+							for (int i = 1; i < lines.Length; i++)
+							{
+								elements.Add(new XElement(ns + "OE",
+									run.Parent.Attributes(),
+									new XElement(ns + "T",
+										new XCData(colorizer.ColorizeOne(lines[i]))
+									)));
+							}
+
+							run.Parent.AddAfterSelf(elements);
+
+							updated = true;
+						}
+						else
+						{
+							cdata.Value = colorizer.ColorizeOne(cdata.GetWrapper().Value);
+							updated = true;
+						}
 					}
 
 					if (updated)
