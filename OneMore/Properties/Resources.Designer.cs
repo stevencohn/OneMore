@@ -563,6 +563,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Colorize.
+        /// </summary>
+        internal static string ContextMenuSheet_ribColorizeMenu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribColorizeMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Decrease Text Size.
         /// </summary>
         internal static string ContextMenuSheet_ribDecreaseFontSizeButton {
@@ -3048,6 +3057,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCollapseButton_Label {
             get {
                 return ResourceManager.GetString("ribCollapseButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colorize.
+        /// </summary>
+        internal static string ribColorizeMenu_Label {
+            get {
+                return ResourceManager.GetString("ribColorizeMenu_Label", resourceCulture);
             }
         }
         

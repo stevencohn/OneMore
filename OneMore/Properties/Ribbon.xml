@@ -116,7 +116,7 @@
               <menu
                 id="ribColorizeMenu"
                 imageMso="SmartArtChangeColorsGallery"
-                label="Colorize"/>
+                getLabel="GetRibbonLabel"/>
               <button
                 id="ribHighlightButton"
                 imageMso="AppointmentColorDialog"

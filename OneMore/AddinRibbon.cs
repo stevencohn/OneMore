@@ -94,8 +94,7 @@ namespace River.OneMoreAddIn
 		private void AddColorizerCommands(XElement root)
 		{
 			var menu = root.Descendants(ns + "menu")
-				.Where(e => e.Attribute("id").Value == "ribColorizeMenu")
-				.FirstOrDefault();
+				.FirstOrDefault(e => e.Attribute("id").Value == "ribColorizeMenu");
 
 			if (menu == null)
 			{
@@ -108,7 +107,7 @@ namespace River.OneMoreAddIn
 				var tag = languages[name];
 
 				menu.Add(new XElement(ns + "button",
-					new XAttribute("id", $"barColorize{tag}Button"),
+					new XAttribute("id", $"ribColorize{tag}Button"),
 					new XAttribute("getImage", "GetColorizeImage"),
 					new XAttribute("label", name),
 					new XAttribute("tag", tag),
