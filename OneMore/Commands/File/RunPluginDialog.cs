@@ -136,10 +136,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Multiselect = false;
 				dialog.Title = Resx.Plugin_Title;
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
-
-				dialog.InitialDirectory = File.Exists(cmdBox.Text)
-					? cmdBox.Text
-					: Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+				dialog.InitialDirectory = GetValidPath(cmdBox.Text);
 
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
@@ -148,6 +145,53 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 		}
+
+		private void BrowseArgumentPath(object sender, EventArgs e)
+		{
+			using (var dialog = new OpenFileDialog())
+			{
+				dialog.Filter = "All files (*.*)|*.*";
+				dialog.CheckFileExists = true;
+				dialog.Multiselect = false;
+				dialog.Title = Resx.Plugin_Title;
+				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+				dialog.InitialDirectory = GetValidPath(argsBox.Text);
+
+				var result = dialog.ShowDialog();
+				if (result == DialogResult.OK)
+				{
+					argsBox.Text = dialog.FileName;
+				}
+			}
+		}
+
+
+		private string GetValidPath(string path)
+		{
+			path = path.Trim();
+			if (path == string.Empty)
+			{
+				return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			}
+
+			if (File.Exists(path))
+			{
+				return Path.GetDirectoryName(path);
+			}
+			else if (Directory.Exists(path))
+			{
+				return path;
+			}
+
+			path = Path.GetDirectoryName(path);
+			if (Directory.Exists(path))
+			{
+				return path;
+			}
+
+			return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+		}
+
 
 		private void okButton_Click(object sender, EventArgs e)
 		{
@@ -163,5 +207,6 @@ namespace River.OneMoreAddIn.Commands
 			provider.SetCollection(settings);
 			provider.Save();
 		}
+
 	}
 }
