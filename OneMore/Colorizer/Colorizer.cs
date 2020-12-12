@@ -124,6 +124,11 @@ namespace River.OneMoreAddIn.Colorizer
 		}
 
 
+		/// <summary>
+		/// Returns the root path of the directory containing the Colorizer language and theme
+		/// definitions
+		/// </summary>
+		/// <returns></returns>
 		public static string GetColorizerDirectory()
 		{
 			return Path.Combine(
