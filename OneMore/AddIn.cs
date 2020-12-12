@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Globalization;
+	using System.Reflection;
 	using System.Runtime.InteropServices;
 
 
@@ -42,6 +43,8 @@ namespace River.OneMoreAddIn
 		public AddIn()
 		{
 			//System.Diagnostics.Debugger.Launch();
+
+			RedirectAssembly();
 
 			logger = Logger.Current;
 			trash = new List<IDisposable>();
@@ -192,6 +195,32 @@ namespace River.OneMoreAddIn
 
 			// this is a hack, modeless dialogs seem to keep OneNote open :-(
 			Environment.Exit(0);
+		}
+
+
+		/// <summary>
+		/// Since the addin runs in a wierd psudo-interop realm, it can't load the CompilerServices
+		/// assembly even with a .config redirect entry so we programmatically redirect the loading
+		/// of that assembly here. This assembly is a dependency of System.Text.Json
+		/// </summary>
+		private static void RedirectAssembly()
+		{
+			AppDomain.CurrentDomain.AssemblyResolve += (object sender, ResolveEventArgs args) =>
+			{
+				var assembly = new AssemblyName(args.Name);
+				if (assembly.Name != "System.Runtime.CompilerServices.Unsafe")
+				{
+					return null;
+				}
+
+				assembly.SetPublicKeyToken(
+					new AssemblyName("x, PublicKeyToken=b03f5f7f11d50a3a").GetPublicKeyToken());
+
+				assembly.Version = new Version("5.0.0.0");
+				assembly.CultureInfo = CultureInfo.InvariantCulture;
+
+				return Assembly.Load(assembly);
+			};
 		}
 	}
 }

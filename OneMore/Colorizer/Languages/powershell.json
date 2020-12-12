@@ -1,0 +1,95 @@
+{
+  "name": "PowerShell",
+  "aliases": [
+    "ps1"
+  ],
+  "rules": [
+    {
+      "pattern": "(?s)(<\\#.*?\\#>)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(\\#.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?s)(@\".*?\"@)",
+      "captures": [
+        "StringCSharpVerbatim"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\u0060)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(\\$(?:[\\d\\w\\-]+(?::[\\d\\w\\-]+)?|\\$|\\?|\\^))",
+      "captures": [
+        "PowerShellVariable"
+      ]
+    },
+    {
+      "pattern": "(\\${[^}]+})",
+      "captures": [
+        "PowerShellVariable"
+      ]
+    },
+    {
+      "pattern": "\\b(begin|break|catch|continue|data|do|dynamicparam|elseif|else|end|exit|filter|finally|foreach|for|from|function|if|in|param|process|return|switch|throw|trap|try|until|while)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "(-(?:c|i)?(?:eq|ne|gt|ge|lt|le|notlike|like|notmatch|match|notcontains|contains|replace))",
+      "captures": [
+        "PowerShellOperator"
+      ]
+    },
+    {
+      "pattern": "(-(?:band|and|as|join|not|bxor|xor|bor|or|isnot|is|split))",
+      "captures": [
+        "PowerShellOperator"
+      ]
+    },
+    {
+      "pattern": "(\\+=|-=|\\*=|/=|%=|=|\\+\\+|--|\\+|-|\\*|/|%)",
+      "captures": [
+        "PowerShellOperator"
+      ]
+    },
+    {
+      "pattern": "(\\>\\>|2\\>&1|\\>|2\\>\\>|2\\>)",
+      "captures": [
+        "PowerShellOperator"
+      ]
+    },
+    {
+      "pattern": "(?s)\\[(CmdletBinding)[^\\]]+\\]",
+      "captures": [
+        "PowerShellAttribute"
+      ]
+    },
+    {
+      "pattern": "(\\[)([^\\]]+)(\\])(::)?",
+      "captures": [
+        "PowerShellOperator",
+        "PowerShellType",
+        "PowerShellOperator",
+        "PowerShellOperator"
+      ]
+    }
+  ]
+}

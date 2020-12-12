@@ -2454,4 +2454,12 @@ ISO-code then comma then language name</comment>
     <value>Schneiden Sie führende Leerzeichen aus dem ausgewählten Text</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ContextMenuSheet_ribColorizeMenu" xml:space="preserve">
+    <value>... kolorieren</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ribColorizeMenu_Label" xml:space="preserve">
+    <value>Kolorieren</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

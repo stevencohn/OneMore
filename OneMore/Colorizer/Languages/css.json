@@ -1,0 +1,24 @@
+{
+  "name": "CSS",
+  "rules": [
+    {
+      "pattern": "([^\\r\\n,{}]+)(?:,(?=[^}]*{)|\\s*{)",
+      "captures": [
+        "CssSelector"
+      ]
+    },
+    {
+      "pattern": "\\s*([^:\\n]+)\\s*:\\s*([^;\\n]+)\\s*;?",
+      "captures": [
+        "CssPropertyName",
+        "CssPropertyValue"
+      ]
+    },
+    {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    }
+  ]
+}

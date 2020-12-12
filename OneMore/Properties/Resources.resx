@@ -2482,4 +2482,12 @@ In this section</value>
     <value>Trim leading whitespace from selected text</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ContextMenuSheet_ribColorizeMenu" xml:space="preserve">
+    <value>... Colorize</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ribColorizeMenu_Label" xml:space="preserve">
+    <value>Colorize</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

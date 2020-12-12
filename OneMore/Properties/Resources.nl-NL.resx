@@ -2472,4 +2472,12 @@ ISO-code then comma then language name</comment>
     <value>Snijd de witruimte voor uit de geselecteerde tekst</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ContextMenuSheet_ribColorizeMenu" xml:space="preserve">
+    <value>... inkleuren</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ribColorizeMenu_Label" xml:space="preserve">
+    <value>Inkleuren</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

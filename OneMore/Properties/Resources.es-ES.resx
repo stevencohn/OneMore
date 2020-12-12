@@ -2471,4 +2471,12 @@ ISO-code then comma then language name</comment>
     <value>Recortar los espacios en blanco iniciales del texto seleccionado</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ContextMenuSheet_ribColorizeMenu" xml:space="preserve">
+    <value>... Colorear</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ribColorizeMenu_Label" xml:space="preserve">
+    <value>Colorear</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

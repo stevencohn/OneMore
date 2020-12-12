@@ -1,0 +1,38 @@
+{
+  "name": "Typescript",
+  "aliases": [
+    "ts"
+  ],
+  "rules": [
+    {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(//.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(\"[^\\n]*?\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "\\b(abstract|any|async|await|bool|boolean|break|byte|case|catch|char|class|const|constructor|continue|debugger|declare|default|delete|do|double|else|enum|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|long|module|native|new|number|null|package|private|protected|public|return|short|static|string|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|volatile|while|with)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    }
+  ]
+}

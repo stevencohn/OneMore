@@ -113,6 +113,10 @@
                 onAction="TrimLeadingCmd"/>
             </menu>
             <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage">
+              <menu
+                id="ribColorizeMenu"
+                imageMso="SmartArtChangeColorsGallery"
+                getLabel="GetRibbonLabel"/>
               <button
                 id="ribHighlightButton"
                 imageMso="AppointmentColorDialog"

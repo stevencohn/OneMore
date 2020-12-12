@@ -38,6 +38,8 @@ namespace River.OneMoreAddIn
 			var root = XElement.Parse(Resx.Ribbon);
 			ns = root.GetDefaultNamespace();
 
+			AddColorizerCommands(root);
+
 			var provider = new SettingsProvider();
 
 			var ribbonbar = provider.GetCollection("RibbonBarSheet");
@@ -85,6 +87,32 @@ namespace River.OneMoreAddIn
 			{
 				logger.WriteLine("error extending context menu", exc);
 				return root.ToString(SaveOptions.DisableFormatting);
+			}
+		}
+
+
+		private void AddColorizerCommands(XElement root)
+		{
+			var menu = root.Descendants(ns + "menu")
+				.FirstOrDefault(e => e.Attribute("id").Value == "ribColorizeMenu");
+
+			if (menu == null)
+			{
+				return;
+			}
+
+			var languages = Colorizer.Colorizer.LoadLanguageNames();
+			foreach (var name in languages.Keys)
+			{
+				var tag = languages[name];
+
+				menu.Add(new XElement(ns + "button",
+					new XAttribute("id", $"ribColorize{tag}Button"),
+					new XAttribute("getImage", "GetColorizeImage"),
+					new XAttribute("label", name),
+					new XAttribute("tag", tag),
+					new XAttribute("onAction", "ColorizeCmd")
+					));
 			}
 		}
 
@@ -289,6 +317,38 @@ namespace River.OneMoreAddIn
 		{
 			//logger.WriteLine("RibbonLoaded()");
 			this.ribbon = ribbon;
+		}
+
+
+		/// <summary>
+		/// Loads the image associated with the tagged language.
+		/// </summary>
+		/// <param name="control">The ribbon button from the Colorize menu</param>
+		/// <returns>A Bitmap image</returns>
+		public IStream GetColorizeImage(IRibbonControl control)
+		{
+			var path = Path.Combine(
+				Colorizer.Colorizer.GetColorizerDirectory(),
+				$@"Languages\{control.Tag}.png"
+				);
+
+			if (!File.Exists(path))
+			{
+				return null;
+			}
+
+			IStream stream = null;
+			try
+			{
+				stream = ((Bitmap)Image.FromFile(path)).GetReadOnlyStream();
+				trash.Add((IDisposable)stream);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
+			}
+
+			return stream;
 		}
 
 

@@ -1,0 +1,98 @@
+{
+  "name": "XML",
+  "aliases": [
+    "xaml"
+  ],
+  "rules": [
+    {
+      "pattern": "(\\<![ \\r\\n\\t]*(?:--(?:[^\\-]|[\\r\\n]|-[^\\-])*--[ \\r\\n\\t]*)\\>)",
+      "captures": [
+        "HtmlComment"
+      ]
+    },
+    {
+      "pattern": "(?i)(<!)(doctype)(?:\\s+([a-z0-9]+))*(?:\\s+(\")([^\\n]*?)(\"))*(>)",
+      "captures": [
+        "XmlDelimiter",
+        "XmlName",
+        "XmlAttribute",
+        "XmlAttributeQuotes",
+        "XmlAttributeValue",
+        "XmlAttributeQuotes",
+        "XmlDelimiter"
+      ]
+    },
+    {
+      "pattern": "(?i)(<\\?)(xml-stylesheet)((?:\\s+[a-z0-9]+=\"[^\\n\"]*\")*(?:\\s+[a-z0-9]+=\\'[^\\n\\']*\\')*\\s*?)(\\?>)",
+      "captures": [
+        "XmlDelimiter",
+        "XmlName",
+        "XmlDocTag",
+        "XmlDelimiter"
+      ]
+    },
+    {
+      "pattern": "(?i)(<\\?)([a-z][a-z0-9-]*)(?:\\s+([a-z0-9]+)(=)(\")([^\\n]*?)(\"))*(?:\\s+([a-z0-9]+)(=)(\\')([^\\n]*?)(\\'))*\\s*?(\\?>)",
+      "captures": [
+        "XmlDelimiter",
+        "XmlName",
+        "XmlAttribute",
+        "XmlDelimiter",
+        "XmlAttributeQuotes",
+        "XmlAttributeValue",
+        "XmlAttributeQuotes",
+        "XmlAttribute",
+        "XmlDelimiter",
+        "XmlAttributeQuotes",
+        "XmlAttributeValue",
+        "XmlAttributeQuotes",
+        "XmlDelimiter"
+      ]
+    },
+    {
+      "pattern": "(?xi)(<)(?:([a-z][a-z0-9-]*)(:))*([a-z][a-z0-9-_\\.]*)(?:|[\\s\\n]+([a-z0-9-_\\.:]+)[\\s\\n]*(=)[\\s\\n]*(\")([^\\n]+?)(\")|[\\s\\n]+([a-z0-9-_\\.:]+)[\\s\\n]*(=)[\\s\\n]*(')([^\\n]+?)(')|[\\s\\n]+([a-z0-9-_\\.:]+) )*[\\s\\n]*(\\/?>)",
+      "captures": [
+        "XmlDelimiter",
+        "XmlName",
+        "XmlDelimiter",
+        "XmlName",
+        "XmlAttribute",
+        "XmlDelimiter",
+        "XmlAttributeQuotes",
+        "XmlAttributeValue",
+        "XmlAttributeQuotes",
+        "XmlAttribute",
+        "XmlDelimiter",
+        "XmlAttributeQuotes",
+        "XmlAttributeValue",
+        "XmlAttributeQuotes",
+        "XmlAttribute",
+        "XmlDelimiter"
+      ]
+    },
+    {
+      "pattern": "(?xi)(<\\/)(?:([a-z][a-z0-9-])(:))?([a-z][a-z0-9-_\\.]*)(>)",
+      "captures": [
+        "XmlDelimeter",
+        "XmlName",
+        "XmlDelimeter",
+        "XmlName",
+        "XmlDelimeter"
+      ]
+    },
+    {
+      "pattern": "(?i)(&[a-z0-9]+?;)",
+      "captures": [
+        "XmlAttribute"
+      ]
+    },
+    {
+      "pattern": "(?s)(<!\\[CDATA\\[)(.*?)(\\]\\]>)",
+      "captures": [
+        "XmlDelimter",
+        "XmlCDataSection",
+        "XmlDelimiter"
+      ]
+    }
+  ]
+}

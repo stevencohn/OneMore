@@ -1,0 +1,246 @@
+{
+  "colors": {
+    "Black": "#000000",
+    "Blue": "#0000FF",
+    "DarkCyan": "#008B8B",
+    "DarkOliveGreen": "#556B2F",
+    "DullRed": "#A31515",
+    "Gray": "#808080",
+    "Green": "#008000",
+    "Magenta": "#FF00FF",
+    "MediumTurqoise": "#48D1CC",
+    "Navy": "#000080",
+    "OliveDrab": "#6B8E23",
+    "OrangeRed": "#FF4500",
+    "PowderBlue": "#B0E0E6",
+    "Purple": "#800080",
+    "Red": "#FF0000",
+    "Teal": "#008080",
+    "White": "#FFFFFF",
+    "Yellow": "#FFFF00",
+    "DarkPlainText": "#DADADA",
+    "DarkXmlDelimeter": "#808080",
+    "DarkXmlName": "#E6E6E6",
+    "DarkXmlAttribute": "#92CAF4",
+    "DarkXamlCData": "#C0D088",
+    "DarkXmlComment": "#608B4E",
+    "DarkComment": "#57A64A",
+    "DarkKeyword": "#569CD6",
+    "DarkGray": "#9B9B9B",
+    "DarkNumber": "#B5CEA8",
+    "DarkClass": "#4EC9B0",
+    "DarkString": "#D69D85"
+  },
+  "styles": [
+    {
+      "name": "PlainText",
+      "foreground": "DarkPlainText"
+    },
+    {
+      "name": "Attribute",
+      "foreground": "DarkCyan",
+      "italic": true
+    },
+    {
+      "name": "BuiltinFunction",
+      "foreground": "OliveDrab",
+      "bold": true
+    },
+    {
+      "name": "BuiltinValue",
+      "foreground": "DarkOliveGreen",
+      "bold": true
+    },
+    {
+      "name": "ClassName",
+      "foreground": "DarkClass"
+    },
+    {
+      "name": "Comment",
+      "foreground": "DarkComment"
+    },
+    {
+      "name": "Constructor",
+      "foreground": "Purple"
+    },
+    {
+      "name": "ControlKeyword",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "CssPropertyName",
+      "foreground": "Red"
+    },
+    {
+      "name": "CssPropertyValue",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "CssSelector",
+      "foreground": "DullRed"
+    },
+    {
+      "name": "Delimeter"
+    },
+    {
+      "name": "HtmlServerSideScript",
+      "background": "Yellow"
+    },
+    {
+      "name": "HtmlComment",
+      "foreground": "DarkComment"
+    },
+    {
+      "name": "HtmlTagDelimeter",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "HtmlElementName",
+      "foreground": "DullRed"
+    },
+    {
+      "name": "HtmlAttributeName",
+      "foreground": "Red"
+    },
+    {
+      "name": "HtmlAttributeValue",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "HtmlEntity",
+      "foreground": "Red"
+    },
+    {
+      "name": "HtmlOperator",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "Keyword",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "MarkdownBold",
+      "bold": true
+    },
+    {
+      "name": "MarkdownCode",
+      "foreground": "DarkString"
+    },
+    {
+      "name": "MarkdownEmph",
+      "italic": true
+    },
+    {
+      "name": "MarkdownListItem",
+      "bold": true
+    },
+    {
+      "name": "MarkdownHeader",
+      "foreground": "DarkKeyword",
+      "bold": true
+    },
+    {
+      "name": "Namespace",
+      "foreground": "Navy"
+    },
+    {
+      "name": "Number",
+      "foreground": "DarkNumber"
+    },
+    {
+      "name": "Operator"
+    },
+    {
+      "name": "PowerShellAttribute",
+      "foreground": "PowderBlue"
+    },
+    {
+      "name": "PowerShellOperator",
+      "foreground": "DarkGray"
+    },
+    {
+      "name": "PowerShellType",
+      "foreground": "Teal"
+    },
+    {
+      "name": "PowerShellVariable",
+      "foreground": "OrangeRed"
+    },
+    {
+      "name": "Predefined",
+      "foreground": "Navy"
+    },
+    {
+      "name": "PsuedoKeyword",
+      "foreground": "Navy"
+    },
+    {
+      "name": "PreprocessorKeyword",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "SpecialCharacter"
+    },
+    {
+      "name": "SqlSystemFunction",
+      "foreground": "Magenta"
+    },
+    {
+      "name": "String",
+      "foreground": "DarkString"
+    },
+    {
+      "name": "StringCSharpVerbatim",
+      "foreground": "DarkString"
+    },
+    {
+      "name": "StringEscape",
+      "foreground": "DarkGray"
+    },
+    {
+      "name": "Type",
+      "foreground": "Teal"
+    },
+    {
+      "name": "TypeVariable",
+      "foreground": "Teal",
+      "italic": true
+    },
+    {
+      "name": "XmlAttribute",
+      "foreground": "DarkXmlAttribute"
+    },
+    {
+      "name": "XmlAttributeQuotes",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "XmlAttributeValue",
+      "foreground": "DarkKeyword"
+    },
+    {
+      "name": "XmlCDataSection",
+      "foreground": "DarkXmlCData"
+    },
+    {
+      "name": "XmlComment",
+      "foreground": "DarkComment"
+    },
+    {
+      "name": "XmlDelimiter",
+      "foreground": "DarkXmlDelimiter"
+    },
+    {
+      "name": "XmlDocTag",
+      "foreground": "DarkXmlComment"
+    },
+    {
+      "name": "XmlDocComment",
+      "foreground": "DarkXmlComment"
+    },
+    {
+      "name": "XmlName",
+      "foreground": "DarkXmlName"
+    }
+  ]
+}

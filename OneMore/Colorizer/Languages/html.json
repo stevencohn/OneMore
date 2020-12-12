@@ -1,0 +1,50 @@
+{
+  "name": "HTML",
+  "aliases": [
+    "htm"
+  ],
+  "rules": [
+    {
+      "pattern": "(\\<![ \\r\\n\\t]*(?:--(?:[^\\-]|[\\r\\n]|-[^\\-])*--[ \\r\\n\\t]*)\\>)",
+      "captures": [
+        "HtmlComment"
+      ]
+    },
+    {
+      "pattern": "(?i)(<!)(DOCTYPE)(?:\\s+([a-zA-Z0-9]+))*(?:\\s+(\"[^\"]*?\"))*(>)",
+      "captures": [
+        "HtmlDelimiter",
+        "HtmlElementName",
+        "HtmlAttributeName",
+        "HtmlAttributeValue",
+        "HtmlDelimiter"
+      ]
+    },
+    {
+      "pattern": "(?xis)(</?)(?: ([a-z][a-z0-9-]*)(:) )*([a-z][a-z0-9-_]*)(?:[\\s\\n]+([a-z0-9-_]+)[\\s\\n]*(=)[\\s\\n]*([^\\s\\n\"']+?)|[\\s\\n]+([a-z0-9-_]+)[\\s\\n]*(=)[\\s\\n]*(\"[^\\n]+?\")|[\\s\\n]+([a-z0-9-_]+)[\\s\\n]*(=)[\\s\\n]*('[^\\n]+?')|[\\s\\n]+([a-z0-9-_]+) )*[\\s\\n]*(/?>)",
+      "captures": [
+        "HtmlTagDelimiter",
+        "HtmlElementName",
+        "HtmlTagDelimiter",
+        "HtmlElementName",
+        "HtmlAttributeName",
+        "HtmlOperator",
+        "HtmlAttributeValue",
+        "HtmlAttributeName",
+        "HtmlOperator",
+        "HtmlAttributeValue",
+        "HtmlAttributeName",
+        "HtmlOperator",
+        "HtmlAttributeValue",
+        "HtmlAttributeName",
+        "HtmlTagDelimiter"
+      ]
+    },
+    {
+      "pattern": "(?i)(&\\#?[a-z0-9]+?;)",
+      "captures": [
+        "HtmlEntity"
+      ]
+    }
+  ]
+}
