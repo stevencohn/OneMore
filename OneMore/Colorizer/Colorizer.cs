@@ -4,7 +4,9 @@
 
 namespace River.OneMoreAddIn.Colorizer
 {
+	using System.Collections.Generic;
 	using System.IO;
+	using System.Linq;
 	using System.Reflection;
 	using System.Text;
 	using System.Web;
@@ -123,6 +125,21 @@ namespace River.OneMoreAddIn.Colorizer
 			});
 
 			return builder.ToString();
+		}
+
+
+		/// <summary>
+		/// Gets a list of available language names
+		/// </summary>
+		/// <param name="dirPath">The directory path containing the language definition files</param>
+		/// <returns></returns>
+		public static IEnumerable<string> LoadLanguageNames()
+		{
+			var dirPath = Path.Combine(
+				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+				"Colorizer");
+
+			return Provider.LoadLanguageNames(dirPath).OrderBy(n => n);
 		}
 	}
 }

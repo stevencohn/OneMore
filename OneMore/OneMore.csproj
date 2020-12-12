@@ -540,9 +540,6 @@
     <None Include="Colorizer\Languages\css.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Colorizer\Languages\foo.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Colorizer\Languages\html.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

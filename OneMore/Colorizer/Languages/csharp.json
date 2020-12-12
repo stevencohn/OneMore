@@ -1,7 +1,7 @@
 {
-  "name": "CSharp",
+  "name": "C#",
   "aliases": [
-    "c#",
+    "CSharp",
     "cs"
   ],
   "rules": [

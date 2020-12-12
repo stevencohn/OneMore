@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Colorizer
 {
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Text.Json;
 	using System.Text.Json.Serialization;
@@ -40,6 +41,31 @@ namespace River.OneMoreAddIn.Colorizer
 		}
 
 
+		/// <summary>
+		/// Gets a list of available language names
+		/// </summary>
+		/// <param name="dirPath">The directory path containing the language definition files</param>
+		/// <returns></returns>
+		public static IEnumerable<string> LoadLanguageNames(string dirPath)
+		{
+			if (!Directory.Exists(dirPath))
+			{
+				throw new DirectoryNotFoundException(dirPath);
+			}
+
+			foreach (var file in Directory.GetFiles(dirPath, "*.json"))
+			{
+				var language = Provider.LoadLanguage(file);
+				yield return language.Name;
+			}
+		}
+
+
+		/// <summary>
+		/// Loads a syntax coloring theme from the given file path
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
 		public static ITheme LoadTheme(string path)
 		{
 			var serializeOptions = new JsonSerializerOptions
@@ -65,7 +91,7 @@ namespace River.OneMoreAddIn.Colorizer
 	}
 
 
-	internal class RuleConverter: JsonConverter<IRule>
+	internal class RuleConverter : JsonConverter<IRule>
 	{
 		public override IRule Read(
 			ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
