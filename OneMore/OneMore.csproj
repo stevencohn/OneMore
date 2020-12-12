@@ -532,6 +532,36 @@
     <Compile Include="Styles\XmlStyleBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Colorizer\Languages\csharp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\css.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\html.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\java.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\javascript.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\powershell.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\python.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\typescript.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\vb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Colorizer\Languages\xml.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Commands\Search\x.png" />
     <Content Include="Properties\Emoji\Architecture.png" />
     <None Include="Colorizer\Languages\csharp.json">

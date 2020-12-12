@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Colorizer;
+	using System.IO;
 	using System.Linq;
 
 
@@ -17,15 +18,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override void Execute(params object[] args)
 		{
-			var names = Colorizer.LoadLanguageNames();
-
-			Colorize("csharp");
-		}
-
-
-		private void Colorize(string languageName)
-		{
-			var colorizer = new Colorizer(languageName);
+			var colorizer = new Colorizer(args[0] as string);
 
 			using (var one = new OneNote(out var page, out var ns))
 			{

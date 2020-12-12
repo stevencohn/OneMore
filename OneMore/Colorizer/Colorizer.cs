@@ -29,11 +29,8 @@ namespace River.OneMoreAddIn.Colorizer
 		/// </param>
 		public Colorizer(string languageName)
 		{
-			var rootPath = Path.Combine(
-				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-				"Colorizer");
-
-			var path = Path.Combine(rootPath, $@"Languages\{languageName}.json");
+			var root = GetColorizerDirectory();
+			var path = Path.Combine(root, $@"Languages\{languageName}.json");
 
 			if (!File.Exists(path))
 			{
@@ -42,7 +39,7 @@ namespace River.OneMoreAddIn.Colorizer
 
 			parser = new Parser(Compiler.Compile(Provider.LoadLanguage(path)));
 
-			theme = Provider.LoadTheme(Path.Combine(rootPath, $@"Themes\light-theme.json"));
+			theme = Provider.LoadTheme(Path.Combine(root, $@"Themes\light-theme.json"));
 		}
 
 
@@ -127,6 +124,13 @@ namespace River.OneMoreAddIn.Colorizer
 		}
 
 
+		public static string GetColorizerDirectory()
+		{
+			return Path.Combine(
+				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+				"Colorizer");
+		}
+
 		/// <summary>
 		/// Gets a list of available language names
 		/// </summary>
@@ -134,11 +138,8 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <returns></returns>
 		public static IDictionary<string, string> LoadLanguageNames()
 		{
-			var dirPath = Path.Combine(
-				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-				"Colorizer");
-
-			return Provider.LoadLanguageNames(dirPath);
+			return Provider.LoadLanguageNames(
+				Path.Combine(GetColorizerDirectory(), "Languages"));
 		}
 	}
 }

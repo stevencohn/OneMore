@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn
 			=> factory.Run<CollapseCommand>();
 
 		public void ColorizeCmd(IRibbonControl control)
-			=> factory.Run<ColorizeCommand>();
+			=> factory.Run<ColorizeCommand>(control.Tag);
 
 		public void CropImageCmd(IRibbonControl control)
 			=> factory.Run<CropImageCommand>();
