@@ -452,7 +452,9 @@ namespace River.OneMoreAddIn.Models
 					{
 						// edit every XText and SPAN in the T wrapper
 						var wrapper = cdata.GetWrapper();
-						foreach (var node in wrapper.Nodes())
+
+						// use ToList, otherwise enumeration will stop after first FeplaceWith
+						foreach (var node in wrapper.Nodes().ToList())
 						{
 							node.ReplaceWith(edit(node));
 						}
