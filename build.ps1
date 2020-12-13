@@ -60,7 +60,7 @@ Begin
             ForEach-Object { $matches[1] }
 
         Write-Host
-        Write-Host "... configuring vdproj for $bitness-bit build of $productVersion" -ForegroundColor Yellow
+        Write-Host "... configuring vdproj for x$bitness build of $productVersion" -ForegroundColor Yellow
 
         '' | Out-File $vdproj -nonewline
 
@@ -91,17 +91,17 @@ Begin
 
     function Build ([int]$bitness)
     {
-        Write-Host "... building $bitness-bit MSI" -ForegroundColor Yellow
+        Write-Host "... building x$bitness MSI" -ForegroundColor Yellow
 
         # output file cannot exist before build
         Remove-Item .\Debug\*.* -Force -Confirm:$false
 
         # build
-        . $devenv .\OneMoreSetup.vdproj /build 'Debug|x86' /project Setup /projectconfig Debug
+        . $devenv .\OneMoreSetup.vdproj /build "Debug|x$bitness" /project Setup /projectconfig Debug
 
         # move msi to Downloads for safe-keeping and to allow next Platform build
-        Move-Item .\Debug\*.msi $home\Downloads
-        Write-Host "... $bitness-bit MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
+        Move-Item .\Debug\*.msi $home\Downloads -Force
+        Write-Host "... x$bitness MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
     }
 }
 Process
@@ -113,8 +113,8 @@ Process
     {
         PreserveVdproj
 
-        Configure 32
-        Build 32
+        Configure 86
+        Build 86
 
         Configure 64
         Build 64

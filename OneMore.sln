@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		Reference\0336.OneNoteApplication_2013.xsd = Reference\0336.OneNoteApplication_2013.xsd
+		build.ps1 = build.ps1
 		Reference\customui14.xsd = Reference\customui14.xsd
 		LICENSE = LICENSE
 		README.md = README.md
