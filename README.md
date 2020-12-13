@@ -6,6 +6,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 * Access all features from the [OneMore group menus](../../wiki) added to the Home ribbon
 * Access some "key" features using keyboard shortcuts (see what I did there?)
+* Apply [colorized syntax highlighting](../../wiki/Edit-Commands) to snippets of source code
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
 * Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
 * Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
