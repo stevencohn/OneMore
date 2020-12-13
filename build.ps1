@@ -76,6 +76,12 @@ Begin
                 }
                 $line | Out-File $vdproj -Append
             }
+            elseif (($bitness -eq 64) -and ($_ -match '"DefaultLocation" = "'))
+            {
+                # "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+                $line = $_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder')
+                $line | Out-File $vdproj -Append
+            }
             elseif (($bitness -eq 64) -and ($_ -match '"TargetPlatform" = "'))
             {
                 # x86 -> "3:0"
