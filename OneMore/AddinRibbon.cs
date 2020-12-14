@@ -35,29 +35,29 @@ namespace River.OneMoreAddIn
 		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
-			var root = XElement.Parse(Resx.Ribbon);
-			ns = root.GetDefaultNamespace();
-
-			AddColorizerCommands(root);
-
-			var provider = new SettingsProvider();
-
-			var ribbonbar = provider.GetCollection("RibbonBarSheet");
-			if (ribbonbar.Count > 0)
-			{
-				AddRibbonBarCommands(ribbonbar, root);
-			}
-
-			var ccommands = provider.GetCollection("ContextMenuSheet");
-			var searchers = provider.GetCollection("SearchEngineSheet");
-
-			if (ccommands.Count == 0 && searchers.Count == 0)
-			{
-				return root.ToString(SaveOptions.DisableFormatting);
-			}
-
 			try
 			{
+				var root = XElement.Parse(Resx.Ribbon);
+				ns = root.GetDefaultNamespace();
+
+				AddColorizerCommands(root);
+
+				var provider = new SettingsProvider();
+
+				var ribbonbar = provider.GetCollection("RibbonBarSheet");
+				if (ribbonbar.Count > 0)
+				{
+					AddRibbonBarCommands(ribbonbar, root);
+				}
+
+				var ccommands = provider.GetCollection("ContextMenuSheet");
+				var searchers = provider.GetCollection("SearchEngineSheet");
+
+				if (ccommands.Count == 0 && searchers.Count == 0)
+				{
+					return root.ToString(SaveOptions.DisableFormatting);
+				}
+
 				// construct context menu UI
 				var menu = new XElement(ns + "contextMenu",
 					new XAttribute("idMso", "ContextMenuText"));
@@ -85,8 +85,8 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error extending context menu", exc);
-				return root.ToString(SaveOptions.DisableFormatting);
+				logger.WriteLine("error building custom UI", exc);
+				return XElement.Parse(Resx.Ribbon).ToString(SaveOptions.DisableFormatting);
 			}
 		}
 
