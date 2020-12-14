@@ -93,26 +93,33 @@ namespace River.OneMoreAddIn
 
 		private void AddColorizerCommands(XElement root)
 		{
-			var menu = root.Descendants(ns + "menu")
-				.FirstOrDefault(e => e.Attribute("id").Value == "ribColorizeMenu");
-
-			if (menu == null)
+			try
 			{
-				return;
+				var menu = root.Descendants(ns + "menu")
+					.FirstOrDefault(e => e.Attribute("id").Value == "ribColorizeMenu");
+
+				if (menu == null)
+				{
+					return;
+				}
+
+				var languages = Colorizer.Colorizer.LoadLanguageNames();
+				foreach (var name in languages.Keys)
+				{
+					var tag = languages[name];
+
+					menu.Add(new XElement(ns + "button",
+						new XAttribute("id", $"ribColorize{tag}Button"),
+						new XAttribute("getImage", "GetColorizeImage"),
+						new XAttribute("label", name),
+						new XAttribute("tag", tag),
+						new XAttribute("onAction", "ColorizeCmd")
+						));
+				}
 			}
-
-			var languages = Colorizer.Colorizer.LoadLanguageNames();
-			foreach (var name in languages.Keys)
+			catch (Exception exc)
 			{
-				var tag = languages[name];
-
-				menu.Add(new XElement(ns + "button",
-					new XAttribute("id", $"ribColorize{tag}Button"),
-					new XAttribute("getImage", "GetColorizeImage"),
-					new XAttribute("label", name),
-					new XAttribute("tag", tag),
-					new XAttribute("onAction", "ColorizeCmd")
-					));
+				logger.WriteLine("error building colorize menu", exc);
 			}
 		}
 
