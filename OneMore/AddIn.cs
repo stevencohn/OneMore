@@ -213,13 +213,21 @@ namespace River.OneMoreAddIn
 					return null;
 				}
 
-				assembly.SetPublicKeyToken(
+				try
+				{
+					assembly.SetPublicKeyToken(
 					new AssemblyName("x, PublicKeyToken=b03f5f7f11d50a3a").GetPublicKeyToken());
 
-				assembly.Version = new Version("5.0.0.0");
-				assembly.CultureInfo = CultureInfo.InvariantCulture;
+					assembly.Version = new Version("5.0.0.0");
+					assembly.CultureInfo = CultureInfo.InvariantCulture;
 
-				return Assembly.Load(assembly);
+					return Assembly.Load(assembly);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error loading CompilerServices assembly", exc);
+					return null;
+				}
 			};
 		}
 	}
