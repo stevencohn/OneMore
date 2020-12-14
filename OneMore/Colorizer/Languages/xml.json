@@ -5,6 +5,20 @@
   ],
   "rules": [
     {
+      "pattern": "(\\<![ \\r\\n\\t]*--[^\\r\\n]*)$",
+      "scope": "HtmlComment",
+      "captures": [
+        "HtmlComment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*--[ \\r\\n\\t]*\\>)",
+      "scope": "",
+      "captures": [
+        "HtmlComment"
+      ]
+    },
+    {
       "pattern": "(\\<![ \\r\\n\\t]*(?:--(?:[^\\-]|[\\r\\n]|-[^\\-])*--[ \\r\\n\\t]*)\\>)",
       "captures": [
         "HtmlComment"

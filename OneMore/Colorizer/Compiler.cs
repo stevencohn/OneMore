@@ -55,7 +55,6 @@ namespace River.OneMoreAddIn.Colorizer
 			}
 
 			var compiled = (Language)language;
-			compiled.Rules.Clear();
 			compiled.Regex = new Regex(builder.ToString());
 			compiled.Scopes = scopes;
 

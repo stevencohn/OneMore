@@ -23,10 +23,16 @@ namespace River.OneMoreAddIn.Colorizer
 
 
 		/// <summary>
+		/// Gets the current scope override, used for multi-line patterns such as multi-line
+		/// comments. Default scope is string.Empty
+		/// </summary>
+		string Scope { get; }
+
+
+		/// <summary>
 		/// Gets the scope of each capture in the regular expression
 		/// </summary>
 		IList<string> Captures { get; }
-
 	}
 
 
@@ -35,6 +41,7 @@ namespace River.OneMoreAddIn.Colorizer
 	/// </summary>
 	internal class Rule : IRule
 	{
+		private string scope;
 		private List<string> captures;
 
 
@@ -42,8 +49,13 @@ namespace River.OneMoreAddIn.Colorizer
 		{
 		}
 
-
 		public string Pattern { get; set; }
+
+		public string Scope
+		{
+			get => scope;
+			set => scope = value.ToLower();
+		}
 
 
 		public IList<string> Captures
@@ -80,9 +92,6 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <summary>
 		/// Get the list of rules that define the language
 		/// </summary>
-		/// <remarks>
-		/// This list only exists until the language is compiled and then it is cleared.
-		/// </remarks>
 		List<IRule> Rules { get; }
 	}
 

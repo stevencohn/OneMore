@@ -2,6 +2,20 @@
   "name": "Python",
   "rules": [
     {
+      "pattern": "^[\\s]*(\\\"{3}[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*\\\"{3})[\\s]*$",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
       "pattern": "(#.*?)\\r?$",
       "captures": [
         "Comment"
@@ -14,7 +28,7 @@
       ]
     },
     {
-      "pattern": "(\"[^\\n]*?(?<!\\\\)\")",
+      "pattern": "([^\"]\"[^\\n]*?(?<!\\\\)\")",
       "captures": [
         "String"
       ]

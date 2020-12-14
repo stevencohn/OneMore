@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Colorizer;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
@@ -45,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 						// hard breaks, splitting the line into multiple ines...
 
 						var text = cdata.GetWrapper().Value;
-						var lines = text.Split(new char[] { '\n' });
+						var lines = text.Split(new string[] { "<br>" }, StringSplitOptions.None);
 
 						// update current cdata with first line
 						cdata.Value = colorizer.ColorizeOne(lines[0]);
