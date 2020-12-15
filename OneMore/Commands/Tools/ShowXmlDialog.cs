@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -292,6 +293,44 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			pageBox.Text = root.ToString(SaveOptions.None);
+
+			HighlightSelected();
+		}
+
+
+		private void HighlightSelected()
+		{
+			var text = pageBox.Text;
+
+			var match = Regex.Match(text, @"<[^>]+selected=\""all\""[^>]*>");
+			var prev = -1;
+
+			while (match.Success)
+			{
+				if (match.Index > prev)
+				{
+					var start = match.Index;
+					while (start > 0 && text[start] != '\n')
+					{
+						start--;
+					}
+					while (start < match.Index && char.IsWhiteSpace(text[start])) start++;
+
+					var end = match.Index + match.Length;
+					while (end < text.Length && text[end] != '\n')
+					{
+						end++;
+					}
+
+					pageBox.SelectionStart = start;
+					pageBox.SelectionLength = end - start;
+					pageBox.SelectionBackColor = Color.Yellow;
+
+					prev = end;
+				}
+
+				match = match.NextMatch();
+			}
 		}
 
 
