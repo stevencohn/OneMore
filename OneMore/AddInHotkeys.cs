@@ -12,6 +12,8 @@ namespace River.OneMoreAddIn
 	{
 		private void RegisterHotkeys()
 		{
+			logger.WriteLine("defining hotkeys");
+				
 			HotkeyManager.Initialize();
 
 			HotkeyManager.RegisterHotKey(() => AddFootnoteCmd(null),

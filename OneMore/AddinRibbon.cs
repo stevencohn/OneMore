@@ -35,6 +35,8 @@ namespace River.OneMoreAddIn
 		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
+			logger.WriteLine("building ribbon");
+
 			try
 			{
 				var root = XElement.Parse(Resx.Ribbon);
@@ -93,6 +95,8 @@ namespace River.OneMoreAddIn
 
 		private void AddColorizerCommands(XElement root)
 		{
+			logger.WriteLine("building ribbon colorizer commands");
+
 			try
 			{
 				var menu = root.Descendants(ns + "menu")
@@ -126,6 +130,8 @@ namespace River.OneMoreAddIn
 
 		private void AddRibbonBarCommands(SettingsCollection ribbonbar, XElement root)
 		{
+			logger.WriteLine("building ribbon groups");
+
 			var group = root.Descendants(ns + "group")
 				.FirstOrDefault(e => e.Attribute("id")?.Value == "ribOneMoreGroup");
 
@@ -211,6 +217,8 @@ namespace River.OneMoreAddIn
 		private void AddContextMenuCommands(
 			SettingsCollection ccommands, XElement root, XElement menu)
 		{
+			logger.WriteLine("building context menu");
+
 			foreach (var key in ccommands.Keys)
 			{
 				if (!ccommands.Get<bool>(key))
@@ -262,6 +270,8 @@ namespace River.OneMoreAddIn
 		private void AddContextMenuSearchers(
 			SettingsCollection ccommands, XElement menu)
 		{
+			logger.WriteLine("building context menu search engines");
+
 			engines = ccommands.Get<XElement>("engines");
 
 			if (engines == null || !engines.HasElements)
@@ -322,7 +332,7 @@ namespace River.OneMoreAddIn
 		/// <param name="ribbon">The Ribbon</param>
 		public void RibbonLoaded(IRibbonUI ribbon)
 		{
-			//logger.WriteLine("RibbonLoaded()");
+			logger.WriteLine("RibbonLoaded()");
 			this.ribbon = ribbon;
 		}
 
@@ -334,19 +344,20 @@ namespace River.OneMoreAddIn
 		/// <returns>A Bitmap image</returns>
 		public IStream GetColorizeImage(IRibbonControl control)
 		{
-			var path = Path.Combine(
-				Colorizer.Colorizer.GetColorizerDirectory(),
-				$@"Languages\{control.Tag}.png"
-				);
-
-			if (!File.Exists(path))
-			{
-				return null;
-			}
-
+			//logger.WriteLine($"GetColorizeImage({control.Tag})");
 			IStream stream = null;
 			try
 			{
+				var path = Path.Combine(
+					Colorizer.Colorizer.GetColorizerDirectory(),
+					$@"Languages\{control.Tag}.png"
+					);
+
+				if (!File.Exists(path))
+				{
+					return null;
+				}
+
 				stream = ((Bitmap)Image.FromFile(path)).GetReadOnlyStream();
 				trash.Add((IDisposable)stream);
 			}
@@ -491,7 +502,9 @@ namespace River.OneMoreAddIn
 		/// <returns>A steam of the Image to display</returns>
 		public IStream GetRibbonSearchImage(IRibbonControl control)
 		{
-			if (engines.HasElements)
+			//logger.WriteLine($"GetRibbonSearchImage({control.Tag})");
+
+			if (engines?.HasElements == true)
 			{
 				var engine = engines.Elements("engine")
 					.FirstOrDefault(e => e.Element("uri").Value == control.Tag);

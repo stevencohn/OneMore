@@ -123,7 +123,6 @@ namespace River.OneMoreAddIn
 				logger.WriteLine("OneNote backup folder:: " + folders.backupFolder);
 				logger.WriteLine("OneNote default folder: " + folders.defaultFolder);
 				logger.WriteLine("OneNote unfiled folder: " + folders.unfiledFolder);
-				logger.End();
 
 				factory = new CommandFactory(logger, ribbon, trash,
 					// looks complicated but necessary for this to work
@@ -131,6 +130,9 @@ namespace River.OneMoreAddIn
 			}
 
 			RegisterHotkeys();
+
+			logger.WriteLine($"ready");
+			logger.End();
 		}
 
 
