@@ -245,12 +245,6 @@ namespace River.OneMoreAddIn.Commands
 		private void HideAttributes(object sender, EventArgs e)
 		{
 			ChangeInfoScope(sender, e);
-
-			if (hideBox.Checked || hideLFBox.Checked)
-			{
-				ApplyHideOptions();
-			}
-
 			okButton.Enabled = !hideBox.Checked;
 		}
 
@@ -294,18 +288,18 @@ namespace River.OneMoreAddIn.Commands
 
 			pageBox.Text = root.ToString(SaveOptions.None);
 
-			HighlightSelected();
+			Highlights();
 		}
 
 
-		private void HighlightSelected()
+		private void Highlights()
 		{
 			var text = pageBox.Text;
 
-			var match = Regex.Match(text, @"<[^>]+selected=\""all\""[^>]*>");
+			var matches = Regex.Matches(text, "selected=\"all\"");
 			var prev = -1;
 
-			while (match.Success)
+			foreach (Match match in matches)
 			{
 				if (match.Index > prev)
 				{
@@ -328,8 +322,22 @@ namespace River.OneMoreAddIn.Commands
 
 					prev = end;
 				}
+			}
 
-				match = match.NextMatch();
+			if (!hideBox.Checked)
+			{
+				matches = Regex.Matches(text,
+					"(?:author|authorInitials|authorResolutionID|lastModifiedBy|" +
+					"lastModifiedByInitials|lastModifiedByResolutionID|creationTime|" +
+					"lastModifiedTime|objectID)=\"[^\"]*\""
+					);
+
+				foreach (Match m in matches)
+				{
+					pageBox.SelectionStart = m.Index;
+					pageBox.SelectionLength = m.Length;
+					pageBox.SelectionColor = Color.Silver;
+				}
 			}
 		}
 
