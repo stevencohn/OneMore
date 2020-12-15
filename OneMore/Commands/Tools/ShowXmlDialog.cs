@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -244,12 +245,6 @@ namespace River.OneMoreAddIn.Commands
 		private void HideAttributes(object sender, EventArgs e)
 		{
 			ChangeInfoScope(sender, e);
-
-			if (hideBox.Checked || hideLFBox.Checked)
-			{
-				ApplyHideOptions();
-			}
-
 			okButton.Enabled = !hideBox.Checked;
 		}
 
@@ -292,6 +287,58 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			pageBox.Text = root.ToString(SaveOptions.None);
+
+			Highlights();
+		}
+
+
+		private void Highlights()
+		{
+			var text = pageBox.Text;
+
+			var matches = Regex.Matches(text, "selected=\"all\"");
+			var prev = -1;
+
+			foreach (Match match in matches)
+			{
+				if (match.Index > prev)
+				{
+					var start = match.Index;
+					while (start > 0 && text[start] != '\n')
+					{
+						start--;
+					}
+					while (start < match.Index && char.IsWhiteSpace(text[start])) start++;
+
+					var end = match.Index + match.Length;
+					while (end < text.Length && text[end] != '\n')
+					{
+						end++;
+					}
+
+					pageBox.SelectionStart = start;
+					pageBox.SelectionLength = end - start;
+					pageBox.SelectionBackColor = Color.Yellow;
+
+					prev = end;
+				}
+			}
+
+			if (!hideBox.Checked)
+			{
+				matches = Regex.Matches(text,
+					"(?:author|authorInitials|authorResolutionID|lastModifiedBy|" +
+					"lastModifiedByInitials|lastModifiedByResolutionID|creationTime|" +
+					"lastModifiedTime|objectID)=\"[^\"]*\""
+					);
+
+				foreach (Match m in matches)
+				{
+					pageBox.SelectionStart = m.Index;
+					pageBox.SelectionLength = m.Length;
+					pageBox.SelectionColor = Color.Silver;
+				}
+			}
 		}
 
 
