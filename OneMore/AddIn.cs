@@ -209,25 +209,30 @@ namespace River.OneMoreAddIn
 		{
 			AppDomain.CurrentDomain.AssemblyResolve += (object sender, ResolveEventArgs args) =>
 			{
-				var assembly = new AssemblyName(args.Name);
-				if (assembly.Name != "System.Runtime.CompilerServices.Unsafe")
+				var aname = new AssemblyName(args.Name);
+				if (aname.Name != "System.Runtime.CompilerServices.Unsafe")
 				{
 					return null;
 				}
 
+				Logger.Current.WriteLine($"loading {aname.Name}");
+
 				try
 				{
-					assembly.SetPublicKeyToken(
-					new AssemblyName("x, PublicKeyToken=b03f5f7f11d50a3a").GetPublicKeyToken());
+					aname.SetPublicKeyToken(
+						new AssemblyName("x, PublicKeyToken=b03f5f7f11d50a3a").GetPublicKeyToken());
 
-					assembly.Version = new Version("5.0.0.0");
-					assembly.CultureInfo = CultureInfo.InvariantCulture;
+					aname.Version = new Version("5.0.0.0");
+					aname.CultureInfo = CultureInfo.InvariantCulture;
 
-					return Assembly.Load(assembly);
+					var assembly = Assembly.Load(aname);
+					Logger.Current.WriteLine($"loaded {aname.Name}");
+
+					return assembly;
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine("error loading CompilerServices assembly", exc);
+					Logger.Current.WriteLine($"error loading {aname.Name} assembly", exc);
 					return null;
 				}
 			};
