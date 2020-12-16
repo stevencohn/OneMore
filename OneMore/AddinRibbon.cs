@@ -255,6 +255,8 @@ namespace River.OneMoreAddIn
 
 					if (sub != null)
 					{
+						// allows top level context menu Colorize submenu
+						// but removes the context menu Edit\Colorize submenu
 						sub.Remove();
 					}
 				}
