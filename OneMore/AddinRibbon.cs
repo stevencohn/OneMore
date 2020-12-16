@@ -37,6 +37,9 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("building ribbon");
 
+
+			System.Diagnostics.Debugger.Launch();
+
 			try
 			{
 				var root = XElement.Parse(Resx.Ribbon);
@@ -229,40 +232,61 @@ namespace River.OneMoreAddIn
 				var element = root.Descendants()
 					.FirstOrDefault(e => e.Attribute("id")?.Value == key);
 
-				if (element != null)
+				if (element == null)
 				{
-					// deep clone item but must change id and remove getEnabled...
+					logger.WriteLine($"cannot add {key} command to context menu, element not found");
+					continue;
+				}
 
-					var item = new XElement(element);
+				// deep clone item but must change id and remove getEnabled...
 
-					// cleanup the item itself
-					XAttribute id = item.Attribute("id");
+				var item = new XElement(element);
+
+				// cleanup the item itself
+				var id = item.Attribute("id");
+				if (id == null)
+				{
+					logger.WriteLine($"cannot add {key} command to context menu, id not found");
+					continue;
+				}
+
+				// special case to avoid collisions between Edit\Colorize and Colorize
+				if (id.Value == "ribEditMenu" && ccommands.Keys.Contains("ribColorizeMenu"))
+				{
+					var sub = item.Elements()
+						.FirstOrDefault(e => e.Attribute("id")?.Value == "ribColorizeMenu");
+
+					if (sub != null)
+					{
+						sub.Remove();
+					}
+				}
+
+				if (id.Value.StartsWith("rib"))
+				{
+					id.Value = $"ctx{id.Value.Substring(3)}";
+				}
+
+				var enabled = item.Attribute("getEnabled");
+				if (enabled != null) enabled.Remove();
+
+				// cleanup all children below the item
+				foreach (var node in item.Descendants()
+					.Where(e => e.Attributes().Any(a => a.Name == "id")))
+				{
+					id = node.Attribute("id");
 					if (id != null && id.Value.StartsWith("rib"))
 					{
-						id.Value = $"ctx{id.Value.Substring(3)}";
+						id.Value = $"ct2{id.Value.Substring(3)}";
 					}
 
-					var enabled = item.Attribute("getEnabled");
+					enabled = node.Attribute("getEnabled");
 					if (enabled != null) enabled.Remove();
-
-					// cleanup all children below the item
-					foreach (var node in item.Descendants()
-						.Where(e => e.Attributes().Any(a => a.Name == "id")))
-					{
-						id = node.Attribute("id");
-						if (id != null && id.Value.StartsWith("rib"))
-						{
-							id.Value = $"ct2{id.Value.Substring(3)}";
-						}
-
-						enabled = node.Attribute("getEnabled");
-						if (enabled != null) enabled.Remove();
-					}
-
-					item.Add(new XAttribute("insertBeforeMso", "Cut"));
-
-					menu.Add(item);
 				}
+
+				item.Add(new XAttribute("insertBeforeMso", "Cut"));
+
+				menu.Add(item);
 			}
 		}
 
