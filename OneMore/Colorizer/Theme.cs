@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Colorizer
 		/// </summary>
 		/// <param name="name">The name of a style defined by this theme</param>
 		/// <returns>An IStyle of the style</returns>
-		IStyle GetStyle(string name);
+		Style GetStyle(string name);
 	}
 
 
@@ -92,9 +92,9 @@ namespace River.OneMoreAddIn.Colorizer
 	{
 		public Dictionary<string, string> Colors { get; set; }
 
-		public List<IStyle> Styles { get; set; }
+		public List<Style> Styles { get; set; }
 
-		public IStyle GetStyle(string name)
+		public Style GetStyle(string name)
 		{
 			return Styles.FirstOrDefault(s => s.Name == name);
 		}

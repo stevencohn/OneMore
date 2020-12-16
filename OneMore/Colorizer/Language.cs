@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <summary>
 		/// Get the list of rules that define the language
 		/// </summary>
-		List<IRule> Rules { get; }
+		List<Rule> Rules { get; }
 	}
 
 
@@ -132,7 +132,7 @@ namespace River.OneMoreAddIn.Colorizer
 
 		public string PreamblePattern { get; set; }
 
-		public List<IRule> Rules { get; set; }
+		public List<Rule> Rules { get; set; }
 
 		// Compilation...
 

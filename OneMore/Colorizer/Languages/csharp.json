@@ -82,11 +82,5 @@
         "Number"
       ]
     }
-    /*{
-      "pattern": "\\b(?:public|protected|internal|private|abstract)) |[^]))[a-zA-Z][a-zA-Z0-9.]{1,})){1,}",
-      "captures": [
-        "ClassName"
-      ]
-    }*/
   ]
 }
