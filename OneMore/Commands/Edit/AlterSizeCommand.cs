@@ -38,9 +38,17 @@ namespace River.OneMoreAddIn.Commands
 
 				// determine if range is selected or entire page
 
-				selected = page.Root.Element(ns + "Outline").Descendants(ns + "T")
-					.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
-					.Any(e => e.GetCData().Value.Length > 0);
+				/*
+				 * Note that since OneNote already has built-in key sequences to alter size of
+				 * selected text (Ctrl+Shift+> and Ctrl+Shift+<) we're commenting out the selected
+				 * block here so the command will apply to the entire page regardless of selection
+				 */
+
+				//selected = page.Root.Element(ns + "Outline").Descendants(ns + "T")
+				//	.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
+				//	.Any(e => e.GetCData().Value.Length > 0);
+
+				selected = false;
 
 				var count = 0;
 

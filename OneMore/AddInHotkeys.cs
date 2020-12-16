@@ -25,6 +25,9 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(() => DecreaseFontSizeCmd(null),
 				Keys.OemMinus, Hotmods.ControlAlt);
 
+			HotkeyManager.RegisterHotKey(() => HighlightCmd(null),
+				Keys.H, Hotmods.ControlShift);
+
 			HotkeyManager.RegisterHotKey(() => IncreaseFontSizeCmd(null),
 				Keys.Oemplus, Hotmods.ControlAlt);
 
@@ -35,10 +38,10 @@ namespace River.OneMoreAddIn
 				Keys.D, Hotmods.ControlShift);
 
 			HotkeyManager.RegisterHotKey(() => InsertDoubleHorizontalLineCmd(null),
-				Keys.Oemplus, Hotmods.AltShift);
+				Keys.Oemplus, Hotmods.ControlShift);
 
 			HotkeyManager.RegisterHotKey(() => InsertHorizontalLineCmd(null),
-				Keys.OemMinus, Hotmods.AltShift);
+				Keys.OemMinus, Hotmods.ControlShift);
 
 			HotkeyManager.RegisterHotKey(() => NoSpellCheckCmd(null),
 				Keys.F4);
