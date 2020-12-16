@@ -38,10 +38,10 @@ namespace River.OneMoreAddIn
 				Keys.D, Hotmods.ControlShift);
 
 			HotkeyManager.RegisterHotKey(() => InsertDoubleHorizontalLineCmd(null),
-				Keys.Oemplus, Hotmods.ControlShift);
+				Keys.F12, Hotmods.AltShift);
 
 			HotkeyManager.RegisterHotKey(() => InsertHorizontalLineCmd(null),
-				Keys.OemMinus, Hotmods.ControlShift);
+				Keys.F11, Hotmods.AltShift);
 
 			HotkeyManager.RegisterHotKey(() => NoSpellCheckCmd(null),
 				Keys.F4);
