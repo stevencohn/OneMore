@@ -37,9 +37,6 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("building ribbon");
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			try
 			{
 				var root = XElement.Parse(Resx.Ribbon);
