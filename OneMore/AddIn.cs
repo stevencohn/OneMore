@@ -52,9 +52,9 @@ namespace River.OneMoreAddIn
 			var thread = System.Threading.Thread.CurrentThread;
 			Culture = thread.CurrentUICulture;
 
-			//Culture = CultureInfo.GetCultureInfo("fr-FR");
-			//thread.CurrentCulture = Culture;
-			//thread.CurrentUICulture = Culture;
+			Culture = CultureInfo.GetCultureInfo("en-GB");
+			thread.CurrentCulture = Culture;
+			thread.CurrentUICulture = Culture;
 
 			logger.WriteLine();
 			logger.Start(
@@ -114,21 +114,30 @@ namespace River.OneMoreAddIn
 			int count = custom == null ? 0 : custom.Length;
 			logger.WriteLine($"OnStartupComplete(custom[]:{count})");
 
-			using (var one = new OneNote())
+			try
 			{
-				var folders = one.GetFolders();
-				logger.WriteLine("OneNote backup folder:: " + folders.backupFolder);
-				logger.WriteLine("OneNote default folder: " + folders.defaultFolder);
-				logger.WriteLine("OneNote unfiled folder: " + folders.unfiledFolder);
+				using (var one = new OneNote())
+				{
+					var folders = one.GetFolders();
+					logger.WriteLine("OneNote backup folder:: " + folders.backupFolder);
+					logger.WriteLine("OneNote default folder: " + folders.defaultFolder);
+					logger.WriteLine("OneNote unfiled folder: " + folders.unfiledFolder);
 
-				factory = new CommandFactory(logger, ribbon, trash,
-					// looks complicated but necessary for this to work
-					new Win32WindowHandle(new IntPtr((long)one.WindowHandle)));
+					factory = new CommandFactory(logger, ribbon, trash,
+						// looks complicated but necessary for this to work
+						new Win32WindowHandle(new IntPtr((long)one.WindowHandle)));
+				}
+
+				RegisterHotkeys();
+
+				logger.WriteLine($"ready");
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine("error starting add-on", exc);
+				UIHelper.ShowError(Properties.Resources.StartupFailureMessage);
 			}
 
-			RegisterHotkeys();
-
-			logger.WriteLine($"ready");
 			logger.End();
 		}
 
@@ -155,7 +164,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine(exc);
+				logger.WriteLine("error shutting down UI", exc);
 			}
 		}
 
@@ -179,7 +188,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine(exc);
+				logger.WriteLine("error disconnecting", exc);
 			}
 
 			logger.WriteLine("closing log");

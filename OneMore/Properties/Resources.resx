@@ -2490,4 +2490,8 @@ In this section</value>
     <value>Colorize</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="StartupFailureMessage" xml:space="preserve">
+    <value>OneMore failed to connect to OneNote, see log file for exception details</value>
+    <comment>message box</comment>
+  </data>
 </root>

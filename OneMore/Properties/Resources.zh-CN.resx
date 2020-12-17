@@ -2471,4 +2471,8 @@ ISO-code then comma then language name</comment>
     <value>上色</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="StartupFailureMessage" xml:space="preserve">
+    <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
+    <comment>message box</comment>
+  </data>
 </root>

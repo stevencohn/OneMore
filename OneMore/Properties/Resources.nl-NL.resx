@@ -2480,4 +2480,8 @@ ISO-code then comma then language name</comment>
     <value>Inkleuren</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="StartupFailureMessage" xml:space="preserve">
+    <value>OneMore kon geen verbinding maken met OneNote, zie logbestand voor details over uitzonderingen</value>
+    <comment>message box</comment>
+  </data>
 </root>

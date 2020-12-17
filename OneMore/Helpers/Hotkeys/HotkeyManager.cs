@@ -144,7 +144,11 @@ namespace River.OneMoreAddIn
 			registeredKeys.ForEach(k =>
 				window.Invoke(new UnRegisterHotkeyDelegate(Unregister), handle, k.Id));
 
-			gch.Free();
+			// may not be allocated if the add-in startup has failed
+			if (gch.IsAllocated)
+			{
+				gch.Free();
+			}
 		}
 
 

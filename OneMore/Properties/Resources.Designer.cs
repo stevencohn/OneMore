@@ -4892,6 +4892,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore failed to connect to OneNote, see log file for exception details.
+        /// </summary>
+        internal static string StartupFailureMessage {
+            get {
+                return ResourceManager.GetString("StartupFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Strikethrough {

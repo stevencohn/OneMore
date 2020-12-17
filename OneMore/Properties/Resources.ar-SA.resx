@@ -2479,4 +2479,8 @@ ISO-code then comma then language name</comment>
     <value>تلوين</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="StartupFailureMessage" xml:space="preserve">
+    <value>فشل OneMore في الاتصال بـ OneNote ، راجع ملف السجل للحصول على تفاصيل الاستثناء</value>
+    <comment>message box</comment>
+  </data>
 </root>
