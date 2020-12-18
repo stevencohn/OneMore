@@ -24,19 +24,26 @@ namespace River.OneMoreAddIn.Commands
 			this.caseSensitive = caseSensitive;
 		}
 
+
 		public int SearchAndReplace(XElement element)
 		{
-			// wrapper constructs a cleaned version of all T/CDATA content,
-			// without CDATA nodes or the empty current cursor CDATA
-			var wrapper = element.Value.ToXmlWrapper();
+
+			System.Diagnostics.Debugger.Launch();
+
 
 			var options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
 
-			// find all distinct occurances of search string
+			// get a cleaned-up wrapper of the CDATA that we can parse
+			var cdata = element.GetCData();
+			var wrapper = cdata.GetWrapper();
+
+			// find all distinct occurances of search string across all text of the run
+			// regardless of internal SPANs; we'll compensate for those below...
+
 			var matches = Regex.Matches(wrapper.Value, search, options);
 			if (matches?.Count > 0)
 			{
-				// if length of search and replace differ then the match indexes will
+				// if length of "search" and "replace" differ then the match indexes will
 				// offset cumulatively at each replacement so need to adjust for that
 				var difference = replace.Length - search.Length;
 
@@ -50,13 +57,14 @@ namespace River.OneMoreAddIn.Commands
 
 				// TODO: preserve non-breaking whitespace at beginning of line
 
-				element.ReplaceNodes(new XElement(ns + "T", new XCData(wrapper.GetInnerXml())));
+				cdata.Value = wrapper.GetInnerXml();
 
 				return matches.Count;
 			}
 
 			return 0;
 		}
+
 
 		private static void Replace(XElement wrapper, int searchIndex, int searchLength, string replace)
 		{
