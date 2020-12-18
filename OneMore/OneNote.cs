@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
@@ -61,6 +62,8 @@ namespace River.OneMoreAddIn
 
 
 		public const string Prefix = "one";
+
+		private const uint hrCOMBusy = 0x8001010A;
 
 		private Application onenote;
 		private readonly ILogger logger;
@@ -495,7 +498,29 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
+				int retries = 0;
+				while (retries < 3)
+				{
+					try
+					{
+						onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
+
+						if (retries > 0)
+						{
+							logger.WriteLine("update completed successfully");
+						}
+
+						retries = int.MaxValue;
+					}
+					catch (COMException exc) when ((uint)exc.ErrorCode == hrCOMBusy)
+					{
+						retries++;
+						var ms = 250 * retries;
+
+						logger.WriteLine($"error updating page, OneNote is busy, retyring in {ms}ms", exc);
+						System.Threading.Thread.Sleep(ms);
+					}
+				}
 			}
 			catch (Exception exc)
 			{
