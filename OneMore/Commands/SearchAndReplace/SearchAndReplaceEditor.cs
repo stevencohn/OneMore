@@ -2,6 +2,9 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S2589 // Boolean expressions should not be gratuitous
+#pragma warning disable S2583 // Conditionally executed code should be reachable
+
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
@@ -78,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 
 			IAtom atom;
 			int nodeStart;
-			int nodeEnd = 0;
+			int nodeEnd = -1;
 			int chars;
 			int remaining = searchLength;
 			int searchEnd = searchIndex + searchLength;
@@ -87,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			while (i < nodes.Count && nodeEnd < searchEnd)
 			{
 				atom = AtomicFactory.MakeAtom(nodes[i]);
-				nodeStart = nodeEnd;
+				nodeStart = nodeEnd + 1;
 				nodeEnd += atom.Length;
 
 				if (searchIndex >= nodeStart && searchIndex <= nodeEnd)
@@ -100,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 
 					remaining -= chars;
 				}
-				else if (searchIndex < nodeStart && searchEnd >= nodeStart)
+				else if (searchIndex < nodeStart && searchEnd > nodeStart)
 				{
 					// found node containing middle/end of match
 					chars = Math.Min(atom.Length, remaining);

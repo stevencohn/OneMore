@@ -46,22 +46,17 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				/*
-				 * 
-				 * TODO: TransformSoftBreak only for seleted Ts
-				 * 
-				 * 
-				 */
-
-				TransformSoftBreaks(page.Root, ns);
-
-				IEnumerable<XElement> elements;
-
 				var cursor = page.GetTextCursor();
 				if (cursor != null)
 				{
 					MergeRuns(cursor);
+				}
 
+				TransformSoftBreaks(page.Root, ns);
+
+				IEnumerable<XElement> elements;
+				if (cursor != null)
+				{
 					elements = page.Root.Elements(ns + "Outline")
 						.Descendants(ns + "T");
 				}
