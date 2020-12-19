@@ -76,8 +76,6 @@ namespace River.OneMoreAddIn.Commands
 						PatchEndingBreaks(page.Root, ns);
 
 						logger.WriteLine($"found {count} matches");
-						logger.WriteLine(page.Root.ToString());
-
 						one.Update(page);
 					}
 					else
