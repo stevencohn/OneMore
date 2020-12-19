@@ -26,16 +26,21 @@ namespace River.OneMoreAddIn.Commands
 
 		public int SearchAndReplace(XElement element)
 		{
-			var options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
-
 			// get a cleaned-up wrapper of the CDATA that we can parse
 			var cdata = element.GetCData();
+			if (cdata.Value.Length == 0)
+			{
+				return 0;
+			}
+
 			var wrapper = cdata.GetWrapper();
 
 			// find all distinct occurances of search string across all text of the run
 			// regardless of internal SPANs; we'll compensate for those below...
 
-			var matches = Regex.Matches(wrapper.Value, search, options);
+			var matches = Regex.Matches(wrapper.Value, search, 
+				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
+
 			if (matches?.Count > 0)
 			{
 				// run backwards to avoid cumulative offets if match length differs from length

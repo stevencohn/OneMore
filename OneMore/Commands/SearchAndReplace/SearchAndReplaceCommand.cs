@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -45,16 +44,18 @@ namespace River.OneMoreAddIn.Commands
 					MergeRuns(cursor);
 				}
 
-				TransformSoftBreaks(page.Root, ns);
-
 				IEnumerable<XElement> elements;
 				if (cursor != null)
 				{
+					//TransformSoftBreaks(page.Root, ns, true);
+
 					elements = page.Root.Elements(ns + "Outline")
 						.Descendants(ns + "T");
 				}
 				else
 				{
+					//TransformSoftBreaks(page.Root, ns, false);
+
 					elements = page.Root.Elements(ns + "Outline")
 						.Descendants(ns + "T")
 						.Where(e => e.Attribute("selected")?.Value == "all");
@@ -72,6 +73,8 @@ namespace River.OneMoreAddIn.Commands
 
 					if (count > 0)
 					{
+						PatchEndingBreaks(page.Root, ns);
+
 						logger.WriteLine($"found {count} matches");
 						one.Update(page);
 					}
@@ -83,59 +86,21 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-
-		// special handling to expand soft line breaks (Shift + Enter) into
-		// hard breaks, splitting the line into multiple ines...
-		private void TransformSoftBreaks(XElement root, XNamespace ns)
+		private void PatchEndingBreaks(XElement root, XNamespace ns)
 		{
-			// get distinct OE elements that contain soft-breaks in one or more T runs
-			var lines = root.Elements(ns + "Outline")
+			// if a <t> ends with <br>\n then OneNote will strip it but it typically
+			// appends a &nbsp; after it to preserve the line break. We do the same
+			// here to make sure we don't loose our line breaks
+
+			var runs = root.Elements(ns + "Outline")
 				.Descendants(ns + "T")
-				.Where(t => t.GetCData().Value.Contains("<br>"))
-				.Select(e => e.Parent)
-				.Distinct()
+				.Where(t => t.GetCData().Value.EndsWith("<br>\n"))
 				.ToList();
 
-			var broke = new Regex(@"((?:<br>[\n]?)+)<\/span>");
-			var brex = new Regex(@"<br>\n?");
-
-			foreach (var line in lines)
+			foreach (var run in runs)
 			{
-				var runs = line.Elements(ns + "T").ToList();
-				for (var r = runs.Count - 1; r >= 0; r--)
-				{
-					var run = runs[r];
-
-					var cdata = run.GetCData();
-					if (cdata.Value.Contains("<br>"))
-					{
-						// get text and ensure </span> isn't divorced from its <span> due to
-						// patterns like <br>\n<br>\n</span> which can break XElement.Parse
-						var text = broke.Replace(cdata.Value, (match) =>
-						{
-							// move the <br>\n* occurances after the </span> to keep </span>
-							// with its <span> while preserving the number of line breaks
-							return $"</span>{match.Groups[1].Value}";
-						});
-
-						var parts = brex.Split(text);
-
-						// update current cdata with first line
-						cdata.Value = parts[0];
-
-						// collect subsequent lines from soft-breaks
-						var elements = new List<XElement>();
-						for (int i = 1; i < parts.Length; i++)
-						{
-							elements.Add(new XElement(ns + "OE",
-								run.Parent.Attributes(),
-								new XElement(ns + "T", new XCData(parts[i])
-								)));
-						}
-
-						run.Parent.AddAfterSelf(elements);
-					}
-				}
+				var cdata = run.GetCData();
+				cdata.Value = $"{cdata.Value}&nbsp;";
 			}
 		}
 

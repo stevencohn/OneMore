@@ -134,7 +134,7 @@ namespace River.OneMoreAddIn
 			}
 
 			// undo what XCData.GetWrapper did to <br/> elements
-			xml = Regex.Replace(xml, @"<\s*br\s*/>", "<br>" + Environment.NewLine);
+			xml = Regex.Replace(xml, @"<\s*br\s*/>", "<br>");
 
 			return xml;
 		}
