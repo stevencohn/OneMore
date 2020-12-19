@@ -2,10 +2,6 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-//#pragma warning disable IDE0079 // Remove unnecessary suppression
-//#pragma warning disable S2589 // Boolean expressions should not be gratuitous
-//#pragma warning disable S2583 // Conditionally executed code should be reachable
-
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
@@ -16,15 +12,12 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SearchAndReplaceEditor
 	{
-		private readonly XNamespace ns;
 		private readonly string search;
 		private readonly string replace;
 		private readonly bool caseSensitive;
 
-		public SearchAndReplaceEditor(
-			XNamespace ns, string search, string replace, bool caseSensitive)
+		public SearchAndReplaceEditor(string search, string replace, bool caseSensitive)
 		{
-			this.ns = ns;
 			this.search = search;
 			this.replace = replace;
 			this.caseSensitive = caseSensitive;

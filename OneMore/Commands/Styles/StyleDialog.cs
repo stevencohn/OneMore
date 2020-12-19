@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class StyleDialog : UI.LocalizableForm
 	{
 		private GraphicStyle selection;
-		private Color pageColor;
+		private readonly Color pageColor;
 		private bool allowEvents;
 
 

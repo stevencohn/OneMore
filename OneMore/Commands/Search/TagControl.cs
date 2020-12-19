@@ -42,10 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DeleteTag(object sender, EventArgs e)
 		{
-			if (Deleting != null)
-			{
-				Deleting(this, e);
-			}
+			Deleting?.Invoke(this, e);
 		}
 	}
 }

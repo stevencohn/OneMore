@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				if (elements.Any())
 				{
 					int count = 0;
-					var editor = new SearchAndReplaceEditor(ns, whatText, withText, matchCase);
+					var editor = new SearchAndReplaceEditor(whatText, withText, matchCase);
 
 					foreach (var element in elements)
 					{
@@ -72,12 +72,12 @@ namespace River.OneMoreAddIn.Commands
 
 					if (count > 0)
 					{
-						Logger.Current.WriteLine($"found {count} matches");
+						logger.WriteLine($"found {count} matches");
 						one.Update(page);
 					}
 					else
 					{
-						Logger.Current.WriteLine("no matches found");
+						logger.WriteLine("no matches found");
 					}
 				}
 			}
@@ -109,8 +109,8 @@ namespace River.OneMoreAddIn.Commands
 					var cdata = run.GetCData();
 					if (cdata.Value.Contains("<br>"))
 					{
-						// get text and ensure </span> isn't divorced from its <span>
-						// there are patterns like <br>\n<br>\n</span> that can break the XML!
+						// get text and ensure </span> isn't divorced from its <span> due to
+						// patterns like <br>\n<br>\n</span> which can break XElement.Parse
 						var text = broke.Replace(cdata.Value, (match) =>
 						{
 							// move the <br>\n* occurances after the </span> to keep </span>

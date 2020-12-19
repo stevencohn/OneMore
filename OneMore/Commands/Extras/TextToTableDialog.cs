@@ -20,7 +20,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 		private int userCols;
-		private int userRows;
 
 
 		public TextToTableDialog()
@@ -108,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 
 			set
 			{
-				rowsBox.Value = userRows = value;
+				rowsBox.Value = value;
 				rowsBox.Minimum = value;
 			}
 		}

@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands.Search
 
 	internal partial class SearchDialog : LocalizableForm
 	{
-		private OneNote one;
+		private readonly OneNote one;
 
 
 		public SearchDialog()
