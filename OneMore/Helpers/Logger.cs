@@ -260,11 +260,11 @@ namespace River.OneMoreAddIn
 
 				if (stdio)
 				{
-					Console.WriteLine(Serialize(exc));
+					Console.WriteLine(exc.FormatDetails());
 				}
 				else
 				{
-					writer.WriteLine(Serialize(exc));
+					writer.WriteLine(exc.FormatDetails());
 					writer.Flush();
 				}
 
@@ -308,41 +308,6 @@ namespace River.OneMoreAddIn
 			}
 
 			return string.Empty;
-		}
-
-
-		private string Serialize(Exception exc)
-		{
-			var builder = new StringBuilder("EXCEPTION - ");
-			builder.AppendLine(exc.GetType().FullName);
-
-			Serialize(exc, builder);
-			return builder.ToString();
-		}
-
-
-		private void Serialize(Exception exc, StringBuilder builder, int depth = 0)
-		{
-			if (depth > 0)
-			{
-				builder.AppendLine($"-- inner exception at depth {depth} ---------------");
-			}
-
-			builder.AppendLine("Message...: " + exc.Message);
-			builder.AppendLine("StackTrace: " + exc.StackTrace);
-
-			if (exc.TargetSite != null)
-			{
-				builder.AppendLine("TargetSite: [" +
-					exc.TargetSite.DeclaringType.Assembly.GetName().Name + "] " +
-					exc.TargetSite.DeclaringType + "::" +
-					exc.TargetSite.Name + "()");
-			}
-
-			if (exc.InnerException != null)
-			{
-				Serialize(exc.InnerException, builder, depth + 1);
-			}
 		}
 	}
 }

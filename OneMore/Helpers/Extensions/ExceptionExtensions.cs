@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Xml.Schema;
 
@@ -29,6 +30,8 @@ namespace River.OneMoreAddIn
 		public static string FormatDetails (this Exception exc, bool full = true)
 		{
 			var builder = new StringBuilder();
+			builder.AppendLine(exc.GetType().FullName);
+
 			FormatDetails(exc, builder, 0, full);
 
 			return builder.ToString();
@@ -36,44 +39,51 @@ namespace River.OneMoreAddIn
 
 
 		private static void FormatDetails (
-			Exception exc, StringBuilder builder, int level, bool full)
+			Exception exc, StringBuilder builder, int depth, bool full)
 		{
-			string h = new string(' ', level * 2);
+			string h = new string(' ', depth * 2);
+			if (depth > 0)
+			{
+				builder.AppendLine($"{h}-- inner exception at depth {depth} ---------------");
+			}
 
 			if (exc is XmlSchemaException xse)
 			{
-				builder.AppendLine(h + (level == 0 ? String.Empty : "Inner ") +
-					"Exception @line:" + xse.LineNumber + ",col:" + xse.LinePosition);
+				builder.AppendLine(h + (depth == 0 ? String.Empty : "Inner ") +
+					$"Exception @line:{xse.LineNumber},col:{xse.LinePosition}");
 			}
 
-			builder.AppendLine(h + "  " + exc.Message);
+			builder.AppendLine($"{h}Message: {exc.Message}");
 
 			if (full)
 			{
-				if (!String.IsNullOrEmpty(exc.Source))
+				if (exc is COMException cex)
 				{
-					builder.AppendLine(h + "  Source: " + exc.Source);
+					builder.AppendLine($"{h}ErrorCode: 0x{cex.ErrorCode:X} ({cex.ErrorCode})");
+					builder.AppendLine($"{h}HResult: 0x{cex.HResult:X} ({cex.HResult})");
 				}
 
-				if (!String.IsNullOrEmpty(exc.StackTrace))
+				if (!string.IsNullOrEmpty(exc.Source))
 				{
-					builder.AppendLine(h + "  StackTrace: " + exc.StackTrace);
+					builder.AppendLine($"{h}Source: {exc.Source}");
 				}
 
-				if (!String.IsNullOrEmpty(exc.HelpLink))
+				if (!string.IsNullOrEmpty(exc.StackTrace))
 				{
-					builder.AppendLine(h + "  HelpLink: " + exc.HelpLink);
+					builder.AppendLine($"{h}StackTrace: {exc.StackTrace}");
+				}
+
+				if (!string.IsNullOrEmpty(exc.HelpLink))
+				{
+					builder.AppendLine($"{h}HelpLink: {exc.HelpLink}");
 				}
 
 				if (exc.TargetSite != null)
 				{
-					builder.AppendLine(h + "  TargetSite: " + exc.TargetSite.Name);
-
-					builder.AppendLine(h + "    assembly: " +
-						exc.TargetSite.DeclaringType.Assembly.GetName().Name);
-
-					builder.AppendLine(h + "    declaringType: " +
-						exc.TargetSite.DeclaringType.ToString());
+					var asm = exc.TargetSite.DeclaringType.Assembly.GetName().Name;
+					var typ = exc.TargetSite.DeclaringType;
+					var nam = exc.TargetSite.Name;
+					builder.AppendLine($"{h}TargetSite: [{asm}] {typ}::{nam}()");
 				}
 
 				if (exc.Data?.Count > 0)
@@ -81,15 +91,15 @@ namespace River.OneMoreAddIn
 					var e = exc.Data.GetEnumerator();
 					while (e.MoveNext())
 					{
-						builder.AppendLine(h + "  Data: " +
-							e.Key.ToString() + " = " + e.Current.ToString());
+						builder.AppendLine(
+							$"{h} Data: {e.Key.ToString() + " = " + e.Current.ToString()}");
 					}
 				}
 			}
 
 			if (exc.InnerException != null)
 			{
-				FormatDetails(exc, builder, level + 1, full);
+				FormatDetails(exc, builder, depth + 1, full);
 			}
 		}
 	}

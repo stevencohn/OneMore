@@ -28,19 +28,22 @@ namespace River.OneMoreAddIn.Commands
 		public bool Empty() => string.IsNullOrEmpty(element.Value);
 
 
+		public string Value => element.Value;
+
+
 		public void Append(string s)
 		{
 			element.Value += s;
 		}
 
 
-		public string Extract(int index, int length)
+		public void Remove(int index, int length)
 		{
-			if (Empty()) { return string.Empty; }
-			var l = Math.Min(length, element.Value.Length - index);
-			var s = element.Value.Substring(index, l);
-			element.Value = element.Value.Remove(index, l);
-			return s;
+			if (!Empty())
+			{
+				var len = Math.Min(length, element.Value.Length - index);
+				element.Value = element.Value.Remove(index, len);
+			}
 		}
 
 

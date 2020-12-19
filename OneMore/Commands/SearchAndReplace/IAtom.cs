@@ -15,6 +15,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// for debugging
+		/// </summary>
+		string Value { get; }
+
+
+		/// <summary>
 		/// Determines if the content is empty
 		/// </summary>
 		/// <returns>True if the content is empty; false otherwise</returns>
@@ -29,12 +35,11 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Extracts the specified substring from the contents of this atom
+		/// Removes the specified substring from the contents of this atom
 		/// </summary>
 		/// <param name="index">The starting index of the substring</param>
 		/// <param name="length">The length of the substring</param>
-		/// <returns>The extracted substring</returns>
-		string Extract(int index, int length);
+		void Remove(int index, int length);
 
 
 		/// <summary>

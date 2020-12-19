@@ -2,8 +2,13 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+//#pragma warning disable IDE0079 // Remove unnecessary suppression
+//#pragma warning disable S2589 // Boolean expressions should not be gratuitous
+//#pragma warning disable S2583 // Conditionally executed code should be reachable
+
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -16,7 +21,8 @@ namespace River.OneMoreAddIn.Commands
 		private readonly string replace;
 		private readonly bool caseSensitive;
 
-		public SearchAndReplaceEditor(XNamespace ns, string search, string replace, bool caseSensitive)
+		public SearchAndReplaceEditor(
+			XNamespace ns, string search, string replace, bool caseSensitive)
 		{
 			this.ns = ns;
 			this.search = search;
@@ -24,33 +30,30 @@ namespace River.OneMoreAddIn.Commands
 			this.caseSensitive = caseSensitive;
 		}
 
+
 		public int SearchAndReplace(XElement element)
 		{
-			// wrapper constructs a cleaned version of all T/CDATA content,
-			// without CDATA nodes or the empty current cursor CDATA
-			var wrapper = element.Value.ToXmlWrapper();
-
 			var options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
 
-			// find all distinct occurances of search string
+			// get a cleaned-up wrapper of the CDATA that we can parse
+			var cdata = element.GetCData();
+			var wrapper = cdata.GetWrapper();
+
+			// find all distinct occurances of search string across all text of the run
+			// regardless of internal SPANs; we'll compensate for those below...
+
 			var matches = Regex.Matches(wrapper.Value, search, options);
 			if (matches?.Count > 0)
 			{
-				// if length of search and replace differ then the match indexes will
-				// offset cumulatively at each replacement so need to adjust for that
-				var difference = replace.Length - search.Length;
-
-				for (int i = 0; i < matches.Count; i++)
+				// run backwards to avoid cumulative offets if match length differs from length
+				// of replacement text
+				for (var i = matches.Count - 1; i >= 0; i--)
 				{
 					var match = matches[i];
-					var index = match.Index + (difference * i);
-
-					Replace(wrapper, index, match.Length, replace);
+					Replace(wrapper, match.Index, match.Length, replace);
 				}
 
-				// TODO: preserve non-breaking whitespace at beginning of line
-
-				element.ReplaceNodes(new XElement(ns + "T", new XCData(wrapper.GetInnerXml())));
+				cdata.Value = wrapper.GetInnerXml();
 
 				return matches.Count;
 			}
@@ -58,48 +61,67 @@ namespace River.OneMoreAddIn.Commands
 			return 0;
 		}
 
-		private static void Replace(XElement wrapper, int searchIndex, int searchLength, string replace)
+
+		/// <summary>
+		/// Replace a single match in the given text.
+		/// </summary>
+		/// <param name="wrapper">The wrapped CDATA of the run</param>
+		/// <param name="searchIndex">The starting index of the match in the text</param>
+		/// <param name="searchLength">The length of the match</param>
+		/// <param name="replace">The replacement text</param>
+		/// <remarks>
+		/// A wrapper consists of both XText nodes and XElement nodes where the elements are
+		/// most likely SPAN or BR tags. This routine ignores the SPAN XElements themsevles
+		/// and focuses only on the inner text of the SPAN.
+		/// </remarks>
+		private static void Replace(
+			XElement wrapper, int searchIndex, int searchLength, string replace)
 		{
-			int index = 0;
+			// XText and XElement nodes in wrapper
+			var nodes = wrapper.Nodes().ToList();
+
+			IAtom atom;
+
+			// starting index of current node's text within the full text
+			int nodeStart;
+			// ending index of current node's text within the full text
+			int nodeEnd = -1;
+			// the remaining char count to address in the text
+			int remaining = searchLength;
+			// the index of the last char of the match in the text
 			int searchEnd = searchIndex + searchLength;
 
-			var list = wrapper.Nodes().ToList();
-
 			int i = 0;
-			while (i < list.Count)
+			while (i < nodes.Count && nodeEnd < searchEnd)
 			{
-				var node = list[i];
-				var atom = AtomicFactory.MakeAtom(node);
-				var atomLength = atom.Length;
-				var atomEnd = index + atom.Length;
-				var startIndex = searchIndex - index;
+				atom = AtomicFactory.MakeAtom(nodes[i]);
+				nodeStart = nodeEnd + 1;
+				nodeEnd += atom.Length;
 
-				// passed the start position so must have remnants to clean up
-				if (startIndex < 0 && index < searchEnd)
+				if (searchIndex >= nodeStart && searchIndex <= nodeEnd)
 				{
-					// throw away remants of search string from within atom
-					atom.Extract(0, searchEnd - searchIndex - 1);
+					// found node containing start or all of the match
+					var index = searchIndex - nodeStart;
+					var chars = Math.Min(remaining, atom.Length - index);
 
-					if (atom.Empty())
-					{
-						node.Remove();
-						i--;
-					}
+					atom.Replace(index, chars, replace);
+
+					remaining -= chars;
 				}
-				// atom contains entire search string
-				else if (index <= searchIndex && atomEnd >= searchEnd)
+				else if (searchIndex < nodeStart && searchEnd > nodeStart)
 				{
-					atom.Replace(startIndex, searchLength, replace);
+					// found node containing middle/end of match
+					var chars = Math.Min(atom.Length, remaining);
+
+					atom.Remove(0, chars);
+
+					remaining -= chars;
 				}
-				// either atom is before searchIndex or
-				// atom contains part of search
-				else if (index <= searchIndex && (atomEnd > searchIndex && atomEnd <= searchEnd))
+				else if (searchEnd < nodeStart)
 				{
-					// replace beginning of search string
-					atom.Replace(startIndex, atom.Length - startIndex, replace);
+					break;
 				}
 
-				index += atomLength;
 				i++;
 			}
 		}

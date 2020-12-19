@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
@@ -57,7 +58,15 @@ namespace River.OneMoreAddIn
 			// quote unquote language attribute, e.g., lang=yo to lang="yo" (or two part en-US)
 			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
 
-			return XElement.Parse("<cdata>" + value + "</cdata>", LoadOptions.PreserveWhitespace);
+			try
+			{
+				return XElement.Parse("<cdata>" + value + "</cdata>", LoadOptions.PreserveWhitespace);
+			}
+			catch
+			{
+				Logger.Current.WriteLine($"error wrapping /{value}/");
+				throw;
+			}
 		}
 
 

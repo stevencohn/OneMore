@@ -102,7 +102,7 @@ namespace River.OneMoreAddIn.Colorizer
 
 		public void TranslateColorNames()
 		{
-			foreach (var style in Styles.Cast<Style>())
+			foreach (var style in Styles)
 			{
 				// standardize on lowercase names because users are stupid
 				style.Name = style.Name.ToLower();
