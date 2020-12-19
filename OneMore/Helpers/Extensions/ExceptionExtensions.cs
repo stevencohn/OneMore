@@ -30,6 +30,8 @@ namespace River.OneMoreAddIn
 		public static string FormatDetails (this Exception exc, bool full = true)
 		{
 			var builder = new StringBuilder();
+			builder.AppendLine(exc.GetType().FullName);
+
 			FormatDetails(exc, builder, 0, full);
 
 			return builder.ToString();

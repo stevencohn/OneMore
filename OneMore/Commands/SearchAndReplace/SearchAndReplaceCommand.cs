@@ -14,13 +14,6 @@ namespace River.OneMoreAddIn.Commands
 	internal class SearchAndReplaceCommand : Command
 	{
 
-		/*
-		 * KNOWN ISSUE
-		 * . When replacing content in a line that begins with non-breaking whitespace
-		 *   that whitespace will be removed; need to figure out how to preserve this
-		 * 
-		 */
-
 		public SearchAndReplaceCommand()
 		{
 		}
@@ -79,7 +72,12 @@ namespace River.OneMoreAddIn.Commands
 
 					if (count > 0)
 					{
+						Logger.Current.WriteLine($"found {count} matches");
 						one.Update(page);
+					}
+					else
+					{
+						Logger.Current.WriteLine("no matches found");
 					}
 				}
 			}
@@ -98,7 +96,8 @@ namespace River.OneMoreAddIn.Commands
 				.Distinct()
 				.ToList();
 
-			var regex = new Regex(@"<br>\n?");
+			var broke = new Regex(@"((?:<br>[\n]?)+)<\/span>");
+			var brex = new Regex(@"<br>\n?");
 
 			foreach (var line in lines)
 			{
@@ -110,8 +109,16 @@ namespace River.OneMoreAddIn.Commands
 					var cdata = run.GetCData();
 					if (cdata.Value.Contains("<br>"))
 					{
-						var text = cdata.Value;
-						var parts = regex.Split(text);
+						// get text and ensure </span> isn't divorced from its <span>
+						// there are patterns like <br>\n<br>\n</span> that can break the XML!
+						var text = broke.Replace(cdata.Value, (match) =>
+						{
+							// move the <br>\n* occurances after the </span> to keep </span>
+							// with its <span> while preserving the number of line breaks
+							return $"</span>{match.Groups[1].Value}";
+						});
+
+						var parts = brex.Split(text);
 
 						// update current cdata with first line
 						cdata.Value = parts[0];

@@ -73,8 +73,10 @@ dotnet_diagnostic.CA2240.severity = warning
 dotnet_diagnostic.CA2241.severity = warning
 dotnet_diagnostic.CA2242.severity = warning
 
-dotnet_diagnostic.S1066.severity = none
-dotnet_diagnostic.S1135.severity = none
-dotnet_diagnostic.S125.severity = none
+dotnet_diagnostic.IDE0079.severity = none # Remove unnecessary suppression (IDE complaining about Sonar)
+
+dotnet_diagnostic.S125.severity = none # Sections of code should not be commented out
+dotnet_diagnostic.S1066.severity = none # Collapsible "if" statements should be merged
+dotnet_diagnostic.S1135.severity = none # Track uses of "TODO" tags
 dotnet_diagnostic.S2696.severity = none # Make enclosing instance method static
-dotnet_diagnostic.S3358.severity = none
+dotnet_diagnostic.S3358.severity = none # Ternary operators should not be nested
