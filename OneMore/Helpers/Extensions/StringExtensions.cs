@@ -133,7 +133,8 @@ namespace River.OneMoreAddIn
 		{
 			// ensure proper XML
 
-			// OneNote doesn't like &nbsp; but &#160; is ok and is the same as \u00A0 but 1-byte
+			// OneNote doesn't like &nbsp; inside CDATAs but &#160; is OK
+			// and is the same as \u00A0 but 1-byte
 			var value = s.Replace("&nbsp;", "&#160;");
 
 			// XElement doesn't like <br> so replace with <br/>
