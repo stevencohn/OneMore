@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -47,6 +46,13 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var one = new OneNote(out var page, out var ns))
 			{
+				/*
+				 * 
+				 * TODO: TransformSoftBreak only for seleted Ts
+				 * 
+				 * 
+				 */
+
 				TransformSoftBreaks(page.Root, ns);
 
 				IEnumerable<XElement> elements;
@@ -139,9 +145,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (cursor.NextNode is XElement next)
 				{
-					var cdata = prev.GetCData();
+					var cprev = prev.GetCData();
 					var cnext = next.GetCData();
-					cdata.Value = $"{cdata.Value}{cnext.Value}";
+					cprev.Value = $"{cprev.Value}{cnext.Value}";
 					next.Remove();
 				}
 			}

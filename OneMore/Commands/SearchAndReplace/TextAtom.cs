@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
 	using System.Xml.Linq;
 
 
@@ -27,18 +28,22 @@ namespace River.OneMoreAddIn.Commands
 		public bool Empty() => string.IsNullOrEmpty(text.Value);
 
 
+		public string Value => text.Value;
+
+
 		public void Append(string s)
 		{
 			text.Value += s;
 		}
 
 
-		public string Extract(int index, int length)
+		public void Remove(int index, int length)
 		{
-			if (Empty()) { return string.Empty; }
-			var s = text.Value.Substring(index, length);
-			text.Value = text.Value.Remove(index, length);
-			return s;
+			if (!Empty())
+			{
+				var len = Math.Min(length, text.Value.Length - index);
+				text.Value = text.Value.Remove(index, len);
+			}
 		}
 
 

@@ -51,29 +51,29 @@ namespace River.OneMoreAddIn
 					$"Exception @line:{xse.LineNumber},col:{xse.LinePosition}");
 			}
 
-			builder.AppendLine($"{h}  Message: {exc.Message}");
+			builder.AppendLine($"{h}Message: {exc.Message}");
 
 			if (full)
 			{
 				if (exc is COMException cex)
 				{
-					builder.AppendLine($"{h}  ErrorCode: 0x{cex.ErrorCode:X} ({cex.ErrorCode})");
-					builder.AppendLine($"{h}  HResult: 0x{cex.HResult:X} ({cex.HResult})");
+					builder.AppendLine($"{h}ErrorCode: 0x{cex.ErrorCode:X} ({cex.ErrorCode})");
+					builder.AppendLine($"{h}HResult: 0x{cex.HResult:X} ({cex.HResult})");
 				}
 
 				if (!string.IsNullOrEmpty(exc.Source))
 				{
-					builder.AppendLine($"{h}  Source: {exc.Source}");
+					builder.AppendLine($"{h}Source: {exc.Source}");
 				}
 
 				if (!string.IsNullOrEmpty(exc.StackTrace))
 				{
-					builder.AppendLine($"{h}  StackTrace: {exc.StackTrace}");
+					builder.AppendLine($"{h}StackTrace: {exc.StackTrace}");
 				}
 
 				if (!string.IsNullOrEmpty(exc.HelpLink))
 				{
-					builder.AppendLine($"{h}  HelpLink: {exc.HelpLink}");
+					builder.AppendLine($"{h}HelpLink: {exc.HelpLink}");
 				}
 
 				if (exc.TargetSite != null)
@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn
 					var asm = exc.TargetSite.DeclaringType.Assembly.GetName().Name;
 					var typ = exc.TargetSite.DeclaringType;
 					var nam = exc.TargetSite.Name;
-					builder.AppendLine($"{h}  TargetSite: [{asm}] {typ}::{nam}()");
+					builder.AppendLine($"{h}TargetSite: [{asm}] {typ}::{nam}()");
 				}
 
 				if (exc.Data?.Count > 0)
@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn
 					while (e.MoveNext())
 					{
 						builder.AppendLine(
-							$"{h}  Data: {e.Key.ToString() + " = " + e.Current.ToString()}");
+							$"{h} Data: {e.Key.ToString() + " = " + e.Current.ToString()}");
 					}
 				}
 			}

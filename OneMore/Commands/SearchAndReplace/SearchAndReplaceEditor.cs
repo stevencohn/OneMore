@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -16,7 +17,8 @@ namespace River.OneMoreAddIn.Commands
 		private readonly string replace;
 		private readonly bool caseSensitive;
 
-		public SearchAndReplaceEditor(XNamespace ns, string search, string replace, bool caseSensitive)
+		public SearchAndReplaceEditor(
+			XNamespace ns, string search, string replace, bool caseSensitive)
 		{
 			this.ns = ns;
 			this.search = search;
@@ -27,10 +29,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public int SearchAndReplace(XElement element)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			var options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
 
 			// get a cleaned-up wrapper of the CDATA that we can parse
@@ -45,12 +43,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// if length of "search" and "replace" differ then the match indexes will
 				// offset cumulatively at each replacement so need to adjust for that
-				var difference = replace.Length - search.Length;
+				var shift = replace.Length - search.Length;
 
 				for (int i = 0; i < matches.Count; i++)
 				{
 					var match = matches[i];
-					var index = match.Index + (difference * i);
+					var index = match.Index + (shift * i);
 
 					Replace(wrapper, index, match.Length, replace);
 				}
@@ -66,48 +64,57 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static void Replace(XElement wrapper, int searchIndex, int searchLength, string replace)
+		/// <summary>
+		/// Replace a single match in the given text.
+		/// </summary>
+		/// <param name="wrapper">The wrapped CDATA of the run</param>
+		/// <param name="searchIndex">The starting index of the text replacement</param>
+		/// <param name="searchLength">The length of the text replacement</param>
+		/// <param name="replace">The replacement text</param>
+		private static void Replace(
+			XElement wrapper, int searchIndex, int searchLength, string replace)
 		{
-			int index = 0;
+			var nodes = wrapper.Nodes().ToList();
+
+			IAtom atom;
+			int nodeStart;
+			int nodeEnd = 0;
+			int chars;
+			int remaining = searchLength;
 			int searchEnd = searchIndex + searchLength;
 
-			var list = wrapper.Nodes().ToList();
-
 			int i = 0;
-			while (i < list.Count)
+			while (i < nodes.Count && nodeEnd < searchEnd)
 			{
-				var node = list[i];
-				var atom = AtomicFactory.MakeAtom(node);
-				var atomLength = atom.Length;
-				var atomEnd = index + atom.Length;
-				var startIndex = searchIndex - index;
+				atom = AtomicFactory.MakeAtom(nodes[i]);
+				nodeStart = nodeEnd;
+				nodeEnd += atom.Length;
 
-				// passed the start position so must have remnants to clean up
-				if (startIndex < 0 && index < searchEnd)
+				if (searchIndex >= nodeStart && searchIndex <= nodeEnd)
 				{
-					// throw away remants of search string from within atom
-					atom.Extract(0, searchEnd - searchIndex - 1);
+					// found node containing start or all of the match
+					var index = searchIndex - nodeStart;
+					chars = Math.Min(remaining, atom.Length - index);
 
-					if (atom.Empty())
-					{
-						node.Remove();
-						i--;
-					}
+					atom.Replace(index, chars, replace);
+
+					remaining -= chars;
 				}
-				// atom contains entire search string
-				else if (index <= searchIndex && atomEnd >= searchEnd)
+				else if (searchIndex < nodeStart && searchEnd >= nodeStart)
 				{
-					atom.Replace(startIndex, searchLength, replace);
+					// found node containing middle/end of match
+					chars = Math.Min(atom.Length, remaining);
+
+					atom.Remove(0, chars);
+
+					remaining -= chars;
 				}
-				// either atom is before searchIndex or
-				// atom contains part of search
-				else if (index <= searchIndex && (atomEnd > searchIndex && atomEnd <= searchEnd))
+				else if (searchEnd < nodeStart)
 				{
-					// replace beginning of search string
-					atom.Replace(startIndex, atom.Length - startIndex, replace);
+					Logger.Current.WriteLine($"replace break");
+					break;
 				}
 
-				index += atomLength;
 				i++;
 			}
 		}
