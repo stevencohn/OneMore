@@ -47,15 +47,11 @@ namespace River.OneMoreAddIn.Commands
 				IEnumerable<XElement> elements;
 				if (cursor != null)
 				{
-					//TransformSoftBreaks(page.Root, ns, true);
-
 					elements = page.Root.Elements(ns + "Outline")
 						.Descendants(ns + "T");
 				}
 				else
 				{
-					//TransformSoftBreaks(page.Root, ns, false);
-
 					elements = page.Root.Elements(ns + "Outline")
 						.Descendants(ns + "T")
 						.Where(e => e.Attribute("selected")?.Value == "all");
