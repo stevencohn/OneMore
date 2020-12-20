@@ -526,6 +526,9 @@
     <Content Include="Colorizer\Languages\python.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Colorizer\Languages\sql.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\typescript.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -550,6 +553,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\javascript.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Colorizer\Languages\sql.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\powershell.json">
