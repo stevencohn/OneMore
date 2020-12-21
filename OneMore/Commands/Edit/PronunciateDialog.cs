@@ -6,7 +6,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading;
@@ -58,18 +57,12 @@ namespace River.OneMoreAddIn.Commands
 				languagesBox.Items.Add(language.Name);
 			}
 
-			var index = languages.FindIndex(l => 
+			var index = languages.FindIndex(l =>
 				l.Code.StartsWith(Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName));
 
 			languagesBox.SelectedIndex = index < 0 ? 0 : index;
 		}
 
-
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new System.Drawing.Point(Location.X, Location.Y - Height);
-			UIHelper.SetForegroundWindow(this);
-		}
 
 		public string Word
 		{

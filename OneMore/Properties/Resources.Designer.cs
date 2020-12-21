@@ -1981,6 +1981,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string MapDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages in.
+        /// </summary>
+        internal static string MapDialog_groupBox_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_groupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All sections in the current notebook.
+        /// </summary>
+        internal static string MapDialog_notebookRadio_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_notebookRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All notebooks.
+        /// </summary>
+        internal static string MapDialog_notebooksRadio_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_notebooksRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string MapDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current section.
+        /// </summary>
+        internal static string MapDialog_sectionRadio_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Page Map.
+        /// </summary>
+        internal static string MapDialog_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Memo {

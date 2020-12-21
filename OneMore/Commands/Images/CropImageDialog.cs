@@ -88,6 +88,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
+			VerticalOffset = 3;
+
 			selectionRegion = new Region();
 			selectionRegion.MakeEmpty();
 			selectionPath = new GraphicsPath();
@@ -165,13 +167,6 @@ namespace River.OneMoreAddIn.Commands
 				$"dpiScaling:({scalingX},{scalingY}) dpi:{dpiX}x{dpiY}"
 				);
 #endif
-		}
-
-
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new Point(Location.X, Location.Y - (Height / 3));
-			UIHelper.SetForegroundWindow(this);
 		}
 
 

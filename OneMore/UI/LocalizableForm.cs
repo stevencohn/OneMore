@@ -20,6 +20,12 @@ namespace River.OneMoreAddIn.UI
 
 		protected ILogger logger = Logger.Current;
 
+		protected int VerticalOffset
+		{
+			private get;
+			set;
+		}
+
 
 		/// <summary>
 		/// Determines if the main OneNote thread culture differs from our default design-time
@@ -170,6 +176,16 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnFormClosed(e);
 			ModelessClosed?.Invoke(this, e);
+		}
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			if (VerticalOffset > 0)
+			{
+				Location = new System.Drawing.Point(Location.X, Location.Y - (Height / VerticalOffset));
+				UIHelper.SetForegroundWindow(this);
+			}
 		}
 	}
 }

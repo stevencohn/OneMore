@@ -16,7 +16,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly Regex regex;
 		private readonly Dictionary<string, string> titles;
-		private Dictionary<string, string> hyperlinks;
 		private OneNote one;
 
 
@@ -32,7 +31,16 @@ namespace River.OneMoreAddIn.Commands
 
 		public override void Execute(params object[] args)
 		{
-			var scope = OneNote.Scope.Pages;
+			OneNote.Scope scope;
+			using (var dialog = new MapDialog())
+			{
+				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+				{
+					return;
+				}
+
+				scope = dialog.Scope;
+			}
 
 			logger.StartClock();
 
@@ -65,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 				//System.Diagnostics.Debugger.Launch();
 
 
-				hyperlinks = one.BuildHyperlinkCache(scope);
+				var hyperlinks = one.BuildHyperlinkCache(scope);
 				logger.WriteTime($"built hyperlink cache for {hyperlinks.Count} pages", true);
 
 				var elements = container.Descendants(ns + "Page").ToList();

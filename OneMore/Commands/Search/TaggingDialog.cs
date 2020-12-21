@@ -377,16 +377,12 @@ namespace River.OneMoreAddIn.Commands
 		public TaggingDialog()
 		{
 			InitializeComponent();
+
+			VerticalOffset = 5;
+
 			tagBox.PressedEnter += AcceptInput;
 			FetchRecentTags();
 			FetchPageWords();
-		}
-
-
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new Point(Location.X, Location.Y - (Height / 5));
-			UIHelper.SetForegroundWindow(this);
 		}
 
 

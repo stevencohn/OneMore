@@ -7,7 +7,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -33,13 +32,6 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton"
 				});
 			}
-		}
-
-
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new System.Drawing.Point(Location.X, Location.Y - (Height / 2));
-			UIHelper.SetForegroundWindow(this);
 		}
 
 

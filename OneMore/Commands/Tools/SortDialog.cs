@@ -91,13 +91,6 @@ namespace River.OneMoreAddIn.Commands
 			: (createdButton.Checked ? Sortings.ByCreated : Sortings.ByModified);
 
 
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new System.Drawing.Point(Location.X, Location.Y - (Height / 2));
-			UIHelper.SetForegroundWindow(this);
-		}
-
-
 		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
