@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn
 	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -262,6 +263,9 @@ namespace River.OneMoreAddIn
 		/// Creates a map of pages where the key is built from the page-id of an
 		/// internal onenote hyperlink and the value is the actual pageId
 		/// </summary>
+		/// <param name="scope"></param>
+		/// <param name="countCallback"></param>
+		/// <param name="stepCallback"></param>
 		/// <returns>
 		/// A Dictionary with keys build from URI params and values specifying the page IDs
 		/// </returns>
@@ -269,7 +273,11 @@ namespace River.OneMoreAddIn
 		/// There's no direct way to map onenote:http URIs to page IDs so this creates a cache
 		/// of all pages in the specified scope with their URIs as keys and pageIDs as values
 		/// </remarks>
-		public Dictionary<string, string> BuildHyperlinkCache(Scope scope)
+		public Dictionary<string, string> BuildHyperlinkCache(
+			Scope scope,
+			CancellationTokenSource source = null,
+			Action<int> countCallback = null,
+			Action stepCallback = null)
 		{
 			var hyperlinks = new Dictionary<string, string>();
 
@@ -287,20 +295,30 @@ namespace River.OneMoreAddIn
 				.Remove();
 
 			var pageIDs = container.Descendants(GetNamespace(container) + "Page")
-				.Select(e => e.Attribute("ID").Value);
+				.Select(e => e.Attribute("ID").Value)
+				.ToList();
 
-			if (pageIDs.Any())
+			if (pageIDs.Count > 0)
 			{
+				countCallback?.Invoke(pageIDs.Count);
+
 				var regex = new Regex(@"page-id=({[^}]+?})");
 
 				foreach (var pageID in pageIDs)
 				{
+					if (source?.IsCancellationRequested == true)
+					{
+						break;
+					}
+
 					var link = GetHyperlink(pageID, string.Empty);
 					var matches = regex.Match(link);
 					if (matches.Success)
 					{
 						hyperlinks.Add(matches.Groups[1].Value, pageID);
 					}
+
+					stepCallback?.Invoke();
 				}
 			}
 

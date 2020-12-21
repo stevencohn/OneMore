@@ -89,6 +89,7 @@ namespace River.OneMoreAddIn.UI
 		public void SetMaximum(int value)
 		{
 			progressBar.Maximum = value;
+			progressBar.Value = 0;
 		}
 
 

@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Xml.Linq;
 
 
@@ -17,6 +18,8 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Regex regex;
 		private readonly Dictionary<string, string> titles;
 		private OneNote one;
+		private UI.ProgressDialog progressDialog;
+		private CancellationTokenSource source;
 
 
 		public MapCommand()
@@ -44,6 +47,24 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
+			using (source = new CancellationTokenSource())
+			{
+				using (progressDialog = new UI.ProgressDialog(source))
+				{
+					progressDialog.Show(owner);
+
+					BuildMap(scope);
+
+					progressDialog.Close();
+				}
+			}
+
+			logger.WriteTime("completed map");
+		}
+
+
+		private void BuildMap(OneNote.Scope scope)
+		{
 			using (one = new OneNote())
 			{
 				XElement container;
@@ -69,14 +90,28 @@ namespace River.OneMoreAddIn.Commands
 
 				var ns = one.GetNamespace(container);
 
+				var hyperlinks = one.BuildHyperlinkCache(scope, source,
+					(count) =>
+					{
+						progressDialog.SetMaximum(count);
+						progressDialog.SetMessage($"Scanning {count} page references");
+					},
+					() =>
+					{
+						progressDialog.Increment();
+					});
 
-				//System.Diagnostics.Debugger.Launch();
+				if (source.IsCancellationRequested)
+				{
+					return;
+				}
 
-
-				var hyperlinks = one.BuildHyperlinkCache(scope);
 				logger.WriteTime($"built hyperlink cache for {hyperlinks.Count} pages", true);
 
 				var elements = container.Descendants(ns + "Page").ToList();
+
+				progressDialog.SetMaximum(elements.Count);
+
 				foreach (var element in elements)
 				{
 					var parentId = element.Attribute("ID").Value;
@@ -89,10 +124,16 @@ namespace River.OneMoreAddIn.Commands
 						continue;
 					}
 
+					if (source.IsCancellationRequested)
+					{
+						return;
+					}
+
 					var parent = new Page(XElement.Parse(xml));
 
-					var n = element.Parent.Attribute("name").Value;
-					logger.WriteLine($"parent {n}/{parent.Title}");
+					var name = element.Parent.Attribute("name").Value;
+					progressDialog.SetMessage($"Scanning {name}/{parent.Title}");
+					progressDialog.Increment();
 
 					foreach (Match match in matches)
 					{
@@ -132,8 +173,6 @@ namespace River.OneMoreAddIn.Commands
 				Prune(container);
 				logger.WriteLine(container.ToString());
 			}
-
-			logger.WriteTime("completed map");
 		}
 
 
@@ -143,7 +182,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="element">The root node</param>
 		private void Prune(XElement element)
 		{
-			if (element.Elements().Any(e => e.Name.LocalName == "Page"))
+			if (element.Elements().Any(e => e.Name.LocalName == "Ref"))
 			{
 				return;
 			}
