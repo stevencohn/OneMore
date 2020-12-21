@@ -130,6 +130,7 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Extras\MapCommand.cs" />
     <Compile Include="Commands\Extras\SplitCommand.cs" />
     <Compile Include="Commands\Extras\SplitDialog.cs">
       <SubType>Form</SubType>

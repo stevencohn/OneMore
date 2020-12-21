@@ -280,7 +280,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void WriteTime(string message)
+		public void WriteTime(string message, bool keep = false)
 		{
 			if (clock == null)
 			{
@@ -288,13 +288,12 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			if (clock.IsRunning)
+			if (!keep && clock.IsRunning)
 			{
 				clock.Stop();
 			}
 
-			WriteLine(string.Format("{0} @ {1:00}.{2:00}s", 
-				message, clock.Elapsed.Seconds, clock.Elapsed.Milliseconds / 10));
+			WriteLine($"{message} @ {clock.Elapsed.ToString(@"mm\:ss\.ff")}");
 		}
 
 
