@@ -129,20 +129,39 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
+				Prune(container);
 				logger.WriteLine(container.ToString());
 			}
 
 			logger.WriteTime("completed map");
 		}
+
+
+		/// <summary>
+		/// Recursively remove any branch/node that doesn't contain a Page
+		/// </summary>
+		/// <param name="element">The root node</param>
+		private void Prune(XElement element)
+		{
+			if (element.Elements().Any(e => e.Name.LocalName == "Page"))
+			{
+				return;
+			}
+
+			if (element.HasElements)
+			{
+				foreach (var item in element.Elements().ToList())
+				{
+					Prune(item);
+				}
+
+				if (!element.HasElements)
+					element.Remove();
+			}
+			else
+			{
+				element.Remove();
+			}
+		}
 	}
 }
-/*
-<one:Section xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote" name="Bozo" ID="{58361066-90D5-083C-1BFF-E864E3829D3C}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/Queens/Jesters/Bozo.one" lastModifiedTime="2020-12-21T12:53:15.000Z" color="#D5A4BB" isCurrentlyViewed="true">
-  <one:Page ID="{58361066-90D5-083C-1BFF-E864E3829D3C}{1}{E1952585663932227640441976408449536156760461}" name="Table of Contents - Notebook Flux" dateTime="2020-12-21T12:53:13.000Z" lastModifiedTime="2020-12-21T12:53:13.000Z" pageLevel="1" isCurrentlyViewed="true" />
-  <one:Page ID="{58361066-90D5-083C-1BFF-E864E3829D3C}{1}{E1953698246395506670281930038931012073898261}" name="Table of Contents - Section Bozo" dateTime="2020-12-21T12:52:39.000Z" lastModifiedTime="2020-12-21T12:52:39.000Z" pageLevel="1" />
-  <one:Page ID="{58361066-90D5-083C-1BFF-E864E3829D3C}{1}{E1856951129749826737220152322277752777303331}" name="bottom" dateTime="2020-10-27T16:16:50.000Z" lastModifiedTime="2020-11-14T14:28:36.000Z" pageLevel="1" />
-</one:Section>
-
-<one:T selected="all"><![CDATA[<a 
-	href="onenote:#bottom&amp;section-id={33AAF2F3-FDD9-44AE-8F98-7D956E8F2A13}&amp;page-id={0CD0DE2E-C3D2-4CF2-BA28-021CAFB62639}&amp;end&amp;base-path=https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/Queens/Jesters/Bozo.one">bottom</a>]]></one:T>
-*/
