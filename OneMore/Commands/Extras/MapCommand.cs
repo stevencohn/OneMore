@@ -18,15 +18,14 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Regex regex;
 		private readonly Dictionary<string, string> titles;
 		private OneNote one;
-		private UI.ProgressDialog progressDialog;
-		private CancellationTokenSource source;
+		private OneNote.Scope scope;
 
 
 		public MapCommand()
 		{
 			// internal hyperlinks are within CDATA similar to: <a href="onenote:#three&amp;
 			//   section-id={..}&amp;page-id={..}&amp;end&amp;base-path=https://.."
-			regex = new Regex(@"section-id=(?<sid>{.*?}).*?page-id=(?<pid>{.*?})");
+			regex = new Regex(@"page-id=({[^}]+?})");
 
 			titles = new Dictionary<string, string>();
 		}
@@ -34,7 +33,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override void Execute(params object[] args)
 		{
-			OneNote.Scope scope;
 			using (var dialog = new MapDialog())
 			{
 				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
@@ -45,26 +43,15 @@ namespace River.OneMoreAddIn.Commands
 				scope = dialog.Scope;
 			}
 
-			logger.StartClock();
-
-			using (source = new CancellationTokenSource())
-			{
-				using (progressDialog = new UI.ProgressDialog(source))
-				{
-					progressDialog.Show(owner);
-
-					BuildMap(scope);
-
-					progressDialog.Close();
-				}
-			}
-
-			logger.WriteTime("completed map");
+			var progressDialog = new UI.ProgressDialog(Execute);
+			progressDialog.RunModeless();
 		}
 
 
-		private void BuildMap(OneNote.Scope scope)
+		private void Execute(UI.ProgressDialog progress, CancellationToken token)
 		{
+			logger.StartClock();
+
 			using (one = new OneNote())
 			{
 				XElement container;
@@ -90,18 +77,18 @@ namespace River.OneMoreAddIn.Commands
 
 				var ns = one.GetNamespace(container);
 
-				var hyperlinks = one.BuildHyperlinkCache(scope, source,
+				var hyperlinks = one.BuildHyperlinkCache(scope, token,
 					(count) =>
 					{
-						progressDialog.SetMaximum(count);
-						progressDialog.SetMessage($"Scanning {count} page references");
+						progress.SetMaximum(count);
+						progress.SetMessage($"Scanning {count} page references");
 					},
 					() =>
 					{
-						progressDialog.Increment();
+						progress.Increment();
 					});
 
-				if (source.IsCancellationRequested)
+				if (token.IsCancellationRequested)
 				{
 					return;
 				}
@@ -110,11 +97,13 @@ namespace River.OneMoreAddIn.Commands
 
 				var elements = container.Descendants(ns + "Page").ToList();
 
-				progressDialog.SetMaximum(elements.Count);
-				progressDialog.SetMessage("Building map");
+				progress.SetMaximum(elements.Count);
+				progress.SetMessage("Building map");
 
 				foreach (var element in elements)
 				{
+					progress.Increment();
+
 					var parentId = element.Attribute("ID").Value;
 					var xml = one.GetPageXml(parentId);
 					var matches = regex.Matches(xml);
@@ -125,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 						continue;
 					}
 
-					if (source.IsCancellationRequested)
+					if (token.IsCancellationRequested)
 					{
 						return;
 					}
@@ -133,12 +122,11 @@ namespace River.OneMoreAddIn.Commands
 					var parent = new Page(XElement.Parse(xml));
 
 					var name = element.Parent.Attribute("name").Value;
-					progressDialog.SetMessage($"Scanning {name}/{parent.Title}");
-					progressDialog.Increment();
+					progress.SetMessage($"Scanning {name}/{parent.Title}");
 
 					foreach (Match match in matches)
 					{
-						var pid = match.Groups["pid"].Value;
+						var pid = match.Groups[1].Value;
 						if (hyperlinks.ContainsKey(pid))
 						{
 							var pageId = hyperlinks[pid];
@@ -174,6 +162,8 @@ namespace River.OneMoreAddIn.Commands
 				Prune(container);
 				logger.WriteLine(container.ToString());
 			}
+
+			logger.WriteTime("map complete");
 		}
 
 

@@ -275,7 +275,7 @@ namespace River.OneMoreAddIn
 		/// </remarks>
 		public Dictionary<string, string> BuildHyperlinkCache(
 			Scope scope,
-			CancellationTokenSource source = null,
+			CancellationToken token,
 			Action<int> countCallback = null,
 			Action stepCallback = null)
 		{
@@ -306,7 +306,7 @@ namespace River.OneMoreAddIn
 
 				foreach (var pageID in pageIDs)
 				{
-					if (source?.IsCancellationRequested == true)
+					if (token.IsCancellationRequested)
 					{
 						break;
 					}

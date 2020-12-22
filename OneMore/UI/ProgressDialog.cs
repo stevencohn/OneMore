@@ -7,7 +7,9 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.ComponentModel;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -58,6 +60,43 @@ namespace River.OneMoreAddIn.UI
 			Height = (int)Math.Round(Height * factorY);
 		}
 
+
+		private Action<ProgressDialog, CancellationToken> execute;
+		public ProgressDialog(Action<ProgressDialog, CancellationToken> execute)
+		{
+			InitializeComponent();
+			TopMost = true;
+			ShowInTaskbar = true;
+
+			Localize();
+
+			(_, float factorY) = UIHelper.GetScalingFactors();
+			Height = (int)Math.Round(144 * factorY);
+
+			source = new CancellationTokenSource();
+
+			this.execute = execute;
+		}
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			base.OnShown(e);
+
+			logger.WriteLine("executing");
+
+			var worker = new BackgroundWorker();
+			worker.DoWork += Worker_DoWork;
+			worker.RunWorkerAsync();
+		}
+
+		private void Worker_DoWork(object sender, DoWorkEventArgs e)
+		{
+			execute(this, source.Token);
+
+			DialogResult = DialogResult.OK;
+			Close();
+		}
 
 		private void Localize()
 		{
@@ -147,6 +186,9 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			source.Cancel();
+
+			DialogResult = DialogResult.Cancel;
+			Close();
 		}
 	}
 }
