@@ -111,6 +111,7 @@ namespace River.OneMoreAddIn.Commands
 				var elements = container.Descendants(ns + "Page").ToList();
 
 				progressDialog.SetMaximum(elements.Count);
+				progressDialog.SetMessage("Building map");
 
 				foreach (var element in elements)
 				{

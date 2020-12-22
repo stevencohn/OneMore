@@ -57,7 +57,6 @@ namespace River.OneMoreAddIn.Commands
 
 				if (updated)
 				{
-					logger.WriteLine(page.Root.ToString());
 					page.SetMeta(Page.HighlightMetaName, index.ToString(CultureInfo.InvariantCulture));
 					one.Update(page);
 				}
