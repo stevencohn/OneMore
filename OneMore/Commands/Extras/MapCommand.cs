@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class MapCommand : Command
 	{
-
+		private const string RightArrow = "\u2192";
 		private readonly Regex regex;
 
 		private OneNote one;
@@ -238,26 +238,30 @@ namespace River.OneMoreAddIn.Commands
 				var pname = element.Attribute("name").Value;
 				var plink = one.GetHyperlink(element.Attribute("ID").Value, string.Empty);
 
-				content.Add(new XElement(ns + "OE",
-					new XElement(ns + "T",
-						new XCData($"<a href=\"{plink}\">{pname}</a>")
-					)));
+				var children = new XElement(ns + "OEChildren");
 
 				foreach (var reference in element.Elements("Ref"))
 				{
 					pname = reference.Attribute("title").Value;
 					plink = one.GetHyperlink(reference.Attribute("ID").Value, string.Empty);
 
-					content.Add(new XElement(ns + "OE",
+					children.Add(new XElement(ns + "OE",
 						new XElement(ns + "T",
-							new XCData($". . <a href=\"{plink}\">{pname}</a>")
+							new XCData($"{RightArrow} <a href=\"{plink}\">{pname}</a>")
 						)));
 				}
+
+				content.Add(new XElement(ns + "OE",
+					new XElement(ns + "T",
+						new XCData($"<a href=\"{plink}\">{pname}</a>")),
+					children
+					));
 			}
 			else
 			{
-				int index;
+				var text = element.Attribute("name").Value;
 
+				int index;
 				if (element.Name.LocalName == "Section")
 				{
 					index = MakeQuickStyle(page, StandardStyles.Heading3);
@@ -265,6 +269,7 @@ namespace River.OneMoreAddIn.Commands
 				else if (element.Name.LocalName == "SectionGroup")
 				{
 					index = MakeQuickStyle(page, StandardStyles.Heading2);
+					text = $"<span style=\"font-style:'italic'\">{text}</span>";
 				}
 				else // notebook
 				{
@@ -280,7 +285,7 @@ namespace River.OneMoreAddIn.Commands
 
 				content.Add(new XElement(ns + "OE",
 					new XAttribute("quickStyleIndex", index.ToString()),
-					new XElement(ns + "T", new XCData(element.Attribute("name").Value)),
+					new XElement(ns + "T", new XCData(text)),
 					indents
 					));
 			}
