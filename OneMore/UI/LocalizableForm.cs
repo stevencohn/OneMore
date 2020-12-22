@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.UI
 
 		/// <summary>
 		/// In order for a dialog to interact with OneNote, it must run modeless so it doesn't
-		/// blocks the OneNote main UI thread. This method runs the current form as a modeless
+		/// block the OneNote main UI thread. This method runs the current form as a modeless
 		/// window and invokes the specified callbacks upon OK and Cancel.
 		/// </summary>
 		/// <param name="closedAction">

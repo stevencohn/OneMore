@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.ComponentModel;
 	using System.Threading;
-	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -32,6 +31,7 @@ namespace River.OneMoreAddIn.UI
 	internal partial class ProgressDialog : LocalizableForm
 	{
 		private readonly CancellationTokenSource source;
+		private Action<ProgressDialog, CancellationToken> execute;
 
 
 		/// <summary>
@@ -61,7 +61,10 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private Action<ProgressDialog, CancellationToken> execute;
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="execute"></param>
 		public ProgressDialog(Action<ProgressDialog, CancellationToken> execute)
 		{
 			InitializeComponent();
