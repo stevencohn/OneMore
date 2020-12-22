@@ -46,12 +46,18 @@ namespace River.OneMoreAddIn.Commands
 
 					var span = (XElement)s;
 					span.ReadAttributeValue("style", out var style, string.Empty);
-					span.SetAttributeValue("style", $"{style};background:{color}");
+
+					if (!string.IsNullOrEmpty(style))
+						span.SetAttributeValue("style", $"{style};background:{color}");
+					else
+						span.SetAttributeValue("style", $"background:{color}");
+
 					return span;
 				});
 
 				if (updated)
 				{
+					logger.WriteLine(page.Root.ToString());
 					page.SetMeta(Page.HighlightMetaName, index.ToString(CultureInfo.InvariantCulture));
 					one.Update(page);
 				}
