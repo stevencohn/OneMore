@@ -2478,4 +2478,40 @@ ISO-code then comma then language name</comment>
     <value>OneMore n'a pas réussi à se connecter à OneNote, consultez le fichier journal pour les détails de l'exception</value>
     <comment>message box</comment>
   </data>
+  <data name="MapDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="MapDialog_groupBox.Text" xml:space="preserve">
+    <value>Pages dans</value>
+    <comment>group box</comment>
+  </data>
+  <data name="MapDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Toutes les sections du bloc-notes actuel</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Tous les carnets</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_okButton.Text" xml:space="preserve">
+    <value>D'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
+    <value>La section actuelle</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_Text" xml:space="preserve">
+    <value>Créer un plan de page</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
+    <value>Rechercher et remplacer</value>
+    <comment>option</comment>
+  </data>
+  <data name="ctxReplaceButton_Label" xml:space="preserve">
+    <value>Rechercher et remplacer</value>
+    <comment>Context menu</comment>
+  </data>
 </root>

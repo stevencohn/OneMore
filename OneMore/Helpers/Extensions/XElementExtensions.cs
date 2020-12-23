@@ -147,6 +147,11 @@ namespace River.OneMoreAddIn
 		/// <returns>A string that can be appended to a CData's raw content</returns>
 		public static string ExtractFirstWord(this XElement element)
 		{
+			if (element.FirstNode == null)
+			{
+				return null;
+			}
+
 			if (element.FirstNode.NodeType == XmlNodeType.Text)
 			{
 				var pair = element.Value.ExtractFirstWord();
@@ -224,6 +229,11 @@ namespace River.OneMoreAddIn
 		/// <returns>A string that can be appended to a CData's raw content</returns>
 		public static string ExtractLastWord(this XElement element)
 		{
+			if (element.FirstNode == null)
+			{
+				return null;
+			}
+
 			if (element.FirstNode.NodeType == XmlNodeType.Text)
 			{
 				var pair = element.Value.ExtractLastWord();

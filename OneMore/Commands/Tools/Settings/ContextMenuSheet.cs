@@ -24,6 +24,12 @@ namespace River.OneMoreAddIn.Settings
 			"ribNoSpellCheckButton",		// No Spell Check
 			"ribPasteRtfButton",			// Paste Rich Text
 			"ribFootnoteButton",			// Add Footnote
+			"ribCleanMenu",					// Clean Menu
+			"ribRemoveAuthorsButton",		// ... Remove Author Information
+			"ribRemoveCitationsButton",		// ... Remove Pasted Citations
+			"ribRemoveEmptyButton",			// ... Remove Empty Paragraphs and Headings
+			"ribRemoveSpacingButton",		// ... Remove Paragraph Spacing
+			"ribTrimButton",				// ... Trim Whitespace
 			"ribEditMenu",					// Edit Menu
 			"ribColorizeMenu",				// ... Colorize
 			"ribHighlightButton",			// ... Rotating Highlighter
@@ -31,12 +37,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribLowercaseButton",			// ... To lowercase
 			"ribIncreaseFontSizeButton",	// ... Increase Text Size
 			"ribDecreaseFontSizeButton",	// ... Decrease Text Size
-			"ribCleanMenu",					// Clean Menu
-			"ribRemoveAuthorsButton",		// ... Remove Author Information
-			"ribRemoveCitationsButton",		// ... Remove Pasted Citations
-			"ribRemoveEmptyButton",			// ... Remove Empty Paragraphs and Headings
-			"ribRemoveSpacingButton",		// ... Remove Paragraph Spacing
-			"ribTrimButton",				// ... Trim Whitespace
+			"ribReplaceButton",				// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
 		};
 

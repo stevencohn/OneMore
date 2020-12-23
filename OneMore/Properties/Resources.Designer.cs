@@ -680,6 +680,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search and Replace.
+        /// </summary>
+        internal static string ContextMenuSheet_ribReplaceButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribReplaceButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Snippets Menu.
         /// </summary>
         internal static string ContextMenuSheet_ribSnippetsMenu {
@@ -839,6 +848,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ctxRemoveSpacingButton_Label {
             get {
                 return ResourceManager.GetString("ctxRemoveSpacingButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Replace.
+        /// </summary>
+        internal static string ctxReplaceButton_Label {
+            get {
+                return ResourceManager.GetString("ctxReplaceButton_Label", resourceCulture);
             }
         }
         

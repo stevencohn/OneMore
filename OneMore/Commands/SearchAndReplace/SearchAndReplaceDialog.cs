@@ -34,7 +34,11 @@ namespace River.OneMoreAddIn.Commands
 
 		public string WithText => withBox.Text;
 
-		public string WhatText => whatBox.Text;
+		public string WhatText
+		{
+			get => whatBox.Text;
+			set => whatBox.Text = value;
+		}
 
 
 		private void SearchAndReplaceDialog_Shown (object sender, EventArgs e)

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -24,20 +25,42 @@ namespace River.OneMoreAddIn.Commands
 			string withText;
 			bool matchCase;
 
-			using (var dialog = new SearchAndReplaceDialog())
-			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				whatText = dialog.WhatText;
-				withText = dialog.WithText;
-				matchCase = dialog.MatchCase;
-			}
-
 			using (var one = new OneNote(out var page, out var ns))
 			{
+				var builder = new StringBuilder();
+
+				// not editing... just using EditSelected to extract the current word
+				page.EditSelected((s) =>
+				{
+					if (s is XText text)
+					{
+						builder.Append(text.Value);
+					}
+					else
+					{
+						builder.Append(((XElement)s).Value);
+					}
+
+					return s;
+				});
+
+				using (var dialog = new SearchAndReplaceDialog())
+				{
+					if (builder.Length > 0)
+					{
+						dialog.WhatText = builder.ToString();
+					}
+
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					{
+						return;
+					}
+
+					whatText = dialog.WhatText;
+					withText = dialog.WithText;
+					matchCase = dialog.MatchCase;
+				}
+
 				var cursor = page.GetTextCursor();
 				if (cursor != null)
 				{
@@ -82,24 +105,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private void PatchEndingBreaks(XElement root, XNamespace ns)
-		{
-			// if a <t> ends with <br>\n then OneNote will strip it but it typically
-			// appends a &nbsp; after it to preserve the line break. We do the same
-			// here to make sure we don't loose our line breaks
-
-			var runs = root.Elements(ns + "Outline")
-				.Descendants(ns + "T")
-				.Where(t => t.GetCData().Value.EndsWith("<br>\n"))
-				.ToList();
-
-			foreach (var run in runs)
-			{
-				var cdata = run.GetCData();
-				cdata.Value = $"{cdata.Value}&nbsp;";
-			}
-		}
-
 
 		// remove the empty CDATA[] cursor, combining the previous and next runs into one
 		private void MergeRuns(XElement cursor)
@@ -116,6 +121,25 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			cursor.Remove();
+		}
+
+
+		private void PatchEndingBreaks(XElement root, XNamespace ns)
+		{
+			// if a <t> ends with <br>\n then OneNote will strip it but it typically
+			// appends a &nbsp; after it to preserve the line break. We do the same
+			// here to make sure we don't loose our line breaks
+
+			var runs = root.Elements(ns + "Outline")
+				.Descendants(ns + "T")
+				.Where(t => t.GetCData().Value.EndsWith("<br>\n"))
+				.ToList();
+
+			foreach (var run in runs)
+			{
+				var cdata = run.GetCData();
+				cdata.Value = $"{cdata.Value}&nbsp;";
+			}
 		}
 	}
 }

@@ -2483,4 +2483,40 @@ ISO-code then comma then language name</comment>
     <value>فشل OneMore في الاتصال بـ OneNote ، راجع ملف السجل للحصول على تفاصيل الاستثناء</value>
     <comment>message box</comment>
   </data>
+  <data name="MapDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>button</comment>
+  </data>
+  <data name="MapDialog_groupBox.Text" xml:space="preserve">
+    <value>الصفحات بتنسيق</value>
+    <comment>group box</comment>
+  </data>
+  <data name="MapDialog_notebookRadio.Text" xml:space="preserve">
+    <value>كافة الأقسام الموجودة في دفتر الملاحظات الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>جميع أجهزة الكمبيوتر المحمولة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>button</comment>
+  </data>
+  <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
+    <value>القسم الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_Text" xml:space="preserve">
+    <value>إنشاء خريطة الصفحة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
+    <value>البحث والاستبدال</value>
+    <comment>option</comment>
+  </data>
+  <data name="ctxReplaceButton_Label" xml:space="preserve">
+    <value>البحث والاستبدال</value>
+    <comment>Context menu</comment>
+  </data>
 </root>

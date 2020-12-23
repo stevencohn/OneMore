@@ -2475,4 +2475,40 @@ ISO-code then comma then language name</comment>
     <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
     <comment>message box</comment>
   </data>
+  <data name="MapDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="MapDialog_groupBox.Text" xml:space="preserve">
+    <value>内页</value>
+    <comment>group box</comment>
+  </data>
+  <data name="MapDialog_notebookRadio.Text" xml:space="preserve">
+    <value>当前笔记本中的所有部分</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>所有笔记本</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
+    <value>当前部分</value>
+    <comment>radio</comment>
+  </data>
+  <data name="MapDialog_Text" xml:space="preserve">
+    <value>创建页面地图</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
+    <value>搜索和替换</value>
+    <comment>option</comment>
+  </data>
+  <data name="ctxReplaceButton_Label" xml:space="preserve">
+    <value>搜索和替换</value>
+    <comment>Context menu</comment>
+  </data>
 </root>

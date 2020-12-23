@@ -2522,4 +2522,12 @@ In this section</value>
     <value>Create Page Map</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
+    <value>Search and Replace</value>
+    <comment>option</comment>
+  </data>
+  <data name="ctxReplaceButton_Label" xml:space="preserve">
+    <value>Search and Replace</value>
+    <comment>Context menu</comment>
+  </data>
 </root>

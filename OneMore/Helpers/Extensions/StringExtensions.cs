@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn
 		public static bool EndsWithWhitespace(this string value)
 		{
 			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
-			return Regex.IsMatch(value, @"([\s]|&#160;|&nbsp;)$");
+			return Regex.IsMatch(value, @"(\W|&#160;|&nbsp;)$");
 		}
 
 
@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn
 		public static bool StartsWithWhitespace(this string value)
 		{
 			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
-			return Regex.IsMatch(value, @"^([\s]|&#160;|&nbsp;)");
+			return Regex.IsMatch(value, @"^(\W|&#160;|&nbsp;)");
 		}
 
 
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn
 			if (!string.IsNullOrEmpty(s))
 			{
 				// capture first word preceding whitespace char or esc sequence
-				var match = Regex.Match(s, @"^(?<word>\w+)(?:[\s]|&#160;|&nbsp;)");
+				var match = Regex.Match(s, @"^(?<word>\w+)\b"); // (?:[\W\s\n]|&#160;|&nbsp;)?", RegexOptions.Singleline);
 				if (match.Success)
 				{
 					var capture = match.Groups["word"];
@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn
 			if (!string.IsNullOrEmpty(s))
 			{
 				// use greedy match, skip text and last whitespace to capture last word
-				var match = Regex.Match(s, @".*(?:[\s]|&#160;|&nbsp;)(?<word>.*)$");
+				var match = Regex.Match(s, @"\b(?<word>\w+)$"); // @"(?:[\W\s\n]|&#160;|&nbsp;)?(?<word>\w+)$", RegexOptions.Singleline);
 				if (match.Success)
 				{
 					var capture = match.Groups["word"];
