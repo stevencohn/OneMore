@@ -176,9 +176,12 @@ namespace River.OneMoreAddIn.UI
 		{
 			// modeless has already set location so don't repeat that here
 			// and only set location if inheritor hasn't declined by setting it to zero
-			if (!modeless && VerticalOffset > 0)
+			if (!DesignMode)
 			{
-				Location = new System.Drawing.Point(Location.X, Location.Y - (Height / VerticalOffset));
+				if (!modeless && VerticalOffset > 0)
+				{
+					Location = new System.Drawing.Point(Location.X, Location.Y - (Height / VerticalOffset));
+				}
 			}
 
 			// modeless dialogs would appear behind the OneNote window by default

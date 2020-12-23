@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private OneNote one;
 		private OneNote.Scope scope;
+		private bool fullCatalog;
 		private XNamespace ns;
 
 
@@ -41,6 +42,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				scope = dialog.Scope;
+				fullCatalog = dialog.FullCatalog;
 			}
 
 			var progressDialog = new UI.ProgressDialog(Execute);
@@ -203,7 +205,9 @@ namespace River.OneMoreAddIn.Commands
 		private Dictionary<string, string> GetHyperlinks(
 			UI.ProgressDialog progress, CancellationToken token)
 		{
-			return one.BuildHyperlinkCache(scope, token,
+			var catalog = fullCatalog ? OneNote.Scope.Notebooks : scope;
+
+			return one.BuildHyperlinkCache(catalog, token,
 				(count) =>
 				{
 					progress.SetMaximum(count);
@@ -305,12 +309,12 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var reference in element.Elements("Ref"))
 				{
-					pname = reference.Attribute("title").Value;
-					plink = one.GetHyperlink(reference.Attribute("ID").Value, string.Empty);
+					var rname = reference.Attribute("title").Value;
+					var rlink = one.GetHyperlink(reference.Attribute("ID").Value, string.Empty);
 
 					children.Add(new XElement(ns + "OE",
 						new XElement(ns + "T",
-							new XCData($"{RightArrow} <a href=\"{plink}\">{pname}</a>")
+							new XCData($"{RightArrow} <a href=\"{rlink}\">{rname}</a>")
 						)));
 				}
 

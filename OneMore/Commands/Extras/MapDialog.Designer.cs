@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 			this.notebookRadio = new System.Windows.Forms.RadioButton();
 			this.sectionRadio = new System.Windows.Forms.RadioButton();
 			this.groupBox = new System.Windows.Forms.GroupBox();
+			this.catalogBox = new System.Windows.Forms.CheckBox();
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -43,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(311, 205);
+			this.okButton.Location = new System.Drawing.Point(311, 267);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
@@ -54,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(437, 205);
+			this.cancelButton.Location = new System.Drawing.Point(437, 267);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -71,6 +72,7 @@ namespace River.OneMoreAddIn.Commands
 			this.notebooksRadio.TabIndex = 2;
 			this.notebooksRadio.Text = "All notebooks";
 			this.notebooksRadio.UseVisualStyleBackColor = true;
+			this.notebooksRadio.Click += new System.EventHandler(this.ChangeScope);
 			// 
 			// notebookRadio
 			// 
@@ -82,6 +84,7 @@ namespace River.OneMoreAddIn.Commands
 			this.notebookRadio.TabIndex = 3;
 			this.notebookRadio.Text = "All sections in the current notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
+			this.notebookRadio.Click += new System.EventHandler(this.ChangeScope);
 			// 
 			// sectionRadio
 			// 
@@ -95,21 +98,33 @@ namespace River.OneMoreAddIn.Commands
 			this.sectionRadio.TabStop = true;
 			this.sectionRadio.Text = "The current section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
+			this.sectionRadio.Click += new System.EventHandler(this.ChangeScope);
 			// 
 			// groupBox
 			// 
 			this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox.Controls.Add(this.catalogBox);
 			this.groupBox.Controls.Add(this.notebookRadio);
 			this.groupBox.Controls.Add(this.sectionRadio);
 			this.groupBox.Controls.Add(this.notebooksRadio);
 			this.groupBox.Location = new System.Drawing.Point(23, 23);
 			this.groupBox.Name = "groupBox";
 			this.groupBox.Padding = new System.Windows.Forms.Padding(20);
-			this.groupBox.Size = new System.Drawing.Size(534, 167);
+			this.groupBox.Size = new System.Drawing.Size(534, 223);
 			this.groupBox.TabIndex = 5;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "Pages in";
+			// 
+			// catalogBox
+			// 
+			this.catalogBox.AutoSize = true;
+			this.catalogBox.Location = new System.Drawing.Point(23, 176);
+			this.catalogBox.Name = "catalogBox";
+			this.catalogBox.Size = new System.Drawing.Size(281, 24);
+			this.catalogBox.TabIndex = 5;
+			this.catalogBox.Text = "Include cross-notebook references";
+			this.catalogBox.UseVisualStyleBackColor = true;
 			// 
 			// MapDialog
 			// 
@@ -117,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(580, 256);
+			this.ClientSize = new System.Drawing.Size(580, 318);
 			this.Controls.Add(this.groupBox);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
@@ -143,5 +158,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.RadioButton notebookRadio;
 		private System.Windows.Forms.RadioButton sectionRadio;
 		private System.Windows.Forms.GroupBox groupBox;
+		private System.Windows.Forms.CheckBox catalogBox;
 	}
 }

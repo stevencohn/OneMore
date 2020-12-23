@@ -30,6 +30,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public bool FullCatalog => catalogBox.Enabled && catalogBox.Checked;
+
+
 		public OneNote.Scope Scope
 		{
 			get
@@ -38,6 +41,12 @@ namespace River.OneMoreAddIn.Commands
 				if (notebookRadio.Checked) return OneNote.Scope.Sections;
 				return OneNote.Scope.Pages;
 			}
+		}
+
+
+		private void ChangeScope(object sender, System.EventArgs e)
+		{
+			catalogBox.Enabled = !notebooksRadio.Checked;
 		}
 	}
 }
