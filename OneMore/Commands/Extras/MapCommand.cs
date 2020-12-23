@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 				if (token.IsCancellationRequested)
 					return;
 
-				logger.WriteTime($"built hyperlink cache for {hyperlinks.Count} pages", true);
+				logger.WriteTime($"cached {hyperlinks.Count} page hyperlinks", true);
 
 				var elements = hierarchy.Descendants(ns + "Page").ToList();
 				var titles = new Dictionary<string, string>();
@@ -141,6 +141,12 @@ namespace River.OneMoreAddIn.Commands
 							refs.Add(pid);
 						}
 					}
+				}
+
+				if (titles.Count == 0)
+				{
+					UIHelper.ShowMessage("No linked pages were found");
+					return;
 				}
 
 				if (token.IsCancellationRequested)
