@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 
 						if (!hyperlinks.ContainsKey(pid))
 						{
-							logger.WriteLine($"not found {pid} on {name}/{parent.Title}");
+							logger.WriteLine($"not found in scope: {pid} on {name}/{parent.Title}");
 							continue;
 						}
 
