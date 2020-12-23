@@ -111,36 +111,41 @@ namespace River.OneMoreAddIn.Commands
 					foreach (Match match in matches)
 					{
 						var pid = match.Groups[1].Value;
-						if (hyperlinks.ContainsKey(pid) && !refs.Contains(pid))
+						if (refs.Contains(pid))
 						{
-							var pageId = hyperlinks[pid];
-							if (pageId != parentId)
-							{
-								string title;
-								if (titles.ContainsKey(pageId))
-								{
-									title = titles[pageId];
-								}
-								else
-								{
-									var p = one.GetPage(pageId, OneNote.PageDetail.Basic);
-									title = p.Title;
-									titles.Add(pageId, title);
-								}
-
-								element.Add(new XElement("Ref",
-									new XAttribute("title", title),
-									new XAttribute("ID", pageId)
-									));
-
-								//logger.WriteLine($" - {title}");
-
-								refs.Add(pid);
-							}
+							// already captured this pid
+							continue;
 						}
-						else
+
+						if (!hyperlinks.ContainsKey(pid))
 						{
 							logger.WriteLine($"not found {pid} on {name}/{parent.Title}");
+							continue;
+						}
+
+						var pageId = hyperlinks[pid];
+						if (pageId != parentId)
+						{
+							string title;
+							if (titles.ContainsKey(pageId))
+							{
+								title = titles[pageId];
+							}
+							else
+							{
+								var p = one.GetPage(pageId, OneNote.PageDetail.Basic);
+								title = p.Title;
+								titles.Add(pageId, title);
+							}
+
+							element.Add(new XElement("Ref",
+								new XAttribute("title", title),
+								new XAttribute("ID", pageId)
+								));
+
+							//logger.WriteLine($" - {title}");
+
+							refs.Add(pid);
 						}
 					}
 				}
@@ -233,7 +238,13 @@ namespace River.OneMoreAddIn.Commands
 
 			var page = one.GetPage(pageId);
 			page.SetMeta(Page.PageMapMetaName, "true");
-			page.Title = "Page Map";
+
+			switch (scope)
+			{
+				case OneNote.Scope.Notebooks: page.Title = "Page Map of All Notebooks"; break;
+				case OneNote.Scope.Sections: page.Title = "Page Map of This Notebook"; break;
+				default: page.Title = "Page Map of This Section"; break;
+			}
 
 			var container = page.EnsureContentContainer();
 
