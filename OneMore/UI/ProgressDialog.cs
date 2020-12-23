@@ -86,8 +86,6 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnShown(e);
 
-			logger.WriteLine("executing");
-
 			var worker = new BackgroundWorker();
 			worker.DoWork += Worker_DoWork;
 			worker.RunWorkerAsync();
@@ -95,9 +93,17 @@ namespace River.OneMoreAddIn.UI
 
 		private void Worker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			execute(this, source.Token);
+			try
+			{
+				execute(this, source.Token);
+				DialogResult = DialogResult.OK;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error executing work", exc);
+				DialogResult = DialogResult.Cancel;
+			}
 
-			DialogResult = DialogResult.OK;
 			Close();
 		}
 

@@ -50,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Execute(UI.ProgressDialog progress, CancellationToken token)
 		{
+			logger.Start();
 			logger.StartClock();
 
 			var titles = new Dictionary<string, string>();
@@ -57,7 +58,6 @@ namespace River.OneMoreAddIn.Commands
 			using (one = new OneNote())
 			{
 				var hierarchy = GetHierarchy();
-				ns = one.GetNamespace(hierarchy);
 
 				if (token.IsCancellationRequested)
 					return;
@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 				var elements = hierarchy.Descendants(ns + "Page").ToList();
 
 				progress.SetMaximum(elements.Count);
-				progress.SetMessage("Building map");
+				progress.SetMessage($"Building map for {elements.Count} pages");
 
 				foreach (var element in elements)
 				{
@@ -105,10 +105,13 @@ namespace River.OneMoreAddIn.Commands
 					var name = element.Parent.Attribute("name").Value;
 					progress.SetMessage($"Scanning {name}/{parent.Title}");
 
+					// prevent duplicates
+					var refs = new List<string>();
+
 					foreach (Match match in matches)
 					{
 						var pid = match.Groups[1].Value;
-						if (hyperlinks.ContainsKey(pid))
+						if (hyperlinks.ContainsKey(pid) && !refs.Contains(pid))
 						{
 							var pageId = hyperlinks[pid];
 							if (pageId != parentId)
@@ -130,12 +133,14 @@ namespace River.OneMoreAddIn.Commands
 									new XAttribute("ID", pageId)
 									));
 
-								logger.WriteLine($" - {title}");
+								//logger.WriteLine($" - {title}");
+
+								refs.Add(pid);
 							}
 						}
 						else
 						{
-							logger.WriteLine($"not found {pid}");
+							logger.WriteLine($"not found {pid} on {name}/{parent.Title}");
 						}
 					}
 				}
@@ -144,12 +149,11 @@ namespace River.OneMoreAddIn.Commands
 					return;
 
 				Prune(hierarchy);
-				logger.WriteLine(hierarchy.ToString());
-
 				BuildMapPage(hierarchy);
 			}
 
 			logger.WriteTime("map complete");
+			logger.End();
 		}
 
 
@@ -171,11 +175,21 @@ namespace River.OneMoreAddIn.Commands
 					break;
 			}
 
-			// ignore Metas and the recycle bin
-			hierarchy.Elements()
-				.Where(e =>
-					e.Name.LocalName == "Meta" ||
-					e.Attributes().Any(a => a.Name == "isRecycleBin"))
+			ns = one.GetNamespace(hierarchy);
+
+			// don't map existing page maps
+			hierarchy.Descendants(ns + "Meta")
+				.Where(e => e.Attributes().Any(a => a.Value == Page.PageMapMetaName))
+				.Select(e => e.Parent)
+				.Remove();
+
+			// skip Meta elements to make scanning easier
+			hierarchy.Descendants(ns + "Meta")
+				.Remove();
+
+			// ignore pages in recycle bin
+			hierarchy.Descendants()
+				.Where(e => e.Attributes().Any(a => a.Name == "isRecycleBin"))
 				.Remove();
 
 			return hierarchy;
@@ -218,11 +232,32 @@ namespace River.OneMoreAddIn.Commands
 			one.CreatePage(sectionId, out var pageId);
 
 			var page = one.GetPage(pageId);
+			page.SetMeta(Page.PageMapMetaName, "true");
 			page.Title = "Page Map";
 
 			var container = page.EnsureContentContainer();
 
-			container.Add(BuildMapPage(hierarchy, page));
+			container.Add(
+				new XElement(ns + "OE", new XElement(ns + "T", new XCData(
+					"<span style=\"font-weight:bold\">Key</span><br>\n" +
+					"Heading 1 = Notebooks<br>\n" +
+					"Heading 2 = Section<br>\n" +
+					"Heading 3 = Section Groups (italic)")
+				)),
+				new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)))
+				);
+
+			if (hierarchy.Name.LocalName == "Notebooks")
+			{
+				hierarchy.Elements().ToList().ForEach((node) =>
+				{
+					container.Add(BuildMapPage(node, page));
+				});
+			}
+			else
+			{
+				container.Add(BuildMapPage(hierarchy, page));
+			}
 
 			one.Update(page);
 			one.NavigateTo(pageId);
@@ -264,11 +299,11 @@ namespace River.OneMoreAddIn.Commands
 				int index;
 				if (element.Name.LocalName == "Section")
 				{
-					index = MakeQuickStyle(page, StandardStyles.Heading3);
+					index = MakeQuickStyle(page, StandardStyles.Heading2);
 				}
 				else if (element.Name.LocalName == "SectionGroup")
 				{
-					index = MakeQuickStyle(page, StandardStyles.Heading2);
+					index = MakeQuickStyle(page, StandardStyles.Heading3);
 					text = $"<span style=\"font-style:'italic'\">{text}</span>";
 				}
 				else // notebook
