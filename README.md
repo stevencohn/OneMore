@@ -91,6 +91,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Convert select text to a table
 * Insert Table Cells, shifting content as expected
 * Insert pronunciation of words from over a dozen languages
+* Map Linked Pages to report all pages that link to other pages
 * Merge pages, preserving formatting and position of outlines
 * Replace hyperlinked URLs with their Web page titles
 * Sort pages, sections, or notebooks
