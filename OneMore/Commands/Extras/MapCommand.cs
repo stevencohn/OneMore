@@ -48,12 +48,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		// Invoked by the ProgressDialog OnShown callback
 		private void Execute(UI.ProgressDialog progress, CancellationToken token)
 		{
 			logger.Start();
 			logger.StartClock();
-
-			var titles = new Dictionary<string, string>();
 
 			using (one = new OneNote())
 			{
@@ -62,16 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				if (token.IsCancellationRequested)
 					return;
 
-				var hyperlinks = one.BuildHyperlinkCache(scope, token,
-					(count) =>
-					{
-						progress.SetMaximum(count);
-						progress.SetMessage($"Scanning {count} page references");
-					},
-					() =>
-					{
-						progress.Increment();
-					});
+				var hyperlinks = GetHyperlinks(progress, token);
 
 				if (token.IsCancellationRequested)
 					return;
@@ -79,6 +71,7 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteTime($"built hyperlink cache for {hyperlinks.Count} pages", true);
 
 				var elements = hierarchy.Descendants(ns + "Page").ToList();
+				var titles = new Dictionary<string, string>();
 
 				progress.SetMaximum(elements.Count);
 				progress.SetMessage($"Building map for {elements.Count} pages");
@@ -201,6 +194,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private Dictionary<string, string> GetHyperlinks(
+			UI.ProgressDialog progress, CancellationToken token)
+		{
+			return one.BuildHyperlinkCache(scope, token,
+				(count) =>
+				{
+					progress.SetMaximum(count);
+					progress.SetMessage($"Scanning {count} page references");
+				},
+				() =>
+				{
+					progress.Increment();
+				});
+		}
+
+
 		/// <summary>
 		/// Recursively remove any branch/node that doesn't contain a Page
 		/// </summary>
@@ -228,6 +237,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		private void BuildMapPage(XElement hierarchy)
 		{
