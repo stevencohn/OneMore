@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 					var ns = page.Namespace;
 
 					progress.SetMessage(page.Title);
-					progress.Increment(1);
+					progress.Increment();
 
 					var link = one.GetHyperlink(page.PageId, string.Empty);
 

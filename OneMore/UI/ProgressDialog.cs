@@ -17,81 +17,110 @@ namespace River.OneMoreAddIn.UI
 	/// Displays a dialog with a progress bar and, optionally, a cancel button.
 	/// </summary>
 	/// <remarks>
-	/// Can run in one of two modes. For simple cases, call the default constructor and the
-	/// progress bar is shown with a message area; the consumer is responsible for setting the maximum
-	/// increment value, incrementing it during its own processing, and then closing the dialog when
-	/// it's work is complete.
+	/// Can run in one of three modes. For simple cases, call the default constructor and the
+	/// progress bar is shown with a message area; the consumer is responsible for setting the
+	/// maximum increment value, incrementing it during its own processing, and then closing the
+	/// dialog when it's work is complete.
 	/// 
-	/// It can also run with a timer. call the constructor that accepts a CancellationTokenSource and
-	/// call StartTimer when ready. A cancel button is displayed. The dialog closes when a cancellation
-	/// is pending and returns DialogResult.OK. It also closes when the cancel button is pressed and returns
-	/// DialogResult.Cancel. If the timer reaches Maximum seconds then the dialog is closed and returns
-	/// DialogResult.Abort.
+	/// It can also run with a timer; call the constructor with a CancellationTokenSource and
+	/// optionally call StartTimer. A cancel button is also displayed. The dialog closes when a
+	/// cancellation is pending and returns DialogResult.OK. It also closes when the cancel button
+	/// is pressed and returns DialogResult.Cancel. If the timer reaches Maximum seconds then the
+	/// dialog is closed and returns DialogResult.Abort.
+	/// 
+	/// The third mode accepts an execution action that is run in the background by the dialog.
+	/// A cancel button is displayed that, when pressed, sets the cancelltion token and returns
+	/// DialogResult.Cancel. If the execute action completes without cancellation OK is returned.
 	/// </remarks>
 	internal partial class ProgressDialog : LocalizableForm
 	{
+		private const int SimpleHeight = 112;
+		private const int CancelHeight = 144;
+
 		private readonly CancellationTokenSource source;
-		private Action<ProgressDialog, CancellationToken> execute;
+		private readonly Action<ProgressDialog, CancellationToken> execute;
 
 
 		/// <summary>
-		/// Initializes a UI with message area, progress bar, and cancel button. When the cancel
-		/// button is clicked, the source is marked as IsCancellationPending
+		/// Initializes a new dialog with message area and a pgoress bar; no cancellation is
+		/// allowed.
 		/// </summary>
-		/// <param name="source">A cancellation source that can be used to cancel the active work</param>
-		public ProgressDialog(CancellationTokenSource source = null)
+		public ProgressDialog()
 		{
-			InitializeComponent();
-			Localize();
+			Initialize(SimpleHeight);
 
-			if (source == null)
-			{
-				cancelButton.Visible = false;
-				Height = 112;
-			}
-			else
-			{
-				Height = 144;
-				this.source = source;
-				timer.Tick += Timer_Tick;
-			}
-
-			(_, float factorY) = UIHelper.GetScalingFactors();
-			Height = (int)Math.Round(Height * factorY);
+			cancelButton.Visible = false;
 		}
 
 
 		/// <summary>
-		/// 
+		/// Initializes a new dialog with message area, progress bar, and a cancel button.
 		/// </summary>
-		/// <param name="execute"></param>
-		public ProgressDialog(Action<ProgressDialog, CancellationToken> execute)
+		/// <param name="source">
+		/// A cancellation source that indicates the active work should abort. Cancellation
+		/// could be requested by clicking the Cancel button or be activated by a timer.
+		/// </param>
+		public ProgressDialog(CancellationTokenSource source)
 		{
-			InitializeComponent();
-			TopMost = true;
-			ShowInTaskbar = true;
+			Initialize(CancelHeight);
 
-			Localize();
+			this.source = source;
+			timer.Tick += Tick;
+		}
 
-			(_, float factorY) = UIHelper.GetScalingFactors();
-			Height = (int)Math.Round(144 * factorY);
+
+		/// <summary>
+		/// Initializes a new dialog with message area, progress bar, and a cancel button.
+		/// Dialog should be started using RunModeless
+		/// </summary>
+		/// <param name="action">
+		/// A callback invoked by the dialog and that contains the logic to execute. This action
+		/// is passed a reference to the dialog so it can update its message and increment. The
+		/// action should also periodically check the cancellation token and abort when true.
+		/// </param>
+		public ProgressDialog(Action<ProgressDialog, CancellationToken> action)
+		{
+			Initialize(CancelHeight);
 
 			source = new CancellationTokenSource();
-
-			this.execute = execute;
+			execute = action;
 		}
 
+
+		private void Initialize(int height)
+		{
+			InitializeComponent();
+
+			(_, float factorY) = UIHelper.GetScalingFactors();
+			Height = (int)Math.Round(height * factorY);
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.ProgressDialog_Text;
+
+				Localize(new string[]
+				{
+					"cancelButton"
+				});
+			}
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		protected override void OnShown(EventArgs e)
 		{
 			base.OnShown(e);
 
-			var worker = new BackgroundWorker();
-			worker.DoWork += Worker_DoWork;
-			worker.RunWorkerAsync();
+			if (execute != null)
+			{
+				var worker = new BackgroundWorker();
+				worker.DoWork += ExecuteWork;
+				worker.RunWorkerAsync();
+			}
 		}
 
-		private void Worker_DoWork(object sender, DoWorkEventArgs e)
+		private void ExecuteWork(object sender, DoWorkEventArgs e)
 		{
 			try
 			{
@@ -107,27 +136,55 @@ namespace River.OneMoreAddIn.UI
 			Close();
 		}
 
-		private void Localize()
-		{
-			if (NeedsLocalizing())
-			{
-				Text = Resx.ProgressDialog_Text;
 
-				Localize(new string[]
-				{
-					"cancelButton"
-				});
+		private void Tick(object sender, EventArgs e)
+		{
+			if (source.Token.IsCancellationRequested)
+			{
+				timer.Stop();
+				DialogResult = DialogResult.OK;
+				Close();
+				return;
+			}
+
+			if (InvokeRequired)
+			{
+				Invoke(new Action(() => Tick(sender, e)));
+			}
+
+			Increment();
+
+			if (progressBar.Value >= progressBar.Maximum)
+			{
+				timer.Stop();
+				source.Cancel();
+				DialogResult = DialogResult.Abort;
 			}
 		}
 
 
-		/// <summary>
-		/// Increments the progress bar by one step.
-		/// </summary>
-		/// <param name="step"></param>
-		public void Increment(int step = 1)
+		private void Cancel(object sender, EventArgs e)
 		{
-			progressBar.Value += step;
+			if (timer.Enabled)
+			{
+				timer.Stop();
+			}
+
+			source.Cancel();
+
+			DialogResult = DialogResult.Cancel;
+			Close();
+		}
+		
+		
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		/// <summary>
+		/// Increments the progress bar
+		/// </summary>
+		public void Increment()
+		{
+			progressBar.Value++;
 		}
 
 
@@ -152,52 +209,12 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Starts the second countdown timer, up to Maximum seconds. If Maximum seconds ellapse then
-		/// the dialog is closed and DialogResult is set to Abort.
+		/// Starts the second countdown timer, up to Maximum seconds.
+		/// If Maximum seconds ellapse then the dialog is closed and DialogResult is set to Abort.
 		/// </summary>
 		public void StartTimer()
 		{
 			timer.Start();
-		}
-
-
-		private void Timer_Tick(object sender, EventArgs e)
-		{
-			if (source.Token.IsCancellationRequested)
-			{
-				timer.Stop();
-				DialogResult = DialogResult.OK;
-				Close();
-				return;
-			}
-
-			if (InvokeRequired)
-			{
-				Invoke(new Action(() => Timer_Tick(sender, e)));
-			}
-
-			Increment();
-
-			if (progressBar.Value >= progressBar.Maximum)
-			{
-				timer.Stop();
-				source.Cancel();
-				DialogResult = DialogResult.Abort;
-			}
-		}
-
-
-		private void cancelButton_Click(object sender, EventArgs e)
-		{
-			if (timer.Enabled)
-			{
-				timer.Stop();
-			}
-
-			source.Cancel();
-
-			DialogResult = DialogResult.Cancel;
-			Close();
 		}
 	}
 }

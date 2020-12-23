@@ -62,7 +62,7 @@
 			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
-			this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+			this.cancelButton.Click += new System.EventHandler(this.Cancel);
 			// 
 			// timer
 			// 
@@ -85,8 +85,10 @@
 			this.Padding = new System.Windows.Forms.Padding(26, 25, 26, 25);
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+			this.ShowInTaskbar = true;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "OneMore";
+			this.TopMost = true;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
