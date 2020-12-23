@@ -5,8 +5,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
-	using System.Drawing;
-	using System.Globalization;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -40,13 +38,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			monthBox.SelectedIndex = DateTime.Now.Month - 1;
-		}
-
-
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new Point(Location.X, Location.Y - (Height / 2));
-			base.OnShown(e);
 		}
 
 

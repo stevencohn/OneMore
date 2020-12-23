@@ -53,13 +53,6 @@ namespace River.OneMoreAddIn.Commands
 		public bool SectionPages => pagesBox.Enabled && pagesBox.Checked;
 
 
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new System.Drawing.Point(Location.X, Location.Y - (Height / 2));
-			UIHelper.SetForegroundWindow(this);
-		}
-
-
 		private void ChangedRadio(object sender, EventArgs e)
 		{
 			if (sender == pageRadio)

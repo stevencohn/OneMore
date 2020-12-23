@@ -19,6 +19,14 @@ namespace River.OneMoreAddIn.UI
 		public event EventHandler ModelessClosed;
 
 		protected ILogger logger = Logger.Current;
+		private bool modeless = false;
+
+
+		protected int VerticalOffset
+		{
+			private get;
+			set;
+		} = 2;
 
 
 		/// <summary>
@@ -115,7 +123,7 @@ namespace River.OneMoreAddIn.UI
 
 		/// <summary>
 		/// In order for a dialog to interact with OneNote, it must run modeless so it doesn't
-		/// blocks the OneNote main UI thread. This method runs the current form as a modeless
+		/// block the OneNote main UI thread. This method runs the current form as a modeless
 		/// window and invokes the specified callbacks upon OK and Cancel.
 		/// </summary>
 		/// <param name="closedAction">
@@ -128,6 +136,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			StartPosition = FormStartPosition.Manual;
 			TopMost = true;
+			modeless = true;
 
 			var rect = new Native.Rectangle();
 			using (var one = new OneNote())
@@ -141,8 +150,6 @@ namespace River.OneMoreAddIn.UI
 				(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
 				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
 				);
-
-			Shown += ForceForeground;
 
 			if (closedAction != null)
 			{
@@ -158,18 +165,25 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private void ForceForeground(object sender, EventArgs e)
-		{
-			// modeless dialogs would appear behind the OneNote window by default so this
-			// forces the dialog to the foreground
-			UIHelper.SetForegroundWindow(this);
-		}
-
-
 		protected override void OnFormClosed(FormClosedEventArgs e)
 		{
 			base.OnFormClosed(e);
 			ModelessClosed?.Invoke(this, e);
+		}
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			// modeless has already set location so don't repeat that here
+			// and only set location if inheritor hasn't declined by setting it to zero
+			if (!modeless && VerticalOffset > 0)
+			{
+				Location = new System.Drawing.Point(Location.X, Location.Y - (Height / VerticalOffset));
+			}
+
+			// modeless dialogs would appear behind the OneNote window by default
+			// so this forces the dialog to the foreground
+			UIHelper.SetForegroundWindow(this);
 		}
 	}
 }

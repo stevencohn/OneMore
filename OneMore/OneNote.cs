@@ -14,6 +14,8 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Text;
+	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -88,11 +90,11 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="page">The current Page</param>
 		/// <param name="ns">The namespace of the current page</param>
-		/// <param name="info">The desired verbosity of the XML</param>
-		public OneNote(out Page page, out XNamespace ns, PageDetail info = PageDetail.Selection)
+		/// <param name="detail">The desired verbosity of the XML</param>
+		public OneNote(out Page page, out XNamespace ns, PageDetail detail = PageDetail.Selection)
 			: this()
 		{
-			page = GetPage(info);
+			page = GetPage(detail);
 			ns = page.Namespace;
 		}
 
@@ -258,6 +260,73 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Creates a map of pages where the key is built from the page-id of an
+		/// internal onenote hyperlink and the value is the actual pageId
+		/// </summary>
+		/// <param name="scope"></param>
+		/// <param name="countCallback"></param>
+		/// <param name="stepCallback"></param>
+		/// <returns>
+		/// A Dictionary with keys build from URI params and values specifying the page IDs
+		/// </returns>
+		/// <remarks>
+		/// There's no direct way to map onenote:http URIs to page IDs so this creates a cache
+		/// of all pages in the specified scope with their URIs as keys and pageIDs as values
+		/// </remarks>
+		public Dictionary<string, string> BuildHyperlinkCache(
+			Scope scope,
+			CancellationToken token,
+			Action<int> countCallback = null,
+			Action stepCallback = null)
+		{
+			var hyperlinks = new Dictionary<string, string>();
+
+			XElement container;
+			switch (scope)
+			{
+				case Scope.Notebooks: container = GetNotebooks(Scope.Pages); break;
+				case Scope.Sections: container = GetNotebook(Scope.Pages); break;
+				default: container = GetSection(); break;
+			}
+
+			// ignore the recycle bin
+			container.Elements()
+				.Where(e => e.Attributes().Any(a => a.Name == "isRecycleBin"))
+				.Remove();
+
+			var pageIDs = container.Descendants(GetNamespace(container) + "Page")
+				.Select(e => e.Attribute("ID").Value)
+				.ToList();
+
+			if (pageIDs.Count > 0)
+			{
+				countCallback?.Invoke(pageIDs.Count);
+
+				var regex = new Regex(@"page-id=({[^}]+?})");
+
+				foreach (var pageID in pageIDs)
+				{
+					if (token.IsCancellationRequested)
+					{
+						break;
+					}
+
+					var link = GetHyperlink(pageID, string.Empty);
+					var matches = regex.Match(link);
+					if (matches.Success)
+					{
+						hyperlinks.Add(matches.Groups[1].Value, pageID);
+					}
+
+					stepCallback?.Invoke();
+				}
+			}
+
+			return hyperlinks;
+		}
+
+
+		/// <summary>
 		/// Gets the OneNote namespace for the given element
 		/// </summary>
 		/// <param name="element"></param>
@@ -302,11 +371,11 @@ namespace River.OneMoreAddIn
 		/// Gets a root note containing Notebook elements
 		/// </summary>
 		/// <returns>A Notebooks element with Notebook children</returns>
-		public XElement GetNotebooks()
+		public XElement GetNotebooks(Scope scope = Scope.Notebooks)
 		{
 			// find the ID of the current notebook
 			onenote.GetHierarchy(
-				string.Empty, HierarchyScope.hsNotebooks, out var xml, XMLSchema.xs2013);
+				string.Empty, (HierarchyScope)scope, out var xml, XMLSchema.xs2013);
 
 			if (!string.IsNullOrEmpty(xml))
 			{
@@ -320,11 +389,11 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Gets the current page.
 		/// </summary>
-		/// <param name="info">The desired verbosity of the XML</param>
+		/// <param name="detail">The desired verbosity of the XML</param>
 		/// <returns>A Page containing the root XML of the page</returns>
-		public Page GetPage(PageDetail info = PageDetail.Selection)
+		public Page GetPage(PageDetail detail = PageDetail.Selection)
 		{
-			return GetPage(CurrentPageId, info);
+			return GetPage(CurrentPageId, detail);
 		}
 
 
@@ -332,22 +401,40 @@ namespace River.OneMoreAddIn
 		/// Gets the specified page.
 		/// </summary>
 		/// <param name="pageId">The unique ID of the page</param>
-		/// <param name="info">The desired verbosity of the XML</param>
+		/// <param name="detail">The desired verbosity of the XML</param>
 		/// <returns>A Page containing the root XML of the page</returns>
-		public Page GetPage(string pageId, PageDetail info = PageDetail.All)
+		public Page GetPage(string pageId, PageDetail detail = PageDetail.All)
 		{
 			if (string.IsNullOrEmpty(pageId))
 			{
 				return null;
 			}
 
-			onenote.GetPageContent(pageId, out var xml, (PageInfo)info, XMLSchema.xs2013);
+			onenote.GetPageContent(pageId, out var xml, (PageInfo)detail, XMLSchema.xs2013);
 			if (!string.IsNullOrEmpty(xml))
 			{
 				return new Page(XElement.Parse(xml));
 			}
 
 			return null;
+		}
+
+
+		/// <summary>
+		/// Gets the raw XML of the specified page.
+		/// </summary>
+		/// <param name="pageId">The unique ID of the page</param>
+		/// <param name="detail">The desired verbosity of the XML</param>
+		/// <returns>A string specifying the root XML of the page</returns>
+		public string GetPageXml(string pageId, PageDetail detail = PageDetail.Basic)
+		{
+			if (string.IsNullOrEmpty(pageId))
+			{
+				return null;
+			}
+
+			onenote.GetPageContent(pageId, out var xml, (PageInfo)detail, XMLSchema.xs2013);
+			return xml;
 		}
 
 

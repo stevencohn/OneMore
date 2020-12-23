@@ -55,13 +55,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new Point(Location.X, Location.Y - (Height / 2));
-			UIHelper.SetForegroundWindow(this);
-		}
-
-
 		public int DecimalPlaces
 		{
 			get { return (int)decimalBox.Value; }

@@ -43,13 +43,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new System.Drawing.Point(Location.X, Location.Y - Height);
-			UIHelper.SetForegroundWindow(this);
-		}
-
-
 		private void OK(object sender, EventArgs e)
 		{
 			Close();

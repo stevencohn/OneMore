@@ -359,7 +359,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (hierBox.TextLength == 0)
 				{
-					ShowHierarchy(one.GetNotebooks());
+					ShowHierarchy(one.GetNotebooks(), "one.GetNotebooks()");
 				}
 
 				pageBox.Select(0, 0);
@@ -373,34 +373,39 @@ namespace River.OneMoreAddIn.Commands
 
 		private void GetNotebooks(object sender, EventArgs e)
 		{
-			ShowHierarchy(one.GetNotebooks());
+			ShowHierarchy(one.GetNotebooks(), "one.GetNotebooks()");
 		}
 
 
 		private void GetNotebook(object sender, EventArgs e)
 		{
-			ShowHierarchy(one.GetNotebook());
+			ShowHierarchy(one.GetNotebook(), "one.GetNotebook()");
 		}
 
 
 		private void GetSection(object sender, EventArgs e)
 		{
-			ShowHierarchy(one.GetNotebook(OneNote.Scope.Pages));
+			ShowHierarchy(one.GetNotebook(OneNote.Scope.Pages),
+				"one.GetNotebook(OneNote.Scope.Pages)");
 		}
 
 
 		private void ShowCurrentSection(object sender, EventArgs e)
 		{
-			ShowHierarchy(one.GetSection());
+			ShowHierarchy(one.GetSection(), "one.GetSection()");
 		}
 
 
-		private void ShowHierarchy(XElement element)
+		private void ShowHierarchy(XElement element, string comment)
 		{
 			if (element != null)
 			{
-				var xml = element.ToString(SaveOptions.None);
-				hierBox.Text = xml;
+				hierBox.SelectionColor = Color.Black;
+
+				hierBox.Text = $"<!-- {comment} -->\n{element.ToString(SaveOptions.None)}";
+
+				hierBox.Select(0, comment.Length + 9);
+				hierBox.SelectionColor = Color.Green;
 			}
 			else
 			{

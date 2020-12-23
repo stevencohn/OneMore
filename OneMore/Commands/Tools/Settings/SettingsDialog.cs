@@ -20,6 +20,8 @@ namespace River.OneMoreAddIn.Settings
 		{
 			InitializeComponent();
 
+			VerticalOffset = 4;
+
 			if (NeedsLocalizing())
 			{
 				Text = Resx.SettingsDialog_Text;
@@ -41,13 +43,6 @@ namespace River.OneMoreAddIn.Settings
 
 			navTree.SelectedNode = navTree.Nodes[0];
 			navTree.Focus();
-		}
-
-
-		protected override void OnShown(EventArgs e)
-		{
-			Location = new System.Drawing.Point(Location.X, Location.Y - (Height / 5));
-			UIHelper.SetForegroundWindow(this);
 		}
 
 

@@ -114,6 +114,9 @@ namespace River.OneMoreAddIn
 		public void InsertYellowStatusCmd(IRibbonControl control)
 			=> factory.Run<InsertStatusCommand>(StatusColor.Yellow);
 
+		public void MapCmd(IRibbonControl control)
+			=> factory.Run<MapCommand>();
+
 		public void MergeCmd(IRibbonControl control)
 			=> factory.Run<MergeCommand>();
 

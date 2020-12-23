@@ -87,6 +87,6 @@ namespace River.OneMoreAddIn
 		/// since the stopwatch was started.
 		/// </summary>
 		/// <param name="message"></param>
-		void WriteTime(string message);
+		void WriteTime(string message, bool keep = false);
 	}
 }

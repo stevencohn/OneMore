@@ -375,6 +375,11 @@
                 getEnabled="GetBodyContext"
                 onAction="PronunciateCmd"/>
               <button
+                id="ribMapButton"
+                label="Map Linked Pages"
+                imageMso="CreateMap"
+                onAction="MapCmd"/>
+              <button
                 id="ribMergeButton"
                 imageMso="CompareAndCombine"
                 getLabel="GetRibbonLabel"

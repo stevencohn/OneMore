@@ -130,6 +130,13 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Extras\MapCommand.cs" />
+    <Compile Include="Commands\Extras\MapDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Extras\MapDialog.Designer.cs">
+      <DependentUpon>MapDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Extras\SplitCommand.cs" />
     <Compile Include="Commands\Extras\SplitDialog.cs">
       <SubType>Form</SubType>
@@ -652,6 +659,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Commands\Extras\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Extras\MapDialog.resx">
+      <DependentUpon>MapDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Extras\SplitDialog.resx">
       <DependentUpon>SplitDialog.cs</DependentUpon>
