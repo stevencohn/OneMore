@@ -545,6 +545,9 @@
     <Content Include="Colorizer\Languages\xml.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Colorizer\Languages\yaml.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Commands\Search\x.png" />
     <Content Include="Properties\Emoji\Architecture.png" />
     <None Include="Colorizer\Languages\csharp.json">
@@ -569,6 +572,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\python.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Colorizer\Languages\yaml.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Themes\dark-theme.json">

@@ -1,0 +1,51 @@
+{
+  "name": "Yaml",
+  "aliases": [
+    "yml"
+  ],
+  "rules": [
+    {
+      "pattern": "(#.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(\"[^\"\\n]*?\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "^\\s*([^:]+)$",
+      "captures": [
+        "PlainText"
+      ]
+    },
+    {
+      "pattern": "(?:[:>])\\s?([^#\\n]+)$",
+      "captures": [
+        "PlainText"
+      ]
+    },
+    {
+      "pattern": "^\\s*(-\\s*)?([^:\\n]+)",
+      "captures": [
+        "Operator",
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}
