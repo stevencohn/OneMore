@@ -44,6 +44,11 @@ namespace River.OneMoreAddIn
 
 				AddColorizerCommands(root);
 
+				var contextMenus = new XElement(ns + "contextMenus");
+				root.Add(contextMenus);
+
+				AddPictureContextMenuCommands(contextMenus);
+
 				var provider = new SettingsProvider();
 
 				var ribbonbar = provider.GetCollection("RibbonBarSheet");
@@ -82,7 +87,8 @@ namespace River.OneMoreAddIn
 
 				//logger.WriteLine(menu);
 
-				root.Add(new XElement(ns + "contextMenus", menu));
+				contextMenus.Add(menu);
+
 				return root.ToString(SaveOptions.DisableFormatting);
 			}
 			catch (Exception exc)
@@ -125,6 +131,35 @@ namespace River.OneMoreAddIn
 			{
 				logger.WriteLine("error building colorize menu", exc);
 			}
+		}
+
+
+		private void AddPictureContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuPicture"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxCaptionButton"),
+					new XAttribute("imageMso", "CaptionInsert"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("onAction", "AddCaptionCmd"),
+					new XAttribute("insertBeforeMso", "Cut")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxCropImageButton"),
+					new XAttribute("imageMso", "PictureCrop"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("onAction", "CropImageCmd"),
+					new XAttribute("insertBeforeMso", "Cut")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxResizeImagesButton"),
+					new XAttribute("imageMso", "GroupPictureCompress"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("onAction", "ResizeImagesCmd"),
+					new XAttribute("insertBeforeMso", "Cut")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omPictureContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "Cut"))
+				));
 		}
 
 
