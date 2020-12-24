@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn
 					new XAttribute("insertBeforeMso", "Cut")
 					));
 
-				//logger.WriteLine(menu.ToString());
+				//logger.WriteLine(menu);
 
 				root.Add(new XElement(ns + "contextMenus", menu));
 				return root.ToString(SaveOptions.DisableFormatting);

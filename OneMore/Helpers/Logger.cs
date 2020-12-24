@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Text;
 	using System.Threading;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -277,6 +278,12 @@ namespace River.OneMoreAddIn
 		{
 			WriteLine(message);
 			WriteLine(exc);
+		}
+
+
+		public void WriteLine(XElement element)
+		{
+			WriteLine(element.ToString());
 		}
 
 

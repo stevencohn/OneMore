@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				//logger.WriteLine(root.ToString());
+				//logger.WriteLine(root);
 				one.UpdateHierarchy(root);
 			}
 
@@ -236,7 +236,7 @@ namespace River.OneMoreAddIn.Commands
 				SortSection(notebook, ns,
 					key, direction == SortDialog.Directions.Ascending, pinNotes);
 
-				//logger.WriteLine(notebook.ToString());
+				//logger.WriteLine(notebook);
 				one.UpdateHierarchy(notebook);
 			}
 
@@ -357,7 +357,7 @@ namespace River.OneMoreAddIn.Commands
 
 				root.ReplaceNodes(books);
 
-				//logger.WriteLine(root.ToString());
+				//logger.WriteLine(root);
 				one.UpdateHierarchy(root);
 			}
 

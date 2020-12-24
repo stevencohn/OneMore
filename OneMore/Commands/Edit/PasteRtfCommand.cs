@@ -322,7 +322,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			logger.WriteLine(root.ToString());
+			logger.WriteLine(root);
 			return root.ToString(SaveOptions.DisableFormatting);
 		}
 

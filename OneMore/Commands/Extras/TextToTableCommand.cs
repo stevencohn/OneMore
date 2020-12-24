@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 
 					first.ReplaceNodes(table.Root);
 
-					//logger.WriteLine(page.Root.ToString());
+					//logger.WriteLine(page.Root);
 					one.Update(page);
 				}
 			}

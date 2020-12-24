@@ -612,7 +612,7 @@ namespace River.OneMoreAddIn
 			catch (Exception exc)
 			{
 				logger.WriteLine("error updating page content", exc);
-				logger.WriteLine(element.ToString());
+				logger.WriteLine(element);
 				logger.WriteLine();
 			}
 		}
@@ -633,7 +633,7 @@ namespace River.OneMoreAddIn
 			catch (Exception exc)
 			{
 				logger.WriteLine("error updating hierarchy", exc);
-				logger.WriteLine(element.ToString());
+				logger.WriteLine(element);
 				logger.WriteLine();
 			}
 		}
