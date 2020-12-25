@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Globalization;
 	using System.Linq;
 	using System.Media;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml;
 	using System.Xml.Linq;
@@ -31,6 +32,8 @@ namespace River.OneMoreAddIn.Models
 		public static readonly string TagBankMetaName = "omTaggingBank";
 		// Page meta to specify page tag list
 		public static readonly string TaggingMetaName = "omTaggingLabels";
+
+		private bool reverseScanning;
 
 
 		/// <summary>
@@ -284,7 +287,8 @@ namespace River.OneMoreAddIn.Models
 		/// <summary>
 		/// Invokes an edit function on the selected text. The selection may be either infered
 		/// from the current cursor position or explicitly highlighted as a selected region.
-		/// No assumptions are made as to the resultant content
+		/// No assumptions are made as to the resultant content or the order in which parts of
+		/// context are edited.
 		/// </summary>
 		/// <param name="edit">
 		/// A Func that accepts an XNode and returns an XNode. The accepted XNode is either an
@@ -307,6 +311,9 @@ namespace River.OneMoreAddIn.Models
 				// Just FYI, because we use XElement.Parse to build the DOM, XText nodes will be
 				// singular but may be surrounded by SPAN elements; i.e., there shouldn't be two
 				// consecutive XText nodes next to each other
+
+				// indicate to GetSelected() that we're scanning in reverse
+				reverseScanning = true;
 
 				// is there a preceding T?
 				if ((cursor.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
@@ -373,6 +380,9 @@ namespace River.OneMoreAddIn.Models
 					cdata.Value = wrapper.GetInnerXml();
 					updated = true;
 				}
+
+				// indicate to GetSelected() that we're scanning forward
+				reverseScanning = false;
 
 				// is there a following T?
 				if ((cursor.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
@@ -568,6 +578,43 @@ namespace River.OneMoreAddIn.Models
 			return Root.Elements(Namespace + "Meta")
 				.FirstOrDefault(e => e.Attribute("name").Value == name)?
 				.Attribute("content").Value;
+		}
+
+
+		/// <summary>
+		/// Gets the currently selected text. If the text cursor is positioned over a word but
+		/// with zero selection length then that word is returned; othewise, text from the selected
+		/// region is returned.
+		/// </summary>
+		/// <returns>A string of the selected text</returns>
+		public string GetSelectedText()
+		{
+			var builder = new StringBuilder();
+
+			// not editing... just using EditSelected to extract the current text,
+			// ignoring inline span styling
+
+			EditSelected((s) =>
+			{
+				if (s is XText text)
+				{
+					if (reverseScanning)
+						builder.Insert(0, text.Value);
+					else
+						builder.Append(text.Value);
+				}
+				else
+				{
+					if (reverseScanning)
+						builder.Insert(0, ((XElement)s).Value);
+					else
+						builder.Append(((XElement)s).Value);
+				}
+
+				return s;
+			});
+
+			return builder.ToString();
 		}
 
 

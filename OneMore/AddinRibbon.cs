@@ -376,7 +376,7 @@ namespace River.OneMoreAddIn
 				new XAttribute("label", engine.Element("name").Value),
 				new XAttribute("getImage", "GetRibbonSearchImage"),
 				new XAttribute("tag", engine.Element("uri").Value),
-				new XAttribute("onAction", "SearchEngineCmd")
+				new XAttribute("onAction", "SearchWebCmd")
 				);
 		}
 
