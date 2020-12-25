@@ -27,19 +27,19 @@ namespace River.OneMoreAddIn
 		/// </param>
 		/// <returns>A string containing the formatted report</returns>
 
-		public static string FormatDetails (this Exception exc, bool full = true)
+		public static string FormatDetails(this Exception exc)
 		{
 			var builder = new StringBuilder();
 			builder.AppendLine(exc.GetType().FullName);
 
-			FormatDetails(exc, builder, 0, full);
+			FormatDetails(exc, builder, 0);
 
 			return builder.ToString();
 		}
 
 
-		private static void FormatDetails (
-			Exception exc, StringBuilder builder, int depth, bool full)
+		private static void FormatDetails(
+			Exception exc, StringBuilder builder, int depth)
 		{
 			string h = new string(' ', depth * 2);
 			if (depth > 0)
@@ -55,51 +55,49 @@ namespace River.OneMoreAddIn
 
 			builder.AppendLine($"{h}Message: {exc.Message}");
 
-			if (full)
+			if (exc is COMException cex)
 			{
-				if (exc is COMException cex)
-				{
-					builder.AppendLine($"{h}ErrorCode: 0x{cex.ErrorCode:X} ({cex.ErrorCode})");
-					builder.AppendLine($"{h}HResult: 0x{cex.HResult:X} ({cex.HResult})");
-				}
+				builder.AppendLine($"{h}Description: {ErrorCodes.GetDescription(cex.ErrorCode)}");
+				builder.AppendLine($"{h}ErrorCode: 0x{cex.ErrorCode:X} ({cex.ErrorCode})");
+				builder.AppendLine($"{h}HResult: 0x{cex.HResult:X} ({cex.HResult})");
+			}
 
-				if (!string.IsNullOrEmpty(exc.Source))
-				{
-					builder.AppendLine($"{h}Source: {exc.Source}");
-				}
+			if (!string.IsNullOrEmpty(exc.Source))
+			{
+				builder.AppendLine($"{h}Source: {exc.Source}");
+			}
 
-				if (!string.IsNullOrEmpty(exc.StackTrace))
-				{
-					builder.AppendLine($"{h}StackTrace: {exc.StackTrace}");
-				}
+			if (!string.IsNullOrEmpty(exc.StackTrace))
+			{
+				builder.AppendLine($"{h}StackTrace: {exc.StackTrace}");
+			}
 
-				if (!string.IsNullOrEmpty(exc.HelpLink))
-				{
-					builder.AppendLine($"{h}HelpLink: {exc.HelpLink}");
-				}
+			if (!string.IsNullOrEmpty(exc.HelpLink))
+			{
+				builder.AppendLine($"{h}HelpLink: {exc.HelpLink}");
+			}
 
-				if (exc.TargetSite != null)
-				{
-					var asm = exc.TargetSite.DeclaringType.Assembly.GetName().Name;
-					var typ = exc.TargetSite.DeclaringType;
-					var nam = exc.TargetSite.Name;
-					builder.AppendLine($"{h}TargetSite: [{asm}] {typ}::{nam}()");
-				}
+			if (exc.TargetSite != null)
+			{
+				var asm = exc.TargetSite.DeclaringType.Assembly.GetName().Name;
+				var typ = exc.TargetSite.DeclaringType;
+				var nam = exc.TargetSite.Name;
+				builder.AppendLine($"{h}TargetSite: [{asm}] {typ}::{nam}()");
+			}
 
-				if (exc.Data?.Count > 0)
+			if (exc.Data?.Count > 0)
+			{
+				var e = exc.Data.GetEnumerator();
+				while (e.MoveNext())
 				{
-					var e = exc.Data.GetEnumerator();
-					while (e.MoveNext())
-					{
-						builder.AppendLine(
-							$"{h} Data: {e.Key.ToString() + " = " + e.Current.ToString()}");
-					}
+					builder.AppendLine(
+						$"{h} Data: {e.Key.ToString() + " = " + e.Current.ToString()}");
 				}
 			}
 
 			if (exc.InnerException != null)
 			{
-				FormatDetails(exc, builder, depth + 1, full);
+				FormatDetails(exc, builder, depth + 1);
 			}
 		}
 	}

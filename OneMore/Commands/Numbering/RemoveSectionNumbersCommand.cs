@@ -39,7 +39,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private int RemoveNumbering(XElement root, XNamespace ns)
 		{
-			var sections = root.Elements(ns + "Section").ToList();
+			var sections = root.Elements(ns + "Section")
+				.Where(e => !e.Attributes().Any(a => a.Name.LocalName.Contains("RecycleBin")))
+				.ToList();
 
 			foreach (var section in sections)
 			{
@@ -55,7 +57,13 @@ namespace River.OneMoreAddIn.Commands
 					var match = pattern.Match(name.Value);
 					if (match.Success)
 					{
-						name.Value = name.Value.Substring(match.Groups[1].Length);
+						var stripped = name.Value.Substring(match.Groups[1].Length);
+
+						// only rename if not duplicate
+						if (!sections.Any(s => s.Attribute("name").Value == stripped))
+						{
+							name.Value = stripped;
+						}
 					}
 				}
 			}
