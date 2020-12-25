@@ -4,10 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	//************************************************************************************************
-	// Copyright © 2020 Steven M Cohn.  All rights reserved.
-	//************************************************************************************************
-
 	internal static class ErrorCodes
 	{
 		public static string GetDescription(int code)
