@@ -47,6 +47,8 @@ namespace River.OneMoreAddIn
 				var contextMenus = new XElement(ns + "contextMenus");
 				root.Add(contextMenus);
 
+				AddNotebookContextMenuCommands(contextMenus);
+				AddPageAreaContextMenuCommands(contextMenus);
 				AddPictureContextMenuCommands(contextMenus);
 
 				var provider = new SettingsProvider();
@@ -131,6 +133,51 @@ namespace River.OneMoreAddIn
 			{
 				logger.WriteLine("error building colorize menu", exc);
 			}
+		}
+
+
+		private void AddNotebookContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuNotebook"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxNumberSectionsButton"),
+					new XAttribute("imageMso", "LineNumbersMenu"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "NumberSectionsCmd"),
+					new XAttribute("insertBeforeMso", "ShareThisNotebook")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxRemoveSectionNumbersButton"),
+					new XAttribute("imageMso", "HeaderFooterRemoveHeaderWord"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "RemoveSectionNumbersCmd"),
+					new XAttribute("insertBeforeMso", "ShareThisNotebook")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omNotebookContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "ShareThisNotebook"))
+				));
+		}
+
+
+		private void AddPageAreaContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuPageArea"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxNumberPagesButton"),
+					new XAttribute("imageMso", "CustomPageNumberGallery"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "NumberPagesCmd")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxRemovePageNumbersButton"),
+					new XAttribute("imageMso", "PageNumbersRemove"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "RemovePageNumbersCmd"))
+				));
 		}
 
 
