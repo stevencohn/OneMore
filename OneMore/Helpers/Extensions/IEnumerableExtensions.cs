@@ -12,6 +12,15 @@ namespace River.OneMoreAddIn
 	internal static class IEnumerableExtensions
 	{
 
+		public static void ForEach<T>(this IEnumerable<T> collection, Action<T> action)
+		{
+			foreach (T item in collection)
+			{
+				action(item);
+			}
+		}
+
+
 		public static bool IsNullOrEmpty<T>(this IEnumerable<T> collection)
 		{
 			return collection == null || !collection.Any();

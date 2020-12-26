@@ -1031,12 +1031,12 @@ Notebooks</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>HTML-bestand|*.htm|Word-bestand|*.docx|PDF-bestand|*.pdf|XML-bestand|*.xml</value>
-    <comment>Save as dialog filename filter string</comment>
+    HTML-bestand | * .htm | Word-bestand | * .docx | PDF-bestand | * .pdf | XML-bestand | * .xml | OneNote-bestand | * .one
+    Save as dialog filename filter string EDIT
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>De bestandsextensie moet .htm, .docx, .pdf of .xml zijn</value>
-    <comment>Save as dialog invalid file type message</comment>
+    De bestandsextensie moet .htm, .docx, .pdf, .xml of .one zijn
+    Save as dialog invalid file type message EDIT
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
     <value>Pagina opgeslagen in {0}</value>
@@ -1642,11 +1642,12 @@ Symbolen: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>HTML-bestand (*.htm)
-PDF-bestand (*.pdf)
-Word-bestand (*.docx)
-XML-bestand (*.xml)</value>
-    <comment>combo box</comment>
+    HTML-bestand (* .htm)
+PDF-bestand (* .pdf)
+Word-bestand (* .docx)
+XML-bestand (* .xml)
+OneNote-bestand (* .one)
+    combo box EDIT
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Formaat:</value>
@@ -1685,8 +1686,8 @@ XML-bestand (*.xml)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Selecteer een Word- of Powerpoint-bestand</value>
-    <comment>label</comment>
+    Selecteer een bestand om te importeren
+    label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>
@@ -1725,8 +1726,8 @@ XML-bestand (*.xml)</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word-bestanden (*.doc)|*.docx|Powerpoint-bestanden (*.pptx)|*.pptx</value>
-    <comment>openfiledialog filter</comment>
+    Word-bestanden (* .doc) | * .docx | Powerpoint-bestanden (* .pptx) | * .pptx | OneMore-sjabloonbestanden (* .xml) | * .xml
+    openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Kies een bestand om te importeren</value>

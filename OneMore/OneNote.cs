@@ -356,7 +356,7 @@ namespace River.OneMoreAddIn
 		{
 			if (!string.IsNullOrEmpty(id))
 			{
-				onenote.GetHierarchy(id, (HierarchyScope)scope, out var xml);
+				onenote.GetHierarchy(id, (HierarchyScope)scope, out var xml, XMLSchema.xs2013);
 				if (!string.IsNullOrEmpty(xml))
 				{
 					return XElement.Parse(xml);
@@ -515,7 +515,7 @@ namespace River.OneMoreAddIn
 		{
 			if (!string.IsNullOrEmpty(id))
 			{
-				onenote.GetHierarchy(id, HierarchyScope.hsPages, out var xml);
+				onenote.GetHierarchy(id, HierarchyScope.hsPages, out var xml, XMLSchema.xs2013);
 				if (!string.IsNullOrEmpty(xml))
 				{
 					return XElement.Parse(xml);
@@ -714,6 +714,73 @@ namespace River.OneMoreAddIn
 		public void Export(string pageId, string path, ExportFormat format)
 		{
 			onenote.Publish(pageId, path, (PublishFormat)format, string.Empty);
+		}
+
+
+		/// <summary>
+		/// Imports the specified file under the current section.
+		/// </summary>
+		/// <param name="path">The path to a .one file</param>
+		/// <returns>The ID of the new hierarchy object (pageId)</returns>
+		public string Import(string path)
+		{
+
+			/* TODO: Incomplete! 
+			 * 
+			 * OpenHierarchy, followed by SyncHierarchy should load the .one file and then
+			 * GetSection would load the hierarchy down to the page level. But the one:Section
+			 * has an attribute areAllPagesAvailable=false which means the page isn't loaded...
+			 * 
+			 * I can't figure out why! :-(
+			 */
+
+			System.Diagnostics.Debugger.Launch();
+
+
+			// opening a .one file places its content in the transient OpenSections area
+			// with its own notebook structure; need to dive down to find the page...
+
+			logger.WriteLine($"opening {path}");
+			onenote.OpenHierarchy(path, null, out var openSectionId, CreateFileType.cftSection);
+			onenote.SyncHierarchy(openSectionId);
+
+			//var notebooks = GetNotebooks();
+			//var openId = notebooks.Elements(ns + "OpenSections").FirstOrDefault()?.Attribute("ID").Value;
+			//if (openId == null)
+			//{
+			//	logger.WriteLine("OpenSections section ID not found");
+			//	return null;
+			//}
+
+			var openSection = GetSection(openSectionId);
+			var ns = GetNamespace(openSection);
+
+			logger.WriteLine("opensection");
+			logger.WriteLine(openSection);
+			var templateId = openSection.Descendants(ns + "Page").LastOrDefault()?.Attribute("ID").Value;
+			if (templateId == null)
+			{
+				logger.WriteLine("template page ID not found");
+				return null;
+			}
+
+			var template = GetPage(templateId, PageDetail.BinaryData);
+
+			// recreate the page in the current section
+			CreatePage(CurrentSectionId, out var pageId);
+			template.Root.Descendants().Attributes("objectID").Remove();
+			template.Root.Attribute("ID").Value = pageId;
+			Update(template);
+
+			NavigateTo(pageId);
+
+			// if OpenSections contains only this page the assume it is newly opened so close it
+			//if (open.Descendants(ns + "Page").Count() == 1)
+			//{
+			//	onenote.CloseNotebook(openId);
+			//}
+
+			return pageId;
 		}
 
 

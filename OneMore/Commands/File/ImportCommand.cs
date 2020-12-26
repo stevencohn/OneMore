@@ -34,13 +34,23 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				if (dialog.WordFile)
+				switch (dialog.Format)
 				{
-					ImportWord(dialog.FilePath, dialog.AppendToPage);
-				}
-				else
-				{
-					ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.CreateSection);
+					case ImportDialog.Formats.Word:
+						ImportWord(dialog.FilePath, dialog.AppendToPage);
+						break;
+
+					case ImportDialog.Formats.PowerPoint:
+						ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.CreateSection);
+						break;
+
+					case ImportDialog.Formats.Xml:
+						ImportXml(dialog.FilePath);
+						break;
+
+					case ImportDialog.Formats.OneNote:
+						ImportOneNote(dialog.FilePath);
+						break;
 				}
 			}
 		}
@@ -250,7 +260,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// The Worker!
+		// Our trusty little worker
 
 		private bool RunBackgroundTask(string path, Action action)
 		{
@@ -292,6 +302,68 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return true;
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// XML...
+
+		private void ImportXml(string filepath)
+		{
+			try
+			{
+				// load page-from-file
+				var template = new Page(XElement.Load(filepath));
+
+				using (var one = new OneNote())
+				{
+					one.CreatePage(one.CurrentSectionId, out var pageId);
+
+					// remove any objectID values and let OneNote generate new IDs
+					template.Root.Descendants().Attributes("objectID").Remove();
+
+					// set the page ID to the new page's ID
+					template.Root.Attribute("ID").Value = pageId;
+
+					if (string.IsNullOrEmpty(template.Title))
+					{
+						template.Title = Path.GetFileNameWithoutExtension(filepath);
+					}
+
+					one.Update(template);
+					one.NavigateTo(pageId);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
+				UIHelper.ShowMessage("Could not import. See log file for details");
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// OneNote...
+
+		private void ImportOneNote(string filepath)
+		{
+			try
+			{
+				using (var one = new OneNote())
+				{
+					/*
+					 * TODO: Incomplete! See the OneNote.Import method for details :-(
+					 */
+
+					var pageId = one.Import(filepath);
+					//one.NavigateTo(pageId);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
+				UIHelper.ShowMessage("Could not import. See log file for details");
+			}
 		}
 	}
 }
