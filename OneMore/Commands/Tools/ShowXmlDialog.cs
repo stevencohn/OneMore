@@ -455,7 +455,8 @@ namespace River.OneMoreAddIn.Commands
 				sectionButton.Checked = false;
 				currSectionButton.Checked = false;
 
-				ShowHierarchy(content, (string)manualFxBox.SelectedItem);
+				ShowHierarchy(content,
+					$"{(string)manualFxBox.SelectedItem}(\"{manualIdBox.Text}\")");
 			}
 			catch (Exception exc)
 			{

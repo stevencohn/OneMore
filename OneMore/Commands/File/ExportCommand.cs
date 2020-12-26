@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					var page = one.GetPage();
+					var page = one.GetPage(OneNote.PageDetail.BinaryData);
 					ExportOne(one, page);
 				}
 			}
@@ -70,6 +70,7 @@ namespace River.OneMoreAddIn.Commands
 				case OneNote.ExportFormat.PDF: ext = ".pdf"; break;
 				case OneNote.ExportFormat.Word: ext = ".docx"; break;
 				case OneNote.ExportFormat.XML: ext = ".xml"; break;
+				case OneNote.ExportFormat.OneNote: ext = ".one"; break;
 			}
 
 			string formatName = format.ToString();
@@ -81,7 +82,7 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var pageID in pageIDs)
 				{
-					var page = one.GetPage(pageID);
+					var page = one.GetPage(pageID, OneNote.PageDetail.BinaryData);
 					var filename = Path.Combine(path, page.Title.Replace(' ', '_') + ext);
 
 					progress.SetMessage(filename);
@@ -139,6 +140,7 @@ namespace River.OneMoreAddIn.Commands
 				case ".pdf": format = OneNote.ExportFormat.PDF; break;
 				case ".docx": format = OneNote.ExportFormat.Word; break;
 				case ".xml": format = OneNote.ExportFormat.XML; break;
+				case ".one": format = OneNote.ExportFormat.OneNote; break;
 
 				default:
 					UIHelper.ShowError(Resx.SaveAs_Invalid_Type);

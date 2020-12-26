@@ -1251,7 +1251,8 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to HTML File (*.htm)
         ///PDF File (*.pdf)
         ///Word File (*.docx)
-        ///XML File (*.xml).
+        ///XML File (*.xml)
+        ///OneNote File (*.one).
         /// </summary>
         internal static string ExportDialog_formatBox_Text {
             get {
@@ -1598,7 +1599,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a Word or Powerpoint file.
+        ///   Looks up a localized string similar to Select a file to import.
         /// </summary>
         internal static string ImportDialog_introLabel_Text {
             get {
@@ -1616,7 +1617,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx.
+        ///   Looks up a localized string similar to Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|OneNote File (*.one)|*.one.
         /// </summary>
         internal static string ImportDialog_OpenFileFilter {
             get {
@@ -4061,7 +4062,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml.
+        ///   Looks up a localized string similar to HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml|OneNote File|*.one.
         /// </summary>
         internal static string SaveAs_Filter {
             get {
@@ -4070,7 +4071,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File extension must be one of .htm, .docx, .pdf, or .xml.
+        ///   Looks up a localized string similar to File extension must be one of .htm, .docx, .pdf, .xml, or .one.
         /// </summary>
         internal static string SaveAs_Invalid_Type {
             get {

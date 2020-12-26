@@ -1049,12 +1049,12 @@ Notebooks</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml</value>
-    <comment>Save as dialog filename filter string</comment>
+    <value>HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml|OneNote File|*.one</value>
+    <comment>Save as dialog filename filter string EDIT</comment>
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>File extension must be one of .htm, .docx, .pdf, or .xml</value>
-    <comment>Save as dialog invalid file type message</comment>
+    <value>File extension must be one of .htm, .docx, .pdf, .xml, or .one</value>
+    <comment>Save as dialog invalid file type message EDIT</comment>
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
     <value>Page saved to {0}</value>
@@ -1862,8 +1862,9 @@ Symbols: PI, E</value>
     <value>HTML File (*.htm)
 PDF File (*.pdf)
 Word File (*.docx)
-XML File (*.xml)</value>
-    <comment>combo box</comment>
+XML File (*.xml)
+OneNote File (*.one)</value>
+    <comment>combo box EDIT</comment>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Format:</value>
@@ -1902,8 +1903,8 @@ XML File (*.xml)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Select a Word or Powerpoint file</value>
-    <comment>label</comment>
+    <value>Select a file to import</value>
+    <comment>label EDIT</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>
@@ -1942,8 +1943,8 @@ XML File (*.xml)</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx</value>
-    <comment>openfiledialog filter</comment>
+    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|OneNote File (*.one)|*.one</value>
+    <comment>openfiledialog filter EDIT</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Choose file to import</value>
