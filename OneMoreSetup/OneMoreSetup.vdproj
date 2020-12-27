@@ -166,13 +166,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DBD3D29BACD4698EFD768E04D3B875B2"
+        "OwnerKey" = "8:_692D7E391D074D36AD2530720FB8D6C4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_692D7E391D074D36AD2530720FB8D6C4"
+        "OwnerKey" = "8:_DBD3D29BACD4698EFD768E04D3B875B2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -948,15 +948,15 @@
         {
         "Name" = "8:OneMoreAddIn"
         "ProductName" = "8:OneMoreAddIn"
-        "ProductCode" = "8:{342D069C-97FD-4988-A0BB-8EF5C5C4D006}"
-        "PackageCode" = "8:{F7A9F0C3-5950-45F8-90A8-12CA459287E7}"
+        "ProductCode" = "8:{3A85E8A6-4ED3-49A4-8E67-8FB18385D2D7}"
+        "PackageCode" = "8:{78E53D2B-ECDA-474C-951A-161CA89A6B0E}"
         "UpgradeCode" = "8:{058F6D04-E0D0-4984-B6B7-7FE0C581680E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:3.11"
+        "ProductVersion" = "8:3.11.1"
         "Manufacturer" = "8:River"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
