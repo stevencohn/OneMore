@@ -394,7 +394,6 @@
                 id="ribSplitButton"
                 imageMso="MasterDocumentSplitSubdocuments"
                 getLabel="GetRibbonLabel"
-                getEnabled="GetBodyContext"
                 onAction="SplitCmd"/>
               <button
                 id="ribStrikeoutTasksButton"

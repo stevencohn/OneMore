@@ -179,6 +179,7 @@
     <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
+    <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -219,7 +220,7 @@
     <Compile Include="Commands\File\RunPluginCommand.cs" />
     <Compile Include="Commands\File\ExportCommand.cs" />
     <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
-    <Compile Include="Commands\Tools\SearchEngineCommand.cs" />
+    <Compile Include="Commands\Search\SearchWebCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
@@ -638,6 +639,7 @@
     <Content Include="Properties\Images\Page.png" />
     <Content Include="Properties\Images\Refresh.png" />
     <Content Include="Properties\Images\Reorder.png" />
+    <Content Include="Properties\Images\Run.png" />
     <Content Include="Properties\Images\SaveAs.png" />
     <Content Include="Properties\Images\Search.png" />
     <Content Include="Properties\Images\SearchTag.png" />

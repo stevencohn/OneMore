@@ -1024,12 +1024,12 @@ Pourcentage</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>Fichier HTML | * .htm | Fichier Word | * .docx | Fichier PDF | * .pdf | Fichier XML | * .xml</value>
-    <comment>Save as dialog filename filter string</comment>
+    Fichier HTML | * .htm | Fichier Word | * .docx | Fichier PDF | * .pdf | Fichier XML | * .xml | Fichier OneNote | * .one
+    Save as dialog filename filter string EDIT
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>L'extension de fichier doit être l'un des .htm, .docx, .pdf ou .xml</value>
-    <comment>Save as dialog invalid file type message</comment>
+    L'extension de fichier doit être l'une des suivantes: .htm, .docx, .pdf, .xml ou .one
+    Save as dialog invalid file type message EDIT
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
     <value>Page enregistrée dans {0}</value>
@@ -1636,11 +1636,12 @@ Symboles: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>HTML File (*.htm)
-PDF File (*.pdf)
-Word File (*.docx)
-XML File (*.xml)</value>
-    <comment>combo box</comment>
+    Fichier HTML (* .htm)
+Fichier PDF (* .pdf)
+Fichier Word (* .docx)
+Fichier XML (* .xml)
+Fichier OneNote (* .one)
+    combo box EDIT
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Format:</value>
@@ -1679,8 +1680,8 @@ XML File (*.xml)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Sélectionnez un fichier Word ou Powerpoint</value>
-    <comment>label</comment>
+    Sélectionnez un fichier à importer
+    label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>D'accord</value>
@@ -1719,8 +1720,8 @@ XML File (*.xml)</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Fichiers Word (* .doc) | * .docx | Fichiers Powerpoint (* .pptx) | * .pptx</value>
-    <comment>openfiledialog filter</comment>
+    Fichiers Word (* .doc) | * .docx | Fichiers Powerpoint (* .pptx) | * .pptx | Fichiers de modèle OneMore (* .xml) | * .xml
+    openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Choisissez le fichier à importer</value>

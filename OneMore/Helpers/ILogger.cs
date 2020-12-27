@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -80,6 +81,13 @@ namespace River.OneMoreAddIn
 		/// <param name="message"></param>
 		/// <param name="exc"></param>
 		void WriteLine(string message, Exception exc);
+
+
+		/// <summary>
+		/// Writes the XML of the given XElement
+		/// </summary>
+		/// <param name="element"></param>
+		void WriteLine(XElement element);
 
 
 		/// <summary>

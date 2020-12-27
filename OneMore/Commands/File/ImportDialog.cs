@@ -15,6 +15,13 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ImportDialog : UI.LocalizableForm
 	{
+		public enum Formats
+		{
+			Word,
+			PowerPoint,
+			Xml,
+			OneNote
+		}
 
 		public ImportDialog()
 		{
@@ -52,9 +59,16 @@ namespace River.OneMoreAddIn.Commands
 
 		public string FilePath => pathBox.Text;
 
-		public bool WordFile { get; private set; }
+		public Formats Format { get; private set; }
 
-		public bool AppendToPage => WordFile ? wordAppendButton.Checked : powerAppendButton.Checked;
+		public bool AppendToPage
+		{
+			get
+			{
+				if (Format == Formats.Xml) return false;
+				return Format == Formats.Word ? wordAppendButton.Checked : powerAppendButton.Checked;
+			}
+		}
 
 		public bool CreateSection => powerSectionButton.Checked;
 
@@ -64,24 +78,41 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				var ext = Path.GetExtension(pathBox.Text);
-				if (ext == ".docx")
+
+				switch (ext)
 				{
-					wordGroup.Visible = true;
-					powerGroup.Visible = false;
-					okButton.Enabled = true;
-					WordFile = true;
-				}
-				else if (ext == ".pptx")
-				{
-					wordGroup.Visible = false;
-					powerGroup.Visible = true;
-					okButton.Enabled = true;
-					WordFile = false;
-				}
-				else
-				{
-					wordGroup.Visible = powerGroup.Visible = false;
-					okButton.Enabled = false;
+					case ".docx":
+						wordGroup.Visible = true;
+						powerGroup.Visible = false;
+						okButton.Enabled = true;
+						Format = Formats.Word;
+						break;
+
+					case ".pptx":
+						wordGroup.Visible = false;
+						powerGroup.Visible = true;
+						okButton.Enabled = true;
+						Format = Formats.PowerPoint;
+						break;
+
+					case ".xml":
+						wordGroup.Visible = false;
+						powerGroup.Visible = false;
+						okButton.Enabled = true;
+						Format = Formats.Xml;
+						break;
+
+					case ".one":
+						wordGroup.Visible = false;
+						powerGroup.Visible = false;
+						okButton.Enabled = true;
+						Format = Formats.OneNote;
+						break;
+
+					default:
+						wordGroup.Visible = powerGroup.Visible = false;
+						okButton.Enabled = false;
+						break;
 				}
 			}
 			catch
@@ -105,6 +136,11 @@ namespace River.OneMoreAddIn.Commands
 						AddExtension = true,
 						CheckFileExists = true,
 						DefaultExt = ".docx",
+
+						/*
+						 * TODO: Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|OneNote File (*.one)|*.one
+						 */
+
 						Filter = Resx.ImportDialog_OpenFileFilter,
 						InitialDirectory = path,
 						Multiselect = false,

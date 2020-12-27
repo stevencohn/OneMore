@@ -44,6 +44,14 @@ namespace River.OneMoreAddIn
 
 				AddColorizerCommands(root);
 
+				var contextMenus = new XElement(ns + "contextMenus");
+				root.Add(contextMenus);
+
+				AddNotebookContextMenuCommands(contextMenus);
+				AddPageContextMenuCommands(contextMenus);
+				AddPageAreaContextMenuCommands(contextMenus);
+				AddPictureContextMenuCommands(contextMenus);
+
 				var provider = new SettingsProvider();
 
 				var ribbonbar = provider.GetCollection("RibbonBarSheet");
@@ -82,7 +90,8 @@ namespace River.OneMoreAddIn
 
 				//logger.WriteLine(menu);
 
-				root.Add(new XElement(ns + "contextMenus", menu));
+				contextMenus.Add(menu);
+
 				return root.ToString(SaveOptions.DisableFormatting);
 			}
 			catch (Exception exc)
@@ -125,6 +134,111 @@ namespace River.OneMoreAddIn
 			{
 				logger.WriteLine("error building colorize menu", exc);
 			}
+		}
+
+
+		private void AddNotebookContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuNotebook"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxNumberSectionsButton"),
+					new XAttribute("imageMso", "LineNumbersMenu"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "NumberSectionsCmd"),
+					new XAttribute("insertBeforeMso", "ShareThisNotebook")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxRemoveSectionNumbersButton"),
+					new XAttribute("imageMso", "HeaderFooterRemoveHeaderWord"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "RemoveSectionNumbersCmd"),
+					new XAttribute("insertBeforeMso", "ShareThisNotebook")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omNotebookContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "ShareThisNotebook"))
+				));
+		}
+
+
+		private void AddPageContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuPage"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxExportButton"),
+					new XAttribute("imageMso", "FileSave"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getEnabled", "GetOfficeInstalled"),
+					new XAttribute("onAction", "ExportCmd"),
+					new XAttribute("insertBeforeMso", "RenamePageOneNote")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxMergeButton"),
+					new XAttribute("imageMso", "CompareAndCombine"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getEnabled", "GetMultiPageContext"),
+					new XAttribute("onAction", "MergeCmd"),
+					new XAttribute("insertBeforeMso", "RenamePageOneNote")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxSplitButton"),
+					new XAttribute("imageMso", "MasterDocumentSplitSubdocuments"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("onAction", "SplitCmd"),
+					new XAttribute("insertBeforeMso", "RenamePageOneNote")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omPageContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "RenamePageOneNote"))
+				));
+		}
+
+
+		private void AddPageAreaContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuPageArea"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxNumberPagesButton"),
+					new XAttribute("imageMso", "CustomPageNumberGallery"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "NumberPagesCmd")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxRemovePageNumbersButton"),
+					new XAttribute("imageMso", "PageNumbersRemove"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "RemovePageNumbersCmd"))
+				));
+		}
+
+
+		private void AddPictureContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuPicture"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxCaptionButton"),
+					new XAttribute("imageMso", "CaptionInsert"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("onAction", "AddCaptionCmd"),
+					new XAttribute("insertBeforeMso", "Cut")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxCropImageButton"),
+					new XAttribute("imageMso", "PictureCrop"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("onAction", "CropImageCmd"),
+					new XAttribute("insertBeforeMso", "Cut")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxResizeImagesButton"),
+					new XAttribute("imageMso", "GroupPictureCompress"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("onAction", "ResizeImagesCmd"),
+					new XAttribute("insertBeforeMso", "Cut")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omPictureContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "Cut"))
+				));
 		}
 
 
@@ -341,7 +455,7 @@ namespace River.OneMoreAddIn
 				new XAttribute("label", engine.Element("name").Value),
 				new XAttribute("getImage", "GetRibbonSearchImage"),
 				new XAttribute("tag", engine.Element("uri").Value),
-				new XAttribute("onAction", "SearchEngineCmd")
+				new XAttribute("onAction", "SearchWebCmd")
 				);
 		}
 

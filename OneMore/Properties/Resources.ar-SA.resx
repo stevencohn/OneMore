@@ -1030,12 +1030,12 @@
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>ملف HTML | * .htm | ملف Word | * .docx | ملف PDF | * .pdf | ملف XML | * .xml</value>
-    <comment>Save as dialog filename filter string</comment>
+    ملف HTML | * .htm | ملف Word | * .docx | ملف PDF | * .pdf | ملف XML | * .xml | ملف OneNote | * .one
+    Save as dialog filename filter string EDIT
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>يجب أن يكون امتداد الملف واحدًا من .htm أو .docx أو .pdf أو .xml</value>
-    <comment>Save as dialog invalid file type message</comment>
+    يجب أن يكون امتداد الملف واحدًا من .htm أو .docx أو .pdf أو .xml أو .one
+    Save as dialog invalid file type message EDIT
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
     <value>تم حفظ الصفحة في {0}</value>
@@ -1641,11 +1641,12 @@
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>ملف HTML (* .htm)
+    ملف HTML (* .htm)
 ملف PDF (* .pdf)
 ملف Word (* .docx)
-ملف XML (* .xml)</value>
-    <comment>combo box</comment>
+ملف XML (* .xml)
+ملف OneNote (* .one)
+    combo box EDIT
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>شكل:</value>
@@ -1684,8 +1685,8 @@
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>حدد ملف Word أو Powerpoint</value>
-    <comment>label</comment>
+    حدد ملفًا لاستيراده
+    label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>حسنا</value>
@@ -1724,8 +1725,8 @@
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>ملفات Word (* .doc) | * .docx | ملفات Powerpoint (* .pptx) | * .pptx</value>
-    <comment>openfiledialog filter</comment>
+    ملفات Word (* .doc) | * .docx | ملفات Powerpoint (* .pptx) | * .pptx | ملفات قالب إضافي واحد (* .xml) | * .xml
+    openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>اختر الملف المراد استيراده</value>

@@ -52,9 +52,9 @@ namespace River.OneMoreAddIn
 			var thread = System.Threading.Thread.CurrentThread;
 			Culture = thread.CurrentUICulture;
 
-			Culture = CultureInfo.GetCultureInfo("en-GB");
-			thread.CurrentCulture = Culture;
-			thread.CurrentUICulture = Culture;
+			//Culture = CultureInfo.GetCultureInfo("en-GB");
+			//thread.CurrentCulture = Culture;
+			//thread.CurrentUICulture = Culture;
 
 			logger.WriteLine();
 			logger.Start(

@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -27,28 +26,13 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				var builder = new StringBuilder();
-
-				// not editing... just using EditSelected to extract the current word
-				page.EditSelected((s) =>
-				{
-					if (s is XText text)
-					{
-						builder.Append(text.Value);
-					}
-					else
-					{
-						builder.Append(((XElement)s).Value);
-					}
-
-					return s;
-				});
+				var text = page.GetSelectedText();
 
 				using (var dialog = new SearchAndReplaceDialog())
 				{
-					if (builder.Length > 0)
+					if (text.Length > 0)
 					{
-						dialog.WhatText = builder.ToString();
+						dialog.WhatText = text;
 					}
 
 					if (dialog.ShowDialog(owner) != DialogResult.OK)

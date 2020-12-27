@@ -1028,12 +1028,12 @@ OneNote 将自动关闭</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>HTML圆角| .htm | HML圆角| .hml</value>
-    <comment>Save as dialog filename filter string</comment>
+    HTML文件| * .htm | Word文件| * .docx | PDF文件| * .pdf | XML文件| * .xml | OneNote文件| * .one
+    Save as dialog filename filter string EDIT
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>文件类型必须为.htm或.xml</value>
-    <comment>Save as dialog invalid file type message</comment>
+    文件扩展名必须是.htm，.docx，.pdf，.xml或.one之一
+    Save as dialog invalid file type message EDIT
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
     <value>页面已保存到{0}</value>
@@ -1638,11 +1638,12 @@ OneNote 将自动关闭</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>HTML档案（* .htm）
+    HTML档案（* .htm）
 PDF档案（* .pdf）
 Word文件（* .docx）
-XML档案（* .xml）</value>
-    <comment>combo box</comment>
+XML档案（* .xml）
+OneNote文件（* .one）
+    combo box EDIT
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>格式：</value>
@@ -1681,8 +1682,8 @@ XML档案（* .xml）</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>选择一个Word或Powerpoint文件</value>
-    <comment>label</comment>
+    选择要导入的文件
+    label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>好</value>
@@ -1721,8 +1722,8 @@ XML档案（* .xml）</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word文件（* .doc）| * .docx | PowerPoint文件（* .pptx）| * .pptx</value>
-    <comment>openfiledialog filter</comment>
+    Word文件（* .doc）| * .docx | PowerPoint文件（* .pptx）| * .pptx | OneMore模板文件（* .xml）| * .xml
+    openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>选择要导入的文件</value>

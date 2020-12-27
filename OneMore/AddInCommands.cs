@@ -183,8 +183,8 @@ namespace River.OneMoreAddIn
 		public void SearchAndReplaceCmd(IRibbonControl control)
 			=> factory.Run<SearchAndReplaceCommand>();
 
-		public void SearchEngineCmd(IRibbonControl control)
-			=> factory.Run<SearchEngineCommand>(control.Tag);
+		public void SearchWebCmd(IRibbonControl control)
+			=> factory.Run<SearchWebCommand>(control.Tag);
 
 		public void SettingsCmd(IRibbonControl control)
 			=> factory.Run<SettingsCommand>();

@@ -50,9 +50,10 @@ namespace River.OneMoreAddIn.Commands
 					case 0: return OneNote.ExportFormat.HTML;
 					case 1: return OneNote.ExportFormat.PDF;
 					case 2: return OneNote.ExportFormat.Word;
+					case 3: return OneNote.ExportFormat.XML;
 
 					default:
-						return OneNote.ExportFormat.XML;
+						return OneNote.ExportFormat.OneNote;
 				}
 			}
 		}

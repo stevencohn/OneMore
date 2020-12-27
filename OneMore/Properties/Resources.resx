@@ -1049,11 +1049,11 @@ Notebooks</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAs_Filter" xml:space="preserve">
-    <value>HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml</value>
+    <value>HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml|OneNote File|*.one</value>
     <comment>Save as dialog filename filter string</comment>
   </data>
   <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>File extension must be one of .htm, .docx, .pdf, or .xml</value>
+    <value>File extension must be one of .htm, .docx, .pdf, .xml, or .one</value>
     <comment>Save as dialog invalid file type message</comment>
   </data>
   <data name="SaveAs_Success" xml:space="preserve">
@@ -1862,7 +1862,8 @@ Symbols: PI, E</value>
     <value>HTML File (*.htm)
 PDF File (*.pdf)
 Word File (*.docx)
-XML File (*.xml)</value>
+XML File (*.xml)
+OneNote File (*.one)</value>
     <comment>combo box</comment>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
@@ -1902,7 +1903,7 @@ XML File (*.xml)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Select a Word or Powerpoint file</value>
+    <value>Select a file to import</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
@@ -1942,7 +1943,7 @@ XML File (*.xml)</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx</value>
+    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

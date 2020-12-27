@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Runtime.InteropServices;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
@@ -410,6 +411,75 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				hierBox.Text = "no hierarchy";
+			}
+		}
+
+
+		private void CheckManualInput(object sender, EventArgs e)
+		{
+			manulRunButton.Enabled =
+				manualIdBox.Text.Trim().Length > 0 &&
+				manualFxBox.SelectedIndex >= 0;
+		}
+
+
+		private void RunManual(object sender, EventArgs e)
+		{
+			try
+			{
+				XElement content = null;
+
+				switch (manualFxBox.SelectedIndex)
+				{
+					case 0:
+						content = one.GetNotebook(manualIdBox.Text, OneNote.Scope.Pages);
+						break;
+
+					case 1:
+						content = one.GetSection(manualIdBox.Text);
+						break;
+
+					case 2:
+						content = one.GetPage(manualIdBox.Text, OneNote.PageDetail.BinaryData).Root;
+						break;
+				}
+
+				if (content == null)
+				{
+					UIHelper.ShowMessage("Cannot find object ID");
+					return;
+				}
+
+				notebooksButton.Checked = false;
+				notebookButton.Checked = false;
+				sectionButton.Checked = false;
+				currSectionButton.Checked = false;
+
+				ShowHierarchy(content,
+					$"{(string)manualFxBox.SelectedItem}(\"{manualIdBox.Text}\")");
+			}
+			catch (Exception exc)
+			{
+				if (exc is COMException cex)
+				{
+					if ((uint)cex.ErrorCode == 0x80042014)
+					{
+						UIHelper.ShowMessage("Invalid ObjectID");
+						return;
+					}
+				}
+
+				notebooksButton.Checked = false;
+				notebookButton.Checked = false;
+				sectionButton.Checked = false;
+				currSectionButton.Checked = false;
+
+				hierBox.SelectionColor = Color.Black;
+				hierBox.Text = exc.FormatDetails();
+				hierBox.SelectAll();
+				hierBox.SelectionColor = Color.Red;
+
+				logger.WriteLine(exc);
 			}
 		}
 
