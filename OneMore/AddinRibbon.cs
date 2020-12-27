@@ -48,6 +48,7 @@ namespace River.OneMoreAddIn
 				root.Add(contextMenus);
 
 				AddNotebookContextMenuCommands(contextMenus);
+				AddPageContextMenuCommands(contextMenus);
 				AddPageAreaContextMenuCommands(contextMenus);
 				AddPictureContextMenuCommands(contextMenus);
 
@@ -157,6 +158,37 @@ namespace River.OneMoreAddIn
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "omNotebookContextMenuSeparator"),
 					new XAttribute("insertBeforeMso", "ShareThisNotebook"))
+				));
+		}
+
+
+		private void AddPageContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuPage"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxExportButton"),
+					new XAttribute("imageMso", "FileSave"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getEnabled", "GetOfficeInstalled"),
+					new XAttribute("onAction", "ExportCmd"),
+					new XAttribute("insertBeforeMso", "RenamePageOneNote")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxMergeButton"),
+					new XAttribute("imageMso", "CompareAndCombine"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getEnabled", "GetMultiPageContext"),
+					new XAttribute("onAction", "MergeCmd"),
+					new XAttribute("insertBeforeMso", "RenamePageOneNote")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxSplitButton"),
+					new XAttribute("imageMso", "MasterDocumentSplitSubdocuments"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("onAction", "SplitCmd"),
+					new XAttribute("insertBeforeMso", "RenamePageOneNote")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omPageContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "RenamePageOneNote"))
 				));
 		}
 
