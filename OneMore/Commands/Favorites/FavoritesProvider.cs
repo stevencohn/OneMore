@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2006/01/customui";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
+		private static readonly string KbdShortcutsId = "omKeyboardShortcutsButton";
 		public static readonly string GotoFavoriteCmd = "GotoFavoriteCmd";
 
 		private readonly string path;
@@ -87,12 +88,23 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public XElement LoadFavorites()
 		{
+			XElement root = null;
+
 			if (File.Exists(path))
 			{
-				return UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None));
+				root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None));
 			}
 
-			return MakeMenuRoot();
+			root = MakeMenuRoot();
+
+			var kbdshorts = new Settings.SettingsProvider()
+				.GetCollection("FavoritesSheet")?
+				.Get<bool>("kbdshorts") == true;
+
+			if (kbdshorts)
+			{
+
+			}
 		}
 
 

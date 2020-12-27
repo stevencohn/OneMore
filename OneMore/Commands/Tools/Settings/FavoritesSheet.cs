@@ -183,8 +183,12 @@ namespace River.OneMoreAddIn.Settings
 
 		public override void CollectSettings()
 		{
-			// favorites are not stored along with other settings,
-			// but save them here in their own file when other settings are saved...
+			var settings = provider.GetCollection(Name);
+			settings.Add("kbdshorts", shortcutsBox.Checked);
+
+			provider.SetCollection(settings);
+
+			// the actual favorites are stored in a separate file...
 
 			// if nothing was deleted then check if they reordered
 			if (!updated)
