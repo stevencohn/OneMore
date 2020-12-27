@@ -87,6 +87,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6FC0414FB3944B48829C3472884A0151"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_70D4E635A3724FCAA5DAF73B3E2C9DDC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -142,6 +148,12 @@
         "Entry"
         {
         "MsmKey" = "8:_D5BFDA93EBA14E93841364936B411A9B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D63713B5D64D40C89CD96A9EF918E8BC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -522,6 +534,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FC0414FB3944B48829C3472884A0151"
+            {
+            "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\yaml.json"
+            "TargetName" = "8:yaml.json"
+            "Tag" = "8:"
+            "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_70D4E635A3724FCAA5DAF73B3E2C9DDC"
             {
             "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\xml.png"
@@ -708,6 +740,26 @@
             "TargetName" = "8:license.rtf"
             "Tag" = "8:"
             "Folder" = "8:_76DE0C3E4C3C41398EBF2960C9F81C36"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D63713B5D64D40C89CD96A9EF918E8BC"
+            {
+            "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\yaml.png"
+            "TargetName" = "8:yaml.png"
+            "Tag" = "8:"
+            "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"

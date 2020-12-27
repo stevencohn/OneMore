@@ -106,7 +106,7 @@
 			// 
 			this.headerLabel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.headerLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-			this.headerLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.headerLabel.ForeColor = System.Drawing.Color.White;
 			this.headerLabel.Location = new System.Drawing.Point(2, 2);
 			this.headerLabel.Name = "headerLabel";
 			this.headerLabel.Size = new System.Drawing.Size(800, 31);
@@ -156,7 +156,6 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "OneMore Settings";
-			this.TopMost = true;
 			this.buttonPanel.ResumeLayout(false);
 			this.editorPanel.ResumeLayout(false);
 			this.ResumeLayout(false);

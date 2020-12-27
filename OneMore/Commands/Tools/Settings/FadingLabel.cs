@@ -22,9 +22,9 @@ namespace River.OneMoreAddIn.Settings
 			AutoSize = false;
 			TextAlign = ContentAlignment.MiddleLeft;
 
-			startColor = SystemColors.GradientActiveCaption;
-			endColor = SystemColors.ControlLightLight;
-			ForeColor = SystemColors.ActiveCaptionText;
+			startColor = ColorTranslator.FromHtml("#80397B"); // SystemColors.GradientActiveCaption;
+			endColor = ColorTranslator.FromHtml("#F4E8F3"); // SystemColors.ControlLightLight;
+			ForeColor = Color.White;
 
 			Font = new Font("Tahoma", 9F, FontStyle.Bold);
 		}
