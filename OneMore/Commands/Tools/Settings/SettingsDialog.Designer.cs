@@ -29,9 +29,10 @@
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Context Menu");
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Highlighter Themes");
-			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Ribbon Bar");
-			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Search Engines");
+			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Favorites");
+			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Highlighter Themes");
+			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Ribbon Bar");
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Search Engines");
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
@@ -105,7 +106,7 @@
 			// headerLabel
 			// 
 			this.headerLabel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.headerLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+			this.headerLabel.Font = new System.Drawing.Font("Tahoma", 9F);
 			this.headerLabel.ForeColor = System.Drawing.Color.White;
 			this.headerLabel.Location = new System.Drawing.Point(2, 2);
 			this.headerLabel.Name = "headerLabel";
@@ -122,17 +123,20 @@
 			this.navTree.Name = "navTree";
 			treeNode1.Name = "contextNode";
 			treeNode1.Text = "Context Menu";
-			treeNode2.Name = "highlightNode";
-			treeNode2.Text = "Highlighter Themes";
-			treeNode3.Name = "ribbonNode";
-			treeNode3.Text = "Ribbon Bar";
-			treeNode4.Name = "searchNode";
-			treeNode4.Text = "Search Engines";
+			treeNode2.Name = "favoritesNode";
+			treeNode2.Text = "Favorites";
+			treeNode3.Name = "highlightNode";
+			treeNode3.Text = "Highlighter Themes";
+			treeNode4.Name = "ribbonNode";
+			treeNode4.Text = "Ribbon Bar";
+			treeNode5.Name = "searchNode";
+			treeNode5.Text = "Search Engines";
 			this.navTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
-            treeNode4});
+            treeNode4,
+            treeNode5});
 			this.navTree.Size = new System.Drawing.Size(300, 546);
 			this.navTree.TabIndex = 2;
 			this.navTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Navigate);

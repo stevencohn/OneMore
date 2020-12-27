@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using Microsoft.Office.Core;
 	using System;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
@@ -14,9 +15,10 @@ namespace River.OneMoreAddIn.Settings
 	{
 		private readonly Dictionary<int, SheetBase> sheets;
 		private readonly SettingsProvider provider;
+		private readonly IRibbonUI ribbon;
 
 
-		public SettingsDialog()
+		public SettingsDialog(IRibbonUI ribbon)
 		{
 			InitializeComponent();
 
@@ -33,11 +35,13 @@ namespace River.OneMoreAddIn.Settings
 				});
 
 				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
+				navTree.Nodes["favoritesNode"].Text = Resx.SettingsDialog_favoritesNode_Text;
 				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
 				navTree.Nodes["searchNode"].Text = Resx.SettingsDialog_searchNode_Text;
 			}
 
+			this.ribbon = ribbon;
 			provider = new SettingsProvider();
 			sheets = new Dictionary<int, SheetBase>();
 
@@ -59,8 +63,9 @@ namespace River.OneMoreAddIn.Settings
 				switch (e.Node.Index)
 				{
 					case 0: sheet = new ContextMenuSheet(provider); break;
-					case 1: sheet = new HighlightsSheet(provider); break;
-					case 2: sheet = new RibbonBarSheet(provider); break;
+					case 1: sheet = new FavoritesSheet(ribbon); break;
+					case 2: sheet = new HighlightsSheet(provider); break;
+					case 3: sheet = new RibbonBarSheet(provider); break;
 					default: sheet = new SearchEngineSheet(provider); break;
 				}
 

@@ -179,6 +179,12 @@
     <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
+    <Compile Include="Commands\Tools\Settings\FavoritesSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\Settings\FavoritesSheet.Designer.cs">
+      <DependentUpon>FavoritesSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
@@ -719,6 +725,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Edit\PronunciateDialog.resx">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\Settings\FavoritesSheet.resx">
+      <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>

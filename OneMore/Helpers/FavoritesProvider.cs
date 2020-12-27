@@ -22,46 +22,11 @@ namespace River.OneMoreAddIn
 		private readonly ILogger logger;
 
 
-		/*
-		<menu xmlns="http://schemas.microsoft.com/office/2006/01/customui">
-		  <button id="favoriteAddButton" label="Add current page" 
-			imageMso="AddToFavorites" onAction="AddFavoritePage" />
-
-		  <!-- separator present only when there are favorites available -->
-		  <menuSeparator id="favotiteSeparator" />
-
-		  <!-- one or more favorites as split buttons -->
-		  <splitButton id="favorite1">
-			<button id="favoriteLink1" imageMso="FileLinksToFiles" 
-			  label="Some fancy page" screentip="Notebook/Section/Some fancy page long name..." />
-			<menu id="favoriteMenu1" label="Some fancy menu" >
-			  <button id="favoriteRemove1" label="Remove this link" imageMso="HyperlinkRemove" />
-			</menu>
-		  </splitButton>
-
-		  ...
-
-		</menu>
-		*/
-
-
 		public FavoritesProvider(IRibbonUI ribbon)
 		{
 			logger = Logger.Current;
 			path = Path.Combine(PathFactory.GetAppDataPath(), Resx.FavoritesFilename);
 			this.ribbon = ribbon;
-		}
-
-
-		public string GetMenuContent()
-		{
-			if (File.Exists(path))
-			{
-				var content = XElement.Load(path, LoadOptions.None);
-				return content.ToString(SaveOptions.DisableFormatting);
-			}
-
-			return MakeMenuRoot().ToString(SaveOptions.DisableFormatting);
 		}
 
 
@@ -130,22 +95,32 @@ namespace River.OneMoreAddIn
 				logger.WriteLine($"Saving favorite '{info.Path}' ({info.Link})");
 			}
 
-			try
-			{
-				PathFactory.EnsurePathExists(PathFactory.GetAppDataPath());
-				root.Save(path, SaveOptions.None);
-
-				ribbon.InvalidateControl("ribFavoritesMenu");
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"cannot save {path}");
-				logger.WriteLine(exc);
-			}
+			SaveFavorites(root);
 		}
 
 
-		private static XElement MakeMenuRoot()
+		public string GetMenuContent()
+		{
+			return LoadFavorites().ToString(SaveOptions.DisableFormatting);
+		}
+
+
+		/// <summary>
+		/// Load the raw favorites document; use for Settings
+		/// </summary>
+		/// <returns></returns>
+		public XElement LoadFavorites()
+		{
+			if (File.Exists(path))
+			{
+				return XElement.Load(path, LoadOptions.None);
+			}
+
+			return MakeMenuRoot();
+		}
+
+
+		public static XElement MakeMenuRoot()
 		{
 			var root = new XElement(ns + "menu",
 				new XElement(ns + "button",
@@ -190,21 +165,51 @@ namespace River.OneMoreAddIn
 					{
 						element.Remove();
 
-						try
-						{
-							PathFactory.EnsurePathExists(PathFactory.GetAppDataPath());
-							root.Save(path, SaveOptions.None);
-
-							ribbon.InvalidateControl("ribFavoritesMenu");
-						}
-						catch (Exception exc)
-						{
-							logger.WriteLine($"cannot save {path}");
-							logger.WriteLine(exc);
-						}
+						SaveFavorites(root);
 					}
 				}
 			}
 		}
+
+
+		public void SaveFavorites(XElement root)
+		{
+			try
+			{
+				PathFactory.EnsurePathExists(PathFactory.GetAppDataPath());
+				root.Save(path, SaveOptions.None);
+
+				if (ribbon != null)
+				{
+					ribbon.InvalidateControl("ribFavoritesMenu");
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"cannot save {path}");
+				logger.WriteLine(exc);
+			}
+		}
 	}
 }
+/*
+<menu xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+  <button id="favoriteAddButton" label="Add current page" 
+	imageMso="AddToFavorites" onAction="AddFavoritePage" />
+
+  <!-- separator present only when there are favorites available -->
+  <menuSeparator id="favotiteSeparator" />
+
+  <!-- one or more favorites as split buttons -->
+  <splitButton id="favorite1">
+	<button id="favoriteLink1" imageMso="FileLinksToFiles" 
+	  label="Some fancy page" screentip="Notebook/Section/Some fancy page long name..." />
+	<menu id="favoriteMenu1" label="Some fancy menu" >
+	  <button id="favoriteRemove1" label="Remove this link" imageMso="HyperlinkRemove" />
+	</menu>
+  </splitButton>
+
+  ...
+
+</menu>
+*/

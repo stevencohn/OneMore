@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Settings;
 
 
@@ -16,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override void Execute(params object[] args)
 		{
-			using (var dialog = new SettingsDialog())
+			using (var dialog = new SettingsDialog(args[0] as IRibbonUI))
 			{
 				dialog.ShowDialog(owner);
 			}

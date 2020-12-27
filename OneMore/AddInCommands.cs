@@ -187,7 +187,7 @@ namespace River.OneMoreAddIn
 			=> factory.Run<SearchWebCommand>(control.Tag);
 
 		public void SettingsCmd(IRibbonControl control)
-			=> factory.Run<SettingsCommand>();
+			=> factory.Run<SettingsCommand>(ribbon);
 
 		public void ShowXmlCmd(IRibbonControl control)
 			=> factory.Run<ShowXmlCommand>();
