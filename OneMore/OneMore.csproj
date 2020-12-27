@@ -108,7 +108,6 @@
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="AddInEnablers.cs" />
-    <Compile Include="AddInFavorites.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="AddInRibbon.cs" />
     <Compile Include="AddInStyleGallery.cs" />
@@ -178,7 +177,7 @@
     </Compile>
     <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
-    <Compile Include="Commands\Tools\ManageFavoritesCommand.cs" />
+    <Compile Include="Commands\Favorites\ManageFavoritesCommand.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
     <Compile Include="Commands\Tools\Settings\FavoritesSheet.cs">
       <SubType>UserControl</SubType>
@@ -346,7 +345,7 @@
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
     <Compile Include="Commands\Extras\NameUrlsCommand.cs" />
-    <Compile Include="Commands\Tools\NavigateCommand.cs" />
+    <Compile Include="Commands\Favorites\GotoFavoriteCommand.cs" />
     <Compile Include="Commands\Edit\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\Footnotes\RemoveFootnoteCommand.cs" />
@@ -503,7 +502,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\FavoritesProvider.cs" />
+    <Compile Include="Commands\Favorites\FavoritesProvider.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />

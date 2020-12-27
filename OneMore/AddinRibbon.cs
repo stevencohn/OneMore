@@ -475,6 +475,18 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Populates the Favorites menu
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public string GetFavoritesContent(IRibbonControl control)
+		{
+			//logger.WriteLine($"GetFavoritesContent({control.Id})");
+			return new FavoritesProvider(ribbon).GetMenuContent();
+		}
+
+
+		/// <summary>
 		/// Loads the image associated with the tagged language.
 		/// </summary>
 		/// <param name="control">The ribbon button from the Colorize menu</param>

@@ -116,7 +116,7 @@ namespace River.OneMoreAddIn
 				new XAttribute("id", AddButtonId),
 				new XAttribute("label", Resx.Favorites_addButton_Label),
 				new XAttribute("imageMso", "AddToFavorites"),
-				new XAttribute("onAction", "AddFavoritePage")
+				new XAttribute("onAction", "AddFavoritePageCmd")
 				);
 		}
 
@@ -141,7 +141,9 @@ namespace River.OneMoreAddIn
 
 			if (addButton != null)
 			{
+				// use new values
 				addButton.Attribute("id").Value = AddButtonId;
+				addButton.Attribute("onAction").Value = "AddFavoritePageCmd";
 			}
 			else
 			{
@@ -199,7 +201,7 @@ namespace River.OneMoreAddIn
 /*
 <menu xmlns="http://schemas.microsoft.com/office/2006/01/customui">
   <button id="omAddFavoriteButton" label="Add current page" 
-	imageMso="AddToFavorites" onAction="AddFavoritePage" />
+	imageMso="AddToFavorites" onAction="AddFavoritePageCmd" />
   <button id="omManageFavoriteButton" label="Manage Favorites" 
 	imageMso="NameManager" onAction="ManageFavoritesCmd" />
 

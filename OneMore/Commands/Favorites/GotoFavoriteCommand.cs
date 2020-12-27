@@ -7,9 +7,9 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 
 
-	internal class NavigateCommand : Command
+	internal class GotoFavoriteCommand : Command
 	{
-		public NavigateCommand()
+		public GotoFavoriteCommand()
 		{
 		}
 
