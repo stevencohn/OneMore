@@ -178,6 +178,7 @@
     </Compile>
     <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
+    <Compile Include="Commands\Tools\ManageFavoritesCommand.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
     <Compile Include="Commands\Tools\Settings\FavoritesSheet.cs">
       <SubType>UserControl</SubType>

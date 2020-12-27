@@ -24,16 +24,16 @@ namespace River.OneMoreAddIn
 			new FavoritesProvider(ribbon).AddFavorite();
 		}
 
-		public void NavigateToFavorite(IRibbonControl control)
+		public void GotoFavoriteCmd(IRibbonControl control)
 		{
-			//logger.WriteLine($"NavigateToFavorite({control.Tag})");
+			//logger.WriteLine($"GotoFavoriteCmd({control.Tag})");
 			factory.Run<Commands.NavigateCommand>(control.Tag);
 		}
 
-		public void RemoveFavorite(IRibbonControl control)
+		public void ManageFavoritesCmd(IRibbonControl control)
 		{
-			//logger.WriteLine($"RemoveFavorite({control.Tag})");
-			new FavoritesProvider(ribbon).RemoveFavorite(control.Tag);
+			//logger.WriteLine($"AddFavoritePage({control.Id})");
+			factory.Run<Commands.ManageFavoritesCommand>(ribbon);
 		}
 	}
 }

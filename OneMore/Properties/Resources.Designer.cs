@@ -1307,6 +1307,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add current page.
+        /// </summary>
+        internal static string Favorites_addButton_Label {
+            get {
+                return ResourceManager.GetString("Favorites_addButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Favorites.
+        /// </summary>
+        internal static string Favorites_manageButton_Label {
+            get {
+                return ResourceManager.GetString("Favorites_manageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorites.xml.
         /// </summary>
         internal static string FavoritesFilename {

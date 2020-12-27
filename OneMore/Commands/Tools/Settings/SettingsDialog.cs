@@ -13,6 +13,15 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class SettingsDialog : UI.LocalizableForm
 	{
+		public enum Sheets
+		{
+			Context,
+			Favorites,
+			Highlight,
+			Ribbon,
+			Search
+		}
+
 		private readonly Dictionary<int, SheetBase> sheets;
 		private readonly SettingsProvider provider;
 		private readonly IRibbonUI ribbon;
@@ -47,6 +56,16 @@ namespace River.OneMoreAddIn.Settings
 
 			navTree.SelectedNode = navTree.Nodes[0];
 			navTree.Focus();
+		}
+
+
+		public void ActivateSheet(Sheets sheet)
+		{
+			var index = (int)sheet;
+			if (index > 0 && index < navTree.Nodes.Count)
+			{
+				navTree.SelectedNode = navTree.Nodes[index];
+			}
 		}
 
 

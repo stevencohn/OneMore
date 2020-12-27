@@ -53,7 +53,8 @@
 			// 
 			this.gridView.AllowUserToAddRows = false;
 			this.gridView.AllowUserToResizeRows = false;
-			this.gridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.gridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.gridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
 			this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -149,12 +150,12 @@
 			this.sortButton.Size = new System.Drawing.Size(34, 33);
 			this.sortButton.Text = "toolStripButton1";
 			this.sortButton.ToolTipText = "Sort by Name";
-			this.sortButton.Click += new System.EventHandler(this.sortButton_Click);
+			this.sortButton.Click += new System.EventHandler(this.SortItems);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 45);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
 			// 
 			// upButton
 			// 
@@ -162,9 +163,9 @@
 			this.upButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
 			this.upButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.upButton.Name = "upButton";
-			this.upButton.Size = new System.Drawing.Size(40, 40);
+			this.upButton.Size = new System.Drawing.Size(34, 33);
 			this.upButton.Text = "Move up";
-			this.upButton.Click += new System.EventHandler(this.upButton_Click);
+			this.upButton.Click += new System.EventHandler(this.MoveItemUp);
 			// 
 			// downButton
 			// 
@@ -172,19 +173,19 @@
 			this.downButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
 			this.downButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.downButton.Name = "downButton";
-			this.downButton.Size = new System.Drawing.Size(40, 40);
+			this.downButton.Size = new System.Drawing.Size(34, 33);
 			this.downButton.Text = "Move down";
-			this.downButton.Click += new System.EventHandler(this.downButton_Click);
+			this.downButton.Click += new System.EventHandler(this.MoveItemDown);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 45);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
 			// 
 			// deleteLabel
 			// 
 			this.deleteLabel.Name = "deleteLabel";
-			this.deleteLabel.Size = new System.Drawing.Size(66, 40);
+			this.deleteLabel.Size = new System.Drawing.Size(66, 33);
 			this.deleteLabel.Text = "Delete:";
 			// 
 			// deleteButton
@@ -193,9 +194,9 @@
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(40, 40);
+			this.deleteButton.Size = new System.Drawing.Size(34, 33);
 			this.deleteButton.Text = "Delete";
-			this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
 			// 
 			// FavoritesSheet
 			// 

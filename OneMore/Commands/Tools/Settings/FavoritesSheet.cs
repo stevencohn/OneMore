@@ -3,7 +3,6 @@
 //************************************************************************************************
 
 #pragma warning disable CS3003  // Type is not CLS-compliant
-#pragma warning disable IDE1006 // Words must begin with upper case
 
 namespace River.OneMoreAddIn.Settings
 {
@@ -31,6 +30,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private readonly IRibbonUI ribbon;
 		private readonly BindingList<Favorite> favorites;
+		private bool updated = false;
 
 
 		public FavoritesSheet(IRibbonUI ribbon) : base(null)
@@ -81,13 +81,17 @@ namespace River.OneMoreAddIn.Settings
 			var root = new FavoritesProvider(ribbon).LoadFavorites();
 			var ns = root.GetDefaultNamespace();
 
+			// filter out the add/manage buttons
+			var elements = root.Elements(ns + "button")
+				.Where(e => e.Attribute("onAction")?.Value == FavoritesProvider.GotoFavoriteCmd);
+
 			int index = 0;
-			foreach (var element in root.Elements(ns + "splitButton").Elements(ns + "button"))
+			foreach (var element in elements)
 			{
 				list.Add(new Favorite
 				{
 					Index = index++,
-					Root = element.Parent,
+					Root = element,
 					Name = element.Attribute("label").Value,
 					Location = element.Attribute("screentip").Value
 				});
@@ -97,22 +101,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void gridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-		{
-			var result = MessageBox.Show(
-				string.Format(Resx.SearchEngineDialog_DeleteMessage, favorites[e.Row.Index].Name),
-				"OneMore",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2,
-				MessageBoxOptions.DefaultDesktopOnly);
-
-			if (result != DialogResult.Yes)
-			{
-				e.Cancel = true;
-			}
-		}
-
-
-		private void deleteButton_Click(object sender, EventArgs e)
+		private void DeleteItem(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count > 0)
 			{
@@ -130,6 +119,7 @@ namespace River.OneMoreAddIn.Settings
 					if (result == DialogResult.Yes)
 					{
 						favorites.RemoveAt(rowIndex);
+						updated = true;
 
 						if (rowIndex > 0)
 						{
@@ -143,37 +133,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void sortButton_Click(object sender, EventArgs e)
-		{
-			var ordered = favorites.OrderBy(f => f.Name).ToList();
-
-			favorites.Clear();
-			foreach (var fav in ordered)
-			{
-				favorites.Add(fav);
-			}
-		}
-
-
-		private void upButton_Click(object sender, EventArgs e)
-		{
-			if (gridView.SelectedCells.Count > 0)
-			{
-				int colIndex = gridView.SelectedCells[0].ColumnIndex;
-				int rowIndex = gridView.SelectedCells[0].RowIndex;
-				if (rowIndex > 0 && rowIndex < favorites.Count)
-				{
-					var item = favorites[rowIndex];
-					favorites.RemoveAt(rowIndex);
-					favorites.Insert(rowIndex - 1, item);
-
-					gridView.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
-				}
-			}
-		}
-
-
-		private void downButton_Click(object sender, EventArgs e)
+		private void MoveItemDown(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count > 0)
 			{
@@ -191,18 +151,51 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void MoveItemUp(object sender, EventArgs e)
+		{
+			if (gridView.SelectedCells.Count > 0)
+			{
+				int colIndex = gridView.SelectedCells[0].ColumnIndex;
+				int rowIndex = gridView.SelectedCells[0].RowIndex;
+				if (rowIndex > 0 && rowIndex < favorites.Count)
+				{
+					var item = favorites[rowIndex];
+					favorites.RemoveAt(rowIndex);
+					favorites.Insert(rowIndex - 1, item);
+
+					gridView.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
+				}
+			}
+		}
+
+
+		private void SortItems(object sender, EventArgs e)
+		{
+			var ordered = favorites.OrderBy(f => f.Name).ToList();
+
+			favorites.Clear();
+			foreach (var fav in ordered)
+			{
+				favorites.Add(fav);
+			}
+		}
+
+
 		public override void CollectSettings()
 		{
 			// favorites are not stored along with other settings,
 			// but save them here in their own file when other settings are saved...
 
-			var updated = false;
-			for (int i=0; i < favorites.Count; i++)
+			// if nothing was deleted then check if they reordered
+			if (!updated)
 			{
-				if (favorites[i].Index != i)
+				for (int i = 0; i < favorites.Count; i++)
 				{
-					updated = true;
-					break;
+					if (favorites[i].Index != i)
+					{
+						updated = true;
+						break;
+					}
 				}
 			}
 

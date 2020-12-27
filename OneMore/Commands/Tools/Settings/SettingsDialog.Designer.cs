@@ -118,6 +118,7 @@
 			// navTree
 			// 
 			this.navTree.Dock = System.Windows.Forms.DockStyle.Left;
+			this.navTree.FullRowSelect = true;
 			this.navTree.Location = new System.Drawing.Point(15, 15);
 			this.navTree.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
 			this.navTree.Name = "navTree";

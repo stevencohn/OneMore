@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.IO;
 	using System.Linq;
-	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -16,6 +15,9 @@ namespace River.OneMoreAddIn
 	internal class FavoritesProvider
 	{
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2006/01/customui";
+		private static readonly string AddButtonId = "omAddFavoriteButton";
+		private static readonly string ManageButtonId = "omManageFavoritesButton";
+		public static readonly string GotoFavoriteCmd = "GotoFavoriteCmd";
 
 		private readonly string path;
 		private readonly IRibbonUI ribbon;
@@ -36,7 +38,7 @@ namespace River.OneMoreAddIn
 
 			if (File.Exists(path))
 			{
-				root = XElement.Load(path, LoadOptions.None);
+				root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None));
 			}
 			else
 			{
@@ -57,40 +59,14 @@ namespace River.OneMoreAddIn
 				var id = ((DateTimeOffset.Now.ToUnixTimeSeconds() << 32)
 					+ new Random().Next()).ToString("x");
 
-				root.Add(new XElement(ns + "splitButton",
-					new XAttribute("id", $"omFavorite{id}"),
-					new XElement(ns + "button",
-						new XAttribute("id", $"omFavoriteLink{id}"),
-						new XAttribute("onAction", "NavigateToFavorite"),
-						new XAttribute("imageMso", "FileLinksToFiles"),
-						new XAttribute("label", name),
-						new XAttribute("tag", info.Link),
-						new XAttribute("screentip", info.Path)
-						),
-					new XElement(ns + "menu",
-						new XAttribute("id", $"omFavoriteMenu{id}"),
-						new XElement(ns + "button",
-							new XAttribute("id", $"omFavoriteRemoveButton{id}"),
-							new XAttribute("onAction", "RemoveFavorite"),
-							new XAttribute("label", "Remove this item"),
-							new XAttribute("imageMso", "HyperlinkRemove"),
-							new XAttribute("tag", $"omFavorite{id}")
-							)
-						)
+				root.Add(new XElement(ns + "button",
+					new XAttribute("id", $"omFavoriteLink{id}"),
+					new XAttribute("onAction", GotoFavoriteCmd),
+					new XAttribute("imageMso", "FileLinksToFiles"),
+					new XAttribute("label", name),
+					new XAttribute("tag", info.Link),
+					new XAttribute("screentip", info.Path)
 					));
-
-				// sort by name/label
-				var items =
-					from e in root.Elements(ns + "splitButton")
-					let key = e.Element(ns + "button").Attribute("label").Value
-					orderby key
-					select e;
-
-				root = MakeMenuRoot();
-				foreach (var item in items)
-				{
-					root.Add(item);
-				}
 
 				logger.WriteLine($"Saving favorite '{info.Path}' ({info.Link})");
 			}
@@ -113,7 +89,7 @@ namespace River.OneMoreAddIn
 		{
 			if (File.Exists(path))
 			{
-				return XElement.Load(path, LoadOptions.None);
+				return UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None));
 			}
 
 			return MakeMenuRoot();
@@ -123,12 +99,8 @@ namespace River.OneMoreAddIn
 		public static XElement MakeMenuRoot()
 		{
 			var root = new XElement(ns + "menu",
-				new XElement(ns + "button",
-					new XAttribute("id", "omFavoriteAddButton"),
-					new XAttribute("label", "Add current page"),
-					new XAttribute("imageMso", "AddToFavorites"),
-					new XAttribute("onAction", "AddFavoritePage")
-					),
+				MakeAddButton(),
+				MakeManageButton(),
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "omFavoritesSeparator")
 					)
@@ -138,37 +110,69 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void RemoveFavorite(string favoriteId)
+		private static XElement MakeAddButton()
 		{
-			if (File.Exists(path))
+			return new XElement(ns + "button",
+				new XAttribute("id", AddButtonId),
+				new XAttribute("label", Resx.Favorites_addButton_Label),
+				new XAttribute("imageMso", "AddToFavorites"),
+				new XAttribute("onAction", "AddFavoritePage")
+				);
+		}
+
+
+		private static XElement MakeManageButton()
+		{
+			return new XElement(ns + "button",
+				new XAttribute("id", ManageButtonId),
+				new XAttribute("label", Resx.Favorites_manageButton_Label),
+				new XAttribute("imageMso", "NameManager"),
+				new XAttribute("onAction", "ManageFavoritesCmd")
+				);
+		}
+
+
+		private static XElement UpgradeFavoritesMenu(XElement root)
+		{
+			// temporary upgrade routine...
+
+			var addButton = root.Elements(ns + "button")
+				.FirstOrDefault(e => e.Attribute("id").Value == "omFavoriteAddButton");
+
+			if (addButton != null)
 			{
-				var root = XElement.Load(path, LoadOptions.None);
-
-				var element =
-					(from e in root.Elements(ns + "splitButton")
-					 where e.Attribute("id").Value == favoriteId
-					 select e).FirstOrDefault();
-
-				if (element != null)
-				{
-					var label = element.Element(ns + "button")?.Attribute("label").Value;
-
-					var result = MessageBox.Show(
-						$"Remove {label}?",
-						"Confirm",
-						MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-						MessageBoxDefaultButton.Button2,
-						MessageBoxOptions.DefaultDesktopOnly
-						);
-
-					if (result == DialogResult.Yes)
-					{
-						element.Remove();
-
-						SaveFavorites(root);
-					}
-				}
+				addButton.Attribute("id").Value = AddButtonId;
 			}
+			else
+			{
+				addButton = root.Elements(ns + "button")
+					.FirstOrDefault(e => e.Attribute("id").Value == AddButtonId);
+			}
+
+			if (addButton == null)
+			{
+				addButton = MakeAddButton();
+				root.AddFirst(addButton);
+			}
+
+			var mngbtn = root.Elements(ns + "button")
+				.FirstOrDefault(e => e.Attribute("id").Value == ManageButtonId);
+
+			if (mngbtn == null)
+			{
+				addButton.AddAfterSelf(MakeManageButton());
+			}
+
+			// convert splitButton to button, removing the delete sub-menu
+			var elements = root.Elements(ns + "splitButton").ToList();
+			foreach (var element in elements)
+			{
+				var button = element.Elements(ns + "button").First();
+				button.Attribute("onAction").Value = GotoFavoriteCmd;
+				element.ReplaceWith(button);
+			}
+
+			return root;
 		}
 
 
@@ -194,21 +198,19 @@ namespace River.OneMoreAddIn
 }
 /*
 <menu xmlns="http://schemas.microsoft.com/office/2006/01/customui">
-  <button id="favoriteAddButton" label="Add current page" 
+  <button id="omAddFavoriteButton" label="Add current page" 
 	imageMso="AddToFavorites" onAction="AddFavoritePage" />
+  <button id="omManageFavoriteButton" label="Manage Favorites" 
+	imageMso="NameManager" onAction="ManageFavoritesCmd" />
 
   <!-- separator present only when there are favorites available -->
   <menuSeparator id="favotiteSeparator" />
 
   <!-- one or more favorites as split buttons -->
-  <splitButton id="favorite1">
-	<button id="favoriteLink1" imageMso="FileLinksToFiles" 
-	  label="Some fancy page" screentip="Notebook/Section/Some fancy page long name..." />
-	<menu id="favoriteMenu1" label="Some fancy menu" >
-	  <button id="favoriteRemove1" label="Remove this link" imageMso="HyperlinkRemove" />
-	</menu>
-  </splitButton>
-
+  <button id="favoriteLink1" imageMso="FileLinksToFiles" 
+	label="Some fancy page" screentip="Notebook/Section/Some fancy page long name..." />
+  <button id="favoriteLink2" imageMso="FileLinksToFiles" 
+	label="Some fancy page2" screentip="Notebook/Section/Some fancy page long name2..." />
   ...
 
 </menu>
