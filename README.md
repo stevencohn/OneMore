@@ -4,12 +4,12 @@ A OneNote add-in with powerful yet simple and effective features.
 
 See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
 
-* Integrated with the OneNote ribbon, context menus, and keyboard shortcuts for easy access
-* [Customize the Text context menu](Settings) to add OneMore commands or a a custom search engine
-* Apply [colorized syntax highlighting](Edit-Commands) to snippets of source code
-* Create/edit/apply [custom styles](Custom-Styles) with advanced options
-* Manage menu of [Favorites](Favorites) for one-click link to your most referenced pages
-* Add [formulas](Formula-Commands) to table cell using Excel-like expressions
+* Integrated with the OneNote ribbon, context menus, and [keyboard shortcuts](../../wiki#keys) for easy access
+* [Customize the Text context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
+* Apply [colorized syntax highlighting](../../wiki/Edit-Commands) to snippets of source code
+* Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
+* Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
+* Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
 
 
 *Want more from OneMore? OneMore has more...* [Click here to see a list of all features](#features)
