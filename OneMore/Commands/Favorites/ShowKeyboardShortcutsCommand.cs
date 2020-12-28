@@ -67,6 +67,7 @@ namespace River.OneMoreAddIn.Commands
 				if (pageId != null)
 				{
 					logger.WriteLine("navigating to page");
+					one.Sync();
 					one.NavigateTo(pageId);
 				}
 				else
@@ -79,6 +80,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> DownloadTemplate()
 		{
+			logger.Start();
 			logger.WriteLine("downloading template");
 
 			ServicePointManager.SecurityProtocol =
@@ -113,6 +115,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Page ExtractTemplate(string path)
 		{
+			logger.Start();
 			logger.WriteLine($"extracting {path}");
 
 			try
@@ -140,6 +143,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
+				logger.Start();
 				logger.WriteLine("importing template");
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 

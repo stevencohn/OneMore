@@ -157,6 +157,47 @@ namespace River.OneMoreAddIn
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		/// <summary>
+		/// Invoke an action with retry
+		/// </summary>
+		/// <param name="work">The action to invoke</param>
+		public void InvokeWithRetry(Action work)
+		{
+			try
+			{
+				int retries = 0;
+				while (retries < 3)
+				{
+					try
+					{
+						work();
+
+						if (retries > 0)
+						{
+							logger.WriteLine($"completed successfully after {retries} retries");
+						}
+
+						retries = int.MaxValue;
+					}
+					catch (COMException exc) when ((uint)exc.ErrorCode == hrCOMBusy)
+					{
+						retries++;
+						var ms = 250 * retries;
+
+						logger.WriteLine($"OneNote is busy, retyring in {ms}ms", exc);
+						Thread.Sleep(ms);
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error invoking action", exc);
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Create...
 
 		/// <summary>
@@ -566,6 +607,18 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Sync updates to storage
+		/// </summary>
+		public void Sync()
+		{
+			InvokeWithRetry(() =>
+			{
+				onenote.SyncHierarchy(CurrentNotebookId);
+			});
+		}
+
+
+		/// <summary>
 		/// Update the current page.
 		/// </summary>
 		/// <param name="page">A Page</param>
@@ -583,38 +636,10 @@ namespace River.OneMoreAddIn
 		{
 			var xml = element.ToString(SaveOptions.DisableFormatting);
 
-			try
+			InvokeWithRetry(() =>
 			{
-				int retries = 0;
-				while (retries < 3)
-				{
-					try
-					{
-						onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
-
-						if (retries > 0)
-						{
-							logger.WriteLine("update completed successfully");
-						}
-
-						retries = int.MaxValue;
-					}
-					catch (COMException exc) when ((uint)exc.ErrorCode == hrCOMBusy)
-					{
-						retries++;
-						var ms = 250 * retries;
-
-						logger.WriteLine($"error updating page, OneNote is busy, retyring in {ms}ms", exc);
-						System.Threading.Thread.Sleep(ms);
-					}
-				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error updating page content", exc);
-				logger.WriteLine(element);
-				logger.WriteLine();
-			}
+				onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
+			});
 		}
 
 
@@ -792,12 +817,18 @@ namespace River.OneMoreAddIn
 		{
 			if (uri.StartsWith("onenote:") || uri.StartsWith("http"))
 			{
-				onenote.NavigateToUrl(uri);
+				InvokeWithRetry(() =>
+				{
+					onenote.NavigateToUrl(uri);
+				});
 			}
 			else
 			{
-				// must be an ID
-				onenote.NavigateTo(uri);
+				InvokeWithRetry(() =>
+				{
+					// must be an ID
+					onenote.NavigateTo(uri);
+				});
 			}
 		}
 
@@ -823,7 +854,13 @@ namespace River.OneMoreAddIn
 		/// <returns>A hierarchy XML starting at the given node.</returns>
 		public XElement SearchMeta(string nodeId, string name)
 		{
-			onenote.FindMeta(nodeId, name, out var xml, false, XMLSchema.xs2013);
+			string xml = null;
+
+			InvokeWithRetry(() =>
+			{
+				onenote.FindMeta(nodeId, name, out xml, false, XMLSchema.xs2013);
+			});
+
 			return XElement.Parse(xml);
 		}
 
