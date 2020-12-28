@@ -188,6 +188,7 @@
       <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ErrorCodes.cs" />
+    <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>

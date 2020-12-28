@@ -13,8 +13,10 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Net;
 	using System.Net.Http;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+
 
 	internal class ShowKeyboardShortcutsCommand : Command
 	{
@@ -33,10 +35,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote())
 			{
+				var context = SynchronizationContext.Current;
+
 				var results = one.SearchMeta(string.Empty, "omKeyboardShortcuts");
 				var ns = one.GetNamespace(results);
-
-				logger.WriteLine(results);
 
 				var pageId = results?.Descendants(ns + "Meta")
 					.Where(e =>
@@ -47,11 +49,24 @@ namespace River.OneMoreAddIn.Commands
 
 				if (pageId == null)
 				{
-					pageId = await DownloadTemplatePage();
+					var path = await DownloadTemplate().ConfigureAwait(false);
+					if (path != null)
+					{
+						var page = ExtractTemplate(path);
+						if (page != null)
+						{
+							pageId = ImportTemplate(page);
+						}
+
+						File.Delete(path);
+					}
 				}
+
+				await context;
 
 				if (pageId != null)
 				{
+					logger.WriteLine("navigating to page");
 					one.NavigateTo(pageId);
 				}
 				else
@@ -62,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<string> DownloadTemplatePage()
+		private async Task<string> DownloadTemplate()
 		{
 			logger.WriteLine("downloading template");
 
@@ -72,35 +87,19 @@ namespace River.OneMoreAddIn.Commands
 			var client = new HttpClient();
 			client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
 
-			string pageId = null;
+			string path = null;
 
 			try
 			{
-				using (var response = await client.GetAsync(TemplateUrl))
+				using (var response = await client.GetAsync(TemplateUrl).ConfigureAwait(false))
 				{
-					var path = Path.GetTempFileName();
+					path = Path.GetTempFileName();
 					using (var output = File.Create(path))
 					{
-						await response.Content.CopyToAsync(output);
+						await response.Content.CopyToAsync(output).ConfigureAwait(false);
 					}
 
-					logger.WriteLine($"extracting {path}");
-
-					using (var fs = new FileStream(path, FileMode.Open))
-					using (var zip = new ZipArchive(fs))
-					{
-						var entry = zip.Entries.First();
-
-						using (var sr = new StreamReader(entry.Open()))
-						{
-							pageId = ImportTemplate(new Page(XElement.Parse(sr.ReadToEnd())));
-						}
-					}
-
-					if (File.Exists(path))
-					{
-						File.Delete(path);
-					}
+					return path;
 				}
 			}
 			catch (Exception exc)
@@ -108,7 +107,32 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine("error downloading shortcuts template", exc);
 			}
 
-			return pageId;
+			return path;
+		}
+
+
+		private Page ExtractTemplate(string path)
+		{
+			logger.WriteLine($"extracting {path}");
+
+			try
+			{
+				using (var stream = new FileStream(path, FileMode.Open))
+				using (var archive = new ZipArchive(stream))
+				{
+					var entry = archive.Entries.First();
+
+					using (var reader = new StreamReader(entry.Open()))
+					{
+						return new Page(XElement.Parse(reader.ReadToEnd()));
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error extracting template", exc);
+				return null;
+			}
 		}
 
 
