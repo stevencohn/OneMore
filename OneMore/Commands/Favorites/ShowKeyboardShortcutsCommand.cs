@@ -64,6 +64,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> DownloadTemplatePage()
 		{
+			logger.WriteLine("downloading template");
+
 			ServicePointManager.SecurityProtocol =
 				SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
@@ -81,6 +83,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						await response.Content.CopyToAsync(output);
 					}
+
+					logger.WriteLine($"extracting {path}");
 
 					using (var fs = new FileStream(path, FileMode.Open))
 					using (var zip = new ZipArchive(fs))
@@ -112,6 +116,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
+				logger.WriteLine("importing template");
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 
 				// remove any objectID values and let OneNote generate new IDs
