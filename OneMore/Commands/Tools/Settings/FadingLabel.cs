@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Settings
 			endColor = ColorTranslator.FromHtml("#F4E8F3"); // SystemColors.ControlLightLight;
 			ForeColor = Color.White;
 
-			Font = new Font("Tahoma", 9F, FontStyle.Bold);
+			Font = new Font("Tahoma", 9F); //, FontStyle.Bold);
 		}
 
 

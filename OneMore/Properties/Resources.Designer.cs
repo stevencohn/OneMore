@@ -1307,11 +1307,83 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add current page.
+        /// </summary>
+        internal static string Favorites_addButton_Label {
+            get {
+                return ResourceManager.GetString("Favorites_addButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Favorites.
+        /// </summary>
+        internal static string Favorites_manageButton_Label {
+            get {
+                return ResourceManager.GetString("Favorites_manageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favorites.xml.
         /// </summary>
         internal static string FavoritesFilename {
             get {
                 return ResourceManager.GetString("FavoritesFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete {0}?.
+        /// </summary>
+        internal static string FavoritesSheet_DeleteMessage {
+            get {
+                return ResourceManager.GetString("FavoritesSheet_DeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string FavoritesSheet_locationColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("FavoritesSheet_locationColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string FavoritesSheet_nameColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("FavoritesSheet_nameColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        internal static string FavoritesSheet_optionsBox_Text {
+            get {
+                return ResourceManager.GetString("FavoritesSheet_optionsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include reference to keyboard shortcuts page.
+        /// </summary>
+        internal static string FavoritesSheet_shortcutsBox_Text {
+            get {
+                return ResourceManager.GetString("FavoritesSheet_shortcutsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Favorites.
+        /// </summary>
+        internal static string FavoritesSheet_Text {
+            get {
+                return ResourceManager.GetString("FavoritesSheet_Text", resourceCulture);
             }
         }
         
@@ -4485,6 +4557,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_contextNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_contextNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Favorites.
+        /// </summary>
+        internal static string SettingsDialog_favoritesNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_favoritesNode.Text", resourceCulture);
             }
         }
         

@@ -8,9 +8,9 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Settings;
 
 
-	internal class SettingsCommand : Command
+	internal class ManageFavoritesCommand : Command
 	{
-		public SettingsCommand()
+		public ManageFavoritesCommand()
 		{
 		}
 
@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new SettingsDialog(args[0] as IRibbonUI))
 			{
+				dialog.ActivateSheet(SettingsDialog.Sheets.Favorites);
 				dialog.ShowDialog(owner);
 			}
 		}

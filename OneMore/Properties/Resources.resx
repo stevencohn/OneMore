@@ -2531,4 +2531,40 @@ In this section</value>
     <value>Search and Replace</value>
     <comment>Context menu</comment>
   </data>
+  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
+    <value>Delete {0}?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
+    <value>Location</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="FavoritesSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Name</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="FavoritesSheet_Text" xml:space="preserve">
+    <value>Manage Favorites</value>
+    <comment>settings</comment>
+  </data>
+  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
+    <value>Favorites</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_optionsBox.Text" xml:space="preserve">
+    <value>Options</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
+    <value>Include reference to keyboard shortcuts page</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Favorites_addButton_Label" xml:space="preserve">
+    <value>Add current page</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="Favorites_manageButton_Label" xml:space="preserve">
+    <value>Manage Favorites</value>
+    <comment>favorites menu command</comment>
+  </data>
 </root>

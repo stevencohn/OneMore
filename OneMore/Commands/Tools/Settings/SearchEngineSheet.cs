@@ -186,21 +186,6 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void gridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-		{
-			var result = MessageBox.Show(
-				string.Format(Resx.SearchEngineDialog_DeleteMessage, engines[e.Row.Index].Name),
-				"OneMore",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2,
-				MessageBoxOptions.DefaultDesktopOnly);
-
-			if (result != DialogResult.Yes)
-			{
-				e.Cancel = true;
-			}
-		}
-
-
 		private void deleteButton_Click(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count > 0)

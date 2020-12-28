@@ -87,6 +87,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Management" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
@@ -108,7 +109,6 @@
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
     <Compile Include="AddInEnablers.cs" />
-    <Compile Include="AddInFavorites.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="AddInRibbon.cs" />
     <Compile Include="AddInStyleGallery.cs" />
@@ -144,6 +144,7 @@
     <Compile Include="Commands\Extras\SplitDialog.Designer.cs">
       <DependentUpon>SplitDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Favorites\ShowKeyboardShortcutsCommand.cs" />
     <Compile Include="Commands\Formulas\Formula.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
@@ -178,8 +179,16 @@
     </Compile>
     <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
+    <Compile Include="Commands\Favorites\ManageFavoritesCommand.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
+    <Compile Include="Commands\Tools\Settings\FavoritesSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\Settings\FavoritesSheet.Designer.cs">
+      <DependentUpon>FavoritesSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ErrorCodes.cs" />
+    <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -339,7 +348,7 @@
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
     <Compile Include="Commands\Extras\NameUrlsCommand.cs" />
-    <Compile Include="Commands\Tools\NavigateCommand.cs" />
+    <Compile Include="Commands\Favorites\GotoFavoriteCommand.cs" />
     <Compile Include="Commands\Edit\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\Footnotes\RemoveFootnoteCommand.cs" />
@@ -496,7 +505,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\FavoritesProvider.cs" />
+    <Compile Include="Commands\Favorites\FavoritesProvider.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />
@@ -719,6 +728,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Edit\PronunciateDialog.resx">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\Settings\FavoritesSheet.resx">
+      <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>

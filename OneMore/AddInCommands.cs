@@ -21,6 +21,9 @@ namespace River.OneMoreAddIn
 		public void AddCaptionCmd(IRibbonControl control)
 			=> factory.Run<AddCaptionCommand>();
 
+		public void AddFavoritePageCmd(IRibbonControl control)
+			=> new FavoritesProvider(ribbon).AddFavorite();
+
 		public void AddFootnoteCmd(IRibbonControl control)
 			=> factory.Run<AddFootnoteCommand>();
 
@@ -56,6 +59,9 @@ namespace River.OneMoreAddIn
 
 		public void EditStylesCmd(IRibbonControl control)
 			=> factory.Run<EditStylesCommand>();
+
+		public void GotoFavoriteCmd(IRibbonControl control)
+			=> factory.Run<Commands.GotoFavoriteCommand>(control.Tag);
 
 		public void IncreaseFontSizeCmd(IRibbonControl control)
 			=> factory.Run<AlterSizeCommand>(1);
@@ -113,6 +119,9 @@ namespace River.OneMoreAddIn
 
 		public void InsertYellowStatusCmd(IRibbonControl control)
 			=> factory.Run<InsertStatusCommand>(StatusColor.Yellow);
+
+		public void ManageFavoritesCmd(IRibbonControl control)
+			=> factory.Run<Commands.ManageFavoritesCommand>(ribbon);
 
 		public void MapCmd(IRibbonControl control)
 			=> factory.Run<MapCommand>();
@@ -187,7 +196,10 @@ namespace River.OneMoreAddIn
 			=> factory.Run<SearchWebCommand>(control.Tag);
 
 		public void SettingsCmd(IRibbonControl control)
-			=> factory.Run<SettingsCommand>();
+			=> factory.Run<SettingsCommand>(ribbon);
+
+		public void ShowKeyboardShortcutsCmd(IRibbonControl control)
+			=> factory.Run<ShowKeyboardShortcutsCommand>();
 
 		public void ShowXmlCmd(IRibbonControl control)
 			=> factory.Run<ShowXmlCommand>();
