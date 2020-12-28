@@ -7,6 +7,7 @@
   <one:QuickStyleDef index="4" name="h2" fontColor="#2E75B5" highlightColor="automatic" font="Calibri" fontSize="14.0" spaceBefore="0.0" spaceAfter="0.0" />
   <one:QuickStyleDef index="5" name="h3" fontColor="#5B9BD5" highlightColor="automatic" font="Calibri" fontSize="12.0" spaceBefore="0.0" spaceAfter="0.0" />
   <one:Meta name="omTemplate" content="kbdshorts" />
+  <one:Meta name="omKeyboardShortcuts" content="true" />
   <one:PageSettings RTL="false" color="automatic">
     <one:PageSize>
       <one:Automatic />

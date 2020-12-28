@@ -82,7 +82,7 @@ namespace River.OneMoreAddIn.Settings
 				switch (e.Node.Index)
 				{
 					case 0: sheet = new ContextMenuSheet(provider); break;
-					case 1: sheet = new FavoritesSheet(ribbon); break;
+					case 1: sheet = new FavoritesSheet(provider, ribbon); break;
 					case 2: sheet = new HighlightsSheet(provider); break;
 					case 3: sheet = new RibbonBarSheet(provider); break;
 					default: sheet = new SearchEngineSheet(provider); break;

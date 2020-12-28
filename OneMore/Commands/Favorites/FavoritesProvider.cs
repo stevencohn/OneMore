@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2006/01/customui";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
-		private static readonly string KbdShortcutsId = "omKeyboardShortcutsButton";
+		public static readonly string KbdShortcutsId = "omKeyboardShortcutsButton";
 		public static readonly string GotoFavoriteCmd = "GotoFavoriteCmd";
 
 		private readonly string path;
@@ -94,17 +94,28 @@ namespace River.OneMoreAddIn
 			{
 				root = UpgradeFavoritesMenu(XElement.Load(path, LoadOptions.None));
 			}
-
-			root = MakeMenuRoot();
+			else
+			{
+				root = MakeMenuRoot();
+			}
 
 			var kbdshorts = new Settings.SettingsProvider()
 				.GetCollection("FavoritesSheet")?
 				.Get<bool>("kbdshorts") == true;
 
-			if (kbdshorts)
-			{
+			var button = root.Elements(ns + "button")
+				.FirstOrDefault(e => e.Attribute("id").Value == KbdShortcutsId);
 
+			if (kbdshorts && button == null)
+			{
+				root.Add(MakeKeyboardShortcutsButton());
 			}
+			else if (!kbdshorts && button != null)
+			{
+				button.Remove();
+			}
+
+			return root;
 		}
 
 
@@ -140,6 +151,17 @@ namespace River.OneMoreAddIn
 				new XAttribute("label", Resx.Favorites_manageButton_Label),
 				new XAttribute("imageMso", "NameManager"),
 				new XAttribute("onAction", "ManageFavoritesCmd")
+				);
+		}
+
+
+		private static XElement MakeKeyboardShortcutsButton()
+		{
+			return new XElement(ns + "button",
+				new XAttribute("id", KbdShortcutsId),
+				new XAttribute("label", "OneNote Keyboard Shortcuts"), // translate
+				new XAttribute("imageMso", "AdpPrimaryKey"),
+				new XAttribute("onAction", "ShowKeyboardShortcutsCmd")
 				);
 		}
 

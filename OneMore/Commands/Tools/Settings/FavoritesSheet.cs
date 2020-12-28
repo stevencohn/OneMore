@@ -30,10 +30,12 @@ namespace River.OneMoreAddIn.Settings
 
 		private readonly IRibbonUI ribbon;
 		private readonly BindingList<Favorite> favorites;
+		private readonly bool shortcuts;
 		private bool updated = false;
 
 
-		public FavoritesSheet(IRibbonUI ribbon) : base(null)
+		public FavoritesSheet(SettingsProvider provider, IRibbonUI ribbon)
+			: base(provider)
 		{
 			InitializeComponent();
 
@@ -69,6 +71,9 @@ namespace River.OneMoreAddIn.Settings
 
 			this.ribbon = ribbon;
 
+			shortcuts = provider.GetCollection(Name).Get<bool>("kbdshorts");
+			shortcutsBox.Checked = shortcuts;
+
 			favorites = new BindingList<Favorite>(LoadFavorites());
 
 			gridView.DataSource = favorites;
@@ -81,7 +86,7 @@ namespace River.OneMoreAddIn.Settings
 			var root = new FavoritesProvider(ribbon).LoadFavorites();
 			var ns = root.GetDefaultNamespace();
 
-			// filter out the add/manage buttons
+			// filter out the add/manage/shortcuts buttons
 			var elements = root.Elements(ns + "button")
 				.Where(e => e.Attribute("onAction")?.Value == FavoritesProvider.GotoFavoriteCmd);
 
@@ -212,6 +217,10 @@ namespace River.OneMoreAddIn.Settings
 				}
 
 				new FavoritesProvider(ribbon).SaveFavorites(root);
+			}
+			else if (shortcuts != shortcutsBox.Checked)
+			{
+				ribbon.InvalidateControl("ribFavoritesMenu");
 			}
 		}
 	}

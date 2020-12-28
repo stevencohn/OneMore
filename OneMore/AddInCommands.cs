@@ -198,6 +198,9 @@ namespace River.OneMoreAddIn
 		public void SettingsCmd(IRibbonControl control)
 			=> factory.Run<SettingsCommand>(ribbon);
 
+		public void ShowKeyboardShortcutsCmd(IRibbonControl control)
+			=> factory.Run<ShowKeyboardShortcutsCommand>();
+
 		public void ShowXmlCmd(IRibbonControl control)
 			=> factory.Run<ShowXmlCommand>();
 
