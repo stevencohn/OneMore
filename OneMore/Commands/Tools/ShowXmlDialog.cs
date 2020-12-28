@@ -295,39 +295,19 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Highlights()
 		{
-			var text = pageBox.Text;
-
-			var matches = Regex.Matches(text, "selected=\"all\"");
-			var prev = -1;
+			var matches = Regex.Matches(pageBox.Text,
+				@"<((?:[a-zA-Z][a-zA-Z0-9]*?:)?[a-zA-Z][a-zA-Z0-9]*?)[^>]+selected=""all""[^\1]*?\1>");
 
 			foreach (Match match in matches)
 			{
-				if (match.Index > prev)
-				{
-					var start = match.Index;
-					while (start > 0 && text[start] != '\n')
-					{
-						start--;
-					}
-					while (start < match.Index && char.IsWhiteSpace(text[start])) start++;
-
-					var end = match.Index + match.Length;
-					while (end < text.Length && text[end] != '\n')
-					{
-						end++;
-					}
-
-					pageBox.SelectionStart = start;
-					pageBox.SelectionLength = end - start;
-					pageBox.SelectionBackColor = Color.Yellow;
-
-					prev = end;
-				}
+				pageBox.SelectionStart = match.Index;
+				pageBox.SelectionLength = match.Length;
+				pageBox.SelectionBackColor = Color.Yellow;
 			}
 
 			if (!hideBox.Checked)
 			{
-				matches = Regex.Matches(text,
+				matches = Regex.Matches(pageBox.Text,
 					"(?:author|authorInitials|authorResolutionID|lastModifiedBy|" +
 					"lastModifiedByInitials|lastModifiedByResolutionID|creationTime|" +
 					"lastModifiedTime|objectID)=\"[^\"]*\""

@@ -627,7 +627,8 @@ namespace River.OneMoreAddIn.Models
 		/// </returns>
 		public XElement GetTextCursor()
 		{
-			var selected = Root.Descendants(Namespace + "T")
+			var selected = Root.Elements(Namespace + "Outline")
+				.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
 			if (selected.Any() && selected.Count() == 1)
