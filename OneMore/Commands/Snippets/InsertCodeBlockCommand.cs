@@ -88,10 +88,10 @@ namespace River.OneMoreAddIn.Commands
 					var content = MoveSelectedIntoContent(page, out var firstParent);
 					cell.SetContent(content);
 
-					var background = DetermineBackgroundColor(content);
-					if (background != null)
+					shading = DetermineShading(content);
+					if (shading != null)
 					{
-						cell.ShadingColor = ColorTranslator.FromHtml(background).ToRGBHtml();
+						cell.ShadingColor = shading;
 					}
 
 					if (firstParent.HasElements)
@@ -200,7 +200,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private string DetermineBackgroundColor(XElement content)
+		private string DetermineShading(XElement content)
 		{
 			string background = null;
 
@@ -254,7 +254,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			return background;
+			return ColorTranslator.FromHtml(background).ToRGBHtml();
 		}
 	}
 }
