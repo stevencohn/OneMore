@@ -183,7 +183,7 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var run in runs)
 				{
 					// new OE for run
-					var oe = new XElement(ns + "OE", run.Attributes());
+					var oe = new XElement(ns + "OE", run.Parent.Attributes());
 
 					// remove run from current parent
 					run.Remove();
