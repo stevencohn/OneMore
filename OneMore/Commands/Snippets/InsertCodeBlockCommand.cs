@@ -5,7 +5,10 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System.Collections.Generic;
+	using System.Drawing;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
 
@@ -22,9 +25,11 @@ namespace River.OneMoreAddIn.Commands
 		private const string TextColor = "#000000";
 		private const string TextColorDark = "#FFFFFF";
 
+		private bool dark;
 		private string shading;
 		private string titleColor;
 		private string textColor;
+		private XNamespace ns;
 
 		public InsertCodeBlockCommand()
 		{
@@ -36,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public override void Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using (var one = new OneNote(out var page, out ns))
 			{
 				if (!page.ConfirmBodyContext(true))
 				{
@@ -74,13 +79,20 @@ namespace River.OneMoreAddIn.Commands
 				if (cursor != null)
 				{
 					// empty text cursor found, add default content
-					cell.SetContent(MakeDefaultContent(ns));
+					cell.SetContent(MakeDefaultContent());
 					page.AddNextParagraph(table.Root);
 				}
 				else
 				{
 					// selection range found so move it into snippet
-					cell.SetContent(MoveSelectedIntoContent(page, ns, out var firstParent));
+					var content = MoveSelectedIntoContent(page, out var firstParent);
+					cell.SetContent(content);
+
+					var background = DetermineBackgroundColor(content);
+					if (background != null)
+					{
+						cell.ShadingColor = ColorTranslator.FromHtml(background).ToRGBHtml();
+					}
 
 					if (firstParent.HasElements)
 					{
@@ -101,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DetermineCellColors(Page page)
 		{
-			var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
+			dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
 
 			// table...
 
@@ -120,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private XElement MakeDefaultContent(XNamespace ns)
+		private XElement MakeDefaultContent()
 		{
 			return new XElement(ns + "OEChildren",
 				new XElement(ns + "OE",
@@ -139,7 +151,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private XElement MoveSelectedIntoContent(Page page, XNamespace ns, out XElement firstParent)
+		private XElement MoveSelectedIntoContent(Page page, out XElement firstParent)
 		{
 			var content = new XElement(ns + "OEChildren");
 			firstParent = null;
@@ -167,6 +179,55 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return content;
+		}
+
+
+		private string DetermineBackgroundColor(XElement content)
+		{
+			string background = null;
+
+			var runs = content.Descendants(ns + "T");
+
+			var styles = runs
+				.Where(r => r.Value.Length > 0)
+				.Select(r => r.GetCData().GetWrapper())
+				.SelectMany(w => w.Elements("span"))
+				.Where(s => s.Attribute("style") != null)
+				.Select(s => s.Attribute("style").Value);
+
+			var grounds = new List<string>();
+			var regex = new Regex(@"background:([^;]+);?");
+			foreach (var style in styles)
+			{
+				var match = regex.Match(style);
+				if (match.Success)
+				{
+					grounds.Add(match.Groups[1].Value);
+				}
+			}
+
+			if (grounds.Count >= runs.Count())
+			{
+				var mostFrequent = grounds.Select(v => v)
+					.GroupBy(v => v)
+					.OrderByDescending(v => v.Count())
+					.Select(v => v.Key)
+					.First();
+
+				var ground = ColorTranslator.FromHtml(mostFrequent);
+				var bright = ground.GetBrightness() >= 0.5;
+
+				if (dark && bright)
+				{
+					background = mostFrequent;
+				}
+				else if (!dark && !bright)
+				{
+					background = mostFrequent;
+				}
+			}
+
+			return background;
 		}
 	}
 }
