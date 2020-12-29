@@ -2506,4 +2506,40 @@ ISO-code then comma then language name</comment>
     <value>Suchen und ersetzen</value>
     <comment>Context menu</comment>
   </data>
+  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
+    <value>{0} löschen?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
+    <value>Ort</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="FavoritesSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Name</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="FavoritesSheet_Text" xml:space="preserve">
+    <value>Favoriten verwalten</value>
+    <comment>settings</comment>
+  </data>
+  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
+    <value>Favoriten</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_optionsBox.Text" xml:space="preserve">
+    <value>Optionen</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
+    <value>Verweis auf Seite mit Tastaturkürzeln einfügen</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Favorites_addButton_Label" xml:space="preserve">
+    <value>Aktuelle Seite hinzufügen</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="Favorites_manageButton_Label" xml:space="preserve">
+    <value>Favoriten verwalten</value>
+    <comment>favorites menu command</comment>
+  </data>
 </root>

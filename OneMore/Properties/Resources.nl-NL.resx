@@ -2521,4 +2521,40 @@ ISO-code then comma then language name</comment>
     <value>Zoek en vervang</value>
     <comment>Context menu</comment>
   </data>
+  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
+    <value>{0} verwijderen?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
+    <value>Plaats</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="FavoritesSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Naam</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="FavoritesSheet_Text" xml:space="preserve">
+    <value>Beheer favorieten</value>
+    <comment>settings</comment>
+  </data>
+  <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
+    <value>Favorieten</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_optionsBox.Text" xml:space="preserve">
+    <value>Opties</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
+    <value>Neem een ​​verwijzing op naar de pagina met sneltoetsen</value>
+    <comment>settings</comment>
+  </data>
+  <data name="Favorites_addButton_Label" xml:space="preserve">
+    <value>Voeg huidige pagina toe</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="Favorites_manageButton_Label" xml:space="preserve">
+    <value>Beheer favorieten</value>
+    <comment>favorites menu command</comment>
+  </data>
 </root>
