@@ -254,7 +254,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			return ColorTranslator.FromHtml(background).ToRGBHtml();
+			return background == null ? null : ColorTranslator.FromHtml(background).ToRGBHtml();
 		}
 	}
 }
