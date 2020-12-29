@@ -22,6 +22,9 @@ namespace River.OneMoreAddIn.Commands
 		private const string TextColor = "#000000";
 		private const string TextColorDark = "#FFFFFF";
 
+		private string shading;
+		private string titleColor;
+		private string textColor;
 
 		public InsertCodeBlockCommand()
 		{
@@ -40,24 +43,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
-
-				// table...
-
-				string shading, titleColor, textColor;
-
-				if (dark)
-				{
-					shading = ShadingDark;
-					titleColor = TitleColorDark;
-					textColor = TextColorDark;
-				}
-				else
-				{
-					shading = black ? ShadingBlack : Shading;
-					titleColor = TitleColor;
-					textColor = TextColor;
-				}
+				DetermineCellColors(page);
 
 				var table = new Table(ns)
 				{
@@ -67,6 +53,7 @@ namespace River.OneMoreAddIn.Commands
 				table.AddColumn(600f, true);
 
 				// title row...
+
 				var row = table.AddRow();
 				var cell = row.Cells.First();
 
@@ -79,28 +66,107 @@ namespace River.OneMoreAddIn.Commands
 				cell.ShadingColor = shading;
 
 				// body row...
+
 				row = table.AddRow();
 				cell = row.Cells.First();
 
-				cell.SetContent(
-					new XElement(ns + "OEChildren",
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-							new XElement(ns + "T", new XCData(""))
-							),
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-							new XElement(ns + "T", new XCData("Your code here..."))
-							),
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-							new XElement(ns + "T", new XCData(""))
-							)
-						));
+				var cursor = page.GetTextCursor();
+				if (cursor != null)
+				{
+					// empty text cursor found, add default content
+					cell.SetContent(MakeDefaultContent(ns));
+					page.AddNextParagraph(table.Root);
+				}
+				else
+				{
+					// selection range found so move it into snippet
+					cell.SetContent(MoveSelectedIntoContent(page, ns, out var firstParent));
 
-				page.AddNextParagraph(table.Root);
+					if (firstParent.HasElements)
+					{
+						// selected text was a subset of runs under an OE
+						firstParent.AddAfterSelf(new XElement(ns + "OE", table.Root));
+					}
+					else
+					{
+						// selected text was all of an OE
+						firstParent.Add(table.Root);
+					}
+				}
+
 				one.Update(page);
 			}
+		}
+
+
+		private void DetermineCellColors(Page page)
+		{
+			var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
+
+			// table...
+
+			if (dark)
+			{
+				shading = ShadingDark;
+				titleColor = TitleColorDark;
+				textColor = TextColorDark;
+			}
+			else
+			{
+				shading = black ? ShadingBlack : Shading;
+				titleColor = TitleColor;
+				textColor = TextColor;
+			}
+		}
+
+
+		private XElement MakeDefaultContent(XNamespace ns)
+		{
+			return new XElement(ns + "OEChildren",
+				new XElement(ns + "OE",
+					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+					new XElement(ns + "T", new XCData(""))
+					),
+				new XElement(ns + "OE",
+					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+					new XElement(ns + "T", new XCData("Your code here..."))
+					),
+				new XElement(ns + "OE",
+					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+					new XElement(ns + "T", new XCData(""))
+					)
+				);
+		}
+
+
+		private XElement MoveSelectedIntoContent(Page page, XNamespace ns, out XElement firstParent)
+		{
+			var content = new XElement(ns + "OEChildren");
+			firstParent = null;
+
+			var runs = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "T")
+				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
+				.ToList();
+
+			if (runs.Count > 0)
+			{
+				firstParent = runs[0].Parent;
+
+				foreach (var run in runs)
+				{
+					// add run to new parent
+					content.Add(new XElement(ns + "OE",
+						run.Parent.Attributes(),
+						new XElement(run)
+						));
+
+					// remove run from current parent
+					run.Remove();
+				}
+			}
+
+			return content;
 		}
 	}
 }
