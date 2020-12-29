@@ -137,7 +137,7 @@
 			this.toolStrip.Location = new System.Drawing.Point(10, 115);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(257, 38);
+			this.toolStrip.Size = new System.Drawing.Size(257, 31);
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
 			// 

@@ -5,7 +5,10 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System.Collections.Generic;
+	using System.Drawing;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
 
@@ -22,6 +25,11 @@ namespace River.OneMoreAddIn.Commands
 		private const string TextColor = "#000000";
 		private const string TextColorDark = "#FFFFFF";
 
+		private bool dark;
+		private string shading;
+		private string titleColor;
+		private string textColor;
+		private XNamespace ns;
 
 		public InsertCodeBlockCommand()
 		{
@@ -33,31 +41,14 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public override void Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using (var one = new OneNote(out var page, out ns))
 			{
 				if (!page.ConfirmBodyContext(true))
 				{
 					return;
 				}
 
-				var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
-
-				// table...
-
-				string shading, titleColor, textColor;
-
-				if (dark)
-				{
-					shading = ShadingDark;
-					titleColor = TitleColorDark;
-					textColor = TextColorDark;
-				}
-				else
-				{
-					shading = black ? ShadingBlack : Shading;
-					titleColor = TitleColor;
-					textColor = TextColor;
-				}
+				DetermineCellColors(page);
 
 				var table = new Table(ns)
 				{
@@ -67,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 				table.AddColumn(600f, true);
 
 				// title row...
+
 				var row = table.AddRow();
 				var cell = row.Cells.First();
 
@@ -79,28 +71,190 @@ namespace River.OneMoreAddIn.Commands
 				cell.ShadingColor = shading;
 
 				// body row...
+
 				row = table.AddRow();
 				cell = row.Cells.First();
 
-				cell.SetContent(
-					new XElement(ns + "OEChildren",
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-							new XElement(ns + "T", new XCData(""))
-							),
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-							new XElement(ns + "T", new XCData("Your code here..."))
-							),
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-							new XElement(ns + "T", new XCData(""))
-							)
-						));
+				var cursor = page.GetTextCursor();
+				if (cursor != null)
+				{
+					// empty text cursor found, add default content
+					cell.SetContent(MakeDefaultContent());
+					page.AddNextParagraph(table.Root);
+				}
+				else
+				{
+					// selection range found so move it into snippet
+					var content = MoveSelectedIntoContent(page, out var firstParent);
+					cell.SetContent(content);
 
-				page.AddNextParagraph(table.Root);
+					shading = DetermineShading(content);
+					if (shading != null)
+					{
+						cell.ShadingColor = shading;
+					}
+
+					if (firstParent.HasElements)
+					{
+						// selected text was a subset of runs under an OE
+						firstParent.AddAfterSelf(new XElement(ns + "OE", table.Root));
+					}
+					else
+					{
+						// selected text was all of an OE
+						firstParent.Add(table.Root);
+					}
+				}
+
 				one.Update(page);
 			}
+		}
+
+
+		private void DetermineCellColors(Page page)
+		{
+			dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
+
+			// table...
+
+			if (dark)
+			{
+				shading = ShadingDark;
+				titleColor = TitleColorDark;
+				textColor = TextColorDark;
+			}
+			else
+			{
+				shading = black ? ShadingBlack : Shading;
+				titleColor = TitleColor;
+				textColor = TextColor;
+			}
+		}
+
+
+		private XElement MakeDefaultContent()
+		{
+			return new XElement(ns + "OEChildren",
+				new XElement(ns + "OE",
+					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+					new XElement(ns + "T", new XCData(""))
+					),
+				new XElement(ns + "OE",
+					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+					new XElement(ns + "T", new XCData("Your code here..."))
+					),
+				new XElement(ns + "OE",
+					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+					new XElement(ns + "T", new XCData(""))
+					)
+				);
+		}
+
+
+		private XElement MoveSelectedIntoContent(Page page, out XElement firstParent)
+		{
+			var content = new XElement(ns + "OEChildren");
+			firstParent = null;
+
+			var runs = page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "T")
+				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
+				.ToList();
+
+			if (runs.Count > 0)
+			{
+				// content will eventually be added after the first parent
+				firstParent = runs[0].Parent;
+
+				// if text is in the middle of a soft-break block then need to split the block
+				// into two so the code box can be inserted, maintaining its relative position
+				if (runs[runs.Count - 1].NextNode != null)
+				{
+					var nextNodes = runs[runs.Count - 1].NodesAfterSelf().ToList();
+					nextNodes.Remove();
+
+					firstParent.AddAfterSelf(new XElement(ns + "OE",
+						firstParent.Attributes(),
+						nextNodes
+						));
+				}
+
+				// collect the content
+				foreach (var run in runs)
+				{
+					// new OE for run
+					var oe = new XElement(ns + "OE", run.Parent.Attributes());
+
+					// remove run from current parent
+					run.Remove();
+
+					// add run into new OE parent
+					oe.Add(run);
+
+					// add new OE to content
+					content.Add(oe);
+				}
+			}
+
+			return content;
+		}
+
+
+		private string DetermineShading(XElement content)
+		{
+			string background = null;
+
+			var runs = content.Descendants(ns + "T");
+
+			// collect all CDATA style properties from all runs
+			var styles = runs
+				.Where(r => r.Value.Length > 0)
+				.Select(r => r.GetCData().GetWrapper())
+				.SelectMany(w => w.Elements("span"))
+				.Where(s => s.Attribute("style") != null)
+				.Select(s => s.Attribute("style").Value);
+
+			// extract the background property from all style elements
+			var grounds = new List<string>();
+			var regex = new Regex(@"background:([^;]+);?");
+			foreach (var style in styles)
+			{
+				var match = regex.Match(style);
+				if (match.Success)
+				{
+					grounds.Add(match.Groups[1].Value);
+				}
+			}
+
+			// if all runs have background styles (this is an estimate since it is possible
+			// for there to be more backgrounds than runs if there are multiples in each run)
+			if (grounds.Count >= runs.Count())
+			{
+				// find the most frequently occurring color
+				var mostFrequent = grounds.Select(v => v)
+					.GroupBy(v => v)
+					.OrderByDescending(v => v.Count())
+					.Select(v => v.Key)
+					.First();
+
+				var ground = ColorTranslator.FromHtml(mostFrequent);
+				var bright = ground.GetBrightness() >= 0.5;
+
+				if (dark && bright)
+				{
+					// page is dark and text background is all light then return
+					// light background color
+					background = mostFrequent;
+				}
+				else if (!dark && !bright)
+				{
+					// page is light and text background is all dark then return
+					// dark background color
+					background = mostFrequent;
+				}
+			}
+
+			return background == null ? null : ColorTranslator.FromHtml(background).ToRGBHtml();
 		}
 	}
 }

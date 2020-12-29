@@ -18,26 +18,16 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var pageTag = (string)args[0];
 
-			int retry = 0;
-			while (retry < 4)
+			try
 			{
-				try
+				using (var one = new OneNote())
 				{
-					using (var one = new OneNote())
-					{
-						one.NavigateTo(pageTag);
-					}
-
-					retry = int.MaxValue;
+					one.NavigateTo(pageTag);
 				}
-				catch (Exception exc)
-				{
-					retry++;
-					var ms = 250 * retry;
-
-					logger.WriteLine($"error navigating to {pageTag}, retyring in {ms}ms", exc);
-					System.Threading.Thread.Sleep(ms);
-				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error navigating to {pageTag}", exc);
 			}
 		}
 	}

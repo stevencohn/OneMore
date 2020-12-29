@@ -75,6 +75,7 @@ dotnet_diagnostic.CA2242.severity = warning
 
 dotnet_diagnostic.IDE0079.severity = none # Remove unnecessary suppression (IDE complaining about Sonar)
 
+dotnet_diagnostic.S108.severity = none # Nested blocks of code should not be left empty
 dotnet_diagnostic.S125.severity = none # Sections of code should not be commented out
 dotnet_diagnostic.S1066.severity = none # Collapsible "if" statements should be merged
 dotnet_diagnostic.S1135.severity = none # Track uses of "TODO" tags
