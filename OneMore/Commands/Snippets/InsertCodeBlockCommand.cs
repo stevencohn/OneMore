@@ -163,18 +163,36 @@ namespace River.OneMoreAddIn.Commands
 
 			if (runs.Count > 0)
 			{
+				// content will eventually be added after the first parent
 				firstParent = runs[0].Parent;
 
+				// if text is in the middle of a soft-break block then need to split the block
+				// into two so the code box can be inserted, maintaining its relative position
+				if (runs[runs.Count - 1].NextNode != null)
+				{
+					var nextNodes = runs[runs.Count - 1].NodesAfterSelf().ToList();
+					nextNodes.Remove();
+
+					firstParent.AddAfterSelf(new XElement(ns + "OE",
+						firstParent.Attributes(),
+						nextNodes
+						));
+				}
+
+				// collect the content
 				foreach (var run in runs)
 				{
-					// add run to new parent
-					content.Add(new XElement(ns + "OE",
-						run.Parent.Attributes(),
-						new XElement(run)
-						));
+					// new OE for run
+					var oe = new XElement(ns + "OE", run.Attributes());
 
 					// remove run from current parent
 					run.Remove();
+
+					// add run into new OE parent
+					oe.Add(run);
+
+					// add new OE to content
+					content.Add(oe);
 				}
 			}
 
@@ -188,6 +206,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var runs = content.Descendants(ns + "T");
 
+			// collect all CDATA style properties from all runs
 			var styles = runs
 				.Where(r => r.Value.Length > 0)
 				.Select(r => r.GetCData().GetWrapper())
@@ -195,6 +214,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(s => s.Attribute("style") != null)
 				.Select(s => s.Attribute("style").Value);
 
+			// extract the background property from all style elements
 			var grounds = new List<string>();
 			var regex = new Regex(@"background:([^;]+);?");
 			foreach (var style in styles)
@@ -206,8 +226,11 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			// if all runs have background styles (this is an estimate since it is possible
+			// for there to be more backgrounds than runs if there are multiples in each run)
 			if (grounds.Count >= runs.Count())
 			{
+				// find the most frequently occurring color
 				var mostFrequent = grounds.Select(v => v)
 					.GroupBy(v => v)
 					.OrderByDescending(v => v.Count())
@@ -219,10 +242,14 @@ namespace River.OneMoreAddIn.Commands
 
 				if (dark && bright)
 				{
+					// page is dark and text background is all light then return
+					// light background color
 					background = mostFrequent;
 				}
 				else if (!dark && !bright)
 				{
+					// page is light and text background is all dark then return
+					// dark background color
 					background = mostFrequent;
 				}
 			}
