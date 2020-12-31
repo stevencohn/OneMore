@@ -2568,4 +2568,8 @@ ISO-code then comma then language name</comment>
     <value>Seleccionar texto para renderizar como un nuevo código QR</value>
     <comment>message</comment>
   </data>
+  <data name="ribReferencesMenu_Label" xml:space="preserve">
+    <value>Referencias</value>
+    <comment>ribbon references menu</comment>
+  </data>
 </root>

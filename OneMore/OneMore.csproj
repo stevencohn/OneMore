@@ -130,11 +130,11 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Extras\MapCommand.cs" />
-    <Compile Include="Commands\Extras\MapDialog.cs">
+    <Compile Include="Commands\References\MapCommand.cs" />
+    <Compile Include="Commands\References\MapDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\MapDialog.Designer.cs">
+    <Compile Include="Commands\References\MapDialog.Designer.cs">
       <DependentUpon>MapDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Extras\SplitCommand.cs" />
@@ -145,7 +145,7 @@
       <DependentUpon>SplitDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Favorites\ShowKeyboardShortcutsCommand.cs" />
-    <Compile Include="Commands\Footnotes\InsertQRCommand.cs" />
+    <Compile Include="Commands\References\InsertQRCommand.cs" />
     <Compile Include="Commands\Formulas\Formula.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
@@ -236,13 +236,13 @@
     <Compile Include="Commands\Styles\ChangePageColorCommand.cs" />
     <Compile Include="Commands\Tools\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Styles\EditStylesCommand.cs" />
-    <Compile Include="Commands\Footnotes\AddFootnoteCommand.cs" />
+    <Compile Include="Commands\References\AddFootnoteCommand.cs" />
     <Compile Include="Commands\Extras\AddTitleIconCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
     <Compile Include="Commands\Tools\CollapseCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
-    <Compile Include="Commands\Footnotes\FootnoteEditor.cs" />
-    <Compile Include="Commands\Footnotes\FootnoteReference.cs" />
+    <Compile Include="Commands\References\FootnoteEditor.cs" />
+    <Compile Include="Commands\References\FootnoteReference.cs" />
     <Compile Include="Commands\Formulas\AddFormulaCommand.cs" />
     <Compile Include="Commands\Extras\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
@@ -348,11 +348,11 @@
     <Compile Include="Commands\Snippets\InsertLineCommand.cs" />
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
-    <Compile Include="Commands\Extras\NameUrlsCommand.cs" />
+    <Compile Include="Commands\References\NameUrlsCommand.cs" />
     <Compile Include="Commands\Favorites\GotoFavoriteCommand.cs" />
     <Compile Include="Commands\Edit\NoSpellCheckCommand.cs" />
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
-    <Compile Include="Commands\Footnotes\RemoveFootnoteCommand.cs" />
+    <Compile Include="Commands\References\RemoveFootnoteCommand.cs" />
     <Compile Include="Commands\SearchAndReplace\SearchAndReplaceCommand.cs" />
     <Compile Include="Commands\SearchAndReplace\AtomicFactory.cs" />
     <Compile Include="Commands\SearchAndReplace\ElementAtom.cs" />
@@ -678,7 +678,7 @@
     <EmbeddedResource Include="Commands\Extras\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Extras\MapDialog.resx">
+    <EmbeddedResource Include="Commands\References\MapDialog.resx">
       <DependentUpon>MapDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Extras\SplitDialog.resx">
@@ -781,7 +781,9 @@
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.nl-NL.resx" />
+    <EmbeddedResource Include="Properties\Resources.nl-NL.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
     <EmbeddedResource Include="Commands\Tools\Settings\ContextMenuSheet.resx">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>

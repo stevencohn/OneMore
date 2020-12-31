@@ -2560,4 +2560,8 @@ ISO-code then comma then language name</comment>
     <value>选择要呈现为新QR码的文本</value>
     <comment>message</comment>
   </data>
+  <data name="ribReferencesMenu_Label" xml:space="preserve">
+    <value>参考文献</value>
+    <comment>ribbon references menu</comment>
+  </data>
 </root>

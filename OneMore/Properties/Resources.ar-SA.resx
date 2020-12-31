@@ -2568,4 +2568,8 @@ ISO-code then comma then language name</comment>
     <value>حدد النص لعرضه كرمز QR جديد</value>
     <comment>message</comment>
   </data>
+  <data name="ribReferencesMenu_Label" xml:space="preserve">
+    <value>المراجع</value>
+    <comment>ribbon references menu</comment>
+  </data>
 </root>

@@ -225,6 +225,38 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemovePageNumbersCmd"/>
             </menu>
+            <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert">
+              <button
+                id="ribFootnoteButton"
+                imageMso="FootnoteInsert"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="AddFootnoteCmd"/>
+              <button
+                id="ribFootnoteRemoveButton"
+                imageMso="RemoveCitation"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="RemoveFootnoteCmd"/>
+              <button
+                id="ribInsertQRButton"
+                getLabel="GetRibbonLabel"
+                imageMso="BarcodeInsert"
+                getEnabled="GetBodyContext"
+                onAction="InsertQRCmd"/>
+              <button
+                id="ribMapButton"
+                label="Map Linked Pages"
+                imageMso="CreateMap"
+                onAction="MapCmd"/>
+              <button
+                id="ribNameUrlsButton"
+                imageMso="AutoSigWebInsertHyperlink"
+                getLabel="GetRibbonLabel"
+                onAction="NameUrlsCmd"/>
+            </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI">
               <button
                 id="ribReplaceButton"
@@ -343,20 +375,6 @@
                 getLabel="GetRibbonLabel"
                 onAction="AddTitleIconCmd"/>
               <button
-                id="ribFootnoteButton"
-                imageMso="FootnoteInsert"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                getEnabled="GetBodyContext"
-                onAction="AddFootnoteCmd"/>
-              <button
-                id="ribFootnoteRemoveButton"
-                imageMso="RemoveCitation"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                getEnabled="GetBodyContext"
-                onAction="RemoveFootnoteCmd"/>
-              <button
                 id="ribTextToTableButton"
                 imageMso="ConvertTextToTable"
                 getLabel="GetRibbonLabel"
@@ -375,27 +393,11 @@
                 getEnabled="GetBodyContext"
                 onAction="PronunciateCmd"/>
               <button
-                id="ribInsertQRButton"
-                getLabel="GetRibbonLabel"
-                imageMso="BarcodeInsert"
-                getEnabled="GetBodyContext"
-                onAction="InsertQRCmd"/>
-              <button
-                id="ribMapButton"
-                label="Map Linked Pages"
-                imageMso="CreateMap"
-                onAction="MapCmd"/>
-              <button
                 id="ribMergeButton"
                 imageMso="CompareAndCombine"
                 getLabel="GetRibbonLabel"
                 getEnabled="GetMultiPageContext"
                 onAction="MergeCmd"/>
-              <button
-                id="ribNameUrlsButton"
-                imageMso="AutoSigWebInsertHyperlink"
-                getLabel="GetRibbonLabel"
-                onAction="NameUrlsCmd"/>
               <button
                 id="ribSplitButton"
                 imageMso="MasterDocumentSplitSubdocuments"
