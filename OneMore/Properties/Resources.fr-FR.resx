@@ -2563,4 +2563,8 @@ ISO-code then comma then language name</comment>
     <value>Sélectionnez le texte à rendre sous forme de nouveau code QR</value>
     <comment>message</comment>
   </data>
+  <data name="ribReferencesMenu_Label" xml:space="preserve">
+    <value>Références</value>
+    <comment>ribbon references menu</comment>
+  </data>
 </root>

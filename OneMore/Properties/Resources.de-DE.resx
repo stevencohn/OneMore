@@ -2554,4 +2554,8 @@ ISO-code then comma then language name</comment>
     <value>Wählen Sie den Text aus, der als neuer QR-Code gerendert werden soll</value>
     <comment>message</comment>
   </data>
+  <data name="ribReferencesMenu_Label" xml:space="preserve">
+    <value>Verweise</value>
+    <comment>ribbon references menu</comment>
+  </data>
 </root>

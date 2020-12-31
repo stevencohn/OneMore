@@ -2579,4 +2579,8 @@ In this section</value>
     <value>Select text to render as a new QR code</value>
     <comment>message</comment>
   </data>
+  <data name="ribReferencesMenu_Label" xml:space="preserve">
+    <value>References</value>
+    <comment>ribbon references menu</comment>
+  </data>
 </root>
