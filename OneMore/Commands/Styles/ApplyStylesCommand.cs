@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -29,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out page, out _))
 			{
@@ -43,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 						ApplyToHyperlinks();
 					}
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

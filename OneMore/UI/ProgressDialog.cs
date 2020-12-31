@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.ComponentModel;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -38,7 +39,8 @@ namespace River.OneMoreAddIn.UI
 		private const int CancelHeight = 144;
 
 		private readonly CancellationTokenSource source;
-		private readonly Action<ProgressDialog, CancellationToken> execute;
+		// Func<p1, p2, Task> is the async equivalent of Action<p1, p2>
+		private readonly Func<ProgressDialog, CancellationToken, Task> execute;
 
 
 		/// <summary>
@@ -78,7 +80,7 @@ namespace River.OneMoreAddIn.UI
 		/// is passed a reference to the dialog so it can update its message and increment. The
 		/// action should also periodically check the cancellation token and abort when true.
 		/// </param>
-		public ProgressDialog(Action<ProgressDialog, CancellationToken> action)
+		public ProgressDialog(Func<ProgressDialog, CancellationToken, Task> action)
 		{
 			Initialize(CancelHeight);
 

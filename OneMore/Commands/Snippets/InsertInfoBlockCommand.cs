@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -43,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="warning">
 		/// True to generate a Warning table; other an Info table is generated
 		/// </param>
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			var warning = (bool)args[0];
 
@@ -119,7 +120,7 @@ namespace River.OneMoreAddIn.Commands
 				cell.SetContent(inner);
 
 				page.AddNextParagraph(outer.Root);
-				one.Update(page);
+				await one.Update(page);
 			}
 		}
 	}

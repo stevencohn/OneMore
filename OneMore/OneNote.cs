@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -162,7 +163,7 @@ namespace River.OneMoreAddIn
 		/// Invoke an action with retry
 		/// </summary>
 		/// <param name="work">The action to invoke</param>
-		public void InvokeWithRetry(Action work)
+		public async Task InvokeWithRetry(Action work)
 		{
 			try
 			{
@@ -186,7 +187,7 @@ namespace River.OneMoreAddIn
 						var ms = 250 * retries;
 
 						logger.WriteLine($"OneNote is busy, retyring in {ms}ms", exc);
-						Thread.Sleep(ms);
+						await Task.Delay(ms);
 					}
 				}
 			}
@@ -609,9 +610,9 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Sync updates to storage
 		/// </summary>
-		public void Sync()
+		public async Task Sync()
 		{
-			InvokeWithRetry(() =>
+			await InvokeWithRetry(() =>
 			{
 				onenote.SyncHierarchy(CurrentNotebookId);
 			});
@@ -622,9 +623,9 @@ namespace River.OneMoreAddIn
 		/// Update the current page.
 		/// </summary>
 		/// <param name="page">A Page</param>
-		public void Update(Page page)
+		public async Task Update(Page page)
 		{
-			Update(page.Root);
+			await Update(page.Root);
 		}
 
 
@@ -632,11 +633,11 @@ namespace River.OneMoreAddIn
 		/// Updates the given content, with a unique ID, on the current page.
 		/// </summary>
 		/// <param name="element">A page or element within a page with a unique objectID</param>
-		public void Update(XElement element)
+		public async Task Update(XElement element)
 		{
 			var xml = element.ToString(SaveOptions.DisableFormatting);
 
-			InvokeWithRetry(() =>
+			await InvokeWithRetry(() =>
 			{
 				onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
 			});
@@ -672,7 +673,7 @@ namespace River.OneMoreAddIn
 		/// QuickFiling dialog.
 		/// </summary>
 		/// <param name="nodeId"></param>
-		public delegate void SelectLocationCallback(string nodeId);
+		public delegate Task SelectLocationCallback(string nodeId);
 
 
 		/// <summary>
@@ -747,7 +748,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="path">The path to a .one file</param>
 		/// <returns>The ID of the new hierarchy object (pageId)</returns>
-		public string Import(string path)
+		public async Task<string> Import(string path)
 		{
 
 			/* TODO: Incomplete! 
@@ -795,9 +796,9 @@ namespace River.OneMoreAddIn
 			CreatePage(CurrentSectionId, out var pageId);
 			template.Root.Descendants().Attributes("objectID").Remove();
 			template.Root.Attribute("ID").Value = pageId;
-			Update(template);
+			await Update(template);
 
-			NavigateTo(pageId);
+			await NavigateTo(pageId);
 
 			// if OpenSections contains only this page the assume it is newly opened so close it
 			//if (open.Descendants(ns + "Page").Count() == 1)
@@ -813,18 +814,18 @@ namespace River.OneMoreAddIn
 		/// Forces OneNote to jump to the specified object, onenote Uri, or Web Uri
 		/// </summary>
 		/// <param name="uri">A pageId, sectionId, notebookId, onenote:URL, or Web URL</param>
-		public void NavigateTo(string uri)
+		public async Task NavigateTo(string uri)
 		{
 			if (uri.StartsWith("onenote:") || uri.StartsWith("http"))
 			{
-				InvokeWithRetry(() =>
+				await InvokeWithRetry(() =>
 				{
 					onenote.NavigateToUrl(uri);
 				});
 			}
 			else
 			{
-				InvokeWithRetry(() =>
+				await InvokeWithRetry(() =>
 				{
 					// must be an ID
 					onenote.NavigateTo(uri);
@@ -852,11 +853,11 @@ namespace River.OneMoreAddIn
 		/// <param name="nodeId">The root node: notebook, section, or page</param>
 		/// <param name="name">The search string, meta key name</param>
 		/// <returns>A hierarchy XML starting at the given node.</returns>
-		public XElement SearchMeta(string nodeId, string name)
+		public async Task<XElement> SearchMeta(string nodeId, string name)
 		{
 			string xml = null;
 
-			InvokeWithRetry(() =>
+			await InvokeWithRetry(() =>
 			{
 				onenote.FindMeta(nodeId, name, out xml, false, XMLSchema.xs2013);
 			});

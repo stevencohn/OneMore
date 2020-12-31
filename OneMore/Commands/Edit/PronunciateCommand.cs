@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override async void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 							new XCData($"<span style='color:#8496B0'>{ruby}</span>"))
 						);
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

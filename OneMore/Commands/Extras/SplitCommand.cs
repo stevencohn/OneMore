@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml;
 	using System.Xml.Linq;
@@ -37,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var dialog = new SplitDialog())
 			{
@@ -45,14 +46,14 @@ namespace River.OneMoreAddIn.Commands
 				{
 					using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 					{
-						SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
+						await SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
 					}
 				}
 			}
 		}
 
 
-		private void SplitPage(bool byHeading, int tagSymbol)
+		private async Task SplitPage(bool byHeading, int tagSymbol)
 		{
 			var headers = GetHeaders(byHeading, tagSymbol);
 
@@ -100,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 				var map = target.MergeQuickStyles(page);
 				target.ApplyStyleMapping(map, container);
 
-				one.Update(target);
+				await one.Update(target);
 
 				if (!header.IsHyper)
 				{
@@ -128,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 				content.Remove();
 			}
 
-			one.Update(page);
+			await one.Update(page);
 		}
 
 

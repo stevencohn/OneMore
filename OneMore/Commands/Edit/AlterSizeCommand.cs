@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			delta = (int)args[0]; // +/-1
 
@@ -65,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (count > 0)
 				{
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -19,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote())
 			{
@@ -34,6 +35,8 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
+
+			await Task.Yield();
 		}
 
 

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.IO;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -16,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			if (File.Exists(logger.LogPath))
 			{
@@ -42,6 +43,8 @@ namespace River.OneMoreAddIn.Commands
 					MessageBoxDefaultButton.Button1,
 					MessageBoxOptions.DefaultDesktopOnly);
 			}
+
+			await Task.Yield();
 		}
 	}
 }

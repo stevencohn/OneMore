@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands.Search
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -96,7 +97,8 @@ namespace River.OneMoreAddIn.Commands.Search
 		}
 
 
-		private void ClickNode(object sender, TreeNodeMouseClickEventArgs e)
+		// async event handlers should be be declared 'async void'
+		private async void ClickNode(object sender, TreeNodeMouseClickEventArgs e)
 		{
 			// thanksfully, Bounds specifies bounds of label
 			var node = e.Node as HierarchyNode;
@@ -105,7 +107,7 @@ namespace River.OneMoreAddIn.Commands.Search
 				var pageId = node.Root.Attribute("ID").Value;
 				if (!pageId.Equals(one.CurrentPageId))
 				{
-					one.NavigateTo(pageId);
+					await one.NavigateTo(pageId);
 				}
 			}
 		}

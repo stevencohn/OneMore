@@ -31,13 +31,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override async void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (one = new OneNote())
 			{
 				var context = SynchronizationContext.Current;
 
-				var results = one.SearchMeta(string.Empty, "omKeyboardShortcuts");
+				var results = await one.SearchMeta(string.Empty, "omKeyboardShortcuts");
 				var ns = one.GetNamespace(results);
 
 				var pageId = results?.Descendants(ns + "Meta")
@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 						var page = ExtractTemplate(path);
 						if (page != null)
 						{
-							pageId = ImportTemplate(page);
+							pageId = await ImportTemplate(page);
 						}
 
 						File.Delete(path);
@@ -67,8 +67,8 @@ namespace River.OneMoreAddIn.Commands
 				if (pageId != null)
 				{
 					logger.WriteLine("navigating to page");
-					one.Sync();
-					one.NavigateTo(pageId);
+					await one.Sync();
+					await one.NavigateTo(pageId);
 				}
 				else
 				{
@@ -139,7 +139,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private string ImportTemplate(Page template)
+		private async Task<string> ImportTemplate(Page template)
 		{
 			try
 			{
@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 					template.Title = "OneNote Keyboard Shortcuts";
 				}
 
-				one.Update(template);
+				await one.Update(template);
 
 				return pageId;
 			}

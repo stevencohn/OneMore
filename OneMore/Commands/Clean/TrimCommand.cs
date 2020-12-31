@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Xml;
 	using System.Xml.Linq;
 
@@ -17,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			var leading = (bool)args[0];
 
@@ -89,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (count > 0)
 					{
-						one.Update(page);
+						await one.Update(page);
 					}
 
 					logger.WriteLine($"trimmed {count} lines");

@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.IO;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -27,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 			{
@@ -44,12 +45,12 @@ namespace River.OneMoreAddIn.Commands
 					if (images.Count() == 1)
 					{
 						// resize single selected image only
-						ResizeOne(images.First());
+						await ResizeOne(images.First());
 					}
 					else
 					{
 						// select many iamges, or all if none selected
-						ResizeMany(images);
+						await ResizeMany(images);
 					}
 				}
 			}
@@ -73,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ResizeOne(XElement image)
+		private async Task ResizeOne(XElement image)
 		{
 			var size = image.Element(ns + "Size");
 			int width = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
@@ -89,13 +90,13 @@ namespace River.OneMoreAddIn.Commands
 					size.Attribute("width").Value = dialog.WidthPixels.ToString(CultureInfo.InvariantCulture);
 					size.Attribute("height").Value = dialog.HeightPixels.ToString(CultureInfo.InvariantCulture);
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}
 
 
-		private void ResizeMany(IEnumerable<XElement> images)
+		private async Task ResizeMany(IEnumerable<XElement> images)
 		{
 			using (var dialog = new ResizeImagesDialog(1, 1, true))
 			{
@@ -116,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
 							((int)(imageHeight * (dialog.WidthPixels / imageWidth))).ToString(CultureInfo.InvariantCulture);
 					}
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Commands;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
@@ -16,101 +17,101 @@ namespace River.OneMoreAddIn
 				
 			HotkeyManager.Initialize();
 
-			HotkeyManager.RegisterHotKey(() => AddFootnoteCmd(null),
+			HotkeyManager.RegisterHotKey(async() => await AddFootnoteCmd(null),
 				Keys.F, Hotmods.ControlAlt);
 
-			HotkeyManager.RegisterHotKey(() => AddFormulaCmd(null),
+			HotkeyManager.RegisterHotKey(async() => await AddFormulaCmd(null),
 				Keys.F5);
 
-			HotkeyManager.RegisterHotKey(() => DecreaseFontSizeCmd(null),
+			HotkeyManager.RegisterHotKey(async() => await DecreaseFontSizeCmd(null),
 				Keys.OemMinus, Hotmods.ControlAlt);
 
-			HotkeyManager.RegisterHotKey(() => HighlightCmd(null),
+			HotkeyManager.RegisterHotKey(async() => await HighlightCmd(null),
 				Keys.H, Hotmods.ControlShift);
 
-			HotkeyManager.RegisterHotKey(() => IncreaseFontSizeCmd(null),
+			HotkeyManager.RegisterHotKey(async() => await IncreaseFontSizeCmd(null),
 				Keys.Oemplus, Hotmods.ControlAlt);
 
-			HotkeyManager.RegisterHotKey(() => InsertCodeBlockCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await InsertCodeBlockCmd(null),
 				Keys.F6);
 
-			HotkeyManager.RegisterHotKey(() => InsertDateCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await InsertDateCmd(null),
 				Keys.D, Hotmods.ControlShift);
 
-			HotkeyManager.RegisterHotKey(() => InsertDoubleHorizontalLineCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await InsertDoubleHorizontalLineCmd(null),
 				Keys.F12, Hotmods.AltShift);
 
-			HotkeyManager.RegisterHotKey(() => InsertHorizontalLineCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await InsertHorizontalLineCmd(null),
 				Keys.F11, Hotmods.AltShift);
 
-			HotkeyManager.RegisterHotKey(() => NoSpellCheckCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await NoSpellCheckCmd(null),
 				Keys.F4);
 
-			HotkeyManager.RegisterHotKey(() => PasteRtfCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await PasteRtfCmd(null),
 				Keys.V, Hotmods.ControlAlt);
 
-			HotkeyManager.RegisterHotKey(() => RecalculateFormulaCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await RecalculateFormulaCmd(null),
 				Keys.F5, Hotmods.Shift);
 
-			HotkeyManager.RegisterHotKey(() => RemoveFootnoteCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await RemoveFootnoteCmd(null),
 				Keys.F, Hotmods.ControlShift);
 
-			HotkeyManager.RegisterHotKey(() => SearchCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await SearchCmd(null),
 				Keys.F, Hotmods.Alt);
 
-			HotkeyManager.RegisterHotKey(() => SearchAndReplaceCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await SearchAndReplaceCmd(null),
 				Keys.H, Hotmods.Control);
 
-			HotkeyManager.RegisterHotKey(() => TaggedCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await TaggedCmd(null),
 				Keys.T, Hotmods.ControlAlt);
 
-			HotkeyManager.RegisterHotKey(() => TaggingCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await TaggingCmd(null),
 				Keys.T, Hotmods.Alt);
 
-			HotkeyManager.RegisterHotKey(() => ToLowercaseCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await ToLowercaseCmd(null),
 				Keys.U, Hotmods.ControlShift);
 
-			HotkeyManager.RegisterHotKey(() => ToUppercaseCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await ToUppercaseCmd(null),
 				Keys.U, Hotmods.ControlAltShift);
 
 			// tools
 
-			HotkeyManager.RegisterHotKey(() => ShowXmlCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await ShowXmlCmd(null),
 				Keys.X, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<DiagnosticsCommand>(),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<DiagnosticsCommand>(),
 				Keys.F8);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ClearLogCommand>(),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ClearLogCommand>(),
 				Keys.F8, Hotmods.Control);
 
 			// custom styles, CtrlAltShift+1..9
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(0),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(0),
 				Keys.D1, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(1),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(1),
 				Keys.D2, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(2),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(2),
 				Keys.D3, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(3),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(3),
 				Keys.D4, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(4),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(4),
 				Keys.D5, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(5),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(5),
 				Keys.D6, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(6),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(6),
 				Keys.D7, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(7),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(7),
 				Keys.D8, Hotmods.ControlAltShift);
 
-			HotkeyManager.RegisterHotKey(() => factory.Run<ApplyStyleCommand>(9),
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(9),
 				Keys.D9, Hotmods.ControlAltShift);
 		}
 	}

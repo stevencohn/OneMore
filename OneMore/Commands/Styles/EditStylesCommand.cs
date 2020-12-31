@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Drawing;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
@@ -15,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			Color pageColor;
 			using (var one = new OneNote(out var page, out _))
@@ -42,6 +43,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			ribbon.Invalidate();
+
+			await Task.Yield();
 		}
 	}
 }

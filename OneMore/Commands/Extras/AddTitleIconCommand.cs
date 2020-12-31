@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -16,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			string[] codes = null;
 
@@ -30,11 +31,11 @@ namespace River.OneMoreAddIn.Commands
 				codes = dialog.GetSelectedCodes();
 			}
 
-			AddIcons(codes);
+			await AddIcons(codes);
 		}
 
 
-		private void AddIcons(string[] codes)
+		private async Task AddIcons(string[] codes)
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
@@ -70,7 +71,7 @@ namespace River.OneMoreAddIn.Commands
 
 					cdata.ReplaceWith(new XCData(decoded));
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

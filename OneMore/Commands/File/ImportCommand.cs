@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var dialog = new ImportDialog())
 			{
@@ -41,15 +42,15 @@ namespace River.OneMoreAddIn.Commands
 						break;
 
 					case ImportDialog.Formats.PowerPoint:
-						ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.CreateSection);
+						await ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.CreateSection);
 						break;
 
 					case ImportDialog.Formats.Xml:
-						ImportXml(dialog.FilePath);
+						await ImportXml(dialog.FilePath);
 						break;
 
 					case ImportDialog.Formats.OneNote:
-						ImportOneNote(dialog.FilePath);
+						await ImportOneNote(dialog.FilePath);
 						break;
 				}
 			}
@@ -68,9 +69,9 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			var completed = RunBackgroundTask(filepath, () =>
+			var completed = RunBackgroundTask(filepath, async () =>
 			{
-				WordImporter(filepath, append);
+				await WordImporter(filepath, append);
 
 				progressDialog.DialogResult = DialogResult.OK;
 				progressDialog.Close();
@@ -87,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void WordImporter(string filepath, bool append)
+		private async Task WordImporter(string filepath, bool append)
 		{
 			using (var word = new Word())
 			{
@@ -99,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 					using (var one = new OneNote(out var page, out _))
 					{
 						page.AddHtmlContent(html);
-						one.Update(page);
+						await one.Update(page);
 					}
 				}
 				else
@@ -111,8 +112,8 @@ namespace River.OneMoreAddIn.Commands
 
 						page.Title = Path.GetFileName(filepath);
 						page.AddHtmlContent(html);
-						one.Update(page);
-						one.NavigateTo(page.PageId);
+						await one.Update(page);
+						await one.NavigateTo(page.PageId);
 					}
 				}
 			}
@@ -122,7 +123,7 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Powerpoint...
 
-		private void ImportPowerPoint(string filepath, bool append, bool split)
+		private async Task ImportPowerPoint(string filepath, bool append, bool split)
 		{
 			if (!Office.IsPowerPointInstalled())
 			{
@@ -131,9 +132,9 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			var completed = RunBackgroundTask(filepath, () =>
+			var completed = RunBackgroundTask(filepath, async () =>
 			{
-				PowerPointImporter(filepath, append, split);
+				await PowerPointImporter(filepath, append, split);
 
 				progressDialog.DialogResult = DialogResult.OK;
 				progressDialog.Close();
@@ -147,10 +148,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.StopClock();
 			}
+
+			await Task.Yield();
 		}
 
 
-		private void PowerPointImporter(string filepath, bool append, bool split)
+		private async Task PowerPointImporter(string filepath, bool append, bool split)
 		{
 			string outpath;
 			using (var powerpoint = new PowerPoint())
@@ -172,7 +175,7 @@ namespace River.OneMoreAddIn.Commands
 					var sectionId = section.Attribute("ID").Value;
 					var ns = one.GetNamespace(section);
 
-					one.NavigateTo(sectionId);
+					await one.NavigateTo(sectionId);
 
 					int i = 1;
 					foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
@@ -184,7 +187,7 @@ namespace River.OneMoreAddIn.Commands
 
 						LoadImage(container, ns, file);
 
-						one.Update(page);
+						await one.Update(page);
 
 						i++;
 					}
@@ -218,11 +221,11 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 
-					one.Update(page);
+					await one.Update(page);
 
 					if (!append)
 					{
-						one.NavigateTo(page.PageId);
+						await one.NavigateTo(page.PageId);
 					}
 				}
 			}
@@ -308,7 +311,7 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// XML...
 
-		private void ImportXml(string filepath)
+		private async Task ImportXml(string filepath)
 		{
 			try
 			{
@@ -330,8 +333,8 @@ namespace River.OneMoreAddIn.Commands
 						template.Title = Path.GetFileNameWithoutExtension(filepath);
 					}
 
-					one.Update(template);
-					one.NavigateTo(pageId);
+					await one.Update(template);
+					await one.NavigateTo(pageId);
 				}
 			}
 			catch (Exception exc)
@@ -345,7 +348,8 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// OneNote...
 
-		private void ImportOneNote(string filepath)
+#pragma warning disable S1481 // Unused local variables should be removed
+		private async Task ImportOneNote(string filepath)
 		{
 			try
 			{
@@ -358,6 +362,8 @@ namespace River.OneMoreAddIn.Commands
 					var pageId = one.Import(filepath);
 					//one.NavigateTo(pageId);
 				}
+
+				await Task.Yield();
 			}
 			catch (Exception exc)
 			{

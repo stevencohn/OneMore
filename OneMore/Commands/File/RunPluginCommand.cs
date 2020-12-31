@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml;
 	using System.Xml.Linq;
@@ -37,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out var page, out _, OneNote.PageDetail.All))
 			{
@@ -90,11 +91,11 @@ namespace River.OneMoreAddIn.Commands
 
 					if (createNewPage)
 					{
-						CreatePage(one, root, page);
+						await CreatePage(one, root, page);
 					}
 					else
 					{
-						one.Update(root);
+						await one.Update(root);
 					}
 				}
 				catch (Exception exc)
@@ -287,7 +288,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void CreatePage(OneNote one, XElement page, Page parent)
+		private async Task CreatePage(OneNote one, XElement page, Page parent)
 		{
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
@@ -303,7 +304,7 @@ namespace River.OneMoreAddIn.Commands
 			// remove all objectID values and let OneNote generate new IDs
 			page.Descendants().Attributes("objectID").Remove();
 
-			one.Update(page);
+			await one.Update(page);
 
 			if (asChildPage)
 			{
@@ -329,7 +330,7 @@ namespace River.OneMoreAddIn.Commands
 				one.UpdateHierarchy(section);
 			}
 
-			one.NavigateTo(pageId);
+			await one.NavigateTo(pageId);
 		}
 
 

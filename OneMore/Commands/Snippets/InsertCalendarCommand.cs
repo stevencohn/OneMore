@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -27,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			int year;
 			int month;
@@ -52,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 				var header = MakeHeader(year, month);
 				page.AddNextParagraph(header);
 
-				one.Update(page);
+				await one.Update(page);
 			}
 		}
 

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -14,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			bool upper = (bool)args[0];
 
@@ -35,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (updated)
 				{
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

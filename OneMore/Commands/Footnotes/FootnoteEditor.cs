@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Media;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -45,7 +46,7 @@ namespace River.OneMoreAddIn
 		/// Adds a new footnote to the page, possibly renumbering existing footnotes
 		/// to ensure all foonotes are in sequential order from top to bottom.
 		/// </summary>
-		public void AddFootnote()
+		public async Task AddFootnote()
 		{
 			var element = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
@@ -74,13 +75,13 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			var label = WriteFootnoteText(element.Attribute("objectID").Value);
+			var label = await WriteFootnoteText(element.Attribute("objectID").Value);
 
 			if (WriteFootnoteRef(label))
 			{
 				RefreshLabels();
 
-				one.Update(page);
+				await one.Update(page);
 			}
 		}
 
@@ -162,7 +163,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string WriteFootnoteText(string textId)
+		private async Task<string> WriteFootnoteText(string textId)
 		{
 			// find next footnote label
 			var label = (divider.NodesAfterSelf()
@@ -225,7 +226,7 @@ namespace River.OneMoreAddIn
 			last.AddAfterSelf(note);
 
 			// update the page so OneNote will generate a new objectID
-			one.Update(page);
+			await one.Update(page);
 
 			// reload the page and reset state variables...
 			page = one.GetPage();
@@ -461,7 +462,7 @@ namespace River.OneMoreAddIn
 		/// <remarks>
 		/// A dialog is displayed if the cursor is not positioned over a footnote ref or text.
 		/// </remarks>
-		public void RemoveFootnote()
+		public async Task RemoveFootnote()
 		{
 			// find all selected paragraph
 			var elements = page.Root.Elements(ns + "Outline")
@@ -565,7 +566,7 @@ namespace River.OneMoreAddIn
 				divider.Remove();
 			}
 
-			one.Update(page);
+			await one.Update(page);
 		}
 
 

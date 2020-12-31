@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using River.OneMoreAddIn.Models;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -20,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out var page, out ns, OneNote.PageDetail.All))
 			{
@@ -77,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 						image.ReplaceWith(table.Root);
 					}
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

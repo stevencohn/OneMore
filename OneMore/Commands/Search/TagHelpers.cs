@@ -8,12 +8,13 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 
 
 	internal static class TagHelpers
 	{
 
-		public static Dictionary<string, string> FetchRecentTags(OneNote.Scope scope, int poolSize)
+		public static async Task<Dictionary<string, string>> FetchRecentTags(OneNote.Scope scope, int poolSize)
 		{
 			using (var one = new OneNote())
 			{
@@ -27,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 					case OneNote.Scope.Pages: scopeId = one.CurrentSectionId; break;
 				}
 
-				var root = one.SearchMeta(scopeId, Page.TaggingMetaName);
+				var root = await one.SearchMeta(scopeId, Page.TaggingMetaName);
 
 				var ns = root.GetNamespaceOfPrefix("one");
 				var pages = root.Descendants(ns + "Page")

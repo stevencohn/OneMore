@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Web;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -381,7 +382,14 @@ namespace River.OneMoreAddIn.Commands
 			VerticalOffset = 5;
 
 			tagBox.PressedEnter += AcceptInput;
-			FetchRecentTags();
+		}
+
+		protected override async void OnShown(EventArgs e)
+		{
+			base.OnShown(e);
+
+			// called in OnShown to prevent async constructor
+			await FetchRecentTags();
 			FetchPageWords();
 		}
 
@@ -403,9 +411,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void FetchRecentTags()
+		private async Task FetchRecentTags()
 		{
-			var tags = TagHelpers.FetchRecentTags(OneNote.Scope.Notebooks, PoolSize);
+			var tags = await TagHelpers.FetchRecentTags(OneNote.Scope.Notebooks, PoolSize);
 
 			if (tags.Count > 0)
 			{

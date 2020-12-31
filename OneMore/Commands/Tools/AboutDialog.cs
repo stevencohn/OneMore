@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Helpers.Updater;
 	using System;
 	using System.IO;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -55,6 +56,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// async event handlers should be be declared 'async void'
 		private async void CheckForUpdates(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			var updater = new Updater();
@@ -93,11 +95,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ClearLog(object sender, LinkLabelLinkClickedEventArgs e)
+		// async event handlers should be be declared 'async void'
+		private async void ClearLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			var cmd = new ClearLogCommand();
 			cmd.SetLogger(Logger.Current);
-			cmd.Execute();
+			await cmd.Execute();
 		}
 	}
 }

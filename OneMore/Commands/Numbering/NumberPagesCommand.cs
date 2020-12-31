@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -31,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var dialog = new NumberPagesDialog())
 			{
@@ -67,8 +68,8 @@ namespace River.OneMoreAddIn.Commands
 								progress.SetMaximum(pages.Count);
 								progress.Show(owner);
 
-								ApplyNumbering(
-									pages, ref index, pages[0].Level,
+								await ApplyNumbering(
+									pages, index, pages[0].Level,
 									dialog.NumericNumbering, string.Empty);
 
 								progress.Close();
@@ -80,11 +81,13 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
+
+			await Task.Yield();
 		}
 
 
-		private void ApplyNumbering(
-			List<PageBasics> pages, ref int index, int level, bool numeric, string prefix)
+		private async Task<int> ApplyNumbering(
+			List<PageBasics> pages, int index, int level, bool numeric, string prefix)
 		{
 			int counter = 1;
 
@@ -107,18 +110,20 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				cdata.Value = BuildPrefix(counter, numeric, level, prefix) + " " + text;
-				one.Update(page);
+				await one.Update(page);
 
 				index++;
 				counter++;
 
 				if (index < pages.Count && pages[index].Level > level)
 				{
-					ApplyNumbering(
-						pages, ref index, pages[index].Level,
+					index = await ApplyNumbering(
+						pages, index, pages[index].Level,
 						numeric, $"{prefix}{counter - 1}.");
 				}
 			}
+
+			return index;
 		}
 
 

@@ -9,9 +9,10 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
-	using System.Runtime.InteropServices;
 	using System.Linq;
+	using System.Runtime.InteropServices;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -467,7 +468,8 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Update
 
-		private void Update(object sender, EventArgs e)
+		// async event handlers should be be declared 'async void'
+		private async void Update(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show(
 				"Are you sure? This may corrupt the current page.",
@@ -480,7 +482,7 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					var page = XElement.Parse(pageBox.Text);
-					one.Update(page);
+					await one.Update(page);
 					Close();
 				}
 				catch (Exception exc)

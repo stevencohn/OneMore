@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -17,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			logger.StartClock();
 
@@ -50,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 
-					one.Update(page);
+					await one.Update(page);
 				}
 				else
 				{

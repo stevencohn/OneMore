@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -22,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			OneNote.Scope scope;
 			bool addTopLinks;
@@ -47,15 +48,15 @@ namespace River.OneMoreAddIn.Commands
 					switch (scope)
 					{
 						case OneNote.Scope.Self:
-							InsertHeadingsTable(one, addTopLinks);
+							await InsertHeadingsTable(one, addTopLinks);
 							break;
 
 						case OneNote.Scope.Pages:
-							InsertPagesTable(one);
+							await InsertPagesTable(one);
 							break;
 
 						case OneNote.Scope.Sections:
-							InsertSectionsTable(one, includePages);
+							await InsertSectionsTable(one, includePages);
 							break;
 					}
 				}
@@ -76,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="addTopLinks"></param>
 		/// <param name="one"></param>
-		private void InsertHeadingsTable(OneNote one, bool addTopLinks)
+		private async Task InsertHeadingsTable(OneNote one, bool addTopLinks)
 		{
 			var page = one.GetPage();
 			var ns = page.Namespace;
@@ -162,7 +163,7 @@ namespace River.OneMoreAddIn.Commands
 			toc.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
 			top.AddFirst(toc);
 
-			one.Update(page);
+			await one.Update(page);
 		}
 		#endregion InsertHeadingsTable
 
@@ -170,7 +171,7 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		#region InsertPagesTables
-		private void InsertPagesTable(OneNote one)
+		private async Task InsertPagesTable(OneNote one)
 		{
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
@@ -207,7 +208,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
-			one.Update(page);
+			await one.Update(page);
 
 			// move TOC page to top of section...
 
@@ -221,7 +222,7 @@ namespace River.OneMoreAddIn.Commands
 			section.AddFirst(entry);
 			one.UpdateHierarchy(section);
 
-			one.NavigateTo(pageId);
+			await one.NavigateTo(pageId);
 		}
 		#endregion InsertPagesTables
 
@@ -229,7 +230,7 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		#region InsertSectionsTable
-		private void InsertSectionsTable(OneNote one, bool includePages)
+		private async Task InsertSectionsTable(OneNote one, bool includePages)
 		{
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
@@ -250,7 +251,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
-			one.Update(page);
+			await one.Update(page);
 
 			// move TOC page to top of section...
 
@@ -264,7 +265,7 @@ namespace River.OneMoreAddIn.Commands
 			section.AddFirst(entry);
 			one.UpdateHierarchy(section);
 
-			one.NavigateTo(pageId);
+			await one.NavigateTo(pageId);
 		}
 
 

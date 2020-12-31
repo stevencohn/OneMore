@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -18,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			string whatText;
 			string withText;
@@ -81,7 +82,7 @@ namespace River.OneMoreAddIn.Commands
 						PatchEndingBreaks(page.Root, ns);
 
 						logger.WriteLine($"found {count} matches");
-						one.Update(page);
+						await one.Update(page);
 					}
 					else
 					{

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Globalization;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -23,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var dialog = new RemoveSpacingDialog())
 			{
@@ -34,12 +35,12 @@ namespace River.OneMoreAddIn.Commands
 					spaceBetween = dialog.SpaceBetween;
 					includeHeadings = dialog.IncludeHeadings;
 
-					RemoveSpacing();
+					await RemoveSpacing();
 				}
 			}
 		}
 
-		private void RemoveSpacing()
+		private async Task RemoveSpacing()
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
@@ -105,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (modified)
 					{
-						one.Update(page);
+						await one.Update(page);
 					}
 				}
 			}

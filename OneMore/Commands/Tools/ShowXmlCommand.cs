@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+using System.Threading.Tasks;
+
 namespace River.OneMoreAddIn.Commands
 {
 
@@ -12,12 +14,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var dialog = new ShowXmlDialog())
 			{
 				dialog.ShowDialog(owner);
 			}
+
+			await Task.Yield();
 		}
 	}
 }
