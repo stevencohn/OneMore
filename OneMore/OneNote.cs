@@ -610,11 +610,14 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Sync updates to storage
 		/// </summary>
-		public async Task Sync()
+		/// <param name="id">
+		/// The ID of the notebook to sync or the current notebook by default
+		/// </param>
+		public async Task Sync(string id = null)
 		{
 			await InvokeWithRetry(() =>
 			{
-				onenote.SyncHierarchy(CurrentNotebookId);
+				onenote.SyncHierarchy(id ?? CurrentNotebookId);
 			});
 		}
 
@@ -750,61 +753,45 @@ namespace River.OneMoreAddIn
 		/// <returns>The ID of the new hierarchy object (pageId)</returns>
 		public async Task<string> Import(string path)
 		{
+			var start = GetSection();
 
-			/* TODO: Incomplete! 
-			 * 
-			 * OpenHierarchy, followed by SyncHierarchy should load the .one file and then
-			 * GetSection would load the hierarchy down to the page level. But the one:Section
-			 * has an attribute areAllPagesAvailable=false which means the page isn't loaded...
-			 * 
-			 * I can't figure out why! :-(
-			 */
-
-			System.Diagnostics.Debugger.Launch();
-
-
-			// opening a .one file places its content in the transient OpenSections area
+			// Opening a .one file places its content in the transient OpenSections area
 			// with its own notebook structure; need to dive down to find the page...
+			//
+			// OpenHierarchy, followed by SyncHierarchy should load the .one file and then
+			// GetSection would load the hierarchy down to the page level. But the one:Section
+			// has an attribute areAllPagesAvailable=false which means the page isn't loaded...
+			// Instead use MergeSections to force loading the pages and merge into current section
 
-			logger.WriteLine($"opening {path}");
-			onenote.OpenHierarchy(path, null, out var openSectionId, CreateFileType.cftSection);
-			onenote.SyncHierarchy(openSectionId);
+			string openSectionId = null;
 
-			//var notebooks = GetNotebooks();
-			//var openId = notebooks.Elements(ns + "OpenSections").FirstOrDefault()?.Attribute("ID").Value;
-			//if (openId == null)
-			//{
-			//	logger.WriteLine("OpenSections section ID not found");
-			//	return null;
-			//}
-
-			var openSection = GetSection(openSectionId);
-			var ns = GetNamespace(openSection);
-
-			logger.WriteLine("opensection");
-			logger.WriteLine(openSection);
-			var templateId = openSection.Descendants(ns + "Page").LastOrDefault()?.Attribute("ID").Value;
-			if (templateId == null)
+			await InvokeWithRetry(() =>
 			{
-				logger.WriteLine("template page ID not found");
+				onenote.OpenHierarchy(path, null, out openSectionId, CreateFileType.cftSection);
+			});
+
+			if (string.IsNullOrEmpty(openSectionId))
+			{
 				return null;
 			}
 
-			var template = GetPage(templateId, PageDetail.BinaryData);
+			await InvokeWithRetry(() =>
+			{
+				onenote.MergeSections(openSectionId, CurrentSectionId);
+			});
 
-			// recreate the page in the current section
-			CreatePage(CurrentSectionId, out var pageId);
-			template.Root.Descendants().Attributes("objectID").Remove();
-			template.Root.Attribute("ID").Value = pageId;
-			await Update(template);
+			var section = GetSection();
+			var ns = GetNamespace(section);
 
-			await NavigateTo(pageId);
+			var pageId = section.Descendants(ns + "Page")
+				.Select(e => e.Attribute("ID").Value)
+				.Except(start.Descendants(ns + "Page").Select(e => e.Attribute("ID").Value))
+				.FirstOrDefault();
 
-			// if OpenSections contains only this page the assume it is newly opened so close it
-			//if (open.Descendants(ns + "Page").Count() == 1)
-			//{
-			//	onenote.CloseNotebook(openId);
-			//}
+			if (!string.IsNullOrEmpty(pageId))
+			{
+				await NavigateTo(pageId);
+			}
 
 			return pageId;
 		}

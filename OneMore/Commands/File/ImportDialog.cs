@@ -136,11 +136,6 @@ namespace River.OneMoreAddIn.Commands
 						AddExtension = true,
 						CheckFileExists = true,
 						DefaultExt = ".docx",
-
-						/*
-						 * TODO: Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|OneNote File (*.one)|*.one
-						 */
-
 						Filter = Resx.ImportDialog_OpenFileFilter,
 						InitialDirectory = path,
 						Multiselect = false,

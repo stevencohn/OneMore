@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Commands;
-	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
@@ -14,22 +13,22 @@ namespace River.OneMoreAddIn
 		private void RegisterHotkeys()
 		{
 			logger.WriteLine("defining hotkeys");
-				
+
 			HotkeyManager.Initialize();
 
-			HotkeyManager.RegisterHotKey(async() => await AddFootnoteCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await AddFootnoteCmd(null),
 				Keys.F, Hotmods.ControlAlt);
 
-			HotkeyManager.RegisterHotKey(async() => await AddFormulaCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await AddFormulaCmd(null),
 				Keys.F5);
 
-			HotkeyManager.RegisterHotKey(async() => await DecreaseFontSizeCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await DecreaseFontSizeCmd(null),
 				Keys.OemMinus, Hotmods.ControlAlt);
 
-			HotkeyManager.RegisterHotKey(async() => await HighlightCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await HighlightCmd(null),
 				Keys.H, Hotmods.ControlShift);
 
-			HotkeyManager.RegisterHotKey(async() => await IncreaseFontSizeCmd(null),
+			HotkeyManager.RegisterHotKey(async () => await IncreaseFontSizeCmd(null),
 				Keys.Oemplus, Hotmods.ControlAlt);
 
 			HotkeyManager.RegisterHotKey(async () => await InsertCodeBlockCmd(null),
