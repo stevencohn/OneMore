@@ -46,6 +46,7 @@ namespace River.OneMoreAddIn.Commands
 					matchCase = dialog.MatchCase;
 				}
 
+				// let user insert a newline char
 				withText = withText.Replace("\\n", "\n");
 
 				var cursor = page.GetTextCursor();
