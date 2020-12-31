@@ -190,6 +190,9 @@ namespace River.OneMoreAddIn
 		public async Task ExportCmd(IRibbonControl control)
 			=> await factory.Run<ExportCommand>();
 
+		public async Task SaveSnippetCmd(IRibbonControl control)
+			=> await factory.Run<SaveSnippetCommand>();
+
 		public async Task SearchCmd(IRibbonControl control)
 			=> await factory.Run<SearchCommand>();
 
