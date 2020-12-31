@@ -9,7 +9,8 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Text;
-    using System.Xml;
+	using System.Threading.Tasks;
+	using System.Xml;
     using System.Xml.Linq;
 
 
@@ -27,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			var selectedIndex = (int)args[0];
 
@@ -51,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (success)
 					{
-						one.Update(page);
+						await one.Update(page);
 					}
 				}
 			}

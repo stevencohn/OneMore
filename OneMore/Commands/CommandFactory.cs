@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using Microsoft.Office.Core;
 	using System;
 	using System.Collections.Generic;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -45,7 +46,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <typeparam name="T">The command type</typeparam>
 		/// <param name="args">The argument list</param>
-		public void Run<T>(params object[] args) where T : Command, new()
+		public async Task Run<T>(params object[] args) where T : Command, new()
 		{
 			try
 			{
@@ -57,7 +58,7 @@ namespace River.OneMoreAddIn
 				command.SetOwner(owner);
 				command.SetTrash(trash);
 
-				command.Execute(args);
+				await command.Execute(args);
 
 				logger.End();
 			}

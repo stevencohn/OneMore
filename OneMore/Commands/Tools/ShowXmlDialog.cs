@@ -9,9 +9,10 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
-	using System.Runtime.InteropServices;
 	using System.Linq;
+	using System.Runtime.InteropServices;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -467,7 +468,8 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Update
 
-		private void Update(object sender, EventArgs e)
+		// async event handlers should be be declared 'async void'
+		private async void Update(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show(
 				"Are you sure? This may corrupt the current page.",
@@ -480,12 +482,44 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					var page = XElement.Parse(pageBox.Text);
-					one.Update(page);
+					CorrectIndentations(page);
+
+					await one.Update(page);
 					Close();
+
+					// doesn't account for binary data, but close enough
+					logger.WriteLine($"updating {pageBox.Text.Length} bytes");
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine("error updating page content", exc);
+				}
+			}
+		}
+
+
+		private void CorrectIndentations(XElement root)
+		{
+			// sometimes Indent values go astronomical; this corrects that
+			var ns = one.GetNamespace(root);
+			var indents = root.Descendants(ns + "Indent").Attributes("indent");
+			if (indents.Any())
+			{
+				foreach (var indent in indents)
+				{
+					var ok = decimal.TryParse(indent.Value, out var value);
+					if (!ok || value > 1000000 || indent.Value.IndexOf("E+") >= 0)
+					{
+						// typically is fixed by dropping the fractional value
+						var v = indent.Value.Substring(0, indent.Value.IndexOf('.')) + ".0";
+						logger.WriteLine($"correcting indent {indent.Value} -> {v}");
+						indent.Value = v;
+					}
+					else if (value < 0)
+					{
+						logger.WriteLine($"correcting indent {indent.Value} -> {0.0}");
+						indent.Value = "0.0";
+					}
 				}
 			}
 		}

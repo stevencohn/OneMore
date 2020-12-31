@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			var statusColor = (StatusColor)args[0];
 
@@ -86,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 
 					page.ReplaceSelectedWithContent(content);
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

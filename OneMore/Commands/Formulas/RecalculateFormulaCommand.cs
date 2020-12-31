@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Commands.Formulas;
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -19,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			logger.StartClock();
 
@@ -52,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 						var processor = new Processor(table);
 						processor.Execute(cells.ToList());
 
-						one.Update(page);
+						await one.Update(page);
 						updated = true;
 					}
 				}

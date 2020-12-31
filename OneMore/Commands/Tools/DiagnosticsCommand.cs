@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Diagnostics;
 	using System.Reflection;
 	using System.Text;
-
+	using System.Threading.Tasks;
 
 	internal class DiagnosticsCommand : Command
 	{
@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			var builder = new StringBuilder();
 			builder.AppendLine("Diagnostics.Execute()");
@@ -66,6 +66,8 @@ namespace River.OneMoreAddIn.Commands
 
 				UIHelper.ShowInfo($"Diagnostics written to {logger.LogPath}");
 			}
+
+			await Task.Yield();
 		}
 	}
 }

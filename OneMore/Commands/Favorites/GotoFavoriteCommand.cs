@@ -5,7 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
-
+	using System.Threading.Tasks;
 
 	internal class GotoFavoriteCommand : Command
 	{
@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			var pageTag = (string)args[0];
 
@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var one = new OneNote())
 				{
-					one.NavigateTo(pageTag);
+					await one.NavigateTo(pageTag);
 				}
 			}
 			catch (Exception exc)

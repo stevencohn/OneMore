@@ -2557,4 +2557,16 @@ ISO-code then comma then language name</comment>
     <value>Beheer favorieten</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribInsertQRButton_Label" xml:space="preserve">
+    <value>QR-code invoegen</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="InsertQRCommand_MaxLength" xml:space="preserve">
+    <value>De geselecteerde tekst mag niet langer zijn dan {0} tekens</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertQRCommand_NoSelection" xml:space="preserve">
+    <value>Selecteer tekst om weer te geven als een nieuwe QR-code</value>
+    <comment>message</comment>
+  </data>
 </root>

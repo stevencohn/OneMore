@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Commands.Search;
 	using System;
 	using System.Collections.Generic;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -22,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			copying = false;
 
@@ -46,10 +47,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 			},
 			20);
+
+			await Task.Yield();
 		}
 
 
-		private void Callback(string sectionId)
+		private async Task Callback(string sectionId)
 		{
 			if (string.IsNullOrEmpty(sectionId))
 			{
@@ -68,11 +71,11 @@ namespace River.OneMoreAddIn.Commands
 
 					if (copying)
 					{
-						service.CopyPages(pageIds);
+						await service.CopyPages(pageIds);
 					}
 					else
 					{
-						service.MovePages(pageIds);
+						await service.MovePages(pageIds);
 					}
 				}
 			}

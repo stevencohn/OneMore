@@ -1943,7 +1943,7 @@ OneNote File (*.one)</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml</value>
+    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|OneNote File (*.one)|*.one</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
@@ -2566,5 +2566,17 @@ In this section</value>
   <data name="Favorites_manageButton_Label" xml:space="preserve">
     <value>Manage Favorites</value>
     <comment>favorites menu command</comment>
+  </data>
+  <data name="ribInsertQRButton_Label" xml:space="preserve">
+    <value>Insert QR Code</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="InsertQRCommand_MaxLength" xml:space="preserve">
+    <value>Selected text cannot exceed {0} characters</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertQRCommand_NoSelection" xml:space="preserve">
+    <value>Select text to render as a new QR code</value>
+    <comment>message</comment>
   </data>
 </root>

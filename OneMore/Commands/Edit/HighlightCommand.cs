@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
 	using System.Globalization;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -18,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
@@ -58,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 				if (updated)
 				{
 					page.SetMeta(Page.HighlightMetaName, index.ToString(CultureInfo.InvariantCulture));
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

@@ -1689,7 +1689,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml.
+        ///   Looks up a localized string similar to Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|OneNote File (*.one)|*.one.
         /// </summary>
         internal static string ImportDialog_OpenFileFilter {
             get {
@@ -1910,6 +1910,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertCellsDialog_Text {
             get {
                 return ResourceManager.GetString("InsertCellsDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected text cannot exceed {0} characters.
+        /// </summary>
+        internal static string InsertQRCommand_MaxLength {
+            get {
+                return ResourceManager.GetString("InsertQRCommand_MaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select text to render as a new QR code.
+        /// </summary>
+        internal static string InsertQRCommand_NoSelection {
+            get {
+                return ResourceManager.GetString("InsertQRCommand_NoSelection", resourceCulture);
             }
         }
         
@@ -3526,6 +3544,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertDoubleLineButton_Screentip {
             get {
                 return ResourceManager.GetString("ribInsertDoubleLineButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert QR Code.
+        /// </summary>
+        internal static string ribInsertQRButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertQRButton_Label", resourceCulture);
             }
         }
         

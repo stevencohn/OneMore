@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -14,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			logger.StartClock();
 
@@ -33,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 					page.Root.Add(new XAttribute("lang", "yo"));
 					page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", "yo"));
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 

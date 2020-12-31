@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -27,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
@@ -63,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 						RemoveWordBank(one, page, ns);
 					}
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}
@@ -98,7 +99,8 @@ namespace River.OneMoreAddIn.Commands
 
 				outline = new XElement(ns + "Outline",
 					new XElement(ns + "Position",
-						new XAttribute("x", "235"),
+						// 245 accounts for "Wednesday, December 30, 2020 12:12pm"
+						new XAttribute("x", "245"),
 						new XAttribute("y", "43"),
 						new XAttribute("z", "0")),
 					new XElement(ns + "Size",

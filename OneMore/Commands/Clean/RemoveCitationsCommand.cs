@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -17,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
@@ -51,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 
 					logger.WriteTime("removed citations, now saving...");
 
-					one.Update(page);
+					await one.Update(page);
 				}
 
 				logger.StopClock();

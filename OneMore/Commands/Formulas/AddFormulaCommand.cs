@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -27,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (one = new OneNote(out var page, out var ns))
 			{
@@ -102,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 					var processor = new Processor(table);
 					processor.Execute(cells);
 
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

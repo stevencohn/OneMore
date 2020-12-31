@@ -2548,4 +2548,16 @@ ISO-code then comma then language name</comment>
     <value>管理收藏夹</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribInsertQRButton_Label" xml:space="preserve">
+    <value>插入二维码</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="InsertQRCommand_MaxLength" xml:space="preserve">
+    <value>所选文字不能超过{0}个字符</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertQRCommand_NoSelection" xml:space="preserve">
+    <value>选择要呈现为新QR码的文本</value>
+    <comment>message</comment>
+  </data>
 </root>

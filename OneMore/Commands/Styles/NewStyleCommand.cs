@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Drawing;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml;
 	using System.Xml.Linq;
@@ -21,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			var style = CollectStyleFromContext();
 
@@ -48,6 +49,8 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
+
+			await Task.Yield();
 		}
 
 

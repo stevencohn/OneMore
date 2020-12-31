@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -18,26 +19,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var dialog = new ToggleDttmDialog())
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					Toggle(dialog.PageOnly, dialog.ShowTimestamps);
+					await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
 				}
 			}
 		}
 
 
-		private void Toggle(bool pageOnly, bool showTimestamps)
+		private async Task Toggle(bool pageOnly, bool showTimestamps)
 		{
 			using (var one = new OneNote())
 			{
 				if (pageOnly)
 				{
 					var page = one.GetPage();
-					SetTimestampVisibility(one, page, showTimestamps);
+					await SetTimestampVisibility(one, page, showTimestamps);
 				}
 				else
 				{
@@ -63,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 								progress.SetMessage(name);
 								progress.Increment();
 
-								SetTimestampVisibility(one, page, showTimestamps);
+								await SetTimestampVisibility(one, page, showTimestamps);
 							}
 						}
 					}
@@ -72,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static void SetTimestampVisibility(OneNote one, Page page, bool visible)
+		private static async Task SetTimestampVisibility(OneNote one, Page page, bool visible)
 		{
 			var modified = false;
 			var title = page.Root.Element(page.Namespace + "Title");
@@ -83,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (modified)
 				{
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

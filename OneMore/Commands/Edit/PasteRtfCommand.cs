@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Windows;
 	using System.Windows.Controls;
 	using System.Windows.Documents;
@@ -73,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			// transform RTF and Xaml data on clipboard to HTML
 
@@ -111,6 +112,8 @@ namespace River.OneMoreAddIn.Commands
 				Native.SetForegroundWindow(one.WindowHandle);
 				System.Windows.Forms.SendKeys.SendWait("^(v)");
 			}
+
+			await Task.Yield();
 		}
 
 

@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Forms = System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -162,7 +163,7 @@ namespace River.OneMoreAddIn
 		/// Invoke an action with retry
 		/// </summary>
 		/// <param name="work">The action to invoke</param>
-		public void InvokeWithRetry(Action work)
+		public async Task InvokeWithRetry(Action work)
 		{
 			try
 			{
@@ -186,7 +187,7 @@ namespace River.OneMoreAddIn
 						var ms = 250 * retries;
 
 						logger.WriteLine($"OneNote is busy, retyring in {ms}ms", exc);
-						Thread.Sleep(ms);
+						await Task.Delay(ms);
 					}
 				}
 			}
@@ -609,11 +610,14 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Sync updates to storage
 		/// </summary>
-		public void Sync()
+		/// <param name="id">
+		/// The ID of the notebook to sync or the current notebook by default
+		/// </param>
+		public async Task Sync(string id = null)
 		{
-			InvokeWithRetry(() =>
+			await InvokeWithRetry(() =>
 			{
-				onenote.SyncHierarchy(CurrentNotebookId);
+				onenote.SyncHierarchy(id ?? CurrentNotebookId);
 			});
 		}
 
@@ -622,9 +626,9 @@ namespace River.OneMoreAddIn
 		/// Update the current page.
 		/// </summary>
 		/// <param name="page">A Page</param>
-		public void Update(Page page)
+		public async Task Update(Page page)
 		{
-			Update(page.Root);
+			await Update(page.Root);
 		}
 
 
@@ -632,11 +636,11 @@ namespace River.OneMoreAddIn
 		/// Updates the given content, with a unique ID, on the current page.
 		/// </summary>
 		/// <param name="element">A page or element within a page with a unique objectID</param>
-		public void Update(XElement element)
+		public async Task Update(XElement element)
 		{
 			var xml = element.ToString(SaveOptions.DisableFormatting);
 
-			InvokeWithRetry(() =>
+			await InvokeWithRetry(() =>
 			{
 				onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
 			});
@@ -672,7 +676,7 @@ namespace River.OneMoreAddIn
 		/// QuickFiling dialog.
 		/// </summary>
 		/// <param name="nodeId"></param>
-		public delegate void SelectLocationCallback(string nodeId);
+		public delegate Task SelectLocationCallback(string nodeId);
 
 
 		/// <summary>
@@ -747,63 +751,47 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="path">The path to a .one file</param>
 		/// <returns>The ID of the new hierarchy object (pageId)</returns>
-		public string Import(string path)
+		public async Task<string> Import(string path)
 		{
+			var start = GetSection();
 
-			/* TODO: Incomplete! 
-			 * 
-			 * OpenHierarchy, followed by SyncHierarchy should load the .one file and then
-			 * GetSection would load the hierarchy down to the page level. But the one:Section
-			 * has an attribute areAllPagesAvailable=false which means the page isn't loaded...
-			 * 
-			 * I can't figure out why! :-(
-			 */
-
-			System.Diagnostics.Debugger.Launch();
-
-
-			// opening a .one file places its content in the transient OpenSections area
+			// Opening a .one file places its content in the transient OpenSections area
 			// with its own notebook structure; need to dive down to find the page...
+			//
+			// OpenHierarchy, followed by SyncHierarchy should load the .one file and then
+			// GetSection would load the hierarchy down to the page level. But the one:Section
+			// has an attribute areAllPagesAvailable=false which means the page isn't loaded...
+			// Instead use MergeSections to force loading the pages and merge into current section
 
-			logger.WriteLine($"opening {path}");
-			onenote.OpenHierarchy(path, null, out var openSectionId, CreateFileType.cftSection);
-			onenote.SyncHierarchy(openSectionId);
+			string openSectionId = null;
 
-			//var notebooks = GetNotebooks();
-			//var openId = notebooks.Elements(ns + "OpenSections").FirstOrDefault()?.Attribute("ID").Value;
-			//if (openId == null)
-			//{
-			//	logger.WriteLine("OpenSections section ID not found");
-			//	return null;
-			//}
-
-			var openSection = GetSection(openSectionId);
-			var ns = GetNamespace(openSection);
-
-			logger.WriteLine("opensection");
-			logger.WriteLine(openSection);
-			var templateId = openSection.Descendants(ns + "Page").LastOrDefault()?.Attribute("ID").Value;
-			if (templateId == null)
+			await InvokeWithRetry(() =>
 			{
-				logger.WriteLine("template page ID not found");
+				onenote.OpenHierarchy(path, null, out openSectionId, CreateFileType.cftSection);
+			});
+
+			if (string.IsNullOrEmpty(openSectionId))
+			{
 				return null;
 			}
 
-			var template = GetPage(templateId, PageDetail.BinaryData);
+			await InvokeWithRetry(() =>
+			{
+				onenote.MergeSections(openSectionId, CurrentSectionId);
+			});
 
-			// recreate the page in the current section
-			CreatePage(CurrentSectionId, out var pageId);
-			template.Root.Descendants().Attributes("objectID").Remove();
-			template.Root.Attribute("ID").Value = pageId;
-			Update(template);
+			var section = GetSection();
+			var ns = GetNamespace(section);
 
-			NavigateTo(pageId);
+			var pageId = section.Descendants(ns + "Page")
+				.Select(e => e.Attribute("ID").Value)
+				.Except(start.Descendants(ns + "Page").Select(e => e.Attribute("ID").Value))
+				.FirstOrDefault();
 
-			// if OpenSections contains only this page the assume it is newly opened so close it
-			//if (open.Descendants(ns + "Page").Count() == 1)
-			//{
-			//	onenote.CloseNotebook(openId);
-			//}
+			if (!string.IsNullOrEmpty(pageId))
+			{
+				await NavigateTo(pageId);
+			}
 
 			return pageId;
 		}
@@ -813,18 +801,18 @@ namespace River.OneMoreAddIn
 		/// Forces OneNote to jump to the specified object, onenote Uri, or Web Uri
 		/// </summary>
 		/// <param name="uri">A pageId, sectionId, notebookId, onenote:URL, or Web URL</param>
-		public void NavigateTo(string uri)
+		public async Task NavigateTo(string uri)
 		{
 			if (uri.StartsWith("onenote:") || uri.StartsWith("http"))
 			{
-				InvokeWithRetry(() =>
+				await InvokeWithRetry(() =>
 				{
 					onenote.NavigateToUrl(uri);
 				});
 			}
 			else
 			{
-				InvokeWithRetry(() =>
+				await InvokeWithRetry(() =>
 				{
 					// must be an ID
 					onenote.NavigateTo(uri);
@@ -852,11 +840,11 @@ namespace River.OneMoreAddIn
 		/// <param name="nodeId">The root node: notebook, section, or page</param>
 		/// <param name="name">The search string, meta key name</param>
 		/// <returns>A hierarchy XML starting at the given node.</returns>
-		public XElement SearchMeta(string nodeId, string name)
+		public async Task<XElement> SearchMeta(string nodeId, string name)
 		{
 			string xml = null;
 
-			InvokeWithRetry(() =>
+			await InvokeWithRetry(() =>
 			{
 				onenote.FindMeta(nodeId, name, out xml, false, XMLSchema.xs2013);
 			});

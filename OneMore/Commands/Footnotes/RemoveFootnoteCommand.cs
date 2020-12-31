@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+using System.Threading.Tasks;
+
 namespace River.OneMoreAddIn
 {
 
@@ -13,12 +15,14 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote())
 			{
-				new FootnoteEditor(one).RemoveFootnote();
+				await new FootnoteEditor(one).RemoveFootnote();
 			}
+
+			await Task.Yield();
 		}
 	}
 }

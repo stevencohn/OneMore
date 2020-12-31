@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -32,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var dialog = new MapDialog())
 			{
@@ -47,13 +48,15 @@ namespace River.OneMoreAddIn.Commands
 
 			var progressDialog = new UI.ProgressDialog(Execute);
 			progressDialog.RunModeless();
+
+			await Task.Yield();
 		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		// Invoked by the ProgressDialog OnShown callback
-		private void Execute(UI.ProgressDialog progress, CancellationToken token)
+		private async Task Execute(UI.ProgressDialog progress, CancellationToken token)
 		{
 			logger.Start();
 			logger.StartClock();
@@ -155,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 
 				Prune(hierarchy);
-				BuildMapPage(hierarchy);
+				await BuildMapPage(hierarchy);
 			}
 
 			logger.WriteTime("map complete");
@@ -250,7 +253,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void BuildMapPage(XElement hierarchy)
+		private async Task BuildMapPage(XElement hierarchy)
 		{
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
@@ -291,8 +294,8 @@ namespace River.OneMoreAddIn.Commands
 				container.Add(BuildMapPage(hierarchy, page));
 			}
 
-			one.Update(page);
-			one.NavigateTo(pageId);
+			await one.Update(page);
+			await one.NavigateTo(pageId);
 		}
 
 

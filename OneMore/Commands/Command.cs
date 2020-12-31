@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using Microsoft.Office.Core;
 	using System;
 	using System.Collections.Generic;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
@@ -59,8 +60,9 @@ namespace River.OneMoreAddIn
 		/// The entry point for the command which may take zero or more arguments
 		/// </summary>
 		/// <param name="args">The argument list</param>
-		public virtual void Execute(params object[] args)
+		public virtual async Task Execute(params object[] args)
 		{
+			await Task.Yield();
 		}
 	}
 }

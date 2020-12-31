@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -23,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var dialog = new OutlineDialog())
 			{
@@ -58,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 							}
 
 							// if OK then something must have happened, so save it
-							one.Update(page);
+							await one.Update(page);
 						}
 					}
 				}

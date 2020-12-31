@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
@@ -16,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			// built-in checkable/completeable tags
 			var symbols = new List<int> {
@@ -84,7 +85,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (modified)
 				{
-					one.Update(page);
+					await one.Update(page);
 				}
 			}
 		}

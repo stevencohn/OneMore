@@ -10,234 +10,238 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
+	using System.Threading.Tasks;
 
 
 	public partial class AddIn
 	{
 
-		public void AboutCmd(IRibbonControl control)
-			=> factory.Run<AboutCommand>();
+		public async Task AboutCmd(IRibbonControl control)
+			=> await factory.Run<AboutCommand>();
 
-		public void AddCaptionCmd(IRibbonControl control)
-			=> factory.Run<AddCaptionCommand>();
+		public async Task AddCaptionCmd(IRibbonControl control)
+			=> await factory.Run<AddCaptionCommand>();
 
 		public void AddFavoritePageCmd(IRibbonControl control)
 			=> new FavoritesProvider(ribbon).AddFavorite();
 
-		public void AddFootnoteCmd(IRibbonControl control)
-			=> factory.Run<AddFootnoteCommand>();
+		public async Task AddFootnoteCmd(IRibbonControl control)
+			=> await factory.Run<AddFootnoteCommand>();
 
-		public void AddFormulaCmd(IRibbonControl control)
-			=> factory.Run<AddFormulaCommand>();
+		public async Task AddFormulaCmd(IRibbonControl control)
+			=> await factory.Run<AddFormulaCommand>();
 
-		public void AddTitleIconCmd(IRibbonControl control)
-			=> factory.Run<AddTitleIconCommand>();
+		public async Task AddTitleIconCmd(IRibbonControl control)
+			=> await factory.Run<AddTitleIconCommand>();
 
-		public void ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
-			=> factory.Run<ApplyStyleCommand>(selectedIndex);
+		public async Task ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
+			=> await factory.Run<ApplyStyleCommand>(selectedIndex);
 
-		public void ApplyStylesCmd(IRibbonControl control)
-			=> factory.Run<ApplyStylesCommand>();
+		public async Task ApplyStylesCmd(IRibbonControl control)
+			=> await factory.Run<ApplyStylesCommand>();
 
-		public void ChangePageColorCmd(IRibbonControl control)
-			=> factory.Run<ChangePageColorCommand>();
+		public async Task ChangePageColorCmd(IRibbonControl control)
+			=> await factory.Run<ChangePageColorCommand>();
 
-		public void CollapseCmd(IRibbonControl control)
-			=> factory.Run<CollapseCommand>();
+		public async Task CollapseCmd(IRibbonControl control)
+			=> await factory.Run<CollapseCommand>();
 
-		public void ColorizeCmd(IRibbonControl control)
-			=> factory.Run<ColorizeCommand>(control.Tag);
+		public async Task ColorizeCmd(IRibbonControl control)
+			=> await factory.Run<ColorizeCommand>(control.Tag);
 
-		public void CropImageCmd(IRibbonControl control)
-			=> factory.Run<CropImageCommand>();
+		public async Task CropImageCmd(IRibbonControl control)
+			=> await factory.Run<CropImageCommand>();
 
-		public void DecreaseFontSizeCmd(IRibbonControl control)
-			=> factory.Run<AlterSizeCommand>(-1);
+		public async Task DecreaseFontSizeCmd(IRibbonControl control)
+			=> await factory.Run<AlterSizeCommand>(-1);
 
-		public void DeleteFormulaCmd(IRibbonControl control)
-			=> factory.Run<DeleteFormulaCommand>();
+		public async Task DeleteFormulaCmd(IRibbonControl control)
+			=> await factory.Run<DeleteFormulaCommand>();
 
-		public void EditStylesCmd(IRibbonControl control)
-			=> factory.Run<EditStylesCommand>();
+		public async Task EditStylesCmd(IRibbonControl control)
+			=> await factory.Run<EditStylesCommand>();
 
-		public void GotoFavoriteCmd(IRibbonControl control)
-			=> factory.Run<Commands.GotoFavoriteCommand>(control.Tag);
+		public async Task GotoFavoriteCmd(IRibbonControl control)
+			=> await factory.Run<Commands.GotoFavoriteCommand>(control.Tag);
 
-		public void IncreaseFontSizeCmd(IRibbonControl control)
-			=> factory.Run<AlterSizeCommand>(1);
+		public async Task IncreaseFontSizeCmd(IRibbonControl control)
+			=> await factory.Run<AlterSizeCommand>(1);
 
-		public void HighlightCmd(IRibbonControl control)
-			=> factory.Run<HighlightCommand>();
+		public async Task HighlightCmd(IRibbonControl control)
+			=> await factory.Run<HighlightCommand>();
 
-		public void HighlightFormulaCmd(IRibbonControl control)
-			=> factory.Run<HighlightFormulaCommand>();
+		public async Task HighlightFormulaCmd(IRibbonControl control)
+			=> await factory.Run<HighlightFormulaCommand>();
 
-		public void ImportCmd(IRibbonControl control)
-			=> factory.Run<ImportCommand>();
+		public async Task ImportCmd(IRibbonControl control)
+			=> await factory.Run<ImportCommand>();
 
-		public void InsertBlueStatusCmd(IRibbonControl control)
-			=> factory.Run<InsertStatusCommand>(StatusColor.Blue);
+		public async Task InsertBlueStatusCmd(IRibbonControl control)
+			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
 
-		public void InsertCalendarCmd(IRibbonControl control)
-			=> factory.Run<InsertCalendarCommand>();
+		public async Task InsertCalendarCmd(IRibbonControl control)
+			=> await factory.Run<InsertCalendarCommand>();
 
-		public void InsertCellsCmd(IRibbonControl control)
-			=> factory.Run<InsertCellsCommand>();
+		public async Task InsertCellsCmd(IRibbonControl control)
+			=> await factory.Run<InsertCellsCommand>();
 
-		public void InsertCodeBlockCmd(IRibbonControl control)
-			=> factory.Run<InsertCodeBlockCommand>();
+		public async Task InsertCodeBlockCmd(IRibbonControl control)
+			=> await factory.Run<InsertCodeBlockCommand>();
 
-		public void InsertDateCmd(IRibbonControl control)
-			=> factory.Run<InsertDateCommand>();
+		public async Task InsertDateCmd(IRibbonControl control)
+			=> await factory.Run<InsertDateCommand>();
 
-		public void InsertDoubleHorizontalLineCmd(IRibbonControl control)
-			=> factory.Run<InsertLineCommand>('═');
+		public async Task InsertDoubleHorizontalLineCmd(IRibbonControl control)
+			=> await factory.Run<InsertLineCommand>('═');
 
-		public void InsertExpandCmd(IRibbonControl control)
-			=> factory.Run<InsertExpandCommand>();
+		public async Task InsertExpandCmd(IRibbonControl control)
+			=> await factory.Run<InsertExpandCommand>();
 
-		public void InsertGrayStatusCmd(IRibbonControl control)
-			=> factory.Run<InsertStatusCommand>(StatusColor.Gray);
+		public async Task InsertGrayStatusCmd(IRibbonControl control)
+			=> await factory.Run<InsertStatusCommand>(StatusColor.Gray);
 
-		public void InsertGreenStatusCmd(IRibbonControl control)
-			=> factory.Run<InsertStatusCommand>(StatusColor.Green);
+		public async Task InsertGreenStatusCmd(IRibbonControl control)
+			=> await factory.Run<InsertStatusCommand>(StatusColor.Green);
 
-		public void InsertHorizontalLineCmd(IRibbonControl control)
-			=> factory.Run<InsertLineCommand>('─');
+		public async Task InsertHorizontalLineCmd(IRibbonControl control)
+			=> await factory.Run<InsertLineCommand>('─');
 
-		public void InsertInfoBlockCmd(IRibbonControl control)
-			=> factory.Run<InsertInfoBlockCommand>(false);
+		public async Task InsertInfoBlockCmd(IRibbonControl control)
+			=> await factory.Run<InsertInfoBlockCommand>(false);
 
-		public void InsertRedStatusCmd(IRibbonControl control)
-			=> factory.Run<InsertStatusCommand>(StatusColor.Red);
+		public async Task InsertQRCmd(IRibbonControl control)
+			=> await factory.Run<InsertQRCommand>(false);
 
-		public void InsertTocCmd(IRibbonControl control)
-			=> factory.Run<InsertTocCommand>();
+		public async Task InsertRedStatusCmd(IRibbonControl control)
+			=> await factory.Run<InsertStatusCommand>(StatusColor.Red);
 
-		public void InsertWarningBlockCmd(IRibbonControl control)
-			=> factory.Run<InsertInfoBlockCommand>(true);
+		public async Task InsertTocCmd(IRibbonControl control)
+			=> await factory.Run<InsertTocCommand>();
 
-		public void InsertYellowStatusCmd(IRibbonControl control)
-			=> factory.Run<InsertStatusCommand>(StatusColor.Yellow);
+		public async Task InsertWarningBlockCmd(IRibbonControl control)
+			=> await factory.Run<InsertInfoBlockCommand>(true);
 
-		public void ManageFavoritesCmd(IRibbonControl control)
-			=> factory.Run<Commands.ManageFavoritesCommand>(ribbon);
+		public async Task InsertYellowStatusCmd(IRibbonControl control)
+			=> await factory.Run<InsertStatusCommand>(StatusColor.Yellow);
 
-		public void MapCmd(IRibbonControl control)
-			=> factory.Run<MapCommand>();
+		public async Task ManageFavoritesCmd(IRibbonControl control)
+			=> await factory.Run<ManageFavoritesCommand>(ribbon);
 
-		public void MergeCmd(IRibbonControl control)
-			=> factory.Run<MergeCommand>();
+		public async Task MapCmd(IRibbonControl control)
+			=> await factory.Run<MapCommand>();
 
-		public void NameUrlsCmd(IRibbonControl control)
-			=> factory.Run<NameUrlsCommand>();
+		public async Task MergeCmd(IRibbonControl control)
+			=> await factory.Run<MergeCommand>();
 
-		public void NewStyleCmd(IRibbonControl control)
-			=> factory.Run<NewStyleCommand>();
+		public async Task NameUrlsCmd(IRibbonControl control)
+			=> await factory.Run<NameUrlsCommand>();
 
-		public void NoSpellCheckCmd(IRibbonControl control)
-			=> factory.Run<NoSpellCheckCommand>();
+		public async Task NewStyleCmd(IRibbonControl control)
+			=> await factory.Run<NewStyleCommand>();
 
-		public void NumberPagesCmd(IRibbonControl control)
-			=> factory.Run<NumberPagesCommand>();
+		public async Task NoSpellCheckCmd(IRibbonControl control)
+			=> await factory.Run<NoSpellCheckCommand>();
 
-		public void NumberSectionsCmd(IRibbonControl control)
-			=> factory.Run<NumberSectionsCommand>();
+		public async Task NumberPagesCmd(IRibbonControl control)
+			=> await factory.Run<NumberPagesCommand>();
 
-		public void OutlineCmd(IRibbonControl control)
-			=> factory.Run<OutlineCommand>();
+		public async Task NumberSectionsCmd(IRibbonControl control)
+			=> await factory.Run<NumberSectionsCommand>();
 
-		public void PasteRtfCmd(IRibbonControl control)
-			=> factory.Run<PasteRtfCommand>();
+		public async Task OutlineCmd(IRibbonControl control)
+			=> await factory.Run<OutlineCommand>();
 
-		public void PronunciateCmd(IRibbonControl control)
-			=> factory.Run<PronunciateCommand>();
+		public async Task PasteRtfCmd(IRibbonControl control)
+			=> await factory.Run<PasteRtfCommand>();
 
-		public void RecalculateFormulaCmd(IRibbonControl control)
-			=> factory.Run<RecalculateFormulaCommand>();
+		public async Task PronunciateCmd(IRibbonControl control)
+			=> await factory.Run<PronunciateCommand>();
 
-		public void RemoveAuthorsCmd(IRibbonControl control)
-			=> factory.Run<RemoveAuthorsCommand>();
+		public async Task RecalculateFormulaCmd(IRibbonControl control)
+			=> await factory.Run<RecalculateFormulaCommand>();
 
-		public void RemoveCitationsCmd(IRibbonControl control)
-			=> factory.Run<RemoveCitationsCommand>();
+		public async Task RemoveAuthorsCmd(IRibbonControl control)
+			=> await factory.Run<RemoveAuthorsCommand>();
 
-		public void RemoveEmptyCmd(IRibbonControl control)
-			=> factory.Run<RemoveEmptyCommand>();
+		public async Task RemoveCitationsCmd(IRibbonControl control)
+			=> await factory.Run<RemoveCitationsCommand>();
 
-		public void RemoveFootnoteCmd(IRibbonControl control)
-			=> factory.Run<RemoveFootnoteCommand>();
+		public async Task RemoveEmptyCmd(IRibbonControl control)
+			=> await factory.Run<RemoveEmptyCommand>();
 
-		public void RemovePageNumbersCmd(IRibbonControl control)
-			=> factory.Run<RemovePageNumbersCommand>();
+		public async Task RemoveFootnoteCmd(IRibbonControl control)
+			=> await factory.Run<RemoveFootnoteCommand>();
 
-		public void RemoveSectionNumbersCmd(IRibbonControl control)
-			=> factory.Run<RemoveSectionNumbersCommand>();
+		public async Task RemovePageNumbersCmd(IRibbonControl control)
+			=> await factory.Run<RemovePageNumbersCommand>();
 
-		public void RemoveSpacingCmd(IRibbonControl control)
-			=> factory.Run<RemoveSpacingCommand>();
+		public async Task RemoveSectionNumbersCmd(IRibbonControl control)
+			=> await factory.Run<RemoveSectionNumbersCommand>();
 
-		public void ResizeImagesCmd(IRibbonControl control)
-			=> factory.Run<ResizeImagesCommand>();
+		public async Task RemoveSpacingCmd(IRibbonControl control)
+			=> await factory.Run<RemoveSpacingCommand>();
 
-		public void RunPluginCmd(IRibbonControl control)
-			=> factory.Run<RunPluginCommand>();
+		public async Task ResizeImagesCmd(IRibbonControl control)
+			=> await factory.Run<ResizeImagesCommand>();
 
-		public void ExportCmd(IRibbonControl control)
-			=> factory.Run<ExportCommand>();
+		public async Task RunPluginCmd(IRibbonControl control)
+			=> await factory.Run<RunPluginCommand>();
 
-		public void SearchCmd(IRibbonControl control)
-			=> factory.Run<SearchCommand>();
+		public async Task ExportCmd(IRibbonControl control)
+			=> await factory.Run<ExportCommand>();
 
-		public void SearchAndReplaceCmd(IRibbonControl control)
-			=> factory.Run<SearchAndReplaceCommand>();
+		public async Task SearchCmd(IRibbonControl control)
+			=> await factory.Run<SearchCommand>();
 
-		public void SearchWebCmd(IRibbonControl control)
-			=> factory.Run<SearchWebCommand>(control.Tag);
+		public async Task SearchAndReplaceCmd(IRibbonControl control)
+			=> await factory.Run<SearchAndReplaceCommand>();
 
-		public void SettingsCmd(IRibbonControl control)
-			=> factory.Run<SettingsCommand>(ribbon);
+		public async Task SearchWebCmd(IRibbonControl control)
+			=> await factory.Run<SearchWebCommand>(control.Tag);
 
-		public void ShowKeyboardShortcutsCmd(IRibbonControl control)
-			=> factory.Run<ShowKeyboardShortcutsCommand>();
+		public async Task SettingsCmd(IRibbonControl control)
+			=> await factory.Run<SettingsCommand>(ribbon);
 
-		public void ShowXmlCmd(IRibbonControl control)
-			=> factory.Run<ShowXmlCommand>();
+		public async Task ShowKeyboardShortcutsCmd(IRibbonControl control)
+			=> await factory.Run<ShowKeyboardShortcutsCommand>();
 
-		public void SortCmd(IRibbonControl control)
-			=> factory.Run<SortCommand>();
+		public async Task ShowXmlCmd(IRibbonControl control)
+			=> await factory.Run<ShowXmlCommand>();
 
-		public void SplitCmd(IRibbonControl control)
-			=> factory.Run<SplitCommand>();
+		public async Task SortCmd(IRibbonControl control)
+			=> await factory.Run<SortCommand>();
 
-		public void StrikeoutCmd(IRibbonControl control)
-			=> factory.Run<StrikeoutCommand>();
+		public async Task SplitCmd(IRibbonControl control)
+			=> await factory.Run<SplitCommand>();
 
-		public void TaggedCmd(IRibbonControl control)
-			=> factory.Run<TaggedCommand>();
+		public async Task StrikeoutCmd(IRibbonControl control)
+			=> await factory.Run<StrikeoutCommand>();
 
-		public void TaggingCmd(IRibbonControl control)
-			=> factory.Run<TaggingCommand>();
+		public async Task TaggedCmd(IRibbonControl control)
+			=> await factory.Run<TaggedCommand>();
 
-		public void TextToTableCmd(IRibbonControl control)
-			=> factory.Run<TextToTableCommand>();
+		public async Task TaggingCmd(IRibbonControl control)
+			=> await factory.Run<TaggingCommand>();
 
-		public void ToLowercaseCmd(IRibbonControl control)
-			=> factory.Run<ToCaseCommand>(false);
+		public async Task TextToTableCmd(IRibbonControl control)
+			=> await factory.Run<TextToTableCommand>();
 
-		public void ToggleDttmCmd(IRibbonControl control)
-			=> factory.Run<ToggleDttmCommand>();
+		public async Task ToLowercaseCmd(IRibbonControl control)
+			=> await factory.Run<ToCaseCommand>(false);
 
-		public void ToUppercaseCmd(IRibbonControl control)
-			=> factory.Run<ToCaseCommand>(true);
+		public async Task ToggleDttmCmd(IRibbonControl control)
+			=> await factory.Run<ToggleDttmCommand>();
 
-		public void TrimCmd(IRibbonControl control)
-			=> factory.Run<TrimCommand>(false);
+		public async Task ToUppercaseCmd(IRibbonControl control)
+			=> await factory.Run<ToCaseCommand>(true);
 
-		public void TrimLeadingCmd(IRibbonControl control)
-			=> factory.Run<TrimCommand>(true);
+		public async Task TrimCmd(IRibbonControl control)
+			=> await factory.Run<TrimCommand>(false);
 
-		public void WordCountCmd(IRibbonControl control)
-			=> factory.Run<WordCountCommand>();
+		public async Task TrimLeadingCmd(IRibbonControl control)
+			=> await factory.Run<TrimCommand>(true);
+
+		public async Task WordCountCmd(IRibbonControl control)
+			=> await factory.Run<WordCountCommand>();
 	}
 }

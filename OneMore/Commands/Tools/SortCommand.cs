@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			OneNote.Scope scope;
 			SortDialog.Sortings sorting;
@@ -61,6 +62,8 @@ namespace River.OneMoreAddIn.Commands
 					SortNotebooks(sorting, direction);
 					break;
 			}
+
+			await Task.Yield();
 		}
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =

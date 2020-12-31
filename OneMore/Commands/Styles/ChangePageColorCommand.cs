@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Drawing;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -17,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out var page, out _))
 			{
@@ -60,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 							//
 						}
 
-						one.Update(page);
+						await one.Update(page);
 					}
 					else
 					{

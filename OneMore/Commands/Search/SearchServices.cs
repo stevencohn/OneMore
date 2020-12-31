@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void CopyPages(List<string> pageIds)
+		public async Task CopyPages(List<string> pageIds)
 		{
 			string lastId = null;
 
@@ -52,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 					page.Root.Attribute("ID").Value = newPageId;
 					// remove all objectID values and let OneNote generate new IDs
 					page.Root.Descendants().Attributes("objectID").Remove();
-					one.Update(page);
+					await one.Update(page);
 
 					lastId = newPageId;
 
@@ -63,12 +64,12 @@ namespace River.OneMoreAddIn.Commands
 			// navigate after progress dialog is closed otherwise it will hang!
 			if (lastId != null)
 			{
-				one.NavigateTo(lastId);
+				await one.NavigateTo(lastId);
 			}
 		}
 
 
-		public void IndexPages(List<string> pageIds)
+		public async Task IndexPages(List<string> pageIds)
 		{
 			string indexId = null;
 
@@ -102,18 +103,18 @@ namespace River.OneMoreAddIn.Commands
 						));
 				}
 
-				one.Update(indexPage);
+				await one.Update(indexPage);
 			}
 
 			// navigate after progress dialog is closed otherwise it will hang!
 			if (indexId != null)
 			{
-				one.NavigateTo(indexId);
+				await one.NavigateTo(indexId);
 			}
 		}
 
 
-		public void MovePages(List<string> pageIds)
+		public async Task MovePages(List<string> pageIds)
 		{
 			var sections = new Dictionary<string, XElement>();
 			var section = one.GetSection(sectionId);
@@ -188,7 +189,7 @@ namespace River.OneMoreAddIn.Commands
 				one.UpdateHierarchy(section);
 
 				// navigate after progress dialog is closed otherwise it will hang!
-				one.NavigateTo(sectionId);
+				await one.NavigateTo(sectionId);
 			}
 		}
 	}

@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -28,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override void Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
 			using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 			{
@@ -37,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (images?.Count() == 1)
 				{
-					CropImage(images.First());
+					await CropImage(images.First());
 				}
 				else
 				{
@@ -47,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void CropImage(XElement element)
+		private async Task CropImage(XElement element)
 		{
 			var data = element.Element(ns + "Data");
 			var binhex = Convert.FromBase64String(data.Value);
@@ -84,7 +85,7 @@ namespace River.OneMoreAddIn.Commands
 							size.SetAttributeValue("height", $"{setHeight:0.0}");
 							size.SetAttributeValue("isSetByUser", "true");
 
-							one.Update(page);
+							await one.Update(page);
 						}
 					}
 				}

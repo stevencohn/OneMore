@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -94,7 +95,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ChangeScope(object sender, EventArgs e)
+		// async event handlers should be be declared 'async void'
+		private async void ChangeScope(object sender, EventArgs e)
 		{
 			tagsFlow.Controls.Clear();
 
@@ -105,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 				case 2: scope = OneNote.Scope.Pages; break;
 			}
 
-			var tags = TagHelpers.FetchRecentTags(scope, 30);
+			var tags = await TagHelpers.FetchRecentTags(scope, 30);
 
 			if (tags.Count > 0)
 			{
@@ -205,7 +207,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ClickNode(object sender, TreeNodeMouseClickEventArgs e)
+		// async event handlers should be be declared 'async void'
+		private async void ClickNode(object sender, TreeNodeMouseClickEventArgs e)
 		{
 			// thanksfully, Bounds specifies bounds of label
 			var node = e.Node as HierarchyNode;
@@ -214,13 +217,14 @@ namespace River.OneMoreAddIn.Commands
 				var pageId = node.Root.Attribute("ID").Value;
 				if (!pageId.Equals(one.CurrentPageId))
 				{
-					one.NavigateTo(pageId);
+					await one.NavigateTo(pageId);
 				}
 			}
 		}
 
 
-		private void Search(object sender, EventArgs e)
+		// async event handlers should be be declared 'async void'
+		private async void Search(object sender, EventArgs e)
 		{
 			checkAllLabel.Enabled = false;
 			clearAllLabel.Enabled = false;
@@ -247,7 +251,7 @@ namespace River.OneMoreAddIn.Commands
 				case 2: scopeId = one.CurrentSectionId; break;
 			}
 
-			var results = one.SearchMeta(scopeId, Page.TaggingMetaName);
+			var results = await one.SearchMeta(scopeId, Page.TaggingMetaName);
 			var ns = one.GetNamespace(results);
 
 			// remove recyclebin nodes
