@@ -66,8 +66,6 @@ namespace River.OneMoreAddIn
 
 		public const string Prefix = "one";
 
-		private const uint hrCOMBusy = 0x8001010A;
-
 		private Application onenote;
 		private readonly ILogger logger;
 		private bool disposed;
@@ -181,7 +179,7 @@ namespace River.OneMoreAddIn
 
 						retries = int.MaxValue;
 					}
-					catch (COMException exc) when ((uint)exc.ErrorCode == hrCOMBusy)
+					catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrCOMBusy)
 					{
 						retries++;
 						var ms = 250 * retries;
