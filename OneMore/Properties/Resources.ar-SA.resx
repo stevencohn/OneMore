@@ -2556,4 +2556,16 @@ ISO-code then comma then language name</comment>
     <value>إدارة المفضلة</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribInsertQRButton_Label" xml:space="preserve">
+    <value>أدخل رمز الاستجابة السريعة</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="InsertQRCommand_MaxLength" xml:space="preserve">
+    <value>لا يمكن أن يتجاوز النص المحدد {0} حرفًا</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertQRCommand_NoSelection" xml:space="preserve">
+    <value>حدد النص لعرضه كرمز QR جديد</value>
+    <comment>message</comment>
+  </data>
 </root>

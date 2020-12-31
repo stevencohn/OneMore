@@ -145,6 +145,7 @@
       <DependentUpon>SplitDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Favorites\ShowKeyboardShortcutsCommand.cs" />
+    <Compile Include="Commands\Footnotes\InsertQRCommand.cs" />
     <Compile Include="Commands\Formulas\Formula.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">

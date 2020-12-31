@@ -2567,4 +2567,16 @@ In this section</value>
     <value>Manage Favorites</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribInsertQRButton_Label" xml:space="preserve">
+    <value>Insert QR Code</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="InsertQRCommand_MaxLength" xml:space="preserve">
+    <value>Selected text cannot exceed {0} characters</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertQRCommand_NoSelection" xml:space="preserve">
+    <value>Select text to render as a new QR code</value>
+    <comment>message</comment>
+  </data>
 </root>

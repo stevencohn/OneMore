@@ -375,6 +375,12 @@
                 getEnabled="GetBodyContext"
                 onAction="PronunciateCmd"/>
               <button
+                id="ribInsertQRButton"
+                getLabel="GetRibbonLabel"
+                imageMso="BarcodeInsert"
+                getEnabled="GetBodyContext"
+                onAction="InsertQRCmd"/>
+              <button
                 id="ribMapButton"
                 label="Map Linked Pages"
                 imageMso="CreateMap"
