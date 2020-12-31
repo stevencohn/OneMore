@@ -300,7 +300,7 @@ namespace River.OneMoreAddIn
 				clock.Stop();
 			}
 
-			WriteLine($"{message} @ {clock.Elapsed.ToString(@"mm\:ss\.ff")}");
+			WriteLine($"{message} @ {clock.Elapsed:mm\\:ss\\.ff}");
 		}
 
 

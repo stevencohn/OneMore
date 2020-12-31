@@ -508,7 +508,7 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var indent in indents)
 				{
 					var ok = decimal.TryParse(indent.Value, out var value);
-					if (!ok || value > 1000000 || indent.Value.IndexOf("E+") > 0)
+					if (!ok || value > 1000000 || indent.Value.IndexOf("E+") >= 0)
 					{
 						// typically is fixed by dropping the fractional value
 						var v = indent.Value.Substring(0, indent.Value.IndexOf('.')) + ".0";
