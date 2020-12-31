@@ -99,7 +99,8 @@ namespace River.OneMoreAddIn.Commands
 
 				outline = new XElement(ns + "Outline",
 					new XElement(ns + "Position",
-						new XAttribute("x", "235"),
+						// 245 accounts for "Wednesday, December 30, 2020 12:12pm"
+						new XAttribute("x", "245"),
 						new XAttribute("y", "43"),
 						new XAttribute("z", "0")),
 					new XElement(ns + "Size",
