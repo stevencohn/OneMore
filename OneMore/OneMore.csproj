@@ -191,6 +191,12 @@
     </Compile>
     <Compile Include="Commands\Snippets\SnippetsProvider.cs" />
     <Compile Include="Commands\Tools\SettingsCommand.cs" />
+    <Compile Include="Commands\Tools\Settings\SnippetsSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\Settings\SnippetsSheet.Designer.cs">
+      <DependentUpon>SnippetsSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tools\Settings\FavoritesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -743,6 +749,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Edit\PronunciateDialog.resx">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\Settings\SnippetsSheet.resx">
+      <DependentUpon>SnippetsSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\Settings\FavoritesSheet.resx">
       <DependentUpon>FavoritesSheet.cs</DependentUpon>

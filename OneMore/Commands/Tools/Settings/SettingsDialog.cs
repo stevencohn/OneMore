@@ -48,6 +48,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
 				navTree.Nodes["searchNode"].Text = Resx.SettingsDialog_searchNode_Text;
+				navTree.Nodes["snippetsNode"].Text = "Snippets"; // translate Resx.SettingsDialog_searchNode_Text;
 			}
 
 			this.ribbon = ribbon;
@@ -85,7 +86,8 @@ namespace River.OneMoreAddIn.Settings
 					case 1: sheet = new FavoritesSheet(provider, ribbon); break;
 					case 2: sheet = new HighlightsSheet(provider); break;
 					case 3: sheet = new RibbonBarSheet(provider); break;
-					default: sheet = new SearchEngineSheet(provider); break;
+					case 4: sheet = new SearchEngineSheet(provider); break;
+					default: sheet = new SnippetsSheet(provider); break;
 				}
 
 				sheets.Add(e.Node.Index, sheet);

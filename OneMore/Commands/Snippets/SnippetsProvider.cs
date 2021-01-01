@@ -48,6 +48,24 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gets a list of the full file paths of the custom snippets
+		/// </summary>
+		/// <returns></returns>
+		public IEnumerable<string> GetPaths()
+		{
+			if (!Directory.Exists(store))
+			{
+				yield break;
+			}
+
+			foreach (var file in Directory.GetFiles(store, $"*{Extension}"))
+			{
+				yield return file;
+			}
+		}
+
+
+		/// <summary>
 		/// Loads the contents of a snippet
 		/// </summary>
 		/// <param name="path"></param>
@@ -143,20 +161,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return menu;
-		}
-
-
-		private IEnumerable<string> GetPaths()
-		{
-			if (!Directory.Exists(store))
-			{
-				yield break;
-			}
-
-			foreach (var file in Directory.GetFiles(store, $"*{Extension}"))
-			{
-				yield return file;
-			}
 		}
 	}
 }

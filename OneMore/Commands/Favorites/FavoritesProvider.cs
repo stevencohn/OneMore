@@ -189,13 +189,12 @@ namespace River.OneMoreAddIn
 
 			// manage buttons...
 
-			var manFButton = root.Elements(ns + "button")
+			var manButton = root.Elements(ns + "button")
 				.FirstOrDefault(e => e.Attribute("id").Value == ManageButtonId);
 
-			if (manFButton == null)
+			if (manButton == null)
 			{
-				manFButton = MakeManageButton();
-				addButton.AddAfterSelf(manFButton);
+				addButton.AddAfterSelf(MakeManageButton());
 			}
 
 			// convert splitButton to button, removing the delete sub-menu
