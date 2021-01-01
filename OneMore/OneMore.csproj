@@ -181,6 +181,7 @@
     <Compile Include="Commands\Search\TagHelpers.cs" />
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
     <Compile Include="Commands\Favorites\ManageFavoritesCommand.cs" />
+    <Compile Include="Commands\Snippets\InsertSnippetCommand.cs" />
     <Compile Include="Commands\Snippets\SaveSnippetCommand.cs" />
     <Compile Include="Commands\Snippets\SaveSnippetDialog.cs">
       <SubType>Form</SubType>

@@ -479,7 +479,7 @@ namespace River.OneMoreAddIn
 			{
 				var menu = new XElement(ns + "menu",
 					new XAttribute("id", "ribMySnippets"),
-					new XAttribute("label", "My Snippets"),
+					new XAttribute("label", "My Custom Snippets"), // translate
 					new XAttribute("imageMso", "GroupInsertShapes")
 					);
 
@@ -488,8 +488,10 @@ namespace River.OneMoreAddIn
 				{
 					menu.Add(new XElement(ns + "button",
 						new XAttribute("id", $"ribMySnippet{b++}"),
+						new XAttribute("imageMso", "PasteSpecial"),
 						new XAttribute("label", Path.GetFileNameWithoutExtension(snippet)),
-						new XAttribute("tag", $"snippet:{snippet}")
+						new XAttribute("tag", snippet),
+						new XAttribute("onAction", "InsertSnippetCmd")
 						));
 				}
 

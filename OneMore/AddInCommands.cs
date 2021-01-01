@@ -115,6 +115,9 @@ namespace River.OneMoreAddIn
 		public async Task InsertRedStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Red);
 
+		public async Task InsertSnippetCmd(IRibbonControl control)
+			=> await factory.Run<InsertSnippetCommand>(control.Tag);
+
 		public async Task InsertTocCmd(IRibbonControl control)
 			=> await factory.Run<InsertTocCommand>();
 
