@@ -473,46 +473,14 @@ namespace River.OneMoreAddIn
 		{
 			//logger.WriteLine($"GetFavoritesContent({control.Id})");
 			var favorites = new FavoritesProvider(ribbon).LoadFavorites();
+			var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
 
-			var snippets = new SnippetsProvider().GetPaths();
-			if (snippets.Any())
+			var sep = favorites.Elements()
+				.FirstOrDefault(e => e.Attribute("id").Value == "omFavoritesSeparator");
+
+			if (sep != null)
 			{
-				var menu = new XElement(ns + "menu",
-					new XAttribute("id", "ribMySnippets"),
-					new XAttribute("label", "My Custom Snippets"), // translate
-					new XAttribute("imageMso", "GroupInsertShapes"),
-					new XElement(ns + "button",
-						new XAttribute("id", "omManageSnippetsButton"),
-						new XAttribute("label", "Manage Custom Snippets"), // translate
-						new XAttribute("imageMso", "BibliographyManageSources"),
-						new XAttribute("onAction", "ManageSnippetsCmd")
-						),
-					new XElement(ns + "menuSeparator",
-						new XAttribute("id", "ribSnippetsMenuSep")
-						)
-					);
-
-				var b = 0;
-				foreach (var snippet in snippets)
-				{
-					menu.Add(new XElement(ns + "button",
-						new XAttribute("id", $"ribMySnippet{b++}"),
-						new XAttribute("imageMso", "PasteSpecial"),
-						new XAttribute("label", Path.GetFileNameWithoutExtension(snippet)),
-						new XAttribute("tag", snippet),
-						new XAttribute("onAction", "InsertSnippetCmd")
-						));
-				}
-
-				var sep = favorites.Elements(ns + "menuSeparator").FirstOrDefault();
-				if (sep == null)
-				{
-					sep = favorites.Elements()
-						.FirstOrDefault(e => e.Attribute("id").Value == "omFavoritesSeparator");
-				}
-
-				if (sep != null)
-					sep.AddAfterSelf(menu);
+				sep.AddAfterSelf(snippets);
 			}
 
 			return favorites.ToString(SaveOptions.DisableFormatting);

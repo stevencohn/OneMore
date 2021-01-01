@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (page.GetTextCursor() != null)
 				{
-					UIHelper.ShowMessage("Select something");
+					UIHelper.ShowMessage("Select something"); // translate
 					return;
 				}
 

@@ -16,7 +16,6 @@ namespace River.OneMoreAddIn
 	{
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
-		private static readonly string SaveSnippetButtonId = "omSaveSnippetButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
 		public static readonly string KbdShortcutsId = "omKeyboardShortcutsButton";
 		public static readonly string GotoFavoriteCmd = "GotoFavoriteCmd";
@@ -119,7 +118,6 @@ namespace River.OneMoreAddIn
 			var root = new XElement(ns + "menu",
 				MakeAddButton(),
 				MakeManageButton(),
-				MakeSaveSnippetButton(),
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "omFavoritesSeparator")
 					)
@@ -136,17 +134,6 @@ namespace River.OneMoreAddIn
 				new XAttribute("label", Resx.Favorites_addButton_Label),
 				new XAttribute("imageMso", "AddToFavorites"),
 				new XAttribute("onAction", "AddFavoritePageCmd")
-				);
-		}
-
-
-		private static XElement MakeSaveSnippetButton()
-		{
-			return new XElement(ns + "button",
-				new XAttribute("id", SaveSnippetButtonId),
-				new XAttribute("label", "Save Custom Snippet"), // translate Resx.Favorites_addButton_Label),
-				new XAttribute("imageMso", "SaveSelectionToQuickPartGallery"),
-				new XAttribute("onAction", "SaveSnippetCmd")
 				);
 		}
 
@@ -209,17 +196,6 @@ namespace River.OneMoreAddIn
 			{
 				manFButton = MakeManageButton();
 				addButton.AddAfterSelf(manFButton);
-			}
-
-			// save snippet button...
-
-			var saveButton = root.Elements(ns + "button")
-				.FirstOrDefault(e => e.Attribute("id").Value == SaveSnippetButtonId);
-
-			if (saveButton == null)
-			{
-				saveButton = MakeSaveSnippetButton();
-				manFButton.AddAfterSelf(saveButton);
 			}
 
 			// convert splitButton to button, removing the delete sub-menu

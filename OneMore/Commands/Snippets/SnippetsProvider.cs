@@ -7,11 +7,16 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
+	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Xml.Linq;
 
 
 	internal class SnippetsProvider : Loggable
 	{
+		private const string SaveSnippetButtonId = "omSaveSnippetButton";
+		private const string ManageSnippetsButtonId = "omManageSnippetsButton";
+
 		private const string DirectoryName = "Snippets";
 		private const string Extension = ".snp";
 
@@ -92,6 +97,51 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.WriteLine($"error saving snippet to {path}", exc);
 			}
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		public XElement MakeSnippetsMenu(XNamespace ns)
+		{
+			var menu = new XElement(ns + "menu",
+				new XAttribute("id", "ribMySnippets"),
+				new XAttribute("label", "My Custom Snippets"), // translate
+				new XAttribute("imageMso", "GroupInsertShapes"),
+				new XElement(ns + "button",
+					new XAttribute("id", SaveSnippetButtonId),
+					new XAttribute("label", "Save Custom Snippet"), // translate Resx.Favorites_addButton_Label),
+					new XAttribute("imageMso", "SaveSelectionToQuickPartGallery"),
+					new XAttribute("onAction", "SaveSnippetCmd")
+					),
+				new XElement(ns + "button",
+					new XAttribute("id", ManageSnippetsButtonId),
+					new XAttribute("label", "Manage Custom Snippets"), // translate
+					new XAttribute("imageMso", "BibliographyManageSources"),
+					new XAttribute("onAction", "ManageSnippetsCmd")
+					),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "ribSnippetsMenuSep")
+					)
+				);
+
+			var snippets = GetPaths();
+			if (snippets.Any())
+			{
+				var b = 0;
+				foreach (var snippet in snippets)
+				{
+					menu.Add(new XElement(ns + "button",
+						new XAttribute("id", $"ribMySnippet{b++}"),
+						new XAttribute("imageMso", "PasteAlternative"),
+						new XAttribute("label", Path.GetFileNameWithoutExtension(snippet)),
+						new XAttribute("tag", snippet),
+						new XAttribute("onAction", "InsertSnippetCmd")
+						));
+				}
+			}
+
+			return menu;
 		}
 	}
 }
