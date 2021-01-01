@@ -29,6 +29,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Gets a list of snippet names for comparison when naming and saving a new snippet
+		/// </summary>
+		/// <returns></returns>
 		public IEnumerable<string> GetNames()
 		{
 			if (!Directory.Exists(store))
@@ -43,20 +47,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public IEnumerable<string> GetPaths()
-		{
-			if (!Directory.Exists(store))
-			{
-				yield break;
-			}
-
-			foreach (var file in Directory.GetFiles(store, $"*{Extension}"))
-			{
-				yield return file;
-			}
-		}
-
-
+		/// <summary>
+		/// Loads the contents of a snippet
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
 		public async Task<string> Load(string path)
 		{
 			if (!File.Exists(path))
@@ -80,6 +75,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Saves a new named snippet
+		/// </summary>
+		/// <param name="snippet"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public async Task Save(string snippet, string name)
 		{
 			var path = Path.Combine(store, $"{name}{Extension}");
@@ -142,6 +143,20 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return menu;
+		}
+
+
+		private IEnumerable<string> GetPaths()
+		{
+			if (!Directory.Exists(store))
+			{
+				yield break;
+			}
+
+			foreach (var file in Directory.GetFiles(store, $"*{Extension}"))
+			{
+				yield return file;
+			}
 		}
 	}
 }

@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Settings
 		private List<Favorite> LoadFavorites()
 		{
 			var list = new List<Favorite>();
-			var root = new FavoritesProvider(ribbon).LoadFavorites();
+			var root = new FavoritesProvider(ribbon).LoadFavoritesMenu();
 			var ns = root.GetDefaultNamespace();
 
 			// filter out the add/manage/shortcuts buttons

@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn
 		/// Load the raw favorites document; use for Settings
 		/// </summary>
 		/// <returns></returns>
-		public XElement LoadFavorites()
+		public XElement LoadFavoritesMenu()
 		{
 			XElement root = null;
 

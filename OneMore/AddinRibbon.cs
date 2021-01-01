@@ -472,7 +472,7 @@ namespace River.OneMoreAddIn
 		public string GetFavoritesContent(IRibbonControl control)
 		{
 			//logger.WriteLine($"GetFavoritesContent({control.Id})");
-			var favorites = new FavoritesProvider(ribbon).LoadFavorites();
+			var favorites = new FavoritesProvider(ribbon).LoadFavoritesMenu();
 			var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
 
 			var sep = favorites.Elements()
