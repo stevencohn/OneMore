@@ -8,6 +8,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Drawing;
@@ -460,6 +461,55 @@ namespace River.OneMoreAddIn
 		}
 
 
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		/// <summary>
+		/// Populates the Favorites menu
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public string GetFavoritesContent(IRibbonControl control)
+		{
+			logger.WriteLine($"GetFavoritesContent({control.Id})");
+			var favorites = new FavoritesProvider(ribbon).LoadFavorites();
+
+			var snippets = new SnippetsProvider().GetPaths();
+			if (snippets.Any())
+			{
+				var menu = new XElement(ns + "menu",
+					new XAttribute("id", "ribMySnippets"),
+					new XAttribute("label", "My Snippets"),
+					new XAttribute("imageMso", "GroupInsertShapes")
+					);
+
+				var b = 0;
+				foreach (var snippet in snippets)
+				{
+					menu.Add(new XElement(ns + "button",
+						new XAttribute("id", $"ribMySnippet{b++}"),
+						new XAttribute("label", Path.GetFileNameWithoutExtension(snippet)),
+						new XAttribute("tag", $"snippet:{snippet}")
+						));
+				}
+
+				var sep = favorites.Elements(ns + "menuSeparator").FirstOrDefault();
+				if (sep == null)
+				{
+					sep = favorites.Elements()
+						.FirstOrDefault(e => e.Attribute("id").Value == "omFavoritesSeparator");
+				}
+
+				if (sep != null)
+					sep.AddAfterSelf(menu);
+			}
+
+			logger.WriteLine(favorites);
+
+			return favorites.ToString(SaveOptions.DisableFormatting);
+		}
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		/// <summary>
@@ -471,18 +521,6 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("RibbonLoaded()");
 			this.ribbon = ribbon;
-		}
-
-
-		/// <summary>
-		/// Populates the Favorites menu
-		/// </summary>
-		/// <param name="control"></param>
-		/// <returns></returns>
-		public string GetFavoritesContent(IRibbonControl control)
-		{
-			//logger.WriteLine($"GetFavoritesContent({control.Id})");
-			return new FavoritesProvider(ribbon).GetMenuContent();
 		}
 
 

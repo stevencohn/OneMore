@@ -24,20 +24,31 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public List<string> GetNames()
+		public IEnumerable<string> GetNames()
 		{
-			var names = new List<string>();
-
-			if (Directory.Exists(store))
+			if (!Directory.Exists(store))
 			{
-				foreach (var file in Directory.GetFiles(
-					store, $"*{Extension}", SearchOption.AllDirectories))
-				{
-					names.Add(Path.GetFileNameWithoutExtension(file));
-				}
+				yield break;
 			}
 
-			return names;
+			foreach (var file in Directory.GetFiles(store, $"*{Extension}"))
+			{
+				yield return Path.GetFileNameWithoutExtension(file);
+			}
+		}
+
+
+		public IEnumerable<string> GetPaths()
+		{
+			if (!Directory.Exists(store))
+			{
+				yield break;
+			}
+
+			foreach (var file in Directory.GetFiles(store, $"*{Extension}"))
+			{
+				yield return file;
+			}
 		}
 
 

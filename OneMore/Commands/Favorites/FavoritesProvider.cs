@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn
 
 	internal class FavoritesProvider
 	{
-		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2006/01/customui";
+		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
 		public static readonly string KbdShortcutsId = "omKeyboardShortcutsButton";
@@ -73,12 +73,6 @@ namespace River.OneMoreAddIn
 			}
 
 			SaveFavorites(root);
-		}
-
-
-		public string GetMenuContent()
-		{
-			return LoadFavorites().ToString(SaveOptions.DisableFormatting);
 		}
 
 
@@ -168,6 +162,8 @@ namespace River.OneMoreAddIn
 
 		private static XElement UpgradeFavoritesMenu(XElement root)
 		{
+			root = RewriteNamespace(root, ns);
+
 			// temporary upgrade routine...
 
 			var addButton = root.Elements(ns + "button")
@@ -210,6 +206,38 @@ namespace River.OneMoreAddIn
 
 			return root;
 		}
+
+
+		private static XElement RewriteNamespace(XElement element, XNamespace ns)
+		{
+			RewriteChildNamespace(element, ns);
+
+			// cannot change ns of root element directly so must rebuild it
+			return new XElement(ns + element.Name.LocalName,
+				element.Attributes().Where(a => a.Name != "xmlns"),
+				element.Elements()
+				);
+		}
+
+		private static void RewriteChildNamespace(XElement element, XNamespace ns)
+		{
+			foreach (var child in element.Elements())
+			{
+				RewriteNamespace(child, ns);
+				var a = child.Attribute("xmlns");
+				if (a == null)
+				{
+					// change XName of element when xmlns is implicit
+					child.Name = ns + child.Name.LocalName;
+				}
+				else
+				{
+					// remove explicit xmlns attribute
+					a.Remove();
+				}
+			}
+		}
+
 
 
 		public void SaveFavorites(XElement root)
