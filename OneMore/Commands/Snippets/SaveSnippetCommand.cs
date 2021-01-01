@@ -41,8 +41,6 @@ namespace River.OneMoreAddIn.Commands
 					return null;
 			});
 
-			logger.WriteLine(html);
-
 			if (html.Length == 0)
 			{
 				return;

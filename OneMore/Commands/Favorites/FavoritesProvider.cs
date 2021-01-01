@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn
 	{
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
+		private static readonly string SaveSnippetButtonId = "omSaveSnippetButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
 		public static readonly string KbdShortcutsId = "omKeyboardShortcutsButton";
 		public static readonly string GotoFavoriteCmd = "GotoFavoriteCmd";
@@ -118,6 +119,7 @@ namespace River.OneMoreAddIn
 			var root = new XElement(ns + "menu",
 				MakeAddButton(),
 				MakeManageButton(),
+				MakeSaveSnippetButton(),
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "omFavoritesSeparator")
 					)
@@ -134,6 +136,17 @@ namespace River.OneMoreAddIn
 				new XAttribute("label", Resx.Favorites_addButton_Label),
 				new XAttribute("imageMso", "AddToFavorites"),
 				new XAttribute("onAction", "AddFavoritePageCmd")
+				);
+		}
+
+
+		private static XElement MakeSaveSnippetButton()
+		{
+			return new XElement(ns + "button",
+				new XAttribute("id", SaveSnippetButtonId),
+				new XAttribute("label", "Save Custom Snippet"), // translate Resx.Favorites_addButton_Label),
+				new XAttribute("imageMso", "SaveSelectionToQuickPartGallery"),
+				new XAttribute("onAction", "SaveSnippetCmd")
 				);
 		}
 
@@ -160,14 +173,14 @@ namespace River.OneMoreAddIn
 		}
 
 
+		// temporary upgrade routine...
 		private static XElement UpgradeFavoritesMenu(XElement root)
 		{
 			root = RewriteNamespace(root, ns);
 
-			// temporary upgrade routine...
-
+			// re-id old add favorite button
 			var addButton = root.Elements(ns + "button")
-				.FirstOrDefault(e => e.Attribute("id").Value == "omFavoriteAddButton");
+				.FirstOrDefault(e => e.Attribute("id").Value == "omFavoriteAddButton"); // old id
 
 			if (addButton != null)
 			{
@@ -187,12 +200,26 @@ namespace River.OneMoreAddIn
 				root.AddFirst(addButton);
 			}
 
-			var mngbtn = root.Elements(ns + "button")
+			// manage buttons...
+
+			var manFButton = root.Elements(ns + "button")
 				.FirstOrDefault(e => e.Attribute("id").Value == ManageButtonId);
 
-			if (mngbtn == null)
+			if (manFButton == null)
 			{
-				addButton.AddAfterSelf(MakeManageButton());
+				manFButton = MakeManageButton();
+				addButton.AddAfterSelf(manFButton);
+			}
+
+			// save snippet button...
+
+			var saveButton = root.Elements(ns + "button")
+				.FirstOrDefault(e => e.Attribute("id").Value == SaveSnippetButtonId);
+
+			if (saveButton == null)
+			{
+				saveButton = MakeSaveSnippetButton();
+				manFButton.AddAfterSelf(saveButton);
 			}
 
 			// convert splitButton to button, removing the delete sub-menu
@@ -223,7 +250,7 @@ namespace River.OneMoreAddIn
 		{
 			foreach (var child in element.Elements())
 			{
-				RewriteNamespace(child, ns);
+				RewriteChildNamespace(child, ns);
 				var a = child.Attribute("xmlns");
 				if (a == null)
 				{

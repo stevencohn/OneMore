@@ -471,7 +471,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetFavoritesContent(IRibbonControl control)
 		{
-			logger.WriteLine($"GetFavoritesContent({control.Id})");
+			//logger.WriteLine($"GetFavoritesContent({control.Id})");
 			var favorites = new FavoritesProvider(ribbon).LoadFavorites();
 
 			var snippets = new SnippetsProvider().GetPaths();
@@ -480,7 +480,16 @@ namespace River.OneMoreAddIn
 				var menu = new XElement(ns + "menu",
 					new XAttribute("id", "ribMySnippets"),
 					new XAttribute("label", "My Custom Snippets"), // translate
-					new XAttribute("imageMso", "GroupInsertShapes")
+					new XAttribute("imageMso", "GroupInsertShapes"),
+					new XElement(ns + "button",
+						new XAttribute("id", "omManageSnippetsButton"),
+						new XAttribute("label", "Manage Custom Snippets"), // translate
+						new XAttribute("imageMso", "BibliographyManageSources"),
+						new XAttribute("onAction", "ManageSnippetsCmd")
+						),
+					new XElement(ns + "menuSeparator",
+						new XAttribute("id", "ribSnippetsMenuSep")
+						)
 					);
 
 				var b = 0;
@@ -505,8 +514,6 @@ namespace River.OneMoreAddIn
 				if (sep != null)
 					sep.AddAfterSelf(menu);
 			}
-
-			logger.WriteLine(favorites);
 
 			return favorites.ToString(SaveOptions.DisableFormatting);
 		}

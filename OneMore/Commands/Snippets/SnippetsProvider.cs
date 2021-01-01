@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 
 
-	internal class SnippetsProvider
+	internal class SnippetsProvider : Loggable
 	{
 		private const string DirectoryName = "Snippets";
 		private const string Extension = ".snp";
@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly string store;
 
 
-		public SnippetsProvider()
+		public SnippetsProvider() : base()
 		{
 			store = Path.Combine(PathFactory.GetAppDataPath(), DirectoryName);
 		}
@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine($"error load snippet from {path}", exc);
+				logger.WriteLine($"error load snippet from {path}", exc);
 				return null;
 			}
 		}
@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine($"error saving snippet to {path}", exc);
+				logger.WriteLine($"error saving snippet to {path}", exc);
 			}
 		}
 	}

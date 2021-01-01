@@ -46,11 +46,6 @@
 
           <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" getImage="GetOneMoreRibbonImage">
             <button
-              id="ribSaveSnippetButton"
-              imageMso="SaveSelectionToQuickPartGallery"
-              label="Save Snippet"
-              onAction="SaveSnippetCmd"/>
-            <button
               id="ribCollapseButton"
               imageMso="CollapseAll"
               getLabel="GetRibbonLabel"
