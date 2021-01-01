@@ -2583,4 +2583,28 @@ In this section</value>
     <value>References</value>
     <comment>ribbon references menu</comment>
   </data>
+  <data name="SaveSnippetDialog.Text" xml:space="preserve">
+    <value>Save Snippet</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SaveSnippetDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
+    <value>Name is already in use</value>
+    <comment>label</comment>
+  </data>
+  <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
+    <value>Snippet name:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SaveSnippetDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SaveSnippetDialog_invalidName" xml:space="preserve">
+    <value>Name contains invalid characters</value>
+    <comment>error message</comment>
+  </data>
 </root>

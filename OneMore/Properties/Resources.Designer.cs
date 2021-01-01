@@ -4217,6 +4217,60 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
+        internal static string SaveSnippetDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SaveSnippetDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is already in use.
+        /// </summary>
+        internal static string SaveSnippetDialog_duplicateName {
+            get {
+                return ResourceManager.GetString("SaveSnippetDialog_duplicateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name contains invalid characters.
+        /// </summary>
+        internal static string SaveSnippetDialog_invalidName {
+            get {
+                return ResourceManager.GetString("SaveSnippetDialog_invalidName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snippet name:.
+        /// </summary>
+        internal static string SaveSnippetDialog_nameLabel_Text {
+            get {
+                return ResourceManager.GetString("SaveSnippetDialog_nameLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string SaveSnippetDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SaveSnippetDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Snippet.
+        /// </summary>
+        internal static string SaveSnippetDialog_Text {
+            get {
+                return ResourceManager.GetString("SaveSnippetDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
         internal static string SearchAndReplaceDialog_cancelButton_Text {
             get {
                 return ResourceManager.GetString("SearchAndReplaceDialog_cancelButton.Text", resourceCulture);
