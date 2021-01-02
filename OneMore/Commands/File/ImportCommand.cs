@@ -148,8 +148,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.StopClock();
 			}
-
-			await Task.Yield();
 		}
 
 
@@ -348,22 +346,19 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// OneNote...
 
-#pragma warning disable S1481 // Unused local variables should be removed
 		private async Task ImportOneNote(string filepath)
 		{
 			try
 			{
 				using (var one = new OneNote())
 				{
-					/*
-					 * TODO: Incomplete! See the OneNote.Import method for details :-(
-					 */
+					var pageId = await one.Import(filepath);
 
-					var pageId = one.Import(filepath);
-					//one.NavigateTo(pageId);
+					if (!string.IsNullOrEmpty(pageId))
+					{
+						await one.NavigateTo(pageId);
+					}
 				}
-
-				await Task.Yield();
 			}
 			catch (Exception exc)
 			{

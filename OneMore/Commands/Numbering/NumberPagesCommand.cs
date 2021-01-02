@@ -81,8 +81,6 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
-
-			await Task.Yield();
 		}
 
 

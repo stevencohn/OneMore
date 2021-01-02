@@ -781,15 +781,11 @@ namespace River.OneMoreAddIn
 			var section = GetSection();
 			var ns = GetNamespace(section);
 
+			// determine newly added pageId by comparing new section against what we started with
 			var pageId = section.Descendants(ns + "Page")
 				.Select(e => e.Attribute("ID").Value)
 				.Except(start.Descendants(ns + "Page").Select(e => e.Attribute("ID").Value))
 				.FirstOrDefault();
-
-			if (!string.IsNullOrEmpty(pageId))
-			{
-				await NavigateTo(pageId);
-			}
 
 			return pageId;
 		}
