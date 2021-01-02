@@ -14,8 +14,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SnippetsProvider : Loggable
 	{
-		private const string SaveSnippetButtonId = "omSaveSnippetButton";
-		private const string ManageSnippetsButtonId = "omManageSnippetsButton";
+		private const string SaveSnippetButtonId = "ribSaveSnippetButton";
+		private const string ManageSnippetsButtonId = "ribManageSnippetsButton";
 
 		private const string DirectoryName = "Snippets";
 		private const string Extension = ".snp";
@@ -144,18 +144,18 @@ namespace River.OneMoreAddIn.Commands
 		public XElement MakeSnippetsMenu(XNamespace ns)
 		{
 			var menu = new XElement(ns + "menu",
-				new XAttribute("id", "ribSnippetsMenu"),
-				new XAttribute("label", "My Custom Snippets"), // translate
+				new XAttribute("id", "ribCustomSnippetsMenu"),
+				new XAttribute("getLabel", "GetRibbonLabel"),
 				new XAttribute("imageMso", "GroupInsertShapes"),
 				new XElement(ns + "button",
 					new XAttribute("id", SaveSnippetButtonId),
-					new XAttribute("label", "Save Custom Snippet"), // translate Resx.Favorites_addButton_Label),
+					new XAttribute("getLabel", "GetRibbonLabel"),
 					new XAttribute("imageMso", "SaveSelectionToQuickPartGallery"),
 					new XAttribute("onAction", "SaveSnippetCmd")
 					),
 				new XElement(ns + "button",
 					new XAttribute("id", ManageSnippetsButtonId),
-					new XAttribute("label", "Manage Custom Snippets"), // translate
+					new XAttribute("getLabel", "GetRibbonLabel"),
 					new XAttribute("imageMso", "BibliographyManageSources"),
 					new XAttribute("onAction", "ManageSnippetsCmd")
 					),

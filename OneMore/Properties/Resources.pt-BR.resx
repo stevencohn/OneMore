@@ -2573,4 +2573,64 @@ ISO-code then comma then language name</comment>
     <value>Referências</value>
     <comment>ribbon references menu</comment>
   </data>
+  <data name="SaveSnippetDialog.Text" xml:space="preserve">
+    <value>Salvar trecho</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SaveSnippetDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
+    <value>O nome já está em uso</value>
+    <comment>label</comment>
+  </data>
+  <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
+    <value>Nome do snippet:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SaveSnippetDialog_okButton.Text" xml:space="preserve">
+    <value>Está bem</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SaveSnippetDialog_invalidName" xml:space="preserve">
+    <value>O nome contém caracteres inválidos</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
+    <value>Atalhos de teclado do OneNote</value>
+    <comment>favorite</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>A nuvem não carregou o snippet de \ "{0} \"</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
+    <value>Meus snippets personalizados</value>
+    <comment>ribbon </comment>
+  </data>
+  <data name="ribManageSnippetsButton_Label" xml:space="preserve">
+    <value>Gerenciar snippets personalizados</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Label" xml:space="preserve">
+    <value>Salvar trecho personalizado</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SaveSnippet_NeedSelection" xml:space="preserve">
+    <value>Selecione o conteúdo para salvar como um novo snippet</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
+    <value>Trechos</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Excluir snippet \ "{0} \"</value>
+    <comment>question</comment>
+  </data>
+  <data name="SnippetsSheet_Text" xml:space="preserve">
+    <value>Gerenciar meus snippets personalizados</value>
+    <comment>SnippetsSheet</comment>
+  </data>
 </root>

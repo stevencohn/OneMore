@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn
 		{
 			return new XElement(ns + "button",
 				new XAttribute("id", KbdShortcutsId),
-				new XAttribute("label", "OneNote Keyboard Shortcuts"), // translate
+				new XAttribute("label", Resx.Favorite_OneNoteKeyboardShortcuts),
 				new XAttribute("imageMso", "AdpPrimaryKey"),
 				new XAttribute("onAction", "ShowKeyboardShortcutsCmd")
 				);

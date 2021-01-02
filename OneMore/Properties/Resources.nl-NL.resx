@@ -2573,4 +2573,64 @@ ISO-code then comma then language name</comment>
     <value>Referenties</value>
     <comment>ribbon references menu</comment>
   </data>
+  <data name="SaveSnippetDialog.Text" xml:space="preserve">
+    <value>Bewaar fragment</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SaveSnippetDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
+    <value>Naam is al in gebruik</value>
+    <comment>label</comment>
+  </data>
+  <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
+    <value>Fragmentnaam:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SaveSnippetDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SaveSnippetDialog_invalidName" xml:space="preserve">
+    <value>Naam bevat ongeldige tekens</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
+    <value>OneNote-sneltoetsen</value>
+    <comment>favorite</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>Cloud laadt fragment van \ "{0} \" niet</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
+    <value>Mijn aangepaste fragmenten</value>
+    <comment>ribbon </comment>
+  </data>
+  <data name="ribManageSnippetsButton_Label" xml:space="preserve">
+    <value>Beheer aangepaste fragmenten</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Label" xml:space="preserve">
+    <value>Bewaar aangepast fragment</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SaveSnippet_NeedSelection" xml:space="preserve">
+    <value>Selecteer inhoud om op te slaan als een nieuw fragment</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
+    <value>Fragmenten</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Verwijder fragment \ "{0} \"</value>
+    <comment>question</comment>
+  </data>
+  <data name="SnippetsSheet_Text" xml:space="preserve">
+    <value>Beheer mijn aangepaste fragmenten</value>
+    <comment>SnippetsSheet</comment>
+  </data>
 </root>

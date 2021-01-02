@@ -2567,4 +2567,64 @@ ISO-code then comma then language name</comment>
     <value>Références</value>
     <comment>ribbon references menu</comment>
   </data>
+  <data name="SaveSnippetDialog.Text" xml:space="preserve">
+    <value>Enregistrer l'extrait</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SaveSnippetDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
+    <value>Le nom est déjà utilisé</value>
+    <comment>label</comment>
+  </data>
+  <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
+    <value>Nom de l'extrait:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SaveSnippetDialog_okButton.Text" xml:space="preserve">
+    <value>D'accord</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="SaveSnippetDialog_invalidName" xml:space="preserve">
+    <value>Le nom contient des caractères non valides</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
+    <value>Raccourcis clavier OneNote</value>
+    <comment>favorite</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>Cloud ne charge pas l'extrait de code de \ "{0} \"</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
+    <value>Mes extraits personnalisés</value>
+    <comment>ribbon </comment>
+  </data>
+  <data name="ribManageSnippetsButton_Label" xml:space="preserve">
+    <value>Gérer les extraits de code personnalisés</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Label" xml:space="preserve">
+    <value>Enregistrer l'extrait de code personnalisé</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SaveSnippet_NeedSelection" xml:space="preserve">
+    <value>Sélectionnez le contenu à enregistrer en tant que nouvel extrait de code</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
+    <value>Extraits</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Supprimer l'extrait de code \ "{0} \"</value>
+    <comment>question</comment>
+  </data>
+  <data name="SnippetsSheet_Text" xml:space="preserve">
+    <value>Gérer mes extraits personnalisés</value>
+    <comment>SnippetsSheet</comment>
+  </data>
 </root>

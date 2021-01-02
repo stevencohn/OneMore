@@ -2607,4 +2607,40 @@ In this section</value>
     <value>Name contains invalid characters</value>
     <comment>error message</comment>
   </data>
+  <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
+    <value>OneNote Keyboard Shortcuts</value>
+    <comment>favorite</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>Cloud not load snippet from \"{0}\"</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
+    <value>My Custom Snippets</value>
+    <comment>ribbon </comment>
+  </data>
+  <data name="ribManageSnippetsButton_Label" xml:space="preserve">
+    <value>Manage Custom Snippets</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Label" xml:space="preserve">
+    <value>Save Custom Snippet</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SaveSnippet_NeedSelection" xml:space="preserve">
+    <value>Select content to save as a new snippet</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
+    <value>Snippets</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Delete snippet \"{0}\"</value>
+    <comment>question</comment>
+  </data>
+  <data name="SnippetsSheet_Text" xml:space="preserve">
+    <value>Manage My Custom Snippets</value>
+    <comment>SnippetsSheet</comment>
+  </data>
 </root>

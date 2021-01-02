@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = "SnippetsSheet";
-			Title = "Manage My Custom Snippets"; // Resx.FavoritesSheet_Text; // translate
+			Title = Resx.SnippetsSheet_Text;
 
 			if (NeedsLocalizing())
 			{
@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Settings
 			var snippet = snippets[rowIndex];
 
 			var result = MessageBox.Show(
-				string.Format("Delete snippet \"{0}\"?", snippet.Name), // translate
+				string.Format(Resx.SnippetsSheet_ConfirmDelete, snippet.Name),
 				"OneMore",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question,
 				MessageBoxDefaultButton.Button2,

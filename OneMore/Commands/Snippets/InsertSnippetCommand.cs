@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Win = System.Windows;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class InsertSnippetCommand : Command
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (snippet == null)
 			{
-				UIHelper.ShowMessage($"Could not load from {path}"); // translate
+				UIHelper.ShowMessage(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
 				return;
 			}
 

@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Win = System.Windows;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class SaveSnippetCommand : Command
@@ -28,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (page.GetTextCursor() != null)
 				{
-					UIHelper.ShowMessage("Select something"); // translate
+					UIHelper.ShowMessage(Resx.SaveSnippet_NeedSelection);
 					return;
 				}
 

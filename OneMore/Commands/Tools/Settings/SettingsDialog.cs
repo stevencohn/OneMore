@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
 				navTree.Nodes["searchNode"].Text = Resx.SettingsDialog_searchNode_Text;
-				navTree.Nodes["snippetsNode"].Text = "Snippets"; // translate Resx.SettingsDialog_searchNode_Text;
+				navTree.Nodes["snippetsNode"].Text = Resx.SettingsDialog_snippetshNode_Text;
 			}
 
 			this.ribbon = ribbon;

@@ -1307,6 +1307,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneNote Keyboard Shortcuts.
+        /// </summary>
+        internal static string Favorite_OneNoteKeyboardShortcuts {
+            get {
+                return ResourceManager.GetString("Favorite_OneNoteKeyboardShortcuts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add current page.
         /// </summary>
         internal static string Favorites_addButton_Label {
@@ -1928,6 +1937,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertQRCommand_NoSelection {
             get {
                 return ResourceManager.GetString("InsertQRCommand_NoSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud not load snippet from \&quot;{0}\&quot;.
+        /// </summary>
+        internal static string InsertSnippets_CouldNotLoad {
+            get {
+                return ResourceManager.GetString("InsertSnippets_CouldNotLoad", resourceCulture);
             }
         }
         
@@ -3260,6 +3278,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Custom Snippets.
+        /// </summary>
+        internal static string ribCustomSnippetsMenu_Label {
+            get {
+                return ResourceManager.GetString("ribCustomSnippetsMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom Styles.
         /// </summary>
         internal static string ribCustomStylesButton_Label {
@@ -3589,6 +3616,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribLowercaseButton_Screentip {
             get {
                 return ResourceManager.GetString("ribLowercaseButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Custom Snippets.
+        /// </summary>
+        internal static string ribManageSnippetsButton_Label {
+            get {
+                return ResourceManager.GetString("ribManageSnippetsButton_Label", resourceCulture);
             }
         }
         
@@ -3926,6 +3962,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Custom Snippet.
+        /// </summary>
+        internal static string ribSaveSnippetButton_Label {
+            get {
+                return ResourceManager.GetString("ribSaveSnippetButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search and Copy/Move.
         /// </summary>
         internal static string ribSearchButton_Label {
@@ -4211,6 +4256,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SaveAsMany_Success {
             get {
                 return ResourceManager.GetString("SaveAsMany_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select content to save as a new snippet.
+        /// </summary>
+        internal static string SaveSnippet_NeedSelection {
+            get {
+                return ResourceManager.GetString("SaveSnippet_NeedSelection", resourceCulture);
             }
         }
         
@@ -4705,6 +4759,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Snippets.
+        /// </summary>
+        internal static string SettingsDialog_snippetshNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_snippetshNode_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore Settings.
         /// </summary>
         internal static string SettingsDialog_Text {
@@ -4892,6 +4955,24 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Smiley", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete snippet \&quot;{0}\&quot;.
+        /// </summary>
+        internal static string SnippetsSheet_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage My Custom Snippets.
+        /// </summary>
+        internal static string SnippetsSheet_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_Text", resourceCulture);
             }
         }
         
