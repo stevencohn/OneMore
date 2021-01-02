@@ -1685,7 +1685,7 @@ Archivo de OneNote (* .one)
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    Seleccione un archivo para importar
+    Seleccione un archivo de Word, PowerPoint, OneNote o XML
     label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">

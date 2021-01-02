@@ -1682,7 +1682,7 @@ OneNote文件（* .one）
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    选择要导入的文件
+    选择一个Word，PowerPoint，OneNote或XML文件
     label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">

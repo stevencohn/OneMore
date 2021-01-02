@@ -1680,7 +1680,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a file to import.
+        ///   Looks up a localized string similar to Select a Word, PowerPoint, OneNote, or XML file.
         /// </summary>
         internal static string ImportDialog_introLabel_Text {
             get {

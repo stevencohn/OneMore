@@ -1685,7 +1685,7 @@
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    حدد ملفًا لاستيراده
+    حدد ملف Word أو PowerPoint أو OneNote أو XML
     label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">

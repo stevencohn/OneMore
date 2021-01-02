@@ -1903,8 +1903,8 @@ OneNote File (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Select a file to import</value>
-    <comment>label</comment>
+    <value>Select a Word, PowerPoint, OneNote, or XML file</value>
+    <comment>label EDIT</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>

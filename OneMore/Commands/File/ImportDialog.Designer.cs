@@ -187,9 +187,9 @@
 			this.introLabel.AutoSize = true;
 			this.introLabel.Location = new System.Drawing.Point(18, 15);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(235, 20);
+			this.introLabel.Size = new System.Drawing.Size(352, 20);
 			this.introLabel.TabIndex = 9;
-			this.introLabel.Text = "Select a Word or PowerPoint file";
+			this.introLabel.Text = "Select a Word, PowerPoint, OneNote, or XML file";
 			// 
 			// ImportDialog
 			// 
@@ -215,7 +215,6 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Import";
-			this.TopMost = true;
 			this.wordGroup.ResumeLayout(false);
 			this.wordGroup.PerformLayout();
 			this.powerGroup.ResumeLayout(false);
