@@ -19,7 +19,8 @@ namespace River.OneMoreAddIn.Settings
 			Favorites,
 			Highlight,
 			Ribbon,
-			Search
+			Search,
+			Snippets
 		}
 
 		private readonly Dictionary<int, SheetBase> sheets;

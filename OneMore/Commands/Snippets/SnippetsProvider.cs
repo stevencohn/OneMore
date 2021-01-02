@@ -30,6 +30,26 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Delete the snippet with the specified path
+		/// </summary>
+		/// <param name="path"></param>
+		public void Delete(string path)
+		{
+			if (File.Exists(path))
+			{
+				try
+				{
+					File.Delete(path);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error deleting {path}", exc);
+				}
+			}
+		}
+
+
+		/// <summary>
 		/// Gets a list of snippet names for comparison when naming and saving a new snippet
 		/// </summary>
 		/// <returns></returns>

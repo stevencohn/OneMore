@@ -21,11 +21,21 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.ScaleControl(factor, specified);
 
-			(float xScaleFactor, float yScaleFactor) = UIHelper.GetScalingFactors();
+			//(float xScaleFactor, float yScaleFactor) = UIHelper.GetScalingFactors();
 
-			ImageScalingSize = new Size(
-				(int)(ImageScalingSize.Width * xScaleFactor),
-				(int)(ImageScalingSize.Height * yScaleFactor));
+			//ImageScalingSize = new Size(
+			//	(int)(ImageScalingSize.Width * xScaleFactor),
+			//	(int)(ImageScalingSize.Height * yScaleFactor));
+
+			var items = Items.GetEnumerator();
+			while (items.MoveNext())
+			{
+				if (items.Current is ToolStripControlHost host)
+				{
+					if (host.Placement == ToolStripItemPlacement.Overflow)
+						host.Control.Scale(factor);
+				}
+			}
 		}
 	}
 }

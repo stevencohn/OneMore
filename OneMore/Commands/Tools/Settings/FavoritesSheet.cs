@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			var list = new List<Favorite>();
 			var root = new FavoritesProvider(ribbon).LoadFavoritesMenu();
-			var ns = root.GetDefaultNamespace();
+			var ns = root.Name.Namespace;
 
 			// filter out the add/manage/shortcuts buttons
 			var elements = root.Elements(ns + "button")
@@ -131,7 +131,10 @@ namespace River.OneMoreAddIn.Settings
 							rowIndex--;
 						}
 
-						gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
+						if (rowIndex >= 0)
+						{
+							gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
+						}
 					}
 				}
 			}

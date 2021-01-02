@@ -26,9 +26,8 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private readonly IRibbonUI ribbon;
 		private readonly BindingList<Snippet> snippets;
-		private bool updated = false;
+		private readonly SnippetsProvider snipsProvider;
 
 
 		public SnippetsSheet(SettingsProvider provider)
@@ -59,6 +58,8 @@ namespace River.OneMoreAddIn.Settings
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
 
+			snipsProvider = new SnippetsProvider();
+
 			snippets = new BindingList<Snippet>(LoadSnippets());
 			gridView.DataSource = snippets;
 		}
@@ -66,7 +67,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private List<Snippet> LoadSnippets()
 		{
-			var paths = new SnippetsProvider().GetPaths();
+			var paths = snipsProvider.GetPaths();
 			var list = new List<Snippet>();
 
 			foreach (var path in paths)
@@ -90,8 +91,10 @@ namespace River.OneMoreAddIn.Settings
 				int rowIndex = gridView.SelectedCells[0].RowIndex;
 				if (rowIndex < snippets.Count)
 				{
+					var snippet = snippets[rowIndex];
+
 					var result = MessageBox.Show(
-						string.Format("Delete {0}?", snippets[rowIndex].Name),
+						string.Format("Delete snippet \"{0}\"?", snippet.Name), // translate
 						"OneMore",
 						MessageBoxButtons.YesNo, MessageBoxIcon.Question,
 						MessageBoxDefaultButton.Button2,
@@ -100,14 +103,17 @@ namespace River.OneMoreAddIn.Settings
 					if (result == DialogResult.Yes)
 					{
 						snippets.RemoveAt(rowIndex);
-						updated = true;
+						snipsProvider.Delete(snippet.Path);
 
 						if (rowIndex > 0)
 						{
 							rowIndex--;
 						}
 
-						gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
+						if (rowIndex >= 0)
+						{
+							gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
+						}
 					}
 				}
 			}
