@@ -26,11 +26,13 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private readonly IRibbonUI ribbon;
 		private readonly BindingList<Snippet> snippets;
 		private readonly SnippetsProvider snipsProvider;
+		private bool updated = false;
 
 
-		public SnippetsSheet(SettingsProvider provider)
+		public SnippetsSheet(SettingsProvider provider, IRibbonUI ribbon)
 			: base(provider)
 		{
 			InitializeComponent();
@@ -58,6 +60,7 @@ namespace River.OneMoreAddIn.Settings
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
 
+			this.ribbon = ribbon;
 			snipsProvider = new SnippetsProvider();
 
 			snippets = new BindingList<Snippet>(LoadSnippets());
@@ -85,37 +88,42 @@ namespace River.OneMoreAddIn.Settings
 
 		private void DeleteItem(object sender, EventArgs e)
 		{
-			if (gridView.SelectedCells.Count > 0)
+			if (gridView.SelectedCells.Count == 0)
+				return;
+
+			int rowIndex = gridView.SelectedCells[0].RowIndex;
+			if (rowIndex >= snippets.Count)
+				return;
+
+			var snippet = snippets[rowIndex];
+
+			var result = MessageBox.Show(
+				string.Format("Delete snippet \"{0}\"?", snippet.Name), // translate
+				"OneMore",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+				MessageBoxDefaultButton.Button2,
+				MessageBoxOptions.DefaultDesktopOnly);
+
+			if (result != DialogResult.Yes)
+				return;
+
+			snippets.RemoveAt(rowIndex);
+			snipsProvider.Delete(snippet.Path);
+			updated = true;
+
+			rowIndex--;
+			if (rowIndex >= 0)
 			{
-				int colIndex = gridView.SelectedCells[0].ColumnIndex;
-				int rowIndex = gridView.SelectedCells[0].RowIndex;
-				if (rowIndex < snippets.Count)
-				{
-					var snippet = snippets[rowIndex];
+				gridView.Rows[rowIndex].Cells[0].Selected = true;
+			}
+		}
 
-					var result = MessageBox.Show(
-						string.Format("Delete snippet \"{0}\"?", snippet.Name), // translate
-						"OneMore",
-						MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-						MessageBoxDefaultButton.Button2,
-						MessageBoxOptions.DefaultDesktopOnly);
 
-					if (result == DialogResult.Yes)
-					{
-						snippets.RemoveAt(rowIndex);
-						snipsProvider.Delete(snippet.Path);
-
-						if (rowIndex > 0)
-						{
-							rowIndex--;
-						}
-
-						if (rowIndex >= 0)
-						{
-							gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
-						}
-					}
-				}
+		public override void CollectSettings()
+		{
+			if (updated)
+			{
+				ribbon.InvalidateControl("ribFavoritesMenu");
 			}
 		}
 	}

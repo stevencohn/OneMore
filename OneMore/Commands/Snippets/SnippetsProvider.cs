@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 		public XElement MakeSnippetsMenu(XNamespace ns)
 		{
 			var menu = new XElement(ns + "menu",
-				new XAttribute("id", "ribMySnippets"),
+				new XAttribute("id", "ribSnippetsMenu"),
 				new XAttribute("label", "My Custom Snippets"), // translate
 				new XAttribute("imageMso", "GroupInsertShapes"),
 				new XElement(ns + "button",

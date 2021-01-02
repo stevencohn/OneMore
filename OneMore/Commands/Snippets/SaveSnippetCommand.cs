@@ -19,6 +19,11 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			await SingleThreaded.Invoke(() =>
+			{
+				Win.Clipboard.Clear();
+			});
+
 			using (var one = new OneNote(out var page, out _))
 			{
 				if (page.GetTextCursor() != null)
@@ -54,6 +59,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				await new SnippetsProvider().Save(html, dialog.SnippetName);
+
+				ribbon.InvalidateControl("ribFavoritesMenu");
 			}
 		}
 	}

@@ -88,7 +88,7 @@ namespace River.OneMoreAddIn.Settings
 					case 2: sheet = new HighlightsSheet(provider); break;
 					case 3: sheet = new RibbonBarSheet(provider); break;
 					case 4: sheet = new SearchEngineSheet(provider); break;
-					default: sheet = new SnippetsSheet(provider); break;
+					default: sheet = new SnippetsSheet(provider, ribbon); break;
 				}
 
 				sheets.Add(e.Node.Index, sheet);

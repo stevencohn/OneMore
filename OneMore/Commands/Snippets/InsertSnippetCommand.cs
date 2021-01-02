@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Commands
 
 			await SingleThreaded.Invoke(() =>
 			{
+				Win.Clipboard.Clear();
 				Win.Clipboard.SetText(snippet, Win.TextDataFormat.Html);
 			});
 
