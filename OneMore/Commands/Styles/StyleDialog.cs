@@ -119,6 +119,9 @@ namespace River.OneMoreAddIn.Commands
 				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split(new char[] { '\n' }));
 			}
 
+			mainTools.Rescale();
+			toolStrip.Rescale();
+
 			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
 			{
 				for (int i = 0; i < sizeBox.Items.Count; i++)

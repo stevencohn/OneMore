@@ -62,8 +62,7 @@ namespace River.OneMoreAddIn.Settings
 				locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
 			}
 
-			// prevent VS designer from overriding
-			toolStrip.ImageScalingSize = new Size(16, 16);
+			toolStrip.Rescale();
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";

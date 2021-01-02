@@ -21,12 +21,6 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.ScaleControl(factor, specified);
 
-			//(float xScaleFactor, float yScaleFactor) = UIHelper.GetScalingFactors();
-
-			//ImageScalingSize = new Size(
-			//	(int)(ImageScalingSize.Width * xScaleFactor),
-			//	(int)(ImageScalingSize.Height * yScaleFactor));
-
 			var items = Items.GetEnumerator();
 			while (items.MoveNext())
 			{
@@ -36,6 +30,18 @@ namespace River.OneMoreAddIn.UI
 						host.Control.Scale(factor);
 				}
 			}
+		}
+
+
+
+		/// <summary>
+		/// Call this after InitializeComponent for the Form using the ScaledToolStrip
+		/// </summary>
+		public void Rescale()
+		{
+			(float scaleX, float scaleY) = UIHelper.GetScalingFactors();
+			ImageScalingSize = new Size((int)(16 * scaleX), (int)(16 * scaleY));
+			Height = (int)(24 * scaleY);
 		}
 	}
 }
