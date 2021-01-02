@@ -2602,8 +2602,8 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>A nuvem não carregou o snippet de \ "{0} \"</value>
-    <comment>error message</comment>
+    A nuvem não carrega o snippet de "{0}"
+    error message EDIT
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Meus snippets personalizados</value>
@@ -2626,8 +2626,8 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    <value>Excluir snippet \ "{0} \"</value>
-    <comment>question</comment>
+    Excluir snippet "{0}"
+    question EDIT
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Gerenciar meus snippets personalizados</value>

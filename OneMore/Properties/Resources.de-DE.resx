@@ -2587,8 +2587,8 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud lädt kein Snippet von "{0}"</value>
-    <comment>error message</comment>
+    Cloud-Snippet nicht von "{0}" laden
+    error message EDIT
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Meine benutzerdefinierten Schnipsel</value>
@@ -2611,8 +2611,8 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    <value>Snippet löschen "{0}"</value>
-    <comment>question</comment>
+    Snippet "{0}" löschen
+    question EDIT
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Verwalten Sie meine benutzerdefinierten Snippets</value>

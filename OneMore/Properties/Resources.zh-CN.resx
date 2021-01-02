@@ -2593,8 +2593,8 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>云未从\“ {0} \”加载代码段</value>
-    <comment>error message</comment>
+    云未加载来自“ {0}”的代码段
+    error message EDIT
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>我的自定义片段</value>
@@ -2617,8 +2617,8 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    <value>删除代码段\“ {0} \”</value>
-    <comment>question</comment>
+    删除代码段“ {0}”
+    question EDIT
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>管理我的自定义片段</value>

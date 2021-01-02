@@ -2596,8 +2596,8 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud ne charge pas l'extrait de code de \ "{0} \"</value>
-    <comment>error message</comment>
+    Cloud ne charge pas l'extrait de "{0}"
+    error message EDIT
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Mes extraits personnalisés</value>
@@ -2620,8 +2620,8 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    <value>Supprimer l'extrait de code \ "{0} \"</value>
-    <comment>question</comment>
+    Supprimer l'extrait de code "{0}"
+    question EDIT
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Gérer mes extraits personnalisés</value>

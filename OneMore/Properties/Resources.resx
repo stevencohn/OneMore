@@ -2612,8 +2612,8 @@ In this section</value>
     <comment>favorite</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud not load snippet from \"{0}\"</value>
-    <comment>error message</comment>
+    <value>Cloud not load snippet from "{0}"</value>
+    <comment>error message EDIT</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>My Custom Snippets</value>
@@ -2636,8 +2636,8 @@ In this section</value>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    <value>Delete snippet \"{0}\"</value>
-    <comment>question</comment>
+    <value>Delete snippet "{0}"</value>
+    <comment>question EDIT</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Manage My Custom Snippets</value>

@@ -1941,7 +1941,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cloud not load snippet from \&quot;{0}\&quot;.
+        ///   Looks up a localized string similar to Cloud not load snippet from &quot;{0}&quot;.
         /// </summary>
         internal static string InsertSnippets_CouldNotLoad {
             get {
@@ -4959,7 +4959,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete snippet \&quot;{0}\&quot;.
+        ///   Looks up a localized string similar to Delete snippet &quot;{0}&quot;.
         /// </summary>
         internal static string SnippetsSheet_ConfirmDelete {
             get {

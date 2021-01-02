@@ -2602,8 +2602,8 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud laadt fragment van \ "{0} \" niet</value>
-    <comment>error message</comment>
+    Cloud laadt fragment van "{0}" niet
+    error message EDIT
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Mijn aangepaste fragmenten</value>
@@ -2626,8 +2626,8 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    <value>Verwijder fragment \ "{0} \"</value>
-    <comment>question</comment>
+    Fragment "{0}" verwijderen
+    question EDIT
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Beheer mijn aangepaste fragmenten</value>
