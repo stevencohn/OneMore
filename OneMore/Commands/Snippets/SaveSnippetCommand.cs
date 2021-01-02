@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -33,27 +32,17 @@ namespace River.OneMoreAddIn.Commands
 				// focus on the OneNote main window provides a direct path for SendKeys
 				Native.SetForegroundWindow(one.WindowHandle);
 				SendKeys.SendWait("^(c)");
+
+				// SendWait can be very unpredictable so wait a little
+				await Task.Delay(200);
 			}
 
 			var html = await SingleThreaded.Invoke(() =>
 			{
-				// sending the Ctrl+C through COM interop seems to be slower than immediate
-				// so added a retry loop to account for time warp through the wormhole...
-				int tries = 0;
-				string text = null;
-				while (tries < 3 && string.IsNullOrEmpty(text))
-				{
-					if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
-						text = Win.Clipboard.GetText(Win.TextDataFormat.Html);
-
-					if (string.IsNullOrEmpty(text))
-					{
-						tries++;
-						Thread.Sleep(25 * tries);
-					}
-				}
-
-				return text;
+				if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
+					return Win.Clipboard.GetText(Win.TextDataFormat.Html);
+				else
+					return null;
 			});
 
 			if (html == null || html.Length == 0)

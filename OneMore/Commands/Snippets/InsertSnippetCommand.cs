@@ -35,6 +35,9 @@ namespace River.OneMoreAddIn.Commands
 				Win.Clipboard.SetText(snippet, Win.TextDataFormat.Html);
 			});
 
+			// both SetText and SendWait are very unpredictable so wait a little
+			await Task.Delay(200);
+
 			SendKeys.SendWait("^(v)");
 		}
 	}
