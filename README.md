@@ -36,14 +36,18 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Change page background to any custom color with dark-mode awareness
 
 [Edit Commands](../../wiki/Edit-Commands)
+* Colorize selected text as a chosen programming language - _syntax highlighting_
 * Disable spell-check on the current page (F4)
 * Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
 * Change selected text to UPPERCASE or lowercase
 * Increase/Decrease the font size of all content on the current page
+* Highlight selected text using a rotating array of colors
 
-[Footnote Commands](../../wiki/Footnote-Commands)
+[Reference Commands](../../wiki/Reference-Commands)
 * Insert a new footnote (endnote) at the current location
 * Remove a footnote from either the label or from the footer description
+* Map Linked Pages to report all pages that link to other pages
+* Replace hyperlinked URLs with their Web page titles
 
 [Formula commands](../../wiki/Formula-Commands)
 
@@ -91,9 +95,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Convert select text to a table
 * Insert Table Cells, shifting content as expected
 * Insert pronunciation of words from over a dozen languages
-* Map Linked Pages to report all pages that link to other pages
 * Merge pages, preserving formatting and position of outlines
-* Replace hyperlinked URLs with their Web page titles
 * Sort pages, sections, or notebooks
 * Split current page into multiple pages
 * Toggle strikethrough text next to all completed/incompleted tags
