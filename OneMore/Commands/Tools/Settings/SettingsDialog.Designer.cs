@@ -33,6 +33,7 @@
 			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Highlighter Themes");
 			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Ribbon Bar");
 			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Search Engines");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Snippets");
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
@@ -133,12 +134,15 @@
 			treeNode4.Text = "Ribbon Bar";
 			treeNode5.Name = "searchNode";
 			treeNode5.Text = "Search Engines";
+			treeNode6.Name = "snippetsNode";
+			treeNode6.Text = "Snippets";
 			this.navTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
             treeNode4,
-            treeNode5});
+            treeNode5,
+            treeNode6});
 			this.navTree.Size = new System.Drawing.Size(300, 546);
 			this.navTree.TabIndex = 2;
 			this.navTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Navigate);

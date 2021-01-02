@@ -8,6 +8,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Drawing;
@@ -460,6 +461,32 @@ namespace River.OneMoreAddIn
 		}
 
 
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		/// <summary>
+		/// Populates the Favorites menu
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public string GetFavoritesContent(IRibbonControl control)
+		{
+			//logger.WriteLine($"GetFavoritesContent({control.Id})");
+			var favorites = new FavoritesProvider(ribbon).LoadFavoritesMenu();
+			var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
+
+			var sep = favorites.Elements()
+				.FirstOrDefault(e => e.Attribute("id").Value == "omFavoritesSeparator");
+
+			if (sep != null)
+			{
+				sep.AddAfterSelf(snippets);
+			}
+
+			return favorites.ToString(SaveOptions.DisableFormatting);
+		}
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		/// <summary>
@@ -471,18 +498,6 @@ namespace River.OneMoreAddIn
 		{
 			logger.WriteLine("RibbonLoaded()");
 			this.ribbon = ribbon;
-		}
-
-
-		/// <summary>
-		/// Populates the Favorites menu
-		/// </summary>
-		/// <param name="control"></param>
-		/// <returns></returns>
-		public string GetFavoritesContent(IRibbonControl control)
-		{
-			//logger.WriteLine($"GetFavoritesContent({control.Id})");
-			return new FavoritesProvider(ribbon).GetMenuContent();
 		}
 
 

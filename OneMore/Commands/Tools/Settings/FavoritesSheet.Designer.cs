@@ -53,23 +53,21 @@
 			// 
 			this.gridView.AllowUserToAddRows = false;
 			this.gridView.AllowUserToResizeRows = false;
-			this.gridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.gridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
 			this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.gridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameColumn,
             this.locationColumn});
+			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.gridView.Location = new System.Drawing.Point(10, 148);
+			this.gridView.Location = new System.Drawing.Point(10, 137);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(780, 343);
+			this.gridView.Size = new System.Drawing.Size(780, 354);
 			this.gridView.TabIndex = 2;
 			// 
 			// nameColumn
@@ -89,12 +87,11 @@
 			// 
 			// introPanel
 			// 
-			this.introPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.introPanel.Controls.Add(this.optionsBox);
+			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introPanel.Location = new System.Drawing.Point(10, 9);
 			this.introPanel.Name = "introPanel";
-			this.introPanel.Size = new System.Drawing.Size(780, 106);
+			this.introPanel.Size = new System.Drawing.Size(780, 90);
 			this.introPanel.TabIndex = 3;
 			// 
 			// optionsBox
@@ -104,7 +101,7 @@
 			this.optionsBox.Controls.Add(this.shortcutsBox);
 			this.optionsBox.Location = new System.Drawing.Point(3, 3);
 			this.optionsBox.Name = "optionsBox";
-			this.optionsBox.Size = new System.Drawing.Size(774, 81);
+			this.optionsBox.Size = new System.Drawing.Size(774, 75);
 			this.optionsBox.TabIndex = 0;
 			this.optionsBox.TabStop = false;
 			this.optionsBox.Text = "Options";
@@ -122,9 +119,6 @@
 			// 
 			// toolStrip
 			// 
-			this.toolStrip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
 			this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sortButton,
@@ -134,10 +128,10 @@
             this.toolStripSeparator1,
             this.deleteLabel,
             this.deleteButton});
-			this.toolStrip.Location = new System.Drawing.Point(10, 115);
+			this.toolStrip.Location = new System.Drawing.Point(10, 99);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(257, 31);
+			this.toolStrip.Size = new System.Drawing.Size(780, 38);
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
 			// 

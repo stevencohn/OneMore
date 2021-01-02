@@ -120,28 +120,10 @@
   <metadata name="nameColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="locationColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="toolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="sortButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAJ/SURBVDhPlZLLTxNRGMVHl+5cusGIOzW6MXHtyqKkxAdR
-        orKQP6GRaCIq0kCGEZtgRBIGrdAW6QMYWh7aQkvLOC2thdoyQIHyGIvQ0AYRCTXI8baOuLAYPcnJ5N7v
-        O7/73dyhfonWjWwr7ppRUNGBs3dMqLf4NuTSrkRRTBsMBng8noPy1m/RnYFtxT0LFBXE5NvAffh3AOeb
-        Pl7TPvz9HDk9AyggrueCmzbPVL7cklVOwMLS2ulqky95qYrLjp8JZ3xV3Q3WForNxlN5cmtuQGw5pazU
-        8ThPwherulFcbUPRIw4XyPqZdRSLyS8n5NbcgFBsWVnRwkNZ2YWX9ghMnmgdY/Gj8GEXnnS+x9hi8u+A
-        pj5/qoS24XKVFf3eua351fVjL2zhb0UEeL22B62OSIKisC/TmxPgDkls64DIOoSZHXEq0ZBYXC8LiZ/6
-        2lwTBu3bCCuIEiu35gZkZK5z64y1QzDJNtJD8FongnJ5V3sCgvboU94S8evvO0BfawNTaoSzLfR/P9Kq
-        9PlM73MfmBvt4OoF+N9Er8ilXe0JWFlYO+ofnN1qut2LuptGeLtEJOYTh+Qy5fV6bwmCkA6Hw9Dr9eB5
-        vtDlcqUnJyePUKmVjVMjVnGFVfWgpuQ1LI89mAl8NMXj8QNynvL5fDsajQbNzc2gaRparRaNjY2w2+35
-        1HIspexg3GR0I8wkPBtYklLxzTwA++U8RU4vYFk2XV5eDpVKBbVaDafT+XV8fPwwNWyOvGLJ6EypCZ0a
-        Hu/I+AInItAffSDnsyL3LiMTbDMMkw0nk0lFthDxzGOgdRSOliAGdaNwGsaynvbO/fEKbrdbEQgEIEnS
-        yZ87FPUDrX73XfiAgZ4AAAAASUVORK5CYII=
-</value>
-  </data>
+  <metadata name="toolStrip.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

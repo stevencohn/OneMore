@@ -210,7 +210,10 @@ namespace River.OneMoreAddIn.Settings
 							rowIndex--;
 						}
 
-						gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
+						if (rowIndex >= 0)
+						{
+							gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
+						}
 					}
 				}
 			}
