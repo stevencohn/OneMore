@@ -4,10 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Win = System.Windows;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Win = System.Windows;
 
 
 	internal class SaveSnippetCommand : Command
@@ -20,11 +21,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await SingleThreaded.Invoke(() =>
-			{
-				Win.Clipboard.Clear();
-			});
-
 			using (var one = new OneNote(out var page, out _))
 			{
 				if (page.GetTextCursor() != null)
@@ -41,10 +37,23 @@ namespace River.OneMoreAddIn.Commands
 
 			var html = await SingleThreaded.Invoke(() =>
 			{
-				if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
-					return Win.Clipboard.GetText(Win.TextDataFormat.Html);
-				else
-					return null;
+				// sending the Ctrl+C through COM interop seems to be slower than immediate
+				// so added a retry loop to account for time warp through the wormhole...
+				int tries = 0;
+				string text = null;
+				while (tries < 3 && string.IsNullOrEmpty(text))
+				{
+					if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
+						text = Win.Clipboard.GetText(Win.TextDataFormat.Html);
+
+					if (string.IsNullOrEmpty(text))
+					{
+						tries++;
+						Thread.Sleep(25 * tries);
+					}
+				}
+
+				return text;
 			});
 
 			if (html == null || html.Length == 0)

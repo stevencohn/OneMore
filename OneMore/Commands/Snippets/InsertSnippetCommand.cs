@@ -6,8 +6,8 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Win = System.Windows;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Win = System.Windows;
 
 
 	internal class InsertSnippetCommand : Command
@@ -32,7 +32,6 @@ namespace River.OneMoreAddIn.Commands
 
 			await SingleThreaded.Invoke(() =>
 			{
-				Win.Clipboard.Clear();
 				Win.Clipboard.SetText(snippet, Win.TextDataFormat.Html);
 			});
 
