@@ -43,12 +43,6 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Increase/Decrease the font size of all content on the current page
 * Highlight selected text using a rotating array of colors
 
-[Reference Commands](../../wiki/Reference-Commands)
-* Insert a new footnote (endnote) at the current location
-* Remove a footnote from either the label or from the footer description
-* Map Linked Pages to report all pages that link to other pages
-* Replace hyperlinked URLs with their Web page titles
-
 [Formula commands](../../wiki/Formula-Commands)
 
 * Calculate Excel-like formulas in tables (F5)
@@ -69,6 +63,12 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Number all pages in the current section with numeric or alpha-numeric prefixes
 * Remove numbering from sections
 * Remove numbering from pages
+
+[Reference Commands](../../wiki/Reference-Commands)
+* Insert a new footnote (endnote) at the current location
+* Remove a footnote from either the label or from the footer description
+* Map Linked Pages to report all pages that link to other pages
+* Replace hyperlinked URLs with their Web page titles
 
 [Search commands](../../wiki/Search-Commands)
 
