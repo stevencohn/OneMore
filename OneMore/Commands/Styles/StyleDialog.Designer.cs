@@ -753,7 +753,6 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Custom Styles";
-			this.Shown += new System.EventHandler(this.StyleDialog_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();

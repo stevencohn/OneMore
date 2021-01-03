@@ -178,12 +178,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void StyleDialog_Shown(object sender, EventArgs e)
+		protected override void OnShown(EventArgs e)
 		{
-			allowEvents = true;
+			base.OnShown(e);
 
-			Location = new Point(Location.X, Location.Y - (Height / 2));
-			UIHelper.SetForegroundWindow(this);
+			allowEvents = true;
 
 			if (selection != null)
 			{
