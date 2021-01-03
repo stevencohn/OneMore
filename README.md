@@ -9,6 +9,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Apply [colorized syntax highlighting](../../wiki/Edit-Commands) to snippets of source code
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
 * Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
+* Save and reuse [custom snippets](../../wiki/Favorites) of content anywhere on any page
 * Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
 
 
@@ -42,6 +43,13 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Change selected text to UPPERCASE or lowercase
 * Increase/Decrease the font size of all content on the current page
 * Highlight selected text using a rotating array of colors
+
+[Favorites and Custom Snippets](../../wiki/Favorites)
+
+* Add any page in OneNote to the Favorites menu for quick access
+* Sort or reorder favorites using the Favorites Manager
+* Save and reuse custom snippets of content anywhere on any page
+* Add a link to a special page containing all OneNote and OneMore keyboard shortcuts
 
 [Formula commands](../../wiki/Formula-Commands)
 
