@@ -2643,4 +2643,24 @@ In this section</value>
     <value>Manage My Custom Snippets</value>
     <comment>SnippetsSheet</comment>
   </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>Insert Text Box</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribBoxButton_Screentip" xml:space="preserve">
+    <value>Insert a single-cell table, optionally wrapping selected text</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribInsertDateButton_Screentip" xml:space="preserve">
+    <value>Insert the current date (Ctrl + Shift + D)</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
+    <value>Your code here...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
+    <value>Your content here...</value>
+    <comment>text</comment>
+  </data>
 </root>

@@ -1923,6 +1923,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your code here....
+        /// </summary>
+        internal static string InsertCodeBlockCommand_Code {
+            get {
+                return ResourceManager.GetString("InsertCodeBlockCommand_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your content here....
+        /// </summary>
+        internal static string InsertCodeBlockCommand_Text {
+            get {
+                return ResourceManager.GetString("InsertCodeBlockCommand_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected text cannot exceed {0} characters.
         /// </summary>
         internal static string InsertQRCommand_MaxLength {
@@ -3197,6 +3215,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert Text Box.
+        /// </summary>
+        internal static string ribBoxButton_Label {
+            get {
+                return ResourceManager.GetString("ribBoxButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a single-cell table, optionally wrapping selected text.
+        /// </summary>
+        internal static string ribBoxButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribBoxButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calendar.
         /// </summary>
         internal static string ribCalendarButton_Label {
@@ -3553,6 +3589,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertDateButton_Label {
             get {
                 return ResourceManager.GetString("ribInsertDateButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert the current date (Ctrl + Shift + D).
+        /// </summary>
+        internal static string ribInsertDateButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertDateButton_Screentip", resourceCulture);
             }
         }
         
