@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891
 		Themes\OrangeStyles.xml = Themes\OrangeStyles.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreTests", "OneMoreTests\OneMoreTests.csproj", "{9557A059-052D-4FB4-A912-9AF60787731C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,24 @@ Global
 		{617FC926-3389-4888-B08B-29B28E413936}.Release|x64.Build.0 = Release
 		{617FC926-3389-4888-B08B-29B28E413936}.Release|x86.ActiveCfg = Release
 		{617FC926-3389-4888-B08B-29B28E413936}.Release|x86.Build.0 = Release
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Debug|x64.Build.0 = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Debug|x86.Build.0 = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.LocalDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.LocalDebug|Any CPU.Build.0 = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.LocalDebug|x64.ActiveCfg = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.LocalDebug|x64.Build.0 = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.LocalDebug|x86.ActiveCfg = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.LocalDebug|x86.Build.0 = Debug|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Release|x64.ActiveCfg = Release|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Release|x64.Build.0 = Release|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Release|x86.ActiveCfg = Release|Any CPU
+		{9557A059-052D-4FB4-A912-9AF60787731C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
