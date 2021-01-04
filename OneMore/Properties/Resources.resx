@@ -2663,4 +2663,64 @@ In this section</value>
     <value>Your content here...</value>
     <comment>text</comment>
   </data>
+  <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
+    <value>... Blue Status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
+    <value>... Text Box</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
+    <value>... Calendar</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
+    <value>... Code Block</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
+    <value>... Expand/Collapse</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
+    <value>... Gray Status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
+    <value>... Green Status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
+    <value>... Info Block</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
+    <value>... Sortable Date</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertDoubleLineButton" xml:space="preserve">
+    <value>... Double Horizontal Line</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
+    <value>... Horizontal Line</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
+    <value>... Red Status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
+    <value>... Table of Contents</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
+    <value>... Warning Block</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
+    <value>... Yellow Status</value>
+    <comment>option</comment>
+  </data>
 </root>
