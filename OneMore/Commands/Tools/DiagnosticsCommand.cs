@@ -22,7 +22,10 @@ namespace River.OneMoreAddIn.Commands
 			builder.AppendLine("Diagnostics.Execute()");
 			builder.AppendLine(new string('-', 80));
 
-			builder.AppendLine($"ONENOTE...: {Process.GetProcessesByName("ONENOTE")[0].MainModule.FileName}");
+			var processes = Process.GetProcessesByName("ONENOTE");
+			var module = processes.Length > 0 ? processes[0].MainModule.FileName : "unknown";
+
+			builder.AppendLine($"ONENOTE...: {module}");
 			builder.AppendLine($"Addin path: {Assembly.GetExecutingAssembly().Location}");
 			builder.AppendLine($"Data path.: {PathFactory.GetAppDataPath()}");
 			builder.AppendLine($"Log path..: {logger.LogPath}");

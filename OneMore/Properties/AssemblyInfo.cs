@@ -25,6 +25,7 @@ using System.Runtime.InteropServices;
 
 // To use, open LINQPad and set Preferences/Advanced "Allows LINPAad to access internals"...
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LINQPadQuery")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("OneMoreTests")]
 
 
 namespace River.OneMoreAddIn

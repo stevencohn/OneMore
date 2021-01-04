@@ -204,6 +204,7 @@
     <Compile Include="Commands\Tools\Settings\FavoritesSheet.Designer.cs">
       <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />

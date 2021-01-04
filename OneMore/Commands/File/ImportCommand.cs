@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 						break;
 
 					case ImportDialog.Formats.PowerPoint:
-						await ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.CreateSection);
+						ImportPowerPoint(dialog.FilePath, dialog.AppendToPage, dialog.CreateSection);
 						break;
 
 					case ImportDialog.Formats.Xml:
@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Powerpoint...
 
-		private async Task ImportPowerPoint(string filepath, bool append, bool split)
+		private void ImportPowerPoint(string filepath, bool append, bool split)
 		{
 			if (!Office.IsPowerPointInstalled())
 			{
