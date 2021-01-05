@@ -32,13 +32,13 @@ namespace OneMoreTests
 
 		public ulong WindowHandle => 0x00001234;
 
-		public string CurrentPageId => "100";
+		public string CurrentPageId => Mocks.CurrentPageId;
 
-		public string CurrentSectionId => "200";
+		public string CurrentSectionId => Mocks.CurrentSectionId;
 
-		public string CurrentSectionGroupId => "250";
+		public string CurrentSectionGroupId => Mocks.CurrentSectionGroupId;
 
-		public string CurrentNotebookId => "300";
+		public string CurrentNotebookId => Mocks.CurrentNotebookId;
 
 		public bool FullPageView { get { return false; } set { } }
 

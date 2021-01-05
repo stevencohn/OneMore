@@ -37,7 +37,11 @@ namespace River.OneMoreAddIn
 			this.ribbon = ribbon;
 			this.owner = owner;
 			this.trash = trash;
+			Runtime = true;
 		}
+
+
+		public bool Runtime { private get; set; }
 
 
 		/// <summary>
@@ -72,7 +76,14 @@ namespace River.OneMoreAddIn
 				logger.WriteLine(exc);
 				logger.WriteLine();
 
-				UIHelper.ShowError(string.Format(Resx.Command_ErrorMsg, msg));
+				if (Runtime)
+				{
+					UIHelper.ShowError(string.Format(Resx.Command_ErrorMsg, msg));
+				}
+				else
+				{
+					throw;
+				}
 			}
 		}
 	}

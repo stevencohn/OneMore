@@ -6,6 +6,7 @@ namespace OneMoreTests
 {
 	using Microsoft.Office.Interop.OneNote;
 	using System;
+	using System.IO;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -27,34 +28,77 @@ namespace OneMoreTests
 		public dynamic LanguageSettings => throw new NotImplementedException();
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="bstrStartNodeID">Notebook, section group, or section</param>
+		/// <param name="hsScope">Get from start node down to this level</param>
+		/// <param name="pbstrHierarchyXmlOut"></param>
+		/// <param name="xsSchema"></param>
 		public void GetHierarchy(
 			string bstrStartNodeID, HierarchyScope hsScope, out string pbstrHierarchyXmlOut,
 			XMLSchema xsSchema = XMLSchema.xs2013)
 		{
-			var root = XElement.Load(@".\Data\Hierarchy.xml");
-			var ns = root.GetNamespaceOfPrefix("one");
+			var hierarchy = XElement.Load(@".\Data\Hierarchy.xml");
+			var ns = hierarchy.GetNamespaceOfPrefix("one");
+
+			if (!string.IsNullOrEmpty(bstrStartNodeID))
+			{
+				hierarchy = hierarchy.Descendants()
+					.FirstOrDefault(e => e.Attribute("ID")?.Value == bstrStartNodeID);
+
+				if (hierarchy == null)
+				{
+					pbstrHierarchyXmlOut = null;
+					return;
+				}
+			}
 
 			switch (hsScope)
 			{
 				case HierarchyScope.hsNotebooks:
-					root.Elements(ns + "Notebook").Elements().Remove();
-					pbstrHierarchyXmlOut = root.ToString(SaveOptions.DisableFormatting);
+					if (hierarchy.Name.LocalName != "Notebooks")
+					{
+						pbstrHierarchyXmlOut = null;
+						return;
+					}
+					hierarchy.Elements(ns + "Notebook").Elements().Remove();
+					pbstrHierarchyXmlOut = hierarchy.ToString(SaveOptions.DisableFormatting);
 					break;
 
 				case HierarchyScope.hsSections:
-					pbstrHierarchyXmlOut = new XElement(ns + "Sections",
-						root.Elements(ns + "Notebook")
-							.Where(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
-							.Elements())
-						.ToString(SaveOptions.DisableFormatting);
+					if (hierarchy.Name.LocalName == "Page")
+					{
+						pbstrHierarchyXmlOut = null;
+						return;
+					}
+					hierarchy.Descendants(ns + "Section").ToList().ForEach((e) =>
+					{
+						if (e.HasElements)
+							e.Elements().Remove();
+					});
+					pbstrHierarchyXmlOut = hierarchy.ToString(SaveOptions.DisableFormatting);
 					break;
 
 				case HierarchyScope.hsPages:
-					pbstrHierarchyXmlOut = new XElement(ns + "Pages",
-						root.Descendants(ns + "Section")
-							.Where(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
-							.Elements(ns + "Page"))
-						.ToString(SaveOptions.DisableFormatting);
+					pbstrHierarchyXmlOut = hierarchy.ToString(SaveOptions.DisableFormatting);
+					break;
+
+				case HierarchyScope.hsChildren:
+					hierarchy.Elements().ToList().ForEach((e) =>
+					{
+						if (e.HasElements)
+							e.Elements().Remove();
+					});
+					pbstrHierarchyXmlOut = hierarchy.ToString(SaveOptions.DisableFormatting);
+					break;
+
+				case HierarchyScope.hsSelf:
+					if (hierarchy.HasElements)
+					{
+						hierarchy.Elements().Remove();
+					}
+					pbstrHierarchyXmlOut = hierarchy.ToString(SaveOptions.DisableFormatting);
 					break;
 
 				default:
@@ -64,10 +108,16 @@ namespace OneMoreTests
 		}
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="bstrChangesXmlIn"></param>
+		/// <param name="xsSchema"></param>
 		public void UpdateHierarchy(string bstrChangesXmlIn, XMLSchema xsSchema = XMLSchema.xs2013)
 		{
-			throw new NotImplementedException();
+			//
 		}
+
 
 		public void OpenHierarchy(
 			string bstrPath, string bstrRelativeToObjectID, out string pbstrObjectID,
@@ -98,12 +148,42 @@ namespace OneMoreTests
 			throw new NotImplementedException();
 		}
 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="bstrPageID"></param>
+		/// <param name="pbstrPageXmlOut"></param>
+		/// <param name="pageInfoToExport"></param>
+		/// <param name="xsSchema"></param>
 		public void GetPageContent(
 			string bstrPageID, out string pbstrPageXmlOut, PageInfo pageInfoToExport = PageInfo.piBasic,
 			XMLSchema xsSchema = XMLSchema.xs2013)
 		{
-			throw new NotImplementedException();
+			var hierarchy = XElement.Load(@".\Data\Hierarchy.xml");
+			var ns = hierarchy.GetNamespaceOfPrefix("one");
+
+			var name = hierarchy.Descendants(ns + "Page")
+				.Where(e => e.Attribute("ID").Value == bstrPageID)
+				.Select(e => e.Attribute("name").Value)
+				.FirstOrDefault();
+
+			if (string.IsNullOrEmpty(name))
+			{
+				pbstrPageXmlOut = null;
+				return;
+			}
+
+			var path = $@".\Data\Page-{name}.xml";
+			if (!File.Exists(path))
+			{
+				pbstrPageXmlOut = null;
+				return;
+			}
+
+			pbstrPageXmlOut = XElement.Load(path).ToString(SaveOptions.DisableFormatting);
 		}
+
 
 		public void UpdatePageContent(
 			string bstrPageChangesXmlIn, DateTime dateExpectedLastModified,
@@ -111,6 +191,7 @@ namespace OneMoreTests
 		{
 			throw new NotImplementedException();
 		}
+
 
 		public void GetBinaryPageContent(string bstrPageID, string bstrCallbackID, out string pbstrBinaryObjectB64Out)
 		{
@@ -145,11 +226,49 @@ namespace OneMoreTests
 			throw new NotImplementedException();
 		}
 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="bstrHierarchyID"></param>
+		/// <param name="bstrPageContentObjectID"></param>
+		/// <param name="pbstrHyperlinkOut"></param>
 		public void GetHyperlinkToObject(
 			string bstrHierarchyID, string bstrPageContentObjectID, out string pbstrHyperlinkOut)
 		{
-			throw new NotImplementedException();
+			pbstrHyperlinkOut = null;
+			if (string.IsNullOrEmpty(bstrHierarchyID))
+				return;
+
+			var hierarchy = XElement.Load(@".\Data\Hierarchy.xml");
+			var ns = hierarchy.GetNamespaceOfPrefix("one");
+
+			var element = hierarchy.Descendants()
+				.FirstOrDefault(e => e.Attribute("ID").Value == bstrHierarchyID);
+
+			if (element == null)
+				return;
+
+			var name = element.Attribute("name").Value;
+			string path;
+
+			var id = element.Attribute("ID").Value;
+			id = id.Substring(0, id.IndexOf('}') + 1);
+
+			if (element.Name.LocalName != "Page")
+			{
+				path = element.Attribute("path").Value;
+				var key = element.Name.LocalName.ToLower();
+				pbstrHyperlinkOut = $"onenote:#{name}&{key}-id={id}&end&base-path={path}";
+				return;
+			}
+
+			path = element.Parent.Attribute("path").Value;
+			var sectionId = element.Parent.Attribute("ID").Value;
+			sectionId = sectionId.Substring(0, sectionId.IndexOf('}') + 1);
+			pbstrHyperlinkOut = $"onenote:#{name}&section-id={sectionId}&page-id={id}&end&base-path={path}";
 		}
+
 
 		public void FindPages(
 			string bstrStartNodeID, string bstrSearchString, out string pbstrHierarchyXmlOut,

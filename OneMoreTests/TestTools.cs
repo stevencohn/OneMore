@@ -34,9 +34,11 @@ namespace OneMoreTests
 
 			var app = new MockApplication();
 
-			factory = new CommandFactory(
-				Logger.Current, null, trash,
-				new Win32WindowHandle(new IntPtr((long)app.Windows.CurrentWindow.WindowHandle)));
+			factory = new CommandFactory(Logger.Current, null, trash,
+				new Win32WindowHandle(new IntPtr((long)app.Windows.CurrentWindow.WindowHandle)))
+			{
+				Runtime = false
+			};
 		}
 
 

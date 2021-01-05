@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<one:Page xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote" ID="{00000001-0001-0001-0001-000000000000}{1}{E0000000000000000000000000000000000000000001}" name="N1.G1.S1.P1" dateTime="2020-11-27T16:16:57.000Z" lastModifiedTime="2021-01-05T21:24:53.000Z" pageLevel="1" isCurrentlyViewed="true" selected="partial" lang="yo">
+  <one:TagDef index="0" type="23" symbol="26" fontColor="automatic" highlightColor="none" name="Page Tags" />
+  <one:QuickStyleDef index="0" name="PageTitle" fontColor="automatic" highlightColor="automatic" font="Calibri Light" fontSize="20.0" spaceBefore="0.0" spaceAfter="0.0" />
+  <one:QuickStyleDef index="1" name="omWordBank" fontColor="#595959" highlightColor="automatic" font="Calibri" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" />
+  <one:QuickStyleDef index="2" name="p" fontColor="automatic" highlightColor="automatic" font="Calibri" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" />
+  <one:Meta name="omHighlightIndex" content="3" />
+  <one:Meta name="omTaggingLabels" content="two,three,lobster" />
+  <one:PageSettings RTL="false" color="automatic">
+    <one:PageSize>
+      <one:Automatic />
+    </one:PageSize>
+    <one:RuleLines visible="false" />
+  </one:PageSettings>
+  <one:Title lang="yo">
+    <one:OE author="Steven Cohn" authorInitials="SC" authorResolutionID="&lt;resolutionId provider=&quot;Windows Live&quot; hash=&quot;/836NZThi+AeMv8q0gaI8w==&quot;&gt;&lt;localId cid=&quot;6925d0374517d4b4&quot;/&gt;&lt;/resolutionId&gt;" lastModifiedBy="Steven Cohn" lastModifiedByInitials="SC" lastModifiedByResolutionID="&lt;resolutionId provider=&quot;Windows Live&quot; hash=&quot;/836NZThi+AeMv8q0gaI8w==&quot;&gt;&lt;localId cid=&quot;6925d0374517d4b4&quot;/&gt;&lt;/resolutionId&gt;" creationTime="2021-01-05T21:24:24.000Z" lastModifiedTime="2021-01-05T21:24:24.000Z" objectID="{8FA36ABE-DFC1-4128-BA58-9F4752D6BABE}{15}{B0}" alignment="left" quickStyleIndex="0">
+      <one:T><![CDATA[N1.G1.S1.P1]]></one:T>
+    </one:OE>
+  </one:Title>
+  <one:Outline author="Steven Cohn" authorInitials="SC" lastModifiedBy="Steven Cohn" lastModifiedByInitials="SC" lastModifiedTime="2020-12-29T16:55:30.000Z" objectID="{8FA36ABE-DFC1-4128-BA58-9F4752D6BABE}{52}{B0}">
+    <one:Position x="235.0" y="43.0" z="0" />
+    <one:Size width="400.0000305175781" height="10.98629760742187" isSetByUser="true" />
+    <one:Meta name="omTaggingBank" content="1" />
+    <one:Indents>
+      <one:Indent level="0" indent="1.90228491569847E-35" />
+    </one:Indents>
+    <one:OEChildren>
+      <one:OE authorResolutionID="&lt;resolutionId provider=&quot;Windows Live&quot; hash=&quot;/836NZThi+AeMv8q0gaI8w==&quot;&gt;&lt;localId cid=&quot;6925d0374517d4b4&quot;/&gt;&lt;/resolutionId&gt;" lastModifiedByResolutionID="&lt;resolutionId provider=&quot;Windows Live&quot; hash=&quot;/836NZThi+AeMv8q0gaI8w==&quot;&gt;&lt;localId cid=&quot;6925d0374517d4b4&quot;/&gt;&lt;/resolutionId&gt;" creationTime="2020-12-29T16:55:30.000Z" lastModifiedTime="2020-12-29T16:55:30.000Z" objectID="{8FA36ABE-DFC1-4128-BA58-9F4752D6BABE}{53}{B0}" alignment="left" quickStyleIndex="1" style="color:#000000;margin:0in;font-family:Calibri;font-size:9.0pt;&#xA;color:#595959">
+        <one:Tag index="0" completed="true" disabled="false" creationDate="2020-11-27T16:17:13.000Z" completionDate="2020-11-27T16:17:13.000Z" />
+        <one:T><![CDATA[<span style='font-weight:bold'>two, three, lobster</span>]]></one:T>
+      </one:OE>
+    </one:OEChildren>
+  </one:Outline>
+  <one:Outline selected="partial" lang="en-US" author="Steven Cohn" authorInitials="SC" lastModifiedBy="Steven Cohn" lastModifiedByInitials="SC" lastModifiedTime="2021-01-05T21:24:53.000Z" objectID="{706CAC61-5733-4080-B5BA-6583BC82D6A9}{11}{B0}">
+    <one:Position x="36.0" y="86.4000015258789" z="1" />
+    <one:Size width="345.8919677734375" height="26.85543441772461" />
+    <one:Indents>
+      <one:Indent level="0" indent="9.13893387632925E-8" />
+    </one:Indents>
+    <one:OEChildren selected="partial">
+      <one:OE authorResolutionID="&lt;resolutionId provider=&quot;Windows Live&quot; hash=&quot;/836NZThi+AeMv8q0gaI8w==&quot;&gt;&lt;localId cid=&quot;6925d0374517d4b4&quot;/&gt;&lt;/resolutionId&gt;" lastModifiedByResolutionID="&lt;resolutionId provider=&quot;Windows Live&quot; hash=&quot;/836NZThi+AeMv8q0gaI8w==&quot;&gt;&lt;localId cid=&quot;6925d0374517d4b4&quot;/&gt;&lt;/resolutionId&gt;" creationTime="2021-01-05T21:24:53.000Z" lastModifiedTime="2021-01-05T21:24:53.000Z" objectID="{706CAC61-5733-4080-B5BA-6583BC82D6A9}{12}{B0}" alignment="left" quickStyleIndex="2">
+        <one:T><![CDATA[Now is the time for all good men to come to the aid of their country.]]></one:T>
+      </one:OE>
+      <one:OE authorResolutionID="&lt;resolutionId provider=&quot;Windows Live&quot; hash=&quot;/836NZThi+AeMv8q0gaI8w==&quot;&gt;&lt;localId cid=&quot;6925d0374517d4b4&quot;/&gt;&lt;/resolutionId&gt;" lastModifiedByResolutionID="&lt;resolutionId provider=&quot;Windows Live&quot; hash=&quot;/836NZThi+AeMv8q0gaI8w==&quot;&gt;&lt;localId cid=&quot;6925d0374517d4b4&quot;/&gt;&lt;/resolutionId&gt;" creationTime="2021-01-05T21:24:53.000Z" lastModifiedTime="2021-01-05T21:24:53.000Z" objectID="{706CAC61-5733-4080-B5BA-6583BC82D6A9}{15}{B0}" alignment="left" quickStyleIndex="2" selected="partial">
+        <one:T selected="all"><![CDATA[]]></one:T>
+      </one:OE>
+    </one:OEChildren>
+  </one:Outline>
+</one:Page>
