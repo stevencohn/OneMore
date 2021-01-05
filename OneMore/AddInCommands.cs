@@ -73,6 +73,9 @@ namespace River.OneMoreAddIn
 		public async Task HighlightFormulaCmd(IRibbonControl control)
 			=> await factory.Run<HighlightFormulaCommand>();
 
+		public async Task InsertBoxCmd(IRibbonControl control)
+			=> await factory.Run<InsertCodeBlockCommand>(false);
+
 		public async Task ImportCmd(IRibbonControl control)
 			=> await factory.Run<ImportCommand>();
 
@@ -86,7 +89,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertCellsCommand>();
 
 		public async Task InsertCodeBlockCmd(IRibbonControl control)
-			=> await factory.Run<InsertCodeBlockCommand>();
+			=> await factory.Run<InsertCodeBlockCommand>(true);
 
 		public async Task InsertDateCmd(IRibbonControl control)
 			=> await factory.Run<InsertDateCommand>();
