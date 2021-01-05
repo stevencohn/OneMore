@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<one:Notebooks xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote">
-  <one:Notebook name="N1" nickname="N1" ID="{00000000-0000-0000-0000-000000000101}{1}{B0}" path="https://d.docs.live.net/4517d4b4/Documents/N1/" lastModifiedTime="2021-01-04T18:33:43.000Z" color="#F6B078" isCurrentlyViewed="true" />
-  <one:Notebook name="N2" nickname="N2" ID="{00000000-0000-0000-0000-000000000102}{1}{B0}" path="https://d.docs.live.net/4517d4b4/Documents/N2/" lastModifiedTime="2021-01-04T19:30:07.000Z" color="#8AB6E2" />
-  <one:Notebook name="N3" nickname="N2" ID="{0000000F-0000-0000-0000-000000000103}{1}{B0}" path="https://d.docs.live.net/4517d4b4/Documents/N3/" lastModifiedTime="2021-01-04T12:58:37.000Z" color="#F5F96F" />
-  <one:UnfiledNotes ID="{00000000-0000-0000-0000-00000000010F}{1}{B0}" />
-</one:Notebooks>

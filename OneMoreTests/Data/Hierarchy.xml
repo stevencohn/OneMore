@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<one:Notebooks xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote">
+  <one:Notebook name="N1" nickname="N1" ID="{00000000-0000-0000-0000-000000000101}{1}{B0}" path="https://d.docs.live.net/123abc/Documents/N1/" lastModifiedTime="2021-01-04T18:33:43.000Z" color="#F6B078" isCurrentlyViewed="true">
+    <one:SectionGroup name="Queens" ID="{00000000-0000-0000-0000-000000000251}{1}{B0}" path="https://d.docs.live.net/123abc/Documents/N1/G1/" lastModifiedTime="2020-12-31T19:31:40.000Z">
+      <one:Section name="King" ID="{00000000-0000-0000-0000-000000000201}{1}{B0}" path="https://d.docs.live.net/123abc/Documents/N1/G1/S1.one" lastModifiedTime="2021-01-04T20:59:59.000Z" color="#8AA8E4">
+        <one:Page ID="{00000000-0000-0000-0000-000000000201}{1}{E0000000000000000000000000000000000000000001}" name="N1.G1.S1.P1" dateTime="2020-08-19T15:36:28.000Z" lastModifiedTime="2021-01-04T20:59:59.000Z" pageLevel="1">
+          <one:Meta name="omHighlightIndex" content="1" />
+          <one:Meta name="omTaggingLabels" content="two,three,lobster" />
+        </one:Page>
+      </one:Section>
+    </one:SectionGroup>
+  </one:Notebook>
+  <one:Notebook name="N2" nickname="N2" ID="{00000000-0000-0000-0000-000000000102}{1}{B0}" path="https://d.docs.live.net/4517d4b4/Documents/N2/" lastModifiedTime="2021-01-04T19:30:07.000Z" color="#8AB6E2" />
+  <one:Notebook name="N3" nickname="N2" ID="{0000000F-0000-0000-0000-000000000103}{1}{B0}" path="https://d.docs.live.net/4517d4b4/Documents/N3/" lastModifiedTime="2021-01-04T12:58:37.000Z" color="#F5F96F" />
+  <one:UnfiledNotes ID="{00000000-0000-0000-0000-00000000010F}{1}{B0}" />
+</one:Notebooks>

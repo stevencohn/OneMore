@@ -86,7 +86,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Notebooks.xml">
+    <Content Include="Data\Hierarchy.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

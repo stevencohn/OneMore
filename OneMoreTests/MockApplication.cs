@@ -6,6 +6,7 @@ namespace OneMoreTests
 {
 	using Microsoft.Office.Interop.OneNote;
 	using System;
+	using System.Linq;
 	using System.Xml.Linq;
 
 	public class MockApplication : IApplication, IOneNoteEvents_Event
@@ -30,11 +31,30 @@ namespace OneMoreTests
 			string bstrStartNodeID, HierarchyScope hsScope, out string pbstrHierarchyXmlOut,
 			XMLSchema xsSchema = XMLSchema.xs2013)
 		{
+			var root = XElement.Load(@".\Data\Hierarchy.xml");
+			var ns = root.GetNamespaceOfPrefix("one");
+
 			switch (hsScope)
 			{
 				case HierarchyScope.hsNotebooks:
-					var root = XElement.Load(@".\Data\Notebooks.xml");
+					root.Elements(ns + "Notebook").Elements().Remove();
 					pbstrHierarchyXmlOut = root.ToString(SaveOptions.DisableFormatting);
+					break;
+
+				case HierarchyScope.hsSections:
+					pbstrHierarchyXmlOut = new XElement(ns + "Sections",
+						root.Elements(ns + "Notebook")
+							.Where(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
+							.Elements())
+						.ToString(SaveOptions.DisableFormatting);
+					break;
+
+				case HierarchyScope.hsPages:
+					pbstrHierarchyXmlOut = new XElement(ns + "Pages",
+						root.Descendants(ns + "Section")
+							.Where(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
+							.Elements(ns + "Page"))
+						.ToString(SaveOptions.DisableFormatting);
 					break;
 
 				default:
@@ -49,17 +69,21 @@ namespace OneMoreTests
 			throw new NotImplementedException();
 		}
 
-		public void OpenHierarchy(string bstrPath, string bstrRelativeToObjectID, out string pbstrObjectID, CreateFileType cftIfNotExist = CreateFileType.cftNone)
+		public void OpenHierarchy(
+			string bstrPath, string bstrRelativeToObjectID, out string pbstrObjectID,
+			CreateFileType cftIfNotExist = CreateFileType.cftNone)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void DeleteHierarchy(string bstrObjectID, DateTime dateExpectedLastModified, bool deletePermanently = false)
+		public void DeleteHierarchy(
+			string bstrObjectID, DateTime dateExpectedLastModified, bool deletePermanently = false)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void CreateNewPage(string bstrSectionID, out string pbstrPageID, NewPageStyle npsNewPageStyle = NewPageStyle.npsDefault)
+		public void CreateNewPage(
+			string bstrSectionID, out string pbstrPageID, NewPageStyle npsNewPageStyle = NewPageStyle.npsDefault)
 		{
 			throw new NotImplementedException();
 		}
@@ -74,12 +98,16 @@ namespace OneMoreTests
 			throw new NotImplementedException();
 		}
 
-		public void GetPageContent(string bstrPageID, out string pbstrPageXmlOut, PageInfo pageInfoToExport = PageInfo.piBasic, XMLSchema xsSchema = XMLSchema.xs2013)
+		public void GetPageContent(
+			string bstrPageID, out string pbstrPageXmlOut, PageInfo pageInfoToExport = PageInfo.piBasic,
+			XMLSchema xsSchema = XMLSchema.xs2013)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void UpdatePageContent(string bstrPageChangesXmlIn, DateTime dateExpectedLastModified, XMLSchema xsSchema = XMLSchema.xs2013, bool force = false)
+		public void UpdatePageContent(
+			string bstrPageChangesXmlIn, DateTime dateExpectedLastModified,
+			XMLSchema xsSchema = XMLSchema.xs2013, bool force = false)
 		{
 			throw new NotImplementedException();
 		}
@@ -89,7 +117,8 @@ namespace OneMoreTests
 			throw new NotImplementedException();
 		}
 
-		public void DeletePageContent(string bstrPageID, string bstrObjectID, DateTime dateExpectedLastModified, bool force = false)
+		public void DeletePageContent(
+			string bstrPageID, string bstrObjectID, DateTime dateExpectedLastModified, bool force = false)
 		{
 			throw new NotImplementedException();
 		}
@@ -104,7 +133,9 @@ namespace OneMoreTests
 			throw new NotImplementedException();
 		}
 
-		public void Publish(string bstrHierarchyID, string bstrTargetFilePath, PublishFormat pfPublishFormat = PublishFormat.pfOneNote, string bstrCLSIDofExporter = "")
+		public void Publish(
+			string bstrHierarchyID, string bstrTargetFilePath,
+			PublishFormat pfPublishFormat = PublishFormat.pfOneNote, string bstrCLSIDofExporter = "")
 		{
 			throw new NotImplementedException();
 		}
@@ -114,17 +145,22 @@ namespace OneMoreTests
 			throw new NotImplementedException();
 		}
 
-		public void GetHyperlinkToObject(string bstrHierarchyID, string bstrPageContentObjectID, out string pbstrHyperlinkOut)
+		public void GetHyperlinkToObject(
+			string bstrHierarchyID, string bstrPageContentObjectID, out string pbstrHyperlinkOut)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void FindPages(string bstrStartNodeID, string bstrSearchString, out string pbstrHierarchyXmlOut, bool fIncludeUnindexedPages = false, bool fDisplay = false, XMLSchema xsSchema = XMLSchema.xs2013)
+		public void FindPages(
+			string bstrStartNodeID, string bstrSearchString, out string pbstrHierarchyXmlOut,
+			bool fIncludeUnindexedPages = false, bool fDisplay = false, XMLSchema xsSchema = XMLSchema.xs2013)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void FindMeta(string bstrStartNodeID, string bstrSearchStringName, out string pbstrHierarchyXmlOut, bool fIncludeUnindexedPages = false, XMLSchema xsSchema = XMLSchema.xs2013)
+		public void FindMeta(
+			string bstrStartNodeID, string bstrSearchStringName, out string pbstrHierarchyXmlOut,
+			bool fIncludeUnindexedPages = false, XMLSchema xsSchema = XMLSchema.xs2013)
 		{
 			throw new NotImplementedException();
 		}
@@ -133,9 +169,9 @@ namespace OneMoreTests
 		{
 			switch (slToGet)
 			{
-				case SpecialLocation.slBackUpFolder: pbstrSpecialLocationPath = "backup"; break;
-				case SpecialLocation.slDefaultNotebookFolder: pbstrSpecialLocationPath = "default"; break;
-				case SpecialLocation.slUnfiledNotesSection: pbstrSpecialLocationPath = "unfiled"; break;
+				case SpecialLocation.slBackUpFolder: pbstrSpecialLocationPath = @"\backup"; break;
+				case SpecialLocation.slDefaultNotebookFolder: pbstrSpecialLocationPath = @"\default"; break;
+				case SpecialLocation.slUnfiledNotesSection: pbstrSpecialLocationPath = @"\unfiled"; break;
 				default: pbstrSpecialLocationPath = "?"; break;
 			}
 		}
@@ -165,7 +201,8 @@ namespace OneMoreTests
 			throw new NotImplementedException();
 		}
 
-		public void GetWebHyperlinkToObject(string bstrHierarchyID, string bstrPageContentObjectID, out string pbstrHyperlinkOut)
+		public void GetWebHyperlinkToObject(
+			string bstrHierarchyID, string bstrPageContentObjectID, out string pbstrHyperlinkOut)
 		{
 			throw new NotImplementedException();
 		}
