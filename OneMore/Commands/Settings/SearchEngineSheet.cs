@@ -187,34 +187,31 @@ namespace River.OneMoreAddIn.Settings
 
 		private void deleteButton_Click(object sender, EventArgs e)
 		{
-			if (gridView.SelectedCells.Count > 0)
+			if (gridView.SelectedCells.Count == 0)
+				return;
+
+			int rowIndex = gridView.SelectedCells[0].RowIndex;
+			if (rowIndex >= engines.Count)
+				return;
+
+			var engine = engines[rowIndex];
+
+			var result = MessageBox.Show(
+				string.Format(Resx.SearchEngineDialog_DeleteMessage, engine.Name),
+				"OneMore",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+				MessageBoxDefaultButton.Button2,
+				MessageBoxOptions.DefaultDesktopOnly);
+
+			if (result != DialogResult.Yes)
+				return;
+
+			engines.RemoveAt(rowIndex);
+
+			rowIndex--;
+			if (rowIndex >= 0)
 			{
-				int colIndex = gridView.SelectedCells[0].ColumnIndex;
-				int rowIndex = gridView.SelectedCells[0].RowIndex;
-				if (rowIndex < engines.Count)
-				{
-					var result = MessageBox.Show(
-						string.Format(Resx.SearchEngineDialog_DeleteMessage, engines[rowIndex].Name),
-						"OneMore",
-						MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-						MessageBoxDefaultButton.Button2,
-						MessageBoxOptions.DefaultDesktopOnly);
-
-					if (result == DialogResult.Yes)
-					{
-						engines.RemoveAt(rowIndex);
-
-						if (rowIndex > 0)
-						{
-							rowIndex--;
-						}
-
-						if (rowIndex >= 0)
-						{
-							gridView.Rows[rowIndex].Cells[colIndex].Selected = true;
-						}
-					}
-				}
+				gridView.Rows[rowIndex].Cells[0].Selected = true;
 			}
 		}
 
@@ -268,10 +265,14 @@ namespace River.OneMoreAddIn.Settings
 					));
 			}
 
+
+			System.Diagnostics.Debugger.Launch();
+
+
 			if (element.HasElements)
 			{
 				var settings = provider.GetCollection(Name);
-				settings.Add(Name, element);
+				settings.Add("engines", element);
 				provider.SetCollection(settings);
 			}
 			else
