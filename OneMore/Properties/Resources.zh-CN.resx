@@ -2625,8 +2625,8 @@ ISO-code then comma then language name</comment>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>插入文字框</value>
-    <comment>ribbon</comment>
+    文本框
+    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>插入一个单元格表格，可以选择包装所选文本</value>

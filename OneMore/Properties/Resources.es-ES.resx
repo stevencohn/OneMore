@@ -2633,8 +2633,8 @@ ISO-code then comma then language name</comment>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>Insertar cuadro de texto</value>
-    <comment>ribbon</comment>
+    Caja de texto
+    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Insertar una tabla de una sola celda, opcionalmente ajustando el texto seleccionado</value>

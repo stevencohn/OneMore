@@ -2619,8 +2619,8 @@ ISO-code then comma then language name</comment>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>Textfeld einfügen</value>
-    <comment>ribbon</comment>
+    Textfeld
+    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Fügen Sie eine Einzelzellentabelle ein und wickeln Sie den ausgewählten Text optional ein</value>

@@ -2634,8 +2634,8 @@ ISO-code then comma then language name</comment>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>Tekstvak invoegen</value>
-    <comment>ribbon</comment>
+    Tekstvak
+    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Voeg een tabel met één cel in, eventueel met omloop van geselecteerde tekst</value>

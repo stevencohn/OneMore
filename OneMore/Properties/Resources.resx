@@ -1904,7 +1904,7 @@ OneNote File (*.one)</value>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
     <value>Select a Word, PowerPoint, OneNote, or XML file</value>
-    <comment>label EDIT</comment>
+    <comment>label</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>
@@ -2613,7 +2613,7 @@ In this section</value>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
     <value>Cloud not load snippet from "{0}"</value>
-    <comment>error message EDIT</comment>
+    <comment>error message</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>My Custom Snippets</value>
@@ -2637,14 +2637,14 @@ In this section</value>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Delete snippet "{0}"</value>
-    <comment>question EDIT</comment>
+    <comment>question</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Manage My Custom Snippets</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>Insert Text Box</value>
+    <value>Text Box</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">

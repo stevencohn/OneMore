@@ -2628,8 +2628,8 @@ ISO-code then comma then language name</comment>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>Insérer une zone de texte</value>
-    <comment>ribbon</comment>
+    Zone de texte
+    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Insérer un tableau à une seule cellule, en enveloppant éventuellement le texte sélectionné</value>

@@ -2633,8 +2633,8 @@ ISO-code then comma then language name</comment>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>أدخل مربع نص</value>
-    <comment>ribbon</comment>
+    مربع الكتابة
+    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>قم بإدراج جدول أحادي الخلية ، مع التفاف النص المحدد اختيارياً</value>
