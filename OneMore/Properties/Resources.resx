@@ -1904,7 +1904,7 @@ OneNote File (*.one)</value>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
     <value>Select a Word, PowerPoint, OneNote, or XML file</value>
-    <comment>label EDIT</comment>
+    <comment>label</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>
@@ -2613,7 +2613,7 @@ In this section</value>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
     <value>Cloud not load snippet from "{0}"</value>
-    <comment>error message EDIT</comment>
+    <comment>error message</comment>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>My Custom Snippets</value>
@@ -2637,10 +2637,90 @@ In this section</value>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Delete snippet "{0}"</value>
-    <comment>question EDIT</comment>
+    <comment>question</comment>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Manage My Custom Snippets</value>
     <comment>SnippetsSheet</comment>
+  </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>Text Box</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribBoxButton_Screentip" xml:space="preserve">
+    <value>Insert a single-cell table, optionally wrapping selected text</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribInsertDateButton_Screentip" xml:space="preserve">
+    <value>Insert the current date (Ctrl + Shift + D)</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
+    <value>Your code here...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
+    <value>Your content here...</value>
+    <comment>text</comment>
+  </data>
+  <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
+    <value>... Blue Status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
+    <value>... Text Box</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
+    <value>... Calendar</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
+    <value>... Code Block</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
+    <value>... Expand/Collapse</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
+    <value>... Gray Status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
+    <value>... Green Status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
+    <value>... Info Block</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
+    <value>... Sortable Date</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertDoubleLineButton" xml:space="preserve">
+    <value>... Double Horizontal Line</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
+    <value>... Horizontal Line</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
+    <value>... Red Status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
+    <value>... Table of Contents</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
+    <value>... Warning Block</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
+    <value>... Yellow Status</value>
+    <comment>option</comment>
   </data>
 </root>

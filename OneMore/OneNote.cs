@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn
 
 		public const string Prefix = "one";
 
-		private Application onenote;
+		private IApplication onenote;
 		private readonly ILogger logger;
 		private bool disposed;
 
@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public OneNote()
 		{
-			onenote = new Application();
+			onenote = ApplicationFactory.CreateApplication();
 			logger = Logger.Current;
 		}
 

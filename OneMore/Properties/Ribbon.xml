@@ -311,7 +311,15 @@
                 id="ribInsertDateButton"
                 imageMso="HeaderFooterCurrentDate"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 onAction="InsertDateCmd"/>
+              <button
+                id="ribBoxButton"
+                imageMso="TextBoxInsert"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="InsertBoxCmd"/>
               <button
                 id="ribCodeBlockButton"
                 imageMso="CodeEdit"

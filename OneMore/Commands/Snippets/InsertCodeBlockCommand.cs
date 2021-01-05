@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -42,6 +43,8 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public override async Task Execute(params object[] args)
 		{
+			var addTitle = args.Length == 0 || (bool)args[0];
+
 			using (var one = new OneNote(out var page, out ns))
 			{
 				if (!page.ConfirmBodyContext(true))
@@ -58,18 +61,24 @@ namespace River.OneMoreAddIn.Commands
 
 				table.AddColumn(600f, true);
 
+				TableRow row;
+				TableCell cell;
+
 				// title row...
 
-				var row = table.AddRow();
-				var cell = row.Cells.First();
+				if (addTitle)
+				{
+					row = table.AddRow();
+					cell = row.Cells.First();
 
-				cell.SetContent(
-					new XElement(ns + "OE",
-						new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
-						new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Code</span>"))
-						));
+					cell.SetContent(
+						new XElement(ns + "OE",
+							new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
+							new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Code</span>"))
+							));
 
-				cell.ShadingColor = shading;
+					cell.ShadingColor = shading;
+				}
 
 				// body row...
 
@@ -80,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 				if (cursor != null)
 				{
 					// empty text cursor found, add default content
-					cell.SetContent(MakeDefaultContent());
+					cell.SetContent(MakeDefaultContent(addTitle));
 					page.AddNextParagraph(table.Root);
 				}
 				else
@@ -133,21 +142,30 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private XElement MakeDefaultContent()
+		private XElement MakeDefaultContent(bool withTitle)
 		{
+			if (withTitle)
+			{
+				return new XElement(ns + "OEChildren",
+					new XElement(ns + "OE",
+						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+						new XElement(ns + "T", new XCData(string.Empty))
+						),
+					new XElement(ns + "OE",
+						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+						new XElement(ns + "T", new XCData(Resx.InsertCodeBlockCommand_Code))
+						),
+					new XElement(ns + "OE",
+						new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
+						new XElement(ns + "T", new XCData(string.Empty))
+						)
+					);
+			}
+
 			return new XElement(ns + "OEChildren",
-				new XElement(ns + "OE",
-					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-					new XElement(ns + "T", new XCData(""))
-					),
-				new XElement(ns + "OE",
-					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-					new XElement(ns + "T", new XCData("Your code here..."))
-					),
-				new XElement(ns + "OE",
-					new XAttribute("style", $"font-family:Consolas;font-size:10.0pt;color:{textColor}"),
-					new XElement(ns + "T", new XCData(""))
-					)
+				new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
+				new XElement(ns + "OE", new XElement(ns + "T", new XCData(Resx.InsertCodeBlockCommand_Text))),
+				new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)))
 				);
 		}
 

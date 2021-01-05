@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Settings
 
 
 		// keys should match existing Ribbon item IDs
+		// and then add ContextMenuSheet_ID values to the Resources.resx
 		public string[] keys = new string[]
 		{
 			"ribNoSpellCheckButton",		// No Spell Check
@@ -39,6 +40,21 @@ namespace River.OneMoreAddIn.Settings
 			"ribDecreaseFontSizeButton",	// ... Decrease Text Size
 			"ribReplaceButton",				// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
+			"ribInsertSingleLineButton",	// ... Single Line
+			"ribInsertDoubleLineButton",	// ... Double Line
+			"ribTocButton",					// ... Table of Contents
+			"ribCalendarButton",			// ... Calendar
+			"ribInsertDateButton",			// ... Sortable Date
+			"ribBoxButton",					// ... Block
+			"ribCodeBlockButton",			// ... Code Block
+			"ribInfoBlockButton",			// ... Info Block
+			"ribWarnBlockButton",			// ... Warning Block
+			"ribExpandButton",				// ... Expand
+			"ribGrayStatusButton",			// ... Gray Status
+			"ribRedStatusButton",			// ... Red Status
+			"ribYellowStatusButton",		// ... Yellow Status
+			"ribGreenStatusButton",			// ... Green Status
+			"ribBlueStatusButton"			// ... Blue Status
 		};
 
 

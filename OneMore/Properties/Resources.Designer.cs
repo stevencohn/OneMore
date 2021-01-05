@@ -554,11 +554,47 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Blue Status.
+        /// </summary>
+        internal static string ContextMenuSheet_ribBlueStatusButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribBlueStatusButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Text Box.
+        /// </summary>
+        internal static string ContextMenuSheet_ribBoxButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribBoxButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Calendar.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCalendarButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCalendarButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clean Menu.
         /// </summary>
         internal static string ContextMenuSheet_ribCleanMenu {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribCleanMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Code Block.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCodeBlockButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCodeBlockButton", resourceCulture);
             }
         }
         
@@ -590,11 +626,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Expand/Collapse.
+        /// </summary>
+        internal static string ContextMenuSheet_ribExpandButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribExpandButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Footnote.
         /// </summary>
         internal static string ContextMenuSheet_ribFootnoteButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribFootnoteButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Gray Status.
+        /// </summary>
+        internal static string ContextMenuSheet_ribGrayStatusButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribGrayStatusButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Green Status.
+        /// </summary>
+        internal static string ContextMenuSheet_ribGreenStatusButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribGreenStatusButton", resourceCulture);
             }
         }
         
@@ -613,6 +676,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ContextMenuSheet_ribIncreaseFontSizeButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribIncreaseFontSizeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Info Block.
+        /// </summary>
+        internal static string ContextMenuSheet_ribInfoBlockButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribInfoBlockButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Sortable Date.
+        /// </summary>
+        internal static string ContextMenuSheet_ribInsertDateButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribInsertDateButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Double Horizontal Line.
+        /// </summary>
+        internal static string ContextMenuSheet_ribInsertDoubleLineButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribInsertDoubleLineButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Horizontal Line.
+        /// </summary>
+        internal static string ContextMenuSheet_ribInsertSingleLineButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribInsertSingleLineButton", resourceCulture);
             }
         }
         
@@ -640,6 +739,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ContextMenuSheet_ribPasteRtfButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribPasteRtfButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Red Status.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRedStatusButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRedStatusButton", resourceCulture);
             }
         }
         
@@ -698,6 +806,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Table of Contents.
+        /// </summary>
+        internal static string ContextMenuSheet_ribTocButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribTocButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Trim Whitespace.
         /// </summary>
         internal static string ContextMenuSheet_ribTrimButton {
@@ -712,6 +829,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ContextMenuSheet_ribUppercaseButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribUppercaseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Warning Block.
+        /// </summary>
+        internal static string ContextMenuSheet_ribWarnBlockButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribWarnBlockButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Yellow Status.
+        /// </summary>
+        internal static string ContextMenuSheet_ribYellowStatusButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribYellowStatusButton", resourceCulture);
             }
         }
         
@@ -1919,6 +2054,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertCellsDialog_Text {
             get {
                 return ResourceManager.GetString("InsertCellsDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your code here....
+        /// </summary>
+        internal static string InsertCodeBlockCommand_Code {
+            get {
+                return ResourceManager.GetString("InsertCodeBlockCommand_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your content here....
+        /// </summary>
+        internal static string InsertCodeBlockCommand_Text {
+            get {
+                return ResourceManager.GetString("InsertCodeBlockCommand_Text", resourceCulture);
             }
         }
         
@@ -3197,6 +3350,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text Box.
+        /// </summary>
+        internal static string ribBoxButton_Label {
+            get {
+                return ResourceManager.GetString("ribBoxButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a single-cell table, optionally wrapping selected text.
+        /// </summary>
+        internal static string ribBoxButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribBoxButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calendar.
         /// </summary>
         internal static string ribCalendarButton_Label {
@@ -3553,6 +3724,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertDateButton_Label {
             get {
                 return ResourceManager.GetString("ribInsertDateButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert the current date (Ctrl + Shift + D).
+        /// </summary>
+        internal static string ribInsertDateButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertDateButton_Screentip", resourceCulture);
             }
         }
         
