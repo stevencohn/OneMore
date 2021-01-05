@@ -265,10 +265,6 @@ namespace River.OneMoreAddIn.Settings
 					));
 			}
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			if (element.HasElements)
 			{
 				var settings = provider.GetCollection(Name);
