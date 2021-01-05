@@ -158,6 +158,13 @@ namespace River.OneMoreAddIn
 		}
 
 
+		// For unit testing
+		public void SetWriter(TextWriter writer)
+		{
+			this.writer = writer;
+		}
+
+
 
 		public void Start(string message = null)
 		{
