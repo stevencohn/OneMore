@@ -2627,4 +2627,84 @@ ISO-code then comma then language name</comment>
     <value>Gérer mes extraits personnalisés</value>
     <comment>SnippetsSheet</comment>
   </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>Insérer une zone de texte</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribBoxButton_Screentip" xml:space="preserve">
+    <value>Insérer un tableau à une seule cellule, en enveloppant éventuellement le texte sélectionné</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribInsertDateButton_Screentip" xml:space="preserve">
+    <value>Insérer la date actuelle (Ctrl + Maj + D)</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
+    <value>Votre code ici ...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
+    <value>Votre contenu ici ...</value>
+    <comment>text</comment>
+  </data>
+  <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
+    <value>... Statut bleu</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
+    <value>... Zone de texte</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
+    <value>... Calendrier</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
+    <value>... Bloc de code</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
+    <value>... Développer / Réduire</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
+    <value>... Statut gris</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
+    <value>... Statut vert</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
+    <value>... Bloc Info</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
+    <value>... Date triable</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertDoubleLineButton" xml:space="preserve">
+    <value>... Double ligne horizontale</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
+    <value>... Ligne horizontale</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
+    <value>... Statut rouge</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
+    <value>... Table des matières</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
+    <value>... Bloc d'avertissement</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
+    <value>... Statut jaune</value>
+    <comment>option</comment>
+  </data>
 </root>

@@ -2633,4 +2633,84 @@ ISO-code then comma then language name</comment>
     <value>Beheer mijn aangepaste fragmenten</value>
     <comment>SnippetsSheet</comment>
   </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>Tekstvak invoegen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribBoxButton_Screentip" xml:space="preserve">
+    <value>Voeg een tabel met één cel in, eventueel met omloop van geselecteerde tekst</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribInsertDateButton_Screentip" xml:space="preserve">
+    <value>Voeg de huidige datum in (Ctrl + Shift + D)</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
+    <value>Uw code hier ...</value>
+    <comment>text</comment>
+  </data>
+  <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
+    <value>Uw inhoud hier ...</value>
+    <comment>text</comment>
+  </data>
+  <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
+    <value>... Blauwe status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
+    <value>... Tekstvak</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
+    <value>... Kalender</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
+    <value>... codeblok</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
+    <value>... Expand / Collapse</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
+    <value>... Grijze status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
+    <value>... Groene status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
+    <value>... Infoblok</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
+    <value>... Sorteerbare datum</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertDoubleLineButton" xml:space="preserve">
+    <value>... dubbele horizontale lijn</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
+    <value>... Horizontale lijn</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
+    <value>... Rode status</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
+    <value>... Inhoudsopgave</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
+    <value>... Waarschuwingsblok</value>
+    <comment>option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
+    <value>... Gele status</value>
+    <comment>option</comment>
+  </data>
 </root>
