@@ -1311,8 +1311,8 @@ Vuelve a intentarlo más tarde</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Comando de complemento</value>
-    <comment>label</comment>
+    Mando
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Actualizar la página actual</value>
@@ -2711,5 +2711,85 @@ ISO-code then comma then language name</comment>
   <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
     <value>... Estado amarillo</value>
     <comment>option</comment>
+  </data>
+  <data name="SavePluginDialog.Text" xml:space="preserve">
+    <value>Guardar complemento</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SavePluginDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
+    <value>El nombre ya está en uso; </value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_InvalidName" xml:space="preserve">
+    <value>Nombre contiene caracteres inválidos</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SavePluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Nombre del complemento:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ribManagePluginsButton_Label" xml:space="preserve">
+    <value>Administrar complementos guardados</value>
+    <comment>favorites button</comment>
+  </data>
+  <data name="ribPluginsMenu_Label" xml:space="preserve">
+    <value>Mis complementos guardados</value>
+    <comment>favorites menu</comment>
+  </data>
+  <data name="PluginsSheet.Text" xml:space="preserve">
+    <value>Administrar mis complementos</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Mando</value>
+    <comment>plugins sheet columns</comment>
+  </data>
+  <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Eliminar el complemento "{0}"</value>
+    <comment>question</comment>
+  </data>
+  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Nombre</value>
+    <comment>plugins sheet column</comment>
+  </data>
+  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Nombre</value>
+    <comment>snippets sheet column</comment>
+  </data>
+  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
+    <value>Complementos</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
+    <value>Eliminar</value>
+    <comment>toolstrip label</comment>
+  </data>
+  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+    <value>Administrar mis complementos</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
+    <value>Okay</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginDialog_loadLabel.Text" xml:space="preserve">
+    <value>Cargar complemento</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_newItem" xml:space="preserve">
+    <value>(nuevo)</value>
+    <comment>combobox item</comment>
   </data>
 </root>

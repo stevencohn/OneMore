@@ -1312,8 +1312,8 @@ Tente mais tarde</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Comando Plugin</value>
-    <comment>label</comment>
+    Comando
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Atualizar a página atual</value>
@@ -2712,5 +2712,85 @@ ISO-code then comma then language name</comment>
   <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
     <value>... Status Amarelo</value>
     <comment>option</comment>
+  </data>
+  <data name="SavePluginDialog.Text" xml:space="preserve">
+    <value>Salvar Plugin</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SavePluginDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
+    <value>O nome já está em uso; </value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_InvalidName" xml:space="preserve">
+    <value>O nome contém caracteres inválidos</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SavePluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Nome do plugin:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_okButton.Text" xml:space="preserve">
+    <value>Está bem</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ribManagePluginsButton_Label" xml:space="preserve">
+    <value>Gerenciar plug-ins salvos</value>
+    <comment>favorites button</comment>
+  </data>
+  <data name="ribPluginsMenu_Label" xml:space="preserve">
+    <value>Meus Plugins Salvos</value>
+    <comment>favorites menu</comment>
+  </data>
+  <data name="PluginsSheet.Text" xml:space="preserve">
+    <value>Gerenciar meus plugins</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Comando</value>
+    <comment>plugins sheet columns</comment>
+  </data>
+  <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Excluir plugin "{0}"</value>
+    <comment>question</comment>
+  </data>
+  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Nome</value>
+    <comment>plugins sheet column</comment>
+  </data>
+  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Nome</value>
+    <comment>snippets sheet column</comment>
+  </data>
+  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
+    <value>Excluir</value>
+    <comment>toolstrip label</comment>
+  </data>
+  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+    <value>Gerenciar meus plugins</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
+    <value>Está bem</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginDialog_loadLabel.Text" xml:space="preserve">
+    <value>Carregar Plugin</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_newItem" xml:space="preserve">
+    <value>(Novo)</value>
+    <comment>combobox item</comment>
   </data>
 </root>

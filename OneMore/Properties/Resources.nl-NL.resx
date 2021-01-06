@@ -1312,8 +1312,8 @@ Probeer het later nog eens</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Plugin-opdracht</value>
-    <comment>label</comment>
+    Opdracht
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Update huidige pagina</value>
@@ -2712,5 +2712,85 @@ ISO-code then comma then language name</comment>
   <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
     <value>... Gele status</value>
     <comment>option</comment>
+  </data>
+  <data name="SavePluginDialog.Text" xml:space="preserve">
+    <value>Sla de plug-in op</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SavePluginDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
+    <value>Naam is al in gebruik; </value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_InvalidName" xml:space="preserve">
+    <value>Naam bevat ongeldige tekens</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SavePluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Plugin naam:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ribManagePluginsButton_Label" xml:space="preserve">
+    <value>Beheer opgeslagen plug-ins</value>
+    <comment>favorites button</comment>
+  </data>
+  <data name="ribPluginsMenu_Label" xml:space="preserve">
+    <value>Mijn opgeslagen plug-ins</value>
+    <comment>favorites menu</comment>
+  </data>
+  <data name="PluginsSheet.Text" xml:space="preserve">
+    <value>Beheer mijn plug-ins</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Opdracht</value>
+    <comment>plugins sheet columns</comment>
+  </data>
+  <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Verwijder plug-in "{0}"</value>
+    <comment>question</comment>
+  </data>
+  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Naam</value>
+    <comment>plugins sheet column</comment>
+  </data>
+  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Naam</value>
+    <comment>snippets sheet column</comment>
+  </data>
+  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
+    <value>Plug-ins</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
+    <value>Verwijderen</value>
+    <comment>toolstrip label</comment>
+  </data>
+  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+    <value>Beheer mijn plug-ins</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginDialog_loadLabel.Text" xml:space="preserve">
+    <value>Laad plug-in</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_newItem" xml:space="preserve">
+    <value>(nieuw)</value>
+    <comment>combobox item</comment>
   </data>
 </root>

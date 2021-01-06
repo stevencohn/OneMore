@@ -1428,7 +1428,7 @@ Try again later</value>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
     <value>Command</value>
-    <comment>label EDIT</comment>
+    <comment>label</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Update current page</value>

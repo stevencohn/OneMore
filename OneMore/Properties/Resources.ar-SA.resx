@@ -1311,8 +1311,8 @@
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>أمر البرنامج المساعد</value>
-    <comment>label</comment>
+    أمر
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>تحديث الصفحة الحالية</value>
@@ -2711,5 +2711,85 @@ ISO-code then comma then language name</comment>
   <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
     <value>... الحالة الصفراء</value>
     <comment>option</comment>
+  </data>
+  <data name="SavePluginDialog.Text" xml:space="preserve">
+    <value>حفظ البرنامج المساعد</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SavePluginDialog_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
+    <value>الاسم قيد الاستخدام بالفعل ؛ </value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_InvalidName" xml:space="preserve">
+    <value>اسم يحتوي على أحرف غير صالحة</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SavePluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>اسم البرنامج المساعد:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>ok button</comment>
+  </data>
+  <data name="ribManagePluginsButton_Label" xml:space="preserve">
+    <value>إدارة الإضافات المحفوظة</value>
+    <comment>favorites button</comment>
+  </data>
+  <data name="ribPluginsMenu_Label" xml:space="preserve">
+    <value>الإضافات المحفوظة</value>
+    <comment>favorites menu</comment>
+  </data>
+  <data name="PluginsSheet.Text" xml:space="preserve">
+    <value>إدارة ملحقاتي</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>أمر</value>
+    <comment>plugins sheet columns</comment>
+  </data>
+  <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
+    <value>حذف المكون الإضافي "{0}"</value>
+    <comment>question</comment>
+  </data>
+  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>اسم</value>
+    <comment>plugins sheet column</comment>
+  </data>
+  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>اسم</value>
+    <comment>snippets sheet column</comment>
+  </data>
+  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
+    <value>الإضافات</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
+    <value>إلغاء</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
+    <value>حذف</value>
+    <comment>toolstrip label</comment>
+  </data>
+  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+    <value>إدارة ملحقاتي</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginDialog_loadLabel.Text" xml:space="preserve">
+    <value>تحميل البرنامج المساعد</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_newItem" xml:space="preserve">
+    <value>(جديد)</value>
+    <comment>combobox item</comment>
   </data>
 </root>
