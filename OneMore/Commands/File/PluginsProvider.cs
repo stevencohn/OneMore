@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Web.Script.Serialization;
 	using System.Xml.Linq;
 
 
@@ -89,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
-		public async Task<string> Load(string path)
+		public async Task<Plugin> Load(string path)
 		{
 			if (!File.Exists(path))
 			{
@@ -101,7 +102,12 @@ namespace River.OneMoreAddIn.Commands
 				using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
 				using (var reader = new StreamReader(stream, System.Text.Encoding.UTF8))
 				{
-					return await reader.ReadToEndAsync();
+					var json = await reader.ReadToEndAsync();
+
+					var serializer = new JavaScriptSerializer();
+					var plugin = serializer.Deserialize<Plugin>(json);
+
+					return plugin;
 				}
 			}
 			catch (Exception exc)
@@ -118,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="plugin"></param>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task Save(string plugin, string name)
+		public async Task Save(Plugin plugin, string name)
 		{
 			var path = Path.Combine(store, $"{name}{Extension}");
 
@@ -128,7 +134,10 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var writer = new StreamWriter(path))
 				{
-					await writer.WriteAsync(plugin);
+					var serializer = new JavaScriptSerializer();
+					var json = serializer.Serialize(plugin);
+
+					await writer.WriteAsync(json);
 				}
 			}
 			catch (Exception exc)
@@ -145,11 +154,11 @@ namespace River.OneMoreAddIn.Commands
 			var menu = new XElement(ns + "menu",
 				new XAttribute("id", "ribPluginsMenu"),
 				new XAttribute("getLabel", "GetRibbonLabel"),
-				new XAttribute("imageMso", "GroupInsertShapes"),
+				new XAttribute("imageMso", "AddInsMenu"),
 				new XElement(ns + "button",
 					new XAttribute("id", ManagePluginsButtonId),
 					new XAttribute("getLabel", "GetRibbonLabel"),
-					new XAttribute("imageMso", "BibliographyManageSources"),
+					new XAttribute("imageMso", "GroupAddInsCustomToolbars"),
 					new XAttribute("onAction", "ManagePluginsCmd")
 					),
 				new XElement(ns + "menuSeparator",
@@ -165,7 +174,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					menu.Add(new XElement(ns + "button",
 						new XAttribute("id", $"ribMyPlugin{b++}"),
-						new XAttribute("imageMso", "PasteAlternative"),
+						new XAttribute("imageMso", "GroupAddInsToolbarCommands"),
 						new XAttribute("label", Path.GetFileNameWithoutExtension(plugin)),
 						new XAttribute("tag", plugin),
 						new XAttribute("onAction", "RunPluginCmd")

@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (name.IndexOfAny(invalidChars) >= 0)
 			{
-				errorLabel.Text = Resx.SavePluginDialog_invalidName;
+				errorLabel.Text = Resx.SavePluginDialog_InvalidName;
 				errorLabel.Visible = true;
 				return;
 			}
@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (names.Contains(name))
 			{
-				errorLabel.Text = Resx.SavePluginDialog_duplicateName;
+				errorLabel.Text = Resx.SavePluginDialog_DuplicateName;
 				errorLabel.Visible = true;
 				okButton.Enabled = false;
 				return;

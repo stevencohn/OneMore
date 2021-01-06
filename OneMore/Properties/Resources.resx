@@ -2731,11 +2731,11 @@ In this section</value>
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="SavePluginDialog_duplicateName" xml:space="preserve">
+  <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
     <value>Name is already in use</value>
     <comment>label</comment>
   </data>
-  <data name="SavePluginDialog_invalidName" xml:space="preserve">
+  <data name="SavePluginDialog_InvalidName" xml:space="preserve">
     <value>Name contains invalid characters</value>
     <comment>error message</comment>
   </data>

@@ -4451,18 +4451,18 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Name is already in use.
         /// </summary>
-        internal static string SavePluginDialog_duplicateName {
+        internal static string SavePluginDialog_DuplicateName {
             get {
-                return ResourceManager.GetString("SavePluginDialog_duplicateName", resourceCulture);
+                return ResourceManager.GetString("SavePluginDialog_DuplicateName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Name contains invalid characters.
         /// </summary>
-        internal static string SavePluginDialog_invalidName {
+        internal static string SavePluginDialog_InvalidName {
             get {
-                return ResourceManager.GetString("SavePluginDialog_invalidName", resourceCulture);
+                return ResourceManager.GetString("SavePluginDialog_InvalidName", resourceCulture);
             }
         }
         

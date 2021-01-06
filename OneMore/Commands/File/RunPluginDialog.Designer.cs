@@ -41,6 +41,7 @@
 			this.argsBox = new System.Windows.Forms.TextBox();
 			this.argLabel = new System.Windows.Forms.Label();
 			this.browseArgsButton = new System.Windows.Forms.Button();
+			this.saveLink = new System.Windows.Forms.LinkLabel();
 			this.SuspendLayout();
 			// 
 			// cancelButton
@@ -162,6 +163,18 @@
 			this.browseArgsButton.UseVisualStyleBackColor = true;
 			this.browseArgsButton.Click += new System.EventHandler(this.BrowseArgumentPath);
 			// 
+			// saveLink
+			// 
+			this.saveLink.AutoSize = true;
+			this.saveLink.Enabled = false;
+			this.saveLink.Location = new System.Drawing.Point(18, 266);
+			this.saveLink.Name = "saveLink";
+			this.saveLink.Size = new System.Drawing.Size(91, 20);
+			this.saveLink.TabIndex = 13;
+			this.saveLink.TabStop = true;
+			this.saveLink.Text = "Save plugin";
+			this.saveLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SavePlugin);
+			// 
 			// RunPluginDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -169,6 +182,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(778, 314);
+			this.Controls.Add(this.saveLink);
 			this.Controls.Add(this.browseArgsButton);
 			this.Controls.Add(this.argLabel);
 			this.Controls.Add(this.argsBox);
@@ -186,7 +200,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "RunPluginDialog";
-			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.Padding = new System.Windows.Forms.Padding(15);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Run Plugin";
@@ -209,5 +223,6 @@
 		private System.Windows.Forms.TextBox argsBox;
 		private System.Windows.Forms.Label argLabel;
 		private System.Windows.Forms.Button browseArgsButton;
+		private System.Windows.Forms.LinkLabel saveLink;
 	}
 }

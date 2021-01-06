@@ -130,6 +130,7 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\File\Plugin.cs" />
     <Compile Include="Commands\File\SavePluginDialog.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -61,17 +61,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string Command => cmdBox.Text;
+		public Plugin Plugin => new Plugin
+		{
+			Command = cmdBox.Text,
+			Arguments = argsBox.Text,
+			CreateNewPage = !updateRadio.Checked,
+			AsChildPage = childBox.Checked,
+			PageName = nameBox.Text
+		};
 
-		public string Arguments => argsBox.Text;
-
-		public bool UpdatePage => updateRadio.Checked;
-
-		public bool CreateChild => childBox.Checked;
 
 		public string PageName
 		{
-			get => nameBox.Text;
+			private get => nameBox.Text;
 			set => nameBox.Text = value;
 		}
 
@@ -186,6 +188,35 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private async void SavePlugin(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			string name = null;
+
+			using (var dialog = new SavePluginDialog())
+			{
+				if (dialog.ShowDialog() != DialogResult.OK)
+				{
+					return;
+				}
+
+				name = dialog.PluginName;
+			}
+
+			try
+			{
+				var provider = new PluginsProvider();
+				await provider.Save(Plugin, name);
+
+				UIHelper.ShowMessage($"'{name}' plugin is saved"); // translate
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error saving plugin", exc);
+				UIHelper.ShowMessage("Plugin could not be saved; see log for details"); // translate
+			}
+		}
+
+
 		private void okButton_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
@@ -200,6 +231,5 @@ namespace River.OneMoreAddIn.Commands
 			provider.SetCollection(settings);
 			provider.Save();
 		}
-
 	}
 }
