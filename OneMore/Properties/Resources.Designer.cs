@@ -2745,7 +2745,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Plugin Command.
+        ///   Looks up a localized string similar to Command.
         /// </summary>
         internal static string PluginDialog_cmdLabel_Text {
             get {
@@ -2759,6 +2759,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PluginDialog_createRadio_Text {
             get {
                 return ResourceManager.GetString("PluginDialog_createRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Plugin.
+        /// </summary>
+        internal static string PluginDialog_loadLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_loadLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (new).
+        /// </summary>
+        internal static string PluginDialog_newItem {
+            get {
+                return ResourceManager.GetString("PluginDialog_newItem", resourceCulture);
             }
         }
         
@@ -4539,7 +4557,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name is already in use.
+        ///   Looks up a localized string similar to Name is already in use; plugin will be overwritten.
         /// </summary>
         internal static string SavePluginDialog_DuplicateName {
             get {

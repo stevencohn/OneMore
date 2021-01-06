@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string ManagePluginsButtonId = "ribManagePluginsButton";
 
 		private const string DirectoryName = "Plugins";
-		private const string Extension = ".plu";
+		private const string Extension = ".js";
 
 		private readonly string store;
 

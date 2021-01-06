@@ -1427,8 +1427,8 @@ Try again later</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Plugin Command</value>
-    <comment>label</comment>
+    <value>Command</value>
+    <comment>label EDIT</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Update current page</value>
@@ -2732,7 +2732,7 @@ In this section</value>
     <comment>cancel button</comment>
   </data>
   <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
-    <value>Name is already in use</value>
+    <value>Name is already in use; plugin will be overwritten</value>
     <comment>label</comment>
   </data>
   <data name="SavePluginDialog_InvalidName" xml:space="preserve">
@@ -2794,5 +2794,13 @@ In this section</value>
   <data name="PluginsSheet_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>button</comment>
+  </data>
+  <data name="PluginDialog_loadLabel.Text" xml:space="preserve">
+    <value>Load Plugin</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_newItem" xml:space="preserve">
+    <value>(new)</value>
+    <comment>combobox item</comment>
   </data>
 </root>

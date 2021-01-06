@@ -37,7 +37,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out _, OneNote.PageDetail.All))
 			{
-				if (!PromptForPlugin(page.Title) || string.IsNullOrEmpty(plugin.Command))
+				if (args.Length > 0 && (args[0] is string arg) && !string.IsNullOrEmpty(arg))
+				{
+					plugin = await new PluginsProvider().Load(arg);
+				}
+				else if (!PromptForPlugin(page.Title) || string.IsNullOrEmpty(plugin.Command))
 				{
 					return;
 				}
@@ -72,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 					var root = XElement.Load(workPath);
 					var updated = root.ToString(SaveOptions.DisableFormatting);
 
-					if (updated == original)
+					if (updated == original && !plugin.CreateNewPage)
 					{
 						UIHelper.ShowInfo(Resx.Plugin_NoChanges);
 						return;

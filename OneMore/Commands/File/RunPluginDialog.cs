@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
-	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -114,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 			names.Sort();
 			predefinedNames = names.ToArray();
 
-			predefinedBox.Items.Add("(new)");
+			predefinedBox.Items.Add(Resx.PluginDialog_newItem);
 			predefinedBox.Items.AddRange(predefinedNames);
 			predefinedBox.SelectedIndex = 0;
 		}

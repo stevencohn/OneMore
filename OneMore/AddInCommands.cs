@@ -197,7 +197,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ResizeImagesCommand>();
 
 		public async Task RunPluginCmd(IRibbonControl control)
-			=> await factory.Run<RunPluginCommand>();
+			=> await factory.Run<RunPluginCommand>(control.Tag);
 
 		public async Task ExportCmd(IRibbonControl control)
 			=> await factory.Run<ExportCommand>();
