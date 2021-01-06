@@ -118,6 +118,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+		public async Task<Plugin> LoadByName(string name)
+		{
+			var path = Path.Combine(store, $"{name}{Extension}");
+			return await Load(path);
+		}
+
 
 		/// <summary>
 		/// Saves a new named splugin
@@ -135,7 +141,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				PathFactory.EnsurePathExists(store);
 
-				using (var writer = new StreamWriter(path))
+				using (var writer = new StreamWriter(path, false))
 				{
 					var serializer = new JavaScriptSerializer();
 					var json = serializer.Serialize(plugin);

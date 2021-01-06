@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -18,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class RunPluginDialog : UI.LocalizableForm
 	{
 		private const int SysMenuId = 1000;
+
+		private string[] predefinedNames;
 
 
 		public RunPluginDialog()
@@ -33,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"loadLabel",
 					"cmdLabel",
 					"argsLabel",
 					"updateRadio",
@@ -105,12 +109,45 @@ namespace River.OneMoreAddIn.Commands
 			var hmenu = Native.GetSystemMenu(Handle, false);
 			Native.InsertMenu(hmenu, 5, Native.MF_BYPOSITION, SysMenuId, Resx.DialogResetSettings_Text);
 			base.OnLoad(e);
+
+			var names = new PluginsProvider().GetNames().ToList();
+			names.Sort();
+			predefinedNames = names.ToArray();
+
+			predefinedBox.Items.Add("(new)");
+			predefinedBox.Items.AddRange(predefinedNames);
+			predefinedBox.SelectedIndex = 0;
+		}
+
+
+		private async void ViewPredefined(object sender, EventArgs e)
+		{
+			if (predefinedBox.SelectedIndex == 0)
+			{
+				cmdBox.Text = string.Empty;
+				argsBox.Text = string.Empty;
+				updateRadio.Checked = true;
+				nameBox.Text = string.Empty;
+				childBox.Checked = false;
+			}
+			else
+			{
+				var provider = new PluginsProvider();
+				var plugin = await provider.LoadByName(predefinedBox.SelectedItem.ToString());
+
+				cmdBox.Text = plugin.Command;
+				argsBox.Text = plugin.Arguments;
+				updateRadio.Checked = !plugin.CreateNewPage;
+				createRadio.Checked = plugin.CreateNewPage;
+				nameBox.Text = plugin.PageName;
+				childBox.Checked = plugin.AsChildPage;
+			}
 		}
 
 
 		private void ChangeCommand(object sender, EventArgs e)
 		{
-			saveLink.Enabled = cmdBox.Text.Trim().Length > 0;
+			saveButton.Enabled = cmdBox.Text.Trim().Length > 0;
 		}
 
 
@@ -194,12 +231,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async void SavePlugin(object sender, LinkLabelLinkClickedEventArgs e)
+		private async void SavePlugin(object sender, EventArgs e)
 		{
 			string name = null;
 
 			using (var dialog = new SavePluginDialog())
 			{
+				if (predefinedBox.SelectedIndex > 0)
+				{
+					dialog.PluginName = predefinedBox.SelectedItem.ToString();
+				}
+
 				if (dialog.ShowDialog() != DialogResult.OK)
 				{
 					return;

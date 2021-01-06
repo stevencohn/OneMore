@@ -42,9 +42,10 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(388, 94);
+			this.okButton.Location = new System.Drawing.Point(259, 69);
+			this.okButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(112, 35);
+			this.okButton.Size = new System.Drawing.Size(75, 23);
 			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
@@ -54,9 +55,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(506, 94);
+			this.cancelButton.Location = new System.Drawing.Point(337, 69);
+			this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(112, 35);
+			this.cancelButton.Size = new System.Drawing.Size(75, 23);
 			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
@@ -64,9 +66,10 @@ namespace River.OneMoreAddIn.Commands
 			// nameLabel
 			// 
 			this.nameLabel.AutoSize = true;
-			this.nameLabel.Location = new System.Drawing.Point(23, 31);
+			this.nameLabel.Location = new System.Drawing.Point(15, 20);
+			this.nameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.nameLabel.Name = "nameLabel";
-			this.nameLabel.Size = new System.Drawing.Size(112, 20);
+			this.nameLabel.Size = new System.Drawing.Size(68, 13);
 			this.nameLabel.TabIndex = 11;
 			this.nameLabel.Text = "Plugin name:";
 			// 
@@ -74,9 +77,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.nameBox.Location = new System.Drawing.Point(141, 28);
+			this.nameBox.Location = new System.Drawing.Point(94, 18);
+			this.nameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.Size = new System.Drawing.Size(477, 26);
+			this.nameBox.Size = new System.Drawing.Size(319, 20);
 			this.nameBox.TabIndex = 0;
 			this.nameBox.TextChanged += new System.EventHandler(this.ValidateName);
 			// 
@@ -84,19 +88,20 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.errorLabel.AutoSize = true;
 			this.errorLabel.ForeColor = System.Drawing.Color.DarkRed;
-			this.errorLabel.Location = new System.Drawing.Point(137, 57);
+			this.errorLabel.Location = new System.Drawing.Point(91, 40);
+			this.errorLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.errorLabel.Name = "errorLabel";
-			this.errorLabel.Size = new System.Drawing.Size(167, 20);
+			this.errorLabel.Size = new System.Drawing.Size(203, 13);
 			this.errorLabel.TabIndex = 13;
-			this.errorLabel.Text = "Name is already in use";
+			this.errorLabel.Text = "Name is already in use; will be overwritten";
 			// 
 			// SavePluginDialog
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(641, 152);
+			this.ClientSize = new System.Drawing.Size(427, 107);
 			this.Controls.Add(this.errorLabel);
 			this.Controls.Add(this.nameBox);
 			this.Controls.Add(this.nameLabel);
@@ -104,10 +109,11 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.cancelButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "SavePluginDialog";
-			this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 20);
+			this.Padding = new System.Windows.Forms.Padding(13, 16, 13, 13);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Save Plugin";
 			this.ResumeLayout(false);

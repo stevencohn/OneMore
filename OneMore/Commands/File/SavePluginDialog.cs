@@ -37,7 +37,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string PluginName => nameBox.Text.Trim();
+		public string PluginName
+		{
+			get => nameBox.Text.Trim();
+			set => nameBox.Text = value;
+		}
 
 
 		private void ValidateName(object sender, System.EventArgs e)
@@ -72,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				errorLabel.Text = Resx.SavePluginDialog_DuplicateName;
 				errorLabel.Visible = true;
-				okButton.Enabled = false;
+				okButton.Enabled = true;
 				return;
 			}
 
