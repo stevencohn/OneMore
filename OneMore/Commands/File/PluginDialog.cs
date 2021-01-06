@@ -15,14 +15,14 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RunPluginDialog : UI.LocalizableForm
+	internal partial class PluginDialog : UI.LocalizableForm
 	{
 		private const int SysMenuId = 1000;
 
 		private string[] predefinedNames;
 
 
-		public RunPluginDialog()
+		public PluginDialog()
 		{
 			InitializeComponent();
 
@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"loadLabel",
+					"pluginLabel",
 					"cmdLabel",
 					"argsLabel",
 					"updateRadio",
@@ -45,22 +45,20 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton"
 				});
 			}
+		}
 
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("runPlugin");
-			if (settings != null)
-			{
-				cmdBox.Text = settings.Get<string>("cmd");
-				argsBox.Text = settings.Get<string>("args");
 
-				var keys = settings.Keys.ToList();
-				updateRadio.Checked = !keys.Contains("update") || settings.Get<bool>("update");
+		public PluginDialog(string name)
+			: this()
+		{
+			Text = Resx.PluginDialog_editText;
 
-				createRadio.Checked = !updateRadio.Checked;
-				nameBox.Enabled = createRadio.Checked;
-				childBox.Enabled = createRadio.Checked;
-				childBox.Checked = settings.Get<bool>("child");
-			}
+			pluginNameLabel.Text = name;
+			pluginNameLabel.Left = predefinedBox.Left;
+			pluginNameLabel.Top = pluginLabel.Top;
+
+			predefinedBox.Visible = false;
+			pluginNameLabel.Visible = true;
 		}
 
 
@@ -116,6 +114,25 @@ namespace River.OneMoreAddIn.Commands
 			predefinedBox.Items.Add(Resx.PluginDialog_newItem);
 			predefinedBox.Items.AddRange(predefinedNames);
 			predefinedBox.SelectedIndex = 0;
+
+			if (names.Count == 0)
+			{
+				var provider = new SettingsProvider();
+				var settings = provider.GetCollection("runPlugin");
+				if (settings != null)
+				{
+					cmdBox.Text = settings.Get<string>("cmd");
+					argsBox.Text = settings.Get<string>("args");
+
+					var keys = settings.Keys.ToList();
+					updateRadio.Checked = !keys.Contains("update") || settings.Get<bool>("update");
+
+					createRadio.Checked = !updateRadio.Checked;
+					nameBox.Enabled = createRadio.Checked;
+					childBox.Enabled = createRadio.Checked;
+					childBox.Checked = settings.Get<bool>("child");
+				}
+			}
 		}
 
 

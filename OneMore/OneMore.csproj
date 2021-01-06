@@ -341,11 +341,11 @@
     <Compile Include="Commands\Images\ResizeImagesDialog.Designer.cs">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\File\RunPluginDialog.cs">
+    <Compile Include="Commands\File\PluginDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\File\RunPluginDialog.Designer.cs">
-      <DependentUpon>RunPluginDialog.cs</DependentUpon>
+    <Compile Include="Commands\File\PluginDialog.Designer.cs">
+      <DependentUpon>PluginDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\TagPickerDialog.cs">
       <SubType>Form</SubType>
@@ -791,8 +791,8 @@
     <EmbeddedResource Include="Commands\Images\ResizeImagesDialog.resx">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\File\RunPluginDialog.resx">
-      <DependentUpon>RunPluginDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\File\PluginDialog.resx">
+      <DependentUpon>PluginDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\SearchAndReplace\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>

@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool PromptForPlugin(string name)
 		{
-			using (var dialog = new RunPluginDialog())
+			using (var dialog = new PluginDialog())
 			{
 				name = XElement.Parse($"<wrapper>{name}</wrapper>").Value;
 
@@ -231,6 +231,7 @@ namespace River.OneMoreAddIn.Commands
 				process.BeginErrorReadLine();
 
 				logger.WriteLine($"plugin process started PID:{process.Id}");
+				logger.StartClock();
 			}
 			catch (Exception exc)
 			{
@@ -248,7 +249,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Process_Exited(object sender, EventArgs e)
 		{
-			logger.WriteLine("plugin process exited");
+			logger.WriteTime("plugin process exited");
 			progressDialog.DialogResult = DialogResult.OK;
 			progressDialog.Close();
 		}

@@ -2763,11 +2763,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load Plugin.
+        ///   Looks up a localized string similar to Edit Plugin.
         /// </summary>
-        internal static string PluginDialog_loadLabel_Text {
+        internal static string PluginDialog_editText {
             get {
-                return ResourceManager.GetString("PluginDialog_loadLabel.Text", resourceCulture);
+                return ResourceManager.GetString("PluginDialog_editText", resourceCulture);
             }
         }
         
@@ -2786,6 +2786,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PluginDialog_okButton_Text {
             get {
                 return ResourceManager.GetString("PluginDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugin.
+        /// </summary>
+        internal static string PluginDialog_pluginLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_pluginLabel.Text", resourceCulture);
             }
         }
         

@@ -1,6 +1,6 @@
 ﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class RunPluginDialog
+	partial class PluginDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RunPluginDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PluginDialog));
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
 			this.pathLabel = new System.Windows.Forms.Label();
@@ -42,8 +42,9 @@
 			this.argLabel = new System.Windows.Forms.Label();
 			this.browseArgsButton = new System.Windows.Forms.Button();
 			this.saveButton = new System.Windows.Forms.Button();
-			this.loadLabel = new System.Windows.Forms.Label();
+			this.pluginLabel = new System.Windows.Forms.Label();
 			this.predefinedBox = new System.Windows.Forms.ComboBox();
+			this.pluginNameLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// cancelButton
@@ -191,15 +192,15 @@
 			this.saveButton.UseVisualStyleBackColor = true;
 			this.saveButton.Click += new System.EventHandler(this.SavePlugin);
 			// 
-			// loadLabel
+			// pluginLabel
 			// 
-			this.loadLabel.AutoSize = true;
-			this.loadLabel.Location = new System.Drawing.Point(12, 23);
-			this.loadLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.loadLabel.Name = "loadLabel";
-			this.loadLabel.Size = new System.Drawing.Size(63, 13);
-			this.loadLabel.TabIndex = 15;
-			this.loadLabel.Text = "Load Plugin";
+			this.pluginLabel.AutoSize = true;
+			this.pluginLabel.Location = new System.Drawing.Point(12, 23);
+			this.pluginLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pluginLabel.Name = "pluginLabel";
+			this.pluginLabel.Size = new System.Drawing.Size(36, 13);
+			this.pluginLabel.TabIndex = 15;
+			this.pluginLabel.Text = "Plugin";
 			// 
 			// predefinedBox
 			// 
@@ -211,15 +212,27 @@
 			this.predefinedBox.TabIndex = 16;
 			this.predefinedBox.SelectedIndexChanged += new System.EventHandler(this.ViewPredefined);
 			// 
-			// RunPluginDialog
+			// pluginNameLabel
+			// 
+			this.pluginNameLabel.AutoSize = true;
+			this.pluginNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pluginNameLabel.Location = new System.Drawing.Point(12, 208);
+			this.pluginNameLabel.Name = "pluginNameLabel";
+			this.pluginNameLabel.Size = new System.Drawing.Size(45, 13);
+			this.pluginNameLabel.TabIndex = 17;
+			this.pluginNameLabel.Text = "-name-";
+			this.pluginNameLabel.Visible = false;
+			// 
+			// PluginDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(519, 234);
+			this.Controls.Add(this.pluginNameLabel);
 			this.Controls.Add(this.predefinedBox);
-			this.Controls.Add(this.loadLabel);
+			this.Controls.Add(this.pluginLabel);
 			this.Controls.Add(this.saveButton);
 			this.Controls.Add(this.browseArgsButton);
 			this.Controls.Add(this.argLabel);
@@ -238,7 +251,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "RunPluginDialog";
+			this.Name = "PluginDialog";
 			this.Padding = new System.Windows.Forms.Padding(10);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -263,7 +276,8 @@
 		private System.Windows.Forms.Label argLabel;
 		private System.Windows.Forms.Button browseArgsButton;
 		private System.Windows.Forms.Button saveButton;
-		private System.Windows.Forms.Label loadLabel;
+		private System.Windows.Forms.Label pluginLabel;
 		private System.Windows.Forms.ComboBox predefinedBox;
+		private System.Windows.Forms.Label pluginNameLabel;
 	}
 }
