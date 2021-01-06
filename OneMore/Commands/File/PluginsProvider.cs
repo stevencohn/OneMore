@@ -106,6 +106,7 @@ namespace River.OneMoreAddIn.Commands
 
 					var serializer = new JavaScriptSerializer();
 					var plugin = serializer.Deserialize<Plugin>(json);
+					plugin.Path = path;
 
 					return plugin;
 				}
@@ -126,6 +127,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public async Task Save(Plugin plugin, string name)
 		{
+			plugin.Name = name;
+
 			var path = Path.Combine(store, $"{name}{Extension}");
 
 			try
@@ -151,6 +154,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public XElement MakePluginsMenu(XNamespace ns)
 		{
+			var plugins = GetPaths();
+			if (!plugins.Any())
+			{
+				return null;
+			}
+
 			var menu = new XElement(ns + "menu",
 				new XAttribute("id", "ribPluginsMenu"),
 				new XAttribute("getLabel", "GetRibbonLabel"),
@@ -166,20 +175,16 @@ namespace River.OneMoreAddIn.Commands
 					)
 				);
 
-			var plugins = GetPaths();
-			if (plugins.Any())
+			var b = 0;
+			foreach (var plugin in plugins)
 			{
-				var b = 0;
-				foreach (var plugin in plugins)
-				{
-					menu.Add(new XElement(ns + "button",
-						new XAttribute("id", $"ribMyPlugin{b++}"),
-						new XAttribute("imageMso", "GroupAddInsToolbarCommands"),
-						new XAttribute("label", Path.GetFileNameWithoutExtension(plugin)),
-						new XAttribute("tag", plugin),
-						new XAttribute("onAction", "RunPluginCmd")
-						));
-				}
+				menu.Add(new XElement(ns + "button",
+					new XAttribute("id", $"ribMyPlugin{b++}"),
+					new XAttribute("imageMso", "GroupAddInsToolbarCommands"),
+					new XAttribute("label", Path.GetFileNameWithoutExtension(plugin)),
+					new XAttribute("tag", plugin),
+					new XAttribute("onAction", "RunPluginCmd")
+					));
 			}
 
 			return menu;

@@ -133,6 +133,9 @@ namespace River.OneMoreAddIn
 		public async Task ManageFavoritesCmd(IRibbonControl control)
 			=> await factory.Run<ManageFavoritesCommand>(ribbon);
 
+		public async Task ManagePluginsCmd(IRibbonControl control)
+			=> await factory.Run<ManagePluginsCommand>(ribbon);
+
 		public async Task ManageSnippetsCmd(IRibbonControl control)
 			=> await factory.Run<ManageSnippetsCommand>(ribbon);
 

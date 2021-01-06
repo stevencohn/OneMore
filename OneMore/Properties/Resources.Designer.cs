@@ -2792,6 +2792,78 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
+        internal static string PluginsSheet_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("PluginsSheet_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command.
+        /// </summary>
+        internal static string PluginsSheet_cmdColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("PluginsSheet_cmdColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete plugin &quot;{0}&quot;.
+        /// </summary>
+        internal static string PluginsSheet_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("PluginsSheet_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string PluginsSheet_deleteLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginsSheet_deleteLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage my plugins.
+        /// </summary>
+        internal static string PluginsSheet_introLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginsSheet_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string PluginsSheet_nameColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("PluginsSheet_nameColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string PluginsSheet_okButton_Text {
+            get {
+                return ResourceManager.GetString("PluginsSheet_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage My Plugins.
+        /// </summary>
+        internal static string PluginsSheet_Text {
+            get {
+                return ResourceManager.GetString("PluginsSheet.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
         internal static string ProgressDialog_cancelButton_Text {
             get {
                 return ResourceManager.GetString("ProgressDialog_cancelButton.Text", resourceCulture);
@@ -3800,6 +3872,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage Saved Plugins.
+        /// </summary>
+        internal static string ribManagePluginsButton_Label {
+            get {
+                return ResourceManager.GetString("ribManagePluginsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Custom Snippets.
         /// </summary>
         internal static string ribManageSnippetsButton_Label {
@@ -3949,6 +4030,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPluginButton_Label {
             get {
                 return ResourceManager.GetString("ribPluginButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Saved Plugins.
+        /// </summary>
+        internal static string ribPluginsMenu_Label {
+            get {
+                return ResourceManager.GetString("ribPluginsMenu_Label", resourceCulture);
             }
         }
         
@@ -4966,6 +5056,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plugins.
+        /// </summary>
+        internal static string SettingsDialog_pluginsNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_pluginsNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some changes require OneNote to be restarted. Restart OneNote at your convenience..
         /// </summary>
         internal static string SettingsDialog_Restart {
@@ -5198,6 +5297,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SnippetsSheet_ConfirmDelete {
             get {
                 return ResourceManager.GetString("SnippetsSheet_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string SnippetsSheet_nameColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_nameColumn.HeaderText", resourceCulture);
             }
         }
         

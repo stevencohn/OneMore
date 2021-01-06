@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Settings
 			Context,
 			Favorites,
 			Highlight,
+			Plugins,
 			Ribbon,
 			Search,
 			Snippets
@@ -47,6 +48,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["contextNode"].Text = Resx.SettingsDialog_contextNode_Text;
 				navTree.Nodes["favoritesNode"].Text = Resx.SettingsDialog_favoritesNode_Text;
 				navTree.Nodes["highlightNode"].Text = Resx.SettingsDialog_highlightNode_Text;
+				navTree.Nodes["pluginsNode"].Text = Resx.SettingsDialog_pluginsNode_Text;
 				navTree.Nodes["ribbonNode"].Text = Resx.SettingsDialog_ribbonNode_Text;
 				navTree.Nodes["searchNode"].Text = Resx.SettingsDialog_searchNode_Text;
 				navTree.Nodes["snippetsNode"].Text = Resx.SettingsDialog_snippetshNode_Text;
@@ -71,7 +73,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void Navigate(object sender, TreeViewEventArgs e)
+		private async void Navigate(object sender, TreeViewEventArgs e)
 		{
 			SheetBase sheet;
 
@@ -86,8 +88,9 @@ namespace River.OneMoreAddIn.Settings
 					case 0: sheet = new ContextMenuSheet(provider); break;
 					case 1: sheet = new FavoritesSheet(provider, ribbon); break;
 					case 2: sheet = new HighlightsSheet(provider); break;
-					case 3: sheet = new RibbonBarSheet(provider); break;
-					case 4: sheet = new SearchEngineSheet(provider); break;
+					case 3: sheet = await PluginsSheet.Create(provider, ribbon); break;
+					case 4: sheet = new RibbonBarSheet(provider); break;
+					case 5: sheet = new SearchEngineSheet(provider); break;
 					default: sheet = new SnippetsSheet(provider, ribbon); break;
 				}
 

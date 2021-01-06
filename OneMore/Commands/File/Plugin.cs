@@ -4,6 +4,9 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Web.Script.Serialization;
+
+
 	/// <summary>
 	/// Specifies the properties needed to describe a plugin, its arguments, and options.
 	/// </summary>
@@ -16,6 +19,20 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets or sets the schema version of the plugin record
 		/// </summary>
 		public int Version { get; set; } = SchemaVersion;
+
+
+		/// <summary>
+		/// Gets or sets the path to the plugin stored file
+		/// </summary>
+		[ScriptIgnore]
+		public string Path { get; set; }
+
+
+		/// <summary>
+		/// Gets the full command and arguments as a string
+		/// </summary>
+		[ScriptIgnore]
+		public string FullCommand => $"{Command} {Arguments}";
 
 
 		/// <summary>

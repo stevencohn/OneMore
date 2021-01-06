@@ -130,6 +130,7 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\File\ManagePluginsCommand.cs" />
     <Compile Include="Commands\File\Plugin.cs" />
     <Compile Include="Commands\File\SavePluginDialog.cs">
       <SubType>Form</SubType>
@@ -187,6 +188,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Search\TagHelpers.cs" />
+    <Compile Include="Commands\Settings\PluginsSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\PluginsSheet.Designer.cs">
+      <DependentUpon>PluginsSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
     <Compile Include="Commands\Favorites\ManageFavoritesCommand.cs" />
     <Compile Include="Commands\Snippets\InsertSnippetCommand.cs" />
@@ -729,6 +736,9 @@
     <EmbeddedResource Include="Commands\File\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\PluginsSheet.resx">
+      <DependentUpon>PluginsSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Snippets\SaveSnippetDialog.resx">
       <DependentUpon>SaveSnippetDialog.cs</DependentUpon>

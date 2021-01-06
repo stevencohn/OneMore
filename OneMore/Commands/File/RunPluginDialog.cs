@@ -108,6 +108,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ChangeCommand(object sender, EventArgs e)
+		{
+			saveLink.Enabled = cmdBox.Text.Trim().Length > 0;
+		}
+
+
 		private void updateRadio_CheckedChanged(object sender, EventArgs e)
 		{
 			nameBox.Enabled = !updateRadio.Checked;
@@ -207,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 				var provider = new PluginsProvider();
 				await provider.Save(Plugin, name);
 
-				UIHelper.ShowMessage($"'{name}' plugin is saved"); // translate
+				UIHelper.ShowMessage($"\"{name}\" plugin is saved"); // translate
 			}
 			catch (Exception exc)
 			{

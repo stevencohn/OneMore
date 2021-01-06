@@ -11,33 +11,27 @@ namespace River.OneMoreAddIn.Settings
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
-	using System.IO;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class SnippetsSheet : SheetBase
+	internal partial class PluginsSheet : SheetBase
 	{
-		private class Snippet
-		{
-			public string Name { get; set; }
-			public string Path { get; set; }
-		}
-
 
 		private readonly IRibbonUI ribbon;
-		private readonly BindingList<Snippet> snippets;
-		private readonly SnippetsProvider snipsProvider;
+		private readonly PluginsProvider plugsProvider;
+		private BindingList<Plugin> plugins;
 		private bool updated = false;
 
 
-		public SnippetsSheet(SettingsProvider provider, IRibbonUI ribbon)
+		private PluginsSheet(SettingsProvider provider, IRibbonUI ribbon)
 			: base(provider)
 		{
 			InitializeComponent();
 
-			Name = "SnippetsSheet";
-			Title = Resx.SnippetsSheet_Text;
+			Name = "PluginsSheet";
+			Title = Resx.PluginsSheet_Text;
 
 			if (NeedsLocalizing())
 			{
@@ -50,7 +44,8 @@ namespace River.OneMoreAddIn.Settings
 					"cancelButton"
 				});
 
-				nameColumn.HeaderText = Resx.SnippetsSheet_nameColumn_HeaderText;
+				nameColumn.HeaderText = Resx.PluginsSheet_nameColumn_HeaderText;
+				cmdColumn.HeaderText = Resx.PluginsSheet_cmdColumn_HeaderText;
 			}
 
 			toolStrip.Rescale();
@@ -59,25 +54,36 @@ namespace River.OneMoreAddIn.Settings
 			gridView.Columns[0].DataPropertyName = "Name";
 
 			this.ribbon = ribbon;
-			snipsProvider = new SnippetsProvider();
-
-			snippets = new BindingList<Snippet>(LoadSnippets());
-			gridView.DataSource = snippets;
+			plugsProvider = new PluginsProvider();
 		}
 
 
-		private List<Snippet> LoadSnippets()
+		// use async factory pattern to instantiate a new instance...
+
+		public static async Task<PluginsSheet> Create(SettingsProvider provider, IRibbonUI ribbon)
 		{
-			var paths = snipsProvider.GetPaths();
-			var list = new List<Snippet>();
+			var sheet = new PluginsSheet(provider, ribbon);
+			await sheet.Initialize();
+			return sheet;
+		}
+
+
+		private async Task Initialize()
+		{
+			plugins = new BindingList<Plugin>(await LoadPlugins());
+			gridView.DataSource = plugins;
+		}
+
+
+		private async Task<List<Plugin>> LoadPlugins()
+		{
+			var paths = plugsProvider.GetPaths();
+			var list = new List<Plugin>();
 
 			foreach (var path in paths)
 			{
-				list.Add(new Snippet
-				{
-					Name = Path.GetFileNameWithoutExtension(path),
-					Path = path
-				});
+				var plugin = await plugsProvider.Load(path);
+				list.Add(plugin);
 			}
 
 			return list;
@@ -90,13 +96,13 @@ namespace River.OneMoreAddIn.Settings
 				return;
 
 			int rowIndex = gridView.SelectedCells[0].RowIndex;
-			if (rowIndex >= snippets.Count)
+			if (rowIndex >= plugins.Count)
 				return;
 
-			var snippet = snippets[rowIndex];
+			var plugin = plugins[rowIndex];
 
 			var result = MessageBox.Show(
-				string.Format(Resx.SnippetsSheet_ConfirmDelete, snippet.Name),
+				string.Format(Resx.PluginsSheet_ConfirmDelete, plugin.Name),
 				"OneMore",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question,
 				MessageBoxDefaultButton.Button2,
@@ -105,8 +111,8 @@ namespace River.OneMoreAddIn.Settings
 			if (result != DialogResult.Yes)
 				return;
 
-			snippets.RemoveAt(rowIndex);
-			snipsProvider.Delete(snippet.Path);
+			plugins.RemoveAt(rowIndex);
+			plugsProvider.Delete(plugin.Path);
 			updated = true;
 
 			rowIndex--;
