@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int SysMenuId = 1000;
 
 		private string[] predefinedNames;
-		private bool editMode = false;
+		private readonly bool editMode = false;
 		private Plugin plugin;
 
 
@@ -273,19 +273,26 @@ namespace River.OneMoreAddIn.Commands
 		{
 			string name = null;
 
-			using (var dialog = new SavePluginDialog())
+			if (editMode)
 			{
-				if (predefinedBox.SelectedIndex > 0)
+				name = plugin.Name;
+			}
+			else
+			{
+				using (var dialog = new SavePluginDialog())
 				{
-					dialog.PluginName = predefinedBox.SelectedItem.ToString();
-				}
+					if (predefinedBox.SelectedIndex > 0)
+					{
+						dialog.PluginName = predefinedBox.SelectedItem.ToString();
+					}
 
-				if (dialog.ShowDialog() != DialogResult.OK)
-				{
-					return;
-				}
+					if (dialog.ShowDialog() != DialogResult.OK)
+					{
+						return;
+					}
 
-				name = dialog.PluginName;
+					name = dialog.PluginName;
+				}
 			}
 
 			try
@@ -293,7 +300,10 @@ namespace River.OneMoreAddIn.Commands
 				var provider = new PluginsProvider();
 				await provider.Save(Plugin, name);
 
-				UIHelper.ShowMessage($"\"{name}\" plugin is saved"); // translate
+				if (!editMode)
+				{
+					UIHelper.ShowMessage($"\"{name}\" plugin is saved"); // translate
+				}
 			}
 			catch (Exception exc)
 			{

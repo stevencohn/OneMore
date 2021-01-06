@@ -90,6 +90,29 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void EditSelection(object sender, EventArgs e)
+		{
+			if (gridView.SelectedCells.Count == 0)
+				return;
+
+			var rowIndex = gridView.SelectedCells[0].RowIndex;
+			var plugin = plugins[rowIndex];
+
+			using (var dialog = new PluginDialog(plugin))
+			{
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+
+				}
+			}
+		}
+
+		private void RenameSelection(object sender, EventArgs e)
+		{
+			//
+		}
+
+
 		private void DeleteItem(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count == 0)
