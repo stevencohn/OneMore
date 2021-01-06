@@ -130,6 +130,13 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\File\SavePluginDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\File\SavePluginDialog.Designer.cs">
+      <DependentUpon>SavePluginDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\File\PluginsProvider.cs" />
     <Compile Include="Commands\References\MapCommand.cs" />
     <Compile Include="Commands\References\MapDialog.cs">
       <SubType>Form</SubType>
@@ -696,6 +703,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Commands\Extras\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\File\SavePluginDialog.resx">
+      <DependentUpon>SavePluginDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\MapDialog.resx">
       <DependentUpon>MapDialog.cs</DependentUpon>
