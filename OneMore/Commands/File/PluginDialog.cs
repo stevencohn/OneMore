@@ -20,6 +20,8 @@ namespace River.OneMoreAddIn.Commands
 		private const int SysMenuId = 1000;
 
 		private string[] predefinedNames;
+		private bool editMode = false;
+		private Plugin plugin;
 
 
 		public PluginDialog()
@@ -48,17 +50,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public PluginDialog(string name)
+		public PluginDialog(Plugin plugin)
 			: this()
 		{
+			editMode = true;
+			this.plugin = plugin;
+
 			Text = Resx.PluginDialog_editText;
 
-			pluginNameLabel.Text = name;
+			pluginNameLabel.Text = plugin.Name;
 			pluginNameLabel.Left = predefinedBox.Left;
 			pluginNameLabel.Top = pluginLabel.Top;
 
 			predefinedBox.Visible = false;
 			pluginNameLabel.Visible = true;
+
+			saveButton.Location = okButton.Location;
+			saveButton.DialogResult = DialogResult.OK;
+			AcceptButton = saveButton;
+
+			okButton.Visible = false;
 		}
 
 
@@ -106,6 +117,17 @@ namespace River.OneMoreAddIn.Commands
 			var hmenu = Native.GetSystemMenu(Handle, false);
 			Native.InsertMenu(hmenu, 5, Native.MF_BYPOSITION, SysMenuId, Resx.DialogResetSettings_Text);
 			base.OnLoad(e);
+
+			if (editMode)
+			{
+				cmdBox.Text = plugin.Command;
+				argsBox.Text = plugin.Arguments;
+				updateRadio.Checked = !plugin.CreateNewPage;
+				createRadio.Checked = plugin.CreateNewPage;
+				nameBox.Text = plugin.PageName;
+				childBox.Checked = plugin.AsChildPage;
+				return;
+			}
 
 			var names = new PluginsProvider().GetNames().ToList();
 			names.Sort();
