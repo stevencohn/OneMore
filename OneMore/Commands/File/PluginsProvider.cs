@@ -14,7 +14,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class PluginsProvider : Loggable
 	{
-		private const string SavePluginButtonId = "ribSavePluginButton";
 		private const string ManagePluginsButtonId = "ribManagePluginsButton";
 
 		private const string DirectoryName = "Plugins";
@@ -147,12 +146,6 @@ namespace River.OneMoreAddIn.Commands
 				new XAttribute("id", "ribPluginsMenu"),
 				new XAttribute("getLabel", "GetRibbonLabel"),
 				new XAttribute("imageMso", "GroupInsertShapes"),
-				new XElement(ns + "button",
-					new XAttribute("id", SavePluginButtonId),
-					new XAttribute("getLabel", "GetRibbonLabel"),
-					new XAttribute("imageMso", "SaveSelectionToQuickPartGallery"),
-					new XAttribute("onAction", "SavePluginCmd")
-					),
 				new XElement(ns + "button",
 					new XAttribute("id", ManagePluginsButtonId),
 					new XAttribute("getLabel", "GetRibbonLabel"),

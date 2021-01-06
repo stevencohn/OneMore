@@ -4440,6 +4440,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SavePluginDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SavePluginDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is already in use.
+        /// </summary>
+        internal static string SavePluginDialog_duplicateName {
+            get {
+                return ResourceManager.GetString("SavePluginDialog_duplicateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name contains invalid characters.
+        /// </summary>
+        internal static string SavePluginDialog_invalidName {
+            get {
+                return ResourceManager.GetString("SavePluginDialog_invalidName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugin name:.
+        /// </summary>
+        internal static string SavePluginDialog_nameLabel_Text {
+            get {
+                return ResourceManager.GetString("SavePluginDialog_nameLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string SavePluginDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SavePluginDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Plugin.
+        /// </summary>
+        internal static string SavePluginDialog_Text {
+            get {
+                return ResourceManager.GetString("SavePluginDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select content to save as a new snippet.
         /// </summary>
         internal static string SaveSnippet_NeedSelection {

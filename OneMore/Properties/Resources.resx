@@ -2723,4 +2723,28 @@ In this section</value>
     <value>... Yellow Status</value>
     <comment>option</comment>
   </data>
+  <data name="SavePluginDialog.Text" xml:space="preserve">
+    <value>Save Plugin</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SavePluginDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>cancel button</comment>
+  </data>
+  <data name="SavePluginDialog_duplicateName" xml:space="preserve">
+    <value>Name is already in use</value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_invalidName" xml:space="preserve">
+    <value>Name contains invalid characters</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SavePluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Plugin name:</value>
+    <comment>label</comment>
+  </data>
+  <data name="SavePluginDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>ok button</comment>
+  </data>
 </root>
