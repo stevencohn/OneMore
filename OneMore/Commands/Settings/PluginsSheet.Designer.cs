@@ -55,15 +55,15 @@
             this.cmdColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.Location = new System.Drawing.Point(7, 73);
-			this.gridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.gridView.Margin = new System.Windows.Forms.Padding(2);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.Size = new System.Drawing.Size(519, 246);
 			this.gridView.TabIndex = 2;
-			this.gridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.BeginRename);
 			this.gridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Rename);
+			this.gridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.NameValidating);
 			// 
 			// nameColumn
 			// 
@@ -87,7 +87,7 @@
 			this.introPanel.Controls.Add(this.introLabel);
 			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introPanel.Location = new System.Drawing.Point(7, 6);
-			this.introPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.introPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.introPanel.Name = "introPanel";
 			this.introPanel.Size = new System.Drawing.Size(519, 36);
 			this.introPanel.TabIndex = 3;

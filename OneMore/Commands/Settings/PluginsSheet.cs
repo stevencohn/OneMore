@@ -117,12 +117,35 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private string goodName;
-		private void BeginRename(object sender, DataGridViewCellCancelEventArgs e)
+		private void NameValidating(object sender, DataGridViewCellValidatingEventArgs e)
 		{
 			var rowIndex = e.RowIndex;
-			var plugin = plugins[rowIndex];
-			goodName = plugin.Name;
+			var name = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value as string;
+
+			// validate format of name... 
+
+			if (string.IsNullOrWhiteSpace(name))
+			{
+				gridView.Rows[rowIndex].ErrorText = "Name cannot be empty";
+				e.Cancel = true;
+				return;
+			}
+
+			if (name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+			{
+				gridView.Rows[rowIndex].ErrorText = "Name cannot contain invalid characters";
+				e.Cancel = true;
+				return;
+			}
+
+			// validate uniqueness...
+
+			var names = pinProvider.GetNames();
+			if (names.Contains(name))
+			{
+				gridView.Rows[rowIndex].ErrorText = "Name must be unique";
+				e.Cancel = true;
+			}
 		}
 
 
@@ -131,35 +154,7 @@ namespace River.OneMoreAddIn.Settings
 			var rowIndex = e.RowIndex;
 			var plugin = plugins[rowIndex];
 
-			// validate format of name... 
-
-			plugin.Name = plugin.Name.Trim();
-			if (plugin.Name.Length == 0)
-			{
-				UIHelper.ShowError("Name cannot be empty");
-				plugin.Name = goodName;
-				return;
-			}
-
-			if (plugin.Name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
-			{
-				UIHelper.ShowError("Name cannot contain invalid characters");
-				plugin.Name = goodName;
-				return;
-			}
-
-			// validate uniqueness...
-
-			var names = pinProvider.GetNames();
-			if (names.Contains(Name))
-			{
-				UIHelper.ShowError("Name must be unique");
-				plugin.Name = goodName;
-				return;
-			}
-
-			// ok...
-
+			gridView.Rows[rowIndex].ErrorText = string.Empty;
 			updated = updated || await pinProvider.Rename(plugin, plugin.Name);
 		}
 
