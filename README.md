@@ -92,7 +92,8 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Insert small or large monthly calendar for a specific month
 * Insert sortable date, similar to 2020-12-23
 * Insert Info/Warn boxes similar to Confluence Info and Warn macros
-* Insert Code box similar to Confluence Code macro
+* Insert single-cell table, optionally wrap selecting content
+* Insert Code box similar to Confluence Code macro, optionally wrap selected content
 * Insert collapsable sections to hide secondary or sensitive information
 * Insert status labels similar to the Confluence status macro
 
