@@ -65,7 +65,9 @@ namespace River.OneMoreAddIn.Commands
 			var last = DateTime.DaysInMonth(year, month);
 			var alignment = large ? "left" : "right";
 
-			var rowCount = last == 28 && first == 0 ? 5 : 6;
+			// calc table rows including header
+			int term = first + last;
+			int rowCount = term / 7 + (term % 7 == 0 ? 1 : 2);
 
 			var table = new Table(ns, rowCount, 7)
 			{
