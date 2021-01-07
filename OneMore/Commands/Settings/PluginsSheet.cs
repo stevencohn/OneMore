@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void EditSelection(object sender, EventArgs e)
+		private async void EditSelection(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count == 0)
 				return;
@@ -102,10 +102,11 @@ namespace River.OneMoreAddIn.Settings
 			{
 				if (dialog.ShowDialog() == DialogResult.OK)
 				{
-
+					await new PluginsProvider().Save(dialog.Plugin, plugin.Name);
 				}
 			}
 		}
+
 
 		private void RenameSelection(object sender, EventArgs e)
 		{

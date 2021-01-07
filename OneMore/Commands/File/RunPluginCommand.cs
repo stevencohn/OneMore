@@ -296,7 +296,10 @@ namespace River.OneMoreAddIn.Commands
 			page.Attribute("ID").Value = pageId;
 
 			// set the page name to user-entered name
-			new Page(page).Title = plugin.PageName;
+			if (!string.IsNullOrEmpty(plugin.PageName.Trim()))
+			{
+				new Page(page).Title = plugin.PageName;
+			}
 
 			// remove all objectID values and let OneNote generate new IDs
 			page.Descendants().Attributes("objectID").Remove();
