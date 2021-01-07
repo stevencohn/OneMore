@@ -108,9 +108,14 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void RenameSelection(object sender, EventArgs e)
+		private async void Rename(object sender, DataGridViewCellEventArgs e)
 		{
-			//
+			var rowIndex = e.RowIndex;
+			var plugin = plugins[rowIndex];
+
+			await new PluginsProvider().Save(plugin, plugin.Name);
+
+			updated = true;
 		}
 
 
