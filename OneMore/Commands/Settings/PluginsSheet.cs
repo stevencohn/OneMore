@@ -11,6 +11,8 @@ namespace River.OneMoreAddIn.Settings
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.IO;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -20,7 +22,7 @@ namespace River.OneMoreAddIn.Settings
 	{
 
 		private readonly IRibbonUI ribbon;
-		private readonly PluginsProvider plugsProvider;
+		private readonly PluginsProvider pinProvider;
 		private BindingList<Plugin> plugins;
 		private bool updated = false;
 
@@ -54,7 +56,7 @@ namespace River.OneMoreAddIn.Settings
 			gridView.Columns[0].DataPropertyName = "Name";
 
 			this.ribbon = ribbon;
-			plugsProvider = new PluginsProvider();
+			pinProvider = new PluginsProvider();
 		}
 
 
@@ -77,12 +79,12 @@ namespace River.OneMoreAddIn.Settings
 
 		private async Task<List<Plugin>> LoadPlugins()
 		{
-			var paths = plugsProvider.GetPaths();
+			var paths = pinProvider.GetPaths();
 			var list = new List<Plugin>();
 
 			foreach (var path in paths)
 			{
-				var plugin = await plugsProvider.Load(path);
+				var plugin = await pinProvider.Load(path);
 				list.Add(plugin);
 			}
 
@@ -102,9 +104,25 @@ namespace River.OneMoreAddIn.Settings
 			{
 				if (dialog.ShowDialog() == DialogResult.OK)
 				{
-					await new PluginsProvider().Save(dialog.Plugin, plugin.Name);
+					var edited = dialog.Plugin;
+					plugin.Command = edited.Command;
+					plugin.Arguments = edited.Arguments;
+					plugin.CreateNewPage = edited.CreateNewPage;
+					plugin.AsChildPage = edited.AsChildPage;
+					plugin.PageName = edited.PageName;
+
+					await new PluginsProvider().Save(plugin);
 				}
 			}
+		}
+
+
+		private string goodName;
+		private void BeginRename(object sender, DataGridViewCellCancelEventArgs e)
+		{
+			var rowIndex = e.RowIndex;
+			var plugin = plugins[rowIndex];
+			goodName = plugin.Name;
 		}
 
 
@@ -113,9 +131,36 @@ namespace River.OneMoreAddIn.Settings
 			var rowIndex = e.RowIndex;
 			var plugin = plugins[rowIndex];
 
-			await new PluginsProvider().Save(plugin, plugin.Name);
+			// validate format of name... 
 
-			updated = true;
+			plugin.Name = plugin.Name.Trim();
+			if (plugin.Name.Length == 0)
+			{
+				UIHelper.ShowError("Name cannot be empty");
+				plugin.Name = goodName;
+				return;
+			}
+
+			if (plugin.Name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+			{
+				UIHelper.ShowError("Name cannot contain invalid characters");
+				plugin.Name = goodName;
+				return;
+			}
+
+			// validate uniqueness...
+
+			var names = pinProvider.GetNames();
+			if (names.Contains(Name))
+			{
+				UIHelper.ShowError("Name must be unique");
+				plugin.Name = goodName;
+				return;
+			}
+
+			// ok...
+
+			updated = updated || await pinProvider.Rename(plugin, plugin.Name);
 		}
 
 
@@ -141,8 +186,7 @@ namespace River.OneMoreAddIn.Settings
 				return;
 
 			plugins.RemoveAt(rowIndex);
-			plugsProvider.Delete(plugin.Path);
-			updated = true;
+			updated = updated || pinProvider.Delete(plugin.Path);
 
 			rowIndex--;
 			if (rowIndex >= 0)

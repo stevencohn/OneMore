@@ -33,19 +33,22 @@ namespace River.OneMoreAddIn.Commands
 		/// Delete the plugins with the specified path
 		/// </summary>
 		/// <param name="path"></param>
-		public void Delete(string path)
+		public bool Delete(string path)
 		{
 			if (File.Exists(path))
 			{
 				try
 				{
 					File.Delete(path);
+					return true;
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine($"error deleting {path}", exc);
 				}
 			}
+
+			return false;
 		}
 
 
@@ -125,17 +128,41 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public async Task<bool> Rename(Plugin plugin, string name)
+		{
+			if (File.Exists(plugin.Path))
+			{
+				var path = Path.Combine(Path.GetDirectoryName(plugin.Path), $"{name}{Extension}");
+
+				try
+				{
+					logger.WriteLine($"renaming {plugin.Name} to {name}");
+					File.Move(plugin.Path, path);
+					plugin.Name = name;
+					plugin.Path = path;
+
+					await Save(plugin);
+					return true;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error renaming plugin {plugin.Path}", exc);
+				}
+			}
+
+			return false;
+		}
+
+
 		/// <summary>
-		/// Saves a new named splugin
+		/// Save or resave the given plugin using its name as the file name
 		/// </summary>
 		/// <param name="plugin"></param>
-		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task Save(Plugin plugin, string name)
+		public async Task Save(Plugin plugin)
 		{
-			plugin.Name = name;
-
-			var path = Path.Combine(store, $"{name}{Extension}");
+			var path = Path.Combine(store, $"{plugin.Name}{Extension}");
+			logger.WriteLine($"saving {path}");
 
 			try
 			{
@@ -153,6 +180,19 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.WriteLine($"error saving plugin to {path}", exc);
 			}
+		}
+
+
+		/// <summary>
+		/// Saves a new named plugin or overwrites an existing plugin
+		/// </summary>
+		/// <param name="plugin"></param>
+		/// <param name="name">The new name to apply</param>
+		/// <returns></returns>
+		public async Task Save(Plugin plugin, string name)
+		{
+			plugin.Name = name;
+			await Save(plugin);
 		}
 
 
