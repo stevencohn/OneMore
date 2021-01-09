@@ -32,37 +32,27 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 			{
-				var images = page.Root.Descendants(ns + "Image")?
+				var elements = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				if ((images == null) || !images.Any())
+				if ((elements == null) || !elements.Any())
 				{
-					images = page.Root.Descendants(ns + "Image");
+					elements = page.Root.Descendants(ns + "Image");
 				}
 
-				if (images != null)
+				if (elements != null)
 				{
-					if (images.Count() == 1)
+					if (elements.Count() == 1)
 					{
 						// resize single selected image only
-						await ResizeOne(images.First());
+						await ResizeOne(elements.First());
 					}
 					else
 					{
 						// select many iamges, or all if none selected
-						await ResizeMany(images);
+						await ResizeMany(elements);
 					}
 				}
-			}
-		}
-
-
-		private static Image GetImage(XElement image, XNamespace ns)
-		{
-			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
-			using (var stream = new MemoryStream(data, 0, data.Length))
-			{
-				return Image.FromStream(stream);
 			}
 		}
 
@@ -73,15 +63,24 @@ namespace River.OneMoreAddIn.Commands
 			int viewWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
 			int viewHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
-			var image = GetImage(element, ns);
+			var image = GetImage(element);
 
 			using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
 			{
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
-					size.Attribute("width").Value = dialog.WidthPixels.ToString(CultureInfo.InvariantCulture);
-					size.Attribute("height").Value = dialog.HeightPixels.ToString(CultureInfo.InvariantCulture);
+					if (dialog.Quality < 100)
+					{
+						image = image.Resize(
+							(int)dialog.WidthPixels, (int)dialog.HeightPixels, dialog.Quality);
+
+						SaveEncodedImage(element, image);
+					}
+
+					size.SetAttributeValue("width", dialog.WidthPixels.ToString(CultureInfo.InvariantCulture));
+					size.SetAttributeValue("height", dialog.HeightPixels.ToString(CultureInfo.InvariantCulture));
+					size.SetAttributeValue("isSetByUser", "true");
 
 					await one.Update(page);
 				}
@@ -101,18 +100,50 @@ namespace River.OneMoreAddIn.Commands
 					foreach (var element in elements)
 					{
 						var size = element.Element(ns + "Size");
-						var imageWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
-						var imageHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
-						size.Attribute("width").Value = width;
+						var imageWidth = (int)decimal.Parse(
+							size.Attribute("width").Value, CultureInfo.InvariantCulture);
 
-						size.Attribute("height").Value =
-							((int)(imageHeight * (dialog.WidthPixels / imageWidth))).ToString(CultureInfo.InvariantCulture);
+						var imageHeight = (int)decimal.Parse(
+							size.Attribute("height").Value, CultureInfo.InvariantCulture);
+
+						var height = (int)(imageHeight * (dialog.WidthPixels / imageWidth));
+
+						if (dialog.Quality < 100)
+						{
+							var image = GetImage(element);
+							image = image.Resize((int)dialog.WidthPixels, height, dialog.Quality);
+							SaveEncodedImage(element, image);
+						}
+
+						size.SetAttributeValue("width",  width);
+						size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("isSetByUser", "true");
 					}
 
 					await one.Update(page);
 				}
 			}
+		}
+
+
+		private Image GetImage(XElement image)
+		{
+			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
+			using (var stream = new MemoryStream(data, 0, data.Length))
+			{
+				return Image.FromStream(stream);
+			}
+		}
+
+
+
+		private void SaveEncodedImage(XElement element, Image image)
+		{
+			var bytes = (byte[])new ImageConverter().ConvertTo(image, typeof(byte[]));
+
+			var data = element.Element(ns + "Data");
+			data.Value = Convert.ToBase64String(bytes);
 		}
 	}
 }
