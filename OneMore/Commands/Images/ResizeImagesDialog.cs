@@ -108,7 +108,6 @@ namespace River.OneMoreAddIn.Commands
 					"origLabel",
 					"allLabel",
 					"qualBox.Text",
-					"qualLabel",
 					"okButton",
 					"cancelButton"
 				});
@@ -282,11 +281,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (qualBar.Value == qualBar.Maximum)
 			{
-				qualLabel.Text = "100% preserves original storage"; // translate
+				qualLabel.Text = Resx.ResizeImageDialog_qualLabel100;
 			}
 			else
 			{
-				qualLabel.Text = $"{qualBar.Value}% quality";
+				qualLabel.Text = string.Format(Resx.ResizeImageDialog_qualLabel_Text, qualBar.Value);
 			}
 
 			EstimateStorage();
@@ -299,7 +298,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				image.Resize((int)WidthPixels, (int)HeightPixels, Quality).Save(tempfile);
 				var size = new FileInfo(tempfile).Length;
-				qualBox.Text = $"Storage: {size.ToBytes(1)}";
+				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size.ToBytes(1));
 			}
 		}
 	}
