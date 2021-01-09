@@ -115,6 +115,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 		public decimal HeightPixels => heightUpDown.Value;
 
 
@@ -124,21 +126,14 @@ namespace River.OneMoreAddIn.Commands
 		public int Quality => qualBar.Value;
 
 
-		protected override void OnClosed(EventArgs e)
+		public Image GetImage()
 		{
-			base.OnClosed(e);
-
 			if (!string.IsNullOrEmpty(tempfile) && File.Exists(tempfile))
 			{
-				try
-				{
-					File.Delete(tempfile);
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"error deleting temp file {tempfile}", exc);
-				}
+				return Image.FromFile(tempfile);
 			}
+
+			return null;
 		}
 
 

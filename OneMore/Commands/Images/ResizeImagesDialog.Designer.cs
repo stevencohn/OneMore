@@ -1,4 +1,7 @@
-﻿namespace River.OneMoreAddIn.Commands
+﻿using System;
+using System.IO;
+
+namespace River.OneMoreAddIn.Commands
 {
 	partial class ResizeImagesDialog
 	{
@@ -13,6 +16,18 @@
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
+			if (!string.IsNullOrEmpty(tempfile) && File.Exists(tempfile))
+			{
+				try
+				{
+					File.Delete(tempfile);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error deleting temp file {tempfile}", exc);
+				}
+			}
+
 			if (disposing && (components != null))
 			{
 				components.Dispose();

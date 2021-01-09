@@ -63,26 +63,30 @@ namespace River.OneMoreAddIn.Commands
 			int viewWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
 			int viewHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
-			var image = GetImage(element);
-
-			using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
+			using (var image = ReadImage(element))
 			{
-				var result = dialog.ShowDialog(owner);
-				if (result == DialogResult.OK)
+				using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
 				{
-					if (dialog.Quality < 100)
+					var result = dialog.ShowDialog(owner);
+					if (result == DialogResult.OK)
 					{
-						image = image.Resize(
-							(int)dialog.WidthPixels, (int)dialog.HeightPixels, dialog.Quality);
+						if (dialog.Quality < 100)
+						{
+							using (var data = dialog.GetImage())
+							{
+								if (data != null)
+								{
+									WriteImage(element, data);
+								}
+							}
+						}
 
-						SaveEncodedImage(element, image);
+						size.SetAttributeValue("width", dialog.WidthPixels.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("height", dialog.HeightPixels.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("isSetByUser", "true");
+
+						await one.Update(page);
 					}
-
-					size.SetAttributeValue("width", dialog.WidthPixels.ToString(CultureInfo.InvariantCulture));
-					size.SetAttributeValue("height", dialog.HeightPixels.ToString(CultureInfo.InvariantCulture));
-					size.SetAttributeValue("isSetByUser", "true");
-
-					await one.Update(page);
 				}
 			}
 		}
@@ -111,9 +115,13 @@ namespace River.OneMoreAddIn.Commands
 
 						if (dialog.Quality < 100)
 						{
-							var image = GetImage(element);
-							image = image.Resize((int)dialog.WidthPixels, height, dialog.Quality);
-							SaveEncodedImage(element, image);
+							using (var image = ReadImage(element))
+							{
+								using (var data = image.Resize((int)dialog.WidthPixels, height, dialog.Quality))
+								{
+									WriteImage(element, data);
+								}
+							}
 						}
 
 						size.SetAttributeValue("width",  width);
@@ -127,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Image GetImage(XElement image)
+		private Image ReadImage(XElement image)
 		{
 			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
 			using (var stream = new MemoryStream(data, 0, data.Length))
@@ -138,7 +146,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 
-		private void SaveEncodedImage(XElement element, Image image)
+		private void WriteImage(XElement element, Image image)
 		{
 			var bytes = (byte[])new ImageConverter().ConvertTo(image, typeof(byte[]));
 
