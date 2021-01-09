@@ -57,33 +57,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static Size GetOriginalSize(XElement image, XNamespace ns)
+		private static Image GetImage(XElement image, XNamespace ns)
 		{
 			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
 			using (var stream = new MemoryStream(data, 0, data.Length))
 			{
-				using (var img = Image.FromStream(stream))
-				{
-					return new Size
-					{
-						Width = img.Width,
-						Height = img.Height
-					};
-				}
+				return Image.FromStream(stream);
 			}
 		}
 
 
-		private async Task ResizeOne(XElement image)
+		private async Task ResizeOne(XElement element)
 		{
-			var size = image.Element(ns + "Size");
-			int width = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
-			int height = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
+			var size = element.Element(ns + "Size");
+			int viewWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
+			int viewHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
-			using (var dialog = new ResizeImagesDialog(width, height))
+			var image = GetImage(element, ns);
+
+			using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
 			{
-				dialog.SetOriginalSize(GetOriginalSize(image, ns));
-
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
@@ -96,18 +89,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ResizeMany(IEnumerable<XElement> images)
+		private async Task ResizeMany(IEnumerable<XElement> elements)
 		{
-			using (var dialog = new ResizeImagesDialog(1, 1, true))
+			using (var dialog = new ResizeImagesDialog())
 			{
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
 					var width = dialog.WidthPixels.ToString(CultureInfo.InvariantCulture);
 
-					foreach (var image in images)
+					foreach (var element in elements)
 					{
-						var size = image.Element(ns + "Size");
+						var size = element.Element(ns + "Size");
 						var imageWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
 						var imageHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
 

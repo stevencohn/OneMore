@@ -1,0 +1,118 @@
+﻿//************************************************************************************************
+// Copyright © 2016 Steven M Cohn.  All rights reserved.
+//************************************************************************************************
+
+namespace River.OneMoreAddIn
+{
+	using System;
+	using System.Drawing;
+	using System.Drawing.Drawing2D;
+	using System.Drawing.Imaging;
+	using System.IO;
+	using System.Linq;
+
+
+	internal static class ImageExtensions
+	{
+
+		/// <summary>
+		/// Replaces fromColor with toColor in the given image. This can be used to "colorize"
+		/// an image mask such as Notebooks and Sections in the SearchCommand dialog
+		/// </summary>
+		/// <param name="image">The image to use as a mask</param>
+		/// <param name="fromColor">The color to replace</param>
+		/// <param name="toColor">The color to apply</param>
+		/// <returns></returns>
+		public static Image MapColor(this Image image, Color fromColor, Color toColor)
+		{
+			var attributes = new ImageAttributes();
+
+			attributes.SetRemapTable(new ColorMap[]
+				{
+					new ColorMap
+					{
+						OldColor = fromColor,
+						NewColor = toColor,
+					}
+				},
+				ColorAdjustType.Bitmap);
+
+			using (var g = Graphics.FromImage(image))
+			{
+				g.DrawImage(
+					image,
+					new Rectangle(Point.Empty, image.Size),
+					0, 0, image.Width, image.Height,
+					GraphicsUnit.Pixel,
+					attributes);
+			}
+
+			return image;
+		}
+
+
+		public static Image Resize(this Image image, int width, int height, int quality)
+		{
+			var result = new Bitmap(width, height);
+			result.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+			using (var g = Graphics.FromImage(result))
+			{
+				g.CompositingMode = CompositingMode.SourceCopy;
+				g.CompositingQuality = CompositingQuality.HighQuality;
+				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				g.SmoothingMode = SmoothingMode.HighQuality;
+				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+				using (var attributes = new ImageAttributes())
+				{
+					attributes.SetWrapMode(WrapMode.TileFlipXY);
+
+					g.DrawImage(image,
+						new Rectangle(0, 0, width, height),
+						0, 0, image.Width, image.Height,
+						GraphicsUnit.Pixel,
+						attributes);
+				}
+			}
+
+			return result.SetQuality(quality);
+		}
+
+		public static Image SetQuality(this Image image, long quality)
+		{
+			try
+			{
+				var parameters = new EncoderParameters(1);
+				parameters.Param[0] = new EncoderParameter(Encoder.Quality, quality);
+
+				var codec = ImageCodecInfo.GetImageEncoders().First(e => e.MimeType == "image/jpeg");
+
+				using (var stream = new MemoryStream())
+				{
+					image.Save(stream, codec, parameters);
+					image = new Bitmap(Image.FromStream(stream));
+					return image;
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine(exc);
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
+		/// Serializes the given image as a base64 string.
+		/// </summary>
+		/// <param name="image"></param>
+		/// <returns></returns>
+		public static string ToBase64String(this Image image)
+		{
+			return Convert.ToBase64String(
+				(byte[])new ImageConverter().ConvertTo(image, typeof(byte[])));
+		}
+	}
+}

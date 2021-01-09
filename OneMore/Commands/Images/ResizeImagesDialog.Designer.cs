@@ -45,20 +45,25 @@
 			this.presetUpDown = new System.Windows.Forms.NumericUpDown();
 			this.presetLabel = new System.Windows.Forms.Label();
 			this.origLabel = new System.Windows.Forms.Label();
-			this.sizeLink = new UI.MoreLinkLabel();
-			this.origSizeLink = new UI.MoreLinkLabel();
+			this.sizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.origSizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.allLabel = new System.Windows.Forms.Label();
+			this.qualBox = new System.Windows.Forms.GroupBox();
+			this.qualLabel = new System.Windows.Forms.Label();
+			this.qualBar = new System.Windows.Forms.TrackBar();
 			((System.ComponentModel.ISupportInitialize)(this.pctUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.presetUpDown)).BeginInit();
+			this.qualBox.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.qualBar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(280, 349);
+			this.cancelButton.Location = new System.Drawing.Point(290, 473);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 0;
@@ -69,7 +74,7 @@
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.Location = new System.Drawing.Point(174, 349);
+			this.okButton.Location = new System.Drawing.Point(184, 473);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 1;
@@ -247,6 +252,7 @@
 			// sizeLink
 			// 
 			this.sizeLink.AutoSize = true;
+			this.sizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sizeLink.Location = new System.Drawing.Point(144, 33);
 			this.sizeLink.Name = "sizeLink";
 			this.sizeLink.Size = new System.Drawing.Size(78, 20);
@@ -258,6 +264,7 @@
 			// origSizeLink
 			// 
 			this.origSizeLink.AutoSize = true;
+			this.origSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.origSizeLink.Location = new System.Drawing.Point(144, 53);
 			this.origSizeLink.Name = "origSizeLink";
 			this.origSizeLink.Size = new System.Drawing.Size(78, 20);
@@ -276,13 +283,52 @@
 			this.allLabel.Text = "all images on page";
 			this.allLabel.Visible = false;
 			// 
+			// qualBox
+			// 
+			this.qualBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.qualBox.Controls.Add(this.qualLabel);
+			this.qualBox.Controls.Add(this.qualBar);
+			this.qualBox.Location = new System.Drawing.Point(17, 349);
+			this.qualBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
+			this.qualBox.Name = "qualBox";
+			this.qualBox.Size = new System.Drawing.Size(373, 113);
+			this.qualBox.TabIndex = 21;
+			this.qualBox.TabStop = false;
+			this.qualBox.Text = "Storage: 40.4 KB";
+			// 
+			// qualLabel
+			// 
+			this.qualLabel.AutoSize = true;
+			this.qualLabel.Location = new System.Drawing.Point(23, 74);
+			this.qualLabel.Name = "qualLabel";
+			this.qualLabel.Size = new System.Drawing.Size(235, 20);
+			this.qualLabel.TabIndex = 1;
+			this.qualLabel.Text = "100% preserves original storage";
+			// 
+			// qualBar
+			// 
+			this.qualBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.qualBar.AutoSize = false;
+			this.qualBar.LargeChange = 2;
+			this.qualBar.Location = new System.Drawing.Point(27, 25);
+			this.qualBar.Minimum = 1;
+			this.qualBar.Name = "qualBar";
+			this.qualBar.Size = new System.Drawing.Size(305, 51);
+			this.qualBar.TabIndex = 0;
+			this.qualBar.Value = 10;
+			this.qualBar.Scroll += new System.EventHandler(this.EstimateStorage);
+			// 
 			// ResizeImagesDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(397, 404);
+			this.ClientSize = new System.Drawing.Size(407, 528);
+			this.Controls.Add(this.qualBox);
 			this.Controls.Add(this.allLabel);
 			this.Controls.Add(this.origSizeLink);
 			this.Controls.Add(this.sizeLink);
@@ -315,6 +361,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.presetUpDown)).EndInit();
+			this.qualBox.ResumeLayout(false);
+			this.qualBox.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.qualBar)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -341,5 +390,8 @@
 		private UI.MoreLinkLabel sizeLink;
 		private UI.MoreLinkLabel origSizeLink;
 		private System.Windows.Forms.Label allLabel;
+		private System.Windows.Forms.GroupBox qualBox;
+		private System.Windows.Forms.Label qualLabel;
+		private System.Windows.Forms.TrackBar qualBar;
 	}
 }
