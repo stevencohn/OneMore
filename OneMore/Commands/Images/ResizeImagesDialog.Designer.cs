@@ -312,13 +312,16 @@
 			this.qualBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.qualBar.AutoSize = false;
-			this.qualBar.LargeChange = 2;
+			this.qualBar.LargeChange = 10;
 			this.qualBar.Location = new System.Drawing.Point(27, 25);
-			this.qualBar.Minimum = 1;
+			this.qualBar.Maximum = 100;
+			this.qualBar.Minimum = 5;
 			this.qualBar.Name = "qualBar";
 			this.qualBar.Size = new System.Drawing.Size(305, 51);
+			this.qualBar.SmallChange = 5;
 			this.qualBar.TabIndex = 0;
-			this.qualBar.Value = 10;
+			this.qualBar.TickFrequency = 5;
+			this.qualBar.Value = 100;
 			this.qualBar.Scroll += new System.EventHandler(this.EstimateStorage);
 			// 
 			// ResizeImagesDialog

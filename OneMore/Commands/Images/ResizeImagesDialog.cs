@@ -35,6 +35,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Initialize();
 
+			originalWidth = originalHeight = 1;
+
 			// disable controls that do not apply...
 
 			currentLabel.Text = Resx.ResizeImagesDialog_currentLabel_Text;
@@ -120,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 		public decimal WidthPixels => widthUpDown.Value;
 
 
-		public int Quality => qualBar.Value * 10;
+		public int Quality => qualBar.Value;
 
 
 		protected override void OnClosed(EventArgs e)
@@ -284,7 +286,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				qualLabel.Text = $"{qualBar.Value}0% quality";
+				qualLabel.Text = $"{qualBar.Value}% quality";
 			}
 
 			EstimateStorage();
