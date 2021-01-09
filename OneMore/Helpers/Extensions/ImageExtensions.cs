@@ -51,6 +51,15 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Resize the physical storage model of the given image, creating a new Image
+		/// instance with the specified width and height, optionally decreasing the quality level
+		/// </summary>
+		/// <param name="image">The image to resize</param>
+		/// <param name="width">The new width in pixels</param>
+		/// <param name="height">The new height in pixels</param>
+		/// <param name="quality">The quality level; only applies if it is less than 100</param>
+		/// <returns></returns>
 		public static Image Resize(this Image image, int width, int height, int quality)
 		{
 			var result = new Bitmap(width, height);
@@ -76,9 +85,19 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			return result.SetQuality(quality);
+			return quality < 100 ? result.SetQuality(quality) : result;
 		}
 
+
+		/// <summary>
+		/// Sets the quality level of the given image.
+		/// </summary>
+		/// <param name="image"></param>
+		/// <param name="quality"></param>
+		/// <returns></returns>
+		/// <remarks>
+		/// It is possible that this will result in a larger storage model than the original
+		/// </remarks>
 		public static Image SetQuality(this Image image, long quality)
 		{
 			try

@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 
 			suspended = false;
 
-			EstimateStorage(null, null);
+			EstimateStorage();
 		}
 
 
@@ -191,6 +191,9 @@ namespace River.OneMoreAddIn.Commands
 			absRadio.Checked = true;
 			widthUpDown.Value = currentWidth;
 			heightUpDown.Value = currentHeight;
+
+			if (Quality < 100)
+				EstimateStorage();
 		}
 
 
@@ -200,6 +203,9 @@ namespace River.OneMoreAddIn.Commands
 			absRadio.Checked = true;
 			widthUpDown.Value = originalWidth;
 			heightUpDown.Value = originalHeight;
+
+			if (Quality < 100)
+				EstimateStorage();
 		}
 
 
@@ -208,6 +214,10 @@ namespace River.OneMoreAddIn.Commands
 			suspended = true;
 			widthUpDown.Value = (int)(originalWidth * (pctUpDown.Value / 100));
 			heightUpDown.Value = (int)(originalHeight * (pctUpDown.Value / 100));
+
+			if (Quality < 100)
+				EstimateStorage();
+			
 			suspended = false;
 		}
 
@@ -227,12 +237,19 @@ namespace River.OneMoreAddIn.Commands
 
 		private void widthUpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (widthUpDown.Enabled && !suspended)
+			if (suspended)
+				return;
+
+			if (widthUpDown.Enabled)
 			{
 				if (aspectBox.Checked)
 				{
 					suspended = true;
 					heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
+
+					if (Quality < 100)
+						EstimateStorage();
+					
 					suspended = false;
 				}
 			}
@@ -241,12 +258,19 @@ namespace River.OneMoreAddIn.Commands
 
 		private void heightUpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (heightUpDown.Enabled && !suspended)
+			if (suspended)
+				return;
+
+			if (heightUpDown.Enabled)
 			{
 				if (aspectBox.Checked)
 				{
 					suspended = true;
 					widthUpDown.Value = (int)(originalWidth * (heightUpDown.Value / originalHeight));
+					
+					if (Quality < 100)
+						EstimateStorage();
+					
 					suspended = false;
 				}
 			}
@@ -263,6 +287,12 @@ namespace River.OneMoreAddIn.Commands
 				qualLabel.Text = $"{qualBar.Value}0% quality";
 			}
 
+			EstimateStorage();
+		}
+
+
+		private void EstimateStorage()
+		{
 			if (image != null)
 			{
 				image.Resize((int)WidthPixels, (int)HeightPixels, Quality).Save(tempfile);
