@@ -2716,8 +2716,4 @@ ISO-code then comma then language name</comment>
     <value>{0}％的质量</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImageDialog_qualLabel100" xml:space="preserve">
-    <value>100％保存原始条纹</value>
-    <comment>label</comment>
-  </data>
 </root>

@@ -2724,8 +2724,4 @@ ISO-code then comma then language name</comment>
     <value>{0}٪ جودة</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImageDialog_qualLabel100" xml:space="preserve">
-    <value>100٪ يحافظ على التخزين الأصلي</value>
-    <comment>label</comment>
-  </data>
 </root>

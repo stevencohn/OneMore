@@ -2710,8 +2710,4 @@ ISO-code then comma then language name</comment>
     <value>{0}% Qualität</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImageDialog_qualLabel100" xml:space="preserve">
-    <value>100% bewahrt die ursprüngliche Stroage</value>
-    <comment>label</comment>
-  </data>
 </root>

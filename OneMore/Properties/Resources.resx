@@ -2735,8 +2735,4 @@ In this section</value>
     <value>{0}% quality</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImageDialog_qualLabel100" xml:space="preserve">
-    <value>100% preserves original stroage</value>
-    <comment>label</comment>
-  </data>
 </root>

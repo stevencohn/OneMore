@@ -3103,15 +3103,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 100% preserves original stroage.
-        /// </summary>
-        internal static string ResizeImageDialog_qualLabel100 {
-            get {
-                return ResourceManager.GetString("ResizeImageDialog_qualLabel100", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Absolute.
         /// </summary>
         internal static string ResizeImagesDialog_absRadio_Text {

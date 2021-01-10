@@ -267,15 +267,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void EstimateStorage(object sender, EventArgs e)
 		{
-			if (qualBar.Value == qualBar.Maximum)
-			{
-				qualLabel.Text = Resx.ResizeImageDialog_qualLabel100;
-			}
-			else
-			{
-				qualLabel.Text = string.Format(Resx.ResizeImageDialog_qualLabel_Text, qualBar.Value);
-			}
-
+			qualLabel.Text = string.Format(Resx.ResizeImageDialog_qualLabel_Text, qualBar.Value);
 			EstimateStorage();
 		}
 
