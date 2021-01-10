@@ -32,94 +32,126 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 			{
-				var images = page.Root.Descendants(ns + "Image")?
+				var elements = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				if ((images == null) || !images.Any())
+				if ((elements == null) || !elements.Any())
 				{
-					images = page.Root.Descendants(ns + "Image");
+					elements = page.Root.Descendants(ns + "Image");
 				}
 
-				if (images != null)
+				if (elements != null)
 				{
-					if (images.Count() == 1)
+					if (elements.Count() == 1)
 					{
 						// resize single selected image only
-						await ResizeOne(images.First());
+						await ResizeOne(elements.First());
 					}
 					else
 					{
 						// select many iamges, or all if none selected
-						await ResizeMany(images);
+						await ResizeMany(elements);
 					}
 				}
 			}
 		}
 
 
-		private static Size GetOriginalSize(XElement image, XNamespace ns)
+		private async Task ResizeOne(XElement element)
 		{
-			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
-			using (var stream = new MemoryStream(data, 0, data.Length))
+			var size = element.Element(ns + "Size");
+			int viewWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
+			int viewHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
+
+			using (var image = ReadImage(element))
 			{
-				using (var img = Image.FromStream(stream))
+				using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
 				{
-					return new Size
+					var result = dialog.ShowDialog(owner);
+					if (result == DialogResult.OK)
 					{
-						Width = img.Width,
-						Height = img.Height
-					};
+						if (!dialog.PreserveSize)
+						{
+							using (var data = dialog.GetImage())
+							{
+								if (data != null)
+								{
+									WriteImage(element, data);
+								}
+							}
+						}
+
+						size.SetAttributeValue("width", dialog.WidthPixels.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("height", dialog.HeightPixels.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("isSetByUser", "true");
+
+						await one.Update(page);
+					}
 				}
 			}
 		}
 
 
-		private async Task ResizeOne(XElement image)
+		private async Task ResizeMany(IEnumerable<XElement> elements)
 		{
-			var size = image.Element(ns + "Size");
-			int width = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
-			int height = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
-
-			using (var dialog = new ResizeImagesDialog(width, height))
-			{
-				dialog.SetOriginalSize(GetOriginalSize(image, ns));
-
-				var result = dialog.ShowDialog(owner);
-				if (result == DialogResult.OK)
-				{
-					size.Attribute("width").Value = dialog.WidthPixels.ToString(CultureInfo.InvariantCulture);
-					size.Attribute("height").Value = dialog.HeightPixels.ToString(CultureInfo.InvariantCulture);
-
-					await one.Update(page);
-				}
-			}
-		}
-
-
-		private async Task ResizeMany(IEnumerable<XElement> images)
-		{
-			using (var dialog = new ResizeImagesDialog(1, 1, true))
+			using (var dialog = new ResizeImagesDialog())
 			{
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
 					var width = dialog.WidthPixels.ToString(CultureInfo.InvariantCulture);
 
-					foreach (var image in images)
+					foreach (var element in elements)
 					{
-						var size = image.Element(ns + "Size");
-						var imageWidth = (int)decimal.Parse(size.Attribute("width").Value, CultureInfo.InvariantCulture);
-						var imageHeight = (int)decimal.Parse(size.Attribute("height").Value, CultureInfo.InvariantCulture);
+						var size = element.Element(ns + "Size");
 
-						size.Attribute("width").Value = width;
+						var imageWidth = (int)decimal.Parse(
+							size.Attribute("width").Value, CultureInfo.InvariantCulture);
 
-						size.Attribute("height").Value =
-							((int)(imageHeight * (dialog.WidthPixels / imageWidth))).ToString(CultureInfo.InvariantCulture);
+						var imageHeight = (int)decimal.Parse(
+							size.Attribute("height").Value, CultureInfo.InvariantCulture);
+
+						var height = (int)(imageHeight * (dialog.WidthPixels / imageWidth));
+
+						if (!dialog.PreserveSize)
+						{
+							using (var image = ReadImage(element))
+							{
+								using (var data = image.Resize((int)dialog.WidthPixels, height, dialog.Quality))
+								{
+									WriteImage(element, data);
+								}
+							}
+						}
+
+						size.SetAttributeValue("width",  width);
+						size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("isSetByUser", "true");
 					}
 
 					await one.Update(page);
 				}
 			}
+		}
+
+
+		private Image ReadImage(XElement image)
+		{
+			var data = Convert.FromBase64String(image.Element(ns + "Data").Value);
+			using (var stream = new MemoryStream(data, 0, data.Length))
+			{
+				return Image.FromStream(stream);
+			}
+		}
+
+
+
+		private void WriteImage(XElement element, Image image)
+		{
+			var bytes = (byte[])new ImageConverter().ConvertTo(image, typeof(byte[]));
+
+			var data = element.Element(ns + "Data");
+			data.Value = Convert.ToBase64String(bytes);
 		}
 	}
 }

@@ -3076,6 +3076,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Storage: {0}.
+        /// </summary>
+        internal static string ResizeImageDialog_qualBox_Size {
+            get {
+                return ResourceManager.GetString("ResizeImageDialog_qualBox_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage.
+        /// </summary>
+        internal static string ResizeImageDialog_qualBox_Text {
+            get {
+                return ResourceManager.GetString("ResizeImageDialog_qualBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}% quality.
+        /// </summary>
+        internal static string ResizeImageDialog_qualLabel_Text {
+            get {
+                return ResourceManager.GetString("ResizeImageDialog_qualLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Absolute.
         /// </summary>
         internal static string ResizeImagesDialog_absRadio_Text {

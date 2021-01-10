@@ -2707,4 +2707,16 @@ ISO-code then comma then language name</comment>
     <value>... Statut jaune</value>
     <comment>option</comment>
   </data>
+  <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
+    <value>Espace de rangement</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ResizeImageDialog_qualBox_Size" xml:space="preserve">
+    <value>Stockage: {0}</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
+    <value>{0}% de qualité</value>
+    <comment>label</comment>
+  </data>
 </root>
