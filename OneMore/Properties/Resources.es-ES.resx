@@ -1311,8 +1311,8 @@ Vuelve a intentarlo más tarde</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    Mando
-    label EDIT
+    <value>Comando de complemento</value>
+    <comment>label</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Actualizar la página actual</value>
@@ -2791,5 +2791,17 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>(nuevo)</value>
     <comment>combobox item</comment>
+  </data>
+  <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
+    <value>Almacenamiento</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ResizeImageDialog_qualBox_Size" xml:space="preserve">
+    <value>Almacenamiento: {0}</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
+    <value>{0}% de calidad</value>
+    <comment>label</comment>
   </data>
 </root>

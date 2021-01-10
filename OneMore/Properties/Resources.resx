@@ -1427,7 +1427,7 @@ Try again later</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Command</value>
+    <value>Plugin Command</value>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
@@ -2806,5 +2806,17 @@ In this section</value>
   <data name="PluginDialog_editText" xml:space="preserve">
     <value>Edit Plugin</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
+    <value>Storage</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ResizeImageDialog_qualBox_Size" xml:space="preserve">
+    <value>Storage: {0}</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
+    <value>{0}% quality</value>
+    <comment>label</comment>
   </data>
 </root>

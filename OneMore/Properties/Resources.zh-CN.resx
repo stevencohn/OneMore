@@ -1309,8 +1309,8 @@ OneNote 将自动关闭</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    命令
-    label EDIT
+    <value>插件命令</value>
+    <comment>label</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>更新当前页面</value>
@@ -2783,5 +2783,17 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>（新）</value>
     <comment>combobox item</comment>
+  </data>
+  <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
+    <value>存储</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ResizeImageDialog_qualBox_Size" xml:space="preserve">
+    <value>储存空间：{0}</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
+    <value>{0}％的质量</value>
+    <comment>label</comment>
   </data>
 </root>
