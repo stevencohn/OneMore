@@ -123,6 +123,9 @@ namespace River.OneMoreAddIn.Commands
 		public decimal WidthPixels => widthUpDown.Value;
 
 
+		public bool PreserveSize => preserveBox.Checked;
+
+
 		public int Quality => qualBar.Value;
 
 
@@ -187,9 +190,7 @@ namespace River.OneMoreAddIn.Commands
 			absRadio.Checked = true;
 			widthUpDown.Value = currentWidth;
 			heightUpDown.Value = currentHeight;
-
-			if (Quality < 100)
-				EstimateStorage();
+			EstimateStorage();
 		}
 
 
@@ -199,9 +200,7 @@ namespace River.OneMoreAddIn.Commands
 			absRadio.Checked = true;
 			widthUpDown.Value = originalWidth;
 			heightUpDown.Value = originalHeight;
-
-			if (Quality < 100)
-				EstimateStorage();
+			EstimateStorage();
 		}
 
 
@@ -210,9 +209,7 @@ namespace River.OneMoreAddIn.Commands
 			suspended = true;
 			widthUpDown.Value = (int)(originalWidth * (pctUpDown.Value / 100));
 			heightUpDown.Value = (int)(originalHeight * (pctUpDown.Value / 100));
-
-			if (Quality < 100)
-				EstimateStorage();
+			EstimateStorage();
 			
 			suspended = false;
 		}
@@ -242,9 +239,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					suspended = true;
 					heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
-
-					if (Quality < 100)
-						EstimateStorage();
+					EstimateStorage();
 					
 					suspended = false;
 				}
@@ -263,9 +258,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					suspended = true;
 					widthUpDown.Value = (int)(originalWidth * (heightUpDown.Value / originalHeight));
-					
-					if (Quality < 100)
-						EstimateStorage();
+					EstimateStorage();
 					
 					suspended = false;
 				}
@@ -291,7 +284,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (image != null)
 			{
-				image.Resize((int)WidthPixels, (int)HeightPixels, Quality).Save(tempfile);
+				if (preserveBox.Checked)
+				{
+					image.Resize(originalWidth, originalHeight, Quality).Save(tempfile);
+				}
+				else
+				{
+					image.Resize((int)WidthPixels, (int)HeightPixels, Quality).Save(tempfile);
+				}
+
 				var size = new FileInfo(tempfile).Length;
 				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size.ToBytes(1));
 			}

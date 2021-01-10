@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 					var result = dialog.ShowDialog(owner);
 					if (result == DialogResult.OK)
 					{
-						if (dialog.Quality < 100)
+						if (!dialog.PreserveSize)
 						{
 							using (var data = dialog.GetImage())
 							{
@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 
 						var height = (int)(imageHeight * (dialog.WidthPixels / imageWidth));
 
-						if (dialog.Quality < 100)
+						if (!dialog.PreserveSize)
 						{
 							using (var image = ReadImage(element))
 							{

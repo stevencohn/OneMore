@@ -64,6 +64,7 @@ namespace River.OneMoreAddIn.Commands
 			this.origSizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.allLabel = new System.Windows.Forms.Label();
 			this.qualBox = new System.Windows.Forms.GroupBox();
+			this.preserveBox = new System.Windows.Forms.CheckBox();
 			this.qualLabel = new System.Windows.Forms.Label();
 			this.qualBar = new System.Windows.Forms.TrackBar();
 			((System.ComponentModel.ISupportInitialize)(this.pctUpDown)).BeginInit();
@@ -78,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(290, 473);
+			this.cancelButton.Location = new System.Drawing.Point(290, 502);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 0;
@@ -89,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.Location = new System.Drawing.Point(184, 473);
+			this.okButton.Location = new System.Drawing.Point(184, 502);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 1;
@@ -303,24 +304,38 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.qualBox.Controls.Add(this.preserveBox);
 			this.qualBox.Controls.Add(this.qualLabel);
 			this.qualBox.Controls.Add(this.qualBar);
 			this.qualBox.Location = new System.Drawing.Point(17, 349);
 			this.qualBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.qualBox.Name = "qualBox";
-			this.qualBox.Size = new System.Drawing.Size(373, 113);
+			this.qualBox.Size = new System.Drawing.Size(373, 142);
 			this.qualBox.TabIndex = 21;
 			this.qualBox.TabStop = false;
-			this.qualBox.Text = "Storage: 40.4 KB";
+			this.qualBox.Text = "Storage: 0 bytes";
+			// 
+			// preserveBox
+			// 
+			this.preserveBox.AutoSize = true;
+			this.preserveBox.Checked = true;
+			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.preserveBox.Location = new System.Drawing.Point(27, 25);
+			this.preserveBox.Name = "preserveBox";
+			this.preserveBox.Size = new System.Drawing.Size(183, 24);
+			this.preserveBox.TabIndex = 2;
+			this.preserveBox.Text = "Preserve original size";
+			this.preserveBox.UseVisualStyleBackColor = true;
+			this.preserveBox.CheckedChanged += new System.EventHandler(this.EstimateStorage);
 			// 
 			// qualLabel
 			// 
 			this.qualLabel.AutoSize = true;
-			this.qualLabel.Location = new System.Drawing.Point(23, 74);
+			this.qualLabel.Location = new System.Drawing.Point(23, 109);
 			this.qualLabel.Name = "qualLabel";
-			this.qualLabel.Size = new System.Drawing.Size(235, 20);
+			this.qualLabel.Size = new System.Drawing.Size(99, 20);
 			this.qualLabel.TabIndex = 1;
-			this.qualLabel.Text = "100% preserves original storage";
+			this.qualLabel.Text = "100% quality";
 			// 
 			// qualBar
 			// 
@@ -328,7 +343,7 @@ namespace River.OneMoreAddIn.Commands
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.qualBar.AutoSize = false;
 			this.qualBar.LargeChange = 10;
-			this.qualBar.Location = new System.Drawing.Point(27, 25);
+			this.qualBar.Location = new System.Drawing.Point(27, 55);
 			this.qualBar.Maximum = 100;
 			this.qualBar.Minimum = 5;
 			this.qualBar.Name = "qualBar";
@@ -345,7 +360,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(407, 528);
+			this.ClientSize = new System.Drawing.Size(407, 557);
 			this.Controls.Add(this.qualBox);
 			this.Controls.Add(this.allLabel);
 			this.Controls.Add(this.origSizeLink);
@@ -411,5 +426,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.GroupBox qualBox;
 		private System.Windows.Forms.Label qualLabel;
 		private System.Windows.Forms.TrackBar qualBar;
+		private System.Windows.Forms.CheckBox preserveBox;
 	}
 }
