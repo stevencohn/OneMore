@@ -473,14 +473,20 @@ namespace River.OneMoreAddIn
 		{
 			//logger.WriteLine($"GetFavoritesContent({control.Id})");
 			var favorites = new FavoritesProvider(ribbon).LoadFavoritesMenu();
-			var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
 
 			var sep = favorites.Elements()
 				.FirstOrDefault(e => e.Attribute("id").Value == "omFavoritesSeparator");
 
 			if (sep != null)
 			{
+				var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
 				sep.AddAfterSelf(snippets);
+
+				var plugins = new PluginsProvider().MakePluginsMenu(ns);
+				if (plugins != null)
+				{
+					snippets.AddAfterSelf(plugins);
+				}
 			}
 
 			return favorites.ToString(SaveOptions.DisableFormatting);

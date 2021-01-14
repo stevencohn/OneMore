@@ -133,6 +133,9 @@ namespace River.OneMoreAddIn
 		public async Task ManageFavoritesCmd(IRibbonControl control)
 			=> await factory.Run<ManageFavoritesCommand>(ribbon);
 
+		public async Task ManagePluginsCmd(IRibbonControl control)
+			=> await factory.Run<ManagePluginsCommand>(ribbon);
+
 		public async Task ManageSnippetsCmd(IRibbonControl control)
 			=> await factory.Run<ManageSnippetsCommand>(ribbon);
 
@@ -194,7 +197,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ResizeImagesCommand>();
 
 		public async Task RunPluginCmd(IRibbonControl control)
-			=> await factory.Run<RunPluginCommand>();
+			=> await factory.Run<RunPluginCommand>(control.Tag);
 
 		public async Task ExportCmd(IRibbonControl control)
 			=> await factory.Run<ExportCommand>();

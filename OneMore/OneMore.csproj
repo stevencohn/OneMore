@@ -130,6 +130,9 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\File\ManagePluginsCommand.cs" />
+    <Compile Include="Commands\File\Plugin.cs" />
+    <Compile Include="Commands\File\PluginsProvider.cs" />
     <Compile Include="Commands\References\MapCommand.cs" />
     <Compile Include="Commands\References\MapDialog.cs">
       <SubType>Form</SubType>
@@ -179,6 +182,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Search\TagHelpers.cs" />
+    <Compile Include="Commands\Settings\PluginsSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\PluginsSheet.Designer.cs">
+      <DependentUpon>PluginsSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
     <Compile Include="Commands\Favorites\ManageFavoritesCommand.cs" />
     <Compile Include="Commands\Snippets\InsertSnippetCommand.cs" />
@@ -327,11 +336,11 @@
     <Compile Include="Commands\Images\ResizeImagesDialog.Designer.cs">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\File\RunPluginDialog.cs">
+    <Compile Include="Commands\File\PluginDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\File\RunPluginDialog.Designer.cs">
-      <DependentUpon>RunPluginDialog.cs</DependentUpon>
+    <Compile Include="Commands\File\PluginDialog.Designer.cs">
+      <DependentUpon>PluginDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\TagPickerDialog.cs">
       <SubType>Form</SubType>
@@ -544,84 +553,84 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Colorizer\Languages\csharp.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\css.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\html.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\java.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\javascript.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\powershell.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\python.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\sql.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\typescript.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\vb.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\xml.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Colorizer\Languages\yaml.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Commands\Search\x.png" />
     <Content Include="Properties\Emoji\Architecture.png" />
     <None Include="Colorizer\Languages\csharp.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\css.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\html.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\java.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\javascript.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\sql.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\powershell.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\python.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\yaml.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Themes\dark-theme.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Themes\light-theme.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\typescript.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\vb.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\xml.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Emoji\Automobile.png" />
     <Content Include="Properties\Emoji\Bullet.png" />
@@ -638,6 +647,8 @@
     <Content Include="Properties\Emoji\Journal.png" />
     <None Include="Properties\Emoji\Memo.png" />
     <None Include="Properties\Emoji\Passwords.png" />
+    <Content Include="Properties\Images\Editor.ico" />
+    <Content Include="Properties\Images\Exclamation.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
     <Content Include="Properties\Emoji\Pencil.png" />
@@ -668,6 +679,7 @@
     <Content Include="Properties\Images\Open.png" />
     <Content Include="Properties\Images\Page.png" />
     <Content Include="Properties\Images\Refresh.png" />
+    <Content Include="Properties\Images\Rename.png" />
     <Content Include="Properties\Images\Reorder.png" />
     <Content Include="Properties\Images\Run.png" />
     <Content Include="Properties\Images\SaveAs.png" />
@@ -676,6 +688,7 @@
     <Content Include="Properties\Images\SectionGroup.png" />
     <Content Include="Properties\Images\SectionMask.png" />
     <Content Include="Properties\Images\SelectAll.png" />
+    <Content Include="Properties\Images\Sort.png" />
     <Content Include="Properties\Images\Strikethrough.png" />
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
@@ -719,6 +732,9 @@
     <EmbeddedResource Include="Commands\File\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\PluginsSheet.resx">
+      <DependentUpon>PluginsSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Snippets\SaveSnippetDialog.resx">
       <DependentUpon>SaveSnippetDialog.cs</DependentUpon>
@@ -771,8 +787,8 @@
     <EmbeddedResource Include="Commands\Images\ResizeImagesDialog.resx">
       <DependentUpon>ResizeImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\File\RunPluginDialog.resx">
-      <DependentUpon>RunPluginDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\File\PluginDialog.resx">
+      <DependentUpon>PluginDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\SearchAndReplace\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>

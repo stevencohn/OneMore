@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn.Settings
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
-	using System.Drawing;
 	using System.IO;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -51,7 +50,7 @@ namespace River.OneMoreAddIn.Settings
 					"cancelButton"
 				});
 
-				nameColumn.HeaderText = Resx.FavoritesSheet_nameColumn_HeaderText;
+				nameColumn.HeaderText = Resx.SnippetsSheet_nameColumn_HeaderText;
 			}
 
 			toolStrip.Rescale();

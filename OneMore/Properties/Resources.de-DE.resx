@@ -1294,8 +1294,8 @@
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Plugin-Befehl</value>
-    <comment>label</comment>
+    Befehl
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Aktuelle Seite aktualisieren</value>
@@ -2698,6 +2698,58 @@ ISO-code then comma then language name</comment>
     <value>... gelber Status</value>
     <comment>option</comment>
   </data>
+  <data name="ribManagePluginsButton_Label" xml:space="preserve">
+    <value>Gespeicherte Plugins verwalten</value>
+    <comment>favorites button</comment>
+  </data>
+  <data name="ribPluginsMenu_Label" xml:space="preserve">
+    <value>Meine gespeicherten Plugins</value>
+    <comment>favorites menu</comment>
+  </data>
+  <data name="PluginsSheet.Text" xml:space="preserve">
+    <value>Meine Plugins verwalten</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Befehl</value>
+    <comment>plugins sheet columns</comment>
+  </data>
+  <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Plugin "{0}" löschen</value>
+    <comment>question</comment>
+  </data>
+  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Name</value>
+    <comment>plugins sheet column</comment>
+  </data>
+  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Name</value>
+    <comment>snippets sheet column</comment>
+  </data>
+  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
+    <value>Löschen</value>
+    <comment>toolstrip label</comment>
+  </data>
+  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+    <value>Verwalte meine Plugins</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
+    <value>in Ordnung</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginDialog_newItem" xml:space="preserve">
+    <value>(Neu)</value>
+    <comment>combobox item</comment>
+  </data>
   <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
     <value>Lager</value>
     <comment>group box</comment>
@@ -2708,6 +2760,18 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
     <value>{0}% Qualität</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_editText" xml:space="preserve">
+    <value>Plugin bearbeiten</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Name</value>
     <comment>label</comment>
   </data>
 </root>

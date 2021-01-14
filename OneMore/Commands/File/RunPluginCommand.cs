@@ -22,12 +22,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int MaxTimeoutSeconds = 15;
 
-		private string command;
-		private string arguments;
-
-		private bool createNewPage;
-		private bool asChildPage;
-		private string pageName;
+		private Plugin plugin;
 
 		private UI.ProgressDialog progressDialog = null;
 		private CancellationTokenSource source = null;
@@ -42,7 +37,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out _, OneNote.PageDetail.All))
 			{
-				if (!PromptForPlugin(page.Title) || string.IsNullOrEmpty(command))
+				if (args.Length > 0 && (args[0] is string arg) && !string.IsNullOrEmpty(arg))
+				{
+					plugin = await new PluginsProvider().Load(arg);
+				}
+				else if (!PromptForPlugin(page.Title) || string.IsNullOrEmpty(plugin.Command))
 				{
 					return;
 				}
@@ -77,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 					var root = XElement.Load(workPath);
 					var updated = root.ToString(SaveOptions.DisableFormatting);
 
-					if (updated == original)
+					if (updated == original && !plugin.CreateNewPage)
 					{
 						UIHelper.ShowInfo(Resx.Plugin_NoChanges);
 						return;
@@ -89,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
-					if (createNewPage)
+					if (plugin.CreateNewPage)
 					{
 						await CreatePage(one, root, page);
 					}
@@ -113,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool PromptForPlugin(string name)
 		{
-			using (var dialog = new RunPluginDialog())
+			using (var dialog = new PluginDialog())
 			{
 				name = XElement.Parse($"<wrapper>{name}</wrapper>").Value;
 
@@ -124,11 +123,7 @@ namespace River.OneMoreAddIn.Commands
 					return false;
 				}
 
-				command = dialog.Command;
-				arguments = dialog.Arguments;
-				createNewPage = !dialog.UpdatePage;
-				asChildPage = dialog.CreateChild;
-				pageName = dialog.PageName;
+				plugin = dialog.Plugin;
 			}
 
 			return true;
@@ -157,7 +152,8 @@ namespace River.OneMoreAddIn.Commands
 				using (progressDialog = new UI.ProgressDialog(source))
 				{
 					progressDialog.SetMaximum(MaxTimeoutSeconds);
-					progressDialog.SetMessage(string.Format(Resx.Plugin_Running, command, arguments, workPath));
+					progressDialog.SetMessage(string.Format(
+						Resx.Plugin_Running, plugin.Command, plugin.Arguments, workPath));
 
 					Process process = null;
 
@@ -205,7 +201,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Process StartPlugin(string path)
 		{
-			logger.WriteLine($"running {command} {arguments} \"{path}\"");
+			logger.WriteLine($"running {plugin.Command} {plugin.Arguments} \"{path}\"");
 
 			Process process = null;
 
@@ -215,8 +211,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					StartInfo = new ProcessStartInfo
 					{
-						FileName = command,
-						Arguments = $"{arguments} \"{path}\"",
+						FileName = plugin.Command,
+						Arguments = $"{plugin.Arguments} \"{path}\"",
 						CreateNoWindow = true,
 						UseShellExecute = false,
 						RedirectStandardOutput = true,
@@ -235,6 +231,7 @@ namespace River.OneMoreAddIn.Commands
 				process.BeginErrorReadLine();
 
 				logger.WriteLine($"plugin process started PID:{process.Id}");
+				logger.StartClock();
 			}
 			catch (Exception exc)
 			{
@@ -252,7 +249,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Process_Exited(object sender, EventArgs e)
 		{
-			logger.WriteLine("plugin process exited");
+			logger.WriteTime("plugin process exited");
 			progressDialog.DialogResult = DialogResult.OK;
 			progressDialog.Close();
 		}
@@ -299,14 +296,17 @@ namespace River.OneMoreAddIn.Commands
 			page.Attribute("ID").Value = pageId;
 
 			// set the page name to user-entered name
-			new Page(page).Title = pageName;
+			if (!string.IsNullOrEmpty(plugin.PageName.Trim()))
+			{
+				new Page(page).Title = plugin.PageName;
+			}
 
 			// remove all objectID values and let OneNote generate new IDs
 			page.Descendants().Attributes("objectID").Remove();
 
 			await one.Update(page);
 
-			if (asChildPage)
+			if (plugin.AsChildPage)
 			{
 				// get current section again after new page is created
 				section = one.GetSection();

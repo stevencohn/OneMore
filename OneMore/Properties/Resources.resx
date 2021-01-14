@@ -1427,7 +1427,7 @@ Try again later</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Plugin Command</value>
+    <value>Command</value>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
@@ -2723,6 +2723,66 @@ In this section</value>
     <value>... Yellow Status</value>
     <comment>option</comment>
   </data>
+  <data name="ribManagePluginsButton_Label" xml:space="preserve">
+    <value>Manage Saved Plugins</value>
+    <comment>favorites button</comment>
+  </data>
+  <data name="ribPluginsMenu_Label" xml:space="preserve">
+    <value>My Saved Plugins</value>
+    <comment>favorites menu</comment>
+  </data>
+  <data name="PluginsSheet.Text" xml:space="preserve">
+    <value>Manage My Plugins</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Command</value>
+    <comment>plugins sheet columns</comment>
+  </data>
+  <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Delete plugin "{0}"</value>
+    <comment>question</comment>
+  </data>
+  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Name</value>
+    <comment>plugins sheet column</comment>
+  </data>
+  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Name</value>
+    <comment>snippets sheet column</comment>
+  </data>
+  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
+    <value>Delete</value>
+    <comment>toolstrip label</comment>
+  </data>
+  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+    <value>Manage my plugins</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_newItem" xml:space="preserve">
+    <value>(new)</value>
+    <comment>combobox item</comment>
+  </data>
+  <data name="PluginDialog_editText" xml:space="preserve">
+    <value>Edit Plugin</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
     <value>Storage</value>
     <comment>group box</comment>
@@ -2733,6 +2793,10 @@ In this section</value>
   </data>
   <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
     <value>{0}% quality</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Name</value>
     <comment>label</comment>
   </data>
 </root>

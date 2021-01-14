@@ -118,6 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="errorBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAAd0SU1FB9UKHQwxIJLNbsEAAADwSURBVDhPY/hPIURiosLbbTn/r1VE/b+Q6fEf
+        WRwdIjEREKT5y+qp///Pqfn/tTH6/9xAC5yGIDEREGTzv1mV//8n6P7/6yf2f6ulIGkGgJz9uyfj//8A
+        8f/fnDj/z9LnI82AlaWp/5+Wh/z/7y34/4MNw/++yhLSDFgzc8r/O7le///YMvw/bcTw/9zpM6QZAIIH
+        XeX+v7Fg+D9BiwOnZhBEYqLCZVMn/X9lyfB/4ZSJ5BkAgisDcEcfDCIxMeHKyb3kG7Bu7sz/oAS1e8M6
+        8rwA0gyKxinanOQZsGJCF1jzikn4vYHEJA8iMcmB/xkAqNIV5WJ5QZcAAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="errorTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAUAEBAAAAEAIABoBAAAVgAAACAgAAABACAAqBAAAL4EAAAwMAAAAQAgAKglAABmFQAAQEAAAAEA

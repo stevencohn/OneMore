@@ -1309,8 +1309,8 @@ OneNote 将自动关闭</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>插件命令</value>
-    <comment>label</comment>
+    命令
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>更新当前页面</value>
@@ -2704,6 +2704,58 @@ ISO-code then comma then language name</comment>
     <value>...黄色状态</value>
     <comment>option</comment>
   </data>
+  <data name="ribManagePluginsButton_Label" xml:space="preserve">
+    <value>管理已保存的插件</value>
+    <comment>favorites button</comment>
+  </data>
+  <data name="ribPluginsMenu_Label" xml:space="preserve">
+    <value>我保存的插件</value>
+    <comment>favorites menu</comment>
+  </data>
+  <data name="PluginsSheet.Text" xml:space="preserve">
+    <value>管理我的插件</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>命令</value>
+    <comment>plugins sheet columns</comment>
+  </data>
+  <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
+    <value>删除插件“ {0}”</value>
+    <comment>question</comment>
+  </data>
+  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>名称</value>
+    <comment>plugins sheet column</comment>
+  </data>
+  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>名称</value>
+    <comment>snippets sheet column</comment>
+  </data>
+  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
+    <value>外挂程式</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
+    <value>删除</value>
+    <comment>toolstrip label</comment>
+  </data>
+  <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
+    <value>管理我的插件</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
+    <value>好</value>
+    <comment>button</comment>
+  </data>
+  <data name="PluginDialog_newItem" xml:space="preserve">
+    <value>（新）</value>
+    <comment>combobox item</comment>
+  </data>
   <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
     <value>存储</value>
     <comment>group box</comment>
@@ -2714,6 +2766,18 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
     <value>{0}％的质量</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
+    <value>外挂程式</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_editText" xml:space="preserve">
+    <value>编辑插件</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>名称</value>
     <comment>label</comment>
   </data>
 </root>
