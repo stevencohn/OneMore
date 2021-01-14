@@ -1309,8 +1309,8 @@ OneNote 将自动关闭</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>插件命令</value>
-    <comment>label</comment>
+    命令
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>更新当前页面</value>
@@ -2704,30 +2704,6 @@ ISO-code then comma then language name</comment>
     <value>...黄色状态</value>
     <comment>option</comment>
   </data>
-  <data name="SavePluginDialog.Text" xml:space="preserve">
-    <value>保存插件</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SavePluginDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
-    <value>名称已被使用；</value>
-    <comment>label</comment>
-  </data>
-  <data name="SavePluginDialog_InvalidName" xml:space="preserve">
-    <value>名称包含无效字符</value>
-    <comment>error message</comment>
-  </data>
-  <data name="SavePluginDialog_nameLabel.Text" xml:space="preserve">
-    <value>插件名称：</value>
-    <comment>label</comment>
-  </data>
-  <data name="SavePluginDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
-  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>管理已保存的插件</value>
     <comment>favorites button</comment>
@@ -2776,10 +2752,6 @@ ISO-code then comma then language name</comment>
     <value>好</value>
     <comment>button</comment>
   </data>
-  <data name="PluginDialog_loadLabel.Text" xml:space="preserve">
-    <value>加载插件</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>（新）</value>
     <comment>combobox item</comment>
@@ -2794,6 +2766,18 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
     <value>{0}％的质量</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
+    <value>外挂程式</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_editText" xml:space="preserve">
+    <value>编辑插件</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>名称</value>
     <comment>label</comment>
   </data>
 </root>

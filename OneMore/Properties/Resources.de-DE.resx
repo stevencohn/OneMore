@@ -1294,8 +1294,8 @@
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Plugin-Befehl</value>
-    <comment>label</comment>
+    Befehl
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Aktuelle Seite aktualisieren</value>
@@ -2698,30 +2698,6 @@ ISO-code then comma then language name</comment>
     <value>... gelber Status</value>
     <comment>option</comment>
   </data>
-  <data name="SavePluginDialog.Text" xml:space="preserve">
-    <value>Plugin speichern</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SavePluginDialog_cancelButton.Text" xml:space="preserve">
-    <value>Stornieren</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
-    <value>Name wird bereits verwendet; </value>
-    <comment>label</comment>
-  </data>
-  <data name="SavePluginDialog_InvalidName" xml:space="preserve">
-    <value>Der Name beinhaltet ungültige Zeichen</value>
-    <comment>error message</comment>
-  </data>
-  <data name="SavePluginDialog_nameLabel.Text" xml:space="preserve">
-    <value>Name des Plugins:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SavePluginDialog_okButton.Text" xml:space="preserve">
-    <value>in Ordnung</value>
-    <comment>ok button</comment>
-  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Gespeicherte Plugins verwalten</value>
     <comment>favorites button</comment>
@@ -2770,10 +2746,6 @@ ISO-code then comma then language name</comment>
     <value>in Ordnung</value>
     <comment>button</comment>
   </data>
-  <data name="PluginDialog_loadLabel.Text" xml:space="preserve">
-    <value>Plugin laden</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>(Neu)</value>
     <comment>combobox item</comment>
@@ -2788,6 +2760,18 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
     <value>{0}% Qualität</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_editText" xml:space="preserve">
+    <value>Plugin bearbeiten</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Name</value>
     <comment>label</comment>
   </data>
 </root>

@@ -1304,8 +1304,8 @@ Pourcentage</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Commande de plug-in</value>
-    <comment>label</comment>
+    Commander
+    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Mettre à jour la page actuelle</value>
@@ -2707,30 +2707,6 @@ ISO-code then comma then language name</comment>
     <value>... Statut jaune</value>
     <comment>option</comment>
   </data>
-  <data name="SavePluginDialog.Text" xml:space="preserve">
-    <value>Enregistrer le plugin</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SavePluginDialog_cancelButton.Text" xml:space="preserve">
-    <value>Annuler</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="SavePluginDialog_DuplicateName" xml:space="preserve">
-    <value>Le nom est déjà utilisé; </value>
-    <comment>label</comment>
-  </data>
-  <data name="SavePluginDialog_InvalidName" xml:space="preserve">
-    <value>Le nom contient des caractères non valides</value>
-    <comment>error message</comment>
-  </data>
-  <data name="SavePluginDialog_nameLabel.Text" xml:space="preserve">
-    <value>Nom du plugin:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SavePluginDialog_okButton.Text" xml:space="preserve">
-    <value>D'accord</value>
-    <comment>ok button</comment>
-  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Gérer les plugins enregistrés</value>
     <comment>favorites button</comment>
@@ -2779,10 +2755,6 @@ ISO-code then comma then language name</comment>
     <value>D'accord</value>
     <comment>button</comment>
   </data>
-  <data name="PluginDialog_loadLabel.Text" xml:space="preserve">
-    <value>Charger le plugin</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>(Nouveau)</value>
     <comment>combobox item</comment>
@@ -2797,6 +2769,18 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
     <value>{0}% de qualité</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_editText" xml:space="preserve">
+    <value>Modifier le plugin</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Nom</value>
     <comment>label</comment>
   </data>
 </root>
