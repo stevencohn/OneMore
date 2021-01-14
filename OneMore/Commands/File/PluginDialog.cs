@@ -193,8 +193,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeText(object sender, EventArgs e)
 		{
+			var valid = true;
+
 			if (sender == nameBox)
-				plugin.Name = nameBox.Text.Trim();
+			{
+				var name = nameBox.Text.Trim();
+				valid = ValidateName(name);
+
+				if (valid)
+				{
+					plugin.Name = nameBox.Text.Trim();
+				}
+			}
 			else if (sender == cmdBox)
 				plugin.Command = cmdBox.Text.Trim();
 			else if (sender == argsBox)
@@ -203,14 +213,48 @@ namespace River.OneMoreAddIn.Commands
 				plugin.PageName = pageNameBox.Text.Trim();
 
 			saveButton.Enabled =
+				valid &&
 				!string.IsNullOrWhiteSpace(plugin.Name) &&
 				!string.IsNullOrWhiteSpace(plugin.Command);
 
-			okButton.Enabled = saveButton.Enabled &&
+			okButton.Enabled = valid &&
+				saveButton.Enabled &&
 				(
 					updateRadio.Checked || 
 					(createRadio.Checked && !string.IsNullOrWhiteSpace(plugin.PageName))
 				);
+		}
+
+
+		private char[] invalidChars;
+		private bool ValidateName(string name)
+		{
+			if (name.Length == 0)
+			{
+				return false;
+			}
+
+			name = name.ToLower();
+
+			if (invalidChars == null)
+			{
+				invalidChars = Path.GetInvalidFileNameChars();
+			}
+
+			if (name.IndexOfAny(invalidChars) >= 0)
+			{
+				errorBox.Visible = true;
+				return false;
+			}
+
+			if (predefinedNames.Contains(name))
+			{
+				errorBox.Visible = true;
+				return false;
+			}
+
+			errorBox.Visible = false;
+			return true;
 		}
 
 
@@ -292,38 +336,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void SavePlugin(object sender, EventArgs e)
 		{
-			string name = null;
-
-			if (single)
-			{
-				name = plugin.Name;
-			}
-			else
-			{
-				using (var dialog = new SavePluginDialog())
-				{
-					if (pluginsBox.SelectedIndex > 0)
-					{
-						dialog.PluginName = pluginsBox.SelectedItem.ToString();
-					}
-
-					if (dialog.ShowDialog() != DialogResult.OK)
-					{
-						return;
-					}
-
-					name = dialog.PluginName;
-				}
-			}
-
 			try
 			{
 				var provider = new PluginsProvider();
-				await provider.Save(Plugin, name);
+				await provider.Save(plugin, plugin.Name);
 
 				//if (!editMode)
 				{
-					UIHelper.ShowMessage($"\"{name}\" plugin is saved"); // translate
+					UIHelper.ShowMessage($"\"{plugin.Name}\" plugin has been saved"); // translate
 				}
 			}
 			catch (Exception exc)

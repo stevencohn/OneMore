@@ -653,6 +653,8 @@
     <Content Include="Properties\Emoji\Journal.png" />
     <None Include="Properties\Emoji\Memo.png" />
     <None Include="Properties\Emoji\Passwords.png" />
+    <Content Include="Properties\Images\Editor.ico" />
+    <Content Include="Properties\Images\Exclamation.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
     <Content Include="Properties\Emoji\Pencil.png" />
@@ -683,6 +685,7 @@
     <Content Include="Properties\Images\Open.png" />
     <Content Include="Properties\Images\Page.png" />
     <Content Include="Properties\Images\Refresh.png" />
+    <Content Include="Properties\Images\Rename.png" />
     <Content Include="Properties\Images\Reorder.png" />
     <Content Include="Properties\Images\Run.png" />
     <Content Include="Properties\Images\SaveAs.png" />
@@ -691,6 +694,7 @@
     <Content Include="Properties\Images\SectionGroup.png" />
     <Content Include="Properties\Images\SectionMask.png" />
     <Content Include="Properties\Images\SelectAll.png" />
+    <Content Include="Properties\Images\Sort.png" />
     <Content Include="Properties\Images\Strikethrough.png" />
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
