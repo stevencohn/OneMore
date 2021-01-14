@@ -207,13 +207,22 @@ namespace River.OneMoreAddIn.Settings
 			if (result != DialogResult.Yes)
 				return;
 
-			plugins.RemoveAt(rowIndex);
-			updated = updated || pinProvider.Delete(plugin.Path);
-
-			rowIndex--;
-			if (rowIndex >= 0)
+			if (pinProvider.Delete(plugin.Path))
 			{
-				gridView.Rows[rowIndex].Cells[0].Selected = true;
+				Logger.Current.WriteLine($"Deleted {plugin.Name} plugin");
+
+				plugins.RemoveAt(rowIndex);
+				updated = true;
+
+				rowIndex--;
+				if (rowIndex >= 0)
+				{
+					gridView.Rows[rowIndex].Cells[0].Selected = true;
+				}
+			}
+			else
+			{
+				Logger.Current.WriteLine($"Could not delete {plugin.Name} plugin");
 			}
 		}
 
