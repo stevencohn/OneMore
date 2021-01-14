@@ -225,9 +225,9 @@ namespace River.OneMoreAddIn.Commands
 				var name = nameBox.Text.Trim();
 				valid = ValidateName(name);
 
-				if (valid)
+				if (valid && pluginsBox.Enabled)
 				{
-					plugin.Name = name;
+					plugin.Name = nameBox.Text;
 					((BindingList<Plugin>)pluginsBox.DataSource).ResetItem(pluginsBox.SelectedIndex);
 				}
 			}

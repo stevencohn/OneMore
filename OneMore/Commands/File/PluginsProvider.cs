@@ -135,6 +135,7 @@ namespace River.OneMoreAddIn.Commands
 			if (File.Exists(plugin.Path))
 			{
 				var path = Path.Combine(Path.GetDirectoryName(plugin.Path), $"{name}{Extension}");
+				name = name.Trim();
 
 				try
 				{
@@ -163,7 +164,9 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public async Task Save(Plugin plugin)
 		{
-			var path = Path.Combine(store, $"{plugin.Name}{Extension}");
+			var name = plugin.Name.Trim();
+
+			var path = Path.Combine(store, $"{name}{Extension}");
 			logger.WriteLine($"saving {path}");
 
 			try
@@ -179,7 +182,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				// overwrite original name
-				plugin.OriginalName = plugin.Name;
+				plugin.OriginalName = name;
 			}
 			catch (Exception exc)
 			{
