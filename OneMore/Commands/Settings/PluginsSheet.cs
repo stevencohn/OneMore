@@ -182,7 +182,11 @@ namespace River.OneMoreAddIn.Settings
 			var plugin = plugins[rowIndex];
 
 			gridView.Rows[rowIndex].ErrorText = string.Empty;
-			updated = updated || await pinProvider.Rename(plugin, plugin.Name);
+
+			if (await pinProvider.Rename(plugin, plugin.Name))
+			{
+				updated = true;
+			}
 		}
 
 
