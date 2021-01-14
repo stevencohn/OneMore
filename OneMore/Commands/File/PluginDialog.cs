@@ -225,10 +225,15 @@ namespace River.OneMoreAddIn.Commands
 				var name = nameBox.Text.Trim();
 				valid = ValidateName(name);
 
-				if (valid && pluginsBox.Enabled)
+				if (valid)
 				{
 					plugin.Name = nameBox.Text;
-					((BindingList<Plugin>)pluginsBox.DataSource).ResetItem(pluginsBox.SelectedIndex);
+
+					if (pluginsBox.Enabled)
+					{
+						((BindingList<Plugin>)pluginsBox.DataSource)
+							.ResetItem(pluginsBox.SelectedIndex);
+					}
 				}
 			}
 			else if (sender == cmdBox)
@@ -379,11 +384,6 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					await provider.Save(plugin, plugin.Name);
-				}
-
-				//if (!editMode)
-				{
-					UIHelper.ShowMessage($"\"{plugin.Name}\" plugin has been saved"); // translate
 				}
 			}
 			catch (Exception exc)

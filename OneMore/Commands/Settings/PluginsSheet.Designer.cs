@@ -30,6 +30,8 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PluginsSheet));
 			this.gridView = new System.Windows.Forms.DataGridView();
+			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introPanel = new System.Windows.Forms.Panel();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
@@ -37,8 +39,6 @@
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.deleteLabel = new System.Windows.Forms.ToolStripLabel();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
-			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.cmdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.introPanel.SuspendLayout();
 			this.toolStrip.SuspendLayout();
@@ -62,6 +62,26 @@
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.Size = new System.Drawing.Size(519, 246);
 			this.gridView.TabIndex = 2;
+			this.gridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditOnDoubleClick);
+			this.gridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.EditOnDoubleClickRow);
+			// 
+			// nameColumn
+			// 
+			this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.nameColumn.DataPropertyName = "Name";
+			this.nameColumn.HeaderText = "Name";
+			this.nameColumn.MinimumWidth = 100;
+			this.nameColumn.Name = "nameColumn";
+			this.nameColumn.ReadOnly = true;
+			// 
+			// cmdColumn
+			// 
+			this.cmdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.cmdColumn.DataPropertyName = "FullCommand";
+			this.cmdColumn.HeaderText = "Command";
+			this.cmdColumn.MinimumWidth = 8;
+			this.cmdColumn.Name = "cmdColumn";
+			this.cmdColumn.ReadOnly = true;
 			// 
 			// introPanel
 			// 
@@ -130,24 +150,6 @@
 			this.deleteButton.Size = new System.Drawing.Size(28, 28);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
-			// 
-			// nameColumn
-			// 
-			this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.nameColumn.DataPropertyName = "Name";
-			this.nameColumn.HeaderText = "Name";
-			this.nameColumn.MinimumWidth = 100;
-			this.nameColumn.Name = "nameColumn";
-			this.nameColumn.ReadOnly = true;
-			// 
-			// cmdColumn
-			// 
-			this.cmdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.cmdColumn.DataPropertyName = "FullCommand";
-			this.cmdColumn.HeaderText = "Command";
-			this.cmdColumn.MinimumWidth = 8;
-			this.cmdColumn.Name = "cmdColumn";
-			this.cmdColumn.ReadOnly = true;
 			// 
 			// PluginsSheet
 			// 

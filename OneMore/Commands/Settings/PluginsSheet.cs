@@ -97,10 +97,35 @@ namespace River.OneMoreAddIn.Settings
 
 		private async void EditSelection(object sender, EventArgs e)
 		{
-			if (gridView.SelectedCells.Count == 0)
-				return;
+			if (gridView.SelectedCells.Count > 0)
+			{
+				await Edit(gridView.SelectedCells[0].RowIndex);
+			}
+		}
 
-			var rowIndex = gridView.SelectedCells[0].RowIndex;
+
+		private async void EditOnDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			// ignore double-click on col header
+			if (e.RowIndex >= 0)
+			{
+				await Edit(e.RowIndex);
+			}
+		}
+
+
+		private async void EditOnDoubleClickRow(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			// ignore double-click on col header
+			if (e.RowIndex >= 0)
+			{
+				await Edit(e.RowIndex);
+			}
+		}
+
+
+		private async Task Edit(int rowIndex)
+		{
 			var plugin = plugins[rowIndex];
 
 			using (var dialog = new PluginDialog(plugin))
