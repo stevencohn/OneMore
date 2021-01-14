@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.UI
 		private bool modeless = false;
 
 
-		protected int VerticalOffset
+		public int VerticalOffset
 		{
 			private get;
 			set;
