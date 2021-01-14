@@ -92,42 +92,42 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private async void EditSelection(object sender, EventArgs e)
+		private void EditSelection(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count > 0)
 			{
-				await Edit(gridView.SelectedCells[0].RowIndex);
+				Edit(gridView.SelectedCells[0].RowIndex);
 			}
 		}
 
 
-		private async void EditOnDoubleClick(object sender, DataGridViewCellEventArgs e)
+		private void EditOnDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			// ignore double-click on col header
 			if (e.RowIndex >= 0)
 			{
-				await Edit(e.RowIndex);
+				Edit(e.RowIndex);
 			}
 		}
 
 
-		private async void EditOnDoubleClickRow(object sender, DataGridViewCellMouseEventArgs e)
+		private void EditOnDoubleClickRow(object sender, DataGridViewCellMouseEventArgs e)
 		{
 			// ignore double-click on col header
 			if (e.RowIndex >= 0)
 			{
-				await Edit(e.RowIndex);
+				Edit(e.RowIndex);
 			}
 		}
 
 
-		private async Task Edit(int rowIndex)
+		private void Edit(int rowIndex)
 		{
 			var plugin = plugins[rowIndex];
 
 			using (var dialog = new PluginDialog(plugin))
 			{
-				if (dialog.ShowDialog() == DialogResult.OK)
+				if (dialog.ShowDialog(this) == DialogResult.OK)
 				{
 					var edited = dialog.Plugin;
 					plugin.Name = edited.Name;

@@ -1427,8 +1427,8 @@ Try again later</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Plugin Command</value>
-    <comment>label</comment>
+    <value>Command</value>
+    <comment>label EDIT</comment>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Update current page</value>
@@ -2771,9 +2771,9 @@ In this section</value>
     <value>OK</value>
     <comment>button</comment>
   </data>
-  <data name="PluginDialog_pluginLabel.Text" xml:space="preserve">
-    <value>Plugin</value>
-    <comment>label EDIT</comment>
+  <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>label</comment>
   </data>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>(new)</value>
@@ -2793,6 +2793,10 @@ In this section</value>
   </data>
   <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
     <value>{0}% quality</value>
+    <comment>label</comment>
+  </data>
+  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
+    <value>Name</value>
     <comment>label</comment>
   </data>
 </root>

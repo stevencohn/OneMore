@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.IO;
 	using System.Linq;
@@ -297,7 +298,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			if (single && plugin.Name == plugin.OriginalName)
+			if (plugin.Name == plugin.OriginalName)
 			{
 				return true;
 			}
@@ -305,7 +306,9 @@ namespace River.OneMoreAddIn.Commands
 			if (predefinedNames == null)
 			{
 				// would be null in edit-mode
-				predefinedNames = new PluginsProvider().GetNames().ToArray();
+				predefinedNames = new PluginsProvider().GetNames()
+					.Except(new List<string> { plugin.OriginalName })
+					.ToArray();
 			}
 
 			if (predefinedNames.Any(s => s.Equals(name, StringComparison.OrdinalIgnoreCase)))
