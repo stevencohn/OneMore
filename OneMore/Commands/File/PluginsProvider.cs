@@ -191,19 +191,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		/// <summary>
-		/// Saves a new named plugin or overwrites an existing plugin
-		/// </summary>
-		/// <param name="plugin"></param>
-		/// <param name="name">The new name to apply</param>
-		/// <returns></returns>
-		public async Task Save(Plugin plugin, string name)
-		{
-			plugin.Name = name;
-			await Save(plugin);
-		}
-
-
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		public XElement MakePluginsMenu(XNamespace ns)

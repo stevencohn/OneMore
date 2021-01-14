@@ -7,7 +7,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -19,8 +18,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class PluginDialog : UI.LocalizableForm
 	{
-		private const int SysMenuId = 1000;
-
 		private string[] predefinedNames;
 		private Plugin plugin;
 		private bool single = false;
@@ -99,32 +96,8 @@ namespace River.OneMoreAddIn.Commands
 		public string PageName { set; private get; }
 
 
-		protected override void WndProc(ref Message m)
-		{
-			if ((m.Msg == Native.WM_SYSCOMMAND) && (m.WParam.ToInt32() == SysMenuId))
-			{
-				var provider = new SettingsProvider();
-				if (provider.RemoveCollection("runPlugin"))
-				{
-					provider.Save();
-				}
-
-				cmdBox.Text = string.Empty;
-				argsBox.Text = string.Empty;
-				updateRadio.Checked = true;
-				childBox.Checked = false;
-
-				return;
-			}
-
-			base.WndProc(ref m);
-		}
-
-
 		protected async override void OnLoad(EventArgs e)
 		{
-			var hmenu = Native.GetSystemMenu(Handle, false);
-			Native.InsertMenu(hmenu, 5, Native.MF_BYPOSITION, SysMenuId, Resx.DialogResetSettings_Text);
 			base.OnLoad(e);
 
 			if (single)
@@ -167,31 +140,6 @@ namespace River.OneMoreAddIn.Commands
 				if (p != null)
 				{
 					binding.Add(p);
-				}
-			}
-
-			if (names.Count == 0)
-			{
-				var setProvider = new SettingsProvider();
-				var settings = setProvider.GetCollection("runPlugin");
-				if (settings != null)
-				{
-					plugin = new Plugin();
-					plugin.Command = cmdBox.Text = settings.Get<string>("cmd");
-					plugin.Arguments = argsBox.Text = settings.Get<string>("args");
-					plugin.CreateNewPage = createRadio.Checked;
-					plugin.AsChildPage = childBox.Checked = settings.Get<bool>("child");
-
-					var keys = settings.Keys.ToList();
-
-					var update = !keys.Contains("update") || settings.Get<bool>("update");
-					if (update)
-						createRadio.Checked = true;
-					else
-						updateRadio.Checked = true;
-
-					pageNameBox.Enabled = createRadio.Checked;
-					childBox.Enabled = createRadio.Checked;
 				}
 			}
 
@@ -266,7 +214,7 @@ namespace River.OneMoreAddIn.Commands
 			okButton.Enabled = valid &&
 				saveButton.Enabled &&
 				(
-					updateRadio.Checked || 
+					updateRadio.Checked ||
 					(createRadio.Checked && !string.IsNullOrWhiteSpace(plugin.PageName))
 				);
 		}
@@ -394,13 +342,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var provider = new PluginsProvider();
 
-				if (plugin.Name != plugin.OriginalName)
+				if (plugin.Name != plugin.OriginalName &&
+					!string.IsNullOrWhiteSpace(plugin.OriginalName))
 				{
 					await provider.Rename(plugin, plugin.Name);
 				}
 				else
 				{
-					await provider.Save(plugin, plugin.Name);
+					await provider.Save(plugin);
 				}
 
 
@@ -420,16 +369,6 @@ namespace River.OneMoreAddIn.Commands
 		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
-
-			var settings = new SettingsCollection("runPlugin");
-			settings.Add("cmd", cmdBox.Text);
-			settings.Add("args", argsBox.Text);
-			settings.Add("update", updateRadio.Checked);
-			settings.Add("child", childBox.Checked);
-
-			var provider = new SettingsProvider();
-			provider.SetCollection(settings);
-			provider.Save();
 		}
 	}
 }
