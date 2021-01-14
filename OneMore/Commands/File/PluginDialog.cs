@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.ComponentModel;
 	using System.IO;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -20,8 +21,8 @@ namespace River.OneMoreAddIn.Commands
 		private const int SysMenuId = 1000;
 
 		private string[] predefinedNames;
-		private readonly bool editMode = false;
 		private Plugin plugin;
+		private bool single = false;
 
 
 		public PluginDialog()
@@ -37,12 +38,14 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"pluginLabel",
-					"cmdLabel",
-					"argsLabel",
+					"pluginsLabel",
+					"nameLabel",
+					"commandLabel",
+					"argumentsLabel",
 					"updateRadio",
 					"createRadio",
 					"childBox",
+					"saveButton",
 					"okButton",
 					"cancelButton"
 				});
@@ -53,17 +56,10 @@ namespace River.OneMoreAddIn.Commands
 		public PluginDialog(Plugin plugin)
 			: this()
 		{
-			editMode = true;
 			this.plugin = plugin;
+			single = true;
 
 			Text = Resx.PluginDialog_editText;
-
-			pluginNameLabel.Text = plugin.Name;
-			pluginNameLabel.Left = predefinedBox.Left;
-			pluginNameLabel.Top = pluginLabel.Top;
-
-			predefinedBox.Visible = false;
-			pluginNameLabel.Visible = true;
 
 			saveButton.Location = okButton.Location;
 			saveButton.DialogResult = DialogResult.OK;
@@ -79,15 +75,11 @@ namespace River.OneMoreAddIn.Commands
 			Arguments = argsBox.Text,
 			CreateNewPage = !updateRadio.Checked,
 			AsChildPage = childBox.Checked,
-			PageName = nameBox.Text
+			PageName = pageNameBox.Text
 		};
 
 
-		public string PageName
-		{
-			private get => nameBox.Text;
-			set => nameBox.Text = value;
-		}
+		public string PageName { set; private get; }
 
 
 		protected override void WndProc(ref Message m)
@@ -112,94 +104,123 @@ namespace River.OneMoreAddIn.Commands
 			base.WndProc(ref m);
 		}
 
-		protected override void OnLoad(EventArgs e)
+
+		protected async override void OnLoad(EventArgs e)
 		{
 			var hmenu = Native.GetSystemMenu(Handle, false);
 			Native.InsertMenu(hmenu, 5, Native.MF_BYPOSITION, SysMenuId, Resx.DialogResetSettings_Text);
 			base.OnLoad(e);
 
-			if (editMode)
+			if (single)
 			{
+				pluginsBox.Enabled = false;
+				nameBox.Text = plugin.Name;
 				cmdBox.Text = plugin.Command;
 				argsBox.Text = plugin.Arguments;
-				updateRadio.Checked = !plugin.CreateNewPage;
 				createRadio.Checked = plugin.CreateNewPage;
-				nameBox.Text = plugin.PageName;
+				pageNameBox.Text = plugin.PageName;
 				childBox.Checked = plugin.AsChildPage;
 				return;
 			}
 
-			var names = new PluginsProvider().GetNames().ToList();
+			var provider = new PluginsProvider();
+			var names = provider.GetNames().ToList();
 			names.Sort();
 			predefinedNames = names.ToArray();
 
-			predefinedBox.Items.Add(Resx.PluginDialog_newItem);
-			predefinedBox.Items.AddRange(predefinedNames);
-			predefinedBox.SelectedIndex = 0;
+			var binding = new BindingList<Plugin>();
+			pluginsBox.DataSource = binding;
+			pluginsBox.DisplayMember = "Name";
+
+			plugin = new Plugin
+			{
+				Name = Resx.PluginDialog_newItem,
+				PageName = this.PageName
+			};
+
+			binding.Add(plugin);
+
+			foreach (var name in names)
+			{
+				var p = await provider.LoadByName(name);
+				if (p != null)
+				{
+					binding.Add(p);
+				}
+			}
 
 			if (names.Count == 0)
 			{
-				var provider = new SettingsProvider();
-				var settings = provider.GetCollection("runPlugin");
+				var setProvider = new SettingsProvider();
+				var settings = setProvider.GetCollection("runPlugin");
 				if (settings != null)
 				{
-					cmdBox.Text = settings.Get<string>("cmd");
-					argsBox.Text = settings.Get<string>("args");
+					plugin = new Plugin();
+					plugin.Command = cmdBox.Text = settings.Get<string>("cmd");
+					plugin.Arguments = argsBox.Text = settings.Get<string>("args");
 
 					var keys = settings.Keys.ToList();
 					updateRadio.Checked = !keys.Contains("update") || settings.Get<bool>("update");
 
-					createRadio.Checked = !updateRadio.Checked;
-					nameBox.Enabled = createRadio.Checked;
+					plugin.CreateNewPage = createRadio.Checked = !updateRadio.Checked;
+					pageNameBox.Enabled = createRadio.Checked;
 					childBox.Enabled = createRadio.Checked;
-					childBox.Checked = settings.Get<bool>("child");
+					plugin.AsChildPage = childBox.Checked = settings.Get<bool>("child");
 				}
 			}
+
+			pluginsBox.SelectedIndex = 0;
+			nameBox.Text = plugin.Name;
+			nameBox.Focus();
 		}
 
 
-		private async void ViewPredefined(object sender, EventArgs e)
+		private void ViewPredefined(object sender, EventArgs e)
 		{
-			if (predefinedBox.SelectedIndex == 0)
-			{
-				cmdBox.Text = string.Empty;
-				argsBox.Text = string.Empty;
-				updateRadio.Checked = true;
-				nameBox.Text = string.Empty;
-				childBox.Checked = false;
-			}
-			else
-			{
-				var provider = new PluginsProvider();
-				var plugin = await provider.LoadByName(predefinedBox.SelectedItem.ToString());
+			plugin = pluginsBox.SelectedItem as Plugin;
 
-				cmdBox.Text = plugin.Command;
-				argsBox.Text = plugin.Arguments;
-				updateRadio.Checked = !plugin.CreateNewPage;
-				createRadio.Checked = plugin.CreateNewPage;
-				nameBox.Text = plugin.PageName;
-				childBox.Checked = plugin.AsChildPage;
-			}
+			nameBox.Text = plugin.Name;
+			nameBox.ReadOnly = pluginsBox.SelectedIndex > 0;
+
+			cmdBox.Text = plugin.Command;
+			argsBox.Text = plugin.Arguments;
+			updateRadio.Checked = !plugin.CreateNewPage;
+			createRadio.Checked = plugin.CreateNewPage;
+			pageNameBox.Text = plugin.PageName;
+			childBox.Checked = plugin.AsChildPage;
 		}
 
 
-		private void ChangeCommand(object sender, EventArgs e)
+		private void ChangeText(object sender, EventArgs e)
 		{
-			saveButton.Enabled = cmdBox.Text.Trim().Length > 0;
+			if (sender == nameBox)
+				plugin.Name = nameBox.Text.Trim();
+			else if (sender == cmdBox)
+				plugin.Command = cmdBox.Text.Trim();
+			else if (sender == argsBox)
+				plugin.Arguments = argsBox.Text.Trim();
+			else if (sender == pageNameBox)
+				plugin.PageName = pageNameBox.Text.Trim();
+
+			saveButton.Enabled =
+				!string.IsNullOrWhiteSpace(plugin.Name) &&
+				!string.IsNullOrWhiteSpace(plugin.Command);
+
+			okButton.Enabled = saveButton.Enabled &&
+				(
+					updateRadio.Checked || 
+					(createRadio.Checked && !string.IsNullOrWhiteSpace(plugin.PageName))
+				);
 		}
 
 
 		private void updateRadio_CheckedChanged(object sender, EventArgs e)
 		{
-			nameBox.Enabled = !updateRadio.Checked;
+			pageNameBox.Enabled = !updateRadio.Checked;
 			childBox.Enabled = !updateRadio.Checked;
-		}
 
-
-		private void nameBox_TextChanged(object sender, EventArgs e)
-		{
-			okButton.Enabled = updateRadio.Checked ||
-				(createRadio.Checked && !string.IsNullOrEmpty(nameBox.Text));
+			plugin.CreateNewPage = createRadio.Checked;
+			plugin.AsChildPage = childBox.Checked;
 		}
 
 
@@ -273,7 +294,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			string name = null;
 
-			if (editMode)
+			if (single)
 			{
 				name = plugin.Name;
 			}
@@ -281,9 +302,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var dialog = new SavePluginDialog())
 				{
-					if (predefinedBox.SelectedIndex > 0)
+					if (pluginsBox.SelectedIndex > 0)
 					{
-						dialog.PluginName = predefinedBox.SelectedItem.ToString();
+						dialog.PluginName = pluginsBox.SelectedItem.ToString();
 					}
 
 					if (dialog.ShowDialog() != DialogResult.OK)
@@ -300,7 +321,7 @@ namespace River.OneMoreAddIn.Commands
 				var provider = new PluginsProvider();
 				await provider.Save(Plugin, name);
 
-				if (!editMode)
+				//if (!editMode)
 				{
 					UIHelper.ShowMessage($"\"{name}\" plugin is saved"); // translate
 				}

@@ -74,6 +74,9 @@ namespace River.OneMoreAddIn.Settings
 		{
 			plugins = new BindingList<Plugin>(await LoadPlugins());
 			gridView.DataSource = plugins;
+
+			//this.gridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Rename);
+			//this.gridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.NameValidating);
 		}
 
 
