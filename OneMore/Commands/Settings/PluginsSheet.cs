@@ -130,13 +130,15 @@ namespace River.OneMoreAddIn.Settings
 				if (dialog.ShowDialog() == DialogResult.OK)
 				{
 					var edited = dialog.Plugin;
+					plugin.Name = edited.Name;
+					plugin.OriginalName = edited.OriginalName;
 					plugin.Command = edited.Command;
 					plugin.Arguments = edited.Arguments;
 					plugin.CreateNewPage = edited.CreateNewPage;
 					plugin.AsChildPage = edited.AsChildPage;
 					plugin.PageName = edited.PageName;
 
-					await new PluginsProvider().Save(plugin);
+					plugins.ResetItem(rowIndex);
 				}
 			}
 		}

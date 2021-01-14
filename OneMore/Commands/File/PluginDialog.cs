@@ -56,7 +56,19 @@ namespace River.OneMoreAddIn.Commands
 		public PluginDialog(Plugin plugin)
 			: this()
 		{
-			this.plugin = plugin;
+			this.plugin = new Plugin
+			{
+				Version = plugin.Version,
+				Path = plugin.Path,
+				Name = plugin.Name,
+				OriginalName = plugin.OriginalName,
+				Command = plugin.Command,
+				Arguments = plugin.Arguments,
+				CreateNewPage = plugin.CreateNewPage,
+				PageName = plugin.PageName,
+				AsChildPage = plugin.AsChildPage,
+			};
+
 			single = true;
 
 			Text = Resx.PluginDialog_editText;
@@ -73,6 +85,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public Plugin Plugin => new Plugin
 		{
+			Name = nameBox.Text,
+			OriginalName = nameBox.Text,
 			Command = cmdBox.Text,
 			Arguments = argsBox.Text,
 			CreateNewPage = createRadio.Checked,
@@ -377,13 +391,19 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var provider = new PluginsProvider();
 
-				if (single && plugin.Name != plugin.OriginalName)
+				if (plugin.Name != plugin.OriginalName)
 				{
 					await provider.Rename(plugin, plugin.Name);
 				}
 				else
 				{
 					await provider.Save(plugin, plugin.Name);
+				}
+
+
+				if (!single)
+				{
+					UIHelper.ShowMessage($"{plugin.Name} has been saved");
 				}
 			}
 			catch (Exception exc)
