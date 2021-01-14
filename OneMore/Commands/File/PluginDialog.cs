@@ -202,7 +202,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if (valid)
 				{
-					plugin.Name = nameBox.Text.Trim();
+					plugin.Name = name;
+					((BindingList<Plugin>)pluginsBox.DataSource).ResetItem(pluginsBox.SelectedIndex);
 				}
 			}
 			else if (sender == cmdBox)
@@ -247,7 +248,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			if (predefinedNames.Contains(name))
+			if (predefinedNames.Any(s => s.Equals(name, StringComparison.OrdinalIgnoreCase)))
 			{
 				errorBox.Visible = true;
 				return false;
