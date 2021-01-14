@@ -32,7 +32,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PluginDialog));
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
-			this.commandLabel = new System.Windows.Forms.Label();
+			this.cmdLabel = new System.Windows.Forms.Label();
 			this.cmdBox = new System.Windows.Forms.TextBox();
 			this.browseButton = new System.Windows.Forms.Button();
 			this.updateRadio = new System.Windows.Forms.RadioButton();
@@ -40,7 +40,7 @@
 			this.pageNameBox = new System.Windows.Forms.TextBox();
 			this.childBox = new System.Windows.Forms.CheckBox();
 			this.argsBox = new System.Windows.Forms.TextBox();
-			this.argumentsLabel = new System.Windows.Forms.Label();
+			this.argsLabel = new System.Windows.Forms.Label();
 			this.browseArgsButton = new System.Windows.Forms.Button();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.pluginsLabel = new System.Windows.Forms.Label();
@@ -76,17 +76,17 @@
 			this.okButton.TabIndex = 11;
 			this.okButton.Text = "Run";
 			this.okButton.UseVisualStyleBackColor = true;
-			this.okButton.Click += new System.EventHandler(this.okButton_Click);
+			this.okButton.Click += new System.EventHandler(this.OK);
 			// 
-			// commandLabel
+			// cmdLabel
 			// 
-			this.commandLabel.AutoSize = true;
-			this.commandLabel.Location = new System.Drawing.Point(12, 82);
-			this.commandLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.commandLabel.Name = "commandLabel";
-			this.commandLabel.Size = new System.Drawing.Size(54, 13);
-			this.commandLabel.TabIndex = 2;
-			this.commandLabel.Text = "Command";
+			this.cmdLabel.AutoSize = true;
+			this.cmdLabel.Location = new System.Drawing.Point(12, 82);
+			this.cmdLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.cmdLabel.Name = "cmdLabel";
+			this.cmdLabel.Size = new System.Drawing.Size(54, 13);
+			this.cmdLabel.TabIndex = 2;
+			this.cmdLabel.Text = "Command";
 			// 
 			// cmdBox
 			// 
@@ -106,7 +106,7 @@
 			this.browseButton.TabIndex = 3;
 			this.browseButton.Text = "...";
 			this.browseButton.UseVisualStyleBackColor = true;
-			this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+			this.browseButton.Click += new System.EventHandler(this.BrowsePath);
 			// 
 			// updateRadio
 			// 
@@ -154,6 +154,7 @@
 			this.childBox.TabIndex = 9;
 			this.childBox.Text = "as child of current page";
 			this.childBox.UseVisualStyleBackColor = true;
+			this.childBox.CheckedChanged += new System.EventHandler(this.ChangeAsChild);
 			// 
 			// argsBox
 			// 
@@ -164,15 +165,15 @@
 			this.argsBox.TabIndex = 4;
 			this.argsBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
-			// argumentsLabel
+			// argsLabel
 			// 
-			this.argumentsLabel.AutoSize = true;
-			this.argumentsLabel.Location = new System.Drawing.Point(12, 112);
-			this.argumentsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.argumentsLabel.Name = "argumentsLabel";
-			this.argumentsLabel.Size = new System.Drawing.Size(57, 13);
-			this.argumentsLabel.TabIndex = 11;
-			this.argumentsLabel.Text = "Arguments";
+			this.argsLabel.AutoSize = true;
+			this.argsLabel.Location = new System.Drawing.Point(12, 112);
+			this.argsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.argsLabel.Name = "argsLabel";
+			this.argsLabel.Size = new System.Drawing.Size(57, 13);
+			this.argsLabel.TabIndex = 11;
+			this.argsLabel.Text = "Arguments";
 			// 
 			// browseArgsButton
 			// 
@@ -183,7 +184,7 @@
 			this.browseArgsButton.TabIndex = 5;
 			this.browseArgsButton.Text = "...";
 			this.browseArgsButton.UseVisualStyleBackColor = true;
-			this.browseArgsButton.Click += new System.EventHandler(this.BrowseArgumentPath);
+			this.browseArgsButton.Click += new System.EventHandler(this.BrowsePath);
 			// 
 			// saveButton
 			// 
@@ -262,7 +263,7 @@
 			this.Controls.Add(this.pluginsLabel);
 			this.Controls.Add(this.saveButton);
 			this.Controls.Add(this.browseArgsButton);
-			this.Controls.Add(this.argumentsLabel);
+			this.Controls.Add(this.argsLabel);
 			this.Controls.Add(this.argsBox);
 			this.Controls.Add(this.childBox);
 			this.Controls.Add(this.pageNameBox);
@@ -270,7 +271,7 @@
 			this.Controls.Add(this.updateRadio);
 			this.Controls.Add(this.browseButton);
 			this.Controls.Add(this.cmdBox);
-			this.Controls.Add(this.commandLabel);
+			this.Controls.Add(this.cmdLabel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -293,7 +294,7 @@
 
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Label commandLabel;
+		private System.Windows.Forms.Label cmdLabel;
 		private System.Windows.Forms.TextBox cmdBox;
 		private System.Windows.Forms.Button browseButton;
 		private System.Windows.Forms.RadioButton updateRadio;
@@ -301,7 +302,7 @@
 		private System.Windows.Forms.TextBox pageNameBox;
 		private System.Windows.Forms.CheckBox childBox;
 		private System.Windows.Forms.TextBox argsBox;
-		private System.Windows.Forms.Label argumentsLabel;
+		private System.Windows.Forms.Label argsLabel;
 		private System.Windows.Forms.Button browseArgsButton;
 		private System.Windows.Forms.Button saveButton;
 		private System.Windows.Forms.Label pluginsLabel;

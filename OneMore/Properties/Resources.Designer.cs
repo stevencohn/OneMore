@@ -2745,7 +2745,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Command.
+        ///   Looks up a localized string similar to Plugin Command.
         /// </summary>
         internal static string PluginDialog_cmdLabel_Text {
             get {
@@ -4580,60 +4580,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SaveAsMany_Success {
             get {
                 return ResourceManager.GetString("SaveAsMany_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string SavePluginDialog_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("SavePluginDialog_cancelButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name is already in use; plugin will be overwritten.
-        /// </summary>
-        internal static string SavePluginDialog_DuplicateName {
-            get {
-                return ResourceManager.GetString("SavePluginDialog_DuplicateName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name contains invalid characters.
-        /// </summary>
-        internal static string SavePluginDialog_InvalidName {
-            get {
-                return ResourceManager.GetString("SavePluginDialog_InvalidName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Plugin name:.
-        /// </summary>
-        internal static string SavePluginDialog_nameLabel_Text {
-            get {
-                return ResourceManager.GetString("SavePluginDialog_nameLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string SavePluginDialog_okButton_Text {
-            get {
-                return ResourceManager.GetString("SavePluginDialog_okButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save Plugin.
-        /// </summary>
-        internal static string SavePluginDialog_Text {
-            get {
-                return ResourceManager.GetString("SavePluginDialog.Text", resourceCulture);
             }
         }
         

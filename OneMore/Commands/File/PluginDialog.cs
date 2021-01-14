@@ -40,8 +40,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"pluginsLabel",
 					"nameLabel",
-					"commandLabel",
-					"argumentsLabel",
+					"cmdLabel",
+					"argsLabel",
 					"updateRadio",
 					"createRadio",
 					"childBox",
@@ -65,6 +65,8 @@ namespace River.OneMoreAddIn.Commands
 			saveButton.DialogResult = DialogResult.OK;
 			AcceptButton = saveButton;
 
+			// disable so it's no longer a tab-stop
+			okButton.Enabled = false;
 			okButton.Visible = false;
 		}
 
@@ -73,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Command = cmdBox.Text,
 			Arguments = argsBox.Text,
-			CreateNewPage = !updateRadio.Checked,
+			CreateNewPage = createRadio.Checked,
 			AsChildPage = childBox.Checked,
 			PageName = pageNameBox.Text
 		};
@@ -95,7 +97,6 @@ namespace River.OneMoreAddIn.Commands
 				cmdBox.Text = string.Empty;
 				argsBox.Text = string.Empty;
 				updateRadio.Checked = true;
-				createRadio.Checked = false;
 				childBox.Checked = false;
 
 				return;
@@ -117,7 +118,12 @@ namespace River.OneMoreAddIn.Commands
 				nameBox.Text = plugin.Name;
 				cmdBox.Text = plugin.Command;
 				argsBox.Text = plugin.Arguments;
-				createRadio.Checked = plugin.CreateNewPage;
+
+				if (plugin.CreateNewPage)
+					createRadio.Checked = true;
+				else
+					updateRadio.Checked = true;
+
 				pageNameBox.Text = plugin.PageName;
 				childBox.Checked = plugin.AsChildPage;
 				return;
@@ -158,14 +164,19 @@ namespace River.OneMoreAddIn.Commands
 					plugin = new Plugin();
 					plugin.Command = cmdBox.Text = settings.Get<string>("cmd");
 					plugin.Arguments = argsBox.Text = settings.Get<string>("args");
+					plugin.CreateNewPage = createRadio.Checked;
+					plugin.AsChildPage = childBox.Checked = settings.Get<bool>("child");
 
 					var keys = settings.Keys.ToList();
-					updateRadio.Checked = !keys.Contains("update") || settings.Get<bool>("update");
 
-					plugin.CreateNewPage = createRadio.Checked = !updateRadio.Checked;
+					var update = !keys.Contains("update") || settings.Get<bool>("update");
+					if (update)
+						createRadio.Checked = true;
+					else
+						updateRadio.Checked = true;
+
 					pageNameBox.Enabled = createRadio.Checked;
 					childBox.Enabled = createRadio.Checked;
-					plugin.AsChildPage = childBox.Checked = settings.Get<bool>("child");
 				}
 			}
 
@@ -175,19 +186,33 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 		private void ViewPredefined(object sender, EventArgs e)
 		{
 			plugin = pluginsBox.SelectedItem as Plugin;
 
 			nameBox.Text = plugin.Name;
-			nameBox.ReadOnly = pluginsBox.SelectedIndex > 0;
-
 			cmdBox.Text = plugin.Command;
 			argsBox.Text = plugin.Arguments;
-			updateRadio.Checked = !plugin.CreateNewPage;
-			createRadio.Checked = plugin.CreateNewPage;
+
+			if (plugin.CreateNewPage)
+				createRadio.Checked = true;
+			else
+				updateRadio.Checked = true;
+
 			pageNameBox.Text = plugin.PageName;
 			childBox.Checked = plugin.AsChildPage;
+
+			var read = pluginsBox.SelectedIndex > 0;
+			nameBox.ReadOnly = read;
+			cmdBox.ReadOnly = read;
+			argsBox.ReadOnly = read;
+			createRadio.Enabled = !read;
+			updateRadio.Enabled = !read;
+			pageNameBox.ReadOnly = read;
+			childBox.Enabled = !read;
+			saveButton.Enabled = !read;
 		}
 
 
@@ -230,6 +255,11 @@ namespace River.OneMoreAddIn.Commands
 		private char[] invalidChars;
 		private bool ValidateName(string name)
 		{
+			if (pluginsBox.SelectedIndex > 0)
+			{
+				return true;
+			}
+
 			if (name.Length == 0)
 			{
 				return false;
@@ -246,6 +276,17 @@ namespace River.OneMoreAddIn.Commands
 			{
 				errorBox.Visible = true;
 				return false;
+			}
+
+			if (single && plugin.Name == plugin.OriginalName)
+			{
+				return true;
+			}
+
+			if (predefinedNames == null)
+			{
+				// would be null in edit-mode
+				predefinedNames = new PluginsProvider().GetNames().ToArray();
 			}
 
 			if (predefinedNames.Any(s => s.Equals(name, StringComparison.OrdinalIgnoreCase)))
@@ -265,12 +306,14 @@ namespace River.OneMoreAddIn.Commands
 			childBox.Enabled = !updateRadio.Checked;
 
 			plugin.CreateNewPage = createRadio.Checked;
-			plugin.AsChildPage = childBox.Checked;
 		}
 
 
-		private void browseButton_Click(object sender, EventArgs e)
+		private void BrowsePath(object sender, EventArgs e)
 		{
+			// both cmdBox and argsBox use this handler
+			var box = sender as TextBox;
+
 			using (var dialog = new OpenFileDialog())
 			{
 				dialog.Filter = "All files (*.*)|*.*";
@@ -278,31 +321,12 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Multiselect = false;
 				dialog.Title = Resx.Plugin_Title;
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
-				dialog.InitialDirectory = GetValidPath(cmdBox.Text);
+				dialog.InitialDirectory = GetValidPath(box.Text);
 
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					cmdBox.Text = dialog.FileName;
-				}
-			}
-		}
-
-		private void BrowseArgumentPath(object sender, EventArgs e)
-		{
-			using (var dialog = new OpenFileDialog())
-			{
-				dialog.Filter = "All files (*.*)|*.*";
-				dialog.CheckFileExists = true;
-				dialog.Multiselect = false;
-				dialog.Title = Resx.Plugin_Title;
-				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
-				dialog.InitialDirectory = GetValidPath(argsBox.Text);
-
-				var result = dialog.ShowDialog();
-				if (result == DialogResult.OK)
-				{
-					argsBox.Text = dialog.FileName;
+					box.Text = dialog.FileName;
 				}
 			}
 		}
@@ -334,13 +358,28 @@ namespace River.OneMoreAddIn.Commands
 			return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 		}
 
+		private void ChangeAsChild(object sender, EventArgs e)
+		{
+			plugin.AsChildPage = childBox.Checked;
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private async void SavePlugin(object sender, EventArgs e)
 		{
 			try
 			{
 				var provider = new PluginsProvider();
-				await provider.Save(plugin, plugin.Name);
+
+				if (single && plugin.Name != plugin.OriginalName)
+				{
+					await provider.Rename(plugin, plugin.Name);
+				}
+				else
+				{
+					await provider.Save(plugin, plugin.Name);
+				}
 
 				//if (!editMode)
 				{
@@ -355,7 +394,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void okButton_Click(object sender, EventArgs e)
+		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
 

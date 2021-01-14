@@ -22,6 +22,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Preserve name while editing; used to check for renaming
+		/// </summary>
+		[ScriptIgnore]
+		public string OriginalName { get; set; }
+
+		/// <summary>
 		/// Gets or sets the path to the plugin stored file
 		/// </summary>
 		[ScriptIgnore]

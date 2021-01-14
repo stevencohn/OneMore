@@ -109,6 +109,8 @@ namespace River.OneMoreAddIn.Commands
 
 					var serializer = new JavaScriptSerializer();
 					var plugin = serializer.Deserialize<Plugin>(json);
+
+					plugin.OriginalName = plugin.Name;
 					plugin.Path = path;
 
 					return plugin;
@@ -175,6 +177,9 @@ namespace River.OneMoreAddIn.Commands
 
 					await writer.WriteAsync(json);
 				}
+
+				// overwrite original name
+				plugin.OriginalName = plugin.Name;
 			}
 			catch (Exception exc)
 			{
