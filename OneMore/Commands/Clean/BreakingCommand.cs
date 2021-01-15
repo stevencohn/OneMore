@@ -17,8 +17,10 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class BreakingCommand : Command
 	{
-		private const string OneSpacePattern = @"(\w)\.(\<[^>]+\>)? (\<[^>]+\>)? (\<[^>]+\>)?(\w)";
-		private const string TwoSpacePattern = @"(\w)\.(\<[^>]+\>)? (\<[^>]+\>)?(\w)";
+		// these patterns allow opening or closing SPAN elements among the <word>.<spaces><word>
+		// sequence of characters. Also recognizes period, question mark, and semi-colon
+		private const string OneSpacePattern = @"(\w[\.?;])(\<[^>]+\>)? (\<[^>]+\>)? (\<[^>]+\>)?(\w)";
+		private const string TwoSpacePattern = @"(\w[\.?;])(\<[^>]+\>)? (\<[^>]+\>)?(\w)";
 
 
 		public BreakingCommand()
@@ -46,12 +48,12 @@ namespace River.OneMoreAddIn.Commands
 			if (answer == DialogResult.Yes)
 			{
 				regex = new Regex(OneSpacePattern);
-				replacement = "$1. $2$3$4$5";
+				replacement = "$1 $2$3$4$5";
 			}
 			else
 			{
 				regex = new Regex(TwoSpacePattern);
-				replacement = "$1.  $2$3$4";
+				replacement = "$1  $2$3$4";
 			}
 			
 			using (var one = new OneNote(out var page, out var ns))
