@@ -282,7 +282,7 @@ namespace River.OneMoreAddIn.Commands
 		private void BrowsePath(object sender, EventArgs e)
 		{
 			// both cmdBox and argsBox use this handler
-			var box = sender as TextBox;
+			var box = sender == browseButton ? cmdBox : argsBox;
 
 			using (var dialog = new OpenFileDialog())
 			{
