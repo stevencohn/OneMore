@@ -2799,4 +2799,16 @@ In this section</value>
     <value>Name</value>
     <comment>label</comment>
   </data>
+  <data name="BreakingCommand_OptionsPrompt" xml:space="preserve">
+    <value>Click Yes for one space, No for two spaces, or Cancel to abort</value>
+    <comment>Question dialog</comment>
+  </data>
+  <data name="BreakingCommand_OptionsTitle" xml:space="preserve">
+    <value>Change Sentence Spacing</value>
+    <comment>Question dialog title</comment>
+  </data>
+  <data name="ribBreakingButton_Label" xml:space="preserve">
+    <value>Change Sentence Spacing</value>
+    <comment>clean menu item</comment>
+  </data>
 </root>

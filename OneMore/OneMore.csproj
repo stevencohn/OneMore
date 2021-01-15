@@ -121,6 +121,7 @@
     <Compile Include="Colorizer\Theme.cs" />
     <Compile Include="Commands\Clean\RemoveCitationsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
+    <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Extras\InsertCellsCommand.cs" />
@@ -200,7 +201,7 @@
       <DependentUpon>SaveSnippetDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\SnippetsProvider.cs" />
-    <Compile Include="Commands\Tools\SettingsCommand.cs" />
+    <Compile Include="Commands\Settings\SettingsCommand.cs" />
     <Compile Include="Commands\Settings\SnippetsSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
