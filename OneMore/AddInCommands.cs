@@ -40,6 +40,9 @@ namespace River.OneMoreAddIn
 		public async Task ApplyStylesCmd(IRibbonControl control)
 			=> await factory.Run<ApplyStylesCommand>();
 
+		public async Task BreakingCmd(IRibbonControl control)
+			=> await factory.Run<BreakingCommand>();
+
 		public async Task ChangePageColorCmd(IRibbonControl control)
 			=> await factory.Run<ChangePageColorCommand>();
 

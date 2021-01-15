@@ -289,6 +289,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click Yes for one space, No for two spaces, or Cancel to abort.
+        /// </summary>
+        internal static string BreakingCommand_OptionsPrompt {
+            get {
+                return ResourceManager.GetString("BreakingCommand_OptionsPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Sentence Spacing.
+        /// </summary>
+        internal static string BreakingCommand_OptionsTitle {
+            get {
+                return ResourceManager.GetString("BreakingCommand_OptionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Bullet {
@@ -3499,6 +3517,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribBoxButton_Screentip {
             get {
                 return ResourceManager.GetString("ribBoxButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Sentence Spacing.
+        /// </summary>
+        internal static string ribBreakingButton_Label {
+            get {
+                return ResourceManager.GetString("ribBreakingButton_Label", resourceCulture);
             }
         }
         
