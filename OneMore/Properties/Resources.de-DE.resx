@@ -2774,4 +2774,16 @@ ISO-code then comma then language name</comment>
     <value>Name</value>
     <comment>label</comment>
   </data>
+  <data name="BreakingCommand_OptionsPrompt" xml:space="preserve">
+    <value>Klicken Sie für ein Leerzeichen auf Ja, für zwei Leerzeichen auf Nein oder zum Abbrechen auf Abbrechen</value>
+    <comment>Question dialog</comment>
+  </data>
+  <data name="BreakingCommand_OptionsTitle" xml:space="preserve">
+    <value>Satzabstand ändern</value>
+    <comment>Question dialog title</comment>
+  </data>
+  <data name="ribBreakingButton_Label" xml:space="preserve">
+    <value>Satzabstand ändern</value>
+    <comment>clean menu item</comment>
+  </data>
 </root>

@@ -2780,4 +2780,16 @@ ISO-code then comma then language name</comment>
     <value>名称</value>
     <comment>label</comment>
   </data>
+  <data name="BreakingCommand_OptionsPrompt" xml:space="preserve">
+    <value>单击是表示一个空格，单击否表示两个空格，或单击取消中止</value>
+    <comment>Question dialog</comment>
+  </data>
+  <data name="BreakingCommand_OptionsTitle" xml:space="preserve">
+    <value>更改句子间距</value>
+    <comment>Question dialog title</comment>
+  </data>
+  <data name="ribBreakingButton_Label" xml:space="preserve">
+    <value>更改句子间距</value>
+    <comment>clean menu item</comment>
+  </data>
 </root>

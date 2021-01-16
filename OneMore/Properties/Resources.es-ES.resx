@@ -2788,4 +2788,16 @@ ISO-code then comma then language name</comment>
     <value>Nombre</value>
     <comment>label</comment>
   </data>
+  <data name="BreakingCommand_OptionsPrompt" xml:space="preserve">
+    <value>Haga clic en Sí para un espacio, No para dos espacios o Cancelar para cancelar</value>
+    <comment>Question dialog</comment>
+  </data>
+  <data name="BreakingCommand_OptionsTitle" xml:space="preserve">
+    <value>Cambiar el espaciado de las oraciones</value>
+    <comment>Question dialog title</comment>
+  </data>
+  <data name="ribBreakingButton_Label" xml:space="preserve">
+    <value>Cambiar el espaciado de las oraciones</value>
+    <comment>clean menu item</comment>
+  </data>
 </root>

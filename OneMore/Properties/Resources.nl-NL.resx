@@ -2789,4 +2789,16 @@ ISO-code then comma then language name</comment>
     <value>Naam</value>
     <comment>label</comment>
   </data>
+  <data name="BreakingCommand_OptionsPrompt" xml:space="preserve">
+    <value>Klik op Ja voor één spatie, Nee voor twee spaties of Annuleren om af te breken</value>
+    <comment>Question dialog</comment>
+  </data>
+  <data name="BreakingCommand_OptionsTitle" xml:space="preserve">
+    <value>Wijzig de regelafstand</value>
+    <comment>Question dialog title</comment>
+  </data>
+  <data name="ribBreakingButton_Label" xml:space="preserve">
+    <value>Wijzig de regelafstand</value>
+    <comment>clean menu item</comment>
+  </data>
 </root>

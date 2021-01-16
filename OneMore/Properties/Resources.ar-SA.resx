@@ -2788,4 +2788,16 @@ ISO-code then comma then language name</comment>
     <value>اسم</value>
     <comment>label</comment>
   </data>
+  <data name="BreakingCommand_OptionsPrompt" xml:space="preserve">
+    <value>انقر فوق نعم لمسافة واحدة أو لا لمسافتين أو إلغاء للإلغاء</value>
+    <comment>Question dialog</comment>
+  </data>
+  <data name="BreakingCommand_OptionsTitle" xml:space="preserve">
+    <value>تغيير تباعد الجمل</value>
+    <comment>Question dialog title</comment>
+  </data>
+  <data name="ribBreakingButton_Label" xml:space="preserve">
+    <value>تغيير تباعد الجمل</value>
+    <comment>clean menu item</comment>
+  </data>
 </root>
