@@ -199,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 			string pageId, string filename,
 			OneNote.ExportFormat format, string formatName)
 		{
-			logger.WriteLine($"publishing page {pageId} to {filename}");
+			logger.WriteLine($"publishing page to {filename}");
 
 			try
 			{
@@ -284,6 +284,7 @@ namespace River.OneMoreAddIn.Commands
 						{
 							var target = Path.Combine(path, Path.GetFileName(source));
 							File.Copy(source, target, true);
+							logger.WriteLine($"archived attachment {target}");
 
 							var link = $@"<a href=""file:///{target}"">{name}</a>";
 
