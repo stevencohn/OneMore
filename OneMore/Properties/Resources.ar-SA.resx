@@ -2796,4 +2796,8 @@ ISO-code then comma then language name</comment>
     <value>أرشفة المرفقات مع HTML؟ </value>
     <comment>message box prompt</comment>
   </data>
+  <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
+    <value>... تغيير تباعد الجمل</value>
+    <comment>option</comment>
+  </data>
 </root>

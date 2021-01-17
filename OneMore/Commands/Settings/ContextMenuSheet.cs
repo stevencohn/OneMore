@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribPasteRtfButton",			// Paste Rich Text
 			"ribFootnoteButton",			// Add Footnote
 			"ribCleanMenu",					// Clean Menu
+			"ribBreakingButton",			// ... Change Sentence Spacing
 			"ribRemoveAuthorsButton",		// ... Remove Author Information
 			"ribRemoveCitationsButton",		// ... Remove Pasted Citations
 			"ribRemoveEmptyButton",			// ... Remove Empty Paragraphs and Headings

@@ -2782,4 +2782,8 @@ ISO-code then comma then language name</comment>
     <value>Anhänge zusammen mit HTML archivieren? </value>
     <comment>message box prompt</comment>
   </data>
+  <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
+    <value>... Satzabstand ändern</value>
+    <comment>option</comment>
+  </data>
 </root>

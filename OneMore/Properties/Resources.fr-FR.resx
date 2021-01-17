@@ -2791,4 +2791,8 @@ ISO-code then comma then language name</comment>
     <value>Archiver les pièces jointes avec HTML? </value>
     <comment>message box prompt</comment>
   </data>
+  <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
+    <value>... Modifier l'espacement des phrases</value>
+    <comment>option</comment>
+  </data>
 </root>

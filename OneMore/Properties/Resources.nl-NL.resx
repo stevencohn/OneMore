@@ -2797,4 +2797,8 @@ ISO-code then comma then language name</comment>
     <value>Bijlagen archiveren samen met HTML? </value>
     <comment>message box prompt</comment>
   </data>
+  <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
+    <value>... Wijzig de regelafstand</value>
+    <comment>option</comment>
+  </data>
 </root>

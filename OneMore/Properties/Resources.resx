@@ -2807,4 +2807,8 @@ In this section</value>
     <value>Archive attachments along with HTML? A subdirectory will be created containing the HTML file along with copies of any file attachments on this page</value>
     <comment>message box prompt</comment>
   </data>
+  <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
+    <value>... Change Sentence Spacing</value>
+    <comment>option</comment>
+  </data>
 </root>

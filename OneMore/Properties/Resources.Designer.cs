@@ -590,6 +590,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Change Sentence Spacing.
+        /// </summary>
+        internal static string ContextMenuSheet_ribBreakingButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribBreakingButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Calendar.
         /// </summary>
         internal static string ContextMenuSheet_ribCalendarButton {

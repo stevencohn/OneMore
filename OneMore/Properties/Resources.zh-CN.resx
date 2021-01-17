@@ -2788,4 +2788,8 @@ ISO-code then comma then language name</comment>
     <value>存档附件以及HTML？</value>
     <comment>message box prompt</comment>
   </data>
+  <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
+    <value>...更改句子间距</value>
+    <comment>option</comment>
+  </data>
 </root>
