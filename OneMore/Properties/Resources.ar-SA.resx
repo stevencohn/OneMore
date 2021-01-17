@@ -2800,4 +2800,12 @@ ISO-code then comma then language name</comment>
     <value>... تغيير تباعد الجمل</value>
     <comment>option</comment>
   </data>
+  <data name="PluginDialog_badName" xml:space="preserve">
+    <value>اسم غير صالح أو مكرر</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PluginDialog_nameTip" xml:space="preserve">
+    <value>سيتم استبدال الكلمة الأساسية $ name تلقائيًا باسم الصفحة عند تشغيل هذا المكون الإضافي</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

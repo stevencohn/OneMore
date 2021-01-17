@@ -114,9 +114,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new PluginDialog())
 			{
-				name = XElement.Parse($"<wrapper>{name}</wrapper>").Value;
-
-				dialog.PageName = name + " (2)";
+				dialog.PageName = "$name (2)";
 
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{
@@ -298,7 +296,14 @@ namespace River.OneMoreAddIn.Commands
 			// set the page name to user-entered name
 			if (!string.IsNullOrEmpty(plugin.PageName.Trim()))
 			{
-				new Page(page).Title = plugin.PageName;
+				var name = plugin.PageName;
+				if (name.Contains("$name"))
+				{
+					// grab only text from parent's title
+					name = name.Replace("$name", XElement.Parse($"<w>{parent.Title}</w>").Value);
+				}
+
+				new Page(page).Title = name;
 			}
 
 			// remove all objectID values and let OneNote generate new IDs

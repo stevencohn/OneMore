@@ -2786,4 +2786,12 @@ ISO-code then comma then language name</comment>
     <value>... Satzabstand ändern</value>
     <comment>option</comment>
   </data>
+  <data name="PluginDialog_badName" xml:space="preserve">
+    <value>Ungültiger oder doppelter Name</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PluginDialog_nameTip" xml:space="preserve">
+    <value>Das Schlüsselwort $ name wird beim Ausführen dieses Plugins automatisch durch den Seitennamen ersetzt</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

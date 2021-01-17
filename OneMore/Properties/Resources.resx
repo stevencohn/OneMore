@@ -2811,4 +2811,12 @@ In this section</value>
     <value>... Change Sentence Spacing</value>
     <comment>option</comment>
   </data>
+  <data name="PluginDialog_badName" xml:space="preserve">
+    <value>Invalid or duplicate name</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PluginDialog_nameTip" xml:space="preserve">
+    <value>The keyword $name will be replaced automatically with the page name when running this plugin</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

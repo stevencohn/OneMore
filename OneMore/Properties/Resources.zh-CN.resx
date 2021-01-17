@@ -2792,4 +2792,12 @@ ISO-code then comma then language name</comment>
     <value>...更改句子间距</value>
     <comment>option</comment>
   </data>
+  <data name="PluginDialog_badName" xml:space="preserve">
+    <value>名称无效或重复</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PluginDialog_nameTip" xml:space="preserve">
+    <value>运行此插件时，关键字$ name将自动替换为页面名称。</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

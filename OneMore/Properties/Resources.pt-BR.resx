@@ -2801,4 +2801,12 @@ ISO-code then comma then language name</comment>
     <value>... Alterar o espaçamento das frases</value>
     <comment>option</comment>
   </data>
+  <data name="PluginDialog_badName" xml:space="preserve">
+    <value>Nome inválido ou duplicado</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PluginDialog_nameTip" xml:space="preserve">
+    <value>A palavra-chave $ name será substituída automaticamente pelo nome da página ao executar este plugin</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

@@ -30,6 +30,10 @@ namespace River.OneMoreAddIn.Commands
 			browseButton.Top = cmdBox.Top;
 			browseButton.Height = cmdBox.Height;
 
+			toolTip.SetToolTip(errorBox, Resx.PluginDialog_badName);
+			toolTip.SetToolTip(createRadio, Resx.PluginDialog_nameTip);
+			toolTip.SetToolTip(pageNameBox, Resx.PluginDialog_nameTip);
+
 			if (NeedsLocalizing())
 			{
 				Text = Resx.PluginDialog_Text;

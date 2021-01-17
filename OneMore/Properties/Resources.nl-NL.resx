@@ -2801,4 +2801,12 @@ ISO-code then comma then language name</comment>
     <value>... Wijzig de regelafstand</value>
     <comment>option</comment>
   </data>
+  <data name="PluginDialog_badName" xml:space="preserve">
+    <value>Ongeldige of dubbele naam</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PluginDialog_nameTip" xml:space="preserve">
+    <value>Het trefwoord $ name wordt automatisch vervangen door de paginanaam wanneer deze plug-in wordt uitgevoerd</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

@@ -2781,6 +2781,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid or duplicate name.
+        /// </summary>
+        internal static string PluginDialog_badName {
+            get {
+                return ResourceManager.GetString("PluginDialog_badName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string PluginDialog_cancelButton_Text {
@@ -2831,6 +2840,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PluginDialog_nameLabel_Text {
             get {
                 return ResourceManager.GetString("PluginDialog_nameLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The keyword $name will be replaced automatically with the page name when running this plugin.
+        /// </summary>
+        internal static string PluginDialog_nameTip {
+            get {
+                return ResourceManager.GetString("PluginDialog_nameTip", resourceCulture);
             }
         }
         

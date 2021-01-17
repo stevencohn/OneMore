@@ -2800,4 +2800,12 @@ ISO-code then comma then language name</comment>
     <value>... Cambiar el espaciado de las oraciones</value>
     <comment>option</comment>
   </data>
+  <data name="PluginDialog_badName" xml:space="preserve">
+    <value>Nombre no válido o duplicado</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="PluginDialog_nameTip" xml:space="preserve">
+    <value>La palabra clave $ nombre se reemplazará automáticamente con el nombre de la página cuando se ejecute este complemento</value>
+    <comment>tooltip</comment>
+  </data>
 </root>

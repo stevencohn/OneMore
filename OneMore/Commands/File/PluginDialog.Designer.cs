@@ -48,7 +48,7 @@
 			this.nameLabel = new System.Windows.Forms.Label();
 			this.nameBox = new System.Windows.Forms.TextBox();
 			this.errorBox = new System.Windows.Forms.PictureBox();
-			this.errorTip = new System.Windows.Forms.ToolTip(this.components);
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.errorBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -56,10 +56,9 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(427, 227);
-			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
+			this.cancelButton.Location = new System.Drawing.Point(640, 349);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(80, 23);
+			this.cancelButton.Size = new System.Drawing.Size(120, 35);
 			this.cancelButton.TabIndex = 12;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
@@ -69,10 +68,9 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(343, 227);
-			this.okButton.Margin = new System.Windows.Forms.Padding(2);
+			this.okButton.Location = new System.Drawing.Point(514, 349);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(80, 23);
+			this.okButton.Size = new System.Drawing.Size(120, 35);
 			this.okButton.TabIndex = 11;
 			this.okButton.Text = "Run";
 			this.okButton.UseVisualStyleBackColor = true;
@@ -81,28 +79,25 @@
 			// cmdLabel
 			// 
 			this.cmdLabel.AutoSize = true;
-			this.cmdLabel.Location = new System.Drawing.Point(12, 82);
-			this.cmdLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.cmdLabel.Location = new System.Drawing.Point(18, 126);
 			this.cmdLabel.Name = "cmdLabel";
-			this.cmdLabel.Size = new System.Drawing.Size(54, 13);
+			this.cmdLabel.Size = new System.Drawing.Size(82, 20);
 			this.cmdLabel.TabIndex = 2;
 			this.cmdLabel.Text = "Command";
 			// 
 			// cmdBox
 			// 
-			this.cmdBox.Location = new System.Drawing.Point(93, 80);
-			this.cmdBox.Margin = new System.Windows.Forms.Padding(2);
+			this.cmdBox.Location = new System.Drawing.Point(140, 123);
 			this.cmdBox.Name = "cmdBox";
-			this.cmdBox.Size = new System.Drawing.Size(387, 20);
+			this.cmdBox.Size = new System.Drawing.Size(578, 26);
 			this.cmdBox.TabIndex = 2;
 			this.cmdBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// browseButton
 			// 
-			this.browseButton.Location = new System.Drawing.Point(483, 79);
-			this.browseButton.Margin = new System.Windows.Forms.Padding(2);
+			this.browseButton.Location = new System.Drawing.Point(724, 122);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.Size = new System.Drawing.Size(24, 20);
+			this.browseButton.Size = new System.Drawing.Size(36, 31);
 			this.browseButton.TabIndex = 3;
 			this.browseButton.Text = "...";
 			this.browseButton.UseVisualStyleBackColor = true;
@@ -112,10 +107,9 @@
 			// 
 			this.updateRadio.AutoSize = true;
 			this.updateRadio.Checked = true;
-			this.updateRadio.Location = new System.Drawing.Point(15, 140);
-			this.updateRadio.Margin = new System.Windows.Forms.Padding(2);
+			this.updateRadio.Location = new System.Drawing.Point(22, 215);
 			this.updateRadio.Name = "updateRadio";
-			this.updateRadio.Size = new System.Drawing.Size(123, 17);
+			this.updateRadio.Size = new System.Drawing.Size(181, 24);
 			this.updateRadio.TabIndex = 6;
 			this.updateRadio.TabStop = true;
 			this.updateRadio.Text = "Update current page";
@@ -125,10 +119,9 @@
 			// createRadio
 			// 
 			this.createRadio.AutoSize = true;
-			this.createRadio.Location = new System.Drawing.Point(15, 167);
-			this.createRadio.Margin = new System.Windows.Forms.Padding(2);
+			this.createRadio.Location = new System.Drawing.Point(22, 257);
 			this.createRadio.Name = "createRadio";
-			this.createRadio.Size = new System.Drawing.Size(150, 17);
+			this.createRadio.Size = new System.Drawing.Size(221, 24);
 			this.createRadio.TabIndex = 7;
 			this.createRadio.Text = "Create a new page named";
 			this.createRadio.UseVisualStyleBackColor = true;
@@ -136,10 +129,9 @@
 			// pageNameBox
 			// 
 			this.pageNameBox.Enabled = false;
-			this.pageNameBox.Location = new System.Drawing.Point(166, 166);
-			this.pageNameBox.Margin = new System.Windows.Forms.Padding(2);
+			this.pageNameBox.Location = new System.Drawing.Point(249, 255);
 			this.pageNameBox.Name = "pageNameBox";
-			this.pageNameBox.Size = new System.Drawing.Size(314, 20);
+			this.pageNameBox.Size = new System.Drawing.Size(469, 26);
 			this.pageNameBox.TabIndex = 8;
 			this.pageNameBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
@@ -147,10 +139,9 @@
 			// 
 			this.childBox.AutoSize = true;
 			this.childBox.Enabled = false;
-			this.childBox.Location = new System.Drawing.Point(166, 188);
-			this.childBox.Margin = new System.Windows.Forms.Padding(2);
+			this.childBox.Location = new System.Drawing.Point(249, 289);
 			this.childBox.Name = "childBox";
-			this.childBox.Size = new System.Drawing.Size(137, 17);
+			this.childBox.Size = new System.Drawing.Size(200, 24);
 			this.childBox.TabIndex = 9;
 			this.childBox.Text = "as child of current page";
 			this.childBox.UseVisualStyleBackColor = true;
@@ -158,29 +149,26 @@
 			// 
 			// argsBox
 			// 
-			this.argsBox.Location = new System.Drawing.Point(93, 110);
-			this.argsBox.Margin = new System.Windows.Forms.Padding(2);
+			this.argsBox.Location = new System.Drawing.Point(140, 169);
 			this.argsBox.Name = "argsBox";
-			this.argsBox.Size = new System.Drawing.Size(387, 20);
+			this.argsBox.Size = new System.Drawing.Size(578, 26);
 			this.argsBox.TabIndex = 4;
 			this.argsBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// argsLabel
 			// 
 			this.argsLabel.AutoSize = true;
-			this.argsLabel.Location = new System.Drawing.Point(12, 112);
-			this.argsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.argsLabel.Location = new System.Drawing.Point(18, 172);
 			this.argsLabel.Name = "argsLabel";
-			this.argsLabel.Size = new System.Drawing.Size(57, 13);
+			this.argsLabel.Size = new System.Drawing.Size(87, 20);
 			this.argsLabel.TabIndex = 11;
 			this.argsLabel.Text = "Arguments";
 			// 
 			// browseArgsButton
 			// 
-			this.browseArgsButton.Location = new System.Drawing.Point(483, 109);
-			this.browseArgsButton.Margin = new System.Windows.Forms.Padding(2);
+			this.browseArgsButton.Location = new System.Drawing.Point(724, 168);
 			this.browseArgsButton.Name = "browseArgsButton";
-			this.browseArgsButton.Size = new System.Drawing.Size(24, 20);
+			this.browseArgsButton.Size = new System.Drawing.Size(36, 31);
 			this.browseArgsButton.TabIndex = 5;
 			this.browseArgsButton.Text = "...";
 			this.browseArgsButton.UseVisualStyleBackColor = true;
@@ -190,10 +178,9 @@
 			// 
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.saveButton.Enabled = false;
-			this.saveButton.Location = new System.Drawing.Point(259, 227);
-			this.saveButton.Margin = new System.Windows.Forms.Padding(2);
+			this.saveButton.Location = new System.Drawing.Point(388, 349);
 			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(80, 23);
+			this.saveButton.Size = new System.Drawing.Size(120, 35);
 			this.saveButton.TabIndex = 10;
 			this.saveButton.Text = "Save";
 			this.saveButton.UseVisualStyleBackColor = true;
@@ -202,10 +189,9 @@
 			// pluginsLabel
 			// 
 			this.pluginsLabel.AutoSize = true;
-			this.pluginsLabel.Location = new System.Drawing.Point(12, 23);
-			this.pluginsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.pluginsLabel.Location = new System.Drawing.Point(18, 35);
 			this.pluginsLabel.Name = "pluginsLabel";
-			this.pluginsLabel.Size = new System.Drawing.Size(41, 13);
+			this.pluginsLabel.Size = new System.Drawing.Size(60, 20);
 			this.pluginsLabel.TabIndex = 15;
 			this.pluginsLabel.Text = "Plugins";
 			// 
@@ -213,49 +199,50 @@
 			// 
 			this.pluginsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.pluginsBox.FormattingEnabled = true;
-			this.pluginsBox.Location = new System.Drawing.Point(93, 20);
+			this.pluginsBox.Location = new System.Drawing.Point(140, 31);
+			this.pluginsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pluginsBox.Name = "pluginsBox";
-			this.pluginsBox.Size = new System.Drawing.Size(387, 21);
+			this.pluginsBox.Size = new System.Drawing.Size(578, 28);
 			this.pluginsBox.TabIndex = 0;
 			this.pluginsBox.SelectedIndexChanged += new System.EventHandler(this.ViewPredefined);
 			// 
 			// nameLabel
 			// 
 			this.nameLabel.AutoSize = true;
-			this.nameLabel.Location = new System.Drawing.Point(12, 54);
-			this.nameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.nameLabel.Location = new System.Drawing.Point(18, 83);
 			this.nameLabel.Name = "nameLabel";
-			this.nameLabel.Size = new System.Drawing.Size(35, 13);
+			this.nameLabel.Size = new System.Drawing.Size(51, 20);
 			this.nameLabel.TabIndex = 18;
 			this.nameLabel.Text = "Name";
 			// 
 			// nameBox
 			// 
 			this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.nameBox.Location = new System.Drawing.Point(93, 51);
+			this.nameBox.Location = new System.Drawing.Point(140, 78);
+			this.nameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.Size = new System.Drawing.Size(387, 20);
+			this.nameBox.Size = new System.Drawing.Size(578, 26);
 			this.nameBox.TabIndex = 1;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeText);
 			// 
 			// errorBox
 			// 
 			this.errorBox.Image = ((System.Drawing.Image)(resources.GetObject("errorBox.Image")));
-			this.errorBox.Location = new System.Drawing.Point(483, 51);
+			this.errorBox.Location = new System.Drawing.Point(724, 78);
+			this.errorBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.errorBox.Name = "errorBox";
-			this.errorBox.Size = new System.Drawing.Size(17, 23);
+			this.errorBox.Size = new System.Drawing.Size(26, 35);
 			this.errorBox.TabIndex = 19;
 			this.errorBox.TabStop = false;
-			this.errorTip.SetToolTip(this.errorBox, "Invalid or duplicate name");
 			this.errorBox.Visible = false;
 			// 
 			// PluginDialog
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(519, 263);
+			this.ClientSize = new System.Drawing.Size(778, 405);
 			this.Controls.Add(this.errorBox);
 			this.Controls.Add(this.nameBox);
 			this.Controls.Add(this.nameLabel);
@@ -276,11 +263,10 @@
 			this.Controls.Add(this.cancelButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "PluginDialog";
-			this.Padding = new System.Windows.Forms.Padding(10);
+			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Run Plugin";
@@ -310,6 +296,6 @@
 		private System.Windows.Forms.Label nameLabel;
 		private System.Windows.Forms.TextBox nameBox;
 		private System.Windows.Forms.PictureBox errorBox;
-		private System.Windows.Forms.ToolTip errorTip;
+		private System.Windows.Forms.ToolTip toolTip;
 	}
 }
