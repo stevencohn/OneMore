@@ -22,6 +22,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 [Clean commands](../../wiki/Clean-Commands)
 
+* Change spacing between sentences to one or two spaces
 * Remove author/citation information from paragraphs
 * Remove pasted screen clipping and URL citation lines from page
 * Remove empty headers and "extra" empty lines between paragraphs
