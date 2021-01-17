@@ -1027,22 +1027,6 @@ OneNote 将自动关闭</value>
     <value>将页面另存为{0}时出错</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="SaveAs_Filter" xml:space="preserve">
-    HTML文件| * .htm | Word文件| * .docx | PDF文件| * .pdf | XML文件| * .xml | OneNote文件| * .one
-    Save as dialog filename filter string EDIT
-  </data>
-  <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    文件扩展名必须是.htm，.docx，.pdf，.xml或.one之一
-    Save as dialog invalid file type message EDIT
-  </data>
-  <data name="SaveAs_Success" xml:space="preserve">
-    <value>页面已保存到{0}</value>
-    <comment>Save as dialog success message</comment>
-  </data>
-  <data name="SaveAs_Title" xml:space="preserve">
-    <value>将页面另存为...</value>
-    <comment>Save as dialog title</comment>
-  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>删除空的段落和标题</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -2791,5 +2775,17 @@ ISO-code then comma then language name</comment>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>更改句子间距</value>
     <comment>clean menu item</comment>
+  </data>
+  <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
+    <value>导出1页</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
+    <value>存档为HTML</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
+    <value>存档附件以及HTML？</value>
+    <comment>message box prompt</comment>
   </data>
 </root>

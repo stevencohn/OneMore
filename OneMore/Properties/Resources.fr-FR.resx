@@ -1023,22 +1023,6 @@ Pourcentage</value>
     <value>Erreur lors de l'enregistrement de la page sous {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="SaveAs_Filter" xml:space="preserve">
-    Fichier HTML | * .htm | Fichier Word | * .docx | Fichier PDF | * .pdf | Fichier XML | * .xml | Fichier OneNote | * .one
-    Save as dialog filename filter string EDIT
-  </data>
-  <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    L'extension de fichier doit être l'une des suivantes: .htm, .docx, .pdf, .xml ou .one
-    Save as dialog invalid file type message EDIT
-  </data>
-  <data name="SaveAs_Success" xml:space="preserve">
-    <value>Page enregistrée dans {0}</value>
-    <comment>Save as dialog success message</comment>
-  </data>
-  <data name="SaveAs_Title" xml:space="preserve">
-    <value>Enregistrer la page en...</value>
-    <comment>Save as dialog title</comment>
-  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>Supprimer les paragraphes et les en-têtes vides</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -2794,5 +2778,17 @@ ISO-code then comma then language name</comment>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Modifier l'espacement des phrases</value>
     <comment>clean menu item</comment>
+  </data>
+  <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
+    <value>Exporter 1 page</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
+    <value>Archiver au HTML</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
+    <value>Archiver les pièces jointes avec HTML? </value>
+    <comment>message box prompt</comment>
   </data>
 </root>

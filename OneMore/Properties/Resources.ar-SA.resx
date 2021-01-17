@@ -1029,22 +1029,6 @@
     <value>خطأ في حفظ الصفحة باسم {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="SaveAs_Filter" xml:space="preserve">
-    ملف HTML | * .htm | ملف Word | * .docx | ملف PDF | * .pdf | ملف XML | * .xml | ملف OneNote | * .one
-    Save as dialog filename filter string EDIT
-  </data>
-  <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    يجب أن يكون امتداد الملف واحدًا من .htm أو .docx أو .pdf أو .xml أو .one
-    Save as dialog invalid file type message EDIT
-  </data>
-  <data name="SaveAs_Success" xml:space="preserve">
-    <value>تم حفظ الصفحة في {0}</value>
-    <comment>Save as dialog success message</comment>
-  </data>
-  <data name="SaveAs_Title" xml:space="preserve">
-    <value>حفظ الصفحة كما...</value>
-    <comment>Save as dialog title</comment>
-  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>قم بإزالة الفقرات والعناوين الفارغة</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -2799,5 +2783,17 @@ ISO-code then comma then language name</comment>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>تغيير تباعد الجمل</value>
     <comment>clean menu item</comment>
+  </data>
+  <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
+    <value>تصدير 1 صفحة</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
+    <value>أرشفة إلى HTML</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
+    <value>أرشفة المرفقات مع HTML؟ </value>
+    <comment>message box prompt</comment>
   </data>
 </root>

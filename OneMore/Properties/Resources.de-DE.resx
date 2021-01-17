@@ -1017,22 +1017,6 @@
     <value>Fehler beim Speichern der Seite als {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="SaveAs_Filter" xml:space="preserve">
-    HTML-Datei | * .htm | Word-Datei | * .docx | PDF-Datei | * .pdf | XML-Datei | * .xml | OneNote-Datei | * .one
-    Save as dialog filename filter string EDIT
-  </data>
-  <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    Die Dateierweiterung muss .htm, .docx, .pdf, .xml oder .one sein
-    Save as dialog invalid file type message EDIT
-  </data>
-  <data name="SaveAs_Success" xml:space="preserve">
-    <value>Seite gespeichert auf {0}</value>
-    <comment>Save as dialog success message</comment>
-  </data>
-  <data name="SaveAs_Title" xml:space="preserve">
-    <value>Seite sichern als...</value>
-    <comment>Save as dialog title</comment>
-  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>Entfernen Sie leere Absätze und Überschriften</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -2785,5 +2769,17 @@ ISO-code then comma then language name</comment>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Satzabstand ändern</value>
     <comment>clean menu item</comment>
+  </data>
+  <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
+    <value>1 Seite exportieren</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
+    <value>In HTML archivieren</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
+    <value>Anhänge zusammen mit HTML archivieren? </value>
+    <comment>message box prompt</comment>
   </data>
 </root>

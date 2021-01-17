@@ -1383,6 +1383,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive to HTML.
+        /// </summary>
+        internal static string ExportCommand_ArchiveHTML {
+            get {
+                return ResourceManager.GetString("ExportCommand_ArchiveHTML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive attachments along with HTML? A subdirectory will be created containing the HTML file along with copies of any file attachments on this page.
+        /// </summary>
+        internal static string ExportCommand_ArchivePrompt {
+            get {
+                return ResourceManager.GetString("ExportCommand_ArchivePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ExportDialog_cancelButton_Text {
@@ -1419,6 +1437,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ExportDialog_formatLabel_Text {
             get {
                 return ResourceManager.GetString("ExportDialog_formatLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export 1 Page.
+        /// </summary>
+        internal static string ExportDialog_groupBox_OneText {
+            get {
+                return ResourceManager.GetString("ExportDialog_groupBox_OneText", resourceCulture);
             }
         }
         
@@ -4571,42 +4598,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SaveAs_Error {
             get {
                 return ResourceManager.GetString("SaveAs_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml|OneNote File|*.one.
-        /// </summary>
-        internal static string SaveAs_Filter {
-            get {
-                return ResourceManager.GetString("SaveAs_Filter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File extension must be one of .htm, .docx, .pdf, .xml, or .one.
-        /// </summary>
-        internal static string SaveAs_Invalid_Type {
-            get {
-                return ResourceManager.GetString("SaveAs_Invalid_Type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Page saved to {0}.
-        /// </summary>
-        internal static string SaveAs_Success {
-            get {
-                return ResourceManager.GetString("SaveAs_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save Page as....
-        /// </summary>
-        internal static string SaveAs_Title {
-            get {
-                return ResourceManager.GetString("SaveAs_Title", resourceCulture);
             }
         }
         
