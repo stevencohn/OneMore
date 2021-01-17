@@ -38,7 +38,12 @@ namespace River.OneMoreAddIn.Commands
 					.Select(e => e.Attribute("ID").Value)
 					.ToList();
 
-				if (pageIDs.Count > 0)
+				if (pageIDs.Count == 0)
+				{
+					pageIDs.Add(one.CurrentPageId);
+					Export(pageIDs);
+				}
+				else
 				{
 					Export(pageIDs);
 				}

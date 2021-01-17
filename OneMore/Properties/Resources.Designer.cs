@@ -4602,42 +4602,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml|OneNote File|*.one.
-        /// </summary>
-        internal static string SaveAs_Filter {
-            get {
-                return ResourceManager.GetString("SaveAs_Filter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File extension must be one of .htm, .docx, .pdf, .xml, or .one.
-        /// </summary>
-        internal static string SaveAs_Invalid_Type {
-            get {
-                return ResourceManager.GetString("SaveAs_Invalid_Type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Page saved to {0}.
-        /// </summary>
-        internal static string SaveAs_Success {
-            get {
-                return ResourceManager.GetString("SaveAs_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save Page as....
-        /// </summary>
-        internal static string SaveAs_Title {
-            get {
-                return ResourceManager.GetString("SaveAs_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Saved {0} pages to {1}.
         /// </summary>
         internal static string SaveAsMany_Success {

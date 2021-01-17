@@ -1048,22 +1048,6 @@ Notebooks</value>
     <value>Error saving page as {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="SaveAs_Filter" xml:space="preserve">
-    <value>HTML File|*.htm|Word File|*.docx|PDF File|*.pdf|XML File|*.xml|OneNote File|*.one</value>
-    <comment>Save as dialog filename filter string</comment>
-  </data>
-  <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    <value>File extension must be one of .htm, .docx, .pdf, .xml, or .one</value>
-    <comment>Save as dialog invalid file type message</comment>
-  </data>
-  <data name="SaveAs_Success" xml:space="preserve">
-    <value>Page saved to {0}</value>
-    <comment>Save as dialog success message</comment>
-  </data>
-  <data name="SaveAs_Title" xml:space="preserve">
-    <value>Save Page as...</value>
-    <comment>Save as dialog title</comment>
-  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>Remove empty paragraphs and headers</value>
     <comment>Ribbon OneMore menu item</comment>

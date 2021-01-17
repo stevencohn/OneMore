@@ -1029,22 +1029,6 @@ Cuadernos</value>
     <value>Error al guardar la página como {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="SaveAs_Filter" xml:space="preserve">
-    Archivo HTML | * .htm | Archivo de Word | * .docx | Archivo PDF | * .pdf | Archivo XML | * .xml | Archivo OneNote | * .one
-    Save as dialog filename filter string EDIT
-  </data>
-  <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    La extensión del archivo debe ser .htm, .docx, .pdf, .xml o .one
-    Save as dialog invalid file type message EDIT
-  </data>
-  <data name="SaveAs_Success" xml:space="preserve">
-    <value>Página guardada en {0}</value>
-    <comment>Save as dialog success message</comment>
-  </data>
-  <data name="SaveAs_Title" xml:space="preserve">
-    <value>Guardar pagina como...</value>
-    <comment>Save as dialog title</comment>
-  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>Eliminar párrafos y encabezados vacíos</value>
     <comment>Ribbon OneMore menu item</comment>

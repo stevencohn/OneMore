@@ -1030,22 +1030,6 @@ Notebooks</value>
     <value>Fout bij opslaan van pagina als {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="SaveAs_Filter" xml:space="preserve">
-    HTML-bestand | * .htm | Word-bestand | * .docx | PDF-bestand | * .pdf | XML-bestand | * .xml | OneNote-bestand | * .one
-    Save as dialog filename filter string EDIT
-  </data>
-  <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    De bestandsextensie moet .htm, .docx, .pdf, .xml of .one zijn
-    Save as dialog invalid file type message EDIT
-  </data>
-  <data name="SaveAs_Success" xml:space="preserve">
-    <value>Pagina opgeslagen in {0}</value>
-    <comment>Save as dialog success message</comment>
-  </data>
-  <data name="SaveAs_Title" xml:space="preserve">
-    <value>Sla pagina op als...</value>
-    <comment>Save as dialog title</comment>
-  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>Verwijder lege alinea's en kopteksten</value>
     <comment>Ribbon OneMore menu item</comment>

@@ -76,7 +76,8 @@
             "HTML File (*.htm)",
             "PDF File (*.pdf)",
             "Word File (*.docx)",
-            "XML File (*.xml)"});
+            "XML File (*.xml)",
+            "OneNote File (*.one)"});
 			this.formatBox.Location = new System.Drawing.Point(83, 80);
 			this.formatBox.Name = "formatBox";
 			this.formatBox.Size = new System.Drawing.Size(250, 28);

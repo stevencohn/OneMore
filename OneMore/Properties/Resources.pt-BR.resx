@@ -1030,22 +1030,6 @@ Notebooks</value>
     <value>Erro ao salvar a página como {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="SaveAs_Filter" xml:space="preserve">
-    Arquivo HTML | * .htm | Arquivo Word | * .docx | Arquivo PDF | * .pdf | Arquivo XML | * .xml | Arquivo OneNote | * .one
-    Save as dialog filename filter string EDIT
-  </data>
-  <data name="SaveAs_Invalid_Type" xml:space="preserve">
-    A extensão do arquivo deve ser .htm, .docx, .pdf, .xml ou .one
-    Save as dialog invalid file type message EDIT
-  </data>
-  <data name="SaveAs_Success" xml:space="preserve">
-    <value>Página salva em {0}</value>
-    <comment>Save as dialog success message</comment>
-  </data>
-  <data name="SaveAs_Title" xml:space="preserve">
-    <value>Salvar página como...</value>
-    <comment>Save as dialog title</comment>
-  </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>Remova parágrafos e cabeçalhos vazios</value>
     <comment>Ribbon OneMore menu item</comment>
