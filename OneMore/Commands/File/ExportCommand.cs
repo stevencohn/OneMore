@@ -38,14 +38,9 @@ namespace River.OneMoreAddIn.Commands
 					.Select(e => e.Attribute("ID").Value)
 					.ToList();
 
-				if (pageIDs.Count > 1)
+				if (pageIDs.Count > 0)
 				{
-					ExportMany(pageIDs);
-				}
-				else
-				{
-					var page = one.GetPage(OneNote.PageDetail.BinaryData);
-					ExportOne(page);
+					Export(pageIDs);
 				}
 			}
 
@@ -53,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ExportMany(List<string> pageIDs)
+		private void Export(List<string> pageIDs)
 		{
 			OneNote.ExportFormat format;
 			string path;
@@ -128,70 +123,12 @@ namespace River.OneMoreAddIn.Commands
 		private DialogResult PromptToArchive()
 		{
 			return MessageBox.Show(
-				"Archive?",
-				"Archive to HTML",
+				Resx.ExportCommand_ArchivePrompt,
+				Resx.ExportCommand_ArchiveHTML,
 				MessageBoxButtons.YesNoCancel,
 				MessageBoxIcon.Question,
 				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
-		}
-
-
-		private void ExportOne(Page page)
-		{
-			var filename = page.Title.Replace(' ', '_');
-
-			using (var dialog = new SaveFileDialog
-			{
-				FileName = filename,
-				Filter = Resx.SaveAs_Filter,
-				DefaultExt = ".htm",
-				Title = Resx.SaveAs_Title,
-				AddExtension = false
-			})
-			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				filename = dialog.FileName;
-			}
-
-			var ext = Path.GetExtension(filename).ToLower();
-
-			if (ext == ".htm")
-			{
-				var result = PromptToArchive();
-				if (result == DialogResult.Cancel)
-				{
-					return;
-				}
-
-				SaveAsHTML(page, ref filename, result == DialogResult.Yes);
-			}
-			else if (ext == ".xml")
-			{
-				SaveAsXML(page.Root, filename);
-			}
-			else
-			{
-				OneNote.ExportFormat format;
-				switch (ext)
-				{
-					case ".pdf": format = OneNote.ExportFormat.PDF; break;
-					case ".docx": format = OneNote.ExportFormat.Word; break;
-					case ".one": format = OneNote.ExportFormat.OneNote; break;
-
-					default:
-						UIHelper.ShowError(Resx.SaveAs_Invalid_Type);
-						return;
-				}
-
-				SaveAs(page.PageId, filename, format, format.ToString());
-			}
-
-			UIHelper.ShowMessage(string.Format(Resx.SaveAs_Success, filename));
 		}
 
 

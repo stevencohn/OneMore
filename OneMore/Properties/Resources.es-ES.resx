@@ -2800,4 +2800,16 @@ ISO-code then comma then language name</comment>
     <value>Cambiar el espaciado de las oraciones</value>
     <comment>clean menu item</comment>
   </data>
+  <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
+    <value>Exportar 1 página</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
+    <value>Archivar en HTML</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
+    <value>¿Archivar adjuntos junto con HTML? </value>
+    <comment>message box prompt</comment>
+  </data>
 </root>

@@ -2792,4 +2792,16 @@ ISO-code then comma then language name</comment>
     <value>更改句子间距</value>
     <comment>clean menu item</comment>
   </data>
+  <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
+    <value>导出1页</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
+    <value>存档为HTML</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
+    <value>存档附件以及HTML？</value>
+    <comment>message box prompt</comment>
+  </data>
 </root>

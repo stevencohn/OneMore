@@ -2801,4 +2801,16 @@ ISO-code then comma then language name</comment>
     <value>Wijzig de regelafstand</value>
     <comment>clean menu item</comment>
   </data>
+  <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
+    <value>Exporteer 1 pagina</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
+    <value>Archiveer naar HTML</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
+    <value>Bijlagen archiveren samen met HTML? </value>
+    <comment>message box prompt</comment>
+  </data>
 </root>

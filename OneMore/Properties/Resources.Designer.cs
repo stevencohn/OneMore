@@ -1383,6 +1383,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive to HTML.
+        /// </summary>
+        internal static string ExportCommand_ArchiveHTML {
+            get {
+                return ResourceManager.GetString("ExportCommand_ArchiveHTML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive attachments along with HTML? A subdirectory will be created containing the HTML file along with copies of any file attachments on this page.
+        /// </summary>
+        internal static string ExportCommand_ArchivePrompt {
+            get {
+                return ResourceManager.GetString("ExportCommand_ArchivePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ExportDialog_cancelButton_Text {
@@ -1419,6 +1437,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ExportDialog_formatLabel_Text {
             get {
                 return ResourceManager.GetString("ExportDialog_formatLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export 1 Page.
+        /// </summary>
+        internal static string ExportDialog_groupBox_OneText {
+            get {
+                return ResourceManager.GetString("ExportDialog_groupBox_OneText", resourceCulture);
             }
         }
         

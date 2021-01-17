@@ -2811,4 +2811,16 @@ In this section</value>
     <value>Change Sentence Spacing</value>
     <comment>clean menu item</comment>
   </data>
+  <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
+    <value>Export 1 Page</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
+    <value>Archive to HTML</value>
+    <comment>message box title</comment>
+  </data>
+  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
+    <value>Archive attachments along with HTML? A subdirectory will be created containing the HTML file along with copies of any file attachments on this page</value>
+    <comment>message box prompt</comment>
+  </data>
 </root>

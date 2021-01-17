@@ -32,7 +32,10 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			groupBox.Text = string.Format(Resx.ExportDialog_groupBox_Text, pageCount);
+			groupBox.Text = pageCount == 1
+				? Resx.ExportDialog_groupBox_OneText
+				: string.Format(Resx.ExportDialog_groupBox_Text, pageCount);
+
 			pathBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 			formatBox.SelectedIndex = 0;
 		}
