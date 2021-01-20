@@ -22,6 +22,11 @@ namespace River.OneMoreAddIn
 	/// <summary>
 	/// IRibbonExtensibility and ribbon handlers
 	/// </summary>
+	/// <remarks>
+	/// idMso, context menus and button identifiers are here
+	/// https://github.com/OfficeDev/office-fluent-ui-command-identifiers
+	/// and available in the References folder under this sln
+	/// </remarks>
 	public partial class AddIn
 	{
 		private XElement engines;
