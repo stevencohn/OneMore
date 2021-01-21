@@ -131,6 +131,8 @@
     <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\File\ArchiveCommand.cs" />
+    <Compile Include="Commands\File\Archivist.cs" />
     <Compile Include="Commands\File\ManagePluginsCommand.cs" />
     <Compile Include="Commands\File\Plugin.cs" />
     <Compile Include="Commands\File\PluginsProvider.cs" />
