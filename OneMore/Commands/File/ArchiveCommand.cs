@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
 					{
-						await Archive(root, string.Empty);
+						await Archive(root, null);
 					}
 				}
 			}
@@ -100,8 +100,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (element.Name.LocalName == "Page")
 				{
-					await Archive(one.GetPage(
-						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData));
+					var page = one.GetPage(
+						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
+
+					await Archive(page, path);
 				}
 				else
 				{
@@ -111,10 +113,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						// SectionGroup or Section
 						path = path == null
-							? $"{element.Attribute("name").Value}/"
-							: $"{path}/{element.Attribute("name").Value}/";
-
-						archive.CreateEntry(path);
+							? element.Attribute("name").Value
+							: Path.Combine(path, element.Attribute("name").Value);
 
 						await Archive(element, path);
 					}
@@ -123,13 +123,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Archive(Page page)
+		private async Task Archive(Page page, string path)
 		{
-			var name = page.Title;
+			var name = PathFactory.CleanFileName(page.Title);
+			var full = Path.Combine(path, $"{name}.htm");
 
 			MemoryStream reader = null;
 
-			var entry = archive.CreateEntry(name);
+			var entry = archive.CreateEntry(full);
 			using (var writer = entry.Open())
 			{
 				await reader.CopyToAsync(writer);

@@ -16,6 +16,26 @@ namespace River.OneMoreAddIn
 	/// </remarks>
 	internal static class PathFactory
 	{
+		private static char[] invalidFileChars;
+
+
+		/// <summary>
+		/// Clean a file name (typically a page title) to replace invalid file name
+		/// characters with underscore characters.
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public static string CleanFileName(string name)
+		{
+			if (invalidFileChars == null)
+				invalidFileChars = Path.GetInvalidFileNameChars();
+
+			return string.Join("_",
+				name.Split(invalidFileChars, StringSplitOptions.RemoveEmptyEntries))
+				.TrimEnd('.');
+		}
+
+
 		/// <summary>
 		/// Gets a path to the OneMore data folder
 		/// </summary>
