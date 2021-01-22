@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class ArchiveCommand : Command
@@ -29,6 +28,10 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
+
 			var scope = args[0] as string;
 			using (one = new OneNote())
 			{
@@ -44,13 +47,20 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				string path = ChooseLocation(root.Attribute("name").Value);
+				string path = await SingleThreaded.Invoke(() =>
+				{
+					// OpenFileDialog must run in STA thread
+					return ChooseLocation(root.Attribute("name").Value);
+				});
+
 				if (path == null)
 				{
 					return;
 				}
 
-				tempdir = Path.GetTempPath();
+				// use this temp folder as a sandbox for each page
+				var t = Path.GetTempFileName();
+				tempdir = Path.Combine(Path.GetDirectoryName(t), Path.GetFileNameWithoutExtension(t));
 				PathFactory.EnsurePathExists(tempdir);
 
 				using (var stream = new FileStream(path, FileMode.Create))
@@ -62,6 +72,8 @@ namespace River.OneMoreAddIn.Commands
 						await Archive(root, null);
 					}
 				}
+
+				Directory.Delete(tempdir, true);
 			}
 		}
 
@@ -72,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var dialog = new OpenFileDialog
 			{
 				AddExtension = true,
-				CheckFileExists = true,
+				CheckFileExists = false,
 				DefaultExt = ".zip",
 				Filter = "Zip File (*.zip)|*.zip", // Resx.ArchiveCommand_OpenFileFilter,
 				FileName = name,
@@ -114,11 +126,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
+					// SectionGroup or Section
 					element.ReadAttributeValue("locked", out bool locked, false);
 					element.ReadAttributeValue("isRecycleBin", out bool recycled, false);
 					if (!locked && !recycled)
 					{
-						// SectionGroup or Section
+						// append name of Section/Group to path to build zip folder path
 						path = path == null
 							? element.Attribute("name").Value
 							: Path.Combine(path, element.Attribute("name").Value);
@@ -135,32 +148,14 @@ namespace River.OneMoreAddIn.Commands
 			CleanupTemp();
 
 			var name = PathFactory.CleanFileName(page.Title);
-			var filename = Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
+
+			var filename = path == null
+				? Path.Combine(tempdir, $"{name}.htm")
+				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
 			archivist.SaveAsHTML(page, ref filename, true);
 
-			MemoryStream reader = null;
-
-			var entry = archive.CreateEntry(filename);
-			using (var writer = entry.Open())
-			{
-				await reader.CopyToAsync(writer);
-			}
-		}
-
-
-		private void ArchiveFiles(string path)
-		{
-			var temp = new DirectoryInfo(tempdir);
-			foreach (FileInfo file in temp.GetFiles())
-			{
-				file.Delete();
-			}
-
-			foreach (DirectoryInfo dir in temp.GetDirectories())
-			{
-				dir.Delete(true);
-			}
+			await ArchivePageFiles(Path.GetDirectoryName(filename), path);
 		}
 
 
@@ -175,6 +170,42 @@ namespace River.OneMoreAddIn.Commands
 			foreach (DirectoryInfo dir in temp.GetDirectories())
 			{
 				dir.Delete(true);
+			}
+		}
+
+
+		private async Task ArchivePageFiles(string location, string path)
+		{
+			if (!Directory.Exists(location))
+			{
+				return;
+			}
+
+			var info = new DirectoryInfo(location);
+
+			foreach (FileInfo file in info.GetFiles())
+			{
+				using (var reader = new FileStream(file.FullName, FileMode.Open))
+				{
+					var name = path == null
+						? file.Name
+						: Path.Combine(path, file.Name);
+
+					var entry = archive.CreateEntry(name, CompressionLevel.Optimal);
+					using (var writer = new StreamWriter(entry.Open()))
+					{
+						await reader.CopyToAsync(writer.BaseStream);
+					}
+				}
+			}
+
+			foreach (DirectoryInfo dir in info.GetDirectories())
+			{
+				var dname = path == null
+					? dir.Name
+					: Path.Combine(path, dir.Name);
+
+				await ArchivePageFiles(dir.FullName, dname);
 			}
 		}
 	}

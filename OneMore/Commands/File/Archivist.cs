@@ -1,4 +1,7 @@
-﻿
+﻿//************************************************************************************************
+// Copyright © 2021 Steven M Cohn.  All rights reserved.
+//************************************************************************************************
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -114,7 +117,8 @@ namespace River.OneMoreAddIn.Commands
 							File.Copy(source, target, true);
 							logger.WriteLine($"archived attachment {target}");
 
-							var link = $@"<a href=""file:///{target}"">{name}</a>";
+							// this is a relative path that allows us to move the folder around
+							var link = $@"<a href=""./{Path.GetFileName(source)}"">{name}</a>";
 
 							foreach (Match match in matches)
 							{
