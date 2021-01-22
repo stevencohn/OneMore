@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class ArchiveCommand : Command
@@ -19,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		private Archivist archivist;
 		private ZipArchive archive;
 		private string tempdir;
+		private int pageCount = 0;
 
 
 		public ArchiveCommand()
@@ -28,10 +30,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			var scope = args[0] as string;
 			using (one = new OneNote())
 			{
@@ -43,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!root.Descendants(ns + "Page").Any())
 				{
-					// no pages!
+					UIHelper.ShowMessage(Resx.ArchiveCommand_noPages);
 					return;
 				}
 
@@ -74,6 +72,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				Directory.Delete(tempdir, true);
+
+				UIHelper.ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, path));
 			}
 		}
 
@@ -86,11 +86,11 @@ namespace River.OneMoreAddIn.Commands
 				AddExtension = true,
 				CheckFileExists = false,
 				DefaultExt = ".zip",
-				Filter = "Zip File (*.zip)|*.zip", // Resx.ArchiveCommand_OpenFileFilter,
+				Filter = Resx.ArchiveCommand_OpenFileFilter,
 				FileName = name,
 				//InitialDirectory = path,
 				Multiselect = false,
-				Title = "Archive Location" // Resx.ArchiveCommand_OpenFileTitle
+				Title = Resx.ArchiveCommand_OpenFileTitle
 			})
 			{
 				// cannot use owner parameter here or it will hang! cross-threading
@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 			var dir = Path.GetDirectoryName(path);
 			if (!Directory.Exists(dir))
 			{
-				// choose valid directory
+				UIHelper.ShowMessage(Resx.ArchiveCommand_noDirectory);
 				return null;
 			}
 
@@ -156,6 +156,8 @@ namespace River.OneMoreAddIn.Commands
 			archivist.SaveAsHTML(page, ref filename, true);
 
 			await ArchivePageFiles(Path.GetDirectoryName(filename), path);
+
+			pageCount++;
 		}
 
 

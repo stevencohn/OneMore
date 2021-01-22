@@ -2819,4 +2819,24 @@ In this section</value>
     <value>The keyword $name will be replaced automatically with the page name when running this plugin</value>
     <comment>tooltip</comment>
   </data>
+  <data name="ArchiveCommand_OpenFileFilter" xml:space="preserve">
+    <value>Zip File (*.zip)|*.zip</value>
+    <comment>archive dialog</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
+    <value>Archive Location</value>
+    <comment>archive dialog title</comment>
+  </data>
+  <data name="ArchiveCommand_archived" xml:space="preserve">
+    <value>{0} pages archive to {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noDirectory" xml:space="preserve">
+    <value>Directory does not exist</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noPages" xml:space="preserve">
+    <value>No pages found</value>
+    <comment>message</comment>
+  </data>
 </root>

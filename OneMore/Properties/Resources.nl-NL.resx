@@ -1626,11 +1626,11 @@ Symbolen: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    HTML-bestand (* .htm)
-PDF-bestand (* .pdf)
-Word-bestand (* .docx)
-XML-bestand (* .xml)
-OneNote-bestand (* .one)
+    HTML-bestand (*.htm)
+PDF-bestand (*.pdf)
+Word-bestand (*.docx)
+XML-bestand (*.xml)
+OneNote-bestand (*.one)
     combo box EDIT
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
@@ -1710,7 +1710,7 @@ OneNote-bestand (* .one)
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Word-bestanden (* .doc) | * .docx | Powerpoint-bestanden (* .pptx) | * .pptx | OneMore-sjabloonbestanden (* .xml) | * .xml
+    Word-bestanden (*.doc)|*.docx|Powerpoint-bestanden (*.pptx)|*.pptx|OneMore-sjabloonbestanden (*.xml)|*.xml
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
@@ -2808,5 +2808,25 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_nameTip" xml:space="preserve">
     <value>Het trefwoord $ name wordt automatisch vervangen door de paginanaam wanneer deze plug-in wordt uitgevoerd</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileFilter" xml:space="preserve">
+    <value>Zip-bestand (*.zip)|*.zip</value>
+    <comment>archive dialog</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
+    <value>Archieflocatie</value>
+    <comment>archive dialog title</comment>
+  </data>
+  <data name="ArchiveCommand_archived" xml:space="preserve">
+    <value>{0} pagina's archiveren naar {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noDirectory" xml:space="preserve">
+    <value>Directory bestaat niet</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noPages" xml:space="preserve">
+    <value>Geen pagina's gevonden</value>
+    <comment>message</comment>
   </data>
 </root>

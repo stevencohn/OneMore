@@ -1622,11 +1622,11 @@ OneNote 将自动关闭</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    HTML档案（* .htm）
-PDF档案（* .pdf）
-Word文件（* .docx）
-XML档案（* .xml）
-OneNote文件（* .one）
+    HTML档案（*.htm）
+PDF档案（*.pdf）
+Word文件（*.docx）
+XML档案（*.xml）
+OneNote文件（*.one）
     combo box EDIT
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
@@ -1706,7 +1706,7 @@ OneNote文件（* .one）
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Word文件（* .doc）| * .docx | PowerPoint文件（* .pptx）| * .pptx | OneMore模板文件（* .xml）| * .xml
+    Word文件（*.doc）|*.docx|PowerPoint文件（*.pptx）|*.pptx|OneMore模板文件（*.xml）|*.xml
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
@@ -2799,5 +2799,25 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_nameTip" xml:space="preserve">
     <value>运行此插件时，关键字$ name将自动替换为页面名称。</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileFilter" xml:space="preserve">
+    <value>压缩文件（*.zip）|*.zip</value>
+    <comment>archive dialog</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
+    <value>档案位置</value>
+    <comment>archive dialog title</comment>
+  </data>
+  <data name="ArchiveCommand_archived" xml:space="preserve">
+    <value>{0}页归档到{1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noDirectory" xml:space="preserve">
+    <value>目录不存在</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noPages" xml:space="preserve">
+    <value>找不到页面</value>
+    <comment>message</comment>
   </data>
 </root>

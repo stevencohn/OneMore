@@ -269,6 +269,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} pages archive to {1}.
+        /// </summary>
+        internal static string ArchiveCommand_archived {
+            get {
+                return ResourceManager.GetString("ArchiveCommand_archived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory does not exist.
+        /// </summary>
+        internal static string ArchiveCommand_noDirectory {
+            get {
+                return ResourceManager.GetString("ArchiveCommand_noDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No pages found.
+        /// </summary>
+        internal static string ArchiveCommand_noPages {
+            get {
+                return ResourceManager.GetString("ArchiveCommand_noPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip File (*.zip)|*.zip.
+        /// </summary>
+        internal static string ArchiveCommand_OpenFileFilter {
+            get {
+                return ResourceManager.GetString("ArchiveCommand_OpenFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive Location.
+        /// </summary>
+        internal static string ArchiveCommand_OpenFileTitle {
+            get {
+                return ResourceManager.GetString("ArchiveCommand_OpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Automobile {
