@@ -3517,6 +3517,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive Notebook.
+        /// </summary>
+        internal static string ribArchiveNotebookButton_Label {
+            get {
+                return ResourceManager.GetString("ribArchiveNotebookButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip all pages including attachments.
+        /// </summary>
+        internal static string ribArchiveNotebookButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribArchiveNotebookButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive Section.
+        /// </summary>
+        internal static string ribArchiveSectionButton_Label {
+            get {
+                return ResourceManager.GetString("ribArchiveSectionButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip all pages including attachments.
+        /// </summary>
+        internal static string ribArchiveSectionButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribArchiveSectionButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blue Status.
         /// </summary>
         internal static string ribBlueStatusButton_Label {

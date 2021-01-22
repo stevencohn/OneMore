@@ -2823,4 +2823,20 @@ ISO-code then comma then language name</comment>
     <value>Aucune page trouvée</value>
     <comment>message</comment>
   </data>
+  <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
+    <value>Cahier d'archives</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
+    <value>Zip toutes les pages, y compris les pièces jointes</value>
+    <comment>tip</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Label" xml:space="preserve">
+    <value>Section des archives</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
+    <value>Zip toutes les pages, y compris les pièces jointes</value>
+    <comment>tip</comment>
+  </data>
 </root>

@@ -2820,4 +2820,20 @@ ISO-code then comma then language name</comment>
     <value>找不到页面</value>
     <comment>message</comment>
   </data>
+  <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
+    <value>存档笔记本</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
+    <value>压缩所有页面，包括附件</value>
+    <comment>tip</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Label" xml:space="preserve">
+    <value>档案科</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
+    <value>压缩所有页面，包括附件</value>
+    <comment>tip</comment>
+  </data>
 </root>

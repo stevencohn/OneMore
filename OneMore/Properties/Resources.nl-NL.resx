@@ -2829,4 +2829,20 @@ ISO-code then comma then language name</comment>
     <value>Geen pagina's gevonden</value>
     <comment>message</comment>
   </data>
+  <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
+    <value>Archief Notebook</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
+    <value>Zip alle pagina's inclusief bijlagen</value>
+    <comment>tip</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Label" xml:space="preserve">
+    <value>Archiefgedeelte</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
+    <value>Zip alle pagina's inclusief bijlagen</value>
+    <comment>tip</comment>
+  </data>
 </root>
