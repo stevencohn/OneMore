@@ -132,11 +132,11 @@ namespace River.OneMoreAddIn.Commands
 					if (!locked && !recycled)
 					{
 						// append name of Section/Group to path to build zip folder path
-						path = path == null
+						var path2 = path == null
 							? element.Attribute("name").Value
 							: Path.Combine(path, element.Attribute("name").Value);
 
-						await Archive(element, path);
+						await Archive(element, path2);
 					}
 				}
 			}
