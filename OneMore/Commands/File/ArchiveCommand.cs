@@ -17,7 +17,9 @@ namespace River.OneMoreAddIn.Commands
 	internal class ArchiveCommand : Command
 	{
 		private OneNote one;
+		private Archivist archivist;
 		private ZipArchive archive;
+		private string tempdir;
 
 
 		public ArchiveCommand()
@@ -48,10 +50,15 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				tempdir = Path.GetTempPath();
+				PathFactory.EnsurePathExists(tempdir);
+
 				using (var stream = new FileStream(path, FileMode.Create))
 				{
 					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
 					{
+						archivist = new Archivist(one);
+
 						await Archive(root, null);
 					}
 				}
@@ -103,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 					var page = one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
-					await Archive(page, path);
+					await ArchivePage(page, path);
 				}
 				else
 				{
@@ -123,17 +130,51 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Archive(Page page, string path)
+		private async Task ArchivePage(Page page, string path)
 		{
+			CleanupTemp();
+
 			var name = PathFactory.CleanFileName(page.Title);
-			var full = Path.Combine(path, $"{name}.htm");
+			var filename = Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
+
+			archivist.SaveAsHTML(page, ref filename, true);
 
 			MemoryStream reader = null;
 
-			var entry = archive.CreateEntry(full);
+			var entry = archive.CreateEntry(filename);
 			using (var writer = entry.Open())
 			{
 				await reader.CopyToAsync(writer);
+			}
+		}
+
+
+		private void ArchiveFiles(string path)
+		{
+			var temp = new DirectoryInfo(tempdir);
+			foreach (FileInfo file in temp.GetFiles())
+			{
+				file.Delete();
+			}
+
+			foreach (DirectoryInfo dir in temp.GetDirectories())
+			{
+				dir.Delete(true);
+			}
+		}
+
+
+		private void CleanupTemp()
+		{
+			var temp = new DirectoryInfo(tempdir);
+			foreach (FileInfo file in temp.GetFiles())
+			{
+				file.Delete();
+			}
+
+			foreach (DirectoryInfo dir in temp.GetDirectories())
+			{
+				dir.Delete(true);
 			}
 		}
 	}
