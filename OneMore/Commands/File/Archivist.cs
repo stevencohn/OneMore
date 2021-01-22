@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 					File.Delete(filename);
 				}
 
-				one.Export(pageId, filename, format);
+				return one.Export(pageId, filename, format);
 			}
 			catch (Exception exc)
 			{
@@ -47,8 +47,6 @@ namespace River.OneMoreAddIn.Commands
 				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, formatName) + "\n\n" + exc.Message);
 				return false;
 			}
-
-			return true;
 		}
 
 

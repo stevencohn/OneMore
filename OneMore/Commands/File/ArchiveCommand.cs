@@ -147,7 +147,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			CleanupTemp();
 
-			var name = PathFactory.CleanFileName(page.Title);
+			var name = PathFactory.CleanFileName(page.Title).Trim();
+			if (string.IsNullOrEmpty(name))
+			{
+				name = $"Unnamed__{pageCount}";
+			}
 
 			var filename = path == null
 				? Path.Combine(tempdir, $"{name}.htm")
