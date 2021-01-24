@@ -136,6 +136,9 @@ namespace River.OneMoreAddIn
 		public async Task InsertYellowStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Yellow);
 
+		public async Task JoinParagraphCmd(IRibbonControl control)
+			=> await factory.Run<JoinParagraphCommand>();
+
 		public async Task ManageFavoritesCmd(IRibbonControl control)
 			=> await factory.Run<ManageFavoritesCommand>(ribbon);
 
