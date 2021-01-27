@@ -276,6 +276,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (image != null)
 			{
+				logger.StartClock();
+
 				if (preserveBox.Checked)
 				{
 					image.Resize(originalWidth, originalHeight, Quality).Save(tempfile);
@@ -284,6 +286,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					image.Resize((int)WidthPixels, (int)HeightPixels, Quality).Save(tempfile);
 				}
+
+				logger.WriteTime("resized image");
 
 				var size = new FileInfo(tempfile).Length;
 				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size.ToBytes(1));
