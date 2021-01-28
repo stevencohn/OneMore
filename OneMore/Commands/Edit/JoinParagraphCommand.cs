@@ -97,7 +97,13 @@ namespace River.OneMoreAddIn.Commands
 				var cdata = run.GetCData();
 				cdata.Value = cdata.Value == string.Empty
 					? " "
-					: Regex.Replace(cdata.Value.Replace("<br>\n", " "), @"\s{2,}", " ");
+					: Regex.Replace(Regex.Replace(cdata.Value, @"<br>\n([^$])", " $1"), @"\s{2,}", " ");
+
+				if (cdata.Value.EndsWith("<br>\n"))
+				{
+					// double it up
+					cdata.Value = $"{cdata.Value}<br>\n";
+				}
 
 				content.Add(run);
 			}
