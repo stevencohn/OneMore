@@ -2845,4 +2845,8 @@ ISO-code then comma then language name</comment>
     <value>Compacte todas as páginas, incluindo os anexos</value>
     <comment>tip</comment>
   </data>
+  <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
+    <value>Use expressões regulares</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

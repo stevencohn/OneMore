@@ -2855,4 +2855,8 @@ In this section</value>
     <value>Zip all pages including attachments</value>
     <comment>tip</comment>
   </data>
+  <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
+    <value>Use regular expressions</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

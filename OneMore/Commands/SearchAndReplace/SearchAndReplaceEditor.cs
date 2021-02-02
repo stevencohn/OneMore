@@ -14,13 +14,21 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly string search;
 		private readonly string replace;
-		private readonly bool caseSensitive;
+		private readonly RegexOptions options;
 
-		public SearchAndReplaceEditor(string search, string replace, bool caseSensitive)
+		public SearchAndReplaceEditor(
+			string search, string replace,bool caseSensitive, bool useRegex)
 		{
 			this.search = search;
 			this.replace = replace;
-			this.caseSensitive = caseSensitive;
+
+			this.search = useRegex
+				? search
+				: Regex.Replace(search.Replace("\\", @"\\"), @"([^\\]|^)([.*\|\(\?\[\]])", "$1\\$2");
+
+			options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
+
+			Logger.Current.WriteLine($"search is [{search}]");
 		}
 
 
@@ -38,13 +46,11 @@ namespace River.OneMoreAddIn.Commands
 			// find all distinct occurances of search string across all text of the run
 			// regardless of internal SPANs; we'll compensate for those below...
 
-			var matches = Regex.Matches(wrapper.Value, search, 
-				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
-
+			var matches = Regex.Matches(wrapper.Value, search, options);
 			if (matches?.Count > 0)
 			{
-				// run backwards to avoid cumulative offets if match length differs from length
-				// of replacement text
+				// iterate backwards to avoid cumulative offets if Match length differs
+				// from length of replacement text
 				for (var i = matches.Count - 1; i >= 0; i--)
 				{
 					var match = matches[i];

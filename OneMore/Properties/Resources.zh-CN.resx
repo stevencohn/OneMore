@@ -2836,4 +2836,8 @@ ISO-code then comma then language name</comment>
     <value>压缩所有页面，包括附件</value>
     <comment>tip</comment>
   </data>
+  <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
+    <value>使用正则表达式</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
