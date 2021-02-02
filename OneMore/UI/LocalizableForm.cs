@@ -180,7 +180,10 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (!modeless && VerticalOffset > 0)
 				{
-					Location = new System.Drawing.Point(Location.X, Location.Y - (Height / VerticalOffset));
+					var x = Location.X < 0 ? 0 : Location.X;
+					var y = Location.Y - (Height / VerticalOffset);
+
+					Location = new System.Drawing.Point(x, y < 0 ? 0 : y);
 				}
 			}
 
