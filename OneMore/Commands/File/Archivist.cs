@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.IO;
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Web;
 	using System.Xml.Linq;
@@ -86,35 +87,52 @@ namespace River.OneMoreAddIn.Commands
 				 base-path=https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/Duke.one">Alpha</a>]]></one:T>
 			</one:OE>
 			*/
+
 			var links = page.Root.DescendantNodes().OfType<XCData>()
 				.Where(c => c.Value.Contains("href=\"onenote:"));
+
 			if (!links.Any())
 			{
 				return;
 			}
 
 			var text = File.ReadAllText(filename);
+			var index = 0;
+			var builder = new StringBuilder();
 
-			// group[1] = full URI, group[2] = section-path, group[3] = text
-			var matches = Regex.Matches(text, @"<a href=""(onenote:([^#]*?)(?:\.one)?#[^""]*)"">(.*?)</a>");
+			const int MALL = 0;		// group[0] is the entire match
+			const int MURI = 1;		// group[1] is the full href value
+			const int MPATH = 2;	// group[2] is the onenote prefix path (sectiongroup/section)
+			const int MTEXT = 3;	// group[3] is the text of the hyperlink
+
+			var matches = Regex.Matches(text, @"<a\s+href=""(onenote:([^#]*?)(?:\.one)?#[^""]*)"">(.*?)</a>");
+			var updated = false;
 
 			foreach (Match match in matches)
 			{
-				if (match.Success && match.Groups[2].Length > 0)
+				if (match.Success && match.Groups.Count == 4 && match.Groups[MPATH].Length > 0)
 				{
-					var uri = HttpUtility.UrlDecode(match.Groups[2].Value);
+					var groups = match.Groups;
+					var uri = HttpUtility.UrlDecode(groups[MPATH].Value);
 
-					text = text.Substring(0, match.Groups[1].Index) +
-						$"./{uri}/{match.Groups[3].Value}" +
-						text.Substring(match.Groups[1].Index + match.Groups[1].Length);
+					builder.Append(text.Substring(index, groups[MURI].Index - index));
+					builder.Append($"./{uri}/{match.Groups[MTEXT].Value}");
+
+					index = groups[MURI].Index + groups[MURI].Length;
+					updated = true;
 				}
 			}
 
-			if (matches.Count > 0)
+			if (updated)
 			{
 				try
 				{
-					File.WriteAllText(filename, text);
+					if (index < text.Length - 1)
+					{
+						builder.Append(text.Substring(index));
+					}
+
+					File.WriteAllText(filename, builder.ToString());
 				}
 				catch (Exception exc)
 				{
