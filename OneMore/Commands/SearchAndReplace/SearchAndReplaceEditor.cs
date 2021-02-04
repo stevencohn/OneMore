@@ -24,13 +24,13 @@ namespace River.OneMoreAddIn.Commands
 			this.replace = replace;
 			this.search = useRegex ? search : EscapeEscapes(search);
 			options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
-
-			Logger.Current.WriteLine($"search is [{search}]");
 		}
 
 
 		private string EscapeEscapes(string plain)
 		{
+			// if NOT using reg expression then must escape all regex control chars...
+
 			var codes = new char[] { '\\', '.', '*', '|', '?', '(', '[' };
 
 			var builder = new StringBuilder();

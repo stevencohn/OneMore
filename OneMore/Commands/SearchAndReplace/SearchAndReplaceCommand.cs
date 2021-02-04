@@ -51,11 +51,6 @@ namespace River.OneMoreAddIn.Commands
 				// let user insert a newline char
 				withText = withText.Replace("\\n", "\n");
 
-
-				System.Diagnostics.Debugger.Launch();
-
-
-
 				var cursor = page.GetTextCursor();
 				if (cursor != null && cursor.GetCData().Value == string.Empty)
 				{
