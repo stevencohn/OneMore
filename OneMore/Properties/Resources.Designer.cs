@@ -4809,6 +4809,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use regular expressions.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_regBox_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_regBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search and Replace.
         /// </summary>
         internal static string SearchAndReplaceDialog_Text {

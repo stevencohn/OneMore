@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 					"whatLabel",
 					"withLabel",
 					"matchBox",
+					"regBox",
 					"okButton",
 					"cancelButton"
 				});
@@ -33,6 +34,9 @@ namespace River.OneMoreAddIn.Commands
 		public bool MatchCase => matchBox.Checked;
 
 		public string WithText => withBox.Text;
+
+		public bool UseRegex => regBox.Checked;
+
 
 		public string WhatText
 		{

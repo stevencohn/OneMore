@@ -2844,4 +2844,8 @@ ISO-code then comma then language name</comment>
     <value>اضغط على جميع الصفحات بما في ذلك المرفقات</value>
     <comment>tip</comment>
   </data>
+  <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
+    <value>استخدم التعبيرات العادية</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

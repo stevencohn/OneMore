@@ -2839,4 +2839,8 @@ ISO-code then comma then language name</comment>
     <value>Zip toutes les pages, y compris les pièces jointes</value>
     <comment>tip</comment>
   </data>
+  <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
+    <value>Utiliser des expressions régulières</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

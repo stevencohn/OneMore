@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
@@ -14,13 +15,39 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly string search;
 		private readonly string replace;
-		private readonly bool caseSensitive;
+		private readonly RegexOptions options;
 
-		public SearchAndReplaceEditor(string search, string replace, bool caseSensitive)
+		public SearchAndReplaceEditor(
+			string search, string replace,bool caseSensitive, bool useRegex)
 		{
 			this.search = search;
 			this.replace = replace;
-			this.caseSensitive = caseSensitive;
+			this.search = useRegex ? search : EscapeEscapes(search);
+			options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
+		}
+
+
+		private string EscapeEscapes(string plain)
+		{
+			// if NOT using reg expression then must escape all regex control chars...
+
+			var codes = new char[] { '\\', '.', '*', '|', '?', '(', '[' };
+
+			var builder = new StringBuilder();
+			for (var i = 0; i < plain.Length; i++)
+			{
+				if (codes.Contains(plain[i]))
+				{
+					if (i == 0 || plain[i - 1] != '\\')
+					{
+						builder.Append('\\');
+					}
+				}
+
+				builder.Append(plain[i]);
+			}
+
+			return builder.ToString();
 		}
 
 
@@ -38,13 +65,11 @@ namespace River.OneMoreAddIn.Commands
 			// find all distinct occurances of search string across all text of the run
 			// regardless of internal SPANs; we'll compensate for those below...
 
-			var matches = Regex.Matches(wrapper.Value, search, 
-				caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
-
+			var matches = Regex.Matches(wrapper.Value, search, options);
 			if (matches?.Count > 0)
 			{
-				// run backwards to avoid cumulative offets if match length differs from length
-				// of replacement text
+				// iterate backwards to avoid cumulative offets if Match length differs
+				// from length of replacement text
 				for (var i = matches.Count - 1; i >= 0; i--)
 				{
 					var match = matches[i];
