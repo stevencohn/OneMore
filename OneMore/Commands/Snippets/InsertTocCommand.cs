@@ -320,7 +320,7 @@ namespace River.OneMoreAddIn.Commands
 								plevel--;
 							}
 
-							var plink = one.GetHyperlink(element.Attribute("ID").Value, string.Empty);
+							var plink = one.GetHyperlink(page.Attribute("ID").Value, string.Empty);
 
 							var pname = page.Attribute("name").Value;
 							text.Append($"<a href=\"{plink}\">{pname}</a>");

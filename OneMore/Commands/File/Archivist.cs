@@ -103,9 +103,9 @@ namespace River.OneMoreAddIn.Commands
 			const int MALL = 0;		// group[0] is the entire match
 			const int MURI = 1;		// group[1] is the full href value
 			const int MPATH = 2;	// group[2] is the onenote prefix path (sectiongroup/section)
-			const int MTEXT = 3;	// group[3] is the text of the hyperlink
+			const int MTEXT = 3;    // group[3] is the text of the hyperlink
 
-			var matches = Regex.Matches(text, @"<a\s+href=""(onenote:([^#]*?)(?:\.one)?#[^""]*)"">(.*?)</a>");
+			var matches = Regex.Matches(text, @"<a\s+href=""(onenote:([^&]*?)&[^""]*)"">([^<]*?)</a>");
 			var updated = false;
 
 			foreach (Match match in matches)
