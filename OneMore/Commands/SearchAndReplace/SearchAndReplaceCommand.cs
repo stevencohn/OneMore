@@ -59,6 +59,7 @@ namespace River.OneMoreAddIn.Commands
 				var cursor = page.GetTextCursor();
 				if (cursor != null && cursor.GetCData().Value == string.Empty)
 				{
+					// only merge if empty [], note cursor could be a hyperlink <a>..</a>
 					MergeRuns(cursor);
 				}
 
