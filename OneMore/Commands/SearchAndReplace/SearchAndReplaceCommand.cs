@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 				var cursor = page.GetTextCursor();
-				if (cursor != null)
+				if (cursor != null && cursor.GetCData().Value == string.Empty)
 				{
 					MergeRuns(cursor);
 				}
