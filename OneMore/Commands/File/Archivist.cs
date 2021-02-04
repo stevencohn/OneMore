@@ -81,11 +81,13 @@ namespace River.OneMoreAddIn.Commands
 		private void RewirePageLinks(Page page, string filename)
 		{
 			/*
-			<one:OE alignment="left" quickStyleIndex="2">
-			  <one:T><![CDATA[<a href="onenote:#Alpha&amp;section-id={6B04F76E-CC8E-4666-A0E3-A8F2234C2590}&amp;
-				 page-id={28D2402F-394F-4052-A3F0-AC5D31038C95}&amp;end&amp;
-				 base-path=https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/Duke.one">Alpha</a>]]></one:T>
-			</one:OE>
+            <one:T>
+			  <![CDATA[. . <a href="onenote:#N1.G1.S1.P1&amp;
+			    section-id={A640CEA0-536E-4ED0-ACC1-428AAB96501F}&amp;
+			    page-id={660B56BC-B6BE-4791-B556-E4BC9BA2E60C}&amp;
+			    end&amp;base-path=https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/Testing.one">N1.G1.S1.P1</a>
+			  ]]>
+			</one:T>
 			*/
 
 			var links = page.Root.DescendantNodes().OfType<XCData>()
@@ -105,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 			const int MPATH = 2;	// group[2] is the onenote prefix path (sectiongroup/section)
 			const int MTEXT = 3;    // group[3] is the text of the hyperlink
 
-			var matches = Regex.Matches(text, @"<a\s+href=""(onenote:([^&]*?)&[^""]*)"">([^<]*?)</a>");
+			var matches = Regex.Matches(text, @"<a\s+href=""(onenote:(.*?)(?:&amp;)?#?section-id[^""]*)"">([^<]*?)</a>");
 			var updated = false;
 
 			foreach (Match match in matches)
@@ -114,6 +116,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var groups = match.Groups;
 					var uri = HttpUtility.UrlDecode(groups[MPATH].Value);
+
+					logger.WriteLine($"rewire {groups[MALL].Value}");
 
 					builder.Append(text.Substring(index, groups[MURI].Index - index));
 					builder.Append($"./{uri}/{match.Groups[MTEXT].Value}");
