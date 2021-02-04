@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 			string whatText;
 			string withText;
 			bool matchCase;
+			bool useRegex;
 
 			using (var one = new OneNote(out var page, out var ns))
 			{
@@ -44,14 +45,16 @@ namespace River.OneMoreAddIn.Commands
 					whatText = dialog.WhatText;
 					withText = dialog.WithText;
 					matchCase = dialog.MatchCase;
+					useRegex = dialog.UseRegex;
 				}
 
 				// let user insert a newline char
 				withText = withText.Replace("\\n", "\n");
 
 				var cursor = page.GetTextCursor();
-				if (cursor != null)
+				if (cursor != null && cursor.GetCData().Value == string.Empty)
 				{
+					// only merge if empty [], note cursor could be a hyperlink <a>..</a>
 					MergeRuns(cursor);
 				}
 
@@ -59,19 +62,21 @@ namespace River.OneMoreAddIn.Commands
 				if (cursor != null)
 				{
 					elements = page.Root.Elements(ns + "Outline")
-						.Descendants(ns + "T");
+						.Descendants(ns + "T")
+						.ToList();
 				}
 				else
 				{
 					elements = page.Root.Elements(ns + "Outline")
 						.Descendants(ns + "T")
-						.Where(e => e.Attribute("selected")?.Value == "all");
+						.Where(e => e.Attribute("selected")?.Value == "all")
+						.ToList();
 				}
 
 				if (elements.Any())
 				{
 					int count = 0;
-					var editor = new SearchAndReplaceEditor(whatText, withText, matchCase);
+					var editor = new SearchAndReplaceEditor(whatText, withText, matchCase, useRegex);
 
 					foreach (var element in elements)
 					{

@@ -151,6 +151,11 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="DecreaseFontSizeCmd"/>
+              <button
+                id="ribJoinParagraphButton"
+                imageMso="GroupMerge"
+                label="Join Paragraph"
+                onAction="JoinParagraphCmd"/>
             </menu>
             <menu id="ribFormulaMenu" getLabel="GetRibbonLabel" imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
               <button

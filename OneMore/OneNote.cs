@@ -738,9 +738,18 @@ namespace River.OneMoreAddIn
 		/// <param name="pageId">The page ID</param>
 		/// <param name="path">The output file path</param>
 		/// <param name="format">The format</param>
-		public void Export(string pageId, string path, ExportFormat format)
+		public bool Export(string pageId, string path, ExportFormat format)
 		{
-			onenote.Publish(pageId, path, (PublishFormat)format, string.Empty);
+			try
+			{
+				onenote.Publish(pageId, path, (PublishFormat)format, string.Empty);
+				return true;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"cannot publish page {pageId}", exc);
+				return false;
+			}
 		}
 
 

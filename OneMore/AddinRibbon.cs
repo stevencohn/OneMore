@@ -57,6 +57,7 @@ namespace River.OneMoreAddIn
 				AddPageContextMenuCommands(contextMenus);
 				AddPageAreaContextMenuCommands(contextMenus);
 				AddPictureContextMenuCommands(contextMenus);
+				AddSectionContextMenuCommands(contextMenus);
 
 				var provider = new SettingsProvider();
 
@@ -148,6 +149,14 @@ namespace River.OneMoreAddIn
 			root.Add(new XElement(ns + "contextMenu",
 				new XAttribute("idMso", "ContextMenuNotebook"),
 				new XElement(ns + "button",
+					new XAttribute("id", "ctxArchiveNotebookButton"),
+					new XAttribute("imageMso", "SaveAttachments"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "ArchiveCmd"),
+					new XAttribute("tag", "notebook"),
+					new XAttribute("insertBeforeMso", "ShareThisNotebook")),
+				new XElement(ns + "button",
 					new XAttribute("id", "ctxNumberSectionsButton"),
 					new XAttribute("imageMso", "LineNumbersMenu"),
 					new XAttribute("getLabel", "GetRibbonLabel"),
@@ -164,6 +173,25 @@ namespace River.OneMoreAddIn
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "omNotebookContextMenuSeparator"),
 					new XAttribute("insertBeforeMso", "ShareThisNotebook"))
+				));
+		}
+
+
+		private void AddSectionContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuSection"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxArchiveSectionButton"),
+					new XAttribute("imageMso", "SaveAttachments"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "ArchiveCmd"),
+					new XAttribute("tag", "section"),
+					new XAttribute("insertBeforeMso", "SectionRenameOneNote")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omSectionContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "SectionRenameOneNote"))
 				));
 		}
 
@@ -199,26 +227,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void AddPageAreaContextMenuCommands(XElement root)
-		{
-			root.Add(new XElement(ns + "contextMenu",
-				new XAttribute("idMso", "ContextMenuPageArea"),
-				new XElement(ns + "button",
-					new XAttribute("id", "ctxNumberPagesButton"),
-					new XAttribute("imageMso", "CustomPageNumberGallery"),
-					new XAttribute("getLabel", "GetRibbonLabel"),
-					new XAttribute("getScreentip", "GetRibbonScreentip"),
-					new XAttribute("onAction", "NumberPagesCmd")),
-				new XElement(ns + "button",
-					new XAttribute("id", "ctxRemovePageNumbersButton"),
-					new XAttribute("imageMso", "PageNumbersRemove"),
-					new XAttribute("getLabel", "GetRibbonLabel"),
-					new XAttribute("getScreentip", "GetRibbonScreentip"),
-					new XAttribute("onAction", "RemovePageNumbersCmd"))
-				));
-		}
-
-
 		private void AddPictureContextMenuCommands(XElement root)
 		{
 			root.Add(new XElement(ns + "contextMenu",
@@ -244,6 +252,26 @@ namespace River.OneMoreAddIn
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "omPictureContextMenuSeparator"),
 					new XAttribute("insertBeforeMso", "Cut"))
+				));
+		}
+
+
+		private void AddPageAreaContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuPageArea"),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxNumberPagesButton"),
+					new XAttribute("imageMso", "CustomPageNumberGallery"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "NumberPagesCmd")),
+				new XElement(ns + "button",
+					new XAttribute("id", "ctxRemovePageNumbersButton"),
+					new XAttribute("imageMso", "PageNumbersRemove"),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("getScreentip", "GetRibbonScreentip"),
+					new XAttribute("onAction", "RemovePageNumbersCmd"))
 				));
 		}
 

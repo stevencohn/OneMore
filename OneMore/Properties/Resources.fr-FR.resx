@@ -1620,11 +1620,11 @@ Symboles: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    Fichier HTML (* .htm)
-Fichier PDF (* .pdf)
-Fichier Word (* .docx)
-Fichier XML (* .xml)
-Fichier OneNote (* .one)
+    Fichier HTML (*.htm)
+Fichier PDF (*.pdf)
+Fichier Word (*.docx)
+Fichier XML (*.xml)
+Fichier OneNote (*.one)
     combo box EDIT
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
@@ -1704,7 +1704,7 @@ Fichier OneNote (* .one)
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Fichiers Word (* .doc) | * .docx | Fichiers Powerpoint (* .pptx) | * .pptx | Fichiers de modèle OneMore (* .xml) | * .xml
+    Fichiers Word (*.doc)|*.docx|Fichiers Powerpoint (*.pptx)|*.pptx|Fichiers de modèle OneMore (*.xml)|*.xml
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
@@ -2802,5 +2802,45 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_nameTip" xml:space="preserve">
     <value>Le mot-clé $ name sera remplacé automatiquement par le nom de la page lors de l'exécution de ce plugin</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileFilter" xml:space="preserve">
+    <value>Fichier Zip (*.zip)|*.zip</value>
+    <comment>archive dialog</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
+    <value>Emplacement des archives</value>
+    <comment>archive dialog title</comment>
+  </data>
+  <data name="ArchiveCommand_archived" xml:space="preserve">
+    <value>{0} pages archivées dans {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noDirectory" xml:space="preserve">
+    <value>Le répertoire n’existe pas</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noPages" xml:space="preserve">
+    <value>Aucune page trouvée</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
+    <value>Cahier d'archives</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
+    <value>Zip toutes les pages, y compris les pièces jointes</value>
+    <comment>tip</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Label" xml:space="preserve">
+    <value>Section des archives</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
+    <value>Zip toutes les pages, y compris les pièces jointes</value>
+    <comment>tip</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
+    <value>Utiliser des expressions régulières</value>
+    <comment>checkbox</comment>
   </data>
 </root>

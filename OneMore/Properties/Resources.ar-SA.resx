@@ -1625,11 +1625,11 @@
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    ملف HTML (* .htm)
-ملف PDF (* .pdf)
-ملف Word (* .docx)
-ملف XML (* .xml)
-ملف OneNote (* .one)
+    ملف HTML (*.htm)
+ملف PDF (*.pdf)
+ملف Word (*.docx)
+ملف XML (*.xml)
+ملف OneNote (*.one)
     combo box EDIT
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
@@ -1709,7 +1709,7 @@
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    ملفات Word (* .doc) | * .docx | ملفات Powerpoint (* .pptx) | * .pptx | ملفات قالب إضافي واحد (* .xml) | * .xml
+    ملفات Word (*.doc)|*.docx|ملفات Powerpoint (*.pptx)|*.pptx|ملفات قالب إضافي واحد (*.xml)|*.xml
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
@@ -2807,5 +2807,45 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_nameTip" xml:space="preserve">
     <value>سيتم استبدال الكلمة الأساسية $ name تلقائيًا باسم الصفحة عند تشغيل هذا المكون الإضافي</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileFilter" xml:space="preserve">
+    <value>ملف مضغوط (*.zip)|*.zip</value>
+    <comment>archive dialog</comment>
+  </data>
+  <data name="ArchiveCommand_OpenFileTitle" xml:space="preserve">
+    <value>أرشفة الموقع</value>
+    <comment>archive dialog title</comment>
+  </data>
+  <data name="ArchiveCommand_archived" xml:space="preserve">
+    <value>تم وضع {0} من الصفحات في الأرشيف في {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noDirectory" xml:space="preserve">
+    <value>الدليل غير موجود</value>
+    <comment>message</comment>
+  </data>
+  <data name="ArchiveCommand_noPages" xml:space="preserve">
+    <value>لا توجد صفحات</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
+    <value>دفتر الأرشيف</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
+    <value>اضغط على جميع الصفحات بما في ذلك المرفقات</value>
+    <comment>tip</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Label" xml:space="preserve">
+    <value>قسم الأرشيف</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
+    <value>اضغط على جميع الصفحات بما في ذلك المرفقات</value>
+    <comment>tip</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
+    <value>استخدم التعبيرات العادية</value>
+    <comment>checkbox</comment>
   </data>
 </root>

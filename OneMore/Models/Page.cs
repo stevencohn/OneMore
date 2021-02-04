@@ -634,10 +634,16 @@ namespace River.OneMoreAddIn.Models
 			if (selected.Any() && selected.Count() == 1)
 			{
 				var cursor = selected.First();
-				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA &&
-					((XCData)(cursor.FirstNode)).Value.Length == 0)
+				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA)
 				{
-					return cursor;
+					var cdata = cursor.FirstNode as XCData;
+
+					// empty or link because we can't tell the difference between a zero-selection
+					// zero-selection link and link a partial or fully selected link
+					if (cdata.Value.Length == 0 || Regex.IsMatch(cdata.Value, @"<a href.+?</a>"))
+					{
+						return cursor;
+					}
 				}
 			}
 
