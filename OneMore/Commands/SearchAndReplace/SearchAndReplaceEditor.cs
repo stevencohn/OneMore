@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
@@ -21,14 +22,32 @@ namespace River.OneMoreAddIn.Commands
 		{
 			this.search = search;
 			this.replace = replace;
-
-			this.search = useRegex
-				? search
-				: Regex.Replace(search.Replace("\\", @"\\"), @"([^\\]|^)([.*\|\(\?\[\]])", "$1\\$2");
-
+			this.search = useRegex ? search : EscapeEscapes(search);
 			options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
 
 			Logger.Current.WriteLine($"search is [{search}]");
+		}
+
+
+		private string EscapeEscapes(string plain)
+		{
+			var codes = new char[] { '\\', '.', '*', '|', '?', '(', '[' };
+
+			var builder = new StringBuilder();
+			for (var i = 0; i < plain.Length; i++)
+			{
+				if (codes.Contains(plain[i]))
+				{
+					if (i == 0 || plain[i - 1] != '\\')
+					{
+						builder.Append('\\');
+					}
+				}
+
+				builder.Append(plain[i]);
+			}
+
+			return builder.ToString();
 		}
 
 
