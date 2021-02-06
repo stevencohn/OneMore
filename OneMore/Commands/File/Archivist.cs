@@ -8,7 +8,9 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.IO;
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Web;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -64,6 +66,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (SaveAs(page.PageId, filename, OneNote.ExportFormat.HTML, "HTML"))
 					{
+						RewirePageLinks(page, filename);
 						ArchiveAttachments(page, filename, path);
 					}
 				}
@@ -75,7 +78,75 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void ArchiveAttachments(Page page, string filename, string path)
+		private void RewirePageLinks(Page page, string filename)
+		{
+			/*
+            <one:T>
+			  <![CDATA[. . <a href="onenote:#N1.G1.S1.P1&amp;
+			    section-id={A640CEA0-536E-4ED0-ACC1-428AAB96501F}&amp;
+			    page-id={660B56BC-B6BE-4791-B556-E4BC9BA2E60C}&amp;
+			    end&amp;base-path=https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/Testing.one">N1.G1.S1.P1</a>
+			  ]]>
+			</one:T>
+			*/
+
+			var links = page.Root.DescendantNodes().OfType<XCData>()
+				.Where(c => c.Value.Contains("href=\"onenote:"));
+
+			if (!links.Any())
+			{
+				return;
+			}
+
+			var text = File.ReadAllText(filename);
+			var index = 0;
+			var builder = new StringBuilder();
+
+			const int MALL = 0;		// group[0] is the entire match
+			const int MURI = 1;		// group[1] is the full href value
+			const int MPATH = 2;	// group[2] is the onenote prefix path (sectiongroup/section)
+			const int MTEXT = 3;    // group[3] is the text of the hyperlink
+
+			var matches = Regex.Matches(text, @"<a\s+href=""(onenote:(.*?)(?:&amp;)?#?section-id[^""]*)"">([^<]*?)</a>");
+			var updated = false;
+
+			foreach (Match match in matches)
+			{
+				if (match.Success && match.Groups.Count == 4 && match.Groups[MPATH].Length > 0)
+				{
+					var groups = match.Groups;
+					var uri = HttpUtility.UrlDecode(groups[MPATH].Value);
+
+					logger.WriteLine($"rewire {groups[MALL].Value}");
+
+					builder.Append(text.Substring(index, groups[MURI].Index - index));
+					builder.Append($"./{uri}/{match.Groups[MTEXT].Value}");
+
+					index = groups[MURI].Index + groups[MURI].Length;
+					updated = true;
+				}
+			}
+
+			if (updated)
+			{
+				try
+				{
+					if (index < text.Length - 1)
+					{
+						builder.Append(text.Substring(index));
+					}
+
+					File.WriteAllText(filename, builder.ToString());
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error writing {filename}", exc);
+				}
+			}
+		}
+
+
+		private void ArchiveAttachments(Page page, string filename, string path)
 		{
 			var attachments = page.Root.Descendants(page.Namespace + "InsertedFile");
 			if (!attachments.Any())
