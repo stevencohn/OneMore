@@ -124,6 +124,7 @@
     <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
+    <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
     <Compile Include="Commands\Extras\InsertCellsCommand.cs" />
     <Compile Include="Commands\Extras\InsertCellsDialog.cs">

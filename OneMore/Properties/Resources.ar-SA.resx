@@ -2848,4 +2848,20 @@ ISO-code then comma then language name</comment>
     <value>استخدم التعبيرات العادية</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribInvertSelectionButton_Label" xml:space="preserve">
+    <value>اختيار المقلوب</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribJoinParagraphButton_Label" xml:space="preserve">
+    <value>الانضمام إلى الفقرة</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribMapButton_Label" xml:space="preserve">
+    <value>خريطة مرتبطة الصفحات</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSettingsButton_Label" xml:space="preserve">
+    <value>الإعدادات</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

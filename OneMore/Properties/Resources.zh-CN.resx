@@ -2840,4 +2840,20 @@ ISO-code then comma then language name</comment>
     <value>使用正则表达式</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribInvertSelectionButton_Label" xml:space="preserve">
+    <value>反转选择</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribJoinParagraphButton_Label" xml:space="preserve">
+    <value>加入段落</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribMapButton_Label" xml:space="preserve">
+    <value>地图链接页面</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSettingsButton_Label" xml:space="preserve">
+    <value>设定值</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

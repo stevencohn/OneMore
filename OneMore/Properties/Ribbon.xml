@@ -152,9 +152,14 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="DecreaseFontSizeCmd"/>
               <button
+                id="ribInvertSelectionButton"
+                imageMso="BlackAndWhiteInverseGrayscale"
+                getLabel="GetRibbonLabel"
+                onAction="InvertSelectionCmd"/>
+              <button
                 id="ribJoinParagraphButton"
                 imageMso="GroupMerge"
-                label="Join Paragraph"
+                getLabel="GetRibbonLabel"
                 onAction="JoinParagraphCmd"/>
             </menu>
             <menu id="ribFormulaMenu" getLabel="GetRibbonLabel" imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
@@ -258,7 +263,7 @@
                 onAction="InsertQRCmd"/>
               <button
                 id="ribMapButton"
-                label="Map Linked Pages"
+                getLabel="GetRibbonLabel"
                 imageMso="CreateMap"
                 onAction="MapCmd"/>
               <button
@@ -460,7 +465,7 @@
             <button
               id="ribSettingsButton"
               imageMso="ReadingViewToolsMenu"
-              label="Settings"
+              getLabel="GetRibbonLabel"
               onAction="SettingsCmd"/>
             <button
               id="ribAboutButton"

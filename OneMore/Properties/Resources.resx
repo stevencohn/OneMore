@@ -2859,4 +2859,20 @@ In this section</value>
     <value>Use regular expressions</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribInvertSelectionButton_Label" xml:space="preserve">
+    <value>Invert Selection</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribJoinParagraphButton_Label" xml:space="preserve">
+    <value>Join Paragraph</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribMapButton_Label" xml:space="preserve">
+    <value>Map Linked Pages</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSettingsButton_Label" xml:space="preserve">
+    <value>Settings</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

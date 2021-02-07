@@ -2849,4 +2849,20 @@ ISO-code then comma then language name</comment>
     <value>Use expressões regulares</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribInvertSelectionButton_Label" xml:space="preserve">
+    <value>Seleção invertida</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribJoinParagraphButton_Label" xml:space="preserve">
+    <value>Parágrafo de junção</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribMapButton_Label" xml:space="preserve">
+    <value>Mapear páginas vinculadas</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSettingsButton_Label" xml:space="preserve">
+    <value>Definições</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>
