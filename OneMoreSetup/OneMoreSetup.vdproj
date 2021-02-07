@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_080AB6D88A92401A87292A81A19325F9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0AD3603AB83243868537209FFE411E20"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -46,6 +52,12 @@
         "Entry"
         {
         "MsmKey" = "8:_29F3E99342F14A7A8F872C1C4FF210DC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2A6B37B4721E406595DC47D94137687E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -346,6 +358,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_080AB6D88A92401A87292A81A19325F9"
+            {
+            "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\sql.png"
+            "TargetName" = "8:sql.png"
+            "Tag" = "8:"
+            "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0AD3603AB83243868537209FFE411E20"
             {
             "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\typescript.png"
@@ -430,6 +462,26 @@
             {
             "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\xml.json"
             "TargetName" = "8:xml.json"
+            "Tag" = "8:"
+            "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2A6B37B4721E406595DC47D94137687E"
+            {
+            "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\sql.json"
+            "TargetName" = "8:sql.json"
             "Tag" = "8:"
             "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
             "Condition" = "8:"
@@ -1043,15 +1095,15 @@
         {
         "Name" = "8:OneMoreAddIn"
         "ProductName" = "8:OneMoreAddIn"
-        "ProductCode" = "8:{649ED851-F881-4AF2-B5AD-01E52E77643D}"
-        "PackageCode" = "8:{E5C78B25-292F-43EE-B72E-0949B72974FF}"
+        "ProductCode" = "8:{AF85822B-598C-4C2A-B4F4-FA5C534ABE2F}"
+        "PackageCode" = "8:{95EDF6D3-7B8D-45B7-A36E-B9466A8144CC}"
         "UpgradeCode" = "8:{058F6D04-E0D0-4984-B6B7-7FE0C581680E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:3.15.1"
+        "ProductVersion" = "8:3.15.2"
         "Manufacturer" = "8:River"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
