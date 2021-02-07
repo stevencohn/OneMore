@@ -2040,6 +2040,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert calendar.
+        /// </summary>
+        internal static string InsertCalendarDialog_indentBox_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_indentBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Large.
         /// </summary>
         internal static string InsertCalendarDialog_largeRadio_Text {

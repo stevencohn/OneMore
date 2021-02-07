@@ -33,6 +33,8 @@ namespace River.OneMoreAddIn.Commands
 			int year;
 			int month;
 			bool large;
+			bool indent;
+
 			using (var dialog = new InsertCalendarDialog())
 			{
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
@@ -43,15 +45,28 @@ namespace River.OneMoreAddIn.Commands
 				year = dialog.Year;
 				month = dialog.Month;
 				large = dialog.Large;
+				indent = dialog.Indent;
 			}
 
 			using (var one = new OneNote(out page, out ns))
 			{
 				var root = MakeCalendar(year, month, large);
-				page.AddNextParagraph(root);
-
 				var header = MakeHeader(year, month);
-				page.AddNextParagraph(header);
+
+				if (indent)
+				{
+					header.Add(new XElement(ns + "OEChildren",
+							new XElement(ns + "OE",
+							root)
+						));
+
+					page.AddNextParagraph(header);
+				}
+				else
+				{
+					page.AddNextParagraph(root);
+					page.AddNextParagraph(header);
+				}
 
 				await one.Update(page);
 			}

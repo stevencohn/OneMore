@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 					"formatLabel",
 					"smallRadio",
 					"largeRadio",
+					"indentBox",
 					"okButton",
 					"cancelButton"
 				});
@@ -48,5 +49,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool Large => largeRadio.Checked;
+
+
+		public bool Indent => indentBox.Checked;
 	}
 }

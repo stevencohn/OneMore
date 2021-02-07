@@ -2865,4 +2865,8 @@ ISO-code then comma then language name</comment>
     <value>Instellingen</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
+    <value>Kalender invoegen</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

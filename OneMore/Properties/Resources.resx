@@ -2875,4 +2875,8 @@ In this section</value>
     <value>Settings</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
+    <value>Insert calendar</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

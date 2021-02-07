@@ -2856,4 +2856,8 @@ ISO-code then comma then language name</comment>
     <value>设定值</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
+    <value>插入日历</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
