@@ -44,6 +44,8 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Change selected text to UPPERCASE or lowercase
 * Increase/Decrease the font size of all content on the current page
 * Highlight selected text using a rotating array of colors
+* Invert text selection
+* Join Paragraph to remove soft-breaks and join lines into a single flowing paragraph
 
 [Favorites and Custom Snippets](../../wiki/Favorites)
 
