@@ -23,11 +23,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				var pos = page.Root.Descendants(ns + "T")
+				var pos = page.Root.Elements(ns + "Outline")
+					.Descendants(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all")
 					.ToList();
 
-				var neg = page.Root.Descendants(ns + "T")
+				var neg = page.Root.Elements(ns + "Outline")
+					.Descendants(ns + "T")
 					.Except(pos)
 					.ToList();
 
