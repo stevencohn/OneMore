@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 					BordersVisible = true
 				};
 
-				table.AddColumn(600f, true);
+				table.AddColumn(addTitle ? 600f : 1f, true);
 
 				TableRow row;
 				TableCell cell;
