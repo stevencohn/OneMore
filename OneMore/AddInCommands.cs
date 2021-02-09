@@ -25,6 +25,9 @@ namespace River.OneMoreAddIn
 		public void AddFavoritePageCmd(IRibbonControl control)
 			=> new FavoritesProvider(ribbon).AddFavorite();
 
+		public void AddFavoriteSectionCmd(IRibbonControl control)
+			=> new FavoritesProvider(ribbon).AddFavorite(true);
+
 		public async Task AddFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<AddFootnoteCommand>();
 

@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void AddFavorite()
+		public void AddFavorite(bool addSection = false)
 		{
 			XElement root;
 
@@ -48,9 +48,9 @@ namespace River.OneMoreAddIn
 
 			using (var one = new OneNote())
 			{
-				var info = one.GetPageInfo();
+				var info = addSection ? one.GetSectionInfo() : one.GetPageInfo();
 
-				var name = Commands.AddTitleIconDialog.RemoveEmojis(info.Name);
+				var name = info.Name;
 				if (name.Length > 50)
 				{
 					name = name.Substring(0, 50) + "...";
@@ -60,10 +60,12 @@ namespace River.OneMoreAddIn
 				var id = ((DateTimeOffset.Now.ToUnixTimeSeconds() << 32)
 					+ new Random().Next()).ToString("x");
 
+				var imageMso = addSection ? "GroupInsertLinks" : "FileLinksToFiles";
+
 				root.Add(new XElement(ns + "button",
 					new XAttribute("id", $"omFavoriteLink{id}"),
 					new XAttribute("onAction", GotoFavoriteCmd),
-					new XAttribute("imageMso", "FileLinksToFiles"),
+					new XAttribute("imageMso", imageMso),
 					new XAttribute("label", name),
 					new XAttribute("tag", info.Link),
 					new XAttribute("screentip", info.Path)
