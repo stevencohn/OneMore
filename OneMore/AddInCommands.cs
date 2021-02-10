@@ -187,6 +187,9 @@ namespace River.OneMoreAddIn
 		public async Task RecalculateFormulaCmd(IRibbonControl control)
 			=> await factory.Run<RecalculateFormulaCommand>();
 
+		public async Task RefreshFootnotesCmd(IRibbonControl control)
+			=> await factory.Run<RefreshFootnotesCommand>();
+
 		public async Task RemoveAuthorsCmd(IRibbonControl control)
 			=> await factory.Run<RemoveAuthorsCommand>();
 

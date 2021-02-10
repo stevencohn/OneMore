@@ -2869,4 +2869,12 @@ ISO-code then comma then language name</comment>
     <value>Kalender invoegen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>Ververs voetnoten</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>Ververs de referentienummers van voetnoten opeenvolgend</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

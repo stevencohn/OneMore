@@ -2860,4 +2860,12 @@ ISO-code then comma then language name</comment>
     <value>插入日历</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>刷新脚注</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>顺序刷新脚注参考编号</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

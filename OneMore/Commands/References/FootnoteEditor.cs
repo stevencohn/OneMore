@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn
 
 			if (WriteFootnoteRef(label))
 			{
-				RefreshLabels();
+				await RefreshLabels();
 
 				await one.Update(page);
 			}
@@ -311,7 +311,7 @@ namespace River.OneMoreAddIn
 		/// at 1 from the top of the page. This is needed when adding a new reference prior to
 		/// existing ones or deleting a reference.
 		/// </summary>
-		private void RefreshLabels()
+		public async Task RefreshLabels(bool updatePage = false)
 		{
 			var refs = FindSelectedReferences(page.Root.Descendants(ns + "T"), true);
 
@@ -381,7 +381,25 @@ namespace River.OneMoreAddIn
 
 			if (count > 0)
 			{
-				// remove notes and readd in sorted order
+				// divider will be null if this routine is invoked independently from Refresh cmd
+				if (divider == null)
+				{
+					divider = page.Root.Elements(ns + "Outline")
+						.Where(e => e.Attributes("selected").Any())
+						.Descendants(ns + "Meta")
+						.FirstOrDefault(e =>
+							e.Attribute("name").Value.Equals("omfootnotes") &&
+							e.Attribute("content").Value.Equals("divider"))?
+						.Parent;
+
+					if (divider == null)
+					{
+						// no divider so just give up!
+						return;
+					}
+				}
+
+				// remove notes and re-add in sorted order
 
 				foreach (var note in notes)
 				{
@@ -393,6 +411,11 @@ namespace River.OneMoreAddIn
 				{
 					previous.AddAfterSelf(note.Element);
 					previous = note.Element;
+				}
+
+				if (updatePage)
+				{
+					await one.Update(page);
 				}
 			}
 		}
@@ -543,7 +566,7 @@ namespace River.OneMoreAddIn
 			if (remaining)
 			{
 				// must be some footnotes so resequence them
-				RefreshLabels();
+				await RefreshLabels();
 			}
 			else
 			{

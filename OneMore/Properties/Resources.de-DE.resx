@@ -2854,4 +2854,12 @@ ISO-code then comma then language name</comment>
     <value>Kalender einfügen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>Fußnoten aktualisieren</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>Aktualisieren Sie die Fußnotenreferenznummern nacheinander</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

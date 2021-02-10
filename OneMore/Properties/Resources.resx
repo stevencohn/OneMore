@@ -2879,4 +2879,12 @@ In this section</value>
     <value>Insert calendar</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>Refresh Footnotes</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>Refresh footnote reference numbers sequentially</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

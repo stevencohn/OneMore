@@ -4349,6 +4349,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh Footnotes.
+        /// </summary>
+        internal static string ribRefreshFootenotesButton_Label {
+            get {
+                return ResourceManager.GetString("ribRefreshFootenotesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh footnote reference numbers sequentially.
+        /// </summary>
+        internal static string ribRefreshFootenotesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRefreshFootenotesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Author Information.
         /// </summary>
         internal static string ribRemoveAuthorsButton_Label {

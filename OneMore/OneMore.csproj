@@ -155,6 +155,7 @@
     <Compile Include="Commands\Favorites\ShowKeyboardShortcutsCommand.cs" />
     <Compile Include="Commands\References\InsertQRCommand.cs" />
     <Compile Include="Commands\Formulas\Formula.cs" />
+    <Compile Include="Commands\References\RefreshFootnotesCommand.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
       <SubType>Form</SubType>

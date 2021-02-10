@@ -2863,4 +2863,12 @@ ISO-code then comma then language name</comment>
     <value>Insérer un calendrier</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>Actualiser les notes de bas de page</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>Actualiser les numéros de référence des notes de bas de page de manière séquentielle</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

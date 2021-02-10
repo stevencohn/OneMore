@@ -2868,4 +2868,12 @@ ISO-code then comma then language name</comment>
     <value>أدخل التقويم</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>تحديث الحواشي السفلية</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>قم بتحديث الأرقام المرجعية للحاشية السفلية بالتتابع</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

@@ -2,10 +2,10 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-using System.Threading.Tasks;
-
 namespace River.OneMoreAddIn
 {
+	using System.Threading.Tasks;
+
 
 	internal class RemoveFootnoteCommand : Command
 	{
@@ -22,7 +22,6 @@ namespace River.OneMoreAddIn
 				await new FootnoteEditor(one).RemoveFootnote();
 			}
 
-			await Task.Yield();
 		}
 	}
 }
