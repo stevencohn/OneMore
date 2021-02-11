@@ -4601,6 +4601,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Split Table.
+        /// </summary>
+        internal static string ribSplitTableButton_Label {
+            get {
+                return ResourceManager.GetString("ribSplitTableButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Strikethrough Completed To Do Tags.
         /// </summary>
         internal static string ribStrikeoutTasksButton_Label {

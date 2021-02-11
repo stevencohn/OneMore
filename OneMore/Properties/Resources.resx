@@ -2887,4 +2887,8 @@ In this section</value>
     <value>Refresh footnote reference numbers sequentially</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribSplitTableButton_Label" xml:space="preserve">
+    <value>Split Table</value>
+    <comment>ribbon button</comment>
+  </data>
 </root>

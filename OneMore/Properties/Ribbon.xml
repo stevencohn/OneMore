@@ -417,6 +417,12 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertCellsCmd"/>
               <button
+                id="ribSplitTableButton"
+                imageMso="TableSplitTable"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="SplitTableCmd"/>
+              <button
                 id="ribPronunciateButton"
                 getLabel="GetRibbonLabel"
                 imageMso="SpeakOnEnter"

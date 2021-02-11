@@ -77,6 +77,21 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Initialize a new table using another table as a template to describe the number
+		/// and width of columns.
+		/// </summary>
+		/// <param name="other">The other table to base this new table on</param>
+		public Table(Table other) : this(other.ns)
+		{
+			foreach (var col in other.columns.Elements())
+			{
+				columns.Add(new XElement(col));
+				numCells++;
+			}
+		}
+
+
 		public bool BordersVisible
 		{
 			get { return GetBooleanAttribute("bordersVisible"); }
@@ -158,6 +173,17 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return row;
+		}
+
+
+		/// <summary>
+		/// Adds a new row to the table from the given one:Row element
+		/// </summary>
+		/// <param name="root">The one:Row element to ad</param>
+		/// <param name="rownum">The index of this row in the table</param>
+		public void AddRow(XElement root)
+		{
+			rows.Add(new TableRow(root, rows.Count));
 		}
 
 

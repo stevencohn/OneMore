@@ -247,6 +247,9 @@ namespace River.OneMoreAddIn
 		public async Task SplitCmd(IRibbonControl control)
 			=> await factory.Run<SplitCommand>();
 
+		public async Task SplitTableCmd(IRibbonControl control)
+			=> await factory.Run<SplitTableCommand>();
+
 		public async Task StrikeoutCmd(IRibbonControl control)
 			=> await factory.Run<StrikeoutCommand>();
 
