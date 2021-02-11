@@ -195,6 +195,16 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public void FixColumns(bool locked)
+		{
+			var isLocked = locked.ToString().ToLower();
+			foreach (var column in columns.Elements(ns + "Column"))
+			{
+				column.SetAttributeValue("isLocked", isLocked);
+			}
+		}
+
+
 		public TableCell GetCell(string coord)
 		{
 			return rows.SelectMany(

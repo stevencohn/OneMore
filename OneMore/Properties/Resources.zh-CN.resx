@@ -2868,4 +2868,24 @@ ISO-code then comma then language name</comment>
     <value>顺序刷新脚注参考编号</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribSplitTableButton_Label" xml:space="preserve">
+    <value>分割表</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SplitTableCommand_NoSelection" xml:space="preserve">
+    <value>选择一个表格单元格以指示要拆分的第一行</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SplitTableDialog_copyHeaderBox.Text" xml:space="preserve">
+    <value>表格标题行重复</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
+    <value>将所有列设置为固定宽度</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableCommand_FirstRow" xml:space="preserve">
+    <value>在拆分前在第一行之后选择一行</value>
+    <comment>message box</comment>
+  </data>
 </root>

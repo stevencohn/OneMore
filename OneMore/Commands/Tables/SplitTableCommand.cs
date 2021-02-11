@@ -2,7 +2,7 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
@@ -38,13 +38,37 @@ namespace River.OneMoreAddIn
 
 				if (anchor == null)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.InsertCellsCommand_NoSelection);
+					UIHelper.ShowInfo(one.Window, Resx.SplitTableCommand_NoSelection);
 					return;
+				}
+
+				var row = anchor.FirstAncestor(ns + "Row");
+				if (!row.ElementsBeforeSelf(ns + "Row").Any())
+				{
+					UIHelper.ShowInfo(one.Window, Resx.SplitTableCommand_FirstRow);
+					return;
+				}
+
+				var copyHeader = false;
+				var fixedCols = false;
+				using (var dialog = new SplitTableDialog())
+				{
+					if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+					{
+						return;
+					}
+
+					copyHeader = dialog.CopyHeader;
+					fixedCols = dialog.FixedColumns;
 				}
 
 				// abstract the table into a Table and find the achor row
 				var table = new Table(anchor.FirstAncestor(ns + "Table"));
-				var row = anchor.FirstAncestor(ns + "Row");
+
+				if (fixedCols)
+				{
+					table.FixColumns(true);
+				}
 
 				// collect the anchor row and all subsequent rows
 				var rows = new List<XElement>() { row };
@@ -57,6 +81,12 @@ namespace River.OneMoreAddIn
 
 				// create split table to contain collection of rows
 				var split = new Table(table);
+
+				if (copyHeader)
+				{
+					var header = table.Rows.First();
+					split.AddRow(header.Root);
+				}
 
 				// remove rows from origin table and add to split table
 				foreach (var r in rows)

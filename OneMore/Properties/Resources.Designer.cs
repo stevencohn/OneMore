@@ -5764,6 +5764,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose a row after the first row before splitting.
+        /// </summary>
+        internal static string SplitTableCommand_FirstRow {
+            get {
+                return ResourceManager.GetString("SplitTableCommand_FirstRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a table cell to indicate the first row to split.
+        /// </summary>
+        internal static string SplitTableCommand_NoSelection {
+            get {
+                return ResourceManager.GetString("SplitTableCommand_NoSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate table header row.
+        /// </summary>
+        internal static string SplitTableDialog_copyHeaderBox_Text {
+            get {
+                return ResourceManager.GetString("SplitTableDialog_copyHeaderBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set all columns as fixed-width.
+        /// </summary>
+        internal static string SplitTableDialog_fixedColsBox_Text {
+            get {
+                return ResourceManager.GetString("SplitTableDialog_fixedColsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Sports {

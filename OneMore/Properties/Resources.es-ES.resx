@@ -2876,4 +2876,24 @@ ISO-code then comma then language name</comment>
     <value>Actualizar secuencialmente los números de referencia de las notas al pie</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribSplitTableButton_Label" xml:space="preserve">
+    <value>Mesa dividida</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SplitTableCommand_NoSelection" xml:space="preserve">
+    <value>Seleccione una celda de la tabla para indicar la primera fila a dividir</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SplitTableDialog_copyHeaderBox.Text" xml:space="preserve">
+    <value>Fila de encabezado de tabla duplicada</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
+    <value>Establecer todas las columnas como de ancho fijo</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableCommand_FirstRow" xml:space="preserve">
+    <value>Elija una fila después de la primera fila antes de dividir</value>
+    <comment>message box</comment>
+  </data>
 </root>

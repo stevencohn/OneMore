@@ -2891,4 +2891,20 @@ In this section</value>
     <value>Split Table</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="SplitTableCommand_NoSelection" xml:space="preserve">
+    <value>Select a table cell to indicate the first row to split</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SplitTableDialog_copyHeaderBox.Text" xml:space="preserve">
+    <value>Duplicate table header row</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
+    <value>Set all columns as fixed-width</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableCommand_FirstRow" xml:space="preserve">
+    <value>Choose a row after the first row before splitting</value>
+    <comment>message box</comment>
+  </data>
 </root>

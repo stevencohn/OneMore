@@ -220,6 +220,12 @@
       <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tables\SplitTableCommand.cs" />
+    <Compile Include="Commands\Tables\SplitTableDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\SplitTableDialog.Designer.cs">
+      <DependentUpon>SplitTableDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
@@ -745,6 +751,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Snippets\SaveSnippetDialog.resx">
       <DependentUpon>SaveSnippetDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tables\SplitTableDialog.resx">
+      <DependentUpon>SplitTableDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>

@@ -2877,4 +2877,24 @@ ISO-code then comma then language name</comment>
     <value>Ververs de referentienummers van voetnoten opeenvolgend</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="ribSplitTableButton_Label" xml:space="preserve">
+    <value>Tafel splitsen</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SplitTableCommand_NoSelection" xml:space="preserve">
+    <value>Selecteer een tabelcel om de eerste rij aan te geven die moet worden gesplitst</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SplitTableDialog_copyHeaderBox.Text" xml:space="preserve">
+    <value>Dubbele tabelkoprij</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
+    <value>Stel alle kolommen in op vaste breedte</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableCommand_FirstRow" xml:space="preserve">
+    <value>Kies een rij na de eerste rij voordat u gaat splitsen</value>
+    <comment>message box</comment>
+  </data>
 </root>
