@@ -2868,4 +2868,32 @@ ISO-code then comma then language name</comment>
     <value>أدخل التقويم</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>تحديث الحواشي السفلية</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>قم بتحديث الأرقام المرجعية للحاشية السفلية بالتتابع</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSplitTableButton_Label" xml:space="preserve">
+    <value>انقسام الجدول</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SplitTableCommand_NoSelection" xml:space="preserve">
+    <value>حدد خلية جدول للإشارة إلى الصف الأول المراد تقسيمه</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SplitTableDialog_copyHeaderBox.Text" xml:space="preserve">
+    <value>صف رأس الجدول مكرر</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
+    <value>قم بتعيين كل الأعمدة على أنها ذات عرض ثابت</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableCommand_FirstRow" xml:space="preserve">
+    <value>اختر صفًا بعد الصف الأول قبل التقسيم</value>
+    <comment>message box</comment>
+  </data>
 </root>

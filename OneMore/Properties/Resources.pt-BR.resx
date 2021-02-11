@@ -2869,4 +2869,32 @@ ISO-code then comma then language name</comment>
     <value>Inserir calendário</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>Atualizar notas de rodapé</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>Atualizar os números de referência da nota de rodapé sequencialmente</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSplitTableButton_Label" xml:space="preserve">
+    <value>Mesa Dividida</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SplitTableCommand_NoSelection" xml:space="preserve">
+    <value>Selecione uma célula da tabela para indicar a primeira linha a dividir</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SplitTableDialog_copyHeaderBox.Text" xml:space="preserve">
+    <value>Linha de cabeçalho de tabela duplicada</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
+    <value>Defina todas as colunas como largura fixa</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableCommand_FirstRow" xml:space="preserve">
+    <value>Escolha uma linha após a primeira linha antes de dividir</value>
+    <comment>message box</comment>
+  </data>
 </root>

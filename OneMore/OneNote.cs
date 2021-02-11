@@ -566,6 +566,43 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Gets the name, file path, and OneNote hyperlink to the current section;
+		/// used to build up Favorites
+		/// </summary>
+		/// <returns></returns>
+		public (string Name, string Path, string Link) GetSectionInfo()
+		{
+			var section = GetSection();
+			if (section == null)
+			{
+				return (null, null, null);
+			}
+
+			// name
+			var name = section.Attribute("name")?.Value;
+
+			// path
+			string path = section.Attribute("path")?.Value;
+			if (!string.IsNullOrEmpty(path))
+			{
+				path = "/" + Path.Combine(
+					Path.GetFileName(Path.GetDirectoryName(path)),
+					Path.GetFileNameWithoutExtension(path)
+					).Replace("\\", "/");
+			}
+
+			// link
+			string link = null;
+			var sectionId = section.Attribute("ID")?.Value;
+			if (sectionId != null)
+			{
+				link = GetHyperlink(sectionId, string.Empty);
+			}
+
+			return (name, path, link);
+		}
+
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Update...

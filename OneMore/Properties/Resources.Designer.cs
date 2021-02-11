@@ -4349,6 +4349,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh Footnotes.
+        /// </summary>
+        internal static string ribRefreshFootenotesButton_Label {
+            get {
+                return ResourceManager.GetString("ribRefreshFootenotesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh footnote reference numbers sequentially.
+        /// </summary>
+        internal static string ribRefreshFootenotesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRefreshFootenotesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Author Information.
         /// </summary>
         internal static string ribRemoveAuthorsButton_Label {
@@ -4579,6 +4597,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSplitButton_Label {
             get {
                 return ResourceManager.GetString("ribSplitButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Table.
+        /// </summary>
+        internal static string ribSplitTableButton_Label {
+            get {
+                return ResourceManager.GetString("ribSplitTableButton_Label", resourceCulture);
             }
         }
         
@@ -5733,6 +5760,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SplitDialog_Text {
             get {
                 return ResourceManager.GetString("SplitDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a row after the first row before splitting.
+        /// </summary>
+        internal static string SplitTableCommand_FirstRow {
+            get {
+                return ResourceManager.GetString("SplitTableCommand_FirstRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a table cell to indicate the first row to split.
+        /// </summary>
+        internal static string SplitTableCommand_NoSelection {
+            get {
+                return ResourceManager.GetString("SplitTableCommand_NoSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate table header row.
+        /// </summary>
+        internal static string SplitTableDialog_copyHeaderBox_Text {
+            get {
+                return ResourceManager.GetString("SplitTableDialog_copyHeaderBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set all columns as fixed-width.
+        /// </summary>
+        internal static string SplitTableDialog_fixedColsBox_Text {
+            get {
+                return ResourceManager.GetString("SplitTableDialog_fixedColsBox.Text", resourceCulture);
             }
         }
         

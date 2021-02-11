@@ -2854,4 +2854,32 @@ ISO-code then comma then language name</comment>
     <value>Kalender einfügen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>Fußnoten aktualisieren</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>Aktualisieren Sie die Fußnotenreferenznummern nacheinander</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSplitTableButton_Label" xml:space="preserve">
+    <value>Geteilte Tabelle</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SplitTableCommand_NoSelection" xml:space="preserve">
+    <value>Wählen Sie eine Tabellenzelle aus, um die erste zu teilende Zeile anzugeben</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SplitTableDialog_copyHeaderBox.Text" xml:space="preserve">
+    <value>Doppelte Tabellenkopfzeile</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
+    <value>Stellen Sie alle Spalten auf feste Breite ein</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableCommand_FirstRow" xml:space="preserve">
+    <value>Wählen Sie vor dem Teilen eine Zeile nach der ersten Zeile</value>
+    <comment>message box</comment>
+  </data>
 </root>

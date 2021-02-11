@@ -2863,4 +2863,32 @@ ISO-code then comma then language name</comment>
     <value>Insérer un calendrier</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+    <value>Actualiser les notes de bas de page</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+    <value>Actualiser les numéros de référence des notes de bas de page de manière séquentielle</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribSplitTableButton_Label" xml:space="preserve">
+    <value>Table divisée</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="SplitTableCommand_NoSelection" xml:space="preserve">
+    <value>Sélectionnez une cellule du tableau pour indiquer la première ligne à fractionner</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SplitTableDialog_copyHeaderBox.Text" xml:space="preserve">
+    <value>Ligne d'en-tête de tableau en double</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableDialog_fixedColsBox.Text" xml:space="preserve">
+    <value>Définir toutes les colonnes sur une largeur fixe</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SplitTableCommand_FirstRow" xml:space="preserve">
+    <value>Choisissez une ligne après la première ligne avant de fractionner</value>
+    <comment>message box</comment>
+  </data>
 </root>

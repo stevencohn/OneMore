@@ -256,6 +256,13 @@
                 getEnabled="GetBodyContext"
                 onAction="RemoveFootnoteCmd"/>
               <button
+                id="ribRefreshFootenotesButton"
+                imageMso="EditCitationButton"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="RefreshFootnotesCmd"/>
+              <button
                 id="ribInsertQRButton"
                 getLabel="GetRibbonLabel"
                 imageMso="BarcodeInsert"
@@ -409,6 +416,12 @@
                 getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertCellsCmd"/>
+              <button
+                id="ribSplitTableButton"
+                imageMso="TableSplitTable"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="SplitTableCmd"/>
               <button
                 id="ribPronunciateButton"
                 getLabel="GetRibbonLabel"

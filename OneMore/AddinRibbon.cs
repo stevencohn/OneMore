@@ -180,20 +180,26 @@ namespace River.OneMoreAddIn
 
 		private void AddSectionContextMenuCommands(XElement root)
 		{
-			//root.Add(new XElement(ns + "contextMenu",
-			//	new XAttribute("idMso", "ContextMenuSection"),
-			//	new XElement(ns + "button",
-			//		new XAttribute("id", "ctxArchiveSectionButton"),
-			//		new XAttribute("imageMso", "SaveAttachments"),
-			//		new XAttribute("getLabel", "GetRibbonLabel"),
-			//		new XAttribute("getScreentip", "GetRibbonScreentip"),
-			//		new XAttribute("onAction", "ArchiveCmd"),
-			//		new XAttribute("tag", "section"),
-			//		new XAttribute("insertBeforeMso", "SectionRenameOneNote")),
-			//	new XElement(ns + "menuSeparator",
-			//		new XAttribute("id", "omSectionContextMenuSeparator"),
-			//		new XAttribute("insertBeforeMso", "SectionRenameOneNote"))
-			//	));
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuSection"),
+					new XElement(ns + "button",
+						new XAttribute("id", "ctxAddFavoriteSectionButton"),
+						new XAttribute("imageMso", "AddToFavorites"),
+						new XAttribute("label", "Add to Favorites"),
+						new XAttribute("onAction", "AddFavoriteSectionCmd"),
+						new XAttribute("insertBeforeMso", "SectionRenameOneNote")),
+				//	new XElement(ns + "button",
+				//		new XAttribute("id", "ctxArchiveSectionButton"),
+				//		new XAttribute("imageMso", "SaveAttachments"),
+				//		new XAttribute("getLabel", "GetRibbonLabel"),
+				//		new XAttribute("getScreentip", "GetRibbonScreentip"),
+				//		new XAttribute("onAction", "ArchiveCmd"),
+				//		new XAttribute("tag", "section"),
+				//		new XAttribute("insertBeforeMso", "SectionRenameOneNote")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omSectionContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "SectionRenameOneNote"))
+				));
 		}
 
 

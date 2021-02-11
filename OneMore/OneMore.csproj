@@ -126,11 +126,11 @@
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
-    <Compile Include="Commands\Extras\InsertCellsCommand.cs" />
-    <Compile Include="Commands\Extras\InsertCellsDialog.cs">
+    <Compile Include="Commands\Tables\InsertCellsCommand.cs" />
+    <Compile Include="Commands\Tables\InsertCellsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\InsertCellsDialog.Designer.cs">
+    <Compile Include="Commands\Tables\InsertCellsDialog.Designer.cs">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\ArchiveCommand.cs" />
@@ -155,6 +155,7 @@
     <Compile Include="Commands\Favorites\ShowKeyboardShortcutsCommand.cs" />
     <Compile Include="Commands\References\InsertQRCommand.cs" />
     <Compile Include="Commands\Formulas\Formula.cs" />
+    <Compile Include="Commands\References\RefreshFootnotesCommand.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
       <SubType>Form</SubType>
@@ -218,6 +219,13 @@
     <Compile Include="Commands\Settings\FavoritesSheet.Designer.cs">
       <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tables\SplitTableCommand.cs" />
+    <Compile Include="Commands\Tables\SplitTableDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\SplitTableDialog.Designer.cs">
+      <DependentUpon>SplitTableDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
@@ -237,7 +245,7 @@
     <Compile Include="Commands\Tools\ClearLogCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Extras\WordCountCommand.cs" />
-    <Compile Include="Commands\Extras\TextToTableCommand.cs" />
+    <Compile Include="Commands\Tables\TextToTableCommand.cs" />
     <Compile Include="Commands\Formulas\Calculator.cs" />
     <Compile Include="Commands\Formulas\FormulaException.cs" />
     <Compile Include="Commands\Formulas\FunctionEventArgs.cs" />
@@ -353,10 +361,10 @@
     <Compile Include="UI\TagPickerDialog.Designer.cs">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Extras\TextToTableDialog.cs">
+    <Compile Include="Commands\Tables\TextToTableDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\TextToTableDialog.Designer.cs">
+    <Compile Include="Commands\Tables\TextToTableDialog.Designer.cs">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Clean\ToggleDttmDialog.cs">
@@ -713,7 +721,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Commands\Extras\InsertCellsDialog.resx">
+    <EmbeddedResource Include="Commands\Tables\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\MapDialog.resx">
@@ -743,6 +751,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Snippets\SaveSnippetDialog.resx">
       <DependentUpon>SaveSnippetDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tables\SplitTableDialog.resx">
+      <DependentUpon>SplitTableDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
@@ -807,7 +818,7 @@
     <EmbeddedResource Include="UI\TagPickerDialog.resx">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Extras\TextToTableDialog.resx">
+    <EmbeddedResource Include="Commands\Tables\TextToTableDialog.resx">
       <DependentUpon>TextToTableDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Clean\ToggleDttmDialog.resx">

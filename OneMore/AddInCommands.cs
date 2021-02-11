@@ -25,6 +25,9 @@ namespace River.OneMoreAddIn
 		public void AddFavoritePageCmd(IRibbonControl control)
 			=> new FavoritesProvider(ribbon).AddFavorite();
 
+		public void AddFavoriteSectionCmd(IRibbonControl control)
+			=> new FavoritesProvider(ribbon).AddFavorite(true);
+
 		public async Task AddFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<AddFootnoteCommand>();
 
@@ -184,6 +187,9 @@ namespace River.OneMoreAddIn
 		public async Task RecalculateFormulaCmd(IRibbonControl control)
 			=> await factory.Run<RecalculateFormulaCommand>();
 
+		public async Task RefreshFootnotesCmd(IRibbonControl control)
+			=> await factory.Run<RefreshFootnotesCommand>();
+
 		public async Task RemoveAuthorsCmd(IRibbonControl control)
 			=> await factory.Run<RemoveAuthorsCommand>();
 
@@ -240,6 +246,9 @@ namespace River.OneMoreAddIn
 
 		public async Task SplitCmd(IRibbonControl control)
 			=> await factory.Run<SplitCommand>();
+
+		public async Task SplitTableCmd(IRibbonControl control)
+			=> await factory.Run<SplitTableCommand>();
 
 		public async Task StrikeoutCmd(IRibbonControl control)
 			=> await factory.Run<StrikeoutCommand>();

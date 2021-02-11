@@ -30,14 +30,14 @@ namespace River.OneMoreAddIn
 		/// <returns>True</returns>
 		public bool SetBodyContext(IRibbonControl control)
 		{
-			//Logger.Current.WriteLine($"SetBodyContext {control.Id}");
-
 			using (var one = new OneNote(out var page, out _))
 			{
 				// set the context for the getters
 				bodyContext = page.ConfirmBodyContext();
 				imageSelected = page.ConfirmImageSelected();
 			}
+
+			//logger.WriteLine($"SetBodyContext({control.Id}) context:{context}");
 
 			// the setter always returns true; the getter will return bodyContext
 			return true;
@@ -51,9 +51,9 @@ namespace River.OneMoreAddIn
 		/// <returns>True if the text cursor is position in the body.</returns>
 		public bool GetBodyContext(IRibbonControl control)
 		{
-			//Logger.Current.WriteLine($"GetBodyContext {control.Id}");
-
 			ribbon.Invalidate();
+
+			//logger.WriteLine($"GetBodyContext({control.Id}) context:{context}");
 			return bodyContext;
 		}
 
@@ -65,9 +65,9 @@ namespace River.OneMoreAddIn
 		/// <returns>True if at least one image is selected on the current page.</returns>
 		public bool GetImageSelected(IRibbonControl control)
 		{
-			//Logger.Current.WriteLine($"GetImageSelected {control.Id}");
-
 			ribbon.Invalidate();
+
+			//logger.WriteLine($"GetImageSelected({control.Id}) context:{context}");
 			return imageSelected;
 		}
 
@@ -80,6 +80,7 @@ namespace River.OneMoreAddIn
 		public bool GetItemVisible(IRibbonControl control)
 		{
 			//logger.WriteLine($"GetItemVisible({control.Id})");
+
 			if (control.Id == "ribPronunciateButton")
 			{
 				return System.Environment.GetEnvironmentVariable("USERNAME") == "steven";
@@ -96,7 +97,7 @@ namespace River.OneMoreAddIn
 		/// <returns>True if two or more pages are selected.</returns>
 		public bool GetMultiPageContext(IRibbonControl control)
 		{
-			//Logger.Current.WriteLine($"GetMultiPageContext {control.Id}");
+			//logger.WriteLine($"GetMultiPageContext({control.Id})");
 
 			using (var one = new OneNote())
 			{
@@ -119,6 +120,8 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public bool GetOfficeInstalled(IRibbonControl control)
 		{
+			//logger.WriteLine($"GetOfficeInstalled({control.Id})");
+
 			return Office.IsWordInstalled() || Office.IsPowerPointInstalled();
 		}
 	}
