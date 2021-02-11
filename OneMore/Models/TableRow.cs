@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Models
 		{
 			cells = new List<TableCell>();
 
-			var elements = root.Elements(root.GetDefaultNamespace() + "Cell");
+			var elements = root.Elements(ns + "Cell");
 			if (elements?.Any() == true)
 			{
 				var c = 1;

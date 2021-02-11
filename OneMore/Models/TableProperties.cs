@@ -28,7 +28,11 @@ namespace River.OneMoreAddIn
 		protected TableProperties(XElement root)
 		{
 			Root = root;
-			ns = Root.GetNamespaceOfPrefix(OneNote.Prefix);
+			ns = Root.GetNamespaceOfPrefix(OneNote.Prefix) ?? Root.GetDefaultNamespace();
+			if (ns == null || string.IsNullOrEmpty(ns.NamespaceName))
+			{
+				ns = root.Name.Namespace;
+			}
 		}
 
 
@@ -132,7 +136,7 @@ namespace River.OneMoreAddIn
 		{
 			var text = GetAttribute(name);
 
-			if (Enum.TryParse(text, out bool value))
+			if (bool.TryParse(text, out bool value))
 			{
 				return value;
 			}

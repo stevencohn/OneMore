@@ -86,7 +86,8 @@ namespace River.OneMoreAddIn
 			// battery capacity and other factors, whereas MaxClockSpeed is a constant
 
 			clockSpeed = ReasonableClockSpeed;
-			using (var searcher = new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
+			using (var searcher = 
+				new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
 			{
 				foreach (var item in searcher.Get())
 				{

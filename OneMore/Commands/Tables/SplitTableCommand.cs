@@ -42,10 +42,6 @@ namespace River.OneMoreAddIn
 					return;
 				}
 
-
-				System.Diagnostics.Debugger.Launch();
-
-
 				// abstract the table into a Table and find the achor row
 				var table = new Table(anchor.FirstAncestor(ns + "Table"));
 				var row = anchor.FirstAncestor(ns + "Row");
@@ -69,7 +65,10 @@ namespace River.OneMoreAddIn
 					split.AddRow(r);
 				}
 
-				table.Root.Parent.AddAfterSelf(new XElement(ns + "OE", split.Root));
+				table.Root.Parent.AddAfterSelf(
+					new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
+					new XElement(ns + "OE", split.Root)
+					);
 
 				await one.Update(page);
 			}

@@ -84,6 +84,7 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="other">The other table to base this new table on</param>
 		public Table(Table other) : this(other.ns)
 		{
+			BordersVisible = other.BordersVisible;
 			foreach (var col in other.columns.Elements())
 			{
 				columns.Add(new XElement(col));
@@ -158,6 +159,26 @@ namespace River.OneMoreAddIn.Models
 		public TableRow AddRow()
 		{
 			var row = new TableRow(ns, numCells);
+			AddRow(row);
+			return row;
+		}
+
+
+		/// <summary>
+		/// Adds a new row to the table from the given one:Row element
+		/// </summary>
+		/// <param name="root">The one:Row element to ad</param>
+		/// <param name="rownum">The index of this row in the table</param>
+		public TableRow AddRow(XElement root)
+		{
+			var row = new TableRow(root, rows.Count);
+			AddRow(row);
+			return row;
+		}
+
+
+		private void AddRow(TableRow row)
+		{
 			rows.Add(row);
 
 			var last = columns.NodesAfterSelf().OfType<XElement>()
@@ -171,19 +192,6 @@ namespace River.OneMoreAddIn.Models
 			{
 				last.AddAfterSelf(row.Root);
 			}
-
-			return row;
-		}
-
-
-		/// <summary>
-		/// Adds a new row to the table from the given one:Row element
-		/// </summary>
-		/// <param name="root">The one:Row element to ad</param>
-		/// <param name="rownum">The index of this row in the table</param>
-		public void AddRow(XElement root)
-		{
-			rows.Add(new TableRow(root, rows.Count));
 		}
 
 
