@@ -32,6 +32,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out var page, out var ns))
 			{
+				if (!page.ConfirmBodyContext())
+				{
+					UIHelper.ShowInfo(one.Window, Resx.FormulaCommand_SelectOne);
+					return;
+				}
+
 				// Find first selected cell as anchor point to locate table into which
 				// the formula should be inserted; By filtering on selected=all, we avoid
 				// including the parent table of a selected nested table.

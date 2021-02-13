@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class InsertCalendarCommand : Command
@@ -30,26 +31,32 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			int year;
-			int month;
-			bool large;
-			bool indent;
-
-			using (var dialog = new InsertCalendarDialog())
+			using (var one = new OneNote(out page, out ns))
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				if (!page.ConfirmBodyContext())
 				{
+					UIHelper.ShowError(Resx.Error_BodyContext);
 					return;
 				}
 
-				year = dialog.Year;
-				month = dialog.Month;
-				large = dialog.Large;
-				indent = dialog.Indent;
-			}
+				int year;
+				int month;
+				bool large;
+				bool indent;
 
-			using (var one = new OneNote(out page, out ns))
-			{
+				using (var dialog = new InsertCalendarDialog())
+				{
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					{
+						return;
+					}
+
+					year = dialog.Year;
+					month = dialog.Month;
+					large = dialog.Large;
+					indent = dialog.Indent;
+				}
+
 				var root = MakeCalendar(year, month, large);
 				var header = MakeHeader(year, month);
 

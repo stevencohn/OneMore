@@ -2891,4 +2891,28 @@ ISO-code then comma then language name</comment>
     <value>Choisissez une ligne après la première ligne avant de fractionner</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_BodyContext" xml:space="preserve">
+    <value>Le focus du texte doit être dans le corps de la page</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Error_SelectImage" xml:space="preserve">
+    <value>Sélectionnez une image avant d'appeler cette commande</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
+    <value>Options générales</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="GeneralSheet_Title" xml:space="preserve">
+    <value>Options générales</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_introBox.Text" xml:space="preserve">
+    <value>Personnalisez le comportement général de OneMore</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
+    <value>Activez les paramètres de contexte de menu dynamique. </value>
+    <comment>checkbox</comment>
+  </data>
 </root>

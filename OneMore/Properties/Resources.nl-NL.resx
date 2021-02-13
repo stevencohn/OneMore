@@ -2897,4 +2897,28 @@ ISO-code then comma then language name</comment>
     <value>Kies een rij na de eerste rij voordat u gaat splitsen</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_BodyContext" xml:space="preserve">
+    <value>De tekstfocus moet zich in de hoofdtekst van de pagina bevinden</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Error_SelectImage" xml:space="preserve">
+    <value>Selecteer een afbeelding voordat u deze opdracht oproept</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
+    <value>Algemene opties</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="GeneralSheet_Title" xml:space="preserve">
+    <value>Algemene opties</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_introBox.Text" xml:space="preserve">
+    <value>Pas het algemene gedrag van OneMore aan</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
+    <value>Schakel dynamische menucontextinstellingen in. </value>
+    <comment>checkbox</comment>
+  </data>
 </root>

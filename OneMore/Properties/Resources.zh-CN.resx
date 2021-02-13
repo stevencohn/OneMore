@@ -2888,4 +2888,28 @@ ISO-code then comma then language name</comment>
     <value>在拆分前在第一行之后选择一行</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_BodyContext" xml:space="preserve">
+    <value>文字焦点必须在页面正文中</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Error_SelectImage" xml:space="preserve">
+    <value>在调用此命令之前选择一个图像</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
+    <value>常规选项</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="GeneralSheet_Title" xml:space="preserve">
+    <value>常规选项</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_introBox.Text" xml:space="preserve">
+    <value>自定义OneMore的整体行为</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
+    <value>启用动态菜单上下文设置。</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

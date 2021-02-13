@@ -126,6 +126,12 @@
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
+    <Compile Include="Commands\Settings\GeneralSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\GeneralSheet.Designer.cs">
+      <DependentUpon>GeneralSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tables\InsertCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsDialog.cs">
       <SubType>Form</SubType>
@@ -721,6 +727,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Commands\Settings\GeneralSheet.resx">
+      <DependentUpon>GeneralSheet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tables\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>
     </EmbeddedResource>

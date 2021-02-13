@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class FootnoteEditor
@@ -39,6 +40,18 @@ namespace River.OneMoreAddIn
 			dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 
 			logger = Logger.Current;
+		}
+
+
+		public bool ValidContext()
+		{
+			if (!page.ConfirmBodyContext())
+			{
+				UIHelper.ShowError(Resx.Error_BodyContext);
+				return false;
+			}
+
+			return true;
 		}
 
 

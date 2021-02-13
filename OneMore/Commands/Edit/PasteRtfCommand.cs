@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Documents;
 	using System.Xml;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/*
@@ -61,21 +62,28 @@ namespace River.OneMoreAddIn.Commands
 
 		private const char Space = '\u00a0'; // Unicode no-break space
 		private const char Zpace = '\uFEFF'; // Unicdoe zero-width no-break space
-		private readonly bool black;
+		private bool black;
 		private bool zindents;
 
 
 		public PasteRtfCommand()
 		{
-			using (var one = new OneNote())
-			{
-				_ = one.GetPage().GetPageColor(out _, out black);
-			}
 		}
 
 
 		public override async Task Execute(params object[] args)
 		{
+			using (var one = new OneNote(out var page, out _))
+			{
+				if (!page.ConfirmBodyContext())
+				{
+					UIHelper.ShowError(Resx.Error_BodyContext);
+					return;
+				}
+
+				_ = one.GetPage().GetPageColor(out _, out black);
+			}
+
 			// transform RTF and Xaml data on clipboard to HTML
 
 			var html = PrepareClipboard();

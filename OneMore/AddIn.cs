@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn
 	using Extensibility;
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
@@ -154,6 +155,8 @@ namespace River.OneMoreAddIn
 						new Win32WindowHandle(new IntPtr((long)one.WindowHandle)));
 				}
 
+				SetGeneralOptions();
+
 				RegisterHotkeys();
 
 				logger.WriteLine($"ready");
@@ -165,6 +168,14 @@ namespace River.OneMoreAddIn
 			}
 
 			logger.End();
+		}
+
+
+		private void SetGeneralOptions()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("GeneralSheet");
+			EnablersEnabled = settings.Get<bool>("enablers", true);
 		}
 
 

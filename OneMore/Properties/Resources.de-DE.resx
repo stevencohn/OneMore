@@ -2882,4 +2882,28 @@ ISO-code then comma then language name</comment>
     <value>Wählen Sie vor dem Teilen eine Zeile nach der ersten Zeile</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_BodyContext" xml:space="preserve">
+    <value>Der Textfokus muss im Hauptteil der Seite liegen</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Error_SelectImage" xml:space="preserve">
+    <value>Wählen Sie ein Bild aus, bevor Sie diesen Befehl aufrufen</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
+    <value>Allgemeine Optionen</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="GeneralSheet_Title" xml:space="preserve">
+    <value>Allgemeine Optionen</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie das Gesamtverhalten von OneMore an</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
+    <value>Aktivieren Sie die Einstellungen für den dynamischen Menükontext. </value>
+    <comment>checkbox</comment>
+  </data>
 </root>

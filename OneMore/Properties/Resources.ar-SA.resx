@@ -2896,4 +2896,28 @@ ISO-code then comma then language name</comment>
     <value>اختر صفًا بعد الصف الأول قبل التقسيم</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_BodyContext" xml:space="preserve">
+    <value>يجب أن يكون تركيز النص في نص الصفحة</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Error_SelectImage" xml:space="preserve">
+    <value>حدد صورة قبل استدعاء هذا الأمر</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
+    <value>خيارات عامة</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="GeneralSheet_Title" xml:space="preserve">
+    <value>خيارات عامة</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص السلوك العام لـ OneMore</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
+    <value>تفعيل إعدادات سياق القائمة الديناميكية. </value>
+    <comment>checkbox</comment>
+  </data>
 </root>

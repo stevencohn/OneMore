@@ -18,6 +18,8 @@ namespace River.OneMoreAddIn
 		private bool bodyContext = false;
 		private bool imageSelected = false;
 
+		public static bool EnablersEnabled = true;
+
 
 		/// <summary>
 		/// Analyze the current page and determine if the text cursor is positioned in the body
@@ -30,14 +32,17 @@ namespace River.OneMoreAddIn
 		/// <returns>True</returns>
 		public bool SetBodyContext(IRibbonControl control)
 		{
-			using (var one = new OneNote(out var page, out _))
+			if (EnablersEnabled)
 			{
-				// set the context for the getters
-				bodyContext = page.ConfirmBodyContext();
-				imageSelected = page.ConfirmImageSelected();
-			}
+				using (var one = new OneNote(out var page, out _))
+				{
+					// set the context for the getters
+					bodyContext = page.ConfirmBodyContext();
+					imageSelected = page.ConfirmImageSelected();
+				}
 
-			//logger.WriteLine($"SetBodyContext({control.Id}) context:{context}");
+				//logger.WriteLine($"SetBodyContext({control.Id}) context:{context}");
+			}
 
 			// the setter always returns true; the getter will return bodyContext
 			return true;
@@ -51,10 +56,14 @@ namespace River.OneMoreAddIn
 		/// <returns>True if the text cursor is position in the body.</returns>
 		public bool GetBodyContext(IRibbonControl control)
 		{
-			ribbon.Invalidate();
+			if (EnablersEnabled)
+			{
+				//logger.WriteLine($"GetBodyContext({control.Id}) context:{context}");
+				ribbon.Invalidate();
+				return bodyContext;
+			}
 
-			//logger.WriteLine($"GetBodyContext({control.Id}) context:{context}");
-			return bodyContext;
+			return true;
 		}
 
 
@@ -65,10 +74,14 @@ namespace River.OneMoreAddIn
 		/// <returns>True if at least one image is selected on the current page.</returns>
 		public bool GetImageSelected(IRibbonControl control)
 		{
-			ribbon.Invalidate();
+			if (EnablersEnabled)
+			{
+				//logger.WriteLine($"GetImageSelected({control.Id}) context:{context}");
+				ribbon.Invalidate();
+				return imageSelected;
+			}
 
-			//logger.WriteLine($"GetImageSelected({control.Id}) context:{context}");
-			return imageSelected;
+			return true;
 		}
 
 

@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class InsertLineCommand : Command
@@ -26,8 +27,9 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				if (!page.ConfirmBodyContext(true))
+				if (!page.ConfirmBodyContext())
 				{
+					UIHelper.ShowError(Resx.Error_BodyContext);
 					return;
 				}
 

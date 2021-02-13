@@ -20,6 +20,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			using (var one = new OneNote(out var page, out _))
+			{
+				if (!page.ConfirmBodyContext())
+				{
+					UIHelper.ShowError(Resx.Error_BodyContext);
+					return;
+				}
+			}
+
 			var path = args[0] as string;
 
 			var snippet = await new SnippetsProvider().Load(path);

@@ -1437,6 +1437,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text focus must be in the body of the page.
+        /// </summary>
+        internal static string Error_BodyContext {
+            get {
+                return ResourceManager.GetString("Error_BodyContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an image before invoking this command.
+        /// </summary>
+        internal static string Error_SelectImage {
+            get {
+                return ResourceManager.GetString("Error_SelectImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archive to HTML.
         /// </summary>
         internal static string ExportCommand_ArchiveHTML {
@@ -1819,6 +1837,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string FormulaDialog_Text {
             get {
                 return ResourceManager.GetString("FormulaDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable dynamic menu context settings. Disable if you&apos;ve added OneMore commands to the Quick Access toolbar.
+        /// </summary>
+        internal static string GeneralSheet_enablersBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_enablersBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the overall behavior of OneMore.
+        /// </summary>
+        internal static string GeneralSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Options.
+        /// </summary>
+        internal static string GeneralSheet_Title {
+            get {
+                return ResourceManager.GetString("GeneralSheet_Title", resourceCulture);
             }
         }
         
@@ -5250,6 +5295,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_favoritesNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_favoritesNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Options.
+        /// </summary>
+        internal static string SettingsDialog_generalNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_generalNode.Text", resourceCulture);
             }
         }
         

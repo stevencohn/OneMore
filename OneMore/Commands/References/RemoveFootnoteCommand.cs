@@ -19,9 +19,12 @@ namespace River.OneMoreAddIn
 		{
 			using (var one = new OneNote())
 			{
-				await new FootnoteEditor(one).RemoveFootnote();
+				var editor = new FootnoteEditor(one);
+				if (editor.ValidContext())
+				{
+					await editor.RemoveFootnote();
+				}
 			}
-
 		}
 	}
 }

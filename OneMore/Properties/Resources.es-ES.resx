@@ -2896,4 +2896,28 @@ ISO-code then comma then language name</comment>
     <value>Elija una fila después de la primera fila antes de dividir</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_BodyContext" xml:space="preserve">
+    <value>El foco del texto debe estar en el cuerpo de la página</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="Error_SelectImage" xml:space="preserve">
+    <value>Seleccione una imagen antes de invocar este comando</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
+    <value>Opciones generales</value>
+    <comment>tree node</comment>
+  </data>
+  <data name="GeneralSheet_Title" xml:space="preserve">
+    <value>Opciones generales</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="GeneralSheet_introBox.Text" xml:space="preserve">
+    <value>Personalice el comportamiento general de OneMore</value>
+    <comment>textbox</comment>
+  </data>
+  <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
+    <value>Habilite la configuración de contexto del menú dinámico. </value>
+    <comment>checkbox</comment>
+  </data>
 </root>

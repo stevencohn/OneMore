@@ -72,15 +72,20 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		public T Get<T>(string name)
+		public T Get<T>(string name, T defaultValue = default)
 		{
+			if (defaultValue == null)
+			{
+				defaultValue = default;
+			}
+
 			try
 			{
 				if (typeof(T) == typeof(XElement))
 				{
 					return properties.ContainsKey(name)
 						? (T)properties[name]
-						: default;
+						: defaultValue;
 				}
 				else
 				{
@@ -88,7 +93,7 @@ namespace River.OneMoreAddIn.Settings
 					return properties.ContainsKey(name)
 						? (T)converter.ConvertFromString(
 							null, CultureInfo.InvariantCulture, (string)properties[name])
-						: default;
+						: defaultValue;
 				}
 			}
 			catch

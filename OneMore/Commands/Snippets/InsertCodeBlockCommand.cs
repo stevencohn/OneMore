@@ -47,8 +47,9 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var one = new OneNote(out var page, out ns))
 			{
-				if (!page.ConfirmBodyContext(true))
+				if (!page.ConfirmBodyContext())
 				{
+					UIHelper.ShowError(Resx.Error_BodyContext);
 					return;
 				}
 

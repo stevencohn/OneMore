@@ -25,25 +25,31 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			OneNote.Scope scope;
-			bool addTopLinks;
-			bool includePages;
-
-			using (var dialog = new InsertTocDialog())
+			using (var one = new OneNote(out var page, out _))
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+				if (!page.ConfirmBodyContext())
 				{
+					UIHelper.ShowError(Resx.Error_BodyContext);
 					return;
 				}
 
-				scope = dialog.Scope;
-				addTopLinks = dialog.TopLinks;
-				includePages = dialog.SectionPages;
-			}
+				OneNote.Scope scope;
+				bool addTopLinks;
+				bool includePages;
 
-			try
-			{
-				using (var one = new OneNote())
+				using (var dialog = new InsertTocDialog())
+				{
+					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+					{
+						return;
+					}
+
+					scope = dialog.Scope;
+					addTopLinks = dialog.TopLinks;
+					includePages = dialog.SectionPages;
+				}
+
+				try
 				{
 					switch (scope)
 					{
@@ -60,10 +66,10 @@ namespace River.OneMoreAddIn.Commands
 							break;
 					}
 				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
+				}
 			}
 		}
 

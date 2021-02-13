@@ -28,58 +28,61 @@ namespace River.OneMoreAddIn.Commands
 				var image = page.Root.Descendants(ns + "Image")?
 					.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
 
-				if (image != null)
+				if (image == null)
 				{
-					if (AlreadyCaptioned(image))
-					{
-						return;
-					}
-
-					image.Attribute("selected").Remove();
-
-					var table = new Table(ns);
-					table.AddColumn(0f); // OneNote will set width accordingly
-
-					var cdata = new XCData("Caption");
-
-					var row = table.AddRow();
-					var cell = row.Cells.First();
-
-					cell.SetContent(
-						new XElement(ns + "OEChildren",
-							new XElement(ns + "OE",
-								new XAttribute("alignment", "center"),
-								image),
-							new XElement(ns + "OE",
-								new XAttribute("alignment", "center"),
-								new XElement(ns + "Meta",
-									new XAttribute("name", "om"),
-									new XAttribute("content", "caption")),
-								new XElement(ns + "T",
-									new XAttribute("selected", "all"),
-									cdata)
-							)
-						));
-
-					var style = GetStyle();
-					new Stylizer(style).ApplyStyle(cdata);
-
-					if (image.Parent.Name.LocalName.Equals("Page"))
-					{
-						// image.ReplaceWith seems to insert the new Outline but doesn't remove the top
-						// level image, so force the deletion by its objectID
-						var imageId = image.Attribute("objectID").Value;
-						one.DeleteContent(page.Root.Attribute("ID").Value, imageId);
-
-						image.ReplaceWith(WrapInOutline(table.Root, image));
-					}
-					else
-					{
-						image.ReplaceWith(table.Root);
-					}
-
-					await one.Update(page);
+					UIHelper.ShowError(Resx.Error_SelectImage);
+					return;
 				}
+
+				if (AlreadyCaptioned(image))
+				{
+					return;
+				}
+
+				image.Attribute("selected").Remove();
+
+				var table = new Table(ns);
+				table.AddColumn(0f); // OneNote will set width accordingly
+
+				var cdata = new XCData("Caption");
+
+				var row = table.AddRow();
+				var cell = row.Cells.First();
+
+				cell.SetContent(
+					new XElement(ns + "OEChildren",
+						new XElement(ns + "OE",
+							new XAttribute("alignment", "center"),
+							image),
+						new XElement(ns + "OE",
+							new XAttribute("alignment", "center"),
+							new XElement(ns + "Meta",
+								new XAttribute("name", "om"),
+								new XAttribute("content", "caption")),
+							new XElement(ns + "T",
+								new XAttribute("selected", "all"),
+								cdata)
+						)
+					));
+
+				var style = GetStyle();
+				new Stylizer(style).ApplyStyle(cdata);
+
+				if (image.Parent.Name.LocalName.Equals("Page"))
+				{
+					// image.ReplaceWith seems to insert the new Outline but doesn't remove the top
+					// level image, so force the deletion by its objectID
+					var imageId = image.Attribute("objectID").Value;
+					one.DeleteContent(page.Root.Attribute("ID").Value, imageId);
+
+					image.ReplaceWith(WrapInOutline(table.Root, image));
+				}
+				else
+				{
+					image.ReplaceWith(table.Root);
+				}
+
+				await one.Update(page);
 			}
 		}
 
