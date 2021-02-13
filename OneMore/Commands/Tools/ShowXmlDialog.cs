@@ -308,10 +308,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!hideBox.Checked)
 			{
+				// author attributes
 				matches = Regex.Matches(pageBox.Text,
 					"(?:author|authorInitials|authorResolutionID|lastModifiedBy|" +
 					"lastModifiedByInitials|lastModifiedByResolutionID|creationTime|" +
-					"lastModifiedTime|objectID)=\"[^\"]*\""
+					"lastModifiedTime)=\"[^\"]*\""
 					);
 
 				foreach (Match m in matches)
@@ -319,6 +320,16 @@ namespace River.OneMoreAddIn.Commands
 					pageBox.SelectionStart = m.Index;
 					pageBox.SelectionLength = m.Length;
 					pageBox.SelectionColor = Color.Silver;
+				}
+
+				// objectID
+				matches = Regex.Matches(pageBox.Text, "(?:objectID)=\"[^\"]*\"");
+
+				foreach (Match m in matches)
+				{
+					pageBox.SelectionStart = m.Index;
+					pageBox.SelectionLength = m.Length;
+					pageBox.SelectionColor = Color.CornflowerBlue;
 				}
 			}
 		}
