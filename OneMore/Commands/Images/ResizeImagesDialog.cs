@@ -278,13 +278,24 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.StartClock();
 
+				int rewidth;
+				int reheight;
+
 				if (preserveBox.Checked)
 				{
-					image.Resize(originalWidth, originalHeight, Quality).Save(tempfile);
+					rewidth = originalWidth;
+					reheight = originalHeight;
 				}
 				else
 				{
-					image.Resize((int)WidthPixels, (int)HeightPixels, Quality).Save(tempfile);
+					rewidth = (int)WidthPixels;
+					reheight = (int)HeightPixels;
+				}
+
+				// resize image without disposing it, use a temp variable 'resized' to dispose
+				using (var resized = image.Resize(rewidth, reheight, Quality))
+				{
+					resized.Save(tempfile);
 				}
 
 				logger.WriteTime("resized image");
