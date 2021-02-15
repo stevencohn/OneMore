@@ -121,24 +121,24 @@ namespace River.OneMoreAddIn.Commands
 							continue;
 						}
 
-						var pageId = hyperlinks[pid];
-						if (pageId != parentId)
+						var hyperlink = hyperlinks[pid];
+						if (hyperlink.PageID != parentId)
 						{
 							string title;
-							if (titles.ContainsKey(pageId))
+							if (titles.ContainsKey(hyperlink.PageID))
 							{
-								title = titles[pageId];
+								title = titles[hyperlink.PageID];
 							}
 							else
 							{
-								var p = one.GetPage(pageId, OneNote.PageDetail.Basic);
+								var p = one.GetPage(hyperlink.PageID, OneNote.PageDetail.Basic);
 								title = p.Title;
-								titles.Add(pageId, title);
+								titles.Add(hyperlink.PageID, title);
 							}
 
 							element.Add(new XElement("Ref",
 								new XAttribute("title", title),
-								new XAttribute("ID", pageId)
+								new XAttribute("ID", hyperlink.PageID)
 								));
 
 							//logger.WriteLine($" - {title}");
@@ -205,12 +205,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Dictionary<string, string> GetHyperlinks(
+		private Dictionary<string, River.OneMoreAddIn.OneNote.PageHyperlink> GetHyperlinks(
 			UI.ProgressDialog progress, CancellationToken token)
 		{
 			var catalog = fullCatalog ? OneNote.Scope.Notebooks : scope;
 
-			return one.BuildHyperlinkCache(catalog, token,
+			return one.BuildHyperlinkMap(catalog, token,
 				(count) =>
 				{
 					progress.SetMaximum(count);

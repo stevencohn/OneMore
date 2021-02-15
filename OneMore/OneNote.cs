@@ -63,6 +63,14 @@ namespace River.OneMoreAddIn
 			Self = HierarchyScope.hsSelf
 		}
 
+		public class PageHyperlink
+		{
+			public string PageID;	// pageID
+			public string HyperID;	// hyperlink page-id
+			public string Path;		// relative path within current scope (section, notebook)
+			public string Uri;		// onenote:blah hyperlink
+		}
+
 
 		public const string Prefix = "one";
 
@@ -303,9 +311,9 @@ namespace River.OneMoreAddIn
 		/// Creates a map of pages where the key is built from the page-id of an
 		/// internal onenote hyperlink and the value is the actual pageId
 		/// </summary>
-		/// <param name="scope"></param>
-		/// <param name="countCallback"></param>
-		/// <param name="stepCallback"></param>
+		/// <param name="scope">Pages in section, Sections in notebook, or all Notebooks</param>
+		/// <param name="countCallback">Called exactly once to report the total count of pages to map</param>
+		/// <param name="stepCallback">Called for each page that is mapped to report progress</param>
 		/// <returns>
 		/// A Dictionary with keys build from URI params and values specifying the page IDs
 		/// </returns>
@@ -313,13 +321,13 @@ namespace River.OneMoreAddIn
 		/// There's no direct way to map onenote:http URIs to page IDs so this creates a cache
 		/// of all pages in the specified scope with their URIs as keys and pageIDs as values
 		/// </remarks>
-		public Dictionary<string, string> BuildHyperlinkCache(
+		public Dictionary<string, PageHyperlink> BuildHyperlinkMap(
 			Scope scope,
 			CancellationToken token,
 			Action<int> countCallback = null,
 			Action stepCallback = null)
 		{
-			var hyperlinks = new Dictionary<string, string>();
+			var hyperlinks = new Dictionary<string, PageHyperlink>();
 
 			XElement container;
 			switch (scope)
@@ -355,7 +363,13 @@ namespace River.OneMoreAddIn
 					var matches = regex.Match(link);
 					if (matches.Success)
 					{
-						hyperlinks.Add(matches.Groups[1].Value, pageID);
+						hyperlinks.Add(matches.Groups[1].Value, new PageHyperlink
+						{
+							PageID = pageID,
+							HyperID = matches.Groups[1].Value,
+							Path = "",
+							Uri = link
+						});
 					}
 
 					stepCallback?.Invoke();

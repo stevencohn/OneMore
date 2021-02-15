@@ -6,10 +6,12 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Web;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -19,12 +21,20 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly ILogger logger;
 		private readonly OneNote one;
+		private Dictionary<string, River.OneMoreAddIn.OneNote.PageHyperlink> cache;
 
 
 		public Archivist(OneNote one)
 		{
 			logger = Logger.Current;
 			this.one = one;
+		}
+
+
+		public void BuildHyperlinkMap(OneNote.Scope scope, CancellationToken token)
+		{
+			logger.WriteLine("building hyperlink map");
+			cache = one.BuildHyperlinkMap(scope, token);
 		}
 
 
@@ -52,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SaveAsHTML(Page page, ref string filename, bool archive)
+		public void SaveAsHTML(Page page, ref string filename, bool archive, string hierarchy)
 		{
 			if (archive)
 			{
@@ -66,7 +76,11 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (SaveAs(page.PageId, filename, OneNote.ExportFormat.HTML, "HTML"))
 					{
-						RewirePageLinks(page, filename);
+						if (hierarchy != null)
+						{
+							RewirePageLinks(page, filename, hierarchy);
+						}
+
 						ArchiveAttachments(page, filename, path);
 					}
 				}
@@ -78,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void RewirePageLinks(Page page, string filename)
+		private void RewirePageLinks(Page page, string filename, string hierarchy)
 		{
 			/*
             <one:T>

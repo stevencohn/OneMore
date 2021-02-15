@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.IO.Compression;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -21,6 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		private ZipArchive archive;
 		private string tempdir;
 		private int pageCount = 0;
+		private CancellationTokenSource source;
 
 
 		public ArchiveCommand()
@@ -45,10 +47,12 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				var hierarchy = root.Attribute("name").Value;
+
 				string path = await SingleThreaded.Invoke(() =>
 				{
 					// OpenFileDialog must run in STA thread
-					return ChooseLocation(root.Attribute("name").Value);
+					return ChooseLocation(hierarchy);
 				});
 
 				if (path == null)
@@ -56,10 +60,17 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				source = new CancellationTokenSource();
+				archivist.BuildHyperlinkMap(
+					scope == "notebook" ? OneNote.Scope.Sections : OneNote.Scope.Pages,
+					source.Token);
+
 				// use this temp folder as a sandbox for each page
 				var t = Path.GetTempFileName();
 				tempdir = Path.Combine(Path.GetDirectoryName(t), Path.GetFileNameWithoutExtension(t));
 				PathFactory.EnsurePathExists(tempdir);
+
+				logger.WriteLine("building archive");
 
 				using (var stream = new FileStream(path, FileMode.Create))
 				{
@@ -67,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						archivist = new Archivist(one);
 
-						await Archive(root, null);
+						await Archive(root, null, hierarchy);
 					}
 				}
 
@@ -113,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Archive(XElement root, string path)
+		private async Task Archive(XElement root, string path, string hierarchy)
 		{
 			foreach (var element in root.Elements())
 			{
@@ -122,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 					var page = one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
-					await ArchivePage(page, path);
+					await ArchivePage(page, path, hierarchy);
 				}
 				else
 				{
@@ -132,18 +143,17 @@ namespace River.OneMoreAddIn.Commands
 					if (!locked && !recycled)
 					{
 						// append name of Section/Group to path to build zip folder path
-						var path2 = path == null
-							? element.Attribute("name").Value
-							: Path.Combine(path, element.Attribute("name").Value);
+						var name = element.Attribute("name").Value;
+						var path2 = path == null ? name : Path.Combine(path, name);
 
-						await Archive(element, path2);
+						await Archive(element, path2, Path.Combine(hierarchy, name));
 					}
 				}
 			}
 		}
 
 
-		private async Task ArchivePage(Page page, string path)
+		private async Task ArchivePage(Page page, string path, string hierarchy)
 		{
 			CleanupTemp();
 
@@ -157,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
-			archivist.SaveAsHTML(page, ref filename, true);
+			archivist.SaveAsHTML(page, ref filename, true, hierarchy);
 
 			await ArchivePageFiles(Path.GetDirectoryName(filename), path);
 

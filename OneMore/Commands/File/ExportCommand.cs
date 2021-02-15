@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (format == OneNote.ExportFormat.HTML)
 					{
-						archivist.SaveAsHTML(page, ref filename, archive);
+						archivist.SaveAsHTML(page, ref filename, archive, null);
 					}
 					else if (format == OneNote.ExportFormat.XML)
 					{
