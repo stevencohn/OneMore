@@ -61,6 +61,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				source = new CancellationTokenSource();
+
+				archivist = new Archivist(one);
 				archivist.BuildHyperlinkMap(
 					scope == "notebook" ? OneNote.Scope.Sections : OneNote.Scope.Pages,
 					source.Token);
@@ -76,8 +78,6 @@ namespace River.OneMoreAddIn.Commands
 				{
 					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
 					{
-						archivist = new Archivist(one);
-
 						await Archive(root, null, hierarchy);
 					}
 				}

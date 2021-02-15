@@ -33,6 +33,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public void BuildHyperlinkMap(OneNote.Scope scope, CancellationToken token)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
 			logger.WriteLine("building hyperlink map");
 			cache = one.BuildHyperlinkMap(scope, token);
 		}
@@ -121,7 +124,9 @@ namespace River.OneMoreAddIn.Commands
 			const int MPATH = 2;	// group[2] is the onenote prefix path (sectiongroup/section)
 			const int MTEXT = 3;    // group[3] is the text of the hyperlink
 
-			var matches = Regex.Matches(text, @"<a\s+href=""(onenote:(.*?)(?:&amp;)?#?section-id[^""]*)"">([^<]*?)</a>");
+			var matches = Regex.Matches(text, 
+				@"<a\s+href=""(onenote:(.*?)(?:&amp;)?#?section-id[^""]*)"">([^<]*?)</a>");
+
 			var updated = false;
 
 			foreach (Match match in matches)
@@ -132,6 +137,10 @@ namespace River.OneMoreAddIn.Commands
 					var uri = HttpUtility.UrlDecode(groups[MPATH].Value);
 
 					logger.WriteLine($"rewire {groups[MALL].Value}");
+					if (cache.ContainsKey(groups[MALL].Value))
+					{
+						logger.WriteLine($" -> {cache[groups[MALL].Value].PageID}");
+					}
 
 					builder.Append(text.Substring(index, groups[MURI].Index - index));
 					builder.Append($"./{uri}/{match.Groups[MTEXT].Value}");
