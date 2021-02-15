@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
 					{
-						await Archive(root, null, hierarchy);
+						await Archive(root, null);
 					}
 				}
 
@@ -124,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Archive(XElement root, string path, string hierarchy)
+		private async Task Archive(XElement root, string path)
 		{
 			foreach (var element in root.Elements())
 			{
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 					var page = one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
-					await ArchivePage(page, path, hierarchy);
+					await ArchivePage(page, path);
 				}
 				else
 				{
@@ -146,14 +146,14 @@ namespace River.OneMoreAddIn.Commands
 						var name = element.Attribute("name").Value;
 						var path2 = path == null ? name : Path.Combine(path, name);
 
-						await Archive(element, path2, Path.Combine(hierarchy, name));
+						await Archive(element, path2);
 					}
 				}
 			}
 		}
 
 
-		private async Task ArchivePage(Page page, string path, string hierarchy)
+		private async Task ArchivePage(Page page, string path)
 		{
 			CleanupTemp();
 
@@ -167,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
-			archivist.SaveAsHTML(page, ref filename, true, hierarchy);
+			archivist.SaveAsHTML(page, ref filename, true);
 
 			await ArchivePageFiles(Path.GetDirectoryName(filename), path);
 

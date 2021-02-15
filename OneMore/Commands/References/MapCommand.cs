@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Dictionary<string, River.OneMoreAddIn.OneNote.PageHyperlink> GetHyperlinks(
+		private Dictionary<string, River.OneMoreAddIn.OneNote.OneHyperlink> GetHyperlinks(
 			UI.ProgressDialog progress, CancellationToken token)
 		{
 			var catalog = fullCatalog ? OneNote.Scope.Notebooks : scope;

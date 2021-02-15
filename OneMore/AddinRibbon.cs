@@ -149,7 +149,6 @@ namespace River.OneMoreAddIn
 			root.Add(new XElement(ns + "contextMenu",
 				new XAttribute("idMso", "ContextMenuNotebook"),
 				new XElement(ns + "button",
-					new XAttribute("visible", "false"),
 					new XAttribute("id", "ctxArchiveNotebookButton"),
 					new XAttribute("imageMso", "SaveAttachments"),
 					new XAttribute("getLabel", "GetRibbonLabel"),

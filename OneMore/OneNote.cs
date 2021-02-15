@@ -63,12 +63,13 @@ namespace River.OneMoreAddIn
 			Self = HierarchyScope.hsSelf
 		}
 
-		public class PageHyperlink
+		public class OneHyperlink
 		{
-			public string PageID;	// pageID
-			public string HyperID;	// hyperlink page-id
-			public string Path;		// relative path within current scope (section, notebook)
-			public string Uri;		// onenote:blah hyperlink
+			public string PageID;		// pageID
+			public string SectionID;	// sectionID
+			public string HyperID;		// hyperlink section-id or page-id
+			public string Path;			// relative path within current scope (section, notebook)
+			public string Uri;			// onenote:blah hyperlink
 		}
 
 
@@ -77,6 +78,8 @@ namespace River.OneMoreAddIn
 		private IApplication onenote;
 		private readonly ILogger logger;
 		private bool disposed;
+
+		private Regex pageEx;
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -308,26 +311,26 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Creates a map of pages where the key is built from the page-id of an
-		/// internal onenote hyperlink and the value is the actual pageId
+		/// Creates a map of pages where the key is built from the page-id of an internal
+		/// onenote: hyperlink and the value is a OneHyperlink item
 		/// </summary>
 		/// <param name="scope">Pages in section, Sections in notebook, or all Notebooks</param>
 		/// <param name="countCallback">Called exactly once to report the total count of pages to map</param>
 		/// <param name="stepCallback">Called for each page that is mapped to report progress</param>
 		/// <returns>
-		/// A Dictionary with keys build from URI params and values specifying the page IDs
+		/// A Dictionary with page IDs as keys as values are OneHyperlink items
 		/// </returns>
 		/// <remarks>
 		/// There's no direct way to map onenote:http URIs to page IDs so this creates a cache
 		/// of all pages in the specified scope with their URIs as keys and pageIDs as values
 		/// </remarks>
-		public Dictionary<string, PageHyperlink> BuildHyperlinkMap(
+		public Dictionary<string, OneHyperlink> BuildHyperlinkMap(
 			Scope scope,
 			CancellationToken token,
 			Action<int> countCallback = null,
 			Action stepCallback = null)
 		{
-			var hyperlinks = new Dictionary<string, PageHyperlink>();
+			var hyperlinks = new Dictionary<string, OneHyperlink>();
 
 			XElement container;
 			switch (scope)
@@ -342,41 +345,64 @@ namespace River.OneMoreAddIn
 				.Where(e => e.Attributes().Any(a => a.Name == "isRecycleBin"))
 				.Remove();
 
-			var pageIDs = container.Descendants(GetNamespace(container) + "Page")
-				.Select(e => e.Attribute("ID").Value)
-				.ToList();
+			var ns = GetNamespace(container);
+			var elements = container.Descendants()
+				.Where(e => e.Name.LocalName == "Section" || e.Name.LocalName == "Page");
 
-			if (pageIDs.Count > 0)
+			if (elements.Any())
 			{
-				countCallback?.Invoke(pageIDs.Count);
+				countCallback?.Invoke(elements.Count());
 
-				var regex = new Regex(@"page-id=({[^}]+?})");
+				pageEx = new Regex(@"page-id=({[^}]+?})");
 
-				foreach (var pageID in pageIDs)
+				BuildHyperlinkMap(hyperlinks, container, string.Empty, token, stepCallback);
+			}
+
+			return hyperlinks;
+		}
+
+
+		private void BuildHyperlinkMap(
+			Dictionary<string, OneHyperlink> hyperlinks,
+			XElement root, string path, CancellationToken token, Action stepCallback)
+		{
+			if (root.Name.LocalName == "Section")
+			{
+				path = Path.Combine(path, root.Attribute("name").Value);
+
+				foreach (var element in root.Elements())
 				{
-					if (token.IsCancellationRequested)
+					var ID = element.Attribute("ID").Value;
+					var link = GetHyperlink(ID, string.Empty);
+					var match = pageEx.Match(link);
+					if (match.Success)
 					{
-						break;
-					}
-
-					var link = GetHyperlink(pageID, string.Empty);
-					var matches = regex.Match(link);
-					if (matches.Success)
-					{
-						hyperlinks.Add(matches.Groups[1].Value, new PageHyperlink
-						{
-							PageID = pageID,
-							HyperID = matches.Groups[1].Value,
-							Path = "",
-							Uri = link
-						});
+						hyperlinks.Add(match.Groups[1].Value,
+							new OneHyperlink
+							{
+								PageID = ID,
+								SectionID = null,
+								HyperID = match.Groups[1].Value,
+								Path = path,
+								Uri = link
+							});
 					}
 
 					stepCallback?.Invoke();
 				}
 			}
+			else // SectionGroup or Notebook
+			{
+				foreach (var element in root.Elements())
+				{
+					BuildHyperlinkMap(
+						hyperlinks, element,
+						Path.Combine(path, root.Attribute("name").Value),
+						token, stepCallback);
+				}
 
-			return hyperlinks;
+				stepCallback?.Invoke();
+			}
 		}
 
 

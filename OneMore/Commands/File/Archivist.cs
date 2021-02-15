@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly ILogger logger;
 		private readonly OneNote one;
-		private Dictionary<string, River.OneMoreAddIn.OneNote.PageHyperlink> cache;
+		private Dictionary<string, River.OneMoreAddIn.OneNote.OneHyperlink> map;
 
 
 		public Archivist(OneNote one)
@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 			System.Diagnostics.Debugger.Launch();
 
 			logger.WriteLine("building hyperlink map");
-			cache = one.BuildHyperlinkMap(scope, token);
+			map = one.BuildHyperlinkMap(scope, token);
 		}
 
 
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SaveAsHTML(Page page, ref string filename, bool archive, string hierarchy)
+		public void SaveAsHTML(Page page, ref string filename, bool archive)
 		{
 			if (archive)
 			{
@@ -79,9 +79,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (SaveAs(page.PageId, filename, OneNote.ExportFormat.HTML, "HTML"))
 					{
-						if (hierarchy != null)
+						if (map != null)
 						{
-							RewirePageLinks(page, filename, hierarchy);
+							RewirePageLinks(page, filename);
 						}
 
 						ArchiveAttachments(page, filename, path);
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void RewirePageLinks(Page page, string filename, string hierarchy)
+		private void RewirePageLinks(Page page, string filename)
 		{
 			/*
             <one:T>
@@ -119,33 +119,42 @@ namespace River.OneMoreAddIn.Commands
 			var index = 0;
 			var builder = new StringBuilder();
 
-			const int MALL = 0;		// group[0] is the entire match
-			const int MURI = 1;		// group[1] is the full href value
-			const int MPATH = 2;	// group[2] is the onenote prefix path (sectiongroup/section)
-			const int MTEXT = 3;    // group[3] is the text of the hyperlink
-
-			var matches = Regex.Matches(text, 
-				@"<a\s+href=""(onenote:(.*?)(?:&amp;)?#?section-id[^""]*)"">([^<]*?)</a>");
+			var matches = Regex.Matches(text,
+				@"<a\s+href=""(?<uri>onenote:[^;]*?;section-id=(?<sid>{[^}]*?})(?:&amp;page-id=(?<pid>{[^}]*?}))?[^""]*?)"">(?<nam>.*?)</a>",
+				RegexOptions.Singleline);
 
 			var updated = false;
 
 			foreach (Match match in matches)
 			{
-				if (match.Success && match.Groups.Count == 4 && match.Groups[MPATH].Length > 0)
+				if (match.Success)
 				{
 					var groups = match.Groups;
-					var uri = HttpUtility.UrlDecode(groups[MPATH].Value);
 
-					logger.WriteLine($"rewire {groups[MALL].Value}");
-					if (cache.ContainsKey(groups[MALL].Value))
+					var uri = groups["uri"];
+					var id = groups["pid"].Success ? groups["pid"].Value : null;
+
+					if (map.ContainsKey(id))
 					{
-						logger.WriteLine($" -> {cache[groups[MALL].Value].PageID}");
+						var item = map[id];
+						logger.WriteLine($"rewired {item.Path} <- {groups[0].Value}");
+
+						var name = groups["nam"].Value;
+						if (name.Contains('<'))
+						{
+							// strip html from the name to get raw text
+							name = name.ToXmlWrapper().Value;
+						}
+
+						builder.Append(text.Substring(index, uri.Index - index));
+						builder.Append($"./{item.Path}/{name}.htm");
+					}
+					else
+					{
+						builder.Append(text.Substring(index, uri.Index - index));
 					}
 
-					builder.Append(text.Substring(index, groups[MURI].Index - index));
-					builder.Append($"./{uri}/{match.Groups[MTEXT].Value}");
-
-					index = groups[MURI].Index + groups[MURI].Length;
+					index = uri.Index + uri.Length;
 					updated = true;
 				}
 			}
