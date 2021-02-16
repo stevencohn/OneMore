@@ -35,6 +35,11 @@ namespace River.OneMoreAddIn.Commands
 			var scope = args[0] as string;
 			using (one = new OneNote())
 			{
+
+
+				System.Diagnostics.Debugger.Launch();
+
+
 				XElement root = scope == "notebook"
 					? one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Pages)
 					: one.GetSection(one.CurrentSectionId);
@@ -78,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
 					{
-						await Archive(root, null);
+						await Archive(root, root.Attribute("name").Value);
 					}
 				}
 
@@ -144,9 +149,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						// append name of Section/Group to path to build zip folder path
 						var name = element.Attribute("name").Value;
-						var path2 = path == null ? name : Path.Combine(path, name);
 
-						await Archive(element, path2);
+						await Archive(element, Path.Combine(path, name));
 					}
 				}
 			}
@@ -163,11 +167,11 @@ namespace River.OneMoreAddIn.Commands
 				name = $"Unnamed__{pageCount}";
 			}
 
-			var filename = path == null
+			var filename = string.IsNullOrEmpty(path)
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
-			logger.WriteLine($"ArchivePage path {path} ({filename})");
+			logger.WriteLine($"ArchivePage path [{path}] ({filename})");
 
 			archivist.SaveAsHTML(page, ref filename, true);
 

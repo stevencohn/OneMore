@@ -536,7 +536,8 @@ namespace River.OneMoreAddIn
 
 			// path
 			string path = null;
-			var section = GetSection();
+			var sectionID = GetParent(page.PageId) ?? CurrentSectionId;
+			var section = GetSection(sectionID);
 			if (section != null)
 			{
 				var uri = section.Attribute("path")?.Value;
