@@ -17,17 +17,22 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal class Archivist
+	internal class Archivist : Loggable
 	{
-		private readonly ILogger logger;
 		private readonly OneNote one;
+		private readonly string home;
 		private Dictionary<string, River.OneMoreAddIn.OneNote.OneHyperlink> map;
 
 
-		public Archivist(OneNote one)
+		public Archivist(OneNote one) : this(one, null)
 		{
-			logger = Logger.Current;
+		}
+
+
+		public Archivist(OneNote one, string home)
+		{
 			this.one = one;
+			this.home = Path.GetDirectoryName(home);
 		}
 
 
@@ -98,12 +103,10 @@ namespace River.OneMoreAddIn.Commands
 		private void RewirePageLinks(Page page, string filename)
 		{
 			/*
-            <one:T>
-			  <![CDATA[. . <a href="onenote:#N1.G1.S1.P1&amp;
-			    section-id={A640CEA0-536E-4ED0-ACC1-428AAB96501F}&amp;
-			    page-id={660B56BC-B6BE-4791-B556-E4BC9BA2E60C}&amp;
-			    end&amp;base-path=https://d.docs.live.net/6925d0374517d4b4/Documents/Flux/Testing.one">N1.G1.S1.P1</a>
-			  ]]>
+            <one:T><![CDATA[. . <a href="onenote:#N1.G1.S1.P1&amp;
+			  section-id={A640CEA0-536E-4ED0-ACC1-428AAB96501F}&amp;
+			  page-id={660B56BC-B6BE-4791-B556-E4BC9BA2E60C}&amp;
+			  end&amp;base-path=https://../Documents/Flux/Testing.one">Groovy Page</a>]]>
 			</one:T>
 			*/
 
@@ -120,10 +123,12 @@ namespace River.OneMoreAddIn.Commands
 			var builder = new StringBuilder();
 
 			var matches = Regex.Matches(text,
-				@"<a\s+href=""(?<uri>onenote:[^;]*?;section-id=(?<sid>{[^}]*?})(?:&amp;page-id=(?<pid>{[^}]*?}))?[^""]*?)"">(?<nam>.*?)</a>",
+				@"<a\s+href=""(?<u>onenote:[^;]*?;section-id=(?<s>{[^}]*?})(?:&amp;page-id=(?<p>{[^}]*?}))?[^""]*?)"">(?<n>.*?)</a>",
 				RegexOptions.Singleline);
 
 			var updated = false;
+			var homeUri = new Uri(home);
+			logger.WriteLine($"homeUri {homeUri}");
 
 			foreach (Match match in matches)
 			{
@@ -131,23 +136,33 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var groups = match.Groups;
 
-					var uri = groups["uri"];
-					var id = groups["pid"].Success ? groups["pid"].Value : null;
+					var uri = groups["u"];
+					var id = groups["p"].Success ? groups["p"].Value : null;
 
-					if (map.ContainsKey(id))
+					if (id != null && map.ContainsKey(id))
 					{
-						var item = map[id];
-						logger.WriteLine($"rewired {item.Path} <- {groups[0].Value}");
-
-						var name = groups["nam"].Value;
+						var name = groups["n"].Value;
 						if (name.Contains('<'))
 						{
 							// strip html from the name to get raw text
 							name = name.ToXmlWrapper().Value;
 						}
 
+						name = HttpUtility.UrlDecode(PathFactory.CleanFileName(name));
+						logger.WriteLine($"name {name}");
+
+						var item = map[id];
+						var link = $"{item.Path}/{name}.htm".Replace('\\', '/');
+						logger.WriteLine($"link {link}");
+
+						var luri = new Uri(Path.Combine(home, link.Substring(link.IndexOf('/') + 1)));
+						logger.WriteLine($"luri {luri} ({link})");
+
+						var linkUri = homeUri.MakeRelativeUri(luri);
+						logger.WriteLine($"linkUri {linkUri}");
+
 						builder.Append(text.Substring(index, uri.Index - index));
-						builder.Append($"./{item.Path}/{name}.htm");
+						builder.Append(linkUri);
 					}
 					else
 					{

@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 
 				source = new CancellationTokenSource();
 
-				archivist = new Archivist(one);
+				archivist = new Archivist(one, path);
 				archivist.BuildHyperlinkMap(
 					scope == "notebook" ? OneNote.Scope.Sections : OneNote.Scope.Pages,
 					source.Token);
