@@ -127,8 +127,8 @@ namespace River.OneMoreAddIn.Commands
 				RegexOptions.Singleline);
 
 			var updated = false;
-			var homeUri = new Uri(home);
-			logger.WriteLine($"homeUri {homeUri}");
+			var pageUri = new Uri(home);
+			logger.WriteLine($"homeUri {pageUri}");
 
 			foreach (Match match in matches)
 			{
@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 						var luri = new Uri(Path.Combine(home, link.Substring(link.IndexOf('/') + 1)));
 						logger.WriteLine($"luri {luri} ({link})");
 
-						var linkUri = homeUri.MakeRelativeUri(luri);
+						var linkUri = pageUri.MakeRelativeUri(luri);
 						logger.WriteLine($"linkUri {linkUri}");
 
 						builder.Append(text.Substring(index, uri.Index - index));

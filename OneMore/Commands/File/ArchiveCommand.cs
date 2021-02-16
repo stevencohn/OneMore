@@ -167,6 +167,8 @@ namespace River.OneMoreAddIn.Commands
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
+			logger.WriteLine($"ArchivePage path {path} ({filename})");
+
 			archivist.SaveAsHTML(page, ref filename, true);
 
 			await ArchivePageFiles(Path.GetDirectoryName(filename), path);
