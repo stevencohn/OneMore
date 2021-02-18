@@ -70,15 +70,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SaveAsHTML(Page page, ref string filename, bool archive)
+		public void SaveAsHTML(Page page, ref string filename, bool archive, string hpath = null)
 		{
 			if (archive)
 			{
 				// expand C:\folder\name.htm --> C:\folder\name\name.htm
-				var name = Path.GetFileNameWithoutExtension(filename);
-				var fame = Path.GetFileName(filename);
-				var path = Path.Combine(Path.GetDirectoryName(filename), name);
-				filename = Path.Combine(path, fame);
+				var name = Path.GetFileNameWithoutExtension(filename);			// "name"
+				var fame = Path.GetFileName(filename);							// "name.htm"
+				var path = Path.Combine(Path.GetDirectoryName(filename), name);	// "c:\folder\name"
+				filename = Path.Combine(path, fame);							// "c:\folder\name\name.htm"
 
 				if (PathFactory.EnsurePathExists(path))
 				{
@@ -86,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (map != null)
 						{
-							RewirePageLinks(page, filename);
+							RewirePageLinks(page, filename, hpath);
 						}
 
 						ArchiveAttachments(page, filename, path);
@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void RewirePageLinks(Page page, string filename)
+		private void RewirePageLinks(Page page, string filename, string hpath)
 		{
 			/*
             <one:T><![CDATA[. . <a href="onenote:#N1.G1.S1.P1&amp;
@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 				RegexOptions.Singleline);
 
 			var updated = false;
-			var pageUri = new Uri(home);
+			var pageUri = new Uri(Path.Combine(home, hpath));
 			logger.WriteLine($"homeUri {pageUri}");
 
 			foreach (Match match in matches)
@@ -149,20 +149,21 @@ namespace River.OneMoreAddIn.Commands
 						}
 
 						name = HttpUtility.UrlDecode(PathFactory.CleanFileName(name));
+						logger.WriteLine();
 						logger.WriteLine($"name {name}");
 
 						var item = map[id];
-						var link = $"{item.Path}/{name}.htm".Replace('\\', '/');
+						var link = $"{Path.GetDirectoryName(item.Path)}/{name}.htm".Replace('\\', '/');
 						logger.WriteLine($"link {link}");
 
 						var luri = new Uri(Path.Combine(home, link.Substring(link.IndexOf('/') + 1)));
 						logger.WriteLine($"luri {luri} ({link})");
 
-						var linkUri = pageUri.MakeRelativeUri(luri);
-						logger.WriteLine($"linkUri {linkUri}");
+						var relative = HttpUtility.UrlDecode(pageUri.MakeRelativeUri(luri).ToString());
+						logger.WriteLine($"relative {relative}");
 
 						builder.Append(text.Substring(index, uri.Index - index));
-						builder.Append(linkUri);
+						builder.Append(relative);
 					}
 					else
 					{

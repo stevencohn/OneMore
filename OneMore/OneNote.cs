@@ -523,9 +523,9 @@ namespace River.OneMoreAddIn
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
-		public (string Name, string Path, string Link) GetPageInfo()
+		public (string Name, string Path, string Link) GetPageInfo(string pageId = null)
 		{
-			var page = GetPage(PageDetail.Basic);
+			var page = GetPage(pageId ?? CurrentPageId, PageDetail.Basic);
 			if (page == null)
 			{
 				return (null, null, null);

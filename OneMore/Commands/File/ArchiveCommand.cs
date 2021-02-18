@@ -171,11 +171,11 @@ namespace River.OneMoreAddIn.Commands
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
-			logger.WriteLine($"ArchivePage path [{path}] ({filename})");
+			logger.WriteLine($"ArchivePage path:[{path}] filename:[{filename}]");
 
-			archivist.SaveAsHTML(page, ref filename, true);
+			archivist.SaveAsHTML(page, ref filename, true, path);
 
-			await ArchivePageFiles(Path.GetDirectoryName(filename), path);
+			await ArchiveAttachments(Path.GetDirectoryName(filename), path);
 
 			pageCount++;
 		}
@@ -196,7 +196,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ArchivePageFiles(string location, string path)
+		private async Task ArchiveAttachments(string location, string path)
 		{
 			if (!Directory.Exists(location))
 			{
@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn.Commands
 					? dir.Name
 					: Path.Combine(path, dir.Name);
 
-				await ArchivePageFiles(dir.FullName, dname);
+				await ArchiveAttachments(dir.FullName, dname);
 			}
 		}
 	}
