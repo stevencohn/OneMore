@@ -36,7 +36,6 @@ namespace River.OneMoreAddIn.Commands
 			using (one = new OneNote())
 			{
 
-
 				System.Diagnostics.Debugger.Launch();
 
 
@@ -173,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine($"ArchivePage path:[{path}] filename:[{filename}]");
 
-			archivist.SaveAsHTML(page, ref filename, true, path);
+			archivist.ExportHTML(page, ref filename, path);
 
 			await ArchiveAssets(Path.GetDirectoryName(filename), path);
 

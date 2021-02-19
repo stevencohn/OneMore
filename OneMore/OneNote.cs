@@ -63,13 +63,15 @@ namespace River.OneMoreAddIn
 			Self = HierarchyScope.hsSelf
 		}
 
-		public class OneHyperlink
+		public class HyperlinkInfo
 		{
-			public string PageID;		// pageID
-			public string SectionID;	// sectionID
-			public string HyperID;		// hyperlink section-id or page-id
-			public string Path;			// relative path within current scope (section, notebook)
-			public string Uri;			// onenote:blah hyperlink
+			public string PageID;       // pageID
+			public string SectionID;    // sectionID
+			public string HyperID;      // hyperlink section-id or page-id
+			public string Name;         // section or page name
+			public string Path;         // relative path within current scope (section, notebook)
+			public string FullPath;     // full notebook-rooted path
+			public string Uri;          // onenote:blah hyperlink
 		}
 
 
@@ -312,32 +314,39 @@ namespace River.OneMoreAddIn
 
 		/// <summary>
 		/// Creates a map of pages where the key is built from the page-id of an internal
-		/// onenote: hyperlink and the value is a OneHyperlink item
+		/// onenote: hyperlink and the value is a HyperlinkInfo item
 		/// </summary>
 		/// <param name="scope">Pages in section, Sections in notebook, or all Notebooks</param>
 		/// <param name="countCallback">Called exactly once to report the total count of pages to map</param>
 		/// <param name="stepCallback">Called for each page that is mapped to report progress</param>
 		/// <returns>
-		/// A Dictionary with page IDs as keys as values are OneHyperlink items
+		/// A Dictionary with page IDs as keys as values are HyperlinkInfo items
 		/// </returns>
 		/// <remarks>
 		/// There's no direct way to map onenote:http URIs to page IDs so this creates a cache
 		/// of all pages in the specified scope with their URIs as keys and pageIDs as values
 		/// </remarks>
-		public Dictionary<string, OneHyperlink> BuildHyperlinkMap(
+		public Dictionary<string, HyperlinkInfo> BuildHyperlinkMap(
 			Scope scope,
 			CancellationToken token,
 			Action<int> countCallback = null,
 			Action stepCallback = null)
 		{
-			var hyperlinks = new Dictionary<string, OneHyperlink>();
+			var hyperlinks = new Dictionary<string, HyperlinkInfo>();
 
 			XElement container;
-			switch (scope)
+			if (scope == Scope.Notebooks)
 			{
-				case Scope.Notebooks: container = GetNotebooks(Scope.Pages); break;
-				case Scope.Sections: container = GetNotebook(Scope.Pages); break;
-				default: container = GetSection(); break;
+				container = GetNotebooks(Scope.Pages);
+			}
+			else if (scope == Scope.Sections || scope == Scope.Pages)
+			{
+				// get the notebook even if scope if Pages so we can infer the full path
+				container = GetNotebook(Scope.Pages);
+			}
+			else
+			{
+				return hyperlinks;
 			}
 
 			// ignore the recycle bin
@@ -345,17 +354,55 @@ namespace River.OneMoreAddIn
 				.Where(e => e.Attributes().Any(a => a.Name == "isRecycleBin"))
 				.Remove();
 
-			var ns = GetNamespace(container);
-			var elements = container.Descendants()
-				.Where(e => e.Name.LocalName == "Section" || e.Name.LocalName == "Page");
-
-			if (elements.Any())
+			if (token.IsCancellationRequested)
 			{
-				countCallback?.Invoke(elements.Count());
+				return hyperlinks;
+			}
+
+			// get root path and trim down to intended scope
+
+			var ns = GetNamespace(container);
+
+			var rootPath = string.Empty;
+			if (scope == Scope.Pages)
+			{
+				var section = container.Descendants(ns + "Section")
+					.FirstOrDefault(e => e.Attribute("isCurrentlyViewed").Value == "true");
+
+				var p = section.Parent;
+				while (p != null)
+				{
+					var a = p.Attribute("name");
+					if (a != null && !string.IsNullOrEmpty(a.Value))
+					{
+						rootPath = rootPath.Length == 0 ? a.Value : $"{a.Value}/{rootPath}";
+					}
+
+					p = p.Parent;
+				}
+
+				container = section;
+			}
+			else
+			{
+				rootPath = container.Attribute("name").Value;
+			}
+
+			if (token.IsCancellationRequested)
+			{
+				return hyperlinks;
+			}
+
+			// now focus only on the sections and pages...
+
+			var total = container.Descendants(ns + "Page").Count();
+			if (total > 0)
+			{
+				countCallback?.Invoke(total);
 
 				pageEx = new Regex(@"page-id=({[^}]+?})");
 
-				BuildHyperlinkMap(hyperlinks, container, string.Empty, token, stepCallback);
+				BuildHyperlinkMap(hyperlinks, container, rootPath, null, token, stepCallback);
 			}
 
 			return hyperlinks;
@@ -363,27 +410,48 @@ namespace River.OneMoreAddIn
 
 
 		private void BuildHyperlinkMap(
-			Dictionary<string, OneHyperlink> hyperlinks,
-			XElement root, string path, CancellationToken token, Action stepCallback)
+			Dictionary<string, HyperlinkInfo> hyperlinks,
+			XElement root, string fullPath, string path,
+			CancellationToken token, Action stepCallback)
 		{
 			if (root.Name.LocalName == "Section")
 			{
-				path = Path.Combine(path, root.Attribute("name").Value);
+				string full;
+				if (string.IsNullOrEmpty(path))
+				{
+					path = root.Attribute("name").Value;
+					full = $"{fullPath}/{path}";
+				}
+				else
+				{
+					path = $"{path}/{root.Attribute("name").Value}";
+					full = $"{fullPath}/{path}";
+				}
 
 				foreach (var element in root.Elements())
 				{
+					if (token.IsCancellationRequested)
+					{
+						return;
+					}
+
 					var ID = element.Attribute("ID").Value;
+					var name = element.Attribute("name").Value;
 					var link = GetHyperlink(ID, string.Empty);
 					var match = pageEx.Match(link);
 					if (match.Success)
 					{
+						logger.WriteLine($"MAP path:{path} fullpath:{full} name:{name}");
+
 						hyperlinks.Add(match.Groups[1].Value,
-							new OneHyperlink
+							new HyperlinkInfo
 							{
 								PageID = ID,
 								SectionID = null,
 								HyperID = match.Groups[1].Value,
+								Name = name,
 								Path = path,
+								FullPath = full,
 								Uri = link
 							});
 					}
@@ -395,10 +463,20 @@ namespace River.OneMoreAddIn
 			{
 				foreach (var element in root.Elements())
 				{
+					var p = string.IsNullOrEmpty(path)
+						? element.Attribute("name").Value 
+						: $"{path}/{element.Attribute("name").Value}";
+
 					BuildHyperlinkMap(
 						hyperlinks, element,
-						Path.Combine(path, root.Attribute("name").Value),
+						fullPath,
+						p,
 						token, stepCallback);
+
+					if (token.IsCancellationRequested)
+					{
+						return;
+					}
 				}
 
 				stepCallback?.Invoke();

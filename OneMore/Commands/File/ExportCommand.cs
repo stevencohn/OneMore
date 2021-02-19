@@ -84,8 +84,6 @@ namespace River.OneMoreAddIn.Commands
 				case OneNote.ExportFormat.OneNote: ext = ".one"; break;
 			}
 
-			string formatName = format.ToString();
-
 			// export...
 
 			using (var progress = new UI.ProgressDialog())
@@ -105,15 +103,22 @@ namespace River.OneMoreAddIn.Commands
 
 					if (format == OneNote.ExportFormat.HTML)
 					{
-						archivist.SaveAsHTML(page, ref filename, withAttachments);
+						if (withAttachments)
+						{
+							archivist.ExportHTML(page, ref filename);
+						}
+						else
+						{
+							archivist.Export(page.PageId, filename, OneNote.ExportFormat.HTML);
+						}
 					}
 					else if (format == OneNote.ExportFormat.XML)
 					{
-						archivist.SaveAsXML(page.Root, filename);
+						archivist.ExportXML(page.Root, filename);
 					}
 					else
 					{
-						archivist.SaveAs(page.PageId, filename, format, formatName);
+						archivist.Export(page.PageId, filename, format);
 					}
 				}
 			}

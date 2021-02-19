@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly OneNote one;
 		private readonly string home;
-		private Dictionary<string, OneNote.OneHyperlink> map;
+		private Dictionary<string, OneNote.HyperlinkInfo> map;
 
 
 		public Archivist(OneNote one) : this(one, null)
@@ -43,9 +43,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool SaveAs(
-			string pageId, string filename,
-			OneNote.ExportFormat format, string formatName)
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		/// <summary>
+		/// Export a page in the given format to the specified file
+		/// </summary>
+		/// <param name="pageId">The ID of the single page to export</param>
+		/// <param name="filename">The output file to create/overwrite</param>
+		/// <param name="format">The OneNote ExportFormat</param>
+		/// <returns>True if the export was successful</returns>
+		public bool Export(string pageId, string filename, OneNote.ExportFormat format)
 		{
 			logger.WriteLine($"publishing page to {filename}");
 
@@ -60,39 +67,42 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"error publishig page as {formatName}", exc);
-				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, formatName) + "\n\n" + exc.Message);
+				var fmt = format.ToString();
+				logger.WriteLine($"error publishig page as {fmt}", exc);
+				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, fmt) + "\n\n" + exc.Message);
 				return false;
 			}
 		}
 
 
-		public void SaveAsHTML(Page page, ref string filename, bool withAttachments, string hpath = null)
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="page"></param>
+		/// <param name="filename"></param>
+		/// <param name="withAttachments"></param>
+		/// <param name="hpath"></param>
+		public void ExportHTML(Page page, ref string filename, string hpath = null)
 		{
-			if (withAttachments)
-			{
-				// expand C:\folder\name.htm --> C:\folder\name\name.htm
-				var name = Path.GetFileNameWithoutExtension(filename);			// "name"
-				var fame = Path.GetFileName(filename);							// "name.htm"
-				var path = Path.Combine(Path.GetDirectoryName(filename), name);	// "c:\folder\name"
-				filename = Path.Combine(path, fame);							// "c:\folder\name\name.htm"
+			// expand C:\folder\name.htm --> C:\folder\name\name.htm
+			var name = Path.GetFileNameWithoutExtension(filename);			// "name"
+			var fame = Path.GetFileName(filename);							// "name.htm"
+			var path = Path.Combine(Path.GetDirectoryName(filename), name);	// "c:\folder\name"
+			filename = Path.Combine(path, fame);							// "c:\folder\name\name.htm"
 
-				if (PathFactory.EnsurePathExists(path))
+			if (PathFactory.EnsurePathExists(path))
+			{
+				if (Export(page.PageId, filename, OneNote.ExportFormat.HTML))
 				{
-					if (SaveAs(page.PageId, filename, OneNote.ExportFormat.HTML, "HTML"))
+					if (map != null)
 					{
-						if (map != null)
-						{
-							RewirePageLinks(page, filename, hpath);
-						}
-
-						ArchiveAttachments(page, filename, path);
+						RewirePageLinks(page, filename, hpath);
 					}
+
+					ArchiveAttachments(page, filename, path);
 				}
-			}
-			else
-			{
-				SaveAs(page.PageId, filename, OneNote.ExportFormat.HTML, "HTML");
 			}
 		}
 
@@ -265,7 +275,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SaveAsXML(XElement root, string filename)
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		/// <summary>
+		/// Export the given page content as raw XML to the specified file
+		/// </summary>
+		/// <param name="root">The root content of the page</param>
+		/// <param name="filename">The full path of the file to create/overwrite</param>
+		public void ExportXML(XElement root, string filename)
 		{
 			try
 			{
