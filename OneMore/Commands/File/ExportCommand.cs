@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	/// <summary>
+	/// Export one or more selected pages, optionally with attachments, to a folder
+	/// </summary>
 	internal class ExportCommand : Command
 	{
 		private OneNote one;
@@ -53,6 +56,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			OneNote.ExportFormat format;
 			string path;
+			bool withAttachments;
+
+			// dialog...
 
 			using (var dialog = new ExportDialog(pageIDs.Count))
 			{
@@ -63,7 +69,10 @@ namespace River.OneMoreAddIn.Commands
 
 				path = dialog.FolderPath;
 				format = dialog.Format;
+				withAttachments = dialog.WithAttachments;
 			}
+
+			// prepare...
 
 			string ext = null;
 			switch (format)
@@ -75,19 +84,9 @@ namespace River.OneMoreAddIn.Commands
 				case OneNote.ExportFormat.OneNote: ext = ".one"; break;
 			}
 
-			bool archive = false;
-			if (format == OneNote.ExportFormat.HTML)
-			{
-				var result = PromptToArchive();
-				if (result == DialogResult.Cancel)
-				{
-					return;
-				}
-
-				archive = result == DialogResult.Yes;
-			}
-
 			string formatName = format.ToString();
+
+			// export...
 
 			using (var progress = new UI.ProgressDialog())
 			{
@@ -106,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (format == OneNote.ExportFormat.HTML)
 					{
-						archivist.SaveAsHTML(page, ref filename, archive);
+						archivist.SaveAsHTML(page, ref filename, withAttachments);
 					}
 					else if (format == OneNote.ExportFormat.XML)
 					{
@@ -120,18 +119,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			UIHelper.ShowMessage(string.Format(Resx.SaveAsMany_Success, pageIDs.Count, path));
-		}
-
-
-		private DialogResult PromptToArchive()
-		{
-			return MessageBox.Show(
-				Resx.ExportCommand_ArchivePrompt,
-				Resx.ExportCommand_ArchiveHTML,
-				MessageBoxButtons.YesNoCancel,
-				MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
 		}
 	}
 }

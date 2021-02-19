@@ -2774,14 +2774,6 @@ ISO-code then comma then language name</comment>
     <value>1 Seite exportieren</value>
     <comment>group box title</comment>
   </data>
-  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
-    <value>In HTML archivieren</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
-    <value>Anhänge zusammen mit HTML archivieren? </value>
-    <comment>message box prompt</comment>
-  </data>
   <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
     <value>... Satzabstand ändern</value>
     <comment>option</comment>
@@ -2904,6 +2896,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
     <value>Aktivieren Sie die Einstellungen für den dynamischen Menükontext. </value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ExportDialog_attachmentsBox.Text" xml:space="preserve">
+    <value>Anhänge einschließen</value>
     <comment>checkbox</comment>
   </data>
 </root>

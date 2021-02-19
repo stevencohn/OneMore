@@ -2783,14 +2783,6 @@ ISO-code then comma then language name</comment>
     <value>Exporter 1 page</value>
     <comment>group box title</comment>
   </data>
-  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
-    <value>Archiver au HTML</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
-    <value>Archiver les pièces jointes avec HTML? </value>
-    <comment>message box prompt</comment>
-  </data>
   <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
     <value>... Modifier l'espacement des phrases</value>
     <comment>option</comment>
@@ -2913,6 +2905,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
     <value>Activez les paramètres de contexte de menu dynamique. </value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ExportDialog_attachmentsBox.Text" xml:space="preserve">
+    <value>Inclure les pièces jointes</value>
     <comment>checkbox</comment>
   </data>
 </root>

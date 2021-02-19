@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.Commands
 					"folderLabel",
 					"formatLabel",
 					"formatBox",
+					"attachmentsBox",
 					"okButton",
 					"cancelButton"
 				});
@@ -42,6 +43,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public string FolderPath => pathBox.Text;
+
+
+		public bool WithAttachments => attachmentsBox.Enabled && attachmentsBox.Checked;
 
 
 		public OneNote.ExportFormat Format
@@ -65,6 +69,12 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangePath(object sender, EventArgs e)
 		{
 			okButton.Enabled = pathBox.Text.Trim().Length > 0;
+		}
+
+
+		private void ChangeFormat(object sender, EventArgs e)
+		{
+			attachmentsBox.Enabled = formatBox.SelectedIndex == 0;
 		}
 
 

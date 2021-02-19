@@ -2799,14 +2799,6 @@ In this section</value>
     <value>Export 1 Page</value>
     <comment>group box title</comment>
   </data>
-  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
-    <value>Archive to HTML</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
-    <value>Archive attachments along with HTML? A subdirectory will be created containing the HTML file along with copies of any file attachments on this page</value>
-    <comment>message box prompt</comment>
-  </data>
   <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
     <value>... Change Sentence Spacing</value>
     <comment>option</comment>
@@ -2929,6 +2921,10 @@ In this section</value>
   </data>
   <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
     <value>Enable dynamic menu context settings. Disable if you've added OneMore commands to the Quick Access toolbar</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ExportDialog_attachmentsBox.Text" xml:space="preserve">
+    <value>Include attachments</value>
     <comment>checkbox</comment>
   </data>
 </root>

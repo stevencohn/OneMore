@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly OneNote one;
 		private readonly string home;
-		private Dictionary<string, River.OneMoreAddIn.OneNote.OneHyperlink> map;
+		private Dictionary<string, OneNote.OneHyperlink> map;
 
 
 		public Archivist(OneNote one) : this(one, null)
@@ -38,9 +38,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public void BuildHyperlinkMap(OneNote.Scope scope, CancellationToken token)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
 			logger.WriteLine("building hyperlink map");
 			map = one.BuildHyperlinkMap(scope, token);
 		}
@@ -70,9 +67,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SaveAsHTML(Page page, ref string filename, bool archive, string hpath = null)
+		public void SaveAsHTML(Page page, ref string filename, bool withAttachments, string hpath = null)
 		{
-			if (archive)
+			if (withAttachments)
 			{
 				// expand C:\folder\name.htm --> C:\folder\name\name.htm
 				var name = Path.GetFileNameWithoutExtension(filename);			// "name"

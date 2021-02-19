@@ -2788,14 +2788,6 @@ ISO-code then comma then language name</comment>
     <value>تصدير 1 صفحة</value>
     <comment>group box title</comment>
   </data>
-  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
-    <value>أرشفة إلى HTML</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
-    <value>أرشفة المرفقات مع HTML؟ </value>
-    <comment>message box prompt</comment>
-  </data>
   <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
     <value>... تغيير تباعد الجمل</value>
     <comment>option</comment>
@@ -2918,6 +2910,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
     <value>تفعيل إعدادات سياق القائمة الديناميكية. </value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ExportDialog_attachmentsBox.Text" xml:space="preserve">
+    <value>قم بتضمين المرفقات</value>
     <comment>checkbox</comment>
   </data>
 </root>

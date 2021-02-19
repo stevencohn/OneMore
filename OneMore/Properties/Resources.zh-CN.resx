@@ -2780,14 +2780,6 @@ ISO-code then comma then language name</comment>
     <value>导出1页</value>
     <comment>group box title</comment>
   </data>
-  <data name="ExportCommand_ArchiveHTML" xml:space="preserve">
-    <value>存档为HTML</value>
-    <comment>message box title</comment>
-  </data>
-  <data name="ExportCommand_ArchivePrompt" xml:space="preserve">
-    <value>存档附件以及HTML？</value>
-    <comment>message box prompt</comment>
-  </data>
   <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
     <value>...更改句子间距</value>
     <comment>option</comment>
@@ -2910,6 +2902,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="GeneralSheet_enablersBox.Text" xml:space="preserve">
     <value>启用动态菜单上下文设置。</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ExportDialog_attachmentsBox.Text" xml:space="preserve">
+    <value>包括附件</value>
     <comment>checkbox</comment>
   </data>
 </root>

@@ -1455,20 +1455,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive to HTML.
+        ///   Looks up a localized string similar to Include attachments.
         /// </summary>
-        internal static string ExportCommand_ArchiveHTML {
+        internal static string ExportDialog_attachmentsBox_Text {
             get {
-                return ResourceManager.GetString("ExportCommand_ArchiveHTML", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Archive attachments along with HTML? A subdirectory will be created containing the HTML file along with copies of any file attachments on this page.
-        /// </summary>
-        internal static string ExportCommand_ArchivePrompt {
-            get {
-                return ResourceManager.GetString("ExportCommand_ArchivePrompt", resourceCulture);
+                return ResourceManager.GetString("ExportDialog_attachmentsBox.Text", resourceCulture);
             }
         }
         

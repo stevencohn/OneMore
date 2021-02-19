@@ -175,7 +175,7 @@ namespace River.OneMoreAddIn.Commands
 
 			archivist.SaveAsHTML(page, ref filename, true, path);
 
-			await ArchiveAttachments(Path.GetDirectoryName(filename), path);
+			await ArchiveAssets(Path.GetDirectoryName(filename), path);
 
 			pageCount++;
 		}
@@ -196,13 +196,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ArchiveAttachments(string location, string path)
+		private async Task ArchiveAssets(string location, string path)
 		{
 			if (!Directory.Exists(location))
 			{
 				return;
 			}
 
+			// directory contains both the page HTML and attachment files
 			var info = new DirectoryInfo(location);
 
 			foreach (FileInfo file in info.GetFiles())
@@ -227,7 +228,7 @@ namespace River.OneMoreAddIn.Commands
 					? dir.Name
 					: Path.Combine(path, dir.Name);
 
-				await ArchiveAttachments(dir.FullName, dname);
+				await ArchiveAssets(dir.FullName, dname);
 			}
 		}
 	}
