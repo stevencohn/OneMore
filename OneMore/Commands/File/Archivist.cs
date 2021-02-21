@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#define LogArc
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -66,9 +68,6 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				// consistently format filename, converting spaces to underscores and others
-				filename = HttpUtility.UrlDecode(filename);
-
 				if (File.Exists(filename))
 				{
 					File.Delete(filename);
@@ -99,10 +98,10 @@ namespace River.OneMoreAddIn.Commands
 			Page page, ref string filename, string hpath = null, bool bookScope = false)
 		{
 			// expand C:\folder\name.htm --> C:\folder\name\name.htm
-			var name = Path.GetFileNameWithoutExtension(filename);			// "name"
-			var fame = Path.GetFileName(filename);							// "name.htm"
-			var path = Path.Combine(Path.GetDirectoryName(filename), name);	// "c:\folder\name"
-			filename = Path.Combine(path, fame);							// "c:\folder\name\name.htm"
+			var name = Path.GetFileNameWithoutExtension(filename);				// "name"
+			var fame = PathFactory.CleanFileName(Path.GetFileName(filename));	// "name.htm"
+			var path = Path.Combine(Path.GetDirectoryName(filename), name);		// "c:\folder\name"
+			filename = Path.Combine(path, fame);								// "c:\folder\name\name.htm"
 
 			if (PathFactory.EnsurePathExists(path))
 			{
@@ -142,12 +141,12 @@ namespace River.OneMoreAddIn.Commands
 			var builder = new StringBuilder();
 
 			var matches = Regex.Matches(text,
-				@"<a\s+href=""(?<u>onenote:[^;]*?;section-id=(?<s>{[^}]*?})(?:&amp;page-id=(?<p>{[^}]*?}))?[^""]*?)"">(?<n>.*?)</a>",
+				@"<a\s+href=""(?<u>onenote:[^;]*?[#;]section-id=(?<s>{[^}]*?})(?:&amp;page-id=(?<p>{[^}]*?}))?[^""]*?)"">(?<n>.*?)</a>",
 				RegexOptions.Singleline);
 
 			var updated = false;
 			var pageUri = new Uri(Path.Combine(Path.Combine(home, hpath), "x.x"));
-			logger.WriteLine($"homeUri {pageUri}");
+			//logger.WriteLine($"homeUri {pageUri}");
 
 			foreach (Match match in matches)
 			{
@@ -170,25 +169,31 @@ namespace River.OneMoreAddIn.Commands
 						name = HttpUtility.UrlDecode(PathFactory.CleanFileName(name));
 						var item = map[id];
 
-						logger.WriteLine();
+						//logger.WriteLine();
 						var fpath = bookScope ? item.FullPath : item.FullPath.Substring(item.FullPath.IndexOf('/') + 1);
-						logger.WriteLine($"name {name} fpath:{fpath} FullPath:{item.FullPath}");
+						//logger.WriteLine($"name {name} fpath:{fpath} FullPath:{item.FullPath}");
 
 						var absolute = new Uri(Path.Combine(home, Path.Combine(fpath, $"{name}.htm")));
-						logger.WriteLine($"absolute {absolute}");
+						//logger.WriteLine($"absolute {absolute}");
 
 						var relative = HttpUtility.UrlDecode(pageUri.MakeRelativeUri(absolute).ToString());
-						logger.WriteLine($"relative {relative}");
+						//logger.WriteLine($"relative {relative}");
 
 						builder.Append(text.Substring(index, uri.Index - index));
 						builder.Append(relative);
+
+						index = uri.Index + uri.Length;
 					}
 					else
 					{
-						builder.Append(text.Substring(index, uri.Index - index));
+						//logger.WriteLine($"replacing [{groups[0].Value}] with [{groups["n"].Value}]");
+
+						builder.Append(text.Substring(index, groups[0].Index - index));
+						builder.Append(groups["n"].Value);
+
+						index = groups[0].Index + groups[0].Length;
 					}
 
-					index = uri.Index + uri.Length;
 					updated = true;
 				}
 			}

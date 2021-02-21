@@ -269,21 +269,24 @@ namespace River.OneMoreAddIn
 			if (scope == Scope.Pages)
 			{
 				var section = container.Descendants(ns + "Section")
-					.FirstOrDefault(e => e.Attribute("isCurrentlyViewed").Value == "true");
+					.FirstOrDefault(e => e.Attribute("isCurrentlyViewed")?.Value == "true");
 
-				var p = section.Parent;
-				while (p != null)
+				if (section != null)
 				{
-					var a = p.Attribute("name");
-					if (a != null && !string.IsNullOrEmpty(a.Value))
+					var p = section.Parent;
+					while (p != null)
 					{
-						rootPath = rootPath.Length == 0 ? a.Value : $"{a.Value}/{rootPath}";
+						var a = p.Attribute("name");
+						if (a != null && !string.IsNullOrEmpty(a.Value))
+						{
+							rootPath = rootPath.Length == 0 ? a.Value : $"{a.Value}/{rootPath}";
+						}
+
+						p = p.Parent;
 					}
 
-					p = p.Parent;
+					container = section;
 				}
-
-				container = section;
 			}
 			else
 			{

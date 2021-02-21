@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.IO;
+	using System.Text.RegularExpressions;
 
 
 	/// <summary>
@@ -29,6 +30,9 @@ namespace River.OneMoreAddIn
 		{
 			if (invalidFileChars == null)
 				invalidFileChars = Path.GetInvalidFileNameChars();
+
+			// OneNote sometimes add \r\n to URL names in HTML export files
+			name = Regex.Replace(name, @"[\r\n]+", " ");
 
 			return string.Join("_",
 				name.Split(invalidFileChars, StringSplitOptions.RemoveEmptyEntries))

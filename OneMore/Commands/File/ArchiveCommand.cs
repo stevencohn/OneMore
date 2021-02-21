@@ -2,8 +2,8 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#define LogArc
-#define _Choose
+#define LogArc_
+#define Choose_
 
 namespace River.OneMoreAddIn.Commands
 {
@@ -39,9 +39,6 @@ namespace River.OneMoreAddIn.Commands
 			var scope = args[0] as string;
 			using (one = new OneNote())
 			{
-
-				System.Diagnostics.Debugger.Launch();
-
 				bookScope = scope == "notebook";
 
 				XElement root = bookScope
@@ -80,8 +77,8 @@ namespace River.OneMoreAddIn.Commands
 				var t = Path.GetTempFileName();
 				tempdir = Path.Combine(Path.GetDirectoryName(t), Path.GetFileNameWithoutExtension(t));
 				PathFactory.EnsurePathExists(tempdir);
-#if LogArc
 				logger.WriteLine("building archive");
+#if LogArc
 				logger.WriteLine(root);
 #endif
 				using (var stream = new FileStream(path, FileMode.Create))
@@ -140,7 +137,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Archive(XElement root, string path)
 		{
+#if LogArc
 			logger.WriteLine($"ARC r00t:{root.Name.LocalName}={root.Attribute("name").Value} path:{path}");
+#endif
 
 			foreach (var element in root.Elements())
 			{
