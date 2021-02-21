@@ -2,6 +2,9 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#define LogArc
+#define _Choose
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -22,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private ZipArchive archive;
 		private string tempdir;
 		private int pageCount = 0;
+		private bool bookScope;
 		private CancellationTokenSource source;
 
 
@@ -38,8 +42,9 @@ namespace River.OneMoreAddIn.Commands
 
 				System.Diagnostics.Debugger.Launch();
 
+				bookScope = scope == "notebook";
 
-				XElement root = scope == "notebook"
+				XElement root = bookScope
 					? one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Pages)
 					: one.GetSection(one.CurrentSectionId);
 
@@ -68,16 +73,17 @@ namespace River.OneMoreAddIn.Commands
 
 				archivist = new Archivist(one, path);
 				archivist.BuildHyperlinkMap(
-					scope == "notebook" ? OneNote.Scope.Sections : OneNote.Scope.Pages,
+					bookScope ? OneNote.Scope.Sections : OneNote.Scope.Pages,
 					source.Token);
 
 				// use this temp folder as a sandbox for each page
 				var t = Path.GetTempFileName();
 				tempdir = Path.Combine(Path.GetDirectoryName(t), Path.GetFileNameWithoutExtension(t));
 				PathFactory.EnsurePathExists(tempdir);
-
+#if LogArc
 				logger.WriteLine("building archive");
-
+				logger.WriteLine(root);
+#endif
 				using (var stream = new FileStream(path, FileMode.Create))
 				{
 					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
@@ -95,6 +101,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private string ChooseLocation(string name)
 		{
+#if Choose
 			string path;
 			using (var dialog = new OpenFileDialog
 			{
@@ -125,11 +132,16 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return path;
+#else
+			return @"C:\Users\steven\Downloads\Foo\Bar.zip";
+#endif
 		}
 
 
 		private async Task Archive(XElement root, string path)
 		{
+			logger.WriteLine($"ARC r00t:{root.Name.LocalName}={root.Attribute("name").Value} path:{path}");
+
 			foreach (var element in root.Elements())
 			{
 				if (element.Name.LocalName == "Page")
@@ -142,15 +154,19 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					// SectionGroup or Section
+#if LogArc
+					logger.WriteLine($"ARC root:{root.Name.LocalName}={root.Attribute("name").Value} element:{element.Name.LocalName}={element.Attribute("name").Value} path:{path}");
+#endif
 					element.ReadAttributeValue("locked", out bool locked, false);
-					element.ReadAttributeValue("isRecycleBin", out bool recycled, false);
-					if (!locked && !recycled)
-					{
-						// append name of Section/Group to path to build zip folder path
-						var name = element.Attribute("name").Value;
+					if (locked) continue;
 
-						await Archive(element, Path.Combine(path, name));
-					}
+					element.ReadAttributeValue("isRecycleBin", out bool recycle, false);
+					if (recycle) continue;
+
+					// append name of Section/Group to path to build zip folder path
+					var name = element.Attribute("name").Value;
+
+					await Archive(element, Path.Combine(path, name));
 				}
 			}
 		}
@@ -169,29 +185,14 @@ namespace River.OneMoreAddIn.Commands
 			var filename = string.IsNullOrEmpty(path)
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
-
-			logger.WriteLine($"ArchivePage path:[{path}] filename:[{filename}]");
-
-			archivist.ExportHTML(page, ref filename, path);
+#if LogArc
+			logger.WriteLine($"ARC path:[{path}] filename:[{filename}]");
+#endif
+			archivist.ExportHTML(page, ref filename, path, bookScope);
 
 			await ArchiveAssets(Path.GetDirectoryName(filename), path);
 
 			pageCount++;
-		}
-
-
-		private void CleanupTemp()
-		{
-			var temp = new DirectoryInfo(tempdir);
-			foreach (FileInfo file in temp.GetFiles())
-			{
-				file.Delete();
-			}
-
-			foreach (DirectoryInfo dir in temp.GetDirectories())
-			{
-				dir.Delete(true);
-			}
 		}
 
 
@@ -228,6 +229,21 @@ namespace River.OneMoreAddIn.Commands
 					: Path.Combine(path, dir.Name);
 
 				await ArchiveAssets(dir.FullName, dname);
+			}
+		}
+
+
+		private void CleanupTemp()
+		{
+			var temp = new DirectoryInfo(tempdir);
+			foreach (FileInfo file in temp.GetFiles())
+			{
+				file.Delete();
+			}
+
+			foreach (DirectoryInfo dir in temp.GetDirectories())
+			{
+				dir.Delete(true);
 			}
 		}
 	}

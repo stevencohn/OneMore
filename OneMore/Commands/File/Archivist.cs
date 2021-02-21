@@ -43,6 +43,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public string CombinePath(string path1, string path2)
+		{
+			if (string.IsNullOrEmpty(path2)) return path1;
+			if (string.IsNullOrEmpty(path1)) return path2;
+			return $"{path1}/{path2}";
+		}
+
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		/// <summary>
@@ -58,6 +66,9 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
+				// consistently format filename, converting spaces to underscores and others
+				filename = HttpUtility.UrlDecode(filename);
+
 				if (File.Exists(filename))
 				{
 					File.Delete(filename);
@@ -82,9 +93,10 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="page"></param>
 		/// <param name="filename"></param>
-		/// <param name="withAttachments"></param>
 		/// <param name="hpath"></param>
-		public void ExportHTML(Page page, ref string filename, string hpath = null)
+		/// <param name="bookScope"></param>
+		public void ExportHTML(
+			Page page, ref string filename, string hpath = null, bool bookScope = false)
 		{
 			// expand C:\folder\name.htm --> C:\folder\name\name.htm
 			var name = Path.GetFileNameWithoutExtension(filename);			// "name"
@@ -98,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (map != null)
 					{
-						RewirePageLinks(page, filename, hpath);
+						RewirePageLinks(page, filename, hpath, bookScope);
 					}
 
 					ArchiveAttachments(page, filename, path);
@@ -107,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void RewirePageLinks(Page page, string filename, string hpath)
+		private void RewirePageLinks(Page page, string filename, string hpath, bool bookScope)
 		{
 			/*
             <one:T><![CDATA[. . <a href="onenote:#N1.G1.S1.P1&amp;
@@ -134,7 +146,7 @@ namespace River.OneMoreAddIn.Commands
 				RegexOptions.Singleline);
 
 			var updated = false;
-			var pageUri = new Uri(Path.Combine(home, hpath));
+			var pageUri = new Uri(Path.Combine(Path.Combine(home, hpath), "x.x"));
 			logger.WriteLine($"homeUri {pageUri}");
 
 			foreach (Match match in matches)
@@ -156,17 +168,16 @@ namespace River.OneMoreAddIn.Commands
 						}
 
 						name = HttpUtility.UrlDecode(PathFactory.CleanFileName(name));
-						logger.WriteLine();
-						logger.WriteLine($"name {name}");
-
 						var item = map[id];
-						var link = $"{Path.GetDirectoryName(item.Path)}/{name}.htm".Replace('\\', '/');
-						logger.WriteLine($"link {link}");
 
-						var luri = new Uri(Path.Combine(home, link.Substring(link.IndexOf('/') + 1)));
-						logger.WriteLine($"luri {luri} ({link})");
+						logger.WriteLine();
+						var fpath = bookScope ? item.FullPath : item.FullPath.Substring(item.FullPath.IndexOf('/') + 1);
+						logger.WriteLine($"name {name} fpath:{fpath} FullPath:{item.FullPath}");
 
-						var relative = HttpUtility.UrlDecode(pageUri.MakeRelativeUri(luri).ToString());
+						var absolute = new Uri(Path.Combine(home, Path.Combine(fpath, $"{name}.htm")));
+						logger.WriteLine($"absolute {absolute}");
+
+						var relative = HttpUtility.UrlDecode(pageUri.MakeRelativeUri(absolute).ToString());
 						logger.WriteLine($"relative {relative}");
 
 						builder.Append(text.Substring(index, uri.Index - index));
