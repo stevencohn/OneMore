@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 					UIHelper.ShowMessage(Resx.ArchiveCommand_noPages);
 					return;
 				}
-#if Choose
+
 				var topName = root.Attribute("name").Value;
 				string path = await SingleThreaded.Invoke(() =>
 				{
@@ -61,9 +61,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					return;
 				}
-#else
-				var path = @"C:\Users\usstckm\Downloads\Foo\Bar.zip";
-#endif
+
 				source = new CancellationTokenSource();
 
 				archivist = new Archivist(one, path);
