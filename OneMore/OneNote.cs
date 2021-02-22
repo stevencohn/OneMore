@@ -808,12 +808,45 @@ namespace River.OneMoreAddIn
 		/// <param name="element">A page or element within a page with a unique objectID</param>
 		public async Task Update(XElement element)
 		{
+			if (element.Name.LocalName == "Page")
+			{
+				CorrectNumerics(element);
+			}
+
 			var xml = element.ToString(SaveOptions.DisableFormatting);
 
 			await InvokeWithRetry(() =>
 			{
 				onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
 			});
+		}
+
+
+		private void CorrectNumerics(XElement root)
+		{
+			// correct maxInclusive violations such as indent="1.10561848638658E37"
+
+			var ns = GetNamespace(root);
+			var indents = root.Elements(ns + "Outline").Elements(ns + "Indents").Elements(ns + "Indent");
+			if (indents != null)
+			{
+				foreach (var indent in indents)
+				{
+					var attribute = indent.Attribute("indent");
+					if (attribute != null)
+					{
+						var e = attribute.Value.IndexOf('E');
+						if (e > 0)
+						{
+							var dot = attribute.Value.IndexOf('.');
+							if (e > dot + 2)
+							{
+								attribute.Value = attribute.Value.Substring(0, dot + 2);
+							}
+						}
+					}
+				}
+			}
 		}
 
 

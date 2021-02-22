@@ -20,10 +20,12 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote one;
 		private Archivist archivist;
 		private ZipArchive archive;
+		private XElement hierarchy;
+		private string zipPath;
 		private string tempdir;
+		private int totalCount;
 		private int pageCount = 0;
 		private bool bookScope;
-		private CancellationTokenSource source;
 
 
 		public ArchiveCommand()
@@ -34,59 +36,80 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			var scope = args[0] as string;
+
 			using (one = new OneNote())
 			{
 				bookScope = scope == "notebook";
 
-				XElement root = bookScope
+				hierarchy = bookScope
 					? one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Pages)
 					: one.GetSection(one.CurrentSectionId);
 
-				var ns = one.GetNamespace(root);
+				var ns = one.GetNamespace(hierarchy);
 
-				if (!root.Descendants(ns + "Page").Any())
+				totalCount = hierarchy.Descendants(ns + "Page").Count();
+				if (totalCount == 0)
 				{
 					UIHelper.ShowMessage(Resx.ArchiveCommand_noPages);
 					return;
 				}
 
-				var topName = root.Attribute("name").Value;
-				string path = await SingleThreaded.Invoke(() =>
+				var topName = hierarchy.Attribute("name").Value;
+				zipPath = await SingleThreaded.Invoke(() =>
 				{
 					// OpenFileDialog must run in STA thread
 					return ChooseLocation(topName);
 				});
 
-				if (path == null)
+				if (zipPath == null)
 				{
 					return;
 				}
 
-				source = new CancellationTokenSource();
-
-				archivist = new Archivist(one, path);
-				await archivist.BuildHyperlinkMap(
-					bookScope ? OneNote.Scope.Sections : OneNote.Scope.Pages,
-					source.Token);
-
-				// use this temp folder as a sandbox for each page
-				var t = Path.GetTempFileName();
-				tempdir = Path.Combine(Path.GetDirectoryName(t), Path.GetFileNameWithoutExtension(t));
-				PathFactory.EnsurePathExists(tempdir);
-				logger.WriteLine($"building archive {path}");
-
-				using (var stream = new FileStream(path, FileMode.Create))
-				{
-					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
-					{
-						await Archive(root, root.Attribute("name").Value);
-					}
-				}
-
-				Directory.Delete(tempdir, true);
-
-				UIHelper.ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, path));
+				var progressDialog = new UI.ProgressDialog(Execute);
+				await progressDialog.RunModeless();
 			}
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		// Invoked by the ProgressDialog OnShown callback
+		private async Task Execute(UI.ProgressDialog progress, CancellationToken token)
+		{
+			logger.Start();
+			logger.StartClock();
+
+			archivist = new Archivist(one, zipPath);
+			await archivist.BuildHyperlinkMap(
+				bookScope ? OneNote.Scope.Sections : OneNote.Scope.Pages,
+				progress,
+				token);
+
+			// use this temp folder as a sandbox for each page
+			var t = Path.GetTempFileName();
+			tempdir = Path.Combine(Path.GetDirectoryName(t), Path.GetFileNameWithoutExtension(t));
+			PathFactory.EnsurePathExists(tempdir);
+			logger.WriteLine($"building archive {zipPath}");
+
+			progress.SetMaximum(totalCount);
+			progress.SetMessage($"Archiving {totalCount} pages");
+
+			using (var stream = new FileStream(zipPath, FileMode.Create))
+			{
+				using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
+				{
+					await Archive(progress, hierarchy, hierarchy.Attribute("name").Value);
+				}
+			}
+
+			Directory.Delete(tempdir, true);
+
+			progress.Close();
+			UIHelper.ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
+
+			logger.WriteTime("archive complete");
+			logger.End();
 		}
 
 
@@ -125,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Archive(XElement root, string path)
+		private async Task Archive(UI.ProgressDialog progress, XElement root, string path)
 		{
 			foreach (var element in root.Elements())
 			{
@@ -133,6 +156,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var page = one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
+
+					progress.SetMessage($"Archiving {page.Title}");
+					progress.Increment();
 
 					await ArchivePage(element, page, path);
 				}
@@ -149,7 +175,7 @@ namespace River.OneMoreAddIn.Commands
 					// append name of Section/Group to path to build zip folder path
 					var name = element.Attribute("name").Value;
 
-					await Archive(element, Path.Combine(path, name));
+					await Archive(progress, element, Path.Combine(path, name));
 				}
 			}
 		}
@@ -168,7 +194,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// ensure the page name is unique within the section
 				var n = element.Parent.Elements()
-					.Count(e => e.Attribute("name")?.Value == 
+					.Count(e => e.Attribute("name")?.Value ==
 						PathFactory.CleanFileName(page.Title).Trim());
 
 				if (n > 1)

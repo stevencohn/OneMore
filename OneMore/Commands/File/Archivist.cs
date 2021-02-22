@@ -37,10 +37,25 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task BuildHyperlinkMap(OneNote.Scope scope, CancellationToken token)
+		public async Task BuildHyperlinkMap(
+			OneNote.Scope scope, UI.ProgressDialog progress, CancellationToken token)
 		{
 			logger.WriteLine("building hyperlink map");
-			map = await one.BuildHyperlinkMap(scope, token);
+
+			map = await one.BuildHyperlinkMap(
+				scope,
+				token,
+				async (count) =>
+				{
+					progress.SetMaximum(count);
+					progress.SetMessage($"Scanning {count} page references");
+					await Task.Yield();
+				},
+				async () =>
+				{
+					progress.Increment();
+					await Task.Yield();
+				});
 		}
 
 
