@@ -2,9 +2,6 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#define LogArc_
-#define Choose_
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -52,20 +49,21 @@ namespace River.OneMoreAddIn.Commands
 					UIHelper.ShowMessage(Resx.ArchiveCommand_noPages);
 					return;
 				}
-
-				var hierarchy = root.Attribute("name").Value;
-
+#if Choose
+				var topName = root.Attribute("name").Value;
 				string path = await SingleThreaded.Invoke(() =>
 				{
 					// OpenFileDialog must run in STA thread
-					return ChooseLocation(hierarchy);
+					return ChooseLocation(topName);
 				});
 
 				if (path == null)
 				{
 					return;
 				}
-
+#else
+				var path = @"C:\Users\usstckm\Downloads\Foo\Bar.zip";
+#endif
 				source = new CancellationTokenSource();
 
 				archivist = new Archivist(one, path);
@@ -77,10 +75,8 @@ namespace River.OneMoreAddIn.Commands
 				var t = Path.GetTempFileName();
 				tempdir = Path.Combine(Path.GetDirectoryName(t), Path.GetFileNameWithoutExtension(t));
 				PathFactory.EnsurePathExists(tempdir);
-				logger.WriteLine("building archive");
-#if LogArc
-				logger.WriteLine(root);
-#endif
+				logger.WriteLine($"building archive {path}");
+
 				using (var stream = new FileStream(path, FileMode.Create))
 				{
 					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
@@ -98,7 +94,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private string ChooseLocation(string name)
 		{
-#if Choose
 			string path;
 			using (var dialog = new OpenFileDialog
 			{
@@ -129,18 +124,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return path;
-#else
-			return @"C:\Users\steven\Downloads\Foo\Bar.zip";
-#endif
 		}
 
 
 		private async Task Archive(XElement root, string path)
 		{
-#if LogArc
-			logger.WriteLine($"ARC r00t:{root.Name.LocalName}={root.Attribute("name").Value} path:{path}");
-#endif
-
 			foreach (var element in root.Elements())
 			{
 				if (element.Name.LocalName == "Page")
@@ -148,14 +136,12 @@ namespace River.OneMoreAddIn.Commands
 					var page = one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
-					await ArchivePage(page, path);
+					await ArchivePage(element, page, path);
 				}
 				else
 				{
 					// SectionGroup or Section
-#if LogArc
-					logger.WriteLine($"ARC root:{root.Name.LocalName}={root.Attribute("name").Value} element:{element.Name.LocalName}={element.Attribute("name").Value} path:{path}");
-#endif
+
 					element.ReadAttributeValue("locked", out bool locked, false);
 					if (locked) continue;
 
@@ -171,7 +157,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ArchivePage(Page page, string path)
+		private async Task ArchivePage(XElement element, Page page, string path)
 		{
 			CleanupTemp();
 
@@ -180,13 +166,23 @@ namespace River.OneMoreAddIn.Commands
 			{
 				name = $"Unnamed__{pageCount}";
 			}
+			else
+			{
+				// ensure the page name is unique within the section
+				var n = element.Parent.Elements()
+					.Count(e => e.Attribute("name")?.Value == 
+						PathFactory.CleanFileName(page.Title).Trim());
+
+				if (n > 1)
+				{
+					name = $"{name}_{element.ElementsBeforeSelf().Count()}";
+				}
+			}
 
 			var filename = string.IsNullOrEmpty(path)
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
-#if LogArc
-			logger.WriteLine($"ARC path:[{path}] filename:[{filename}]");
-#endif
+
 			archivist.ExportHTML(page, ref filename, path, bookScope);
 
 			await ArchiveAssets(Path.GetDirectoryName(filename), path);

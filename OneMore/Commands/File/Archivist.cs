@@ -2,8 +2,6 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#define LogArc
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -43,14 +41,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.WriteLine("building hyperlink map");
 			map = await one.BuildHyperlinkMap(scope, token);
-		}
-
-
-		public string CombinePath(string path1, string path2)
-		{
-			if (string.IsNullOrEmpty(path2)) return path1;
-			if (string.IsNullOrEmpty(path1)) return path2;
-			return $"{path1}/{path2}";
 		}
 
 
