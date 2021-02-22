@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Web;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -38,10 +39,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void BuildHyperlinkMap(OneNote.Scope scope, CancellationToken token)
+		public async Task BuildHyperlinkMap(OneNote.Scope scope, CancellationToken token)
 		{
 			logger.WriteLine("building hyperlink map");
-			map = one.BuildHyperlinkMap(scope, token);
+			map = await one.BuildHyperlinkMap(scope, token);
 		}
 
 

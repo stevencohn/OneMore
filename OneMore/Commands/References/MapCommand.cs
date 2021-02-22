@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -66,99 +67,111 @@ namespace River.OneMoreAddIn.Commands
 				var hierarchy = GetHierarchy();
 
 				if (token.IsCancellationRequested)
-					return;
-
-				var hyperlinks = GetHyperlinks(progress, token);
-
-				if (token.IsCancellationRequested)
-					return;
-
-				logger.WriteTime($"cached {hyperlinks.Count} page hyperlinks", true);
-
-				var elements = hierarchy.Descendants(ns + "Page").ToList();
-				var titles = new Dictionary<string, string>();
-
-				progress.SetMaximum(elements.Count);
-				progress.SetMessage($"Building map for {elements.Count} pages");
-
-				foreach (var element in elements)
 				{
-					progress.Increment();
+					logger.WriteLine("cancelled");
+					return;
+				}
+
+				try
+				{
+					var hyperlinks = await GetHyperlinks(progress, token);
+
+					if (token.IsCancellationRequested)
+					{
+						logger.WriteLine("cancelled");
+						return;
+					}
+
+					var elements = hierarchy.Descendants(ns + "Page").ToList();
+					var titles = new Dictionary<string, string>();
+
+					logger.WriteLine($"building map for {elements.Count} pages");
+					progress.SetMaximum(elements.Count);
+					progress.SetMessage($"Building map for {elements.Count} pages");
+
+					foreach (var element in elements)
+					{
+						progress.Increment();
+
+						if (token.IsCancellationRequested)
+							return;
+
+						var parentId = element.Attribute("ID").Value;
+						var xml = one.GetPageXml(parentId);
+						var matches = regex.Matches(xml);
+
+						if (matches.Count == 0)
+						{
+							element.Remove();
+							continue;
+						}
+
+						var parent = new Page(XElement.Parse(xml));
+
+						var name = element.Parent.Attribute("name").Value;
+						progress.SetMessage($"Scanning {name}/{parent.Title}");
+
+						// prevent duplicates
+						var refs = new List<string>();
+
+						foreach (Match match in matches)
+						{
+							var pid = match.Groups[1].Value;
+							if (refs.Contains(pid))
+							{
+								// already captured this pid
+								continue;
+							}
+
+							if (!hyperlinks.ContainsKey(pid))
+							{
+								logger.WriteLine($"not found in scope: {pid} on {name}/{parent.Title}");
+								continue;
+							}
+
+							var hyperlink = hyperlinks[pid];
+							if (hyperlink.PageID != parentId)
+							{
+								string title;
+								if (titles.ContainsKey(hyperlink.PageID))
+								{
+									title = titles[hyperlink.PageID];
+								}
+								else
+								{
+									var p = one.GetPage(hyperlink.PageID, OneNote.PageDetail.Basic);
+									title = p.Title;
+									titles.Add(hyperlink.PageID, title);
+								}
+
+								element.Add(new XElement("Ref",
+									new XAttribute("title", title),
+									new XAttribute("ID", hyperlink.PageID)
+									));
+
+								//logger.WriteLine($" - {title}");
+
+								refs.Add(pid);
+							}
+						}
+					}
+
+					if (titles.Count == 0)
+					{
+						UIHelper.ShowMessage("No linked pages were found");
+						return;
+					}
 
 					if (token.IsCancellationRequested)
 						return;
 
-					var parentId = element.Attribute("ID").Value;
-					var xml = one.GetPageXml(parentId);
-					var matches = regex.Matches(xml);
-
-					if (matches.Count == 0)
-					{
-						element.Remove();
-						continue;
-					}
-
-					var parent = new Page(XElement.Parse(xml));
-
-					var name = element.Parent.Attribute("name").Value;
-					progress.SetMessage($"Scanning {name}/{parent.Title}");
-
-					// prevent duplicates
-					var refs = new List<string>();
-
-					foreach (Match match in matches)
-					{
-						var pid = match.Groups[1].Value;
-						if (refs.Contains(pid))
-						{
-							// already captured this pid
-							continue;
-						}
-
-						if (!hyperlinks.ContainsKey(pid))
-						{
-							logger.WriteLine($"not found in scope: {pid} on {name}/{parent.Title}");
-							continue;
-						}
-
-						var hyperlink = hyperlinks[pid];
-						if (hyperlink.PageID != parentId)
-						{
-							string title;
-							if (titles.ContainsKey(hyperlink.PageID))
-							{
-								title = titles[hyperlink.PageID];
-							}
-							else
-							{
-								var p = one.GetPage(hyperlink.PageID, OneNote.PageDetail.Basic);
-								title = p.Title;
-								titles.Add(hyperlink.PageID, title);
-							}
-
-							element.Add(new XElement("Ref",
-								new XAttribute("title", title),
-								new XAttribute("ID", hyperlink.PageID)
-								));
-
-							//logger.WriteLine($" - {title}");
-
-							refs.Add(pid);
-						}
-					}
+					Prune(hierarchy);
+					await BuildMapPage(hierarchy);
 				}
-
-				if (titles.Count == 0)
+				catch (Exception exc)
 				{
-					UIHelper.ShowMessage("No linked pages were found");
-					return;
+					logger.WriteLine(exc);
 				}
-
-				if (token.IsCancellationRequested)
-					return;
-
-				Prune(hierarchy);
-				await BuildMapPage(hierarchy);
 			}
 
 			logger.WriteTime("map complete");
@@ -205,20 +218,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Dictionary<string, OneNote.HyperlinkInfo> GetHyperlinks(
+		private async Task<Dictionary<string, OneNote.HyperlinkInfo>> GetHyperlinks(
 			UI.ProgressDialog progress, CancellationToken token)
 		{
 			var catalog = fullCatalog ? OneNote.Scope.Notebooks : scope;
 
-			return one.BuildHyperlinkMap(catalog, token,
-				(count) =>
+			return await one.BuildHyperlinkMap(catalog, token,
+				async (count) =>
 				{
 					progress.SetMaximum(count);
 					progress.SetMessage($"Scanning {count} page references");
+					await Task.Yield();
 				},
-				() =>
+				async () =>
 				{
 					progress.Increment();
+					await Task.Yield();
 				});
 		}
 

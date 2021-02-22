@@ -4,7 +4,7 @@
 
 #pragma warning disable S3881 // IDisposable should be implemented correctly
 
-#define LogMap_
+#define LogMap
 
 namespace River.OneMoreAddIn
 {
@@ -228,11 +228,11 @@ namespace River.OneMoreAddIn
 		/// There's no direct way to map onenote:http URIs to page IDs so this creates a cache
 		/// of all pages in the specified scope with their URIs as keys and pageIDs as values
 		/// </remarks>
-		public Dictionary<string, HyperlinkInfo> BuildHyperlinkMap(
+		public async Task<Dictionary<string, HyperlinkInfo>> BuildHyperlinkMap(
 			Scope scope,
 			CancellationToken token,
-			Action<int> countCallback = null,
-			Action stepCallback = null)
+			Func<int, Task> countCallback = null,
+			Func<Task> stepCallback = null)
 		{
 			var hyperlinks = new Dictionary<string, HyperlinkInfo>();
 
@@ -248,6 +248,7 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
+				await Task.FromResult(hyperlinks);
 				return hyperlinks;
 			}
 
@@ -258,14 +259,15 @@ namespace River.OneMoreAddIn
 
 			if (token.IsCancellationRequested)
 			{
+				await Task.FromResult(hyperlinks);
 				return hyperlinks;
 			}
 
 			// get root path and trim down to intended scope
 
 			var ns = GetNamespace(container);
+			string rootPath = string.Empty;
 
-			var rootPath = string.Empty;
 			if (scope == Scope.Pages)
 			{
 				var section = container.Descendants(ns + "Section")
@@ -288,7 +290,7 @@ namespace River.OneMoreAddIn
 					container = section;
 				}
 			}
-			else
+			else if (scope != Scope.Notebooks) // <one:Notebooks> doesn't have a name
 			{
 				rootPath = container.Attribute("name").Value;
 			}
@@ -302,21 +304,23 @@ namespace River.OneMoreAddIn
 			var total = container.Descendants(ns + "Page").Count();
 			if (total > 0)
 			{
-				countCallback?.Invoke(total);
+				if (countCallback != null)
+					await countCallback(total);
 
 				pageEx = new Regex(@"page-id=({[^}]+?})");
 
-				BuildHyperlinkMap(hyperlinks, container, rootPath, null, token, stepCallback);
+				await BuildHyperlinkMap(hyperlinks, container, rootPath, null, token, stepCallback);
 			}
 
+			await Task.FromResult(hyperlinks);
 			return hyperlinks;
 		}
 
 
-		private void BuildHyperlinkMap(
+		private async Task BuildHyperlinkMap(
 			Dictionary<string, HyperlinkInfo> hyperlinks,
 			XElement root, string fullPath, string path,
-			CancellationToken token, Action stepCallback)
+			CancellationToken token, Func<Task> stepCallback)
 		{
 			if (root.Name.LocalName == "Section")
 			{
@@ -356,7 +360,8 @@ namespace River.OneMoreAddIn
 							});
 					}
 
-					stepCallback?.Invoke();
+					if (stepCallback != null)
+						await stepCallback();
 				}
 			}
 			else // SectionGroup or Notebook
@@ -364,13 +369,13 @@ namespace River.OneMoreAddIn
 				foreach (var element in root.Elements())
 				{
 #if LogMap
-					logger.WriteLine($"MAP root:{root.Name.LocalName}={root.Attribute("name").Value} element:{element.Name.LocalName}={element.Attribute("name").Value} path:{path}");
+					logger.WriteLine($"MAP root:{root.Name.LocalName}={root.Attribute("name")?.Value} element:{element.Name.LocalName}={element.Attribute("name").Value} path:{path}");
 #endif
 					var p = string.IsNullOrEmpty(path)
 						? element.Attribute("name").Value 
 						: $"{path}/{element.Attribute("name").Value}";
 
-					BuildHyperlinkMap(
+					await BuildHyperlinkMap(
 						hyperlinks, element,
 						fullPath,
 						p,
@@ -381,8 +386,6 @@ namespace River.OneMoreAddIn
 						return;
 					}
 				}
-
-				stepCallback?.Invoke();
 			}
 		}
 
