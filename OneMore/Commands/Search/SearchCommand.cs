@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			copying = false;
 
 			var dialog = new SearchDialog();
-			dialog.RunModeless((sender, e) =>
+			await dialog.RunModeless((sender, e) =>
 			{
 				var d = sender as SearchDialog;
 				if (d.DialogResult == DialogResult.OK)

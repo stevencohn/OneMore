@@ -4,8 +4,6 @@
 
 #pragma warning disable S3881 // IDisposable should be implemented correctly
 
-#define LogMap
-
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
@@ -344,9 +342,8 @@ namespace River.OneMoreAddIn
 					var match = pageEx.Match(link);
 					if (match.Success)
 					{
-#if LogMap
-						logger.WriteLine($"MAP path:{path} fullpath:{full} name:{name}");
-#endif
+						//logger.WriteLine($"MAP path:{path} fullpath:{full} name:{name}");
+
 						hyperlinks.Add(match.Groups[1].Value,
 							new HyperlinkInfo
 							{
@@ -368,12 +365,22 @@ namespace River.OneMoreAddIn
 			{
 				foreach (var element in root.Elements())
 				{
-#if LogMap
-					logger.WriteLine($"MAP root:{root.Name.LocalName}={root.Attribute("name")?.Value} element:{element.Name.LocalName}={element.Attribute("name").Value} path:{path}");
-#endif
-					var p = string.IsNullOrEmpty(path)
-						? element.Attribute("name").Value 
-						: $"{path}/{element.Attribute("name").Value}";
+					if (element.Name.LocalName == "Notebooks" ||
+						element.Name.LocalName == "UnfiledNotes")
+					{
+						logger.WriteLine($"MAP skip {element.Name.LocalName} element");
+						continue;
+					}
+
+					var ea = element.Attribute("name");
+					if (ea == null)
+						continue;
+
+					//logger.WriteLine($"MAP root:{root.Name.LocalName}={root.Attribute("name")?.Value} " +
+					//	$"element:{element.Name.LocalName}={ea?.Value} " +
+					//	$"path:{path}");
+
+					var p = string.IsNullOrEmpty(path) ? ea?.Value : $"{path}/{ea?.Value}";
 
 					await BuildHyperlinkMap(
 						hyperlinks, element,

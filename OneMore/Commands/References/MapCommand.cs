@@ -48,9 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var progressDialog = new UI.ProgressDialog(Execute);
-			progressDialog.RunModeless();
-
-			await Task.Yield();
+			await progressDialog.RunModeless();
 		}
 
 

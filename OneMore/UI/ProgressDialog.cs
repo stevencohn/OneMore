@@ -7,7 +7,6 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
-	using System.ComponentModel;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -110,32 +109,29 @@ namespace River.OneMoreAddIn.UI
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		protected override void OnShown(EventArgs e)
+		protected override async void OnShown(EventArgs e)
 		{
 			base.OnShown(e);
 
 			if (execute != null)
 			{
-				var worker = new BackgroundWorker();
-				worker.DoWork += ExecuteWork;
-				worker.RunWorkerAsync();
-			}
-		}
+				await Task.Factory.StartNew(async () =>
+				{
+					try
+					{
+						await execute(this, source.Token);
+						DialogResult = DialogResult.OK;
+						logger.WriteLine("progress dialog completed");
+					}
+					catch (Exception exc)
+					{
+						DialogResult = DialogResult.Cancel;
+						logger.WriteLine("error executing work", exc);
+					}
 
-		private void ExecuteWork(object sender, DoWorkEventArgs e)
-		{
-			try
-			{
-				execute(this, source.Token);
-				DialogResult = DialogResult.OK;
+					Close();
+				});
 			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error executing work", exc);
-				DialogResult = DialogResult.Cancel;
-			}
-
-			Close();
 		}
 
 
@@ -177,8 +173,8 @@ namespace River.OneMoreAddIn.UI
 			DialogResult = DialogResult.Cancel;
 			Close();
 		}
-		
-		
+
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		/// <summary>
@@ -186,7 +182,10 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		public void Increment()
 		{
-			progressBar.Value++;
+			if (progressBar.Value < progressBar.Maximum)
+			{
+				progressBar.Value++;
+			}
 		}
 
 

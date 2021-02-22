@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.UI
 	using System.ComponentModel;
 	using System.Linq;
 	using System.Reflection;
-	using System.Threading;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -132,7 +132,7 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="topDelta">
 		/// Optionally percentage of the dialog height to subtract from the top coordinate, 0-100
 		/// </param>
-		public void RunModeless(EventHandler closedAction = null, int topDelta = 0)
+		public async Task RunModeless(EventHandler closedAction = null, int topDelta = 0)
 		{
 			StartPosition = FormStartPosition.Manual;
 			TopMost = true;
@@ -156,12 +156,10 @@ namespace River.OneMoreAddIn.UI
 				ModelessClosed += (sender, e) => { closedAction(sender, e); };
 			}
 
-			var thread = new Thread(() =>
+			await Task.Factory.StartNew(() =>
 			{
 				Application.Run(this);
 			});
-
-			thread.Start();
 		}
 
 

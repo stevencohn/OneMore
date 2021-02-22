@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var dialog = new TaggedDialog();
 
-			dialog.RunModeless((sender, e) =>
+			await dialog.RunModeless((sender, e) =>
 			{
 				var d = sender as TaggedDialog;
 				if (d.DialogResult == DialogResult.OK)
