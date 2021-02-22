@@ -114,6 +114,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 [Tools](../../wiki/Tools)
 
+* Archive a section or an entire notebook to a zip file with attachments
 * Import MSWord and PowerPoint into the current page or a new page
 * Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
 * Invoke an external custom plugin to process a page
