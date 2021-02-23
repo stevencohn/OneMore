@@ -2773,14 +2773,6 @@ ISO-code then comma then language name</comment>
     <value>Nome</value>
     <comment>label</comment>
   </data>
-  <data name="BreakingCommand_OptionsPrompt" xml:space="preserve">
-    <value>Clique em Sim para um espaço, Não para dois espaços ou Cancelar para abortar</value>
-    <comment>Question dialog</comment>
-  </data>
-  <data name="BreakingCommand_OptionsTitle" xml:space="preserve">
-    <value>Alterar o espaçamento das frases</value>
-    <comment>Question dialog title</comment>
-  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Alterar o espaçamento das frases</value>
     <comment>clean menu item</comment>
@@ -2916,5 +2908,29 @@ ISO-code then comma then language name</comment>
   <data name="ExportDialog_attachmentsBox.Text" xml:space="preserve">
     <value>Incluir anexos</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="BreakingDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
+    <value>Espaçamento</value>
+    <comment>group box</comment>
+  </data>
+  <data name="BreakingDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
+    <value>Um espaço entre as frases</value>
+    <comment>radio</comment>
+  </data>
+  <data name="BreakingDialog_Text" xml:space="preserve">
+    <value>Alterar o espaçamento das frases</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
+    <value>Dois espaços entre as frases</value>
+    <comment>radio</comment>
   </data>
 </root>

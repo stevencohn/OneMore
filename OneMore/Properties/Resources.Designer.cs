@@ -334,20 +334,56 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click Yes for one space, No for two spaces, or Cancel to abort.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string BreakingCommand_OptionsPrompt {
+        internal static string BreakingDialog_cancelButton_Text {
             get {
-                return ResourceManager.GetString("BreakingCommand_OptionsPrompt", resourceCulture);
+                return ResourceManager.GetString("BreakingDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spacing.
+        /// </summary>
+        internal static string BreakingDialog_groupBox_Text {
+            get {
+                return ResourceManager.GetString("BreakingDialog_groupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string BreakingDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("BreakingDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One space between sentences.
+        /// </summary>
+        internal static string BreakingDialog_oneButton_Text {
+            get {
+                return ResourceManager.GetString("BreakingDialog_oneButton.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Change Sentence Spacing.
         /// </summary>
-        internal static string BreakingCommand_OptionsTitle {
+        internal static string BreakingDialog_Text {
             get {
-                return ResourceManager.GetString("BreakingCommand_OptionsTitle", resourceCulture);
+                return ResourceManager.GetString("BreakingDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two spaces between sentences.
+        /// </summary>
+        internal static string BreakingDialog_twoButton_Text {
+            get {
+                return ResourceManager.GetString("BreakingDialog_twoButton.Text", resourceCulture);
             }
         }
         

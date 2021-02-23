@@ -2764,14 +2764,6 @@ ISO-code then comma then language name</comment>
     <value>名称</value>
     <comment>label</comment>
   </data>
-  <data name="BreakingCommand_OptionsPrompt" xml:space="preserve">
-    <value>单击是表示一个空格，单击否表示两个空格，或单击取消中止</value>
-    <comment>Question dialog</comment>
-  </data>
-  <data name="BreakingCommand_OptionsTitle" xml:space="preserve">
-    <value>更改句子间距</value>
-    <comment>Question dialog title</comment>
-  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>更改句子间距</value>
     <comment>clean menu item</comment>
@@ -2907,5 +2899,29 @@ ISO-code then comma then language name</comment>
   <data name="ExportDialog_attachmentsBox.Text" xml:space="preserve">
     <value>包括附件</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="BreakingDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
+    <value>间距</value>
+    <comment>group box</comment>
+  </data>
+  <data name="BreakingDialog_okButton.Text" xml:space="preserve">
+    <value>好的</value>
+    <comment>button</comment>
+  </data>
+  <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
+    <value>句子之间有一个空格</value>
+    <comment>radio</comment>
+  </data>
+  <data name="BreakingDialog_Text" xml:space="preserve">
+    <value>更改句子间距</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
+    <value>句子之间有两个空格</value>
+    <comment>radio</comment>
   </data>
 </root>

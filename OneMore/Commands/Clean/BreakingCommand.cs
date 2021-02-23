@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -19,8 +18,12 @@ namespace River.OneMoreAddIn.Commands
 	{
 		// these patterns allow opening or closing SPAN elements among the <word>.<spaces><word>
 		// sequence of characters. Also recognizes period, question mark, and semi-colon
-		private const string OneSpacePattern = @"(\w[\.?;])(\<[^>]+\>)? (\<[^>]+\>)? (\<[^>]+\>)?(\w)";
-		private const string TwoSpacePattern = @"(\w[\.?;])(\<[^>]+\>)? (\<[^>]+\>)?(\w)";
+
+		// search for two spaces to be replaced by one
+		private const string OneSpacePattern = @"(\w[\.?;])(\<[^>]+\>)?[\s]+(\<[^>]+\>)?\s(\<[^>]+\>)?(\w)";
+
+		// search for one space to be replaced by two
+		private const string TwoSpacePattern = @"(\w[\.?;])(\<[^>]+\>)?[\s]+(\<[^>]+\>)?(\w)";
 
 
 		public BreakingCommand()
@@ -30,22 +33,20 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var answer = MessageBox.Show(
-				Resx.BreakingCommand_OptionsPrompt,
-				Resx.BreakingCommand_OptionsTitle,
-				MessageBoxButtons.YesNoCancel,
-				MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button1,
-				MessageBoxOptions.DefaultDesktopOnly);
-
-			if (answer == DialogResult.Cancel)
+			bool singleSpace = true;
+			using (var dialog = new BreakingDialog())
 			{
-				return;
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				singleSpace = dialog.SingleSpace;
 			}
 
 			Regex regex;
 			string replacement;
-			if (answer == DialogResult.Yes)
+			if (singleSpace)
 			{
 				regex = new Regex(OneSpacePattern);
 				replacement = "$1 $2$3$4$5";
