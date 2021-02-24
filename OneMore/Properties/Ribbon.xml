@@ -152,6 +152,11 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="DecreaseFontSizeCmd"/>
               <button
+                id="ribExpandContentButton"
+                imageMso="OutlineExpand"
+                getLabel="GetRibbonLabel"
+                onAction="ExpandContentCmd"/>
+              <button
                 id="ribInvertSelectionButton"
                 imageMso="BlackAndWhiteInverseGrayscale"
                 getLabel="GetRibbonLabel"

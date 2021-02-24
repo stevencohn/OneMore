@@ -2924,4 +2924,8 @@ ISO-code then comma then language name</comment>
     <value>句子之间有两个空格</value>
     <comment>radio</comment>
   </data>
+  <data name="ribExpandContentButton_Label" xml:space="preserve">
+    <value>展开概述</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

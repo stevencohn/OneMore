@@ -70,6 +70,9 @@ namespace River.OneMoreAddIn
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
 
+		public async Task ExpandContentCmd(IRibbonControl control)
+			=> await factory.Run<ExpandoCommand>(true);
+
 		public async Task GotoFavoriteCmd(IRibbonControl control)
 			=> await factory.Run<Commands.GotoFavoriteCommand>(control.Tag);
 

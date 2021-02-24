@@ -2933,4 +2933,8 @@ ISO-code then comma then language name</comment>
     <value>Dois espaços entre as frases</value>
     <comment>radio</comment>
   </data>
+  <data name="ribExpandContentButton_Label" xml:space="preserve">
+    <value>Expandir Outlining</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

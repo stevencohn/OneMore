@@ -3908,6 +3908,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expand Outlining.
+        /// </summary>
+        internal static string ribExpandContentButton_Label {
+            get {
+                return ResourceManager.GetString("ribExpandContentButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         internal static string ribExportButton_Label {

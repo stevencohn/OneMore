@@ -2943,4 +2943,8 @@ In this section</value>
     <value>Two spaces between sentences</value>
     <comment>radio</comment>
   </data>
+  <data name="ribExpandContentButton_Label" xml:space="preserve">
+    <value>Expand Outlining</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

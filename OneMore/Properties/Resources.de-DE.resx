@@ -2918,4 +2918,8 @@ ISO-code then comma then language name</comment>
     <value>Zwei Leerzeichen zwischen Sätzen</value>
     <comment>radio</comment>
   </data>
+  <data name="ribExpandContentButton_Label" xml:space="preserve">
+    <value>Erweitern Sie Gliederung</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
