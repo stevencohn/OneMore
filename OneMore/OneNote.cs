@@ -368,7 +368,7 @@ namespace River.OneMoreAddIn
 					if (element.Name.LocalName == "Notebooks" ||
 						element.Name.LocalName == "UnfiledNotes")
 					{
-						logger.WriteLine($"MAP skip {element.Name.LocalName} element");
+						//logger.WriteLine($"MAP skip {element.Name.LocalName} element");
 						continue;
 					}
 
