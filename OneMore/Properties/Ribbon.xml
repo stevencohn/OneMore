@@ -152,6 +152,11 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="DecreaseFontSizeCmd"/>
               <button
+                id="ribCollapseContentButton"
+                imageMso="OutlineCollapse"
+                getLabel="GetRibbonLabel"
+                onAction="CollapseContentCmd"/>
+              <button
                 id="ribExpandContentButton"
                 imageMso="OutlineExpand"
                 getLabel="GetRibbonLabel"

@@ -2937,4 +2937,12 @@ ISO-code then comma then language name</comment>
     <value>Vouw Overzicht uit</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>Overzicht samenvouwen</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
+    <value>U moet eerst de opdracht Uitvouwen omtrek gebruiken om alinea's te markeren die moeten worden samengevouwen</value>
+    <comment>info message box</comment>
+  </data>
 </root>
