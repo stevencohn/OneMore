@@ -48,20 +48,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Expand()
 		{
-			// reset expando markers...
-
-			page.Root.Descendants(ns + "Meta")
-				.Where(e => e.Attribute("name").Value == "omExpando")
-				.Remove();
-
-			// expand...
-
 			var attributes = page.Root.Descendants(ns + "OE")
 				.Where(e => e.Attribute("collapsed")?.Value == "1")
 				.Select(e => e.Attribute("collapsed"));
 
-			if (attributes.Any())
+			if (!attributes.Any())
 			{
+				// reset expando markers
+				page.Root.Descendants(ns + "Meta")
+					.Where(e => e.Attribute("name").Value == "omExpando")
+					.Remove();
+
+				// expand
 				foreach (var attribute in attributes)
 				{
 					var meta = attribute.Parent.Elements(ns + "Meta")
