@@ -2937,8 +2937,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    <value>طي المخطط التفصيلي</value>
-    <comment>ribbon item</comment>
+    طي مخطط تفصيلي
+    ribbon item EDIT
   </data>
   <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
     <value>يجب أولاً استخدام الأمر Expand Outline لتمييز الفقرات المراد طيها</value>

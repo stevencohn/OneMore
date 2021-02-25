@@ -2938,8 +2938,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    <value>Overzicht samenvouwen</value>
-    <comment>ribbon item</comment>
+    Overzicht samenvouwen
+    ribbon item EDIT
   </data>
   <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
     <value>U moet eerst de opdracht Uitvouwen omtrek gebruiken om alinea's te markeren die moeten worden samengevouwen</value>

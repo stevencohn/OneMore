@@ -2929,8 +2929,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    <value>收合大纲</value>
-    <comment>ribbon item</comment>
+    折叠轮廓
+    ribbon item EDIT
   </data>
   <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
     <value>必须首先使用“展开轮廓”命令将段落标记为折叠</value>
