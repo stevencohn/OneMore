@@ -2932,4 +2932,16 @@ ISO-code then comma then language name</comment>
     <value>Dos espacios entre oraciones</value>
     <comment>radio</comment>
   </data>
+  <data name="ribExpandContentButton_Label" xml:space="preserve">
+    <value>Expandir el esquema</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>Contraer esquema</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
+    <value>Primero debe usar el comando Expandir esquema para marcar párrafos para contraer</value>
+    <comment>info message box</comment>
+  </data>
 </root>

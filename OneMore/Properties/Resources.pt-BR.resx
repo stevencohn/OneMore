@@ -2933,4 +2933,16 @@ ISO-code then comma then language name</comment>
     <value>Dois espaços entre as frases</value>
     <comment>radio</comment>
   </data>
+  <data name="ribExpandContentButton_Label" xml:space="preserve">
+    <value>Expandir Outlining</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>Recolher esboço</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
+    <value>Deve-se primeiro usar o comando Expandir Contorno para marcar os parágrafos a serem recolhidos</value>
+    <comment>info message box</comment>
+  </data>
 </root>

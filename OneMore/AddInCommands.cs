@@ -55,6 +55,9 @@ namespace River.OneMoreAddIn
 		public async Task CollapseCmd(IRibbonControl control)
 			=> await factory.Run<CollapseCommand>();
 
+		public async Task CollapseContentCmd(IRibbonControl control)
+			=> await factory.Run<ExpandoCommand>(false);
+
 		public async Task ColorizeCmd(IRibbonControl control)
 			=> await factory.Run<ColorizeCommand>(control.Tag);
 
@@ -69,6 +72,9 @@ namespace River.OneMoreAddIn
 
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
+
+		public async Task ExpandContentCmd(IRibbonControl control)
+			=> await factory.Run<ExpandoCommand>(true);
 
 		public async Task GotoFavoriteCmd(IRibbonControl control)
 			=> await factory.Run<Commands.GotoFavoriteCommand>(control.Tag);

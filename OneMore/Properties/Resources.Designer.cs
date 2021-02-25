@@ -1491,6 +1491,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must first use the Expand Outline command to mark paragraphs to collapse.
+        /// </summary>
+        internal static string ExpandoCommand_NoMarkers {
+            get {
+                return ResourceManager.GetString("ExpandoCommand_NoMarkers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Include attachments.
         /// </summary>
         internal static string ExportDialog_attachmentsBox_Text {
@@ -3800,6 +3809,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collapse Outline.
+        /// </summary>
+        internal static string ribCollapseContentButton_Label {
+            get {
+                return ResourceManager.GetString("ribCollapseContentButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Colorize.
         /// </summary>
         internal static string ribColorizeMenu_Label {
@@ -3904,6 +3922,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribExpandButton_Label {
             get {
                 return ResourceManager.GetString("ribExpandButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand Outlining.
+        /// </summary>
+        internal static string ribExpandContentButton_Label {
+            get {
+                return ResourceManager.GetString("ribExpandContentButton_Label", resourceCulture);
             }
         }
         

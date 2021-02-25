@@ -2932,4 +2932,16 @@ ISO-code then comma then language name</comment>
     <value>مسافتان بين الجمل</value>
     <comment>radio</comment>
   </data>
+  <data name="ribExpandContentButton_Label" xml:space="preserve">
+    <value>قم بتوسيع المخطط التفصيلي</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>طي المخطط التفصيلي</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
+    <value>يجب أولاً استخدام الأمر Expand Outline لتمييز الفقرات المراد طيها</value>
+    <comment>info message box</comment>
+  </data>
 </root>

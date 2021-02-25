@@ -2918,4 +2918,16 @@ ISO-code then comma then language name</comment>
     <value>Zwei Leerzeichen zwischen Sätzen</value>
     <comment>radio</comment>
   </data>
+  <data name="ribExpandContentButton_Label" xml:space="preserve">
+    <value>Erweitern Sie Gliederung</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>Gliederung reduzieren</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
+    <value>Verwenden Sie zuerst den Befehl "Gliederung erweitern", um Absätze zum Reduzieren zu markieren</value>
+    <comment>info message box</comment>
+  </data>
 </root>
