@@ -3809,7 +3809,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collapse Outline.
+        ///   Looks up a localized string similar to Collapse Outlining.
         /// </summary>
         internal static string ribCollapseContentButton_Label {
             get {

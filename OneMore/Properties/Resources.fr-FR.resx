@@ -2932,8 +2932,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    <value>Réduire le contour</value>
-    <comment>ribbon item</comment>
+    Réduire le contour
+    ribbon item EDIT
   </data>
   <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
     <value>Doit d'abord utiliser la commande Développer le contour pour marquer les paragraphes à réduire</value>
