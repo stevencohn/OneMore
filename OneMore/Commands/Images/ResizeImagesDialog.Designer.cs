@@ -28,6 +28,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			image?.Dispose();
+
 			if (disposing && (components != null))
 			{
 				components.Dispose();
