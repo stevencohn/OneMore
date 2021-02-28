@@ -23,6 +23,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
+				var hidden = page.Root.Elements(ns + "Outline")
+					.Descendants(ns + "OE")
+					.Where(e => e.Attribute("collapsed")?.Value == "1")
+					.Elements(ns + "OEChildren")
+					.Descendants(ns + "T");
+
 				var pos = page.Root.Elements(ns + "Outline")
 					.Descendants(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all")
@@ -30,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var neg = page.Root.Elements(ns + "Outline")
 					.Descendants(ns + "T")
+					.Except(hidden)
 					.Except(pos)
 					.ToList();
 
