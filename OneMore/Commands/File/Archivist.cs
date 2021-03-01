@@ -239,47 +239,57 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var attachment in attachments)
 			{
-				var nameAttr = attachment.Attribute("preferredName");
-				if (nameAttr == null)
-					break;
+				// get and validate source
 
-				var name = nameAttr.Value;
+				var source = attachment.Attribute("pathSource")?.Value;
+				if (string.IsNullOrEmpty(source) || !File.Exists(source))
+				{
+					source = attachment.Attribute("pathCache")?.Value;
+					if (string.IsNullOrEmpty(source) || !File.Exists(source))
+					{
+						continue;
+					}
+				}
+
+				// get preferredName; this will become the output file name
+
+				var name = attachment.Attribute("preferredName")?.Value;
+				if (string.IsNullOrEmpty(name))
+				{
+					continue;
+				}
+
+				// match <<escaped-name>>
 
 				var escape = name.Replace(@"\", @"\\").Replace(".", @"\.");
 				var matches = Regex.Matches(text, $@">(&lt;&lt;{escape}&gt;&gt;)</");
-				if (matches.Count > 0)
+				if (matches.Count == 0)
 				{
-					var sourceAttr = attachment.Attribute("pathSource");
-					if (sourceAttr == null)
-						break;
+					continue;
+				}
 
-					var source = sourceAttr.Value;
+				var target = Path.Combine(path, name);
 
-					try
+				try
+				{
+					File.Copy(source, target, true);
+					logger.WriteLine($"archived attachment {target}");
+
+					// this is a relative path that allows us to move the folder around
+					var link = $@"<a href=""./{name}"">{name}</a>";
+
+					foreach (Match match in matches)
 					{
-						if (File.Exists(source))
-						{
-							var target = Path.Combine(path, Path.GetFileName(source));
-							File.Copy(source, target, true);
-							logger.WriteLine($"archived attachment {target}");
+						text = text.Substring(0, match.Groups[1].Index) +
+							link +
+							text.Substring(match.Groups[1].Index + match.Groups[1].Length);
 
-							// this is a relative path that allows us to move the folder around
-							var link = $@"<a href=""./{Path.GetFileName(source)}"">{name}</a>";
-
-							foreach (Match match in matches)
-							{
-								text = text.Substring(0, match.Groups[1].Index) +
-									link +
-									text.Substring(match.Groups[1].Index + match.Groups[1].Length);
-
-								updated = true;
-							}
-						}
+						updated = true;
 					}
-					catch (Exception exc)
-					{
-						logger.WriteLine($"error copying attachment {path}", exc);
-					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error copying attachment {path}", exc);
 				}
 			}
 
