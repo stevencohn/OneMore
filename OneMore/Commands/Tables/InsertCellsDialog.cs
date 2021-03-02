@@ -34,6 +34,6 @@ namespace River.OneMoreAddIn.Commands
 		public bool ShiftDown => shiftDownRadio.Checked;
 
 
-		public int NumCells => (int)numCellsBox.Value;
+		public int ShiftCount => (int)numCellsBox.Value;
 	}
 }

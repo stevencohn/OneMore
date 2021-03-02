@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 				var cells = table.GetSelectedCells(out var range).ToList();
 
 				var shiftDown = true;
-				var numCells = 1;
+				var shiftCount = 1;
 
 				using (var dialog = new InsertCellsDialog())
 				{
@@ -57,16 +57,16 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					shiftDown = dialog.ShiftDown;
-					numCells = dialog.NumCells;
+					shiftCount = dialog.ShiftCount;
 				}
 
 				if (shiftDown)
 				{
-					ShiftDown(table, cells, numCells);
+					ShiftDown(table, cells, shiftCount);
 				}
 				else
 				{
-					ShiftRight(table, cells, numCells);
+					ShiftRight(table, cells, shiftCount);
 				}
 
 				await one.Update(page);
@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ShiftDown(Table table, List<TableCell> cells, int numCells)
+		private void ShiftDown(Table table, List<TableCell> cells, int shiftCount)
 		{
 			// RowNum and ColNum are 1-based so must shift them to be 0-based
 			var minCol = cells.Min(c => c.ColNum) - 1;
@@ -109,20 +109,18 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// add rows to make room for all visible text
-			int overflow = (maxRow + 1) + numCells;
-			if (overflow > table.Rows.Count())
+			int neededRows = (maxRow + 1) + shiftCount;
+			if (neededRows > table.Rows.Count())
 			{
-				for (var i = 0; i < overflow - table.Rows.Count(); i++) table.AddRow();
+				for (var i = table.Rows.Count(); i < neededRows; i++) table.AddRow();
 			}
 
-			int offset = numCells;
-
 			// iterate target coordinates
-			for (var r = maxRow + offset; r >= minRow + offset; r--)
+			for (var r = maxRow + shiftCount; r >= minRow + shiftCount; r--)
 			{
 				for (var c = minCol; c <= maxCol; c++)
 				{
-					var source = table[r - offset][c];
+					var source = table[r - shiftCount][c];
 
 					table[r][c].SetContent(source.GetContent());
 					source.SetContent(string.Empty);
@@ -131,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ShiftRight(Table table, List<TableCell> cells, int numCells)
+		private void ShiftRight(Table table, List<TableCell> cells, int shiftCount)
 		{
 			// RowNum and ColNum are 1-based so must shift them to be 0-based
 			var minCol = cells.Min(c => c.ColNum) - 1;
@@ -168,13 +166,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// add cols to make room for all visible text
-			int overflow = (maxCol + 1) + numCells - cols;
+			int overflow = (maxCol + 1) + shiftCount - cols;
 			if (overflow > 0)
 			{
 				for (var i = 0; i < overflow; i++) table.AddColumn(80f);
 			}
 
-			int offset = numCells;
+			int offset = shiftCount;
 
 			// iterate target coordinates
 			for (var c = maxCol + offset; c >= minCol + offset; c--)
