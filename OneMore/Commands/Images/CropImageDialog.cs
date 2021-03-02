@@ -144,7 +144,16 @@ namespace River.OneMoreAddIn.Commands
 				imageBounds.Width + (ImageMargin * 2),
 				imageBounds.Height + (ImageMargin * 2));
 
-			brightness = GetBrightness((Bitmap)image);
+			try
+			{
+				brightness = GetBrightness((Bitmap)image);
+			}
+			catch
+			{
+				// Unable to cast object of type 'System.Drawing.Imaging.Metafile' 
+				// to type 'System.Drawing.Bitmap'
+				brightness = 100;
+			}
 
 			sizeStatusLabel.Text = string.Format(
 				Resx.CropImageDialog_imageSize, imageBounds.Width, imageBounds.Height);
