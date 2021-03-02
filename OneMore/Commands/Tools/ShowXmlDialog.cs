@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Text.RegularExpressions;
-	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -492,10 +491,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					var page = XElement.Parse(pageBox.Text);
-					CorrectIndentations(page);
-
-					await one.Update(page);
+					await one.Update(XElement.Parse(pageBox.Text));
 					Close();
 
 					// doesn't account for binary data, but close enough
@@ -504,33 +500,6 @@ namespace River.OneMoreAddIn.Commands
 				catch (Exception exc)
 				{
 					logger.WriteLine("error updating page content", exc);
-				}
-			}
-		}
-
-
-		private void CorrectIndentations(XElement root)
-		{
-			// sometimes Indent values go astronomical; this corrects that
-			var ns = one.GetNamespace(root);
-			var indents = root.Descendants(ns + "Indent").Attributes("indent");
-			if (indents.Any())
-			{
-				foreach (var indent in indents)
-				{
-					var ok = decimal.TryParse(indent.Value, out var value);
-					if (!ok || value > 1000000 || indent.Value.IndexOf("E+") >= 0)
-					{
-						// typically is fixed by dropping the fractional value
-						var v = indent.Value.Substring(0, indent.Value.IndexOf('.')) + ".0";
-						logger.WriteLine($"correcting indent {indent.Value} -> {v}");
-						indent.Value = v;
-					}
-					else if (value < 0)
-					{
-						logger.WriteLine($"correcting indent {indent.Value} -> {0.0}");
-						indent.Value = "0.0";
-					}
 				}
 			}
 		}

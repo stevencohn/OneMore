@@ -17,7 +17,9 @@ namespace River.OneMoreAddIn
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using System.Xml;
 	using System.Xml.Linq;
+	using System.Xml.Schema;
 	using Forms = System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -74,8 +76,9 @@ namespace River.OneMoreAddIn
 			public string Uri;          // onenote:blah hyperlink
 		}
 
-
 		public const string Prefix = "one";
+
+		private const int MaxInclusiveHResult = -2146231999;
 
 		private IApplication onenote;
 		private readonly ILogger logger;
@@ -810,7 +813,10 @@ namespace River.OneMoreAddIn
 		{
 			if (element.Name.LocalName == "Page")
 			{
-				CorrectNumerics(element);
+				if (!ValidateSchema(element))
+				{
+					return;
+				}
 			}
 
 			var xml = element.ToString(SaveOptions.DisableFormatting);
@@ -822,31 +828,41 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void CorrectNumerics(XElement root)
+		private bool ValidateSchema(XElement root)
 		{
-			// correct maxInclusive violations such as indent="1.10561848638658E37"
-
+			var document = new XDocument(root);
 			var ns = GetNamespace(root);
-			var indents = root.Elements(ns + "Outline").Elements(ns + "Indents").Elements(ns + "Indent");
-			if (indents != null)
+
+			var schemas = new XmlSchemaSet();
+			schemas.Add(ns.ToString(), 
+				XmlReader.Create(new StringReader(Resx._0336_OneNoteApplication_2013)));
+
+			bool valid = true;
+			document.Validate(schemas, (o, e) =>
 			{
-				foreach (var indent in indents)
+				if (o is XAttribute attribute && 
+					e.Exception.InnerException?.HResult == MaxInclusiveHResult)
 				{
-					var attribute = indent.Attribute("indent");
-					if (attribute != null)
+					var exp = attribute.Value.IndexOf('E');
+					if (exp > 0)
 					{
-						var e = attribute.Value.IndexOf('E');
-						if (e > 0)
+						var dot = attribute.Value.IndexOf('.');
+						if (dot < exp - 1)
 						{
-							var dot = attribute.Value.IndexOf('.');
-							if (e > dot + 2)
-							{
-								attribute.Value = attribute.Value.Substring(0, dot + 2);
-							}
+							var correction = attribute.Value.Substring(0, dot + 2);
+							logger.WriteLine($"corrected attribute [{o}] -> [{correction}]");
+							attribute.Value = correction;
+							return;
 						}
 					}
 				}
-			}
+
+				logger.WriteLine($"schema error [{o}] ({o.GetType().FullName})");
+				logger.WriteLine(e.Exception);
+				valid = false;
+			});
+
+			return valid;
 		}
 
 
@@ -1022,8 +1038,8 @@ namespace River.OneMoreAddIn
 			{
 				await InvokeWithRetry(() =>
 				{
-					// must be an ID
-					onenote.NavigateTo(uri);
+			// must be an ID
+			onenote.NavigateTo(uri);
 				});
 			}
 		}
