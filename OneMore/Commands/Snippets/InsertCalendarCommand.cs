@@ -57,6 +57,8 @@ namespace River.OneMoreAddIn.Commands
 					indent = dialog.Indent;
 				}
 
+				logger.WriteLine($"making calendar for {month}/{year} large:{large} indent:{indent}");
+
 				var root = MakeCalendar(year, month, large);
 				var header = MakeHeader(year, month);
 
