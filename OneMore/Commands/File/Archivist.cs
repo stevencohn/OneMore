@@ -247,7 +247,7 @@ namespace River.OneMoreAddIn.Commands
 					source = attachment.Attribute("pathCache")?.Value;
 					if (string.IsNullOrEmpty(source) || !File.Exists(source))
 					{
-						logger.WriteLine("broken attachment");
+						logger.WriteLine("broken attachment, missing pathSource/pathCache");
 						logger.WriteLine(attachment);
 						continue;
 					}
@@ -258,7 +258,7 @@ namespace River.OneMoreAddIn.Commands
 				var name = attachment.Attribute("preferredName")?.Value;
 				if (string.IsNullOrEmpty(name))
 				{
-					logger.WriteLine("broken attachment");
+					logger.WriteLine($"broken attachment, missing preferredName for source:{source}");
 					logger.WriteLine(attachment);
 					continue;
 				}
@@ -269,7 +269,7 @@ namespace River.OneMoreAddIn.Commands
 				var matches = Regex.Matches(text, $@">(&lt;&lt;{escape}&gt;&gt;)</");
 				if (matches.Count == 0)
 				{
-					logger.WriteLine($"attachment mis-match, not found in HTML {name}");
+					logger.WriteLine($"attachment mis-match, cannot find name in HTML [{name}]");
 					continue;
 				}
 
