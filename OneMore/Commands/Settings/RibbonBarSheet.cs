@@ -62,12 +62,12 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-        public override void CollectSettings()
+        public override bool CollectSettings()
         {
             if (!editRibbonBox.Checked && !formulaRibbonBox.Checked)
 			{
                 provider.RemoveCollection(Name);
-                return;
+                return true;
 			}
 
             var settings = provider.GetCollection(Name);
@@ -77,6 +77,8 @@ namespace River.OneMoreAddIn.Settings
             settings.Add("formulaIconsOnly", formulaIconBox.Checked);
 
             provider.SetCollection(settings);
+
+            return true;
         }
     }
 }

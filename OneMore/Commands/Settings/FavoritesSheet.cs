@@ -182,7 +182,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		public override void CollectSettings()
+		public override bool CollectSettings()
 		{
 			var settings = provider.GetCollection(Name);
 			settings.Add("kbdshorts", shortcutsBox.Checked);
@@ -218,6 +218,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				ribbon.InvalidateControl("ribFavoritesMenu");
 			}
+
+			return false;
 		}
 	}
 }

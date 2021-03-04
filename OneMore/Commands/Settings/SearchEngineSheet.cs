@@ -252,7 +252,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		public override void CollectSettings()
+		public override bool CollectSettings()
 		{
 			var element = new XElement("engines");
 
@@ -275,6 +275,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				provider.RemoveCollection(Name);
 			}
+
+			return false;
 		}
 	}
 }

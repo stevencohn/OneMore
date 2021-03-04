@@ -233,12 +233,14 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		public override void CollectSettings()
+		public override bool CollectSettings()
 		{
 			if (updated)
 			{
 				ribbon.InvalidateControl("ribFavoritesMenu");
 			}
+
+			return false;
 		}
 	}
 }

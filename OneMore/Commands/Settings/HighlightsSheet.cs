@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		public override void CollectSettings()
+		public override bool CollectSettings()
 		{
 			string theme = "Normal";
 			if (fadedRadio.Checked) theme = "Faded";
@@ -48,7 +48,10 @@ namespace River.OneMoreAddIn.Settings
 			settings.Add("theme", theme);
 
 			provider.SetCollection(settings);
+
+			return false;
 		}
+
 
 		private void ClickPicture(object sender, System.EventArgs e)
 		{

@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Settings
 		/// the sheet the opportunity to add settings to the provider before they are saved.
 		/// </summary>
 		/// <returns></returns>
-		public virtual void CollectSettings() { }
+		public virtual bool CollectSettings() { return false; }
 
 
 		/// <summary>

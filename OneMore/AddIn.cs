@@ -146,13 +146,22 @@ namespace River.OneMoreAddIn
 				using (var one = new OneNote())
 				{
 					var folders = one.GetFolders();
-					logger.WriteLine("OneNote backup folder:: " + folders.backupFolder);
-					logger.WriteLine("OneNote default folder: " + folders.defaultFolder);
-					logger.WriteLine("OneNote unfiled folder: " + folders.unfiledFolder);
+					logger.WriteLine($"OneNote backup folder:: {folders.backupFolder}");
+					logger.WriteLine($"OneNote default folder: {folders.defaultFolder}");
+					logger.WriteLine($"OneNote unfiled folder: {folders.unfiledFolder}");
 
 					factory = new CommandFactory(logger, ribbon, trash,
 						// looks complicated but necessary for this to work
 						new Win32WindowHandle(new IntPtr((long)one.WindowHandle)));
+				}
+
+
+				var mainproc = Process.GetProcessesByName("ONENOTE");
+				if (mainproc.Length > 0)
+				{
+					var module = mainproc[0].MainModule;
+					logger.WriteLine(
+						$"OneNote process module: {module.FileName} ({module.FileVersionInfo.ProductVersion})");
 				}
 
 				SetGeneralOptions();

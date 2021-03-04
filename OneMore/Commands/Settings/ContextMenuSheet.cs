@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		public override void CollectSettings()
+		public override bool CollectSettings()
 		{
 			var settings = provider.GetCollection(Name);
 			for (var i = 0; i < keys.Length; i++)
@@ -117,6 +117,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				provider.RemoveCollection(Name);
 			}
+
+			return true;
 		}
 	}
 }

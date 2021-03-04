@@ -109,14 +109,21 @@ namespace River.OneMoreAddIn.Settings
 
 		private void OK(object sender, EventArgs e)
 		{
+			var restart = false;
 			foreach (var sheet in sheets.Values)
 			{
-				sheet.CollectSettings();
+				if (sheet.CollectSettings())
+				{
+					restart = true;
+				}
 			}
 
 			provider.Save();
 
-			UIHelper.ShowMessage(Resx.SettingsDialog_Restart);
+			if (restart)
+			{
+				UIHelper.ShowMessage(Resx.SettingsDialog_Restart);
+			}
 
 			Logger.Current.WriteLine("user settings saved");
 		}

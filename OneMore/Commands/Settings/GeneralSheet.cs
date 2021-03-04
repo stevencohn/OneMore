@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		public override void CollectSettings()
+		public override bool CollectSettings()
 		{
 			var settings = provider.GetCollection(Name);
 			settings.Add("enablers", enablersBox.Checked);
@@ -39,6 +39,8 @@ namespace River.OneMoreAddIn.Settings
 			provider.SetCollection(settings);
 
 			AddIn.EnablersEnabled = enablersBox.Checked;
+
+			return true;
 		}
 	}
 }
