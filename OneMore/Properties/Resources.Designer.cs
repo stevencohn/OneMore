@@ -3105,6 +3105,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore.
+        /// </summary>
+        internal static string ProgramName {
+            get {
+                return ResourceManager.GetString("ProgramName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ProgressDialog_cancelButton_Text {
@@ -5389,7 +5398,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some changes require OneNote to be restarted. Restart OneNote at your convenience..
+        ///   Looks up a localized string similar to One or more changes require OneNote to be restarted. Do you want to restart OneNote now?.
         /// </summary>
         internal static string SettingsDialog_Restart {
             get {

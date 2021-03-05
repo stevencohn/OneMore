@@ -71,14 +71,19 @@ namespace River.OneMoreAddIn.Settings
 			}
 
             var settings = provider.GetCollection(Name);
-            settings.Add("editCommands", editRibbonBox.Checked);
-            settings.Add("editIconsOnly", editIconBox.Checked);
-            settings.Add("formulaCommands", formulaRibbonBox.Checked);
-            settings.Add("formulaIconsOnly", formulaIconBox.Checked);
+            var updated = false;
 
-            provider.SetCollection(settings);
+            if (settings.Add("editCommands", editRibbonBox.Checked)) updated = true;
+            if (settings.Add("editIconsOnly", editIconBox.Checked)) updated = true;
+            if (settings.Add("formulaCommands", formulaRibbonBox.Checked)) updated = true;
+            if (settings.Add("formulaIconsOnly", formulaIconBox.Checked)) updated = true;
 
-            return true;
+            if (updated)
+            {
+                provider.SetCollection(settings);
+            }
+
+            return updated;
         }
     }
 }

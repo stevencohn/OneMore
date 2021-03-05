@@ -1882,8 +1882,8 @@ OneNote文件（*.one）
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>某些更改要求重新启动OneNote。 在您方便时重新启动OneNote。</value>
-    <comment>restart message</comment>
+    一项或多项更改要求OneNote重新启动。
+    restart message EDIT
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>选择一个或多个表格单元格</value>

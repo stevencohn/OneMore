@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	public interface IOneMoreWindow : IDisposable
@@ -137,7 +138,7 @@ namespace River.OneMoreAddIn
 
 		public static void ShowInfo(IWin32Window window, string message)
 		{
-			MessageBox.Show(window, message, "OneMore",
+			MessageBox.Show(window, message, Resx.ProgramName,
 				MessageBoxButtons.OK, MessageBoxIcon.Information,
 				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
@@ -146,7 +147,7 @@ namespace River.OneMoreAddIn
 
 		public static void ShowInfo(string message)
 		{
-			MessageBox.Show(message, "OneMore",
+			MessageBox.Show(message, Resx.ProgramName,
 				MessageBoxButtons.OK, MessageBoxIcon.Information,
 				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
@@ -161,7 +162,7 @@ namespace River.OneMoreAddIn
 		/// <param name="message">The caption message to display</param>
 		public static void ShowMessage(IWin32Window window, string message)
 		{
-			MessageBox.Show(window, message, "OneMore",
+			MessageBox.Show(window, message, Resx.ProgramName,
 				MessageBoxButtons.OK, MessageBoxIcon.None,
 				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
@@ -170,7 +171,7 @@ namespace River.OneMoreAddIn
 
 		public static void ShowMessage(string message)
 		{
-			MessageBox.Show(message, "OneMore",
+			MessageBox.Show(message, Resx.ProgramName,
 				MessageBoxButtons.OK, MessageBoxIcon.None,
 				MessageBoxDefaultButton.Button1,
 				MessageBoxOptions.DefaultDesktopOnly);
@@ -179,9 +180,24 @@ namespace River.OneMoreAddIn
 
 		public static void ShowError(string message)
 		{
-			MessageBox.Show(message, "OneMore",
+			MessageBox.Show(message, Resx.ProgramName,
 				MessageBoxButtons.OK, MessageBoxIcon.Error,
 				MessageBoxDefaultButton.Button1,
+				MessageBoxOptions.DefaultDesktopOnly);
+		}
+
+
+		public static DialogResult ShowQuestion(string message, bool defaultYes = false)
+		{
+			var defaultButton = defaultYes 
+				? MessageBoxDefaultButton.Button1 
+				: MessageBoxDefaultButton.Button2;
+
+			return MessageBox.Show(
+				message, Resx.ProgramName,
+				MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question,
+				defaultButton,
 				MessageBoxOptions.DefaultDesktopOnly);
 		}
 

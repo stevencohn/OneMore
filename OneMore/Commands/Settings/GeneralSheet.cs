@@ -34,13 +34,15 @@ namespace River.OneMoreAddIn.Settings
 		public override bool CollectSettings()
 		{
 			var settings = provider.GetCollection(Name);
-			settings.Add("enablers", enablersBox.Checked);
 
-			provider.SetCollection(settings);
+			if (settings.Add("enablers", enablersBox.Checked))
+			{
+				provider.SetCollection(settings);
+				AddIn.EnablersEnabled = enablersBox.Checked;
+				return true;
+			}
 
-			AddIn.EnablersEnabled = enablersBox.Checked;
-
-			return true;
+			return false;
 		}
 	}
 }

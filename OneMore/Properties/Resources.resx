@@ -2118,7 +2118,7 @@ In this section</value>
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>Some changes require OneNote to be restarted. Restart OneNote at your convenience.</value>
+    <value>One or more changes require OneNote to be restarted. Do you want to restart OneNote now?</value>
     <comment>restart message</comment>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
@@ -2954,5 +2954,9 @@ In this section</value>
   <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
     <value>Must first use the Expand Outline command to mark paragraphs to collapse</value>
     <comment>info message box</comment>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>SKIP</comment>
   </data>
 </root>

@@ -1895,8 +1895,8 @@ OneNote-bestand (*.one)
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>Bij sommige wijzigingen moet OneNote opnieuw worden gestart. </value>
-    <comment>restart message</comment>
+    Een of meer wijzigingen vereisen dat OneNote opnieuw wordt gestart. 
+    restart message EDIT
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Selecteer een of meer tabelcellen</value>

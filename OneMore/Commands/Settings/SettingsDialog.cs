@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Settings
 		private readonly Dictionary<int, SheetBase> sheets;
 		private readonly SettingsProvider provider;
 		private readonly IRibbonUI ribbon;
+		private bool restart;
 
 
 		public SettingsDialog(IRibbonUI ribbon)
@@ -62,7 +63,12 @@ namespace River.OneMoreAddIn.Settings
 
 			navTree.SelectedNode = navTree.Nodes[0];
 			navTree.Focus();
+
+			restart = false;
 		}
+
+
+		public bool RestartNeeded => restart;
 
 
 		public void ActivateSheet(Sheets sheet)
@@ -109,7 +115,6 @@ namespace River.OneMoreAddIn.Settings
 
 		private void OK(object sender, EventArgs e)
 		{
-			var restart = false;
 			foreach (var sheet in sheets.Values)
 			{
 				if (sheet.CollectSettings())
@@ -120,12 +125,7 @@ namespace River.OneMoreAddIn.Settings
 
 			provider.Save();
 
-			if (restart)
-			{
-				UIHelper.ShowMessage(Resx.SettingsDialog_Restart);
-			}
-
-			Logger.Current.WriteLine("user settings saved");
+			Logger.Current.WriteLine($"user settings saved, restart:{restart}");
 		}
 	}
 }

@@ -34,28 +34,33 @@ namespace River.OneMoreAddIn.Settings
 		public string this[string name] => properties.ContainsKey(name) ? (string)properties[name] : null;
 
 
-		public void Add(string name, string value)
+		public bool Add(string name, string value)
 		{
-			if (!properties.ContainsKey(name))
+			if (properties.ContainsKey(name))
 			{
-				properties.Add(name, value);
+				if ((string)properties[name] != value)
+				{
+					properties[name] = value;
+					return true;
+				}
+
+				return false;
 			}
-			else
-			{
-				properties[name] = value;
-			}
+
+			properties.Add(name, value);
+			return true;
 		}
 
 
-		public void Add(string name, bool value)
+		public bool Add(string name, bool value)
 		{
-			Add(name, value.ToString().ToLower());
+			return Add(name, value.ToString().ToLower());
 		}
 
 
-		public void Add(string name, int value)
+		public bool Add(string name, int value)
 		{
-			Add(name, value.ToString());
+			return Add(name, value.ToString());
 		}
 
 
@@ -69,6 +74,12 @@ namespace River.OneMoreAddIn.Settings
 			{
 				properties[name] = element;
 			}
+		}
+
+
+		public bool Contains(string name)
+		{
+			return properties.ContainsKey(name);
 		}
 
 
@@ -114,12 +125,15 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		public void Remove(string name)
+		public bool Remove(string name)
 		{
 			if (properties.ContainsKey(name))
 			{
 				properties.Remove(name);
+				return true;
 			}
+
+			return false;
 		}
 	}
 }

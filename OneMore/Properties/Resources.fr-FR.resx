@@ -1889,8 +1889,8 @@ Fichier OneNote (*.one)
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>Certaines modifications nécessitent le redémarrage de OneNote. </value>
-    <comment>restart message</comment>
+    Une ou plusieurs modifications nécessitent le redémarrage de OneNote. 
+    restart message EDIT
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Sélectionnez une ou plusieurs cellules de tableau</value>

@@ -1864,8 +1864,8 @@ OneNote-Datei (*.one)
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>Bei einigen Änderungen muss OneNote neu gestartet werden. </value>
-    <comment>restart message</comment>
+    Für eine oder mehrere Änderungen muss OneNote neu gestartet werden. 
+    restart message EDIT
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Wählen Sie eine oder mehrere Tabellenzellen aus</value>

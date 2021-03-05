@@ -6,7 +6,11 @@ namespace River.OneMoreAddIn.Commands
 {
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Settings;
+	using System.Diagnostics;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
+
 
 	internal class SettingsCommand : Command
 	{
@@ -17,9 +21,37 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var restart = false;
+
 			using (var dialog = new SettingsDialog(args[0] as IRibbonUI))
 			{
 				dialog.ShowDialog(owner);
+				restart = dialog.RestartNeeded;
+			}
+
+			if (restart)
+			{
+				if (UIHelper.ShowQuestion(Resx.SettingsDialog_Restart) == DialogResult.Yes)
+				{
+					var processes = Process.GetProcessesByName("ONENOTE");
+					if (processes.Length > 0)
+					{
+						var path = processes[0].MainModule.FileName;
+
+						// the hidden cmd window will remain until OneNote is subsequently closed
+						// not sure how to make the cmd.exe host process close immediately...
+
+						var Info = new ProcessStartInfo
+						{
+							Arguments = $"/C taskkill /fi \"pid gt 0\" /im ONENOTE.exe && ping 127.0.0.1 -n 2 && \"{path}\"",
+							WindowStyle = ProcessWindowStyle.Hidden,
+							CreateNoWindow = true,
+							FileName = "cmd.exe"
+						};
+
+						Process.Start(Info);
+					}
+				}
 			}
 
 			await Task.Yield();

@@ -96,29 +96,40 @@ namespace River.OneMoreAddIn.Settings
 
 		public override bool CollectSettings()
 		{
+			var updated = false;
+
 			var settings = provider.GetCollection(Name);
 			for (var i = 0; i < keys.Length; i++)
 			{
 				if (commandsBox.GetItemChecked(i))
 				{
-					settings.Add(keys[i], true);
+					if (settings.Add(keys[i], true))
+					{
+						updated = true;
+					}
 				}
 				else
 				{
-					settings.Remove(keys[i]);
+					if (settings.Remove(keys[i]))
+					{
+						updated = true;
+					}
 				}
 			}
 
-			if (settings.Count > 0)
+			if (updated)
 			{
-				provider.SetCollection(settings);
-			}
-			else
-			{
-				provider.RemoveCollection(Name);
+				if (settings.Count > 0)
+				{
+					provider.SetCollection(settings);
+				}
+				else
+				{
+					provider.RemoveCollection(Name);
+				}
 			}
 
-			return true;
+			return updated;
 		}
 	}
 }
