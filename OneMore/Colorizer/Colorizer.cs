@@ -71,7 +71,9 @@ namespace River.OneMoreAddIn.Colorizer
 					if (scope == null)
 					{
 						// plain text prior to capture
-						builder.Append(code.Replace("\t", " "));
+						code = code.Replace("\t", " ");
+						var style = theme.GetStyle("plaintext");
+						builder.Append(style == null ? code : style.Apply(code));
 					}
 					else
 					{
@@ -110,7 +112,9 @@ namespace River.OneMoreAddIn.Colorizer
 					{
 						// plain text prior to capture
 						// simple conversion of tabs to spaces (shouldn't be tabs in OneNote)
-						builder.Append(code.Replace("\t", " "));
+						code = code.Replace("\t", " ");
+						var style = theme.GetStyle("plaintext");
+						builder.Append(style == null ? code : style.Apply(code));
 					}
 					else
 					{

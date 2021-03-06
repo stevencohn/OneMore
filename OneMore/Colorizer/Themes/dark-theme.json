@@ -1,6 +1,6 @@
 {
   "colors": {
-    "Black": "#000000",
+    "Black": "#FFFFFF",
     "Blue": "#0000FF",
     "DarkCyan": "#008B8B",
     "DarkOliveGreen": "#556B2F",
@@ -16,7 +16,7 @@
     "Purple": "#800080",
     "Red": "#FF0000",
     "Teal": "#008080",
-    "White": "#FFFFFF",
+    "White": "#000000",
     "Yellow": "#FFFF00",
     "DarkPlainText": "#DADADA",
     "DarkXmlDelimeter": "#808080",
