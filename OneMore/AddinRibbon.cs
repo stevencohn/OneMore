@@ -54,6 +54,7 @@ namespace River.OneMoreAddIn
 				root.Add(contextMenus);
 
 				AddNotebookContextMenuCommands(contextMenus);
+				AddSectionGroupContextMenuCommands(contextMenus);
 				AddPageContextMenuCommands(contextMenus);
 				AddPageAreaContextMenuCommands(contextMenus);
 				AddPictureContextMenuCommands(contextMenus);
@@ -198,6 +199,23 @@ namespace River.OneMoreAddIn
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "omSectionContextMenuSeparator"),
 					new XAttribute("insertBeforeMso", "SectionRenameOneNote"))
+				));
+		}
+
+
+		private void AddSectionGroupContextMenuCommands(XElement root)
+		{
+			root.Add(new XElement(ns + "contextMenu",
+				new XAttribute("idMso", "ContextMenuSectionGroup"),
+					new XElement(ns + "button",
+						new XAttribute("id", "ctxCopyFolderButton"),
+						new XAttribute("imageMso", "CopyFolder"),
+						new XAttribute("label", "Copy Section Group"),
+						new XAttribute("onAction", "CopyFolderCmd"),
+						new XAttribute("insertBeforeMso", "FolderRename")),
+				new XElement(ns + "menuSeparator",
+					new XAttribute("id", "omSectionGroupContextMenuSeparator"),
+					new XAttribute("insertBeforeMso", "FolderRename"))
 				));
 		}
 

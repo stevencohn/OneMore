@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var Info = new ProcessStartInfo
 			{
-				Arguments = $"/C taskkill /fi \"pid gt 0\" /im ONENOTE.exe && ping 127.0.0.1 -n 2 && \"{path}\"",
+				Arguments = $"/C taskkill /fi \"pid gt 0\" /im ONENOTE.exe && ping 127.0.0.1 -n 3 && \"{path}\"",
 				WindowStyle = ProcessWindowStyle.Hidden,
 				CreateNoWindow = true,
 				FileName = "cmd.exe"
