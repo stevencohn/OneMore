@@ -198,7 +198,7 @@ namespace River.OneMoreAddIn.Commands
 				var level = int.Parse(element.Attribute("pageLevel").Value);
 				while (level > 0)
 				{
-					text.Append(". . ");
+					text.Append("\t");
 					level--;
 				}
 
@@ -322,7 +322,7 @@ namespace River.OneMoreAddIn.Commands
 							var plevel = int.Parse(page.Attribute("pageLevel").Value);
 							while (plevel > 0)
 							{
-								text.Append(". . ");
+								text.Append("\t");
 								plevel--;
 							}
 
