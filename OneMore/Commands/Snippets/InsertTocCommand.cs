@@ -128,7 +128,7 @@ namespace River.OneMoreAddIn.Commands
 				var count = minlevel;
 				while (count < heading.Style.Index)
 				{
-					text.Append(". . ");
+					text.Append("\t");
 					count++;
 				}
 
