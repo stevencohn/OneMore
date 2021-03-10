@@ -287,7 +287,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void WriteTime(string message, bool keep = false)
+		public void WriteTime(string message, bool keepRunning = false)
 		{
 			if (clock == null)
 			{
@@ -295,7 +295,7 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			if (!keep && clock.IsRunning)
+			if (!keepRunning && clock.IsRunning)
 			{
 				clock.Stop();
 			}

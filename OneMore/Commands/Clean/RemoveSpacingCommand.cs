@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Removes spacing between paragraph, optionally clearing space before, after, and between
+	/// </summary>
 	internal class RemoveSpacingCommand : Command
 	{
 		private bool spaceBefore;
@@ -46,49 +49,36 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.StartClock();
 
-				var elements =
-					(from e in page.Root.Descendants(page.Namespace + "OE")
-					 where e.Elements().Count() == 1
-					 let t = e.Elements().First()
-					 where (t != null) && (t.Name.LocalName == "T") &&
-						 ((e.Attribute("spaceBefore") != null) ||
-						 (e.Attribute("spaceAfter") != null) ||
-						 (e.Attribute("spaceBetween") != null))
-					 select e)
+				var elements = page.Root.Descendants(page.Namespace + "OE")
+					.Where(e =>
+						e.Attribute("spaceBefore") != null ||
+						e.Attribute("spaceAfter") != null ||
+						e.Attribute("spaceBetween") != null)
 					.ToList();
 
-				if (elements != null)
+				if (elements.Count == 0)
 				{
-					var quickStyles = page.GetQuickStyles()
-						.Where(s => s.StyleType == StyleType.Heading);
+					logger.StopClock();
+					return;
+				}
 
-					var customStyles = new StyleProvider().GetStyles()
-						.Where(e => e.StyleType == StyleType.Heading)
-						.ToList();
+				var quickStyles = page.GetQuickStyles()
+					.Where(s => s.StyleType == StyleType.Heading);
 
-					var modified = false;
+				var customStyles = new StyleProvider().GetStyles()
+					.Where(e => e.StyleType == StyleType.Heading)
+					.ToList();
 
-					foreach (var element in elements)
+				var modified = false;
+
+				foreach (var element in elements)
+				{
+					// is this a known Heading style?
+					var attr = element.Attribute("quickStyleIndex");
+					if (attr != null)
 					{
-						// is this a known Heading style?
-						var attr = element.Attribute("quickStyleIndex");
-						if (attr != null)
-						{
-							var index = int.Parse(attr.Value, CultureInfo.InvariantCulture);
-							if (quickStyles.Any(s => s.Index == index))
-							{
-								if (includeHeadings)
-								{
-									modified |= CleanElement(element);
-								}
-
-								continue;
-							}
-						}
-
-						// is this a custom Heading style?
-						var style = new Style(element.CollectStyleProperties(true));
-						if (customStyles.Any(s => s.Equals(style)))
+						var index = int.Parse(attr.Value, CultureInfo.InvariantCulture);
+						if (quickStyles.Any(s => s.Index == index))
 						{
 							if (includeHeadings)
 							{
@@ -97,17 +87,29 @@ namespace River.OneMoreAddIn.Commands
 
 							continue;
 						}
-
-						// normal paragraph
-						modified |= CleanElement(element);
 					}
 
-					logger.WriteTime("removed spacing, now saving...");
-
-					if (modified)
+					// is this a custom Heading style?
+					var style = new Style(element.CollectStyleProperties(true));
+					if (customStyles.Any(s => s.Equals(style)))
 					{
-						await one.Update(page);
+						if (includeHeadings)
+						{
+							modified |= CleanElement(element);
+						}
+
+						continue;
 					}
+
+					// normal paragraph
+					modified |= CleanElement(element);
+				}
+
+				logger.WriteTime("removed spacing, now saving...");
+
+				if (modified)
+				{
+					await one.Update(page);
 				}
 			}
 		}
