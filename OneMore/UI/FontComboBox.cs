@@ -155,7 +155,8 @@ namespace River.OneMoreAddIn.UI
 				Cursor.Current = Cursors.WaitCursor;
 
 				var families = FontFamily.Families.ToList();
-				Logger.Current.WriteLine($"fontfamilies={families.Count}");
+
+				// collecting OTF font directly is probably not necessary but just to be sure...
 
 				var other = new PrivateFontCollection();
 				var path = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
@@ -176,7 +177,6 @@ namespace River.OneMoreAddIn.UI
 					}
 
 					families = families.OrderBy(f => f.Name).ToList();
-					Logger.Current.WriteLine($"fontfamilies={families.Count}");
 				}
 
 				foreach (var family in families)
