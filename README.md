@@ -41,7 +41,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Colorize selected text as a chosen programming language - _syntax highlighting_
 * Disable spell-check on the current page (F4)
 * Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
-* Change selected text to UPPERCASE or lowercase
+* Change selected text to UPPERCASE, lowercase, Or Title Case
 * Increase/Decrease the font size of all content on the current page
 * Highlight selected text using a rotating array of colors
 * Invert text selection
