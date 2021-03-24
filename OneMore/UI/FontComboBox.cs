@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.UI
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Drawing.Text;
+	using System.Linq;
 	using System.Windows.Forms;
 
 
@@ -153,8 +154,38 @@ namespace River.OneMoreAddIn.UI
 			{
 				Cursor.Current = Cursors.WaitCursor;
 
-				foreach (FontFamily fontFamily in FontFamily.Families)
-					Items.Add(fontFamily.Name);
+				var families = FontFamily.Families.ToList();
+
+				// collecting OTF font directly is probably not necessary but just to be sure...
+
+				var other = new PrivateFontCollection();
+				var path = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
+				var files = System.IO.Directory.GetFiles(path, "*.otf");
+				foreach (var file in files)
+				{
+					other.AddFontFile(file);
+				}
+
+				if (other.Families.Length > 0)
+				{
+					foreach (var family in other.Families)
+					{
+						if (!families.Any(f => f.Name == family.Name))
+						{
+							families.Add(family);
+						}
+					}
+
+					families = families.OrderBy(f => f.Name).ToList();
+				}
+
+				foreach (var family in families)
+				{
+					Items.Add(family.Name);
+					family.Dispose();
+				}
+
+				families.Clear();
 
 				Cursor.Current = Cursors.Default;
 			}

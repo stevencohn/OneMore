@@ -94,7 +94,8 @@ namespace River.OneMoreAddIn
 		/// Stops the stopwatch and Writes a message along with the mm.ss timespan
 		/// since the stopwatch was started.
 		/// </summary>
-		/// <param name="message"></param>
-		void WriteTime(string message, bool keep = false);
+		/// <param name="message">The message to log</param>
+		/// <param name="keepRunning">True to keep the timer running</param>
+		void WriteTime(string message, bool keepRunning = false);
 	}
 }

@@ -140,6 +140,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="ToLowercaseCmd"/>
               <button
+                id="ribTitlecaseButton"
+                imageMso="ChangeCase"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="ToTitlecaseCmd"/>
+              <button
                 id="ribIncreaseFontSizeButton"
                 imageMso="FontSizeIncreaseWord"
                 getLabel="GetRibbonLabel"

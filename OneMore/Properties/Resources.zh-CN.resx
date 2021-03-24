@@ -2936,4 +2936,11 @@ ISO-code then comma then language name</comment>
     <value>必须首先使用“展开轮廓”命令将段落标记为折叠</value>
     <comment>info message box</comment>
   </data>
+  <data name="ribTitlecaseButton_Label" xml:space="preserve">
+    <value>至标题案例</value>
+    <comment>rib button</comment>
+  </data>
+  <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
+    <value>将文本转换为标题大小写</value>
+  </data>
 </root>

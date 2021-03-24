@@ -73,14 +73,14 @@ namespace River.OneMoreAddIn
 		public static bool EndsWithWhitespace(this XCData cdata)
 		{
 			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
-			return Regex.IsMatch(cdata.Value, @"([\s]|&#160;|&nbsp;)$");
+			return (cdata == null) || Regex.IsMatch(cdata.Value, @"([\s]|&#160;|&nbsp;)$");
 		}
 
 
 		public static bool StartsWithWhitespace(this XCData cdata)
 		{
 			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
-			return Regex.IsMatch(cdata.Value, @"^([\s]|&#160;|&nbsp;)");
+			return (cdata == null) || Regex.IsMatch(cdata.Value, @"^([\s]|&#160;|&nbsp;)");
 		}
 	}
 }

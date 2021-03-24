@@ -2930,4 +2930,11 @@ ISO-code then comma then language name</comment>
     <value>Verwenden Sie zuerst den Befehl "Gliederung erweitern", um Absätze zum Reduzieren zu markieren</value>
     <comment>info message box</comment>
   </data>
+  <data name="ribTitlecaseButton_Label" xml:space="preserve">
+    <value>Zum Titelfall</value>
+    <comment>rib button</comment>
+  </data>
+  <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
+    <value>Konvertieren Sie Text in Groß- und Kleinschreibung</value>
+  </data>
 </root>

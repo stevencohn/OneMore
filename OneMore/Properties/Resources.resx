@@ -2959,4 +2959,11 @@ In this section</value>
     <value>OneMore</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ribTitlecaseButton_Label" xml:space="preserve">
+    <value>To Title Case</value>
+    <comment>rib button</comment>
+  </data>
+  <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
+    <value>Convert text to title case</value>
+  </data>
 </root>
