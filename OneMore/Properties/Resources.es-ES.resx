@@ -2944,4 +2944,11 @@ ISO-code then comma then language name</comment>
     <value>Primero debe usar el comando Expandir esquema para marcar párrafos para contraer</value>
     <comment>info message box</comment>
   </data>
+  <data name="ribTitlecaseButton_Label" xml:space="preserve">
+    <value>Al caso del título</value>
+    <comment>rib button</comment>
+  </data>
+  <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
+    <value>Convertir texto en mayúsculas y minúsculas</value>
+  </data>
 </root>

@@ -2945,4 +2945,11 @@ ISO-code then comma then language name</comment>
     <value>Deve-se primeiro usar o comando Expandir Contorno para marcar os parágrafos a serem recolhidos</value>
     <comment>info message box</comment>
   </data>
+  <data name="ribTitlecaseButton_Label" xml:space="preserve">
+    <value>Para caixa do título</value>
+    <comment>rib button</comment>
+  </data>
+  <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
+    <value>Converter texto em maiúsculas</value>
+  </data>
 </root>

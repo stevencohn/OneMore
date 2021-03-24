@@ -272,13 +272,16 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TextToTableCommand>();
 
 		public async Task ToLowercaseCmd(IRibbonControl control)
-			=> await factory.Run<ToCaseCommand>(false);
+			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Lowercase);
 
 		public async Task ToggleDttmCmd(IRibbonControl control)
 			=> await factory.Run<ToggleDttmCommand>();
 
+		public async Task ToTitlecaseCmd(IRibbonControl control)
+			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Titlecase);
+
 		public async Task ToUppercaseCmd(IRibbonControl control)
-			=> await factory.Run<ToCaseCommand>(true);
+			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Uppercase);
 
 		public async Task TrimCmd(IRibbonControl control)
 			=> await factory.Run<TrimCommand>(false);

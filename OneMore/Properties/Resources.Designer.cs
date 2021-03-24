@@ -4763,6 +4763,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To Title Case.
+        /// </summary>
+        internal static string ribTitlecaseButton_Label {
+            get {
+                return ResourceManager.GetString("ribTitlecaseButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert text to title case.
+        /// </summary>
+        internal static string ribTitlecaseButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribTitlecaseButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
         internal static string ribTocButton_Label {
