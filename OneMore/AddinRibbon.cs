@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn
 				root.Add(contextMenus);
 
 				AddNotebookContextMenuCommands(contextMenus);
-				AddSectionGroupContextMenuCommands(contextMenus);
+				//AddSectionGroupContextMenuCommands(contextMenus);
 				AddPageContextMenuCommands(contextMenus);
 				AddPageAreaContextMenuCommands(contextMenus);
 				AddPictureContextMenuCommands(contextMenus);
