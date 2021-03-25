@@ -2947,4 +2947,8 @@ ISO-code then comma then language name</comment>
     <value>...到标题大小写</value>
     <comment>option</comment>
   </data>
+  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>将页面顶部链接右对齐</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

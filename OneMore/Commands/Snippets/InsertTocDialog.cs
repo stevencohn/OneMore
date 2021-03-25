@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"pageRadio",
 					"topBox",
+					"rightAlignBox",
 					"sectionRadio",
 					"notebookRadio",
 					"pagesBox",
@@ -49,8 +50,16 @@ namespace River.OneMoreAddIn.Commands
 
 		public bool TopLinks => topBox.Enabled && topBox.Checked;
 
+		public bool RightAlignTopLinks => rightAlignBox.Enabled && rightAlignBox.Checked;
+
 
 		public bool SectionPages => pagesBox.Enabled && pagesBox.Checked;
+
+
+		private void ToggleRightAlignOption(object sender, EventArgs e)
+		{
+			rightAlignBox.Enabled = topBox.Checked;
+		}
 
 
 		private void ChangedRadio(object sender, EventArgs e)
@@ -58,15 +67,18 @@ namespace River.OneMoreAddIn.Commands
 			if (sender == pageRadio)
 			{
 				topBox.Enabled = true;
+				rightAlignBox.Enabled = true;
 				pagesBox.Enabled = false;
 			}
 			else if (sender == sectionRadio)
 			{
 				topBox.Enabled = pagesBox.Enabled = false;
+				rightAlignBox.Enabled = false;
 			}
 			else
 			{
 				topBox.Enabled = false;
+				rightAlignBox.Enabled = false;
 				pagesBox.Enabled = true;
 			}
 		}

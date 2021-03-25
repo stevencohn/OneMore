@@ -36,13 +36,14 @@
 			this.topBox = new System.Windows.Forms.CheckBox();
 			this.notebookRadio = new System.Windows.Forms.RadioButton();
 			this.pagesBox = new System.Windows.Forms.CheckBox();
+			this.rightAlignBox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(245, 254);
+			this.okButton.Location = new System.Drawing.Point(245, 279);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
@@ -53,7 +54,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(371, 254);
+			this.cancelButton.Location = new System.Drawing.Point(371, 279);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -76,7 +77,7 @@
 			// sectionRadio
 			// 
 			this.sectionRadio.AutoSize = true;
-			this.sectionRadio.Location = new System.Drawing.Point(18, 111);
+			this.sectionRadio.Location = new System.Drawing.Point(18, 133);
 			this.sectionRadio.Name = "sectionRadio";
 			this.sectionRadio.Size = new System.Drawing.Size(340, 24);
 			this.sectionRadio.TabIndex = 3;
@@ -93,11 +94,12 @@
 			this.topBox.TabIndex = 4;
 			this.topBox.Text = "Add link to each heading to jump to top of page";
 			this.topBox.UseVisualStyleBackColor = true;
+			this.topBox.CheckedChanged += new System.EventHandler(this.ToggleRightAlignOption);
 			// 
 			// notebookRadio
 			// 
 			this.notebookRadio.AutoSize = true;
-			this.notebookRadio.Location = new System.Drawing.Point(18, 161);
+			this.notebookRadio.Location = new System.Drawing.Point(18, 183);
 			this.notebookRadio.Name = "notebookRadio";
 			this.notebookRadio.Size = new System.Drawing.Size(371, 24);
 			this.notebookRadio.TabIndex = 5;
@@ -109,20 +111,32 @@
 			// 
 			this.pagesBox.AutoSize = true;
 			this.pagesBox.Enabled = false;
-			this.pagesBox.Location = new System.Drawing.Point(46, 191);
+			this.pagesBox.Location = new System.Drawing.Point(46, 213);
 			this.pagesBox.Name = "pagesBox";
 			this.pagesBox.Size = new System.Drawing.Size(245, 24);
 			this.pagesBox.TabIndex = 6;
 			this.pagesBox.Text = "Include pages in each section";
 			this.pagesBox.UseVisualStyleBackColor = true;
 			// 
-			// TocDialog
+			// rightAlignBox
+			// 
+			this.rightAlignBox.AutoSize = true;
+			this.rightAlignBox.Enabled = false;
+			this.rightAlignBox.Location = new System.Drawing.Point(46, 88);
+			this.rightAlignBox.Name = "rightAlignBox";
+			this.rightAlignBox.Size = new System.Drawing.Size(223, 24);
+			this.rightAlignBox.TabIndex = 7;
+			this.rightAlignBox.Text = "Right-align top of page link";
+			this.rightAlignBox.UseVisualStyleBackColor = true;
+			// 
+			// InsertTocDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(503, 304);
+			this.ClientSize = new System.Drawing.Size(503, 329);
+			this.Controls.Add(this.rightAlignBox);
 			this.Controls.Add(this.pagesBox);
 			this.Controls.Add(this.notebookRadio);
 			this.Controls.Add(this.topBox);
@@ -133,7 +147,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "TocDialog";
+			this.Name = "InsertTocDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 25, 0, 0);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -152,5 +166,6 @@
 		private System.Windows.Forms.CheckBox topBox;
 		private System.Windows.Forms.RadioButton notebookRadio;
 		private System.Windows.Forms.CheckBox pagesBox;
+		private System.Windows.Forms.CheckBox rightAlignBox;
 	}
 }

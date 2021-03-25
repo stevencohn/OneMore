@@ -2382,6 +2382,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Right-align top of page link.
+        /// </summary>
+        internal static string InsertTocDialog_rightAlignBox_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_rightAlignBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add page with table of pages in this section.
         /// </summary>
         internal static string InsertTocDialog_sectionRadio_Text {

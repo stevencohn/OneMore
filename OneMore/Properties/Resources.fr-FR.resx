@@ -2950,4 +2950,8 @@ ISO-code then comma then language name</comment>
     <value>... à la casse du titre</value>
     <comment>option</comment>
   </data>
+  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>Lien haut de page aligné à droite</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

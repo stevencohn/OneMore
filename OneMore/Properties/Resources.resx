@@ -2970,4 +2970,8 @@ In this section</value>
     <value>... To Title Case</value>
     <comment>option</comment>
   </data>
+  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>Right-align top of page link</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

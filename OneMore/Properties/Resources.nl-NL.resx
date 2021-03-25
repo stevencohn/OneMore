@@ -2956,4 +2956,8 @@ ISO-code then comma then language name</comment>
     <value>... naar hoofdletters</value>
     <comment>option</comment>
   </data>
+  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>Link bovenaan de pagina rechts uitlijnen</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

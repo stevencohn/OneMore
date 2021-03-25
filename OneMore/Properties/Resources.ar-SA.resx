@@ -2955,4 +2955,8 @@ ISO-code then comma then language name</comment>
     <value>... إلى حالة العنوان</value>
     <comment>option</comment>
   </data>
+  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>محاذاة لليمين أعلى ارتباط الصفحة</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

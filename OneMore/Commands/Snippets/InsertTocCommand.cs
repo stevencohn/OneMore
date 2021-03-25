@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Commands
 
 				OneNote.Scope scope;
 				bool addTopLinks;
+				bool rightAlignTopLinks;
 				bool includePages;
 
 				using (var dialog = new InsertTocDialog())
@@ -46,6 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 					scope = dialog.Scope;
 					addTopLinks = dialog.TopLinks;
+					rightAlignTopLinks = dialog.RightAlignTopLinks;
 					includePages = dialog.SectionPages;
 				}
 
@@ -54,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 					switch (scope)
 					{
 						case OneNote.Scope.Self:
-							await InsertHeadingsTable(one, addTopLinks);
+							await InsertHeadingsTable(one, addTopLinks, rightAlignTopLinks);
 							break;
 
 						case OneNote.Scope.Pages:
@@ -83,7 +85,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="addTopLinks"></param>
 		/// <param name="one"></param>
-		private async Task InsertHeadingsTable(OneNote one, bool addTopLinks)
+		private async Task InsertHeadingsTable(OneNote one, bool addTopLinks, bool rightAlignTopLinks)
 		{
 			var page = one.GetPage();
 			var ns = page.Namespace;
@@ -149,19 +151,31 @@ namespace River.OneMoreAddIn.Commands
 
 				if (addTopLinks)
 				{
-					var table = new Table(ns);
-					table.AddColumn(400, true);
-					table.AddColumn(100, true);
-					var row = table.AddRow();
-					row.Cells.ElementAt(0).SetContent(heading.Root);
-					row.Cells.ElementAt(1).SetContent(
-						new XElement(ns + "OE",
-							new XAttribute("alignment", "right"),
-							new XElement(ns + "T", new XCData(titleLinkText)))
-						);
+					if (rightAlignTopLinks)
+					{
+						var table = new Table(ns);
+						table.AddColumn(400, true);
+						table.AddColumn(100, true);
+						var row = table.AddRow();
+						row.Cells.ElementAt(0).SetContent(heading.Root);
+						row.Cells.ElementAt(1).SetContent(
+							new XElement(ns + "OE",
+								new XAttribute("alignment", "right"),
+								new XElement(ns + "T", new XCData(titleLinkText)))
+							);
 
-					// heading.Root is the OE
-					heading.Root.ReplaceNodes(table.Root);
+						// heading.Root is the OE
+						heading.Root.ReplaceNodes(table.Root);
+					}
+					else
+					{
+						heading.Root.Add(
+							new XElement(ns + "T", new XCData(" ")),
+							new XElement(ns + "T", new XCData(
+								$"<span style=\"font-size:9pt;\">[{titleLinkText}]</span>"
+								))
+							);
+					}
 				}
 			}
 
