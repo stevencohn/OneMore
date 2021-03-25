@@ -2951,4 +2951,8 @@ ISO-code then comma then language name</comment>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
     <value>تحويل النص إلى حالة العنوان</value>
   </data>
+  <data name="ContextMenuSheet_ribTitlecaseButton" xml:space="preserve">
+    <value>... إلى حالة العنوان</value>
+    <comment>option</comment>
+  </data>
 </root>

@@ -2943,4 +2943,8 @@ ISO-code then comma then language name</comment>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
     <value>将文本转换为标题大小写</value>
   </data>
+  <data name="ContextMenuSheet_ribTitlecaseButton" xml:space="preserve">
+    <value>...到标题大小写</value>
+    <comment>option</comment>
+  </data>
 </root>

@@ -2946,4 +2946,8 @@ ISO-code then comma then language name</comment>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
     <value>Convertir le texte en casse du titre</value>
   </data>
+  <data name="ContextMenuSheet_ribTitlecaseButton" xml:space="preserve">
+    <value>... à la casse du titre</value>
+    <comment>option</comment>
+  </data>
 </root>

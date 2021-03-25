@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribHighlightButton",			// ... Rotating Highlighter
 			"ribUppercaseButton",			// ... To UPPERCASE
 			"ribLowercaseButton",			// ... To lowercase
+			"ribTitlecaseButton",			// ... To Title Case
 			"ribIncreaseFontSizeButton",	// ... Increase Text Size
 			"ribDecreaseFontSizeButton",	// ... Decrease Text Size
 			"ribReplaceButton",				// Search and Replace

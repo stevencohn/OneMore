@@ -914,6 +914,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... To Title Case.
+        /// </summary>
+        internal static string ContextMenuSheet_ribTitlecaseButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribTitlecaseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Table of Contents.
         /// </summary>
         internal static string ContextMenuSheet_ribTocButton {

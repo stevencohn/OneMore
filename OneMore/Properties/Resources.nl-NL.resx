@@ -2952,4 +2952,8 @@ ISO-code then comma then language name</comment>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
     <value>Converteer tekst naar hoofdlettergebruik</value>
   </data>
+  <data name="ContextMenuSheet_ribTitlecaseButton" xml:space="preserve">
+    <value>... naar hoofdletters</value>
+    <comment>option</comment>
+  </data>
 </root>

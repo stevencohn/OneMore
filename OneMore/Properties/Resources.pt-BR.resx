@@ -2952,4 +2952,8 @@ ISO-code then comma then language name</comment>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
     <value>Converter texto em maiúsculas</value>
   </data>
+  <data name="ContextMenuSheet_ribTitlecaseButton" xml:space="preserve">
+    <value>... Para caixa do título</value>
+    <comment>option</comment>
+  </data>
 </root>

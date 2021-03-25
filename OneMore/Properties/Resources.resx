@@ -2966,4 +2966,8 @@ In this section</value>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
     <value>Convert text to title case</value>
   </data>
+  <data name="ContextMenuSheet_ribTitlecaseButton" xml:space="preserve">
+    <value>... To Title Case</value>
+    <comment>option</comment>
+  </data>
 </root>
