@@ -603,7 +603,7 @@ namespace River.OneMoreAddIn.Models
 					else
 						builder.Append(text.Value);
 				}
-				else
+				else if (!(s is XComment))
 				{
 					if (reverseScanning)
 						builder.Insert(0, ((XElement)s).Value);
@@ -638,9 +638,12 @@ namespace River.OneMoreAddIn.Models
 				{
 					var cdata = cursor.FirstNode as XCData;
 
-					// empty or link because we can't tell the difference between a zero-selection
-					// zero-selection link and link a partial or fully selected link
-					if (cdata.Value.Length == 0 || Regex.IsMatch(cdata.Value, @"<a href.+?</a>"))
+					// empty or link or xml-comment because we can't tell the difference between
+					// a zero-selection zero-selection link and a partial or fully selected link
+					// XML comments are used to wrap mathML equations
+					if (cdata.Value.Length == 0 ||
+						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
+						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
 					{
 						return cursor;
 					}
