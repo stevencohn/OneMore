@@ -8,15 +8,17 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
-	internal class NoSpellCheckCommand : Command
+	internal class SpellCheckCommand : Command
 	{
-		public NoSpellCheckCommand()
+		public SpellCheckCommand()
 		{
 		}
 
 
 		public override async Task Execute(params object[] args)
 		{
+			var disable = !(bool)args[0];
+
 			logger.StartClock();
 
 			using (var one = new OneNote(out var page, out var ns))
@@ -29,16 +31,19 @@ namespace River.OneMoreAddIn.Commands
 						.Attributes("lang")
 						.Remove();
 
-					// set lang=yo for the page and the page title
+					if (disable)
+					{
+						// set lang=yo for the page and the page title
 
-					page.Root.Add(new XAttribute("lang", "yo"));
-					page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", "yo"));
+						page.Root.Add(new XAttribute("lang", "yo"));
+						page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", "yo"));
+					}
 
 					await one.Update(page);
 				}
 			}
 
-			logger.WriteTime("language reset");
+			logger.WriteTime($"spell check {(disable ? "disabled" : "enabled")}");
 		}
 	}
 }

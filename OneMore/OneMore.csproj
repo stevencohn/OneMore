@@ -406,7 +406,7 @@
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
     <Compile Include="Commands\References\NameUrlsCommand.cs" />
     <Compile Include="Commands\Favorites\GotoFavoriteCommand.cs" />
-    <Compile Include="Commands\Edit\NoSpellCheckCommand.cs" />
+    <Compile Include="Commands\Edit\SpellCheckCommand.cs" />
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\References\RemoveFootnoteCommand.cs" />
     <Compile Include="Commands\SearchAndReplace\SearchAndReplaceCommand.cs" />

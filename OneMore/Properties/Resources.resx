@@ -137,7 +137,7 @@
     <value>OneMore</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>No Spell Check</value>
+    <value>Disable Spell Check</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
@@ -2026,7 +2026,7 @@ In this section</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>No Spell Check</value>
+    <value>... Disable Spell Check</value>
     <comment>option</comment>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
@@ -2973,5 +2973,17 @@ In this section</value>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
     <value>Right-align top of page link</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
+    <value>... Enable Spell Check</value>
+    <comment>option</comment>
+  </data>
+  <data name="ribSpellCheckButton_Label" xml:space="preserve">
+    <value>Enable Spell Check</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Enable spell check for entire page</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
 </root>

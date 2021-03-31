@@ -136,12 +136,12 @@
     <value>Un de plus</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>Pas de vérification orthographique</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+    Désactiver la vérification orthographique
+    Ribbon OneMore menu item, no spell check on this page EDIT
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Désactiver la vérification orthographique pour la page entière (F4)</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+    Désactiver la vérification orthographique pour la page entière (F4)
+    Ribbon OneMore menu item, no spell check on this page EDIT
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1797,8 +1797,8 @@ Fichier OneNote (*.one)
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>Pas de vérification orthographique</value>
-    <comment>option</comment>
+    ... Désactiver la vérification orthographique
+    option EDIT
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Coller du texte enrichi</value>
@@ -2953,5 +2953,17 @@ ISO-code then comma then language name</comment>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
     <value>Lien haut de page aligné à droite</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
+    <value>... Activer la vérification orthographique</value>
+    <comment>option</comment>
+  </data>
+  <data name="ribSpellCheckButton_Label" xml:space="preserve">
+    <value>Activer la vérification orthographique</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Activer la vérification orthographique pour la page entière</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
 </root>

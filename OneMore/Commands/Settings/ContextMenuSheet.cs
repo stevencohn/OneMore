@@ -22,7 +22,6 @@ namespace River.OneMoreAddIn.Settings
 		// and then add ContextMenuSheet_ID values to the Resources.resx
 		public string[] keys = new string[]
 		{
-			"ribNoSpellCheckButton",		// No Spell Check
 			"ribPasteRtfButton",			// Paste Rich Text
 			"ribFootnoteButton",			// Add Footnote
 			"ribCleanMenu",					// Clean Menu
@@ -40,6 +39,8 @@ namespace River.OneMoreAddIn.Settings
 			"ribTitlecaseButton",			// ... To Title Case
 			"ribIncreaseFontSizeButton",	// ... Increase Text Size
 			"ribDecreaseFontSizeButton",	// ... Decrease Text Size
+			"ribNoSpellCheckButton",		// ... No Spell Check
+			"ribSpellCheckButton",			// ... Spell Check
 			"ribReplaceButton",				// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
 			"ribInsertSingleLineButton",	// ... Single Line

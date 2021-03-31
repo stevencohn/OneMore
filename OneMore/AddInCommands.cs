@@ -73,8 +73,14 @@ namespace River.OneMoreAddIn
 		public async Task DeleteFormulaCmd(IRibbonControl control)
 			=> await factory.Run<DeleteFormulaCommand>();
 
+		public async Task DisableSpellCheckCmd(IRibbonControl control)
+			=> await factory.Run<SpellCheckCommand>(false);
+
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
+
+		public async Task EnableSpellCheckCmd(IRibbonControl control)
+			=> await factory.Run<SpellCheckCommand>(true);
 
 		public async Task ExpandContentCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(true);
@@ -174,9 +180,6 @@ namespace River.OneMoreAddIn
 
 		public async Task NewStyleCmd(IRibbonControl control)
 			=> await factory.Run<NewStyleCommand>();
-
-		public async Task NoSpellCheckCmd(IRibbonControl control)
-			=> await factory.Run<NoSpellCheckCommand>();
 
 		public async Task NumberPagesCmd(IRibbonControl control)
 			=> await factory.Run<NumberPagesCommand>();

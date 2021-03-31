@@ -137,12 +137,12 @@
     <value>Nog een</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>Geen spellingcontrole</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+    Schakel de spellingcontrole uit
+    Ribbon OneMore menu item, no spell check on this page EDIT
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Schakel de spellingcontrole uit voor de hele pagina (F4)</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+    Schakel de spellingcontrole uit voor de hele pagina (F4)
+    Ribbon OneMore menu item, no spell check on this page EDIT
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1803,8 +1803,8 @@ OneNote-bestand (*.one)
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>Geen spellingcontrole</value>
-    <comment>option</comment>
+    ... Schakel de spellingcontrole uit
+    option EDIT
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Plak Rich Text</value>
@@ -2959,5 +2959,17 @@ ISO-code then comma then language name</comment>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
     <value>Link bovenaan de pagina rechts uitlijnen</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
+    <value>... Spellingcontrole inschakelen</value>
+    <comment>option</comment>
+  </data>
+  <data name="ribSpellCheckButton_Label" xml:space="preserve">
+    <value>Spellingcontrole inschakelen</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Schakel de spellingcontrole in voor de hele pagina</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
 </root>

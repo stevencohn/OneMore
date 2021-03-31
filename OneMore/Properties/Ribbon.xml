@@ -51,12 +51,6 @@
               getLabel="GetRibbonLabel"
               onAction="CollapseCmd"/>
             <button
-              id="ribNoSpellCheckButton"
-              image="NoSpellCheck"
-              getLabel="GetRibbonLabel"
-              getScreentip="GetRibbonScreentip"
-              onAction="NoSpellCheckCmd"/>
-            <button
               id="ribPasteRtfButton"
               imageMso="PasteSpecialDialog"
               getLabel="GetRibbonLabel"
@@ -167,6 +161,18 @@
                 imageMso="OutlineExpand"
                 getLabel="GetRibbonLabel"
                 onAction="ExpandContentCmd"/>
+              <button
+                id="ribSpellCheckButton"
+                imageMso="Spelling"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="EnableSpellCheckCmd"/>
+              <button
+                id="ribNoSpellCheckButton"
+                image="NoSpellCheck"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="DisableSpellCheckCmd"/>
               <button
                 id="ribInvertSelectionButton"
                 imageMso="BlackAndWhiteInverseGrayscale"
