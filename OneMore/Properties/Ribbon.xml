@@ -511,4 +511,116 @@
       </tab>
     </tabs>
   </ribbon>
+  <contextMenus>
+    <contextMenu idMso="ContextMenuNotebook">
+      <button
+        id="ctxArchiveNotebookButton"
+        imageMso="SaveAttachments"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ArchiveCmd"
+        tag="notebook"
+        insertBeforeMso="ShareThisNotebook"/>
+      <button
+        id="ctxNumberSectionsButton"
+        imageMso="LineNumbersMenu"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="NumberSectionsCmd"
+        insertBeforeMso="ShareThisNotebook"/>
+      <button
+        id="ctxRemoveSectionNumbersButton"
+        imageMso="HeaderFooterRemoveHeaderWord"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="RemoveSectionNumbersCmd"
+        insertBeforeMso="ShareThisNotebook"/>
+      <menuSeparator
+        id="omNotebookContextMenuSeparator"
+        insertBeforeMso="ShareThisNotebook"/>
+    </contextMenu>
+    <contextMenu idMso="ContextMenuPage">
+      <button
+        id="ctxExportButton"
+        imageMso="FileSave"
+        getLabel="GetRibbonLabel"
+        getEnabled="GetOfficeInstalled"
+        onAction="ExportCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxMergeButton"
+        imageMso="CompareAndCombine"
+        getLabel="GetRibbonLabel"
+        getEnabled="GetMultiPageContext"
+        onAction="MergeCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxSplitButton"
+        imageMso="MasterDocumentSplitSubdocuments"
+        getLabel="GetRibbonLabel"
+        onAction="SplitCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <menuSeparator
+        id="omPageContextMenuSeparator"
+        insertBeforeMso="RenamePageOneNote"/>
+    </contextMenu>
+    <contextMenu idMso="ContextMenuPageArea">
+      <button
+        id="ctxNumberPagesButton"
+        imageMso="CustomPageNumberGallery"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="NumberPagesCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxRemovePageNumbersButton"
+        imageMso="PageNumbersRemove"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="RemovePageNumbersCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+    </contextMenu>
+    <contextMenu idMso="ContextMenuPicture">
+      <button
+        id="ctxCaptionButton"
+        imageMso="CaptionInsert"
+        getLabel="GetRibbonLabel"
+        onAction="AddCaptionCmd"
+        insertBeforeMso="Cut"/>
+      <button
+        id="ctxCropImageButton"
+        imageMso="PictureCrop"
+        getLabel="GetRibbonLabel"
+        onAction="CropImageCmd"
+        insertBeforeMso="Cut"/>
+      <button
+        id="ctxResizeImagesButton"
+        imageMso="GroupPictureCompress"
+        getLabel="GetRibbonLabel"
+        onAction="ResizeImagesCmd"
+        insertBeforeMso="Cut"/>
+      <menuSeparator
+        id="omPictureContextMenuSeparator"
+        insertBeforeMso="Cut"/>
+    </contextMenu>
+    <contextMenu idMso="ContextMenuSection">
+      <button
+        id="ctxAddFavoriteSectionButton"
+        imageMso="AddToFavorites"
+        label="Add to Favorites"
+        onAction="AddFavoriteSectionCmd"
+        insertBeforeMso="SectionRenameOneNote"/>
+      <button
+        id="ctxArchiveSectionButton"
+        imageMso="SaveAttachments"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ArchiveCmd"
+        tag="section"
+        insertBeforeMso="SectionRenameOneNote"/>
+      <menuSeparator
+        id="omSectionContextMenuSeparator"
+        insertBeforeMso="SectionRenameOneNote"/>
+    </contextMenu>    
+  </contextMenus>
 </customUI>
