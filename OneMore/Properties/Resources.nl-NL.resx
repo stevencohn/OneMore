@@ -2976,4 +2976,8 @@ ISO-code then comma then language name</comment>
     <value>Spatiëring:</value>
     <comment>label</comment>
   </data>
+  <data name="ContextMenuSheet_ribJoinParagraphButton" xml:space="preserve">
+    <value>... Word lid van de paragraaf</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

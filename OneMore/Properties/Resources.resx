@@ -2003,23 +2003,23 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
     <value>Add Footnote</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribCleanMenu" xml:space="preserve">
     <value>Clean Menu</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribDecreaseFontSizeButton" xml:space="preserve">
     <value>... Decrease Text Size</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribEditMenu" xml:space="preserve">
     <value>Edit Menu</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribIncreaseFontSizeButton" xml:space="preserve">
     <value>... Increase Text Size</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes.</value>
@@ -2027,31 +2027,31 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
     <value>... Disable Spell Check</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Paste Rich Text</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">
     <value>... Remove Author Information</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveCitationsButton" xml:space="preserve">
     <value>... Remove Pasted Citations</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveEmptyButton" xml:space="preserve">
     <value>... Remove Empty Paragraphs and Headings</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveSpacingButton" xml:space="preserve">
     <value>... Remove Paragraph Spacing</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribSnippetsMenu" xml:space="preserve">
     <value>Snippets Menu</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
     <value>Context Menu Options</value>
@@ -2059,15 +2059,15 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribLowercaseButton" xml:space="preserve">
     <value>... To lowercase</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribUppercaseButton" xml:space="preserve">
     <value>... To UPPERCASE</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribTrimButton" xml:space="preserve">
     <value>... Trim Whitespace</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
     <value>Rotating Highlighter Options</value>
@@ -2083,7 +2083,7 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribHighlightButton" xml:space="preserve">
     <value>... Rotating Highlighter</value>
-    <comment>context menu</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="RibbonBarSheet_editGroup.Text" xml:space="preserve">
     <value>Edit Commands</value>
@@ -2469,7 +2469,7 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribColorizeMenu" xml:space="preserve">
     <value>... Colorize</value>
-    <comment>settings</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>Colorize</value>
@@ -2509,7 +2509,7 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
     <value>Search and Replace</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ctxReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
@@ -2649,63 +2649,63 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
     <value>... Blue Status</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
     <value>... Text Box</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
     <value>... Calendar</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
     <value>... Code Block</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
     <value>... Expand/Collapse</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
     <value>... Gray Status</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
     <value>... Green Status</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
     <value>... Info Block</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
     <value>... Sortable Date</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertDoubleLineButton" xml:space="preserve">
     <value>... Double Horizontal Line</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>... Horizontal Line</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
     <value>... Red Status</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
     <value>... Table of Contents</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
     <value>... Warning Block</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
     <value>... Yellow Status</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Manage Saved Plugins</value>
@@ -2793,7 +2793,7 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribBreakingButton" xml:space="preserve">
     <value>... Change Sentence Spacing</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="PluginDialog_badName" xml:space="preserve">
     <value>Invalid or duplicate name</value>
@@ -2968,7 +2968,7 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribTitlecaseButton" xml:space="preserve">
     <value>... To Title Case</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
     <value>Right-align top of page link</value>
@@ -2976,7 +2976,7 @@ In this section</value>
   </data>
   <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
     <value>... Enable Spell Check</value>
-    <comment>option</comment>
+    <comment>context menu option</comment>
   </data>
   <data name="ribSpellCheckButton_Label" xml:space="preserve">
     <value>Enable Spell Check</value>
@@ -2989,5 +2989,9 @@ In this section</value>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>Spacing:</value>
     <comment>label</comment>
+  </data>
+  <data name="ContextMenuSheet_ribJoinParagraphButton" xml:space="preserve">
+    <value>... Join Paragraph</value>
+    <comment>context menu option</comment>
   </data>
 </root>

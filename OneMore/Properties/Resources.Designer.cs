@@ -824,6 +824,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Join Paragraph.
+        /// </summary>
+        internal static string ContextMenuSheet_ribJoinParagraphButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribJoinParagraphButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... To lowercase.
         /// </summary>
         internal static string ContextMenuSheet_ribLowercaseButton {

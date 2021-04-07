@@ -2975,4 +2975,8 @@ ISO-code then comma then language name</comment>
     <value>Espaciado:</value>
     <comment>label</comment>
   </data>
+  <data name="ContextMenuSheet_ribJoinParagraphButton" xml:space="preserve">
+    <value>... Unir el párrafo</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

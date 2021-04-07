@@ -2967,4 +2967,8 @@ ISO-code then comma then language name</comment>
     <value>间距：</value>
     <comment>label</comment>
   </data>
+  <data name="ContextMenuSheet_ribJoinParagraphButton" xml:space="preserve">
+    <value>...加入段落</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

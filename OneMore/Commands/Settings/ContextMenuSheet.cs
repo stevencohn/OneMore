@@ -41,6 +41,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribDecreaseFontSizeButton",	// ... Decrease Text Size
 			"ribNoSpellCheckButton",		// ... No Spell Check
 			"ribSpellCheckButton",			// ... Spell Check
+			"ribJoinParagraphButton",		// ... Join Paragraph
 			"ribReplaceButton",				// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
 			"ribInsertSingleLineButton",	// ... Single Line
