@@ -57,6 +57,8 @@ namespace River.OneMoreAddIn.Commands
 					var notebook = one.GetNotebook(OneNote.Scope.Pages);
 					var ns = one.GetNamespace(notebook);
 
+					// use current page to ascend back to closest folder to handle nesting...
+
 					var element = notebook.Descendants(ns + "Page")
 						.FirstOrDefault(e => e.Attribute("ID").Value == one.CurrentPageId);
 

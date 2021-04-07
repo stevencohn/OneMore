@@ -80,6 +80,7 @@ namespace River.OneMoreAddIn
 
 			element.ReadAttributeValue("spaceBefore", out spaceBefore, 0.0);
 			element.ReadAttributeValue("spaceAfter", out spaceAfter, 0.0);
+			element.ReadAttributeValue("spacing", out spacing, 0.0);
 		}
 
 

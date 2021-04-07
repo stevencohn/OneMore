@@ -6190,6 +6190,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spacing:.
+        /// </summary>
+        internal static string StyleDialog_spacingLabel_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_spacingLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Strikethrough.
         /// </summary>
         internal static string StyleDialog_strikeButton_Text {

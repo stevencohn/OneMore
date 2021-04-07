@@ -2971,4 +2971,8 @@ ISO-code then comma then language name</comment>
     <value>تمكين التدقيق الإملائي للصفحة بأكملها</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
+  <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
+    <value>التباعد:</value>
+    <comment>label</comment>
+  </data>
 </root>

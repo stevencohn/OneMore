@@ -2972,4 +2972,8 @@ ISO-code then comma then language name</comment>
     <value>Schakel de spellingcontrole in voor de hele pagina</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
+  <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
+    <value>Spatiëring:</value>
+    <comment>label</comment>
+  </data>
 </root>

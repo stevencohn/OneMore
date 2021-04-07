@@ -131,6 +131,9 @@ namespace River.OneMoreAddIn
 
 			if (reader.MoveToAttribute("spaceAfter") && reader.ReadAttributeValue())
 				SpaceAfter = reader.Value;
+
+			if (reader.MoveToAttribute("spacing") && reader.ReadAttributeValue())
+				Spacing = reader.Value;
 		}
 
 		public virtual void WriteXml(XmlWriter writer)
@@ -173,6 +176,7 @@ namespace River.OneMoreAddIn
 
 			writer.WriteAttributeString("spaceBefore", SpaceBefore);
 			writer.WriteAttributeString("spaceAfter", SpaceAfter);
+			writer.WriteAttributeString("spacing", Spacing);
 		}
 	}
 }

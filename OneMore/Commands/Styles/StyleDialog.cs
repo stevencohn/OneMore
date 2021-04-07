@@ -107,6 +107,7 @@ namespace River.OneMoreAddIn.Commands
 					// labels
 					"beforeLabel",
 					"afterLabel",
+					"spacingLabel",
 					"nameLabel",
 					"fontLabel",
 					"styleTypeLabel",
@@ -136,6 +137,7 @@ namespace River.OneMoreAddIn.Commands
 			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString());
 			spaceAfterSpinner.Value = 0;
 			spaceBeforeSpinner.Value = 0;
+			spacingSpinner.Value = 0;
 		}
 
 
@@ -230,6 +232,13 @@ namespace River.OneMoreAddIn.Commands
 				var dsb = (decimal)sb;
 				if (dsb >= spaceBeforeSpinner.Minimum && dsb <= spaceBeforeSpinner.Maximum)
 					spaceBeforeSpinner.Value = dsb;
+			}
+
+			if (double.TryParse(selection.Spacing, NumberStyles.Any, CultureInfo.InvariantCulture, out var ss))
+			{
+				var dss = (decimal)ss;
+				if (dss >= spacingSpinner.Minimum && dss <= spacingSpinner.Maximum)
+					spacingSpinner.Value = dss;
 			}
 
 			allowEvents = true;
@@ -402,12 +411,14 @@ namespace River.OneMoreAddIn.Commands
 					case StyleType.Character:
 						spaceAfterSpinner.Enabled = false;
 						spaceBeforeSpinner.Enabled = false;
+						spacingSpinner.Enabled = false;
 						break;
 
 					case StyleType.Paragraph:
 					case StyleType.Heading:
 						spaceAfterSpinner.Enabled = true;
 						spaceBeforeSpinner.Enabled = true;
+						spacingSpinner.Enabled = true;
 						break;
 				}
 			}
@@ -571,6 +582,11 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangeSpaceBefore(object sender, EventArgs e)
 		{
 			selection.SpaceBefore = spaceBeforeSpinner.Value.ToString("#0.0", CultureInfo.InvariantCulture);
+		}
+
+		private void ChangeSpacing(object sender, EventArgs e)
+		{
+			selection.Spacing = spacingSpinner.Value.ToString("#0.0", CultureInfo.InvariantCulture);
 		}
 
 

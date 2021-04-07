@@ -2966,4 +2966,8 @@ ISO-code then comma then language name</comment>
     <value>Activer la vérification orthographique pour la page entière</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
+  <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
+    <value>Espacement:</value>
+    <comment>label</comment>
+  </data>
 </root>

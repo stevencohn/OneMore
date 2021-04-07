@@ -2957,4 +2957,8 @@ ISO-code then comma then language name</comment>
     <value>Aktivieren Sie die Rechtschreibprüfung für die gesamte Seite</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
+  <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
+    <value>Abstand:</value>
+    <comment>label</comment>
+  </data>
 </root>

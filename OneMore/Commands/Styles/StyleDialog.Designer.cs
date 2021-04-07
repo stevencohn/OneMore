@@ -43,6 +43,8 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.namesBox = new System.Windows.Forms.ComboBox();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.spacingLabel = new System.Windows.Forms.Label();
+			this.spacingSpinner = new System.Windows.Forms.NumericUpDown();
 			this.styleTypeLabel = new System.Windows.Forms.Label();
 			this.styleTypeBox = new System.Windows.Forms.ComboBox();
 			this.applyColorsBox = new System.Windows.Forms.CheckBox();
@@ -69,6 +71,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
 			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.spacingSpinner)).BeginInit();
 			this.toolStrip.SuspendLayout();
 			this.mainTools.SuspendLayout();
 			this.SuspendLayout();
@@ -218,6 +221,8 @@
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Controls.Add(this.spacingLabel);
+			this.panel1.Controls.Add(this.spacingSpinner);
 			this.panel1.Controls.Add(this.styleTypeLabel);
 			this.panel1.Controls.Add(this.styleTypeBox);
 			this.panel1.Controls.Add(this.applyColorsBox);
@@ -240,6 +245,26 @@
 			this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 9);
 			this.panel1.Size = new System.Drawing.Size(606, 418);
 			this.panel1.TabIndex = 25;
+			// 
+			// spacingLabel
+			// 
+			this.spacingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.spacingLabel.AutoSize = true;
+			this.spacingLabel.Location = new System.Drawing.Point(18, 301);
+			this.spacingLabel.Name = "spacingLabel";
+			this.spacingLabel.Size = new System.Drawing.Size(71, 20);
+			this.spacingLabel.TabIndex = 29;
+			this.spacingLabel.Text = "Spacing:";
+			// 
+			// spacingSpinner
+			// 
+			this.spacingSpinner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.spacingSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.spacingSpinner.Location = new System.Drawing.Point(146, 295);
+			this.spacingSpinner.Name = "spacingSpinner";
+			this.spacingSpinner.Size = new System.Drawing.Size(108, 31);
+			this.spacingSpinner.TabIndex = 28;
+			this.spacingSpinner.ValueChanged += new System.EventHandler(this.ChangeSpacing);
 			// 
 			// styleTypeLabel
 			// 
@@ -309,7 +334,7 @@
 			this.toolStrip.Location = new System.Drawing.Point(146, 149);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-			this.toolStrip.Size = new System.Drawing.Size(350, 38);
+			this.toolStrip.Size = new System.Drawing.Size(304, 33);
 			this.toolStrip.TabIndex = 5;
 			// 
 			// boldButton
@@ -320,7 +345,7 @@
 			this.boldButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.boldButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.boldButton.Name = "boldButton";
-			this.boldButton.Size = new System.Drawing.Size(34, 33);
+			this.boldButton.Size = new System.Drawing.Size(34, 28);
 			this.boldButton.Text = "Bold";
 			this.boldButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -332,7 +357,7 @@
 			this.italicButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.italicButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.italicButton.Name = "italicButton";
-			this.italicButton.Size = new System.Drawing.Size(34, 33);
+			this.italicButton.Size = new System.Drawing.Size(34, 28);
 			this.italicButton.Text = "Italic";
 			this.italicButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -344,7 +369,7 @@
 			this.underlineButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.underlineButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.underlineButton.Name = "underlineButton";
-			this.underlineButton.Size = new System.Drawing.Size(34, 33);
+			this.underlineButton.Size = new System.Drawing.Size(34, 28);
 			this.underlineButton.Text = "Underline";
 			this.underlineButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -356,7 +381,7 @@
 			this.strikeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.strikeButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.strikeButton.Name = "strikeButton";
-			this.strikeButton.Size = new System.Drawing.Size(34, 33);
+			this.strikeButton.Size = new System.Drawing.Size(34, 28);
 			this.strikeButton.Text = "Strikethrough";
 			this.strikeButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			// 
@@ -368,7 +393,7 @@
 			this.superButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.superButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.superButton.Name = "superButton";
-			this.superButton.Size = new System.Drawing.Size(34, 33);
+			this.superButton.Size = new System.Drawing.Size(34, 28);
 			this.superButton.Text = "Superscript";
 			this.superButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.superButton.Click += new System.EventHandler(this.ToggleSuperSub);
@@ -381,7 +406,7 @@
 			this.subButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.subButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.subButton.Name = "subButton";
-			this.subButton.Size = new System.Drawing.Size(34, 33);
+			this.subButton.Size = new System.Drawing.Size(34, 28);
 			this.subButton.Text = "Subscript";
 			this.subButton.CheckStateChanged += new System.EventHandler(this.ChangeFontStyle);
 			this.subButton.Click += new System.EventHandler(this.ToggleSuperSub);
@@ -395,7 +420,7 @@
 			this.backColorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.backColorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.backColorButton.Name = "backColorButton";
-			this.backColorButton.Size = new System.Drawing.Size(45, 33);
+			this.backColorButton.Size = new System.Drawing.Size(45, 28);
 			this.backColorButton.ToolTipText = "Highlight Color";
 			this.backColorButton.ButtonClick += new System.EventHandler(this.ChangeHighlightColor);
 			// 
@@ -415,7 +440,7 @@
 			this.colorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.colorButton.Margin = new System.Windows.Forms.Padding(0, 2, 1, 3);
 			this.colorButton.Name = "colorButton";
-			this.colorButton.Size = new System.Drawing.Size(45, 33);
+			this.colorButton.Size = new System.Drawing.Size(45, 28);
 			this.colorButton.ToolTipText = "Text Color";
 			this.colorButton.ButtonClick += new System.EventHandler(this.ChangeColor);
 			// 
@@ -519,6 +544,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.spacingSpinner)).EndInit();
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
 			this.mainTools.ResumeLayout(false);
@@ -565,5 +591,7 @@
 		private System.Windows.Forms.ToolStripMenuItem loadButton;
 		private System.Windows.Forms.ToolStripMenuItem saveButton;
 		private System.Windows.Forms.ToolStripButton newStyleButton;
+		private System.Windows.Forms.Label spacingLabel;
+		private System.Windows.Forms.NumericUpDown spacingSpinner;
 	}
 }

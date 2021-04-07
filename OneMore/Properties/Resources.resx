@@ -2986,4 +2986,8 @@ In this section</value>
     <value>Enable spell check for entire page</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
+  <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
+    <value>Spacing:</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -228,6 +228,7 @@ namespace River.OneMoreAddIn.Commands
 
 					ApplySpacing(element, "spaceBefore", style.SpaceBefore);
 					ApplySpacing(element, "spaceAfter", style.SpaceAfter);
+					ApplySpacing(element, "spaceBetween", style.Spacing);
 
 					ApplyToList(element, style);
 				}

@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn
 		protected double fontSize;
 		protected double spaceBefore;
 		protected double spaceAfter;
+		protected double spacing;
 
 		protected readonly ILogger logger;
 
@@ -70,6 +71,7 @@ namespace River.OneMoreAddIn
 			IsSubscript = other.IsSubscript;
 			spaceBefore = other.spaceBefore;
 			spaceAfter = other.spaceAfter;
+			spacing = other.spacing;
 
 			ApplyColors = other.ApplyColors;
 		}
@@ -195,6 +197,15 @@ namespace River.OneMoreAddIn
 			set { spaceAfter = Convert.ToDouble(value, CultureInfo.InvariantCulture); }
 		}
 
+		/// <summary>
+		/// Gets or sets the line spacing between lines of a paragraph.
+		/// </summary>
+		public virtual string Spacing
+		{
+			get { return spacing.ToString("0.0#", CultureInfo.InvariantCulture); }
+			set { spacing = Convert.ToDouble(value, CultureInfo.InvariantCulture); }
+		}
+
 
 		//----------------------------------------------------------------------------------------
 		// extended
@@ -230,7 +241,8 @@ namespace River.OneMoreAddIn
 				IsItalic == style.IsItalic &&
 				IsUnderline == style.IsUnderline &&
 				SpaceBefore == style.SpaceBefore &&
-				SpaceAfter == style.SpaceAfter;
+				SpaceAfter == style.SpaceAfter &&
+				Spacing == style.Spacing;
 		}
 
 

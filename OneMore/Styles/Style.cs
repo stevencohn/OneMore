@@ -82,7 +82,10 @@ namespace River.OneMoreAddIn
 			if (properties.ContainsKey("spaceAfter"))
 				SpaceAfter = properties["spaceAfter"];
 
-			if ((spaceBefore > 0) || (spaceAfter > 0))
+			if (properties.ContainsKey("spacing"))
+				Spacing = properties["spacing"];
+
+			if ((spaceBefore > 0) || (spaceAfter > 0) || (spacing > 0))
 			{
 				StyleType = StyleType.Paragraph;
 			}
@@ -137,6 +140,10 @@ namespace River.OneMoreAddIn
 				else if (key.Equals("spaceAfter") && !found.Contains(key))
 				{
 					spaceAfter = ParseSpace(val);
+				}
+				else if (key.Equals("spacing") && !found.Contains(key))
+				{
+					spacing = ParseSpace(val);
 				}
 				else if (key.Equals("font-style") && !found.Contains(key))
 				{
@@ -214,6 +221,16 @@ namespace River.OneMoreAddIn
 		{
 			get => base.SpaceBefore;
 			set => base.spaceBefore = ParseSpace(value);
+		}
+
+
+		/// <summary>
+		/// Gets or sets the spacing for this style, handling set values like "12.0"
+		/// </summary>
+		public override string Spacing
+		{
+			get => base.Spacing;
+			set => base.spacing = ParseSpace(value);
 		}
 
 
@@ -304,6 +321,7 @@ namespace River.OneMoreAddIn
 			IsSuperscript = other.IsSuperscript;
 			SpaceAfter = other.SpaceAfter;
 			SpaceBefore = other.SpaceBefore;
+			Spacing = other.Spacing;
 
 			if (ApplyColors)
 			{
