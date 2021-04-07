@@ -130,7 +130,6 @@ I would never use in a million years - and, oh yeah, that price! I admit I was i
 _Onetastic Macro_ approach but thought it limited and obtuse, decipherable only by programmers.
 And both of these charge money for something that should be open source and neither provided exactly
 what I wanted. So I did what any self respecting software engineer would do... I built my own.
-Deal with it.
 
 **Please Support**  
 I do this as a hobby. I will never charge you to use OneMore. So it is with great humility and
