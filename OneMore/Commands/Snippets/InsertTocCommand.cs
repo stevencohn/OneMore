@@ -169,7 +169,9 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						heading.Root.Add(
+						var run = heading.Root.Elements(ns + "T").Last();
+
+						run.AddAfterSelf(
 							new XElement(ns + "T", new XCData(" ")),
 							new XElement(ns + "T", new XCData(
 								$"<span style=\"font-size:9pt;\">[{titleLinkText}]</span>"
