@@ -39,6 +39,8 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var run in runs.ToList())
 				{
+					run.SetAttributeValue("lang", "yo");
+
 					var cdata = run.GetCData();
 
 					if (cdata.Value.Contains("<br>"))
