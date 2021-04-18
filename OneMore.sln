@@ -26,6 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891
 		Themes\OrangeStyles.xml = Themes\OrangeStyles.xml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56ACB1-3CDF-48EB-B786-4F924E899CE2}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Get-MeetingDate.ps1 = Plugins\Get-MeetingDate.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
