@@ -7,6 +7,10 @@ in the form yyyy-mm-dd
 .PARAMETER Path
 The path of a OneNote page XML file. The plugin must update this file in order for chnages
 to be applied by OneMore. If no changes are detected then the current page is not updated.
+
+.DESCRIPTION
+Possible enhancement is to use Threading.Thread.CurrentUICulture.CultureInfo.ShortDatePattern
+to determine the m/d/y order and re-order as necessary to be y/m/d for sortability
 #>
 
 [CmdletBinding(SupportsShouldProcess = $true)]
