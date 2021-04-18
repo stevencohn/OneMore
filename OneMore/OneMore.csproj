@@ -659,7 +659,6 @@
     <None Include="Colorizer\Languages\xml.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Plugins\Get-MeetingDate.ps1" />
     <None Include="Properties\Emoji\Automobile.png" />
     <Content Include="Properties\Emoji\Bullet.png" />
     <Content Include="Properties\Emoji\Calendar.png" />
