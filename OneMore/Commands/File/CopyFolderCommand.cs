@@ -33,22 +33,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task Callback(string sectionId)
+		private async Task Callback(string targetId)
 		{
-			if (string.IsNullOrEmpty(sectionId))
+			if (string.IsNullOrEmpty(targetId))
 			{
 				// cancelled
 				return;
 			}
 
-			logger.Start($"..copying folder ..");
+			logger.Start($"target folder {targetId}");
 
 			try
 			{
 				using (var one = new OneNote())
 				{
-					var section = one.GetSection(sectionId);
-					if (section == null)
+					var target = one.GetSection(targetId);
+					if (target == null)
 					{
 						logger.WriteLine("invalid target section");
 						return;
@@ -69,16 +69,23 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
-					logger.WriteLine($"copying folder {folder.Attribute("name").Value}");
+					// TODO: this needs to be a recursive search
+					if (folder.Attribute("ID").Value == targetId)
+					{
+						logger.WriteLine("cannot copy a folder into itself");
+						return;
+					}
 
-					section.Add(folder);
+					logger.WriteLine(
+						$"copying folder {folder.Attribute("name").Value} " +
+						$"to {target.Attribute("name").Value}");
 
-					await CopyPages(folder, ns);
+					target.Add(folder);
 
-					one.UpdateHierarchy(section);
+					await CopyPages(one, folder, ns);
+
+					one.UpdateHierarchy(target);
 				}
-
-				//await service.CopyPages(pageIds);
 			}
 			catch (Exception exc)
 			{
@@ -91,13 +98,37 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task CopyPages(XElement root, XNamespace ns)
+		private async Task CopyPages(OneNote one, XElement root, XNamespace ns)
 		{
 			// remove the existing ID so OneNote can create its own for the new folder/section
 			root.Attributes("ID").Remove();
 
-			foreach (var element in root.Elements())
+			foreach (var element in root.Elements(ns + "Page"))
 			{
+				// get the page to copy
+				var page = one.GetPage(element.Attribute("ID").Value);
+				logger.WriteLine($"copy page {page.Title}");
+
+				// create a new page to get a new ID
+				one.CreatePage(root.Attribute("ID").Value, out var newPageId);
+
+				// set the page ID to the new page's ID
+				page.Root.Attribute("ID").Value = newPageId;
+				// remove all objectID values and let OneNote generate new IDs
+				page.Root.Descendants().Attributes("objectID").Remove();
+				await one.Update(page);
+
+				// recurse...
+
+				foreach (var section in element.Elements(ns + "SectionGroup").Elements(ns + "Section"))
+				{
+					await CopyPages(one, section, ns);
+				}
+
+				foreach (var section in element.Elements(ns + "Section"))
+				{
+					await CopyPages(one, section, ns);
+				}
 			}
 		}
 

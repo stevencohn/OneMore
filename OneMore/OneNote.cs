@@ -430,10 +430,12 @@ namespace River.OneMoreAddIn
 			XElement parent;
 			var sectionIds = new List<string>();
 
+			var section = new XElement(ns + "Section", new XAttribute("name", name));
+
 			if (current == null)
 			{
 				// add first section to notebook
-				notebook.Add(new XElement(ns + "Section", new XAttribute("name", name)));
+				notebook.Add(section);
 				parent = notebook;
 			}
 			else
@@ -449,7 +451,7 @@ namespace River.OneMoreAddIn
 					.Attributes("ID").Select(a => a.Value).ToList();
 
 				// add the new section (won't know the ID yet)
-				current.AddAfterSelf(new XElement(ns + "Section", new XAttribute("name", name)));
+				current.AddAfterSelf(section);
 			}
 
 			// udpate the notebook or section group
@@ -463,11 +465,17 @@ namespace River.OneMoreAddIn
 			parent = XElement.Parse(xml);
 
 			// compare the new parent with old section IDs to find the new ID
-			var section = parent.Elements(ns + "Section")
+			section = parent.Elements(ns + "Section")
 				.Where(e => e.Attribute("isRecycleBin") == null &&
 							e.Attribute("isInRecycleBin") == null)
 				.FirstOrDefault(e => !sectionIds.Contains(e.Attribute("ID").Value));
 
+			return section;
+		}
+
+
+		public XElement CreateSection(XElement section, XElement parent)
+		{
 			return section;
 		}
 
