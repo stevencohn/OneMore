@@ -28,6 +28,10 @@ Begin
         {
             $script:devenv = Join-Path $0 'Professional\Common7\IDE\devenv.com'
         }
+        if (!(Test-Path $devenv))
+        {
+            $script:devenv = Join-Path $0 'Community\Common7\IDE\devenv.com'
+        }
 
         if (!(Test-Path $devenv))
         {
