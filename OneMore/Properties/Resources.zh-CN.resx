@@ -129,19 +129,19 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
-    <value>多一个</value>
+    <value>OneMore</value>
     <comment>Ribbon Group</comment>
   </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
-    <value>多一个</value>
+    <value>OneMore</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    禁用拼写检查
-    Ribbon OneMore menu item, no spell check on this page EDIT
+    <value>禁用拼写检查</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page EDIT</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    禁用整个页面的拼写检查（F4）
-    Ribbon OneMore menu item, no spell check on this page EDIT
+    <value>禁用整个页面的拼写检查（F4）</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page EDIT</comment>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -279,7 +279,7 @@
     <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ribTrimButton_Label" xml:space="preserve">
-    <value>修剪空白</value>
+    <value>修剪尾随空白</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribTrimButton_Screentip" xml:space="preserve">
@@ -358,11 +358,11 @@
     <comment>FILENAME</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
-    <value>关于一个</value>
+    <value>关于OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
-    <value>添加配方</value>
+    <value>添加公式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
@@ -378,7 +378,7 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribCaptionButton_Label" xml:space="preserve">
-    <value>添加字幕</value>
+    <value>添加图片注释</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
   <data name="ribCodeBlockButton_Label" xml:space="preserve">
@@ -390,11 +390,11 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCreateStyleButton_Label" xml:space="preserve">
-    <value>通过选择创建样式</value>
+    <value>从选择的文本中提取样式</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>定制风格</value>
+    <value>样式</value>
     <comment>Ribbon main custom styles button</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Label" xml:space="preserve">
@@ -422,7 +422,7 @@
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
-    <value>喜爱</value>
+    <value>收藏</value>
     <comment>Ribbon main favorites button</comment>
   </data>
   <data name="ribFlagTitleButton_Label" xml:space="preserve">
@@ -438,7 +438,7 @@
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>式</value>
+    <value>公式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
@@ -450,7 +450,7 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>高亮配方</value>
+    <value>高亮公式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
@@ -526,7 +526,7 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
-    <value>分类</value>
+    <value>排序</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
@@ -1016,7 +1016,7 @@ OneNote 将自动关闭</value>
     <comment>label</comment>
   </data>
   <data name="ribExportButton_Label" xml:space="preserve">
-    <value>出口</value>
+    <value>导出</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribExportButton_Screentip" xml:space="preserve">
@@ -1129,7 +1129,7 @@ OneNote 将自动关闭</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>作物</value>
+    <value>裁剪</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
@@ -1145,7 +1145,7 @@ OneNote 将自动关闭</value>
     <comment>cancel button</comment>
   </data>
   <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
-    <value>作物</value>
+    <value>裁剪</value>
     <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
@@ -1690,7 +1690,7 @@ OneNote文件（*.one）
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_Text" xml:space="preserve">
-    <value>进口</value>
+    <value>导入</value>
     <comment>dialog title</comment>
   </data>
   <data name="ImportDialog_wordAppendButton.Text" xml:space="preserve">
@@ -2212,7 +2212,7 @@ OneNote文件（*.one）
     <comment>menu item</comment>
   </data>
   <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>标签页</value>
+    <value>页面标签</value>
     <comment>menu item</comment>
   </data>
   <data name="AddTitleIconDialog.Text" xml:space="preserve">
@@ -2441,7 +2441,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribTrimLeadingButton_Label" xml:space="preserve">
-    <value>修剪领先的空白</value>
+    <value>修剪前导空白</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
@@ -2485,7 +2485,7 @@ ISO-code then comma then language name</comment>
     <comment>radio</comment>
   </data>
   <data name="MapDialog_Text" xml:space="preserve">
-    <value>创建页面地图</value>
+    <value>为页面创建链接图谱</value>
     <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
@@ -2717,7 +2717,7 @@ ISO-code then comma then language name</comment>
     <comment>snippets sheet column</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
-    <value>外挂程式</value>
+    <value>插件</value>
     <comment>tree node</comment>
   </data>
   <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
@@ -2753,7 +2753,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
-    <value>外挂程式</value>
+    <value>插件</value>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_editText" xml:space="preserve">
@@ -2833,11 +2833,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>地图链接页面</value>
+    <value>创建链接图谱</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
-    <value>设定值</value>
+    <value>设置</value>
     <comment>ribbon button</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
@@ -2929,8 +2929,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    折叠轮廓
-    ribbon item EDIT
+    <value>折叠轮廓</value>
+    <comment>ribbon item EDIT</comment>
   </data>
   <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
     <value>必须首先使用“展开轮廓”命令将段落标记为折叠</value>
