@@ -136,12 +136,12 @@
     <value>OneMore</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    禁用拼写检查
-    Ribbon OneMore menu item, no spell check on this page EDIT
+    <value>禁用拼写检查</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page EDIT</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    禁用整个页面的拼写检查（F4）
-    Ribbon OneMore menu item, no spell check on this page EDIT
+    <value>禁用整个页面的拼写检查（F4）</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page EDIT</comment>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -279,7 +279,7 @@
     <value>images\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ribTrimButton_Label" xml:space="preserve">
-    <value>修剪空白</value>
+    <value>修剪尾随空白</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribTrimButton_Screentip" xml:space="preserve">
@@ -362,7 +362,7 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
-    <value>添加配方</value>
+    <value>添加公式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
@@ -450,7 +450,7 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>高亮配方</value>
+    <value>高亮公式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
@@ -2212,7 +2212,7 @@ OneNote文件（*.one）
     <comment>menu item</comment>
   </data>
   <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>标签页</value>
+    <value>页面标签</value>
     <comment>menu item</comment>
   </data>
   <data name="AddTitleIconDialog.Text" xml:space="preserve">
@@ -2441,7 +2441,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribTrimLeadingButton_Label" xml:space="preserve">
-    <value>修剪领先的空白</value>
+    <value>修剪前导空白</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
@@ -2485,7 +2485,7 @@ ISO-code then comma then language name</comment>
     <comment>radio</comment>
   </data>
   <data name="MapDialog_Text" xml:space="preserve">
-    <value>创建页面地图</value>
+    <value>为页面创建链接图谱</value>
     <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
@@ -2833,7 +2833,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>地图链接页面</value>
+    <value>创建链接图谱</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -2929,8 +2929,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    折叠轮廓
-    ribbon item EDIT
+    <value>折叠轮廓</value>
+    <comment>ribbon item EDIT</comment>
   </data>
   <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
     <value>必须首先使用“展开轮廓”命令将段落标记为折叠</value>
