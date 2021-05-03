@@ -129,11 +129,11 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
-    <value>多一个</value>
+    <value>OneMore</value>
     <comment>Ribbon Group</comment>
   </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
-    <value>多一个</value>
+    <value>OneMore</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
     禁用拼写检查
@@ -358,7 +358,7 @@
     <comment>FILENAME</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
-    <value>关于一个</value>
+    <value>关于OneMore</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
@@ -378,7 +378,7 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribCaptionButton_Label" xml:space="preserve">
-    <value>添加字幕</value>
+    <value>添加图片注释</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
   <data name="ribCodeBlockButton_Label" xml:space="preserve">
@@ -390,11 +390,11 @@
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribCreateStyleButton_Label" xml:space="preserve">
-    <value>通过选择创建样式</value>
+    <value>从选择的文本中提取样式</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
-    <value>定制风格</value>
+    <value>样式</value>
     <comment>Ribbon main custom styles button</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Label" xml:space="preserve">
@@ -422,7 +422,7 @@
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
-    <value>喜爱</value>
+    <value>收藏</value>
     <comment>Ribbon main favorites button</comment>
   </data>
   <data name="ribFlagTitleButton_Label" xml:space="preserve">
@@ -438,7 +438,7 @@
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>式</value>
+    <value>公式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
@@ -526,7 +526,7 @@
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
-    <value>分类</value>
+    <value>排序</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
@@ -1016,7 +1016,7 @@ OneNote 将自动关闭</value>
     <comment>label</comment>
   </data>
   <data name="ribExportButton_Label" xml:space="preserve">
-    <value>出口</value>
+    <value>导出</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribExportButton_Screentip" xml:space="preserve">
@@ -1129,7 +1129,7 @@ OneNote 将自动关闭</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>作物</value>
+    <value>裁剪</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
@@ -1145,7 +1145,7 @@ OneNote 将自动关闭</value>
     <comment>cancel button</comment>
   </data>
   <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
-    <value>作物</value>
+    <value>裁剪</value>
     <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
@@ -1690,7 +1690,7 @@ OneNote文件（*.one）
     <comment>radio</comment>
   </data>
   <data name="ImportDialog_Text" xml:space="preserve">
-    <value>进口</value>
+    <value>导入</value>
     <comment>dialog title</comment>
   </data>
   <data name="ImportDialog_wordAppendButton.Text" xml:space="preserve">
