@@ -2717,7 +2717,7 @@ ISO-code then comma then language name</comment>
     <comment>snippets sheet column</comment>
   </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
-    <value>外挂程式</value>
+    <value>插件</value>
     <comment>tree node</comment>
   </data>
   <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
@@ -2753,7 +2753,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
-    <value>外挂程式</value>
+    <value>插件</value>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_editText" xml:space="preserve">
@@ -2837,7 +2837,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
-    <value>设定值</value>
+    <value>设置</value>
     <comment>ribbon button</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
