@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SpellCheckCommand : Command
 	{
+		private const string NoLang = "yo";
+
+
 		public SpellCheckCommand()
 		{
 		}
@@ -21,53 +24,65 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var disable = !(bool)args[0];
 
+			bool? ok = null;
+
 			logger.StartClock();
 
 			using (var one = new OneNote(out var page, out var ns))
 			{
 				if (page != null)
 				{
+					ok = false;
+
 					if (page.GetTextCursor() == null)
 					{
 						// update only selected text...
 
-						if (disable)
+						var selections = page.Root.Elements(ns + "Outline")
+							.Descendants(ns + "T")
+							.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")));
+
+						if (selections.Any())
 						{
-							page.Root.Elements(ns + "Outline")
-								.Descendants(ns + "T")
-								.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
-								.ForEach(e => e.SetAttributeValue("lang", "yo"));
+							var cultureName = disable ? NoLang : Thread.CurrentThread.CurrentUICulture.Name;
+							selections.ForEach(e => e.SetAttributeValue("lang", cultureName));
+							ok = true;
 						}
 						else
 						{
-							page.Root.Elements(ns + "Outline")
-								.Descendants(ns + "T")
-								.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
-								.ForEach(e => e.SetAttributeValue("lang", Thread.CurrentThread.CurrentUICulture.Name));
+							logger.WriteLine("selections not found, setting page");
 						}
 					}
-					else
+
+					if (ok != true)
 					{
 						// remove all occurances of the "lang=" attribute across the entire page
 
 						page.Root.DescendantsAndSelf()
+							.Where(e => e.Name.LocalName != "OCRData")
 							.Attributes("lang")
 							.Remove();
 
-						if (disable)
-						{
-							// set lang=yo for the page and the page title
-
-							page.Root.Add(new XAttribute("lang", "yo"));
-							page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", "yo"));
-						}
+						var cultureName = disable ? NoLang : Thread.CurrentThread.CurrentUICulture.Name;
+						page.Root.Add(new XAttribute("lang", cultureName));
+						page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", cultureName));
 					}
+
+					//logger.WriteLine(page.Root);
 
 					await one.Update(page);
 				}
 			}
 
-			logger.WriteTime($"spell check {(disable ? "disabled" : "enabled")}");
+			if (ok == null)
+			{
+				logger.WriteTime($"spell check cancelled, invalid context");
+			}
+			else
+			{
+				var area = ok == true ? "selection" : "full page";
+				logger.WriteTime($"spell check on {area} {(disable ? "disabled" : "enabled")}");
+			}
 		}
 	}
 }
