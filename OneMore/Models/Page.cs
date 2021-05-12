@@ -26,6 +26,8 @@ namespace River.OneMoreAddIn.Models
 
 		// Page meta to keep track of rotating highlighter index
 		public static readonly string HighlightMetaName = "omHighlightIndex";
+		// Page is reference linked to another page, so don't include it in subsequent links
+		public static readonly string LinkReferenceMetaName = "omLinkReference";
 		// Page is a reference map, so don't include it in subsequent maps
 		public static readonly string PageMapMetaName = "omPageMap";
 		// Outline meta to mark visible word bank
