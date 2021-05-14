@@ -71,8 +71,9 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				logger.WriteLine(results);
 
-
+/*
 				var elements = hierarchy.Descendants(ns + "Page").ToList();
 				var titles = new Dictionary<string, string>();
 
@@ -152,6 +153,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Prune(hierarchy);
 				await BuildMapPage(hierarchy);
+				*/
 			}
 
 			logger.WriteTime("map complete");
@@ -188,7 +190,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+		/*
 		private async Task BuildMapPage(XElement hierarchy)
 		{
 			var section = one.GetSection();
@@ -318,5 +320,6 @@ namespace River.OneMoreAddIn.Commands
 
 			return quick.Index;
 		}
+		*/
 	}
 }
