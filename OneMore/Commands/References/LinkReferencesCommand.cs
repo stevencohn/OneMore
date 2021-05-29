@@ -73,87 +73,30 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine(results);
 
-/*
-				var elements = hierarchy.Descendants(ns + "Page").ToList();
-				var titles = new Dictionary<string, string>();
+				var referals = results.Descendants(ns + "Page")
+					.Where(e => e.Attribute("ID").Value != page.PageId);
 
-				logger.WriteLine($"building map for {elements.Count} pages");
-				progress.SetMaximum(elements.Count);
-				progress.SetMessage($"Building map for {elements.Count} pages");
+				var total = referals.Count();
+				progress.SetMaximum(total);
+				progress.SetMessage($"Linking for {total} pages");
 
-				foreach (var element in elements)
+				foreach (var referal in referals)
 				{
 					progress.Increment();
+					progress.SetMessage(referal.Attribute("name").Value);
 
 					if (token.IsCancellationRequested)
+					{
+						logger.WriteLine("cancelled");
 						return;
-
-					var parentId = element.Attribute("ID").Value;
-					var xml = one.GetPageXml(parentId);
-					var matches = regex.Matches(xml);
-
-					if (matches.Count == 0)
-					{
-						element.Remove();
-						continue;
-					}
-
-					var parent = new Page(XElement.Parse(xml));
-
-					var name = element.Parent.Attribute("name").Value;
-					progress.SetMessage($"Scanning {name}/{parent.Title}");
-
-					// prevent duplicates
-					var refs = new List<string>();
-
-					foreach (Match match in matches)
-					{
-						var pid = match.Groups[1].Value;
-						if (refs.Contains(pid))
-						{
-							// already captured this pid
-							continue;
-						}
-
-						var hyperlink = hyperlinks[pid];
-						if (hyperlink.PageID != parentId)
-						{
-							string title;
-							if (titles.ContainsKey(hyperlink.PageID))
-							{
-								title = titles[hyperlink.PageID];
-							}
-							else
-							{
-								var p = one.GetPage(hyperlink.PageID, OneNote.PageDetail.Basic);
-								title = p.Title;
-								titles.Add(hyperlink.PageID, title);
-							}
-
-							element.Add(new XElement("Ref",
-								new XAttribute("title", title),
-								new XAttribute("ID", hyperlink.PageID)
-								));
-
-							//logger.WriteLine($" - {title}");
-
-							refs.Add(pid);
-						}
 					}
 				}
 
-				if (titles.Count == 0)
+				if (!token.IsCancellationRequested)
 				{
-					UIHelper.ShowMessage("No linked pages were found");
-					return;
+					AppendReferalBlock(page, referals);
+					await one.Update(page);
 				}
-
-				if (token.IsCancellationRequested)
-					return;
-
-				Prune(hierarchy);
-				await BuildMapPage(hierarchy);
-				*/
 			}
 
 			logger.WriteTime("map complete");
@@ -161,82 +104,21 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		/// <summary>
-		/// Recursively remove any branch/node that doesn't contain a Page
-		/// </summary>
-		/// <param name="element">The root node</param>
-		private void Prune(XElement element)
+		private void AppendReferalBlock(Page page, IEnumerable<XElement> referals)
 		{
-			if (element.Elements().Any(e => e.Name.LocalName == "Ref"))
+			var block = new XElement(ns + "OE");
+
+			foreach (var referal in referals)
 			{
-				return;
-			}
 
-			if (element.HasElements)
-			{
-				foreach (var item in element.Elements().ToList())
-				{
-					Prune(item);
-				}
-
-				if (!element.HasElements)
-					element.Remove();
-			}
-			else
-			{
-				element.Remove();
-			}
-		}
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		/*
-		private async Task BuildMapPage(XElement hierarchy)
-		{
-			var section = one.GetSection();
-			var sectionId = section.Attribute("ID").Value;
-
-			one.CreatePage(sectionId, out var pageId);
-
-			var page = one.GetPage(pageId);
-			page.SetMeta(Page.PageMapMetaName, "true");
-
-			switch (scope)
-			{
-				case OneNote.Scope.Notebooks: page.Title = "Page Map of All Notebooks"; break;
-				case OneNote.Scope.Sections: page.Title = "Page Map of This Notebook"; break;
-				default: page.Title = "Page Map of This Section"; break;
 			}
 
 			var container = page.EnsureContentContainer();
-
-			container.Add(
-				new XElement(ns + "OE", new XElement(ns + "T", new XCData(
-					"<span style=\"font-weight:bold\">Key</span><br>\n" +
-					"Heading 1 = Notebooks<br>\n" +
-					"Heading 2 = Section<br>\n" +
-					"Heading 3 = Section Groups (italic)")
-				)),
-				new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)))
-				);
-
-			if (hierarchy.Name.LocalName == "Notebooks")
-			{
-				hierarchy.Elements().ToList().ForEach((node) =>
-				{
-					container.Add(BuildMapPage(node, page));
-				});
-			}
-			else
-			{
-				container.Add(BuildMapPage(hierarchy, page));
-			}
-
-			await one.Update(page);
-			await one.NavigateTo(pageId);
+			container.Add(block);
 		}
 
 
+		/*
 		private IEnumerable<XElement> BuildMapPage(XElement element, Page page)
 		{
 			var content = new List<XElement>();
@@ -299,26 +181,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return content;
-		}
-
-
-		private int MakeQuickStyle(Page page, StandardStyles standard)
-		{
-			var quick = standard.GetDefaults();
-
-			var styles = page.GetQuickStyles();
-			var style = styles.FirstOrDefault(s => s.Name == quick.Name);
-
-			if (style != null)
-			{
-				return style.Index;
-			}
-
-			quick.Index = styles.Max(s => s.Index) + 1;
-
-			page.AddQuickStyleDef(quick.ToElement(ns));
-
-			return quick.Index;
 		}
 		*/
 	}
