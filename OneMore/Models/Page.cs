@@ -627,7 +627,7 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>
 		/// The one:T XElement or null if there is a selected range greater than zero
 		/// </returns>
-		public XElement GetTextCursor()
+		public XElement GetTextCursor(bool merge = false)
 		{
 			var selected = Root.Elements(Namespace + "Outline")
 				.Descendants(Namespace + "T")
@@ -641,12 +641,18 @@ namespace River.OneMoreAddIn.Models
 					var cdata = cursor.FirstNode as XCData;
 
 					// empty or link or xml-comment because we can't tell the difference between
-					// a zero-selection zero-selection link and a partial or fully selected link
-					// XML comments are used to wrap mathML equations
+					// a zero-selection zero-selection link and a partial or fully selected link.
+					// Note that XML comments are used to wrap mathML equations
 					if (cdata.Value.Length == 0 ||
 						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
 						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
 					{
+						if (merge && cursor.GetCData().Value == string.Empty)
+						{
+							// only merge if empty [], note cursor could be a hyperlink <a>..</a>
+							MergeRuns(cursor);
+						}
+
 						return cursor;
 					}
 				}
@@ -655,6 +661,25 @@ namespace River.OneMoreAddIn.Models
 			// zero or more than one empty cdata are selected
 			return null;
 		}
+
+
+		// remove the empty CDATA[] cursor, combining the previous and next runs into one
+		private void MergeRuns(XElement cursor)
+		{
+			if (cursor.PreviousNode is XElement prev)
+			{
+				if (cursor.NextNode is XElement next)
+				{
+					var cprev = prev.GetCData();
+					var cnext = next.GetCData();
+					cprev.Value = $"{cprev.Value}{cnext.Value}";
+					next.Remove();
+				}
+			}
+
+			cursor.Remove();
+		}
+
 
 
 		/// <summary>

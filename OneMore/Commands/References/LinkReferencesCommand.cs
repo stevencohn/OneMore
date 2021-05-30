@@ -5,11 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.Styles;
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -17,6 +14,10 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class LinkReferencesCommand : Command
 	{
+		// temporary attributes used to store info
+		private const string NameAttr = "omName";
+		private const string LinkedAttr = "omLinked";
+
 		private OneNote one;
 		private OneNote.Scope scope;
 		private XNamespace ns;
@@ -71,34 +72,63 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				logger.WriteLine(results);
+				//logger.WriteLine(results);
 
 				var referals = FlattenPages(results, page.PageId);
 
 				var total = referals.Count();
+				if (total == 0)
+				{
+					logger.WriteLine("no referals found");
+					return;
+				}
+
+				// initialize search-and-replace editor...
+
+				var whatText = $@"\b{SearchAndReplaceEditor.EscapeEscapes(title)}\b";
+				var pageLink = one.GetHyperlink(page.PageId, string.Empty);
+				var withText = $"<a href=\"{pageLink}\">{page.Title}</a>";
+				var editor = new SearchAndReplaceEditor(whatText, withText, false, false);
+
+				// process pages...
+
 				progress.SetMaximum(total);
 				progress.SetMessage($"Linking for {total} pages");
 
+				var updates = 0;
 				foreach (var referal in referals)
 				{
 					progress.Increment();
-					progress.SetMessage(referal.Attribute("name").Value);
+					progress.SetMessage(referal.Attribute(NameAttr).Value);
+
+					var refpage = one.GetPage(referal.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					var count = editor.SearchAndReplace(refpage);
+					if (count > 0)
+					{
+						await one.Update(refpage);
+						referal.SetAttributeValue(LinkedAttr, "true");
+						updates++;
+					}
 
 					if (token.IsCancellationRequested)
 					{
 						logger.WriteLine("cancelled");
-						return;
+						break;
 					}
 				}
 
-				if (!token.IsCancellationRequested)
+				if (updates > 0)
 				{
+					// even if cancellation is request, must update page with referals that
+					// were modified, otherwise, there will be referal pages that link to this page
+					// without this page referring back!
+
 					AppendReferalBlock(page, referals);
 					await one.Update(page);
 				}
 			}
 
-			logger.WriteTime("map complete");
+			logger.WriteTime("linking complete");
 			logger.End();
 		}
 
@@ -112,7 +142,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// add omName attribute to page with its notebook/section/page path
 
-				page.Add(new XAttribute("omName",
+				page.Add(new XAttribute(NameAttr,
 					page.Ancestors().InDocumentOrder()
 						.Where(e => e.Name.LocalName != "Notebooks")
 						.Aggregate(string.Empty, (a, b) => a + b.Attribute("name").Value + "/")
@@ -133,10 +163,10 @@ namespace River.OneMoreAddIn.Commands
 				children
 				);
 
-			foreach (var referal in referals)
+			foreach (var referal in referals.Where(e => e.Attribute(LinkedAttr) != null))
 			{
 				var link = one.GetHyperlink(referal.Attribute("ID").Value, string.Empty);
-				var name = referal.Attribute("omName") ?? referal.Attribute("name");
+				var name = referal.Attribute(NameAttr) ?? referal.Attribute("name");
 
 				children.Add(new XElement(ns + "OE",
 					new XElement(ns + "List", new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
