@@ -73,8 +73,7 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine(results);
 
-				var referals = results.Descendants(ns + "Page")
-					.Where(e => e.Attribute("ID").Value != page.PageId);
+				var referals = FlattenPages(results, page.PageId);
 
 				var total = referals.Count();
 				progress.SetMaximum(total);
@@ -104,84 +103,49 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private IEnumerable<XElement> FlattenPages(XElement results, string pageId)
+		{
+			var pages = results.Descendants(ns + "Page")
+				.Where(e => e.Attribute("ID").Value != pageId);
+
+			foreach (var page in pages)
+			{
+				// add omName attribute to page with its notebook/section/page path
+
+				page.Add(new XAttribute("omName",
+					page.Ancestors().InDocumentOrder()
+						.Where(e => e.Name.LocalName != "Notebooks")
+						.Aggregate(string.Empty, (a, b) => a + b.Attribute("name").Value + "/")
+						+ page.Attribute("name").Value
+					));
+			}
+
+			return pages;
+		}
+
+
 		private void AppendReferalBlock(Page page, IEnumerable<XElement> referals)
 		{
-			var block = new XElement(ns + "OE");
+			var children = new XElement(ns + "OEChildren");
+
+			var block = new XElement(ns + "OE",
+				new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Linked References</span>")),
+				children
+				);
 
 			foreach (var referal in referals)
 			{
+				var link = one.GetHyperlink(referal.Attribute("ID").Value, string.Empty);
+				var name = referal.Attribute("omName") ?? referal.Attribute("name");
 
+				children.Add(new XElement(ns + "OE",
+					new XElement(ns + "List", new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
+					new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name.Value}</a>"))
+					));
 			}
 
 			var container = page.EnsureContentContainer();
 			container.Add(block);
 		}
-
-
-		/*
-		private IEnumerable<XElement> BuildMapPage(XElement element, Page page)
-		{
-			var content = new List<XElement>();
-
-			if (element.Name.LocalName == "Page")
-			{
-				var pname = element.Attribute("name").Value;
-				var plink = one.GetHyperlink(element.Attribute("ID").Value, string.Empty);
-
-				var children = new XElement(ns + "OEChildren");
-
-				foreach (var reference in element.Elements("Ref"))
-				{
-					var rname = reference.Attribute("title").Value;
-					var rlink = one.GetHyperlink(reference.Attribute("ID").Value, string.Empty);
-
-					children.Add(new XElement(ns + "OE",
-						new XElement(ns + "T",
-							new XCData($"{RightArrow} <a href=\"{rlink}\">{rname}</a>")
-						)));
-				}
-
-				content.Add(new XElement(ns + "OE",
-					new XElement(ns + "T",
-						new XCData($"<a href=\"{plink}\">{pname}</a>")),
-					children
-					));
-			}
-			else
-			{
-				var text = element.Attribute("name").Value;
-
-				int index;
-				if (element.Name.LocalName == "Section")
-				{
-					index = MakeQuickStyle(page, StandardStyles.Heading2);
-				}
-				else if (element.Name.LocalName == "SectionGroup")
-				{
-					index = MakeQuickStyle(page, StandardStyles.Heading3);
-					text = $"<span style=\"font-style:'italic'\">{text}</span>";
-				}
-				else // notebook
-				{
-					index = MakeQuickStyle(page, StandardStyles.Heading1);
-				}
-
-				var indents = new XElement(ns + "OEChildren");
-
-				foreach (var child in element.Elements())
-				{
-					indents.Add(BuildMapPage(child, page));
-				}
-
-				content.Add(new XElement(ns + "OE",
-					new XAttribute("quickStyleIndex", index.ToString()),
-					new XElement(ns + "T", new XCData(text)),
-					indents
-					));
-			}
-
-			return content;
-		}
-		*/
 	}
 }
