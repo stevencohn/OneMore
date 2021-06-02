@@ -64,6 +64,7 @@ namespace River.OneMoreAddIn.Commands
 					case OneNote.Scope.Pages: startId = one.CurrentSectionId; break;
 				}
 
+				// logger.WriteLine($"searching for '{title}'");
 				var results = one.Search(startId, title);
 
 				if (token.IsCancellationRequested)
@@ -88,7 +89,8 @@ namespace River.OneMoreAddIn.Commands
 				var whatText = $@"\b{SearchAndReplaceEditor.EscapeEscapes(title)}\b";
 				var pageLink = one.GetHyperlink(page.PageId, string.Empty);
 				var withText = $"<a href=\"{pageLink}\">{page.Title}</a>";
-				var editor = new SearchAndReplaceEditor(whatText, withText, false, false);
+
+				var editor = new SearchAndReplaceEditor(whatText, withText, false, true);
 
 				// process pages...
 
@@ -102,12 +104,19 @@ namespace River.OneMoreAddIn.Commands
 					progress.SetMessage(referal.Attribute(NameAttr).Value);
 
 					var refpage = one.GetPage(referal.Attribute("ID").Value, OneNote.PageDetail.Basic);
+
+					logger.WriteLine($"searching for '{whatText}' on {refpage.Title}");
+
 					var count = editor.SearchAndReplace(refpage);
 					if (count > 0)
 					{
 						await one.Update(refpage);
 						referal.SetAttributeValue(LinkedAttr, "true");
 						updates++;
+					}
+					else
+					{
+						logger.WriteLine($"search not found on {referal.Attribute(NameAttr).Value}");
 					}
 
 					if (token.IsCancellationRequested)

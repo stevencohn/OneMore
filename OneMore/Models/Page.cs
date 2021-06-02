@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S1155 // "Any()" should be used to test for emptiness
+
 namespace River.OneMoreAddIn.Models
 {
 	using River.OneMoreAddIn.Helpers.Office;
@@ -580,6 +582,59 @@ namespace River.OneMoreAddIn.Models
 			return Root.Elements(Namespace + "Meta")
 				.FirstOrDefault(e => e.Attribute("name").Value == name)?
 				.Attribute("content").Value;
+		}
+
+
+
+		/// <summary>
+		/// Gets a collection of fully selecte text runs
+		/// </summary>
+		/// <param name="all">
+		/// If no selected elements are found and this value is true then return all elements;
+		/// otherwise if no selection and this value is false then return an empty collection.
+		/// Default value is true.
+		/// </param>
+		/// <returns>
+		/// A collection of fully selected text runs. The collection will be empty if the
+		/// selected range is zero characters or one of the known special cases
+		/// </returns>
+		public IEnumerable<XElement> GetSelectedElements(bool all = true)
+		{
+			var selected = Root.Elements(Namespace + "Outline")
+				.Descendants(Namespace + "T")
+				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
+
+			if (selected == null || selected.Count() == 0)
+			{
+				return all
+					? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
+					: new List<XElement>();
+			}
+
+			// if exactly one then it could be an empty [] or it could be a special case
+			if (selected.Count() == 1)
+			{
+				var cursor = selected.First();
+				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA)
+				{
+					var cdata = cursor.FirstNode as XCData;
+
+					// empty or link or xml-comment because we can't tell the difference between
+					// a zero-selection zero-selection link and a partial or fully selected link.
+					// Note that XML comments are used to wrap mathML equations
+					if (cdata.Value.Length == 0 ||
+						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
+						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+					{
+						return all
+							? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
+							: new List<XElement>();
+					}
+				}
+			}
+
+			// return zero or more elements
+			return selected;
 		}
 
 

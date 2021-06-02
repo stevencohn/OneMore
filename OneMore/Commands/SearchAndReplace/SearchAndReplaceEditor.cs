@@ -65,23 +65,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public int SearchAndReplace(Page page)
 		{
-			var ns = page.Namespace;
-			var cursor = page.GetTextCursor(true);
-
-			IEnumerable<XElement> elements;
-			if (cursor != null)
-			{
-				elements = page.Root.Elements(ns + "Outline")
-					.Descendants(ns + "T")
-					.ToList();
-			}
-			else
-			{
-				elements = page.Root.Elements(ns + "Outline")
-					.Descendants(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.ToList();
-			}
+			var elements = page.GetSelectedElements();
 
 			int count = 0;
 			if (elements.Any())
