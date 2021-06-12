@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class Plugin
 	{
 		public const int SchemaVersion = 1;
+		public const int DefaultTimeout = 15;
 
 
 		/// <summary>
@@ -78,5 +79,13 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets or sets the name of the new page to create, if CreateNewPage is true.
 		/// </summary>
 		public string PageName { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the timeout of the plugin.
+		/// Defaults to -1 which uses the hard-coded timeout of 15 seconds.
+		/// Can be set to 0 for no timeout or from 1 to 300 seconds (5 mins)
+		/// </summary>
+		public int Timeout { get; set; } = DefaultTimeout;
 	}
 }

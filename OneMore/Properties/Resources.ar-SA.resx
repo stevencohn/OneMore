@@ -2979,4 +2979,44 @@ ISO-code then comma then language name</comment>
     <value>... الانضمام إلى الفقرة</value>
     <comment>context menu option</comment>
   </data>
+  <data name="LinkDialog_cancelButton.Text" xml:space="preserve">
+    <value>يلغي</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_groupBox.Text" xml:space="preserve">
+    <value>الصفحات بتنسيق</value>
+    <comment>group box</comment>
+  </data>
+  <data name="LinkDialog_introLabel.Text" xml:space="preserve">
+    <value>إنشاء مراجع مرتبطة بعنوان هذه الصفحة</value>
+    <comment>label</comment>
+  </data>
+  <data name="LinkDialog_notebookRadio.Text" xml:space="preserve">
+    <value>كافة الأقسام الموجودة في دفتر الملاحظات الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>جميع دفاتر الملاحظات</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_okButton.Text" xml:space="preserve">
+    <value>نعم</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
+    <value>القسم الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_Text" xml:space="preserve">
+    <value>مراجع الارتباط</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    <value>مراجع الارتباط</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
+    <value>تميوت</value>
+    <comment>label</comment>
+  </data>
 </root>

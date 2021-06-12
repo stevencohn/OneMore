@@ -2965,4 +2965,44 @@ ISO-code then comma then language name</comment>
     <value>... Absatz beitreten</value>
     <comment>context menu option</comment>
   </data>
+  <data name="LinkDialog_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_groupBox.Text" xml:space="preserve">
+    <value>Seiten in</value>
+    <comment>group box</comment>
+  </data>
+  <data name="LinkDialog_introLabel.Text" xml:space="preserve">
+    <value>Erstellen Sie verlinkte Verweise auf den Titel dieser Seite</value>
+    <comment>label</comment>
+  </data>
+  <data name="LinkDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Alle Abschnitte im aktuellen Notizbuch</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Alle Notizbücher</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
+    <value>Der aktuelle Abschnitt</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_Text" xml:space="preserve">
+    <value>Link-Referenzen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    <value>Link-Referenzen</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
+    <value>Tmeout</value>
+    <comment>label</comment>
+  </data>
 </root>

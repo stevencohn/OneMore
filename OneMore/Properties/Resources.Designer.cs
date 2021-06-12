@@ -3132,6 +3132,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tmeout.
+        /// </summary>
+        internal static string PluginDialog_timeoutLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_timeoutLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update current page.
         /// </summary>
         internal static string PluginDialog_updateRadio_Text {

@@ -44,6 +44,7 @@ namespace River.OneMoreAddIn.Commands
 					"nameLabel",
 					"cmdLabel",
 					"argsLabel",
+					"timeoutLabel",
 					"updateRadio",
 					"createRadio",
 					"childBox",
@@ -69,6 +70,7 @@ namespace River.OneMoreAddIn.Commands
 				CreateNewPage = plugin.CreateNewPage,
 				PageName = plugin.PageName,
 				AsChildPage = plugin.AsChildPage,
+				Timeout = plugin.Timeout
 			};
 
 			single = true;
@@ -93,7 +95,8 @@ namespace River.OneMoreAddIn.Commands
 			Arguments = argsBox.Text,
 			CreateNewPage = createRadio.Checked,
 			AsChildPage = childBox.Checked,
-			PageName = pageNameBox.Text
+			PageName = pageNameBox.Text,
+			Timeout = (int)timeoutBox.Value
 		};
 
 
@@ -118,6 +121,7 @@ namespace River.OneMoreAddIn.Commands
 
 				pageNameBox.Text = plugin.PageName;
 				childBox.Checked = plugin.AsChildPage;
+				timeoutBox.Value = plugin.Timeout < 0 ? Plugin.DefaultTimeout : plugin.Timeout;
 				return;
 			}
 
@@ -162,6 +166,7 @@ namespace River.OneMoreAddIn.Commands
 			nameBox.Text = plugin.Name;
 			cmdBox.Text = plugin.Command;
 			argsBox.Text = plugin.Arguments;
+			timeoutBox.Value = plugin.Timeout < 0 ? Plugin.DefaultTimeout : plugin.Timeout;
 
 			if (plugin.CreateNewPage)
 				createRadio.Checked = true;
@@ -175,6 +180,7 @@ namespace River.OneMoreAddIn.Commands
 			nameBox.ReadOnly = read;
 			cmdBox.ReadOnly = read;
 			argsBox.ReadOnly = read;
+			timeoutBox.ReadOnly = read;
 			createRadio.Enabled = !read;
 			updateRadio.Enabled = !read;
 			pageNameBox.ReadOnly = read;
