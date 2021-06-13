@@ -254,6 +254,7 @@
             0,
             0,
             0});
+			this.timeoutBox.ValueChanged += new System.EventHandler(this.ChangeTimeout);
 			// 
 			// timeoutLabel
 			// 

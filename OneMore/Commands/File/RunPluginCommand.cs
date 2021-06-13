@@ -147,9 +147,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (progressDialog = new UI.ProgressDialog(source))
 				{
-					var timeout = plugin.Timeout;
-					if (timeout == 0) timeout = 3600;
-					if (timeout < 0) timeout = Plugin.DefaultTimeout;
+					var timeout = plugin.Timeout == 0 ? Plugin.MaxTimeout : plugin.Timeout;
 
 					progressDialog.SetMaximum(timeout);
 					progressDialog.SetMessage(string.Format(

@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public const int SchemaVersion = 1;
 		public const int DefaultTimeout = 15;
+		public const int MaxTimeout = 3600;
 
 
 		/// <summary>
@@ -83,7 +84,6 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// Gets or sets the timeout of the plugin.
-		/// Defaults to -1 which uses the hard-coded timeout of 15 seconds.
 		/// Can be set to 0 for no timeout or from 1 to 300 seconds (5 mins)
 		/// </summary>
 		public int Timeout { get; set; } = DefaultTimeout;

@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 
 				pageNameBox.Text = plugin.PageName;
 				childBox.Checked = plugin.AsChildPage;
-				timeoutBox.Value = plugin.Timeout < 0 ? Plugin.DefaultTimeout : plugin.Timeout;
+				timeoutBox.Value = plugin.Timeout;
 				return;
 			}
 
@@ -166,7 +166,7 @@ namespace River.OneMoreAddIn.Commands
 			nameBox.Text = plugin.Name;
 			cmdBox.Text = plugin.Command;
 			argsBox.Text = plugin.Arguments;
-			timeoutBox.Value = plugin.Timeout < 0 ? Plugin.DefaultTimeout : plugin.Timeout;
+			timeoutBox.Value = plugin.Timeout;
 
 			if (plugin.CreateNewPage)
 				createRadio.Checked = true;
@@ -186,6 +186,12 @@ namespace River.OneMoreAddIn.Commands
 			pageNameBox.ReadOnly = read;
 			childBox.Enabled = !read;
 			saveButton.Enabled = !read;
+		}
+
+
+		private void ChangeTimeout(object sender, EventArgs e)
+		{
+			plugin.Timeout = (int)timeoutBox.Value;
 		}
 
 
