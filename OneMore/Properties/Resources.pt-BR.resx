@@ -2980,4 +2980,8 @@ ISO-code then comma then language name</comment>
     <value>... Parágrafo de junção</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
+    <value>Tmeout</value>
+    <comment>label</comment>
+  </data>
 </root>

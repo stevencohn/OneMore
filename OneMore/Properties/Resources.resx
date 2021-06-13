@@ -2994,4 +2994,8 @@ In this section</value>
     <value>... Join Paragraph</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
+    <value>Tmeout</value>
+    <comment>label</comment>
+  </data>
 </root>
