@@ -20,8 +20,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class RunPluginCommand : Command
 	{
-		private const int MaxTimeoutSeconds = 15;
-
 		private Plugin plugin;
 
 		private UI.ProgressDialog progressDialog = null;
@@ -149,7 +147,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (progressDialog = new UI.ProgressDialog(source))
 				{
-					progressDialog.SetMaximum(MaxTimeoutSeconds);
+					var timeout = plugin.Timeout == 0 ? Plugin.MaxTimeout : plugin.Timeout;
+
+					progressDialog.SetMaximum(timeout);
 					progressDialog.SetMessage(string.Format(
 						Resx.Plugin_Running, plugin.Command, plugin.Arguments, workPath));
 

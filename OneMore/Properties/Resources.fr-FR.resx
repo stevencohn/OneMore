@@ -2974,4 +2974,8 @@ ISO-code then comma then language name</comment>
     <value>... Joindre le paragraphe</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
+    <value>Temps d'attente</value>
+    <comment>label</comment>
+  </data>
 </root>

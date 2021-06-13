@@ -2971,4 +2971,8 @@ ISO-code then comma then language name</comment>
     <value>...加入段落</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
+    <value>超时</value>
+    <comment>label</comment>
+  </data>
 </root>
