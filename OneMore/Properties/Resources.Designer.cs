@@ -3060,6 +3060,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tmeout.
+        /// </summary>
+        internal static string PluginDialog_timeoutLabel_Text {
+            get {
+                return ResourceManager.GetString("PluginDialog_timeoutLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update current page.
         /// </summary>
         internal static string PluginDialog_updateRadio_Text {
@@ -3904,6 +3913,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCustomStylesButton_Label {
             get {
                 return ResourceManager.GetString("ribCustomStylesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date stamp pages in section.
+        /// </summary>
+        internal static string ribDateStampButton_Label {
+            get {
+                return ResourceManager.GetString("ribDateStampButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prepend page titles with creation date.
+        /// </summary>
+        internal static string ribDateStampButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribDateStampButton_Screentip", resourceCulture);
             }
         }
         

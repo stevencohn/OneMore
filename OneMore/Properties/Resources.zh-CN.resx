@@ -2975,4 +2975,12 @@ ISO-code then comma then language name</comment>
     <value>超时</value>
     <comment>label</comment>
   </data>
+  <data name="ribDateStampButton_Label" xml:space="preserve">
+    <value>节中的日期戳页</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribDateStampButton_Screentip" xml:space="preserve">
+    <value>在页面标题前加上创建日期</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

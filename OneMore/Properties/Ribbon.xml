@@ -445,6 +445,12 @@
                 getEnabled="GetBodyContext"
                 onAction="SplitTableCmd"/>
               <button
+                id="ribDateStampButton"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                imageMso="DateAndTimeInsert"
+                onAction="DateStampCmd"/>
+              <button
                 id="ribPronunciateButton"
                 getLabel="GetRibbonLabel"
                 imageMso="SpeakOnEnter"
@@ -616,6 +622,14 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="ArchiveCmd"
+        tag="section"
+        insertBeforeMso="SectionRenameOneNote"/>
+      <button
+        id="ctxDateStampButton"
+        imageMso="DateAndTimeInsert"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="DateStampCmd"
         tag="section"
         insertBeforeMso="SectionRenameOneNote"/>
       <menuSeparator

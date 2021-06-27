@@ -2978,4 +2978,12 @@ ISO-code then comma then language name</comment>
     <value>Temps d'attente</value>
     <comment>label</comment>
   </data>
+  <data name="ribDateStampButton_Label" xml:space="preserve">
+    <value>Pages d'horodatage dans la section</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribDateStampButton_Screentip" xml:space="preserve">
+    <value>Ajouter les titres de page avec la date de création</value>
+    <comment>ribbon</comment>
+  </data>
 </root>
