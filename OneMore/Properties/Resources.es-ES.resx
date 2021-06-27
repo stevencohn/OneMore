@@ -2983,4 +2983,12 @@ ISO-code then comma then language name</comment>
     <value>Tmeout</value>
     <comment>label</comment>
   </data>
+  <data name="ribDateStampButton_Label" xml:space="preserve">
+    <value>Páginas de sello de fecha en la sección</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribDateStampButton_Screentip" xml:space="preserve">
+    <value>Anteponer los títulos de las páginas con la fecha de creación</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

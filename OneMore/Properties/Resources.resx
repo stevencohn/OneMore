@@ -2998,4 +2998,12 @@ In this section</value>
     <value>Tmeout</value>
     <comment>label</comment>
   </data>
+  <data name="ribDateStampButton_Label" xml:space="preserve">
+    <value>Date stamp pages in section</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribDateStampButton_Screentip" xml:space="preserve">
+    <value>Prepend page titles with creation date</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

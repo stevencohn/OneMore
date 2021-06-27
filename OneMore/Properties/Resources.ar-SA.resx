@@ -2983,4 +2983,12 @@ ISO-code then comma then language name</comment>
     <value>تميوت</value>
     <comment>label</comment>
   </data>
+  <data name="ribDateStampButton_Label" xml:space="preserve">
+    <value>صفحات طابع التاريخ في القسم</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribDateStampButton_Screentip" xml:space="preserve">
+    <value>إرفاق عناوين الصفحة مع تاريخ الإنشاء</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

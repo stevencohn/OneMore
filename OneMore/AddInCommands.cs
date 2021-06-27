@@ -67,6 +67,9 @@ namespace River.OneMoreAddIn
 		public async Task CopyFolderCmd(IRibbonControl control)
 			=> await factory.Run<CopyFolderCommand>();
 
+		public async Task DateStampCmd(IRibbonControl control)
+			=> await factory.Run<DateStampCommand>();
+
 		public async Task DecreaseFontSizeCmd(IRibbonControl control)
 			=> await factory.Run<AlterSizeCommand>(-1);
 
