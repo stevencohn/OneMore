@@ -109,6 +109,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Insert Table Cells, shifting content as expected
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
+* Prepend page titles with the created date of each page
 * Sort pages, sections, or notebooks
 * Split current page into multiple pages
 * Toggle strikethrough text next to all completed/incompleted tags
