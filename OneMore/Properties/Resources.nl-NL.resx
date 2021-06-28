@@ -3020,4 +3020,12 @@ ISO-code then comma then language name</comment>
     <value>Tmeout</value>
     <comment>label</comment>
   </data>
+  <data name="ribDateStampButton_Label" xml:space="preserve">
+    <value>Datumstempelpagina's in sectie</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribDateStampButton_Screentip" xml:space="preserve">
+    <value>Voeg paginatitels toe met aanmaakdatum</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

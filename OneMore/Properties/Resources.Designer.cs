@@ -3989,6 +3989,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date stamp pages in section.
+        /// </summary>
+        internal static string ribDateStampButton_Label {
+            get {
+                return ResourceManager.GetString("ribDateStampButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prepend page titles with creation date.
+        /// </summary>
+        internal static string ribDateStampButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribDateStampButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Decrease Font Size.
         /// </summary>
         internal static string ribDecreaseFontSizeButton_Label {
