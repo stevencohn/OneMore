@@ -2986,4 +2986,8 @@ ISO-code then comma then language name</comment>
     <value>Ajouter les titres de page avec la date de création</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribGetImagesButton_Label" xml:space="preserve">
+    <value>Remplacer les URL par des images</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
 </root>
