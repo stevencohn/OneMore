@@ -3028,4 +3028,8 @@ ISO-code then comma then language name</comment>
     <value>Voeg paginatitels toe met aanmaakdatum</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribGetImagesButton_Label" xml:space="preserve">
+    <value>Vervang URL's door afbeeldingen</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
 </root>

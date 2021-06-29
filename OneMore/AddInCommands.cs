@@ -88,6 +88,9 @@ namespace River.OneMoreAddIn
 		public async Task ExpandContentCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(true);
 
+		public async Task GetImagesCmd(IRibbonControl control)
+			=> await factory.Run<GetImagesCommand>(true);
+
 		public async Task GotoFavoriteCmd(IRibbonControl control)
 			=> await factory.Run<Commands.GotoFavoriteCommand>(control.Tag);
 

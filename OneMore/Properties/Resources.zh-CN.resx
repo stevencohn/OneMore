@@ -3019,4 +3019,8 @@ ISO-code then comma then language name</comment>
     <value>在页面标题前加上创建日期</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribGetImagesButton_Label" xml:space="preserve">
+    <value>用图像替换 URL</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
 </root>

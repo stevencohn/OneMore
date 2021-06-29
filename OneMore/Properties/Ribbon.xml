@@ -305,6 +305,11 @@
                 imageMso="AutoSigWebInsertHyperlink"
                 getLabel="GetRibbonLabel"
                 onAction="NameUrlsCmd"/>
+              <button
+                id="ribGetImagesButton"
+                imageMso="PictureReset"
+                getLabel="GetRibbonLabel"
+                onAction="GetImagesCmd"/>
             </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI">
               <button

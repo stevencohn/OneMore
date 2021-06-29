@@ -3028,4 +3028,8 @@ ISO-code then comma then language name</comment>
     <value>Anexar títulos de página com data de criação</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribGetImagesButton_Label" xml:space="preserve">
+    <value>Substituir URLs por imagens</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
 </root>

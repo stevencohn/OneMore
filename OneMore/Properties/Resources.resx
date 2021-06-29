@@ -3042,4 +3042,8 @@ In this section</value>
     <value>Prepend page titles with creation date</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribGetImagesButton_Label" xml:space="preserve">
+    <value>Replace URLs with Images</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
 </root>
