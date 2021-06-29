@@ -4097,6 +4097,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace URLs with Images.
+        /// </summary>
+        internal static string ribGetImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribGetImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gray Status.
         /// </summary>
         internal static string ribGrayStatusButton_Label {

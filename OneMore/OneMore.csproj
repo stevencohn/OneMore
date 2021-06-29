@@ -135,6 +135,7 @@
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
     <Compile Include="Commands\Extras\DateStampCommand.cs" />
     <Compile Include="Commands\File\CopyFolderCommand.cs" />
+    <Compile Include="Commands\Images\GetImagesCommand.cs" />
     <Compile Include="Commands\Settings\GeneralSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -243,7 +244,9 @@
     </Compile>
     <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
+    <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
+    <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
