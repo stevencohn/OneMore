@@ -4,19 +4,16 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Linq;
-	using System.Net;
-	using System.Net.Http;
 	using System.Text;
 	using System.Text.RegularExpressions;
-	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web;
 	using System.Xml.Linq;
-	using River.OneMoreAddIn.Models;
 
 
 	internal class NameUrlsCommand : Command
@@ -72,21 +69,23 @@ namespace River.OneMoreAddIn.Commands
 			int count = 0;
 			if (elements?.Count > 0)
 			{
-				ServicePointManager.SecurityProtocol =
-					SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+				// do not use await in the body of a Parallel.ForEach
 
+				var tasks = new List<Task<int>>();
 				Parallel.ForEach(elements, (element) =>
 				{
-					var c = ReplaceUrlText(element);
-					Interlocked.Add(ref count, c);
+					tasks.Add(ReplaceUrlText(element));
 				});
+
+				Task.WaitAll(tasks.ToArray());
+				count = tasks.Sum(t => t.Result);
 			}
 
 			return count > 0;
 		}
 
 
-		private int ReplaceUrlText(XElement element)
+		private async Task<int> ReplaceUrlText(XElement element)
 		{
 			var cdata = element.GetCData();
 
@@ -103,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 
 					try
 					{
-						title = FetchPageTitle(href);
+						title = await FetchPageTitle(href);
 						watch.Stop();
 					}
 					catch
@@ -126,48 +125,48 @@ namespace River.OneMoreAddIn.Commands
 			return 0;
 		}
 
+
 		[System.Diagnostics.CodeAnalysis.SuppressMessage(
 			"Minor Code Smell",
 			"S1643:Strings should not be concatenated using '+' in a loop",
 			Justification = "Need string functions that are not available in StringBuilder")]
-		private static string FetchPageTitle(string url)
+		private async Task<string> FetchPageTitle(string url)
 		{
 			string title = null;
 
-			using (var client = new HttpClient())
+			var client = HttpClientFactory.Create();
+
+			using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute)))
 			{
-				// yes, yes, i know, never use Result....
-				using (var response = client.GetAsync(new Uri(url, UriKind.Absolute)).Result)
+				using (var stream = await response.Content.ReadAsStreamAsync())
 				{
-					using (var stream = response.Content.ReadAsStreamAsync().Result)
+					// compiled regex to check for <title></title> block
+					var pattern = new Regex(@"<title>\s*(.+?)\s*</title>",
+						RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+					var chunkSize = 512;
+					var buffer = new byte[chunkSize];
+					var contents = "";
+					var length = 0;
+
+					while ((title == null) && (length = stream.Read(buffer, 0, chunkSize)) > 0)
 					{
-						// compiled regex to check for <title></title> block
-						var pattern = new Regex(@"<title>\s*(.+?)\s*</title>",
-							RegexOptions.Compiled | RegexOptions.IgnoreCase);
+						// convert the byte-array to a string and add it to the rest of the
+						// contents that have been downloaded so far
+						contents += Encoding.UTF8.GetString(buffer, 0, length);
 
-						var chunkSize = 512;
-						var buffer = new byte[chunkSize];
-						var contents = "";
-						var length = 0;
-
-						while ((title == null) && (length = stream.Read(buffer, 0, chunkSize)) > 0)
+						var match = pattern.Match(contents);
+						if (match.Success)
 						{
-							// convert the byte-array to a string and add it to the rest of the
-							// contents that have been downloaded so far
-							contents += Encoding.UTF8.GetString(buffer, 0, length);
-
-							var match = pattern.Match(contents);
-							if (match.Success)
-							{
-								// we found a <title></title> match
-								title = match.Groups[1].Value;
-							}
-							else if (contents.Contains("</head>"))
-							{
-								// reached end of head-block; no title found
-								title = string.Empty;
-							}
+							// we found a <title></title> match
+							title = match.Groups[1].Value;
 						}
+						else if (contents.Contains("</head>"))
+						{
+							// reached end of head-block; no title found
+							title = string.Empty;
+						}
+
 					}
 				}
 			}

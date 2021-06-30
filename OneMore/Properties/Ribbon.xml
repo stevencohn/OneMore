@@ -290,11 +290,11 @@
                 imageMso="BarcodeInsert"
                 getEnabled="GetBodyContext"
                 onAction="InsertQRCmd"/>
-              <!--button
+              <button
                 id="ribLinkReferencesButton"
                 getLabel="GetRibbonLabel"
                 imageMso="TextBoxPreviousLinked"
-                onAction="LinkReferencesCmd"/-->
+                onAction="LinkReferencesCmd"/>
               <button
                 id="ribMapButton"
                 getLabel="GetRibbonLabel"
