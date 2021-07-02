@@ -51,5 +51,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			element.Value = element.Value.Remove(index, length).Insert(index, replacement);
 		}
+
+
+		public void Replace(int index, int length, XElement replacement)
+		{
+			//element.Value = element.Value.Remove(index, length).Insert(index, replacement);
+		}
 	}
 }

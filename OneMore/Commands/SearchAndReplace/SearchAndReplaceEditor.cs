@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
@@ -17,15 +16,21 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly string search;
 		private readonly string replace;
+		private readonly XElement replaceElement;
 		private readonly RegexOptions options;
 
 
-		public SearchAndReplaceEditor(
-			string search, string replace,bool caseSensitive, bool useRegex)
+		public SearchAndReplaceEditor(string search, string replace, bool useRegex, bool caseSensitive)
 		{
-			this.search = search;
-			this.replace = replace;
 			this.search = useRegex ? search : EscapeEscapes(search);
+			this.replace = replace;
+			options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
+		}
+
+		public SearchAndReplaceEditor(string search, XElement replaceElement, bool useRegex, bool caseSensitive)
+		{
+			this.search = useRegex ? search : EscapeEscapes(search);
+			this.replaceElement = replaceElement;
 			options = caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase;
 		}
 
@@ -103,12 +108,15 @@ namespace River.OneMoreAddIn.Commands
 			var matches = Regex.Matches(wrapper.Value, search, options);
 			if (matches?.Count > 0)
 			{
+				System.Diagnostics.Debugger.Launch();
+
+
 				// iterate backwards to avoid cumulative offets if Match length differs
 				// from length of replacement text
 				for (var i = matches.Count - 1; i >= 0; i--)
 				{
 					var match = matches[i];
-					Replace(wrapper, match.Index, match.Length, replace);
+					Replace(wrapper, match.Index, match.Length);
 				}
 
 				cdata.Value = wrapper.GetInnerXml();
@@ -124,11 +132,10 @@ namespace River.OneMoreAddIn.Commands
 		// A wrapper consists of both XText nodes and XElement nodes where the elements are
 		// most likely SPAN or BR tags. This routine ignores the SPAN XElements themsevles
 		// and focuses only on the inner text of the SPAN.
-		private static void Replace(
+		private void Replace(
 			XElement wrapper,		// the wrapped CDATA of the run
 			int searchIndex,		// the starting index of the match in the text
-			int searchLength,		// the length of the match
-			string replace)			// the replacement text
+			int searchLength)		// the length of the match
 		{
 			// XText and XElement nodes in wrapper
 			var nodes = wrapper.Nodes().ToList();
@@ -157,7 +164,14 @@ namespace River.OneMoreAddIn.Commands
 					var index = searchIndex - nodeStart;
 					var chars = Math.Min(remaining, atom.Length - index);
 
-					atom.Replace(index, chars, replace);
+					if (replace != null)
+					{
+						atom.Replace(index, chars, replace);
+					}
+					else
+					{
+						atom.Replace(index, chars, replaceElement);
+					}
 
 					remaining -= chars;
 				}

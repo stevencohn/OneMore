@@ -4,6 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Xml.Linq;
+
 
 	internal interface IAtom
 	{
@@ -50,5 +52,15 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="length">The length of the substring to replace</param>
 		/// <param name="replacement">The string to insert</param>
 		void Replace(int index, int length, string replacement);
+
+
+		/// <summary>
+		/// Replaces the substring specified by the given index and length with
+		/// the given replacement string
+		/// </summary>
+		/// <param name="index">The starting index of the substring to replace</param>
+		/// <param name="length">The length of the substring to replace</param>
+		/// <param name="replacement">The XElement to insert</param>
+		void Replace(int index, int length, XElement replacement);
 	}
 }

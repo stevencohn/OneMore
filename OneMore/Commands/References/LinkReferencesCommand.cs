@@ -88,9 +88,16 @@ namespace River.OneMoreAddIn.Commands
 
 				var whatText = $@"\b{SearchAndReplaceEditor.EscapeEscapes(title)}\b";
 				var pageLink = one.GetHyperlink(page.PageId, string.Empty);
-				var withText = $"<a href=\"{pageLink}\">{page.Title}</a>";
 
-				var editor = new SearchAndReplaceEditor(whatText, withText, false, true);
+				var withElement = new XElement("A",
+					new XAttribute("href", pageLink),
+					page.Title
+					);
+
+				var editor = new SearchAndReplaceEditor(whatText, withElement,
+					useRegex: true,
+					caseSensitive: false
+					);
 
 				// process pages...
 
