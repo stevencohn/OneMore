@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -55,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (one = new OneNote(out var page, out ns))
 			{
-				var title = page.Title;
+				var title = Unstamp(page.Title);
 
 				string startId = string.Empty;
 				switch (scope)
@@ -146,6 +147,20 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteTime("linking complete");
 			logger.End();
+		}
+
+
+		private string Unstamp(string title)
+		{
+			// ignore the date stamp prefix in a page title
+
+			var match = Regex.Match(title, @"^\d{4}-\d{2}-\d{2}\s");
+			if (match.Success)
+			{
+				title = title.Substring(match.Index, match.Length);
+			}
+
+			return title.Trim();
 		}
 
 
