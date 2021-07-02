@@ -108,9 +108,6 @@ namespace River.OneMoreAddIn.Commands
 			var matches = Regex.Matches(wrapper.Value, search, options);
 			if (matches?.Count > 0)
 			{
-				System.Diagnostics.Debugger.Launch();
-
-
 				// iterate backwards to avoid cumulative offets if Match length differs
 				// from length of replacement text
 				for (var i = matches.Count - 1; i >= 0; i--)

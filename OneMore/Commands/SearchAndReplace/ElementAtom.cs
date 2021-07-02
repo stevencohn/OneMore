@@ -55,7 +55,26 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Replace(int index, int length, XElement replacement)
 		{
-			//element.Value = element.Value.Remove(index, length).Insert(index, replacement);
+			var first = element.FirstNode;
+			if (first.NodeType == System.Xml.XmlNodeType.Text)
+			{
+				new TextAtom(first).Replace(index, length, replacement);
+			}
+			else
+			{
+				/*
+				 * TODO: This is not correct!
+				 * 
+				 * given <a> aaa <i>some</i><b>text</b> zzz </a>
+				 * when replacing "sometext"
+				 * then then will be <a>replacement</a>
+				 * instead of <a> aaa replacement zzz </a>
+				 * 
+				 * need to recurse?
+				 * 
+				 */
+				first.ReplaceWith(replacement);
+			}
 		}
 	}
 }
