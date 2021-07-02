@@ -3012,8 +3012,8 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>مراجع الارتباط</value>
-    <comment>ribbon button</comment>
+    ارتباط المراجع لهذه الصفحة
+    ribbon button EDIT
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>تميوت</value>

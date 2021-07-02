@@ -62,18 +62,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				/*
-				 * TODO: This is not correct!
-				 * 
-				 * given <a> aaa <i>some</i><b>text</b> zzz </a>
-				 * when replacing "sometext"
-				 * then then will be <a>replacement</a>
-				 * instead of <a> aaa replacement zzz </a>
-				 * 
-				 * need to recurse?
-				 * 
-				 */
-				first.ReplaceWith(replacement);
+
+				// given:   <a> aaa <i>some</i><b>text</b> zzz </a>
+				// replace: sometext
+				// result:  <a> aaa replacement zzz</a>
+
+				element.ReplaceNodes(new XText(element.Value));
+				new TextAtom(element.FirstNode).Replace(index, length, replacement);
 			}
 		}
 	}

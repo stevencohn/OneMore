@@ -3027,7 +3027,7 @@ In this section</value>
     <comment>dialog title</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>Link References</value>
+    <value>Link References to this page</value>
     <comment>ribbon button</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">

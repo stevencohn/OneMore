@@ -3004,8 +3004,8 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>链接参考</value>
-    <comment>ribbon button</comment>
+    链接参考此页面
+    ribbon button EDIT
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>超时</value>

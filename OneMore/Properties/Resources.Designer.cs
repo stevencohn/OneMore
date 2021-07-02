@@ -4358,7 +4358,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Link References.
+        ///   Looks up a localized string similar to Link References to this page.
         /// </summary>
         internal static string ribLinkReferencesButton_Label {
             get {

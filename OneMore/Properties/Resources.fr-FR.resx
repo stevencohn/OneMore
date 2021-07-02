@@ -3007,8 +3007,8 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>Liens de références</value>
-    <comment>ribbon button</comment>
+    Lien Références à cette page
+    ribbon button EDIT
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Temps d'attente</value>
