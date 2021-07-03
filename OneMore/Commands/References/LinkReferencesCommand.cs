@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 					case OneNote.Scope.Pages: startId = one.CurrentSectionId; break;
 				}
 
-				// logger.WriteLine($"searching for '{title}'");
+				logger.WriteLine($"searching for '{title}'");
 				var results = one.Search(startId, title);
 
 				if (token.IsCancellationRequested)
@@ -157,7 +157,7 @@ namespace River.OneMoreAddIn.Commands
 			var match = Regex.Match(title, @"^\d{4}-\d{2}-\d{2}\s");
 			if (match.Success)
 			{
-				title = title.Substring(match.Index, match.Length);
+				title = title.Substring(match.Length);
 			}
 
 			return title.Trim();
@@ -206,6 +206,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var container = page.EnsureContentContainer();
+			container.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
 			container.Add(block);
 		}
 	}
