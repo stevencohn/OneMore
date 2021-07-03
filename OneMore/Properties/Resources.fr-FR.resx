@@ -2974,6 +2974,42 @@ ISO-code then comma then language name</comment>
     <value>... Joindre le paragraphe</value>
     <comment>context menu option</comment>
   </data>
+  <data name="LinkDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_groupBox.Text" xml:space="preserve">
+    <value>Pages dans</value>
+    <comment>group box</comment>
+  </data>
+  <data name="LinkDialog_introLabel.Text" xml:space="preserve">
+    <value>Créer des références liées au titre de cette page</value>
+    <comment>label</comment>
+  </data>
+  <data name="LinkDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Toutes les sections du bloc-notes actuel</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Tous les cahiers</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_okButton.Text" xml:space="preserve">
+    <value>d'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
+    <value>La rubrique actuelle</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_Text" xml:space="preserve">
+    <value>Liens de références</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    Lien Références à cette page
+    ribbon button EDIT
+  </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Temps d'attente</value>
     <comment>label</comment>

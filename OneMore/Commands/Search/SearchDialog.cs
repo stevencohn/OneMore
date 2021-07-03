@@ -79,15 +79,7 @@ namespace River.OneMoreAddIn.Commands.Search
 				case 2: startId = one.CurrentSectionId; break;
 			}
 
-			var xml = one.Search(startId, findBox.Text);
-			var results = XElement.Parse(xml);
-
-			// remove recyclebin nodes
-			results.Descendants()
-				.Where(n => n.Name.LocalName == "UnfiledNotes" ||
-							n.Attribute("isRecycleBin") != null ||
-							n.Attribute("isInRecycleBin") != null)
-				.Remove();
+			var results = one.Search(startId, findBox.Text);
 
 			if (results.HasElements)
 			{

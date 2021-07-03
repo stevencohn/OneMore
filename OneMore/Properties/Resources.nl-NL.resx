@@ -2980,6 +2980,42 @@ ISO-code then comma then language name</comment>
     <value>... Word lid van de paragraaf</value>
     <comment>context menu option</comment>
   </data>
+  <data name="LinkDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_groupBox.Text" xml:space="preserve">
+    <value>Pagina's in</value>
+    <comment>group box</comment>
+  </data>
+  <data name="LinkDialog_introLabel.Text" xml:space="preserve">
+    <value>Maak gelinkte verwijzingen naar de titel van deze pagina</value>
+    <comment>label</comment>
+  </data>
+  <data name="LinkDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Alle secties in het huidige notitieboek</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Alle notitieboeken</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
+    <value>De huidige sectie</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_Text" xml:space="preserve">
+    <value>Linkreferenties</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    Link Verwijzingen naar deze pagina
+    ribbon button EDIT
+  </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
     <comment>label</comment>

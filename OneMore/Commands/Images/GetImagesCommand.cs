@@ -11,8 +11,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
-	using System.Net;
-	using System.Net.Http;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -20,19 +18,18 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class GetImagesCommand : Command
 	{
-		private ImageDetector detector;
+		private readonly ImageDetector detector;
 		private XNamespace ns;
 
 
 		public GetImagesCommand()
 		{
+			detector = new ImageDetector();
 		}
 
 
 		public override async Task Execute(params object[] args)
 		{
-			detector = new ImageDetector();
-
 			using (var one = new OneNote(out var page, out ns))
 			{
 				if (GetImages(page))
@@ -76,8 +73,7 @@ namespace River.OneMoreAddIn.Commands
 			int count = 0;
 			if (elements?.Count > 0)
 			{
-				ServicePointManager.SecurityProtocol =
-					SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+				// do not use await in the body of a Parallel.ForEach
 
 				var tasks = new List<Task<int>>();
 				Parallel.ForEach(elements, (element) =>
@@ -123,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (image != null)
 					{
-						//logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
+						logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
 
 						// create a new OE/Image before current OE/T/A
 						element.Parent.AddBeforeSelf(
@@ -144,10 +140,10 @@ namespace River.OneMoreAddIn.Commands
 
 						return 1;
 					}
-					//else
-					//{
-					//	logger.WriteLine($"cannot resolve {href} as an image");
-					//}
+					else
+					{
+						logger.WriteLine($"cannot resolve {href} as an image");
+					}
 				}
 			}
 
@@ -157,28 +153,26 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<Image> DownloadImage(string url)
 		{
-			using (var client = new HttpClient())
+			var client = HttpClientFactory.Create();
+			client.Timeout = TimeSpan.FromSeconds(12);
+
+			using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute)))
 			{
-				client.Timeout = TimeSpan.FromSeconds(12);
-
-				using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute)))
+				if (response.IsSuccessStatusCode)
 				{
-					if (response.IsSuccessStatusCode)
+					using (var stream = new MemoryStream())
 					{
-						using (var stream = new MemoryStream())
-						{
-							await response.Content.CopyToAsync(stream);
+						await response.Content.CopyToAsync(stream);
 
-							if (detector.GetSignature(stream) != ImageSignature.Unknown)
+						if (detector.GetSignature(stream) != ImageSignature.Unknown)
+						{
+							try
 							{
-								try
-								{
-									return new Bitmap(Image.FromStream(stream));
-								}
-								catch
-								{
-									logger.WriteLine($"{url} does not appear to be an image");
-								}
+								return new Bitmap(Image.FromStream(stream));
+							}
+							catch
+							{
+								logger.WriteLine($"{url} does not appear to be an image");
 							}
 						}
 					}

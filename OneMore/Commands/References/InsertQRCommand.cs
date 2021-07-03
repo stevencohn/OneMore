@@ -77,16 +77,15 @@ namespace River.OneMoreAddIn
 
 		public async Task<Image> GetQRCodeImage(string url)
 		{
-			using (var client = new HttpClient())
+			var client = HttpClientFactory.Create();
+
+			using (var response = await client.GetAsync(url))
 			{
-				using (var response = await client.GetAsync(url))
+				if (response.IsSuccessStatusCode)
 				{
-					if (response.IsSuccessStatusCode)
+					using (var stream = await response.Content.ReadAsStreamAsync())
 					{
-						using (var stream = await response.Content.ReadAsStreamAsync())
-						{
-							return Image.FromStream(stream);
-						}
+						return Image.FromStream(stream);
 					}
 				}
 			}

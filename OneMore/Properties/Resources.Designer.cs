@@ -2476,6 +2476,78 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string LinkDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("LinkDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages in.
+        /// </summary>
+        internal static string LinkDialog_groupBox_Text {
+            get {
+                return ResourceManager.GetString("LinkDialog_groupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create linked references to the title of this page.
+        /// </summary>
+        internal static string LinkDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("LinkDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All sections in the current notebook.
+        /// </summary>
+        internal static string LinkDialog_notebookRadio_Text {
+            get {
+                return ResourceManager.GetString("LinkDialog_notebookRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All notebooks.
+        /// </summary>
+        internal static string LinkDialog_notebooksRadio_Text {
+            get {
+                return ResourceManager.GetString("LinkDialog_notebooksRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string LinkDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("LinkDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current section.
+        /// </summary>
+        internal static string LinkDialog_sectionRadio_Text {
+            get {
+                return ResourceManager.GetString("LinkDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link References.
+        /// </summary>
+        internal static string LinkDialog_Text {
+            get {
+                return ResourceManager.GetString("LinkDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Logo {
@@ -4282,6 +4354,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribJoinParagraphButton_Label {
             get {
                 return ResourceManager.GetString("ribJoinParagraphButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link References to this page.
+        /// </summary>
+        internal static string ribLinkReferencesButton_Label {
+            get {
+                return ResourceManager.GetString("ribLinkReferencesButton_Label", resourceCulture);
             }
         }
         

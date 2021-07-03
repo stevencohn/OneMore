@@ -10,8 +10,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Linq;
-	using System.Net;
-	using System.Net.Http;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
 	using System.Windows.Forms;
@@ -34,9 +32,6 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private const string DictionaryUrl = "https://api.dictionaryapi.dev/api/v2/entries/{0}/{1}";
-
-
-		private static HttpClient client;
 
 
 		public PronunciateCommand()
@@ -109,18 +104,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> LookupPhonetics(string word, string isoCode)
 		{
-			if (client == null)
-			{
-				ServicePointManager.SecurityProtocol =
-					SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-				client = new HttpClient
-				{
-					Timeout = new TimeSpan(0, 0, 10)
-				};
-
-				trash.Add(client);
-			}
+			var client = HttpClientFactory.Create();
+			client.Timeout = new TimeSpan(0, 0, 10);
 
 			var url = string.Format(DictionaryUrl, isoCode, word);
 

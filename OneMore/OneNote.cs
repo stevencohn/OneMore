@@ -1056,13 +1056,26 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Search pages under the specified hierarchy node using the given query.
 		/// </summary>
-		/// <param name="nodeId"></param>
-		/// <param name="query"></param>
-		/// <returns></returns>
-		public string Search(string nodeId, string query)
+		/// <param name="nodeId">
+		/// Can be String.Empty for all notebooks, CurrentNotebookId, CurrentSectionId,
+		/// or CurrentPageId
+		/// </param>
+		/// <param name="query">The search string</param>
+		/// <returns>An hierarchy of pages whose content matches the search string</returns>
+		public XElement Search(string nodeId, string query)
 		{
 			onenote.FindPages(nodeId, query, out var xml, false, false, XMLSchema.xs2013);
-			return xml;
+
+			var results = XElement.Parse(xml);
+
+			// remove recyclebin nodes
+			results.Descendants()
+				.Where(n => n.Name.LocalName == "UnfiledNotes" ||
+							n.Attribute("isRecycleBin") != null ||
+							n.Attribute("isInRecycleBin") != null)
+				.Remove();
+
+			return results;
 		}
 
 

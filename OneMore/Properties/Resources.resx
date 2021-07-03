@@ -2994,6 +2994,42 @@ In this section</value>
     <value>... Join Paragraph</value>
     <comment>context menu option</comment>
   </data>
+  <data name="LinkDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_groupBox.Text" xml:space="preserve">
+    <value>Pages in</value>
+    <comment>group box</comment>
+  </data>
+  <data name="LinkDialog_introLabel.Text" xml:space="preserve">
+    <value>Create linked references to the title of this page</value>
+    <comment>label</comment>
+  </data>
+  <data name="LinkDialog_notebookRadio.Text" xml:space="preserve">
+    <value>All sections in the current notebook</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>All notebooks</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
+    <value>The current section</value>
+    <comment>radio</comment>
+  </data>
+  <data name="LinkDialog_Text" xml:space="preserve">
+    <value>Link References</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    <value>Link References to this page</value>
+    <comment>ribbon button</comment>
+  </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
     <comment>label</comment>

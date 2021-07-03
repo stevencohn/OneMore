@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 	{
 		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases/latest";
 
-		private static HttpClient client;
+		private HttpClient client;
 		private GitRelease release;
 
 
@@ -32,14 +32,8 @@ namespace River.OneMoreAddIn.Helpers.Updater
 
 		public async Task<bool> FetchLatestRelease()
 		{
-			if (client == null)
-			{
-				ServicePointManager.SecurityProtocol =
-					SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-				client = new HttpClient();
-				client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
-			}
+			client = HttpClientFactory.Create();
+			client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
 
 			try
 			{

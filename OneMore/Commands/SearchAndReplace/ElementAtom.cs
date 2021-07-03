@@ -51,5 +51,25 @@ namespace River.OneMoreAddIn.Commands
 		{
 			element.Value = element.Value.Remove(index, length).Insert(index, replacement);
 		}
+
+
+		public void Replace(int index, int length, XElement replacement)
+		{
+			var first = element.FirstNode;
+			if (first.NodeType == System.Xml.XmlNodeType.Text)
+			{
+				new TextAtom(first).Replace(index, length, replacement);
+			}
+			else
+			{
+
+				// given:   <a> aaa <i>some</i><b>text</b> zzz </a>
+				// replace: sometext
+				// result:  <a> aaa replacement zzz</a>
+
+				element.ReplaceNodes(new XText(element.Value));
+				new TextAtom(element.FirstNode).Replace(index, length, replacement);
+			}
+		}
 	}
 }

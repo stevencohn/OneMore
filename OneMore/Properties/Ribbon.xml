@@ -291,6 +291,11 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertQRCmd"/>
               <button
+                id="ribLinkReferencesButton"
+                getLabel="GetRibbonLabel"
+                imageMso="TextBoxPreviousLinked"
+                onAction="LinkReferencesCmd"/>
+              <button
                 id="ribMapButton"
                 getLabel="GetRibbonLabel"
                 imageMso="CreateMap"

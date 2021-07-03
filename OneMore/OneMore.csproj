@@ -49,6 +49,7 @@
     </CodeAnalysisRuleSet>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -135,6 +136,13 @@
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
     <Compile Include="Commands\Extras\DateStampCommand.cs" />
     <Compile Include="Commands\File\CopyFolderCommand.cs" />
+    <Compile Include="Commands\References\LinkReferencesCommand.cs" />
+    <Compile Include="Commands\References\LinkDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\References\LinkDialog.Designer.cs">
+      <DependentUpon>LinkDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Images\GetImagesCommand.cs" />
     <Compile Include="Commands\Settings\GeneralSheet.cs">
       <SubType>UserControl</SubType>
@@ -246,6 +254,7 @@
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
+    <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
@@ -741,6 +750,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
       <DependentUpon>BreakingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\References\LinkDialog.resx">
+      <DependentUpon>LinkDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\GeneralSheet.resx">
       <DependentUpon>GeneralSheet.cs</DependentUpon>

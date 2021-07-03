@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S1155 // "Any()" should be used to test for emptiness
+
 namespace River.OneMoreAddIn.Models
 {
 	using River.OneMoreAddIn.Helpers.Office;
@@ -26,6 +28,8 @@ namespace River.OneMoreAddIn.Models
 
 		// Page meta to keep track of rotating highlighter index
 		public static readonly string HighlightMetaName = "omHighlightIndex";
+		// Page is reference linked to another page, so don't include it in subsequent links
+		public static readonly string LinkReferenceMetaName = "omLinkReference";
 		// Page is a reference map, so don't include it in subsequent maps
 		public static readonly string PageMapMetaName = "omPageMap";
 		// Outline meta to mark visible word bank
@@ -581,6 +585,59 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+
+		/// <summary>
+		/// Gets a collection of fully selecte text runs
+		/// </summary>
+		/// <param name="all">
+		/// If no selected elements are found and this value is true then return all elements;
+		/// otherwise if no selection and this value is false then return an empty collection.
+		/// Default value is true.
+		/// </param>
+		/// <returns>
+		/// A collection of fully selected text runs. The collection will be empty if the
+		/// selected range is zero characters or one of the known special cases
+		/// </returns>
+		public IEnumerable<XElement> GetSelectedElements(bool all = true)
+		{
+			var selected = Root.Elements(Namespace + "Outline")
+				.Descendants(Namespace + "T")
+				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
+
+			if (selected == null || selected.Count() == 0)
+			{
+				return all
+					? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
+					: new List<XElement>();
+			}
+
+			// if exactly one then it could be an empty [] or it could be a special case
+			if (selected.Count() == 1)
+			{
+				var cursor = selected.First();
+				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA)
+				{
+					var cdata = cursor.FirstNode as XCData;
+
+					// empty or link or xml-comment because we can't tell the difference between
+					// a zero-selection zero-selection link and a partial or fully selected link.
+					// Note that XML comments are used to wrap mathML equations
+					if (cdata.Value.Length == 0 ||
+						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
+						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+					{
+						return all
+							? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
+							: new List<XElement>();
+					}
+				}
+			}
+
+			// return zero or more elements
+			return selected;
+		}
+
+
 		/// <summary>
 		/// Gets the currently selected text. If the text cursor is positioned over a word but
 		/// with zero selection length then that word is returned; othewise, text from the selected
@@ -625,7 +682,7 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>
 		/// The one:T XElement or null if there is a selected range greater than zero
 		/// </returns>
-		public XElement GetTextCursor()
+		public XElement GetTextCursor(bool merge = false)
 		{
 			var selected = Root.Elements(Namespace + "Outline")
 				.Descendants(Namespace + "T")
@@ -639,12 +696,18 @@ namespace River.OneMoreAddIn.Models
 					var cdata = cursor.FirstNode as XCData;
 
 					// empty or link or xml-comment because we can't tell the difference between
-					// a zero-selection zero-selection link and a partial or fully selected link
-					// XML comments are used to wrap mathML equations
+					// a zero-selection zero-selection link and a partial or fully selected link.
+					// Note that XML comments are used to wrap mathML equations
 					if (cdata.Value.Length == 0 ||
 						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
 						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
 					{
+						if (merge && cursor.GetCData().Value == string.Empty)
+						{
+							// only merge if empty [], note cursor could be a hyperlink <a>..</a>
+							MergeRuns(cursor);
+						}
+
 						return cursor;
 					}
 				}
@@ -653,6 +716,25 @@ namespace River.OneMoreAddIn.Models
 			// zero or more than one empty cdata are selected
 			return null;
 		}
+
+
+		// remove the empty CDATA[] cursor, combining the previous and next runs into one
+		private void MergeRuns(XElement cursor)
+		{
+			if (cursor.PreviousNode is XElement prev)
+			{
+				if (cursor.NextNode is XElement next)
+				{
+					var cprev = prev.GetCData();
+					var cnext = next.GetCData();
+					cprev.Value = $"{cprev.Value}{cnext.Value}";
+					next.Remove();
+				}
+			}
+
+			cursor.Remove();
+		}
+
 
 
 		/// <summary>

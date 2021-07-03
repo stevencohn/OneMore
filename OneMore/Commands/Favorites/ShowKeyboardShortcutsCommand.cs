@@ -11,8 +11,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.IO.Compression;
 	using System.Linq;
-	using System.Net;
-	using System.Net.Http;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -83,10 +81,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.WriteLine("downloading template");
 
-			ServicePointManager.SecurityProtocol =
-				SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-			var client = new HttpClient();
+			var client = HttpClientFactory.Create();
 			client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
 
 			string path = null;
