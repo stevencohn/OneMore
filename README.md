@@ -79,8 +79,10 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 [Reference Commands](../../wiki/Reference-Commands)
 * Insert a new footnote (endnote) at the current location
 * Remove a footnote from either the label or from the footer description
+* Link to current page from other pages that reference this page title
 * Map Linked Pages to report all pages that link to other pages
 * Replace hyperlinked URLs with their Web page titles
+* Replace hyperlinked URLs with their downloaded images
 
 [Search commands](../../wiki/Search-Commands)
 
