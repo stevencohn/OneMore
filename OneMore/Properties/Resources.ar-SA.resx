@@ -3031,4 +3031,8 @@ ISO-code then comma then language name</comment>
     <value>استبدل عناوين URL بالصور</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="GetImagesCommand_Cite" xml:space="preserve">
+    <value>هل ترغب في إضافة تعليق توضيحي على الصورة بعنوان URL الخاص بها؟</value>
+    <comment>message box</comment>
+  </data>
 </root>

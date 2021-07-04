@@ -12,14 +12,18 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class GetImagesCommand : Command
 	{
 		private readonly ImageDetector detector;
 		private XNamespace ns;
+		private Style citation;
 
 
 		public GetImagesCommand()
@@ -30,8 +34,26 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var result = MessageBox.Show(
+				Resx.GetImagesCommand_Cite,
+				Resx.OneMoreTab_Label,
+				MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question,
+				MessageBoxDefaultButton.Button2,
+				MessageBoxOptions.DefaultDesktopOnly);
+
+			if (result == DialogResult.Cancel)
+			{
+				return;
+			}
+
 			using (var one = new OneNote(out var page, out ns))
 			{
+				if (result == DialogResult.Yes)
+				{
+					// ensure page contains the definition of the Citation style
+					citation = page.GetQuickStyle(Styles.StandardStyles.Citation);
+				}
+
 				if (GetImages(page))
 				{
 					await one.Update(page);
@@ -75,15 +97,27 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// do not use await in the body of a Parallel.ForEach
 
+				//<one:Meta name="om" content="caption" />
+
 				var tasks = new List<Task<int>>();
 				Parallel.ForEach(elements, (element) =>
 				{
-					tasks.Add(GetImage(element));
+					// do not reprocess captioned images
+					if (!element.Parent.Descendants().Any(m =>
+						m.Name.LocalName == "Meta" &&
+						m.Attribute("name").Value == "om" &&
+						m.Attribute("content").Value == "caption"))
+					{
+						tasks.Add(GetImage(element));
+					}
 				});
 
-				Task.WaitAll(tasks.ToArray());
+				if (tasks.Any())
+				{
+					Task.WaitAll(tasks.ToArray());
 
-				count = tasks.Sum(t => t.Result);
+					count = tasks.Sum(t => t == null ? 0 : t.Result);
+				}
 			}
 
 			return count > 0;
@@ -96,83 +130,100 @@ namespace River.OneMoreAddIn.Commands
 
 			var wrapper = cdata.GetWrapper();
 			var a = wrapper.Element("a");
-			if (a != null)
+			if (a == null)
 			{
-				var href = a.Attribute("href")?.Value;
-				if (href != null && href == a.Value)
-				{
-					Image image;
-					var watch = new Stopwatch();
-					watch.Start();
-
-					try
-					{
-						image = await DownloadImage(href);
-						watch.Stop();
-					}
-					catch
-					{
-						watch.Stop();
-						logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
-						return 0;
-					}
-
-					if (image != null)
-					{
-						logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
-
-						// create a new OE/Image before current OE/T/A
-						element.Parent.AddBeforeSelf(
-							new XElement(ns + "OE",
-							new XElement(ns + "Image",
-								new XAttribute("format", "png"),
-								new XElement(ns + "Size",
-									new XAttribute("width", $"{image.Width}.0"),
-									new XAttribute("height", $"{image.Height}.0")),
-								new XElement(ns + "Data", image.ToBase64String())
-							)));
-
-						// remove A from CDATA since CDATA might contain more text than just <A/>
-						a.Remove();
-						cdata.ReplaceWith(wrapper.GetInnerXml());
-
-						image.Dispose();
-
-						return 1;
-					}
-					else
-					{
-						logger.WriteLine($"cannot resolve {href} as an image");
-					}
-				}
+				return 0;
 			}
 
-			return 0;
+			// only including URLs like <a href="ULR">URL</a> where the text shows the URL
+			// does not include "named" URLs like <a href="URL">name</a>
+
+			var href = a.Attribute("href")?.Value;
+			if (href != a.Value)
+			{
+				return 0;
+			}
+
+			Image image;
+			var watch = new Stopwatch();
+			watch.Start();
+
+			try
+			{
+				image = await DownloadImage(href);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
+				logger.WriteLine(exc);
+				return 0;
+			}
+			finally
+			{
+				watch.Stop();
+			}
+
+			if (image == null)
+			{
+				logger.WriteLine($"cannot resolve {href} as an image");
+				return 0;
+			}
+
+			logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
+
+			var content = new XElement(ns + "Image",
+				new XAttribute("format", "png"),
+				new XElement(ns + "Size",
+					new XAttribute("width", $"{image.Width}.0"),
+					new XAttribute("height", $"{image.Height}.0")),
+				new XElement(ns + "Data", image.ToBase64String())
+				);
+
+			if (citation != null)
+			{
+				content = WrapWithCitation(content, href).Root;
+			}
+
+			// create a new OE/Image before current OE/T/A
+			element.Parent.AddBeforeSelf(
+				new XElement(ns + "OE",
+				content
+				));
+
+			// remove A from CDATA since CDATA might contain more text than just <A/>
+			a.Remove();
+			cdata.ReplaceWith(wrapper.GetInnerXml());
+
+			image.Dispose();
+
+			return 1;
 		}
 
 
 		private async Task<Image> DownloadImage(string url)
 		{
 			var client = HttpClientFactory.Create();
-			client.Timeout = TimeSpan.FromSeconds(12);
 
-			using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute)))
+			using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
 			{
-				if (response.IsSuccessStatusCode)
+				using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute), source.Token))
 				{
-					using (var stream = new MemoryStream())
+					if (response.IsSuccessStatusCode)
 					{
-						await response.Content.CopyToAsync(stream);
-
-						if (detector.GetSignature(stream) != ImageSignature.Unknown)
+						using (var stream = new MemoryStream())
 						{
-							try
+							await response.Content.CopyToAsync(stream);
+
+							if (detector.GetSignature(stream) != ImageSignature.Unknown)
 							{
-								return new Bitmap(Image.FromStream(stream));
-							}
-							catch
-							{
-								logger.WriteLine($"{url} does not appear to be an image");
+								try
+								{
+									return new Bitmap(Image.FromStream(stream));
+								}
+								catch
+								{
+									logger.WriteLine($"{url} does not appear to be an image");
+								}
 							}
 						}
 					}
@@ -180,6 +231,37 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return null;
+		}
+
+
+		private Table WrapWithCitation(XElement image, string caption)
+		{
+			var table = new Table(ns);
+			table.AddColumn(0f); // OneNote will set width accordingly
+
+			var cdata = new XCData(caption);
+
+			var row = table.AddRow();
+			var cell = row.Cells.First();
+
+			cell.SetContent(
+				new XElement(ns + "OEChildren",
+					new XElement(ns + "OE",
+						new XAttribute("alignment", "center"),
+						image),
+					new XElement(ns + "OE",
+						new XAttribute("alignment", "center"),
+						new XAttribute("quickStyleIndex", citation.Index.ToString()),
+						new XElement(ns + "Meta",
+							new XAttribute("name", "om"),
+							new XAttribute("content", "caption")),
+						new XElement(ns + "T",
+							new XAttribute("selected", "all"),
+							cdata)
+					)
+				));
+
+			return table;
 		}
 	}
 }

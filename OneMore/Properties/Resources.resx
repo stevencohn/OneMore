@@ -3046,4 +3046,8 @@ In this section</value>
     <value>Replace URLs with Images</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="GetImagesCommand_Cite" xml:space="preserve">
+    <value>Would you like to annotate the image with its URL?</value>
+    <comment>message box</comment>
+  </data>
 </root>

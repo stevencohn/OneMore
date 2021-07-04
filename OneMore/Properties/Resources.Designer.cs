@@ -1931,6 +1931,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Would you like to annotate the image with its URL?.
+        /// </summary>
+        internal static string GetImagesCommand_Cite {
+            get {
+                return ResourceManager.GetString("GetImagesCommand_Cite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Hammer {

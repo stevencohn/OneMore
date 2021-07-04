@@ -3023,4 +3023,8 @@ ISO-code then comma then language name</comment>
     <value>用图像替换 URL</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="GetImagesCommand_Cite" xml:space="preserve">
+    <value>你想用它的 URL 注释图像吗？</value>
+    <comment>message box</comment>
+  </data>
 </root>

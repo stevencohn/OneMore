@@ -3017,4 +3017,8 @@ ISO-code then comma then language name</comment>
     <value>URLs durch Bilder ersetzen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="GetImagesCommand_Cite" xml:space="preserve">
+    <value>Möchten Sie das Bild mit seiner URL versehen?</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Net;
 	using System.Net.Http;
 
@@ -16,6 +17,22 @@ namespace River.OneMoreAddIn
 		private static HttpClient client;
 
 
+		/// <summary>
+		/// Get an HttpClient
+		/// </summary>
+		/// <returns>The common HttpClient</returns>
+		/// <remarks>
+		/// To change the timeout per caller, use a unique cancellation token such as
+		///
+		/// <code>
+		/// using (var source = new CancellationTokenSource(timeout))
+		/// {
+		///     var response = await client.GetAsync(requestUri, source.Token)
+		///     response.EnsureSuccessStatusCode();
+		///     return await response.Content.ReadAsStringAsync();
+		/// }
+		/// </code>
+		/// </remarks>
 		public static HttpClient Create()
 		{
 			if (client == null)
