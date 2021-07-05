@@ -255,9 +255,7 @@ namespace River.OneMoreAddIn.Commands
 						new XElement(ns + "Meta",
 							new XAttribute("name", "om"),
 							new XAttribute("content", "caption")),
-						new XElement(ns + "T",
-							new XAttribute("selected", "all"),
-							cdata)
+						new XElement(ns + "T", cdata)
 					)
 				));
 
