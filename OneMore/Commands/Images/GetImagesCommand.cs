@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool GetImages(Page page)
 		{
-			List<XElement> elements = null;
+			List<XElement> runs = null;
 			var regex = new Regex(@"<a\s+href=", RegexOptions.Compiled);
 
 			var selections = page.Root.Descendants(page.Namespace + "T")
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 				(selections.First().DescendantNodes().OfType<XCData>().First().Value.Length == 0))
 			{
 				// single empty selection so affect entire page
-				elements = page.Root.DescendantNodes().OfType<XCData>()
+				runs = page.Root.DescendantNodes().OfType<XCData>()
 					.Where(c => regex.IsMatch(c.Value))
 					.Select(e => e.Parent)
 					.ToList();
@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				// selected range so affect only within that
-				elements = page.Root.DescendantNodes().OfType<XCData>()
+				runs = page.Root.DescendantNodes().OfType<XCData>()
 					.Where(c => regex.IsMatch(c.Value))
 					.Select(e => e.Parent)
 					.Where(e => e.Attributes("selected").Any(a => a.Value == "all"))
@@ -93,22 +93,22 @@ namespace River.OneMoreAddIn.Commands
 			// parallelize internet access for all hyperlinks on page
 
 			int count = 0;
-			if (elements?.Count > 0)
+			if (runs?.Count > 0)
 			{
 				// do not use await in the body of a Parallel.ForEach
 
 				//<one:Meta name="om" content="caption" />
 
 				var tasks = new List<Task<int>>();
-				Parallel.ForEach(elements, (element) =>
+				Parallel.ForEach(runs, (run) =>
 				{
 					// do not reprocess captioned images
-					if (!element.Parent.Descendants().Any(m =>
+					if (!run.Parent.Descendants().Any(m =>
 						m.Name.LocalName == "Meta" &&
 						m.Attribute("name").Value == "om" &&
 						m.Attribute("content").Value == "caption"))
 					{
-						tasks.Add(GetImage(element));
+						tasks.Add(GetImage(run));
 					}
 				});
 
@@ -124,13 +124,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<int> GetImage(XElement element)
+		private async Task<int> GetImage(XElement run)
 		{
-			var cdata = element.GetCData();
+			var cdata = run.GetCData();
 
 			var wrapper = cdata.GetWrapper();
-			var a = wrapper.Element("a");
-			if (a == null)
+			var anchor = wrapper.Element("a");
+			if (anchor == null)
 			{
 				return 0;
 			}
@@ -138,8 +138,8 @@ namespace River.OneMoreAddIn.Commands
 			// only including URLs like <a href="ULR">URL</a> where the text shows the URL
 			// does not include "named" URLs like <a href="URL">name</a>
 
-			var href = a.Attribute("href")?.Value;
-			if (href != a.Value)
+			var href = anchor.Attribute("href")?.Value;
+			if (href != anchor.Value)
 			{
 				return 0;
 			}
@@ -171,6 +171,13 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
 
+			// split current OE into beforeOE/thisOE/afterOE
+			// results in thisOE having only the T/anchor which we'll swap out for the Image...
+
+			SplitElement(run, anchor);
+
+			// create Image element and swap with the current T...
+
 			var content = new XElement(ns + "Image",
 				new XAttribute("format", "png"),
 				new XElement(ns + "Size",
@@ -184,15 +191,7 @@ namespace River.OneMoreAddIn.Commands
 				content = WrapWithCitation(content, href).Root;
 			}
 
-			// create a new OE/Image before current OE/T/A
-			element.Parent.AddBeforeSelf(
-				new XElement(ns + "OE",
-				content
-				));
-
-			// remove A from CDATA since CDATA might contain more text than just <A/>
-			a.Remove();
-			cdata.ReplaceWith(wrapper.GetInnerXml());
+			run.ReplaceWith(content);
 
 			image.Dispose();
 
@@ -231,6 +230,47 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return null;
+		}
+
+
+		private void SplitElement(XElement run, XElement anchor)
+		{
+			var left = anchor.NodesBeforeSelf();
+			var before = run.ElementsBeforeSelf();
+			if (left.Any() || before.Any())
+			{
+				var oe = new XElement(ns + "OE", run.Parent.Attributes());
+
+				if (before.Any())
+				{
+					oe.Add(before);
+					before.Remove();
+				}
+				if (left.Any())
+				{
+					oe.Add(new XElement(ns + "T", new XCData(new XElement("w", left).GetInnerXml())));
+					left.Remove();
+				}
+				run.Parent.AddBeforeSelf(oe);
+			}
+
+			var right = anchor.NodesAfterSelf();
+			var after = run.ElementsAfterSelf();
+			if (right.Any() || after.Any())
+			{
+				var oe = new XElement(ns + "OE", run.Parent.Attributes());
+				if (right.Any())
+				{
+					oe.Add(new XElement(ns + "T", new XCData(new XElement("w", right).GetInnerXml())));
+					right.Remove();
+				}
+				if (after.Any())
+				{
+					oe.Add(after);
+					after.Remove();
+				}
+				run.Parent.AddAfterSelf(oe);
+			}
 		}
 
 
