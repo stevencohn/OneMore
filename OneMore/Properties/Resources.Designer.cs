@@ -2485,6 +2485,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (click to change).
+        /// </summary>
+        internal static string LinesSheet_clickLabel_Text {
+            get {
+                return ResourceManager.GetString("LinesSheet_clickLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line color:.
+        /// </summary>
+        internal static string LinesSheet_colorLabel_Text {
+            get {
+                return ResourceManager.GetString("LinesSheet_colorLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the default style for horiztonal line snippets.
+        /// </summary>
+        internal static string LinesSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("LinesSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length:.
+        /// </summary>
+        internal static string LinesSheet_lengthLabel_Text {
+            get {
+                return ResourceManager.GetString("LinesSheet_lengthLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal Line Options.
+        /// </summary>
+        internal static string LinesSheet_Title {
+            get {
+                return ResourceManager.GetString("LinesSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string LinkDialog_cancelButton_Text {
@@ -5574,6 +5619,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_highlightNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_highlightNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal Lines.
+        /// </summary>
+        internal static string SettingsDialog_linesNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_linesNode.Text", resourceCulture);
             }
         }
         

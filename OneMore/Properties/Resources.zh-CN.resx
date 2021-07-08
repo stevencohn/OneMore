@@ -3027,4 +3027,28 @@ ISO-code then comma then language name</comment>
     <value>你想用它的 URL 注释图像吗？</value>
     <comment>message box</comment>
   </data>
+  <data name="LinesSheet_Title" xml:space="preserve">
+    <value>水平线选项</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
+    <value>（点击更改）</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
+    <value>线条颜色：</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_introBox.Text" xml:space="preserve">
+    <value>自定义水平线片段的默认样式</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
+    <value>长度：</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
+    <value>水平线</value>
+    <comment>settings dialog</comment>
+  </data>
 </root>

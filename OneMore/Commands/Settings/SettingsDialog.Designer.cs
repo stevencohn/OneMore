@@ -32,10 +32,11 @@
 			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Context Menu");
 			System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Favorites");
 			System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Highlighter Themes");
-			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Plugins");
-			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Ribbon Bar");
-			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Search Engines");
-			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Snippets");
+			System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Horizontal Lines");
+			System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Plugins");
+			System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Ribbon Bar");
+			System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Search Engines");
+			System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Snippets");
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
@@ -92,7 +93,7 @@
 			this.editorPanel.Controls.Add(this.headerLabel);
 			this.editorPanel.Location = new System.Drawing.Point(333, 18);
 			this.editorPanel.Name = "editorPanel";
-			this.editorPanel.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.editorPanel.Padding = new System.Windows.Forms.Padding(2);
 			this.editorPanel.Size = new System.Drawing.Size(806, 538);
 			this.editorPanel.TabIndex = 1;
 			// 
@@ -102,7 +103,7 @@
 			this.contentPanel.Location = new System.Drawing.Point(2, 34);
 			this.contentPanel.MinimumSize = new System.Drawing.Size(800, 500);
 			this.contentPanel.Name = "contentPanel";
-			this.contentPanel.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.contentPanel.Padding = new System.Windows.Forms.Padding(15);
 			this.contentPanel.Size = new System.Drawing.Size(800, 500);
 			this.contentPanel.TabIndex = 1;
 			// 
@@ -134,14 +135,16 @@
 			treeNode3.Text = "Favorites";
 			treeNode4.Name = "highlightNode";
 			treeNode4.Text = "Highlighter Themes";
-			treeNode5.Name = "pluginsNode";
-			treeNode5.Text = "Plugins";
-			treeNode6.Name = "ribbonNode";
-			treeNode6.Text = "Ribbon Bar";
-			treeNode7.Name = "searchNode";
-			treeNode7.Text = "Search Engines";
-			treeNode8.Name = "snippetsNode";
-			treeNode8.Text = "Snippets";
+			treeNode5.Name = "linesNode";
+			treeNode5.Text = "Horizontal Lines";
+			treeNode6.Name = "pluginsNode";
+			treeNode6.Text = "Plugins";
+			treeNode7.Name = "ribbonNode";
+			treeNode7.Text = "Ribbon Bar";
+			treeNode8.Name = "searchNode";
+			treeNode8.Text = "Search Engines";
+			treeNode9.Name = "snippetsNode";
+			treeNode9.Text = "Snippets";
 			this.navTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
@@ -150,7 +153,8 @@
             treeNode5,
             treeNode6,
             treeNode7,
-            treeNode8});
+            treeNode8,
+            treeNode9});
 			this.navTree.Size = new System.Drawing.Size(300, 546);
 			this.navTree.TabIndex = 2;
 			this.navTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.Navigate);
@@ -170,7 +174,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "SettingsDialog";
-			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.Padding = new System.Windows.Forms.Padding(15);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "OneMore Settings";

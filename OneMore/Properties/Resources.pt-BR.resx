@@ -3036,4 +3036,28 @@ ISO-code then comma then language name</comment>
     <value>Você gostaria de anotar a imagem com seu URL?</value>
     <comment>message box</comment>
   </data>
+  <data name="LinesSheet_Title" xml:space="preserve">
+    <value>Opções de linha horizontal</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
+    <value>(clique para mudar)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
+    <value>Cor da linha:</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_introBox.Text" xml:space="preserve">
+    <value>Personalize o estilo padrão para trechos de linhas horizontais</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
+    <value>Comprimento:</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
+    <value>Linhas Horizontais</value>
+    <comment>settings dialog</comment>
+  </data>
 </root>

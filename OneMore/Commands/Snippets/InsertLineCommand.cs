@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
+	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -35,13 +37,21 @@ namespace River.OneMoreAddIn.Commands
 
 				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 				var color = dark ? "#D0D0D0" : "#202020";
+				var length = LineCharCount;
+
+				var settings = new SettingsProvider().GetCollection("LinesSheet");
+				if (settings != null)
+				{
+					color = settings.Get<Color>("color").ToRGBHtml();
+					length = (int)settings.Get<decimal>("length");
+				}
 
 				var current =
 					(from e in page.Root.Descendants(ns + "OE")
 					 where e.Elements(ns + "T").Attributes("selected").Any(a => a.Value.Equals("all"))
 					 select e).FirstOrDefault();
 
-				string line = string.Empty.PadRight(LineCharCount, c);
+				string line = string.Empty.PadRight(length, c);
 
 				page.EnsurePageWidth(line, "Courier New", 10f, one.WindowHandle);
 
@@ -58,6 +68,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Used by MergeCommand to separate content of merged pages
+		/// </summary>
+		/// <param name="one"></param>
+		/// <param name="page"></param>
+		/// <param name="c"></param>
 		public static void AppendLine(OneNote one, Page page, char c)
 		{
 			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;

@@ -144,6 +144,12 @@
       <DependentUpon>LinkDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Images\GetImagesCommand.cs" />
+    <Compile Include="Commands\Settings\LinesSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\LinesSheet.Designer.cs">
+      <DependentUpon>LinesSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\GeneralSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -753,6 +759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\LinkDialog.resx">
       <DependentUpon>LinkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
+      <DependentUpon>LinesSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\GeneralSheet.resx">
       <DependentUpon>GeneralSheet.cs</DependentUpon>
