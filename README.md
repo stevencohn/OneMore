@@ -108,6 +108,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Add special icon to the page title, also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
 * Convert select text to a table
+* Copy Section Groups and all child sections and pages to other notebooks and section groups
 * Insert Table Cells, shifting content as expected
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
