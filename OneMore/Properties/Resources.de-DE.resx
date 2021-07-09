@@ -3045,4 +3045,8 @@ ISO-code then comma then language name</comment>
     <value>Horizontale Linien</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>Ein Ordner kann nicht in sich selbst oder eines seiner untergeordneten Elemente kopiert werden</value>
+    <comment>error message</comment>
+  </data>
 </root>

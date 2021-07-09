@@ -3054,4 +3054,8 @@ ISO-code then comma then language name</comment>
     <value>Lignes horizontales</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>Impossible de copier un dossier dans lui-même ou dans l'un de ses enfants</value>
+    <comment>error message</comment>
+  </data>
 </root>

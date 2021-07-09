@@ -3060,4 +3060,8 @@ ISO-code then comma then language name</comment>
     <value>Horizontale lijnen</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>Kan een map niet naar zichzelf of een van de onderliggende mappen kopiëren</value>
+    <comment>error message</comment>
+  </data>
 </root>

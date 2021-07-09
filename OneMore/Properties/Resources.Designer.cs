@@ -995,6 +995,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot copy a folder into itself or one of its children.
+        /// </summary>
+        internal static string CopyFolderCommand_InvalidTarget {
+            get {
+                return ResourceManager.GetString("CopyFolderCommand_InvalidTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one image to crop.
         /// </summary>
         internal static string CropImage_oneImage {

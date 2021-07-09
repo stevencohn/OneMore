@@ -3059,4 +3059,8 @@ ISO-code then comma then language name</comment>
     <value>خطوط أفقية</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>لا يمكن نسخ مجلد إلى نفسه أو إلى أحد توابعه</value>
+    <comment>error message</comment>
+  </data>
 </root>

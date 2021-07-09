@@ -3074,4 +3074,8 @@ In this section</value>
     <value>Horizontal Lines</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>Cannot copy a folder into itself or one of its children</value>
+    <comment>error message</comment>
+  </data>
 </root>

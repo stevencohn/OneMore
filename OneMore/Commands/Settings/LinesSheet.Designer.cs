@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Settings
 			this.clickLabel = new System.Windows.Forms.Label();
 			this.lengthBox = new System.Windows.Forms.NumericUpDown();
 			this.lengthLabel = new System.Windows.Forms.Label();
-			this.colorBox = new System.Windows.Forms.PictureBox();
+			this.colorBox = new River.OneMoreAddIn.UI.MorePictureBox();
 			this.colorLabel = new System.Windows.Forms.Label();
 			this.layoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lengthBox)).BeginInit();
@@ -111,6 +111,7 @@ namespace River.OneMoreAddIn.Settings
 			// colorBox
 			// 
 			this.colorBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.colorBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.colorBox.Location = new System.Drawing.Point(93, 26);
 			this.colorBox.Name = "colorBox";
 			this.colorBox.Size = new System.Drawing.Size(132, 20);
@@ -153,7 +154,7 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Label clickLabel;
 		private System.Windows.Forms.NumericUpDown lengthBox;
 		private System.Windows.Forms.Label lengthLabel;
-		private System.Windows.Forms.PictureBox colorBox;
+		private River.OneMoreAddIn.UI.MorePictureBox colorBox;
 		private System.Windows.Forms.Label colorLabel;
 	}
 }

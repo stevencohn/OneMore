@@ -2,6 +2,7 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************                
 
+#pragma warning disable S3265 // Non-flags enums should not be used in bitwise operations
 #pragma warning disable S3881 // IDisposable should be implemented correctly
 
 namespace River.OneMoreAddIn
@@ -62,7 +63,8 @@ namespace River.OneMoreAddIn
 			Notebooks = HierarchyScope.hsNotebooks,
 			Pages = HierarchyScope.hsPages,
 			Sections = HierarchyScope.hsSections,
-			Self = HierarchyScope.hsSelf
+			Self = HierarchyScope.hsSelf,
+			SectionGroups = 100
 		}
 
 		public class HyperlinkInfo
@@ -922,10 +924,18 @@ namespace River.OneMoreAddIn
 			dialog.Description = description;
 			dialog.ParentWindowHandle = onenote.Windows.CurrentWindow.WindowHandle;
 
+			var restriction = HierarchyElement.heSections;
+
 			switch (scope)
 			{
 				case Scope.Notebooks:
 					dialog.TreeDepth = HierarchyElement.heNotebooks;
+					break;
+				case Scope.SectionGroups:
+					dialog.TreeDepth = HierarchyElement.heSectionGroups;
+					dialog.TreeCollapsedState = TreeCollapsedStateType.tcsExpanded;
+					dialog.ShowCreateNewNotebook();
+					restriction = HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks;
 					break;
 				case Scope.Sections:
 					dialog.TreeDepth = HierarchyElement.heSections;
@@ -935,8 +945,7 @@ namespace River.OneMoreAddIn
 					break;
 			}
 
-			dialog.AddButton(
-				Resx.OK, HierarchyElement.heSections, HierarchyElement.heSections, false);
+			dialog.AddButton(Resx.OK, restriction, restriction, false);
 
 			dialog.Run(new FilingCallback(callback));
 		}

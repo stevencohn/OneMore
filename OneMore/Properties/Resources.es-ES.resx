@@ -3059,4 +3059,8 @@ ISO-code then comma then language name</comment>
     <value>Lineas horizontales</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>No se puede copiar una carpeta en sí misma o en uno de sus elementos secundarios</value>
+    <comment>error message</comment>
+  </data>
 </root>

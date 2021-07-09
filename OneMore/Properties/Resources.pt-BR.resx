@@ -3060,4 +3060,8 @@ ISO-code then comma then language name</comment>
     <value>Linhas Horizontais</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>Não é possível copiar uma pasta para ela mesma ou para um de seus filhos</value>
+    <comment>error message</comment>
+  </data>
 </root>

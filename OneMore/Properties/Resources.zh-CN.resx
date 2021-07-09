@@ -3051,4 +3051,8 @@ ISO-code then comma then language name</comment>
     <value>水平线</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>无法将文件夹复制到其自身或其子级之一</value>
+    <comment>error message</comment>
+  </data>
 </root>

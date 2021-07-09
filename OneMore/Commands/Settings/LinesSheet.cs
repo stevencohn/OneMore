@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Settings
 
 			using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
 				location.X + colorBox.Bounds.Location.X + (colorBox.Width / 2),
-				location.Y - 200))
+				location.Y - 50))
 			{
 				dialog.Color = colorBox.BackColor;
 

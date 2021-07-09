@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 					root.Add(contextMenus);
 				}
 
-				//AddSectionGroupContextMenuCommands(contextMenus);
+				AddSectionGroupContextMenuCommands(contextMenus);
 
 				var provider = new SettingsProvider();
 
