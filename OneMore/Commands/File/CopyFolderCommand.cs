@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			logger.Start($"target folder {targetId}");
+			logger.Start($"..target folder {targetId}");
 
 			try
 			{
