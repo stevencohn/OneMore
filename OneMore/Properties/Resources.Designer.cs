@@ -4016,6 +4016,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Section Group.
+        /// </summary>
+        internal static string ribCopyFolderButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyFolderButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Style from Selection.
         /// </summary>
         internal static string ribCreateStyleButton_Label {

@@ -3063,4 +3063,8 @@ ISO-code then comma then language name</comment>
     <value>No se puede copiar una carpeta en sí misma o en uno de sus elementos secundarios</value>
     <comment>error message</comment>
   </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>Copiar grupo de secciones</value>
+    <comment>context menu item</comment>
+  </data>
 </root>

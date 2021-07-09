@@ -3049,4 +3049,8 @@ ISO-code then comma then language name</comment>
     <value>Ein Ordner kann nicht in sich selbst oder eines seiner untergeordneten Elemente kopiert werden</value>
     <comment>error message</comment>
   </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>Abschnittsgruppe kopieren</value>
+    <comment>context menu item</comment>
+  </data>
 </root>

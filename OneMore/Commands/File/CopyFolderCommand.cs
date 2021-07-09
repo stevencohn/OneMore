@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	/// <summary>
+	/// Copy a SectionGroup (folder) into another section group or notebook
+	/// </summary>
 	internal class CopyFolderCommand : Command
 	{
 		private UI.ProgressDialog progress;
@@ -30,7 +33,6 @@ namespace River.OneMoreAddIn.Commands
 					OneNote.Scope.SectionGroups, Callback);
 			}
 
-			logger.WriteLine("selected");
 			await Task.Yield();
 		}
 
@@ -190,6 +192,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// recurse...
+
+			// NOTE that these find target sections by name, so the names must be unique otherwise
+			// this will copy all pages into the first occurance with a matching name!
 
 			foreach (var section in root.Elements(ns + "SectionGroup").Elements(ns + "Section"))
 			{

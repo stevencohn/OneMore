@@ -3078,4 +3078,8 @@ In this section</value>
     <value>Cannot copy a folder into itself or one of its children</value>
     <comment>error message</comment>
   </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>Copy Section Group</value>
+    <comment>context menu item</comment>
+  </data>
 </root>

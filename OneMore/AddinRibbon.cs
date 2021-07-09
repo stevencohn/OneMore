@@ -57,8 +57,6 @@ namespace River.OneMoreAddIn
 					root.Add(contextMenus);
 				}
 
-				AddSectionGroupContextMenuCommands(contextMenus);
-
 				var provider = new SettingsProvider();
 
 				var ribbonbar = provider.GetCollection("RibbonBarSheet");
@@ -143,24 +141,6 @@ namespace River.OneMoreAddIn
 				logger.WriteLine("error building colorize menu", exc);
 			}
 		}
-
-
-		private void AddSectionGroupContextMenuCommands(XElement root)
-		{
-			root.Add(new XElement(ns + "contextMenu",
-				new XAttribute("idMso", "ContextMenuSectionGroup"),
-					new XElement(ns + "button",
-						new XAttribute("id", "ctxCopyFolderButton"),
-						new XAttribute("imageMso", "CopyFolder"),
-						new XAttribute("label", "Copy Section Group"),
-						new XAttribute("onAction", "CopyFolderCmd"),
-						new XAttribute("insertBeforeMso", "FolderRename")),
-				new XElement(ns + "menuSeparator",
-					new XAttribute("id", "omSectionGroupContextMenuSeparator"),
-					new XAttribute("insertBeforeMso", "FolderRename"))
-				));
-		}
-
 
 		private void AddRibbonBarCommands(SettingsCollection ribbonbar, XElement root)
 		{

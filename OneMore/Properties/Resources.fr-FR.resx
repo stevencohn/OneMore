@@ -3058,4 +3058,8 @@ ISO-code then comma then language name</comment>
     <value>Impossible de copier un dossier dans lui-même ou dans l'un de ses enfants</value>
     <comment>error message</comment>
   </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>Copier le groupe de sections</value>
+    <comment>context menu item</comment>
+  </data>
 </root>

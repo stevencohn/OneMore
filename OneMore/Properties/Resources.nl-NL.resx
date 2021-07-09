@@ -3064,4 +3064,8 @@ ISO-code then comma then language name</comment>
     <value>Kan een map niet naar zichzelf of een van de onderliggende mappen kopiëren</value>
     <comment>error message</comment>
   </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>Sectiegroep kopiëren</value>
+    <comment>context menu item</comment>
+  </data>
 </root>

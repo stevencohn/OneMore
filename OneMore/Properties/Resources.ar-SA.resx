@@ -3063,4 +3063,8 @@ ISO-code then comma then language name</comment>
     <value>لا يمكن نسخ مجلد إلى نفسه أو إلى أحد توابعه</value>
     <comment>error message</comment>
   </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>مجموعة قسم النسخ</value>
+    <comment>context menu item</comment>
+  </data>
 </root>

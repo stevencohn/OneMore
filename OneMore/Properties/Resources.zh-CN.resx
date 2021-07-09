@@ -3055,4 +3055,8 @@ ISO-code then comma then language name</comment>
     <value>无法将文件夹复制到其自身或其子级之一</value>
     <comment>error message</comment>
   </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>复制节组</value>
+    <comment>context menu item</comment>
+  </data>
 </root>

@@ -3064,4 +3064,8 @@ ISO-code then comma then language name</comment>
     <value>Não é possível copiar uma pasta para ela mesma ou para um de seus filhos</value>
     <comment>error message</comment>
   </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>Copiar Grupo de Seção</value>
+    <comment>context menu item</comment>
+  </data>
 </root>

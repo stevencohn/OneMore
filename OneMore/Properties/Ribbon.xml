@@ -645,6 +645,17 @@
       <menuSeparator
         id="omSectionContextMenuSeparator"
         insertBeforeMso="SectionRenameOneNote"/>
-    </contextMenu>    
+    </contextMenu>
+    <contextMenu idMso="ContextMenuSectionGroup">
+      <button
+        id="ctxCopyFolderButton"
+        imageMso="CopyFolder"
+        getLabel="GetRibbonLabel"
+        onAction="CopyFolderCmd"
+        insertBeforeMso="FolderRename"/>
+      <menuSeparator
+        id="omSectionGroupContextMenuSeparator"
+        insertBeforeMso="FolderRename"/>
+    </contextMenu>
   </contextMenus>
 </customUI>
