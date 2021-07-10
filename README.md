@@ -169,5 +169,5 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
 ### Developing OneMore
 
-See the [Developer Notes](../../wiki/Developer-Notes) page in the Wiki where I keep a list of 
+See the [Developer Notes](../../wiki/~-Developer-Notes) page in the Wiki where I keep a list of 
 technical references and information regarding developing and debugging this OneNote add-in.
