@@ -149,7 +149,7 @@ _Click here, click now, click often! >>_
 
 * Developed for Windows 10
 * Microsoft Visual Studio 2019, C# 7
-* Microsoft Visual Studio 2019 Installer Projects extension
+* Microsoft [Visual Studio 2019 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects)
 * .NET Framework 4.8
 * Microsoft OneNote 2016 32-bit or 64-bit
 
