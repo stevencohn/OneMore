@@ -55,13 +55,6 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Save and reuse custom snippets of content anywhere on any page
 * Add a link to a special page containing all OneNote and OneMore keyboard shortcuts
 
-[Formula commands](../../wiki/Formula-Commands)
-
-* Calculate Excel-like formulas in tables (F5)
-* Delete formula from selected table cells
-* Highlight all cells on the page with custom formulas
-* Recalculate all formulas in selected tables on the page (Shift + F5)
-
 [Image commands](../../wiki/Image-Commands)
 
 * Add caption to a selected images
@@ -103,13 +96,21 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Insert collapsable sections to hide secondary or sensitive information
 * Insert status labels similar to the Confluence status macro
 
+[Table commands](../../wiki/Table-Commands)
+
+* Calculate Excel-like formulas in tables (F5)
+* Delete formula from selected table cells
+* Highlight all cells on the page with custom formulas
+* Recalculate all formulas in selected tables on the page (Shift + F5)
+* Convert select text to a table
+* Insert Table Cells, shifting content as expected
+* Split table
+
 [Extra commands](../../wiki/Extra-Commands)
 
 * Add special icon to the page title, also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
-* Convert select text to a table
 * Copy Section Groups and all child sections and pages to other notebooks and section groups
-* Insert Table Cells, shifting content as expected
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
 * Prepend page titles with the created date of each page
