@@ -49,16 +49,17 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <typeparam name="T">The command type</typeparam>
 		/// <param name="args">The argument list</param>
+		/// <returns>Task</returns>
 		public async Task Run<T>(params object[] args) where T : Command, new()
 		{
-			await Run(new T(), args);
+			await Run("Running", new T(), args);
 		}
 
 
-		private async Task Run(Command command, params object[] args)
+		private async Task Run(string note, Command command, params object[] args)
 		{
 			var type = command.GetType();
-			logger.Start($"Running command {type.Name}");
+			logger.Start($"{note} command {type.Name}");
 
 			command.SetLogger(logger);
 			command.SetRibbon(ribbon);
@@ -136,6 +137,10 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Instantiates and executes the most recently executed command.
+		/// </summary>
+		/// <returns>Task</returns>
 		public async Task ReplayLastAction()
 		{
 			var provider = new SettingsProvider();
@@ -166,11 +171,14 @@ namespace River.OneMoreAddIn
 						}
 					}
 
-					await Run(command, args.ToArray());
+					await Run("Replaying", command, args.ToArray());
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine("error parsing last action", exc);
+					provider.RemoveCollection("lastAction");
+					provider.Save();
+
+					logger.WriteLine("error parsing last action; history cleared", exc);
 				}
 			}
 			else
