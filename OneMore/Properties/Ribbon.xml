@@ -46,22 +46,12 @@
 
           <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" getImage="GetOneMoreRibbonImage">
             <button
-              id="ribCollapseButton"
-              imageMso="CollapseAll"
-              getLabel="GetRibbonLabel"
-              onAction="CollapseCmd"/>
-            <button
-              id="ribPasteRtfButton"
-              imageMso="PasteSpecialDialog"
+              id="ribReplayButton"
+              imageMso="MoviePlayAutomatically"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
-              onAction="PasteRtfCmd"/>
-            <button
-              id="ribSortButton"
-              imageMso="SortUp"
-              getLabel="GetRibbonLabel"
-              onAction="SortCmd"/>
+              onAction="ReplayCmd"/>
             <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
               <button
                 id="ribBreakingButton"
@@ -122,6 +112,24 @@
                 getLabel="GetRibbonLabel"
                 onAction="HighlightCmd"/>
               <button
+                id="ribPasteRtfButton"
+                imageMso="PasteSpecialDialog"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="PasteRtfCmd"/>
+              <button
+                id="ribSpellCheckButton"
+                imageMso="Spelling"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="EnableSpellCheckCmd"/>
+              <button
+                id="ribNoSpellCheckButton"
+                image="NoSpellCheck"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="DisableSpellCheckCmd"/>
+              <button
                 id="ribUppercaseButton"
                 imageMso="A"
                 getLabel="GetRibbonLabel"
@@ -162,18 +170,6 @@
                 getLabel="GetRibbonLabel"
                 onAction="ExpandContentCmd"/>
               <button
-                id="ribSpellCheckButton"
-                imageMso="Spelling"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="EnableSpellCheckCmd"/>
-              <button
-                id="ribNoSpellCheckButton"
-                image="NoSpellCheck"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="DisableSpellCheckCmd"/>
-              <button
                 id="ribInvertSelectionButton"
                 imageMso="BlackAndWhiteInverseGrayscale"
                 getLabel="GetRibbonLabel"
@@ -183,34 +179,6 @@
                 imageMso="GroupMerge"
                 getLabel="GetRibbonLabel"
                 onAction="JoinParagraphCmd"/>
-            </menu>
-            <menu id="ribFormulaMenu" getLabel="GetRibbonLabel" imageMso="TableFormulaDialog" getEnabled="GetBodyContext">
-              <button
-                id="ribAddFormulaButton"
-                imageMso="TableFormulaDialog"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                getEnabled="GetBodyContext"
-                onAction="AddFormulaCmd"/>
-              <button
-                id="ribDeleteFormulaButton"
-                imageMso="SheetDelete"
-                getLabel="GetRibbonLabel"
-                getEnabled="GetBodyContext"
-                onAction="DeleteFormulaCmd"/>
-              <button
-                id="ribHighlightFormulaButton"
-                imageMso="PivotTableListFormulas"
-                getLabel="GetRibbonLabel"
-                getEnabled="GetBodyContext"
-                onAction="HighlightFormulaCmd"/>
-              <button
-                id="ribRecalculateFormulaButton"
-                imageMso="CalculateSheet"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                getEnabled="GetBodyContext"
-                onAction="RecalculateFormulaCmd"/>
             </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">
               <button
@@ -430,12 +398,33 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertBlueStatusCmd"/>
             </menu>
-            <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote">
+            <menu id="ribTableMenu" getLabel="GetRibbonLabel" imageMso="TableInsert" getEnabled="GetBodyContext">
               <button
-                id="ribFlagTitleButton"
-                imageMso="DataGraphicIconSet"
+                id="ribAddFormulaButton"
+                imageMso="TableFormulaDialog"
                 getLabel="GetRibbonLabel"
-                onAction="AddTitleIconCmd"/>
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="AddFormulaCmd"/>
+              <button
+                id="ribDeleteFormulaButton"
+                imageMso="SheetDelete"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="DeleteFormulaCmd"/>
+              <button
+                id="ribHighlightFormulaButton"
+                imageMso="PivotTableListFormulas"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="HighlightFormulaCmd"/>
+              <button
+                id="ribRecalculateFormulaButton"
+                imageMso="CalculateSheet"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="RecalculateFormulaCmd"/>
               <button
                 id="ribTextToTableButton"
                 imageMso="ConvertTextToTable"
@@ -454,6 +443,18 @@
                 getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="SplitTableCmd"/>
+            </menu>
+            <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote">
+              <button
+                id="ribFlagTitleButton"
+                imageMso="DataGraphicIconSet"
+                getLabel="GetRibbonLabel"
+                onAction="AddTitleIconCmd"/>
+              <button
+                id="ribCollapseButton"
+                imageMso="CollapseAll"
+                getLabel="GetRibbonLabel"
+                onAction="CollapseCmd"/>
               <button
                 id="ribDateStampButton"
                 getLabel="GetRibbonLabel"
@@ -477,6 +478,11 @@
                 imageMso="MasterDocumentSplitSubdocuments"
                 getLabel="GetRibbonLabel"
                 onAction="SplitCmd"/>
+              <button
+                id="ribSortButton"
+                imageMso="SortUp"
+                getLabel="GetRibbonLabel"
+                onAction="SortCmd"/>
               <button
                 id="ribStrikeoutTasksButton"
                 imageMso="Strikethrough"

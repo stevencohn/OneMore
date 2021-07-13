@@ -15,7 +15,6 @@ namespace River.OneMoreAddIn
 
 	public partial class AddIn
 	{
-
 		public async Task AboutCmd(IRibbonControl control)
 			=> await factory.Run<AboutCommand>();
 
@@ -231,6 +230,9 @@ namespace River.OneMoreAddIn
 
 		public async Task RemoveSpacingCmd(IRibbonControl control)
 			=> await factory.Run<RemoveSpacingCommand>();
+
+		public async Task ReplayCmd(IRibbonControl control)
+			=> await factory.ReplayLastAction();
 
 		public async Task ResizeImagesCmd(IRibbonControl control)
 			=> await factory.Run<ResizeImagesCommand>();

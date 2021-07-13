@@ -438,8 +438,8 @@
     <value>Remove Footnote</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>Formula</value>
+  <data name="ribTableMenu_Label" xml:space="preserve">
+    <value>Table</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
@@ -3081,5 +3081,13 @@ In this section</value>
   <data name="ribCopyFolderButton_Label" xml:space="preserve">
     <value>Copy Section Group</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="ribReplayButton_Label" xml:space="preserve">
+    <value>Replay Last Command</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribReplayButton_Screentip" xml:space="preserve">
+    <value>Replay last command (Alt + Shift + R)</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
 </root>

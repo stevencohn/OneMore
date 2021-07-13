@@ -438,10 +438,6 @@
     <value>Voetnoot verwijderen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>Formule</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
-  </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
     <value>Grijze status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -3067,5 +3063,17 @@ ISO-code then comma then language name</comment>
   <data name="ribCopyFolderButton_Label" xml:space="preserve">
     <value>Sectiegroep kopiëren</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="ribTableMenu_Label" xml:space="preserve">
+    <value>Tafel</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribReplayButton_Label" xml:space="preserve">
+    <value>Laatste opdracht herhalen</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribReplayButton_Screentip" xml:space="preserve">
+    <value>Laatste opdracht opnieuw afspelen (Alt + Shift + R)</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
 </root>

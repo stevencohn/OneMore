@@ -437,10 +437,6 @@
     <value>删除脚注</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>公式</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
-  </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
     <value>灰色状态</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -3058,5 +3054,17 @@ ISO-code then comma then language name</comment>
   <data name="ribCopyFolderButton_Label" xml:space="preserve">
     <value>复制节组</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="ribTableMenu_Label" xml:space="preserve">
+    <value>桌子</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribReplayButton_Label" xml:space="preserve">
+    <value>重放上一个命令</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribReplayButton_Screentip" xml:space="preserve">
+    <value>重放上一个命令 (Alt + Shift + R)</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
 </root>

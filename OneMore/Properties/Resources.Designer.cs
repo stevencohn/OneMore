@@ -4232,15 +4232,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Formula.
-        /// </summary>
-        internal static string ribFormulaMenu_Label {
-            get {
-                return ResourceManager.GetString("ribFormulaMenu_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Replace URLs with Images.
         /// </summary>
         internal static string ribGetImagesButton_Label {
@@ -4826,6 +4817,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replay Last Command.
+        /// </summary>
+        internal static string ribReplayButton_Label {
+            get {
+                return ResourceManager.GetString("ribReplayButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replay last command (Alt + Shift + R).
+        /// </summary>
+        internal static string ribReplayButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribReplayButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resize.
         /// </summary>
         internal static string ribResizeImagesButton_Label {
@@ -4975,6 +4984,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribStrikeoutTasksButton_Screentip {
             get {
                 return ResourceManager.GetString("ribStrikeoutTasksButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table.
+        /// </summary>
+        internal static string ribTableMenu_Label {
+            get {
+                return ResourceManager.GetString("ribTableMenu_Label", resourceCulture);
             }
         }
         

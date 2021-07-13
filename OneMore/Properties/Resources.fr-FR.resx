@@ -437,10 +437,6 @@
     <value>Supprimer la note de bas de page</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>Formule</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
-  </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
     <value>Statut gris</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -3061,5 +3057,17 @@ ISO-code then comma then language name</comment>
   <data name="ribCopyFolderButton_Label" xml:space="preserve">
     <value>Copier le groupe de sections</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="ribTableMenu_Label" xml:space="preserve">
+    <value>Tableau</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribReplayButton_Label" xml:space="preserve">
+    <value>Rejouer la dernière commande</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribReplayButton_Screentip" xml:space="preserve">
+    <value>Rejouer la dernière commande (Alt + Shift + R)</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
 </root>

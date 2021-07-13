@@ -55,6 +55,9 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(async () => await RemoveFootnoteCmd(null),
 				Keys.F, Hotmods.ControlShift);
 
+			HotkeyManager.RegisterHotKey(async () => await ReplayCmd(null),
+				Keys.R, Hotmods.AltShift);
+
 			HotkeyManager.RegisterHotKey(async () => await SearchCmd(null),
 				Keys.F, Hotmods.Alt);
 
