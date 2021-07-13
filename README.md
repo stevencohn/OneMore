@@ -10,7 +10,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
 * Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
 * Save and reuse [custom snippets](../../wiki/Favorites) of content anywhere on any page
-* Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
+* Add [formulas](../../wiki/Table-Commands) to table cell using Excel-like expressions
 
 
 *Want more from OneMore? OneMore has more...* [Click here to see a list of all features](#features)
