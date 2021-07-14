@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -50,6 +51,22 @@ namespace River.OneMoreAddIn
 		public void SetTrash(List<IDisposable> value)
 		{
 			trash = value;
+		}
+
+
+		/// <summary>
+		/// Called by CommandFactory to request any contextual arguments to be used if this
+		/// command is immediately replayed; they will be stored in the setting file in the
+		/// lastAction collection.
+		/// </summary>
+		/// <returns>
+		/// An XElement describing the replay arguments, customized for this command. There is no
+		/// standard schema for this for all commands; instead, each command is responsible for
+		/// generating and consuming its own replay information.
+		/// </returns>
+		public virtual XElement GetReplayArguments()
+		{
+			return null;
 		}
 
 

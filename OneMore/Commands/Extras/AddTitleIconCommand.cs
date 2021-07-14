@@ -10,8 +10,14 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Prefix the page title with one or more chosen icons
+	/// </summary>
 	internal class AddTitleIconCommand : Command
 	{
+		private string[] codes;
+
+
 		public AddTitleIconCommand()
 		{
 		}
@@ -19,16 +25,24 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			string[] codes = null;
-
-			using (var dialog = new AddTitleIconDialog())
+			// check for replay
+			var element = args?.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "codes") as XElement;
+			if (!string.IsNullOrEmpty(element?.Value))
 			{
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
-				{
-					return;
-				}
+				codes = element.Value.Split(',');
+			}
 
-				codes = dialog.GetSelectedCodes();
+			if (codes == null)
+			{
+				using (var dialog = new AddTitleIconDialog())
+				{
+					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+					{
+						return;
+					}
+
+					codes = dialog.GetSelectedCodes();
+				}
 			}
 
 			await AddIcons(codes);
@@ -74,6 +88,17 @@ namespace River.OneMoreAddIn.Commands
 					await one.Update(page);
 				}
 			}
+		}
+
+
+		public override XElement GetReplayArguments()
+		{
+			if (codes != null && codes.Length > 0)
+			{
+				return new XElement("codes", string.Join(",", codes));
+			}
+
+			return null;
 		}
 	}
 }
