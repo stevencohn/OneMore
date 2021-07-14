@@ -13,6 +13,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public EditStylesCommand()
 		{
+			// prevent replay
+			IsCancelled = true;
 		}
 
 
