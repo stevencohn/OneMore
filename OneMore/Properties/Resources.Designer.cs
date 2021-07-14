@@ -995,6 +995,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot copy a folder into itself or one of its children.
+        /// </summary>
+        internal static string CopyFolderCommand_InvalidTarget {
+            get {
+                return ResourceManager.GetString("CopyFolderCommand_InvalidTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one image to crop.
         /// </summary>
         internal static string CropImage_oneImage {
@@ -1931,6 +1940,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Would you like to annotate the image with its URL?.
+        /// </summary>
+        internal static string GetImagesCommand_Cite {
+            get {
+                return ResourceManager.GetString("GetImagesCommand_Cite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Hammer {
@@ -2472,6 +2490,51 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("LabelSearch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (click to change).
+        /// </summary>
+        internal static string LinesSheet_clickLabel_Text {
+            get {
+                return ResourceManager.GetString("LinesSheet_clickLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line color:.
+        /// </summary>
+        internal static string LinesSheet_colorLabel_Text {
+            get {
+                return ResourceManager.GetString("LinesSheet_colorLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the default style for horiztonal line snippets.
+        /// </summary>
+        internal static string LinesSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("LinesSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length:.
+        /// </summary>
+        internal static string LinesSheet_lengthLabel_Text {
+            get {
+                return ResourceManager.GetString("LinesSheet_lengthLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal Line Options.
+        /// </summary>
+        internal static string LinesSheet_Title {
+            get {
+                return ResourceManager.GetString("LinesSheet_Title", resourceCulture);
             }
         }
         
@@ -3953,6 +4016,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Section Group.
+        /// </summary>
+        internal static string ribCopyFolderButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyFolderButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Style from Selection.
         /// </summary>
         internal static string ribCreateStyleButton_Label {
@@ -4156,15 +4228,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribFootnoteRemoveButton_Screentip {
             get {
                 return ResourceManager.GetString("ribFootnoteRemoveButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Formula.
-        /// </summary>
-        internal static string ribFormulaMenu_Label {
-            get {
-                return ResourceManager.GetString("ribFormulaMenu_Label", resourceCulture);
             }
         }
         
@@ -4754,6 +4817,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replay Last Command.
+        /// </summary>
+        internal static string ribReplayButton_Label {
+            get {
+                return ResourceManager.GetString("ribReplayButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replay last command (Alt + Shift + R).
+        /// </summary>
+        internal static string ribReplayButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribReplayButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resize.
         /// </summary>
         internal static string ribResizeImagesButton_Label {
@@ -4903,6 +4984,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribStrikeoutTasksButton_Screentip {
             get {
                 return ResourceManager.GetString("ribStrikeoutTasksButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table.
+        /// </summary>
+        internal static string ribTableMenu_Label {
+            get {
+                return ResourceManager.GetString("ribTableMenu_Label", resourceCulture);
             }
         }
         
@@ -5565,6 +5655,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SettingsDialog_highlightNode_Text {
             get {
                 return ResourceManager.GetString("SettingsDialog_highlightNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal Lines.
+        /// </summary>
+        internal static string SettingsDialog_linesNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_linesNode.Text", resourceCulture);
             }
         }
         

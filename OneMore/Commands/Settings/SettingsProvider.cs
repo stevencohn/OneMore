@@ -68,6 +68,12 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		/// <summary>
+		/// Get the named collection. If the named element contains child elements then it is
+		/// presumed to be an XElement, otherwise it is presumed to be a simple key/value entry
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public SettingsCollection GetCollection(string name)
 		{
 			var settings = new SettingsCollection(name);
@@ -79,10 +85,12 @@ namespace River.OneMoreAddIn.Settings
 				{
 					if (element.HasElements)
 					{
+						// has child elements so this must be an XElement
 						settings.Add(element.Name.LocalName, element);
 					}
 					else
 					{
+						// has no children so this must be a simple key/value entry
 						settings.Add(element.Name.LocalName, element.Value);
 					}
 				}

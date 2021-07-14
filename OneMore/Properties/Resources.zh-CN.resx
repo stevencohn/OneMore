@@ -437,10 +437,6 @@
     <value>删除脚注</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>公式</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
-  </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
     <value>灰色状态</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -3022,5 +3018,53 @@ ISO-code then comma then language name</comment>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>用图像替换 URL</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="GetImagesCommand_Cite" xml:space="preserve">
+    <value>你想用它的 URL 注释图像吗？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="LinesSheet_Title" xml:space="preserve">
+    <value>水平线选项</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
+    <value>（点击更改）</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
+    <value>线条颜色：</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_introBox.Text" xml:space="preserve">
+    <value>自定义水平线片段的默认样式</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
+    <value>长度：</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
+    <value>水平线</value>
+    <comment>settings dialog</comment>
+  </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>无法将文件夹复制到其自身或其子级之一</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>复制节组</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="ribTableMenu_Label" xml:space="preserve">
+    <value>桌子</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribReplayButton_Label" xml:space="preserve">
+    <value>重放上一个命令</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribReplayButton_Screentip" xml:space="preserve">
+    <value>重放上一个命令 (Alt + Shift + R)</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
 </root>

@@ -437,10 +437,6 @@
     <value>Eliminar nota al pie</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>Fórmula</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
-  </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
     <value>Estado gris</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -3030,5 +3026,53 @@ ISO-code then comma then language name</comment>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>Reemplazar URL con imágenes</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="GetImagesCommand_Cite" xml:space="preserve">
+    <value>¿Le gustaría anotar la imagen con su URL?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="LinesSheet_Title" xml:space="preserve">
+    <value>Opciones de línea horizontal</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
+    <value>(haga clic para cambiar)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
+    <value>Color de linea:</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_introBox.Text" xml:space="preserve">
+    <value>Personalice el estilo predeterminado para fragmentos de líneas horizontales</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
+    <value>Largo:</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
+    <value>Lineas horizontales</value>
+    <comment>settings dialog</comment>
+  </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>No se puede copiar una carpeta en sí misma o en uno de sus elementos secundarios</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>Copiar grupo de secciones</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="ribTableMenu_Label" xml:space="preserve">
+    <value>Mesa</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribReplayButton_Label" xml:space="preserve">
+    <value>Reproducir el último comando</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribReplayButton_Screentip" xml:space="preserve">
+    <value>Reproducir el último comando (Alt + Mayús + R)</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
 </root>

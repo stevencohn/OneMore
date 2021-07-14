@@ -10,7 +10,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
 * Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
 * Save and reuse [custom snippets](../../wiki/Favorites) of content anywhere on any page
-* Add [formulas](../../wiki/Formula-Commands) to table cell using Excel-like expressions
+* Add [formulas](../../wiki/Table-Commands) to table cell using Excel-like expressions
 
 
 *Want more from OneMore? OneMore has more...* [Click here to see a list of all features](#features)
@@ -55,13 +55,6 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Save and reuse custom snippets of content anywhere on any page
 * Add a link to a special page containing all OneNote and OneMore keyboard shortcuts
 
-[Formula commands](../../wiki/Formula-Commands)
-
-* Calculate Excel-like formulas in tables (F5)
-* Delete formula from selected table cells
-* Highlight all cells on the page with custom formulas
-* Recalculate all formulas in selected tables on the page (Shift + F5)
-
 [Image commands](../../wiki/Image-Commands)
 
 * Add caption to a selected images
@@ -103,12 +96,21 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Insert collapsable sections to hide secondary or sensitive information
 * Insert status labels similar to the Confluence status macro
 
+[Table commands](../../wiki/Table-Commands)
+
+* Calculate Excel-like formulas in tables (F5)
+* Delete formula from selected table cells
+* Highlight all cells on the page with custom formulas
+* Recalculate all formulas in selected tables on the page (Shift + F5)
+* Convert select text to a table
+* Insert Table Cells, shifting content as expected
+* Split table
+
 [Extra commands](../../wiki/Extra-Commands)
 
 * Add special icon to the page title, also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
-* Convert select text to a table
-* Insert Table Cells, shifting content as expected
+* Copy Section Groups and all child sections and pages to other notebooks and section groups
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
 * Prepend page titles with the created date of each page
@@ -148,7 +150,7 @@ _Click here, click now, click often! >>_
 
 * Developed for Windows 10
 * Microsoft Visual Studio 2019, C# 7
-* Microsoft Visual Studio 2019 Installer Projects extension
+* Microsoft [Visual Studio 2019 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects)
 * .NET Framework 4.8
 * Microsoft OneNote 2016 32-bit or 64-bit
 
@@ -168,5 +170,5 @@ Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
 ### Developing OneMore
 
-See the [Developer Notes](../../wiki/Developer-Notes) page in the Wiki where I keep a list of 
+See the [Developer Notes](../../wiki/~-Developer-Notes) page in the Wiki where I keep a list of 
 technical references and information regarding developing and debugging this OneNote add-in.

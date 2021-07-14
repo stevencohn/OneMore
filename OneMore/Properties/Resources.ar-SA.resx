@@ -437,10 +437,6 @@
     <value>إزالة الحاشية السفلية</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ribFormulaMenu_Label" xml:space="preserve">
-    <value>معادلة</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
-  </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
     <value>الحالة الرمادية</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -3030,5 +3026,53 @@ ISO-code then comma then language name</comment>
   <data name="ribGetImagesButton_Label" xml:space="preserve">
     <value>استبدل عناوين URL بالصور</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="GetImagesCommand_Cite" xml:space="preserve">
+    <value>هل ترغب في إضافة تعليق توضيحي على الصورة بعنوان URL الخاص بها؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="LinesSheet_Title" xml:space="preserve">
+    <value>خيارات الخط الأفقي</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
+    <value>(انقر للتغيير)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
+    <value>لون الخط:</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص النمط الافتراضي لمقتطفات الخط الأفقي</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
+    <value>طول:</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="SettingsDialog_linesNode.Text" xml:space="preserve">
+    <value>خطوط أفقية</value>
+    <comment>settings dialog</comment>
+  </data>
+  <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
+    <value>لا يمكن نسخ مجلد إلى نفسه أو إلى أحد توابعه</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribCopyFolderButton_Label" xml:space="preserve">
+    <value>مجموعة قسم النسخ</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="ribTableMenu_Label" xml:space="preserve">
+    <value>الطاولة</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribReplayButton_Label" xml:space="preserve">
+    <value>أعد تشغيل الأمر الأخير</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribReplayButton_Screentip" xml:space="preserve">
+    <value>أعد تشغيل الأمر الأخير (Alt + Shift + R)</value>
+    <comment>Ribbon OneMore menu item, trim</comment>
   </data>
 </root>
