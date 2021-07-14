@@ -14,6 +14,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public ClearLogCommand()
 		{
+			// prevent replay
+			IsCancelled = true;
 		}
 
 
