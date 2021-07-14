@@ -38,6 +38,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 					{
+						IsCancelled = true;
 						return;
 					}
 

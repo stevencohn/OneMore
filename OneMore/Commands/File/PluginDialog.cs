@@ -96,7 +96,9 @@ namespace River.OneMoreAddIn.Commands
 			CreateNewPage = createRadio.Checked,
 			AsChildPage = childBox.Checked,
 			PageName = pageNameBox.Text,
-			Timeout = (int)timeoutBox.Value
+			Timeout = (int)timeoutBox.Value,
+			// set path for replay functionality
+			Path = plugin.Path
 		};
 
 

@@ -27,6 +27,17 @@ namespace River.OneMoreAddIn
 		protected List<IDisposable> trash;
 
 
+		/// <summary>
+		/// Set to true by the command if the user cancelled the action; prevents replay from
+		/// recording the action as valid
+		/// </summary>
+		public bool IsCancelled
+		{
+			get;
+			protected set;
+		}
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Settings used by CommandFactory
 

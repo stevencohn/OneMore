@@ -55,7 +55,10 @@ namespace River.OneMoreAddIn
 			var command = new T();
 			await Run("Running", command, args);
 
-			RecordLastAction(command, args);
+			if (!command.IsCancelled)
+			{
+				RecordLastAction(command, args);
+			}
 		}
 
 
@@ -123,6 +126,7 @@ namespace River.OneMoreAddIn
 
 				var provider = new SettingsProvider();
 				var settings = provider.GetCollection("lastAction");
+				settings.Clear();
 
 				// setting name should equate to the XML root element name here
 				// the XML is not wrapped with an extra parent, so no worries

@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Settings
 			Context,
 			Favorites,
 			Highlight,
+			Lines,
 			Plugins,
 			Ribbon,
 			Search,
