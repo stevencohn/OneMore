@@ -88,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 
 						if (dialog.ShowDialog(owner) != DialogResult.OK)
 						{
-							isoCode = null;
+							IsCancelled = true;
 							return;
 						}
 
