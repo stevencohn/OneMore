@@ -20,7 +20,8 @@ namespace River.OneMoreAddIn.Commands
 			Word,
 			PowerPoint,
 			Xml,
-			OneNote
+			OneNote,
+			Markdown
 		}
 
 		public ImportDialog()
@@ -86,6 +87,13 @@ namespace River.OneMoreAddIn.Commands
 						powerGroup.Visible = false;
 						okButton.Enabled = true;
 						Format = Formats.Word;
+						break;
+
+					case ".md":
+						wordGroup.Visible = false;
+						powerGroup.Visible = false;
+						okButton.Enabled = true;
+						Format = Formats.Markdown;
 						break;
 
 					case ".pptx":
