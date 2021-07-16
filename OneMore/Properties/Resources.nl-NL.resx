@@ -3076,4 +3076,8 @@ ISO-code then comma then language name</comment>
     <value>Laatste opdracht opnieuw afspelen (Alt + Shift + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
+  <data name="ribClearBackgroundButton_Label" xml:space="preserve">
+    <value>Heldere achtergrondkleur</value>
+    <comment>ribbon menu item</comment>
+  </data>
 </root>

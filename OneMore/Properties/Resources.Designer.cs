@@ -3971,6 +3971,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear Background Color.
+        /// </summary>
+        internal static string ribClearBackgroundButton_Label {
+            get {
+                return ResourceManager.GetString("ribClearBackgroundButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code block.
         /// </summary>
         internal static string ribCodeBlockButton_Label {

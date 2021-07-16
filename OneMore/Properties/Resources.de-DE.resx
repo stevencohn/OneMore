@@ -3061,4 +3061,8 @@ ISO-code then comma then language name</comment>
     <value>Letzten Befehl wiederholen (Alt + Umschalt + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
+  <data name="ribClearBackgroundButton_Label" xml:space="preserve">
+    <value>Klare Hintergrundfarbe</value>
+    <comment>ribbon menu item</comment>
+  </data>
 </root>

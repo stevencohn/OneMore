@@ -3067,4 +3067,8 @@ ISO-code then comma then language name</comment>
     <value>重放上一个命令 (Alt + Shift + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
+  <data name="ribClearBackgroundButton_Label" xml:space="preserve">
+    <value>清晰的背景颜色</value>
+    <comment>ribbon menu item</comment>
+  </data>
 </root>

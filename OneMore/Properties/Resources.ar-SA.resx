@@ -3075,4 +3075,8 @@ ISO-code then comma then language name</comment>
     <value>أعد تشغيل الأمر الأخير (Alt + Shift + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
+  <data name="ribClearBackgroundButton_Label" xml:space="preserve">
+    <value>مسح لون الخلفية</value>
+    <comment>ribbon menu item</comment>
+  </data>
 </root>

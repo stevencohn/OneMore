@@ -3090,4 +3090,8 @@ In this section</value>
     <value>Replay last command (Alt + Shift + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
+  <data name="ribClearBackgroundButton_Label" xml:space="preserve">
+    <value>Clear Background Color</value>
+    <comment>ribbon menu item</comment>
+  </data>
 </root>

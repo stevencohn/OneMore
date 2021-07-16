@@ -51,6 +51,9 @@ namespace River.OneMoreAddIn
 		public async Task ChangePageColorCmd(IRibbonControl control)
 			=> await factory.Run<ChangePageColorCommand>();
 
+		public async Task ClearBackgroundCmd(IRibbonControl control)
+			=> await factory.Run<ClearBackgroundCommand>();
+
 		public async Task CollapseCmd(IRibbonControl control)
 			=> await factory.Run<CollapseCommand>();
 
