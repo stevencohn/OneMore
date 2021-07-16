@@ -4,8 +4,12 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
+	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -14,6 +18,15 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ClearBackgroundCommand : Command
 	{
+		private const string White = "#FFFFFF";
+		private const string Black = "#000000";
+
+		private OneNote one;
+		private XNamespace ns;
+		private Page page;
+		private StyleAnalyzer analyzer;
+		private bool darkPage;
+
 
 		public ClearBackgroundCommand()
 		{
@@ -22,47 +35,92 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using (one = new OneNote(out page, out ns))
 			{
-				var darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-				var updated = false;
+				darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+				analyzer = new StyleAnalyzer(page.Root, true);
 
-				var analyzer = new StyleAnalyzer(page.Root, true);
-
-				var runs = page.GetSelectedElements(all: true);
-
-				foreach (var run in runs)
-				{
-					analyzer.Clear();
-					var style = new Style(analyzer.CollectStyleProperties(run));
-
-					if (!string.IsNullOrEmpty(style.Highlight))
-					{
-						style.Highlight = Style.Automatic;
-					}
-
-					var darkText = !style.Color.Equals(Style.Automatic) 
-						&& ColorTranslator.FromHtml(style.Color).GetBrightness() < 0.5;
-
-					if (darkText && darkPage)
-					{
-						style.Color = "#FFFFFF";
-					}
-					else if (!darkText && !darkPage)
-					{
-						style.Color = "#000000";
-					}
-
-					var stylizer = new Stylizer(style);
-					stylizer.ApplyStyle(run);
-					updated = true;
-				}
+				var updated = ClearTextBackground();
+				updated |= ClearCellBackground();
 
 				if (updated)
 				{
 					await one.Update(page);
 				}
 			}
+		}
+
+
+		private bool ClearTextBackground()
+		{
+			var runs = page.GetSelectedElements(all: true);
+			var updated = false;
+
+			foreach (var run in runs)
+			{
+				analyzer.Clear();
+				var style = new Style(analyzer.CollectStyleProperties(run));
+
+				if (!string.IsNullOrEmpty(style.Highlight))
+				{
+					style.Highlight = Style.Automatic;
+				}
+
+				var darkText = !style.Color.Equals(Style.Automatic)
+					&& ColorTranslator.FromHtml(style.Color).GetBrightness() < 0.5;
+
+				if (darkText && darkPage)
+				{
+					style.Color = White;
+				}
+				else if (!darkText && !darkPage)
+				{
+					style.Color = Black;
+				}
+
+				var stylizer = new Stylizer(style);
+				stylizer.ApplyStyle(run);
+				updated = true;
+			}
+
+			return updated;
+		}
+
+
+		private bool ClearCellBackground()
+		{
+			IEnumerable<XElement> cells;
+
+			if (page.SelectionScope == SelectionScope.Empty)
+			{
+				cells = page.Root.Descendants(ns + "Cell")
+					.Where(e => e.Attribute("shadingColor") != null);
+			}
+			else
+			{
+				// only clear cell background if entire cell is selected
+
+				cells = page.Root.Descendants(ns + "Cell")
+					.Where(e => e.Attribute("shadingColor") != null
+						&& e.Attribute("selected")?.Value == "all"
+						);
+			}
+
+			var updated = false;
+
+			foreach (var cell in cells)
+			{
+				var attr = cell.Attribute("shadingColor");
+				var darkCell = ColorTranslator.FromHtml(attr.Value).GetBrightness() < 0.5;
+
+				if (darkCell != darkPage)
+				{
+					attr.Remove();
+					updated = true;
+				}
+			}
+
+			return updated;
 		}
 	}
 }
