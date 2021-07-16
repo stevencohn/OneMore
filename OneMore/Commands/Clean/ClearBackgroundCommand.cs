@@ -68,6 +68,7 @@ namespace River.OneMoreAddIn.Commands
 				var darkText = !style.Color.Equals(Style.Automatic)
 					&& ColorTranslator.FromHtml(style.Color).GetBrightness() < 0.5;
 
+				// if dark-on-dkar or light-on-light
 				if (darkText == darkPage)
 				{
 					style.Color = darkText ? White : Black;
@@ -120,6 +121,7 @@ namespace River.OneMoreAddIn.Commands
 				var attr = cell.Attribute("shadingColor");
 				var darkCell = ColorTranslator.FromHtml(attr.Value).GetBrightness() < 0.5;
 
+				// if dark-on-light or light-on-dark
 				if (darkCell != darkPage)
 				{
 					attr.Remove();
