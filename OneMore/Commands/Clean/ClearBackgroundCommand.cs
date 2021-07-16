@@ -24,8 +24,8 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote one;
 		private XNamespace ns;
 		private Page page;
-		private StyleAnalyzer analyzer;
 		private bool darkPage;
+		private StyleAnalyzer analyzer;
 
 
 		public ClearBackgroundCommand()
@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 				darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 				analyzer = new StyleAnalyzer(page.Root, true);
 
-				var updated = ClearTextBackground();
+				var updated = ClearTextBackground(page.GetSelectedElements(all: true));
 				updated |= ClearCellBackground();
 
 				if (updated)
@@ -51,9 +51,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool ClearTextBackground()
+		private bool ClearTextBackground(IEnumerable<XElement> runs, bool deep = false)
 		{
-			var runs = page.GetSelectedElements(all: true);
 			var updated = false;
 
 			foreach (var run in runs)
@@ -69,18 +68,26 @@ namespace River.OneMoreAddIn.Commands
 				var darkText = !style.Color.Equals(Style.Automatic)
 					&& ColorTranslator.FromHtml(style.Color).GetBrightness() < 0.5;
 
-				if (darkText && darkPage)
+				if (darkText == darkPage)
 				{
-					style.Color = White;
-				}
-				else if (!darkText && !darkPage)
-				{
-					style.Color = Black;
+					style.Color = darkText ? White : Black;
+
+					var stylizer = new Stylizer(style);
+					stylizer.ApplyStyle(run);
+					updated = true;
 				}
 
-				var stylizer = new Stylizer(style);
-				stylizer.ApplyStyle(run);
-				updated = true;
+				// deep prevents runs from being processed multiple times
+
+				// NOTE sometimes OneNote will incorrectly set the collapsed attribute,
+				// thinking it is set to 1 but is not visually collapsed!
+
+				if (!deep && run.Parent.Attribute("collapsed")?.Value == "1")
+				{
+					updated |= ClearTextBackground(
+						run.Parent.Descendants(ns + "T").Where(e => e != run),
+						true);
+				}
 			}
 
 			return updated;
