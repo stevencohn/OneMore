@@ -322,7 +322,9 @@ namespace River.OneMoreAddIn.Commands
 				var text = File.ReadAllText(filepath);
 				var deep = new Markdown
 				{
-					MaxImageWidth = 800
+					MaxImageWidth = 800,
+					ExtraMode = true,
+					UrlBaseLocation = Path.GetDirectoryName(filepath)
 				};
 
 				var body = deep.Transform(text);
@@ -338,8 +340,7 @@ namespace River.OneMoreAddIn.Commands
 					builder.AppendLine("</html>");
 					var html = PasteRtfCommand.AddHtmlPreamble(builder.ToString());
 
-					// paste HTML...
-
+					// paste HTML
 					await SingleThreaded.Invoke(() =>
 					{
 						Win.Clipboard.SetText(html, Win.TextDataFormat.Html);
