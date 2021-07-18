@@ -1665,7 +1665,7 @@
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    حدد ملف Word أو PowerPoint أو OneNote أو XML
+    حدد ملف Word أو PowerPoint أو OneNote أو Markdown أو XML
     label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
@@ -1705,7 +1705,7 @@
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    ملفات Word (*.doc)|*.docx|ملفات Powerpoint (*.pptx)|*.pptx|ملفات قالب إضافي واحد (*.xml)|*.xml
+    جميع الملفات (* .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml | ملفات Word (* .doc 
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

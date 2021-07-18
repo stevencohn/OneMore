@@ -1888,7 +1888,7 @@ OneNote File (*.one)</value>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
     <value>Select a Word, PowerPoint, OneNote, Markdown, or XML file</value>
-    <comment>label EDIT</comment>
+    <comment>label</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>
@@ -1927,8 +1927,8 @@ OneNote File (*.one)</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|Markdown (*.md)|*.md|OneNote File (*.one)|*.one</value>
-    <comment>openfiledialog filter EDIT</comment>
+    <value>All files (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template files (*.xml)|*.xml</value>
+    <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Choose file to import</value>

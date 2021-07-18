@@ -1666,7 +1666,7 @@ Arquivo OneNote (*.one)
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    Selecione um arquivo Word, PowerPoint, OneNote ou XML
+    Selecione um arquivo Word, PowerPoint, OneNote, Markdown ou XML
     label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
@@ -1706,7 +1706,7 @@ Arquivo OneNote (*.one)
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Arquivos do Word (*.doc)|*.docx|Arquivos do PowerPoint (*.pptx)|*.pptx|Arquivos de modelo do OneMore (*.xml)|*.xml
+    Todos os arquivos (* .docx; *. Pptx; *. Md; *. One; *. Xml) | * .docx; *. Pptx; *. Md; *. One; *. Xml | Arquivos do Word (* .doc 
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

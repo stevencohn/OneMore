@@ -1666,7 +1666,7 @@ OneNote-bestand (*.one)
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    Selecteer een Word-, PowerPoint-, OneNote- of XML-bestand
+    Selecteer een Word-, PowerPoint-, OneNote-, Markdown- of XML-bestand
     label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
@@ -1706,7 +1706,7 @@ OneNote-bestand (*.one)
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Word-bestanden (*.doc)|*.docx|Powerpoint-bestanden (*.pptx)|*.pptx|OneMore-sjabloonbestanden (*.xml)|*.xml
+    Alle bestanden (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word-bestanden (*.doc 
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
