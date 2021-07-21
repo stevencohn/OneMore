@@ -87,6 +87,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// add html to page and let OneNote rehydrate as it sees fit
 				page.AddHtmlContent(doc.DocumentNode.OuterHtml);
+
 				await one.Update(page);
 				logger.WriteLine("pass 1 updated page with injected HTML");
 
@@ -95,7 +96,7 @@ namespace River.OneMoreAddIn.Commands
 					// fetch page again with hydrated html
 					page = one.GetPage(OneNote.PageDetail.All);
 
-					// transform anchors to downloaded images..
+					// transform anchors to downloaded images...
 
 					var regex = new Regex(
 						@"<a\s+href=""[^:]+://(onemore\.)[^:]+://(onemore\.)",
@@ -107,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						// second update to page
 						await one.Update(page);
-						logger.WriteLine("pass 2 updated page with rehydrated images");
+						logger.WriteLine("pass 2 updated page with hydrated images");
 					}
 				}
 				catch (Exception exc)

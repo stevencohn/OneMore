@@ -138,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 						m.Attribute("name").Value == "om" &&
 						m.Attribute("content").Value == "caption"))
 					{
-						tasks.Add(GetImage(run, ns));
+						tasks.Add(GetImage(run));
 					}
 				});
 
@@ -154,8 +154,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<int> GetImage(XElement run, XNamespace ns)
+		private async Task<int> GetImage(XElement run)
 		{
+			// get thread-local ref of logger
 			logger = Logger.Current;
 
 			var cdata = run.GetCData();
@@ -207,6 +208,7 @@ namespace River.OneMoreAddIn.Commands
 				// split current OE into beforeOE/thisOE/afterOE
 				// results in thisOE having only the T/anchor which we'll swap out for the Image...
 
+				var ns = run.GetNamespaceOfPrefix("one");
 				SplitElement(run, anchor, ns);
 
 				// create Image element and swap with the current T...
