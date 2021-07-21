@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool GetImages(Page page)
+		public bool GetImages(Page page)
 		{
 			List<XElement> runs = null;
 			var regex = new Regex(@"<a\s+href=", RegexOptions.Compiled);

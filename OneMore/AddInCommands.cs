@@ -111,6 +111,9 @@ namespace River.OneMoreAddIn
 		public async Task ImportCmd(IRibbonControl control)
 			=> await factory.Run<ImportCommand>();
 
+		public async Task ImportWebCmd(IRibbonControl control)
+			=> await factory.Run<ImportWebCommand>();
+
 		public async Task InsertBlueStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
 

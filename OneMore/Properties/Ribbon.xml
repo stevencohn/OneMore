@@ -52,6 +52,11 @@
               getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
               onAction="ReplayCmd"/>
+            <button
+              id="ribImportWebButton"
+              label="Import Web"
+              getEnabled="GetBodyContext"
+              onAction="ImportWebCmd"/>
             <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
               <button
                 id="ribBreakingButton"
