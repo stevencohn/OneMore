@@ -23,6 +23,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 [Clean commands](../../wiki/Clean-Commands)
 
 * Change spacing between sentences to one or two spaces
+* Clear background color and reset text color of selected text
 * Remove author/citation information from paragraphs
 * Remove pasted screen clipping and URL citation lines from page
 * Remove empty headers and "extra" empty lines between paragraphs
@@ -121,9 +122,10 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 [Tools](../../wiki/Tools)
 
 * Archive a section or an entire notebook to a zip file with attachments
-* Import MSWord and PowerPoint into the current page or a new page
+* Import MSWord, PowerPoint, Markdown and others into the current page or a new page
 * Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
 * Invoke an external custom plugin to process a page
+* Replay the last OneMore action with a quick keyboard shortcut
 * View and edit the internal OneNote XML of the current page
 * Check for updates and install upgrades on-demand
 

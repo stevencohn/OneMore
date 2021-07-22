@@ -1665,7 +1665,7 @@ Archivo de OneNote (*.one)
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    Seleccione un archivo de Word, PowerPoint, OneNote o XML
+    Seleccione un archivo de Word, PowerPoint, OneNote, Markdown o XML
     label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
@@ -1705,7 +1705,7 @@ Archivo de OneNote (*.one)
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Archivos de Word (*.doc)|*.docx|Archivos de Powerpoint (*.pptx)|*.pptx|Archivos de plantilla OneMore (*.xml)|*.xml
+    Todos los archivos (* .docx; *. Pptx; *. Md; *. One; *. Xml) | * .docx; *. Pptx; *. Md; *. One; *. Xml | Archivos de Word (* .doc 
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
@@ -3074,5 +3074,9 @@ ISO-code then comma then language name</comment>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
     <value>Reproducir el último comando (Alt + Mayús + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribClearBackgroundButton_Label" xml:space="preserve">
+    <value>Color de fondo claro</value>
+    <comment>ribbon menu item</comment>
   </data>
 </root>

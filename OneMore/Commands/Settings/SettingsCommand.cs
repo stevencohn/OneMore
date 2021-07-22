@@ -16,6 +16,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public SettingsCommand()
 		{
+			// prevent replay
+			IsCancelled = true;
 		}
 
 

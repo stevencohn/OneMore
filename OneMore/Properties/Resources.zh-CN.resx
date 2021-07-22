@@ -1662,7 +1662,7 @@ OneNote文件（*.one）
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    选择一个Word，PowerPoint，OneNote或XML文件
+    选择 Word、PowerPoint、OneNote、Markdown 或 XML 文件
     label EDIT
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
@@ -1702,7 +1702,7 @@ OneNote文件（*.one）
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Word文件（*.doc）|*.docx|PowerPoint文件（*.pptx）|*.pptx|OneMore模板文件（*.xml）|*.xml
+    所有文件 (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word 文件 (*.doc 
     openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
@@ -3066,5 +3066,9 @@ ISO-code then comma then language name</comment>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
     <value>重放上一个命令 (Alt + Shift + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribClearBackgroundButton_Label" xml:space="preserve">
+    <value>清晰的背景颜色</value>
+    <comment>ribbon menu item</comment>
   </data>
 </root>

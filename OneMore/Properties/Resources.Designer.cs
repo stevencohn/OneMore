@@ -2040,7 +2040,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a Word, PowerPoint, OneNote, or XML file.
+        ///   Looks up a localized string similar to Select a Word, PowerPoint, OneNote, Markdown, or XML file.
         /// </summary>
         internal static string ImportDialog_introLabel_Text {
             get {
@@ -2058,7 +2058,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|OneNote File (*.one)|*.one.
+        ///   Looks up a localized string similar to All files (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template files (*.xml)|*.xml.
         /// </summary>
         internal static string ImportDialog_OpenFileFilter {
             get {
@@ -3967,6 +3967,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCleanMenu_Label {
             get {
                 return ResourceManager.GetString("ribCleanMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Background Color.
+        /// </summary>
+        internal static string ribClearBackgroundButton_Label {
+            get {
+                return ResourceManager.GetString("ribClearBackgroundButton_Label", resourceCulture);
             }
         }
         

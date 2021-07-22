@@ -77,6 +77,12 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		public void Clear()
+		{
+			properties.Clear();
+		}
+
+
 		public bool Contains(string name)
 		{
 			return properties.ContainsKey(name);

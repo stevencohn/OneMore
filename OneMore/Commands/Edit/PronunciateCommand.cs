@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
 	using System.Windows.Forms;
@@ -20,6 +21,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class PronunciateCommand : Command
 	{
+		private string isoCode;
+
+
 		private class Phonetics
 		{
 			public string text;
@@ -36,6 +40,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public PronunciateCommand()
 		{
+			isoCode = null;
 		}
 
 
@@ -68,17 +73,27 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				string isoCode;
-				using (var dialog = new PronunciateDialog())
+				// check for replay
+				var isoElement = args?.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "isoCode") as XElement;
+				if (!string.IsNullOrEmpty(isoElement?.Value))
 				{
-					dialog.Word = word;
+					isoCode = isoElement.Value;
+				}
 
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
+				if (isoCode == null)
+				{
+					using (var dialog = new PronunciateDialog())
 					{
-						return;
-					}
+						dialog.Word = word;
 
-					isoCode = dialog.Language;
+						if (dialog.ShowDialog(owner) != DialogResult.OK)
+						{
+							IsCancelled = true;
+							return;
+						}
+
+						isoCode = dialog.Language;
+					}
 				}
 
 				var ruby = await LookupPhonetics(word, isoCode);
@@ -105,8 +120,6 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<string> LookupPhonetics(string word, string isoCode)
 		{
 			var client = HttpClientFactory.Create();
-			client.Timeout = new TimeSpan(0, 0, 10);
-
 			var url = string.Format(DictionaryUrl, isoCode, word);
 
 			string json = null;
@@ -118,7 +131,13 @@ namespace River.OneMoreAddIn.Commands
 
 				try
 				{
-					json = await client.GetStringAsync(url);
+					using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
+					{
+						var response = await client.GetAsync(url, source.Token);
+						response.EnsureSuccessStatusCode();
+						json = await response.Content.ReadAsStringAsync();
+					}
+
 					//logger.WriteLine(json);
 				}
 				//catch (HttpRequestException exc) // when (..)
@@ -158,6 +177,17 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error deserializing json", exc);
+			}
+
+			return null;
+		}
+
+
+		public override XElement GetReplayArguments()
+		{
+			if (isoCode != null)
+			{
+				return new XElement("isoCode", isoCode);
 			}
 
 			return null;

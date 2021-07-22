@@ -183,6 +183,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// overwrite original name
 				plugin.OriginalName = name;
+				plugin.Path = path;
 			}
 			catch (Exception exc)
 			{

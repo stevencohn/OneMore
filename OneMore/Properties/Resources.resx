@@ -1887,7 +1887,7 @@ OneNote File (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Select a Word, PowerPoint, OneNote, or XML file</value>
+    <value>Select a Word, PowerPoint, OneNote, Markdown, or XML file</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
@@ -1927,7 +1927,7 @@ OneNote File (*.one)</value>
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|OneMore Template files (*.xml)|*.xml|OneNote File (*.one)|*.one</value>
+    <value>All files (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word files (*.doc)|*.docx|Powerpoint files (*.pptx)|*.pptx|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template files (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
@@ -3089,5 +3089,9 @@ In this section</value>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
     <value>Replay last command (Alt + Shift + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ribClearBackgroundButton_Label" xml:space="preserve">
+    <value>Clear Background Color</value>
+    <comment>ribbon menu item</comment>
   </data>
 </root>

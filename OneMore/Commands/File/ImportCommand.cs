@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
+	using MarkdownDeep;
 	using System;
 	using System.Drawing;
 	using System.IO;
@@ -13,7 +14,8 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-
+	using Win = System.Windows;
+	using System.Text;
 
 	internal class ImportCommand : Command
 	{
@@ -51,6 +53,10 @@ namespace River.OneMoreAddIn.Commands
 
 					case ImportDialog.Formats.OneNote:
 						await ImportOneNote(dialog.FilePath);
+						break;
+
+					case ImportDialog.Formats.Markdown:
+						await ImportMarkdown(dialog.FilePath);
 						break;
 				}
 			}
@@ -303,6 +309,54 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return true;
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Markdown...
+
+		private async Task ImportMarkdown(string filepath)
+		{
+			try
+			{
+				var text = File.ReadAllText(filepath);
+				var deep = new Markdown
+				{
+					MaxImageWidth = 800,
+					ExtraMode = true,
+					UrlBaseLocation = Path.GetDirectoryName(filepath)
+				};
+
+				var body = deep.Transform(text);
+				if (!string.IsNullOrEmpty(body))
+				{
+					var builder = new StringBuilder();
+					builder.AppendLine("<html>");
+					builder.AppendLine("<body>");
+					builder.AppendLine("<!--StartFragment-->");
+					builder.AppendLine(body);
+					builder.AppendLine("<!--EndFragment-->");
+					builder.AppendLine("</body>");
+					builder.AppendLine("</html>");
+					var html = PasteRtfCommand.AddHtmlPreamble(builder.ToString());
+
+					// paste HTML
+					await SingleThreaded.Invoke(() =>
+					{
+						Win.Clipboard.SetText(html, Win.TextDataFormat.Html);
+					});
+
+					// both SetText and SendWait are very unpredictable so wait a little
+					await Task.Delay(200);
+
+					SendKeys.SendWait("^(v)");
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
+				UIHelper.ShowMessage("Could not import. See log file for details");
+			}
 		}
 
 

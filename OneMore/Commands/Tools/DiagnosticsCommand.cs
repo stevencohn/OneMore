@@ -13,6 +13,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public DiagnosticsCommand()
 		{
+			// prevent replay
+			IsCancelled = true;
 		}
 
 

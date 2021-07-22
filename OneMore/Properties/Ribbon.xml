@@ -59,6 +59,12 @@
                 getLabel="GetRibbonLabel"
                 onAction="BreakingCmd"/>
               <button
+                id="ribClearBackgroundButton"
+                imageMso="PivotTableClearMenu"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="ClearBackgroundCmd"/>
+              <button
                 id="ribRemoveAuthorsButton"
                 imageMso="BuildingBlocksCreateTableOfAuthorities"
                 getLabel="GetRibbonLabel"

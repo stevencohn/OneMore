@@ -52,7 +52,13 @@ namespace River.OneMoreAddIn
 		/// <returns>Task</returns>
 		public async Task Run<T>(params object[] args) where T : Command, new()
 		{
-			await Run("Running", new T(), args);
+			var command = new T();
+			await Run("Running", command, args);
+
+			if (!command.IsCancelled)
+			{
+				RecordLastAction(command, args);
+			}
 		}
 
 
@@ -69,8 +75,6 @@ namespace River.OneMoreAddIn
 			try
 			{
 				await command.Execute(args);
-
-				RecordLastAction(type, args);
 
 				logger.End();
 			}
@@ -90,7 +94,7 @@ namespace River.OneMoreAddIn
 
 
 
-		private void RecordLastAction(Type type, params object[] args)
+		private void RecordLastAction(Command command, params object[] args)
 		{
 			// ignore commands that pass the ribbon as an argument
 			if (args.Any(a => a != null && a.GetType().Name.Contains("ComObject")))
@@ -116,16 +120,23 @@ namespace River.OneMoreAddIn
 				}
 
 				var setting = new XElement("command",
-					new XAttribute("type", type.FullName),
+					new XAttribute("type", command.GetType().FullName),
 					arguments
 					);
 
 				var provider = new SettingsProvider();
 				var settings = provider.GetCollection("lastAction");
+				settings.Clear();
 
 				// setting name should equate to the XML root element name here
 				// the XML is not wrapped with an extra parent, so no worries
 				settings.Add("command", setting);
+
+				var replay = command.GetReplayArguments();
+				if (replay != null)
+				{
+					settings.Add("context", new XElement("context", replay));
+				}
 
 				provider.SetCollection(settings);
 				provider.Save();
@@ -169,6 +180,12 @@ namespace River.OneMoreAddIn
 								Type.GetType(arg.Attribute("type").Value)
 								));
 						}
+					}
+
+					var context = settings.Get<XElement>("context");
+					if (context != null && context.HasElements)
+					{
+						args.Add(context.Elements().First());
 					}
 
 					await Run("Replaying", command, args.ToArray());

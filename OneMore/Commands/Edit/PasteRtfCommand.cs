@@ -700,7 +700,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string AddHtmlPreamble(string html)
+		public static string AddHtmlPreamble(string html)
 		{
 			/*
 			 * https://docs.microsoft.com/en-us/windows/win32/dataxchg/html-clipboard-format

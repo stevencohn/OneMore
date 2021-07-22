@@ -41,24 +41,35 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Initialize a new instance with the given page
+		/// Initialize a new instance with the given page XML root
 		/// </summary>
-		/// <param name="page"></param>
-		public Page(XElement page)
+		/// <param name="root"></param>
+		public Page(XElement root)
 		{
-			if (page != null)
+			if (root != null)
 			{
-				Root = page;
-				Namespace = page.GetNamespaceOfPrefix(OneNote.Prefix);
+				Root = root;
+				Namespace = root.GetNamespaceOfPrefix(OneNote.Prefix);
 
-				PageId = page.Attribute("ID")?.Value;
+				PageId = root.Attribute("ID")?.Value;
 			}
+
+			SelectionScope = SelectionScope.Unknown;
 		}
 
 
 		public bool IsValid => Root != null;
 
 
+		/// <summary>
+		/// Gest the namespace used to create new elements for the page
+		/// </summary>
+		public XNamespace Namespace { get; private set; }
+
+
+		/// <summary>
+		/// Gets the unique ID of the page
+		/// </summary>
 		public string PageId { get; private set; }
 
 
@@ -69,9 +80,13 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Gest the namespace used to create new elements for the page
+		/// Gets the most recently known selection state where none means unknown, all
+		/// means there is an obvious selection region, and partial means the selection
+		/// region is zero.
 		/// </summary>
-		public XNamespace Namespace { get; private set; }
+		public SelectionScope SelectionScope { get; private set; }
+
+
 
 
 		public string Title
@@ -606,6 +621,8 @@ namespace River.OneMoreAddIn.Models
 
 			if (selected == null || selected.Count() == 0)
 			{
+				SelectionScope = SelectionScope.Empty;
+
 				return all
 					? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
 					: new List<XElement>();
@@ -626,12 +643,16 @@ namespace River.OneMoreAddIn.Models
 						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
 						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
 					{
+						SelectionScope = SelectionScope.Empty;
+
 						return all
 							? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
 							: new List<XElement>();
 					}
 				}
 			}
+
+			SelectionScope = SelectionScope.Region;
 
 			// return zero or more elements
 			return selected;
@@ -688,7 +709,9 @@ namespace River.OneMoreAddIn.Models
 				.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
-			if (selected.Any() && selected.Count() == 1)
+			var count = selected.Count();
+
+			if (selected.Any() && count == 1)
 			{
 				var cursor = selected.First();
 				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA)
@@ -708,10 +731,14 @@ namespace River.OneMoreAddIn.Models
 							MergeRuns(cursor);
 						}
 
+						SelectionScope = SelectionScope.Empty;
+
 						return cursor;
 					}
 				}
 			}
+
+			SelectionScope = count > 1 ? SelectionScope.Region : SelectionScope.Empty;
 
 			// zero or more than one empty cdata are selected
 			return null;
@@ -933,6 +960,8 @@ namespace River.OneMoreAddIn.Models
 					new XAttribute("selected", "all"),
 					new XCData(string.Empty)
 					));
+
+				SelectionScope = SelectionScope.Region;
 			}
 		}
 

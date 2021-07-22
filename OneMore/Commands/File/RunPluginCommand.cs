@@ -35,13 +35,27 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out _, OneNote.PageDetail.All))
 			{
-				if (args.Length > 0 && (args[0] is string arg) && !string.IsNullOrEmpty(arg))
+				if (args != null && args.Length > 0)
 				{
-					plugin = await new PluginsProvider().Load(arg);
+					// check for replay
+					var element = args.FirstOrDefault(a => a is XElement e && e.Name.LocalName == "path") as XElement;
+					if (!string.IsNullOrEmpty(element?.Value))
+					{
+						plugin = await new PluginsProvider().Load(element.Value);
+					}
+					else if ((args[0] is string arg) && !string.IsNullOrEmpty(arg))
+					{
+						plugin = await new PluginsProvider().Load(arg);
+					}
 				}
-				else if (!PromptForPlugin(page.Title) || string.IsNullOrEmpty(plugin.Command))
+
+				if (plugin == null)
 				{
-					return;
+					if (!PromptForPlugin(page.Title) || string.IsNullOrEmpty(plugin.Command))
+					{
+						IsCancelled = true;
+						return;
+					}
 				}
 
 				var workPath = MakeWorkingFilePath(page.PageId);
@@ -116,6 +130,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{
+					plugin = null;
 					return false;
 				}
 
@@ -352,6 +367,17 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine($"error deleting {workPath}", exc);
 				}
 			}
+		}
+
+
+		public override XElement GetReplayArguments()
+		{
+			if (!string.IsNullOrEmpty(plugin?.Path))
+			{
+				return new XElement("path", plugin.Path);
+			}
+
+			return null;
 		}
 	}
 }
