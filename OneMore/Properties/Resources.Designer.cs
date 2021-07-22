@@ -4385,6 +4385,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Web Page.
+        /// </summary>
+        internal static string ribImportWebButton_Label {
+            get {
+                return ResourceManager.GetString("ribImportWebButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Increase Font Size.
         /// </summary>
         internal static string ribIncreaseFontSizeButton_Label {

@@ -3112,4 +3112,8 @@ ISO-code then comma then language name</comment>
     <value>Webpagina niet gevonden of lege inhoud geretourneerd</value>
     <comment>error message</comment>
   </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>Webpagina importeren</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

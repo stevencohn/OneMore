@@ -52,11 +52,6 @@
               getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
               onAction="ReplayCmd"/>
-            <button
-              id="ribImportWebButton"
-              label="Import Web"
-              getEnabled="GetBodyContext"
-              onAction="ImportWebCmd"/>
             <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
               <button
                 id="ribBreakingButton"
@@ -513,6 +508,12 @@
               getLabel="GetRibbonLabel"
               getEnabled="GetOfficeInstalled"
               onAction="ImportCmd"/>
+            <button
+              id="ribImportWebButton"
+              imageMso="ImportHtmlDocument"
+              getLabel="GetRibbonLabel"
+              getEnabled="GetBodyContext"
+              onAction="ImportWebCmd"/>
             <button
               id="ribExportButton"
               imageMso="FileSave"

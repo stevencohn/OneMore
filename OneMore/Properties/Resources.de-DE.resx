@@ -3097,4 +3097,8 @@ ISO-code then comma then language name</comment>
     <value>Webseite nicht gefunden oder leerer Inhalt zurückgegeben</value>
     <comment>error message</comment>
   </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>Webseite importieren</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

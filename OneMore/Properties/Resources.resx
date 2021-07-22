@@ -3126,4 +3126,8 @@ In this section</value>
     <value>Web page not found or returned empty content</value>
     <comment>error message</comment>
   </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>Import Web Page</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

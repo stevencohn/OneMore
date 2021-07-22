@@ -3111,4 +3111,8 @@ ISO-code then comma then language name</comment>
     <value>Página web no encontrada o devuelto contenido vacío</value>
     <comment>error message</comment>
   </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>Importar página web</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

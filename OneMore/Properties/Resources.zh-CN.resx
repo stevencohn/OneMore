@@ -3103,4 +3103,8 @@ ISO-code then comma then language name</comment>
     <value>未找到网页或返回空内容</value>
     <comment>error message</comment>
   </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>导入网页</value>
+    <comment>ribbon</comment>
+  </data>
 </root>
