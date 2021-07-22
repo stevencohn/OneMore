@@ -3094,4 +3094,40 @@ In this section</value>
     <value>Clear Background Color</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ImportWebDialog_appendButton.Text" xml:space="preserve">
+    <value>Append to current page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_newChildButton.Text" xml:space="preserve">
+    <value>Create as new child of current page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
+    <value>Create as new page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_Text" xml:space="preserve">
+    <value>Import Web Page</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
+    <value>Address</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>Web page not found or returned empty content</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>Import Web Page</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

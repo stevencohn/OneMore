@@ -3079,4 +3079,40 @@ ISO-code then comma then language name</comment>
     <value>Color de fondo claro</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ImportWebDialog_appendButton.Text" xml:space="preserve">
+    <value>Agregar a la página actual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_newChildButton.Text" xml:space="preserve">
+    <value>Crear como hijo nuevo de la página actual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
+    <value>Crear como página nueva</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_Text" xml:space="preserve">
+    <value>Importar página web</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
+    <value>Habla a</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>Página web no encontrada o devuelto contenido vacío</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>Importar página web</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

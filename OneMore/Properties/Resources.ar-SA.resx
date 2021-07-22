@@ -3079,4 +3079,40 @@ ISO-code then comma then language name</comment>
     <value>مسح لون الخلفية</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ImportWebDialog_appendButton.Text" xml:space="preserve">
+    <value>إلحاق بالصفحة الحالية</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_cancelButton.Text" xml:space="preserve">
+    <value>يلغي</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_newChildButton.Text" xml:space="preserve">
+    <value>إنشاء كطفل جديد للصفحة الحالية</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
+    <value>إنشاء كصفحة جديدة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_okButton.Text" xml:space="preserve">
+    <value>نعم</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_Text" xml:space="preserve">
+    <value>استيراد صفحة ويب</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
+    <value>عنوان</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>لم يتم العثور على صفحة الويب أو إرجاع محتوى فارغ</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>استيراد صفحة ويب</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

@@ -3080,4 +3080,40 @@ ISO-code then comma then language name</comment>
     <value>Heldere achtergrondkleur</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ImportWebDialog_appendButton.Text" xml:space="preserve">
+    <value>Toevoegen aan huidige pagina</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_cancelButton.Text" xml:space="preserve">
+    <value>annuleren</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_newChildButton.Text" xml:space="preserve">
+    <value>Aanmaken als nieuw kind van huidige pagina</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
+    <value>Aanmaken als nieuwe pagina</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_Text" xml:space="preserve">
+    <value>Webpagina importeren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
+    <value>Adres</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>Webpagina niet gevonden of lege inhoud geretourneerd</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>Webpagina importeren</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

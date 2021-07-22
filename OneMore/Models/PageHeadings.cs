@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Models
 
 					Heading heading = null;
 
-					if (block.ReadAttributeValue("quickStyleIndex", out var quickStyleIndex, -1))
+					if (block.GetAttributeValue("quickStyleIndex", out var quickStyleIndex, -1))
 					{
 						var style = quickStyles
 							.Find(s => s.StyleType == StyleType.Heading && s.Index == quickStyleIndex);

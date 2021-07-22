@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					var span = (XElement)s;
-					span.ReadAttributeValue("style", out var style, string.Empty);
+					span.GetAttributeValue("style", out var style, string.Empty);
 
 					if (!string.IsNullOrEmpty(style))
 						span.SetAttributeValue("style", $"{style};background:{color}");
