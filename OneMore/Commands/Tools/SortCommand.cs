@@ -164,7 +164,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var manager = new ApplicationManager())
 			{
 				var section = manager.CurrentSection();
-				var ns = section.GetNamespaceOfPrefix("one");
+				var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				var tree = new List<PageNode>();
 				var list = section.Elements(ns + "Page").ToList();

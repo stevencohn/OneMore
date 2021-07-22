@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			string address = null;
-			ContentCreation creation;
+			ImportWebTarget target;
 			using (var dialog = new ImportWebDialog())
 			{
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				address = dialog.Address;
-				creation = dialog.Creation;
+				target = dialog.Target;
 			}
 
 			var baseUri = new Uri(address);
@@ -76,21 +76,17 @@ namespace River.OneMoreAddIn.Commands
 			using (var one = new OneNote(out _, out _))
 			{
 				Page page;
-				switch (creation)
+
+				if (target == ImportWebTarget.Append)
 				{
-					case ContentCreation.Append:
-						page = one.GetPage();
-						break;
-
-					case ContentCreation.ChildPage:
-						page = await CreatePage(one, one.GetPage(),
-							doc.DocumentNode.SelectSingleNode("//title")?.InnerText ?? address);
-						break;
-
-					default:
-						page = await CreatePage(one, null,
-							doc.DocumentNode.SelectSingleNode("//title")?.InnerText ?? address);
-						break;
+					page = one.GetPage();
+				}
+				else
+				{
+					page = await CreatePage(one,
+						target == ImportWebTarget.ChildPage ? one.GetPage() : null,
+						doc.DocumentNode.SelectSingleNode("//title")?.InnerText ?? address
+						);
 				}
 
 				// add html to page and let OneNote rehydrate as it sees fit

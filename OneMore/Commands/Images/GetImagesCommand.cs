@@ -208,7 +208,7 @@ namespace River.OneMoreAddIn.Commands
 				// split current OE into beforeOE/thisOE/afterOE
 				// results in thisOE having only the T/anchor which we'll swap out for the Image...
 
-				var ns = run.GetNamespaceOfPrefix("one");
+				var ns = run.GetNamespaceOfPrefix(OneNote.Prefix);
 				SplitElement(run, anchor, ns);
 
 				// create Image element and swap with the current T...

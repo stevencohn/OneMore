@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using Win = System.Windows;
 
 
-	internal enum ContentCreation
+	internal enum ImportWebTarget
 	{
 		Append,
 		NewPage,
@@ -45,13 +45,13 @@ namespace River.OneMoreAddIn.Commands
 		public string Address => addressBox.Text;
 
 
-		public ContentCreation Creation
+		public ImportWebTarget Target
 		{
 			get
 			{
-				if (appendButton.Checked) return ContentCreation.Append;
-				if (newChildButton.Checked) return ContentCreation.ChildPage;
-				return ContentCreation.NewPage;
+				if (appendButton.Checked) return ImportWebTarget.Append;
+				if (newChildButton.Checked) return ImportWebTarget.ChildPage;
+				return ImportWebTarget.NewPage;
 			}
 		}
 
