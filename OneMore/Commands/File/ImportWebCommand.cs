@@ -41,11 +41,21 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"importing web page {baseUri.AbsoluteUri}");
 			logger.StartClock();
 
-			// download html
-			string content = await DownloadWebContent(baseUri);
+			string content;
+
+			try
+			{
+				content = await DownloadWebContent(baseUri);
+			}
+			catch (Exception exc)
+			{
+				Giveup(exc.Messages());
+				return;
+			}
 
 			if (string.IsNullOrEmpty(content))
 			{
+				Giveup("Web page not found or returned empty content");
 				logger.WriteLine("web page returned empty content");
 				return;
 			}
@@ -53,6 +63,7 @@ namespace River.OneMoreAddIn.Commands
 			var doc = ReplaceImagesWithAnchors(content, baseUri);
 			if (doc == null)
 			{
+				Giveup("No <body> found or page too complex");
 				return;
 			}
 
@@ -89,6 +100,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void Giveup(string msg)
+		{
+			UIHelper.ShowInfo($"Cannot load web page.\n\n{msg}");
+		}
+
+
 		private async Task<string> DownloadWebContent(Uri uri)
 		{
 			try
@@ -111,7 +128,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error fetching web page", exc);
+				// for some reason, anything more than this will crash OneMore
+				// seems that the exception is not fully instantiated at this point
+				// so rethrow and let caller display aggregated message
+				logger.WriteLine(exc.Message);
+				throw;
 			}
 
 			return null;
