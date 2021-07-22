@@ -144,6 +144,12 @@
     <Compile Include="Commands\Extras\DateStampCommand.cs" />
     <Compile Include="Commands\File\CopyFolderCommand.cs" />
     <Compile Include="Commands\File\ImportWebCommand.cs" />
+    <Compile Include="Commands\File\ImportWebDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\File\ImportWebDialog.Designer.cs">
+      <DependentUpon>ImportWebDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
     <Compile Include="Commands\References\LinkDialog.cs">
       <SubType>Form</SubType>
@@ -769,6 +775,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
       <DependentUpon>BreakingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\File\ImportWebDialog.resx">
+      <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\LinkDialog.resx">
       <DependentUpon>LinkDialog.cs</DependentUpon>

@@ -187,9 +187,9 @@
 			this.introLabel.AutoSize = true;
 			this.introLabel.Location = new System.Drawing.Point(18, 15);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(352, 20);
+			this.introLabel.Size = new System.Drawing.Size(433, 20);
 			this.introLabel.TabIndex = 9;
-			this.introLabel.Text = "Select a Word, PowerPoint, OneNote, or XML file";
+			this.introLabel.Text = "Select a Word, PowerPoint, OneNote, Markdown, or XML file";
 			// 
 			// ImportDialog
 			// 

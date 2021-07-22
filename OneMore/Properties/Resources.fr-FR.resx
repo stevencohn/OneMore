@@ -3074,4 +3074,32 @@ ISO-code then comma then language name</comment>
     <value>Couleur d'arrière-plan claire</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ImportWebDialog_appendButton.Text" xml:space="preserve">
+    <value>Ajouter à la page actuelle</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_newChildButton.Text" xml:space="preserve">
+    <value>Créer comme nouvel enfant de la page actuelle</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
+    <value>Créer comme nouvelle page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_okButton.Text" xml:space="preserve">
+    <value>d'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_Text" xml:space="preserve">
+    <value>Importer une page Web</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
+    <value>Adresse</value>
+    <comment>label</comment>
+  </data>
 </root>

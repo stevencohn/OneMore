@@ -2148,6 +2148,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string ImportWebDialog_addressLabel_Text {
+            get {
+                return ResourceManager.GetString("ImportWebDialog_addressLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Append to current page.
+        /// </summary>
+        internal static string ImportWebDialog_appendButton_Text {
+            get {
+                return ResourceManager.GetString("ImportWebDialog_appendButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ImportWebDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ImportWebDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create as new child of current page.
+        /// </summary>
+        internal static string ImportWebDialog_newChildButton_Text {
+            get {
+                return ResourceManager.GetString("ImportWebDialog_newChildButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create as new page.
+        /// </summary>
+        internal static string ImportWebDialog_newPageButton_Text {
+            get {
+                return ResourceManager.GetString("ImportWebDialog_newPageButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string ImportWebDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("ImportWebDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Web Page.
+        /// </summary>
+        internal static string ImportWebDialog_Text {
+            get {
+                return ResourceManager.GetString("ImportWebDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string InsertCalendarDialog_cancelButton_Text {

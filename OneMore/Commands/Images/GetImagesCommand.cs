@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var one = new OneNote(out var page, out var ns))
+			using (var one = new OneNote(out var page, out _))
 			{
 				if (result == DialogResult.Yes)
 				{
@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Commands
 					citation = page.GetQuickStyle(Styles.StandardStyles.Citation);
 				}
 
-				if (GetImages(page, ns))
+				if (GetImages(page))
 				{
 					await one.Update(page);
 				}
@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool GetImages(Page page, XNamespace ns)
+		public bool GetImages(Page page)
 		{
 			List<XElement> runs = null;
 
