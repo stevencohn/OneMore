@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Concurrent;
 	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Drawing;
@@ -21,14 +22,30 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class GetImagesCommand : Command
 	{
-		private readonly ImageDetector detector;
-		private XNamespace ns;
+		private readonly bool forceful;
+		private readonly Regex regex;
 		private Style citation;
 
 
-		public GetImagesCommand()
+		/// <summary>
+		/// Default constructor to examine all anchors on page or in selected region
+		/// </summary>
+		public GetImagesCommand() 
+			: this(new Regex(@"<a\s+href=", RegexOptions.Compiled))
 		{
-			detector = new ImageDetector();
+			forceful = false;
+		}
+
+
+		/// <summary>
+		/// Specialized entry point for Import Web command, examines anchors with specific
+		/// pattern on entire page
+		/// </summary>
+		/// <param name="regex"></param>
+		public GetImagesCommand(Regex regex)
+		{
+			this.regex = regex;
+			forceful = true;
 		}
 
 
@@ -46,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using (var one = new OneNote(out var page, out ns))
+			using (var one = new OneNote(out var page, out _))
 			{
 				if (result == DialogResult.Yes)
 				{
@@ -62,16 +79,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool GetImages(Page page)
+		public bool GetImages(Page page)
 		{
 			List<XElement> runs = null;
-			var regex = new Regex(@"<a\s+href=", RegexOptions.Compiled);
 
-			var selections = page.Root.Descendants(page.Namespace + "T")
-				.Where(e =>
-					e.Attributes("selected").Any(a => a.Value.Equals("all")));
+			IEnumerable<XElement> selections;
 
-			if ((selections.Count() == 1) &&
+			if (forceful)
+			{
+				// force full page regardless of selections
+				selections = new List<XElement>();
+			}
+			else
+			{
+				// determine if selected region or full page
+				selections = page.Root.Descendants(page.Namespace + "T")
+					.Where(e =>
+						e.Attributes("selected").Any(a => a.Value.Equals("all")));
+			}
+
+			if (forceful ||
+				(selections.Count() == 1) &&
 				(selections.First().DescendantNodes().OfType<XCData>().First().Value.Length == 0))
 			{
 				// single empty selection so affect entire page
@@ -95,13 +123,15 @@ namespace River.OneMoreAddIn.Commands
 			int count = 0;
 			if (runs?.Count > 0)
 			{
-				// do not use await in the body of a Parallel.ForEach
-
 				//<one:Meta name="om" content="caption" />
 
-				var tasks = new List<Task<int>>();
+				// must use a thread-safe collection here
+				var tasks = new ConcurrentBag<Task<int>>();
+
 				Parallel.ForEach(runs, (run) =>
 				{
+					// do not use await in the body of a Parallel.ForEach
+
 					// do not reprocess captioned images
 					if (!run.Parent.Descendants().Any(m =>
 						m.Name.LocalName == "Meta" &&
@@ -116,7 +146,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					Task.WaitAll(tasks.ToArray());
 
-					count = tasks.Sum(t => t == null ? 0 : t.Result);
+					count = tasks.Sum(t => t.Result);
 				}
 			}
 
@@ -126,6 +156,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<int> GetImage(XElement run)
 		{
+			// get thread-local ref of logger
+			logger = Logger.Current;
+
 			var cdata = run.GetCData();
 
 			var wrapper = cdata.GetWrapper();
@@ -154,8 +187,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
-				logger.WriteLine(exc);
+				logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms", exc);
 				return 0;
 			}
 			finally
@@ -169,31 +201,42 @@ namespace River.OneMoreAddIn.Commands
 				return 0;
 			}
 
-			logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
-
-			// split current OE into beforeOE/thisOE/afterOE
-			// results in thisOE having only the T/anchor which we'll swap out for the Image...
-
-			SplitElement(run, anchor);
-
-			// create Image element and swap with the current T...
-
-			var content = new XElement(ns + "Image",
-				new XAttribute("format", "png"),
-				new XElement(ns + "Size",
-					new XAttribute("width", $"{image.Width}.0"),
-					new XAttribute("height", $"{image.Height}.0")),
-				new XElement(ns + "Data", image.ToBase64String())
-				);
-
-			if (citation != null)
+			try
 			{
-				content = WrapWithCitation(content, href).Root;
+				logger.WriteLine($"resolved {href} in {watch.ElapsedMilliseconds}ms");
+
+				// split current OE into beforeOE/thisOE/afterOE
+				// results in thisOE having only the T/anchor which we'll swap out for the Image...
+
+				var ns = run.GetNamespaceOfPrefix("one");
+				SplitElement(run, anchor, ns);
+
+				// create Image element and swap with the current T...
+
+				var content = new XElement(ns + "Image",
+					new XAttribute("format", "png"),
+					new XElement(ns + "Size",
+						new XAttribute("width", $"{image.Width}.0"),
+						new XAttribute("height", $"{image.Height}.0")),
+					new XElement(ns + "Data", image.ToBase64String())
+					);
+
+				if (citation != null)
+				{
+					content = WrapWithCitation(content, href, ns).Root;
+				}
+
+				run.ReplaceWith(content);
 			}
-
-			run.ReplaceWith(content);
-
-			image.Dispose();
+			catch (Exception exc)
+			{
+				logger.WriteLine("cannot replace image", exc);
+				return 0;
+			}
+			finally
+			{
+				image.Dispose();
+			}
 
 			return 1;
 		}
@@ -201,39 +244,58 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<Image> DownloadImage(string url)
 		{
+			// special case for importing HTML command
+			var index = url.IndexOf("://onemore.");
+			if (index > 0)
+			{
+				url = url.Remove(index + 3, 8);
+			}
+
 			var client = HttpClientFactory.Create();
 
-			using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
+			try
 			{
-				using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute), source.Token))
+				using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
 				{
-					if (response.IsSuccessStatusCode)
+					using (var response = await client.GetAsync(new Uri(url, UriKind.Absolute), source.Token))
 					{
-						using (var stream = new MemoryStream())
+						if (response.IsSuccessStatusCode)
 						{
-							await response.Content.CopyToAsync(stream);
-
-							if (detector.GetSignature(stream) != ImageSignature.Unknown)
+							using (var stream = new MemoryStream())
 							{
-								try
+								await response.Content.CopyToAsync(stream);
+
+								var detector = new ImageDetector();
+								if (detector.GetSignature(stream) != ImageSignature.Unknown)
 								{
-									return new Bitmap(Image.FromStream(stream));
-								}
-								catch
-								{
-									logger.WriteLine($"{url} does not appear to be an image");
+									try
+									{
+										return new Bitmap(Image.FromStream(stream));
+									}
+									catch
+									{
+										logger.WriteLine($"{url} does not appear to be an image");
+									}
 								}
 							}
 						}
 					}
 				}
 			}
+			catch (TaskCanceledException exc)
+			{
+				logger.WriteLine("timeout fetching image", exc);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error fetching image", exc);
+			}
 
 			return null;
 		}
 
 
-		private void SplitElement(XElement run, XElement anchor)
+		private void SplitElement(XElement run, XElement anchor, XNamespace ns)
 		{
 			var left = anchor.NodesBeforeSelf();
 			var before = run.ElementsBeforeSelf();
@@ -274,7 +336,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Table WrapWithCitation(XElement image, string caption)
+		private Table WrapWithCitation(XElement image, string caption, XNamespace ns)
 		{
 			var table = new Table(ns);
 			table.AddColumn(0f); // OneNote will set width accordingly

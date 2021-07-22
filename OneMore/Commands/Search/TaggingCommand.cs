@@ -173,7 +173,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (outline != null)
 			{
-				if (outline.ReadAttributeValue("objectID", out string id))
+				if (outline.GetAttributeValue("objectID", out string id))
 				{
 					one.DeleteContent(page.PageId, id);
 				}

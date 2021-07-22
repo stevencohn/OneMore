@@ -57,8 +57,8 @@ namespace River.OneMoreAddIn.Commands
 				using (var image = Image.FromStream(stream))
 				{
 					var size = element.Element(ns + "Size");
-					size.ReadAttributeValue("width", out float width, image.Width);
-					size.ReadAttributeValue("height", out float height, image.Height);
+					size.GetAttributeValue("width", out float width, image.Width);
+					size.GetAttributeValue("height", out float height, image.Height);
 
 					var scales = new SizeF(width / image.Width, height / image.Height);
 

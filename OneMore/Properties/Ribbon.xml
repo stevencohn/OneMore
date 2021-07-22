@@ -509,6 +509,12 @@
               getEnabled="GetOfficeInstalled"
               onAction="ImportCmd"/>
             <button
+              id="ribImportWebButton"
+              imageMso="ImportHtmlDocument"
+              getLabel="GetRibbonLabel"
+              getEnabled="GetBodyContext"
+              onAction="ImportWebCmd"/>
+            <button
               id="ribExportButton"
               imageMso="FileSave"
               getLabel="GetRibbonLabel"

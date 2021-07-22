@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var section in sections)
 			{
-				section.ReadAttributeValue("locked", out bool locked, false);
+				section.GetAttributeValue("locked", out bool locked, false);
 				if (locked)
 				{
 					continue;

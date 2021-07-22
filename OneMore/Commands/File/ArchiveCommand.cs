@@ -166,10 +166,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// SectionGroup or Section
 
-					element.ReadAttributeValue("locked", out bool locked, false);
+					element.GetAttributeValue("locked", out bool locked, false);
 					if (locked) continue;
 
-					element.ReadAttributeValue("isRecycleBin", out bool recycle, false);
+					element.GetAttributeValue("isRecycleBin", out bool recycle, false);
 					if (recycle) continue;
 
 					// append name of Section/Group to path to build zip folder path
