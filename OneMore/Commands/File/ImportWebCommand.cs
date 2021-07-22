@@ -68,6 +68,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// Attempted to inline the css using the PreMailer nuget
+			// but OneNote strips it all off anyway so, oh well
+			//content = PreMailer.MoveCssInline(baseUri, doc.DocumentNode.OuterHtml,
+			//	stripIdAndClassAttributes: true, removeComments: true).Html;
+
 			using (var one = new OneNote(out _, out _))
 			{
 				Page page;
