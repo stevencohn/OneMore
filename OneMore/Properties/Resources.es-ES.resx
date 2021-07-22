@@ -3107,4 +3107,8 @@ ISO-code then comma then language name</comment>
     <value>Habla a</value>
     <comment>label</comment>
   </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>Página web no encontrada o devuelto contenido vacío</value>
+    <comment>error message</comment>
+  </data>
 </root>

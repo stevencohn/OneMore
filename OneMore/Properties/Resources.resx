@@ -3122,4 +3122,8 @@ In this section</value>
     <value>Address</value>
     <comment>label</comment>
   </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>Web page not found or returned empty content</value>
+    <comment>error message</comment>
+  </data>
 </root>

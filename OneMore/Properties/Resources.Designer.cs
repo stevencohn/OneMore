@@ -2148,6 +2148,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Web page not found or returned empty content.
+        /// </summary>
+        internal static string ImportWebCommand_BadUrl {
+            get {
+                return ResourceManager.GetString("ImportWebCommand_BadUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string ImportWebDialog_addressLabel_Text {

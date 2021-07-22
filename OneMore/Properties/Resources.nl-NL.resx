@@ -3108,4 +3108,8 @@ ISO-code then comma then language name</comment>
     <value>Adres</value>
     <comment>label</comment>
   </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>Webpagina niet gevonden of lege inhoud geretourneerd</value>
+    <comment>error message</comment>
+  </data>
 </root>

@@ -3099,4 +3099,8 @@ ISO-code then comma then language name</comment>
     <value>地址</value>
     <comment>label</comment>
   </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>未找到网页或返回空内容</value>
+    <comment>error message</comment>
+  </data>
 </root>

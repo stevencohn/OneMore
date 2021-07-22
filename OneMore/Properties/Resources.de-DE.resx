@@ -3093,4 +3093,8 @@ ISO-code then comma then language name</comment>
     <value>Adresse</value>
     <comment>label</comment>
   </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>Webseite nicht gefunden oder leerer Inhalt zurückgegeben</value>
+    <comment>error message</comment>
+  </data>
 </root>

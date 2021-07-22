@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Hap = HtmlAgilityPack;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class ImportWebCommand : Command
@@ -55,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrEmpty(content))
 			{
-				Giveup("Web page not found or returned empty content");
+				Giveup(Resx.ImportWebCommand_BadUrl);
 				logger.WriteLine("web page returned empty content");
 				return;
 			}
@@ -63,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 			var doc = ReplaceImagesWithAnchors(content, baseUri);
 			if (doc == null)
 			{
-				Giveup("No <body> found or page too complex");
+				Giveup(Resx.ImportWebCommand_BadUrl);
 				return;
 			}
 
