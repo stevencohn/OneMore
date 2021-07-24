@@ -149,7 +149,7 @@ _Click here, click now, click often! >>_
 >  [![Donate](../../wiki/images/Donate.png)](https://paypal.me/stevenmcohn?locale.x=en_US)
 
 
-### Minimum Prerequisites
+### Minimum Prerequisites for Development
 
 * Developed for Windows 10
 * Microsoft Visual Studio 2019, C# 7
@@ -157,17 +157,29 @@ _Click here, click now, click often! >>_
 * .NET Framework 4.8
 * Microsoft OneNote 2016 32-bit or 64-bit
 
+_Note that VSCode cannot be used since it doesn't support COMReference entries in csproj files_ 
+
 Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
 
-### How to Install
+### How to Install OneMore
 
-1. Close OneNote if it is currently running
+1. Close OneNote if it is currently running (See below if you need to install OneNote)
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
 3. Right-click the downloaded installer msi and choose Properties, then tick the Unblock box and click OK
 4. Run the installer
    - If OneNote is installed for _all users_ then you must install OneMore for _all users_ as well
 5. Run OneNote and enjoy
+
+
+### How to Install OneNote
+
+Microsoft has been pushing people to use the OneNote app and OneNote online, which suck in my opinion, and have removed OneNote from the Office 2019 installer. But you can still install it after installing Office or even install it stand-alone!
+
+1. Optionally install Office - do not run the Setup.exe; instead, run Office\Setup64.exe
+1. Download OfficeSetup.exe [from here](https://support.microsoft.com/en-us/office/install-or-reinstall-onenote-for-windows-c08068d8-b517-4464-9ff2-132cb9c45c08)
+   a. If run standalone, it will install 32-bit OneNote
+   a. If run after installing Office, it will install 32 or 64 bit based on the bitness of Office
 
 ---
 
