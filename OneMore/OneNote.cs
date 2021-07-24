@@ -1055,8 +1055,8 @@ namespace River.OneMoreAddIn
 			{
 				await InvokeWithRetry(() =>
 				{
-			// must be an ID
-			onenote.NavigateTo(uri);
+					// must be an ID
+					onenote.NavigateTo(uri);
 				});
 			}
 		}

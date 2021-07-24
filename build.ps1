@@ -77,21 +77,34 @@ Begin
                 $line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
                 if ($bitness -eq 64)
                 {
-                    $line = $line.Replace('x86', 'x64')
+                    $line.Replace('x86', 'x64') | Out-File $vdproj -Append
                 }
-                $line | Out-File $vdproj -Append
+                else
+                {
+                    $line.Replace('x64', 'x86') | Out-File $vdproj -Append
+                }
             }
-            elseif (($bitness -eq 64) -and ($_ -match '"DefaultLocation" = "'))
+            elseif ($_ -match '"DefaultLocation" = "')
             {
                 # "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
-                $line = $_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder')
-                $line | Out-File $vdproj -Append
+                if ($bitness -eq 64)
+                {
+                    $_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder') | Out-File $vdproj -Append
+                }
+                else
+                {
+                    $_.Replace('ProgramFiles64Folder', 'ProgramFilesFolder') | Out-File $vdproj -Append
+                }
             }
-            elseif (($bitness -eq 64) -and ($_ -match '"TargetPlatform" = "'))
+            elseif ($_ -match '"TargetPlatform" = "')
             {
                 # x86 -> "3:0"
                 # x64 -> "3:1"
-                '"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
+                if ($bitness -eq 64) {
+                    '"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
+                } else {
+                    '"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
+                }
             }
             else
             {
