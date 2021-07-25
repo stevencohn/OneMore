@@ -73,9 +73,17 @@ namespace River.OneMoreAddIn.Colorizer
 		{
 			var json = File.ReadAllText(path);
 			var serializer = new JavaScriptSerializer();
-			var theme = serializer.Deserialize<Theme>(json);
+			Theme theme = null;
 
-			theme.TranslateColorNames();
+			try
+			{
+				theme = serializer.Deserialize<Theme>(json);
+				theme.TranslateColorNames();
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error loading theme {path}", exc);
+			}
 
 			return theme;
 		}

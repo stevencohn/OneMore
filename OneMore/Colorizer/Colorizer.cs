@@ -72,13 +72,27 @@ namespace River.OneMoreAddIn.Colorizer
 					{
 						// plain text prior to capture
 						code = code.Replace("\t", " ");
-						var style = theme.GetStyle("plaintext");
-						builder.Append(style == null ? code : style.Apply(code));
+						if (theme != null)
+						{
+							var style = theme.GetStyle("plaintext");
+							builder.Append(style == null ? code : style.Apply(code));
+						}
+						else
+						{
+							builder.Append(code);
+						}
 					}
 					else
 					{
-						var style = theme.GetStyle(scope);
-						builder.Append(style == null ? code : style.Apply(code));
+						if (theme != null)
+						{
+							var style = theme.GetStyle(scope);
+							builder.Append(style == null ? code : style.Apply(code));
+						}
+						else
+						{
+							builder.Append(code);
+						}
 					}
 				}
 			});
@@ -113,13 +127,28 @@ namespace River.OneMoreAddIn.Colorizer
 						// plain text prior to capture
 						// simple conversion of tabs to spaces (shouldn't be tabs in OneNote)
 						code = code.Replace("\t", " ");
-						var style = theme.GetStyle("plaintext");
-						builder.Append(style == null ? code : style.Apply(code));
+
+						if (theme != null)
+						{
+							var style = theme.GetStyle("plaintext");
+							builder.Append(style == null ? code : style.Apply(code));
+						}
+						else
+						{
+							builder.Append(code);
+						}
 					}
 					else
 					{
-						var style = theme.GetStyle(scope);
-						builder.Append(style == null ? code : style.Apply(code));
+						if (theme != null)
+						{
+							var style = theme.GetStyle(scope);
+							builder.Append(style == null ? code : style.Apply(code));
+						}
+						else
+						{
+							builder.Append(code);
+						}
 					}
 				}
 			});
