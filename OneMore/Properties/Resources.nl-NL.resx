@@ -386,7 +386,7 @@
     <value>Code blok</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="ribCollapseButton_Label" xml:space="preserve">
+  <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>Pagina's samenvouwen</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
@@ -2937,10 +2937,6 @@ ISO-code then comma then language name</comment>
     Overzicht samenvouwen
     ribbon item EDIT
   </data>
-  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
-    <value>U moet eerst de opdracht Uitvouwen omtrek gebruiken om alinea's te markeren die moeten worden samengevouwen</value>
-    <comment>info message box</comment>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>Om Titel Case</value>
     <comment>rib button</comment>
@@ -3115,5 +3111,33 @@ ISO-code then comma then language name</comment>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>Webpagina importeren</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Samengevouwen overzicht herstellen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Samengevouwen overzicht opgeslagen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ExpandoCommand_Saved" xml:space="preserve">
+    <value>Overzichtsstatus is opgeslagen</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
+    <value>... Samenvouwen overzicht</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
+    <value>... Uitvouwen Overzicht</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
+    <value>... Samengevouwen omtrek herstellen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
+    <value>... Samengevouwen overzicht opslaan</value>
+    <comment>context menu option</comment>
   </data>
 </root>

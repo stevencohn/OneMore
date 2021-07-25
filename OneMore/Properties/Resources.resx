@@ -386,7 +386,7 @@
     <value>Code block</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="ribCollapseButton_Label" xml:space="preserve">
+  <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>Collapse Pages</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
@@ -2951,10 +2951,6 @@ In this section</value>
     <value>Collapse Outlining</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
-    <value>Must first use the Expand Outline command to mark paragraphs to collapse</value>
-    <comment>info message box</comment>
-  </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
     <comment>SKIP</comment>
@@ -3129,5 +3125,33 @@ In this section</value>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>Import Web Page</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Restore Collapsed Outline</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Saved Collapsed Outline</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ExpandoCommand_Saved" xml:space="preserve">
+    <value>Outline state has been saved</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
+    <value>... Collapse Outlining</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
+    <value>... Expand Outlining</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
+    <value>... Restore Collapsed Outline</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
+    <value>... Save Collapsed Outline</value>
+    <comment>context menu option</comment>
   </data>
 </root>

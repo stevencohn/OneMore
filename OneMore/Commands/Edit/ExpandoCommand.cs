@@ -5,19 +5,30 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	internal enum Expando
+	{
+		Collapse,
+		Expand,
+		Save,
+		Restore
+	}
+
+
 	/// <summary>
-	/// Expands collapsed elements, heading or paragraphs with collapsed indented children,
-	/// and records which elements were collapsed. A subsequent collapse request will collapse
-	/// only those elements previously marked as collapsed
+	/// Manages collapsible elements, expanding, collapsing, and saving or restoring the current
+	/// collapsed state of these elements.
 	/// </summary>
 	internal class ExpandoCommand : Command
 	{
+		private const string MetaName = "omExpando";
+
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
@@ -30,76 +41,162 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var expand = (bool)args[0];
-
 			using (one = new OneNote(out page, out ns))
 			{
-				if (expand)
+				bool updated = false;
+
+				switch ((Expando)(args[0]))
 				{
-					await Expand();
+					case Expando.Collapse:
+						updated = CollapseAll();
+						break;
+
+					case Expando.Expand:
+						updated = ExpandAll();
+						break;
+
+					case Expando.Restore:
+						updated = Restore();
+						break;
+
+					case Expando.Save:
+						updated = Save();
+						break;
+				}
+
+				if (updated)
+				{
+					await one.Update(page);
+				}
+			}
+		}
+
+
+		private IEnumerable<XElement> FindContainers()
+		{
+			// find all OE/OEChildren where OEChildren is only preceded by T elements;
+			// the T elements specify the title, the OEChildren contains the indented content
+			return page.Root.Descendants(ns + "OE")
+				.Where(e => e.Element(ns + "OEChildren") != null
+					&& e.Element(ns + "OEChildren").ElementsBeforeSelf()
+						.All(b => b.Name.LocalName == "T" || b.Name.LocalName == "Meta"));
+		}
+
+
+		private bool CollapseAll()
+		{
+			var containers = FindContainers();
+			if (!containers.Any())
+			{
+				return false;
+			}
+
+			// will not collapse a container if cursor is within its contents
+
+			foreach (var container in containers)
+			{
+				container.SetAttributeValue("collapsed", "1");
+			}
+
+			return true;
+		}
+
+
+		private bool ExpandAll()
+		{
+			var containers = page.Root.Descendants(ns + "OE")
+				.Where(e => e.Attribute("collapsed") != null);
+
+			if (!containers.Any())
+			{
+				return false;
+			}
+
+			foreach (var container in containers)
+			{
+				var collapsed = container.Attribute("collapsed");
+				if (collapsed != null)
+				{
+					collapsed.Remove();
+				}
+			}
+
+			return true;
+		}
+
+
+		private bool Restore()
+		{
+			var containers = FindContainers();
+			if (!containers.Any())
+			{
+				return false;
+			}
+
+			foreach (var container in containers)
+			{
+				if (container.Elements(ns + "Meta")
+					.Any(e => e.Attribute("name").Value == MetaName
+					&& e.Attribute("content").Value == "1"))
+				{
+					if (container.Attribute("collapsed")?.Value != "1")
+					{
+						container.SetAttributeValue("collapsed", "1");
+					}
 				}
 				else
 				{
-					await Collapse();
+					container.Attributes("collapsed").Remove();
 				}
 			}
+
+			return true;
 		}
 
 
-		private async Task Expand()
+		private bool Save()
 		{
-			var attributes = page.Root.Descendants(ns + "OE")
-				.Where(e => e.Attribute("collapsed")?.Value == "1")
-				.Select(e => e.Attribute("collapsed"));
-
-			if (!attributes.Any())
+			var containers = FindContainers();
+			if (!containers.Any())
 			{
-				// reset expando markers
-				page.Root.Descendants(ns + "Meta")
-					.Where(e => e.Attribute("name").Value == "omExpando")
-					.Remove();
+				return false;
+			}
 
-				// expand
-				foreach (var attribute in attributes)
+			foreach (var container in containers)
+			{
+				if (container.Attribute("collapsed")?.Value == "1")
 				{
-					var meta = attribute.Parent.Elements(ns + "Meta")
-						.FirstOrDefault(e => e.Attribute("name").Value == "omExpando");
+					var meta = container.Elements(ns + "Meta")
+						.FirstOrDefault(e => e.Attribute("name").Value == MetaName);
 
 					if (meta == null)
 					{
-						// mark element as an expando
-						attribute.Parent.AddFirst(new XElement(ns + "Meta",
-							new XAttribute("name", "omExpando"),
+						container.AddFirst(new XElement(ns + "Meta",
+							new XAttribute("name", MetaName),
 							new XAttribute("content", "1")
 							));
 					}
-
-					attribute.Remove();
+					else if (meta.Attribute("content").Value != "1")
+					{
+						meta.SetAttributeValue("content", "1");
+					}
 				}
-
-				await one.Update(page);
-			}
-		}
-
-
-		private async Task Collapse()
-		{
-			var markers = page.Root.Descendants(ns + "Meta")
-				.Where(e => e.Attribute("name").Value == "omExpando");
-
-			if (markers.Any())
-			{
-				foreach (var marker in markers)
+				else
 				{
-					marker.Parent.SetAttributeValue("collapsed", "1");
-				}
+					var meta = container.Elements(ns + "Meta")
+						.FirstOrDefault(e => e.Attribute("name").Value == MetaName);
 
-				await one.Update(page);
+					if (meta != null)
+					{
+						// meta.Remove() doesn't work
+						meta.SetAttributeValue("content", "0");
+					}
+				}
 			}
-			else
-			{
-				UIHelper.ShowInfo(Resx.ExpandoCommand_NoMarkers);
-			}
+
+			UIHelper.ShowMessage(Resx.ExpandoCommand_Saved);
+
+			return true;
 		}
 	}
 }

@@ -385,7 +385,7 @@
     <value>Bloque de código</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="ribCollapseButton_Label" xml:space="preserve">
+  <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>Contraer páginas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
@@ -2936,10 +2936,6 @@ ISO-code then comma then language name</comment>
     Contraer esquema
     ribbon item EDIT
   </data>
-  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
-    <value>Primero debe usar el comando Expandir esquema para marcar párrafos para contraer</value>
-    <comment>info message box</comment>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>Al caso del título</value>
     <comment>rib button</comment>
@@ -3114,5 +3110,33 @@ ISO-code then comma then language name</comment>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>Importar página web</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Restaurar esquema contraído</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Esquema contraído guardado</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ExpandoCommand_Saved" xml:space="preserve">
+    <value>Se ha guardado el estado del esquema</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
+    <value>... Contraer esquema</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
+    <value>... Ampliar el esquema</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
+    <value>... Restaurar esquema contraído</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
+    <value>... Guardar esquema contraído</value>
+    <comment>context menu option</comment>
   </data>
 </root>

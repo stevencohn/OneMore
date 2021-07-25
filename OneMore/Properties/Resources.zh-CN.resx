@@ -385,7 +385,7 @@
     <value>代码块</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="ribCollapseButton_Label" xml:space="preserve">
+  <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>收合页面</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
@@ -2928,10 +2928,6 @@ ISO-code then comma then language name</comment>
     <value>折叠轮廓</value>
     <comment>ribbon item EDIT</comment>
   </data>
-  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
-    <value>必须首先使用“展开轮廓”命令将段落标记为折叠</value>
-    <comment>info message box</comment>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>至标题案例</value>
     <comment>rib button</comment>
@@ -3106,5 +3102,33 @@ ISO-code then comma then language name</comment>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>导入网页</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>恢复折叠的大纲</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>保存的折叠大纲</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ExpandoCommand_Saved" xml:space="preserve">
+    <value>大纲状态已保存</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
+    <value>... 折叠大纲</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
+    <value>... 展开大纲</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
+    <value>... 恢复折叠的轮廓</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
+    <value>... 保存折叠的大纲</value>
+    <comment>context menu option</comment>
   </data>
 </root>

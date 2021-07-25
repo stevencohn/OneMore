@@ -167,14 +167,24 @@
                 onAction="DecreaseFontSizeCmd"/>
               <button
                 id="ribCollapseContentButton"
-                imageMso="OutlineCollapse"
+                imageMso="CollapseAll"
                 getLabel="GetRibbonLabel"
                 onAction="CollapseContentCmd"/>
               <button
                 id="ribExpandContentButton"
-                imageMso="OutlineExpand"
+                imageMso="OutlineExpandAll"
                 getLabel="GetRibbonLabel"
                 onAction="ExpandContentCmd"/>
+              <button
+                id="ribSaveCollapsedButton"
+                imageMso="SaveSelectionToFooterGallery"
+                getLabel="GetRibbonLabel"
+                onAction="SaveCollapsedCmd"/>
+              <button
+                id="ribRestoreCollapsedButton"
+                imageMso="OutlineShowDetail"
+                getLabel="GetRibbonLabel"
+                onAction="RestoreCollapsedCmd"/>
               <button
                 id="ribInvertSelectionButton"
                 imageMso="BlackAndWhiteInverseGrayscale"
@@ -457,10 +467,10 @@
                 getLabel="GetRibbonLabel"
                 onAction="AddTitleIconCmd"/>
               <button
-                id="ribCollapseButton"
+                id="ribCollapsePagesButton"
                 imageMso="CollapseAll"
                 getLabel="GetRibbonLabel"
-                onAction="CollapseCmd"/>
+                onAction="CollapsePagesCmd"/>
               <button
                 id="ribDateStampButton"
                 getLabel="GetRibbonLabel"

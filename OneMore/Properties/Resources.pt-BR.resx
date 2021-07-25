@@ -386,7 +386,7 @@
     <value>Bloco de código</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="ribCollapseButton_Label" xml:space="preserve">
+  <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>Recolher páginas</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
@@ -2937,10 +2937,6 @@ ISO-code then comma then language name</comment>
     Recolher esboço
     ribbon item EDIT
   </data>
-  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
-    <value>Deve-se primeiro usar o comando Expandir Contorno para marcar os parágrafos a serem recolhidos</value>
-    <comment>info message box</comment>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>Para caixa do título</value>
     <comment>rib button</comment>
@@ -3115,5 +3111,33 @@ ISO-code then comma then language name</comment>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>Importar página da web</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Restaurar esboço recolhido</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Esboço recolhido salvo</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ExpandoCommand_Saved" xml:space="preserve">
+    <value>O estado do contorno foi salvo</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
+    <value>... Recolher esboço</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
+    <value>... Expandir Outlining</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
+    <value>... Restaurar esboço recolhido</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
+    <value>... Salvar contorno recolhido</value>
+    <comment>context menu option</comment>
   </data>
 </root>

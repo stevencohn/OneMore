@@ -54,11 +54,11 @@ namespace River.OneMoreAddIn
 		public async Task ClearBackgroundCmd(IRibbonControl control)
 			=> await factory.Run<ClearBackgroundCommand>();
 
-		public async Task CollapseCmd(IRibbonControl control)
-			=> await factory.Run<CollapseCommand>();
+		public async Task CollapsePagesCmd(IRibbonControl control)
+			=> await factory.Run<CollapsePagesCommand>();
 
 		public async Task CollapseContentCmd(IRibbonControl control)
-			=> await factory.Run<ExpandoCommand>(false);
+			=> await factory.Run<ExpandoCommand>(Expando.Collapse);
 
 		public async Task ColorizeCmd(IRibbonControl control)
 			=> await factory.Run<ColorizeCommand>(control.Tag);
@@ -88,7 +88,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SpellCheckCommand>(true);
 
 		public async Task ExpandContentCmd(IRibbonControl control)
-			=> await factory.Run<ExpandoCommand>(true);
+			=> await factory.Run<ExpandoCommand>(Expando.Expand);
 
 		public async Task GetImagesCmd(IRibbonControl control)
 			=> await factory.Run<GetImagesCommand>(true);
@@ -243,11 +243,17 @@ namespace River.OneMoreAddIn
 		public async Task ResizeImagesCmd(IRibbonControl control)
 			=> await factory.Run<ResizeImagesCommand>();
 
+		public async Task RestoreCollapsedCmd(IRibbonControl control)
+			=> await factory.Run<ExpandoCommand>(Expando.Restore);
+
 		public async Task RunPluginCmd(IRibbonControl control)
 			=> await factory.Run<RunPluginCommand>(control.Tag);
 
 		public async Task ExportCmd(IRibbonControl control)
 			=> await factory.Run<ExportCommand>();
+
+		public async Task SaveCollapsedCmd(IRibbonControl control)
+			=> await factory.Run<ExpandoCommand>(Expando.Save);
 
 		public async Task SaveSnippetCmd(IRibbonControl control)
 			=> await factory.Run<SaveSnippetCommand>();

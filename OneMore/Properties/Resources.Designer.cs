@@ -707,6 +707,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Collapse Outlining.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCollapseContentButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCollapseContentButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Colorize.
         /// </summary>
         internal static string ContextMenuSheet_ribColorizeMenu {
@@ -739,6 +748,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ContextMenuSheet_ribExpandButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribExpandButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Expand Outlining.
+        /// </summary>
+        internal static string ContextMenuSheet_ribExpandContentButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribExpandContentButton", resourceCulture);
             }
         }
         
@@ -910,6 +928,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ContextMenuSheet_ribReplaceButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribReplaceButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Restore Collapsed Outline.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRestoreCollapsedButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRestoreCollapsedButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Save Collapsed Outline.
+        /// </summary>
+        internal static string ContextMenuSheet_ribSaveCollapsedButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribSaveCollapsedButton", resourceCulture);
             }
         }
         
@@ -1527,11 +1563,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Must first use the Expand Outline command to mark paragraphs to collapse.
+        ///   Looks up a localized string similar to Outline state has been saved.
         /// </summary>
-        internal static string ExpandoCommand_NoMarkers {
+        internal static string ExpandoCommand_Saved {
             get {
-                return ResourceManager.GetString("ExpandoCommand_NoMarkers", resourceCulture);
+                return ResourceManager.GetString("ExpandoCommand_Saved", resourceCulture);
             }
         }
         
@@ -4070,20 +4106,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collapse Pages.
-        /// </summary>
-        internal static string ribCollapseButton_Label {
-            get {
-                return ResourceManager.GetString("ribCollapseButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Collapse Outlining.
         /// </summary>
         internal static string ribCollapseContentButton_Label {
             get {
                 return ResourceManager.GetString("ribCollapseContentButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collapse Pages.
+        /// </summary>
+        internal static string ribCollapsePagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribCollapsePagesButton_Label", resourceCulture);
             }
         }
         
@@ -4934,11 +4970,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore Collapsed Outline.
+        /// </summary>
+        internal static string ribRestoreCollapsedButton_Label {
+            get {
+                return ResourceManager.GetString("ribRestoreCollapsedButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Run Plugin.
         /// </summary>
         internal static string ribRunPluginButton_Label {
             get {
                 return ResourceManager.GetString("ribRunPluginButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved Collapsed Outline.
+        /// </summary>
+        internal static string ribSaveCollapsedButton_Label {
+            get {
+                return ResourceManager.GetString("ribSaveCollapsedButton_Label", resourceCulture);
             }
         }
         

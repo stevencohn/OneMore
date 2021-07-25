@@ -385,7 +385,7 @@
     <value>كتلة التعليمات البرمجية</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="ribCollapseButton_Label" xml:space="preserve">
+  <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>تصغير الصفحات</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
@@ -2936,10 +2936,6 @@ ISO-code then comma then language name</comment>
     طي مخطط تفصيلي
     ribbon item EDIT
   </data>
-  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
-    <value>يجب أولاً استخدام الأمر Expand Outline لتمييز الفقرات المراد طيها</value>
-    <comment>info message box</comment>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>إلى حالة العنوان</value>
     <comment>rib button</comment>
@@ -3114,5 +3110,33 @@ ISO-code then comma then language name</comment>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>استيراد صفحة ويب</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>استعادة المخطط التفصيلي المطوي</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>تم حفظ مخطط تفصيلي مطوي</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ExpandoCommand_Saved" xml:space="preserve">
+    <value>تم حفظ حالة المخطط التفصيلي</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
+    <value>... طي مخطط تفصيلي</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
+    <value>... توسيع المخطط التفصيلي</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
+    <value>... استعادة المخطط التفصيلي المطوي</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
+    <value>... حفظ مخطط تفصيلي مطوي</value>
+    <comment>context menu option</comment>
   </data>
 </root>
