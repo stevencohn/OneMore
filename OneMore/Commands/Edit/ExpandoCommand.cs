@@ -188,6 +188,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (meta != null)
 					{
+						// meta.Remove() doesn't work
 						meta.SetAttributeValue("content", "0");
 					}
 				}
