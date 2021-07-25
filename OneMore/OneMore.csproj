@@ -329,7 +329,7 @@
     <Compile Include="Commands\References\AddFootnoteCommand.cs" />
     <Compile Include="Commands\Extras\AddTitleIconCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
-    <Compile Include="Commands\Tools\CollapseCommand.cs" />
+    <Compile Include="Commands\Tools\CollapsePagesCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\References\FootnoteEditor.cs" />
     <Compile Include="Commands\References\FootnoteReference.cs" />
@@ -909,7 +909,9 @@
     <EmbeddedResource Include="Properties\Resources.nl-NL.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
+    <EmbeddedResource Include="Properties\Resources.pt-BR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\ContextMenuSheet.resx">
       <DependentUpon>ContextMenuSheet.cs</DependentUpon>
     </EmbeddedResource>

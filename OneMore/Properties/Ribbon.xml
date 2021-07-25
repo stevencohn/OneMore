@@ -467,10 +467,10 @@
                 getLabel="GetRibbonLabel"
                 onAction="AddTitleIconCmd"/>
               <button
-                id="ribCollapseButton"
+                id="ribCollapsePagesButton"
                 imageMso="CollapseAll"
                 getLabel="GetRibbonLabel"
-                onAction="CollapseCmd"/>
+                onAction="CollapsePagesCmd"/>
               <button
                 id="ribDateStampButton"
                 getLabel="GetRibbonLabel"

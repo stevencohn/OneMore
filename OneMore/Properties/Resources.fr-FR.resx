@@ -385,7 +385,7 @@
     <value>Bloc de code</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="ribCollapseButton_Label" xml:space="preserve">
+  <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>Réduire les pages</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>

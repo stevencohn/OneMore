@@ -54,8 +54,8 @@ namespace River.OneMoreAddIn
 		public async Task ClearBackgroundCmd(IRibbonControl control)
 			=> await factory.Run<ClearBackgroundCommand>();
 
-		public async Task CollapseCmd(IRibbonControl control)
-			=> await factory.Run<CollapseCommand>();
+		public async Task CollapsePagesCmd(IRibbonControl control)
+			=> await factory.Run<CollapsePagesCommand>();
 
 		public async Task CollapseContentCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Collapse);

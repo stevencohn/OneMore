@@ -4106,20 +4106,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collapse Pages.
-        /// </summary>
-        internal static string ribCollapseButton_Label {
-            get {
-                return ResourceManager.GetString("ribCollapseButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Collapse Outlining.
         /// </summary>
         internal static string ribCollapseContentButton_Label {
             get {
                 return ResourceManager.GetString("ribCollapseContentButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collapse Pages.
+        /// </summary>
+        internal static string ribCollapsePagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribCollapsePagesButton_Label", resourceCulture);
             }
         }
         
