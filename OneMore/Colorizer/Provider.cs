@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Colorizer
 {
+	using System;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Web.Script.Serialization;
@@ -21,7 +22,16 @@ namespace River.OneMoreAddIn.Colorizer
 		{
 			var json = File.ReadAllText(path);
 			var serializer = new JavaScriptSerializer();
-			var language = serializer.Deserialize<Language>(json);
+			Language language = null;
+
+			try
+			{
+				language = serializer.Deserialize<Language>(json);
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error loading language {path}", exc);
+			}
 
 			return language;
 		}
@@ -44,7 +54,10 @@ namespace River.OneMoreAddIn.Colorizer
 			foreach (var file in Directory.GetFiles(dirPath, "*.json"))
 			{
 				var language = LoadLanguage(file);
-				names.Add(language.Name, Path.GetFileNameWithoutExtension(file));
+				if (language != null)
+				{
+					names.Add(language.Name, Path.GetFileNameWithoutExtension(file));
+				}
 			}
 
 			return names;
