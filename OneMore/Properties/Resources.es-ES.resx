@@ -3115,4 +3115,12 @@ ISO-code then comma then language name</comment>
     <value>Importar página web</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Restaurar esquema contraído</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Esquema contraído guardado</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

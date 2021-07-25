@@ -3115,4 +3115,12 @@ ISO-code then comma then language name</comment>
     <value>استيراد صفحة ويب</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>استعادة المخطط التفصيلي المطوي</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>تم حفظ مخطط تفصيلي مطوي</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

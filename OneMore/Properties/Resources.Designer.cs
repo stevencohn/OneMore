@@ -4934,11 +4934,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore Collapsed Outline.
+        /// </summary>
+        internal static string ribRestoreCollapsedButton_Label {
+            get {
+                return ResourceManager.GetString("ribRestoreCollapsedButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Run Plugin.
         /// </summary>
         internal static string ribRunPluginButton_Label {
             get {
                 return ResourceManager.GetString("ribRunPluginButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved Collapsed Outline.
+        /// </summary>
+        internal static string ribSaveCollapsedButton_Label {
+            get {
+                return ResourceManager.GetString("ribSaveCollapsedButton_Label", resourceCulture);
             }
         }
         

@@ -3116,4 +3116,12 @@ ISO-code then comma then language name</comment>
     <value>Webpagina importeren</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Samengevouwen overzicht herstellen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Samengevouwen overzicht opgeslagen</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

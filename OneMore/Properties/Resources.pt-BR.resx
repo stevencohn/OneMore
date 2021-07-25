@@ -3116,4 +3116,12 @@ ISO-code then comma then language name</comment>
     <value>Importar página da web</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Restaurar esboço recolhido</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Esboço recolhido salvo</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

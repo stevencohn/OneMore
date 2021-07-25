@@ -3107,4 +3107,12 @@ ISO-code then comma then language name</comment>
     <value>导入网页</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>恢复折叠的大纲</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>保存的折叠大纲</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

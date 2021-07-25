@@ -3101,4 +3101,12 @@ ISO-code then comma then language name</comment>
     <value>Webseite importieren</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Zugeklappte Gliederung wiederherstellen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Gespeicherte minimierte Gliederung</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

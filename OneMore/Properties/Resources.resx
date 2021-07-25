@@ -3130,4 +3130,12 @@ In this section</value>
     <value>Import Web Page</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Restore Collapsed Outline</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Saved Collapsed Outline</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

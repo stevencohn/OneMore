@@ -3110,4 +3110,12 @@ ISO-code then comma then language name</comment>
     <value>Importer une page Web</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Restaurer le contour réduit</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Plan réduit enregistré</value>
+    <comment>ribbon</comment>
+  </data>
 </root>
