@@ -34,14 +34,18 @@ namespace River.OneMoreAddIn.Settings
 			"ribEditMenu",					// Edit Menu
 			"ribColorizeMenu",				// ... Colorize
 			"ribHighlightButton",			// ... Rotating Highlighter
+			"ribNoSpellCheckButton",		// ... No Spell Check
+			"ribSpellCheckButton",			// ... Spell Check
 			"ribUppercaseButton",			// ... To UPPERCASE
 			"ribLowercaseButton",			// ... To lowercase
 			"ribTitlecaseButton",			// ... To Title Case
 			"ribIncreaseFontSizeButton",	// ... Increase Text Size
 			"ribDecreaseFontSizeButton",	// ... Decrease Text Size
-			"ribNoSpellCheckButton",		// ... No Spell Check
-			"ribSpellCheckButton",			// ... Spell Check
 			"ribJoinParagraphButton",		// ... Join Paragraph
+			"ribCollapseContentButton",		// ... Collapse Outline
+			"ribExpandContentButton",		// ... Expand Outline
+			"ribSaveCollapsedButton",		// ... Save Collapsed Outline
+			"ribRestoreCollapsedButton",	// ... Restore Collapsed Outline
 			"ribReplaceButton",				// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
 			"ribInsertSingleLineButton",	// ... Single Line

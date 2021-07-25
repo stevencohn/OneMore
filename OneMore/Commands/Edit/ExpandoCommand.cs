@@ -22,9 +22,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Expands collapsed elements, heading or paragraphs with collapsed indented children,
-	/// and records which elements were collapsed. A subsequent collapse request will collapse
-	/// only those elements previously marked as collapsed
+	/// Manages collapsible elements, expanding, collapsing, and saving or restoring the current
+	/// collapsed state of these elements.
 	/// </summary>
 	internal class ExpandoCommand : Command
 	{
@@ -73,6 +72,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private IEnumerable<XElement> FindContainers()
+		{
+			// find all OE/OEChildren where OEChildren is only preceded by T elements;
+			// the T elements specify the title, the OEChildren contains the indented content
+			return page.Root.Descendants(ns + "OE")
+				.Where(e => e.Element(ns + "OEChildren") != null
+					&& e.Element(ns + "OEChildren").ElementsBeforeSelf()
+						.All(b => b.Name.LocalName == "T" || b.Name.LocalName == "Meta"));
+		}
+
+
 		private bool CollapseAll()
 		{
 			var containers = FindContainers();
@@ -89,17 +99,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return true;
-		}
-
-
-		private IEnumerable<XElement> FindContainers()
-		{
-			// find all OE/OEChildren where OEChildren is only preceded by T elements;
-			// the T elements specify the title, the OEChildren contains the indented content
-			return page.Root.Descendants(ns + "OE")
-				.Where(e => e.Element(ns + "OEChildren") != null
-					&& e.Element(ns + "OEChildren").ElementsBeforeSelf()
-						.All(b => b.Name.LocalName == "T" || b.Name.LocalName == "Meta"));
 		}
 
 
@@ -168,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 				if (container.Attribute("collapsed")?.Value == "1")
 				{
 					var meta = container.Elements(ns + "Meta")
-						.First(e => e.Attribute("name").Value == MetaName);
+						.FirstOrDefault(e => e.Attribute("name").Value == MetaName);
 
 					if (meta == null)
 					{
@@ -185,7 +184,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					var meta = container.Elements(ns + "Meta")
-						.First(e => e.Attribute("name").Value == MetaName);
+						.FirstOrDefault(e => e.Attribute("name").Value == MetaName);
 
 					if (meta != null)
 					{
@@ -194,7 +193,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			UIHelper.ShowMessage("Saved");
+			UIHelper.ShowMessage(Resx.ExpandoCommand_Saved);
 
 			return true;
 		}
