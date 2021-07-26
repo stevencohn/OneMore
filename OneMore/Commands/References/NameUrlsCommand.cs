@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Concurrent;
 	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Linq;
@@ -69,11 +70,12 @@ namespace River.OneMoreAddIn.Commands
 			int count = 0;
 			if (elements?.Count > 0)
 			{
-				// do not use await in the body of a Parallel.ForEach
+				// must use a thread-safe collection here
+				var tasks = new ConcurrentBag<Task<int>>();
 
-				var tasks = new List<Task<int>>();
 				Parallel.ForEach(elements, (element) =>
 				{
+					// do not use await in the body of a Parallel.ForEach
 					tasks.Add(ReplaceUrlText(element));
 				});
 

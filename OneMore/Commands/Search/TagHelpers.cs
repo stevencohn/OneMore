@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var root = await one.SearchMeta(scopeId, Page.TaggingMetaName);
 
-				var ns = root.GetNamespaceOfPrefix("one");
+				var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
 				var pages = root.Descendants(ns + "Page")
 					.OrderByDescending(e => e.Attribute("lastModifiedTime").Value);
 

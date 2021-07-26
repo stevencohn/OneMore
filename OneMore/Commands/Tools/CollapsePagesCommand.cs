@@ -10,9 +10,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
-	internal class CollapseCommand : Command
+	internal class CollapsePagesCommand : Command
 	{
-		public CollapseCommand()
+		public CollapsePagesCommand()
 		{
 		}
 

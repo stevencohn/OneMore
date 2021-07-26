@@ -37,50 +37,50 @@ namespace River.OneMoreAddIn
 
 		public StyleRecord(XElement element) : this()
 		{
-			if (element.ReadAttributeValue("name", out var name))
+			if (element.GetAttributeValue("name", out var name))
 				Name = name;
 
-			if (element.ReadAttributeValue("styleType", out StyleType styleType, StyleType.Character))
+			if (element.GetAttributeValue("styleType", out StyleType styleType, StyleType.Character))
 				StyleType = styleType;
 
-			if (element.ReadAttributeValue("index", out int index, 0))
+			if (element.GetAttributeValue("index", out int index, 0))
 				Index = index;
 
-			if (element.ReadAttributeValue("font", out var fontFamily))
+			if (element.GetAttributeValue("font", out var fontFamily))
 				FontFamily = fontFamily;
 
-			element.ReadAttributeValue("fontSize", out fontSize, 0.0);
+			element.GetAttributeValue("fontSize", out fontSize, 0.0);
 
-			if (element.ReadAttributeValue("fontColor", out var fontColor))
+			if (element.GetAttributeValue("fontColor", out var fontColor))
 				Color = fontColor;
 
-			if (element.ReadAttributeValue("highlightColor", out var highlightColor))
+			if (element.GetAttributeValue("highlightColor", out var highlightColor))
 				Highlight = highlightColor;
 
-			if (element.ReadAttributeValue("applyColors", out bool applyColors, false))
+			if (element.GetAttributeValue("applyColors", out bool applyColors, false))
 				ApplyColors = applyColors;
 
-			if (element.ReadAttributeValue("bold", out bool bold, false))
+			if (element.GetAttributeValue("bold", out bool bold, false))
 				IsBold = bold;
 
-			if (element.ReadAttributeValue("italic", out bool italic, false))
+			if (element.GetAttributeValue("italic", out bool italic, false))
 				IsItalic = italic;
 
-			if (element.ReadAttributeValue("underline", out bool underline, false))
+			if (element.GetAttributeValue("underline", out bool underline, false))
 				IsUnderline = underline;
 
-			if (element.ReadAttributeValue("strikethrough", out bool strikethrough, false))
+			if (element.GetAttributeValue("strikethrough", out bool strikethrough, false))
 				IsStrikethrough = strikethrough;
 
-			if (element.ReadAttributeValue("superscript", out bool superscript, false))
+			if (element.GetAttributeValue("superscript", out bool superscript, false))
 				IsSuperscript = superscript;
 
-			if (element.ReadAttributeValue("subscript", out bool subscript, false))
+			if (element.GetAttributeValue("subscript", out bool subscript, false))
 				IsSubscript = subscript;
 
-			element.ReadAttributeValue("spaceBefore", out spaceBefore, 0.0);
-			element.ReadAttributeValue("spaceAfter", out spaceAfter, 0.0);
-			element.ReadAttributeValue("spacing", out spacing, 0.0);
+			element.GetAttributeValue("spaceBefore", out spaceBefore, 0.0);
+			element.GetAttributeValue("spaceAfter", out spaceAfter, 0.0);
+			element.GetAttributeValue("spacing", out spacing, 0.0);
 		}
 
 

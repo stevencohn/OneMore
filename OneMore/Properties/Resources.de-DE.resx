@@ -385,7 +385,7 @@
     <value>Codeblock</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
-  <data name="ribCollapseButton_Label" xml:space="preserve">
+  <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>Seiten reduzieren</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
@@ -2922,10 +2922,6 @@ ISO-code then comma then language name</comment>
     Gliederungsübersicht
     ribbon item EDIT
   </data>
-  <data name="ExpandoCommand_NoMarkers" xml:space="preserve">
-    <value>Verwenden Sie zuerst den Befehl "Gliederung erweitern", um Absätze zum Reduzieren zu markieren</value>
-    <comment>info message box</comment>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>Zum Titelfall</value>
     <comment>rib button</comment>
@@ -3064,5 +3060,69 @@ ISO-code then comma then language name</comment>
   <data name="ribClearBackgroundButton_Label" xml:space="preserve">
     <value>Klare Hintergrundfarbe</value>
     <comment>ribbon menu item</comment>
+  </data>
+  <data name="ImportWebDialog_appendButton.Text" xml:space="preserve">
+    <value>An aktuelle Seite anhängen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_newChildButton.Text" xml:space="preserve">
+    <value>Als neues Kind der aktuellen Seite erstellen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
+    <value>Als neue Seite erstellen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportWebDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportWebDialog_Text" xml:space="preserve">
+    <value>Webseite importieren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
+    <value>Adresse</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportWebCommand_BadUrl" xml:space="preserve">
+    <value>Webseite nicht gefunden oder leerer Inhalt zurückgegeben</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribImportWebButton_Label" xml:space="preserve">
+    <value>Webseite importieren</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
+    <value>Zugeklappte Gliederung wiederherstellen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribSaveCollapsedButton_Label" xml:space="preserve">
+    <value>Gespeicherte minimierte Gliederung</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ExpandoCommand_Saved" xml:space="preserve">
+    <value>Gliederungsstatus wurde gespeichert</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
+    <value>... Gliederung ausblenden</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
+    <value>... Gliederung erweitern</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
+    <value>... Zugeklappte Umrisse wiederherstellen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
+    <value>... Zugeklappte Gliederung speichern</value>
+    <comment>context menu option</comment>
   </data>
 </root>

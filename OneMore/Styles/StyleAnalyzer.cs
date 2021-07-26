@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn
 			var index = element.Attribute("quickStyleIndex")?.Value;
 			if (index != null)
 			{
-				var ns = page.GetNamespaceOfPrefix("one");
+				var ns = page.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				var quick = page.Elements(ns + "QuickStyleDef")
 					.FirstOrDefault(e => e.Attribute("index").Value.Equals(index));

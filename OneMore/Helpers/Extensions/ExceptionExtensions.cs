@@ -100,5 +100,25 @@ namespace River.OneMoreAddIn
 				FormatDetails(exc, builder, depth + 1);
 			}
 		}
+
+
+		/// <summary>
+		/// Get a concatenated string of the exception messages and its inner exceptions.
+		/// </summary>
+		/// <param name="exc">The exception</param>
+		/// <returns>A string with one or more lines</returns>
+		public static string Messages(this Exception exc)
+		{
+			var builder = new StringBuilder();
+			builder.AppendLine(exc.Message);
+
+			while (exc.InnerException != null)
+			{
+				exc = exc.InnerException;
+				builder.AppendLine(exc.Message);
+			}
+
+			return builder.ToString();
+		}
 	}
 }

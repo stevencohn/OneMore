@@ -342,7 +342,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static bool ReadAttributeValue(
+		public static bool GetAttributeValue(
 			this XElement element, string name, out string value, string defaultV = null)
 		{
 			var attr = element.Attribute(name)?.Value;
@@ -356,7 +356,7 @@ namespace River.OneMoreAddIn
 			return false;
 		}
 
-		public static bool ReadAttributeValue<T>(
+		public static bool GetAttributeValue<T>(
 			this XElement element, string name, out T value, T defaultV = default)
 		{
 			var attr = element.Attribute(name);
