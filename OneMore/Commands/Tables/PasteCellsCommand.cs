@@ -5,11 +5,12 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using System.Collections.Generic;
+	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Hap = HtmlAgilityPack;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 	using Win = System.Windows;
 
@@ -26,26 +27,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var clipboard = await SingleThreaded.Invoke(() =>
+			using (one = new OneNote(out var page, out var ns))
 			{
-				return Win.Clipboard.ContainsText(Win.TextDataFormat.Html)
-					? Win.Clipboard.GetText(Win.TextDataFormat.Html)
-					: null;
-			});
-
-			if (string.IsNullOrEmpty(clipboard))
-			{
-				UIHelper.ShowInfo("No content to paste");
-				return;
-			}
-
-			using (one = new OneNote())
-			{
-				var template = await CreateTemplatePage(clipboard);
-				logger.WriteLine(template.Root);
-
-				/*
-				// Find first selected cell as anchor point to locate table ; By filtering on
+				// Find first selected cell as anchor point to locate table; by filtering on
 				// selected=all, we avoid including the parent table of a selected nested table.
 
 				var anchor = page.Root.Descendants(ns + "Cell")
@@ -59,42 +43,104 @@ namespace River.OneMoreAddIn.Commands
 
 				if (anchor == null)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.InsertCellsCommand_NoSelection);
+					UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_SelectCell);
 					return;
 				}
 
-				var table = new Table(anchor.FirstAncestor(ns + "Table"));
-				var cells = table.GetSelectedCells(out var range).ToList();
-
-				var shiftDown = true;
-				var shiftCount = 1;
-
-				using (var dialog = new InsertCellsDialog())
+				var otable = anchor.Ancestors(ns + "Table").FirstOrDefault();
+				if (otable == null)
 				{
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
-					{
-						return;
-					}
-
-					shiftDown = dialog.ShiftDown;
-					shiftCount = dialog.ShiftCount;
+					UIHelper.ShowInfo(one.Window, "error finding <one:Table>; this shouldn't happen!");
+					return;
 				}
 
-				if (shiftDown)
+				var targetTable = new Table(otable);
+				logger.WriteLine($"target {targetTable.RowCount} rows, {targetTable.ColumnCount} columns");
+
+				// get the content to paste
+				var sourceTable = await GetSourceTable();
+				if (sourceTable == null)
 				{
-					ShiftDown(table, cells, shiftCount);
-				}
-				else
-				{
-					ShiftRight(table, cells, shiftCount);
+					UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
+					return;
 				}
 
+				logger.WriteLine($"source {sourceTable.RowCount} rows, {sourceTable.ColumnCount} columns");
+
+
+
+				/*
 				await one.Update(page);
 				*/
 			}
 		}
 
-		private async Task<Page> CreateTemplatePage(string content)
+
+		private async Task<Table> GetSourceTable()
+		{
+			var content = await SingleThreaded.Invoke(() =>
+			{
+				return Win.Clipboard.ContainsText(Win.TextDataFormat.Html)
+					? Win.Clipboard.GetText(Win.TextDataFormat.Html)
+					: null;
+			});
+
+			if (string.IsNullOrEmpty(content))
+			{
+				UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
+				return null;
+			}
+
+			if (!ValidateClipboardContent(content))
+			{
+				UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
+				return null;
+			}
+
+			var page = await CreateTemplatePage();
+
+			var element = page.Root.Descendants(page.Namespace + "Table").FirstOrDefault();
+			if (element == null)
+			{
+				return null;
+			}
+
+			return new Table(element);
+		}
+
+
+		private bool ValidateClipboardContent(string content)
+		{
+			var index = content.IndexOf("<html");
+			if (index < 0)
+			{
+				return false;
+			}
+
+			try
+			{
+				var html = content.Substring(index);
+				var doc = new Hap.HtmlDocument();
+				doc.LoadHtml(html);
+
+				var table = doc.DocumentNode.SelectSingleNode("//body//table");
+				if (table == null)
+				{
+					logger.WriteLine("no <table> found in content");
+					return false;
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error parsing clipboard content", exc);
+				return false;
+			}
+
+			return true;
+		}
+
+
+		private async Task<Page> CreateTemplatePage()
 		{
 			var currentPageId = one.CurrentPageId;
 

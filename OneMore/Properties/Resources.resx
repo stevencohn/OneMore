@@ -3154,4 +3154,12 @@ In this section</value>
     <value>... Save Collapsed Outline</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PasteCellsCommand_NoContent" xml:space="preserve">
+    <value>No content to paste; copy one or more table cells to paste</value>
+    <comment>message box</comment>
+  </data>
+  <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
+    <value>Select a table cell where pasted cells should start overlaying</value>
+    <comment>message box</comment>
+  </data>
 </root>
