@@ -29,50 +29,89 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out var page, out var ns))
 			{
-				// Find first selected cell as anchor point to locate table; by filtering on
-				// selected=all, we avoid including the parent table of a selected nested table.
+				var targetRoot = GetTargetTableRoot(page, ns);
+				if (targetRoot == null)
+				{
+					return;
+				}
 
-				var anchor = page.Root.Descendants(ns + "Cell")
-					// first dive down to find the selected T
-					.Elements(ns + "OEChildren").Elements(ns + "OE")
-					.Elements(ns + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					// now move back up to the Cell
-					.Select(e => e.Parent.Parent.Parent)
-					.FirstOrDefault();
+				var table = new Table(targetRoot);
+				var anchor = table.GetSelectedCells(out _).FirstOrDefault();
 
 				if (anchor == null)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_SelectCell);
+					logger.WriteLine("could not find anchor cell");
+					UIHelper.ShowInfo(one.Window, "could not find anchor cell; this shouldn't happen!");
 					return;
 				}
 
-				var otable = anchor.Ancestors(ns + "Table").FirstOrDefault();
-				if (otable == null)
-				{
-					UIHelper.ShowInfo(one.Window, "error finding <one:Table>; this shouldn't happen!");
-					return;
-				}
+				logger.WriteLine($"target {table.RowCount} rows, {table.ColumnCount} columns - anchor:{anchor.RowNum},{anchor.ColNum}");
 
-				var targetTable = new Table(otable);
-				logger.WriteLine($"target {targetTable.RowCount} rows, {targetTable.ColumnCount} columns");
+				// get the content to paste...
 
-				// get the content to paste
-				var sourceTable = await GetSourceTable();
-				if (sourceTable == null)
+				var source = await GetSourceTable();
+				if (source == null)
 				{
 					UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
 					return;
 				}
 
-				logger.WriteLine($"source {sourceTable.RowCount} rows, {sourceTable.ColumnCount} columns");
+				logger.WriteLine($"source {source.RowCount} rows, {source.ColumnCount} columns");
 
+				EnsureRoom(table, anchor, source);
 
+				// paste...
 
-				/*
+				for (int r = 0, row = anchor.RowNum - 1; r < source.RowCount; r++, row++)
+				{
+					for (int c = 0, col = anchor.ColNum - 1; c < source.ColumnCount; c++, col++)
+					{
+						table[row][col].SetContent(source[r][c].GetContent());
+
+						var shading = source[r][c].ShadingColor;
+						if (shading != null)
+						{
+							table[row][col].ShadingColor = shading;
+						}
+					}
+				}
+
+				logger.WriteLine(table.Root);
+
 				await one.Update(page);
-				*/
 			}
+		}
+
+
+		private XElement GetTargetTableRoot(Page page, XNamespace ns)
+		{
+			// Find first selected cell as anchor point to locate table; by filtering on
+			// selected=all, we avoid including the parent table of a selected nested table.
+
+			var cell = page.Root.Descendants(ns + "Cell")
+				// first dive down to find the selected T
+				.Elements(ns + "OEChildren").Elements(ns + "OE")
+				.Elements(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				// now move back up to the Cell
+				.Select(e => e.Parent.Parent.Parent)
+				.FirstOrDefault();
+
+			if (cell == null)
+			{
+				UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_SelectCell);
+				return null;
+			}
+
+			var root = cell.Ancestors(ns + "Table").FirstOrDefault();
+			if (root == null)
+			{
+				logger.WriteLine("error finding <one:Table>");
+				UIHelper.ShowInfo(one.Window, "error finding <one:Table>; this shouldn't happen!");
+				return null;
+			}
+
+			return root;
 		}
 
 
@@ -104,6 +143,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				return null;
 			}
+
+			element.Descendants().Attributes("objectID").Remove(); 
 
 			return new Table(element);
 		}
@@ -160,119 +201,24 @@ namespace River.OneMoreAddIn.Commands
 			return page;
 		}
 
-		/*
-		private void ShiftDown(Table table, List<TableCell> cells, int shiftCount)
+
+		private void EnsureRoom(Table table, TableCell anchor, Table source)
 		{
-			// RowNum and ColNum are 1-based so must shift them to be 0-based
-			var minCol = cells.Min(c => c.ColNum) - 1;
-			var maxCol = cells.Max(c => c.ColNum) - 1;
-			var minRow = cells.Min(c => c.RowNum) - 1;
-			var maxRow = cells.Max(c => c.RowNum) - 1;
-
-			// if selected one row then move all visible content in desired direction
-			// if rectangular then only move rectangle...
-
-			if (minRow == maxRow)
+			var room = table.RowCount - anchor.RowNum + 1;
+			while (room < source.RowCount)
 			{
-				// find last row that contains visible text
-				var found = false;
-				maxRow = table.Rows.Count() - 1;
-				while (maxRow > minRow && !found)
-				{
-					for (var c = minCol; c <= maxCol; c++)
-					{
-						if (!string.IsNullOrEmpty(table[maxRow][c].GetText()))
-						{
-							found = true;
-							break;
-						}
-					}
-
-					if (!found)
-					{
-						maxRow--;
-					}
-				}
+				logger.WriteLine("addrow");
+				table.AddRow();
+				room++;
 			}
 
-			// add rows to make room for all visible text
-			int neededRows = (maxRow + 1) + shiftCount;
-			if (neededRows > table.Rows.Count())
+			room = table.ColumnCount - anchor.ColNum + 1;
+			while (room < source.ColumnCount)
 			{
-				for (var i = table.Rows.Count(); i < neededRows; i++) table.AddRow();
-			}
-
-			// iterate target coordinates
-			for (var r = maxRow + shiftCount; r >= minRow + shiftCount; r--)
-			{
-				for (var c = minCol; c <= maxCol; c++)
-				{
-					var source = table[r - shiftCount][c];
-
-					table[r][c].SetContent(source.GetContent());
-					source.SetContent(string.Empty);
-				}
+				logger.WriteLine("addcol");
+				table.AddColumn(40);
+				room++;
 			}
 		}
-
-
-		private void ShiftRight(Table table, List<TableCell> cells, int shiftCount)
-		{
-			// RowNum and ColNum are 1-based so must shift them to be 0-based
-			var minCol = cells.Min(c => c.ColNum) - 1;
-			var maxCol = cells.Max(c => c.ColNum) - 1;
-			var minRow = cells.Min(c => c.RowNum) - 1;
-			var maxRow = cells.Max(c => c.RowNum) - 1;
-
-			var cols = table[0].Cells.Count();
-
-			// if selected one col then move all visible content in desired direction
-			// if rectangular then only move rectangle...
-
-			if (minCol == maxCol)
-			{
-				// find last col that contains visible text
-				var found = false;
-				maxCol = cols - 1;
-				while (maxCol > minCol && !found)
-				{
-					for (var r = minRow; r <= maxRow; r++)
-					{
-						if (!string.IsNullOrEmpty(table[r][maxCol].GetText()))
-						{
-							found = true;
-							break;
-						}
-					}
-
-					if (!found)
-					{
-						maxCol--;
-					}
-				}
-			}
-
-			// add cols to make room for all visible text
-			int overflow = (maxCol + 1) + shiftCount - cols;
-			if (overflow > 0)
-			{
-				for (var i = 0; i < overflow; i++) table.AddColumn(80f);
-			}
-
-			int offset = shiftCount;
-
-			// iterate target coordinates
-			for (var c = maxCol + offset; c >= minCol + offset; c--)
-			{
-				for (var r = minRow; r <= maxRow; r++)
-				{
-					var source = table[r][c - offset];
-
-					table[r][c].SetContent(source.GetContent());
-					source.SetContent(string.Empty);
-				}
-			}
-		}
-		*/
 	}
 }
