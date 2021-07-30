@@ -15,6 +15,10 @@ namespace River.OneMoreAddIn.Commands
 	using Win = System.Windows;
 
 
+	/// <summary>
+	/// Paste the copied cells into the target table, overlaying cells rather than inserting
+	/// a nested table. The target table is expanded with extra rows or columns as needed.
+	/// </summary>
 	internal class PasteCellsCommand : Command
 	{
 		private OneNote one;
@@ -29,6 +33,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out var page, out var ns))
 			{
+				// make sure cursor is positioned in a target table...
+
 				var targetRoot = GetTargetTableRoot(page, ns);
 				if (targetRoot == null)
 				{
@@ -36,6 +42,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				var table = new Table(targetRoot);
+
+				// anchor is the upper-left cell into which pasting will begin
 				var anchor = table.GetSelectedCells(out _).FirstOrDefault();
 
 				if (anchor == null)
@@ -45,18 +53,23 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				logger.WriteLine($"target {table.RowCount} rows, {table.ColumnCount} columns - anchor:{anchor.RowNum},{anchor.ColNum}");
-
 				// get the content to paste...
 
-				var source = await GetSourceTable();
+				var spage = await GetSourcePage();
+				if (spage == null)
+				{
+					UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
+					return;
+				}
+
+				var source = GetSourceTable(spage);
 				if (source == null)
 				{
 					UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
 					return;
 				}
 
-				logger.WriteLine($"source {source.RowCount} rows, {source.ColumnCount} columns");
+				var mapping = page.MergeQuickStyles(spage);
 
 				EnsureRoom(table, anchor, source);
 
@@ -67,6 +80,7 @@ namespace River.OneMoreAddIn.Commands
 					for (int c = 0, col = anchor.ColNum - 1; c < source.ColumnCount; c++, col++)
 					{
 						table[row][col].SetContent(source[r][c].GetContent());
+						page.ApplyStyleMapping(mapping, table[row][col].Root);
 
 						var shading = source[r][c].ShadingColor;
 						if (shading != null)
@@ -75,8 +89,6 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 				}
-
-				logger.WriteLine(table.Root);
 
 				await one.Update(page);
 			}
@@ -115,8 +127,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<Table> GetSourceTable()
+		private async Task<Page> GetSourcePage()
 		{
+			// the Clipboard will contain HTML of the copied cells wrapped in a <table>
 			var content = await SingleThreaded.Invoke(() =>
 			{
 				return Win.Clipboard.ContainsText(Win.TextDataFormat.Html)
@@ -126,25 +139,25 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrEmpty(content))
 			{
-				UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
 				return null;
 			}
 
 			if (!ValidateClipboardContent(content))
 			{
-				UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
 				return null;
 			}
 
-			var page = await CreateTemplatePage();
+			return await CreateTemplatePage();
+		}
 
+
+		private Table GetSourceTable(Page page)
+		{
 			var element = page.Root.Descendants(page.Namespace + "Table").FirstOrDefault();
 			if (element == null)
 			{
 				return null;
 			}
-
-			element.Descendants().Attributes("objectID").Remove(); 
 
 			return new Table(element);
 		}
@@ -183,6 +196,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<Page> CreateTemplatePage()
 		{
+			// use a temporary scratch page to convert the HTML into OneNote XML by pasting the
+			// HTML contents of the clipboard and let OneNote do its magic...
+
 			var currentPageId = one.CurrentPageId;
 
 			one.CreatePage(one.CurrentSectionId, out var pageId);
@@ -207,7 +223,6 @@ namespace River.OneMoreAddIn.Commands
 			var room = table.RowCount - anchor.RowNum + 1;
 			while (room < source.RowCount)
 			{
-				logger.WriteLine("addrow");
 				table.AddRow();
 				room++;
 			}
@@ -215,7 +230,6 @@ namespace River.OneMoreAddIn.Commands
 			room = table.ColumnCount - anchor.ColNum + 1;
 			while (room < source.ColumnCount)
 			{
-				logger.WriteLine("addcol");
 				table.AddColumn(40);
 				room++;
 			}
