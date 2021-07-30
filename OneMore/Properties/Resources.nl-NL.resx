@@ -3140,4 +3140,12 @@ ISO-code then comma then language name</comment>
     <value>... Samengevouwen overzicht opslaan</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PasteCellsCommand_NoContent" xml:space="preserve">
+    <value>Geen inhoud om te plakken; </value>
+    <comment>message box</comment>
+  </data>
+  <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
+    <value>Selecteer een tabelcel waar geplakte cellen moeten beginnen over elkaar heen te leggen</value>
+    <comment>message box</comment>
+  </data>
 </root>

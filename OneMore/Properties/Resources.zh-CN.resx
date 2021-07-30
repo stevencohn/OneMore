@@ -3131,4 +3131,12 @@ ISO-code then comma then language name</comment>
     <value>... 保存折叠的大纲</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PasteCellsCommand_NoContent" xml:space="preserve">
+    <value>没有要粘贴的内容；</value>
+    <comment>message box</comment>
+  </data>
+  <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
+    <value>选择一个表格单元格，粘贴的单元格应该开始覆盖</value>
+    <comment>message box</comment>
+  </data>
 </root>
