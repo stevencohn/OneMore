@@ -3125,4 +3125,12 @@ ISO-code then comma then language name</comment>
     <value>... Zugeklappte Gliederung speichern</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PasteCellsCommand_NoContent" xml:space="preserve">
+    <value>Kein Inhalt zum Einfügen; </value>
+    <comment>message box</comment>
+  </data>
+  <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
+    <value>Wählen Sie eine Tabellenzelle aus, in der eingefügte Zellen überlagert werden sollen</value>
+    <comment>message box</comment>
+  </data>
 </root>

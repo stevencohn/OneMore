@@ -263,6 +263,7 @@
     <Compile Include="Commands\Settings\FavoritesSheet.Designer.cs">
       <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tables\PasteCellsCommand.cs" />
     <Compile Include="Commands\Tables\SplitTableCommand.cs" />
     <Compile Include="Commands\Tables\SplitTableDialog.cs">
       <SubType>Form</SubType>

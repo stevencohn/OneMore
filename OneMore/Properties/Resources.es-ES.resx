@@ -3139,4 +3139,12 @@ ISO-code then comma then language name</comment>
     <value>... Guardar esquema contraído</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PasteCellsCommand_NoContent" xml:space="preserve">
+    <value>Sin contenido para pegar; </value>
+    <comment>message box</comment>
+  </data>
+  <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
+    <value>Seleccione una celda de la tabla donde las celdas pegadas deberían comenzar a superponerse</value>
+    <comment>message box</comment>
+  </data>
 </root>

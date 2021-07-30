@@ -105,6 +105,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Recalculate all formulas in selected tables on the page (Shift + F5)
 * Convert select text to a table
 * Insert Table Cells, shifting content as expected
+* Paste copied table cells by overlaying cells rather than inserting a nested table
 * Split table
 
 [Extra commands](../../wiki/Extra-Commands)

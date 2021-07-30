@@ -3139,4 +3139,12 @@ ISO-code then comma then language name</comment>
     <value>... حفظ مخطط تفصيلي مطوي</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PasteCellsCommand_NoContent" xml:space="preserve">
+    <value>لا يوجد محتوى للصقه ؛ </value>
+    <comment>message box</comment>
+  </data>
+  <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
+    <value>حدد خلية جدول حيث يجب أن تبدأ الخلايا الملصقة في التراكب</value>
+    <comment>message box</comment>
+  </data>
 </root>

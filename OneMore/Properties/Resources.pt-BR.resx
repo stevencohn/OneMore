@@ -3140,4 +3140,12 @@ ISO-code then comma then language name</comment>
     <value>... Salvar contorno recolhido</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PasteCellsCommand_NoContent" xml:space="preserve">
+    <value>Nenhum conteúdo para colar; </value>
+    <comment>message box</comment>
+  </data>
+  <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
+    <value>Selecione uma célula da tabela onde as células coladas devem começar a se sobrepor</value>
+    <comment>message box</comment>
+  </data>
 </root>

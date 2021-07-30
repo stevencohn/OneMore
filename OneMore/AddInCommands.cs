@@ -204,6 +204,9 @@ namespace River.OneMoreAddIn
 		public async Task OutlineCmd(IRibbonControl control)
 			=> await factory.Run<OutlineCommand>();
 
+		public async Task PasteCellsCmd(IRibbonControl control)
+			=> await factory.Run<PasteCellsCommand>();
+
 		public async Task PasteRtfCmd(IRibbonControl control)
 			=> await factory.Run<PasteRtfCommand>();
 

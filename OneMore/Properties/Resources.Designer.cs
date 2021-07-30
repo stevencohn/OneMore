@@ -3113,6 +3113,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No content to paste; copy one or more table cells to paste.
+        /// </summary>
+        internal static string PasteCellsCommand_NoContent {
+            get {
+                return ResourceManager.GetString("PasteCellsCommand_NoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a table cell where pasted cells should start overlaying.
+        /// </summary>
+        internal static string PasteCellsCommand_SelectCell {
+            get {
+                return ResourceManager.GetString("PasteCellsCommand_SelectCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pencil {

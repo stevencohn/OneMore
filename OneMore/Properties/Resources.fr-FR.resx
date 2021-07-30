@@ -3134,4 +3134,12 @@ ISO-code then comma then language name</comment>
     <value>... Enregistrer le contour réduit</value>
     <comment>context menu option</comment>
   </data>
+  <data name="PasteCellsCommand_NoContent" xml:space="preserve">
+    <value>Aucun contenu à coller ; </value>
+    <comment>message box</comment>
+  </data>
+  <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
+    <value>Sélectionnez une cellule de tableau où les cellules collées doivent commencer à se superposer</value>
+    <comment>message box</comment>
+  </data>
 </root>

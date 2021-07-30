@@ -454,6 +454,12 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertCellsCmd"/>
               <button
+                id="ribPasteCellsButton"
+                imageMso="PasteAsNestedTable"
+                label="Paste Cells"
+                getEnabled="GetBodyContext"
+                onAction="PasteCellsCmd"/>
+              <button
                 id="ribSplitTableButton"
                 imageMso="TableSplitTable"
                 getLabel="GetRibbonLabel"
