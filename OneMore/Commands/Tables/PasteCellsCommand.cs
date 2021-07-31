@@ -38,6 +38,7 @@ namespace River.OneMoreAddIn.Commands
 				var targetRoot = GetTargetTableRoot(page, ns);
 				if (targetRoot == null)
 				{
+					IsCancelled = true;
 					return;
 				}
 
@@ -50,6 +51,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					logger.WriteLine("could not find anchor cell");
 					UIHelper.ShowInfo(one.Window, "could not find anchor cell; this shouldn't happen!");
+					IsCancelled = true;
 					return;
 				}
 
@@ -59,6 +61,7 @@ namespace River.OneMoreAddIn.Commands
 				if (spage == null)
 				{
 					UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
+					IsCancelled = true;
 					return;
 				}
 
@@ -66,6 +69,7 @@ namespace River.OneMoreAddIn.Commands
 				if (source == null)
 				{
 					UIHelper.ShowInfo(one.Window, Resx.PasteCellsCommand_NoContent);
+					IsCancelled = true;
 					return;
 				}
 
