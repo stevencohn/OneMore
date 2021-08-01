@@ -123,7 +123,9 @@ namespace River.OneMoreAddIn
 			if (p1 != p2)
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
+				logger.WriteLine("original");
 				logger.WriteLine(p1);
+				logger.WriteLine("modified");
 				logger.WriteLine(p2);
 				return false;
 			}
