@@ -150,6 +150,7 @@
     <Compile Include="Commands\File\ImportWebDialog.Designer.cs">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\References\BiLinkCommand.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
     <Compile Include="Commands\References\LinkDialog.cs">
       <SubType>Form</SubType>
