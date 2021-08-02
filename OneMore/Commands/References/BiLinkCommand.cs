@@ -76,7 +76,6 @@ namespace River.OneMoreAddIn
 		private bool MarkAnchor(OneNote one)
 		{
 			var page = one.GetPage();
-			var ns = page.Namespace;
 
 			//var run = page.GetSelectedElements(all: false).FirstOrDefault();
 			var run = page.GetTextCursor(true);
@@ -109,8 +108,8 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			var paraOne = pageOne.GetTextCursor(true); //.Root.Descendants()
-				//.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == paragraphId));
+			var paraOne = pageOne.Root.Descendants()
+				.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == paragraphId));
 
 			if (paraOne == null)
 			{
@@ -118,18 +117,16 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			paraOne = paraOne.Parent;
+			paraOne.RemoveTextCursor();
 
 			// ensure anchor selection hasn't changed and is still selected!
-			var p1 = paraOne.ToString();
-			var p2 = paragraph.ToString();
-			if (p1 != p2)
+			if (AnchorModified(paraOne, paragraph))
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
 				logger.WriteLine("original");
-				logger.WriteLine(p1);
+				logger.WriteLine(paraOne.ToString());
 				logger.WriteLine("modified");
-				logger.WriteLine(p2);
+				logger.WriteLine(paragraph.ToString());
 				return false;
 			}
 
@@ -141,17 +138,51 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			if (p1 == run.ToString())
+			var paraTwo = run.Parent;
+
+			paraOne.GetAttributeValue("objectID", out var p1);
+			paraTwo.GetAttributeValue("objectID", out var p2);
+			if (p1 == p2)
 			{
 				logger.WriteLine("cannot link a phrase to itself");
 				return false;
 			}
+
+			logger.WriteLine();
+			logger.WriteLine("paraOne");
+			logger.WriteLine(paraOne);
+			logger.WriteLine("paraTwo");
+			logger.WriteLine(paraTwo.ToString());
+			logger.WriteLine();
 
 			logger.WriteLine($"link to {pageOneId} from {one.CurrentPageId} paragraph {paragraphId}");
 			logger.WriteLine(paragraph.ToString());
 
 			await Task.Yield();
 			return true;
+		}
+
+
+		private bool AnchorModified(XElement snapshot, XElement anchor)
+		{
+			// special deep comparison, excluding the selected attributes to handle
+			// case where anchor is on the same page as the target element
+
+			var oldcopy = new XElement(snapshot);
+			oldcopy.Attributes().Where(a => a.Name.LocalName == "selected").Remove();
+			oldcopy.DescendantNodes().OfType<XAttribute>().Where(a => a.Name.LocalName == "selected").Remove();
+
+			var newcopy = new XElement(anchor);
+			newcopy.Attributes().Where(a => a.Name.LocalName == "selected").Remove();
+			newcopy.DescendantNodes().OfType<XAttribute>().Where(a => a.Name.LocalName == "selected").Remove();
+
+			var oldxml = oldcopy.ToString(SaveOptions.DisableFormatting);
+			var newxml = newcopy.ToString(SaveOptions.DisableFormatting);
+
+			logger.WriteLine($"old {oldxml}");
+			logger.WriteLine($"new {newxml}");
+
+			return oldxml != newxml;
 		}
 	}
 }

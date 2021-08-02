@@ -401,5 +401,67 @@ namespace River.OneMoreAddIn
 				element.Add(new XAttribute(name, value));
 			}
 		}
+
+
+		/// <summary>
+		/// Given a paragraph OE element, remove the empty CDATA text cursor and merge any
+		/// surrounding run T elements.
+		/// </summary>
+		/// <param name="element">
+		/// An OE paragraph element containing an empty T run
+		/// or an empty T run element that is the text cursor
+		/// </param>
+		/// <returns>
+		/// The merged element after the cursor element is removed
+		/// </returns>
+		public static XElement RemoveTextCursor(this XElement element)
+		{
+			if (element.Name.LocalName == "OE")
+			{
+				element = element.Elements()
+					.FirstOrDefault(e => e.Name.LocalName == "T" &&
+						e.Attribute("selected") != null &&
+						e.Attribute("selected").Value == "all");
+			}
+
+			if (element == null ||
+				element.Name.LocalName != "T" ||
+				element.FirstNode.NodeType != XmlNodeType.CDATA)
+			{
+				return element;
+			}
+
+			var cdata = element.FirstNode as XCData;
+			var merged = element;
+
+			// empty or link or xml-comment because we can't tell the difference between
+			// a zero-selection zero-selection link and a partial or fully selected link.
+			// Note that XML comments are used to wrap mathML equations
+			if (cdata.Value.Length == 0 ||
+				Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
+				Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+			{
+				if (cdata.Value == string.Empty)
+				{
+					// only merge if empty [], note cursor could be a hyperlink <a>..</a>
+					// remove the empty CDATA[] cursor, combining the previous and next runs
+					if (element.PreviousNode is XElement prev)
+					{
+						if (element.NextNode is XElement next)
+						{
+							var cprev = prev.GetCData();
+							var cnext = next.GetCData();
+							cprev.Value = $"{cprev.Value}{cnext.Value}";
+							merged = prev;
+							next.Remove();
+						}
+					}
+
+					element.Remove();
+				}
+			}
+
+			return merged;
+		}
 	}
 }
