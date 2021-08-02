@@ -16,9 +16,9 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class BiLinkCommand : Command
 	{
-		private static string pageOneId;
-		private static string paragraphId;
-		private static XElement paragraph;
+		private static string anchorPageId;
+		private static string anchorId;
+		private static XElement anchor;
 
 
 		public BiLinkCommand()
@@ -41,14 +41,14 @@ namespace River.OneMoreAddIn
 						return;
 					}
 
-					var text = paragraph.TextValue();
+					var text = anchor.TextValue();
 					if (text.Length > 20) { text = $"{text.Substring(0,20)}..."; }
-					logger.WriteLine($"MessageBox: marked \"{text}\", {pageOneId} paragraph {paragraphId}");
-					logger.WriteLine(paragraph);
+					logger.WriteLine($"MessageBox: marked \"{text}\", {anchorPageId} paragraph {anchorId}");
+					logger.WriteLine(anchor);
 				}
 				else
 				{
-					if (string.IsNullOrEmpty(pageOneId))
+					if (string.IsNullOrEmpty(anchorPageId))
 					{
 						logger.WriteLine($"MessageBox: mark not set");
 						IsCancelled = true;
@@ -63,9 +63,9 @@ namespace River.OneMoreAddIn
 					}
 
 					// reset
-					pageOneId = null;
-					paragraphId = null;
-					paragraph = null;
+					anchorPageId = null;
+					anchorId = null;
+					anchor = null;
 				}
 			}
 
@@ -85,96 +85,114 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			paragraph = run.Parent;
+			anchor = run.Parent;
 
-			if (!paragraph.GetAttributeValue("objectID", out paragraphId) || string.IsNullOrEmpty(paragraphId))
+			if (!anchor.GetAttributeValue("objectID", out anchorId) || string.IsNullOrEmpty(anchorId))
 			{
 				logger.WriteLine("missing objectID");
-				paragraph = null;
+				anchor = null;
 				return false;
 			}
 
-			pageOneId = one.CurrentPageId;
+			anchorPageId = one.CurrentPageId;
 			return true;
 		}
 
 
 		private async Task<bool> CreateLinks(OneNote one)
 		{
-			var pageOne = one.GetPage(pageOneId);
-			if (pageOne == null)
+			var anchorPage = one.GetPage(anchorPageId);
+			if (anchorPage == null)
 			{
-				logger.WriteLine($"lost anchor page {pageOneId}");
+				logger.WriteLine($"lost anchor page {anchorPageId}");
 				return false;
 			}
 
-			var paraOne = pageOne.Root.Descendants()
-				.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == paragraphId));
+			var candidate = anchorPage.Root.Descendants()
+				.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == anchorId));
 
-			if (paraOne == null)
+			if (candidate == null)
 			{
-				logger.WriteLine($"lost anchor paragraph {paragraphId}");
+				logger.WriteLine($"lost anchor paragraph {anchorId}");
 				return false;
 			}
 
-			paraOne.RemoveTextCursor();
+			candidate.RemoveTextCursor();
 
 			// ensure anchor selection hasn't changed and is still selected!
-			if (AnchorModified(paraOne, paragraph))
+			if (AnchorModified(candidate, anchor))
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
 				logger.WriteLine("original");
-				logger.WriteLine(paraOne.ToString());
+				logger.WriteLine(candidate);
 				logger.WriteLine("modified");
-				logger.WriteLine(paragraph.ToString());
+				logger.WriteLine(anchor);
 				return false;
 			}
 
-			var page = one.GetPage();
-			var run = page.GetTextCursor(true);
-			if (run == null)
+			var targetPage = one.GetPage();
+			var targetRun = targetPage.GetTextCursor(true);
+			if (targetRun == null)
 			{
 				logger.WriteLine("no selected target content");
 				return false;
 			}
 
-			var paraTwo = run.Parent;
+			var target = targetRun.Parent;
 
-			paraOne.GetAttributeValue("objectID", out var p1);
-			paraTwo.GetAttributeValue("objectID", out var p2);
-			if (p1 == p2)
+			anchor.GetAttributeValue("objectID", out var id);
+			target.GetAttributeValue("objectID", out var targetId);
+			if (id == targetId)
 			{
 				logger.WriteLine("cannot link a phrase to itself");
 				return false;
 			}
 
 			logger.WriteLine();
-			logger.WriteLine("paraOne");
-			logger.WriteLine(paraOne);
-			logger.WriteLine("paraTwo");
-			logger.WriteLine(paraTwo.ToString());
+			logger.WriteLine("anchor");
+			logger.WriteLine(anchor);
+			logger.WriteLine("target");
+			logger.WriteLine(target);
 			logger.WriteLine();
 
-			logger.WriteLine($"link to {pageOneId} from {one.CurrentPageId} paragraph {paragraphId}");
-			logger.WriteLine(paragraph.ToString());
+			// anchorPageId -> anchorPage -> anchorId -> anchor -> anchorRun
+			// targetPageId -> targetPage -> targetId -> target -> targetRun
+
+			var targetPageId = one.CurrentPageId;
+
+			var anchorLink = one.GetHyperlink(anchorPageId, anchorId);
+			var targetLink = one.GetHyperlink(targetPageId, targetId);
+
+			var anchorRun = anchor.RemoveTextCursor();
+
+			logger.WriteLine();
+			logger.WriteLine("LINKING");
+			logger.WriteLine($" - anchorPageId = {anchorPageId}");
+			logger.WriteLine($" - anchorId     = {anchorId}");
+			logger.WriteLine($" - anchorLink   = {anchorLink}");
+			logger.WriteLine($" - anchorRun    = '{anchorRun}'");
+			logger.WriteLine($" - targetPageId = {targetPageId}");
+			logger.WriteLine($" - targetId     = {targetId}");
+			logger.WriteLine($" - targetLink   = {targetLink}");
+			logger.WriteLine($" - targetRun    = '{targetRun}'");
+			logger.WriteLine();
+			logger.WriteLine(anchor);
 
 			await Task.Yield();
 			return true;
 		}
 
 
-		private bool AnchorModified(XElement snapshot, XElement anchor)
+		private bool AnchorModified(XElement candidate, XElement anchor)
 		{
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
 
-			var oldcopy = new XElement(snapshot);
-			oldcopy.Attributes().Where(a => a.Name.LocalName == "selected").Remove();
-			oldcopy.DescendantNodes().OfType<XAttribute>().Where(a => a.Name.LocalName == "selected").Remove();
+			var oldcopy = new XElement(anchor);
+			oldcopy.DescendantsAndSelf().Attributes("selected").Remove();
 
-			var newcopy = new XElement(anchor);
-			newcopy.Attributes().Where(a => a.Name.LocalName == "selected").Remove();
-			newcopy.DescendantNodes().OfType<XAttribute>().Where(a => a.Name.LocalName == "selected").Remove();
+			var newcopy = new XElement(candidate);
+			newcopy.DescendantsAndSelf().Attributes("selected").Remove();
 
 			var oldxml = oldcopy.ToString(SaveOptions.DisableFormatting);
 			var newxml = newcopy.ToString(SaveOptions.DisableFormatting);
