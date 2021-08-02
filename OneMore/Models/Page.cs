@@ -621,7 +621,7 @@ namespace River.OneMoreAddIn.Models
 
 			if (selected == null || selected.Count() == 0)
 			{
-				SelectionScope = SelectionScope.Empty;
+				SelectionScope = SelectionScope.Unknown;
 
 				return all
 					? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
@@ -700,6 +700,10 @@ namespace River.OneMoreAddIn.Models
 		/// Gets the T element of a zero-width selection. Visually, this appears as the current
 		/// cursor insertion point and can be used to infer the current word or phrase in text.
 		/// </summary>
+		/// <param name="merge">
+		/// If true then merge the runs around the empty cursor and return that merged element
+		/// otherwise return the empty cursor
+		/// </param>
 		/// <returns>
 		/// The one:T XElement or null if there is a selected range greater than zero
 		/// </returns>
@@ -725,14 +729,20 @@ namespace River.OneMoreAddIn.Models
 						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
 						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
 					{
+						XElement merged = null;
 						if (merge && cursor.GetCData().Value == string.Empty)
 						{
 							// only merge if empty [], note cursor could be a hyperlink <a>..</a>
-							MergeRuns(cursor);
+							merged = MergeRuns(cursor);
 						}
 
 						SelectionScope = SelectionScope.Empty;
 
+						return merge ? merged : cursor;
+					}
+
+					if (merge)
+					{
 						return cursor;
 					}
 				}
@@ -746,8 +756,10 @@ namespace River.OneMoreAddIn.Models
 
 
 		// remove the empty CDATA[] cursor, combining the previous and next runs into one
-		private void MergeRuns(XElement cursor)
+		private XElement MergeRuns(XElement cursor)
 		{
+			XElement merged = null;
+
 			if (cursor.PreviousNode is XElement prev)
 			{
 				if (cursor.NextNode is XElement next)
@@ -756,10 +768,12 @@ namespace River.OneMoreAddIn.Models
 					var cnext = next.GetCData();
 					cprev.Value = $"{cprev.Value}{cnext.Value}";
 					next.Remove();
+					merged = prev;
 				}
 			}
 
 			cursor.Remove();
+			return merged;
 		}
 
 

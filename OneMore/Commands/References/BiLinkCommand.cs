@@ -34,12 +34,17 @@ namespace River.OneMoreAddIn
 				{
 					if (!MarkAnchor(one))
 					{
-						logger.WriteLine($"MessageBox: could not mark anchor point; see log file for details");
+						logger.WriteLine($"MessageBox: Could not mark anchor point;"
+							+ "Select a word or phrase from one paragraph; "
+							+ "See log file for details");
 						IsCancelled = true;
 						return;
 					}
 
-					logger.WriteLine($"MessageBox: marked {pageOneId} paragraph {paragraphId}");
+					var text = paragraph.TextValue();
+					if (text.Length > 20) { text = $"{text.Substring(0,20)}..."; }
+					logger.WriteLine($"MessageBox: marked \"{text}\", {pageOneId} paragraph {paragraphId}");
+					logger.WriteLine(paragraph);
 				}
 				else
 				{
@@ -73,19 +78,15 @@ namespace River.OneMoreAddIn
 			var page = one.GetPage();
 			var ns = page.Namespace;
 
-			var run = page.GetSelectedElements(all: false).FirstOrDefault();
+			//var run = page.GetSelectedElements(all: false).FirstOrDefault();
+			var run = page.GetTextCursor(true);
 			if (run == null)
 			{
 				logger.WriteLine("no selected content");
 				return false;
 			}
 
-			paragraph = run.Ancestors(ns + "OE").FirstOrDefault();
-			if (paragraph == null)
-			{
-				logger.WriteLine("missing paragraph");
-				return false;
-			}
+			paragraph = run.Parent;
 
 			if (!paragraph.GetAttributeValue("objectID", out paragraphId) || string.IsNullOrEmpty(paragraphId))
 			{
@@ -108,14 +109,16 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			var paraOne = pageOne.Root.Descendants()
-				.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == paragraphId));
+			var paraOne = pageOne.GetTextCursor(true); //.Root.Descendants()
+				//.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == paragraphId));
 
 			if (paraOne == null)
 			{
 				logger.WriteLine($"lost anchor paragraph {paragraphId}");
 				return false;
 			}
+
+			paraOne = paraOne.Parent;
 
 			// ensure anchor selection hasn't changed and is still selected!
 			var p1 = paraOne.ToString();
@@ -131,10 +134,16 @@ namespace River.OneMoreAddIn
 			}
 
 			var page = one.GetPage();
-			var run = page.GetSelectedElements(all: false).FirstOrDefault();
+			var run = page.GetTextCursor(true);
 			if (run == null)
 			{
 				logger.WriteLine("no selected target content");
+				return false;
+			}
+
+			if (p1 == run.ToString())
+			{
+				logger.WriteLine("cannot link a phrase to itself");
 				return false;
 			}
 
