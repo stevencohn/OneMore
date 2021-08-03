@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn
 			var page = one.GetPage();
 
 			//var run = page.GetSelectedElements(all: false).FirstOrDefault();
-			var run = page.GetTextCursor(true);
+			var run = page.GetTextCursor(false);
 			if (run == null)
 			{
 				logger.WriteLine("no selected content");
@@ -118,15 +118,16 @@ namespace River.OneMoreAddIn
 			}
 
 			candidate.RemoveTextCursor();
+			var anchorRun = anchor.RemoveTextCursor();
 
 			// ensure anchor selection hasn't changed and is still selected!
 			if (AnchorModified(candidate, anchor))
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
 				logger.WriteLine("original");
-				logger.WriteLine(candidate);
-				logger.WriteLine("modified");
 				logger.WriteLine(anchor);
+				logger.WriteLine("modified");
+				logger.WriteLine(candidate);
 				return false;
 			}
 
@@ -163,18 +164,18 @@ namespace River.OneMoreAddIn
 			var anchorLink = one.GetHyperlink(anchorPageId, anchorId);
 			var targetLink = one.GetHyperlink(targetPageId, targetId);
 
-			var anchorRun = anchor.RemoveTextCursor();
+			//var anchorRun = anchor.RemoveTextCursor();
 
 			logger.WriteLine();
 			logger.WriteLine("LINKING");
-			logger.WriteLine($" - anchorPageId = {anchorPageId}");
-			logger.WriteLine($" - anchorId     = {anchorId}");
-			logger.WriteLine($" - anchorLink   = {anchorLink}");
-			logger.WriteLine($" - anchorRun    = '{anchorRun}'");
-			logger.WriteLine($" - targetPageId = {targetPageId}");
-			logger.WriteLine($" - targetId     = {targetId}");
-			logger.WriteLine($" - targetLink   = {targetLink}");
-			logger.WriteLine($" - targetRun    = '{targetRun}'");
+			logger.WriteLine($" anchorPageId = {anchorPageId}");
+			logger.WriteLine($" anchorId     = {anchorId}");
+			logger.WriteLine($" anchorLink   = {anchorLink}");
+			logger.WriteLine($" anchorRun    = '{anchorRun}'");
+			logger.WriteLine($" targetPageId = {targetPageId}");
+			logger.WriteLine($" targetId     = {targetId}");
+			logger.WriteLine($" targetLink   = {targetLink}");
+			logger.WriteLine($" targetRun    = '{targetRun}'");
 			logger.WriteLine();
 			logger.WriteLine(anchor);
 
@@ -187,6 +188,11 @@ namespace River.OneMoreAddIn
 		{
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
+
+
+			System.Diagnostics.Debugger.Launch();
+
+
 
 			var oldcopy = new XElement(anchor);
 			oldcopy.DescendantsAndSelf().Attributes("selected").Remove();
