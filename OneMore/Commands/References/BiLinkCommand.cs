@@ -46,6 +46,7 @@ namespace River.OneMoreAddIn
 					if (text.Length > 20) { text = $"{text.Substring(0,20)}..."; }
 					logger.WriteLine($"MessageBox: marked \"{text}\", {anchorPageId} paragraph {anchorId}");
 					logger.WriteLine(anchor.Root);
+					//UIHelper.ShowInfo(one.Window, $"Marked \"{text}\"");
 				}
 				else
 				{
@@ -133,7 +134,8 @@ namespace River.OneMoreAddIn
 			}
 
 			var targetPage = one.GetPage();
-			var targetRun = targetPage.GetTextCursor();
+			var range = new SelectionRange(targetPage.Root);
+			var targetRun = range.GetSelection();
 			if (targetRun == null)
 			{
 				logger.WriteLine("no selected target content");
@@ -163,13 +165,13 @@ namespace River.OneMoreAddIn
 
 			logger.WriteLine();
 			logger.WriteLine("LINKING");
-			logger.WriteLine($" anchorPageId = {anchorPageId}");
-			logger.WriteLine($" anchorId     = {anchorId}");
-			logger.WriteLine($" anchorLink   = {anchorLink}");
+			//logger.WriteLine($" anchorPageId = {anchorPageId}");
+			//logger.WriteLine($" anchorId     = {anchorId}");
+			//logger.WriteLine($" anchorLink   = {anchorLink}");
 			logger.WriteLine($" candidate    = '{candidate}'");
-			logger.WriteLine($" targetPageId = {targetPageId}");
-			logger.WriteLine($" targetId     = {targetId}");
-			logger.WriteLine($" targetLink   = {targetLink}");
+			//logger.WriteLine($" targetPageId = {targetPageId}");
+			//logger.WriteLine($" targetId     = {targetId}");
+			//logger.WriteLine($" targetLink   = {targetLink}");
 			logger.WriteLine($" target       = '{target}'");
 			logger.WriteLine();
 			logger.WriteLine(anchor.Root);
@@ -207,7 +209,6 @@ namespace River.OneMoreAddIn
 
 		private void ApplyHyperlink(Page page, SelectionRange range, string link)
 		{
-
 			var selection = range.GetSelection();
 			if (range.SelectionScope == SelectionScope.Empty)
 			{
