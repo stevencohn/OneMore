@@ -19,8 +19,8 @@ namespace River.OneMoreAddIn.Models
 	/// </remarks>
 	internal class SelectionRange
 	{
-		public XElement root;
-		public XNamespace ns;
+		private XElement root;
+		private XNamespace ns;
 
 
 		public SelectionRange(XElement element)

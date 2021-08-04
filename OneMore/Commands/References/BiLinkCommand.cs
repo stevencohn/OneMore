@@ -140,9 +140,8 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			var target = targetRun.Parent;
-
-			target.GetAttributeValue("objectID", out var targetId);
+			var target = new SelectionRange(targetRun.Parent);
+			var targetId = target.ObjectId;
 			if (anchorId == targetId)
 			{
 				logger.WriteLine("cannot link a phrase to itself");
@@ -157,23 +156,31 @@ namespace River.OneMoreAddIn
 			var anchorLink = one.GetHyperlink(anchorPageId, anchorId);
 			var targetLink = one.GetHyperlink(targetPageId, targetId);
 
-			candidate.ReplaceWith(anchor);
-			var anchorRun = candidate.RemoveTextCursor();
+			ApplyHyperlink(anchorPage, anchor, targetLink);
+			ApplyHyperlink(targetPage, target, anchorLink);
+
+			candidate.ReplaceWith(anchor.Root);
 
 			logger.WriteLine();
 			logger.WriteLine("LINKING");
 			logger.WriteLine($" anchorPageId = {anchorPageId}");
 			logger.WriteLine($" anchorId     = {anchorId}");
 			logger.WriteLine($" anchorLink   = {anchorLink}");
-			logger.WriteLine($" anchorRun    = '{anchorRun}'");
+			logger.WriteLine($" candidate    = '{candidate}'");
 			logger.WriteLine($" targetPageId = {targetPageId}");
 			logger.WriteLine($" targetId     = {targetId}");
 			logger.WriteLine($" targetLink   = {targetLink}");
-			logger.WriteLine($" targetRun    = '{targetRun}'");
+			logger.WriteLine($" target       = '{target}'");
 			logger.WriteLine();
 			logger.WriteLine(anchor.Root);
 
-			await Task.Yield();
+			await one.Update(anchorPage);
+
+			if (targetId != anchorId)
+			{
+				await one.Update(targetPage);
+			}
+
 			return true;
 		}
 
@@ -195,6 +202,27 @@ namespace River.OneMoreAddIn
 			var newxml = newcopy.ToString(SaveOptions.DisableFormatting);
 
 			return oldxml != newxml;
+		}
+
+
+		private void ApplyHyperlink(Page page, SelectionRange range, string link)
+		{
+
+			var selection = range.GetSelection();
+			if (range.SelectionScope == SelectionScope.Empty)
+			{
+				page.EditNode(selection, (s) =>
+				{
+					return new XElement("a", new XAttribute("href", link), s);
+				});
+			}
+			else
+			{
+				page.EditSelected(range.Root, (s) =>
+				{
+					return new XElement("a", new XAttribute("href", link), s);
+				});
+			}
 		}
 	}
 }
