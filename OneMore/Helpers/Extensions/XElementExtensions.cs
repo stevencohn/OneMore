@@ -42,25 +42,6 @@ namespace River.OneMoreAddIn
 						var sprops = span.CollectStyleProperties();
 						sprops.ToList().ForEach(c => props.Add(c.Key, c.Value));
 					}
-
-					/*
-					var wrapper = cdata.GetWrapper();
-
-					// collect inner span@style properties only if CDATA is entirely wrapped
-					// by a span element with style attributes
-
-					if (wrapper.Nodes().Count() == 1 &&
-						wrapper.FirstNode.NodeType == XmlNodeType.Element &&
-						((XElement)wrapper.FirstNode).Name.LocalName == "span")
-					{
-						var span = (XElement)wrapper.FirstNode;
-						if (span.Attributes("style").Any())
-						{
-							var sprops = span.CollectStyleProperties();
-							sprops.ToList().ForEach(c => props.Add(c.Key, c.Value));
-						}
-					}
-					*/
 				}
 			}
 

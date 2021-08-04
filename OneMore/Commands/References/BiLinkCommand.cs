@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -18,7 +19,7 @@ namespace River.OneMoreAddIn
 	{
 		private static string anchorPageId;
 		private static string anchorId;
-		private static XElement anchor;
+		private static SelectionRange anchor;
 
 
 		public BiLinkCommand()
@@ -44,7 +45,7 @@ namespace River.OneMoreAddIn
 					var text = anchor.TextValue();
 					if (text.Length > 20) { text = $"{text.Substring(0,20)}..."; }
 					logger.WriteLine($"MessageBox: marked \"{text}\", {anchorPageId} paragraph {anchorId}");
-					logger.WriteLine(anchor);
+					logger.WriteLine(anchor.Root);
 				}
 				else
 				{
@@ -76,18 +77,21 @@ namespace River.OneMoreAddIn
 		private bool MarkAnchor(OneNote one)
 		{
 			var page = one.GetPage();
+			var range = new SelectionRange(page.Root);
 
-			//var run = page.GetSelectedElements(all: false).FirstOrDefault();
-			var run = page.GetTextCursor(false);
+			// get selected runs but preserve cursor if there is one so we can edit from it later
+			var run = range.GetSelection();
 			if (run == null)
 			{
 				logger.WriteLine("no selected content");
 				return false;
 			}
 
-			anchor = run.Parent;
+			// anchor is the surrounding OE
+			anchor = new SelectionRange(run.Parent);
 
-			if (!anchor.GetAttributeValue("objectID", out anchorId) || string.IsNullOrEmpty(anchorId))
+			anchorId = anchor.ObjectId;
+			if (string.IsNullOrEmpty(anchorId))
 			{
 				logger.WriteLine("missing objectID");
 				anchor = null;
@@ -117,22 +121,19 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			candidate.RemoveTextCursor();
-			var anchorRun = anchor.RemoveTextCursor();
-
 			// ensure anchor selection hasn't changed and is still selected!
-			if (AnchorModified(candidate, anchor))
+			if (AnchorModified(candidate, anchor.Root))
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
 				logger.WriteLine("original");
-				logger.WriteLine(anchor);
+				logger.WriteLine(anchor.Root);
 				logger.WriteLine("modified");
 				logger.WriteLine(candidate);
 				return false;
 			}
 
 			var targetPage = one.GetPage();
-			var targetRun = targetPage.GetTextCursor(true);
+			var targetRun = targetPage.GetTextCursor();
 			if (targetRun == null)
 			{
 				logger.WriteLine("no selected target content");
@@ -141,20 +142,12 @@ namespace River.OneMoreAddIn
 
 			var target = targetRun.Parent;
 
-			anchor.GetAttributeValue("objectID", out var id);
 			target.GetAttributeValue("objectID", out var targetId);
-			if (id == targetId)
+			if (anchorId == targetId)
 			{
 				logger.WriteLine("cannot link a phrase to itself");
 				return false;
 			}
-
-			logger.WriteLine();
-			logger.WriteLine("anchor");
-			logger.WriteLine(anchor);
-			logger.WriteLine("target");
-			logger.WriteLine(target);
-			logger.WriteLine();
 
 			// anchorPageId -> anchorPage -> anchorId -> anchor -> anchorRun
 			// targetPageId -> targetPage -> targetId -> target -> targetRun
@@ -164,7 +157,8 @@ namespace River.OneMoreAddIn
 			var anchorLink = one.GetHyperlink(anchorPageId, anchorId);
 			var targetLink = one.GetHyperlink(targetPageId, targetId);
 
-			//var anchorRun = anchor.RemoveTextCursor();
+			candidate.ReplaceWith(anchor);
+			var anchorRun = candidate.RemoveTextCursor();
 
 			logger.WriteLine();
 			logger.WriteLine("LINKING");
@@ -177,7 +171,7 @@ namespace River.OneMoreAddIn
 			logger.WriteLine($" targetLink   = {targetLink}");
 			logger.WriteLine($" targetRun    = '{targetRun}'");
 			logger.WriteLine();
-			logger.WriteLine(anchor);
+			logger.WriteLine(anchor.Root);
 
 			await Task.Yield();
 			return true;
@@ -189,22 +183,16 @@ namespace River.OneMoreAddIn
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
-
 			var oldcopy = new XElement(anchor);
+			oldcopy.RemoveTextCursor();
 			oldcopy.DescendantsAndSelf().Attributes("selected").Remove();
 
 			var newcopy = new XElement(candidate);
+			newcopy.RemoveTextCursor();
 			newcopy.DescendantsAndSelf().Attributes("selected").Remove();
 
 			var oldxml = oldcopy.ToString(SaveOptions.DisableFormatting);
 			var newxml = newcopy.ToString(SaveOptions.DisableFormatting);
-
-			logger.WriteLine($"old {oldxml}");
-			logger.WriteLine($"new {newxml}");
 
 			return oldxml != newxml;
 		}
