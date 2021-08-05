@@ -233,11 +233,14 @@ namespace River.OneMoreAddIn
 
 		private void ApplyHyperlink(Page page, SelectionRange range, string link)
 		{
+			var count = 0;
+
 			var selection = range.GetSelection();
 			if (range.SelectionScope == SelectionScope.Empty)
 			{
 				page.EditNode(selection, (s) =>
 				{
+					count++;
 					return new XElement("a", new XAttribute("href", link), s);
 				});
 			}
@@ -245,8 +248,15 @@ namespace River.OneMoreAddIn
 			{
 				page.EditSelected(range.Root, (s) =>
 				{
+					count++;
 					return new XElement("a", new XAttribute("href", link), s);
 				});
+			}
+
+			if (count > 0)
+			{
+				logger.WriteLine("doubled");
+				logger.WriteLine(range.Root);
 			}
 		}
 	}
