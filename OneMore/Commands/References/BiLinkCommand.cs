@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -20,6 +21,9 @@ namespace River.OneMoreAddIn
 		private static string anchorPageId;
 		private static string anchorId;
 		private static SelectionRange anchor;
+
+		private string anchorText;
+		private string error;
 
 
 		public BiLinkCommand()
@@ -35,31 +39,26 @@ namespace River.OneMoreAddIn
 				{
 					if (!MarkAnchor(one))
 					{
-						logger.WriteLine($"MessageBox: Could not mark anchor point;"
-							+ "Select a word or phrase from one paragraph; "
-							+ "See log file for details");
+						UIHelper.ShowInfo(one.Window, Resx.BiLinkCommand_BadAnchor);
 						IsCancelled = true;
 						return;
 					}
 
-					var text = anchor.TextValue();
-					if (text.Length > 20) { text = $"{text.Substring(0,20)}..."; }
-					logger.WriteLine($"MessageBox: marked \"{text}\", {anchorPageId} paragraph {anchorId}");
-					logger.WriteLine(anchor.Root);
-					//UIHelper.ShowInfo(one.Window, $"Marked \"{text}\"");
+					if (anchorText.Length > 20) { anchorText = $"{anchorText.Substring(0,20)}..."; }
+					UIHelper.ShowInfo(one.Window, string.Format(Resx.BiLinkCommand_Marked, anchorText));
 				}
 				else
 				{
 					if (string.IsNullOrEmpty(anchorPageId))
 					{
-						logger.WriteLine($"MessageBox: mark not set");
+						UIHelper.ShowInfo(one.Window, Resx.BiLinkCommand_NoAnchor);
 						IsCancelled = true;
 						return;
 					}
 
 					if (!await CreateLinks(one))
 					{
-						logger.WriteLine($"MessageBox: could not link to anchor; see log file for details");
+						UIHelper.ShowInfo(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
 						IsCancelled = true;
 						return;
 					}
@@ -100,16 +99,20 @@ namespace River.OneMoreAddIn
 			}
 
 			anchorPageId = one.CurrentPageId;
+			anchorText = page.GetSelectedText();
 			return true;
 		}
 
 
 		private async Task<bool> CreateLinks(OneNote one)
 		{
+			// - - - - anchor...
+
 			var anchorPage = one.GetPage(anchorPageId);
 			if (anchorPage == null)
 			{
 				logger.WriteLine($"lost anchor page {anchorPageId}");
+				error = Resx.BiLinkCommand_LostAnchor;
 				return false;
 			}
 
@@ -119,6 +122,7 @@ namespace River.OneMoreAddIn
 			if (candidate == null)
 			{
 				logger.WriteLine($"lost anchor paragraph {anchorId}");
+				error = Resx.BiLinkCommand_LostAnchor;
 				return false;
 			}
 
@@ -126,19 +130,30 @@ namespace River.OneMoreAddIn
 			if (AnchorModified(candidate, anchor.Root))
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
-				logger.WriteLine("original");
-				logger.WriteLine(anchor.Root);
-				logger.WriteLine("modified");
-				logger.WriteLine(candidate);
+				//logger.WriteLine("original");
+				//logger.WriteLine(anchor.Root);
+				//logger.WriteLine("modified");
+				//logger.WriteLine(candidate);
+				error = Resx.BiLinkCommand_LostAnchor;
 				return false;
 			}
 
-			var targetPage = one.GetPage();
+			// - - - - target...
+
+			Page targetPage = anchorPage;
+			var targetPageId = anchorPageId;
+			if (one.CurrentPageId != anchorPageId)
+			{
+				targetPage = one.GetPage();
+				targetPageId = targetPage.PageId;
+			}
+
 			var range = new SelectionRange(targetPage.Root);
 			var targetRun = range.GetSelection();
 			if (targetRun == null)
 			{
 				logger.WriteLine("no selected target content");
+				error = Resx.BiLinkCommand_NoTarget;
 				return false;
 			}
 
@@ -147,13 +162,14 @@ namespace River.OneMoreAddIn
 			if (anchorId == targetId)
 			{
 				logger.WriteLine("cannot link a phrase to itself");
+				error = Resx.BiLinkCommand_Circular;
 				return false;
 			}
 
-			// anchorPageId -> anchorPage -> anchorId -> anchor -> anchorRun
-			// targetPageId -> targetPage -> targetId -> target -> targetRun
+			// - - - - action...
 
-			var targetPageId = one.CurrentPageId;
+			// anchorPageId -> anchorPage -> anchorId -> anchor
+			// targetPageId -> targetPage -> targetId -> target
 
 			var anchorLink = one.GetHyperlink(anchorPageId, anchorId);
 			var targetLink = one.GetHyperlink(targetPageId, targetId);
@@ -161,26 +177,34 @@ namespace River.OneMoreAddIn
 			ApplyHyperlink(anchorPage, anchor, targetLink);
 			ApplyHyperlink(targetPage, target, anchorLink);
 
-			candidate.ReplaceWith(anchor.Root);
+			candidate.ReplaceAttributes(anchor.Root.Attributes());
+			candidate.ReplaceNodes(anchor.Root.Elements());
 
-			logger.WriteLine();
-			logger.WriteLine("LINKING");
+			if (targetPageId == anchorPageId)
+			{
+				// avoid invalid selection combination when anchor and target are on the same page
+				candidate.DescendantsAndSelf().Attributes("selected").Remove();
+			}
+
+			//logger.WriteLine();
+			//logger.WriteLine("LINKING");
 			//logger.WriteLine($" anchorPageId = {anchorPageId}");
 			//logger.WriteLine($" anchorId     = {anchorId}");
 			//logger.WriteLine($" anchorLink   = {anchorLink}");
-			logger.WriteLine($" candidate    = '{candidate}'");
+			//logger.WriteLine($" candidate    = '{candidate}'");
 			//logger.WriteLine($" targetPageId = {targetPageId}");
 			//logger.WriteLine($" targetId     = {targetId}");
 			//logger.WriteLine($" targetLink   = {targetLink}");
-			logger.WriteLine($" target       = '{target}'");
-			logger.WriteLine();
-			logger.WriteLine(anchor.Root);
+			//logger.WriteLine($" target       = '{target}'");
+			//logger.WriteLine();
+			//logger.WriteLine("---------------------------------------------");
+			//logger.WriteLine(targetPage.Root);
 
-			await one.Update(anchorPage);
+			await one.Update(targetPage);
 
-			if (targetId != anchorId)
+			if (targetPageId != anchorPageId)
 			{
-				await one.Update(targetPage);
+				await one.Update(anchorPage);
 			}
 
 			return true;
