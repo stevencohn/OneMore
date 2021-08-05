@@ -3148,8 +3148,8 @@ ISO-code then comma then language name</comment>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>标记为“{0}”</value>
-    <comment>message box</comment>
+    将“{0}”标记为锚点。
+    message box EDIT
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>起始锚点尚未标记。</value>

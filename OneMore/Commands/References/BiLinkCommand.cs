@@ -130,10 +130,6 @@ namespace River.OneMoreAddIn
 			if (AnchorModified(candidate, anchor.Root))
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
-				//logger.WriteLine("original");
-				//logger.WriteLine(anchor.Root);
-				//logger.WriteLine("modified");
-				//logger.WriteLine(candidate);
 				error = Resx.BiLinkCommand_LostAnchor;
 				return false;
 			}
@@ -216,16 +212,23 @@ namespace River.OneMoreAddIn
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
 
-			var oldcopy = new XElement(anchor);
-			oldcopy.RemoveTextCursor();
-			oldcopy.DescendantsAndSelf().Attributes("selected").Remove();
+			var oldcopy = new SelectionRange(anchor.Clone());
+			oldcopy.Deselect();
 
-			var newcopy = new XElement(candidate);
-			newcopy.RemoveTextCursor();
-			newcopy.DescendantsAndSelf().Attributes("selected").Remove();
+			var newcopy = new SelectionRange(candidate.Clone());
+			newcopy.Deselect();
 
-			var oldxml = oldcopy.ToString(SaveOptions.DisableFormatting);
-			var newxml = newcopy.ToString(SaveOptions.DisableFormatting);
+			var oldxml = oldcopy.ToString();
+			var newxml = newcopy.ToString();
+
+			if (oldxml != newxml)
+			{
+				logger.WriteLine("differences found in candidate/anchor");
+				logger.WriteLine("oldxml/candidate");
+				logger.WriteLine(oldxml);
+				logger.WriteLine("newxml/anchor");
+				logger.WriteLine(newxml);
+			}
 
 			return oldxml != newxml;
 		}
@@ -255,7 +258,7 @@ namespace River.OneMoreAddIn
 
 			if (count > 0)
 			{
-				logger.WriteLine("doubled");
+				logger.WriteLine("doubled-up <a/><a/>");
 				logger.WriteLine(range.Root);
 			}
 		}

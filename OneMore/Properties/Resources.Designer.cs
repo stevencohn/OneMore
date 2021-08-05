@@ -360,7 +360,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Marked &quot;{0}&quot;.
+        ///   Looks up a localized string similar to Marked &quot;{0}&quot; as the anchor. Now select the target text and finish the bi-directional link.
         /// </summary>
         internal static string BiLinkCommand_Marked {
             get {

@@ -3156,8 +3156,8 @@ ISO-code then comma then language name</comment>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Marcado "{0}"</value>
-    <comment>message box</comment>
+    Marcado "{0}" como ancla. 
+    message box EDIT
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>Ancla de salida aún no marcada. </value>

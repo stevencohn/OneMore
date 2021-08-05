@@ -28,6 +28,11 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Exactly one non-empty run is selected
 		/// </summary>
-		Run
+		Run,
+
+		/// <summary>
+		/// CDATA contains an anchor link or an XML comment
+		/// </summary>
+		Special
 	}
 }

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Models
 {
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
@@ -53,6 +54,107 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Removes the selection run from a sequence of runs, merging content with the previous
+		/// and next sibling runs.
+		/// </summary>
+		/// <returns>
+		/// The merged run containing next, run, and previous content
+		/// </returns>
+		/// <remarks>
+		/// The selection run may be either empty or contain content. An empty selection
+		/// represents the insertion text cursor with no range; content represents a selection
+		/// range of a word or phrase.
+		/// 
+		/// The SelectionScope is set based on the range type: Empty, Run, Special, or Region
+		/// if there are multiple selections in context, e.g. the Root is higher than an OE.
+		/// </remarks>
+		public XElement Deselect()
+		{
+			SelectionScope = SelectionScope.Unknown;
+
+			var selections = GetSelections();
+			var count = selections.Count();
+
+			if (count == 0)
+			{
+				return null;
+			}
+
+			if (count > 1)
+			{
+				// empty cursor run should be the only selected run;
+				// this can only happen if the given root is not an OE
+				SelectionScope = SelectionScope.Region;
+				return null;
+			}
+
+			var cursor = selections.First();
+			if (!(cursor.FirstNode is XCData cdata))
+			{
+				// shouldn't happen?
+				return null;
+			}
+
+			// A zero length insertion cursor (CDATA[]) is easy to recognize. But OneNote doesn't
+			// provide enough information when the cursor is positioned on a partially or fully
+			// selected hyperlink or XML comment so we can't tell the difference between these
+			// three cases without looking at the CDATA value. Note that XML comments are used
+			// to wrap mathML equations.
+
+			if (cdata.Value.Length == 0)
+			{
+				cursor = MergeRuns(cursor);
+				SelectionScope = SelectionScope.Empty;
+			}
+			else if (Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
+				Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+			{
+				SelectionScope = SelectionScope.Special;
+			}
+			else
+			{
+				// the entire current non-empty run is selected
+				SelectionScope = SelectionScope.Run;
+			}
+
+			root.DescendantsAndSelf().Attributes("selected").Remove();
+
+			return cursor;
+		}
+
+
+		// Remove an empty CDATA[] cursor or a selected=all T run, combining it with the previous
+		// and next runs into a single run
+		private XElement MergeRuns(XElement run)
+		{
+			if (run.PreviousNode is XElement prev)
+			{
+				var cprev = prev.GetCData();
+				var builder = new StringBuilder(cprev.Value);
+				builder.Append(run.GetCData().Value);
+
+				if (run.NextNode is XElement next)
+				{
+					builder.Append(next.GetCData().Value);
+					next.Remove();
+				}
+
+				cprev.Value = builder.ToString();
+				run.Remove();
+				return prev;
+			}
+			else if (run.NextNode is XElement next)
+			{
+				var cdata = run.GetCData();
+				cdata.Value = $"{cdata.Value}{next.GetCData().Value}";
+				next.Remove();
+			}
+
+			return run;
+		}
+
+
+		/// <summary>
 		/// Gets the singly selected text run.
 		/// </summary>
 		/// <returns>
@@ -95,16 +197,21 @@ namespace River.OneMoreAddIn.Models
 			// empty or link or xml-comment because we can't tell the difference between
 			// a zero-selection zero-selection link and a partial or fully selected link.
 			// Note that XML comments are used to wrap mathML equations
-			if (cdata.Value.Length == 0 ||
-				Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
-				Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+			if (cdata.Value.Length == 0)
 			{
 				SelectionScope = SelectionScope.Empty;
-				return cursor;
+			}
+			else if (Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
+				Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+			{
+				SelectionScope = SelectionScope.Special;
+			}
+			else
+			{
+				// the entire current non-empty run is selected
+				SelectionScope = SelectionScope.Run;
 			}
 
-			// the entire current non-empty run is selected
-			SelectionScope = SelectionScope.Run;
 			return cursor;
 		}
 
@@ -136,82 +243,6 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		/// <summary>
-		/// Gets the T element of a zero-width selection. Visually, this appears as the current
-		/// cursor insertion point and can be used to infer the current word or phrase in text.
-		/// </summary>
-		/// <param name="merge">
-		/// If true then merge the runs around the empty cursor and return that merged element
-		/// otherwise return the empty cursor
-		/// </param>
-		/// <returns>
-		/// The one:T XElement or null if there is a selected range greater than zero
-		/// </returns>
-		public XElement MergeFromCursor()
-		{
-			SelectionScope = SelectionScope.Unknown;
-
-			var selections = GetSelections();
-			var count = selections.Count();
-
-			if (count == 0)
-			{
-				return null;
-			}
-
-			if (count > 1)
-			{
-				// empty cursor run should be the only selected run
-				SelectionScope = SelectionScope.Region;
-				return null;
-			}
-
-			var cursor = selections.First();
-			if (!(cursor.FirstNode is XCData cdata))
-			{
-				// shouldn't happen?
-				return null;
-			}
-
-			// empty or link or xml-comment because we can't tell the difference between
-			// a zero-selection zero-selection link and a partial or fully selected link.
-			// Note that XML comments are used to wrap mathML equations
-			if (cdata.Value.Length == 0 ||
-				Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
-				Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
-			{
-				cursor = MergeRuns(cursor);
-				SelectionScope = SelectionScope.Empty;
-				return cursor;
-			}
-
-			// the entire current non-empty run is selected
-			SelectionScope = SelectionScope.Run;
-			return cursor;
-		}
-
-
-		// remove the empty CDATA[] cursor, combining the previous and next runs into one
-		private XElement MergeRuns(XElement cursor)
-		{
-			XElement merged = null;
-
-			if (cursor.PreviousNode is XElement prev)
-			{
-				if (cursor.NextNode is XElement next)
-				{
-					var cprev = prev.GetCData();
-					var cnext = next.GetCData();
-					cprev.Value = $"{cprev.Value}{cnext.Value}";
-					next.Remove();
-					merged = prev;
-				}
-			}
-
-			cursor.Remove();
-			return merged;
-		}
-
 
 		/// <summary>
 		/// Return the combined text value of the outline element
@@ -231,7 +262,7 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>An XML string</returns>
 		public override string ToString()
 		{
-			return root.ToString();
+			return root.ToString(SaveOptions.DisableFormatting);
 		}
 	}
 }

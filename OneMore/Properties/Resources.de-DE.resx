@@ -3142,8 +3142,8 @@ ISO-code then comma then language name</comment>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Mit "{0}" gekennzeichnet</value>
-    <comment>message box</comment>
+    Als Anker markiert "{0}". 
+    message box EDIT
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>Startanker noch nicht markiert. </value>

@@ -3171,7 +3171,7 @@ In this section</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Marked "{0}"</value>
+    <value>Marked "{0}" as the anchor. Now select the target text and finish the bi-directional link</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">

@@ -3156,8 +3156,8 @@ ISO-code then comma then language name</comment>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>تم وضع علامة "{0}" عليها</value>
-    <comment>message box</comment>
+    تم وضع علامة "{0}" على أنها نقطة الارتساء. 
+    message box EDIT
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>مرساة البدء لم يتم وضع علامة عليها بعد. </value>
