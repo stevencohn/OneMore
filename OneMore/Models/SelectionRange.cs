@@ -127,27 +127,28 @@ namespace River.OneMoreAddIn.Models
 		// and next runs into a single run
 		private XElement MergeRuns(XElement run)
 		{
+			var cdata = run.GetCData();
+
 			if (run.PreviousNode is XElement prev)
 			{
-				var cprev = prev.GetCData();
-				var builder = new StringBuilder(cprev.Value);
-				builder.Append(run.GetCData().Value);
+				var word = prev.ExtractLastWord(true);
+				cdata.Value = $"{word}{cdata.Value}";
 
-				if (run.NextNode is XElement next)
+				if (prev.GetCData().Value.Length == 0)
 				{
-					builder.Append(next.GetCData().Value);
+					prev.Remove();
+				}
+			}
+
+			if (run.NextNode is XElement next)
+			{
+				var word = next.ExtractFirstWord(true);
+				cdata.Value = $"{cdata.Value}{word}";
+
+				if (next.GetCData().Value.Length == 0)
+				{
 					next.Remove();
 				}
-
-				cprev.Value = builder.ToString();
-				run.Remove();
-				return prev;
-			}
-			else if (run.NextNode is XElement next)
-			{
-				var cdata = run.GetCData();
-				cdata.Value = $"{cdata.Value}{next.GetCData().Value}";
-				next.Remove();
 			}
 
 			return run;

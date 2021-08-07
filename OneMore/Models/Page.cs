@@ -365,7 +365,7 @@ namespace River.OneMoreAddIn.Models
 							break;
 
 						// extract last word and pump through the editor
-						var pair = text.Value.ExtractLastWord();
+						var pair = text.Value.SplitAtLastWord();
 						if (pair.Item1 == null)
 						{
 							// entire content of this XText
@@ -434,7 +434,7 @@ namespace River.OneMoreAddIn.Models
 							break;
 
 						// extract first word and pump through editor
-						var pair = text.Value.ExtractFirstWord();
+						var pair = text.Value.SplitAtFirstWord();
 						if (pair.Item1 == null)
 						{
 							// entire content of this XText
@@ -489,40 +489,38 @@ namespace River.OneMoreAddIn.Models
 
 		public bool EditSelected(XElement root, Func<XNode, XNode> edit)
 		{
-			var updated = false;
-
 			// detect all selected text (cdata within T runs)
 			var cdatas = root.Descendants(Namespace + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value == "all")
 					&& e.FirstNode?.NodeType == XmlNodeType.CDATA)
 				.Select(e => e.FirstNode as XCData);
 
-			if (cdatas?.Any() == true)
+			if (cdatas?.Any() != true)
 			{
-				foreach (var cdata in cdatas)
-				{
-					// edit every XText and SPAN in the T wrapper
-					var wrapper = cdata.GetWrapper();
-
-					// use ToList, otherwise enumeration will stop after first FeplaceWith
-					foreach (var node in wrapper.Nodes().ToList())
-					{
-						node.ReplaceWith(edit(node));
-					}
-
-					var text = wrapper.GetInnerXml();
-
-					// special case for <br> + EOL
-					text = text.Replace("<br>", "<br>\n");
-
-					// build CDATA with editing content
-					cdata.Value = text;
-				}
-
-				updated = true;
+				return false;
 			}
 
-			return updated;
+			foreach (var cdata in cdatas)
+			{
+				// edit every XText and SPAN in the T wrapper
+				var wrapper = cdata.GetWrapper();
+
+				// use ToList, otherwise enumeration will stop after first ReplaceWith
+				foreach (var node in wrapper.Nodes().ToList())
+				{
+					node.ReplaceWith(edit(node));
+				}
+
+				var text = wrapper.GetInnerXml();
+
+				// special case for <br> + EOL
+				text = text.Replace("<br>", "<br>\n");
+
+				// build CDATA with editing content
+				cdata.Value = text;
+			}
+
+			return true;
 		}
 
 
