@@ -181,7 +181,7 @@ namespace River.OneMoreAddIn
 
 			if (targetPageId == anchorPageId)
 			{
-				// avoid invalid selection combination when anchor and target are on the same page
+				// avoid invalid selection by leaving only partials without an all
 				candidate.DescendantsAndSelf().Attributes("selected").Remove();
 			}
 
@@ -203,6 +203,8 @@ namespace River.OneMoreAddIn
 
 			if (targetPageId != anchorPageId)
 			{
+				// avoid invalid selection by leaving only partials without an all
+				anchorPage.Root.DescendantsAndSelf().Attributes("selected").Remove();
 				await one.Update(anchorPage);
 			}
 

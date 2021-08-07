@@ -114,8 +114,8 @@ namespace River.OneMoreAddIn.Models
 			}
 			else
 			{
-				NormalizeRuns();
 				// the entire current non-empty run is selected
+				NormalizeRuns();
 				SelectionScope = SelectionScope.Run;
 			}
 
@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Models
 
 
 		// Merge consecutive runs with equal styling. OneNote does this after navigating away
-		// from a selection range within a T by combining the three Ts back into one
+		// from a selection range within a T by combining similar Ts back into one
 		private void NormalizeRuns()
 		{
 			var runs = root.Elements(ns + "T").ToList();
