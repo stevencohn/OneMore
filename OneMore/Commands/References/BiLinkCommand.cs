@@ -289,7 +289,7 @@ namespace River.OneMoreAddIn
 				{
 					var cnext = next.GetCData();
 					var wrapper = cnext.GetWrapper();
-					if (wrapper.LastNode is XElement node)
+					if (wrapper.FirstNode is XElement node)
 					{
 						cdata.Value = $"{cdata.Value}{node.ToString(SaveOptions.DisableFormatting)}";
 						node.Remove();
