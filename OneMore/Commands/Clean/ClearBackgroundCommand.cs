@@ -37,11 +37,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out page, out ns))
 			{
-
-				System.Diagnostics.Debugger.Launch();
-
-
-
 				darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 				analyzer = new StyleAnalyzer(page.Root, true);
 
