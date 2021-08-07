@@ -37,6 +37,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out page, out ns))
 			{
+
+				System.Diagnostics.Debugger.Launch();
+
+
+
 				darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 				analyzer = new StyleAnalyzer(page.Root, true);
 
@@ -68,15 +73,15 @@ namespace River.OneMoreAddIn.Commands
 				var darkText = !style.Color.Equals(Style.Automatic)
 					&& ColorTranslator.FromHtml(style.Color).GetBrightness() < 0.5;
 
-				// if dark-on-dkar or light-on-light
+				// if dark-on-dark or light-on-light
 				if (darkText == darkPage)
 				{
 					style.Color = darkText ? White : Black;
-
-					var stylizer = new Stylizer(style);
-					stylizer.ApplyStyle(run);
-					updated = true;
 				}
+
+				var stylizer = new Stylizer(style);
+				stylizer.ApplyStyle(run);
+				updated = true;
 
 				// deep prevents runs from being processed multiple times
 
