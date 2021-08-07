@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn
 			ApplyHyperlink(targetPage, target, anchorLink);
 
 			candidate.ReplaceAttributes(anchor.Root.Attributes());
-			candidate.ReplaceNodes(anchor.Root.Elements());
+			candidate.ReplaceNodes(anchor.Root.Nodes());
 
 			if (targetPageId == anchorPageId)
 			{
@@ -226,14 +226,14 @@ namespace River.OneMoreAddIn
 			var oldxml = oldcopy.ToString();
 			var newxml = newcopy.ToString();
 
-			if (oldxml != newxml)
-			{
-				logger.WriteLine("differences found in candidate/anchor");
-				logger.WriteLine("oldxml/candidate");
-				logger.WriteLine(oldxml);
-				logger.WriteLine("newxml/anchor");
-				logger.WriteLine(newxml);
-			}
+			//if (oldxml != newxml)
+			//{
+			//	logger.WriteLine("differences found in candidate/anchor");
+			//	logger.WriteLine("oldxml/candidate");
+			//	logger.WriteLine(oldxml);
+			//	logger.WriteLine("newxml/anchor");
+			//	logger.WriteLine(newxml);
+			//}
 
 			return oldxml != newxml;
 		}
@@ -261,10 +261,46 @@ namespace River.OneMoreAddIn
 				});
 			}
 
-			if (count > 0)
+			// combine doubled-up <a/><a/>...
+			// WARN: this could loose styling
+
+			if (count > 0 && range.SelectionScope == SelectionScope.Empty)
 			{
-				logger.WriteLine("doubled-up <a/><a/>");
-				logger.WriteLine(range.Root);
+				var cdata = selection.GetCData();
+
+				if (selection.PreviousNode is XElement prev)
+				{
+					var cprev = prev.GetCData();
+					var wrapper = cprev.GetWrapper();
+					if (wrapper.LastNode is XElement node)
+					{
+						cdata.Value = $"{node.ToString(SaveOptions.DisableFormatting)}{cdata.Value}";
+						node.Remove();
+						cprev.Value = wrapper.GetInnerXml();
+					}
+
+					if (cprev.Value.Length == 0)
+					{
+						prev.Remove();
+					}
+				}
+
+				if (selection.NextNode is XElement next)
+				{
+					var cnext = next.GetCData();
+					var wrapper = cnext.GetWrapper();
+					if (wrapper.LastNode is XElement node)
+					{
+						cdata.Value = $"{cdata.Value}{node.ToString(SaveOptions.DisableFormatting)}";
+						node.Remove();
+						cnext.Value = wrapper.GetInnerXml();
+					}
+
+					if (cnext.Value.Length == 0)
+					{
+						next.Remove();
+					}
+				}
 			}
 		}
 	}

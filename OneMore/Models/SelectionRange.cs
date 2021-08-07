@@ -271,19 +271,6 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-
-		/// <summary>
-		/// Return the combined text value of the outline element
-		/// </summary>
-		/// <returns>
-		/// A string of the concatenation of text from all runs in the outline element
-		/// </returns>
-		public string TextValue()
-		{
-			return root.TextValue();
-		}
-
-
 		/// <summary>
 		/// Return a string representation of the XML of the outline element
 		/// </summary>
