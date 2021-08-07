@@ -103,7 +103,8 @@ namespace River.OneMoreAddIn.Models
 
 			if (cdata.Value.Length == 0)
 			{
-				cursor = MergeRuns(cursor);
+				cursor = JoinCursorContext(cursor);
+				NormalizeRuns();
 				SelectionScope = SelectionScope.Empty;
 			}
 			else if (Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
@@ -113,6 +114,7 @@ namespace River.OneMoreAddIn.Models
 			}
 			else
 			{
+				NormalizeRuns();
 				// the entire current non-empty run is selected
 				SelectionScope = SelectionScope.Run;
 			}
@@ -125,7 +127,7 @@ namespace River.OneMoreAddIn.Models
 
 		// Remove an empty CDATA[] cursor or a selected=all T run, combining it with the previous
 		// and next runs into a single run
-		private XElement MergeRuns(XElement run)
+		private XElement JoinCursorContext(XElement run)
 		{
 			var cdata = run.GetCData();
 
@@ -152,6 +154,31 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return run;
+		}
+
+
+		// Merge consecutive runs with equal styling. OneNote does this after navigating away
+		// from a selection range within a T by combining the three Ts back into one
+		private void NormalizeRuns()
+		{
+			var runs = root.Elements(ns + "T").ToList();
+
+			for (int i = 0, j = 1; j < runs.Count; j++)
+			{
+				var si = new Style(runs[i].CollectStyleProperties());
+				var sj = new Style(runs[j].CollectStyleProperties());
+
+				if (si.Equals(sj))
+				{
+					var ci = runs[i].GetCData();
+					ci.Value = $"{ci.Value}{runs[j].GetCData().Value}";
+					runs[j].Remove();
+				}
+				else
+				{
+					i = j;
+				}
+			}
 		}
 
 

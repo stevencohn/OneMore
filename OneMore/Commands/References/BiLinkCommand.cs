@@ -18,6 +18,9 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class BiLinkCommand : Command
 	{
+		// TODO: consider moving these to a global state cache that can be pruned
+		// rather than holding on to them indefinitely as statics....
+
 		private static string anchorPageId;
 		private static string anchorId;
 		private static SelectionRange anchor;

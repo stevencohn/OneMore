@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn
 
 			if (ns == string.Empty)
 			{
-				// no namespace, might be a Wrapper
+				// no namespace, might be a CDATA Wrapper
 				return new XElement(
 					element.Name.LocalName,
 					element.Attributes(),
