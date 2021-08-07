@@ -3190,4 +3190,12 @@ In this section</value>
     <value>Select a word or phrase from one paragraph</value>
     <comment>message box</comment>
   </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>Finish Bidirectional Link</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>Start Bidirectional Link</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

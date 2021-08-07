@@ -3167,4 +3167,12 @@ ISO-code then comma then language name</comment>
     <value>从一个段落中选择一个单词或短语</value>
     <comment>message box</comment>
   </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>完成双向链接</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>启动双向链接</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

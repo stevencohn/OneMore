@@ -3175,4 +3175,12 @@ ISO-code then comma then language name</comment>
     <value>حدد كلمة أو عبارة من فقرة واحدة</value>
     <comment>message box</comment>
   </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>قم بإنهاء الارتباط ثنائي الاتجاه</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>ابدأ رابط ثنائي الاتجاه</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

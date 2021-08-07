@@ -3161,4 +3161,12 @@ ISO-code then comma then language name</comment>
     <value>Wählen Sie ein Wort oder einen Satz aus einem Absatz</value>
     <comment>message box</comment>
   </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>Bidirektionale Verbindung beenden</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>Bidirektionale Verbindung starten</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

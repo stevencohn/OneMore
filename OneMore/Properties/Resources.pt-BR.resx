@@ -3176,4 +3176,12 @@ ISO-code then comma then language name</comment>
     <value>Selecione uma palavra ou frase de um parágrafo</value>
     <comment>message box</comment>
   </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>Concluir link bidirecional</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>Iniciar link bidirecional</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

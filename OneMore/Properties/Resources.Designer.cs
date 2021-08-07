@@ -4385,6 +4385,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish Bidirectional Link.
+        /// </summary>
+        internal static string ribFinishBiLinkButton_Label {
+            get {
+                return ResourceManager.GetString("ribFinishBiLinkButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Icon to Page Title.
         /// </summary>
         internal static string ribFlagTitleButton_Label {
@@ -5191,6 +5200,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSplitTableButton_Label {
             get {
                 return ResourceManager.GetString("ribSplitTableButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Bidirectional Link.
+        /// </summary>
+        internal static string ribStartBiLinkButton_Label {
+            get {
+                return ResourceManager.GetString("ribStartBiLinkButton_Label", resourceCulture);
             }
         }
         
