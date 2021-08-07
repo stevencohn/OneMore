@@ -3139,4 +3139,40 @@ ISO-code then comma then language name</comment>
     <value>选择一个表格单元格，粘贴的单元格应该开始覆盖</value>
     <comment>message box</comment>
   </data>
+  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
+    <value>无法标记锚点。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_BadTarget" xml:space="preserve">
+    <value>无法创建双向链接。 </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    将“{0}”标记为锚点。
+    message box EDIT
+  </data>
+  <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
+    <value>起始锚点尚未标记。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Circular" xml:space="preserve">
+    <value>无法将短语链接到自身</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
+    <value>找不到锚点。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_NoTarget" xml:space="preserve">
+    <value>从一个段落中选择一个单词或短语</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>完成双向链接</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>启动双向链接</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

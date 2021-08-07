@@ -150,6 +150,7 @@
     <Compile Include="Commands\File\ImportWebDialog.Designer.cs">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\References\BiLinkCommand.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
     <Compile Include="Commands\References\LinkDialog.cs">
       <SubType>Form</SubType>
@@ -280,6 +281,7 @@
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
+    <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>

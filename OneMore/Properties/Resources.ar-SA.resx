@@ -3147,4 +3147,40 @@ ISO-code then comma then language name</comment>
     <value>حدد خلية جدول حيث يجب أن تبدأ الخلايا الملصقة في التراكب</value>
     <comment>message box</comment>
   </data>
+  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
+    <value>لا يمكن وضع علامة على نقطة الارتساء. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_BadTarget" xml:space="preserve">
+    <value>تعذر إنشاء ارتباط ثنائي الاتجاه. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    تم وضع علامة "{0}" على أنها نقطة الارتساء. 
+    message box EDIT
+  </data>
+  <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
+    <value>مرساة البدء لم يتم وضع علامة عليها بعد. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Circular" xml:space="preserve">
+    <value>لا يمكن ربط عبارة بنفسها</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
+    <value>لا يمكن العثور على المرساة. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_NoTarget" xml:space="preserve">
+    <value>حدد كلمة أو عبارة من فقرة واحدة</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>قم بإنهاء الارتباط ثنائي الاتجاه</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>ابدأ رابط ثنائي الاتجاه</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

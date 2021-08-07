@@ -3162,4 +3162,40 @@ In this section</value>
     <value>Select a table cell where pasted cells should start overlaying</value>
     <comment>message box</comment>
   </data>
+  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
+    <value>Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_BadTarget" xml:space="preserve">
+    <value>Could not create bi-directional link. {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    <value>Marked "{0}" as the anchor. Now select the target text and finish the bi-directional link</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
+    <value>Starting anchor not yet marked. Select the start of the bi-directional link.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Circular" xml:space="preserve">
+    <value>Cannot link a phrase to itself</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
+    <value>Anchor cannot be found. Page or text has changed.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_NoTarget" xml:space="preserve">
+    <value>Select a word or phrase from one paragraph</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>Finish Bidirectional Link</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>Start Bidirectional Link</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

@@ -90,6 +90,9 @@ namespace River.OneMoreAddIn
 		public async Task ExpandContentCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Expand);
 
+		public async Task FinishBiLinkCmd(IRibbonControl control)
+			=> await factory.Run<BiLinkCommand>("link");
+
 		public async Task GetImagesCmd(IRibbonControl control)
 			=> await factory.Run<GetImagesCommand>(true);
 
@@ -287,6 +290,9 @@ namespace River.OneMoreAddIn
 
 		public async Task SplitTableCmd(IRibbonControl control)
 			=> await factory.Run<SplitTableCommand>();
+
+		public async Task StartBiLinkCmd(IRibbonControl control)
+			=> await factory.Run<BiLinkCommand>("mark");
 
 		public async Task StrikeoutCmd(IRibbonControl control)
 			=> await factory.Run<StrikeoutCommand>();

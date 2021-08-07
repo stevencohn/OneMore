@@ -3133,4 +3133,40 @@ ISO-code then comma then language name</comment>
     <value>Wählen Sie eine Tabellenzelle aus, in der eingefügte Zellen überlagert werden sollen</value>
     <comment>message box</comment>
   </data>
+  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
+    <value>Ankerpunkt konnte nicht markiert werden. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_BadTarget" xml:space="preserve">
+    <value>Bidirektionaler Link konnte nicht erstellt werden. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    Als Anker markiert "{0}". 
+    message box EDIT
+  </data>
+  <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
+    <value>Startanker noch nicht markiert. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Circular" xml:space="preserve">
+    <value>Eine Phrase kann nicht mit sich selbst verknüpft werden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
+    <value>Anker kann nicht gefunden werden. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_NoTarget" xml:space="preserve">
+    <value>Wählen Sie ein Wort oder einen Satz aus einem Absatz</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>Bidirektionale Verbindung beenden</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>Bidirektionale Verbindung starten</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

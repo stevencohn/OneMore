@@ -269,6 +269,18 @@
                 getEnabled="GetBodyContext"
                 onAction="RefreshFootnotesCmd"/>
               <button
+                id="ribStartBiLinkButton"
+                imageMso="PositionAbsoluteMarks"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="StartBiLinkCmd"/>
+              <button
+                id="ribFinishBiLinkButton"
+                imageMso="CircularReferences"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="FinishBiLinkCmd"/>
+              <button
                 id="ribInsertQRButton"
                 getLabel="GetRibbonLabel"
                 imageMso="BarcodeInsert"

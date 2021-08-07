@@ -3147,4 +3147,40 @@ ISO-code then comma then language name</comment>
     <value>Seleccione una celda de la tabla donde las celdas pegadas deberían comenzar a superponerse</value>
     <comment>message box</comment>
   </data>
+  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
+    <value>No se pudo marcar el punto de anclaje. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_BadTarget" xml:space="preserve">
+    <value>No se pudo crear el enlace bidireccional. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    Marcado "{0}" como ancla. 
+    message box EDIT
+  </data>
+  <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
+    <value>Ancla de salida aún no marcada. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Circular" xml:space="preserve">
+    <value>No se puede vincular una frase a sí misma</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
+    <value>No se puede encontrar el ancla. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_NoTarget" xml:space="preserve">
+    <value>Seleccione una palabra o frase de un párrafo</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>Finalizar enlace bidireccional</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>Iniciar enlace bidireccional</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

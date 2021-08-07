@@ -3148,4 +3148,40 @@ ISO-code then comma then language name</comment>
     <value>Selecteer een tabelcel waar geplakte cellen moeten beginnen over elkaar heen te leggen</value>
     <comment>message box</comment>
   </data>
+  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
+    <value>Kan ankerpunt niet markeren. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_BadTarget" xml:space="preserve">
+    <value>Kan geen bidirectionele link maken. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    Gemarkeerd met "{0}" als het anker. 
+    message box EDIT
+  </data>
+  <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
+    <value>Startanker nog niet gemarkeerd. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_Circular" xml:space="preserve">
+    <value>Kan een zin niet aan zichzelf koppelen</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
+    <value>Anker kan niet worden gevonden. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="BiLinkCommand_NoTarget" xml:space="preserve">
+    <value>Selecteer een woord of zin uit één alinea</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
+    <value>Bidirectionele link voltooien</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
+    <value>Bidirectionele koppeling starten</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

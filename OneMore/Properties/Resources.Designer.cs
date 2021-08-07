@@ -324,6 +324,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details..
+        /// </summary>
+        internal static string BiLinkCommand_BadAnchor {
+            get {
+                return ResourceManager.GetString("BiLinkCommand_BadAnchor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not create bi-directional link. {0}.
+        /// </summary>
+        internal static string BiLinkCommand_BadTarget {
+            get {
+                return ResourceManager.GetString("BiLinkCommand_BadTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot link a phrase to itself.
+        /// </summary>
+        internal static string BiLinkCommand_Circular {
+            get {
+                return ResourceManager.GetString("BiLinkCommand_Circular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anchor cannot be found. Page or text has changed..
+        /// </summary>
+        internal static string BiLinkCommand_LostAnchor {
+            get {
+                return ResourceManager.GetString("BiLinkCommand_LostAnchor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marked &quot;{0}&quot; as the anchor. Now select the target text and finish the bi-directional link.
+        /// </summary>
+        internal static string BiLinkCommand_Marked {
+            get {
+                return ResourceManager.GetString("BiLinkCommand_Marked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting anchor not yet marked. Select the start of the bi-directional link..
+        /// </summary>
+        internal static string BiLinkCommand_NoAnchor {
+            get {
+                return ResourceManager.GetString("BiLinkCommand_NoAnchor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a word or phrase from one paragraph.
+        /// </summary>
+        internal static string BiLinkCommand_NoTarget {
+            get {
+                return ResourceManager.GetString("BiLinkCommand_NoTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Bold {
@@ -4322,6 +4385,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish Bidirectional Link.
+        /// </summary>
+        internal static string ribFinishBiLinkButton_Label {
+            get {
+                return ResourceManager.GetString("ribFinishBiLinkButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Icon to Page Title.
         /// </summary>
         internal static string ribFlagTitleButton_Label {
@@ -5128,6 +5200,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSplitTableButton_Label {
             get {
                 return ResourceManager.GetString("ribSplitTableButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Bidirectional Link.
+        /// </summary>
+        internal static string ribStartBiLinkButton_Label {
+            get {
+                return ResourceManager.GetString("ribStartBiLinkButton_Label", resourceCulture);
             }
         }
         
