@@ -108,6 +108,18 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Get the number of columns in the table.
+		/// </summary>
+		public int ColumnCount => columns.Elements().Count();
+
+
+		/// <summary>
+		/// Get the number of rows in the table.
+		/// </summary>
+		public int RowCount => rows.Count;
+
+
+		/// <summary>
 		/// Gets the rows in this table.
 		/// </summary>
 		public IEnumerable<TableRow> Rows => rows;

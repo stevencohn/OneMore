@@ -68,14 +68,15 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Extract the first word delimeted by a non-word boundary from the given
-		/// string and returns the word and updated string.
+		/// Splits a string into its first word and the remaining characters as delimited by
+		/// the first non-word boundary.
 		/// </summary>
 		/// <param name="s">A string with one or more words</param>
 		/// <returns>
-		/// A two-part ValueTuple with the word and the updated string.
+		/// A two-part ValueTuple with the first word and the remaining string. If the given
+		/// string does not contain a word boundary then this returns (null,s)
 		/// </returns>
-		public static (string, string) ExtractFirstWord(this string s)
+		public static (string, string) SplitAtFirstWord(this string s)
 		{
 			if (!string.IsNullOrEmpty(s))
 			{
@@ -96,14 +97,15 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Extract the last word delimeted by a non-word boundary from the given
-		/// string and returns the word and updated string.
+		/// Splits a string into its last word and the remaining characters as delimited by
+		/// the last non-word boundary.
 		/// </summary>
 		/// <param name="s">A string with one or more words</param>
 		/// <returns>
-		/// A two-part ValueTuple with the word and the updated string.
+		/// A two-part ValueTuple with the last word and the remaining string. If the given
+		/// string does not contain a word boundary then this returns (null,s)
 		/// </returns>
-		public static (string, string) ExtractLastWord(this string s)
+		public static (string, string) SplitAtLastWord(this string s)
 		{
 			if (!string.IsNullOrEmpty(s))
 			{
@@ -143,7 +145,7 @@ namespace River.OneMoreAddIn
 			// quote unquote language attribute, e.g., lang=yo to lang="yo" (or two part en-US)
 			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
 
-			return XElement.Parse("<wrapper>" + value + "</wrapper>");
+			return XElement.Parse($"<wrapper>{value}</wrapper>");
 		}
 
 
