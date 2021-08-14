@@ -160,7 +160,51 @@ namespace River.OneMoreAddIn.Models
 		// from a selection range within a T by combining similar Ts back into one
 		private void NormalizeRuns()
 		{
+			Logger.Current.WriteLine("normalizing");
+			Logger.Current.WriteLine(root);
+
 			var runs = root.Elements(ns + "T").ToList();
+
+			for (int i = 0; i < runs.Count; i++)
+			{
+				var cdata = runs[i].GetCData();
+				var wrapper = cdata.GetWrapper();
+				var nodes = wrapper.Nodes().ToList();
+				var updated = false;
+				for (int n = 0, m = 1; m < nodes.Count; m++)
+				{
+					if (nodes[n] is XElement noden && nodes[m] is XElement nodem)
+					{
+						var sn = new Style(noden.CollectStyleProperties());
+						var sm = new Style(nodem.CollectStyleProperties());
+
+						if (sn.Equals(sm))
+						{
+							noden.Value = $"{noden.Value}{nodem.Value}";
+							nodes[m].Remove();
+							updated = true;
+						}
+						else
+						{
+							n = m;
+						}
+					}
+					else
+					{
+						n = m;
+					}
+				}
+
+				if (updated)
+				{
+					cdata.Value = wrapper.GetInnerXml();
+				}
+			}
+
+			Logger.Current.WriteLine("despanned");
+			Logger.Current.WriteLine(root);
+
+			runs = root.Elements(ns + "T").ToList();
 
 			for (int i = 0, j = 1; j < runs.Count; j++)
 			{
@@ -170,14 +214,31 @@ namespace River.OneMoreAddIn.Models
 				if (si.Equals(sj))
 				{
 					var ci = runs[i].GetCData();
-					ci.Value = $"{ci.Value}{runs[j].GetCData().Value}";
-					runs[j].Remove();
+					var cj = runs[j].GetCData();
+
+					if (ci.Value.StartsWith("<span") && cj.Value.StartsWith("<span"))
+					{
+						var wi = ci.GetWrapper();
+						var wj = cj.GetWrapper();
+
+						var ei = wi.FirstNode as XElement;
+						var ej = wj.FirstNode as XElement;
+
+						ei.Value = $"{ei.Value}{ej.Value}";
+						ci.Value = wi.GetInnerXml();
+
+						Logger.Current.WriteLine($"added '{wj.Value}' to get '{ci.Value}'");
+						runs[j].Remove();
+					}
 				}
 				else
 				{
 					i = j;
 				}
 			}
+
+			Logger.Current.WriteLine("normalized");
+			Logger.Current.WriteLine(root);
 		}
 
 

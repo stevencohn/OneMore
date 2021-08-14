@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -217,23 +218,35 @@ namespace River.OneMoreAddIn
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
 
+
+			System.Diagnostics.Debugger.Launch();
+
 			var oldcopy = new SelectionRange(anchor.Clone());
 			oldcopy.Deselect();
 
 			var newcopy = new SelectionRange(candidate.Clone());
 			newcopy.Deselect();
 
-			var oldxml = oldcopy.ToString();
-			var newxml = newcopy.ToString();
+			var oldxml = Regex.Replace(oldcopy.ToString(), @"[\r\n]+", " ");
+			var newxml = Regex.Replace(newcopy.ToString(), @"[\r\n]+", " ");
 
-			//if (oldxml != newxml)
-			//{
-			//	logger.WriteLine("differences found in candidate/anchor");
-			//	logger.WriteLine("oldxml/candidate");
-			//	logger.WriteLine(oldxml);
-			//	logger.WriteLine("newxml/anchor");
-			//	logger.WriteLine(newxml);
-			//}
+			if (oldxml != newxml)
+			{
+				logger.WriteLine("differences found in anchor/candidate");
+				logger.WriteLine($"oldxml/anchor {oldxml.Length}");
+				logger.WriteLine(oldxml);
+				logger.WriteLine($"newxml/candidate {newxml.Length}");
+				logger.WriteLine(newxml);
+
+				for (int i= 0; i < oldxml.Length && i < newxml.Length; i++)
+				{
+					if (oldxml[i] != newxml[i])
+					{
+						logger.WriteLine($"diff at index {i}");
+						break;
+					}
+				}
+			}
 
 			return oldxml != newxml;
 		}
