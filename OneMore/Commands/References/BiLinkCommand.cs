@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn
 				{
 					if (!MarkAnchor(one))
 					{
-						UIHelper.ShowInfo(one.Window, Resx.BiLinkCommand_BadAnchor);
+						UIHelper.ShowError(one.Window, Resx.BiLinkCommand_BadAnchor);
 						IsCancelled = true;
 						return;
 					}
@@ -55,14 +55,14 @@ namespace River.OneMoreAddIn
 				{
 					if (string.IsNullOrEmpty(anchorPageId))
 					{
-						UIHelper.ShowInfo(one.Window, Resx.BiLinkCommand_NoAnchor);
+						UIHelper.ShowError(one.Window, Resx.BiLinkCommand_NoAnchor);
 						IsCancelled = true;
 						return;
 					}
 
 					if (!await CreateLinks(one))
 					{
-						UIHelper.ShowInfo(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
+						UIHelper.ShowError(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
 						IsCancelled = true;
 						return;
 					}
