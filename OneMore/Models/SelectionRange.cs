@@ -225,9 +225,14 @@ namespace River.OneMoreAddIn.Models
 						var ej = wj.FirstNode as XElement;
 
 						ei.Value = $"{ei.Value}{ej.Value}";
-						ci.Value = wi.GetInnerXml();
+						ci.Value = wi.GetInnerXml(true);
 
 						Logger.Current.WriteLine($"added '{wj.Value}' to get '{ci.Value}'");
+						runs[j].Remove();
+					}
+					else if (ci.Value[0] != '<' && cj.Value[0] != '<')
+					{
+						ci.Value = $"{ci.Value}{cj.Value}";
 						runs[j].Remove();
 					}
 				}

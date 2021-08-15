@@ -171,6 +171,10 @@ namespace River.OneMoreAddIn
 			// anchorPageId -> anchorPage -> anchorId -> anchor
 			// targetPageId -> targetPage -> targetId -> target
 
+
+			System.Diagnostics.Debugger.Launch();
+
+
 			var anchorLink = one.GetHyperlink(anchorPageId, anchorId);
 			var targetLink = one.GetHyperlink(targetPageId, targetId);
 
@@ -186,19 +190,19 @@ namespace River.OneMoreAddIn
 				candidate.DescendantsAndSelf().Attributes("selected").Remove();
 			}
 
-			//logger.WriteLine();
-			//logger.WriteLine("LINKING");
-			//logger.WriteLine($" anchorPageId = {anchorPageId}");
-			//logger.WriteLine($" anchorId     = {anchorId}");
-			//logger.WriteLine($" anchorLink   = {anchorLink}");
-			//logger.WriteLine($" candidate    = '{candidate}'");
-			//logger.WriteLine($" targetPageId = {targetPageId}");
-			//logger.WriteLine($" targetId     = {targetId}");
-			//logger.WriteLine($" targetLink   = {targetLink}");
-			//logger.WriteLine($" target       = '{target}'");
-			//logger.WriteLine();
-			//logger.WriteLine("---------------------------------------------");
-			//logger.WriteLine(targetPage.Root);
+			logger.WriteLine();
+			logger.WriteLine("LINKING");
+			logger.WriteLine($" anchorPageId = {anchorPageId}");
+			logger.WriteLine($" anchorId     = {anchorId}");
+			logger.WriteLine($" anchorLink   = {anchorLink}");
+			logger.WriteLine($" candidate    = '{candidate}'");
+			logger.WriteLine($" targetPageId = {targetPageId}");
+			logger.WriteLine($" targetId     = {targetId}");
+			logger.WriteLine($" targetLink   = {targetLink}");
+			logger.WriteLine($" target       = '{target}'");
+			logger.WriteLine();
+			logger.WriteLine("---------------------------------------------");
+			logger.WriteLine(targetPage.Root);
 
 			await one.Update(targetPage);
 
@@ -218,8 +222,6 @@ namespace River.OneMoreAddIn
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
 
-
-			System.Diagnostics.Debugger.Launch();
 
 			var oldcopy = new SelectionRange(anchor.Clone());
 			oldcopy.Deselect();

@@ -136,15 +136,13 @@ namespace River.OneMoreAddIn
 		/// Returns the InnerXml of the given element
 		/// </summary>
 		/// <param name="element">The element to interogate</param>
+		/// <param name="singleQuote">
+		/// If true, replace attribute double quotes with single quotes; this is necessary for
+		/// inner CDATA span style attributes within the XML
+		/// </param>
 		/// <returns>A string specifying the inner XML of the element.</returns>
-		public static string GetInnerXml(this XElement element, bool cdata = false)
+		public static string GetInnerXml(this XElement element, bool singleQuote = false)
 		{
-			if (cdata)
-			{
-
-				return null;
-			}
-
 			string xml = null;
 
 			// fastest way to get XElement inner XML
@@ -157,7 +155,7 @@ namespace River.OneMoreAddIn
 			// undo what XCData.GetWrapper did to <br/> elements
 			xml = Regex.Replace(xml, @"<\s*br\s*/>", "<br>");
 
-			if (cdata)
+			if (singleQuote)
 			{
 				// match $1 is always the opening quote, match $2 is always the closing quote
 				// and Groups[1] will contains all $1s and Groups[2] will contain all $2s
