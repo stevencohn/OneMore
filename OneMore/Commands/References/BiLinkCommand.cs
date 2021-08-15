@@ -171,10 +171,6 @@ namespace River.OneMoreAddIn
 			// anchorPageId -> anchorPage -> anchorId -> anchor
 			// targetPageId -> targetPage -> targetId -> target
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			var anchorLink = one.GetHyperlink(anchorPageId, anchorId);
 			var targetLink = one.GetHyperlink(targetPageId, targetId);
 
@@ -190,19 +186,19 @@ namespace River.OneMoreAddIn
 				candidate.DescendantsAndSelf().Attributes("selected").Remove();
 			}
 
-			logger.WriteLine();
-			logger.WriteLine("LINKING");
-			logger.WriteLine($" anchorPageId = {anchorPageId}");
-			logger.WriteLine($" anchorId     = {anchorId}");
-			logger.WriteLine($" anchorLink   = {anchorLink}");
-			logger.WriteLine($" candidate    = '{candidate}'");
-			logger.WriteLine($" targetPageId = {targetPageId}");
-			logger.WriteLine($" targetId     = {targetId}");
-			logger.WriteLine($" targetLink   = {targetLink}");
-			logger.WriteLine($" target       = '{target}'");
-			logger.WriteLine();
-			logger.WriteLine("---------------------------------------------");
-			logger.WriteLine(targetPage.Root);
+			//logger.WriteLine();
+			//logger.WriteLine("LINKING");
+			//logger.WriteLine($" anchorPageId = {anchorPageId}");
+			//logger.WriteLine($" anchorId     = {anchorId}");
+			//logger.WriteLine($" anchorLink   = {anchorLink}");
+			//logger.WriteLine($" candidate    = '{candidate}'");
+			//logger.WriteLine($" targetPageId = {targetPageId}");
+			//logger.WriteLine($" targetId     = {targetId}");
+			//logger.WriteLine($" targetLink   = {targetLink}");
+			//logger.WriteLine($" target       = '{target}'");
+			//logger.WriteLine();
+			//logger.WriteLine("---------------------------------------------");
+			//logger.WriteLine(targetPage.Root);
 
 			await one.Update(targetPage);
 
@@ -234,11 +230,11 @@ namespace River.OneMoreAddIn
 
 			if (oldxml != newxml)
 			{
-				logger.WriteLine("differences found in anchor/candidate");
-				logger.WriteLine($"oldxml/anchor {oldxml.Length}");
-				logger.WriteLine(oldxml);
-				logger.WriteLine($"newxml/candidate {newxml.Length}");
-				logger.WriteLine(newxml);
+				//logger.WriteLine("differences found in anchor/candidate");
+				//logger.WriteLine($"oldxml/anchor {oldxml.Length}");
+				//logger.WriteLine(oldxml);
+				//logger.WriteLine($"newxml/candidate {newxml.Length}");
+				//logger.WriteLine(newxml);
 
 				for (int i= 0; i < oldxml.Length && i < newxml.Length; i++)
 				{
@@ -265,17 +261,15 @@ namespace River.OneMoreAddIn
 				{
 					if (s is XText text)
 					{
-						var a = new XElement("a", new XAttribute("href", link), text.Value);
-						text.Value = a.ToString(SaveOptions.DisableFormatting);
-					}
-					else if (s is XElement span)
-					{
-						var a = new XElement("a", new XAttribute("href", link), span.Value);
-						span.Value = a.ToString(SaveOptions.DisableFormatting);
+						count++;
+						return new XElement("a", new XAttribute("href", link), new XText(text.Value));
 					}
 
+					var span = (XElement)s;
+					span.ReplaceNodes(new XElement("a", new XAttribute("href", link), span.Value));
+
 					count++;
-					return null;
+					return span;
 				});
 			}
 			else

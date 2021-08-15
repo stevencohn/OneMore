@@ -160,9 +160,6 @@ namespace River.OneMoreAddIn.Models
 		// from a selection range within a T by combining similar Ts back into one
 		private void NormalizeRuns()
 		{
-			Logger.Current.WriteLine("normalizing");
-			Logger.Current.WriteLine(root);
-
 			var runs = root.Elements(ns + "T").ToList();
 
 			for (int i = 0; i < runs.Count; i++)
@@ -201,9 +198,6 @@ namespace River.OneMoreAddIn.Models
 				}
 			}
 
-			Logger.Current.WriteLine("despanned");
-			Logger.Current.WriteLine(root);
-
 			runs = root.Elements(ns + "T").ToList();
 
 			for (int i = 0, j = 1; j < runs.Count; j++)
@@ -230,7 +224,6 @@ namespace River.OneMoreAddIn.Models
 						ei.Value = $"{ei.Value}{ej.Value}";
 						ci.Value = wi.GetInnerXml(true);
 
-						Logger.Current.WriteLine($"added '{wj.Value}' to get '{ci.Value}'");
 						runs[j].Remove();
 					}
 					else if (!spani && !spanj)
@@ -244,9 +237,6 @@ namespace River.OneMoreAddIn.Models
 					i = j;
 				}
 			}
-
-			Logger.Current.WriteLine("normalized");
-			Logger.Current.WriteLine(root);
 		}
 
 
