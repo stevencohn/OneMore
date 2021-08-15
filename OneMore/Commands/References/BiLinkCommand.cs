@@ -37,6 +37,9 @@ namespace River.OneMoreAddIn
 
 		public override async Task Execute(params object[] args)
 		{
+			// anchor/link sub-commands cannot be repeated
+			IsCancelled = true;
+
 			using (var one = new OneNote())
 			{
 				if ((args[0] is string cmd) && (cmd == "mark"))
@@ -44,7 +47,6 @@ namespace River.OneMoreAddIn
 					if (!MarkAnchor(one))
 					{
 						UIHelper.ShowError(one.Window, Resx.BiLinkCommand_BadAnchor);
-						IsCancelled = true;
 						return;
 					}
 
@@ -56,14 +58,12 @@ namespace River.OneMoreAddIn
 					if (string.IsNullOrEmpty(anchorPageId))
 					{
 						UIHelper.ShowError(one.Window, Resx.BiLinkCommand_NoAnchor);
-						IsCancelled = true;
 						return;
 					}
 
 					if (!await CreateLinks(one))
 					{
 						UIHelper.ShowError(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
-						IsCancelled = true;
 						return;
 					}
 
