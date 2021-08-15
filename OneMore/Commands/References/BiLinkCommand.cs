@@ -263,8 +263,19 @@ namespace River.OneMoreAddIn
 			{
 				page.EditNode(selection, (s) =>
 				{
+					if (s is XText text)
+					{
+						var a = new XElement("a", new XAttribute("href", link), text.Value);
+						text.Value = a.ToString(SaveOptions.DisableFormatting);
+					}
+					else if (s is XElement span)
+					{
+						var a = new XElement("a", new XAttribute("href", link), span.Value);
+						span.Value = a.ToString(SaveOptions.DisableFormatting);
+					}
+
 					count++;
-					return new XElement("a", new XAttribute("href", link), s);
+					return null;
 				});
 			}
 			else

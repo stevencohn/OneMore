@@ -216,7 +216,10 @@ namespace River.OneMoreAddIn.Models
 					var ci = runs[i].GetCData();
 					var cj = runs[j].GetCData();
 
-					if (ci.Value.StartsWith("<span") && cj.Value.StartsWith("<span"))
+					var spani = ci.Value.StartsWith("<span");
+					var spanj = cj.Value.StartsWith("<span");
+
+					if (spani && spanj)
 					{
 						var wi = ci.GetWrapper();
 						var wj = cj.GetWrapper();
@@ -230,7 +233,7 @@ namespace River.OneMoreAddIn.Models
 						Logger.Current.WriteLine($"added '{wj.Value}' to get '{ci.Value}'");
 						runs[j].Remove();
 					}
-					else if (ci.Value[0] != '<' && cj.Value[0] != '<')
+					else if (!spani && !spanj)
 					{
 						ci.Value = $"{ci.Value}{cj.Value}";
 						runs[j].Remove();
