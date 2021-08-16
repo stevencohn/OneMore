@@ -272,6 +272,7 @@
     <Compile Include="Commands\Tables\SplitTableDialog.Designer.cs">
       <DependentUpon>SplitTableDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\AnalyzeCommand.cs" />
     <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
