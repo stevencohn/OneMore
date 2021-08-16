@@ -3198,4 +3198,24 @@ In this section</value>
     <value>Start Bidirectional Link</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
+    <value>Open Sections</value>
+    <comment>SKIP notebook name</comment>
+  </data>
+  <data name="AnalyzeCommand_QuickNotes" xml:space="preserve">
+    <value>Quick Notes</value>
+    <comment>SKIP notebook name</comment>
+  </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>Summary of all open notebooks, showing the disk utilization within the backup folder. There may be multiple copies of each section as configured in the OneNote options dialog. This summary shows the total disk usage including all copies.</value>
+    <comment>summary description</comment>
+  </data>
+  <data name="AnalyzeCommand_Title" xml:space="preserve">
+    <value>OneNote Storage Analysis</value>
+    <comment>page title</comment>
+  </data>
+  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
+    <value>Orphans are backup folders for notebooks that are no longer opened in OneNote. If they are no longer used, they can be removed safely.</value>
+    <comment>summary text</comment>
+  </data>
 </root>

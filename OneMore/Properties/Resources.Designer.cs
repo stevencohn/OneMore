@@ -259,6 +259,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Sections.
+        /// </summary>
+        internal static string AnalyzeCommand_OpenSections {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_OpenSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orphans are backup folders for notebooks that are no longer opened in OneNote. If they are no longer used, they can be removed safely..
+        /// </summary>
+        internal static string AnalyzeCommand_OrphanSummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_OrphanSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Notes.
+        /// </summary>
+        internal static string AnalyzeCommand_QuickNotes {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_QuickNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary of all open notebooks, showing the disk utilization within the backup folder. There may be multiple copies of each section as configured in the OneNote options dialog. This summary shows the total disk usage including all copies..
+        /// </summary>
+        internal static string AnalyzeCommand_SummarySummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_SummarySummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneNote Storage Analysis.
+        /// </summary>
+        internal static string AnalyzeCommand_Title {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Architecture {
