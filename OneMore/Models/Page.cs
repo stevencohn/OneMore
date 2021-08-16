@@ -534,7 +534,8 @@ namespace River.OneMoreAddIn.Models
 			if (outline == null)
 			{
 				container = new XElement(Namespace + "OEChildren");
-				Root.Add(new XElement(Namespace + "Outline", container));
+				outline = new XElement(Namespace + "Outline", container);
+				Root.Add(outline);
 			}
 			else
 			{
@@ -544,6 +545,16 @@ namespace River.OneMoreAddIn.Models
 					container = new XElement(Namespace + "OEChildren");
 					outline.Add(container);
 				}
+			}
+
+			// check Outline size
+			var size = outline.Elements(Namespace + "Size").FirstOrDefault();
+			if (size == null)
+			{
+				outline.AddFirst(new XElement(Namespace + "Size",
+					new XAttribute("width", "300.0"),
+					new XAttribute("height", "14.0")
+					));
 			}
 
 			return container;

@@ -480,6 +480,11 @@
             </menu>
             <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote">
               <button
+                id="ribAnalyzeButton"
+                imageMso="FileCompactAndRepairDatabase"
+                label="Analyze Data Sizes"
+                onAction="AnalyzeCmd"/>
+              <button
                 id="ribFlagTitleButton"
                 imageMso="DataGraphicIconSet"
                 getLabel="GetRibbonLabel"
