@@ -31,21 +31,21 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public XElement SetAlignment(string alignment)
+		public Paragraph SetAlignment(string alignment)
 		{
 			SetAttributeValue("alignment", alignment);
 			return this;
 		}
 
 
-		public XElement SetQuickStyle(int index)
+		public Paragraph SetQuickStyle(int index)
 		{
 			SetAttributeValue("quickStyleIndex", index);
 			return this;
 		}
 
 
-		public XElement SetStyle(string style)
+		public Paragraph SetStyle(string style)
 		{
 			SetAttributeValue("style", style);
 			return this;

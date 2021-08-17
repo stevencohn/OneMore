@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
 	using System;
-	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -52,17 +51,24 @@ namespace River.OneMoreAddIn.Commands
 				var container = page.EnsureContentContainer();
 				//page.EnsurePageWidth("", "Calibri", 11, one.WindowHandle);
 
-				var notebooks = one.GetNotebooks(OneNote.Scope.Pages);
+				var notebooks = one.GetNotebooks();
 
 				ReportSummary(container, notebooks);
 
-				container.Add(new Paragraph("Details").SetQuickStyle(heading1Index));
+				container.Add(new Paragraph(ns, "Details").SetQuickStyle(heading1Index));
 
+				// discover hierarchy bit by bit to avoid loading huge amounts of memory at once
 				foreach (var notebook in notebooks.Elements(ns + "Notebook"))
 				{
-					foreach (var section in notebook.Elements(ns + "Section"))
+					var sections = one.GetNotebook(
+						notebook.Attribute("ID").Value).Elements(ns + "Section");
+
+					foreach (var section in sections)
 					{
-						ReportSection(container, section, true);
+						ReportSection(
+							container,
+							one.GetSection(section.Attribute("ID").Value),
+							true);
 					}
 				}
 
@@ -98,9 +104,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			row[0].SetContent(new Paragraph(ns, "Notebook").SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(ns, "Backups").SetStyle(HeaderCss));
-			row[2].SetContent(new Paragraph(ns, "Recycled").SetStyle(HeaderCss));
-			row[3].SetContent(new Paragraph(ns, "Total").SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph(ns, "Backups").SetStyle(HeaderCss).SetAlignment("center"));
+			row[2].SetContent(new Paragraph(ns, "Recycled").SetStyle(HeaderCss).SetAlignment("center"));
+			row[3].SetContent(new Paragraph(ns, "Total").SetStyle(HeaderCss).SetAlignment("center"));
 
 			foreach (var notebook in notebooks.Elements(ns + "Notebook"))
 			{
@@ -155,8 +161,9 @@ namespace River.OneMoreAddIn.Commands
 			container.Add(
 				new Paragraph(ns,
 					new XElement(ns + "T", new XCData(string.Empty)),
-					children
-				));
+					children),
+				new Paragraph(ns, string.Empty)
+				);
 
 			foreach (var orphan in orphans)
 			{
