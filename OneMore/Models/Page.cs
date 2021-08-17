@@ -551,6 +551,7 @@ namespace River.OneMoreAddIn.Models
 			var size = outline.Elements(Namespace + "Size").FirstOrDefault();
 			if (size == null)
 			{
+				// this size is close to OneNote defaults when a new Outline is created
 				outline.AddFirst(new XElement(Namespace + "Size",
 					new XAttribute("width", "300.0"),
 					new XAttribute("height", "14.0")
@@ -582,31 +583,41 @@ namespace River.OneMoreAddIn.Models
 				.Elements(Namespace + "Size")
 				.FirstOrDefault();
 
-			if (element != null)
+			if (element == null)
 			{
-				var attr = element.Attribute("width");
-				if (attr != null)
+				element = Root.Elements(Namespace + "Outline")
+					.LastOrDefault()
+					.Elements(Namespace + "Size")
+					.FirstOrDefault();
+			}
+
+			if (element == null)
+			{
+				return;
+			}
+
+			var attr = element.Attribute("width");
+			if (attr != null)
+			{
+				var outlinePoints = double.Parse(attr.Value, CultureInfo.InvariantCulture);
+
+				// measure line to ensure page width is sufficient
+
+				using (var g = Graphics.FromHwnd(handle))
 				{
-					var outlinePoints = double.Parse(attr.Value, CultureInfo.InvariantCulture);
-
-					// measure line to ensure page width is sufficient
-
-					using (var g = Graphics.FromHwnd(handle))
+					using (var font = new Font(fontFamily, fontSize))
 					{
-						using (var font = new Font(fontFamily, fontSize))
+						var stringSize = g.MeasureString(line, font);
+						var stringPoints = stringSize.Width * 72 / g.DpiX;
+
+						if (stringPoints > outlinePoints)
 						{
-							var stringSize = g.MeasureString(line, font);
-							var stringPoints = stringSize.Width * 72 / g.DpiX;
+							attr.Value = stringPoints.ToString("#0.00", CultureInfo.InvariantCulture);
 
-							if (stringPoints > outlinePoints)
+							// must include isSetByUser or width doesn't take effect!
+							if (element.Attribute("isSetByUser") == null)
 							{
-								attr.Value = stringPoints.ToString("#0.00", CultureInfo.InvariantCulture);
-
-								// must include isSetByUser or width doesn't take effect!
-								if (element.Attribute("isSetByUser") == null)
-								{
-									element.Add(new XAttribute("isSetByUser", "true"));
-								}
+								element.Add(new XAttribute("isSetByUser", "true"));
 							}
 						}
 					}

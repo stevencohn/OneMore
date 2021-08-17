@@ -259,6 +259,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote..
+        /// </summary>
+        internal static string AnalyzeCommand_CacheSummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_CacheSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span style=&apos;font-style:italic&apos;&gt;Cache not found; location likely changed in OneNote options&lt;/span&gt;.
+        /// </summary>
+        internal static string AnalyzeCommand_NoCache {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_NoCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span style=&apos;font-style:italic&apos;&gt;No orphaned backup directories discovered&lt;/span&gt;.
+        /// </summary>
+        internal static string AnalyzeCommand_NoOrphans {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_NoOrphans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Sections.
         /// </summary>
         internal static string AnalyzeCommand_OpenSections {

@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string HeaderShading = "#DEEBF6";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
+		private const string LineCss = "font-family:'Courier New';font-size:10.0pt";
 		private const string RecycleBin = "OneNote_RecycleBin";
 
 		private OneNote one;
@@ -53,22 +54,46 @@ namespace River.OneMoreAddIn.Commands
 
 				var notebooks = one.GetNotebooks();
 
-				ReportSummary(container, notebooks);
+				ReportNotebooks(container, notebooks);
+				ReportOrphans(container, notebooks);
+				ReportCache(container);
 
-				container.Add(new Paragraph(ns, "Details").SetQuickStyle(heading1Index));
+				var line = string.Empty.PadRight(100, '_');
+				page.EnsurePageWidth(line, "Courier new", 10f, one.WindowHandle);
+
+				var lineParagraph = new XElement(ns + "T",
+					new XAttribute("style", LineCss),
+					new XCData($"{line}<br/>")
+					);
 
 				// discover hierarchy bit by bit to avoid loading huge amounts of memory at once
-				foreach (var notebook in notebooks.Elements(ns + "Notebook"))
+				foreach (var book in notebooks.Elements(ns + "Notebook"))
 				{
-					var sections = one.GetNotebook(
-						notebook.Attribute("ID").Value).Elements(ns + "Section");
+					container.Add(
+						new Paragraph(ns, string.Empty),
+						new Paragraph(ns, lineParagraph),
+						new Paragraph(ns, $"{book.Attribute("name").Value} Notebook")
+							.SetQuickStyle(heading1Index));
 
-					foreach (var section in sections)
+					var notebook = one.GetNotebook(book.Attribute("ID").Value);
+
+					foreach (var section in notebook.Elements(ns + "Section"))
 					{
 						ReportSection(
 							container,
 							one.GetSection(section.Attribute("ID").Value),
-							true);
+							null, true);
+					}
+
+					// section groups...
+
+					foreach (var group in notebook.Elements(ns + "SectionGroup"))
+					{
+						var groupName = group.Attribute("name").Value;
+						foreach (var sec in group.Elements(ns + "Section"))
+						{
+							ReportSection(container, sec, groupName, true);
+						}
 					}
 				}
 
@@ -78,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void ReportSummary(XElement container, XElement notebooks)
+		public void ReportNotebooks(XElement container, XElement notebooks)
 		{
 			var lead = "<span style='font-style:italic'>Backup location</span>";
 			var backupUri = new Uri(backupPath).AbsoluteUri;
@@ -97,6 +122,10 @@ namespace River.OneMoreAddIn.Commands
 				BordersVisible = true
 			};
 
+			table.SetColumnWidth(1, 70);
+			table.SetColumnWidth(2, 70);
+			table.SetColumnWidth(3, 70);
+
 			var row = table[0];
 			foreach (var cell in row.Cells)
 			{
@@ -107,6 +136,8 @@ namespace River.OneMoreAddIn.Commands
 			row[1].SetContent(new Paragraph(ns, "Backups").SetStyle(HeaderCss).SetAlignment("center"));
 			row[2].SetContent(new Paragraph(ns, "Recycled").SetStyle(HeaderCss).SetAlignment("center"));
 			row[3].SetContent(new Paragraph(ns, "Total").SetStyle(HeaderCss).SetAlignment("center"));
+
+			long total = 0;
 
 			foreach (var notebook in notebooks.Elements(ns + "Notebook"))
 			{
@@ -119,20 +150,35 @@ namespace River.OneMoreAddIn.Commands
 				if (Directory.Exists(path))
 				{
 					var dir = new DirectoryInfo(path);
-					var total = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
+					var size = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
 
 					dir = new DirectoryInfo(Path.Combine(path, RecycleBin));
 					var rebin = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
 
-					row[1].SetContent(new Paragraph(ns, (total - rebin).ToBytes()).SetAlignment("right"));
-					row[2].SetContent(new Paragraph(ns, rebin.ToBytes()).SetAlignment("right"));
-					row[3].SetContent(new Paragraph(ns, total.ToBytes()).SetAlignment("right"));
+					row[1].SetContent(new Paragraph(ns, (size - rebin).ToBytes(1)).SetAlignment("right"));
+					row[2].SetContent(new Paragraph(ns, rebin.ToBytes(1)).SetAlignment("right"));
+					row[3].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+
+					total += size;
 				}
 			}
 
-			container.Add(new Paragraph(ns, table.Root));
+			if (total > 0)
+			{
+				row = table.AddRow();
+				row[3].SetContent(new Paragraph(ns, total.ToBytes(1)).SetAlignment("right"));
+			}
 
-			// orphans backup folders...
+			container.Add(
+				new Paragraph(ns, table.Root),
+				new Paragraph(ns, string.Empty)
+				);
+		}
+
+
+		public void ReportOrphans(XElement container, XElement notebooks)
+		{
+			// orphaned backup folders...
 
 			var knowns = notebooks.Elements(ns + "Notebook")
 				.Select(e => e.Attribute("name").Value)
@@ -145,24 +191,28 @@ namespace River.OneMoreAddIn.Commands
 				.Select(d => Path.GetFileNameWithoutExtension(d))
 				.Except(knowns);
 
-			if (!orphans.Any())
-			{
-				return;
-			}
-
 			container.Add(
-				new Paragraph(ns, string.Empty),
 				new Paragraph(ns, "Orphans").SetQuickStyle(heading2Index),
 				new Paragraph(ns, Resx.AnalyzeCommand_OrphanSummary)
 				);
+
+			if (!orphans.Any())
+			{
+				container.Add(
+					new Paragraph(ns, string.Empty),
+					new Paragraph(ns, Resx.AnalyzeCommand_NoOrphans),
+					new Paragraph(ns, string.Empty)
+					);
+
+				return;
+			}
 
 			var children = new XElement(ns + "OEChildren");
 
 			container.Add(
 				new Paragraph(ns,
 					new XElement(ns + "T", new XCData(string.Empty)),
-					children),
-				new Paragraph(ns, string.Empty)
+					children)
 				);
 
 			foreach (var orphan in orphans)
@@ -173,17 +223,59 @@ namespace River.OneMoreAddIn.Commands
 				children.Add(new XElement(ns + "OE",
 					new XElement(ns + "List",
 						new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
-						new XElement(ns + "T", new XCData($"{orphan} ({size.ToBytes()})"))
+						new XElement(ns + "T", new XCData($"{orphan} ({size.ToBytes(1)})"))
 					));
 			}
+
+			container.Add(new Paragraph(ns, string.Empty));
 		}
 
 
-		public void ReportSection(XElement container, XElement section, bool deep)
+		public void ReportCache(XElement container)
 		{
+			// internal cache folder...
+
+			container.Add(
+				new Paragraph(ns, "Cache").SetQuickStyle(heading2Index),
+				new Paragraph(ns, Resx.AnalyzeCommand_CacheSummary),
+				new Paragraph(ns, string.Empty)
+				);
+
+			var cachePath = Path.Combine(Path.GetDirectoryName(backupPath), "cache");
+			if (!Directory.Exists(cachePath))
+			{
+				container.Add(
+					new Paragraph(ns, string.Empty),
+					new Paragraph(ns, Resx.AnalyzeCommand_NoCache),
+					new Paragraph(ns, string.Empty)
+					);
+
+				return;
+			}
+
+			var dir = new DirectoryInfo(cachePath);
+			var total = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
+
+			var cacheUri = new Uri(cachePath).AbsoluteUri;
+
+			container.Add(
+				new Paragraph(ns, $"Cache: {total.ToBytes(1)}; <a href=\"{cacheUri}\">{cachePath}</a>"),
+				new Paragraph(ns, string.Empty)
+				);
+		}
+
+
+		public void ReportSection(XElement container, XElement section, string folder, bool deep)
+		{
+			var name = section.Attribute("name").Value;
+			if (folder != null)
+			{
+				name = Path.Combine(folder, name);
+			}
+
 			container.Add(
 				new Paragraph(ns, string.Empty),
-				new Paragraph(ns, section.Attribute("name").Value).SetQuickStyle(heading2Index)
+				new Paragraph(ns, name).SetQuickStyle(heading2Index)
 				);
 
 			var table = new Table(ns, 2, deep ? 5 : 3)
@@ -206,6 +298,13 @@ namespace River.OneMoreAddIn.Commands
 
 			var path = Path.Combine(backupPath, Path.GetFileName(section.Attribute("path").Value));
 			if (File.Exists(path))
+			{
+				var size = new FileInfo(path).Length;
+				row = table.AddRow();
+				row[1].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+			}
+
+			foreach (var page in section.Elements(ns + "Page"))
 			{
 
 			}

@@ -3214,6 +3214,18 @@ In this section</value>
     <value>OneNote Storage Analysis</value>
     <comment>page title</comment>
   </data>
+  <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
+    <value>The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote.</value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_NoCache" xml:space="preserve">
+    <value>&lt;span style='font-style:italic'&gt;Cache not found; location likely changed in OneNote options&lt;/span&gt;</value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
+    <value>&lt;span style='font-style:italic'&gt;No orphaned backup directories discovered&lt;/span&gt;</value>
+    <comment>status</comment>
+  </data>
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
     <value>Orphans are backup folders for notebooks that are no longer opened in OneNote. If they are no longer used, they can be removed safely.</value>
     <comment>summary text</comment>
