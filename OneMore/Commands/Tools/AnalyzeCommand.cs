@@ -60,6 +60,8 @@ namespace River.OneMoreAddIn.Commands
 
 				ReportSectionSummaries(container, notebooks);
 
+				ReportPages(container, one.GetSection());
+
 				/*
 				var line = string.Empty.PadRight(100, '_');
 				page.EnsurePageWidth(line, "Courier new", 10f, one.WindowHandle);
@@ -68,42 +70,6 @@ namespace River.OneMoreAddIn.Commands
 					new XAttribute("style", LineCss),
 					new XCData($"{line}<br/>")
 					);
-
-				// discover hierarchy bit by bit to avoid loading huge amounts of memory at once
-				foreach (var book in notebooks.Elements(ns + "Notebook"))
-				{
-					container.Add(
-						new Paragraph(ns, string.Empty),
-						new Paragraph(ns, lineParagraph),
-						new Paragraph(ns, $"{book.Attribute("name").Value} Notebook")
-							.SetQuickStyle(heading1Index));
-
-					var notebook = one.GetNotebook(book.Attribute("ID").Value);
-					var sections = notebook.Elements(ns + "Section")
-						.Where(e => e.Attribute("isRecycleBin") == null && e.Attribute("isInRecycleBin") == null);
-
-					foreach (var section in sections)
-					{
-						ReportSection(
-							container,
-							one.GetSection(section.Attribute("ID").Value),
-							null, true);
-					}
-
-					// section groups...
-
-					var groups = notebook.Elements(ns + "SectionGroup")
-						.Where(e => e.Attribute("isRecycleBin") == null && e.Attribute("isInRecycleBin") == null);
-
-					foreach (var group in groups)
-					{
-						var groupName = group.Attribute("name").Value;
-						foreach (var sec in group.Elements(ns + "Section"))
-						{
-							ReportSection(container, sec, groupName, true);
-						}
-					}
-				}
 				*/
 
 				await one.Update(page);
@@ -131,6 +97,7 @@ namespace River.OneMoreAddIn.Commands
 				BordersVisible = true
 			};
 
+			table.SetColumnWidth(0, 100);
 			table.SetColumnWidth(1, 70);
 			table.SetColumnWidth(2, 70);
 			table.SetColumnWidth(3, 70);
@@ -274,12 +241,17 @@ namespace River.OneMoreAddIn.Commands
 
 		public void ReportSectionSummaries(XElement container, XElement notebooks)
 		{
+			container.Add(
+				new Paragraph(ns, "Summary by Section").SetQuickStyle(heading1Index),
+				new Paragraph(ns, string.Empty)
+				);
+
 			// discover hierarchy bit by bit to avoid loading huge amounts of memory at once
 			foreach (var book in notebooks.Elements(ns + "Notebook"))
 			{
 				container.Add(
 					new Paragraph(ns, $"{book.Attribute("name").Value} Notebook")
-						.SetQuickStyle(heading1Index));
+						.SetQuickStyle(heading2Index));
 
 				var table = new Table(ns, 1, 4)
 				{
@@ -287,7 +259,7 @@ namespace River.OneMoreAddIn.Commands
 					BordersVisible = true
 				};
 
-				table.SetColumnWidth(0, 150);
+				table.SetColumnWidth(0, 160);
 				table.SetColumnWidth(1, 70);
 				table.SetColumnWidth(2, 70);
 				table.SetColumnWidth(3, 70);
@@ -370,20 +342,16 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		public void ReportSection(XElement container, XElement section, string folder, bool deep)
+		public void ReportPages(XElement container, XElement section)
 		{
 			var name = section.Attribute("name").Value;
-			if (folder != null)
-			{
-				name = Path.Combine(folder, name);
-			}
 
 			container.Add(
-				new Paragraph(ns, string.Empty),
-				new Paragraph(ns, name).SetQuickStyle(heading2Index)
+				new Paragraph(ns, $"Pages in {name}").SetQuickStyle(heading1Index),
+				new Paragraph(ns, string.Empty)
 				);
 
-			var table = new Table(ns, 1, deep ? 4 : 3)
+			var table = new Table(ns, 1, 6)
 			{
 				HasHeaderRow = true,
 				BordersVisible = true
@@ -392,37 +360,60 @@ namespace River.OneMoreAddIn.Commands
 			var row = table[0];
 			row.SetShading(HeaderShading);
 			row[0].SetContent(new Paragraph(ns, "Page").SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(ns, "Size").SetStyle(HeaderCss));
-			row[2].SetContent(new Paragraph(ns, "# images/files").SetStyle(HeaderCss));
-			row[3].SetContent(new Paragraph(ns, "Size of images/files").SetStyle(HeaderCss));
-
-			var path = Path.Combine(backupPath, Path.GetFileName(section.Attribute("path").Value));
-			if (File.Exists(path))
-			{
-				var size = new FileInfo(path).Length;
-				row = table.AddRow();
-				row[1].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
-			}
+			row[1].SetContent(new Paragraph(ns, "Size").SetStyle(HeaderCss).SetAlignment("center"));
+			row[2].SetContent(new Paragraph(ns, "# Images").SetStyle(HeaderCss).SetAlignment("center"));
+			row[3].SetContent(new Paragraph(ns, "Size of Images").SetStyle(HeaderCss).SetAlignment("center"));
+			row[4].SetContent(new Paragraph(ns, "# Files").SetStyle(HeaderCss).SetAlignment("center"));
+			row[5].SetContent(new Paragraph(ns, "Size of Files").SetStyle(HeaderCss).SetAlignment("center"));
 
 			foreach (var page in section.Elements(ns + "Page"))
 			{
-
+				ReportPage(table, page.Attribute("ID").Value);
 			}
 
-			container.Add(new Paragraph(ns, table.Root));
-
-			if (folder != null)
-			{
-				// section groups...
-				foreach (var group in section.Elements(ns + "SectionGroup"))
-				{
-					var groupName = Path.Combine(folder, group.Attribute("name").Value);
-					foreach (var sec in group.Elements(ns + "Section"))
-					{
-						ReportSection(container, sec, groupName, true);
-					}
-				}
-			}
+			container.Add(
+				new Paragraph(ns, table.Root),
+				new Paragraph(ns, string.Empty)
+				);
 		}
+
+
+		public void ReportPage(Table table, string pageId)
+		{
+			var page = one.GetPage(pageId, OneNote.PageDetail.All);
+			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
+			long length = xml.Length;
+
+			var row = table.AddRow();
+			row[0].SetContent(new Paragraph(ns, page.Title));
+			row[1].SetContent(new Paragraph(ns, length.ToBytes(1)).SetAlignment("right"));
+
+			var images = page.Root.Descendants(ns + "Image")
+				.Where(e => e.Attribute("xpsFileIndex") == null)
+				.ToList();
+
+			row[2].SetContent(new Paragraph(ns, images.Count.ToString()).SetAlignment("right"));
+
+			var files = page.Root.Descendants(ns + "InsertedFile")
+				.ToList();
+
+			row[4].SetContent(new Paragraph(ns, files.Count.ToString()).SetAlignment("right"));
+		}
+		/*
+<one:Image format="png">
+    <one:Size width="140.0" height="38.0" />
+    <one:Data>iVBORw0KGgoAAAANSUhEUgAAAIwAAAAmCAYAAAAWR3O2AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+
+
+  <one:InsertedFile pathCache="C:\Users\steve\AppData\Local\Temp\{569D95EA-50FE-4C04-BBD9-351BB06B49B0}.bin" pathSource="C:\Users\steve\Downloads\Report_Cards_FHS.pdf" preferredName="Report_Cards_FHS.pdf" lastModifiedTime="2021-08-17T19:28:44.000Z" objectID="{7CA7CD12-44EE-4197-9E96-283E7CD967C9}{109}{B0}">
+    <one:Position x="36.0" y="237.9003143310547" z="2" />
+    <one:Size width="338.2500305175781" height="64.80000305175781" />
+    <one:Printout xpsFileIndex="0" />
+  </one:InsertedFile>
+  <one:Image format="png" xpsFileIndex="0" originalPageNumber="0" isPrintOut="true" lastModifiedTime="2021-08-17T19:28:45.000Z" objectID="{7CA7CD12-44EE-4197-9E96-283E7CD967C9}{116}{B0}">
+    <one:Position x="36.0" y="313.5003051757812" z="0" />
+    <one:Size width="613.4400024414062" height="793.4400024414062" isSetByUser="true" />
+    <one:Data>iVBORw0KGgoAAAANSUhEUgAAAzAAAAQgCAIAAAC2Gy5ZAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+		 */
 	}
 }
