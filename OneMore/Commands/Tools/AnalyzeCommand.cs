@@ -69,9 +69,11 @@ namespace River.OneMoreAddIn.Commands
 
 					WriteHorizontalLine(page, container);
 					ReportPages(container, one.GetSection(), pageId);
+
+					progress.SetMessage("Updating report...");
+					await one.Update(page);
 				}
 
-				await one.Update(page);
 				await one.NavigateTo(pageId);
 			}
 		}
