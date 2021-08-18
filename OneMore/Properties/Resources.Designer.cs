@@ -295,11 +295,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Orphans are backup folders for notebooks that are no longer opened in OneNote. If they are no longer used, they can be removed safely..
+        ///   Looks up a localized string similar to Orphans are backup folders of notebooks that are no longer opened in OneNote. If they are no longer used, and you&apos;ve confirmed that they are obsolete, they can be removed safely..
         /// </summary>
         internal static string AnalyzeCommand_OrphanSummary {
             get {
                 return ResourceManager.GetString("AnalyzeCommand_OrphanSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a detailed breakdown of each page showing the total size of the internal XML representation and the size of each image and file attachment. Images are shown in both &quot;BinHex&quot; XML sizes and native Bitmap sizes. Files are shown along with the amount of space they consume on disk..
+        /// </summary>
+        internal static string AnalyzeCommand_PageSummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_PageSummary", resourceCulture);
             }
         }
         
@@ -313,7 +322,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Summary of all open notebooks, showing the disk utilization within the backup folder. There may be multiple copies of each section as configured in the OneNote options dialog. This summary shows the total disk usage including all copies..
+        ///   Looks up a localized string similar to The number of backup copies of each section is configured in the OneNote Options. This summarizes the sections per notebook, showing the size of each section&apos;s data file, the number of backup copies, and the total disk space consumed by all copies of each section..
+        /// </summary>
+        internal static string AnalyzeCommand_SectionSummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_SectionSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backups are stored locally along with a recycle bin folder. Backup location and number of copies is configured in the OneNote Options. This summary shows the total disk usage including all backup copies and the per-notebook recycle bins..
         /// </summary>
         internal static string AnalyzeCommand_SummarySummary {
             get {

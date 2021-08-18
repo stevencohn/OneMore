@@ -49,6 +49,7 @@ namespace River.OneMoreAddIn.Commands
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 				var page = one.GetPage(pageId);
 				page.Title = Resx.AnalyzeCommand_Title;
+				page.SetMeta(Page.AnalysisMetaName, "true");
 
 				ns = page.Namespace;
 				heading1Index = page.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
@@ -86,14 +87,13 @@ namespace River.OneMoreAddIn.Commands
 			progress.SetMessage("Notebooks...");
 			progress.Increment();
 
-			var lead = "<span style='font-style:italic'>Backup location</span>";
 			var backupUri = new Uri(backupPath).AbsoluteUri;
 
 			container.Add(
 				new Paragraph(ns, "Summary").SetQuickStyle(heading1Index),
 				new Paragraph(ns, Resx.AnalyzeCommand_SummarySummary),
 				new Paragraph(ns, string.Empty),
-				new Paragraph(ns, $"{lead}: <a href=\"{backupUri}\">{backupPath}</a>"),
+				new Paragraph(ns, $"<span style='font-style:italic'>Backup location</span>: <a href=\"{backupUri}\">{backupPath}</a>"),
 				new Paragraph(ns, string.Empty)
 				);
 
@@ -204,7 +204,7 @@ namespace River.OneMoreAddIn.Commands
 				children.Add(new XElement(ns + "OE",
 					new XElement(ns + "List",
 						new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
-						new XElement(ns + "T", new XCData($"{orphan} ({size.ToBytes(1)})"))
+					new XElement(ns + "T", new XCData($"{orphan} ({size.ToBytes(1)})"))
 					));
 			}
 
@@ -221,8 +221,7 @@ namespace River.OneMoreAddIn.Commands
 
 			container.Add(
 				new Paragraph(ns, "Cache").SetQuickStyle(heading2Index),
-				new Paragraph(ns, Resx.AnalyzeCommand_CacheSummary),
-				new Paragraph(ns, string.Empty)
+				new Paragraph(ns, Resx.AnalyzeCommand_CacheSummary)
 				);
 
 			var cachePath = Path.Combine(Path.GetDirectoryName(backupPath), "cache");
@@ -243,7 +242,20 @@ namespace River.OneMoreAddIn.Commands
 			var cacheUri = new Uri(cachePath).AbsoluteUri;
 
 			container.Add(
-				new Paragraph(ns, $"Cache: {total.ToBytes(1)}; <a href=\"{cacheUri}\">{cachePath}</a>"),
+				new Paragraph(ns,
+					new XElement(ns + "OEChildren",
+						new XElement(ns + "OE",
+							new XElement(ns + "List",
+								new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
+							new XElement(ns + "T", new XCData($"Cache size: {total.ToBytes(1)}"))
+							),
+						new XElement(ns + "OE",
+							new XElement(ns + "List",
+								new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
+							new XElement(ns + "T", new XCData($"Cache location: <a href=\"{cacheUri}\">{cachePath}</a>"))
+							)
+						)
+					),
 				new Paragraph(ns, string.Empty)
 				);
 		}
@@ -273,6 +285,7 @@ namespace River.OneMoreAddIn.Commands
 
 			container.Add(
 				new Paragraph(ns, "Sections").SetQuickStyle(heading1Index),
+				new Paragraph(ns, Resx.AnalyzeCommand_SectionSummary),
 				new Paragraph(ns, string.Empty)
 				);
 
@@ -383,6 +396,7 @@ namespace River.OneMoreAddIn.Commands
 
 			container.Add(
 				new Paragraph(ns, $"{name} Section Pages").SetQuickStyle(heading1Index),
+				new Paragraph(ns, Resx.AnalyzeCommand_PageSummary),
 				new Paragraph(ns, string.Empty)
 				);
 
@@ -414,6 +428,13 @@ namespace River.OneMoreAddIn.Commands
 		private void ReportPage(Table table, string pageId)
 		{
 			var page = one.GetPage(pageId, OneNote.PageDetail.All);
+
+			if (page.GetMetaContent(Page.AnalysisMetaName) == "true")
+			{
+				// skip a previously generated analysis report
+				return;
+			}
+
 			progress.SetMessage(page.Title);
 			progress.Increment();
 
@@ -422,11 +443,13 @@ namespace River.OneMoreAddIn.Commands
 
 			var row = table.AddRow();
 			row.SetShading(HeaderShading);
+
+			var link = one.GetHyperlink(pageId, string.Empty);
 			row[0].SetContent(new Paragraph(ns, 
-				$"<span style='font-weight:bold'>{page.Title}</span> ({length.ToBytes(1)})").SetStyle(HeaderCss));
+				$"<a href='{link}'>{page.Title}</a> ({length.ToBytes(1)})").SetStyle(HeaderCss));
 
 			var images = page.Root.Descendants(ns + "Image")
-				.Where(e => e.Attribute("xpsFileIndex") == null)
+				.Where(e => e.Attribute("xpsFileIndex") == null && e.Attribute("sourceDocument") == null)
 				.ToList();
 
 			var files = page.Root.Descendants(ns + "InsertedFile")
@@ -461,31 +484,54 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var file in files)
 			{
 				row = detail.AddRow();
+				var name = file.Attribute("preferredName").Value;
+
 				var path = file.Attribute("pathSource").Value;
-				if (path == null)
+				var original = path != null;
+				if (!original)
 				{
 					path = file.Attribute("pathCache").Value;
 				}
 
 				if (path == null)
 				{
-					row[0].SetContent(file.Attribute("preferredName").Value);
+					row[0].SetContent(name);
 				}
 				else
 				{
 					var uri = new Uri(path).AbsoluteUri;
-					row[0].SetContent(
-						$"<a href='{uri}'>{file.Attribute("preferredName").Value}</a>");
+					var exists = File.Exists(path);
 
-					var size = new FileInfo(path).Length;
-					row[2].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+					if (original && exists)
+					{
+						row[0].SetContent(
+							$"<a href='{uri}'>{name}</a>");
+					}
+					else
+					{
+						row[0].SetContent(
+							$"<a href='{uri}'>{name}</a> <span style='font-style:italic'>(orphaned)</span>");
+					}
+
+					if (exists)
+					{
+						var size = new FileInfo(path).Length;
+						row[2].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+					}
 				}
 
-				var index = file.Element(ns + "Printout")?.Attribute("xpsFileIndex")?.Value;
+				var key = "xpsFileIndex";
+				var index = file.Element(ns + "Printout")?.Attribute(key)?.Value;
+				if (string.IsNullOrEmpty(index))
+				{
+					key = "sourceDocument";
+					index = file.Element(ns + "Previews")?.Attribute(key).Value;
+				}
+
 				if (!string.IsNullOrEmpty(index))
 				{
 					var printouts = page.Root.Descendants(ns + "Image")
-						.Where(e => e.Attribute("xpsFileIndex")?.Value == index);
+						.Where(e => e.Attribute(key)?.Value == index);
 
 					foreach (var printout in printouts)
 					{
@@ -579,6 +625,17 @@ namespace River.OneMoreAddIn.Commands
     <one:Position x="36.0" y="313.5003051757812" z="0" />
     <one:Size width="613.4400024414062" height="793.4400024414062" isSetByUser="true" />
     <one:Data>iVBORw0KGgoAAAANSUhEUgAAAzAAAAQgCAIAAAC2Gy5ZAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+
+  <one:InsertedFile selected="all" pathCache="C:\Users\steve\AppData\Local\Microsoft\OneNote\16.0\cache\00000065.bin" pathSource="C:\Users\cohns\SkyDrive\Personal\Life\Color Assignments.xlsx" preferredName="Color Assignments.xlsx">
+    <one:Previews sourceDocument="{B35B7C0A-A50F-40FF-9052-EDE826112A46}" displayAll="true">
+      <one:Preview page="Sheet1" />
+    </one:Previews>
+  </one:InsertedFile>
+</one:OE>
+<one:OE alignment="left">
+  <one:Image format="emf" sourceDocument="{B35B7C0A-A50F-40FF-9052-EDE826112A46}">
+    <one:Size width="613.5" height="481.5" isSetByUser="true" />
+		 
 		 */
 	}
 }

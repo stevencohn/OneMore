@@ -26,7 +26,8 @@ namespace River.OneMoreAddIn.Models
 	/// </summary>
 	internal partial class Page
 	{
-
+		// Page meta to indicate data storage analysis report
+		public static readonly string AnalysisMetaName = "omAnalysisReport";
 		// Page meta to keep track of rotating highlighter index
 		public static readonly string HighlightMetaName = "omHighlightIndex";
 		// Page is reference linked to another page, so don't include it in subsequent links
