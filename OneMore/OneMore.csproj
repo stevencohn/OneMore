@@ -272,6 +272,13 @@
     <Compile Include="Commands\Tables\SplitTableDialog.Designer.cs">
       <DependentUpon>SplitTableDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\AnalyzeCommand.cs" />
+    <Compile Include="Commands\Tools\AnalyzeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\AnalyzeDialog.Designer.cs">
+      <DependentUpon>AnalyzeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
@@ -281,6 +288,9 @@
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
+    <Compile Include="Models\Bullet.cs" />
+    <Compile Include="Models\ContentList.cs" />
+    <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
     <Compile Include="UI\FormTextBox.cs">
@@ -860,6 +870,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\FavoritesSheet.resx">
       <DependentUpon>FavoritesSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\AnalyzeDialog.resx">
+      <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>

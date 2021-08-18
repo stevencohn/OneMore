@@ -187,6 +187,15 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public static void ShowError(IWin32Window window, string message)
+		{
+			MessageBox.Show(window, message, Resx.ProgramName,
+				MessageBoxButtons.OK, MessageBoxIcon.Error,
+				MessageBoxDefaultButton.Button1,
+				MessageBoxOptions.DefaultDesktopOnly);
+		}
+
+
 		public static DialogResult ShowQuestion(string message, bool defaultYes = false)
 		{
 			var defaultButton = defaultYes 

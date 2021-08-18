@@ -3169,4 +3169,68 @@ ISO-code then comma then language name</comment>
     <value>Bidirektionale Verbindung starten</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>Backups werden lokal zusammen mit einem Papierkorbordner gespeichert. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_Title" xml:space="preserve">
+    <value>OneNote-Speicheranalyse</value>
+    <comment>page title</comment>
+  </data>
+  <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
+    <value>Der Cache ist ein internes Verzeichnis, das von OneNote verwaltet wird, um seine Leistung zu optimieren. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_NoCache" xml:space="preserve">
+    <value>&amp;lt;span style='font-style:italic'&amp;gt;Cache nicht gefunden; </value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
+    <value>&amp;lt;span style='font-style:italic'&amp;gt;Keine verwaisten Backup-Verzeichnisse gefunden&amp;lt;/span&amp;gt;</value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
+    <value>Waisen sind Sicherungsordner von Notizbüchern, die in OneNote nicht mehr geöffnet werden. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
+    <value>Dies ist eine detaillierte Aufschlüsselung jeder Seite, die die Gesamtgröße der internen XML-Darstellung und die Größe jedes Bildes und Dateianhangs zeigt. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
+    <value>Die Anzahl der Sicherungskopien jedes Abschnitts wird in den OneNote-Optionen konfiguriert. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeDialog_allDetailsBox.Text" xml:space="preserve">
+    <value>Seitendetails für alle Abschnitte in diesem Notizbuch hinzufügen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
+    <value>Stornieren</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
+    <value>Keine Seitendetails</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
+    <value>Zusammenfassung der Notebook-Backups einschließen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
+    <value>Abschnittszusammenfassung einschließen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
+    <value>Seitendetails für aktuellen Abschnitt einschließen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog.Text" xml:space="preserve">
+    <value>Optionen für Speicheranalyseberichte</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

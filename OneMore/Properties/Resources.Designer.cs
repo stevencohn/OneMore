@@ -259,6 +259,168 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote..
+        /// </summary>
+        internal static string AnalyzeCommand_CacheSummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_CacheSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span style=&apos;font-style:italic&apos;&gt;Cache not found; location likely changed in OneNote options&lt;/span&gt;.
+        /// </summary>
+        internal static string AnalyzeCommand_NoCache {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_NoCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span style=&apos;font-style:italic&apos;&gt;No orphaned backup directories discovered&lt;/span&gt;.
+        /// </summary>
+        internal static string AnalyzeCommand_NoOrphans {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_NoOrphans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Sections.
+        /// </summary>
+        internal static string AnalyzeCommand_OpenSections {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_OpenSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orphans are backup folders of notebooks that are no longer opened in OneNote. If they are no longer used, and you&apos;ve confirmed that they are obsolete, they can be removed safely..
+        /// </summary>
+        internal static string AnalyzeCommand_OrphanSummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_OrphanSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a detailed breakdown of each page showing the total size of the internal XML representation and the size of each image and file attachment. Images are shown in both &quot;BinHex&quot; XML sizes and native Bitmap sizes. Files are shown along with the amount of space they consume on disk..
+        /// </summary>
+        internal static string AnalyzeCommand_PageSummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_PageSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Notes.
+        /// </summary>
+        internal static string AnalyzeCommand_QuickNotes {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_QuickNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of backup copies of each section is configured in the OneNote Options. This summarizes the sections per notebook, showing the size of each section&apos;s data file, the number of backup copies, and the total disk space consumed by all copies of each section..
+        /// </summary>
+        internal static string AnalyzeCommand_SectionSummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_SectionSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backups are stored locally along with a recycle bin folder. Backup location and number of copies is configured in the OneNote Options. This summary shows the total disk usage including all backup copies and the per-notebook recycle bins..
+        /// </summary>
+        internal static string AnalyzeCommand_SummarySummary {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_SummarySummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneNote Storage Analysis.
+        /// </summary>
+        internal static string AnalyzeCommand_Title {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include page details for all sections in this notebook.
+        /// </summary>
+        internal static string AnalyzeDialog_allDetailsBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_allDetailsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string AnalyzeDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No page details.
+        /// </summary>
+        internal static string AnalyzeDialog_noDetailsBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_noDetailsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include notebook backup summary.
+        /// </summary>
+        internal static string AnalyzeDialog_notebookBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_notebookBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string AnalyzeDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include section summary.
+        /// </summary>
+        internal static string AnalyzeDialog_sectionBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_sectionBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include page details for current section.
+        /// </summary>
+        internal static string AnalyzeDialog_sectionDetailsBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_sectionDetailsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage Analysis Report Options.
+        /// </summary>
+        internal static string AnalyzeDialog_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Architecture {

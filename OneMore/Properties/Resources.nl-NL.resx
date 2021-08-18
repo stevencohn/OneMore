@@ -3184,4 +3184,68 @@ ISO-code then comma then language name</comment>
     <value>Bidirectionele koppeling starten</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>Back-ups worden lokaal opgeslagen samen met een prullenbakmap. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_Title" xml:space="preserve">
+    <value>OneNote-opslaganalyse</value>
+    <comment>page title</comment>
+  </data>
+  <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
+    <value>De cache is een interne map die wordt beheerd door OneNote om de prestaties te optimaliseren. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_NoCache" xml:space="preserve">
+    <value>&amp;lt;span style='font-style:italic'&amp;gt;Cache niet gevonden; </value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
+    <value>&amp;lt;span style='font-style:italic'&amp;gt;Geen verweesde back-upmappen ontdekt&amp;lt;/span&amp;gt;</value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
+    <value>Weeskinderen zijn back-upmappen van notitieblokken die niet meer worden geopend in OneNote. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
+    <value>Dit is een gedetailleerd overzicht van elke pagina met de totale grootte van de interne XML-representatie en de grootte van elke afbeelding en bestandsbijlage. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
+    <value>Het aantal reservekopieën van elke sectie wordt geconfigureerd in de OneNote-opties. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeDialog_allDetailsBox.Text" xml:space="preserve">
+    <value>Paginadetails opnemen voor alle secties in dit notitieblok</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuleren</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
+    <value>Geen paginadetails</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
+    <value>Back-upoverzicht van notebooks opnemen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
+    <value>Sectieoverzicht opnemen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
+    <value>Paginadetails opnemen voor huidige sectie</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog.Text" xml:space="preserve">
+    <value>Opties voor opslaganalyserapport</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

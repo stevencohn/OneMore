@@ -36,6 +36,9 @@ namespace River.OneMoreAddIn
 		public async Task AddTitleIconCmd(IRibbonControl control)
 			=> await factory.Run<AddTitleIconCommand>();
 
+		public async Task AnalyzeCmd(IRibbonControl control)
+			=> await factory.Run<AnalyzeCommand>();
+
 		public async Task ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
 			=> await factory.Run<ApplyStyleCommand>(selectedIndex);
 

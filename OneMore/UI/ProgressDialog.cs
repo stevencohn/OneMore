@@ -109,6 +109,39 @@ namespace River.OneMoreAddIn.UI
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+		/// <summary>
+		/// Called after Show()
+		/// </summary>
+		/// <param name="e"></param>
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnActivated(e);
+
+			if (execute == null)
+			{
+				StartPosition = FormStartPosition.Manual;
+				TopMost = true;
+
+				var rect = new Native.Rectangle();
+				using (var one = new OneNote())
+				{
+					Native.GetWindowRect(one.WindowHandle, ref rect);
+				}
+
+				var yoffset = (int)(Height * 20 / 100.0);
+
+				Location = new System.Drawing.Point(
+					(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
+					(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
+					);
+			}
+		}
+
+
+		/// <summary>
+		/// Called after RunModeless()
+		/// </summary>
+		/// <param name="e"></param>
 		protected override async void OnShown(EventArgs e)
 		{
 			base.OnShown(e);

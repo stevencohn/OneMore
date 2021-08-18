@@ -2,10 +2,10 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-using System.Threading.Tasks;
-
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Threading.Tasks;
+
 
 	internal class AboutCommand : Command
 	{

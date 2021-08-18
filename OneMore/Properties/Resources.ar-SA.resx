@@ -3183,4 +3183,68 @@ ISO-code then comma then language name</comment>
     <value>ابدأ رابط ثنائي الاتجاه</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>يتم تخزين النسخ الاحتياطية محليًا مع مجلد سلة المحذوفات. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_Title" xml:space="preserve">
+    <value>تحليل تخزين OneNote</value>
+    <comment>page title</comment>
+  </data>
+  <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
+    <value>ذاكرة التخزين المؤقت عبارة عن دليل داخلي يديره OneNote لتحسين أدائه. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_NoCache" xml:space="preserve">
+    <value>&amp;lt;span style = 'font-style: italic'&amp;gt; لم يتم العثور على ذاكرة التخزين المؤقت ؛ </value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
+    <value>&amp;lt;span style = 'font-style: italic'&amp;gt; لم يتم اكتشاف أدلة احتياطية معزولة &amp;lt;/ span&amp;gt;</value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
+    <value>الأيتام عبارة عن مجلدات نسخ احتياطي لدفاتر الملاحظات التي لم تعد مفتوحة في OneNote. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
+    <value>هذا هو توزيع مفصل لكل صفحة يوضح الحجم الإجمالي لتمثيل XML الداخلي وحجم كل صورة وملف مرفق. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
+    <value>يتم تكوين عدد النسخ الاحتياطية لكل قسم في خيارات OneNote. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeDialog_allDetailsBox.Text" xml:space="preserve">
+    <value>قم بتضمين تفاصيل الصفحة لكافة الأقسام الموجودة في دفتر الملاحظات هذا</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
+    <value>يلغي</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
+    <value>لا توجد تفاصيل الصفحة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
+    <value>تضمين ملخص النسخ الاحتياطي للدفتر</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
+    <value>حسنا</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
+    <value>تضمين ملخص القسم</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
+    <value>تضمين تفاصيل الصفحة للقسم الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog.Text" xml:space="preserve">
+    <value>خيارات تقرير تحليل التخزين</value>
+    <comment>dialog title</comment>
+  </data>
 </root>
