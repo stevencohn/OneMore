@@ -122,6 +122,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 [Tools](../../wiki/Tools)
 
+* Analyze the size of notebooks, section, pages, and image and file attachments on pages
 * Archive a section or an entire notebook to a zip file with attachments
 * Import MSWord, PowerPoint, Markdown and others into the current page or a new page
 * Import a Web page from a specified URL
