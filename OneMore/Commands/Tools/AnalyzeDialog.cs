@@ -23,6 +23,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
+			sizeBox.SelectedIndex = 0;
+
 			if (NeedsLocalizing())
 			{
 				Text = Resx.AnalyzeDialog_Text;
@@ -57,11 +59,26 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+		public int ThumbnailSize
+		{
+			get
+			{
+				if (sizeBox.SelectedIndex == 0) return 20;
+				if (sizeBox.SelectedIndex == 1) return 40;
+				return 80;
+			}
+		}
+
+
 		private void Validate(object sender, System.EventArgs e)
 		{
 			okButton.Enabled =
 				notebookBox.Checked ||
 				sectionBox.Checked ||
+				allDetailsBox.Checked ||
+				sectionDetailBox.Checked;
+
+			sizeBox.Enabled =
 				allDetailsBox.Checked ||
 				sectionDetailBox.Checked;
 		}

@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool showSectionSummary;
 		private AnalysisDetail pageDetail;
 		private bool shownPageSummary;
+		private int thumbnailSize;
 
 		private OneNote one;
 		private XNamespace ns;
@@ -58,6 +59,7 @@ namespace River.OneMoreAddIn.Commands
 				showNotebookSummary = dialog.IncludeNotebookSummary;
 				showSectionSummary = dialog.IncludeSectionSummary;
 				pageDetail = dialog.Detail;
+				thumbnailSize = dialog.ThumbnailSize;
 			}
 
 			using (one = new OneNote())
@@ -626,10 +628,20 @@ namespace River.OneMoreAddIn.Commands
 				using (var raw = Image.FromStream(stream))
 				{
 					XElement img;
-					if (raw.Width > 20 || raw.Height > 20)
+					if (raw.Width > thumbnailSize || raw.Height > thumbnailSize)
 					{
+						// maintain aspect ratio of image thumbnails
+						var zoom = raw.Width - thumbnailSize > raw.Height - thumbnailSize
+							? ((float)thumbnailSize) / raw.Width
+							: ((float)thumbnailSize) / raw.Height;
+
+						// callback is a required argument but is never used
 						var callback = new Image.GetThumbnailImageAbort(() => { return false; });
-						using (var thumbnail = raw.GetThumbnailImage(20, 20, callback, IntPtr.Zero))
+						using (var thumbnail = 
+							raw.GetThumbnailImage(
+								(int)(raw.Width * zoom),
+								(int)(raw.Height * zoom),
+								callback, IntPtr.Zero))
 						{
 							img = MakeImage(thumbnail);
 						}

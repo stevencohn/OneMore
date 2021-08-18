@@ -37,13 +37,15 @@ namespace River.OneMoreAddIn.Commands
 			this.sectionDetailBox = new System.Windows.Forms.RadioButton();
 			this.allDetailsBox = new System.Windows.Forms.RadioButton();
 			this.noDetailsBox = new System.Windows.Forms.RadioButton();
+			this.thumbnailLabel = new System.Windows.Forms.Label();
+			this.sizeBox = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(270, 241);
+			this.okButton.Location = new System.Drawing.Point(270, 295);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(112, 35);
@@ -55,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(390, 241);
+			this.cancelButton.Location = new System.Drawing.Point(390, 295);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -124,13 +126,37 @@ namespace River.OneMoreAddIn.Commands
 			this.noDetailsBox.UseVisualStyleBackColor = true;
 			this.noDetailsBox.CheckedChanged += new System.EventHandler(this.Validate);
 			// 
+			// thumbnailLabel
+			// 
+			this.thumbnailLabel.AutoSize = true;
+			this.thumbnailLabel.Location = new System.Drawing.Point(56, 228);
+			this.thumbnailLabel.Name = "thumbnailLabel";
+			this.thumbnailLabel.Size = new System.Drawing.Size(94, 20);
+			this.thumbnailLabel.TabIndex = 12;
+			this.thumbnailLabel.Text = "Thumbnails:";
+			// 
+			// sizeBox
+			// 
+			this.sizeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.sizeBox.FormattingEnabled = true;
+			this.sizeBox.Items.AddRange(new object[] {
+            "20 x 20",
+            "40 x 40",
+            "80 x 80"});
+			this.sizeBox.Location = new System.Drawing.Point(156, 225);
+			this.sizeBox.Name = "sizeBox";
+			this.sizeBox.Size = new System.Drawing.Size(185, 28);
+			this.sizeBox.TabIndex = 13;
+			// 
 			// AnalyzeDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(521, 296);
+			this.ClientSize = new System.Drawing.Size(521, 350);
+			this.Controls.Add(this.sizeBox);
+			this.Controls.Add(this.thumbnailLabel);
 			this.Controls.Add(this.noDetailsBox);
 			this.Controls.Add(this.allDetailsBox);
 			this.Controls.Add(this.sectionDetailBox);
@@ -160,5 +186,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.RadioButton sectionDetailBox;
 		private System.Windows.Forms.RadioButton allDetailsBox;
 		private System.Windows.Forms.RadioButton noDetailsBox;
+		private System.Windows.Forms.Label thumbnailLabel;
+		private System.Windows.Forms.ComboBox sizeBox;
 	}
 }
