@@ -3183,4 +3183,68 @@ ISO-code then comma then language name</comment>
     <value>Iniciar enlace bidireccional</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>Las copias de seguridad se almacenan localmente junto con una carpeta de papelera de reciclaje. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_Title" xml:space="preserve">
+    <value>Análisis de almacenamiento de OneNote</value>
+    <comment>page title</comment>
+  </data>
+  <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
+    <value>La caché es un directorio interno administrado por OneNote para optimizar su rendimiento. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_NoCache" xml:space="preserve">
+    <value>&amp;lt;span style = 'font-style: italic'&amp;gt; Caché no encontrado; </value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
+    <value>&amp;lt;span style = 'font-style: italic'&amp;gt; No se descubrieron directorios de respaldo huérfanos &amp;lt;/span&amp;gt;</value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
+    <value>Los huérfanos son carpetas de respaldo de cuadernos que ya no se abren en OneNote. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
+    <value>Este es un desglose detallado de cada página que muestra el tamaño total de la representación XML interna y el tamaño de cada imagen y archivo adjunto. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
+    <value>El número de copias de seguridad de cada sección se configura en las Opciones de OneNote. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeDialog_allDetailsBox.Text" xml:space="preserve">
+    <value>Incluir detalles de la página para todas las secciones de este cuaderno</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
+    <value>Sin detalles de la página</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
+    <value>Incluir un resumen de la copia de seguridad del cuaderno</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
+    <value>Incluir resumen de la sección</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
+    <value>Incluir detalles de la página para la sección actual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog.Text" xml:space="preserve">
+    <value>Opciones de informe de análisis de almacenamiento</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

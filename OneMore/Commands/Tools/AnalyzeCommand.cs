@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -21,6 +22,11 @@ namespace River.OneMoreAddIn.Commands
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 		private const string LineCss = "font-family:'Courier New';font-size:10.0pt";
 		private const string RecycleBin = "OneNote_RecycleBin";
+
+		private bool showNotebookSummary;
+		private bool showSectionSummary;
+		private AnalysisDetail pageDetail;
+		private bool shownPageSummary;
 
 		private OneNote one;
 		private XNamespace ns;
@@ -42,6 +48,18 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			using (var dialog = new AnalyzeDialog())
+			{
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				showNotebookSummary = dialog.IncludeNotebookSummary;
+				showSectionSummary = dialog.IncludeSectionSummary;
+				pageDetail = dialog.Detail;
+			}
+
 			using (one = new OneNote())
 			{
 				(backupPath, _, _) = one.GetFolders();
@@ -63,15 +81,45 @@ namespace River.OneMoreAddIn.Commands
 					var container = page.EnsureContentContainer();
 					var notebooks = one.GetNotebooks();
 
-					ReportNotebooks(container, notebooks);
-					ReportOrphans(container, notebooks);
-					ReportCache(container);
+					var prev = false;
 
-					WriteHorizontalLine(page, container);
-					ReportSections(container, notebooks);
+					if (showNotebookSummary)
+					{
+						ReportNotebooks(container, notebooks);
+						ReportOrphans(container, notebooks);
+						ReportCache(container);
+						prev = true;
+					}
 
-					WriteHorizontalLine(page, container);
-					ReportPages(container, one.GetSection(), pageId);
+					if (showSectionSummary)
+					{
+						if (prev)
+						{
+							WriteHorizontalLine(page, container);
+						}
+
+						ReportSections(container, notebooks);
+						prev = true;
+					}
+
+					if (pageDetail == AnalysisDetail.Current)
+					{
+						if (prev)
+						{
+							WriteHorizontalLine(page, container);
+						}
+
+						ReportPages(container, one.GetSection(), null, pageId);
+					}
+					else if (pageDetail == AnalysisDetail.All)
+					{
+						if (prev)
+						{
+							WriteHorizontalLine(page, container);
+						}
+
+						ReportAllPages(container, one.GetNotebook(), null, pageId);
+					}
 
 					progress.SetMessage("Updating report...");
 					await one.Update(page);
@@ -323,8 +371,8 @@ namespace River.OneMoreAddIn.Commands
 			var folderName = folder.Attribute("name").Value;
 
 			var sections = folder.Elements(ns + "Section")
-				.Where(e => e.Attribute("isRecycleBin") == null
-					&& e.Attribute("isInRecycleBin") == null);
+				.Where(e => e.Attribute("isInRecycleBin") == null
+					&& e.Attribute("locked") == null);
 
 			foreach (var section in sections)
 			{
@@ -362,8 +410,7 @@ namespace River.OneMoreAddIn.Commands
 			// section groups...
 
 			var groups = folder.Elements(ns + "SectionGroup")
-				.Where(e => e.Attribute("isRecycleBin") == null
-					&& e.Attribute("isInRecycleBin") == null);
+				.Where(e => e.Attribute("isRecycleBin") == null);
 
 			foreach (var group in groups)
 			{
@@ -377,17 +424,44 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void ReportPages(XElement container, XElement section, string skipId)
+		private void ReportAllPages(XElement container, XElement folder, string folderPath, string skipId)
+		{
+			var sections = folder.Elements(ns + "Section")
+				.Where(e => e.Attribute("isInRecycleBin") == null
+					&& e.Attribute("locked") == null);
+
+			foreach (var section in sections)
+			{
+				ReportPages(container, one.GetSection(section.Attribute("ID").Value), folderPath, skipId);
+			}
+
+			var groups = folder.Elements(ns + "SectionGroup")
+				.Where(e => e.Attribute("isRecycleBin") == null);
+
+			foreach (var group in groups)
+			{
+				var name = group.Attribute("name").Value;
+				folderPath = folderPath == null ? name : Path.Combine(folderPath, name);
+
+				ReportAllPages(container, group, folderPath, skipId);
+			}
+		}
+
+
+		private void ReportPages(XElement container, XElement section, string folderPath, string skipId)
 		{
 			var name = section.Attribute("name").Value;
+			var title = folderPath == null ? name : Path.Combine(folderPath, name);
 
-			progress.SetMessage($"{name} pages...");
+			progress.SetMessage($"{title} pages...");
 
-			container.Add(
-				new Paragraph(ns, $"{name} Section Pages").SetQuickStyle(heading1Index),
-				new Paragraph(ns, Resx.AnalyzeCommand_PageSummary),
-				new Paragraph(ns, string.Empty)
-				);
+			container.Add(new Paragraph(ns, $"{title} Section Pages").SetQuickStyle(heading1Index));
+			if (!shownPageSummary)
+			{
+				container.Add(new Paragraph(ns, Resx.AnalyzeCommand_PageSummary));
+				shownPageSummary = true;
+			}
+			container.Add(new Paragraph(ns, string.Empty));
 
 			var table = new Table(ns, 0, 1)
 			{
@@ -455,7 +529,7 @@ namespace River.OneMoreAddIn.Commands
 				HasHeaderRow = true
 			};
 
-			detail.SetColumnWidth(0, 220);
+			detail.SetColumnWidth(0, 250);
 			detail.SetColumnWidth(1, 70);
 			detail.SetColumnWidth(2, 70);
 
@@ -475,11 +549,11 @@ namespace River.OneMoreAddIn.Commands
 				row = detail.AddRow();
 				var name = file.Attribute("preferredName").Value;
 
-				var path = file.Attribute("pathSource").Value;
+				var path = file.Attribute("pathSource")?.Value;
 				var original = path != null;
 				if (!original)
 				{
-					path = file.Attribute("pathCache").Value;
+					path = file.Attribute("pathCache")?.Value;
 				}
 
 				if (path == null)

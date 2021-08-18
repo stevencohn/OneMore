@@ -3175,4 +3175,68 @@ ISO-code then comma then language name</comment>
     <value>启动双向链接</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>备份与回收站文件夹一起存储在本地。</value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_Title" xml:space="preserve">
+    <value>OneNote 存储分析</value>
+    <comment>page title</comment>
+  </data>
+  <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
+    <value>缓存是 OneNote 管理的一个内部目录，用于优化其性能。</value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_NoCache" xml:space="preserve">
+    <value>&amp;lt;span style='font-style:italic'&amp;gt;缓存未找到； </value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
+    <value>&amp;lt;span style='font-style:italic'&amp;gt;未发现孤立的备份目录&amp;lt;/span&amp;gt;</value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
+    <value>孤立是不再在 OneNote 中打开的笔记本的备份文件夹。</value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
+    <value>这是每个页面的详细细分，显示内部 XML 表示的总大小以及每个图像和文件附件的大小。</value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
+    <value>每个分区的备份份数在 OneNote 选项中配置。</value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeDialog_allDetailsBox.Text" xml:space="preserve">
+    <value>包括此笔记本中所有部分的页面详细信息</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
+    <value>没有页面详细信息</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
+    <value>包括笔记本备份摘要</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
+    <value>行</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
+    <value>包括部分摘要</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
+    <value>包括当前部分的页面详细信息</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog.Text" xml:space="preserve">
+    <value>存储分析报告选项</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

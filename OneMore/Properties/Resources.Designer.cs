@@ -349,6 +349,78 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include page details for all sections in this notebook.
+        /// </summary>
+        internal static string AnalyzeDialog_allDetailsBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_allDetailsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string AnalyzeDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No page details.
+        /// </summary>
+        internal static string AnalyzeDialog_noDetailsBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_noDetailsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include notebook backup summary.
+        /// </summary>
+        internal static string AnalyzeDialog_notebookBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_notebookBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string AnalyzeDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include section summary.
+        /// </summary>
+        internal static string AnalyzeDialog_sectionBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_sectionBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include page details for current section.
+        /// </summary>
+        internal static string AnalyzeDialog_sectionDetailsBox_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog_sectionDetailsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage Analysis Report Options.
+        /// </summary>
+        internal static string AnalyzeDialog_Text {
+            get {
+                return ResourceManager.GetString("AnalyzeDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Architecture {

@@ -3178,4 +3178,68 @@ ISO-code then comma then language name</comment>
     <value>Démarrer le lien bidirectionnel</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>Les sauvegardes sont stockées localement avec un dossier de corbeille. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_Title" xml:space="preserve">
+    <value>Analyse du stockage OneNote</value>
+    <comment>page title</comment>
+  </data>
+  <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
+    <value>Le cache est un répertoire interne géré par OneNote pour optimiser ses performances. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_NoCache" xml:space="preserve">
+    <value>&amp;lt;span style='font-style:italic'&amp;gt;Cache introuvable ; </value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
+    <value>&amp;lt;span style='font-style:italic'&amp;gt;Aucun répertoire de sauvegarde orphelin découvert&amp;lt;/span&amp;gt;</value>
+    <comment>status</comment>
+  </data>
+  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
+    <value>Les orphelins sont des dossiers de sauvegarde des blocs-notes qui ne sont plus ouverts dans OneNote. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
+    <value>Il s'agit d'une ventilation détaillée de chaque page indiquant la taille totale de la représentation XML interne et la taille de chaque image et pièce jointe. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
+    <value>Le nombre de copies de sauvegarde de chaque section est configuré dans les options OneNote. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeDialog_allDetailsBox.Text" xml:space="preserve">
+    <value>Inclure les détails de la page pour toutes les sections de ce bloc-notes</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
+    <value>Aucun détail de page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
+    <value>Inclure le résumé de la sauvegarde du bloc-notes</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
+    <value>d'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
+    <value>Inclure le résumé de la section</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
+    <value>Inclure les détails de la page pour la section actuelle</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog.Text" xml:space="preserve">
+    <value>Options du rapport d'analyse du stockage</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

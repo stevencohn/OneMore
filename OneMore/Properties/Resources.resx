@@ -3238,4 +3238,36 @@ In this section</value>
     <value>The number of backup copies of each section is configured in the OneNote Options. This summarizes the sections per notebook, showing the size of each section's data file, the number of backup copies, and the total disk space consumed by all copies of each section.</value>
     <comment>summary text</comment>
   </data>
+  <data name="AnalyzeDialog_allDetailsBox.Text" xml:space="preserve">
+    <value>Include page details for all sections in this notebook</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
+    <value>No page details</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
+    <value>Include notebook backup summary</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
+    <value>Include section summary</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
+    <value>Include page details for current section</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AnalyzeDialog.Text" xml:space="preserve">
+    <value>Storage Analysis Report Options</value>
+    <comment>dialog title</comment>
+  </data>
 </root>
