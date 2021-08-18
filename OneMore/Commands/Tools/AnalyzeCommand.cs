@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote one;
 		private XNamespace ns;
 		private string backupPath;
+		private string divider;
 
 		private int heading1Index;
 		private int heading2Index;
@@ -50,27 +51,17 @@ namespace River.OneMoreAddIn.Commands
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
 
 				var container = page.EnsureContentContainer();
-				//page.EnsurePageWidth("", "Calibri", 11, one.WindowHandle);
-
 				var notebooks = one.GetNotebooks();
 
 				ReportNotebooks(container, notebooks);
 				ReportOrphans(container, notebooks);
 				ReportCache(container);
 
-				ReportSectionSummaries(container, notebooks);
+				WriteHorizontalLine(page, container);
+				ReportSections(container, notebooks);
 
-				ReportPages(container, one.GetSection());
-
-				/*
-				var line = string.Empty.PadRight(100, '_');
-				page.EnsurePageWidth(line, "Courier new", 10f, one.WindowHandle);
-
-				var lineParagraph = new XElement(ns + "T",
-					new XAttribute("style", LineCss),
-					new XCData($"{line}<br/>")
-					);
-				*/
+				WriteHorizontalLine(page, container);
+				ReportPages(container, one.GetSection(), pageId);
 
 				await one.Update(page);
 				await one.NavigateTo(pageId);
@@ -78,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void ReportNotebooks(XElement container, XElement notebooks)
+		private void ReportNotebooks(XElement container, XElement notebooks)
 		{
 			var lead = "<span style='font-style:italic'>Backup location</span>";
 			var backupUri = new Uri(backupPath).AbsoluteUri;
@@ -148,7 +139,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void ReportOrphans(XElement container, XElement notebooks)
+		private void ReportOrphans(XElement container, XElement notebooks)
 		{
 			// orphaned backup folders...
 
@@ -203,7 +194,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void ReportCache(XElement container)
+		private void ReportCache(XElement container)
 		{
 			// internal cache folder...
 
@@ -237,9 +228,24 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void WriteHorizontalLine(Page page, XElement container)
+		{
+			if (divider == null)
+			{
+				divider = string.Empty.PadRight(100, '_');
+				page.EnsurePageWidth(divider, "Courier new", 10f, one.WindowHandle);
+			}
+
+			container.Add(new Paragraph(ns, new XElement(ns + "T",
+				new XAttribute("style", LineCss),
+				new XCData($"{divider}<br/>")
+				)));
+		}
+
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		public void ReportSectionSummaries(XElement container, XElement notebooks)
+		private void ReportSections(XElement container, XElement notebooks)
 		{
 			container.Add(
 				new Paragraph(ns, "Summary by Section").SetQuickStyle(heading1Index),
@@ -268,12 +274,12 @@ namespace River.OneMoreAddIn.Commands
 				row.SetShading(HeaderShading);
 				row[0].SetContent(new Paragraph(ns, "Section").SetStyle(HeaderCss));
 				row[1].SetContent(new Paragraph(ns, "Size on Disk").SetStyle(HeaderCss).SetAlignment("center"));
-				row[2].SetContent(new Paragraph(ns, "# of Backups").SetStyle(HeaderCss).SetAlignment("center"));
+				row[2].SetContent(new Paragraph(ns, "# of Copies").SetStyle(HeaderCss).SetAlignment("center"));
 				row[3].SetContent(new Paragraph(ns, "Total Size").SetStyle(HeaderCss).SetAlignment("center"));
 
 				var notebook = one.GetNotebook(book.Attribute("ID").Value);
 
-				var total = ReportSectionSummary(table, notebook, null);
+				var total = ReportSections(table, notebook, null);
 
 				row = table.AddRow();
 				row[3].SetContent(new Paragraph(ns, total.ToBytes(1)).SetAlignment("right"));
@@ -285,7 +291,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		public long ReportSectionSummary(Table table, XElement folder, string folderPath)
+		private long ReportSections(Table table, XElement folder, string folderPath)
 		{
 			long total = 0;
 			var folderName = folder.Attribute("name").Value;
@@ -333,7 +339,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var group in groups)
 			{
 				var path = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
-				total += ReportSectionSummary(table, group, path);
+				total += ReportSections(table, group, path);
 			}
 
 			return total;
@@ -342,12 +348,12 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		public void ReportPages(XElement container, XElement section)
+		private void ReportPages(XElement container, XElement section, string skipId)
 		{
 			var name = section.Attribute("name").Value;
 
 			container.Add(
-				new Paragraph(ns, $"Pages in {name}").SetQuickStyle(heading1Index),
+				new Paragraph(ns, $"{name} Section").SetQuickStyle(heading1Index),
 				new Paragraph(ns, string.Empty)
 				);
 
@@ -366,10 +372,18 @@ namespace River.OneMoreAddIn.Commands
 			row[4].SetContent(new Paragraph(ns, "# Files").SetStyle(HeaderCss).SetAlignment("center"));
 			row[5].SetContent(new Paragraph(ns, "Size of Files").SetStyle(HeaderCss).SetAlignment("center"));
 
-			foreach (var page in section.Elements(ns + "Page"))
+			long total = 0;
+
+			var pages = section.Elements(ns + "Page")
+				.Where(e => e.Attribute("ID").Value != skipId);
+
+			foreach (var page in pages)
 			{
-				ReportPage(table, page.Attribute("ID").Value);
+				total += ReportPage(table, page.Attribute("ID").Value);
 			}
+
+			row = table.AddRow();
+			row[1].SetContent(new Paragraph(ns, total.ToBytes(1)).SetAlignment("right"));
 
 			container.Add(
 				new Paragraph(ns, table.Root),
@@ -378,7 +392,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void ReportPage(Table table, string pageId)
+		private long ReportPage(Table table, string pageId)
 		{
 			var page = one.GetPage(pageId, OneNote.PageDetail.All);
 			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
@@ -398,6 +412,8 @@ namespace River.OneMoreAddIn.Commands
 				.ToList();
 
 			row[4].SetContent(new Paragraph(ns, files.Count.ToString()).SetAlignment("right"));
+
+			return length;
 		}
 		/*
 <one:Image format="png">
