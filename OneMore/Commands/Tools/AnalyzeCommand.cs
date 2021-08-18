@@ -28,6 +28,8 @@ namespace River.OneMoreAddIn.Commands
 		private int heading1Index;
 		private int heading2Index;
 
+		private UI.ProgressDialog progress;
+
 
 		public AnalyzeCommand()
 		{
@@ -50,18 +52,24 @@ namespace River.OneMoreAddIn.Commands
 				heading1Index = page.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
 
-				var container = page.EnsureContentContainer();
-				var notebooks = one.GetNotebooks();
+				using (progress = new UI.ProgressDialog())
+				{
+					progress.SetMaximum(10);
+					progress.Show(owner);
 
-				ReportNotebooks(container, notebooks);
-				ReportOrphans(container, notebooks);
-				ReportCache(container);
+					var container = page.EnsureContentContainer();
+					var notebooks = one.GetNotebooks();
 
-				WriteHorizontalLine(page, container);
-				ReportSections(container, notebooks);
+					ReportNotebooks(container, notebooks);
+					ReportOrphans(container, notebooks);
+					ReportCache(container);
 
-				WriteHorizontalLine(page, container);
-				ReportPages(container, one.GetSection(), pageId);
+					WriteHorizontalLine(page, container);
+					ReportSections(container, notebooks);
+
+					WriteHorizontalLine(page, container);
+					ReportPages(container, one.GetSection(), pageId);
+				}
 
 				await one.Update(page);
 				await one.NavigateTo(pageId);
@@ -71,6 +79,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ReportNotebooks(XElement container, XElement notebooks)
 		{
+			progress.SetMessage("Notebooks...");
+			progress.Increment();
+
 			var lead = "<span style='font-style:italic'>Backup location</span>";
 			var backupUri = new Uri(backupPath).AbsoluteUri;
 
@@ -143,6 +154,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// orphaned backup folders...
 
+			progress.SetMessage("Orphans...");
+			progress.Increment();
+
 			var knowns = notebooks.Elements(ns + "Notebook")
 				.Select(e => e.Attribute("name").Value)
 				.ToList();
@@ -198,6 +212,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// internal cache folder...
 
+			progress.SetMessage("Cache...");
+			progress.Increment();
+
 			container.Add(
 				new Paragraph(ns, "Cache").SetQuickStyle(heading2Index),
 				new Paragraph(ns, Resx.AnalyzeCommand_CacheSummary),
@@ -247,6 +264,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ReportSections(XElement container, XElement notebooks)
 		{
+			progress.SetMessage("Sections...");
+			progress.Increment();
+
 			container.Add(
 				new Paragraph(ns, "Summary by Section").SetQuickStyle(heading1Index),
 				new Paragraph(ns, string.Empty)
@@ -303,6 +323,9 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var section in sections)
 			{
 				var name = section.Attribute("name").Value;
+				progress.SetMessage($"Section {name}");
+				progress.Increment();
+
 				var title = folderPath == null ? name : Path.Combine(folderPath, name);
 				var subp = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
 				var path = Path.Combine(backupPath, subp);
@@ -352,6 +375,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var name = section.Attribute("name").Value;
 
+			progress.SetMessage($"{name} pages...");
+
 			container.Add(
 				new Paragraph(ns, $"{name} Section").SetQuickStyle(heading1Index),
 				new Paragraph(ns, string.Empty)
@@ -377,6 +402,8 @@ namespace River.OneMoreAddIn.Commands
 			var pages = section.Elements(ns + "Page")
 				.Where(e => e.Attribute("ID").Value != skipId);
 
+			progress.SetMaximum(pages.Count());
+
 			foreach (var page in pages)
 			{
 				total += ReportPage(table, page.Attribute("ID").Value);
@@ -395,6 +422,9 @@ namespace River.OneMoreAddIn.Commands
 		private long ReportPage(Table table, string pageId)
 		{
 			var page = one.GetPage(pageId, OneNote.PageDetail.All);
+			progress.SetMessage(page.Title);
+			progress.Increment();
+
 			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
 			long length = xml.Length;
 
