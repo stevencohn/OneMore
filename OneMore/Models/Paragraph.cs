@@ -2,8 +2,6 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S2376 // Write-only properties should not be used
-
 namespace River.OneMoreAddIn.Models
 {
 	using System.Xml.Linq;

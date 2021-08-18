@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (progress = new UI.ProgressDialog())
 				{
-					progress.SetMaximum(10);
+					progress.SetMaximum(5);
 					progress.Show(owner);
 
 					var container = page.EnsureContentContainer();
@@ -92,8 +92,9 @@ namespace River.OneMoreAddIn.Commands
 			container.Add(
 				new Paragraph(ns, "Summary").SetQuickStyle(heading1Index),
 				new Paragraph(ns, Resx.AnalyzeCommand_SummarySummary),
-				new Paragraph(ns, string.Empty),
-				new Paragraph(ns, $"<span style='font-style:italic'>Backup location</span>: <a href=\"{backupUri}\">{backupPath}</a>"),
+				new Paragraph(ns, new ContentList(ns,
+					new Bullet(ns, $"<span style='font-style:italic'>Backup location</span>: <a href=\"{backupUri}\">{backupPath}</a>")
+					)),
 				new Paragraph(ns, string.Empty)
 				);
 
@@ -188,12 +189,12 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var children = new XElement(ns + "OEChildren");
+			var list = new ContentList(ns);
 
 			container.Add(
 				new Paragraph(ns,
 					new XElement(ns + "T", new XCData(string.Empty)),
-					children)
+					list)
 				);
 
 			foreach (var orphan in orphans)
@@ -201,11 +202,7 @@ namespace River.OneMoreAddIn.Commands
 				var dir = new DirectoryInfo(Path.Combine(backupPath, orphan));
 				var size = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
 
-				children.Add(new XElement(ns + "OE",
-					new XElement(ns + "List",
-						new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
-					new XElement(ns + "T", new XCData($"{orphan} ({size.ToBytes(1)})"))
-					));
+				list.Add(new Bullet(ns, $"{orphan} ({size.ToBytes(1)})"));
 			}
 
 			container.Add(new Paragraph(ns, string.Empty));
@@ -243,17 +240,9 @@ namespace River.OneMoreAddIn.Commands
 
 			container.Add(
 				new Paragraph(ns,
-					new XElement(ns + "OEChildren",
-						new XElement(ns + "OE",
-							new XElement(ns + "List",
-								new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
-							new XElement(ns + "T", new XCData($"Cache size: {total.ToBytes(1)}"))
-							),
-						new XElement(ns + "OE",
-							new XElement(ns + "List",
-								new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
-							new XElement(ns + "T", new XCData($"Cache location: <a href=\"{cacheUri}\">{cachePath}</a>"))
-							)
+					new ContentList(ns,
+						new Bullet(ns, $"<span style='font-style:italic'>Cache size</span>: {total.ToBytes(1)}"),
+						new Bullet(ns, $"<span style='font-style:italic'>Cache location</span>: <a href=\"{cacheUri}\">{cachePath}</a>")
 						)
 					),
 				new Paragraph(ns, string.Empty)
@@ -265,7 +254,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (divider == null)
 			{
-				divider = string.Empty.PadRight(90, '═');
+				divider = string.Empty.PadRight(80, '═');
 				page.EnsurePageWidth(divider, "Courier new", 11f, one.WindowHandle);
 			}
 
@@ -406,7 +395,7 @@ namespace River.OneMoreAddIn.Commands
 				BordersVisible = true
 			};
 
-			table.SetColumnWidth(0, 550);
+			table.SetColumnWidth(0, 450);
 
 			var pages = section.Elements(ns + "Page")
 				.Where(e => e.Attribute("ID").Value != skipId);
@@ -466,7 +455,7 @@ namespace River.OneMoreAddIn.Commands
 				HasHeaderRow = true
 			};
 
-			detail.SetColumnWidth(0, 320);
+			detail.SetColumnWidth(0, 220);
 			detail.SetColumnWidth(1, 70);
 			detail.SetColumnWidth(2, 70);
 
