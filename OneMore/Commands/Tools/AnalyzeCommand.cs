@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class AnalyzeCommand : Command
 	{
 		private const string HeaderShading = "#DEEBF6";
+		private const string Header2Shading = "#F2F2F2";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 		private const string LineCss = "font-family:'Courier New';font-size:10.0pt";
 		private const string RecycleBin = "OneNote_RecycleBin";
@@ -252,8 +253,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (divider == null)
 			{
-				divider = string.Empty.PadRight(100, '_');
-				page.EnsurePageWidth(divider, "Courier new", 10f, one.WindowHandle);
+				divider = string.Empty.PadRight(90, '═');
+				page.EnsurePageWidth(divider, "Courier new", 11f, one.WindowHandle);
 			}
 
 			container.Add(new Paragraph(ns, new XElement(ns + "T",
@@ -271,7 +272,7 @@ namespace River.OneMoreAddIn.Commands
 			progress.Increment();
 
 			container.Add(
-				new Paragraph(ns, "Summary by Section").SetQuickStyle(heading1Index),
+				new Paragraph(ns, "Sections").SetQuickStyle(heading1Index),
 				new Paragraph(ns, string.Empty)
 				);
 
@@ -381,7 +382,7 @@ namespace River.OneMoreAddIn.Commands
 			progress.SetMessage($"{name} pages...");
 
 			container.Add(
-				new Paragraph(ns, $"{name} Section").SetQuickStyle(heading1Index),
+				new Paragraph(ns, $"{name} Section Pages").SetQuickStyle(heading1Index),
 				new Paragraph(ns, string.Empty)
 				);
 
@@ -436,7 +437,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var detail = new Table(ns, 0, 3)
+			var detail = new Table(ns, 1, 3)
 			{
 				BordersVisible = true,
 				HasHeaderRow = true
@@ -446,42 +447,51 @@ namespace River.OneMoreAddIn.Commands
 			detail.SetColumnWidth(1, 70);
 			detail.SetColumnWidth(2, 70);
 
-			var callback = new Image.GetThumbnailImageAbort(() => { return false; });
+			row = detail[0];
+			row.SetShading(Header2Shading);
+			row[0].SetContent(new Paragraph(ns, "Image/File").SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph(ns, "XML Size").SetStyle(HeaderCss).SetAlignment("center"));
+			row[2].SetContent(new Paragraph(ns, "Native Size").SetStyle(HeaderCss).SetAlignment("center"));
 
 			foreach (var image in images)
 			{
-				row = detail.AddRow();
-				var data = image.Element(ns + "Data").Value;
-
-				var bytes = Convert.FromBase64String(image.Element(ns + "Data").Value);
-				using (var stream = new MemoryStream(bytes, 0, bytes.Length))
-				{
-					using (var raw = Image.FromStream(stream))
-					{
-						if (raw.Width > 20 || raw.Height > 20)
-						{
-							using (var thumbnail = raw.GetThumbnailImage(20, 20, callback, IntPtr.Zero))
-							{
-								row[0].SetContent(new Paragraph(ns, MakeImage(thumbnail)));
-							}
-						}
-						else
-						{
-							row[0].SetContent(new Paragraph(ns, MakeImage(raw)));
-						}
-					}
-				}
-
-				row[1].SetContent(new Paragraph(ns, data.Length.ToBytes(1)).SetAlignment("right"));
-				row[2].SetContent(new Paragraph(ns, bytes.Length.ToBytes(1)).SetAlignment("right"));
+				ReportImage(detail, image);
 			}
 
 			foreach (var file in files)
 			{
 				row = detail.AddRow();
-				var path = file.Attribute("pathCache").Value;
+				var path = file.Attribute("pathSource").Value;
+				if (path == null)
+				{
+					path = file.Attribute("pathCache").Value;
+				}
 
-				row[0].SetContent(file.Attribute("preferredName").Value);
+				if (path == null)
+				{
+					row[0].SetContent(file.Attribute("preferredName").Value);
+				}
+				else
+				{
+					var uri = new Uri(path).AbsoluteUri;
+					row[0].SetContent(
+						$"<a href='{uri}'>{file.Attribute("preferredName").Value}</a>");
+
+					var size = new FileInfo(path).Length;
+					row[2].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+				}
+
+				var index = file.Element(ns + "Printout")?.Attribute("xpsFileIndex")?.Value;
+				if (!string.IsNullOrEmpty(index))
+				{
+					var printouts = page.Root.Descendants(ns + "Image")
+						.Where(e => e.Attribute("xpsFileIndex")?.Value == index);
+
+					foreach (var printout in printouts)
+					{
+						ReportImage(detail, printout, true);
+					}
+				}
 			}
 
 			row = table.AddRow();
@@ -495,23 +505,49 @@ namespace River.OneMoreAddIn.Commands
 				));
 		}
 
-		/*
-             <one:OEChildren>
-                <one:OE alignment="left" quickStyleIndex="2">
-                  <one:T><![CDATA[]]></one:T>
-                  <one:OEChildren>
-                    <one:OE alignment="left">
-                      <one:Table bordersVisible="true" hasHeaderRow="true">
-                        <one:Columns>
-                          <one:Column index="0" width="307.6285095214844" isLocked="true" />
-                          <one:Column index="1" width="66.10999298095703" isLocked="true" />
-                          <one:Column index="2" width="72.60997772216797" isLocked="true" />
-                        </one:Columns>
-                        <one:Row>
-                          <one:Cell shadingColor="#F2F2F2">
-                            <one:OEChildren>
-                              <one:OE alignment="left" quickStyleIndex
-		*/
+
+		private void ReportImage(Table detail, XElement image, bool printout = false)
+		{
+			var row = detail.AddRow();
+			var data = image.Element(ns + "Data").Value;
+
+			var bytes = Convert.FromBase64String(image.Element(ns + "Data").Value);
+			using (var stream = new MemoryStream(bytes, 0, bytes.Length))
+			{
+				using (var raw = Image.FromStream(stream))
+				{
+					XElement img;
+					if (raw.Width > 20 || raw.Height > 20)
+					{
+						var callback = new Image.GetThumbnailImageAbort(() => { return false; });
+						using (var thumbnail = raw.GetThumbnailImage(20, 20, callback, IntPtr.Zero))
+						{
+							img = MakeImage(thumbnail);
+						}
+					}
+					else
+					{
+						img = MakeImage(raw);
+					}
+
+					if (printout)
+					{
+						var print = new Table(ns, 1, 2);
+						print[0][0].SetContent("Printout:");
+						print[0][1].SetContent(img);
+						row[0].SetContent(print);
+
+					}
+					else
+					{
+						row[0].SetContent(img);
+					}
+				}
+			}
+
+			row[1].SetContent(new Paragraph(ns, data.Length.ToBytes(1)).SetAlignment("right"));
+			row[2].SetContent(new Paragraph(ns, bytes.Length.ToBytes(1)).SetAlignment("right"));
+		}
 
 
 		private XElement MakeImage(Image image)
@@ -521,8 +557,8 @@ namespace River.OneMoreAddIn.Commands
 			return new XElement(ns + "Image",
 				new XAttribute("format", "png"),
 				new XElement(ns + "Size",
-					new XAttribute("width", "20.0"),
-					new XAttribute("height", "20.0")),
+					new XAttribute("width", $"{image.Width}.0"),
+					new XAttribute("height", $"{image.Height}.0")),
 				new XElement(ns + "Data", Convert.ToBase64String(bytes))
 				);
 		}
