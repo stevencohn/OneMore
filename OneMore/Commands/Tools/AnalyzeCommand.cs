@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
 	using System;
+	using System.Drawing;
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -101,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 				BordersVisible = true
 			};
 
-			table.SetColumnWidth(0, 100);
+			table.SetColumnWidth(0, 120);
 			table.SetColumnWidth(1, 70);
 			table.SetColumnWidth(2, 70);
 			table.SetColumnWidth(3, 70);
@@ -287,7 +288,7 @@ namespace River.OneMoreAddIn.Commands
 					BordersVisible = true
 				};
 
-				table.SetColumnWidth(0, 160);
+				table.SetColumnWidth(0, 200);
 				table.SetColumnWidth(1, 70);
 				table.SetColumnWidth(2, 70);
 				table.SetColumnWidth(3, 70);
@@ -384,22 +385,13 @@ namespace River.OneMoreAddIn.Commands
 				new Paragraph(ns, string.Empty)
 				);
 
-			var table = new Table(ns, 1, 6)
+			var table = new Table(ns, 0, 1)
 			{
 				HasHeaderRow = true,
 				BordersVisible = true
 			};
 
-			var row = table[0];
-			row.SetShading(HeaderShading);
-			row[0].SetContent(new Paragraph(ns, "Page").SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(ns, "Size").SetStyle(HeaderCss).SetAlignment("center"));
-			row[2].SetContent(new Paragraph(ns, "# Images").SetStyle(HeaderCss).SetAlignment("center"));
-			row[3].SetContent(new Paragraph(ns, "Size of Images").SetStyle(HeaderCss).SetAlignment("center"));
-			row[4].SetContent(new Paragraph(ns, "# Files").SetStyle(HeaderCss).SetAlignment("center"));
-			row[5].SetContent(new Paragraph(ns, "Size of Files").SetStyle(HeaderCss).SetAlignment("center"));
-
-			long total = 0;
+			table.SetColumnWidth(0, 550);
 
 			var pages = section.Elements(ns + "Page")
 				.Where(e => e.Attribute("ID").Value != skipId);
@@ -408,11 +400,8 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var page in pages)
 			{
-				total += ReportPage(table, page.Attribute("ID").Value);
+				ReportPage(table, page.Attribute("ID").Value);
 			}
-
-			row = table.AddRow();
-			row[1].SetContent(new Paragraph(ns, total.ToBytes(1)).SetAlignment("right"));
 
 			container.Add(
 				new Paragraph(ns, table.Root),
@@ -421,7 +410,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private long ReportPage(Table table, string pageId)
+		private void ReportPage(Table table, string pageId)
 		{
 			var page = one.GetPage(pageId, OneNote.PageDetail.All);
 			progress.SetMessage(page.Title);
@@ -431,22 +420,114 @@ namespace River.OneMoreAddIn.Commands
 			long length = xml.Length;
 
 			var row = table.AddRow();
-			row[0].SetContent(new Paragraph(ns, page.Title));
-			row[1].SetContent(new Paragraph(ns, length.ToBytes(1)).SetAlignment("right"));
+			row.SetShading(HeaderShading);
+			row[0].SetContent(new Paragraph(ns, 
+				$"<span style='font-weight:bold'>{page.Title}</span> ({length.ToBytes(1)})").SetStyle(HeaderCss));
 
 			var images = page.Root.Descendants(ns + "Image")
 				.Where(e => e.Attribute("xpsFileIndex") == null)
 				.ToList();
 
-			row[2].SetContent(new Paragraph(ns, images.Count.ToString()).SetAlignment("right"));
-
 			var files = page.Root.Descendants(ns + "InsertedFile")
 				.ToList();
 
-			row[4].SetContent(new Paragraph(ns, files.Count.ToString()).SetAlignment("right"));
+			if (images.Count == 0 && files.Count == 0)
+			{
+				return;
+			}
 
-			return length;
+			var detail = new Table(ns, 0, 3)
+			{
+				BordersVisible = true,
+				HasHeaderRow = true
+			};
+
+			detail.SetColumnWidth(0, 320);
+			detail.SetColumnWidth(1, 70);
+			detail.SetColumnWidth(2, 70);
+
+			var callback = new Image.GetThumbnailImageAbort(() => { return false; });
+
+			foreach (var image in images)
+			{
+				row = detail.AddRow();
+				var data = image.Element(ns + "Data").Value;
+
+				var bytes = Convert.FromBase64String(image.Element(ns + "Data").Value);
+				using (var stream = new MemoryStream(bytes, 0, bytes.Length))
+				{
+					using (var raw = Image.FromStream(stream))
+					{
+						if (raw.Width > 20 || raw.Height > 20)
+						{
+							using (var thumbnail = raw.GetThumbnailImage(20, 20, callback, IntPtr.Zero))
+							{
+								row[0].SetContent(new Paragraph(ns, MakeImage(thumbnail)));
+							}
+						}
+						else
+						{
+							row[0].SetContent(new Paragraph(ns, MakeImage(raw)));
+						}
+					}
+				}
+
+				row[1].SetContent(new Paragraph(ns, data.Length.ToBytes(1)).SetAlignment("right"));
+				row[2].SetContent(new Paragraph(ns, bytes.Length.ToBytes(1)).SetAlignment("right"));
+			}
+
+			foreach (var file in files)
+			{
+				row = detail.AddRow();
+				var path = file.Attribute("pathCache").Value;
+
+				row[0].SetContent(file.Attribute("preferredName").Value);
+			}
+
+			row = table.AddRow();
+			row[0].SetContent(new XElement(ns + "OEChildren",
+				new XElement(ns + "OE",
+					new XElement(ns + "T", new XCData(string.Empty)),
+					new XElement(ns + "OEChildren",
+						new XElement(ns + "OE", detail.Root)
+						)),
+				new Paragraph(ns, string.Empty)
+				));
 		}
+
+		/*
+             <one:OEChildren>
+                <one:OE alignment="left" quickStyleIndex="2">
+                  <one:T><![CDATA[]]></one:T>
+                  <one:OEChildren>
+                    <one:OE alignment="left">
+                      <one:Table bordersVisible="true" hasHeaderRow="true">
+                        <one:Columns>
+                          <one:Column index="0" width="307.6285095214844" isLocked="true" />
+                          <one:Column index="1" width="66.10999298095703" isLocked="true" />
+                          <one:Column index="2" width="72.60997772216797" isLocked="true" />
+                        </one:Columns>
+                        <one:Row>
+                          <one:Cell shadingColor="#F2F2F2">
+                            <one:OEChildren>
+                              <one:OE alignment="left" quickStyleIndex
+		*/
+
+
+		private XElement MakeImage(Image image)
+		{
+			var bytes = (byte[])new ImageConverter().ConvertTo(image, typeof(byte[]));
+
+			return new XElement(ns + "Image",
+				new XAttribute("format", "png"),
+				new XElement(ns + "Size",
+					new XAttribute("width", "20.0"),
+					new XAttribute("height", "20.0")),
+				new XElement(ns + "Data", Convert.ToBase64String(bytes))
+				);
+		}
+
+
 		/*
 <one:Image format="png">
     <one:Size width="140.0" height="38.0" />
