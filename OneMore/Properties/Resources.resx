@@ -3270,4 +3270,8 @@ In this section</value>
     <value>Storage Analysis Report Options</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
+    <value>Backup path not found or backup are not enabled in OneNote options. Cannot continue.</value>
+    <comment>error message</comment>
+  </data>
 </root>

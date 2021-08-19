@@ -268,6 +268,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup path not found or backup are not enabled in OneNote options. Cannot continue..
+        /// </summary>
+        internal static string AnalyzeCommand_NoBackups {
+            get {
+                return ResourceManager.GetString("AnalyzeCommand_NoBackups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;span style=&apos;font-style:italic&apos;&gt;Cache not found; location likely changed in OneNote options&lt;/span&gt;.
         /// </summary>
         internal static string AnalyzeCommand_NoCache {

@@ -49,22 +49,28 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new AnalyzeDialog())
-			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				showNotebookSummary = dialog.IncludeNotebookSummary;
-				showSectionSummary = dialog.IncludeSectionSummary;
-				pageDetail = dialog.Detail;
-				thumbnailSize = dialog.ThumbnailSize;
-			}
-
 			using (one = new OneNote())
 			{
 				(backupPath, _, _) = one.GetFolders();
+
+				if (!Directory.Exists(backupPath))
+				{
+					UIHelper.ShowError(owner, Resx.AnalyzeCommand_NoBackups);
+					return;
+				}
+
+				using (var dialog = new AnalyzeDialog())
+				{
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					{
+						return;
+					}
+
+					showNotebookSummary = dialog.IncludeNotebookSummary;
+					showSectionSummary = dialog.IncludeSectionSummary;
+					pageDetail = dialog.Detail;
+					thumbnailSize = dialog.ThumbnailSize;
+				}
 
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 				var page = one.GetPage(pageId);
@@ -181,12 +187,16 @@ namespace River.OneMoreAddIn.Commands
 					var dir = new DirectoryInfo(path);
 					var size = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
 
-					dir = new DirectoryInfo(Path.Combine(path, RecycleBin));
-					var rebin = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
+					var repath = Path.Combine(path, RecycleBin);
+					if (Directory.Exists(repath))
+					{
+						dir = new DirectoryInfo(repath);
+						var relength = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
 
-					row[1].SetContent(new Paragraph(ns, (size - rebin).ToBytes(1)).SetAlignment("right"));
-					row[2].SetContent(new Paragraph(ns, rebin.ToBytes(1)).SetAlignment("right"));
-					row[3].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+						row[1].SetContent(new Paragraph(ns, (size - relength).ToBytes(1)).SetAlignment("right"));
+						row[2].SetContent(new Paragraph(ns, relength.ToBytes(1)).SetAlignment("right"));
+						row[3].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+					}
 
 					total += size;
 				}
@@ -386,26 +396,39 @@ namespace River.OneMoreAddIn.Commands
 				var subp = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
 				var path = Path.Combine(backupPath, subp);
 
-				var files = Directory.EnumerateFiles(path, $"{name}.one (On *).one").ToList();
-
 				var row = table.AddRow();
-				row[0].SetContent(new Paragraph(ns, title));
 
-				if (files.Count > 0)
+				if (Directory.Exists(path))
 				{
-					long first = 0;
-					long all = 0;
-					foreach (var file in files)
-					{
-						var size = new FileInfo(file).Length;
-						if (first == 0) first = size;
-						all += size;
-					}
+					row[0].SetContent(new Paragraph(ns, title));
 
-					row[1].SetContent(new Paragraph(ns, first.ToBytes(1)).SetAlignment("right"));
-					row[2].SetContent(new Paragraph(ns, files.Count.ToString()).SetAlignment("right"));
-					row[3].SetContent(new Paragraph(ns, all.ToBytes(1)).SetAlignment("right"));
-					total += all;
+					var files = Directory.EnumerateFiles(path, $"{name}.one (On *).one").ToList();
+					if (files.Count > 0)
+					{
+						long first = 0;
+						long all = 0;
+						foreach (var file in files)
+						{
+							if (File.Exists(file))
+							{
+								var size = new FileInfo(file).Length;
+								if (first == 0) first = size;
+								all += size;
+							}
+						}
+
+						if (all > 0)
+						{
+							row[1].SetContent(new Paragraph(ns, first.ToBytes(1)).SetAlignment("right"));
+							row[2].SetContent(new Paragraph(ns, files.Count.ToString()).SetAlignment("right"));
+							row[3].SetContent(new Paragraph(ns, all.ToBytes(1)).SetAlignment("right"));
+							total += all;
+						}
+					}
+				}
+				else
+				{
+					row[0].SetContent(new Paragraph(ns, $"{title} <span style='font-style:italic'>(backup not found)</span>"));
 				}
 			}
 
