@@ -3248,4 +3248,12 @@ ISO-code then comma then language name</comment>
     <value>Opties voor opslaganalyserapport</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
+    <value>Back-uppad niet gevonden of back-up is niet ingeschakeld in OneNote-opties. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribAnalyzeButton_Label" xml:space="preserve">
+    <value>Gegevensopslag analyseren</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

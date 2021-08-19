@@ -3248,4 +3248,12 @@ ISO-code then comma then language name</comment>
     <value>Opções de relatório de análise de armazenamento</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
+    <value>Caminho de backup não encontrado ou backup não ativado nas opções do OneNote. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribAnalyzeButton_Label" xml:space="preserve">
+    <value>Analise o armazenamento de dados</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

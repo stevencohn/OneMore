@@ -3239,4 +3239,12 @@ ISO-code then comma then language name</comment>
     <value>存储分析报告选项</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
+    <value>OneNote 选项中未找到备份路径或未启用备份。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribAnalyzeButton_Label" xml:space="preserve">
+    <value>分析数据存储</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

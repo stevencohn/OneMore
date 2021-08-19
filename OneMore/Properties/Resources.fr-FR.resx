@@ -3242,4 +3242,12 @@ ISO-code then comma then language name</comment>
     <value>Options du rapport d'analyse du stockage</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
+    <value>Chemin de sauvegarde introuvable ou sauvegarde non activée dans les options OneNote. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribAnalyzeButton_Label" xml:space="preserve">
+    <value>Analyser le stockage des données</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

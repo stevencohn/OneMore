@@ -482,7 +482,7 @@
               <button
                 id="ribAnalyzeButton"
                 imageMso="FileCompactAndRepairDatabase"
-                label="Analyze Data Sizes"
+                getLabel="GetRibbonLabel"
                 onAction="AnalyzeCmd"/>
               <button
                 id="ribFlagTitleButton"

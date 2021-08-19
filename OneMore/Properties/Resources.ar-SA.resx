@@ -3247,4 +3247,12 @@ ISO-code then comma then language name</comment>
     <value>خيارات تقرير تحليل التخزين</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
+    <value>لم يتم العثور على مسار النسخ الاحتياطي أو لم يتم تمكين النسخ الاحتياطي في خيارات OneNote. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribAnalyzeButton_Label" xml:space="preserve">
+    <value>تحليل تخزين البيانات</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

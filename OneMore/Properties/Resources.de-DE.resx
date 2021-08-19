@@ -3233,4 +3233,12 @@ ISO-code then comma then language name</comment>
     <value>Optionen für Speicheranalyseberichte</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
+    <value>Sicherungspfad nicht gefunden oder Sicherung ist in den OneNote-Optionen nicht aktiviert. </value>
+    <comment>error message</comment>
+  </data>
+  <data name="ribAnalyzeButton_Label" xml:space="preserve">
+    <value>Datenspeicher analysieren</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

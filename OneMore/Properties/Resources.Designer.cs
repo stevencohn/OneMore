@@ -4147,6 +4147,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analyze Data Storage.
+        /// </summary>
+        internal static string ribAnalyzeButton_Label {
+            get {
+                return ResourceManager.GetString("ribAnalyzeButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply Styles to Page.
         /// </summary>
         internal static string ribApplyStylesButton_Label {

@@ -3274,4 +3274,8 @@ In this section</value>
     <value>Backup path not found or backup are not enabled in OneNote options. Cannot continue.</value>
     <comment>error message</comment>
   </data>
+  <data name="ribAnalyzeButton_Label" xml:space="preserve">
+    <value>Analyze Data Storage</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
