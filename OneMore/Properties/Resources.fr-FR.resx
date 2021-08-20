@@ -3251,7 +3251,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    <value>Importer à l'aide d'images statiques</value>
-    <comment>checkbox</comment>
+    Importer en tant qu'images statiques
+    checkbox EDIT
   </data>
 </root>

@@ -2454,7 +2454,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import using static images.
+        ///   Looks up a localized string similar to Import as static images.
         /// </summary>
         internal static string ImportWebDialog_imagesBox_Text {
             get {

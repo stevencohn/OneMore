@@ -3248,7 +3248,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    <value>使用静态图像导入</value>
-    <comment>checkbox</comment>
+    导入为静态图像
+    checkbox EDIT
   </data>
 </root>

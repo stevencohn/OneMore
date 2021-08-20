@@ -3279,7 +3279,7 @@ In this section</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    <value>Import using static images</value>
+    <value>Import as static images</value>
     <comment>checkbox</comment>
   </data>
 </root>

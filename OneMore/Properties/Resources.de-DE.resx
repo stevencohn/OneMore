@@ -3242,7 +3242,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    <value>Importieren mit statischen Bildern</value>
-    <comment>checkbox</comment>
+    Als statische Bilder importieren
+    checkbox EDIT
   </data>
 </root>

@@ -118,9 +118,9 @@ namespace River.OneMoreAddIn.Commands
 			this.imagesBox.AutoSize = true;
 			this.imagesBox.Location = new System.Drawing.Point(92, 71);
 			this.imagesBox.Name = "imagesBox";
-			this.imagesBox.Size = new System.Drawing.Size(220, 24);
+			this.imagesBox.Size = new System.Drawing.Size(199, 24);
 			this.imagesBox.TabIndex = 13;
-			this.imagesBox.Text = "Import using static images";
+			this.imagesBox.Text = "Import as static images";
 			this.imagesBox.UseVisualStyleBackColor = true;
 			// 
 			// ImportWebDialog
