@@ -3247,4 +3247,8 @@ ISO-code then comma then language name</comment>
     <value>分析数据存储</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
+    导入为静态图像
+    checkbox EDIT
+  </data>
 </root>

@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="e"></param>
 		protected override void OnLoad(EventArgs e)
 		{
-			base.OnActivated(e);
+			base.OnLoad(e);
 
 			if (execute == null)
 			{

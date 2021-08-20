@@ -3278,4 +3278,8 @@ In this section</value>
     <value>Analyze Data Storage</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
+    <value>Import as static images</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

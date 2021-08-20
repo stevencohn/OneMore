@@ -163,6 +163,12 @@ _Note that VSCode cannot be used since it doesn't support COMReference entries i
 
 Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
 
+#### Dependencies
+
+* [HtmlAgilityPack](https://www.nuget.org/packages/HtmlAgilityPack) - nuget, MIT license
+* [MarkdownDeep](https://github.com/toptensoftware/markdowndeep) - DLL in external folder
+* [PuppeteerSharp](https://www.nuget.org/packages/PuppeteerSharp/) - nuget, MIT license
+
 
 ### How to Install OneMore
 

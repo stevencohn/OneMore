@@ -2454,6 +2454,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import as static images.
+        /// </summary>
+        internal static string ImportWebDialog_imagesBox_Text {
+            get {
+                return ResourceManager.GetString("ImportWebDialog_imagesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create as new child of current page.
         /// </summary>
         internal static string ImportWebDialog_newChildButton_Text {
