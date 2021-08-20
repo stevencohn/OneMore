@@ -3250,4 +3250,8 @@ ISO-code then comma then language name</comment>
     <value>Analyser le stockage des données</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
+    <value>Importer à l'aide d'images statiques</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
