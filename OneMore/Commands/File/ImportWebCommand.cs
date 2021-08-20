@@ -23,6 +23,11 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ImportWebCommand : Command
 	{
+		private string address = null;
+		private bool importImages = false;
+		private ImportWebTarget target;
+
+
 		public ImportWebCommand()
 		{
 		}
@@ -30,9 +35,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			string address = null;
-			ImportWebTarget target;
-			bool importImages = false;
 			using (var dialog = new ImportWebDialog())
 			{
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
@@ -47,7 +49,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (importImages)
 			{
-				await ImportImages(address, target);
+				var progress = new UI.ProgressDialog(ImportImages);
+				await progress.RunModeless();
 				return;
 			}
 
@@ -55,16 +58,23 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 		// https://github.com/LanderVe/WPF_PDFDocument/blob/master/WPF_PDFDocument/WPF_PDFDocument.csproj
 		// https://blogs.u2u.be/lander/post/2018/01/23/Creating-a-PDF-Viewer-in-WPF-using-Windows-10-APIs
 		// https://docs.microsoft.com/en-us/uwp/api/windows.data.pdf.pdfdocument.getpage?view=winrt-20348
 
-		private async Task ImportImages(string address, ImportWebTarget target)
+		private async Task ImportImages(UI.ProgressDialog progress, CancellationToken token)
 		{
-			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+			logger.Start();
+			logger.StartClock();
+
+			progress.SetMaximum(20);
+			progress.SetMessage($"Importing {address}...");
 
 			// download chromium...
 
+			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 			var appDataPath = PathFactory.GetAppDataPath();
 
 			logger.WriteLine("fetching chromium");
@@ -74,6 +84,11 @@ namespace River.OneMoreAddIn.Commands
 			// automate chromium to get page and save as PDF...
 
 			var revision = await fetcher.DownloadAsync();
+
+			if (token.IsCancellationRequested)
+			{
+				return;
+			}
 
 			logger.WriteLine("automating chromium");
 			using (var browser = await PS.Puppeteer.LaunchAsync(
@@ -89,6 +104,11 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			if (token.IsCancellationRequested)
+			{
+				return;
+			}
+
 			// convert PDF pages to images...
 
 			using (var one = new OneNote())
@@ -99,15 +119,19 @@ namespace River.OneMoreAddIn.Commands
 						target == ImportWebTarget.ChildPage ? one.GetPage() : null, address);
 
 				var ns = page.Namespace;
-
 				var container = page.EnsureContentContainer();
 
 				var file = await StorageFile.GetFileFromPathAsync(pdfFile);
 				var doc = await Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(file);
 
+				progress.SetMaximum((int)doc.PageCount);
+
 				for (int i = 0; i < doc.PageCount; i++)
 				{
-					logger.WriteLine($"rasterizing page {i}");
+					progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
+					progress.Increment();
+
+					//logger.WriteLine($"rasterizing page {i}");
 					var pdfpage = doc.GetPage((uint)i);
 
 					using (var stream = new InMemoryRandomAccessStream())
@@ -134,8 +158,12 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
+				progress.SetMessage($"Updating page");
 				await one.Update(page);
 			}
+
+			logger.WriteTime("import complete");
+			logger.End();
 		}
 
 
