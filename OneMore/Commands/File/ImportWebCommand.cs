@@ -67,6 +67,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var appDataPath = PathFactory.GetAppDataPath();
 
+			logger.WriteLine("fetching chromium");
 			var fetcher = new PS.BrowserFetcher(
 				new PS.BrowserFetcherOptions { Path = appDataPath });
 
@@ -74,12 +75,16 @@ namespace River.OneMoreAddIn.Commands
 
 			var revision = await fetcher.DownloadAsync();
 
+			logger.WriteLine("automating chromium");
 			using (var browser = await PS.Puppeteer.LaunchAsync(
 				new PS.LaunchOptions { Headless = true, ExecutablePath = revision.ExecutablePath }))
 			{
 				using (var page = await browser.NewPageAsync())
 				{
+					logger.WriteLine("fetching page");
 					await page.GoToAsync(address);
+
+					logger.WriteLine("converting to pdf");
 					await page.PdfAsync(pdfFile);
 				}
 			}
@@ -102,6 +107,7 @@ namespace River.OneMoreAddIn.Commands
 
 				for (int i = 0; i < doc.PageCount; i++)
 				{
+					logger.WriteLine($"rasterizing page {i}");
 					var pdfpage = doc.GetPage((uint)i);
 
 					using (var stream = new InMemoryRandomAccessStream())
@@ -121,9 +127,9 @@ namespace River.OneMoreAddIn.Commands
 										new XAttribute("width", $"{image.Width}.0"),
 										new XAttribute("height", $"{image.Height}.0")),
 									new XElement(ns + "Data", data)
-									),
-								new Paragraph(ns, string.Empty)
-								));
+								)),
+								new Paragraph(ns, " ")
+							);
 						}
 					}
 				}
