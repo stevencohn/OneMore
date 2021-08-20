@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			progress.SetMaximum(20);
+			progress.SetMaximum(3);
 			progress.SetMessage($"Importing {address}...");
 
 			// download chromium...
