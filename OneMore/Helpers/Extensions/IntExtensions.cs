@@ -49,6 +49,19 @@ namespace River.OneMoreAddIn
 		/// <param name="value"></param>
 		/// <param name="decimalPlaces"></param>
 		/// <returns></returns>
+		public static string ToBytes(this int value, int decimalPlaces = 0)
+		{
+			return ((long)value).ToBytes(decimalPlaces);
+		}
+
+
+		/// <summary>
+		/// Format the given value as a string describing the amount of bytes, adjusted 
+		/// for bytes, Kilobytes, Megabytes, Gigabytes, etc.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="decimalPlaces"></param>
+		/// <returns></returns>
 		public static string ToBytes(this long value, int decimalPlaces = 0)
 		{
 			var neg = value < 0;

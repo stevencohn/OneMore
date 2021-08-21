@@ -6,17 +6,28 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Drawing;
+	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
+	using Windows.Storage;
+	using Windows.Storage.Streams;
 	using Hap = HtmlAgilityPack;
+	using PS = PuppeteerSharp;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class ImportWebCommand : Command
 	{
+		private string address = null;
+		private bool importImages = false;
+		private ImportWebTarget target;
+
+
 		public ImportWebCommand()
 		{
 		}
@@ -24,8 +35,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			string address = null;
-			ImportWebTarget target;
 			using (var dialog = new ImportWebDialog())
 			{
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
@@ -35,8 +44,133 @@ namespace River.OneMoreAddIn.Commands
 
 				address = dialog.Address;
 				target = dialog.Target;
+				importImages = dialog.ImportImages;
 			}
 
+			if (importImages)
+			{
+				var progress = new UI.ProgressDialog(ImportImages);
+				await progress.RunModeless();
+				return;
+			}
+
+			await ImportHtml(address, target);
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		// https://github.com/LanderVe/WPF_PDFDocument/blob/master/WPF_PDFDocument/WPF_PDFDocument.csproj
+		// https://blogs.u2u.be/lander/post/2018/01/23/Creating-a-PDF-Viewer-in-WPF-using-Windows-10-APIs
+		// https://docs.microsoft.com/en-us/uwp/api/windows.data.pdf.pdfdocument.getpage?view=winrt-20348
+
+		private async Task ImportImages(UI.ProgressDialog progress, CancellationToken token)
+		{
+			logger.Start();
+			logger.StartClock();
+
+			progress.SetMaximum(3);
+			progress.SetMessage($"Importing {address}...");
+
+			// download chromium...
+
+			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+			var appDataPath = PathFactory.GetAppDataPath();
+
+			logger.WriteLine("fetching chromium");
+			var fetcher = new PS.BrowserFetcher(
+				new PS.BrowserFetcherOptions { Path = appDataPath });
+
+			// automate chromium to get page and save as PDF...
+
+			var revision = await fetcher.DownloadAsync();
+
+			if (token.IsCancellationRequested)
+			{
+				return;
+			}
+
+			logger.WriteLine("automating chromium");
+			using (var browser = await PS.Puppeteer.LaunchAsync(
+				new PS.LaunchOptions { Headless = true, ExecutablePath = revision.ExecutablePath }))
+			{
+				using (var page = await browser.NewPageAsync())
+				{
+					logger.WriteLine("fetching page");
+					await page.GoToAsync(address);
+
+					logger.WriteLine("converting to pdf");
+					await page.PdfAsync(pdfFile);
+				}
+			}
+
+			if (token.IsCancellationRequested)
+			{
+				return;
+			}
+
+			// convert PDF pages to images...
+
+			using (var one = new OneNote())
+			{
+				var page = target == ImportWebTarget.Append
+					? one.GetPage()
+					: await CreatePage(one,
+						target == ImportWebTarget.ChildPage ? one.GetPage() : null, address);
+
+				var ns = page.Namespace;
+				var container = page.EnsureContentContainer();
+
+				var file = await StorageFile.GetFileFromPathAsync(pdfFile);
+				var doc = await Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(file);
+
+				progress.SetMaximum((int)doc.PageCount);
+
+				for (int i = 0; i < doc.PageCount; i++)
+				{
+					progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
+					progress.Increment();
+
+					//logger.WriteLine($"rasterizing page {i}");
+					var pdfpage = doc.GetPage((uint)i);
+
+					using (var stream = new InMemoryRandomAccessStream())
+					{
+						await pdfpage.RenderToStreamAsync(stream);
+
+						using (var image = new Bitmap(stream.AsStream()))
+						{
+							var data = Convert.ToBase64String(
+								(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
+								);
+
+							container.Add(new XElement(ns + "OE",
+								new XElement(ns + "Image",
+									new XAttribute("format", "png"),
+									new XElement(ns + "Size",
+										new XAttribute("width", $"{image.Width}.0"),
+										new XAttribute("height", $"{image.Height}.0")),
+									new XElement(ns + "Data", data)
+								)),
+								new Paragraph(ns, " ")
+							);
+						}
+					}
+				}
+
+				progress.SetMessage($"Updating page");
+				await one.Update(page);
+			}
+
+			logger.WriteTime("import complete");
+			logger.End();
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		private async Task ImportHtml(string address, ImportWebTarget target)
+		{
 			var baseUri = new Uri(address);
 
 			logger.WriteLine($"importing web page {baseUri.AbsoluteUri}");
@@ -73,7 +207,7 @@ namespace River.OneMoreAddIn.Commands
 			//content = PreMailer.MoveCssInline(baseUri, doc.DocumentNode.OuterHtml,
 			//	stripIdAndClassAttributes: true, removeComments: true).Html;
 
-			using (var one = new OneNote(out _, out _))
+			using (var one = new OneNote())
 			{
 				Page page;
 

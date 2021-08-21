@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn.Commands
 			this.appendButton = new System.Windows.Forms.RadioButton();
 			this.newPageButton = new System.Windows.Forms.RadioButton();
 			this.newChildButton = new System.Windows.Forms.RadioButton();
+			this.imagesBox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// addressLabel
@@ -62,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(434, 178);
+			this.okButton.Location = new System.Drawing.Point(434, 219);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 9;
@@ -73,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(540, 178);
+			this.cancelButton.Location = new System.Drawing.Point(540, 219);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;
@@ -83,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 			// appendButton
 			// 
 			this.appendButton.AutoSize = true;
-			this.appendButton.Location = new System.Drawing.Point(92, 131);
+			this.appendButton.Location = new System.Drawing.Point(92, 171);
 			this.appendButton.Name = "appendButton";
 			this.appendButton.Size = new System.Drawing.Size(202, 24);
 			this.appendButton.TabIndex = 10;
@@ -94,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.newPageButton.AutoSize = true;
 			this.newPageButton.Checked = true;
-			this.newPageButton.Location = new System.Drawing.Point(92, 71);
+			this.newPageButton.Location = new System.Drawing.Point(92, 111);
 			this.newPageButton.Name = "newPageButton";
 			this.newPageButton.Size = new System.Drawing.Size(176, 24);
 			this.newPageButton.TabIndex = 11;
@@ -105,12 +106,22 @@ namespace River.OneMoreAddIn.Commands
 			// newChildButton
 			// 
 			this.newChildButton.AutoSize = true;
-			this.newChildButton.Location = new System.Drawing.Point(92, 101);
+			this.newChildButton.Location = new System.Drawing.Point(92, 141);
 			this.newChildButton.Name = "newChildButton";
 			this.newChildButton.Size = new System.Drawing.Size(284, 24);
 			this.newChildButton.TabIndex = 12;
 			this.newChildButton.Text = "Create as new child of current page";
 			this.newChildButton.UseVisualStyleBackColor = true;
+			// 
+			// imagesBox
+			// 
+			this.imagesBox.AutoSize = true;
+			this.imagesBox.Location = new System.Drawing.Point(92, 71);
+			this.imagesBox.Name = "imagesBox";
+			this.imagesBox.Size = new System.Drawing.Size(199, 24);
+			this.imagesBox.TabIndex = 13;
+			this.imagesBox.Text = "Import as static images";
+			this.imagesBox.UseVisualStyleBackColor = true;
 			// 
 			// ImportWebDialog
 			// 
@@ -118,7 +129,8 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(658, 234);
+			this.ClientSize = new System.Drawing.Size(658, 275);
+			this.Controls.Add(this.imagesBox);
 			this.Controls.Add(this.newChildButton);
 			this.Controls.Add(this.newPageButton);
 			this.Controls.Add(this.appendButton);
@@ -150,5 +162,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.RadioButton appendButton;
 		private System.Windows.Forms.RadioButton newPageButton;
 		private System.Windows.Forms.RadioButton newChildButton;
+		private System.Windows.Forms.CheckBox imagesBox;
 	}
 }

@@ -45,6 +45,9 @@ namespace River.OneMoreAddIn.Commands
 		public string Address => addressBox.Text;
 
 
+		public bool ImportImages => imagesBox.Checked;
+
+
 		public ImportWebTarget Target
 		{
 			get

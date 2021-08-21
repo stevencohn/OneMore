@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -36,14 +37,16 @@ namespace River.OneMoreAddIn
 
 		public override async Task Execute(params object[] args)
 		{
+			// anchor/link sub-commands cannot be repeated
+			IsCancelled = true;
+
 			using (var one = new OneNote())
 			{
 				if ((args[0] is string cmd) && (cmd == "mark"))
 				{
 					if (!MarkAnchor(one))
 					{
-						UIHelper.ShowInfo(one.Window, Resx.BiLinkCommand_BadAnchor);
-						IsCancelled = true;
+						UIHelper.ShowError(one.Window, Resx.BiLinkCommand_BadAnchor);
 						return;
 					}
 
@@ -54,15 +57,13 @@ namespace River.OneMoreAddIn
 				{
 					if (string.IsNullOrEmpty(anchorPageId))
 					{
-						UIHelper.ShowInfo(one.Window, Resx.BiLinkCommand_NoAnchor);
-						IsCancelled = true;
+						UIHelper.ShowError(one.Window, Resx.BiLinkCommand_NoAnchor);
 						return;
 					}
 
 					if (!await CreateLinks(one))
 					{
-						UIHelper.ShowInfo(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
-						IsCancelled = true;
+						UIHelper.ShowError(one.Window, string.Format(Resx.BiLinkCommand_BadTarget, error));
 						return;
 					}
 
@@ -217,23 +218,33 @@ namespace River.OneMoreAddIn
 			// special deep comparison, excluding the selected attributes to handle
 			// case where anchor is on the same page as the target element
 
+
 			var oldcopy = new SelectionRange(anchor.Clone());
 			oldcopy.Deselect();
 
 			var newcopy = new SelectionRange(candidate.Clone());
 			newcopy.Deselect();
 
-			var oldxml = oldcopy.ToString();
-			var newxml = newcopy.ToString();
+			var oldxml = Regex.Replace(oldcopy.ToString(), @"[\r\n]+", " ");
+			var newxml = Regex.Replace(newcopy.ToString(), @"[\r\n]+", " ");
 
-			//if (oldxml != newxml)
-			//{
-			//	logger.WriteLine("differences found in candidate/anchor");
-			//	logger.WriteLine("oldxml/candidate");
-			//	logger.WriteLine(oldxml);
-			//	logger.WriteLine("newxml/anchor");
-			//	logger.WriteLine(newxml);
-			//}
+			if (oldxml != newxml)
+			{
+				//logger.WriteLine("differences found in anchor/candidate");
+				//logger.WriteLine($"oldxml/anchor {oldxml.Length}");
+				//logger.WriteLine(oldxml);
+				//logger.WriteLine($"newxml/candidate {newxml.Length}");
+				//logger.WriteLine(newxml);
+
+				for (int i= 0; i < oldxml.Length && i < newxml.Length; i++)
+				{
+					if (oldxml[i] != newxml[i])
+					{
+						logger.WriteLine($"diff at index {i}");
+						break;
+					}
+				}
+			}
 
 			return oldxml != newxml;
 		}
@@ -248,8 +259,17 @@ namespace River.OneMoreAddIn
 			{
 				page.EditNode(selection, (s) =>
 				{
+					if (s is XText text)
+					{
+						count++;
+						return new XElement("a", new XAttribute("href", link), new XText(text.Value));
+					}
+
+					var span = (XElement)s;
+					span.ReplaceNodes(new XElement("a", new XAttribute("href", link), span.Value));
+
 					count++;
-					return new XElement("a", new XAttribute("href", link), s);
+					return span;
 				});
 			}
 			else

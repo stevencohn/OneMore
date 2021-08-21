@@ -94,5 +94,18 @@ namespace River.OneMoreAddIn.Models
 			Root.Add(cell.Root);
 			return cell;
 		}
+
+
+		/// <summary>
+		/// Set the background shading color of all cells in the current row
+		/// </summary>
+		/// <param name="color"></param>
+		public void SetShading(string color)
+		{
+			foreach (var cell in cells)
+			{
+				cell.ShadingColor = color;
+			}
+		}
 	}
 }
