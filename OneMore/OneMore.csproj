@@ -380,6 +380,9 @@
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
+    <Compile Include="UI\ColorsComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
