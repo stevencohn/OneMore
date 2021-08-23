@@ -35,6 +35,7 @@
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
 			this.introLabel = new System.Windows.Forms.Label();
+			this.colorsComboBox1 = new River.OneMoreAddIn.UI.ColorsComboBox();
 			this.SuspendLayout();
 			// 
 			// lightButton
@@ -85,7 +86,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(382, 323);
+			this.cancelButton.Location = new System.Drawing.Point(382, 403);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 4;
@@ -96,7 +97,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(276, 323);
+			this.okButton.Location = new System.Drawing.Point(276, 403);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 5;
@@ -112,13 +113,27 @@
 			this.introLabel.Text = "After choosing a page color, load one of the predefined styles or customize your " +
     "own styles so all content has enough contrast to be visible.\r\n\r\n";
 			// 
+			// colorsComboBox1
+			// 
+			this.colorsComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+			this.colorsComboBox1.DropDownHeight = 495;
+			this.colorsComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.colorsComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.colorsComboBox1.FormattingEnabled = true;
+			this.colorsComboBox1.IntegralHeight = false;
+			this.colorsComboBox1.Location = new System.Drawing.Point(22, 322);
+			this.colorsComboBox1.Name = "colorsComboBox1";
+			this.colorsComboBox1.Size = new System.Drawing.Size(334, 36);
+			this.colorsComboBox1.TabIndex = 7;
+			// 
 			// ChangePageColorDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(495, 374);
+			this.ClientSize = new System.Drawing.Size(495, 454);
+			this.Controls.Add(this.colorsComboBox1);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
@@ -147,5 +162,6 @@
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label introLabel;
+		private UI.ColorsComboBox colorsComboBox1;
 	}
 }
