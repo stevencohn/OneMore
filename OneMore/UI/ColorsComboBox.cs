@@ -80,6 +80,12 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Fires when the chosen color changes
+		/// </summary>
+		public event EventHandler ColorChanged;
+
+
+		/// <summary>
 		/// Gets the custom color
 		/// </summary>
 		public Color CustomColor => ((Swatch)Items[customIndex]).Color;
@@ -127,9 +133,24 @@ namespace River.OneMoreAddIn.UI
 			{
 				((Swatch)Items[customIndex]).Color = color;
 				Invalidate();
+
+				if (SelectedIndex == index)
+				{
+					ColorChanged?.Invoke(this, new EventArgs());
+				}
 			}
 
-			SelectedIndex = index;
+			if (SelectedIndex != index)
+			{
+				SelectedIndex = index;
+			}
+		}
+
+
+		protected override void OnSelectedIndexChanged(EventArgs e)
+		{
+			base.OnSelectedIndexChanged(e);
+			ColorChanged?.Invoke(this, e);
 		}
 
 

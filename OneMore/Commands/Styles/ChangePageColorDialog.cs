@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class ChangePageColorDialog : UI.LocalizableForm
 	{
 
-		public ChangePageColorDialog(Color pageColor)
+		public ChangePageColorDialog(Color pageColor, bool dark)
 		{
 			InitializeComponent();
 
@@ -62,6 +62,11 @@ namespace River.OneMoreAddIn.Commands
 					colorsBox.SetColor(dialog.Color);
 				}
 			}
+		}
+
+		private void AnalyzeColorSelection(object sender, System.EventArgs e)
+		{
+			logger.WriteLine("analyze");
 		}
 	}
 }

@@ -79,6 +79,7 @@
 			this.colorsBox.Name = "colorsBox";
 			this.colorsBox.Size = new System.Drawing.Size(359, 36);
 			this.colorsBox.TabIndex = 7;
+			this.colorsBox.ColorChanged += new System.EventHandler(this.AnalyzeColorSelection);
 			// 
 			// customLink
 			// 
