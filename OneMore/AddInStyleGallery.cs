@@ -41,6 +41,7 @@ namespace River.OneMoreAddIn
 				pageColor = page.GetPageColor(out _, out var black);
 				if (black)
 				{
+					// translate Black into a custom black smoke
 					pageColor = ColorTranslator.FromHtml("#201F1E");
 				}
 			}

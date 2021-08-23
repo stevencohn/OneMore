@@ -70,9 +70,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
 		private void AnalyzeColorSelection(object sender, System.EventArgs e)
 		{
-			logger.WriteLine("analyze");
+			var provider = new StyleProvider();
+
+			logger.WriteLine($"analyzing theme {provider.Name} (dark:{provider.Dark})");
 		}
 	}
 }

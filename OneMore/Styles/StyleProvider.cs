@@ -18,6 +18,8 @@ namespace River.OneMoreAddIn
 	{
 
 		private readonly List<StyleRecord> cache;
+		private string name;
+		private bool dark;
 
 
 		/// <summary>
@@ -36,6 +38,7 @@ namespace River.OneMoreAddIn
 				try
 				{
 					root = XElement.Load(path);
+					root.GetAttributeValue("name", out name, Path.GetFileNameWithoutExtension(path));
 				}
 				catch (Exception exc)
 				{
@@ -47,8 +50,12 @@ namespace River.OneMoreAddIn
 			{
 				// file not found so load default theme
 				root = XElement.Parse(Properties.Resources.CustomStyles);
+				root.GetAttributeValue("name", out name, "Default");
 			}
 
+			root.GetAttributeValue("dark", out dark, false);
+
+			//Logger.Current.WriteLine($"loaded theme '{name}' (dark:{dark})");
 			//Logger.Current.WriteLine(root.ToString(SaveOptions.None));
 
 			foreach (var record in root.Elements("Style"))
@@ -62,6 +69,18 @@ namespace River.OneMoreAddIn
 		/// Gets the number of styles cached and managed.
 		/// </summary>
 		public int Count => cache.Count;
+
+
+		/// <summary>
+		/// Gets a Boolean value indicating if this theme is intended for a dark background
+		/// </summary>
+		public bool Dark => dark;
+
+
+		/// <summary>
+		/// Gets the name of the loaded style theme
+		/// </summary>
+		public string Name => name;
 
 
 		/// <summary>
@@ -115,6 +134,9 @@ namespace River.OneMoreAddIn
 					var root = XElement.Load(path);
 					var ns = root.GetDefaultNamespace();
 
+					root.GetAttributeValue("name", out name, Path.GetFileNameWithoutExtension(path));
+					root.GetAttributeValue("dark", out dark, false);
+
 					return root.Elements(ns + "Style").ToList()
 						.ConvertAll(e => new Style(new StyleRecord(e)));
 				}
@@ -161,7 +183,9 @@ namespace River.OneMoreAddIn
 
 			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
 
-			var root = new XElement("CustomStyles");
+			var root = new XElement("Theme",
+				new XAttribute("name", "Custom")
+				);
 
 			foreach (var style in styles)
 			{
