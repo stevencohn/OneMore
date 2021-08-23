@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S4275 // Getters and setters should access the expected fields
+
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Drawing;
@@ -11,6 +13,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ChangePageColorDialog : UI.LocalizableForm
 	{
+		private Color pageColor;
+
 
 		public ChangePageColorDialog(Color pageColor, bool dark)
 		{
@@ -30,6 +34,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			colorsBox.SetColor(pageColor);
+
+			this.pageColor = pageColor;
 		}
 
 

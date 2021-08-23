@@ -75,7 +75,7 @@
 			this.colorsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.colorsBox.FormattingEnabled = true;
 			this.colorsBox.IntegralHeight = false;
-			this.colorsBox.Location = new System.Drawing.Point(17, 97);
+			this.colorsBox.Location = new System.Drawing.Point(39, 97);
 			this.colorsBox.Name = "colorsBox";
 			this.colorsBox.Size = new System.Drawing.Size(359, 36);
 			this.colorsBox.TabIndex = 7;
@@ -85,7 +85,7 @@
 			// 
 			this.customLink.AutoSize = true;
 			this.customLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.customLink.Location = new System.Drawing.Point(13, 136);
+			this.customLink.Location = new System.Drawing.Point(35, 136);
 			this.customLink.Name = "customLink";
 			this.customLink.Size = new System.Drawing.Size(171, 20);
 			this.customLink.TabIndex = 8;

@@ -620,7 +620,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Title = "Open Style Theme";
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 
-				var path = PathFactory.GetAppDataPath();
+				var path = Path.Combine(PathFactory.GetAppDataPath(), "Themes");
 				if (Directory.Exists(path))
 				{
 					dialog.InitialDirectory = path;
