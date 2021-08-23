@@ -9,9 +9,10 @@ namespace River.OneMoreAddIn.UI
 	using System.Drawing.Drawing2D;
 	using System.Drawing.Text;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	public class ColorsComboBox : ComboBox
+	internal class ColorsComboBox : ComboBox
 	{
 		private class Swatch
 		{
