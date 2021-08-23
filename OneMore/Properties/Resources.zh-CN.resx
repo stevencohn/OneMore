@@ -614,21 +614,9 @@ OneNote 将自动关闭</value>
     <value>取消</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>自订背景...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>黑暗的背景</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>选择页面颜色后，加载预定义的样式之一或自定义样式，以便所有内容具有足够的对比度以使其可见。</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>浅色背景</value>
-    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>接受</value>
@@ -3250,5 +3238,9 @@ ISO-code then comma then language name</comment>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     导入为静态图像
     checkbox EDIT
+  </data>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>选择自定义颜色</value>
+    <comment>link</comment>
   </data>
 </root>

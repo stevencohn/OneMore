@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -12,11 +11,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ChangePageColorDialog : UI.LocalizableForm
 	{
-		private readonly Color DarkColor = Color.FromArgb(0x21, 0x21, 0x21);
-
-		private Color pageColor;
-		private bool initialized = false;
-
 
 		public ChangePageColorDialog(Color pageColor)
 		{
@@ -29,35 +23,13 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introLabel",
-					"lightButton",
-					"darkButton",
-					"customButton",
+					"customLink",
 					"cancelButton",
 					"okButton"
 				});
 			}
 
-			this.pageColor = pageColor;
-
-			if (pageColor.Equals(Color.White))
-			{
-				lightButton.Checked = true;
-			}
-			else if (pageColor.Equals(DarkColor))
-			{
-				darkButton.Checked = true;
-			}
-			else
-			{
-				customButton.Checked = true;
-				SetCustomOption(pageColor);
-			}
-		}
-
-		protected override void OnShown(EventArgs e)
-		{
-			initialized = true;
-			base.OnShown(e);
+			colorsBox.SetColor(pageColor);
 		}
 
 
@@ -65,50 +37,29 @@ namespace River.OneMoreAddIn.Commands
 		{
 			get
 			{
-				if (pageColor.Equals(Color.White))
+				if (colorsBox.Color.Equals(Color.White))
 				{
 					return "automatic";
 				}
 
-				return pageColor.ToRGBHtml();
+				return colorsBox.Color.ToRGBHtml();
 			}
 		}
 
-		
-		private void SetCustomOption(Color color)
-		{
-			pageColor = color;
-			customButton.BackColor = color;
-			customButton.ForeColor = color.GetBrightness() < 0.5 ? Color.White : Color.Black;
-		}
 
-		private void SetLightColor(object sender, EventArgs e)
+		private void ChooseCustomColor(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			pageColor = Color.White;
-		}
+			var location = PointToScreen(customLink.Location);
 
-		private void SetDarkColor(object sender, EventArgs e)
-		{
-			pageColor = DarkColor;
-		}
-
-
-		private void ChooseCustomColor(object sender, EventArgs e)
-		{
-			if (initialized && customButton.Checked)
+			using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
+				location.X + customLink.Bounds.Location.X + customLink.Width,
+				location.Y - 50))
 			{
-				var location = PointToScreen(customButton.Location);
+				dialog.Color = colorsBox.CustomColor;
 
-				using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
-					location.X + customButton.Bounds.Location.X + (customButton.Width / 2),
-					location.Y - 200))
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
-					dialog.Color = pageColor;
-
-					if (dialog.ShowDialog() == DialogResult.OK)
-					{
-						SetCustomOption(dialog.Color);
-					}
+					colorsBox.SetColor(dialog.Color);
 				}
 			}
 		}

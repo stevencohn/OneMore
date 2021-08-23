@@ -612,21 +612,9 @@
     <value>إلغاء</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>خلفية مخصصة...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>خلفية داكنة</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>بعد اختيار لون الصفحة ، قم بتحميل أحد الأنماط المحددة مسبقًا أو قم بتخصيص الأنماط الخاصة بك بحيث يكون لكل المحتوى تباين كافٍ ليكون مرئيًا.</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>خلفية فاتحة</value>
-    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>حسنا</value>
@@ -3258,5 +3246,9 @@ ISO-code then comma then language name</comment>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     استيراد كصور ثابتة
     checkbox EDIT
+  </data>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>اختر لونًا مخصصًا</value>
+    <comment>link</comment>
   </data>
 </root>

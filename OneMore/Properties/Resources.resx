@@ -619,21 +619,13 @@ OneNote will close automatically</value>
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Custom background...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Dark background</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible.</value>
     <comment>instructions</comment>
   </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Light background</value>
-    <comment>button</comment>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Choose a custom color</value>
+    <comment>link</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>

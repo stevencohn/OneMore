@@ -56,6 +56,8 @@ namespace River.OneMoreAddIn.Commands
 							dark = ColorTranslator.FromHtml(dialog.PageColor).GetBrightness() < 0.5;
 						}
 
+						logger.WriteLine($"color set to {dialog.PageColor} (dark:{dark})");
+
 						if (dark != currentlydDark)
 						{
 							//

@@ -760,20 +760,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom background....
+        ///   Looks up a localized string similar to Choose a custom color.
         /// </summary>
-        internal static string ChangePageColorDialog_customButton_Text {
+        internal static string ChangePageColorDialog_colorLink_Text {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_customButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dark background.
-        /// </summary>
-        internal static string ChangePageColorDialog_darkButton_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_darkButton.Text", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_colorLink.Text", resourceCulture);
             }
         }
         
@@ -783,15 +774,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ChangePageColorDialog_introLabel_Text {
             get {
                 return ResourceManager.GetString("ChangePageColorDialog_introLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Light background.
-        /// </summary>
-        internal static string ChangePageColorDialog_lightButton_Text {
-            get {
-                return ResourceManager.GetString("ChangePageColorDialog_lightButton.Text", resourceCulture);
             }
         }
         

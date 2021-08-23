@@ -609,21 +609,9 @@
     <value>Annuler</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Arrière-plan personnalisé ...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Fond sombre</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>Après avoir choisi une couleur de page, chargez l'un des styles prédéfinis ou personnalisez vos propres styles afin que tout le contenu ait un contraste suffisant pour être visible.</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Fond clair</value>
-    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>D'accord</value>
@@ -3253,5 +3241,9 @@ ISO-code then comma then language name</comment>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     Importer en tant qu'images statiques
     checkbox EDIT
+  </data>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Choisissez une couleur personnalisée</value>
+    <comment>link</comment>
   </data>
 </root>

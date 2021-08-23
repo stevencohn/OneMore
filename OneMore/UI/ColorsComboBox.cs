@@ -8,22 +8,32 @@ namespace River.OneMoreAddIn.UI
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
 	using System.Drawing.Text;
+	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	/// <summary>
+	/// An enhanced ComboBox that displays a selection of colors suitable for page backgrounds
+	/// in both light and dard shades.
+	/// </summary>
 	internal class ColorsComboBox : ComboBox
 	{
 		private class Swatch
 		{
 			public readonly string Name;
-			public readonly Color Color;
+			public Color Color;
 			public Swatch (string name, Color color) { Name = name; Color = color; }
 		}
 
+		private const string arrow = "\u00E8"; // black right arrow
+
 		private readonly Font itemFont;
+		private readonly Font arrowFont;
 		private readonly int itemHeight;
+		private readonly int customIndex;
 		private StringFormat stringFormat;
+		private bool opened;
 
 
 		public ColorsComboBox()
@@ -42,7 +52,7 @@ namespace River.OneMoreAddIn.UI
 				new Swatch(Color.WhiteSmoke.Name, Color.WhiteSmoke),
 				// dark
 				new Swatch(Color.Black.Name, Color.Black),
-				new Swatch("OneMore Black", Color.FromArgb(64, 64, 64)),
+				new Swatch("Black Smoke", Color.FromArgb(64, 64, 64)),
 				new Swatch(Color.DarkCyan.Name, Color.DarkCyan),
 				new Swatch(Color.DarkOliveGreen.Name, Color.DarkOliveGreen),
 				new Swatch(Color.DarkSlateBlue.Name, Color.DarkSlateBlue),
@@ -54,20 +64,31 @@ namespace River.OneMoreAddIn.UI
 				new Swatch("Custom", Color.Transparent)
 			});
 
-			DrawMode = DrawMode.OwnerDrawVariable;
-			DropDownStyle = ComboBoxStyle.DropDownList;
-			Sorted = false;
-
-			itemFont = new Font("Calibri", 12.0f);
-
+			customIndex = Items.Count - 1;
+			arrowFont = new Font("Wingdings", 11.0f);
+			itemFont = new Font("Calibri", 11.0f);
 			itemHeight = CalculateLayout();
 			stringFormat = CreateStringFormat();
 
+			DrawMode = DrawMode.OwnerDrawVariable;
+			DropDownStyle = ComboBoxStyle.DropDownList;
 			DropDownHeight = itemHeight * 15;
 			Height = itemHeight;
-
+			Sorted = false;
 			SelectedIndex = 0;
 		}
+
+
+		/// <summary>
+		/// Gets the custom color
+		/// </summary>
+		public Color CustomColor => ((Swatch)Items[customIndex]).Color;
+
+
+		/// <summary>
+		/// Gets the selected color
+		/// </summary>
+		public Color Color => ((Swatch)Items[SelectedIndex]).Color;
 
 
 		protected override void Dispose(bool disposing)
@@ -78,12 +99,43 @@ namespace River.OneMoreAddIn.UI
 			if (itemFont != null)
 				itemFont.Dispose();
 
+			if (arrowFont != null)
+				arrowFont.Dispose();
+
 			base.Dispose(disposing);
+		}
+
+
+		/// <summary>
+		/// Sets the color of the Custom item
+		/// </summary>
+		/// <param name="color">The color to apply to the Custom item</param>
+		public void SetColor(Color color)
+		{
+			var index = 0;
+			while (index < customIndex)
+			{
+				if (color.Equals(((Swatch)Items[index]).Color))
+				{
+					break;
+				}
+
+				index++;
+			}
+
+			if (index == customIndex)
+			{
+				((Swatch)Items[customIndex]).Color = color;
+				Invalidate();
+			}
+
+			SelectedIndex = index;
 		}
 
 
 		private int CalculateLayout()
 		{
+			// account for ascenders and descenders
 			var textSize = TextRenderer.MeasureText("yY", itemFont);
 			return textSize.Height + 4;
 		}
@@ -165,6 +217,12 @@ namespace River.OneMoreAddIn.UI
 						e.Graphics.DrawString(
 							swatch.Name, itemFont,
 							textBrush, e.Bounds, stringFormat);
+
+						if (opened && (e.State & DrawItemState.Selected) == DrawItemState.Selected)
+						{
+							e.Graphics.DrawString(arrow, arrowFont,
+								textBrush, e.Bounds.X + 10, e.Bounds.Y);
+						}
 					}
 				}
 				catch (Exception exc)
@@ -194,6 +252,20 @@ namespace River.OneMoreAddIn.UI
 				stringFormat.Dispose();
 
 			stringFormat = CreateStringFormat();
+		}
+
+		protected override void OnDropDown(EventArgs e)
+		{
+			opened = true;
+			Invalidate();
+			base.OnDropDown(e);
+		}
+
+		protected override void OnDropDownClosed(EventArgs e)
+		{
+			opened = false;
+			Invalidate();
+			base.OnDropDownClosed(e);
 		}
 	}
 }

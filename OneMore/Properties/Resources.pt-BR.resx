@@ -613,21 +613,9 @@ OneNote fechará automaticamente</value>
     <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Plano de fundo personalizado ...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Fundo escuro</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>Depois de escolher uma cor de página, carregue um dos estilos predefinidos ou personalize seus próprios estilos para que todo o conteúdo tenha contraste suficiente para ser visível.</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Fundo claro</value>
-    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>Está bem</value>
@@ -3259,5 +3247,9 @@ ISO-code then comma then language name</comment>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     Importar como imagens estáticas
     checkbox EDIT
+  </data>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Escolha uma cor personalizada</value>
+    <comment>link</comment>
   </data>
 </root>

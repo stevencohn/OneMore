@@ -613,21 +613,9 @@ OneNote wordt automatisch gesloten</value>
     <value>annuleren</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Eigen achtergrond...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Donkere achtergrond</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>Nadat u een paginakleur heeft gekozen, laadt u een van de voorgedefinieerde stijlen of past u uw eigen stijlen aan, zodat alle inhoud voldoende contrast heeft om zichtbaar te zijn.</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Lichte achtergrond</value>
-    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -3259,5 +3247,9 @@ ISO-code then comma then language name</comment>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     Importeren als statische afbeeldingen
     checkbox EDIT
+  </data>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Kies een aangepaste kleur</value>
+    <comment>link</comment>
   </data>
 </root>

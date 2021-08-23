@@ -609,21 +609,9 @@
     <value>Stornieren</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Benutzerdefinierter Hintergrund ...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Dunkler Hintergrund</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>Laden Sie nach Auswahl einer Seitenfarbe einen der vordefinierten Stile oder passen Sie Ihre eigenen Stile an, damit der gesamte Inhalt genügend Kontrast aufweist, um sichtbar zu sein.</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Heller Hintergrund</value>
-    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -3244,5 +3232,9 @@ ISO-code then comma then language name</comment>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     Als statische Bilder importieren
     checkbox EDIT
+  </data>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Wählen Sie eine benutzerdefinierte Farbe</value>
+    <comment>link</comment>
   </data>
 </root>
