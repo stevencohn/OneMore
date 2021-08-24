@@ -54,6 +54,7 @@ namespace River.OneMoreAddIn.Commands
 		public void Apply(Page page)
 		{
 			this.page = page;
+			this.ns = page.Namespace;
 
 			var styles = new StyleProvider().GetStyles();
 			if (ApplyStyles(styles))

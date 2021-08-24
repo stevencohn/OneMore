@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn
 	{
 
 		private readonly List<StyleRecord> cache;
+		private string key;
 		private string name;
 		private bool dark;
 
@@ -38,23 +39,26 @@ namespace River.OneMoreAddIn
 			}
 
 			// first try appdata\Roaming\OneMore\Themes\CustomStyles.xml
-			var root = Load(Path.Combine(
-				PathFactory.GetAppDataPath(), Resx.ThemesFolder, Resx.CustomStylesFilename));
+			var path = Path.Combine(
+				PathFactory.GetAppDataPath(), Resx.ThemesFolder, Resx.CustomStylesFilename);
 
+			var root = Load(path);
 			if (root == null)
 			{
 				// second try appdata\Roaming\OneMore\CustomStyles.xml (backwards compatibility)
-				root = Load(Path.Combine(
-					PathFactory.GetAppDataPath(), Resx.CustomStylesFilename));
+				path = Path.Combine(PathFactory.GetAppDataPath(), Resx.CustomStylesFilename);
+				root = Load(path);
 			}
 
 			if (root == null)
 			{
 				// file not found so load default theme
+				path = "Default.xml";
 				root = XElement.Parse(Resx.CustomStyles);
 			}
 
-			root.GetAttributeValue("name", out name, "Default");
+			key = Path.GetFileNameWithoutExtension(path);
+			root.GetAttributeValue("name", out name, key);
 			root.GetAttributeValue("dark", out dark, false);
 
 			//logger.WriteLine($"loaded theme '{name}' (dark:{dark})");
@@ -75,13 +79,18 @@ namespace River.OneMoreAddIn
 					if (root.Name.LocalName == "CustomStyles" ||
 						root.Name.LocalName == "Theme")
 					{
+						key = Path.GetFileNameWithoutExtension(path);
+
 						if (root.Attribute("name") == null)
 						{
 							// themes provided by OneMore will have an internal name
 							// but user-defined themes will not so infer from filename
-							root.Add(
-								new XAttribute("name", Path.GetFileNameWithoutExtension(path))
-								);
+							name = key;
+							root.Add(new XAttribute("name", name));
+						}
+						else
+						{
+							name = root.Attribute("name").Value;
 						}
 
 						return root;
@@ -117,7 +126,13 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets the name of the loaded style theme
+		/// Gets the key (filename without extension) of the loaded style theme
+		/// </summary>
+		public string Key => key;
+
+
+		/// <summary>
+		/// Gets the user-facing name of the theme file, as specified by the name attribute
 		/// </summary>
 		public string Name => name;
 
@@ -171,6 +186,17 @@ namespace River.OneMoreAddIn
 		/// <returns>A List of Style items</returns>
 		public List<Style> LoadTheme(string path)
 		{
+			if (string.IsNullOrEmpty(Path.GetDirectoryName(path)))
+			{
+				// given a key (filename without extension) build a full path
+				path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder, path);
+			}
+
+			if (string.IsNullOrEmpty(Path.GetExtension(path)))
+			{
+				path = $"{path}.xml";
+			}
+
 			if (File.Exists(path))
 			{
 				try
@@ -180,7 +206,8 @@ namespace River.OneMoreAddIn
 					{
 						var ns = root.GetDefaultNamespace();
 
-						root.GetAttributeValue("name", out name, Path.GetFileNameWithoutExtension(path));
+						key = Path.GetFileNameWithoutExtension(path);
+						root.GetAttributeValue("name", out name, key);
 						root.GetAttributeValue("dark", out dark, false);
 
 						return root.Elements(ns + "Style").ToList()

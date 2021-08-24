@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Settings;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -45,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 			this.pageColor = pageColor;
 			pageDark = pageColor.GetBrightness() < 0.5;
 
-			themeLabel.Text = new StyleProvider().Name;
+			themeLabel.Text = GetCurrentThemeName();
 
 			this.ribbon = ribbon;
 		}
@@ -65,6 +66,25 @@ namespace River.OneMoreAddIn.Commands
 
 				return colorsBox.Color.ToRGBHtml();
 			}
+		}
+
+
+		private string GetCurrentThemeName()
+		{
+			var sp = new SettingsProvider();
+			var settings = sp.GetCollection("pageTheme");
+			if (settings != null)
+			{
+				var key = settings.Get<string>("key");
+				if (!string.IsNullOrEmpty(key))
+				{
+					var stylesProvider = new StyleProvider();
+					stylesProvider.LoadTheme(key);
+					return stylesProvider.Name;
+				}
+			}
+
+			return string.Empty;
 		}
 
 
@@ -90,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var provider = new StyleProvider();
 
-			logger.WriteLine($"analyzing theme {provider.Name} (dark:{provider.Dark})");
+			logger.WriteLine($"analyzing theme {provider.Key} (dark:{provider.Dark})");
 		}
 
 		private async void LoadStyleTheme(object sender, LinkLabelLinkClickedEventArgs e)

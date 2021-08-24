@@ -5015,7 +5015,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chnage Page Theme.
+        ///   Looks up a localized string similar to Change Page Theme.
         /// </summary>
         internal static string ribPageColorButton_Label {
             get {

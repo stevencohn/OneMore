@@ -197,6 +197,9 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Lifecycle
 
 
+		public string ThemeName { private set; get; }
+
+
 		private void ShowSelection()
 		{
 			allowEvents = false;
@@ -634,10 +637,12 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					var styles = new StyleProvider().LoadTheme(dialog.FileName);
+					var provider = new StyleProvider();
+					var styles = provider.LoadTheme(dialog.FileName);
 					if (styles.Count > 0)
 					{
 						LoadStyles(styles);
+						ThemeName = provider.Key;
 					}
 					else
 					{

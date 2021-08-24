@@ -137,12 +137,12 @@
     <value>Nog een</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    Schakel de spellingcontrole uit
-    Ribbon OneMore menu item, no spell check on this page EDIT
+    <value>Schakel de spellingcontrole uit
+    Ribbon OneMore menu item, no spell check on this page EDIT</value>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    Schakel de spellingcontrole uit voor de hele pagina (F4)
-    Ribbon OneMore menu item, no spell check on this page EDIT
+    <value>Schakel de spellingcontrole uit voor de hele pagina (F4)
+    Ribbon OneMore menu item, no spell check on this page EDIT</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -490,10 +490,6 @@
     <value>Meer</value>
     <comment>Ribbon main button</comment>
   </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    Paginathema wijzigen
-    Ribbon Custom Styles menu item, set page background color EDIT
-  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Plak Rich Text</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -606,8 +602,8 @@ OneNote wordt automatisch gesloten</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    Paginathema wijzigen
-    dialog title EDIT
+    <value>Paginathema wijzigen
+    dialog title EDIT</value>
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>annuleren</value>
@@ -1280,8 +1276,8 @@ Probeer het later nog eens</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    Opdracht
-    label EDIT
+    <value>Opdracht
+    label EDIT</value>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Update huidige pagina</value>
@@ -1610,12 +1606,12 @@ Symbolen: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    HTML-bestand (*.htm)
+    <value>HTML-bestand (*.htm)
 PDF-bestand (*.pdf)
 Word-bestand (*.docx)
 XML-bestand (*.xml)
 OneNote-bestand (*.one)
-    combo box EDIT
+    combo box EDIT</value>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Formaat:</value>
@@ -1654,8 +1650,8 @@ OneNote-bestand (*.one)
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    Selecteer een Word-, PowerPoint-, OneNote-, Markdown- of XML-bestand
-    label EDIT
+    <value>Selecteer een Word-, PowerPoint-, OneNote-, Markdown- of XML-bestand
+    label EDIT</value>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>
@@ -1694,8 +1690,8 @@ OneNote-bestand (*.one)
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Alle bestanden (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word-bestanden (*.doc 
-    openfiledialog filter EDIT
+    <value>Alle bestanden (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word-bestanden (*.doc 
+    openfiledialog filter EDIT</value>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Kies een bestand om te importeren</value>
@@ -1787,8 +1783,8 @@ OneNote-bestand (*.one)
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    ... Schakel de spellingcontrole uit
-    option EDIT
+    <value>... Schakel de spellingcontrole uit
+    option EDIT</value>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Plak Rich Text</value>
@@ -1879,8 +1875,8 @@ OneNote-bestand (*.one)
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    Een of meer wijzigingen vereisen dat OneNote opnieuw wordt gestart. 
-    restart message EDIT
+    <value>Een of meer wijzigingen vereisen dat OneNote opnieuw wordt gestart. 
+    restart message EDIT</value>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Selecteer een of meer tabelcellen</value>
@@ -2175,8 +2171,8 @@ In deze sectie</value>
     <comment>index button</comment>
   </data>
   <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    Voer een of meer tags in, gescheiden door komma's. 
-    EDIT label
+    <value>Voer een of meer tags in, gescheiden door komma's. 
+    EDIT label</value>
   </data>
   <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
     <value>Actie</value>
@@ -2570,8 +2566,8 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    Cloud laadt fragment van "{0}" niet
-    error message EDIT
+    <value>Cloud laadt fragment van "{0}" niet
+    error message EDIT</value>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Mijn aangepaste fragmenten</value>
@@ -2594,16 +2590,16 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    Fragment "{0}" verwijderen
-    question EDIT
+    <value>Fragment "{0}" verwijderen
+    question EDIT</value>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Beheer mijn aangepaste fragmenten</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    Tekstvak
-    ribbon EDIT
+    <value>Tekstvak
+    ribbon EDIT</value>
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Voeg een tabel met één cel in, eventueel met omloop van geselecteerde tekst</value>
@@ -2922,8 +2918,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    Overzicht samenvouwen
-    ribbon item EDIT
+    <value>Overzicht samenvouwen
+    ribbon item EDIT</value>
   </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>Om Titel Case</value>
@@ -2993,8 +2989,8 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    Link Verwijzingen naar deze pagina
-    ribbon button EDIT
+    <value>Link Verwijzingen naar deze pagina
+    ribbon button EDIT</value>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
@@ -3145,8 +3141,8 @@ ISO-code then comma then language name</comment>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
-    Gemarkeerd met "{0}" als het anker. 
-    message box EDIT
+    <value>Gemarkeerd met "{0}" als het anker. 
+    message box EDIT</value>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>Startanker nog niet gemarkeerd. </value>
@@ -3245,8 +3241,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    Importeren als statische afbeeldingen
-    checkbox EDIT
+    <value>Importeren als statische afbeeldingen
+    checkbox EDIT</value>
   </data>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>Kies een aangepaste kleur</value>
@@ -3271,5 +3267,9 @@ ISO-code then comma then language name</comment>
   <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
     <value>Laad optioneel een van de vooraf gedefinieerde stijlthema's of pas uw eigen thema aan zodat alle inhoud voldoende contrast heeft om zichtbaar te zijn.</value>
     <comment>label</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Paginathema wijzigen</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
 </root>

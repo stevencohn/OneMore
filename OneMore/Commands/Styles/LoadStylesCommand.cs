@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.IO;
 	using System.Threading.Tasks;
@@ -20,11 +21,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string Name
-		{
-			private set;
-			get;
-		}
+		public string Key { private set; get; }
+
+
+		public string Name { private set; get; }
 
 
 		public override async Task Execute(params object[] args)
@@ -47,9 +47,19 @@ namespace River.OneMoreAddIn.Commands
 					var styles = provider.LoadTheme(dialog.FileName);
 					if (styles.Count > 0)
 					{
+						Key = provider.Key;
 						Name = provider.Name;
+
 						provider.Save(styles);
 						ribbon?.Invalidate();
+
+						var setprovider = new SettingsProvider();
+						var settings = setprovider.GetCollection("pageTheme");
+						if (settings.Add("key", provider.Key))
+						{
+							setprovider.SetCollection(settings);
+							setprovider.Save();
+						}
 					}
 					else
 					{

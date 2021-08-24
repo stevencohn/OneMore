@@ -15,6 +15,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public ChangePageColorCommand()
 		{
+			// prevent replay
+			IsCancelled = true;
 		}
 
 
