@@ -9,12 +9,13 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Linq;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
 	/// Loads, save, and manages a cache of styles
 	/// </summary>
-	internal class StyleProvider
+	internal class StyleProvider : Loggable
 	{
 
 		private readonly List<StyleRecord> cache;
@@ -25,43 +26,80 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Initialize a new style cache.
 		/// </summary>
-		public StyleProvider()
+		/// <param name="load">
+		/// If False then does not initialize the provider cache and presumes the instance
+		/// will only be used to Save new style themes.
+		/// </param>
+		public StyleProvider(bool load = true)
 		{
-			cache = new List<StyleRecord>();
-
-			var path = Path.Combine(
-				PathFactory.GetAppDataPath(), Properties.Resources.CustomStylesFilename);
-
-			XElement root = null;
-			if (File.Exists(path))
+			if (!load)
 			{
-				try
-				{
-					root = XElement.Load(path);
-					root.GetAttributeValue("name", out name, Path.GetFileNameWithoutExtension(path));
-				}
-				catch (Exception exc)
-				{
-					Logger.Current.WriteLine($"error reading {path}", exc);
-				}
+				return;
+			}
+
+			// first try appdata\Roaming\OneMore\Themes\CustomStyles.xml
+			var root = Load(Path.Combine(
+				PathFactory.GetAppDataPath(), Resx.ThemesFolder, Resx.CustomColorsFilesname));
+
+			if (root == null)
+			{
+				// second try appdata\Roaming\OneMore\CustomStyles.xml (backwards compatibility)
+				root = Load(Path.Combine(
+					PathFactory.GetAppDataPath(), Resx.CustomColorsFilesname));
 			}
 
 			if (root == null)
 			{
 				// file not found so load default theme
-				root = XElement.Parse(Properties.Resources.CustomStyles);
-				root.GetAttributeValue("name", out name, "Default");
+				root = XElement.Parse(Resx.CustomStyles);
 			}
 
+			root.GetAttributeValue("name", out name, "Default");
 			root.GetAttributeValue("dark", out dark, false);
 
-			//Logger.Current.WriteLine($"loaded theme '{name}' (dark:{dark})");
-			//Logger.Current.WriteLine(root.ToString(SaveOptions.None));
+			//logger.WriteLine($"loaded theme '{name}' (dark:{dark})");
+			//logger.WriteLine(root.ToString(SaveOptions.None));
 
-			foreach (var record in root.Elements("Style"))
+			cache = root.Elements(root.GetDefaultNamespace() + "Style").ToList()
+				.ConvertAll(e => new StyleRecord(e));
+		}
+
+
+		private XElement Load(string path)
+		{
+			if (File.Exists(path))
 			{
-				cache.Add(new StyleRecord(record));
+				try
+				{
+					var root = XElement.Load(path);
+					if (root.Name.LocalName == "CustomStyle" ||
+						root.Name.LocalName == "Theme")
+					{
+						if (root.Attribute("name") == null)
+						{
+							// themes provided by OneMore will have an internal name
+							// but user-defined themes will not so infer from filename
+							root.Add(
+								new XAttribute("name", Path.GetFileNameWithoutExtension(path))
+								);
+						}
+
+						return root;
+					}
+
+					logger.WriteLine($"specified file is not a style theme {path}");
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error reading {path}", exc);
+				}
 			}
+			else
+			{
+				logger.WriteLine($"file not found {path}");
+			}
+
+			return null;
 		}
 
 
@@ -125,6 +163,11 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Load the specified theme file as a collection of styles
+		/// </summary>
+		/// <param name="path">Path of the theme file to load</param>
+		/// <returns>A List of Style items</returns>
 		public List<Style> LoadTheme(string path)
 		{
 			if (File.Exists(path))
@@ -142,7 +185,7 @@ namespace River.OneMoreAddIn
 				}
 				catch (Exception exc)
 				{
-					Logger.Current.WriteLine($"error loading theme {path}", exc);
+					logger.WriteLine($"error loading theme {path}", exc);
 				}
 			}
 
@@ -150,15 +193,22 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Add a new style to or update an existing style in the style collection;
+		/// used to create new styles
+		/// </summary>
+		/// <param name="style">A new style to save</param>
 		public void Save(Style style)
 		{
 			var target = cache.FirstOrDefault(e => e.Name.Equals(style.Name));
 			if (target != null)
 			{
+				// remove existing so it can be replaced
 				cache.Remove(target);
 			}
 			else
 			{
+				// calculate new index
 				style.Index = cache.Max(s => s.Index) + 1;
 			}
 
@@ -168,23 +218,41 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static void Save(List<Style> styles, string path = null)
+		/// <summary>
+		/// Saves a collection of styles to the app data store
+		/// </summary>
+		/// <param name="styles">The list of styles</param>
+		/// <param name="path">The target path including filename</param>
+		public void Save(List<Style> styles, string path = null)
 		{
 			Save(styles.ConvertAll(e => new StyleRecord(e)).OrderBy(e => e.Index), path);
 		}
 
 
-		private static void Save(IEnumerable<StyleRecord> styles, string path = null)
+		private void Save(IEnumerable<StyleRecord> styles, string path = null)
 		{
+			var upgrade = path == null;
+
 			if (path == null)
 			{
-				path = Path.Combine(PathFactory.GetAppDataPath(), Properties.Resources.CustomStylesFilename);
+				path = Path.Combine(
+					PathFactory.GetAppDataPath(), Resx.ThemesFolder, Resx.CustomStylesFilename);
 			}
 
 			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
 
+			var shortName = Path.GetFileNameWithoutExtension(path);
+			if (File.Exists(path))
+			{
+				var theme = Load(path);
+				if (theme != null)
+				{
+					theme.GetAttributeValue("name", out shortName, shortName);
+				}
+			}
+
 			var root = new XElement("Theme",
-				new XAttribute("name", "Custom")
+				new XAttribute("name", shortName)
 				);
 
 			foreach (var style in styles)
@@ -193,6 +261,22 @@ namespace River.OneMoreAddIn
 			}
 
 			root.Save(path, SaveOptions.None);
+
+			if (upgrade)
+			{
+				var old = Path.Combine(PathFactory.GetAppDataPath(), Resx.CustomColorsFilesname);
+				if (File.Exists(old))
+				{
+					try
+					{
+						File.Delete(old);
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine($"failed to delete old file {path}", exc);
+					}
+				}
+			}
 		}
 	}
 }

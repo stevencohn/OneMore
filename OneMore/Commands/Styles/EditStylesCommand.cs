@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// save styles to remove deleted items and preserve ordering
 					styles = dialog.GetStyles();
-					StyleProvider.Save(styles);
+					provider.Save(styles);
 					ribbon.Invalidate();
 				}
 			}

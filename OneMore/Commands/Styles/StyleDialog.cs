@@ -740,7 +740,7 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					StyleProvider.Save(GetStyles(), dialog.FileName);
+					new StyleProvider(false).Save(GetStyles(), dialog.FileName);
 				}
 			}
 		}

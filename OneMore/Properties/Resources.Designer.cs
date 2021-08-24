@@ -1420,10 +1420,10 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;CustomStyles&gt;
+        ///&lt;CustomStyles name=&quot;Orange&quot; dark=&quot;false&quot;&gt;
         ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
         ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot;16.0&quot; spaceBefore=&quot;12.0&quot; sp [rest of string was truncated]&quot;;.
+        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CustomStyles {
             get {
@@ -7185,6 +7185,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TextToTableDialog_unquoteBox_Text {
             get {
                 return ResourceManager.GetString("TextToTableDialog_unquoteBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Themes.
+        /// </summary>
+        internal static string ThemesFolder {
+            get {
+                return ResourceManager.GetString("ThemesFolder", resourceCulture);
             }
         }
         

@@ -3274,4 +3274,8 @@ In this section</value>
     <value>Import as static images</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ThemesFolder" xml:space="preserve">
+    <value>Themes</value>
+    <comment>SKIP</comment>
+  </data>
 </root>
