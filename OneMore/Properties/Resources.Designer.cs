@@ -6939,6 +6939,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Styles.
+        /// </summary>
+        internal static string StyleDialog_ThemeText {
+            get {
+                return ResourceManager.GetString("StyleDialog_ThemeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transparent.
         /// </summary>
         internal static string StyleDialog_transparentToolStripMenuItem_Text {

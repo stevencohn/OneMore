@@ -3263,4 +3263,8 @@ ISO-code then comma then language name</comment>
     <value>Changer le thème de la page</value>
     <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
+  <data name="StyleDialog_ThemeText" xml:space="preserve">
+    <value>{0} Styles</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

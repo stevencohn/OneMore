@@ -62,12 +62,13 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="styles"></param>
 
-		public StyleDialog(List<Style> styles, Color pageColor)
+		public StyleDialog(Theme theme, Color pageColor)
 		{
 			Initialize();
 
-			Text = Resx.StyleDialog_Text;
 			allowEvents = false;
+
+			var styles = theme.GetStyles();
 			LoadStyles(styles);
 
 			if (styles.Count > 0)
@@ -76,6 +77,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			this.pageColor = pageColor;
+
+			Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
 		}
 
 
@@ -640,6 +643,9 @@ namespace River.OneMoreAddIn.Commands
 					if (styles?.Count > 0)
 					{
 						LoadStyles(styles);
+
+						// update dialog title
+						Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
 					}
 					else
 					{

@@ -32,14 +32,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var theme = new ThemeProvider().Theme;
-			var styles = theme.GetStyles();
 
-			using (var dialog = new StyleDialog(styles, pageColor))
+			using (var dialog = new StyleDialog(theme, pageColor))
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
 					// save styles to remove deleted items and preserve ordering
-					styles = dialog.GetStyles();
+					var styles = dialog.GetStyles();
 
 					ThemeProvider.Save(styles, theme.Key);
 					ThemeProvider.RecordTheme(theme.Key);

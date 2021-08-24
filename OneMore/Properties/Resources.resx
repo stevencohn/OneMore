@@ -3298,4 +3298,8 @@ In this section</value>
   <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="StyleDialog_ThemeText" xml:space="preserve">
+    <value>{0} Styles</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

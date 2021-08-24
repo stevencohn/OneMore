@@ -3268,4 +3268,8 @@ ISO-code then comma then language name</comment>
     <value>Opcionalmente, cargue uno de los temas de estilo predefinidos o personalice su propio tema para que todo el contenido tenga suficiente contraste para ser visible.</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_ThemeText" xml:space="preserve">
+    <value>{0} Estilos</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

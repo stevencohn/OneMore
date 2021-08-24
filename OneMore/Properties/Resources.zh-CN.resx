@@ -3260,4 +3260,8 @@ ISO-code then comma then language name</comment>
     <value>或者，加载预定义的样式主题之一或自定义您自己的主题，以便所有内容都有足够的对比度可见。</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_ThemeText" xml:space="preserve">
+    <value>{0} 样式</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

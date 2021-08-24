@@ -3268,4 +3268,8 @@ ISO-code then comma then language name</comment>
     <value>اختياريًا ، قم بتحميل أحد سمات النمط المحددة مسبقًا أو قم بتخصيص المظهر الخاص بك بحيث يحتوي كل المحتوى على تباين كافٍ ليكون مرئيًا.</value>
     <comment>label</comment>
   </data>
+  <data name="StyleDialog_ThemeText" xml:space="preserve">
+    <value>{0} الأنماط</value>
+    <comment>dialog title</comment>
+  </data>
 </root>
