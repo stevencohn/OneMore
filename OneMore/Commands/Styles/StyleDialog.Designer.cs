@@ -196,11 +196,11 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(352, 368);
+			this.okButton.Location = new System.Drawing.Point(314, 368);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(116, 38);
+			this.okButton.Size = new System.Drawing.Size(154, 38);
 			this.okButton.TabIndex = 9;
-			this.okButton.Text = "OK";
+			this.okButton.Text = "OK (Save)";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// namesBox

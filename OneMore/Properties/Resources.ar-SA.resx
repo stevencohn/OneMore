@@ -2027,8 +2027,8 @@
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>حسنا</value>
-    <comment>button</comment>
+    موافق (حفظ)
+    button EDIT
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>إعادة ترتيب</value>

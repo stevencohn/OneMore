@@ -2018,8 +2018,8 @@ Fichier OneNote (*.one)
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>D'accord</value>
-    <comment>button</comment>
+    OK (Enregistrer)
+    button EDIT
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Réorganiser</value>

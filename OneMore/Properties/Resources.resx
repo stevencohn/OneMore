@@ -2267,7 +2267,7 @@ In this section</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>OK (Save)</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">

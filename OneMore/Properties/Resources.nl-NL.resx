@@ -2024,8 +2024,8 @@ OneNote-bestand (*.one)
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
+    OK (Opslaan)
+    button EDIT
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Opnieuw ordenen</value>

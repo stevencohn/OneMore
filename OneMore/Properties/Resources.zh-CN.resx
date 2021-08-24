@@ -2019,8 +2019,8 @@ OneNote文件（*.one）
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
+    确定（保存）
+    button EDIT
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>重新排序</value>

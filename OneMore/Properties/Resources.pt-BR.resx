@@ -2028,8 +2028,8 @@ Arquivo OneNote (*.one)
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>Está bem</value>
-    <comment>button</comment>
+    OK (Salvar)
+    button EDIT
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Reordenar</value>

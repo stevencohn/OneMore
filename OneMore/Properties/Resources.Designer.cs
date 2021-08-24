@@ -6847,7 +6847,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
+        ///   Looks up a localized string similar to OK (Save).
         /// </summary>
         internal static string StyleDialog_okButton_Text {
             get {

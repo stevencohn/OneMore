@@ -48,12 +48,11 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-
 			// load/reload cached theme
 			theme = new ThemeProvider().Theme;
 
 			var count = theme.GetCount();
-			logger.WriteLine($"GetStyleGalleryItemCount() count:{count}");
+			//logger.WriteLine($"GetStyleGalleryItemCount() count:{count}");
 			return count;
 		}
 
