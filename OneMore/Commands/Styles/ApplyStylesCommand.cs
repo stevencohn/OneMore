@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 
 		private Page page;
+		private XNamespace ns;
 		private readonly Stylizer stylizer;
 
 
@@ -32,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out page, out _))
+			using (var one = new OneNote(out page, out ns))
 			{
 				var styles = new StyleProvider().GetStyles();
 				if (ApplyStyles(styles))
@@ -71,8 +72,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var applied = false;
 
-			var ns = page.Namespace;
-
 			var quickStyles = page.Root.Elements(ns + "QuickStyleDef");
 			if (quickStyles?.Any() == true)
 			{
@@ -96,9 +95,10 @@ namespace River.OneMoreAddIn.Commands
 
 							quick.Attribute("font").Value = style.FontFamily;
 
-							// Why does OneNote screw these up?
-							//quick.Attribute("spaceBefore").Value = style.SpaceBefore;
-							//quick.Attribute("spaceAfter").Value = style.SpaceAfter;
+							quick.Attribute("spaceBefore").Value = style.SpaceBefore;
+							quick.Attribute("spaceAfter").Value = style.SpaceAfter;
+							// must also apply to paragraphs otherwise OneNote applies x10 values!
+							SetSpacing(quick.Attribute("index").Value, style.SpaceBefore, style.SpaceAfter);
 
 							quick.Attribute("fontColor").Value = style.Color;
 							quick.Attribute("highlightColor").Value = style.Highlight;
@@ -179,6 +179,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void SetSpacing(string index, string spaceBefore, string spaceAfter)
+		{
+			var paragraphs = page.Root.Descendants(ns + "OE")
+				.Where(e => e.Attribute("quickStyleIndex")?.Value == index);
+
+			foreach (var paragraph in paragraphs)
+			{
+				paragraph.SetAttributeValue("spaceBefore", spaceBefore);
+				paragraph.SetAttributeValue("spaceAfter", spaceAfter);
+			}
+		}
+
+
 		// when applying styles, we want to preserve any special treatments to paragraphs
 		// because that would be tedious for the user to restore manually if their intention 
 		// was to keep those colors, but we want to clear all color styling from every other
@@ -213,7 +226,6 @@ namespace River.OneMoreAddIn.Commands
 				};
 			}
 
-			var ns = page.Namespace;
 			var elements = page.Root.Descendants(ns + "Bullet");
 			if (elements?.Any() == true)
 			{
