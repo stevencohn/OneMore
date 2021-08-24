@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Drawing;
 	using System.Linq;
@@ -34,16 +35,14 @@ namespace River.OneMoreAddIn.Commands
 					pageColor = page.GetPageColor(out _, out _);
 				}
 
-				DialogResult result;
 				using (var dialog = new StyleDialog(style, pageColor))
 				{
-					result = dialog.ShowDialog(owner);
-					if (result == DialogResult.OK)
+					if (dialog.ShowDialog(owner) == DialogResult.OK)
 					{
 						style = dialog.Style;
 						if (style != null)
 						{
-							new StyleProvider().Save(style);
+							ThemeProvider.Save(style);
 							ribbon.Invalidate();
 						}
 					}

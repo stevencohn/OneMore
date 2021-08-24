@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -195,9 +196,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 		#endregion Lifecycle
-
-
-		public string ThemeName { private set; get; }
 
 
 		private void ShowSelection()
@@ -637,12 +635,11 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					var provider = new StyleProvider();
-					var styles = provider.LoadTheme(dialog.FileName);
-					if (styles.Count > 0)
+					var theme = new ThemeProvider(dialog.FileName).Theme;
+					var styles = theme?.GetStyles();
+					if (styles?.Count > 0)
 					{
 						LoadStyles(styles);
-						ThemeName = provider.Key;
 					}
 					else
 					{
@@ -745,7 +742,7 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					new StyleProvider(false).Save(GetStyles(), dialog.FileName);
+					ThemeProvider.Save(GetStyles(), dialog.FileName);
 				}
 			}
 		}

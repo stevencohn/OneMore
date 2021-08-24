@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Styles
 		public Theme Theme => theme;
 
 
-		public static string GetSavedKey()
+		private static string GetSavedKey()
 		{
 			var sp = new SettingsProvider();
 			var settings = sp.GetCollection(SettingsKey);
@@ -145,6 +145,29 @@ namespace River.OneMoreAddIn.Styles
 				setprovider.SetCollection(settings);
 				setprovider.Save();
 			}
+		}
+
+
+		public static void Save(Style style)
+		{
+			var theme = new ThemeProvider().Theme;
+			var styles = theme.GetStyles();
+
+			var suspect = styles.FirstOrDefault(s => s.Name == style.Name);
+			if (suspect != null)
+			{
+				// remove existing so it can be replaced
+				styles.Remove(suspect);
+			}
+			else
+			{
+				// calculate new index
+				style.Index = styles.Max(s => s.Index) + 1;
+			}
+
+			styles.Add(style);
+
+			Save(styles.OrderBy(s => s.Index).ToList(), theme.Key);
 		}
 
 
