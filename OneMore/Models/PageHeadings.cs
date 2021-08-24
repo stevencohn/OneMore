@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -29,7 +30,7 @@ namespace River.OneMoreAddIn.Models
 		{
 			quickStyles = GetQuickStyles();
 
-			customStyles = new StyleProvider().GetStyles()
+			customStyles = new ThemeProvider().Theme.GetStyles()
 				.Where(e => e.StyleType == StyleType.Heading)
 				.OrderBy(e => e.Index)
 				.ToList();

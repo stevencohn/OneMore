@@ -381,6 +381,8 @@
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
+    <Compile Include="Styles\Theme.cs" />
+    <Compile Include="Styles\ThemeProvider.cs" />
     <Compile Include="UI\ColorsComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -538,7 +540,7 @@
     <Compile Include="UI\HierarchyView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Helpers\GalleryTileFactory.cs" />
+    <Compile Include="UI\TileFactory.cs" />
     <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
     <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />
     <Compile Include="Commands\Snippets\InsertInfoBlockCommand.cs" />
@@ -867,7 +869,7 @@
     <Content Include="Properties\Images\UpArrow.png" />
     <Content Include="Properties\Images\Logo.png" />
     <Content Include="Properties\Images\NoSpellCheck.png" />
-    <Content Include="Properties\CustomStyles.xml" />
+    <Content Include="Properties\DefaultStyles.xml" />
     <Content Include="Properties\Images\WrapText.png" />
     <Content Include="Properties\Ribbon.xml">
       <SubType>Designer</SubType>

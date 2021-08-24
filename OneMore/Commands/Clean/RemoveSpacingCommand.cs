@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Styles;
 	using System.Globalization;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 				var quickStyles = page.GetQuickStyles()
 					.Where(s => s.StyleType == StyleType.Heading);
 
-				var customStyles = new StyleProvider().GetStyles()
+				var customStyles = new ThemeProvider().Theme.GetStyles()
 					.Where(e => e.StyleType == StyleType.Heading)
 					.ToList();
 

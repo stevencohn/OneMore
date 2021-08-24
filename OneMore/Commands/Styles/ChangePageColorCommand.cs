@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 				var currentlydDark = currentColor.GetBrightness() < 0.5;
 
 				using (var dialog = 
-					new ChangePageColorDialog(currentColor, currentlydDark, ribbon))
+					new ChangePageColorDialog(currentColor))
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{

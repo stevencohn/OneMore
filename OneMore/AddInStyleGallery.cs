@@ -9,6 +9,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 	using System.Runtime.InteropServices.ComTypes;
 
@@ -16,6 +17,7 @@ namespace River.OneMoreAddIn
 	public partial class AddIn
 	{
 		private static Color pageColor;
+		private static Theme theme;
 
 
 		/*
@@ -46,8 +48,12 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			var count = new StyleProvider().Count;
-			//logger.WriteLine($"GetStyleGalleryItemCount() count:{count}");
+
+			// load/reload cached theme
+			theme = new ThemeProvider().Theme;
+
+			var count = theme.GetCount();
+			logger.WriteLine($"GetStyleGalleryItemCount() count:{count}");
 			return count;
 		}
 
@@ -74,7 +80,7 @@ namespace River.OneMoreAddIn
 		public IStream GetStyleGalleryItemImage(IRibbonControl control, int itemIndex)
 		{
 			//logger.WriteLine($"GetStyleGalleryItemImage({control.Id}, {itemIndex})");
-			return new GalleryTileFactory().MakeTile(itemIndex, pageColor);
+			return new TileFactory().MakeTile(theme.GetStyle(itemIndex), pageColor);
 		}
 
 
@@ -86,7 +92,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetStyleGalleryItemScreentip(IRibbonControl control, int itemIndex)
 		{
-			var tip = new StyleProvider().GetName(itemIndex);
+			var tip = theme.GetName(itemIndex);
 
 			if (itemIndex < 9)
 			{

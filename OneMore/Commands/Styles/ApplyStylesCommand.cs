@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -35,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out page, out ns))
 			{
-				var styles = new StyleProvider().GetStyles();
+				var styles = new ThemeProvider().Theme.GetStyles();
 				if (ApplyStyles(styles))
 				{
 					ApplyToLists(styles);
@@ -54,9 +55,9 @@ namespace River.OneMoreAddIn.Commands
 		public void Apply(Page page)
 		{
 			this.page = page;
-			this.ns = page.Namespace;
+			ns = page.Namespace;
 
-			var styles = new StyleProvider().GetStyles();
+			var styles = new ThemeProvider().Theme.GetStyles();
 			if (ApplyStyles(styles))
 			{
 				ApplyToLists(styles);
@@ -92,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 							//	$"~ name:{quick.Attribute("name").Value} style:{style.Name}");
 
 							// could use QuickStyleDef class here but this is faster
-							// that replacing the element...
+							// than replacing the element...
 
 							quick.Attribute("font").Value = style.FontFamily;
 
@@ -103,6 +104,10 @@ namespace River.OneMoreAddIn.Commands
 
 							quick.Attribute("fontColor").Value = style.Color;
 							quick.Attribute("highlightColor").Value = style.Highlight;
+
+							quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
+							quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
+							quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
 
 							if (name == "p")
 							{

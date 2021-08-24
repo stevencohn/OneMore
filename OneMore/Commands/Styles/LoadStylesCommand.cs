@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.IO;
 	using System.Threading.Tasks;
@@ -21,10 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string Key { private set; get; }
-
-
-		public string Name { private set; get; }
+		public Theme Theme { private set; get; }
 
 
 		public override async Task Execute(params object[] args)
@@ -32,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var dialog = new OpenFileDialog())
 			{
 				dialog.DefaultExt = "xml";
+				dialog.AddExtension = true;
 				dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
 				dialog.Multiselect = false;
 				dialog.Title = "Open Style Theme";
@@ -43,23 +41,16 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
-					var provider = new StyleProvider();
-					var styles = provider.LoadTheme(dialog.FileName);
+					var provider = new ThemeProvider(dialog.FileName);
+					var theme = provider.Theme;
+
+					var styles = theme.GetStyles();
 					if (styles.Count > 0)
 					{
-						Key = provider.Key;
-						Name = provider.Name;
+						Theme = theme;
 
-						provider.Save(styles);
+						ThemeProvider.RecordTheme(theme.Key);
 						ribbon?.Invalidate();
-
-						var setprovider = new SettingsProvider();
-						var settings = setprovider.GetCollection("pageTheme");
-						if (settings.Add("key", provider.Key))
-						{
-							setprovider.SetCollection(settings);
-							setprovider.Save();
-						}
 					}
 					else
 					{

@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn
 			{
 				// file not found so load default theme
 				path = "Default.xml";
-				root = XElement.Parse(Resx.CustomStyles);
+				root = XElement.Parse(Resx.DefaultStyles);
 			}
 
 			key = Path.GetFileNameWithoutExtension(path);

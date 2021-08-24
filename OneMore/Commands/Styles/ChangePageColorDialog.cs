@@ -6,8 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Microsoft.Office.Core;
-	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -15,12 +14,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ChangePageColorDialog : UI.LocalizableForm
 	{
-		private Color pageColor;
-		private bool pageDark;
-		private IRibbonUI ribbon;
 
-
-		public ChangePageColorDialog(Color pageColor, bool dark, IRibbonUI ribbon)
+		public ChangePageColorDialog(Color pageColor)
 		{
 			InitializeComponent();
 
@@ -43,12 +38,7 @@ namespace River.OneMoreAddIn.Commands
 
 			colorsBox.SetColor(pageColor);
 
-			this.pageColor = pageColor;
-			pageDark = pageColor.GetBrightness() < 0.5;
-
-			themeLabel.Text = GetCurrentThemeName();
-
-			this.ribbon = ribbon;
+			themeLabel.Text = new ThemeProvider().Theme.Key;
 		}
 
 
@@ -66,25 +56,6 @@ namespace River.OneMoreAddIn.Commands
 
 				return colorsBox.Color.ToRGBHtml();
 			}
-		}
-
-
-		private string GetCurrentThemeName()
-		{
-			var sp = new SettingsProvider();
-			var settings = sp.GetCollection("pageTheme");
-			if (settings != null)
-			{
-				var key = settings.Get<string>("key");
-				if (!string.IsNullOrEmpty(key))
-				{
-					var stylesProvider = new StyleProvider();
-					stylesProvider.LoadTheme(key);
-					return stylesProvider.Name;
-				}
-			}
-
-			return string.Empty;
 		}
 
 
@@ -108,9 +79,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void AnalyzeColorSelection(object sender, System.EventArgs e)
 		{
-			var provider = new StyleProvider();
-
-			logger.WriteLine($"analyzing theme {provider.Key} (dark:{provider.Dark})");
+			//var provider = new StyleProvider();
+			//logger.WriteLine($"analyzing theme {provider.Key} (dark:{provider.Dark})");
 		}
 
 		private async void LoadStyleTheme(object sender, LinkLabelLinkClickedEventArgs e)
@@ -118,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 			var loader = new LoadStylesCommand();
 			await loader.Execute();
 
-			themeLabel.Text = loader.Name;
+			themeLabel.Text = loader.Theme.Name;
 		}
 	}
 }

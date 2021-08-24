@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -31,8 +31,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var provider = new StyleProvider();
-			var styles = provider.GetStyles();
+			var theme = new ThemeProvider().Theme;
+			var styles = theme.GetStyles();
 
 			using (var dialog = new StyleDialog(styles, pageColor))
 			{
@@ -40,16 +40,11 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// save styles to remove deleted items and preserve ordering
 					styles = dialog.GetStyles();
-					provider.Save(styles);
-					ribbon.Invalidate();
 
-					var setprovider = new SettingsProvider();
-					var settings = setprovider.GetCollection("pageTheme");
-					if (settings.Add("key", dialog.ThemeName))
-					{
-						setprovider.SetCollection(settings);
-						setprovider.Save();
-					}
+					ThemeProvider.Save(styles, theme.Key);
+					ThemeProvider.RecordTheme(theme.Key);
+
+					ribbon.Invalidate();
 				}
 			}
 
