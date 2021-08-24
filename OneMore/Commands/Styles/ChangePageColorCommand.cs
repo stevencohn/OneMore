@@ -25,12 +25,15 @@ namespace River.OneMoreAddIn.Commands
 				var currentColor = page.GetPageColor(out _, out _);
 				var currentlydDark = currentColor.GetBrightness() < 0.5;
 
-				using (var dialog = new ChangePageColorDialog(currentColor, currentlydDark))
+				using (var dialog = 
+					new ChangePageColorDialog(currentColor, currentlydDark, ribbon))
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
 						return;
 					}
+
+					ribbon.Invalidate();
 
 					var element = page.Root
 						.Elements(page.Namespace + "PageSettings")
@@ -58,9 +61,9 @@ namespace River.OneMoreAddIn.Commands
 
 						logger.WriteLine($"color set to {dialog.PageColor} (dark:{dark})");
 
-						if (dark != currentlydDark)
+						if (dialog.ApplyStyle)
 						{
-							//
+							new ApplyStylesCommand().Apply(page);
 						}
 
 						await one.Update(page);

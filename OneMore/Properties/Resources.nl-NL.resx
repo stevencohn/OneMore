@@ -491,8 +491,8 @@
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Paginakleur instellen</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+    Paginathema instellen
+    Ribbon Custom Styles menu item, set page background color EDIT
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Plak Rich Text</value>
@@ -606,8 +606,8 @@ OneNote wordt automatisch gesloten</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Wijzig de paginakleur</value>
-    <comment>dialog title</comment>
+    Paginathema wijzigen
+    dialog title EDIT
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>annuleren</value>
@@ -3251,5 +3251,25 @@ ISO-code then comma then language name</comment>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>Kies een aangepaste kleur</value>
     <comment>link</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>Laad stijlen</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>Stijlthema toepassen op deze pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Huidig ​​thema:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>Een stijlthema laden</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>Laad optioneel een van de vooraf gedefinieerde stijlthema's of pas uw eigen thema aan zodat alle inhoud voldoende contrast heeft om zichtbaar te zijn.</value>
+    <comment>label</comment>
   </data>
 </root>

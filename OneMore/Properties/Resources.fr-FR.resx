@@ -490,8 +490,8 @@
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Définir la couleur de la page</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+    Définir le thème de la page
+    Ribbon Custom Styles menu item, set page background color EDIT
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Coller du texte enrichi</value>
@@ -602,8 +602,8 @@
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Changer la couleur de la page</value>
-    <comment>dialog title</comment>
+    Changer le thème de la page
+    dialog title EDIT
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
@@ -3245,5 +3245,25 @@ ISO-code then comma then language name</comment>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>Choisissez une couleur personnalisée</value>
     <comment>link</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>Styles de charge</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>Appliquer le thème de style à cette page</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Thème actuel :</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>Charger un thème de style</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>En option, chargez l'un des thèmes de style prédéfinis ou personnalisez votre propre thème afin que tout le contenu ait suffisamment de contraste pour être visible.</value>
+    <comment>label</comment>
   </data>
 </root>

@@ -39,13 +39,13 @@ namespace River.OneMoreAddIn
 
 			// first try appdata\Roaming\OneMore\Themes\CustomStyles.xml
 			var root = Load(Path.Combine(
-				PathFactory.GetAppDataPath(), Resx.ThemesFolder, Resx.CustomColorsFilesname));
+				PathFactory.GetAppDataPath(), Resx.ThemesFolder, Resx.CustomStylesFilename));
 
 			if (root == null)
 			{
 				// second try appdata\Roaming\OneMore\CustomStyles.xml (backwards compatibility)
 				root = Load(Path.Combine(
-					PathFactory.GetAppDataPath(), Resx.CustomColorsFilesname));
+					PathFactory.GetAppDataPath(), Resx.CustomStylesFilename));
 			}
 
 			if (root == null)
@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn
 				try
 				{
 					var root = XElement.Load(path);
-					if (root.Name.LocalName == "CustomStyle" ||
+					if (root.Name.LocalName == "CustomStyles" ||
 						root.Name.LocalName == "Theme")
 					{
 						if (root.Attribute("name") == null)
@@ -88,16 +88,17 @@ namespace River.OneMoreAddIn
 					}
 
 					logger.WriteLine($"specified file is not a style theme {path}");
+					logger.WriteLine(root);
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine($"error reading {path}", exc);
 				}
 			}
-			else
-			{
-				logger.WriteLine($"file not found {path}");
-			}
+			//else
+			//{
+			//	logger.WriteLine($"file not found {path}");
+			//}
 
 			return null;
 		}
@@ -174,14 +175,17 @@ namespace River.OneMoreAddIn
 			{
 				try
 				{
-					var root = XElement.Load(path);
-					var ns = root.GetDefaultNamespace();
+					var root = Load(path);
+					if (root != null)
+					{
+						var ns = root.GetDefaultNamespace();
 
-					root.GetAttributeValue("name", out name, Path.GetFileNameWithoutExtension(path));
-					root.GetAttributeValue("dark", out dark, false);
+						root.GetAttributeValue("name", out name, Path.GetFileNameWithoutExtension(path));
+						root.GetAttributeValue("dark", out dark, false);
 
-					return root.Elements(ns + "Style").ToList()
-						.ConvertAll(e => new Style(new StyleRecord(e)));
+						return root.Elements(ns + "Style").ToList()
+							.ConvertAll(e => new Style(new StyleRecord(e)));
+					}
 				}
 				catch (Exception exc)
 				{
@@ -264,7 +268,7 @@ namespace River.OneMoreAddIn
 
 			if (upgrade)
 			{
-				var old = Path.Combine(PathFactory.GetAppDataPath(), Resx.CustomColorsFilesname);
+				var old = Path.Combine(PathFactory.GetAppDataPath(), Resx.CustomStylesFilename);
 				if (File.Exists(old))
 				{
 					try

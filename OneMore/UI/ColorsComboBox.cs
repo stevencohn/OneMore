@@ -211,7 +211,7 @@ namespace River.OneMoreAddIn.UI
 						using (var pen = new Pen(dark ? Color.Red : Color.Blue, 2)
 						{
 							DashStyle = DashStyle.Dash,
-							DashPattern = new float[] { 4, 3 }
+							DashPattern = new float[] { 3, 2 }
 						})
 						{
 							e.Graphics.DrawRectangle(pen, e.Bounds);

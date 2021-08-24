@@ -16,6 +16,11 @@
             getItemScreentip="GetStyleGalleryItemScreentip"
             onAction="ApplyStyleCmd">
             <button
+              id="ribLoadStylesButton"
+              getLabel="GetRibbonLabel"
+              imageMso="SharingOpenWssDocumentList"
+              onAction="LoadStylesCmd"/>
+            <button
               id="ribEditStylesButton"
               getLabel="GetRibbonLabel"
               imageMso="StylesModifyStyle"

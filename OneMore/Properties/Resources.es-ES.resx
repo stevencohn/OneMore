@@ -490,8 +490,8 @@
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Establecer color de página</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+    Establecer tema de página
+    Ribbon Custom Styles menu item, set page background color EDIT
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Pegar texto enriquecido</value>
@@ -605,8 +605,8 @@ OneNote se cerrará automáticamente</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Cambiar el color de la página</value>
-    <comment>dialog title</comment>
+    Cambiar tema de página
+    dialog title EDIT
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
@@ -3250,5 +3250,25 @@ ISO-code then comma then language name</comment>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>Elige un color personalizado</value>
     <comment>link</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>Cargar estilos</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>Aplicar tema de estilo a esta página</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Tema actual:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>Cargar un tema de estilo</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>Opcionalmente, cargue uno de los temas de estilo predefinidos o personalice su propio tema para que todo el contenido tenga suficiente contraste para ser visible.</value>
+    <comment>label</comment>
   </data>
 </root>

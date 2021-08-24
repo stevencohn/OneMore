@@ -751,6 +751,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply style theme to this page.
+        /// </summary>
+        internal static string ChangePageColorDialog_applyBox {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_applyBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ChangePageColorDialog_cancelButton_Text {
@@ -769,11 +778,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Theme:.
+        /// </summary>
+        internal static string ChangePageColorDialog_currentLabel {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_currentLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible..
         /// </summary>
         internal static string ChangePageColorDialog_introLabel_Text {
             get {
                 return ResourceManager.GetString("ChangePageColorDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load a style theme.
+        /// </summary>
+        internal static string ChangePageColorDialog_loadLink {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_loadLink", resourceCulture);
             }
         }
         
@@ -787,11 +814,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Page Color.
+        ///   Looks up a localized string similar to Change Page Theme.
         /// </summary>
         internal static string ChangePageColorDialog_Text {
             get {
                 return ResourceManager.GetString("ChangePageColorDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible..
+        /// </summary>
+        internal static string ChangePageColorDialog_themeIntroLabel {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_themeIntroLabel", resourceCulture);
             }
         }
         
@@ -1420,10 +1456,10 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;CustomStyles name=&quot;Orange&quot; dark=&quot;false&quot;&gt;
+        ///&lt;CustomStyles name=&quot;Default&quot; dark=&quot;false&quot;&gt;
         ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
         ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot; [rest of string was truncated]&quot;;.
+        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize= [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CustomStyles {
             get {
@@ -4817,6 +4853,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load Styles.
+        /// </summary>
+        internal static string ribLoadStylesButton_Label {
+            get {
+                return ResourceManager.GetString("ribLoadStylesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To lowercase.
         /// </summary>
         internal static string ribLowercaseButton_Label {
@@ -4970,7 +5015,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Page Color.
+        ///   Looks up a localized string similar to Set Page Theme.
         /// </summary>
         internal static string ribPageColorButton_Label {
             get {

@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Office.Core;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -14,9 +15,11 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class ChangePageColorDialog : UI.LocalizableForm
 	{
 		private Color pageColor;
+		private bool pageDark;
+		private IRibbonUI ribbon;
 
 
-		public ChangePageColorDialog(Color pageColor, bool dark)
+		public ChangePageColorDialog(Color pageColor, bool dark, IRibbonUI ribbon)
 		{
 			InitializeComponent();
 
@@ -28,6 +31,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introLabel",
 					"customLink",
+					"themeIntroLabel",
+					"currentLabel",
+					"loadLink",
+					"applyBox",
 					"cancelButton",
 					"okButton"
 				});
@@ -36,7 +43,15 @@ namespace River.OneMoreAddIn.Commands
 			colorsBox.SetColor(pageColor);
 
 			this.pageColor = pageColor;
+			pageDark = pageColor.GetBrightness() < 0.5;
+
+			themeLabel.Text = new StyleProvider().Name;
+
+			this.ribbon = ribbon;
 		}
+
+
+		public bool ApplyStyle => applyBox.Checked;
 
 
 		public string PageColor
@@ -76,6 +91,14 @@ namespace River.OneMoreAddIn.Commands
 			var provider = new StyleProvider();
 
 			logger.WriteLine($"analyzing theme {provider.Name} (dark:{provider.Dark})");
+		}
+
+		private async void LoadStyleTheme(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var loader = new LoadStylesCommand();
+			await loader.Execute();
+
+			themeLabel.Text = loader.Name;
 		}
 	}
 }

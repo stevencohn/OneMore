@@ -495,7 +495,7 @@
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Set Page Color</value>
+    <value>Set Page Theme</value>
     <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
@@ -612,7 +612,7 @@ OneNote will close automatically</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Change Page Color</value>
+    <value>Change Page Theme</value>
     <comment>dialog title</comment>
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
@@ -3277,5 +3277,25 @@ In this section</value>
   <data name="ThemesFolder" xml:space="preserve">
     <value>Themes</value>
     <comment>SKIP</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>Load Styles</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>Apply style theme to this page</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Current Theme:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>Load a style theme</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible.</value>
+    <comment>label</comment>
   </data>
 </root>

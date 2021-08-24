@@ -490,8 +490,8 @@
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Seitenfarbe einstellen</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+    Seitenthema festlegen
+    Ribbon Custom Styles menu item, set page background color EDIT
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Rich Text einfügen</value>
@@ -602,8 +602,8 @@
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Seitenfarbe ändern</value>
-    <comment>dialog title</comment>
+    Seitenthema ändern
+    dialog title EDIT
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>Stornieren</value>
@@ -3236,5 +3236,25 @@ ISO-code then comma then language name</comment>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>Wählen Sie eine benutzerdefinierte Farbe</value>
     <comment>link</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>Stile laden</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>Wenden Sie das Stilthema auf diese Seite an</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Aktuelles Thema:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>Laden Sie ein Stilthema</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>Laden Sie optional eines der vordefinierten Stilthemen oder passen Sie Ihr eigenes Thema an, damit alle Inhalte genug Kontrast haben, um sichtbar zu sein.</value>
+    <comment>label</comment>
   </data>
 </root>

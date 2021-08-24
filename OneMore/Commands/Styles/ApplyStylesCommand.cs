@@ -50,6 +50,23 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public void Apply(Page page)
+		{
+			this.page = page;
+
+			var styles = new StyleProvider().GetStyles();
+			if (ApplyStyles(styles))
+			{
+				ApplyToLists(styles);
+
+				if (page.GetPageColor(out _, out _).GetBrightness() < 0.5)
+				{
+					ApplyToHyperlinks();
+				}
+			}
+		}
+
+
 		private bool ApplyStyles(List<Style> styles)
 		{
 			var applied = false;

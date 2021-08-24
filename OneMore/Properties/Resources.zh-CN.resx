@@ -490,8 +490,8 @@
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>设置页面颜色</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+    设置页面主题
+    Ribbon Custom Styles menu item, set page background color EDIT
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>粘贴富文本</value>
@@ -607,8 +607,8 @@ OneNote 将自动关闭</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>更改页面颜色</value>
-    <comment>dialog title</comment>
+    更改页面主题
+    dialog title EDIT
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>取消</value>
@@ -3242,5 +3242,25 @@ ISO-code then comma then language name</comment>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>选择自定义颜色</value>
     <comment>link</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>加载样式</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>将样式主题应用到此页面</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>当前主题：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>加载样式主题</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>或者，加载预定义的样式主题之一或自定义您自己的主题，以便所有内容都有足够的对比度可见。</value>
+    <comment>label</comment>
   </data>
 </root>
