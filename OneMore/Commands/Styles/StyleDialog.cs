@@ -204,7 +204,39 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Lifecycle
 
 
-		public string ThemeKey => theme.Key;
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		/// <summary>
+		/// Gets the currently selected custom style. Used when creating a single new style
+		/// </summary>
+		public Style Style
+		{
+			get
+			{
+				var style = selection.GetStyle();
+
+				style.Name = nameBox.Text;
+
+				if (subButton.Checked) style.IsSubscript = true;
+				if (superButton.Checked) style.IsSuperscript = true;
+
+				return style;
+			}
+		}
+
+
+		/// <summary>
+		/// Get the modified theme. Used when editing an entire theme.
+		/// </summary>
+		public Theme Theme => new Theme(MakeStyles(), theme.Key, theme.Name, theme.Dark);
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		private List<Style> MakeStyles()
+		{
+			return namesBox.Items.Cast<GraphicStyle>().ToList().ConvertAll(e => e.GetStyle());
+		}
 
 
 		private void ShowSelection()
@@ -256,31 +288,6 @@ namespace River.OneMoreAddIn.Commands
 			previewBox.Invalidate();
 		}
 
-
-		/// <summary>
-		/// Gets the currently selected custom style
-		/// </summary>
-		public Style Style
-		{
-			get
-			{
-				var style = selection.GetStyle();
-
-				style.Name = nameBox.Text;
-
-				if (subButton.Checked) style.IsSubscript = true;
-				if (superButton.Checked) style.IsSuperscript = true;
-
-				return style;
-			}
-		}
-
-
-		public List<Style> GetStyles() =>
-			namesBox.Items.Cast<GraphicStyle>().ToList().ConvertAll(e => e.GetStyle());
-
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private void RepaintSample(object sender, PaintEventArgs e)
 		{
@@ -606,9 +613,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private void AddStyle(object sender, EventArgs e)
 		{
+			var index = 0;
+			foreach (GraphicStyle style in namesBox.Items)
+			{
+				if (index <= style.Index)
+					index = style.Index + 1;
+			}
+
 			namesBox.Items.Add(new GraphicStyle(new Style
 			{
-				Name = "Style-" + new Random().Next(1000, 9999).ToString()
+				Name = "Style-" + new Random().Next(1000, 9999).ToString(),
+				Index = index
 			},
 			false));
 
@@ -732,6 +747,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
 		private void SaveTheme(object sender, EventArgs e)
 		{
 			using (var dialog = new SaveFileDialog())
@@ -755,7 +771,9 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					ThemeProvider.Save(GetStyles(), dialog.FileName);
+					var key = Path.GetFileNameWithoutExtension(dialog.FileName);
+					theme = new Theme(MakeStyles(), key, key, theme.Dark);
+					ThemeProvider.Save(theme, dialog.FileName);
 
 					Text = string.Format(
 						Resx.StyleDialog_ThemeText,

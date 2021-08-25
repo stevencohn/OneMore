@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -27,7 +28,8 @@ namespace River.OneMoreAddIn.Commands
 				pageColor = page.GetPageColor(out _, out var black);
 				if (black)
 				{
-					pageColor = ColorTranslator.FromHtml("#201F1E");
+					// if Office Black theme, translate to softer Black Shadow
+					pageColor = BasicColors.BlackSmoke;
 				}
 			}
 
@@ -37,11 +39,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					// save styles to remove deleted items and preserve ordering
-					var styles = dialog.GetStyles();
-
-					ThemeProvider.Save(styles, dialog.ThemeKey);
-					ThemeProvider.RecordTheme(dialog.ThemeKey);
+					ThemeProvider.Save(dialog.Theme);
+					ThemeProvider.RecordTheme(dialog.Theme.Key);
 
 					ribbon.Invalidate();
 				}

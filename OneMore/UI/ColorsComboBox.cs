@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.UI
 				new Swatch(Color.Linen.Name, Color.Linen),
 				// dark
 				new Swatch(Color.Black.Name, Color.Black),
-				new Swatch("Black Smoke", Color.FromArgb(64, 64, 64)),
+				new Swatch("Black Smoke", BasicColors.BlackSmoke),
 				new Swatch(Color.DarkCyan.Name, Color.FromArgb(39, 81, 81)),
 				new Swatch(Color.DarkOliveGreen.Name, Color.FromArgb(41, 53, 34)),
 				new Swatch(Color.DarkSlateBlue.Name, Color.FromArgb(46, 46, 73)),

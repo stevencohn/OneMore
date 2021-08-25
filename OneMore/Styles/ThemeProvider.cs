@@ -151,32 +151,24 @@ namespace River.OneMoreAddIn.Styles
 		public static void Save(Style style)
 		{
 			var theme = new ThemeProvider().Theme;
-			var styles = theme.GetStyles();
-
-			var suspect = styles.FirstOrDefault(s => s.Name == style.Name);
-			if (suspect != null)
-			{
-				// remove existing so it can be replaced
-				styles.Remove(suspect);
-			}
-			else
-			{
-				// calculate new index
-				style.Index = styles.Max(s => s.Index) + 1;
-			}
-
-			styles.Add(style);
-
-			Save(styles.OrderBy(s => s.Index).ToList(), theme.Key);
+			theme.ReplaceStyle(style);
+			Save(theme);
 		}
 
 
-		public static void Save(List<Style> styles, string key)
+		public static void Save(Theme theme, string path = null)
 		{
-			var path = key;
-			if (string.IsNullOrEmpty(Path.GetDirectoryName(key)))
+			string key;
+			string name;
+			if (string.IsNullOrEmpty(path))
 			{
-				path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder, key);
+				path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder, theme.Key);
+				key = theme.Key;
+				name = theme.Name;
+			}
+			else
+			{
+				key = name = Path.GetFileNameWithoutExtension(path);
 			}
 
 			if (string.IsNullOrEmpty(Path.GetExtension(path)))
@@ -186,26 +178,14 @@ namespace River.OneMoreAddIn.Styles
 
 			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
 
-			var root = new XElement("Theme");
+			// create a new instance to handle the save-as workflow
+			var root = new XElement("Theme",
+				new XAttribute("key", key),
+				new XAttribute("name", name),
+				new XAttribute("dark", theme.Dark)
+				);
 
-			if (File.Exists(path))
-			{
-				var theme = new ThemeProvider(path).Theme;
-				if (theme != null)
-				{
-					root.Add(new XAttribute("name", theme.Name));
-					root.Add(new XAttribute("dark", theme.Dark.ToString()));
-				}
-			}
-
-			if (root.Attribute("name") == null)
-			{
-				root.Add(new XAttribute("name", Path.GetFileNameWithoutExtension(key)));
-			}
-
-			var records = styles.ConvertAll(e => new StyleRecord(e)).OrderBy(e => e.Index);
-
-			foreach (var record in records)
+			foreach (var record in theme.GetRecords())
 			{
 				root.Add(record.ToXElement());
 			}
