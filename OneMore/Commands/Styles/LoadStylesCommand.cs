@@ -46,6 +46,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Title = "Open Style Theme";
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 				dialog.AutoUpgradeEnabled = true; // simpler UI, faster
+				dialog.InitialDirectory = path;
 
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
