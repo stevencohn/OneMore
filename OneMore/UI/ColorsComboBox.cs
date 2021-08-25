@@ -8,9 +8,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
 	using System.Drawing.Text;
-	using System.Linq;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -23,7 +21,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			public readonly string Name;
 			public Color Color;
-			public Swatch (string name, Color color) { Name = name; Color = color; }
+			public Swatch(string name, Color color) { Name = name; Color = color; }
 		}
 
 		private const string arrow = "\u00E8"; // black right arrow
@@ -38,29 +36,29 @@ namespace River.OneMoreAddIn.UI
 
 		public ColorsComboBox()
 		{
-			Items.AddRange(new []
+			Items.AddRange(new[]
 			{
 				// light
 				new Swatch(Color.White.Name, Color.White),
+				new Swatch(Color.WhiteSmoke.Name, Color.WhiteSmoke),
 				new Swatch(Color.AliceBlue.Name, Color.AliceBlue),
+				new Swatch(Color.MintCream.Name, Color.MintCream),
 				new Swatch(Color.Honeydew.Name, Color.Honeydew),
 				new Swatch(Color.Ivory.Name, Color.Ivory),
-				new Swatch(Color.Linen.Name, Color.Linen),
-				new Swatch(Color.MintCream.Name, Color.MintCream),
-				new Swatch(Color.SeaShell.Name, Color.SeaShell),
 				new Swatch(Color.Snow.Name, Color.Snow),
-				new Swatch(Color.WhiteSmoke.Name, Color.WhiteSmoke),
+				new Swatch(Color.SeaShell.Name, Color.SeaShell),
+				new Swatch(Color.Linen.Name, Color.Linen),
 				// dark
 				new Swatch(Color.Black.Name, Color.Black),
 				new Swatch("Black Smoke", Color.FromArgb(64, 64, 64)),
-				new Swatch(Color.DarkCyan.Name, Color.DarkCyan),
-				new Swatch(Color.DarkOliveGreen.Name, Color.DarkOliveGreen),
-				new Swatch(Color.DarkSlateBlue.Name, Color.DarkSlateBlue),
-				new Swatch(Color.DimGray.Name, Color.DimGray),
-				new Swatch(Color.MidnightBlue.Name, Color.MidnightBlue),
-				new Swatch(Color.SaddleBrown.Name, Color.SaddleBrown),
-				new Swatch(Color.DarkSlateBlue.Name, Color.DarkSlateBlue),
-				new Swatch(Color.SteelBlue.Name, Color.SteelBlue),
+				new Swatch(Color.DarkCyan.Name, Color.FromArgb(39, 81, 81)),
+				new Swatch(Color.DarkOliveGreen.Name, Color.FromArgb(41, 53, 34)),
+				new Swatch(Color.DarkSlateBlue.Name, Color.FromArgb(46, 46, 73)),
+				new Swatch(Color.SteelBlue.Name, Color.FromArgb(33, 54, 79)),
+				new Swatch(Color.MidnightBlue.Name, Color.FromArgb(39, 46, 68)),
+				new Swatch(Color.SaddleBrown.Name, Color.FromArgb(76, 51, 26)),
+				new Swatch(Color.Brown.Name, Color.FromArgb(84, 37, 37)),
+				new Swatch(Color.Purple.Name, Color.FromArgb(61, 31, 50)),
 				new Swatch("Custom", Color.Transparent)
 			});
 
@@ -75,7 +73,6 @@ namespace River.OneMoreAddIn.UI
 			DropDownHeight = itemHeight * 15;
 			Height = itemHeight;
 			Sorted = false;
-			SelectedIndex = 0;
 		}
 
 
@@ -113,15 +110,15 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Sets the color of the Custom item
+		/// Select the item that matches the given color, or White if no matches
 		/// </summary>
-		/// <param name="color">The color to apply to the Custom item</param>
-		public void SetColor(Color color)
+		/// <param name="color">The desired color</param>
+		public void SelectColor(Color color)
 		{
 			var index = 0;
-			while (index < customIndex)
+			while (index < Items.Count)
 			{
-				if (color.Equals(((Swatch)Items[index]).Color))
+				if (color.Matches(((Swatch)Items[index]).Color))
 				{
 					break;
 				}
@@ -129,20 +126,26 @@ namespace River.OneMoreAddIn.UI
 				index++;
 			}
 
-			if (index == customIndex)
-			{
-				((Swatch)Items[customIndex]).Color = color;
-				Invalidate();
+			SelectedIndex = index < Items.Count ? index : 0;
+		}
 
-				if (SelectedIndex == index)
-				{
-					ColorChanged?.Invoke(this, new EventArgs());
-				}
+
+		/// <summary>
+		/// Sets the value of the Custom Color item.
+		/// </summary>
+		/// <param name="color">The Color to apply</param>
+		public void SetCustomColor(Color color)
+		{
+			((Swatch)Items[customIndex]).Color = color;
+			Invalidate();
+
+			if (SelectedIndex == customIndex)
+			{
+				ColorChanged?.Invoke(this, new EventArgs());
 			}
-
-			if (SelectedIndex != index)
+			else
 			{
-				SelectedIndex = index;
+				SelectedIndex = customIndex;
 			}
 		}
 

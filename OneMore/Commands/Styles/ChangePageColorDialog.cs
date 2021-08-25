@@ -6,7 +6,9 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -36,7 +38,8 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			colorsBox.SetColor(pageColor);
+			InitializeCustomColor(pageColor);
+			colorsBox.SelectColor(pageColor);
 
 			themeLabel.Text = new ThemeProvider().Theme.Key;
 		}
@@ -59,6 +62,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void InitializeCustomColor(Color pageColor)
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("pageTheme");
+			if (settings != null && settings.Contains("customColor"))
+			{
+				try
+				{
+					colorsBox.SetCustomColor(ColorTranslator.FromHtml(settings["customColor"]));
+					return;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error reading saved custom color", exc);
+				}
+			}
+
+			colorsBox.SetCustomColor(pageColor);
+		}
+
+
 		private void ChooseCustomColor(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			var location = PointToScreen(customLink.Location);
@@ -71,7 +95,13 @@ namespace River.OneMoreAddIn.Commands
 
 				if (dialog.ShowDialog() == DialogResult.OK)
 				{
-					colorsBox.SetColor(dialog.Color);
+					colorsBox.SetCustomColor(dialog.Color);
+
+					var provider = new SettingsProvider();
+					var settings = provider.GetCollection("pageTheme");
+					settings.Add("customColor", dialog.Color.ToRGBHtml());
+					provider.SetCollection(settings);
+					provider.Save();
 				}
 			}
 		}
