@@ -25,10 +25,8 @@ namespace River.OneMoreAddIn.Commands
 			using (var one = new OneNote(out var page, out _))
 			{
 				var currentColor = page.GetPageColor(out _, out _);
-				var currentlydDark = currentColor.GetBrightness() < 0.5;
 
-				using (var dialog = 
-					new ChangePageColorDialog(currentColor))
+				using (var dialog = new ChangePageColorDialog(currentColor))
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{

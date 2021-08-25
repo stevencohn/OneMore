@@ -48,8 +48,9 @@ namespace River.OneMoreAddIn.Commands
 					if (styles.Count > 0)
 					{
 						Theme = theme;
-
 						ThemeProvider.RecordTheme(theme.Key);
+						
+						// ribbon is null when this command is called from another command
 						ribbon?.Invalidate();
 					}
 					else

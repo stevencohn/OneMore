@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		private GraphicStyle selection;
 		private readonly Color pageColor;
 		private bool allowEvents;
+		private Theme theme;
 
 
 		#region Lifecycle
@@ -45,7 +46,6 @@ namespace River.OneMoreAddIn.Commands
 			allowEvents = false;
 			this.pageColor = pageColor;
 
-			Text = Resx.StyleDialog_NewText;
 			mainTools.Visible = false;
 			loadButton.Enabled = false;
 			saveButton.Enabled = false;
@@ -54,6 +54,8 @@ namespace River.OneMoreAddIn.Commands
 			deleteButton.Enabled = false;
 
 			selection = new GraphicStyle(style, false);
+
+			Text = Resx.StyleDialog_NewText;
 		}
 
 
@@ -79,6 +81,7 @@ namespace River.OneMoreAddIn.Commands
 			this.pageColor = pageColor;
 
 			Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
+			this.theme = theme;
 		}
 
 
@@ -199,6 +202,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 		#endregion Lifecycle
+
+
+		public string ThemeKey => theme.Key;
 
 
 		private void ShowSelection()
@@ -638,7 +644,7 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					var theme = new ThemeProvider(dialog.FileName).Theme;
+					theme = new ThemeProvider(dialog.FileName).Theme;
 					var styles = theme?.GetStyles();
 					if (styles?.Count > 0)
 					{

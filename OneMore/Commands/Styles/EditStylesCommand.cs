@@ -40,8 +40,8 @@ namespace River.OneMoreAddIn.Commands
 					// save styles to remove deleted items and preserve ordering
 					var styles = dialog.GetStyles();
 
-					ThemeProvider.Save(styles, theme.Key);
-					ThemeProvider.RecordTheme(theme.Key);
+					ThemeProvider.Save(styles, dialog.ThemeKey);
+					ThemeProvider.RecordTheme(dialog.ThemeKey);
 
 					ribbon.Invalidate();
 				}
