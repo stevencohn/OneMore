@@ -118,7 +118,10 @@ namespace River.OneMoreAddIn.Commands
 			var loader = new LoadStylesCommand();
 			await loader.Execute();
 
-			themeLabel.Text = loader.Theme.Name;
+			if (loader.Theme != null)
+			{
+				themeLabel.Text = loader.Theme.Name;
+			}
 		}
 	}
 }
