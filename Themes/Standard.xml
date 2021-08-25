@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Theme name="Standard">
+  <Style index="0" name="Heading 1" font="Calibri" fontColor="#1E4E79" fontSize="16.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
+  <Style index="1" name="Heading 2" font="Calibri" fontColor="#2E75B5" fontSize="14.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
+  <Style index="2" name="Heading 3" font="Calibri" fontColor="#5B9BD5" fontSize="12.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
+  <Style index="3" name="Heading 4" font="Calibri" fontColor="#5B9BD5" fontSize="12.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" italic="true" />
+  <Style index="4" name="Heading 5" font="Calibri" fontColor="#2E75B5" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
+  <Style index="5" name="Heading 6" font="Calibri" fontColor="#2E75B5" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
+  <Style index="6" name="Page Title" font="Calibri Light" fontColor="#000000" fontSize="20.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
+  <Style index="7" name="Citation" font="Calibri" fontColor="#595959" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
+  <Style index="8" name="Quote" font="Calibri" fontColor="#595959" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" italic="true" />
+  <Style index="9" name="Code" font="Consolas" fontColor="Black" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="false" styleType="Paragraph" />
+  <Style index="10" name="Normal" font="Calibri" fontColor="Black" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
+  <Style index="11" name="Strong" font="Calibri" fontColor="Black" fontSize="11.0" bold="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="12" name="Emphasis" font="Calibri" fontColor="#4F81BD" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="13" name="Intense Emphasis" font="Calibri" fontColor="#C0504D" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="14" name="Subtle Emphasis" font="Calibri" fontColor="Gray" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+</Theme>
