@@ -177,6 +177,9 @@ namespace River.OneMoreAddIn
 		public async Task LinkReferencesCmd(IRibbonControl control)
 			=> await factory.Run<LinkReferencesCommand>();
 
+		public async Task LoadStylesCmd(IRibbonControl control)
+			=> await factory.Run<LoadStylesCommand>();
+
 		public async Task JoinParagraphCmd(IRibbonControl control)
 			=> await factory.Run<JoinParagraphCommand>();
 

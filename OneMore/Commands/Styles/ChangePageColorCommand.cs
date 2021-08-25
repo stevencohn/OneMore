@@ -4,6 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -15,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public ChangePageColorCommand()
 		{
+			// prevent replay
+			IsCancelled = true;
 		}
 
 
@@ -22,53 +26,62 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out _))
 			{
-				var currentColor = page.GetPageColor(out _, out _);
-				var currentlydDark = currentColor.GetBrightness() < 0.5;
+				var color = page.GetPageColor(out _, out _);
 
-				using (var dialog = new ChangePageColorDialog(currentColor))
+				using (var dialog = new ChangePageColorDialog(color))
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
 						return;
 					}
 
-					var element = page.Root
-						.Elements(page.Namespace + "PageSettings")
-						.FirstOrDefault();
+					UpdatePageColor(page, dialog.PageColor);
+					ThemeProvider.RecordTheme(dialog.ThemeKey);
 
-					if (element != null)
+					if (dialog.ApplyStyle)
 					{
-						var attr = element.Attribute("color");
-						if (attr != null)
-						{
-							attr.Value = dialog.PageColor;
-						}
-						else
-						{
-							element.Add(new XAttribute("color", dialog.PageColor));
-						}
-
-						// if light->dark or dark->light, apply appropriate theme...
-
-						var dark = false;
-						if (dialog.PageColor != "automatic")
-						{
-							dark = ColorTranslator.FromHtml(dialog.PageColor).GetBrightness() < 0.5;
-						}
-
-						if (dark != currentlydDark)
-						{
-							//
-						}
-
-						await one.Update(page);
-					}
-					else
-					{
-						logger.WriteLine("ChangePageColor failed because PageSettings not found");
+						new ApplyStylesCommand().Apply(page);
 					}
 				}
+
+				await one.Update(page);
 			}
+		}
+
+
+		private void UpdatePageColor(Page page, string color)
+		{
+			var element = page.Root
+				.Elements(page.Namespace + "PageSettings")
+				.FirstOrDefault();
+
+			if (element == null)
+			{
+				logger.WriteLine("ChangePageColor failed because PageSettings not found");
+				return;
+			}
+
+			ribbon.Invalidate();
+
+			var attr = element.Attribute("color");
+			if (attr != null)
+			{
+				attr.Value = color;
+			}
+			else
+			{
+				element.Add(new XAttribute("color", color));
+			}
+
+			// if light->dark or dark->light, apply appropriate theme...
+
+			var dark = false;
+			if (color != "automatic")
+			{
+				dark = ColorTranslator.FromHtml(color).GetBrightness() < 0.5;
+			}
+
+			logger.WriteLine($"color set to {color} (dark:{dark})");
 		}
 	}
 }

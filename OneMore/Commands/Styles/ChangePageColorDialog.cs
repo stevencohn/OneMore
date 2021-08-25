@@ -2,8 +2,12 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S4275 // Getters and setters should access the expected fields
+
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
@@ -12,10 +16,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ChangePageColorDialog : UI.LocalizableForm
 	{
-		private readonly Color DarkColor = Color.FromArgb(0x21, 0x21, 0x21);
-
-		private Color pageColor;
-		private bool initialized = false;
+		private Theme theme;
 
 
 		public ChangePageColorDialog(Color pageColor)
@@ -29,87 +30,117 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introLabel",
-					"lightButton",
-					"darkButton",
-					"customButton",
+					"customLink",
+					"themeIntroLabel",
+					"currentLabel",
+					"loadLink",
+					"applyBox",
 					"cancelButton",
 					"okButton"
 				});
 			}
 
-			this.pageColor = pageColor;
+			statusLabel.Text = string.Empty;
 
-			if (pageColor.Equals(Color.White))
-			{
-				lightButton.Checked = true;
-			}
-			else if (pageColor.Equals(DarkColor))
-			{
-				darkButton.Checked = true;
-			}
-			else
-			{
-				customButton.Checked = true;
-				SetCustomOption(pageColor);
-			}
+			InitializeCustomColor(pageColor);
+			colorsBox.SelectColor(pageColor);
+
+			theme = new ThemeProvider().Theme;
+			themeLabel.Text = theme.Name;
+
+			AnalyzeColorSelection(null, null);
 		}
 
-		protected override void OnShown(EventArgs e)
-		{
-			initialized = true;
-			base.OnShown(e);
-		}
+
+		public bool ApplyStyle => applyBox.Checked;
+
+		public string ThemeKey => theme.Key;
 
 
 		public string PageColor
 		{
 			get
 			{
-				if (pageColor.Equals(Color.White))
+				if (colorsBox.Color.Equals(Color.White))
 				{
 					return "automatic";
 				}
 
-				return pageColor.ToRGBHtml();
+				return colorsBox.Color.ToRGBHtml();
 			}
 		}
 
-		
-		private void SetCustomOption(Color color)
-		{
-			pageColor = color;
-			customButton.BackColor = color;
-			customButton.ForeColor = color.GetBrightness() < 0.5 ? Color.White : Color.Black;
-		}
 
-		private void SetLightColor(object sender, EventArgs e)
+		private void InitializeCustomColor(Color pageColor)
 		{
-			pageColor = Color.White;
-		}
-
-		private void SetDarkColor(object sender, EventArgs e)
-		{
-			pageColor = DarkColor;
-		}
-
-
-		private void ChooseCustomColor(object sender, EventArgs e)
-		{
-			if (initialized && customButton.Checked)
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("pageTheme");
+			if (settings != null && settings.Contains("customColor"))
 			{
-				var location = PointToScreen(customButton.Location);
-
-				using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
-					location.X + customButton.Bounds.Location.X + (customButton.Width / 2),
-					location.Y - 200))
+				try
 				{
-					dialog.Color = pageColor;
-
-					if (dialog.ShowDialog() == DialogResult.OK)
-					{
-						SetCustomOption(dialog.Color);
-					}
+					colorsBox.SetCustomColor(ColorTranslator.FromHtml(settings["customColor"]));
+					return;
 				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error reading saved custom color", exc);
+				}
+			}
+
+			colorsBox.SetCustomColor(pageColor);
+		}
+
+
+		private void ChooseCustomColor(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var location = PointToScreen(customLink.Location);
+
+			using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
+				location.X + customLink.Bounds.Location.X + customLink.Width,
+				location.Y - 50))
+			{
+				dialog.Color = colorsBox.CustomColor;
+
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					colorsBox.SetCustomColor(dialog.Color);
+
+					var provider = new SettingsProvider();
+					var settings = provider.GetCollection("pageTheme");
+					settings.Add("customColor", dialog.Color.ToRGBHtml());
+					provider.SetCollection(settings);
+					provider.Save();
+				}
+			}
+		}
+
+
+		private void AnalyzeColorSelection(object sender, EventArgs e)
+		{
+			if (theme == null || colorsBox.SelectedItem == null)
+			{
+				statusLabel.Text = string.Empty;
+				return;
+			}
+
+			var dark = colorsBox.Color.GetBrightness() < 0.5;
+
+			statusLabel.Text = theme.Dark == dark
+				? string.Empty
+				: Resx.ChangePageColorDialog_Contrast;
+		}
+
+
+		private void LoadStyleTheme(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var thm = new LoadStylesCommand().LoadTheme();
+			if (thm != null)
+			{
+				theme = thm;
+				themeLabel.Text = thm.Name;
+
+				AnalyzeColorSelection(sender, e);
 			}
 		}
 	}

@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1012 // abstract should not have constructor
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Styles
 {
 	using System;
 	using System.IO;

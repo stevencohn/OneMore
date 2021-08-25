@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -27,6 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		private GraphicStyle selection;
 		private readonly Color pageColor;
 		private bool allowEvents;
+		private Theme theme;
 
 
 		#region Lifecycle
@@ -44,7 +46,6 @@ namespace River.OneMoreAddIn.Commands
 			allowEvents = false;
 			this.pageColor = pageColor;
 
-			Text = Resx.StyleDialog_NewText;
 			mainTools.Visible = false;
 			loadButton.Enabled = false;
 			saveButton.Enabled = false;
@@ -53,6 +54,8 @@ namespace River.OneMoreAddIn.Commands
 			deleteButton.Enabled = false;
 
 			selection = new GraphicStyle(style, false);
+
+			Text = Resx.StyleDialog_NewText;
 		}
 
 
@@ -61,12 +64,13 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="styles"></param>
 
-		public StyleDialog(List<Style> styles, Color pageColor)
+		public StyleDialog(Theme theme, Color pageColor)
 		{
 			Initialize();
 
-			Text = Resx.StyleDialog_Text;
 			allowEvents = false;
+
+			var styles = theme.GetStyles();
 			LoadStyles(styles);
 
 			if (styles.Count > 0)
@@ -75,6 +79,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			this.pageColor = pageColor;
+
+			Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
+			this.theme = theme;
 		}
 
 
@@ -197,6 +204,41 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Lifecycle
 
 
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		/// <summary>
+		/// Gets the currently selected custom style. Used when creating a single new style
+		/// </summary>
+		public Style Style
+		{
+			get
+			{
+				var style = selection.GetStyle();
+
+				style.Name = nameBox.Text;
+
+				if (subButton.Checked) style.IsSubscript = true;
+				if (superButton.Checked) style.IsSuperscript = true;
+
+				return style;
+			}
+		}
+
+
+		/// <summary>
+		/// Get the modified theme. Used when editing an entire theme.
+		/// </summary>
+		public Theme Theme => new Theme(MakeStyles(), theme.Key, theme.Name, theme.Dark);
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		private List<Style> MakeStyles()
+		{
+			return namesBox.Items.Cast<GraphicStyle>().ToList().ConvertAll(e => e.GetStyle());
+		}
+
+
 		private void ShowSelection()
 		{
 			allowEvents = false;
@@ -246,31 +288,6 @@ namespace River.OneMoreAddIn.Commands
 			previewBox.Invalidate();
 		}
 
-
-		/// <summary>
-		/// Gets the currently selected custom style
-		/// </summary>
-		public Style Style
-		{
-			get
-			{
-				var style = selection.GetStyle();
-
-				style.Name = nameBox.Text;
-
-				if (subButton.Checked) style.IsSubscript = true;
-				if (superButton.Checked) style.IsSuperscript = true;
-
-				return style;
-			}
-		}
-
-
-		public List<Style> GetStyles() =>
-			namesBox.Items.Cast<GraphicStyle>().ToList().ConvertAll(e => e.GetStyle());
-
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private void RepaintSample(object sender, PaintEventArgs e)
 		{
@@ -596,9 +613,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private void AddStyle(object sender, EventArgs e)
 		{
+			var index = 0;
+			foreach (GraphicStyle style in namesBox.Items)
+			{
+				if (index <= style.Index)
+					index = style.Index + 1;
+			}
+
 			namesBox.Items.Add(new GraphicStyle(new Style
 			{
-				Name = "Style-" + new Random().Next(1000, 9999).ToString()
+				Name = "Style-" + new Random().Next(1000, 9999).ToString(),
+				Index = index
 			},
 			false));
 
@@ -619,8 +644,9 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Multiselect = false;
 				dialog.Title = "Open Style Theme";
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+				dialog.AutoUpgradeEnabled = true; // simpler UI, faster
 
-				var path = PathFactory.GetAppDataPath();
+				var path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder);
 				if (Directory.Exists(path))
 				{
 					dialog.InitialDirectory = path;
@@ -634,10 +660,14 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					var styles = new StyleProvider().LoadTheme(dialog.FileName);
-					if (styles.Count > 0)
+					theme = new ThemeProvider(dialog.FileName).Theme;
+					var styles = theme?.GetStyles();
+					if (styles?.Count > 0)
 					{
 						LoadStyles(styles);
+
+						// update dialog title
+						Text = string.Format(Resx.StyleDialog_ThemeText, theme.Name);
 					}
 					else
 					{
@@ -717,6 +747,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
 		private void SaveTheme(object sender, EventArgs e)
 		{
 			using (var dialog = new SaveFileDialog())
@@ -740,7 +771,13 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					StyleProvider.Save(GetStyles(), dialog.FileName);
+					var key = Path.GetFileNameWithoutExtension(dialog.FileName);
+					theme = new Theme(MakeStyles(), key, key, theme.Dark);
+					ThemeProvider.Save(theme, dialog.FileName);
+
+					Text = string.Format(
+						Resx.StyleDialog_ThemeText,
+						Path.GetFileNameWithoutExtension(dialog.FileName));
 				}
 			}
 		}

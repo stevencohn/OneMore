@@ -20,10 +20,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891C1-D812-4C1D-B6DC-2175A68C4ADC}"
 	ProjectSection(SolutionItems) = preProject
-		Themes\ConfluenceStyles6.xml = Themes\ConfluenceStyles6.xml
-		Themes\ConfluenceStyles7.xml = Themes\ConfluenceStyles7.xml
-		Themes\DarkStyles.xml = Themes\DarkStyles.xml
-		Themes\OrangeStyles.xml = Themes\OrangeStyles.xml
+		Themes\Confluence6.xml = Themes\Confluence6.xml
+		Themes\Confluence7.xml = Themes\Confluence7.xml
+		Themes\DarkBlue.xml = Themes\DarkBlue.xml
+		Themes\DarkGreen.xml = Themes\DarkGreen.xml
+		Themes\DarkOrange.xml = Themes\DarkOrange.xml
+		Themes\Orange.xml = Themes\Orange.xml
+		Themes\Standard.xml = Themes\Standard.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56ACB1-3CDF-48EB-B786-4F924E899CE2}"

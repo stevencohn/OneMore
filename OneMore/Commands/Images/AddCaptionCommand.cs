@@ -4,10 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using River.OneMoreAddIn.Models;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -93,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// use custom Caption style if it exists
 
-			var styles = new StyleProvider().GetStyles();
+			var styles = new ThemeProvider().Theme.GetStyles();
 			if (styles?.Count > 0)
 			{
 				style = styles.FirstOrDefault(s => s.Name.Equals("Caption"));

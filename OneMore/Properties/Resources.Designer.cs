@@ -751,6 +751,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply style theme to this page.
+        /// </summary>
+        internal static string ChangePageColorDialog_applyBox {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_applyBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ChangePageColorDialog_cancelButton_Text {
@@ -760,20 +769,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom background....
+        ///   Looks up a localized string similar to Choose a custom color.
         /// </summary>
-        internal static string ChangePageColorDialog_customButton_Text {
+        internal static string ChangePageColorDialog_colorLink_Text {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_customButton.Text", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_colorLink.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dark background.
+        ///   Looks up a localized string similar to Color and theme may not have enough contrast.
         /// </summary>
-        internal static string ChangePageColorDialog_darkButton_Text {
+        internal static string ChangePageColorDialog_Contrast {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_darkButton.Text", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_Contrast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Theme:.
+        /// </summary>
+        internal static string ChangePageColorDialog_currentLabel {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_currentLabel", resourceCulture);
             }
         }
         
@@ -787,11 +805,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Light background.
+        ///   Looks up a localized string similar to Load a style theme.
         /// </summary>
-        internal static string ChangePageColorDialog_lightButton_Text {
+        internal static string ChangePageColorDialog_loadLink {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_lightButton.Text", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_loadLink", resourceCulture);
             }
         }
         
@@ -805,11 +823,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Page Color.
+        ///   Looks up a localized string similar to Change Page Theme.
         /// </summary>
         internal static string ChangePageColorDialog_Text {
             get {
                 return ResourceManager.GetString("ChangePageColorDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible..
+        /// </summary>
+        internal static string ChangePageColorDialog_themeIntroLabel {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_themeIntroLabel", resourceCulture);
             }
         }
         
@@ -1437,19 +1464,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;CustomStyles&gt;
-        ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot;16.0&quot; spaceBefore=&quot;12.0&quot; sp [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string CustomStyles {
-            get {
-                return ResourceManager.GetString("CustomStyles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CustomStyles.xml.
         /// </summary>
         internal static string CustomStylesFilename {
@@ -1465,6 +1479,19 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Cyclist", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;Theme name=&quot;Orange&quot; dark=&quot;false&quot;&gt;
+        ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
+        ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
+        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot;16.0&quot; s [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DefaultStyles {
+            get {
+                return ResourceManager.GetString("DefaultStyles", resourceCulture);
             }
         }
         
@@ -4835,6 +4862,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load Styles.
+        /// </summary>
+        internal static string ribLoadStylesButton_Label {
+            get {
+                return ResourceManager.GetString("ribLoadStylesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To lowercase.
         /// </summary>
         internal static string ribLowercaseButton_Label {
@@ -4988,7 +5024,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Page Color.
+        ///   Looks up a localized string similar to Change Page Theme.
         /// </summary>
         internal static string ribPageColorButton_Label {
             get {
@@ -6820,7 +6856,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
+        ///   Looks up a localized string similar to OK (Save).
         /// </summary>
         internal static string StyleDialog_okButton_Text {
             get {
@@ -6908,6 +6944,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string StyleDialog_Text {
             get {
                 return ResourceManager.GetString("StyleDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Styles.
+        /// </summary>
+        internal static string StyleDialog_ThemeText {
+            get {
+                return ResourceManager.GetString("StyleDialog_ThemeText", resourceCulture);
             }
         }
         
@@ -7203,6 +7248,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TextToTableDialog_unquoteBox_Text {
             get {
                 return ResourceManager.GetString("TextToTableDialog_unquoteBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Themes.
+        /// </summary>
+        internal static string ThemesFolder {
+            get {
+                return ResourceManager.GetString("ThemesFolder", resourceCulture);
             }
         }
         

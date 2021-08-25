@@ -5,7 +5,7 @@
 #pragma warning disable CS3005 // Identifiers differ only in case
 #pragma warning disable CA1012 // Abstract types should not have constructors
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Styles
 {
 	using System;
 	using System.Drawing;

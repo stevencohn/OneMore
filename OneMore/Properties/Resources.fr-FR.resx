@@ -136,12 +136,12 @@
     <value>Un de plus</value>
   </data>
   <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    Désactiver la vérification orthographique
-    Ribbon OneMore menu item, no spell check on this page EDIT
+    <value>Désactiver la vérification orthographique
+    Ribbon OneMore menu item, no spell check on this page EDIT</value>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    Désactiver la vérification orthographique pour la page entière (F4)
-    Ribbon OneMore menu item, no spell check on this page EDIT
+    <value>Désactiver la vérification orthographique pour la page entière (F4)
+    Ribbon OneMore menu item, no spell check on this page EDIT</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -221,9 +221,6 @@
   </data>
   <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>customstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="CustomColorsFilesname" xml:space="preserve">
     <value>CustomColors.xml</value>
@@ -489,10 +486,6 @@
     <value>Plus</value>
     <comment>Ribbon main button</comment>
   </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Définir la couleur de la page</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
-  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Coller du texte enrichi</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -602,28 +595,16 @@
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Changer la couleur de la page</value>
-    <comment>dialog title</comment>
+    <value>Changer le thème de la page
+    dialog title EDIT</value>
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Arrière-plan personnalisé ...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Fond sombre</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>Après avoir choisi une couleur de page, chargez l'un des styles prédéfinis ou personnalisez vos propres styles afin que tout le contenu ait un contraste suffisant pour être visible.</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Fond clair</value>
-    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>D'accord</value>
@@ -1284,8 +1265,8 @@ Pourcentage</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    Commander
-    label EDIT
+    <value>Commander
+    label EDIT</value>
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Mettre à jour la page actuelle</value>
@@ -1616,12 +1597,12 @@ Symboles: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    Fichier HTML (*.htm)
+    <value>Fichier HTML (*.htm)
 Fichier PDF (*.pdf)
 Fichier Word (*.docx)
 Fichier XML (*.xml)
 Fichier OneNote (*.one)
-    combo box EDIT
+    combo box EDIT</value>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Format:</value>
@@ -1660,8 +1641,8 @@ Fichier OneNote (*.one)
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    Sélectionnez un fichier Word, PowerPoint, OneNote, Markdown ou XML
-    label EDIT
+    <value>Sélectionnez un fichier Word, PowerPoint, OneNote, Markdown ou XML
+    label EDIT</value>
   </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>D'accord</value>
@@ -1700,8 +1681,8 @@ Fichier OneNote (*.one)
     <comment>group box</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Tous les fichiers (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Fichiers Word (*.doc 
-    openfiledialog filter EDIT
+    <value>Tous les fichiers (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Fichiers Word (*.doc 
+    openfiledialog filter EDIT</value>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Choisissez le fichier à importer</value>
@@ -1793,8 +1774,8 @@ Fichier OneNote (*.one)
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    ... Désactiver la vérification orthographique
-    option EDIT
+    <value>... Désactiver la vérification orthographique
+    option EDIT</value>
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Coller du texte enrichi</value>
@@ -1885,8 +1866,8 @@ Fichier OneNote (*.one)
     <comment>menu</comment>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
-    Une ou plusieurs modifications nécessitent le redémarrage de OneNote. 
-    restart message EDIT
+    <value>Une ou plusieurs modifications nécessitent le redémarrage de OneNote. 
+    restart message EDIT</value>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Sélectionnez une ou plusieurs cellules de tableau</value>
@@ -2037,8 +2018,8 @@ Fichier OneNote (*.one)
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>D'accord</value>
-    <comment>button</comment>
+    OK (Enregistrer)
+    button EDIT
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Réorganiser</value>
@@ -2181,8 +2162,8 @@ Dans cette section</value>
     <comment>index button</comment>
   </data>
   <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    Saisissez une ou plusieurs balises séparées par des virgules. 
-    EDIT label
+    <value>Saisissez une ou plusieurs balises séparées par des virgules. 
+    EDIT label</value>
   </data>
   <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
     <value>Bouge toi</value>
@@ -2576,8 +2557,8 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    Cloud ne charge pas l'extrait de "{0}"
-    error message EDIT
+    <value>Cloud ne charge pas l'extrait de "{0}"
+    error message EDIT</value>
   </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Mes extraits personnalisés</value>
@@ -2600,16 +2581,16 @@ ISO-code then comma then language name</comment>
     <comment>tree node</comment>
   </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    Supprimer l'extrait de code "{0}"
-    question EDIT
+    <value>Supprimer l'extrait de code "{0}"
+    question EDIT</value>
   </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Gérer mes extraits personnalisés</value>
     <comment>SnippetsSheet</comment>
   </data>
   <data name="ribBoxButton_Label" xml:space="preserve">
-    Zone de texte
-    ribbon EDIT
+    <value>Zone de texte
+    ribbon EDIT</value>
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Insérer un tableau à une seule cellule, en enveloppant éventuellement le texte sélectionné</value>
@@ -2928,8 +2909,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    Réduire le contour
-    ribbon item EDIT
+    <value>Réduire le contour
+    ribbon item EDIT</value>
   </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>À la casse du titre</value>
@@ -2999,8 +2980,8 @@ ISO-code then comma then language name</comment>
     <comment>dialog title</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    Lien Références à cette page
-    ribbon button EDIT
+    <value>Lien Références à cette page
+    ribbon button EDIT</value>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Temps d'attente</value>
@@ -3151,8 +3132,8 @@ ISO-code then comma then language name</comment>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
-    Marqué "{0}" comme ancre. 
-    message box EDIT
+    <value>Marqué "{0}" comme ancre. 
+    message box EDIT</value>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>Ancre de départ pas encore marquée. </value>
@@ -3251,7 +3232,43 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    Importer en tant qu'images statiques
-    checkbox EDIT
+    <value>Importer en tant qu'images statiques
+    checkbox EDIT</value>
+  </data>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Choisissez une couleur personnalisée</value>
+    <comment>link</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>Styles de charge</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>Appliquer le thème de style à cette page</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Thème actuel :</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>Charger un thème de style</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>En option, chargez l'un des thèmes de style prédéfinis ou personnalisez votre propre thème afin que tout le contenu ait suffisamment de contraste pour être visible.</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Changer le thème de la page</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="StyleDialog_ThemeText" xml:space="preserve">
+    <value>{0} Styles</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
+    <value>La couleur et le thème peuvent ne pas avoir assez de contraste</value>
+    <comment>label</comment>
   </data>
 </root>

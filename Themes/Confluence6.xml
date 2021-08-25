@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<CustomStyles>
+<Theme name="Confluence 6">
   <Style index="0" name="Heading 1" font="Arial" fontSize="18" fontColor="#ff333333" spaceBefore="0" spaceAfter="0" styleType="Heading" />
   <Style index="1" name="Heading 2" font="Arial" fontSize="15" fontColor="#ff333333" spaceBefore="12" spaceAfter="0" styleType="Heading" />
   <Style index="2" name="Heading 3" font="Arial" fontSize="12" bold="true" fontColor="#ff333333" spaceBefore="12" spaceAfter="0" styleType="Heading" />
@@ -15,4 +15,4 @@
   <Style index="12" name="Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ff5B9BD5" spaceBefore="0" spaceAfter="0" styleType="Character" />
   <Style index="13" name="Intense Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ffC00000" spaceBefore="0" spaceAfter="0" styleType="Character" />
   <Style index="14" name="Subtle Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ffA5A5A5" spaceBefore="0" spaceAfter="0" styleType="Character" />
-</CustomStyles>
+</Theme>

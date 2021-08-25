@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.Drawing;
 
 
@@ -19,6 +20,23 @@ namespace River.OneMoreAddIn
 		public static bool IsGray(this Color color)
 		{
 			return (color.R == color.G) && (color.R == color.B);
+		}
+
+
+		/// <summary>
+		/// Compare this color with a given color and determines if they are close enough
+		/// to be called the same color
+		/// </summary>
+		/// <param name="color">The Color value</param>
+		/// <param name="candidate">A candidate color to test</param>
+		/// <returns>True if the candiate color is a close match to this color</returns>
+		public static bool Matches(this Color color, Color candidate)
+		{
+			return
+				Math.Abs(color.A - candidate.A) < 3 &&
+				Math.Abs(color.R - candidate.R) < 3 &&
+				Math.Abs(color.G - candidate.G) < 3 &&
+				Math.Abs(color.B - candidate.B) < 3;
 		}
 
 

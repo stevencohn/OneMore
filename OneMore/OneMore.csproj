@@ -258,6 +258,7 @@
     <Compile Include="Commands\Settings\GeneralSheet.Designer.cs">
       <DependentUpon>GeneralSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsDialog.cs">
       <SubType>Form</SubType>
@@ -380,6 +381,11 @@
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
+    <Compile Include="Styles\Theme.cs" />
+    <Compile Include="Styles\ThemeProvider.cs" />
+    <Compile Include="UI\ColorsComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -534,7 +540,7 @@
     <Compile Include="UI\HierarchyView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Helpers\GalleryTileFactory.cs" />
+    <Compile Include="UI\TileFactory.cs" />
     <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
     <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />
     <Compile Include="Commands\Snippets\InsertInfoBlockCommand.cs" />
@@ -691,7 +697,6 @@
     <Compile Include="Styles\Style.cs" />
     <Compile Include="Styles\StyleAnalyzer.cs" />
     <Compile Include="Styles\StyleBase.cs" />
-    <Compile Include="Styles\StyleProvider.cs" />
     <Compile Include="Styles\StyleRecord.cs" />
     <Compile Include="Styles\StyleType.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -863,7 +868,7 @@
     <Content Include="Properties\Images\UpArrow.png" />
     <Content Include="Properties\Images\Logo.png" />
     <Content Include="Properties\Images\NoSpellCheck.png" />
-    <Content Include="Properties\CustomStyles.xml" />
+    <Content Include="Properties\DefaultStyles.xml" />
     <Content Include="Properties\Images\WrapText.png" />
     <Content Include="Properties\Ribbon.xml">
       <SubType>Designer</SubType>

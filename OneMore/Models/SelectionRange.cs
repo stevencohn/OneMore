@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;

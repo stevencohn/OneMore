@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
@@ -11,18 +12,14 @@ namespace River.OneMoreAddIn
 	using System.Runtime.InteropServices.ComTypes;
 
 
-	internal class GalleryTileFactory
+	internal class TileFactory
 	{
-		private readonly StyleProvider provider;
-
-
-		public GalleryTileFactory()
+		public TileFactory()
 		{
-			provider = new StyleProvider();
 		}
 
 
-		public IStream MakeTile(int itemIndex, Color pageColor)
+		public IStream MakeTile(Style themeStyle, Color pageColor)
 		{
 			float scale = 1.0f;
 
@@ -44,7 +41,7 @@ namespace River.OneMoreAddIn
 					graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
 
 					// TODO: scale font size?
-					using (var style = new GraphicStyle(provider.GetStyle(itemIndex)))
+					using (var style = new GraphicStyle(themeStyle))
 					{
 						// draw name...
 
