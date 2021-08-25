@@ -113,6 +113,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void AnalyzeColorSelection(object sender, System.EventArgs e)
 		{
+			// TODO: compare brightness with theme's brightness and display warning if not same...
+
 			//var provider = new StyleProvider();
 			//logger.WriteLine($"analyzing theme {provider.Key} (dark:{provider.Dark})");
 		}
