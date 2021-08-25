@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
-	using System;
 	using System.IO;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -21,10 +20,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public Theme Theme { private set; get; }
-
-
 		public override async Task Execute(params object[] args)
+		{
+			var theme = LoadTheme();
+			if (theme != null)
+			{
+				ThemeProvider.RecordTheme(theme.Key);
+				ribbon.Invalidate();
+			}
+
+			await Task.Yield();
+		}
+
+
+		public Theme LoadTheme()
 		{
 			var path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder);
 			PathFactory.EnsurePathExists(path);
@@ -38,29 +47,24 @@ namespace River.OneMoreAddIn.Commands
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 				dialog.AutoUpgradeEnabled = true; // simpler UI, faster
 
-				var result = dialog.ShowDialog(owner);
-				if (result == DialogResult.OK)
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
-					var provider = new ThemeProvider(dialog.FileName);
-					var theme = provider.Theme;
+					return null;
+				}
 
+				var theme = new ThemeProvider(dialog.FileName).Theme;
+				if (theme != null)
+				{
 					var styles = theme.GetStyles();
 					if (styles.Count > 0)
 					{
-						Theme = theme;
-						ThemeProvider.RecordTheme(theme.Key);
-						
-						// ribbon is null when this command is called from another command
-						ribbon?.Invalidate();
-					}
-					else
-					{
-						UIHelper.ShowError("Cloud not load style theme file");
+						return theme;
 					}
 				}
-			}
 
-			await Task.Yield();
+				UIHelper.ShowError("could not load theme file or them contains no styles");
+				return null;
+			}
 		}
 	}
 }

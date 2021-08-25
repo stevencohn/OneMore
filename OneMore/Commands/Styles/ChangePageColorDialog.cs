@@ -41,11 +41,15 @@ namespace River.OneMoreAddIn.Commands
 			InitializeCustomColor(pageColor);
 			colorsBox.SelectColor(pageColor);
 
-			themeLabel.Text = new ThemeProvider().Theme.Key;
+			var theme = new ThemeProvider().Theme;
+			ThemeKey = theme.Key;
+			themeLabel.Text = theme.Name;
 		}
 
 
 		public bool ApplyStyle => applyBox.Checked;
+
+		public string ThemeKey { get; private set; }
 
 
 		public string PageColor
@@ -113,14 +117,14 @@ namespace River.OneMoreAddIn.Commands
 			//logger.WriteLine($"analyzing theme {provider.Key} (dark:{provider.Dark})");
 		}
 
-		private async void LoadStyleTheme(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			var loader = new LoadStylesCommand();
-			await loader.Execute();
 
-			if (loader?.Theme != null)
+		private void LoadStyleTheme(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var theme = new LoadStylesCommand().LoadTheme();
+			if (theme != null)
 			{
-				themeLabel.Text = loader.Theme.Name;
+				themeLabel.Text = theme.Name;
+				ThemeKey = theme.Key;
 			}
 		}
 	}
