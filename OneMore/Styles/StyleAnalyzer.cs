@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Styles
 {
 	using System.Collections.Generic;
 	using System.Linq;

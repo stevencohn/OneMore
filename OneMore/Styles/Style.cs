@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1822 // member can be made static
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Styles
 {
 	using System.Collections.Generic;
 	using System.Collections.Specialized;

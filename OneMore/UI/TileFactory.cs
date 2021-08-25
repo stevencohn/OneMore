@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
