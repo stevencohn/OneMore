@@ -23,6 +23,13 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Compare this color with a given color and determines if they are close enough
+		/// to be called the same color
+		/// </summary>
+		/// <param name="color">The Color value</param>
+		/// <param name="candidate">A candidate color to test</param>
+		/// <returns>True if the candiate color is a close match to this color</returns>
 		public static bool Matches(this Color color, Color candidate)
 		{
 			return
