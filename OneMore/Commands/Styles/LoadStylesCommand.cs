@@ -26,17 +26,17 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder);
+			PathFactory.EnsurePathExists(path);
+
 			using (var dialog = new OpenFileDialog())
 			{
 				dialog.DefaultExt = "xml";
-				dialog.AddExtension = true;
 				dialog.Filter = "Theme files (*.xml)|*.xml|All files (*.*)|*.*";
 				dialog.Multiselect = false;
 				dialog.Title = "Open Style Theme";
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
-
-				var path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder);
-				PathFactory.EnsurePathExists(path);
+				dialog.AutoUpgradeEnabled = true; // simpler UI, faster
 
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
