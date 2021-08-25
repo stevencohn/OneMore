@@ -188,10 +188,9 @@ namespace River.OneMoreAddIn.Styles
 
 			var root = new XElement("Theme");
 
-			Theme theme = null;
 			if (File.Exists(path))
 			{
-				theme = new ThemeProvider(path).Theme;
+				var theme = new ThemeProvider(path).Theme;
 				if (theme != null)
 				{
 					root.Add(new XAttribute("name", theme.Name));
