@@ -778,6 +778,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Color and theme may not have enough contrast.
+        /// </summary>
+        internal static string ChangePageColorDialog_Contrast {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_Contrast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Theme:.
         /// </summary>
         internal static string ChangePageColorDialog_currentLabel {

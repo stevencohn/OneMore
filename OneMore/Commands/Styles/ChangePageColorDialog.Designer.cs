@@ -40,6 +40,7 @@
 			this.loadLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.themeLabel = new System.Windows.Forms.Label();
 			this.currentLabel = new System.Windows.Forms.Label();
+			this.statusLabel = new System.Windows.Forms.Label();
 			this.themeGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -47,7 +48,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(413, 399);
+			this.cancelButton.Location = new System.Drawing.Point(413, 412);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 4;
@@ -58,7 +59,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(307, 399);
+			this.okButton.Location = new System.Drawing.Point(307, 412);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 5;
@@ -83,7 +84,7 @@
 			this.colorsBox.IntegralHeight = false;
 			this.colorsBox.Location = new System.Drawing.Point(39, 66);
 			this.colorsBox.Name = "colorsBox";
-			this.colorsBox.Size = new System.Drawing.Size(337, 27);
+			this.colorsBox.Size = new System.Drawing.Size(337, 36);
 			this.colorsBox.TabIndex = 7;
 			this.colorsBox.ColorChanged += new System.EventHandler(this.AnalyzeColorSelection);
 			// 
@@ -120,7 +121,7 @@
 			this.themeGroup.Location = new System.Drawing.Point(17, 150);
 			this.themeGroup.Name = "themeGroup";
 			this.themeGroup.Padding = new System.Windows.Forms.Padding(8);
-			this.themeGroup.Size = new System.Drawing.Size(496, 232);
+			this.themeGroup.Size = new System.Drawing.Size(496, 212);
 			this.themeGroup.TabIndex = 10;
 			this.themeGroup.TabStop = false;
 			this.themeGroup.Text = "Style Theme";
@@ -132,7 +133,7 @@
 			this.applyBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.applyBox.Location = new System.Drawing.Point(22, 171);
 			this.applyBox.Name = "applyBox";
-			this.applyBox.Size = new System.Drawing.Size(239, 24);
+			this.applyBox.Size = new System.Drawing.Size(246, 24);
 			this.applyBox.TabIndex = 13;
 			this.applyBox.Text = "Apply style theme to this page";
 			this.applyBox.UseVisualStyleBackColor = true;
@@ -167,13 +168,24 @@
 			this.currentLabel.TabIndex = 10;
 			this.currentLabel.Text = "Current Theme: ";
 			// 
+			// statusLabel
+			// 
+			this.statusLabel.AutoSize = true;
+			this.statusLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.statusLabel.Location = new System.Drawing.Point(28, 365);
+			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.Size = new System.Drawing.Size(31, 20);
+			this.statusLabel.TabIndex = 11;
+			this.statusLabel.Text = "OK";
+			// 
 			// ChangePageColorDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(526, 450);
+			this.ClientSize = new System.Drawing.Size(526, 463);
+			this.Controls.Add(this.statusLabel);
 			this.Controls.Add(this.themeGroup);
 			this.Controls.Add(this.customLink);
 			this.Controls.Add(this.colorsBox);
@@ -209,5 +221,6 @@
 		private System.Windows.Forms.Label themeLabel;
 		private UI.MoreLinkLabel loadLink;
 		private System.Windows.Forms.CheckBox applyBox;
+		private System.Windows.Forms.Label statusLabel;
 	}
 }

@@ -3273,4 +3273,8 @@ ISO-code then comma then language name</comment>
     <value>{0} Stijlen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
+    <value>Kleur en thema hebben mogelijk niet genoeg contrast</value>
+    <comment>label</comment>
+  </data>
 </root>

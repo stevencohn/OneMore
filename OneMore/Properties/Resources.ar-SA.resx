@@ -3272,4 +3272,8 @@ ISO-code then comma then language name</comment>
     <value>{0} الأنماط</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
+    <value>قد لا يكون للون والموضوع تباين كافٍ</value>
+    <comment>label</comment>
+  </data>
 </root>

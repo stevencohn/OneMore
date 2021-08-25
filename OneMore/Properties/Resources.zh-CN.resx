@@ -3264,4 +3264,8 @@ ISO-code then comma then language name</comment>
     <value>{0} 样式</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
+    <value>颜色和主题可能没有足够的对比度</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -16,6 +16,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ChangePageColorDialog : UI.LocalizableForm
 	{
+		private Theme theme;
+
 
 		public ChangePageColorDialog(Color pageColor)
 		{
@@ -38,18 +40,21 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			statusLabel.Text = string.Empty;
+
 			InitializeCustomColor(pageColor);
 			colorsBox.SelectColor(pageColor);
 
-			var theme = new ThemeProvider().Theme;
-			ThemeKey = theme.Key;
+			theme = new ThemeProvider().Theme;
 			themeLabel.Text = theme.Name;
+
+			AnalyzeColorSelection(null, null);
 		}
 
 
 		public bool ApplyStyle => applyBox.Checked;
 
-		public string ThemeKey { get; private set; }
+		public string ThemeKey => theme.Key;
 
 
 		public string PageColor
@@ -111,22 +116,31 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void AnalyzeColorSelection(object sender, System.EventArgs e)
+		private void AnalyzeColorSelection(object sender, EventArgs e)
 		{
-			// TODO: compare brightness with theme's brightness and display warning if not same...
+			if (theme == null || colorsBox.SelectedItem == null)
+			{
+				statusLabel.Text = string.Empty;
+				return;
+			}
 
-			//var provider = new StyleProvider();
-			//logger.WriteLine($"analyzing theme {provider.Key} (dark:{provider.Dark})");
+			var dark = colorsBox.Color.GetBrightness() < 0.5;
+
+			statusLabel.Text = theme.Dark == dark
+				? string.Empty
+				: Resx.ChangePageColorDialog_Contrast;
 		}
 
 
 		private void LoadStyleTheme(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var theme = new LoadStylesCommand().LoadTheme();
-			if (theme != null)
+			var thm = new LoadStylesCommand().LoadTheme();
+			if (thm != null)
 			{
-				themeLabel.Text = theme.Name;
-				ThemeKey = theme.Key;
+				theme = thm;
+				themeLabel.Text = thm.Name;
+
+				AnalyzeColorSelection(sender, e);
 			}
 		}
 	}
