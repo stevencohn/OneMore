@@ -629,8 +629,9 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Multiselect = false;
 				dialog.Title = "Open Style Theme";
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
+				dialog.AutoUpgradeEnabled = true; // simpler UI, faster
 
-				var path = Path.Combine(PathFactory.GetAppDataPath(), "Themes");
+				var path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder);
 				if (Directory.Exists(path))
 				{
 					dialog.InitialDirectory = path;
@@ -755,6 +756,10 @@ namespace River.OneMoreAddIn.Commands
 				if (result == DialogResult.OK)
 				{
 					ThemeProvider.Save(GetStyles(), dialog.FileName);
+
+					Text = string.Format(
+						Resx.StyleDialog_ThemeText,
+						Path.GetFileNameWithoutExtension(dialog.FileName));
 				}
 			}
 		}

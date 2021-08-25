@@ -200,7 +200,7 @@ namespace River.OneMoreAddIn.Styles
 
 			if (root.Attribute("name") == null)
 			{
-				root.Add(new XAttribute("name", key));
+				root.Add(new XAttribute("name", Path.GetFileNameWithoutExtension(key)));
 			}
 
 			var records = styles.ConvertAll(e => new StyleRecord(e)).OrderBy(e => e.Index);

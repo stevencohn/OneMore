@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891
 		Themes\Confluence7.xml = Themes\Confluence7.xml
 		Themes\DarkBlue.xml = Themes\DarkBlue.xml
 		Themes\DarkGreen.xml = Themes\DarkGreen.xml
+		Themes\DarkOrange.xml = Themes\DarkOrange.xml
 		Themes\Orange.xml = Themes\Orange.xml
 		Themes\Standard.xml = Themes\Standard.xml
 	EndProjectSection
