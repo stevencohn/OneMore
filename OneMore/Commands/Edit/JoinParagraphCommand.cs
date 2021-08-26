@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -65,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 			var cursor = runs.First();
 			if (runs.Count == 1 && cursor.GetCData().Value == string.Empty)
 			{
-				UIHelper.ShowInfo("Select two or more lines to join");
+				UIHelper.ShowInfo(Resx.JoinParagraphCommand_Select);
 				return null;
 			}
 

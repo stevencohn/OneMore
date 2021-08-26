@@ -3268,4 +3268,8 @@ ISO-code then comma then language name</comment>
     <value>颜色和主题可能没有足够的对比度</value>
     <comment>label</comment>
   </data>
+  <data name="JoinParagraphCommand_Select" xml:space="preserve">
+    <value>选择两条或多条线加入</value>
+    <comment>info message</comment>
+  </data>
 </root>

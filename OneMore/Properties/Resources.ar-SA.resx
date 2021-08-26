@@ -3276,4 +3276,8 @@ ISO-code then comma then language name</comment>
     <value>قد لا يكون للون والموضوع تباين كافٍ</value>
     <comment>label</comment>
   </data>
+  <data name="JoinParagraphCommand_Select" xml:space="preserve">
+    <value>حدد سطرين أو أكثر للانضمام</value>
+    <comment>info message</comment>
+  </data>
 </root>

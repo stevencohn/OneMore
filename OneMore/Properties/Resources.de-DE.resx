@@ -3262,4 +3262,8 @@ ISO-code then comma then language name</comment>
     <value>Farbe und Thema haben möglicherweise nicht genug Kontrast</value>
     <comment>label</comment>
   </data>
+  <data name="JoinParagraphCommand_Select" xml:space="preserve">
+    <value>Wählen Sie zwei oder mehr Linien zum Verbinden aus</value>
+    <comment>info message</comment>
+  </data>
 </root>

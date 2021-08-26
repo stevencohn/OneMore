@@ -3306,4 +3306,8 @@ In this section</value>
     <value>Color and theme may not have enough contrast</value>
     <comment>label</comment>
   </data>
+  <data name="JoinParagraphCommand_Select" xml:space="preserve">
+    <value>Select two or more lines to join</value>
+    <comment>info message</comment>
+  </data>
 </root>

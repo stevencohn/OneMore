@@ -2842,6 +2842,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select two or more lines to join.
+        /// </summary>
+        internal static string JoinParagraphCommand_Select {
+            get {
+                return ResourceManager.GetString("JoinParagraphCommand_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Journal {
