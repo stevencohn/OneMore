@@ -8,9 +8,7 @@ namespace River.OneMoreAddIn.Styles
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
-	using System.Collections.Generic;
 	using System.IO;
-	using System.Linq;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
