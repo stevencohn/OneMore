@@ -3161,8 +3161,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>备份与回收站文件夹一起存储在本地。</value>
-    <comment>summary text</comment>
+    笔记本可以本地或远程存储在 OneDrive 上。
+    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>OneNote 存储分析</value>

@@ -340,7 +340,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Backups are stored locally along with a recycle bin folder. Backup location and number of copies is configured in the OneNote Options. This summary shows the total disk usage including all backup copies and the per-notebook recycle bins..
+        ///   Looks up a localized string similar to Notebooks can be stored locally or remotely on OneDrive. Remote notebooks can only be analyzed by their local backups as configured in the OneNote Options. This summary shows the total disk usage in either the data location for local notebooks or the backup location for remote notebooks including all backup copies and the per-notebook recycle bins..
         /// </summary>
         internal static string AnalyzeCommand_SummarySummary {
             get {

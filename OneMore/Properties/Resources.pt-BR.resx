@@ -3170,8 +3170,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>Os backups são armazenados localmente junto com uma pasta da lixeira. </value>
-    <comment>summary text</comment>
+    Notebooks podem ser armazenados localmente ou remotamente no OneDrive. 
+    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>Análise de armazenamento OneNote</value>

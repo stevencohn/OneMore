@@ -3169,8 +3169,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>يتم تخزين النسخ الاحتياطية محليًا مع مجلد سلة المحذوفات. </value>
-    <comment>summary text</comment>
+    يمكن تخزين دفاتر الملاحظات محليًا أو عن بُعد على OneDrive. 
+    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>تحليل تخزين OneNote</value>

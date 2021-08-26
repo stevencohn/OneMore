@@ -3169,8 +3169,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>Las copias de seguridad se almacenan localmente junto con una carpeta de papelera de reciclaje. </value>
-    <comment>summary text</comment>
+    Los blocs de notas se pueden almacenar de forma local o remota en OneDrive. 
+    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>Análisis de almacenamiento de OneNote</value>

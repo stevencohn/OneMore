@@ -3166,8 +3166,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>Back-ups worden lokaal opgeslagen samen met een prullenbakmap. </value>
-    <comment>summary text</comment>
+    Notebooks kunnen lokaal of op afstand worden opgeslagen op OneDrive. 
+    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>OneNote-opslaganalyse</value>

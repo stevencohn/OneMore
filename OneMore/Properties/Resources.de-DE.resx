@@ -3151,8 +3151,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>Backups werden lokal zusammen mit einem Papierkorbordner gespeichert. </value>
-    <comment>summary text</comment>
+    Notizbücher können lokal oder remote auf OneDrive gespeichert werden. 
+    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>OneNote-Speicheranalyse</value>
