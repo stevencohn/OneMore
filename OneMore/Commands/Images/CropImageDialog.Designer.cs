@@ -36,12 +36,12 @@
 			this.marchingTimer = new System.Windows.Forms.Timer(this.components);
 			this.picturePanel = new System.Windows.Forms.Panel();
 			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.selectButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.cropButton = new System.Windows.Forms.Button();
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.sizeStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.selectButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
 			this.picturePanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
@@ -58,6 +58,7 @@
 			this.pictureBox.Size = new System.Drawing.Size(978, 651);
 			this.pictureBox.TabIndex = 1;
 			this.pictureBox.TabStop = false;
+			this.pictureBox.SizeChanged += new System.EventHandler(this.pictureBox_SizeChanged);
 			this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.Picture_Paint);
 			this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picture_MouseDown);
 			this.pictureBox.MouseHover += new System.EventHandler(this.Picture_Hover);
@@ -71,7 +72,6 @@
 			// 
 			// picturePanel
 			// 
-			this.picturePanel.AutoScroll = true;
 			this.picturePanel.AutoScrollMinSize = new System.Drawing.Size(300, 300);
 			this.picturePanel.AutoSize = true;
 			this.picturePanel.Controls.Add(this.pictureBox);
@@ -93,6 +93,16 @@
 			this.buttonPanel.Size = new System.Drawing.Size(978, 58);
 			this.buttonPanel.TabIndex = 6;
 			// 
+			// selectButton
+			// 
+			this.selectButton.Location = new System.Drawing.Point(12, 9);
+			this.selectButton.Name = "selectButton";
+			this.selectButton.Size = new System.Drawing.Size(120, 40);
+			this.selectButton.TabIndex = 7;
+			this.selectButton.Text = "Select All";
+			this.selectButton.UseVisualStyleBackColor = true;
+			this.selectButton.Click += new System.EventHandler(this.SelectButton_Click);
+			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -108,6 +118,7 @@
 			// 
 			this.cropButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cropButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.cropButton.Enabled = false;
 			this.cropButton.Location = new System.Drawing.Point(723, 9);
 			this.cropButton.Name = "cropButton";
 			this.cropButton.Size = new System.Drawing.Size(120, 40);
@@ -143,16 +154,6 @@
 			this.statusLabel.Size = new System.Drawing.Size(543, 29);
 			this.statusLabel.Text = "Selection top left: {x}, {y}. Bounding rectangle size: {width} x {height}.";
 			this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// selectButton
-			// 
-			this.selectButton.Location = new System.Drawing.Point(12, 9);
-			this.selectButton.Name = "selectButton";
-			this.selectButton.Size = new System.Drawing.Size(120, 40);
-			this.selectButton.TabIndex = 7;
-			this.selectButton.Text = "Select All";
-			this.selectButton.UseVisualStyleBackColor = true;
-			this.selectButton.Click += new System.EventHandler(this.SelectButton_Click);
 			// 
 			// CropImageDialog
 			// 
