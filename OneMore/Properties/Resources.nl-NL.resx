@@ -136,14 +136,6 @@
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Nog een</value>
   </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>Schakel de spellingcontrole uit
-    Ribbon OneMore menu item, no spell check on this page EDIT</value>
-  </data>
-  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Schakel de spellingcontrole uit voor de hele pagina (F4)
-    Ribbon OneMore menu item, no spell check on this page EDIT</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -597,10 +589,6 @@ OneNote wordt automatisch gesloten</value>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
     <value>Versie {0}</value>
     <comment>the version of the add-in</comment>
-  </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Paginathema wijzigen
-    dialog title EDIT</value>
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>annuleren</value>
@@ -1272,10 +1260,6 @@ Probeer het later nog eens</value>
     <value>Rennen</value>
     <comment>ok button</comment>
   </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Opdracht
-    label EDIT</value>
-  </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Update huidige pagina</value>
     <comment>radio button</comment>
@@ -1602,14 +1586,6 @@ Symbolen: PI, E</value>
     <value>Map:</value>
     <comment>label</comment>
   </data>
-  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>HTML-bestand (*.htm)
-PDF-bestand (*.pdf)
-Word-bestand (*.docx)
-XML-bestand (*.xml)
-OneNote-bestand (*.one)
-    combo box EDIT</value>
-  </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Formaat:</value>
     <comment>label</comment>
@@ -1646,10 +1622,6 @@ OneNote-bestand (*.one)
     <value>Het dossier:</value>
     <comment>label</comment>
   </data>
-  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Selecteer een Word-, PowerPoint-, OneNote-, Markdown- of XML-bestand
-    label EDIT</value>
-  </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>
     <comment>button</comment>
@@ -1685,10 +1657,6 @@ OneNote-bestand (*.one)
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Word-opties</value>
     <comment>group box</comment>
-  </data>
-  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Alle bestanden (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word-bestanden (*.doc 
-    openfiledialog filter EDIT</value>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Kies een bestand om te importeren</value>
@@ -1779,10 +1747,6 @@ OneNote-bestand (*.one)
     <value>Kies opdrachten om weer te geven in het pagina-contextmenu. </value>
     <comment>intro</comment>
   </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>... Schakel de spellingcontrole uit
-    option EDIT</value>
-  </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Plak Rich Text</value>
     <comment>option</comment>
@@ -1870,10 +1834,6 @@ OneNote-bestand (*.one)
   <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
     <value>Voeg een codeblok in (F6)</value>
     <comment>menu</comment>
-  </data>
-  <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>Een of meer wijzigingen vereisen dat OneNote opnieuw wordt gestart. 
-    restart message EDIT</value>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Selecteer een of meer tabelcellen</value>
@@ -2023,10 +1983,6 @@ OneNote-bestand (*.one)
     <value>Nieuwe aangepaste stijl</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    OK (Opslaan)
-    button EDIT
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Opnieuw ordenen</value>
     <comment>button</comment>
@@ -2166,10 +2122,6 @@ In deze sectie</value>
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>Inhoudsopgave</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Voer een of meer tags in, gescheiden door komma's. 
-    EDIT label</value>
   </data>
   <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
     <value>Actie</value>
@@ -2562,10 +2514,6 @@ ISO-code then comma then language name</comment>
     <value>OneNote-sneltoetsen</value>
     <comment>favorite</comment>
   </data>
-  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud laadt fragment van "{0}" niet
-    error message EDIT</value>
-  </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Mijn aangepaste fragmenten</value>
     <comment>ribbon </comment>
@@ -2586,17 +2534,9 @@ ISO-code then comma then language name</comment>
     <value>Fragmenten</value>
     <comment>tree node</comment>
   </data>
-  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    <value>Fragment "{0}" verwijderen
-    question EDIT</value>
-  </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Beheer mijn aangepaste fragmenten</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>Tekstvak
-    ribbon EDIT</value>
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Voeg een tabel met één cel in, eventueel met omloop van geselecteerde tekst</value>
@@ -2914,10 +2854,6 @@ ISO-code then comma then language name</comment>
     <value>Vouw Overzicht uit</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    <value>Overzicht samenvouwen
-    ribbon item EDIT</value>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>Om Titel Case</value>
     <comment>rib button</comment>
@@ -2984,10 +2920,6 @@ ISO-code then comma then language name</comment>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>Linkreferenties</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>Link Verwijzingen naar deze pagina
-    ribbon button EDIT</value>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
@@ -3137,10 +3069,6 @@ ISO-code then comma then language name</comment>
     <value>Kan geen bidirectionele link maken. </value>
     <comment>message box</comment>
   </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Gemarkeerd met "{0}" als het anker. 
-    message box EDIT</value>
-  </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>Startanker nog niet gemarkeerd. </value>
     <comment>message box</comment>
@@ -3164,10 +3092,6 @@ ISO-code then comma then language name</comment>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Bidirectionele koppeling starten</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    Notebooks kunnen lokaal of op afstand worden opgeslagen op OneDrive. 
-    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>OneNote-opslaganalyse</value>
@@ -3237,10 +3161,6 @@ ISO-code then comma then language name</comment>
     <value>Gegevensopslag analyseren</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    <value>Importeren als statische afbeeldingen
-    checkbox EDIT</value>
-  </data>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>Kies een aangepaste kleur</value>
     <comment>link</comment>
@@ -3280,5 +3200,97 @@ ISO-code then comma then language name</comment>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Selecteer twee of meer lijnen om mee te doen</value>
     <comment>info message</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
+    <value>Spellingcontrole uitschakelen</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Spellingcontrole voor hele pagina uitschakelen (F4)</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ChangePageColorDialog.Text" xml:space="preserve">
+    <value>Paginathema wijzigen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
+    <value>Opdracht</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
+    <value>HTML-bestand (*.htm)
+PDF-bestand (*.pdf)
+Word-bestand (*.docx)
+XML-bestand (*.xml)
+OneNote-bestand (*.one)</value>
+    <comment>combo box</comment>
+  </data>
+  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
+    <value>Selecteer een Word-, PowerPoint-, OneNote-, Markdown- of XML-bestand</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
+    <value>Alle bestanden (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word-bestanden (*.doc </value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
+    <value>... Spellingcontrole uitschakelen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="SettingsDialog_Restart" xml:space="preserve">
+    <value>Voor een of meer wijzigingen moet OneNote opnieuw worden gestart. </value>
+    <comment>restart message</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>OK (Opslaan)</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    <value>Voer een of meer tags in, gescheiden door komma's. </value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>Cloud fragment van "{0}" niet laden</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Fragment "{0}" verwijderen</value>
+    <comment>question</comment>
+  </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>Tekstveld</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>Samenvouwen overzicht</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    <value>Link Verwijzingen naar deze pagina</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    <value>Gemarkeerd met "{0}" als het anker. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>Notebooks kunnen lokaal of op afstand worden opgeslagen op OneDrive. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
+    <value>Importeren als statische afbeeldingen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertCalendarDialog_clickLabel.Text" xml:space="preserve">
+    <value>klik om te wijzigen</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_colorLabel.Text" xml:space="preserve">
+    <value>Kopkleur</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
+    <value>Eerste dag van de week</value>
+    <comment>label</comment>
   </data>
 </root>

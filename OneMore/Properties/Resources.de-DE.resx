@@ -135,14 +135,6 @@
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Einer noch</value>
   </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>Rechtschreibprüfung deaktivieren
-    Ribbon OneMore menu item, no spell check on this page EDIT</value>
-  </data>
-  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Deaktiviere die Rechtschreibprüfung für die gesamte Seite (F4)
-    Ribbon OneMore menu item, no spell check on this page EDIT</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -593,10 +585,6 @@
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
     <value>Version {0}</value>
     <comment>the version of the add-in</comment>
-  </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Seitenthema ändern
-    dialog title EDIT</value>
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>Stornieren</value>
@@ -1254,10 +1242,6 @@
     <value>Lauf</value>
     <comment>ok button</comment>
   </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Befehl
-    label EDIT</value>
-  </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Aktuelle Seite aktualisieren</value>
     <comment>radio button</comment>
@@ -1571,14 +1555,6 @@
     <value>Ordner:</value>
     <comment>label</comment>
   </data>
-  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    <value>HTML-Datei (*.htm)
-PDF-Datei (*.pdf)
-Word-Datei (*.docx)
-XML-Datei (*.xml)
-OneNote-Datei (*.one)
-    combo box EDIT</value>
-  </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Format:</value>
     <comment>label</comment>
@@ -1615,10 +1591,6 @@ OneNote-Datei (*.one)
     <value>Datei:</value>
     <comment>label</comment>
   </data>
-  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Wählen Sie eine Word-, PowerPoint-, OneNote-, Markdown- oder XML-Datei aus
-    label EDIT</value>
-  </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>OK</value>
     <comment>button</comment>
@@ -1654,10 +1626,6 @@ OneNote-Datei (*.one)
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Word-Optionen</value>
     <comment>group box</comment>
-  </data>
-  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Alle Dateien (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word-Dateien (*.doc 
-    openfiledialog filter EDIT</value>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Wählen Sie die zu importierende Datei aus</value>
@@ -1748,10 +1716,6 @@ OneNote-Datei (*.one)
     <value>Wählen Sie Befehle aus, die im Kontextmenü Seite angezeigt werden sollen. </value>
     <comment>intro</comment>
   </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>... Rechtschreibprüfung deaktivieren
-    option EDIT</value>
-  </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Rich Text einfügen</value>
     <comment>option</comment>
@@ -1839,10 +1803,6 @@ OneNote-Datei (*.one)
   <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
     <value>Fügen Sie einen Codeblock ein (F6)</value>
     <comment>menu</comment>
-  </data>
-  <data name="SettingsDialog_Restart" xml:space="preserve">
-    <value>Für eine oder mehrere Änderungen muss OneNote neu gestartet werden. 
-    restart message EDIT</value>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Wählen Sie eine oder mehrere Tabellenzellen aus</value>
@@ -2008,10 +1968,6 @@ OneNote-Datei (*.one)
     <value>Neuer benutzerdefinierter Stil</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    OK (Speichern)
-    button EDIT
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Nachbestellen</value>
     <comment>button</comment>
@@ -2151,10 +2107,6 @@ In diesem Abschnitt</value>
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>Index</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Geben Sie ein oder mehrere durch Kommas getrennte Tags ein. 
-    EDIT label</value>
   </data>
   <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
     <value>Bewegung</value>
@@ -2547,10 +2499,6 @@ ISO-code then comma then language name</comment>
     <value>OneNote-Tastaturkürzel</value>
     <comment>favorite</comment>
   </data>
-  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud-Snippet nicht von "{0}" laden
-    error message EDIT</value>
-  </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Meine benutzerdefinierten Schnipsel</value>
     <comment>ribbon </comment>
@@ -2571,17 +2519,9 @@ ISO-code then comma then language name</comment>
     <value>Schnipsel</value>
     <comment>tree node</comment>
   </data>
-  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    <value>Snippet "{0}" löschen
-    question EDIT</value>
-  </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Verwalten Sie meine benutzerdefinierten Snippets</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>Textfeld
-    ribbon EDIT</value>
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Fügen Sie eine Einzelzellentabelle ein und wickeln Sie den ausgewählten Text optional ein</value>
@@ -2899,10 +2839,6 @@ ISO-code then comma then language name</comment>
     <value>Erweitern Sie Gliederung</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    <value>Gliederungsübersicht
-    ribbon item EDIT</value>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>Zum Titelfall</value>
     <comment>rib button</comment>
@@ -2969,10 +2905,6 @@ ISO-code then comma then language name</comment>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>Link-Referenzen</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>Verweise auf diese Seite verlinken
-    ribbon button EDIT</value>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
@@ -3122,10 +3054,6 @@ ISO-code then comma then language name</comment>
     <value>Bidirektionaler Link konnte nicht erstellt werden. </value>
     <comment>message box</comment>
   </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Als Anker markiert "{0}". 
-    message box EDIT</value>
-  </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>Startanker noch nicht markiert. </value>
     <comment>message box</comment>
@@ -3149,10 +3077,6 @@ ISO-code then comma then language name</comment>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Bidirektionale Verbindung starten</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    Notizbücher können lokal oder remote auf OneDrive gespeichert werden. 
-    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>OneNote-Speicheranalyse</value>
@@ -3222,10 +3146,6 @@ ISO-code then comma then language name</comment>
     <value>Datenspeicher analysieren</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    <value>Als statische Bilder importieren
-    checkbox EDIT</value>
-  </data>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>Wählen Sie eine benutzerdefinierte Farbe</value>
     <comment>link</comment>
@@ -3265,5 +3185,97 @@ ISO-code then comma then language name</comment>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Wählen Sie zwei oder mehr Linien zum Verbinden aus</value>
     <comment>info message</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
+    <value>Rechtschreibprüfung deaktivieren</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Rechtschreibprüfung für ganze Seite deaktivieren (F4)</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ChangePageColorDialog.Text" xml:space="preserve">
+    <value>Seitenthema ändern</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
+    <value>Befehl</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
+    <value>HTML-Datei (*.htm)
+PDF-Datei (*.pdf)
+Word-Datei (*.docx)
+XML-Datei (*.xml)
+OneNote-Datei (*.one)</value>
+    <comment>combo box</comment>
+  </data>
+  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
+    <value>Wählen Sie eine Word-, PowerPoint-, OneNote-, Markdown- oder XML-Datei aus</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
+    <value>Alle Dateien (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word-Dateien (*.doc </value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
+    <value>... Rechtschreibprüfung deaktivieren</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="SettingsDialog_Restart" xml:space="preserve">
+    <value>Eine oder mehrere Änderungen erfordern einen Neustart von OneNote. </value>
+    <comment>restart message</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>OK (Speichern)</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    <value>Geben Sie ein oder mehrere durch Kommas getrennte Tags ein. </value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>Cloud lädt Snippet nicht von "{0}"</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Snippet "{0}" löschen</value>
+    <comment>question</comment>
+  </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>Textfeld</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>Gliederung ausblenden</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    <value>Verweise auf diese Seite verlinken</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    <value>Als Anker markiert "{0}". </value>
+    <comment>message box</comment>
+  </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>Notizbücher können lokal oder remote auf OneDrive gespeichert werden. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
+    <value>Als statische Bilder importieren</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertCalendarDialog_clickLabel.Text" xml:space="preserve">
+    <value>Klicken Sie, um zu ändern</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_colorLabel.Text" xml:space="preserve">
+    <value>Überschriftsfarbe</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
+    <value>Erster Tag der Woche</value>
+    <comment>label</comment>
   </data>
 </root>

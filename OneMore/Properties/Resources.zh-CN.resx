@@ -135,14 +135,6 @@
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>OneMore</value>
   </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>禁用拼写检查</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page EDIT</comment>
-  </data>
-  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>禁用整个页面的拼写检查（F4）</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page EDIT</comment>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -486,10 +478,6 @@
     <value>更多</value>
     <comment>Ribbon main button</comment>
   </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    更改页面主题
-    Ribbon Custom Styles menu item, set page background color EDIT
-  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>粘贴富文本</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -602,10 +590,6 @@ OneNote 将自动关闭</value>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
     <value>版本 {0}</value>
     <comment>the version of the add-in</comment>
-  </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    更改页面主题
-    dialog title EDIT
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>取消</value>
@@ -1273,10 +1257,6 @@ OneNote 将自动关闭</value>
     <value>执行</value>
     <comment>ok button</comment>
   </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    命令
-    label EDIT
-  </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>更新当前页面</value>
     <comment>radio button</comment>
@@ -1602,14 +1582,6 @@ OneNote 将自动关闭</value>
     <value>夹：</value>
     <comment>label</comment>
   </data>
-  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    HTML档案（*.htm）
-PDF档案（*.pdf）
-Word文件（*.docx）
-XML档案（*.xml）
-OneNote文件（*.one）
-    combo box EDIT
-  </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>格式：</value>
     <comment>label</comment>
@@ -1646,10 +1618,6 @@ OneNote文件（*.one）
     <value>文件：</value>
     <comment>label</comment>
   </data>
-  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    选择 Word、PowerPoint、OneNote、Markdown 或 XML 文件
-    label EDIT
-  </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>好</value>
     <comment>button</comment>
@@ -1685,10 +1653,6 @@ OneNote文件（*.one）
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Word选项</value>
     <comment>group box</comment>
-  </data>
-  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    所有文件 (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word 文件 (*.doc 
-    openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>选择要导入的文件</value>
@@ -1769,10 +1733,6 @@ OneNote文件（*.one）
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>选择要在“页面”上下文菜单中显示的命令。 菜单项包括该菜单中的所有命令。 重新启动OneNote以查看更改。</value>
     <comment>intro</comment>
-  </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    ...禁用拼写检查
-    option EDIT
   </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>粘贴富文本</value>
@@ -1861,10 +1821,6 @@ OneNote文件（*.one）
   <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
     <value>插入代码块（F6）</value>
     <comment>menu</comment>
-  </data>
-  <data name="SettingsDialog_Restart" xml:space="preserve">
-    一项或多项更改要求OneNote重新启动。
-    restart message EDIT
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>选择一个或多个表格单元格</value>
@@ -2018,10 +1974,6 @@ OneNote文件（*.one）
     <value>新的自定义样式</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    确定（保存）
-    button EDIT
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>重新排序</value>
     <comment>button</comment>
@@ -2161,10 +2113,6 @@ OneNote文件（*.one）
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>指数</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    输入一个或多个用逗号分隔的标签。
-    EDIT label
   </data>
   <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
     <value>移动</value>
@@ -2557,10 +2505,6 @@ ISO-code then comma then language name</comment>
     <value>OneNote键盘快捷键</value>
     <comment>favorite</comment>
   </data>
-  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    云未加载来自“ {0}”的代码段
-    error message EDIT
-  </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>我的自定义片段</value>
     <comment>ribbon </comment>
@@ -2581,17 +2525,9 @@ ISO-code then comma then language name</comment>
     <value>片段</value>
     <comment>tree node</comment>
   </data>
-  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    删除代码段“ {0}”
-    question EDIT
-  </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>管理我的自定义片段</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
-    文本框
-    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>插入一个单元格表格，可以选择包装所选文本</value>
@@ -2909,10 +2845,6 @@ ISO-code then comma then language name</comment>
     <value>展开概述</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    <value>折叠轮廓</value>
-    <comment>ribbon item EDIT</comment>
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>至标题案例</value>
     <comment>rib button</comment>
@@ -2979,10 +2911,6 @@ ISO-code then comma then language name</comment>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>链接参考</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    链接参考此页面
-    ribbon button EDIT
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>超时</value>
@@ -3132,10 +3060,6 @@ ISO-code then comma then language name</comment>
     <value>无法创建双向链接。 </value>
     <comment>message box</comment>
   </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    将“{0}”标记为锚点。
-    message box EDIT
-  </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>起始锚点尚未标记。</value>
     <comment>message box</comment>
@@ -3159,10 +3083,6 @@ ISO-code then comma then language name</comment>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>启动双向链接</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    笔记本可以本地或远程存储在 OneDrive 上。
-    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>OneNote 存储分析</value>
@@ -3232,10 +3152,6 @@ ISO-code then comma then language name</comment>
     <value>分析数据存储</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    导入为静态图像
-    checkbox EDIT
-  </data>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>选择自定义颜色</value>
     <comment>link</comment>
@@ -3271,5 +3187,101 @@ ISO-code then comma then language name</comment>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>选择两条或多条线加入</value>
     <comment>info message</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
+    <value>禁用拼写检查</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
+    <value>禁用整个页面的拼写检查 (F4)</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>更改页面主题</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ChangePageColorDialog.Text" xml:space="preserve">
+    <value>更改页面主题</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
+    <value>命令</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
+    <value>HTML 文件 (*.htm)
+PDF 文件 (*.pdf)
+Word 文件 (*.docx)
+XML 文件 (*.xml)
+OneNote 文件 (*.one)</value>
+    <comment>combo box</comment>
+  </data>
+  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
+    <value>选择 Word、PowerPoint、OneNote、Markdown 或 XML 文件</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
+    <value>所有文件 (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word 文件 (*.doc </value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
+    <value>... 禁用拼写检查</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="SettingsDialog_Restart" xml:space="preserve">
+    <value>一项或多项更改需要重新启动 OneNote。</value>
+    <comment>restart message</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>确定（保存）</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    <value>输入一个或多个以逗号分隔的标签。</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>Cloud 不加载来自“{0}”的代码段</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>删除片段“{0}”</value>
+    <comment>question</comment>
+  </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>文本框</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>折叠大纲</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    <value>链接参考此页面</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    <value>将“{0}”标记为锚点。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>笔记本可以本地或远程存储在 OneDrive 上。</value>
+    <comment>summary text</comment>
+  </data>
+  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
+    <value>导入为静态图像</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertCalendarDialog_clickLabel.Text" xml:space="preserve">
+    <value>点击更改</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_colorLabel.Text" xml:space="preserve">
+    <value>标题颜色</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
+    <value>一周的第一天</value>
+    <comment>label</comment>
   </data>
 </root>

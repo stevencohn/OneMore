@@ -2535,6 +2535,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to click to change.
+        /// </summary>
+        internal static string InsertCalendarDialog_clickLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_clickLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading color.
+        /// </summary>
+        internal static string InsertCalendarDialog_colorLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_colorLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First day of week.
+        /// </summary>
+        internal static string InsertCalendarDialog_firstLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_firstLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Format.
         /// </summary>
         internal static string InsertCalendarDialog_formatLabel_Text {

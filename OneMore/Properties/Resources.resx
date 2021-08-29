@@ -3310,4 +3310,16 @@ In this section</value>
     <value>Select two or more lines to join</value>
     <comment>info message</comment>
   </data>
+  <data name="InsertCalendarDialog_clickLabel.Text" xml:space="preserve">
+    <value>click to change</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_colorLabel.Text" xml:space="preserve">
+    <value>Heading color</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
+    <value>First day of week</value>
+    <comment>label</comment>
+  </data>
 </root>

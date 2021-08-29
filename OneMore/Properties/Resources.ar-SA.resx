@@ -135,14 +135,6 @@
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>مرة اخرى</value>
   </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    تعطيل التدقيق الإملائي
-    Ribbon OneMore menu item, no spell check on this page EDIT
-  </data>
-  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    تعطيل التدقيق الإملائي للصفحة بأكملها (F4)
-    Ribbon OneMore menu item, no spell check on this page EDIT
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -486,10 +478,6 @@
     <value>أكثر</value>
     <comment>Ribbon main button</comment>
   </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    تغيير سمة الصفحة
-    Ribbon Custom Styles menu item, set page background color EDIT
-  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>لصق نص منسق</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -537,10 +525,6 @@
   <data name="ribYellowStatusButton_Label" xml:space="preserve">
     <value>الحالة الصفراء</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="AboutDialog.Text" xml:space="preserve">
-    الوظيفة الإضافية OneMore
-    dialog title bar EDIT
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
     <value>امسح ملف السجل</value>
@@ -600,10 +584,6 @@
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
     <value>الإصدار {0}</value>
     <comment>the version of the add-in</comment>
-  </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    تغيير سمة الصفحة
-    dialog title EDIT
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>إلغاء</value>
@@ -1275,10 +1255,6 @@
     <value>يركض</value>
     <comment>ok button</comment>
   </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    أمر
-    label EDIT
-  </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>تحديث الصفحة الحالية</value>
     <comment>radio button</comment>
@@ -1605,14 +1581,6 @@
     <value>مجلد:</value>
     <comment>label</comment>
   </data>
-  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    ملف HTML (*.htm)
-ملف PDF (*.pdf)
-ملف Word (*.docx)
-ملف XML (*.xml)
-ملف OneNote (*.one)
-    combo box EDIT
-  </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>شكل:</value>
     <comment>label</comment>
@@ -1649,10 +1617,6 @@
     <value>ملف:</value>
     <comment>label</comment>
   </data>
-  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    حدد ملف Word أو PowerPoint أو OneNote أو Markdown أو XML
-    label EDIT
-  </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>حسنا</value>
     <comment>button</comment>
@@ -1688,10 +1652,6 @@
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>خيارات Word</value>
     <comment>group box</comment>
-  </data>
-  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    جميع الملفات (* .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml | ملفات Word (* .doc 
-    openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>اختر الملف المراد استيراده</value>
@@ -1782,10 +1742,6 @@
     <value>اختر أوامر لعرضها في قائمة سياق الصفحة. </value>
     <comment>intro</comment>
   </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    ... تعطيل التدقيق الإملائي
-    option EDIT
-  </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>لصق نص منسق</value>
     <comment>option</comment>
@@ -1873,10 +1829,6 @@
   <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
     <value>أدخل كتلة التعليمات البرمجية (F6)</value>
     <comment>menu</comment>
-  </data>
-  <data name="SettingsDialog_Restart" xml:space="preserve">
-    يتطلب تغيير واحد أو أكثر إعادة تشغيل OneNote. 
-    restart message EDIT
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>حدد خلية جدول واحدة أو أكثر</value>
@@ -2026,10 +1978,6 @@
     <value>نمط مخصص جديد</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    موافق (حفظ)
-    button EDIT
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>إعادة ترتيب</value>
     <comment>button</comment>
@@ -2169,10 +2117,6 @@
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>فهرس</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    أدخل علامة أو أكثر مفصولة بفواصل. 
-    EDIT label
   </data>
   <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
     <value>نقل</value>
@@ -2565,10 +2509,6 @@ ISO-code then comma then language name</comment>
     <value>اختصارات لوحة مفاتيح OneNote</value>
     <comment>favorite</comment>
   </data>
-  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    لا يتم تحميل المقتطف على السحابة من "{0}"
-    error message EDIT
-  </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>مقتطفاتي المخصصة</value>
     <comment>ribbon </comment>
@@ -2589,17 +2529,9 @@ ISO-code then comma then language name</comment>
     <value>المقتطفات</value>
     <comment>tree node</comment>
   </data>
-  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    حذف المقتطف "{0}"
-    question EDIT
-  </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>إدارة مقتطفاتي المخصصة</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
-    مربع الكتابة
-    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>قم بإدراج جدول أحادي الخلية ، مع التفاف النص المحدد اختيارياً</value>
@@ -2917,10 +2849,6 @@ ISO-code then comma then language name</comment>
     <value>قم بتوسيع المخطط التفصيلي</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    طي مخطط تفصيلي
-    ribbon item EDIT
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>إلى حالة العنوان</value>
     <comment>rib button</comment>
@@ -2987,10 +2915,6 @@ ISO-code then comma then language name</comment>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>مراجع الارتباط</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    ارتباط المراجع لهذه الصفحة
-    ribbon button EDIT
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>تميوت</value>
@@ -3140,10 +3064,6 @@ ISO-code then comma then language name</comment>
     <value>تعذر إنشاء ارتباط ثنائي الاتجاه. </value>
     <comment>message box</comment>
   </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    تم وضع علامة "{0}" على أنها نقطة الارتساء. 
-    message box EDIT
-  </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>مرساة البدء لم يتم وضع علامة عليها بعد. </value>
     <comment>message box</comment>
@@ -3167,10 +3087,6 @@ ISO-code then comma then language name</comment>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>ابدأ رابط ثنائي الاتجاه</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    يمكن تخزين دفاتر الملاحظات محليًا أو عن بُعد على OneDrive. 
-    summary text EDIT
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>تحليل تخزين OneNote</value>
@@ -3240,10 +3156,6 @@ ISO-code then comma then language name</comment>
     <value>تحليل تخزين البيانات</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    استيراد كصور ثابتة
-    checkbox EDIT
-  </data>
   <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
     <value>اختر لونًا مخصصًا</value>
     <comment>link</comment>
@@ -3279,5 +3191,105 @@ ISO-code then comma then language name</comment>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>حدد سطرين أو أكثر للانضمام</value>
     <comment>info message</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
+    <value>تعطيل التدقيق الإملائي</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
+    <value>تعطيل التدقيق الإملائي للصفحة بأكملها (F4)</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>تغيير سمة الصفحة</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="AboutDialog.Text" xml:space="preserve">
+    <value>الوظيفة الإضافية OneMore</value>
+    <comment>dialog title bar</comment>
+  </data>
+  <data name="ChangePageColorDialog.Text" xml:space="preserve">
+    <value>تغيير سمة الصفحة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
+    <value>أمر</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
+    <value>ملف HTML (* .htm)
+ملف PDF (* .pdf)
+ملف Word (* .docx)
+ملف XML (* .xml)
+ملف OneNote (* .one)</value>
+    <comment>combo box</comment>
+  </data>
+  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
+    <value>حدد ملف Word أو PowerPoint أو OneNote أو Markdown أو XML</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
+    <value>جميع الملفات (* .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml | ملفات Word (* .doc </value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
+    <value>... تعطيل التدقيق الإملائي</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="SettingsDialog_Restart" xml:space="preserve">
+    <value>يتطلب تغيير واحد أو أكثر إعادة تشغيل OneNote. </value>
+    <comment>restart message</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>موافق (حفظ)</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    <value>أدخل علامة أو أكثر مفصولة بفواصل. </value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>لا يتم تحميل المقتطف على السحابة من "{0}"</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>حذف المقتطف "{0}"</value>
+    <comment>question</comment>
+  </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>مربع الكتابة</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>طي مخطط تفصيلي</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    <value>ارتباط المراجع لهذه الصفحة</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    <value>تم وضع علامة "{0}" على أنها نقطة الارتساء. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>يمكن تخزين دفاتر الملاحظات محليًا أو عن بُعد على OneDrive. </value>
+    <comment>summary text</comment>
+  </data>
+  <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
+    <value>استيراد كصور ثابتة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertCalendarDialog_clickLabel.Text" xml:space="preserve">
+    <value>انقر للتغيير</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_colorLabel.Text" xml:space="preserve">
+    <value>لون العنوان</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
+    <value>اليوم الأول من الأسبوع</value>
+    <comment>label</comment>
   </data>
 </root>

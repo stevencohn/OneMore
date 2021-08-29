@@ -39,7 +39,18 @@
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
 			this.indentBox = new System.Windows.Forms.CheckBox();
+			this.firstLabel = new System.Windows.Forms.Label();
+			this.sundayButton = new System.Windows.Forms.RadioButton();
+			this.mondayButton = new System.Windows.Forms.RadioButton();
+			this.firstPanel = new System.Windows.Forms.Panel();
+			this.formatPanel = new System.Windows.Forms.Panel();
+			this.clickLabel = new System.Windows.Forms.Label();
+			this.shadingBox = new River.OneMoreAddIn.UI.MorePictureBox();
+			this.colorLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.yearBox)).BeginInit();
+			this.firstPanel.SuspendLayout();
+			this.formatPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.shadingBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// yearLabel
@@ -54,7 +65,7 @@
 			// 
 			// yearBox
 			// 
-			this.yearBox.Location = new System.Drawing.Point(136, 35);
+			this.yearBox.Location = new System.Drawing.Point(159, 36);
 			this.yearBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.yearBox.Maximum = new decimal(new int[] {
             10000,
@@ -78,7 +89,7 @@
 			// formatLabel
 			// 
 			this.formatLabel.AutoSize = true;
-			this.formatLabel.Location = new System.Drawing.Point(20, 120);
+			this.formatLabel.Location = new System.Drawing.Point(4, 63);
 			this.formatLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.formatLabel.Name = "formatLabel";
 			this.formatLabel.Size = new System.Drawing.Size(64, 20);
@@ -89,7 +100,7 @@
 			// 
 			this.monthBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.monthBox.FormattingEnabled = true;
-			this.monthBox.Location = new System.Drawing.Point(136, 75);
+			this.monthBox.Location = new System.Drawing.Point(159, 77);
 			this.monthBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.monthBox.MaxDropDownItems = 12;
 			this.monthBox.Name = "monthBox";
@@ -99,7 +110,7 @@
 			// smallRadio
 			// 
 			this.smallRadio.AutoSize = true;
-			this.smallRadio.Location = new System.Drawing.Point(136, 150);
+			this.smallRadio.Location = new System.Drawing.Point(145, 91);
 			this.smallRadio.Name = "smallRadio";
 			this.smallRadio.Size = new System.Drawing.Size(73, 24);
 			this.smallRadio.TabIndex = 5;
@@ -110,7 +121,7 @@
 			// 
 			this.largeRadio.AutoSize = true;
 			this.largeRadio.Checked = true;
-			this.largeRadio.Location = new System.Drawing.Point(134, 120);
+			this.largeRadio.Location = new System.Drawing.Point(143, 61);
 			this.largeRadio.Name = "largeRadio";
 			this.largeRadio.Size = new System.Drawing.Size(75, 24);
 			this.largeRadio.TabIndex = 6;
@@ -122,7 +133,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(306, 247);
+			this.cancelButton.Location = new System.Drawing.Point(312, 388);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -134,7 +145,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(184, 247);
+			this.okButton.Location = new System.Drawing.Point(190, 388);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(112, 35);
@@ -145,7 +156,7 @@
 			// indentBox
 			// 
 			this.indentBox.AutoSize = true;
-			this.indentBox.Location = new System.Drawing.Point(136, 200);
+			this.indentBox.Location = new System.Drawing.Point(145, 141);
 			this.indentBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
 			this.indentBox.Name = "indentBox";
 			this.indentBox.Size = new System.Drawing.Size(146, 24);
@@ -153,20 +164,108 @@
 			this.indentBox.Text = "Indent calendar";
 			this.indentBox.UseVisualStyleBackColor = true;
 			// 
+			// firstLabel
+			// 
+			this.firstLabel.AutoSize = true;
+			this.firstLabel.Location = new System.Drawing.Point(4, 10);
+			this.firstLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.firstLabel.Name = "firstLabel";
+			this.firstLabel.Size = new System.Drawing.Size(132, 20);
+			this.firstLabel.TabIndex = 10;
+			this.firstLabel.Text = "First day of week:";
+			// 
+			// sundayButton
+			// 
+			this.sundayButton.AutoSize = true;
+			this.sundayButton.Checked = true;
+			this.sundayButton.Location = new System.Drawing.Point(143, 8);
+			this.sundayButton.Name = "sundayButton";
+			this.sundayButton.Size = new System.Drawing.Size(88, 24);
+			this.sundayButton.TabIndex = 11;
+			this.sundayButton.TabStop = true;
+			this.sundayButton.Text = "Sunday";
+			this.sundayButton.UseVisualStyleBackColor = true;
+			// 
+			// mondayButton
+			// 
+			this.mondayButton.AutoSize = true;
+			this.mondayButton.Location = new System.Drawing.Point(143, 38);
+			this.mondayButton.Name = "mondayButton";
+			this.mondayButton.Size = new System.Drawing.Size(90, 24);
+			this.mondayButton.TabIndex = 12;
+			this.mondayButton.Text = "Monday";
+			this.mondayButton.UseVisualStyleBackColor = true;
+			// 
+			// firstPanel
+			// 
+			this.firstPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.firstPanel.Controls.Add(this.firstLabel);
+			this.firstPanel.Controls.Add(this.mondayButton);
+			this.firstPanel.Controls.Add(this.sundayButton);
+			this.firstPanel.Location = new System.Drawing.Point(16, 122);
+			this.firstPanel.Name = "firstPanel";
+			this.firstPanel.Size = new System.Drawing.Size(410, 66);
+			this.firstPanel.TabIndex = 13;
+			// 
+			// formatPanel
+			// 
+			this.formatPanel.Controls.Add(this.clickLabel);
+			this.formatPanel.Controls.Add(this.shadingBox);
+			this.formatPanel.Controls.Add(this.colorLabel);
+			this.formatPanel.Controls.Add(this.formatLabel);
+			this.formatPanel.Controls.Add(this.smallRadio);
+			this.formatPanel.Controls.Add(this.indentBox);
+			this.formatPanel.Controls.Add(this.largeRadio);
+			this.formatPanel.Location = new System.Drawing.Point(16, 194);
+			this.formatPanel.Name = "formatPanel";
+			this.formatPanel.Size = new System.Drawing.Size(408, 173);
+			this.formatPanel.TabIndex = 14;
+			// 
+			// clickLabel
+			// 
+			this.clickLabel.AutoSize = true;
+			this.clickLabel.Location = new System.Drawing.Point(271, 13);
+			this.clickLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.clickLabel.Name = "clickLabel";
+			this.clickLabel.Size = new System.Drawing.Size(114, 20);
+			this.clickLabel.TabIndex = 12;
+			this.clickLabel.Text = "click to change";
+			// 
+			// colorBox
+			// 
+			this.shadingBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(235)))), ((int)(((byte)(246)))));
+			this.shadingBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.shadingBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.shadingBox.Location = new System.Drawing.Point(145, 13);
+			this.shadingBox.Name = "colorBox";
+			this.shadingBox.Size = new System.Drawing.Size(119, 24);
+			this.shadingBox.TabIndex = 11;
+			this.shadingBox.TabStop = false;
+			this.shadingBox.Click += new System.EventHandler(this.ChangeHeadingColor);
+			// 
+			// colorLabel
+			// 
+			this.colorLabel.AutoSize = true;
+			this.colorLabel.Location = new System.Drawing.Point(4, 13);
+			this.colorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.colorLabel.Name = "colorLabel";
+			this.colorLabel.Size = new System.Drawing.Size(111, 20);
+			this.colorLabel.TabIndex = 10;
+			this.colorLabel.Text = "Heading color:";
+			// 
 			// InsertCalendarDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(438, 302);
-			this.Controls.Add(this.indentBox);
+			this.ClientSize = new System.Drawing.Size(444, 443);
+			this.Controls.Add(this.formatPanel);
+			this.Controls.Add(this.firstPanel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
-			this.Controls.Add(this.largeRadio);
-			this.Controls.Add(this.smallRadio);
 			this.Controls.Add(this.monthBox);
-			this.Controls.Add(this.formatLabel);
 			this.Controls.Add(this.monthLabel);
 			this.Controls.Add(this.yearBox);
 			this.Controls.Add(this.yearLabel);
@@ -181,6 +280,11 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Insert Calendar";
 			((System.ComponentModel.ISupportInitialize)(this.yearBox)).EndInit();
+			this.firstPanel.ResumeLayout(false);
+			this.firstPanel.PerformLayout();
+			this.formatPanel.ResumeLayout(false);
+			this.formatPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.shadingBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -198,5 +302,13 @@
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.CheckBox indentBox;
+		private System.Windows.Forms.Label firstLabel;
+		private System.Windows.Forms.RadioButton sundayButton;
+		private System.Windows.Forms.RadioButton mondayButton;
+		private System.Windows.Forms.Panel firstPanel;
+		private System.Windows.Forms.Panel formatPanel;
+		private System.Windows.Forms.Label colorLabel;
+		private UI.MorePictureBox shadingBox;
+		private System.Windows.Forms.Label clickLabel;
 	}
 }
