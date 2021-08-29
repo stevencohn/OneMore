@@ -65,7 +65,7 @@
 			// 
 			// yearBox
 			// 
-			this.yearBox.Location = new System.Drawing.Point(159, 36);
+			this.yearBox.Location = new System.Drawing.Point(198, 36);
 			this.yearBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.yearBox.Maximum = new decimal(new int[] {
             10000,
@@ -100,7 +100,7 @@
 			// 
 			this.monthBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.monthBox.FormattingEnabled = true;
-			this.monthBox.Location = new System.Drawing.Point(159, 77);
+			this.monthBox.Location = new System.Drawing.Point(198, 77);
 			this.monthBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.monthBox.MaxDropDownItems = 12;
 			this.monthBox.Name = "monthBox";
@@ -110,7 +110,7 @@
 			// smallRadio
 			// 
 			this.smallRadio.AutoSize = true;
-			this.smallRadio.Location = new System.Drawing.Point(145, 91);
+			this.smallRadio.Location = new System.Drawing.Point(184, 91);
 			this.smallRadio.Name = "smallRadio";
 			this.smallRadio.Size = new System.Drawing.Size(73, 24);
 			this.smallRadio.TabIndex = 5;
@@ -121,7 +121,7 @@
 			// 
 			this.largeRadio.AutoSize = true;
 			this.largeRadio.Checked = true;
-			this.largeRadio.Location = new System.Drawing.Point(143, 61);
+			this.largeRadio.Location = new System.Drawing.Point(182, 61);
 			this.largeRadio.Name = "largeRadio";
 			this.largeRadio.Size = new System.Drawing.Size(75, 24);
 			this.largeRadio.TabIndex = 6;
@@ -133,7 +133,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(312, 388);
+			this.cancelButton.Location = new System.Drawing.Point(376, 388);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -145,7 +145,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(190, 388);
+			this.okButton.Location = new System.Drawing.Point(254, 388);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(112, 35);
@@ -156,7 +156,7 @@
 			// indentBox
 			// 
 			this.indentBox.AutoSize = true;
-			this.indentBox.Location = new System.Drawing.Point(145, 141);
+			this.indentBox.Location = new System.Drawing.Point(184, 141);
 			this.indentBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
 			this.indentBox.Name = "indentBox";
 			this.indentBox.Size = new System.Drawing.Size(146, 24);
@@ -178,7 +178,7 @@
 			// 
 			this.sundayButton.AutoSize = true;
 			this.sundayButton.Checked = true;
-			this.sundayButton.Location = new System.Drawing.Point(143, 8);
+			this.sundayButton.Location = new System.Drawing.Point(182, 8);
 			this.sundayButton.Name = "sundayButton";
 			this.sundayButton.Size = new System.Drawing.Size(88, 24);
 			this.sundayButton.TabIndex = 11;
@@ -189,7 +189,7 @@
 			// mondayButton
 			// 
 			this.mondayButton.AutoSize = true;
-			this.mondayButton.Location = new System.Drawing.Point(143, 38);
+			this.mondayButton.Location = new System.Drawing.Point(182, 38);
 			this.mondayButton.Name = "mondayButton";
 			this.mondayButton.Size = new System.Drawing.Size(90, 24);
 			this.mondayButton.TabIndex = 12;
@@ -205,11 +205,13 @@
 			this.firstPanel.Controls.Add(this.sundayButton);
 			this.firstPanel.Location = new System.Drawing.Point(16, 122);
 			this.firstPanel.Name = "firstPanel";
-			this.firstPanel.Size = new System.Drawing.Size(410, 66);
+			this.firstPanel.Size = new System.Drawing.Size(474, 66);
 			this.firstPanel.TabIndex = 13;
 			// 
 			// formatPanel
 			// 
+			this.formatPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.formatPanel.Controls.Add(this.clickLabel);
 			this.formatPanel.Controls.Add(this.shadingBox);
 			this.formatPanel.Controls.Add(this.colorLabel);
@@ -219,26 +221,26 @@
 			this.formatPanel.Controls.Add(this.largeRadio);
 			this.formatPanel.Location = new System.Drawing.Point(16, 194);
 			this.formatPanel.Name = "formatPanel";
-			this.formatPanel.Size = new System.Drawing.Size(408, 173);
+			this.formatPanel.Size = new System.Drawing.Size(472, 173);
 			this.formatPanel.TabIndex = 14;
 			// 
 			// clickLabel
 			// 
 			this.clickLabel.AutoSize = true;
-			this.clickLabel.Location = new System.Drawing.Point(271, 13);
+			this.clickLabel.Location = new System.Drawing.Point(310, 13);
 			this.clickLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.clickLabel.Name = "clickLabel";
 			this.clickLabel.Size = new System.Drawing.Size(114, 20);
 			this.clickLabel.TabIndex = 12;
 			this.clickLabel.Text = "click to change";
 			// 
-			// colorBox
+			// shadingBox
 			// 
 			this.shadingBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(235)))), ((int)(((byte)(246)))));
 			this.shadingBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.shadingBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.shadingBox.Location = new System.Drawing.Point(145, 13);
-			this.shadingBox.Name = "colorBox";
+			this.shadingBox.Location = new System.Drawing.Point(184, 13);
+			this.shadingBox.Name = "shadingBox";
 			this.shadingBox.Size = new System.Drawing.Size(119, 24);
 			this.shadingBox.TabIndex = 11;
 			this.shadingBox.TabStop = false;
@@ -260,7 +262,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(444, 443);
+			this.ClientSize = new System.Drawing.Size(508, 443);
 			this.Controls.Add(this.formatPanel);
 			this.Controls.Add(this.firstPanel);
 			this.Controls.Add(this.okButton);
