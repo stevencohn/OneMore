@@ -55,17 +55,26 @@ namespace River.OneMoreAddIn
 		/// Extract the style properties of this element by looking at its "style" attribute
 		/// if one exists and possibly its immediate CDATA child and any span/style attributes.
 		/// </summary>
-		/// <param name="element"></param>
-		/// <returns></returns>
+		/// <param name="element">A one:T text run that may have a style attribute</param>
+		/// <param name="nested">
+		/// If true then collect properties from the embedded CDATA styles as well as the 
+		/// style attribute of the T run itself
+		/// </param>
+		/// <returns>
+		/// The style properties collected from the inner CDATA and the style attribute of the run
+		/// </returns>
 		public static Dictionary<string, string> CollectStyleProperties(
-			this XElement element, bool inward = true)
+			this XElement element, bool nested = true, bool reverse = false)
 		{
 			var props = new Dictionary<string, string>();
 
-			if (inward)
+			if (nested)
 			{
 				// gather from CDATA child if one exists
-				var cdata = element.Nodes().OfType<XCData>().FirstOrDefault();
+				var cdata = reverse
+					? element.Nodes().OfType<XCData>().LastOrDefault()
+					: element.Nodes().OfType<XCData>().FirstOrDefault();
+
 				if (cdata != null)
 				{
 					var span = cdata.GetWrapper().Elements("span")

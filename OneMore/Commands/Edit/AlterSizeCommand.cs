@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var count = 0;
-			var analyzer = new StyleAnalyzer(page.Root, true);
+			var analyzer = new StyleAnalyzer(page.Root);
 
 			foreach (var element in elements)
 			{
