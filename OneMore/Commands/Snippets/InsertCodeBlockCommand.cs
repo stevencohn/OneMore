@@ -60,7 +60,8 @@ namespace River.OneMoreAddIn.Commands
 					BordersVisible = true
 				};
 
-				table.AddColumn(addTitle ? 600f : 1f, true);
+				var cursor = page.GetTextCursor();
+				table.AddColumn(addTitle ? 600f : (cursor == null ? 600f : 1f), true);
 
 				TableRow row;
 				TableCell cell;
@@ -86,7 +87,6 @@ namespace River.OneMoreAddIn.Commands
 				row = table.AddRow();
 				cell = row.Cells.First();
 
-				var cursor = page.GetTextCursor();
 				if (cursor != null)
 				{
 					// empty text cursor found, add default content
