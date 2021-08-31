@@ -30,20 +30,23 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				logger.WriteLine($"style {style.ToCss()}");
+
 				var runs = page.Root.Descendants(ns + "T").Except(analyzer.SelectionRange);
-				analyzer = new StyleAnalyzer(page.Root, nested: false);
+				analyzer.SetNested(false);
 
 				foreach (var run in runs)
 				{
 					analyzer.Clear();
+					var runprops = analyzer.CollectStyleProperties(run);
+					var runstyle = new Style(runprops);
+					var textMatches = style.Equals(runstyle);
 
 					var cdata = run.GetCData();
 					if (cdata.Value.Contains("<span"))
 					{
-						var runStyle = analyzer.CollectStyleProperties(run);
-						var textMatches = style.Equals(runStyle);
+						//var expanded = new XElement(ns + "T", run.Attributes());
 
-						var expanded = new XElement(ns + "T", run.Attributes());
 						var wrapper = cdata.GetWrapper();
 						foreach (var node in wrapper.Nodes())
 						{
@@ -53,20 +56,28 @@ namespace River.OneMoreAddIn.Commands
 							}
 							else if (node is XElement element)
 							{
-								var s = analyzer.CollectStyleProperties(element);
+								analyzer.Clear();
+								runprops = analyzer.CollectStyleProperties(run);
+								var s = new Style(analyzer.CollectStyleProperties(element));
+								s.Merge(runprops);
 								if (s.Equals(style))
 								{
-									logger.WriteLine($"match-span {element.Value}");
+									logger.WriteLine($"match-span {element.ToString(SaveOptions.DisableFormatting)}");
+									logger.WriteLine($"... style {s.ToCss()}");
 								}
+								//else
+								//{
+								//	logger.WriteLine($"miss-span {element.ToString(SaveOptions.DisableFormatting)}");
+								//	logger.WriteLine($"... miss style {s.ToCss()}");
+								//}
 							}
 						}
 					}
 					else
 					{
-						var runStyle = new Style(analyzer.CollectStyleProperties(run));
-						if (style.Equals(runStyle))
+						if (style.Equals(runstyle))
 						{
-							logger.WriteLine($"match {run.Value}");
+							logger.WriteLine($"match {run.ToString(SaveOptions.DisableFormatting)}");
 						}
 					}
 				}

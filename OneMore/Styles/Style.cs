@@ -295,17 +295,6 @@ namespace River.OneMoreAddIn.Styles
 
 
 		/// <summary>
-		/// Copies only color properties from the given style into this style
-		/// </summary>
-		/// <param name="other"></param>
-		public void MergeColors(Style other)
-		{
-			Color = other.color;
-			Highlight = other.highlight;
-		}
-
-
-		/// <summary>
 		/// Merge or overlay the given style propeties onto the current style
 		/// </summary>
 		/// <param name="properties">A collection of properties to overlay</param>
@@ -349,6 +338,17 @@ namespace River.OneMoreAddIn.Styles
 
 			if (properties.ContainsKey("spacing"))
 				Spacing = properties["spacing"];
+		}
+
+
+		/// <summary>
+		/// Copies only color properties from the given style into this style
+		/// </summary>
+		/// <param name="other"></param>
+		public void MergeColors(Style other)
+		{
+			Color = other.color;
+			Highlight = other.highlight;
 		}
 
 

@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Styles
 	/// </summary>
 	internal class StyleAnalyzer
 	{
-		private readonly bool nested;
+		private bool nested;
 		private readonly XElement root;
 		private readonly Dictionary<string, string> properties;
 		private readonly List<XElement> range;
@@ -231,6 +231,19 @@ namespace River.OneMoreAddIn.Styles
 			};
 
 			return style;
+		}
+
+
+		/// <summary>
+		/// Set the nested behavior
+		/// </summary>
+		/// <param name="nested">
+		/// If true then collect properties from the embedded CDATA styles as well as the 
+		/// style attribute of the T run itself
+		/// </param>
+		public void SetNested(bool nested)
+		{
+			this.nested = nested;
 		}
 	}
 }
