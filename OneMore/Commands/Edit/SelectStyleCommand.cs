@@ -40,28 +40,31 @@ namespace River.OneMoreAddIn.Commands
 					var cdata = run.GetCData();
 					if (cdata.Value.Contains("<span"))
 					{
-						var treatment = analyzer.CollectStyleProperties(run);
-						var rawmatch = style.Equals(treatment);
+						var runStyle = analyzer.CollectStyleProperties(run);
+						var textMatches = style.Equals(runStyle);
 
 						var expanded = new XElement(ns + "T", run.Attributes());
 						var wrapper = cdata.GetWrapper();
 						foreach (var node in wrapper.Nodes())
 						{
-							if (node is XText)
+							if (node is XText text && textMatches)
 							{
-								logger.WriteLine($"match {run.Value}");
+								logger.WriteLine($"match-text {text.Value}");
 							}
 							else if (node is XElement element)
 							{
-								analyzer.CollectStyleProperties(element);
-
+								var s = analyzer.CollectStyleProperties(element);
+								if (s.Equals(style))
+								{
+									logger.WriteLine($"match-span {element.Value}");
+								}
 							}
 						}
 					}
 					else
 					{
-						var treatment = new Style(analyzer.CollectStyleProperties(run));
-						if (style.Equals(treatment))
+						var runStyle = new Style(analyzer.CollectStyleProperties(run));
+						if (style.Equals(runStyle))
 						{
 							logger.WriteLine($"match {run.Value}");
 						}

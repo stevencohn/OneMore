@@ -203,7 +203,7 @@
               <button
                 id="ribSelectStyleButton"
                 imageMso="StylesStyleInspector"
-                label="Select text with similar formatting"
+                getLabel="GetRibbonLabel"
                 onAction="SelectStyleCmd"/>
             </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">

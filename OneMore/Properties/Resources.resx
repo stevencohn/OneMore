@@ -3322,4 +3322,8 @@ In this section</value>
     <value>First day of week</value>
     <comment>label</comment>
   </data>
+  <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>Select text with similar formatting</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

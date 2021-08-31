@@ -3287,4 +3287,8 @@ Fichier OneNote (*.one)</value>
     <value>Premier jour de la semaine</value>
     <comment>label</comment>
   </data>
+  <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>Sélectionnez du texte avec une mise en forme similaire</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

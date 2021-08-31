@@ -40,10 +40,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					style = dialog.Style;
-					if (style != null)
+					if (dialog.Style != null)
 					{
-						ThemeProvider.Save(style);
+						ThemeProvider.Save(dialog.Style);
 						ribbon.Invalidate();
 					}
 				}
