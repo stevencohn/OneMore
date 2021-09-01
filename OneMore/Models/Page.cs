@@ -800,16 +800,26 @@ namespace River.OneMoreAddIn.Models
 		{
 			XElement merged = null;
 
-			if (cursor.PreviousNode is XElement prev)
+			var prev = cursor.PreviousNode as XElement;
+			var next = cursor.NextNode as XElement;
+
+			if (prev != null && next != null)
 			{
-				if (cursor.NextNode is XElement next)
-				{
-					var cprev = prev.GetCData();
-					var cnext = next.GetCData();
-					cprev.Value = $"{cprev.Value}{cnext.Value}";
-					next.Remove();
-					merged = prev;
-				}
+				var cprev = prev.GetCData();
+				var cnext = next.GetCData();
+				cprev.Value = $"{cprev.Value}{cnext.Value}";
+				next.Remove();
+				merged = prev;
+			}
+			else if (prev != null)
+			{
+				// cursor is at end of content
+				merged = prev;
+			}
+			else if (next != null)
+			{
+				// cursor is at start of content
+				merged = next;
 			}
 
 			cursor.Remove();
