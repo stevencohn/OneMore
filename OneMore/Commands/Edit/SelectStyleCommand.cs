@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Styles;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -19,11 +20,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			System.Diagnostics.Debugger.Launch();
+
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				var analyzer = new StyleAnalyzer(page.Root);
+				var analyzer = new StyleAnalyzer2(page.Root);
 				var style = analyzer.CollectFromSelection();
-
 				if (style == null)
 				{
 					// TODO: error dialog?
@@ -32,21 +34,18 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine($"style {style.ToCss()}");
 
-				var runs = page.Root.Descendants(ns + "T").Except(analyzer.SelectionRange);
-				analyzer.SetNested(false);
+				// merge text cursor so we don't have to treat it as a special case
+				page.GetTextCursor(merge: true);
 
+				var runs = page.Root.Descendants(ns + "T");
 				foreach (var run in runs)
 				{
-					analyzer.Clear();
-					var runprops = analyzer.CollectStyleProperties(run);
-					var runstyle = new Style(runprops);
-					var textMatches = style.Equals(runstyle);
+					var runProps = analyzer.CollectFrom(run);
+					var runStyle = new Style(runProps);
+					var textMatches = style.Equals(runStyle);
 
-					var cdata = run.GetCData();
-					if (cdata.Value.Contains("<span"))
+					if (run.GetCData() is XCData cdata && cdata.Value.Contains("<span"))
 					{
-						//var expanded = new XElement(ns + "T", run.Attributes());
-
 						var wrapper = cdata.GetWrapper();
 						foreach (var node in wrapper.Nodes())
 						{
@@ -54,16 +53,14 @@ namespace River.OneMoreAddIn.Commands
 							{
 								logger.WriteLine($"match-text {text.Value}");
 							}
-							else if (node is XElement element)
+							else if (node is XElement span)
 							{
-								analyzer.Clear();
-								runprops = analyzer.CollectStyleProperties(run);
-								var s = new Style(analyzer.CollectStyleProperties(element));
-								s.Merge(runprops);
-								if (s.Equals(style))
+								var spanProps = analyzer.CollectFrom(span).Add(runProps);
+								var spanStyle = new Style(spanProps);
+								
+								if (spanStyle.Equals(style))
 								{
-									logger.WriteLine($"match-span {element.ToString(SaveOptions.DisableFormatting)}");
-									logger.WriteLine($"... style {s.ToCss()}");
+									logger.WriteLine($"match-span {span.ToString(SaveOptions.DisableFormatting)}");
 								}
 								//else
 								//{
@@ -73,12 +70,9 @@ namespace River.OneMoreAddIn.Commands
 							}
 						}
 					}
-					else
+					else if (textMatches)
 					{
-						if (style.Equals(runstyle))
-						{
-							logger.WriteLine($"match {run.ToString(SaveOptions.DisableFormatting)}");
-						}
+						logger.WriteLine($"match {run.ToString(SaveOptions.DisableFormatting)}");
 					}
 				}
 

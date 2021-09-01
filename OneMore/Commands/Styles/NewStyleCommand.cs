@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 				pageColor = page.GetPageColor(out _, out _);
 			}
 
-			var analyzer = new StyleAnalyzer(page.Root, nested: false);
+			var analyzer = new StyleAnalyzer2(page.Root);
 
 			var style = analyzer.CollectFromSelection();
 			if (style == null)

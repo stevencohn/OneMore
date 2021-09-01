@@ -58,23 +58,20 @@ namespace River.OneMoreAddIn
 		/// <param name="element">A one:T text run that may have a style attribute</param>
 		/// <param name="nested">
 		/// If true then collect properties from the embedded CDATA styles as well as the 
-		/// style attribute of the T run itself
+		/// style attribute of the T run itself; only the first SPAN is examined
 		/// </param>
 		/// <returns>
 		/// The style properties collected from the inner CDATA and the style attribute of the run
 		/// </returns>
 		public static Dictionary<string, string> CollectStyleProperties(
-			this XElement element, bool nested = true, bool reverse = false)
+			this XElement element, bool nested = true)
 		{
 			var props = new Dictionary<string, string>();
 
 			if (nested)
 			{
 				// gather from CDATA child if one exists
-				var cdata = reverse
-					? element.Nodes().OfType<XCData>().LastOrDefault()
-					: element.Nodes().OfType<XCData>().FirstOrDefault();
-
+				var cdata = element.Nodes().OfType<XCData>().FirstOrDefault();
 				if (cdata != null)
 				{
 					var span = cdata.GetWrapper().Elements("span")
@@ -123,6 +120,12 @@ namespace River.OneMoreAddIn
 			if (attr != null)
 			{
 				props.Add("spaceAfter", attr.Value);
+			}
+
+			attr = element.Attribute("spaceBetween");
+			if (attr != null)
+			{
+				props.Add("spaceBetween", attr.Value);
 			}
 
 			return props;
