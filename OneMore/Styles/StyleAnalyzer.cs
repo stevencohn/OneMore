@@ -230,6 +230,8 @@ namespace River.OneMoreAddIn.Styles
 				}
 			}
 
+			properties.Add(CollectFromParagraph(selection.Parent));
+
 			var style = new Style(properties)
 			{
 				Name = $"Style-{new Random().Next(1000, 9999)}"
