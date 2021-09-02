@@ -10,12 +10,25 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
+
+	/// <summary>
+	/// Select all content with the same style treatment as the selected text. The selected
+	/// text is either inferred from the insertion cursor or an explictly selected region.
+	/// </summary>
 	internal class SelectStyleCommand : Command
 	{
 		private StyleAnalyzer analyzer;
 		private XNamespace ns;
 
+		/****************************************************************************************
+		 **
+		 ** NOTE that OneNote does not allow multiple non-continguous selection ranges within
+		 ** a single paragraph OE element. This routine will typically select only the last
+		 ** range in the paragraph that meets the style criteria
+		 **
+		 ****************************************************************************************/
 
 		public SelectStyleCommand()
 		{
@@ -28,13 +41,17 @@ namespace River.OneMoreAddIn.Commands
 			{
 				analyzer = new StyleAnalyzer(page.Root);
 				var style = analyzer.CollectFromSelection();
-				if (style == null)
+				var ok = (style != null);
+				if (ok)
 				{
-					// TODO: error dialog?
-					return;
+					ok = NormalizeTextCursor(page, analyzer);
 				}
 
-				NormalizeTextCursor(page, analyzer);
+				if (!ok)
+				{
+					UIHelper.ShowInfo(Resx.Error_BodyContext);
+					return;
+				}
 
 				var runs = page.Root.Descendants(ns + "T").ToList();
 				foreach (var run in runs)
@@ -42,8 +59,8 @@ namespace River.OneMoreAddIn.Commands
 					AnalyzeRun(run, style);
 				}
 
-				logger.WriteLine(page.Root);
-				logger.WriteLine($"Catalog depth:{analyzer.Depth}, hits:{analyzer.Hits}");
+				//logger.WriteLine(page.Root);
+				//logger.WriteLine($"Catalog depth:{analyzer.Depth}, hits:{analyzer.Hits}");
 
 				await one.Update(page);
 			}
@@ -53,12 +70,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// merge text cursor so we don't have to treat it as a special case
-		private void NormalizeTextCursor(Page page, StyleAnalyzer analyzer)
+		private bool NormalizeTextCursor(Page page, StyleAnalyzer analyzer)
 		{
 			var cursor = page.GetTextCursor();
 			if (cursor == null || page.SelectionScope != SelectionScope.Empty)
 			{
-				return;
+				return false;
 			}
 
 			if (cursor.PreviousNode is XElement prev &&
@@ -101,6 +118,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			cursor.Remove();
+			return true;
 		}
 
 
@@ -126,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (textMatches)
 						{
-							logger.WriteLine($"match-text {text.Value}");
+							//logger.WriteLine($"match-text {text.Value}");
 
 							count++;
 							candidates.Add(new XElement(ns + "T",
@@ -148,7 +166,7 @@ namespace River.OneMoreAddIn.Commands
 
 						if (spanStyle.Equals(style))
 						{
-							logger.WriteLine($"match-span {span.ToString(SaveOptions.DisableFormatting)}");
+							//logger.WriteLine($"match-span {span.ToString(SaveOptions.DisableFormatting)}");
 
 							count++;
 							candidates.Add(new XElement(ns + "T",
@@ -179,7 +197,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else if (textMatches)
 			{
-				logger.WriteLine($"match {run.ToString(SaveOptions.DisableFormatting)}");
+				//logger.WriteLine($"match {run.ToString(SaveOptions.DisableFormatting)}");
 				run.SetAttributeValue("selected", "all");
 			}
 		}
