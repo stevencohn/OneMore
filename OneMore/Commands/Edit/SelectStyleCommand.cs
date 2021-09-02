@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 				// merge text cursor so we don't have to treat it as a special case
 				page.GetTextCursor(merge: true);
 
-				var runs = page.Root.Descendants(ns + "T");
+				var runs = page.Root.Descendants(ns + "T").ToList();
 				foreach (var run in runs)
 				{
 					var runProps = analyzer.CollectFrom(run);
@@ -46,27 +46,64 @@ namespace River.OneMoreAddIn.Commands
 
 					if (run.GetCData() is XCData cdata && cdata.Value.Contains("<span"))
 					{
+						var candidates = new List<XElement>();
+						var count = 0;
+
 						var wrapper = cdata.GetWrapper();
 						foreach (var node in wrapper.Nodes())
 						{
-							if (node is XText text && textMatches)
+							if (node is XText text)
 							{
-								logger.WriteLine($"match-text {text.Value}");
+								if (textMatches)
+								{
+									logger.WriteLine($"match-text {text.Value}");
+
+									count++;
+									candidates.Add(new XElement(ns + "T",
+										run.Attributes().Where(a => a.Name.LocalName != "selected"),
+										new XAttribute("selected", "all"),
+										new XCData(text.Value)));
+								}
+								else
+								{
+									candidates.Add(new XElement(ns + "T",
+										run.Attributes(), new XCData(text.Value)));
+								}
 							}
-							else if (node is XElement span)
+							else
 							{
+								var span = node as XElement;
 								var spanProps = analyzer.CollectFrom(span).Add(runProps);
 								var spanStyle = new Style(spanProps);
 								
 								if (spanStyle.Equals(style))
 								{
 									logger.WriteLine($"match-span {span.ToString(SaveOptions.DisableFormatting)}");
+
+									count++;
+									candidates.Add(new XElement(ns + "T",
+										run.Attributes().Where(a => a.Name.LocalName != "selected"),
+										new XAttribute("selected", "all"),
+										new XCData(span.ToString(SaveOptions.DisableFormatting))));
 								}
-								//else
-								//{
-								//	logger.WriteLine($"miss-span {element.ToString(SaveOptions.DisableFormatting)}");
-								//	logger.WriteLine($"... miss style {s.ToCss()}");
-								//}
+								else
+								{
+									candidates.Add(new XElement(ns + "T",
+										run.Attributes(),
+										new XCData(span.ToString(SaveOptions.DisableFormatting))));
+								}
+							}
+						}
+
+						if (count > 0)
+						{
+							if (candidates.Count == 1)
+							{
+								run.SetAttributeValue("selected", "all");
+							}
+							else
+							{
+								run.ReplaceWith(candidates);
 							}
 						}
 					}
@@ -76,7 +113,9 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				//await one.Update(page);
+				logger.WriteLine(page.Root);
+				
+				await one.Update(page);
 			}
 
 			await Task.Yield();
