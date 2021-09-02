@@ -228,6 +228,7 @@
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
+    <Compile Include="Commands\Edit\SelectStyleCommand.cs" />
     <Compile Include="Commands\Extras\DateStampCommand.cs" />
     <Compile Include="Commands\File\CopyFolderCommand.cs" />
     <Compile Include="Commands\File\ImportWebCommand.cs" />
@@ -381,6 +382,7 @@
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
+    <Compile Include="Styles\StyleProperties.cs" />
     <Compile Include="Styles\Theme.cs" />
     <Compile Include="Styles\ThemeProvider.cs" />
     <Compile Include="UI\ColorsComboBox.cs">

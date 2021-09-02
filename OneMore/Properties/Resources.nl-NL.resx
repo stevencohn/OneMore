@@ -3293,4 +3293,8 @@ OneNote-bestand (*.one)</value>
     <value>Eerste dag van de week</value>
     <comment>label</comment>
   </data>
+  <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>Selecteer tekst met vergelijkbare opmaak</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

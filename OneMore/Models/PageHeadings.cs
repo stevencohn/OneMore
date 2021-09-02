@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn.Models
 			if (child != null)
 			{
 				var analyzer = new StyleAnalyzer(Root);
-				var style = new Style(analyzer.CollectStyleProperties(child));
+				var style = analyzer.CollectStyleFrom(child);
 
 				// normalize style background to page background
 				if (style.Highlight != pageColor && pageColor == "automatic")

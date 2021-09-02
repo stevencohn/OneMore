@@ -232,14 +232,22 @@ namespace River.OneMoreAddIn.Styles
 				return false;
 			}
 
+			// does not check StyleType and ApplyColors so that it only checks the
+			// visual effects of the style, not its behavior
+
 			return
+				//StyleType == style.StyleType &&
 				FontFamily == style.FontFamily &&
 				FontSize == style.FontSize &&
+				//ApplyColors == style.ApplyColors &&
 				Color == style.Color &&
 				Highlight == style.Highlight &&
 				IsBold == style.IsBold &&
 				IsItalic == style.IsItalic &&
 				IsUnderline == style.IsUnderline &&
+				IsStrikethrough == style.IsStrikethrough &&
+				IsSubscript == style.IsSubscript &&
+				IsSuperscript == style.IsSuperscript &&
 				SpaceBefore == style.SpaceBefore &&
 				SpaceAfter == style.SpaceAfter &&
 				Spacing == style.Spacing;

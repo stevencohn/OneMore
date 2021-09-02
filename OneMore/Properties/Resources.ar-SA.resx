@@ -3292,4 +3292,8 @@ ISO-code then comma then language name</comment>
     <value>اليوم الأول من الأسبوع</value>
     <comment>label</comment>
   </data>
+  <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>حدد نصًا بتنسيق مماثل</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

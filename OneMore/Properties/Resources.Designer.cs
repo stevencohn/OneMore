@@ -5384,6 +5384,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select text with similar formatting.
+        /// </summary>
+        internal static string ribSelectStyleButton_Label {
+            get {
+                return ResourceManager.GetString("ribSelectStyleButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string ribSettingsButton_Label {

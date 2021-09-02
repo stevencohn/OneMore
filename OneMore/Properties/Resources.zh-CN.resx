@@ -3284,4 +3284,8 @@ OneNote 文件 (*.one)</value>
     <value>一周的第一天</value>
     <comment>label</comment>
   </data>
+  <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>选择格式相似的文本</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

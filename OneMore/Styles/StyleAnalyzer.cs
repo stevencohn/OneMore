@@ -4,103 +4,221 @@
 
 namespace River.OneMoreAddIn.Styles
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
 
 
 	/// <summary>
-	/// Discovers the style of a contextual element with respect to its hierarchy
-	/// by walking up the hierarchy from T, to OE, to page.QuickStyle.
-	/// Or discover local style properties of a span.
+	/// Discovers the resultant style of an element considering its own style properties,
+	/// its CDATA embedded properties if the element is a T, its owner OE properties
+	/// and any reference to the page QuickStyles.
 	/// </summary>
+	/// <remarks>
+	/// One instance should be used to analyze a single page, one-to-one, since an analyzer will
+	/// catalog and optimize each element and quick style so subsequent element cross-references
+	/// will perform faster.
+	/// </remarks>
 	internal class StyleAnalyzer
 	{
-		private readonly bool inward;
-		private readonly XElement page;
-		private readonly Dictionary<string, string> properties;
+		private class Catalog : Dictionary<string, StyleProperties> { }
+
+		private readonly Catalog catalog;
+		private readonly XElement root;
+		private readonly XNamespace ns;
 
 
-		public StyleAnalyzer(XElement page, bool inward = true)
+		/// <summary>
+		/// Initialze a new analyzer for the given page.
+		/// </summary>
+		/// <param name="root">The root of the page</param>
+		public StyleAnalyzer(XElement root)
 		{
-			this.inward = inward;
-			this.page = page;
-			properties = new Dictionary<string, string>();
+			this.root = root;
+			ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
+			catalog = new Catalog();
 		}
 
 
 		/// <summary>
-		/// Clear the collected properties to ready the analyzer for the next element
+		/// Debugging/diagnostics, get the number of items in the catalog
 		/// </summary>
-		public void Clear()
-		{
-			properties.Clear();
-		}
+		public int Depth => catalog.Count;
 
 
 		/// <summary>
-		/// Builds a dictionary of style properties from the element, its parent,
-		/// and any referenced quick style.
+		/// Debugging/diagnostics, get the number of times the catalog had a hit
 		/// </summary>
-		/// <param name="element">A one:T, one:OE, or SPAN element</param>
-		/// <returns>
-		/// A Dictionary of property names and values.
-		/// </returns>
-		public Dictionary<string, string> CollectStyleProperties(XElement element)
-		{
-			// starting with T, OE, or SPAN
-			CollectElementStyleProperties(element);
+		public int Hits { get; private set; }
 
-			if (element.Name.LocalName == "T")
+
+		/// <summary>
+		/// Collect the aggregated style properties of the given element within its context
+		/// </summary>
+		/// <param name="element">A page element, T or OE, or an embedd span from a CDATA wrapper</param>
+		/// <param name="nested">True to look down the hierarchy as well as up</param>
+		/// <returns>A StyleProperties collection</returns>
+		public StyleProperties CollectFrom(XElement element, bool nested = false)
+		{
+			var id = element.Attribute("objectID")?.Value;
+			if (id != null && catalog.ContainsKey(id))
 			{
-				// OE of T
-				CollectElementStyleProperties(element.Parent);
-				CollectQuickStyleProperties(element.Parent);
+				Hits++;
+				return catalog[id];
+			}
+
+			var properties = new StyleProperties();
+
+			if (element.Name.LocalName == "span")
+			{
+				// wrapped CDATA so no connected parent/ancestor to backtrack
+				properties.Add(element.CollectStyleProperties(false));
+			}
+			else if (element.Name.LocalName == "T")
+			{
+				properties.Add(element.CollectStyleProperties(nested));
+				properties.Add(CollectFromParagraph(element.Parent));
 			}
 			else if (element.Name.LocalName == "OE")
 			{
-				CollectQuickStyleProperties(element);
+				properties.Add(CollectFromParagraph(element));
+			}
+
+			if (id != null)
+			{
+				catalog.Add(id, properties);
 			}
 
 			return properties;
 		}
 
 
-		private void CollectElementStyleProperties (XElement element)
+		private StyleProperties CollectFromParagraph(XElement paragraph)
 		{
-			var props = element.CollectStyleProperties(inward);
-
-			if (props?.Any() == true)
+			var id = paragraph.Attribute("objectID")?.Value;
+			if (id != null && catalog.ContainsKey(id))
 			{
-				var e = props.GetEnumerator();
-				while (e.MoveNext())
-				{
-					if (!properties.ContainsKey(e.Current.Key))
-					{
-						properties.Add(e.Current.Key, e.Current.Value);
-					}
-				}
+				Hits++;
+				return catalog[id];
 			}
+
+			var properties = new StyleProperties
+			{
+				paragraph.CollectStyleProperties(nested: false),
+				CollectFromQuickStyle(paragraph)
+			};
+
+			if (id != null)
+			{
+				catalog.Add(id, properties);
+			}
+
+			return properties;
 		}
 
 
-		// one:QuickStyleDef possibles:
-		// fontColor="automatic" highlightColor="automatic" font="Calibri" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" />
-		private void CollectQuickStyleProperties (XElement element)
+		private StyleProperties CollectFromQuickStyle(XElement element)
 		{
 			var index = element.Attribute("quickStyleIndex")?.Value;
 			if (index != null)
 			{
-				var ns = page.GetNamespaceOfPrefix(OneNote.Prefix);
+				var key = $"quick-{index}";
+				if (catalog.ContainsKey(key))
+				{
+					Hits++;
+					return catalog[key];
+				}
 
-				var quick = page.Elements(ns + "QuickStyleDef")
+				var quick = root.Elements(ns + "QuickStyleDef")
 					.FirstOrDefault(e => e.Attribute("index").Value.Equals(index));
 
 				if (quick != null)
 				{
-					QuickStyleDef.CollectStyleProperties(quick, properties);
+					var props = new StyleProperties();
+					QuickStyleDef.CollectStyleProperties(quick, props);
+					catalog.Add(key, props);
+					return props;
 				}
 			}
+
+			return new StyleProperties();
+		}
+
+
+		/// <summary>
+		/// Collect the aggregated style properties of the given element within its context
+		/// </summary>
+		/// <param name="element">A page element, T or OE, or an embedd span from a CDATA wrapper</param>
+		/// <returns>A Style object representing the element's contextual style</returns>
+		public Style CollectStyleFrom(XElement element)
+		{
+			return new Style(CollectFrom(element));
+		}
+
+
+		/// <summary>
+		/// Infers the style of the selected text on a page. If more than one style is 
+		/// included in the selected region then only the first style is returned
+		/// </summary>
+		public Style CollectFromSelection()
+		{
+			var runs = root.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all");
+
+			if (runs == null || !runs.Any())
+			{
+				// nothing selected
+				return null;
+			}
+
+			var properties = new StyleProperties();
+			var selection = runs.First();
+			var cdata = selection.GetCData();
+			if (!cdata.IsEmpty() || runs.Count() > 1)
+			{
+				// collect from first if one non-empty or more than one run is selected
+				properties.Add(CollectFrom(selection, true));
+			}
+			else if (cdata.IsEmpty())
+			{
+				// is cursor adjacent to a previous non-empty run?
+				if ((selection.PreviousNode is XElement prev) &&
+					(prev.GetCData() is XCData pdata) && !pdata.EndsWithWhitespace())
+				{
+					// if last node is a SPAN then examine its style
+					var wrapper = pdata.GetWrapper();
+					if (wrapper.Nodes().Last() is XElement span && span.Attribute("style") != null)
+					{
+						properties.Add(CollectFrom(span));
+					}
+				}
+				else if ((selection.NextNode is XElement next) &&
+					(next.GetCData() is XCData ndata) && !ndata.StartsWithWhitespace())
+				{
+					// if first node is a SPAN then examine its style
+					var wrapper = ndata.GetWrapper();
+					if (wrapper.Nodes().First() is XElement span && span.Attribute("style") != null)
+					{
+						properties.Add(CollectFrom(span));
+					}
+				}
+				else
+				{
+					// standalone empty run? still might have style
+					properties.Add(CollectFrom(selection));
+				}
+			}
+
+			// ensure we also capture the quick style of the paragraph
+			properties.Add(CollectFromParagraph(selection.Parent));
+
+			var style = new Style(properties)
+			{
+				Name = $"Style-{new Random().Next(1000, 9999)}"
+			};
+
+			return style;
 		}
 	}
 }

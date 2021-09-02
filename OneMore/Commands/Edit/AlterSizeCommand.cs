@@ -84,12 +84,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var count = 0;
-			var analyzer = new StyleAnalyzer(page.Root, true);
+			var analyzer = new StyleAnalyzer(page.Root);
 
 			foreach (var element in elements)
 			{
-				analyzer.Clear();
-				var style = new Style(analyzer.CollectStyleProperties(element));
+				var style = analyzer.CollectStyleFrom(element);
 
 				// add .05 to compensate for unpredictable behavior; there are cases where going
 				// from 11pt to 12pt actually causes OneNote to calculate 9pt :-(

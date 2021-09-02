@@ -155,14 +155,24 @@ _Click here, click now, click often! >>_
 ### Minimum Prerequisites for Development
 
 * Developed for Windows 10
-* Microsoft Visual Studio 2019, C# 7
+* Microsoft Visual Studio 2019<sup>1</sup>, C# 7
+* Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)<sup>2</sup>
 * Microsoft [Visual Studio 2019 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects)
 * .NET Framework 4.8
 * Microsoft OneNote 2016 32-bit or 64-bit
 
-_Note that VSCode cannot be used since it doesn't support COMReference entries in csproj files_ 
+<sup>1</sup>_VSCode cannot be used since it doesn't support COMReference entries in csproj files_ 
 
-Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
+<sup>2</sup>_The Windows 10 SDK is required to reference the Windows.winmd meta file located
+at "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.**version**.0\Windows.winmd"
+where **version** is the version of the SDK you have installed, e.g. 19041. If your SDK has
+a different version then you must replace the **Windows** reference in OneMoreAddin.csproj_
+
+Tested recently with:
+* Windows 10 21H1 19043.1165
+* VS2019 16.10.4
+* Win10 SDK 10.0.19041.0
+* OneNote 2019/O365 16.0.14326.20164 64-bit
 
 #### Dependencies
 

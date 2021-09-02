@@ -499,6 +499,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
+					UIHelper.ShowError(
+						$"Error updating page content: {exc.Message}\n\nSee log for details");
+
 					logger.WriteLine("error updating page content", exc);
 				}
 			}

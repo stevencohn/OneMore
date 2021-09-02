@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 			using (one = new OneNote(out page, out ns))
 			{
 				darkPage = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-				analyzer = new StyleAnalyzer(page.Root, true);
+				analyzer = new StyleAnalyzer(page.Root);
 
 				var updated = ClearTextBackground(page.GetSelectedElements(all: true));
 				updated |= ClearCellBackground();
@@ -58,8 +58,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var run in runs)
 			{
-				analyzer.Clear();
-				var style = new Style(analyzer.CollectStyleProperties(run));
+				var style = analyzer.CollectStyleFrom(run);
 
 				if (!string.IsNullOrEmpty(style.Highlight))
 				{

@@ -200,6 +200,11 @@
                 imageMso="GroupMerge"
                 getLabel="GetRibbonLabel"
                 onAction="JoinParagraphCmd"/>
+              <button
+                id="ribSelectStyleButton"
+                imageMso="StylesStyleInspector"
+                getLabel="GetRibbonLabel"
+                onAction="SelectStyleCmd"/>
             </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">
               <button
