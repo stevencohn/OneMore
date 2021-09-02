@@ -4,9 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -32,8 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine($"style {style.ToCss()}");
 
-				// merge text cursor so we don't have to treat it as a special case
-				page.GetTextCursor(merge: true);
+				NormalizeTextCursor(page, analyzer);
 
 				var runs = page.Root.Descendants(ns + "T").ToList();
 				foreach (var run in runs)
@@ -73,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 								var span = node as XElement;
 								var spanProps = analyzer.CollectFrom(span).Add(runProps);
 								var spanStyle = new Style(spanProps);
-								
+
 								if (spanStyle.Equals(style))
 								{
 									logger.WriteLine($"match-span {span.ToString(SaveOptions.DisableFormatting)}");
@@ -113,11 +114,57 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				logger.WriteLine(page.Root);
-				
+
 				await one.Update(page);
 			}
 
 			await Task.Yield();
+		}
+
+
+		// merge text cursor so we don't have to treat it as a special case
+		private void NormalizeTextCursor(Page page, StyleAnalyzer2 analyzer)
+		{
+			var cursor = page.GetTextCursor();
+			if (cursor == null || page.SelectionScope != SelectionScope.Empty)
+			{
+				return;
+			}
+
+			if (cursor.PreviousNode is XElement prev &&
+				cursor.NextNode is XElement next)
+			{
+				var prevData = prev.GetCData();
+				var nextData = next.GetCData();
+				var prevWrap = prevData.GetWrapper();
+				var nextWrap = nextData.GetWrapper();
+
+				if (prevWrap.Elements().Last() is XElement prevSpan &&
+					nextWrap.Elements().First() is XElement nextSpan)
+				{
+					var prevStyle = analyzer.CollectStyleFrom(prevSpan);
+					var nextStyle = analyzer.CollectStyleFrom(nextSpan);
+					if (prevStyle.Equals(nextStyle))
+					{
+						prevSpan.Value = $"{prevSpan.Value}{nextSpan.Value}";
+						nextSpan.Remove();
+						prevWrap.Add(nextWrap.Nodes());
+						prevData.Value = prevWrap.ToString(SaveOptions.DisableFormatting);
+					}
+					else
+					{
+						prevData.Value = $"{prevData.Value}{nextData.Value}";
+					}
+				}
+				else
+				{
+					prevData.Value = $"{prevData.Value}{nextData.Value}";
+				}
+
+				next.Remove();
+			}
+
+			cursor.Remove();
 		}
 	}
 }
