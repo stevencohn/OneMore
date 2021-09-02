@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn
 		public static bool StartsWithWhitespace(this XCData cdata)
 		{
 			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
-			return (cdata == null) || Regex.IsMatch(cdata.Value, @"^(</span>)?([\s]|&#160;|&nbsp;)");
+			return (cdata == null) || Regex.IsMatch(cdata.Value, @"^(<span>)?([\s]|&#160;|&nbsp;)");
 		}
 	}
 }
