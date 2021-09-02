@@ -8,12 +8,14 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 	internal class SelectStyleCommand : Command
 	{
+		private StyleAnalyzer2 analyzer;
+		private XNamespace ns;
+
 
 		public SelectStyleCommand()
 		{
@@ -22,9 +24,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using (var one = new OneNote(out var page, out ns))
 			{
-				var analyzer = new StyleAnalyzer2(page.Root);
+				analyzer = new StyleAnalyzer2(page.Root);
 				var style = analyzer.CollectFromSelection();
 				if (style == null)
 				{
@@ -32,88 +34,16 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				logger.WriteLine($"style {style.ToCss()}");
-
 				NormalizeTextCursor(page, analyzer);
 
 				var runs = page.Root.Descendants(ns + "T").ToList();
 				foreach (var run in runs)
 				{
-					var runProps = analyzer.CollectFrom(run);
-					var runStyle = new Style(runProps);
-					var textMatches = style.Equals(runStyle);
-
-					if (run.GetCData() is XCData cdata && cdata.Value.Contains("<span"))
-					{
-						var candidates = new List<XElement>();
-						var count = 0;
-
-						var wrapper = cdata.GetWrapper();
-						foreach (var node in wrapper.Nodes())
-						{
-							if (node is XText text)
-							{
-								if (textMatches)
-								{
-									logger.WriteLine($"match-text {text.Value}");
-
-									count++;
-									candidates.Add(new XElement(ns + "T",
-										run.Attributes().Where(a => a.Name.LocalName != "selected"),
-										new XAttribute("selected", "all"),
-										new XCData(text.Value)));
-								}
-								else
-								{
-									candidates.Add(new XElement(ns + "T",
-										run.Attributes(), new XCData(text.Value)));
-								}
-							}
-							else
-							{
-								var span = node as XElement;
-								var spanProps = analyzer.CollectFrom(span).Add(runProps);
-								var spanStyle = new Style(spanProps);
-
-								if (spanStyle.Equals(style))
-								{
-									logger.WriteLine($"match-span {span.ToString(SaveOptions.DisableFormatting)}");
-
-									count++;
-									candidates.Add(new XElement(ns + "T",
-										run.Attributes().Where(a => a.Name.LocalName != "selected"),
-										new XAttribute("selected", "all"),
-										new XCData(span.ToString(SaveOptions.DisableFormatting))));
-								}
-								else
-								{
-									candidates.Add(new XElement(ns + "T",
-										run.Attributes(),
-										new XCData(span.ToString(SaveOptions.DisableFormatting))));
-								}
-							}
-						}
-
-						if (count > 0)
-						{
-							if (candidates.Count == 1)
-							{
-								run.SetAttributeValue("selected", "all");
-							}
-							else
-							{
-								run.ReplaceWith(candidates);
-							}
-						}
-					}
-					else if (textMatches)
-					{
-						logger.WriteLine($"match {run.ToString(SaveOptions.DisableFormatting)}");
-						run.SetAttributeValue("selected", "all");
-					}
+					AnalyzeRun(run, style);
 				}
 
 				logger.WriteLine(page.Root);
+				logger.WriteLine($"Catalog depth:{analyzer.Depth}, hits:{analyzer.Hits}");
 
 				await one.Update(page);
 			}
@@ -139,17 +69,23 @@ namespace River.OneMoreAddIn.Commands
 				var prevWrap = prevData.GetWrapper();
 				var nextWrap = nextData.GetWrapper();
 
-				if (prevWrap.Elements().Last() is XElement prevSpan &&
-					nextWrap.Elements().First() is XElement nextSpan)
+				if (prevWrap.Nodes().Last() is XElement prevSpan &&
+					nextWrap.Nodes().First() is XElement nextSpan)
 				{
+					// examine the last node from Prev and the first node from Next
+					// to compare their styles and if they match then combine them
 					var prevStyle = analyzer.CollectStyleFrom(prevSpan);
 					var nextStyle = analyzer.CollectStyleFrom(nextSpan);
 					if (prevStyle.Equals(nextStyle))
 					{
+						// pull only the first node from Next and append it to Prev
+						// then remove that first node from Next and append the remaining nodes
+						// to retain their own stylings; finally remove Next altogether below...
+
 						prevSpan.Value = $"{prevSpan.Value}{nextSpan.Value}";
 						nextSpan.Remove();
 						prevWrap.Add(nextWrap.Nodes());
-						prevData.Value = prevWrap.ToString(SaveOptions.DisableFormatting);
+						prevData.Value = prevWrap.GetInnerXml(singleQuote: true);
 					}
 					else
 					{
@@ -165,6 +101,87 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			cursor.Remove();
+		}
+
+
+		private void AnalyzeRun(XElement run, Style style)
+		{
+			var runProps = analyzer.CollectFrom(run);
+			var runStyle = new Style(runProps);
+			var textMatches = style.Equals(runStyle);
+
+			if (run.GetCData() is XCData cdata && cdata.Value.Contains("<span"))
+			{
+				if (run.Attribute("selected") is XAttribute attr)
+				{
+					attr.Remove();
+				}
+
+				var candidates = new List<XElement>();
+				var count = 0;
+
+				foreach (var node in cdata.GetWrapper().Nodes())
+				{
+					if (node is XText text)
+					{
+						if (textMatches)
+						{
+							logger.WriteLine($"match-text {text.Value}");
+
+							count++;
+							candidates.Add(new XElement(ns + "T",
+								run.Attributes().Where(a => a.Name.LocalName != "selected"),
+								new XAttribute("selected", "all"),
+								new XCData(text.Value)));
+						}
+						else
+						{
+							candidates.Add(new XElement(ns + "T",
+								run.Attributes(), new XCData(text.Value)));
+						}
+					}
+					else
+					{
+						var span = node as XElement;
+						var spanProps = analyzer.CollectFrom(span).Add(runProps);
+						var spanStyle = new Style(spanProps);
+
+						if (spanStyle.Equals(style))
+						{
+							logger.WriteLine($"match-span {span.ToString(SaveOptions.DisableFormatting)}");
+
+							count++;
+							candidates.Add(new XElement(ns + "T",
+								run.Attributes().Where(a => a.Name.LocalName != "selected"),
+								new XAttribute("selected", "all"),
+								new XCData(span.ToString(SaveOptions.DisableFormatting))));
+						}
+						else
+						{
+							candidates.Add(new XElement(ns + "T",
+								run.Attributes(),
+								new XCData(span.ToString(SaveOptions.DisableFormatting))));
+						}
+					}
+				}
+
+				if (count > 0)
+				{
+					if (candidates.Count == 1)
+					{
+						run.SetAttributeValue("selected", "all");
+					}
+					else
+					{
+						run.ReplaceWith(candidates);
+					}
+				}
+			}
+			else if (textMatches)
+			{
+				logger.WriteLine($"match {run.ToString(SaveOptions.DisableFormatting)}");
+				run.SetAttributeValue("selected", "all");
+			}
 		}
 	}
 }

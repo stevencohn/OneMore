@@ -69,6 +69,10 @@ namespace River.OneMoreAddIn.Styles
 		}
 
 
+		public int Depth => catalog.Count;
+		public int Hits { get; private set; }
+
+
 		/// <summary>
 		/// Collect the aggregated style properties of the given element within its context
 		/// </summary>
@@ -80,6 +84,7 @@ namespace River.OneMoreAddIn.Styles
 			var id = element.Attribute("objectID")?.Value;
 			if (id != null && catalog.ContainsKey(id))
 			{
+				Hits++;
 				return catalog[id];
 			}
 
@@ -114,6 +119,7 @@ namespace River.OneMoreAddIn.Styles
 			var id = paragraph.Attribute("objectID")?.Value;
 			if (id != null && catalog.ContainsKey(id))
 			{
+				Hits++;
 				return catalog[id];
 			}
 
@@ -140,6 +146,7 @@ namespace River.OneMoreAddIn.Styles
 				var key = $"quick-{index}";
 				if (catalog.ContainsKey(key))
 				{
+					Hits++;
 					return catalog[key];
 				}
 
