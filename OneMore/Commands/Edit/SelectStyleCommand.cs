@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SelectStyleCommand : Command
 	{
-		private StyleAnalyzer2 analyzer;
+		private StyleAnalyzer analyzer;
 		private XNamespace ns;
 
 
@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out ns))
 			{
-				analyzer = new StyleAnalyzer2(page.Root);
+				analyzer = new StyleAnalyzer(page.Root);
 				var style = analyzer.CollectFromSelection();
 				if (style == null)
 				{
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// merge text cursor so we don't have to treat it as a special case
-		private void NormalizeTextCursor(Page page, StyleAnalyzer2 analyzer)
+		private void NormalizeTextCursor(Page page, StyleAnalyzer analyzer)
 		{
 			var cursor = page.GetTextCursor();
 			if (cursor == null || page.SelectionScope != SelectionScope.Empty)

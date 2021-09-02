@@ -58,8 +58,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var run in runs)
 			{
-				analyzer.Clear();
-				var style = new Style(analyzer.CollectStyleProperties(run));
+				var style = analyzer.CollectStyleFrom(run);
 
 				if (!string.IsNullOrEmpty(style.Highlight))
 				{

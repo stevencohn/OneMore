@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Styles
 	/// catalog and optimize each element and quick style so subsequent element cross-references
 	/// will perform faster.
 	/// </remarks>
-	internal class StyleAnalyzer2
+	internal class StyleAnalyzer
 	{
 		private class Catalog : Dictionary<string, StyleProperties> { }
 
@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Styles
 		/// Initialze a new analyzer for the given page.
 		/// </summary>
 		/// <param name="root">The root of the page</param>
-		public StyleAnalyzer2(XElement root)
+		public StyleAnalyzer(XElement root)
 		{
 			this.root = root;
 			ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -230,6 +230,7 @@ namespace River.OneMoreAddIn.Styles
 				}
 			}
 
+			// ensure we also capture the quick style of the paragraph
 			properties.Add(CollectFromParagraph(selection.Parent));
 
 			var style = new Style(properties)
@@ -238,178 +239,6 @@ namespace River.OneMoreAddIn.Styles
 			};
 
 			return style;
-		}
-	}
-
-
-	internal class StyleAnalyzer
-	{
-		private bool nested;
-		private readonly XElement root;
-		private readonly Dictionary<string, string> properties;
-		private readonly List<XElement> range;
-
-		public StyleAnalyzer(XElement root, bool nested = true)
-		{
-			this.nested = nested;
-			this.root = root;
-			properties = new Dictionary<string, string>();
-			range = new List<XElement>();
-		}
-
-		public IEnumerable<XElement> SelectionRange => range;
-
-		public void Clear()
-		{
-			properties.Clear();
-			range.Clear();
-		}
-
-		public Dictionary<string, string> CollectStyleProperties(XElement element)
-		{
-			// starting with T, OE, or SPAN
-			CollectElementStyleProperties(element);
-
-			if (element.Name.LocalName == "T")
-			{
-				// OE of T
-				CollectElementStyleProperties(element.Parent);
-				CollectQuickStyleProperties(element.Parent);
-			}
-			else if (element.Name.LocalName == "OE")
-			{
-				CollectQuickStyleProperties(element);
-			}
-
-			return properties;
-		}
-
-		private void CollectElementStyleProperties(XElement element)
-		{
-			var props = element.CollectStyleProperties(nested);
-
-			if (props?.Any() == true)
-			{
-				var e = props.GetEnumerator();
-				while (e.MoveNext())
-				{
-					if (!properties.ContainsKey(e.Current.Key))
-					{
-						properties.Add(e.Current.Key, e.Current.Value);
-					}
-				}
-			}
-		}
-
-		private void CollectQuickStyleProperties(XElement element)
-		{
-			var index = element.Attribute("quickStyleIndex")?.Value;
-			if (index != null)
-			{
-				var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
-
-				var quick = root.Elements(ns + "QuickStyleDef")
-					.FirstOrDefault(e => e.Attribute("index").Value.Equals(index));
-
-				if (quick != null)
-				{
-					QuickStyleDef.CollectStyleProperties(quick, properties);
-				}
-			}
-		}
-
-		public Style CollectFromSelection()
-		{
-			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
-
-			var selection = root.Descendants(ns + "T")
-				.FirstOrDefault(e => e.Attributes("selected").Any(a => a.Value == "all"));
-
-			if (selection == null)
-			{
-				// nothing selected
-				return null;
-			}
-
-			var cdata = selection.GetCData();
-			if (cdata.IsEmpty())
-			{
-				// inside a word, adjacent to a word, or somewhere in whitespace?
-
-				if ((selection.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
-				{
-					selection = prev;
-
-					if ((selection.DescendantNodes()?
-						.OfType<XCData>()
-						.LastOrDefault() is XCData data) && !string.IsNullOrEmpty(data?.Value))
-					{
-						var wrapper = data.GetWrapper();
-
-						// if last node is text then skip the cdata and examine the parent T
-						// otherwise if last node is a span then start with its style
-
-						var last = wrapper.Nodes().Reverse().First(n =>
-							n.NodeType == XmlNodeType.Text ||
-							((n is XElement ne) && ne.Name.LocalName == "span"));
-
-						if (last?.NodeType == XmlNodeType.Element)
-						{
-							var wspan = last as XElement;
-							if (wspan.Attribute("style") != null)
-							{
-								CollectStyleProperties(wspan);
-							}
-						}
-					}
-				}
-				else
-				{
-					if ((selection.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
-					{
-						selection = next;
-
-						if ((selection.DescendantNodes()?
-							.OfType<XCData>()
-							.FirstOrDefault() is XCData data) && !string.IsNullOrEmpty(data?.Value))
-						{
-							var wrapper = data.GetWrapper();
-
-							// if first node is text then skip the cdata and examine the parent T
-							// otherwise if first node is a span then start with its style
-
-							var last = wrapper.Nodes().First(n =>
-								n.NodeType == XmlNodeType.Text ||
-								((n is XElement ne) && ne.Name.LocalName == "span"));
-
-							if (last?.NodeType == XmlNodeType.Element)
-							{
-								var wspan = last as XElement;
-								if (wspan.Attribute("style") != null)
-								{
-									CollectStyleProperties(wspan);
-								}
-							}
-						}
-					}
-				}
-			}
-
-			CollectStyleProperties(selection);
-
-			range.Add(selection);
-
-			var style = new Style(properties)
-			{
-				Name = $"Style-{new Random().Next(1000, 9999)}"
-			};
-
-			return style;
-		}
-
-		public void SetNested(bool nested)
-		{
-			this.nested = nested;
 		}
 	}
 }
