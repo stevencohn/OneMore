@@ -168,7 +168,11 @@ at "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.**version**.0\Wind
 where **version** is the version of the SDK you have installed, e.g. 19041. If your SDK has
 a different version then you must replace the **Windows** reference in OneMoreAddin.csproj_
 
-Tested recently with Windows 10 2004 (19041.450), VS2019, and OneNote 2019/O365
+Tested recently with:
+* Windows 10 21H1 19043.1165
+* VS2019 16.10.4
+* Win10 SDK 10.0.19041.0
+* OneNote 2019/O365 16.0.14326.20164 64-bit
 
 #### Dependencies
 
