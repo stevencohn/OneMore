@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Styles
 			var runs = root.Descendants(ns + "T")
 				.Where(e => e.Attribute("selected")?.Value == "all");
 
-			if (runs == null)
+			if (runs == null || !runs.Any())
 			{
 				// nothing selected
 				return null;
