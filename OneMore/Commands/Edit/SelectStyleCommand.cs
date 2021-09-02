@@ -20,8 +20,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			System.Diagnostics.Debugger.Launch();
-
 			using (var one = new OneNote(out var page, out var ns))
 			{
 				var analyzer = new StyleAnalyzer2(page.Root);
@@ -110,6 +108,7 @@ namespace River.OneMoreAddIn.Commands
 					else if (textMatches)
 					{
 						logger.WriteLine($"match {run.ToString(SaveOptions.DisableFormatting)}");
+						run.SetAttributeValue("selected", "all");
 					}
 				}
 
