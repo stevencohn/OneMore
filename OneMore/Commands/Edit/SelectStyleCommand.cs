@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		/****************************************************************************************
 		 **
 		 ** NOTE that OneNote does not allow multiple non-continguous selection ranges within
-		 ** a single paragraph OE element. This routine will typically select only the last
+		 ** a single paragraph OE element. This routine will result in selecting only the last
 		 ** range in the paragraph that meets the style criteria
 		 **
 		 ****************************************************************************************/

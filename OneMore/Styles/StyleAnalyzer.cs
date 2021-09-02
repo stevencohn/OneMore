@@ -41,7 +41,15 @@ namespace River.OneMoreAddIn.Styles
 		}
 
 
+		/// <summary>
+		/// Debugging/diagnostics, get the number of items in the catalog
+		/// </summary>
 		public int Depth => catalog.Count;
+
+
+		/// <summary>
+		/// Debugging/diagnostics, get the number of times the catalog had a hit
+		/// </summary>
 		public int Hits { get; private set; }
 
 
