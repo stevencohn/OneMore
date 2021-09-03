@@ -41,15 +41,13 @@ namespace River.OneMoreAddIn.Commands
 			{
 				analyzer = new StyleAnalyzer(page.Root);
 				var style = analyzer.CollectFromSelection();
-				var ok = (style != null);
-				if (ok)
-				{
-					ok = NormalizeTextCursor(page, analyzer);
-				}
+
+				var ok = (style != null) &&
+					NormalizeTextCursor(page, analyzer);
 
 				if (!ok)
 				{
-					UIHelper.ShowInfo(Resx.Error_BodyContext);
+					UIHelper.ShowInfo(one.Window, Resx.Error_BodyContext);
 					return;
 				}
 
