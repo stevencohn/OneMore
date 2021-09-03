@@ -171,7 +171,7 @@
 			// statusLabel
 			// 
 			this.statusLabel.AutoSize = true;
-			this.statusLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.statusLabel.ForeColor = System.Drawing.Color.Brown;
 			this.statusLabel.Location = new System.Drawing.Point(28, 365);
 			this.statusLabel.Name = "statusLabel";
 			this.statusLabel.Size = new System.Drawing.Size(31, 20);
