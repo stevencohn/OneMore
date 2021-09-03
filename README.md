@@ -48,6 +48,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Invert text selection
 * Expand or Collapse indented outlines, save and restore outlining
 * Join Paragraph to remove soft-breaks and join lines into a single flowing paragraph
+* Select all text on a page with similar formatting to the currently selected text
 
 [Favorites and Custom Snippets](../../wiki/Favorites)
 
