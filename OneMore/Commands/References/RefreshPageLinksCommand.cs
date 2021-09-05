@@ -53,7 +53,6 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// hyperlink doesn't escape ampersands but they will be escapes in XML
 					keys = match.Groups[0].Value.Replace("&", "&amp;");
-					logger.WriteLine($"searching for '{title}', keys='{keys}'");
 				}
 				else
 				{
@@ -77,10 +76,6 @@ namespace River.OneMoreAddIn.Commands
 
 			var updates = 0;
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			using (var one = new OneNote())
 			{
 				var hierarchy = GetHierarchy(one);
@@ -93,6 +88,7 @@ namespace River.OneMoreAddIn.Commands
 				progress.SetMaximum(pageList.Count);
 				progress.SetMessage($"Scanning {pageList.Count} pages");
 
+				// OneNote likes to inject \n\r before the href attribute so match any spaces
 				var editor = new Regex(
 					$"(<a\\s+href=[^>]+{keys}[^>]+>)([^<]*)(</a>)",
 					RegexOptions.Compiled | RegexOptions.Multiline);
@@ -115,11 +111,9 @@ namespace River.OneMoreAddIn.Commands
 
 						foreach (var block in blocks)
 						{
-							block.ReplaceWith(new XCData(editor.Replace(block.Value, $"$1{title}$3")));
-							logger.WriteLine(block.Value);
+							block.Value = editor.Replace(block.Value, $"$1{title}$3");
 						}
 
-						logger.WriteLine($"refreshing page {page.Title}");
 						await one.Update(page);
 						updates++;
 					}
