@@ -228,6 +228,9 @@ namespace River.OneMoreAddIn
 		public async Task RefreshFootnotesCmd(IRibbonControl control)
 			=> await factory.Run<RefreshFootnotesCommand>();
 
+		public async Task RefreshPageLinksCmd(IRibbonControl control)
+			=> await factory.Run<RefreshPageLinksCommand>();
+
 		public async Task RemoveAuthorsCmd(IRibbonControl control)
 			=> await factory.Run<RemoveAuthorsCommand>();
 

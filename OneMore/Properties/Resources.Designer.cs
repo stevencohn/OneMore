@@ -5168,6 +5168,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh Page References.
+        /// </summary>
+        internal static string ribRefreshPageLinksButton_Label {
+            get {
+                return ResourceManager.GetString("ribRefreshPageLinksButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Author Information.
         /// </summary>
         internal static string ribRemoveAuthorsButton_Label {

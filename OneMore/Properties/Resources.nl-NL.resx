@@ -3297,4 +3297,8 @@ OneNote-bestand (*.one)</value>
     <value>Selecteer tekst met vergelijkbare opmaak</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>Paginaverwijzingen vernieuwen</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

@@ -279,6 +279,11 @@
                 getEnabled="GetBodyContext"
                 onAction="RefreshFootnotesCmd"/>
               <button
+                id="ribRefreshPageLinksButton"
+                imageMso="SourceControlRefreshStatus"
+                getLabel="GetRibbonLabel"
+                onAction="RefreshPageLinksCmd"/>
+              <button
                 id="ribStartBiLinkButton"
                 imageMso="PositionAbsoluteMarks"
                 getLabel="GetRibbonLabel"

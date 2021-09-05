@@ -3296,4 +3296,8 @@ Archivo de OneNote (* .one)</value>
     <value>Seleccionar texto con formato similar</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>Actualizar referencias de página</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

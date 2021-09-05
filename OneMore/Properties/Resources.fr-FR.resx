@@ -3291,4 +3291,8 @@ Fichier OneNote (*.one)</value>
     <value>Sélectionnez du texte avec une mise en forme similaire</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>Actualiser les références de page</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

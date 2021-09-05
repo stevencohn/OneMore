@@ -3296,4 +3296,8 @@ ISO-code then comma then language name</comment>
     <value>حدد نصًا بتنسيق مماثل</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>قم بتحديث مراجع الصفحة</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

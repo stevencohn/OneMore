@@ -247,6 +247,7 @@
       <DependentUpon>LinkDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Images\GetImagesCommand.cs" />
+    <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
     <Compile Include="Commands\Settings\LinesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>

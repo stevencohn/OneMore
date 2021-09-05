@@ -3326,4 +3326,8 @@ In this section</value>
     <value>Select text with similar formatting</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>Refresh Page References</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
