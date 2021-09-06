@@ -3267,7 +3267,7 @@ OneNote-bestand (*.one)</value>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     Kaartverwijzingen naar deze pagina
-  <comment>ribbon button EDIT</comment></data>
+  <comment>ribbon button</comment></data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>Gemarkeerd met "{0}" als het anker. </value>
     <comment>message box</comment>

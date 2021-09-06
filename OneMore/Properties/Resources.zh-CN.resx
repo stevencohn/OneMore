@@ -3258,7 +3258,7 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     将引用映射到此页面
-  <comment>ribbon button EDIT</comment></data>
+  <comment>ribbon button</comment></data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>将“{0}”标记为锚点。</value>
     <comment>message box</comment>

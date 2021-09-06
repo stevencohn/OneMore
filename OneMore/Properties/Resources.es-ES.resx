@@ -3266,7 +3266,7 @@ Archivo de OneNote (* .one)</value>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     <value>Referencias de enlaces a esta página</value>
-    <comment>ribbon button EDIT</comment>
+    <comment>ribbon button</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>Marcado "{0}" como ancla. </value>
