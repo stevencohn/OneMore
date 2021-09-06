@@ -77,6 +77,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Create bidirectional links between pages or paragraphs on a page
 * Link to current page from other pages that reference this page title
 * Map Linked Pages to report all pages that link to other pages
+* Refresh text of hyperlinks back to this page based on its title
 * Replace hyperlinked URLs with their Web page titles
 * Replace hyperlinked URLs with their downloaded images
 
