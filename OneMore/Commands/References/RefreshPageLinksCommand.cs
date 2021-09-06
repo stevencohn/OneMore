@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -21,6 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote.Scope scope;
 		private string title;
 		private string keys;
+		private int updates;
 
 
 		public RefreshPageLinksCommand()
@@ -30,16 +32,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			//using (var dialog = new LinkDialog())
-			//{
-			//	if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
-			//	{
-			//		return;
-			//	}
+			using (var dialog = new RefreshPageLinksDialog())
+			{
+				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+				{
+					return;
+				}
 
-			//	scope = dialog.Scope;
-			//}
-			scope = OneNote.Scope.Sections;
+				scope = dialog.Scope;
+			}
 
 			using (var one = new OneNote(out var page, out _))
 			{
@@ -51,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 				var match = Regex.Match(uri, "section-id={[0-9A-F-]+}&page-id={[0-9A-F-]+}&");
 				if (match.Success)
 				{
-					// hyperlink doesn't escape ampersands but they will be escapes in XML
+					// ampersands aren't escaped in hyperlinks but they will be in XML
 					keys = match.Groups[0].Value.Replace("&", "&amp;");
 				}
 				else
@@ -62,7 +63,17 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var progressDialog = new UI.ProgressDialog(Execute);
-			await progressDialog.RunModeless();
+			await progressDialog.RunModeless((s, a) =>
+			{
+				if (updates > 0)
+				{
+					UIHelper.ShowInfo(string.Format(Resx.RefreshPageLinksCommand_updated, updates));
+				}
+				else
+				{
+					UIHelper.ShowInfo(Resx.RefreshPageLinksCommand_none);
+				}
+			});
 		}
 
 
@@ -74,19 +85,17 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			var updates = 0;
-
 			using (var one = new OneNote())
 			{
 				var hierarchy = GetHierarchy(one);
 				var ns = one.GetNamespace(hierarchy);
 
 				var pageList = hierarchy.Descendants(ns + "Page")
-					.Where(e => e.Attribute("isInRecycleBin") == null)
-					.ToList();
+					.Where(e => e.Attribute("isInRecycleBin") == null);
 
-				progress.SetMaximum(pageList.Count);
-				progress.SetMessage($"Scanning {pageList.Count} pages");
+				var pageCount = pageList.Count();
+				progress.SetMaximum(pageCount);
+				progress.SetMessage($"Scanning {pageCount} pages");
 
 				// OneNote likes to inject \n\r before the href attribute so match any spaces
 				var editor = new Regex(
@@ -128,15 +137,6 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteTime("refresh complete");
 			logger.End();
-
-			if (updates > 0)
-			{
-				UIHelper.ShowInfo($"Updated {updates} pages");
-			}
-			else
-			{
-				UIHelper.ShowInfo($"No references found to this page");
-			}
 		}
 
 

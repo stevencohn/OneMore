@@ -3876,6 +3876,87 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No references found to this page.
+        /// </summary>
+        internal static string RefreshPageLinksCommand_none {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksCommand_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated {0} pages.
+        /// </summary>
+        internal static string RefreshPageLinksCommand_updated {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksCommand_updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages in.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_groupBox_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_groupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All sections in the current notebook.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_notebookRadio_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_notebookRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All notebooks.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_notebooksRadio_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_notebooksRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current section.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_sectionRadio_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh Page Links.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Screen clipping.
         /// </summary>
         internal static string RemoveCitations_Clippings {
