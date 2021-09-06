@@ -2750,7 +2750,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>创建链接图谱</value>
+    <value>创建页面地图</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -3257,9 +3257,8 @@ OneNote 文件 (*.one)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>链接参考此页面</value>
-    <comment>ribbon button</comment>
-  </data>
+    将引用映射到此页面
+  <comment>ribbon button</comment></data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>将“{0}”标记为锚点。</value>
     <comment>message box</comment>
@@ -3287,5 +3286,45 @@ OneNote 文件 (*.one)</value>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>选择格式相似的文本</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>刷新页面参考</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
+    <value>页数</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebookRadio.Text" xml:space="preserve">
+    <value>当前笔记本中的所有分区</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>所有笔记本</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_okButton.Text" xml:space="preserve">
+    <value>好的</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
+    <value>当前部分</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
+    <value>刷新页面链接</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_none" xml:space="preserve">
+    <value>没有找到对本页的引用</value>
+    <comment>message</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_updated" xml:space="preserve">
+    <value>更新了 {0} 页</value>
+    <comment>message</comment>
   </data>
 </root>

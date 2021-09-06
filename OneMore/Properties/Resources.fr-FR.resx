@@ -2753,7 +2753,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>Mapper les pages liées</value>
+    <value>Créer une carte de page</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -3260,9 +3260,8 @@ Fichier OneNote (*.one)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>Lien Références à cette page</value>
-    <comment>ribbon button</comment>
-  </data>
+    <value>Lier les références à cette page</value>
+  <comment>ribbon button</comment></data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>Marqué "{0}" comme ancre. </value>
     <comment>message box</comment>
@@ -3290,5 +3289,45 @@ Fichier OneNote (*.one)</value>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>Sélectionnez du texte avec une mise en forme similaire</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>Actualiser les références de page</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
+    <value>Pages dans</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Toutes les sections du bloc-notes actuel</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Tous les cahiers</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_okButton.Text" xml:space="preserve">
+    <value>d'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
+    <value>La rubrique actuelle</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
+    <value>Actualiser les liens de la page</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_none" xml:space="preserve">
+    <value>Aucune référence trouvée sur cette page</value>
+    <comment>message</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_updated" xml:space="preserve">
+    <value>{0} pages mises à jour</value>
+    <comment>message</comment>
   </data>
 </root>

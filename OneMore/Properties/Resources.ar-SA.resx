@@ -2754,7 +2754,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>خريطة مرتبطة الصفحات</value>
+    <value>إنشاء خريطة الصفحة</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -3265,9 +3265,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>ارتباط المراجع لهذه الصفحة</value>
-    <comment>ribbon button</comment>
-  </data>
+    مراجع الخريطة لهذه الصفحة
+  <comment>ribbon button</comment></data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>تم وضع علامة "{0}" على أنها نقطة الارتساء. </value>
     <comment>message box</comment>
@@ -3295,5 +3294,45 @@ ISO-code then comma then language name</comment>
   <data name="ribSelectStyleButton_Label" xml:space="preserve">
     <value>حدد نصًا بتنسيق مماثل</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>قم بتحديث مراجع الصفحة</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_cancelButton.Text" xml:space="preserve">
+    <value>يلغي</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
+    <value>الصفحات بتنسيق</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebookRadio.Text" xml:space="preserve">
+    <value>كافة الأقسام الموجودة في دفتر الملاحظات الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>جميع دفاتر الملاحظات</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_okButton.Text" xml:space="preserve">
+    <value>نعم</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
+    <value>القسم الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
+    <value>تحديث روابط الصفحة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_none" xml:space="preserve">
+    <value>لا توجد مراجع وجدت لهذه الصفحة</value>
+    <comment>message</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_updated" xml:space="preserve">
+    <value>تم تحديث {0} من الصفحات</value>
+    <comment>message</comment>
   </data>
 </root>

@@ -297,15 +297,20 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertQRCmd"/>
               <button
+                id="ribMapButton"
+                getLabel="GetRibbonLabel"
+                imageMso="CreateMap"
+                onAction="MapCmd"/>
+              <button
                 id="ribLinkReferencesButton"
                 getLabel="GetRibbonLabel"
                 imageMso="TextBoxPreviousLinked"
                 onAction="LinkReferencesCmd"/>
               <button
-                id="ribMapButton"
+                id="ribRefreshPageLinksButton"
+                imageMso="SourceControlRefreshStatus"
                 getLabel="GetRibbonLabel"
-                imageMso="CreateMap"
-                onAction="MapCmd"/>
+                onAction="RefreshPageLinksCmd"/>
               <button
                 id="ribNameUrlsButton"
                 imageMso="AutoSigWebInsertHyperlink"

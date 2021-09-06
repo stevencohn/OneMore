@@ -247,6 +247,13 @@
       <DependentUpon>LinkDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Images\GetImagesCommand.cs" />
+    <Compile Include="Commands\References\RefreshPageLinksDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\References\RefreshPageLinksDialog.Designer.cs">
+      <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
     <Compile Include="Commands\Settings\LinesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -888,6 +895,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\LinkDialog.resx">
       <DependentUpon>LinkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\References\RefreshPageLinksDialog.resx">
+      <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
       <DependentUpon>LinesSheet.cs</DependentUpon>
