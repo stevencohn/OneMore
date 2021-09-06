@@ -3948,7 +3948,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Refresh Page Links.
+        ///   Looks up a localized string similar to Refresh Page References.
         /// </summary>
         internal static string RefreshPageLinksDialog_Text {
             get {

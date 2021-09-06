@@ -3325,7 +3325,7 @@ Archivo de OneNote (* .one)</value>
     <comment>radio</comment>
   </data>
   <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
-    <value>Actualizar enlaces de página</value>
+    <value>Actualizar referencias de página</value>
     <comment>dialog title</comment>
   </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">

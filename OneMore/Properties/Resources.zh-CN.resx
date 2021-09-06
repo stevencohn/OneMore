@@ -3316,7 +3316,7 @@ OneNote 文件 (*.one)</value>
     <comment>radio</comment>
   </data>
   <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
-    <value>刷新页面链接</value>
+    <value>刷新页面参考</value>
     <comment>dialog title</comment>
   </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
