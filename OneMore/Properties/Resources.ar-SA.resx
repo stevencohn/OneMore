@@ -3266,7 +3266,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     مراجع الخريطة لهذه الصفحة
-  </data>
+  <comment>ribbon button EDIT</comment></data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>تم وضع علامة "{0}" على أنها نقطة الارتساء. </value>
     <comment>message box</comment>

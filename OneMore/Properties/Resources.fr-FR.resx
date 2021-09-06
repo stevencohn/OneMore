@@ -3260,8 +3260,8 @@ Fichier OneNote (*.one)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    Mapper les références à cette page
-  </data>
+    <value>Lier les références à cette page</value>
+  <comment>ribbon button EDIT</comment></data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>Marqué "{0}" comme ancre. </value>
     <comment>message box</comment>

@@ -4970,7 +4970,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Map References to this Page.
+        ///   Looks up a localized string similar to Link References to this Page.
         /// </summary>
         internal static string ribLinkReferencesButton_Label {
             get {
