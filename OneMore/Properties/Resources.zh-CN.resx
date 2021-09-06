@@ -2750,7 +2750,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>创建链接图谱</value>
+    <value>创建页面地图</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -3257,8 +3257,7 @@ OneNote 文件 (*.one)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>链接参考此页面</value>
-    <comment>ribbon button</comment>
+    将引用映射到此页面
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>将“{0}”标记为锚点。</value>

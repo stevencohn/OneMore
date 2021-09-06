@@ -4970,7 +4970,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Link References to this page.
+        ///   Looks up a localized string similar to Map References to this Page.
         /// </summary>
         internal static string ribLinkReferencesButton_Label {
             get {
@@ -5024,7 +5024,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Map Linked Pages.
+        ///   Looks up a localized string similar to Create Page Map.
         /// </summary>
         internal static string ribMapButton_Label {
             get {

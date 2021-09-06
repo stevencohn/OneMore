@@ -2759,7 +2759,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>Gekoppelde pagina's toewijzen</value>
+    <value>Paginaoverzicht maken</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -3266,8 +3266,7 @@ OneNote-bestand (*.one)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>Link Verwijzingen naar deze pagina</value>
-    <comment>ribbon button</comment>
+    Kaartverwijzingen naar deze pagina
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>Gemarkeerd met "{0}" als het anker. </value>

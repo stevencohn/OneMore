@@ -2754,7 +2754,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>خريطة مرتبطة الصفحات</value>
+    <value>إنشاء خريطة الصفحة</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -3265,8 +3265,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>ارتباط المراجع لهذه الصفحة</value>
-    <comment>ribbon button</comment>
+    مراجع الخريطة لهذه الصفحة
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>تم وضع علامة "{0}" على أنها نقطة الارتساء. </value>

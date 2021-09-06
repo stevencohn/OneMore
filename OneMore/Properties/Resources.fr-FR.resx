@@ -2753,7 +2753,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>Mapper les pages liées</value>
+    <value>Créer une carte de page</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -3260,8 +3260,7 @@ Fichier OneNote (*.one)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>Lien Références à cette page</value>
-    <comment>ribbon button</comment>
+    Mapper les références à cette page
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>Marqué "{0}" comme ancre. </value>
