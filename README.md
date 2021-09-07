@@ -202,7 +202,7 @@ Microsoft has been pushing people to use the OneNote app and OneNote online, whi
    1. If run standalone, it will install 32-bit OneNote
    1. If run after installing Office, it will install 32 or 64 bit based on the bitness of Office
    1. The 64-bit installer is [here](http://www.onenote.com/download/win32/x64/en-US)
-   1. The 32-bit installer is [here](http://www.onenote.com/download/win32/x32/en-US)
+   1. The 32-bit installer is [here](http://www.onenote.com/download/win32/x86/en-US)
 
 ---
 
