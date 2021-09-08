@@ -3335,4 +3335,8 @@ ISO-code then comma then language name</comment>
     <value>تم تحديث {0} من الصفحات</value>
     <comment>message</comment>
   </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>مسار التنقل</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
 </root>

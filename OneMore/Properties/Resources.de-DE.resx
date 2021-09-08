@@ -3321,4 +3321,8 @@ OneNote-Datei (*.one)</value>
     <value>{0} Seiten aktualisiert</value>
     <comment>message</comment>
   </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>Semmelbrösel</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
 </root>

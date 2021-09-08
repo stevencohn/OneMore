@@ -3336,4 +3336,8 @@ Arquivo OneNote (* .one)</value>
     <value>{0} páginas atualizadas</value>
     <comment>message</comment>
   </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>Migalhas de pão</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
 </root>

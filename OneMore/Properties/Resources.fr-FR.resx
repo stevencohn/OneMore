@@ -3330,4 +3330,8 @@ Fichier OneNote (*.one)</value>
     <value>{0} pages mises à jour</value>
     <comment>message</comment>
   </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>Miette de pain</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
 </root>
