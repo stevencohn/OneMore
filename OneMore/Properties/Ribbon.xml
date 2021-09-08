@@ -367,6 +367,11 @@
                 getLabel="GetRibbonLabel"
                 onAction="InsertTocCmd"/>
               <button
+                id="ribBreadcrumbButton"
+                imageMso="ShapeRightArrow"
+                getLabel="GetRibbonLabel"
+                onAction="InsertBreadcrumbCmd"/>
+              <button
                 id="ribCalendarButton"
                 imageMso="CalendarInsert"
                 getLabel="GetRibbonLabel"

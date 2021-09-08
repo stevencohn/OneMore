@@ -3327,4 +3327,8 @@ OneNote 文件 (*.one)</value>
     <value>更新了 {0} 页</value>
     <comment>message</comment>
   </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>面包屑</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
 </root>

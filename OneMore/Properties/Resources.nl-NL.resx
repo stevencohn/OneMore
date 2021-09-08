@@ -3336,4 +3336,8 @@ OneNote-bestand (*.one)</value>
     <value>Bijgewerkt {0} pagina's</value>
     <comment>message</comment>
   </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>broodkruimel</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
 </root>

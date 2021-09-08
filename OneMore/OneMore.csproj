@@ -266,6 +266,7 @@
     <Compile Include="Commands\Settings\GeneralSheet.Designer.cs">
       <DependentUpon>GeneralSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsDialog.cs">

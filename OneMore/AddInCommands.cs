@@ -123,6 +123,9 @@ namespace River.OneMoreAddIn
 		public async Task InsertBlueStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
 
+		public async Task InsertBreadcrumbCmd(IRibbonControl control)
+			=> await factory.Run<InsertBreadcrumbCommand>(StatusColor.Blue);
+
 		public async Task InsertCalendarCmd(IRibbonControl control)
 			=> await factory.Run<InsertCalendarCommand>();
 
