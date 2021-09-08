@@ -201,6 +201,11 @@
                 getLabel="GetRibbonLabel"
                 onAction="JoinParagraphCmd"/>
               <button
+                id="ribSelectImagesButton"
+                imageMso="AdpDiagramArrangeSelection"
+                getLabel="GetRibbonLabel"
+                onAction="SelectImagesCmd"/>
+              <button
                 id="ribSelectStyleButton"
                 imageMso="StylesStyleInspector"
                 getLabel="GetRibbonLabel"

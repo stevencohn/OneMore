@@ -3325,4 +3325,8 @@ OneNote-Datei (*.one)</value>
     <value>Semmelbrösel</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribSelectImagesButton_Label" xml:space="preserve">
+    <value>Alle Bilder auswählen</value>
+    <comment>ribbon menu edit item</comment>
+  </data>
 </root>

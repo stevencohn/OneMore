@@ -3331,4 +3331,8 @@ OneNote 文件 (*.one)</value>
     <value>面包屑</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribSelectImagesButton_Label" xml:space="preserve">
+    <value>选择所有图像</value>
+    <comment>ribbon menu edit item</comment>
+  </data>
 </root>
