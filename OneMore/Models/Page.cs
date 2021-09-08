@@ -28,6 +28,8 @@ namespace River.OneMoreAddIn.Models
 	{
 		// Page meta to indicate data storage analysis report
 		public static readonly string AnalysisMetaName = "omAnalysisReport";
+		// OE meta indicating content is a page hierarchy breadcrumb
+		public static readonly string BreadcrumbMetaName = "omBreadcrumb";
 		// Page meta to keep track of rotating highlighter index
 		public static readonly string HighlightMetaName = "omHighlightIndex";
 		// Page is reference linked to another page, so don't include it in subsequent links

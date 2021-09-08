@@ -3366,4 +3366,8 @@ In this section</value>
     <value>Updated {0} pages</value>
     <comment>message</comment>
   </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>Breadcrumb</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
 </root>

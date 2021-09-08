@@ -4457,6 +4457,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Breadcrumb.
+        /// </summary>
+        internal static string ribBreadcrumbButton_Label {
+            get {
+                return ResourceManager.GetString("ribBreadcrumbButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Sentence Spacing.
         /// </summary>
         internal static string ribBreakingButton_Label {
