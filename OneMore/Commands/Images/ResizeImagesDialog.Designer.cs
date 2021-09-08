@@ -248,6 +248,7 @@ namespace River.OneMoreAddIn.Commands
             0,
             0,
             0});
+			this.presetUpDown.ValueChanged += new System.EventHandler(this.presetUpDown_ValueChanged);
 			// 
 			// presetLabel
 			// 
