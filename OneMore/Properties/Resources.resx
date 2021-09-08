@@ -3370,4 +3370,8 @@ In this section</value>
     <value>Breadcrumb</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribSelectImagesButton_Label" xml:space="preserve">
+    <value>Select All Images</value>
+    <comment>ribbon menu edit item</comment>
+  </data>
 </root>

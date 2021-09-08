@@ -3334,4 +3334,8 @@ Fichier OneNote (*.one)</value>
     <value>Miette de pain</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribSelectImagesButton_Label" xml:space="preserve">
+    <value>Sélectionner toutes les images</value>
+    <comment>ribbon menu edit item</comment>
+  </data>
 </root>

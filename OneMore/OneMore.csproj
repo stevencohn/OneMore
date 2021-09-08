@@ -228,6 +228,7 @@
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
+    <Compile Include="Commands\Edit\SelectImagesCommand.cs" />
     <Compile Include="Commands\Edit\SelectStyleCommand.cs" />
     <Compile Include="Commands\Extras\DateStampCommand.cs" />
     <Compile Include="Commands\File\CopyFolderCommand.cs" />

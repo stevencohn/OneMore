@@ -3340,4 +3340,8 @@ Archivo de OneNote (* .one)</value>
     <value>Migaja de pan</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribSelectImagesButton_Label" xml:space="preserve">
+    <value>Seleccionar todas las imágenes</value>
+    <comment>ribbon menu edit item</comment>
+  </data>
 </root>

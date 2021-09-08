@@ -3339,4 +3339,8 @@ ISO-code then comma then language name</comment>
     <value>مسار التنقل</value>
     <comment>ribbon snippets menu</comment>
   </data>
+  <data name="ribSelectImagesButton_Label" xml:space="preserve">
+    <value>حدد كل الصور</value>
+    <comment>ribbon menu edit item</comment>
+  </data>
 </root>
