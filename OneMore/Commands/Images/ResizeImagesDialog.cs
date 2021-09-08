@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 			Initialize();
 
 			this.image = image;
-			tempfile = Path.GetTempFileName();
+			tempfile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
 			suspended = true;
 			currentWidth = viewWidth;
@@ -264,6 +264,18 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 		}
+
+
+		private void presetUpDown_ValueChanged(object sender, EventArgs e)
+		{
+			suspended = true;
+			widthUpDown.Value = (int)presetUpDown.Value;
+			heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
+			EstimateStorage();
+
+			suspended = false;
+		}
+
 
 		private void EstimateStorage(object sender, EventArgs e)
 		{
