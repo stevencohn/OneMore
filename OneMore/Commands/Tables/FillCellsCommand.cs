@@ -35,6 +35,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private XNamespace ns;
+
+
 		public FillCellsCommand()
 		{
 		}
@@ -42,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns))
+			using (var one = new OneNote(out var page, out ns))
 			{
 				// Find first selected cell as anchor point to locate table ; By filtering on
 				// selected=all, we avoid including the parent table of a selected nested table.
@@ -63,23 +66,36 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+
+				System.Diagnostics.Debugger.Launch();
+
 				var table = new Table(anchor.FirstAncestor(ns + "Table"));
 				var cells = table.GetSelectedCells(out var range).ToList();
 
-				switch ((FillCells)args[0])
+				var updated = false;
+				var action = (FillCells)args[0];
+
+				switch (action)
 				{
-					case FillCells.CopyAcross: Copy(table, cells, true); break;
-					case FillCells.CopyDown: Copy(table, cells, false);  break;
-					case FillCells.FillAcross: break;
-					case FillCells.FillDown: break;
+					case FillCells.CopyAcross:
+					case FillCells.CopyDown:
+						updated = Copy(table, cells, action);
+						break;
+
+					case FillCells.FillAcross:
+					case FillCells.FillDown:
+						break;
 				}
 
-				await one.Update(page);
+				if (updated)
+				{
+					await one.Update(page);
+				}
 			}
 		}
 
 
-		private void Copy(Table table, List<TableCell> cells, bool across)
+		private bool Copy(Table table, List<TableCell> cells, FillCells action)
 		{
 			// RowNum and ColNum are 1-based so must shift them to be 0-based
 			var minCol = cells.Min(c => c.ColNum) - 1;
@@ -87,20 +103,29 @@ namespace River.OneMoreAddIn.Commands
 			var minRow = cells.Min(c => c.RowNum) - 1;
 			var maxRow = cells.Max(c => c.RowNum) - 1;
 
-			if (across)
+			var updated = false;
+
+			if (action == FillCells.CopyAcross)
 			{
 				if (maxCol == minCol)
 				{
-					maxCol = table.ColumnCount;
+					maxCol = table.ColumnCount - 1;
 				}
 
-				for (int ri = minRow; ri < maxRow; ri++)
+				for (int ri = minRow; ri <= maxRow; ri++)
 				{
 					var row = table[ri];
-					var content = row[minCol].GetContent();
-					for (int ci = minCol + 1; ci < maxCol; ci++)
+
+					var content = row[minCol].GetContent().Clone();
+					content.Descendants(ns + "T")
+						.Where(e => e.Attribute("selected")?.Value == "all")
+						.ToList()
+						.ForEach((e) => { e.Attribute("selected").Remove(); });
+
+					for (int ci = minCol + 1; ci <= maxCol; ci++)
 					{
 						row[ci].SetContent(content);
+						updated = true;
 					}
 				}
 			}
@@ -108,18 +133,26 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (maxRow == minRow)
 				{
-					maxRow = table.RowCount;
+					maxRow = table.RowCount - 1;
 				}
 
-				for (int ci = minCol; ci < maxCol; ci++)
+				for (int ci = minCol; ci <= maxCol; ci++)
 				{
-					var content = table[minRow][ci].GetContent();
-					for (int ri = minRow + 1; ri < maxRow; ri++)
+					var content = table[minRow][ci].GetContent().Clone();
+					content.Descendants(ns + "T")
+						.Where(e => e.Attribute("selected")?.Value == "all")
+						.ToList()
+						.ForEach((e) => { e.Attribute("selected").Remove(); });
+
+					for (int ri = minRow + 1; ri <= maxRow; ri++)
 					{
 						table[ri][ci].SetContent(content);
+						updated = true;
 					}
 				}
 			}
+
+			return updated;
 		}
 
 
