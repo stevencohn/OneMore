@@ -50,5 +50,14 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 			if (isDecimal) return value.ToString();
 			return string.Format("{0:0.#}", Math.Floor(value));
 		}
+
+
+		public int Subtract(IFiller other)
+		{
+			if (other is NumberFiller o)
+				return (int)(value - o.Value);
+
+			return 0;
+		}
 	}
 }

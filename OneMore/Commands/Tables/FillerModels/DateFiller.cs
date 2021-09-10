@@ -36,14 +36,35 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		{
 			var culture = CultureInfo.CurrentCulture;
 			var policy = culture.DateTimeFormat;
+
 			format = policy.ShortDatePattern; // M/d/YYYY
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value)) return true;
+			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
+				return true;
+
 			format = policy.MonthDayPattern; // MMMM d
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value)) return true;
+			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
+				return true;
+
 			format = policy.LongDatePattern; // dddd, MMMM d, yyyy
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value)) return true;
+			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
+				return true;
+
 			format = policy.YearMonthPattern; // MMMM yyyy
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value)) return true;
+			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
+				return true;
+
+			format = "d-MMM-yyyy";
+			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
+				return true;
+
+			format = "MMM d, yyyy";
+			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
+				return true;
+
+			format = "MMM d";
+			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
+				return true;
+
 			format = null;
 			return false;
 		}
@@ -53,6 +74,15 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		{
 			value = value.AddDays(increment);
 			return value.ToString(format);
+		}
+
+
+		public int Subtract(IFiller other)
+		{
+			if (other is DateFiller o)
+				return value.Subtract(o.Value).Days;
+
+			return 0;
 		}
 	}
 }

@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Tables.FillCellModels;
 	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -136,9 +135,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool Fill(Table table, List<TableCell> cells, FillCells action)
 		{
-			System.Diagnostics.Debugger.Launch();
-
-
 			// RowNum and ColNum are 1-based so must shift them to be 0-based
 			var minCol = cells.Min(c => c.ColNum) - 1;
 			var maxCol = cells.Max(c => c.ColNum) - 1;
@@ -160,34 +156,30 @@ namespace River.OneMoreAddIn.Commands
 					return updated;
 				}
 
-				IFiller filler;
-				var amount = 1;
-
-				if (maxCol == minCol + 1)
-				{
-					// only one cell to fill, no pattern so increment by 1
-					filler = GetFiller(table[minRow][minCol]);
-				}
-				else
-				{
-					// determine if there is a repeatable pattern to increment
-					amount = Analyze(table[minRow][minCol], table[minRow][minCol + 1], out filler);
-				}
-
-				if (amount == 0)
-				{
-					UIHelper.ShowInfo("nothign to fill");
-					return false;
-				}
-
 				for (int ri = minRow; ri <= maxRow; ri++)
 				{
-					var row = table[ri];
-					for (int ci = minCol + 1; ci <= maxCol; ci++)
+					IFiller filler;
+					var amount = 1;
+
+					if (maxCol == minCol + 1)
 					{
-						var content = filler.Increment(amount);
-						row[ci].SetContent(content);
-						updated = true;
+						// only one cell to fill, no pattern so increment by 1
+						filler = GetFiller(table[ri][minCol]);
+					}
+					else
+					{
+						// determine if there is a repeatable pattern to increment
+						amount = Analyze(table[ri][minCol], table[ri][minCol + 1], out filler);
+					}
+
+					if (amount > 0)
+					{
+						for (int ci = minCol + 1; ci <= maxCol; ci++)
+						{
+							var content = filler.Increment(amount);
+							table[ri][ci].SetContent(content);
+							updated = true;
+						}
 					}
 				}
 			}
@@ -204,33 +196,30 @@ namespace River.OneMoreAddIn.Commands
 					return updated;
 				}
 
-				IFiller filler;
-				var amount = 1;
-
-				if (maxRow == minRow + 1)
-				{
-					// only one cell to fill, no pattern so increment by 1
-					filler = GetFiller(table[minRow][minCol]);
-				}
-				else
-				{
-					// determine if there is a repeatable pattern to increment
-					amount = Analyze(table[minRow][minCol], table[minRow][minCol + 1], out filler);
-				}
-
-				if (amount == 0)
-				{
-					UIHelper.ShowInfo("nothing to fill");
-					return false;
-				}
-
 				for (int ci = minCol; ci <= maxCol; ci++)
 				{
-					for (int ri = minRow + 1; ri <= maxRow; ri++)
+					IFiller filler;
+					var amount = 1;
+
+					if (maxRow == minRow + 1)
 					{
-						var content = filler.Increment(amount);
-						table[ri][ci].SetContent(content);
-						updated = true;
+						// only one cell to fill, no pattern so increment by 1
+						filler = GetFiller(table[minRow][ci]);
+					}
+					else
+					{
+						// determine if there is a repeatable pattern to increment
+						amount = Analyze(table[minRow][ci], table[minRow + 1][ci], out filler);
+					}
+
+					if (amount > 0)
+					{
+						for (int ri = minRow + 1; ri <= maxRow; ri++)
+						{
+							var content = filler.Increment(amount);
+							table[ri][ci].SetContent(content);
+							updated = true;
+						}
 					}
 				}
 			}
@@ -253,18 +242,13 @@ namespace River.OneMoreAddIn.Commands
 				return 1;
 			}
 
-			if (filler.Type == FillType.Date)
+			if (filler2.Type != filler.Type)
 			{
-				return ((DateFiller)filler2).Value.Subtract(((DateFiller)filler).Value).Days;
+				return 0;
 			}
 
-			if (filler.Type == FillType.AlphaNumeric)
-			{
-				return ((AlphaNumericFiller)filler2).Value - ((AlphaNumericFiller)filler).Value;
-			}
-
-			// numeric
-			return (int)(((NumberFiller)filler2).Value - ((NumberFiller)filler).Value);
+			// filler..filler2 is presumed progression
+			return filler2.Subtract(filler);
 		}
 
 

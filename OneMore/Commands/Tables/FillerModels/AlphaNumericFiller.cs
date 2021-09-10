@@ -44,5 +44,14 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 			value += increment;
 			return $"{key}{value}";
 		}
+
+
+		public int Subtract(IFiller other)
+		{
+			if (other is AlphaNumericFiller o)
+				return value - o.Value;
+
+			return 0;
+		}
 	}
 }
