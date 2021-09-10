@@ -4,12 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Commands.Tables.FillCellModels;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
-	using System.Globalization;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -26,15 +25,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class FillCellsCommand : Command
 	{
-		private enum FillType
-		{
-			None,
-			Number,
-			Alpha,
-			Date
-		}
-
-
 		private XNamespace ns;
 
 
@@ -72,20 +62,11 @@ namespace River.OneMoreAddIn.Commands
 				var table = new Table(anchor.FirstAncestor(ns + "Table"));
 				var cells = table.GetSelectedCells(out var range).ToList();
 
-				var updated = false;
 				var action = (FillCells)args[0];
 
-				switch (action)
-				{
-					case FillCells.CopyAcross:
-					case FillCells.CopyDown:
-						updated = Copy(table, cells, action);
-						break;
-
-					case FillCells.FillAcross:
-					case FillCells.FillDown:
-						break;
-				}
+				var updated = action == FillCells.CopyAcross || action == FillCells.CopyDown
+					? Copy(table, cells, action)
+					: Fill(table, cells, action);
 
 				if (updated)
 				{
@@ -156,22 +137,133 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private FillType DetectCellType(string value)
+		private bool Fill(Table table, List<TableCell> cells, FillCells action)
 		{
-			var flags = NumberStyles.AllowCurrencySymbol |
-				NumberStyles.AllowDecimalPoint |
-				NumberStyles.AllowThousands;
+			// RowNum and ColNum are 1-based so must shift them to be 0-based
+			var minCol = cells.Min(c => c.ColNum) - 1;
+			var maxCol = cells.Max(c => c.ColNum) - 1;
+			var minRow = cells.Min(c => c.RowNum) - 1;
+			var maxRow = cells.Max(c => c.RowNum) - 1;
 
-			if (decimal.TryParse(value, flags, CultureInfo.CurrentCulture, out _))
+			var updated = false;
+
+			if (action == FillCells.FillAcross)
+			{
+				if (maxCol == minCol)
+				{
+					maxCol = table.ColumnCount - 1;
+				}
+
+				if (maxCol == minCol)
+				{
+					// no room to fill
+					return updated;
+				}
+
+				FillType type;
+				var increment = 1;
+
+				if (maxCol == minCol + 1)
+				{
+					// determine if there is a repeatable pattern to increment
+					type = DetectType(table[minRow][minCol]);
+				}
+				else
+				{
+					// only one cell to fill, no pattern so increment by 1
+					increment = Analyze(table[minRow][minCol], table[minRow][minCol + 1], out type);
+				}
+
+				for (int ri = minRow; ri <= maxRow; ri++)
+				{
+					var row = table[ri];
+
+					var content = row[minCol].GetContent().Clone();
+					content.Descendants(ns + "T")
+						.Where(e => e.Attribute("selected")?.Value == "all")
+						.ToList()
+						.ForEach((e) => { e.Attribute("selected").Remove(); });
+
+					for (int ci = minCol + 1; ci <= maxCol; ci++)
+					{
+						row[ci].SetContent(content);
+
+						if (type == FillType.Number)
+							increment++;
+
+						updated = true;
+					}
+				}
+			}
+			else
+			{
+				if (maxRow == minRow)
+				{
+					maxRow = table.RowCount - 1;
+				}
+
+				for (int ci = minCol; ci <= maxCol; ci++)
+				{
+					var content = table[minRow][ci].GetContent().Clone();
+					content.Descendants(ns + "T")
+						.Where(e => e.Attribute("selected")?.Value == "all")
+						.ToList()
+						.ForEach((e) => { e.Attribute("selected").Remove(); });
+
+					for (int ri = minRow + 1; ri <= maxRow; ri++)
+					{
+						table[ri][ci].SetContent(content);
+						updated = true;
+					}
+				}
+			}
+
+			return updated;
+		}
+
+
+		private int Analyze(TableCell first, TableCell second, out FillType type)
+		{
+			type = DetectType(first);
+			var type2 = DetectType(second);
+
+			if (type != type2)
+			{
+				return 1;
+			}
+
+			if (type == FillType.Number)
+			{
+				return 1;
+			}
+
+			if (type == FillType.AlphaNumeric)
+			{
+				return 1;
+			}
+
+			return 1;
+		}
+
+
+		private IFiller DetectType(TableCell cell)
+		{
+			var value = cell.GetText();
+
+			if (GetNumber(value, out _))
 			{
 				return FillType.Number;
 			}
 
-			if (Regex.Match(value, "^[a-z]+$|^[A-Z]+$").Success)
-				return FillType.Alpha;
+			if (GetAlphaNumeric(value, out _, out _))
+			{
+				return FillType.AlphaNumeric;
+			}
 
-			if (DateTime.TryParse(value, out _))
+			if (GetDate(value, out _))
+			{
 				return FillType.Date;
+ 			}
 
 			return FillType.None;
 		}
