@@ -33,9 +33,9 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		public int Value => value;
 
 
-		public bool CanParse(string text)
+		public static bool CanParse(string text)
 		{
-			return Regex.IsMatch(text, "^([^\\d]+)([\\d]+)$");
+			return Regex.IsMatch(text, "^[^\\d]+[\\d]+$");
 		}
 
 

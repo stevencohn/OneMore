@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		public decimal Value => value;
 
 
-		public bool CanParse(string text)
+		public static bool CanParse(string text)
 		{
 			return decimal.TryParse(
 				text, NumberStyles.Currency, CultureInfo.CurrentCulture, out _);

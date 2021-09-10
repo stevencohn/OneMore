@@ -56,9 +56,6 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-
-				System.Diagnostics.Debugger.Launch();
-
 				var table = new Table(anchor.FirstAncestor(ns + "Table"));
 				var cells = table.GetSelectedCells(out var range).ToList();
 
@@ -139,6 +136,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool Fill(Table table, List<TableCell> cells, FillCells action)
 		{
+			System.Diagnostics.Debugger.Launch();
+
+
 			// RowNum and ColNum are 1-based so must shift them to be 0-based
 			var minCol = cells.Min(c => c.ColNum) - 1;
 			var maxCol = cells.Max(c => c.ColNum) - 1;
@@ -160,37 +160,33 @@ namespace River.OneMoreAddIn.Commands
 					return updated;
 				}
 
-				FillType type;
-				var increment = 1;
+				IFiller filler;
+				var amount = 1;
 
 				if (maxCol == minCol + 1)
 				{
-					// determine if there is a repeatable pattern to increment
-					type = DetectType(table[minRow][minCol]);
+					// only one cell to fill, no pattern so increment by 1
+					filler = GetFiller(table[minRow][minCol]);
 				}
 				else
 				{
-					// only one cell to fill, no pattern so increment by 1
-					increment = Analyze(table[minRow][minCol], table[minRow][minCol + 1], out type);
+					// determine if there is a repeatable pattern to increment
+					amount = Analyze(table[minRow][minCol], table[minRow][minCol + 1], out filler);
+				}
+
+				if (amount == 0)
+				{
+					UIHelper.ShowInfo("nothign to fill");
+					return false;
 				}
 
 				for (int ri = minRow; ri <= maxRow; ri++)
 				{
 					var row = table[ri];
-
-					var content = row[minCol].GetContent().Clone();
-					content.Descendants(ns + "T")
-						.Where(e => e.Attribute("selected")?.Value == "all")
-						.ToList()
-						.ForEach((e) => { e.Attribute("selected").Remove(); });
-
 					for (int ci = minCol + 1; ci <= maxCol; ci++)
 					{
+						var content = filler.Increment(amount);
 						row[ci].SetContent(content);
-
-						if (type == FillType.Number)
-							increment++;
-
 						updated = true;
 					}
 				}
@@ -202,16 +198,37 @@ namespace River.OneMoreAddIn.Commands
 					maxRow = table.RowCount - 1;
 				}
 
+				if (maxRow == minRow)
+				{
+					// no room to fill
+					return updated;
+				}
+
+				IFiller filler;
+				var amount = 1;
+
+				if (maxRow == minRow + 1)
+				{
+					// only one cell to fill, no pattern so increment by 1
+					filler = GetFiller(table[minRow][minCol]);
+				}
+				else
+				{
+					// determine if there is a repeatable pattern to increment
+					amount = Analyze(table[minRow][minCol], table[minRow][minCol + 1], out filler);
+				}
+
+				if (amount == 0)
+				{
+					UIHelper.ShowInfo("nothing to fill");
+					return false;
+				}
+
 				for (int ci = minCol; ci <= maxCol; ci++)
 				{
-					var content = table[minRow][ci].GetContent().Clone();
-					content.Descendants(ns + "T")
-						.Where(e => e.Attribute("selected")?.Value == "all")
-						.ToList()
-						.ForEach((e) => { e.Attribute("selected").Remove(); });
-
 					for (int ri = minRow + 1; ri <= maxRow; ri++)
 					{
+						var content = filler.Increment(amount);
 						table[ri][ci].SetContent(content);
 						updated = true;
 					}
@@ -222,50 +239,55 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private int Analyze(TableCell first, TableCell second, out FillType type)
+		private int Analyze(TableCell first, TableCell second, out IFiller filler)
 		{
-			type = DetectType(first);
-			var type2 = DetectType(second);
+			filler = GetFiller(first);
+			if (filler == null)
+			{
+				return 0;
+			}
 
-			if (type != type2)
+			var filler2 = GetFiller(second);
+			if (filler2 == null)
 			{
 				return 1;
 			}
 
-			if (type == FillType.Number)
+			if (filler.Type == FillType.Date)
 			{
-				return 1;
+				return ((DateFiller)filler2).Value.Subtract(((DateFiller)filler).Value).Days;
 			}
 
-			if (type == FillType.AlphaNumeric)
+			if (filler.Type == FillType.AlphaNumeric)
 			{
-				return 1;
+				return ((AlphaNumericFiller)filler2).Value - ((AlphaNumericFiller)filler).Value;
 			}
 
-			return 1;
+			// numeric
+			return (int)(((NumberFiller)filler2).Value - ((NumberFiller)filler).Value);
 		}
 
 
-		private IFiller DetectType(TableCell cell)
+		private IFiller GetFiller(TableCell cell)
 		{
 			var value = cell.GetText();
 
-			if (GetNumber(value, out _))
+			if (NumberFiller.CanParse(value))
 			{
-				return FillType.Number;
+				return new NumberFiller(value);
 			}
 
-			if (GetAlphaNumeric(value, out _, out _))
+			if (DateFiller.CanParse(value))
 			{
-				return FillType.AlphaNumeric;
+				return new DateFiller(value);
 			}
 
-			if (GetDate(value, out _))
+			if (AlphaNumericFiller.CanParse(value))
 			{
-				return FillType.Date;
- 			}
+				return new AlphaNumericFiller(value);
+			}
 
-			return FillType.None;
+			return null;
 		}
 	}
 }

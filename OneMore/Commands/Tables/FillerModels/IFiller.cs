@@ -10,9 +10,6 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		FillType Type { get; }
 
 
-		bool CanParse(string text);
-
-
 		string Increment(int increment);
 	}
 }

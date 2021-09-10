@@ -26,13 +26,13 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		public DateTime Value => value;
 
 
-		public bool CanParse(string text)
+		public static bool CanParse(string text)
 		{
 			return Parse(text, out _, out _);
 		}
 
 
-		private bool Parse(string text, out DateTime value, out string format)
+		private static bool Parse(string text, out DateTime value, out string format)
 		{
 			var culture = CultureInfo.CurrentCulture;
 			var policy = culture.DateTimeFormat;
