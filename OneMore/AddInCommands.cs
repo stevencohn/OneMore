@@ -66,6 +66,12 @@ namespace River.OneMoreAddIn
 		public async Task ColorizeCmd(IRibbonControl control)
 			=> await factory.Run<ColorizeCommand>(control.Tag);
 
+		public async Task CopyAcrossCmd(IRibbonControl control)
+			=> await factory.Run<FillCellsCommand>(FillCells.CopyAcross);
+
+		public async Task CopyDownCmd(IRibbonControl control)
+			=> await factory.Run<FillCellsCommand>(FillCells.CopyDown);
+
 		public async Task CropImageCmd(IRibbonControl control)
 			=> await factory.Run<CropImageCommand>();
 
@@ -92,6 +98,12 @@ namespace River.OneMoreAddIn
 
 		public async Task ExpandContentCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Expand);
+
+		public async Task FillAcrossCmd(IRibbonControl control)
+			=> await factory.Run<FillCellsCommand>(FillCells.FillAcross);
+
+		public async Task FillDownCmd(IRibbonControl control)
+			=> await factory.Run<FillCellsCommand>(FillCells.FillDown);
 
 		public async Task FinishBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("link");

@@ -497,6 +497,30 @@
                 getEnabled="GetBodyContext"
                 onAction="PasteCellsCmd"/>
               <button
+                id="ribCopyAcrossButton"
+                imageMso="TableRowSelect"
+                label="Copy Across"
+                getEnabled="GetBodyContext"
+                onAction="CopyAcrossCmd"/>
+              <button
+                id="ribCopyDownButton"
+                imageMso="TableColumnSelect"
+                label="Copy Down"
+                getEnabled="GetBodyContext"
+                onAction="CopyDownCmd"/>
+              <button
+                id="ribFillAcrossButton"
+                imageMso="TableColumnsDistribute"
+                label="Fill Across"
+                getEnabled="GetBodyContext"
+                onAction="FillAcrossCmd"/>
+              <button
+                id="ribFillDownButton"
+                imageMso="TableRowsDistribute"
+                label="Fill Down"
+                getEnabled="GetBodyContext"
+                onAction="FillDownCmd"/>
+              <button
                 id="ribSplitTableButton"
                 imageMso="TableSplitTable"
                 getLabel="GetRibbonLabel"
