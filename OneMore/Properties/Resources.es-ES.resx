@@ -3344,4 +3344,28 @@ Archivo de OneNote (* .one)</value>
     <value>Seleccionar todas las imágenes</value>
     <comment>ribbon menu edit item</comment>
   </data>
+  <data name="ribCopyAcrossButton_Label" xml:space="preserve">
+    <value>Copiar al otro lado</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Label" xml:space="preserve">
+    <value>Copia</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillAcrossButton_Label" xml:space="preserve">
+    <value>Llenar a través</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillDownButton_Label" xml:space="preserve">
+    <value>Rellenar hacia abajo</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Label" xml:space="preserve">
+    <value>Pegar celdas</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>Agregar a los favoritos</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

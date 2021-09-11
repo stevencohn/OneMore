@@ -59,17 +59,27 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Gets the value stored in this cell
+		/// Gets the raw text value stored in this cell
 		/// </summary>
 		/// <returns>A string value</returns>
-		public string GetText()
+		public string GetText(bool all = false)
 		{
-			var text = Root.Elements(ns + "OEChildren")
-				.Elements(ns + "OE")
-				.Elements(ns + "T")
-				.FirstOrDefault();
+			string text;
+			if (all)
+			{
+				text = Root.Elements(ns + "OEChildren")
+					.Elements(ns + "OE")
+					.FirstOrDefault()?.Value;
+			}
+			else
+			{
+				text = Root.Elements(ns + "OEChildren")
+					.Elements(ns + "OE")
+					.Elements(ns + "T")
+					.FirstOrDefault()?.Value;
+			}
 
-			return text?.Value;
+			return new XCData(text).GetWrapper().Value;
 		}
 
 
@@ -105,6 +115,64 @@ namespace River.OneMoreAddIn.Models
 		public void SetContent(Table table)
 		{
 			SetContent(table.Root);
+		}
+
+
+		/// <summary>
+		/// Sets the contents of the cell to the given text and applies attributes
+		/// of the given template cell, such as shading color and style.
+		/// </summary>
+		/// <param name="template">The cell to use as a template</param>
+		/// <param name="text">The value to set as the contents</param>
+		public void SetContent(TableCell template, string text)
+		{
+			if (template.Root.GetAttributeValue("shadingColor", out var shading) && shading != null)
+			{
+				Root.SetAttributeValue("shadingColor", shading);
+			}
+
+			if (template.Root.GetAttributeValue("style", out var style) && style != null)
+			{
+				Root.SetAttributeValue("style", style);
+			}
+
+			var content = template.Root.Elements(ns + "OEChildren").FirstOrDefault();
+			if (content == null)
+			{
+				SetContent(text);
+				return;
+			}
+
+			// clone so the template can be reused untouched
+			content = content.Clone();
+
+			var run = content.Descendants(ns + "T")
+				.FirstOrDefault(e => e.Value.Length > 0);
+
+			if (run == null)
+			{
+				SetContent(text);
+				return;
+			}
+
+			var cdata = run.GetCData();
+			var wrapper = cdata.GetWrapper();
+			if (wrapper.FirstNode is XElement span)
+			{
+				span.Value = text;
+				span.NodesAfterSelf().Remove();
+				cdata.Value = wrapper.GetInnerXml();
+			}
+			else
+			{
+				wrapper.FirstNode.NodesAfterSelf().Remove();
+				cdata.Value = text;
+			}
+
+			run = new XElement(ns + "T", run.Attributes(), cdata);
+
+			content.Descendants(ns + "OE").FirstOrDefault().ReplaceNodes(run);
+			SetContent(content);
 		}
 
 

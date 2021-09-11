@@ -3343,4 +3343,28 @@ ISO-code then comma then language name</comment>
     <value>حدد كل الصور</value>
     <comment>ribbon menu edit item</comment>
   </data>
+  <data name="ribCopyAcrossButton_Label" xml:space="preserve">
+    <value>نسخ عبر</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Label" xml:space="preserve">
+    <value>انسخ</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillAcrossButton_Label" xml:space="preserve">
+    <value>تعبئة عرضية</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillDownButton_Label" xml:space="preserve">
+    <value>تعبئة لأسفل</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Label" xml:space="preserve">
+    <value>لصق الخلايا</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>اضافة الى المفضلة</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

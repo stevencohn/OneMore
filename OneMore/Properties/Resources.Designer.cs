@@ -4282,6 +4282,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to Favorites.
+        /// </summary>
+        internal static string ribAddFavoriteSectionButton_Label {
+            get {
+                return ResourceManager.GetString("ribAddFavoriteSectionButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Formula.
         /// </summary>
         internal static string ribAddFormulaButton_Label {
@@ -4556,6 +4565,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Across.
+        /// </summary>
+        internal static string ribCopyAcrossButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyAcrossButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Down.
+        /// </summary>
+        internal static string ribCopyDownButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyDownButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Section Group.
         /// </summary>
         internal static string ribCopyFolderButton_Label {
@@ -4723,6 +4750,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribFavoritesMenu_Label {
             get {
                 return ResourceManager.GetString("ribFavoritesMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Across.
+        /// </summary>
+        internal static string ribFillAcrossButton_Label {
+            get {
+                return ResourceManager.GetString("ribFillAcrossButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Down.
+        /// </summary>
+        internal static string ribFillDownButton_Label {
+            get {
+                return ResourceManager.GetString("ribFillDownButton_Label", resourceCulture);
             }
         }
         
@@ -5155,6 +5200,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPageColorButton_Label {
             get {
                 return ResourceManager.GetString("ribPageColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Cells.
+        /// </summary>
+        internal static string ribPasteCellsButton_Label {
+            get {
+                return ResourceManager.GetString("ribPasteCellsButton_Label", resourceCulture);
             }
         }
         

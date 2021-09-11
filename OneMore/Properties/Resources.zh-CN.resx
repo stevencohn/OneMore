@@ -3335,4 +3335,28 @@ OneNote 文件 (*.one)</value>
     <value>选择所有图像</value>
     <comment>ribbon menu edit item</comment>
   </data>
+  <data name="ribCopyAcrossButton_Label" xml:space="preserve">
+    <value>复制</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Label" xml:space="preserve">
+    <value>复制下来</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillAcrossButton_Label" xml:space="preserve">
+    <value>填满</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillDownButton_Label" xml:space="preserve">
+    <value>填写</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Label" xml:space="preserve">
+    <value>粘贴单元格</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>添加到收藏夹</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

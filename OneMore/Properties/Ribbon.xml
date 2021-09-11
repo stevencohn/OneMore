@@ -493,9 +493,33 @@
               <button
                 id="ribPasteCellsButton"
                 imageMso="PasteAsNestedTable"
-                label="Paste Cells"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="PasteCellsCmd"/>
+              <button
+                id="ribCopyAcrossButton"
+                imageMso="TableRowSelect"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="CopyAcrossCmd"/>
+              <button
+                id="ribCopyDownButton"
+                imageMso="TableColumnSelect"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="CopyDownCmd"/>
+              <button
+                id="ribFillAcrossButton"
+                imageMso="TableColumnsDistribute"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="FillAcrossCmd"/>
+              <button
+                id="ribFillDownButton"
+                imageMso="TableRowsDistribute"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="FillDownCmd"/>
               <button
                 id="ribSplitTableButton"
                 imageMso="TableSplitTable"
@@ -699,7 +723,7 @@
       <button
         id="ctxAddFavoriteSectionButton"
         imageMso="AddToFavorites"
-        label="Add to Favorites"
+        getLabel="GetRibbonLabel"
         onAction="AddFavoriteSectionCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button

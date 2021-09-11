@@ -269,6 +269,14 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
+    <Compile Include="Commands\Tables\FillerModels\AlphaNumericFiller.cs" />
+    <Compile Include="Commands\Tables\FillerModels\DateFiller.cs" />
+    <Compile Include="Commands\Tables\FillerModels\Filler.cs" />
+    <Compile Include="Commands\Tables\FillerModels\FillType.cs" />
+    <Compile Include="Commands\Tables\FillerModels\GenericFiller.cs" />
+    <Compile Include="Commands\Tables\FillerModels\IFiller.cs" />
+    <Compile Include="Commands\Tables\FillerModels\NumberFiller.cs" />
+    <Compile Include="Commands\Tables\FillCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsDialog.cs">
       <SubType>Form</SubType>
