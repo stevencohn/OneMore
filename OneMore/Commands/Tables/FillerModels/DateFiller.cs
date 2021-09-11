@@ -4,23 +4,26 @@
 
 namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Globalization;
 
 
-	internal class DateFiller : IFiller
+	internal class DateFiller : Filler
 	{
 		private DateTime value;
 		private readonly string format;
 
 
-		public DateFiller(string text)
+		public DateFiller(TableCell cell)
+			: base(cell)
 		{
+			var text = cell.GetText(true);
 			Parse(text, out value, out format);
 		}
 
 
-		public FillType Type => FillType.Date;
+		public override FillType Type => FillType.Date;
 
 
 		public DateTime Value => value;
@@ -70,14 +73,14 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		}
 
 
-		public string Increment(int increment)
+		public override string Increment(int increment)
 		{
 			value = value.AddDays(increment);
 			return value.ToString(format);
 		}
 
 
-		public int Subtract(IFiller other)
+		public override int Subtract(IFiller other)
 		{
 			if (other is DateFiller o)
 				return value.Subtract(o.Value).Days;

@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out ns))
 			{
-				// Find first selected cell as anchor point to locate table ; By filtering on
+				// Find first selected cell as anchor point to locate table; by filtering on
 				// selected=all, we avoid including the parent table of a selected nested table.
 
 				var anchor = page.Root.Descendants(ns + "Cell")
@@ -91,17 +91,10 @@ namespace River.OneMoreAddIn.Commands
 
 				for (int ri = minRow; ri <= maxRow; ri++)
 				{
-					var row = table[ri];
-
-					var content = row[minCol].GetContent().Clone();
-					content.Descendants(ns + "T")
-						.Where(e => e.Attribute("selected")?.Value == "all")
-						.ToList()
-						.ForEach((e) => { e.Attribute("selected").Remove(); });
-
+					var filler = new GenericFiller(table[ri][minCol]);
 					for (int ci = minCol + 1; ci <= maxCol; ci++)
 					{
-						row[ci].SetContent(content);
+						table[ri][ci].SetContent(filler.Cell, filler.Value);
 						updated = true;
 					}
 				}
@@ -115,15 +108,10 @@ namespace River.OneMoreAddIn.Commands
 
 				for (int ci = minCol; ci <= maxCol; ci++)
 				{
-					var content = table[minRow][ci].GetContent().Clone();
-					content.Descendants(ns + "T")
-						.Where(e => e.Attribute("selected")?.Value == "all")
-						.ToList()
-						.ForEach((e) => { e.Attribute("selected").Remove(); });
-
+					var filler = new GenericFiller(table[minRow][ci]);
 					for (int ri = minRow + 1; ri <= maxRow; ri++)
 					{
-						table[ri][ci].SetContent(content);
+						table[ri][ci].SetContent(filler.Cell, filler.Value);
 						updated = true;
 					}
 				}
@@ -176,8 +164,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						for (int ci = minCol + 1; ci <= maxCol; ci++)
 						{
-							var content = filler.Increment(amount);
-							table[ri][ci].SetContent(content);
+							var text = filler.Increment(amount);
+							table[ri][ci].SetContent(filler.Cell, text);
 							updated = true;
 						}
 					}
@@ -216,8 +204,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						for (int ri = minRow + 1; ri <= maxRow; ri++)
 						{
-							var content = filler.Increment(amount);
-							table[ri][ci].SetContent(content);
+							var text = filler.Increment(amount);
+							table[ri][ci].SetContent(filler.Cell, text);
 							updated = true;
 						}
 					}
@@ -254,21 +242,21 @@ namespace River.OneMoreAddIn.Commands
 
 		private IFiller GetFiller(TableCell cell)
 		{
-			var value = cell.GetText();
+			var value = cell.GetText(true);
 
 			if (NumberFiller.CanParse(value))
 			{
-				return new NumberFiller(value);
+				return new NumberFiller(cell);
 			}
 
 			if (DateFiller.CanParse(value))
 			{
-				return new DateFiller(value);
+				return new DateFiller(cell);
 			}
 
 			if (AlphaNumericFiller.CanParse(value))
 			{
-				return new AlphaNumericFiller(value);
+				return new AlphaNumericFiller(cell);
 			}
 
 			return null;

@@ -4,11 +4,12 @@
 
 namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Globalization;
 
 
-	internal class NumberFiller : IFiller
+	internal class NumberFiller : Filler
 	{
 		private readonly bool isCurrency;
 		private readonly bool isGrouped;
@@ -16,8 +17,11 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		private decimal value;
 
 
-		public NumberFiller(string text)
+		public NumberFiller(TableCell cell)
+			: base(cell)
 		{
+			var text = cell.GetText(true);
+
 			var culture = CultureInfo.CurrentCulture;
 			if (decimal.TryParse(text, NumberStyles.Currency, culture, out value))
 			{
@@ -28,7 +32,7 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		}
 
 
-		public FillType Type => FillType.Number;
+		public override FillType Type => FillType.Number;
 
 
 		public decimal Value => value;
@@ -41,7 +45,7 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		}
 
 
-		public string Increment(int increment)
+		public override string Increment(int increment)
 		{
 			value += increment;
 			if (isCurrency) return value.ToString("C");
@@ -52,7 +56,7 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		}
 
 
-		public int Subtract(IFiller other)
+		public override int Subtract(IFiller other)
 		{
 			if (other is NumberFiller o)
 				return (int)(value - o.Value);

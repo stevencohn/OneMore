@@ -4,12 +4,20 @@
 
 namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 {
+	using River.OneMoreAddIn.Models;
+
 
 	/// <summary>
 	/// Common members of fillers used to fill down or fill across cells in a table
 	/// </summary>
 	internal interface IFiller
 	{
+
+		/// <summary>
+		/// Get the table cell wrapped by this filler
+		/// </summary>
+		TableCell Cell { get; }
+
 
 		/// <summary>
 		/// Get the data type of this filler

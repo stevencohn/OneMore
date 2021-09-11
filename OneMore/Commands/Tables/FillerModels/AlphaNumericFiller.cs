@@ -4,20 +4,23 @@
 
 namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 {
+	using River.OneMoreAddIn.Models;
 	using System.Text.RegularExpressions;
 
 
-	internal class AlphaNumericFiller : IFiller
+	internal class AlphaNumericFiller : Filler
 	{
 		private readonly string key;
 		private int value;
 
 
-		public AlphaNumericFiller(string text)
+		public AlphaNumericFiller(TableCell cell)
+			: base(cell)
 		{
+			var text = cell.GetText(true);
+
 			// this matches the YearMonthPattern, MMMM yyyy, so FillCellsCommand should
 			// prioritize DateFiller over AlphaNumericFiller
-
 			var match = Regex.Match(text, "^([^\\d]+)([\\d]+)$");
 			if (match.Success)
 			{
@@ -27,7 +30,7 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		}
 
 
-		public FillType Type => FillType.AlphaNumeric;
+		public override FillType Type => FillType.AlphaNumeric;
 
 
 		public int Value => value;
@@ -39,14 +42,14 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		}
 
 
-		public string Increment(int increment)
+		public override string Increment(int increment)
 		{
 			value += increment;
 			return $"{key}{value}";
 		}
 
 
-		public int Subtract(IFiller other)
+		public override int Subtract(IFiller other)
 		{
 			if (other is AlphaNumericFiller o)
 				return value - o.Value;

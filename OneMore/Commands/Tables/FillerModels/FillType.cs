@@ -19,6 +19,12 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 
 
 		/// <summary>
+		/// Use for copy-down/across, hold generic cell text
+		/// </summary>
+		Generic,
+
+
+		/// <summary>
 		/// Data is a numeric value, decimal, or currency
 		/// </summary>
 		Number,
