@@ -62,6 +62,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Add caption to a selected images
 * Precisely crop a selected image
 * Resize a selected image or all images on the page
+* Select all images on the page
 
 [Numbering commands](../../wiki/Numbering-Commands)
 
@@ -91,6 +92,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 [Snippets commands](../../wiki/Snippets-Commands)
 
 * Insert single or double horizontal line
+* Insert breadcrumb at top of page
 * Insert Table of Contents of headers, pages, or sections
 * Insert small or large monthly calendar for a specific month
 * Insert sortable date, similar to 2020-12-23
@@ -106,6 +108,8 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Delete formula from selected table cells
 * Highlight all cells on the page with custom formulas
 * Recalculate all formulas in selected tables on the page (Shift + F5)
+* Copy across and copy down to fill all or selected cells with a copy of a cell
+* Fill across and fill down to fill all or selected cells with increment values
 * Convert select text to a table
 * Insert Table Cells, shifting content as expected
 * Paste copied table cells by overlaying cells rather than inserting a nested table
