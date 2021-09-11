@@ -160,14 +160,16 @@ namespace River.OneMoreAddIn.Models
 			if (wrapper.FirstNode is XElement span)
 			{
 				span.Value = text;
+				span.NodesAfterSelf().Remove();
 				cdata.Value = wrapper.GetInnerXml();
 			}
 			else
 			{
+				wrapper.FirstNode.NodesAfterSelf().Remove();
 				cdata.Value = text;
 			}
 
-			SetContent(content);
+			SetContent(new XElement(ns + "T", cdata));
 		}
 
 

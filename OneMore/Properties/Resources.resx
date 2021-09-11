@@ -3374,4 +3374,28 @@ In this section</value>
     <value>Select All Images</value>
     <comment>ribbon menu edit item</comment>
   </data>
+  <data name="ribCopyAcrossButton_Label" xml:space="preserve">
+    <value>Copy Across</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Label" xml:space="preserve">
+    <value>Copy Down</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillAcrossButton_Label" xml:space="preserve">
+    <value>Fill Across</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillDownButton_Label" xml:space="preserve">
+    <value>Fill Down</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Label" xml:space="preserve">
+    <value>Paste Cells</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>Add to Favorites</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

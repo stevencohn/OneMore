@@ -25,6 +25,8 @@ namespace River.OneMoreAddIn.Commands
 	internal class FillCellsCommand : Command
 	{
 		private XNamespace ns;
+		private int minCol, maxCol;
+		private int minRow, maxRow;
 
 
 		public FillCellsCommand()
@@ -58,11 +60,22 @@ namespace River.OneMoreAddIn.Commands
 				var table = new Table(anchor.FirstAncestor(ns + "Table"));
 				var cells = table.GetSelectedCells(out var range).ToList();
 
-				var action = (FillCells)args[0];
+				// RowNum and ColNum are 1-based so must shift them to be 0-based
+				minCol = cells.Min(c => c.ColNum) - 1;
+				maxCol = cells.Max(c => c.ColNum) - 1;
+				minRow = cells.Min(c => c.RowNum) - 1;
+				maxRow = cells.Max(c => c.RowNum) - 1;
 
-				var updated = action == FillCells.CopyAcross || action == FillCells.CopyDown
-					? Copy(table, cells, action)
-					: Fill(table, cells, action);
+				var updated = false;
+
+				var action = (FillCells)args[0];
+				switch (action)
+				{
+					case FillCells.CopyAcross: updated = CopyAcross(table, cells); break;
+					case FillCells.CopyDown: updated = CopyDown(table, cells); break;
+					case FillCells.FillAcross: updated = FillAcross(table, cells); break;
+					case FillCells.FillDown: updated = FillDown(table, cells); break;
+				}
 
 				if (updated)
 				{
@@ -72,46 +85,86 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool Copy(Table table, List<TableCell> cells, FillCells action)
+		private bool CopyAcross(Table table, List<TableCell> cells)
 		{
-			// RowNum and ColNum are 1-based so must shift them to be 0-based
-			var minCol = cells.Min(c => c.ColNum) - 1;
-			var maxCol = cells.Max(c => c.ColNum) - 1;
-			var minRow = cells.Min(c => c.RowNum) - 1;
-			var maxRow = cells.Max(c => c.RowNum) - 1;
+			if (maxCol == minCol)
+			{
+				maxCol = table.ColumnCount - 1;
+			}
 
 			var updated = false;
-
-			if (action == FillCells.CopyAcross)
+			for (int ri = minRow; ri <= maxRow; ri++)
 			{
-				if (maxCol == minCol)
+				var filler = new GenericFiller(table[ri][minCol]);
+				for (int ci = minCol + 1; ci <= maxCol; ci++)
 				{
-					maxCol = table.ColumnCount - 1;
-				}
-
-				for (int ri = minRow; ri <= maxRow; ri++)
-				{
-					var filler = new GenericFiller(table[ri][minCol]);
-					for (int ci = minCol + 1; ci <= maxCol; ci++)
-					{
-						table[ri][ci].SetContent(filler.Cell, filler.Value);
-						updated = true;
-					}
+					table[ri][ci].SetContent(filler.Cell, filler.Value);
+					updated = true;
 				}
 			}
-			else
+
+			return updated;
+		}
+
+
+		private bool CopyDown(Table table, List<TableCell> cells)
+		{
+			if (maxRow == minRow)
 			{
-				if (maxRow == minRow)
+				maxRow = table.RowCount - 1;
+			}
+
+			var updated = false;
+			for (int ci = minCol; ci <= maxCol; ci++)
+			{
+				var filler = new GenericFiller(table[minRow][ci]);
+				for (int ri = minRow + 1; ri <= maxRow; ri++)
 				{
-					maxRow = table.RowCount - 1;
+					table[ri][ci].SetContent(filler.Cell, filler.Value);
+					updated = true;
+				}
+			}
+
+			return updated;
+		}
+
+
+		private bool FillAcross(Table table, List<TableCell> cells)
+		{
+			if (maxCol == minCol)
+			{
+				maxCol = table.ColumnCount - 1;
+			}
+
+			if (maxCol == minCol)
+			{
+				// no room to fill
+				return false;
+			}
+
+			var updated = false;
+			for (int ri = minRow; ri <= maxRow; ri++)
+			{
+				IFiller filler;
+				var amount = 1;
+
+				if (maxCol == minCol + 1)
+				{
+					// only one cell to fill, no pattern so increment by 1
+					filler = GetFiller(table[ri][minCol]);
+				}
+				else
+				{
+					// determine if there is a repeatable pattern to increment
+					amount = Analyze(table[ri][minCol], table[ri][minCol + 1], out filler);
 				}
 
-				for (int ci = minCol; ci <= maxCol; ci++)
+				if (amount > 0)
 				{
-					var filler = new GenericFiller(table[minRow][ci]);
-					for (int ri = minRow + 1; ri <= maxRow; ri++)
+					for (int ci = minCol + 1; ci <= maxCol; ci++)
 					{
-						table[ri][ci].SetContent(filler.Cell, filler.Value);
+						var text = filler.Increment(amount);
+						table[ri][ci].SetContent(filler.Cell, text);
 						updated = true;
 					}
 				}
@@ -121,93 +174,43 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool Fill(Table table, List<TableCell> cells, FillCells action)
+		private bool FillDown(Table table, List<TableCell> cells)
 		{
-			// RowNum and ColNum are 1-based so must shift them to be 0-based
-			var minCol = cells.Min(c => c.ColNum) - 1;
-			var maxCol = cells.Max(c => c.ColNum) - 1;
-			var minRow = cells.Min(c => c.RowNum) - 1;
-			var maxRow = cells.Max(c => c.RowNum) - 1;
+			if (maxRow == minRow)
+			{
+				maxRow = table.RowCount - 1;
+			}
+
+			if (maxRow == minRow)
+			{
+				// no room to fill
+				return false;
+			}
 
 			var updated = false;
-
-			if (action == FillCells.FillAcross)
+			for (int ci = minCol; ci <= maxCol; ci++)
 			{
-				if (maxCol == minCol)
+				IFiller filler;
+				var amount = 1;
+
+				if (maxRow == minRow + 1)
 				{
-					maxCol = table.ColumnCount - 1;
+					// only one cell to fill, no pattern so increment by 1
+					filler = GetFiller(table[minRow][ci]);
+				}
+				else
+				{
+					// determine if there is a repeatable pattern to increment
+					amount = Analyze(table[minRow][ci], table[minRow + 1][ci], out filler);
 				}
 
-				if (maxCol == minCol)
+				if (amount > 0)
 				{
-					// no room to fill
-					return updated;
-				}
-
-				for (int ri = minRow; ri <= maxRow; ri++)
-				{
-					IFiller filler;
-					var amount = 1;
-
-					if (maxCol == minCol + 1)
+					for (int ri = minRow + 1; ri <= maxRow; ri++)
 					{
-						// only one cell to fill, no pattern so increment by 1
-						filler = GetFiller(table[ri][minCol]);
-					}
-					else
-					{
-						// determine if there is a repeatable pattern to increment
-						amount = Analyze(table[ri][minCol], table[ri][minCol + 1], out filler);
-					}
-
-					if (amount > 0)
-					{
-						for (int ci = minCol + 1; ci <= maxCol; ci++)
-						{
-							var text = filler.Increment(amount);
-							table[ri][ci].SetContent(filler.Cell, text);
-							updated = true;
-						}
-					}
-				}
-			}
-			else
-			{
-				if (maxRow == minRow)
-				{
-					maxRow = table.RowCount - 1;
-				}
-
-				if (maxRow == minRow)
-				{
-					// no room to fill
-					return updated;
-				}
-
-				for (int ci = minCol; ci <= maxCol; ci++)
-				{
-					IFiller filler;
-					var amount = 1;
-
-					if (maxRow == minRow + 1)
-					{
-						// only one cell to fill, no pattern so increment by 1
-						filler = GetFiller(table[minRow][ci]);
-					}
-					else
-					{
-						// determine if there is a repeatable pattern to increment
-						amount = Analyze(table[minRow][ci], table[minRow + 1][ci], out filler);
-					}
-
-					if (amount > 0)
-					{
-						for (int ri = minRow + 1; ri <= maxRow; ri++)
-						{
-							var text = filler.Increment(amount);
-							table[ri][ci].SetContent(filler.Cell, text);
-							updated = true;
-						}
+						var text = filler.Increment(amount);
+						table[ri][ci].SetContent(filler.Cell, text);
+						updated = true;
 					}
 				}
 			}

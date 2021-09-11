@@ -26,9 +26,10 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 
 			// deselect
 			clone.Descendants()
-				.Where(e => e.Name.LocalName == "T" && e.Attribute("selected")?.Value == "all")
+				.Where(e => e.Attribute("selected") != null)
+				.Select(e => e.Attribute("selected"))
 				.ToList()
-				.ForEach((e) => { e.Attribute("selected").Remove(); });
+				.ForEach((a) => { a.Remove(); });
 
 			this.cell = new TableCell(clone);
 		}
