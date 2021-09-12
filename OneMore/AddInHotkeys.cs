@@ -25,6 +25,9 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(async () => await DecreaseFontSizeCmd(null),
 				Keys.OemMinus, Hotmods.ControlAlt);
 
+			HotkeyManager.RegisterHotKey(async () => await FillDownCmd(null),
+				Keys.D, Hotmods.Control);
+
 			HotkeyManager.RegisterHotKey(async () => await HighlightCmd(null),
 				Keys.H, Hotmods.ControlShift);
 
