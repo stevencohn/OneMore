@@ -7,10 +7,13 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Globalization;
+	using System.Linq;
 
 
 	internal class DateFiller : Filler
 	{
+		private static readonly string[] formats = RegisterFormattingPatterns();
+
 		private DateTime value;
 		private readonly string format;
 
@@ -35,39 +38,47 @@ namespace River.OneMoreAddIn.Commands.Tables.FillCellModels
 		}
 
 
+		private static string[] RegisterFormattingPatterns()
+		{
+			// DateTimeFormats with days but without times include
+			//  M/d/yyyy
+			//  MMM d, yyyy
+			//  M/d/yy
+			//  dddd, MMMM d, yyyy
+			//  MMMM d, yyyy
+			//  MMMM d
+
+			var list = CultureInfo.CurrentCulture.DateTimeFormat
+				.GetAllDateTimePatterns()
+				.Where(p => p.Contains('d') && !p.Contains('m')).Distinct()
+				.ToList();
+
+			// add our own custom formats
+			if (!list.Contains("MMM d, yyyy")) list.Add("MMM d, yyyy");
+			if (!list.Contains("d-MMM-yyyy")) list.Add("d-MMM-yyyy");
+			if (!list.Contains("MMM d")) list.Add("MMM d");
+
+			return list.ToArray();
+		}
+
+
 		private static bool Parse(string text, out DateTime value, out string format)
 		{
 			var culture = CultureInfo.CurrentCulture;
-			var policy = culture.DateTimeFormat;
 
-			format = policy.ShortDatePattern; // M/d/YYYY
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
-				return true;
+			var i = 0;
+			while (i < formats.Length)
+			{
+				format = formats[i];
+				if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
+				{
+					return true;
+				}
 
-			format = policy.MonthDayPattern; // MMMM d
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
-				return true;
+				i++;
+			}
 
-			format = policy.LongDatePattern; // dddd, MMMM d, yyyy
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
-				return true;
-
-			format = policy.YearMonthPattern; // MMMM yyyy
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
-				return true;
-
-			format = "d-MMM-yyyy";
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
-				return true;
-
-			format = "MMM d, yyyy";
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
-				return true;
-
-			format = "MMM d";
-			if (DateTime.TryParseExact(text, format, culture, DateTimeStyles.None, out value))
-				return true;
-
+			value = DateTime.MinValue;
 			format = null;
 			return false;
 		}
