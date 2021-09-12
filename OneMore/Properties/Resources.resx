@@ -3398,4 +3398,8 @@ In this section</value>
     <value>Add to Favorites</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFillDownButton_Screentip" xml:space="preserve">
+    <value>Fill Down (Ctrl + D)</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

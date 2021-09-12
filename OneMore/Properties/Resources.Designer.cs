@@ -4772,6 +4772,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fill Down (Ctrl + D).
+        /// </summary>
+        internal static string ribFillDownButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribFillDownButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finish Bidirectional Link.
         /// </summary>
         internal static string ribFinishBiLinkButton_Label {

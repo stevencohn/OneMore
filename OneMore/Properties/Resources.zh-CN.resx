@@ -3359,4 +3359,8 @@ OneNote 文件 (*.one)</value>
     <value>添加到收藏夹</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFillDownButton_Screentip" xml:space="preserve">
+    <value>向下填充 (Ctrl + D)</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

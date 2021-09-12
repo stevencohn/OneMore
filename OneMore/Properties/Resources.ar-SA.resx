@@ -3367,4 +3367,8 @@ ISO-code then comma then language name</comment>
     <value>اضافة الى المفضلة</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFillDownButton_Screentip" xml:space="preserve">
+    <value>ملء لأسفل (Ctrl + D)</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

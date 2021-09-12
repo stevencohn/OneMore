@@ -3368,4 +3368,8 @@ Archivo de OneNote (* .one)</value>
     <value>Agregar a los favoritos</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFillDownButton_Screentip" xml:space="preserve">
+    <value>Rellenar (Ctrl + D)</value>
+    <comment>ribbon</comment>
+  </data>
 </root>

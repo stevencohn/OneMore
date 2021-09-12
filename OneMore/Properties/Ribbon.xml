@@ -518,6 +518,7 @@
                 id="ribFillDownButton"
                 imageMso="TableRowsDistribute"
                 getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="FillDownCmd"/>
               <button

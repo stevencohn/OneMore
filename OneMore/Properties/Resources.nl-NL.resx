@@ -3368,4 +3368,8 @@ OneNote-bestand (*.one)</value>
     <value>Toevoegen aan favorieten</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribFillDownButton_Screentip" xml:space="preserve">
+    <value>Opvullen (Ctrl + D)</value>
+    <comment>ribbon</comment>
+  </data>
 </root>
