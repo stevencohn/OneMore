@@ -34,6 +34,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56
 		Plugins\Get-MeetingDate.ps1 = Plugins\Get-MeetingDate.ps1
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{31896922-72FF-4823-80C0-8EC46936AC71}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\OneNote_Keyboard_Shortcuts.zip = Templates\OneNote_Keyboard_Shortcuts.zip
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
