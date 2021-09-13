@@ -818,6 +818,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// draw rotated image as a new bitmap
 			var rotated = new Bitmap(width, height);
+			//rotated.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
 
 			using (var g = Graphics.FromImage(rotated))
 			{
@@ -828,16 +829,18 @@ namespace River.OneMoreAddIn.Commands
 				// clear with the color from image's upper left corner
 				//g.Clear(bitmap.GetPixel(0, 0));
 
-				// transformation image, rotating around its center
+				// rotate image around its center
 				using (var matrix = new Matrix())
 				{
 					matrix.RotateAt(angle, new PointF(width / 2f, height / 2f));
 					g.Transform = matrix;
 
 					// draw the image centered on the bitmap
-					var left = (width - bitmap.Width) / 2;
-					var top = (height - bitmap.Height) / 2;
-					g.DrawImage(bitmap, left, top);
+					var left = (width - (bitmap.Width * scalingX)) / 2;
+					var top = (height - (bitmap.Height * scalingY)) / 2;
+					g.DrawImage(bitmap,
+						(int)left, (int)top, 
+						(int)(bitmap.Width * scalingX), (int)(bitmap.Height * scalingY));
 				}
 			}
 
