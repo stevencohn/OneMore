@@ -1200,7 +1200,7 @@ Try again later</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Crop</value>
+    <value>Crop and Rotate</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">

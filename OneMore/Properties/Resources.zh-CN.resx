@@ -1094,7 +1094,7 @@ OneNote 将自动关闭</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>裁剪</value>
+    <value>裁剪和旋转</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">

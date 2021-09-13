@@ -1092,7 +1092,7 @@
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>ا &amp;amp; قتصاص</value>
+    <value>اقتصاص وتدوير</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">

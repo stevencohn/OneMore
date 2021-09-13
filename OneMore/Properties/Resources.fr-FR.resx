@@ -1089,7 +1089,7 @@ Pourcentage</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Surgir</value>
+    <value>Recadrer et faire pivoter</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">

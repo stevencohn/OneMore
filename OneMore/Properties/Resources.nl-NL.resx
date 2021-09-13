@@ -1097,7 +1097,7 @@ Probeer het later nog eens</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Bijsnijden</value>
+    <value>Bijsnijden en roteren</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">

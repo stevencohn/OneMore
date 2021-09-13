@@ -4610,7 +4610,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crop.
+        ///   Looks up a localized string similar to Crop and Rotate.
         /// </summary>
         internal static string ribCropImageButton_Label {
             get {
