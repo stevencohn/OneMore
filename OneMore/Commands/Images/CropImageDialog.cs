@@ -128,9 +128,6 @@ namespace River.OneMoreAddIn.Commands
 			scalingX = dpiX / image.HorizontalResolution;
 			scalingY = dpiY / image.VerticalResolution;
 
-			logger.WriteLine($"resolution {image.HorizontalResolution} x {image.VerticalResolution}, dpi {dpiX} x {dpiY}, scaling {scalingX} x {scalingY}");
-
-
 			SizeWindow();
 
 			brightness = GetBrightness(image);
@@ -165,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 			var border =
 				SystemInformation.CaptionHeight +               // title bar
 				SystemInformation.FrameBorderSize.Height * 2 +  // horizontal borders, top/bottom
-				introPanel.Height +								// intro text panel
+				introPanel.Height +                             // intro text panel
 				statusStrip.Height +                            // status bar
 				buttonPanel.Height;
 
@@ -234,7 +231,7 @@ namespace River.OneMoreAddIn.Commands
 		public Image Image { get; private set; }
 
 
-		// ------------------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------------------------
 		// Paint
 
 		private void Picture_Hover(object sender, EventArgs e)
@@ -808,6 +805,9 @@ namespace River.OneMoreAddIn.Commands
 			Image = RotateBitmap((Bitmap)original, (float)rotationBox.Value);
 			pictureBox.Refresh();
 
+			sizeStatusLabel.Text = string.Format(
+				Resx.CropImageDialog_imageSize, Image.Width, Image.Height);
+
 			SetButtonEnabled();
 		}
 
@@ -818,16 +818,15 @@ namespace River.OneMoreAddIn.Commands
 
 			// draw rotated image as a new bitmap
 			var rotated = new Bitmap(width, height);
-			//rotated.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
+			rotated.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
 
 			using (var g = Graphics.FromImage(rotated))
 			{
 				// smooth image interpolation
 				g.InterpolationMode = InterpolationMode.High;
 
+				// transparent background; could instead use g.Clear(bitmap.GetPixel(0, 0))
 				g.Clear(Color.Transparent);
-				// clear with the color from image's upper left corner
-				//g.Clear(bitmap.GetPixel(0, 0));
 
 				// rotate image around its center
 				using (var matrix = new Matrix())
@@ -836,11 +835,9 @@ namespace River.OneMoreAddIn.Commands
 					g.Transform = matrix;
 
 					// draw the image centered on the bitmap
-					var left = (width - (bitmap.Width * scalingX)) / 2;
-					var top = (height - (bitmap.Height * scalingY)) / 2;
 					g.DrawImage(bitmap,
-						(int)left, (int)top, 
-						(int)(bitmap.Width * scalingX), (int)(bitmap.Height * scalingY));
+						(width - (bitmap.Width)) / 2,
+						(height - (bitmap.Height)) / 2);
 				}
 			}
 
@@ -848,7 +845,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void PredictRotatedSize(Bitmap bitmap, float angle, out int width, out int height)
+		private void PredictRotatedSize(
+			Bitmap bitmap, float angle, out int width, out int height)
 		{
 			// return the larger ratio, horizontal or vertical of the image
 			var points = new PointF[]
@@ -880,8 +878,8 @@ namespace River.OneMoreAddIn.Commands
 				if (ymax < point.Y) ymax = point.Y;
 			}
 
-			width = (int)Math.Round((xmax - xmin) * scalingX);
-			height = (int)Math.Round((ymax - ymin) * scalingY);
+			width = (int)Math.Round((xmax - xmin));
+			height = (int)Math.Round((ymax - ymin));
 		}
 
 
