@@ -58,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int HandleSize = 8;
 
 		// the selection
+		private Image original;
 		private Point startPoint;
 		private Point endPoint;
 		private Point movePoint;
@@ -120,12 +121,15 @@ namespace River.OneMoreAddIn.Commands
 		public CropImageDialog(Image image)
 			: this()
 		{
-			Image = image;
+			Image = original = image;
 
 			// set scaling factors
 			(dpiX, dpiY) = UIHelper.GetDpiValues();
 			scalingX = dpiX / image.HorizontalResolution;
 			scalingY = dpiY / image.VerticalResolution;
+
+			logger.WriteLine($"resolution {image.HorizontalResolution} x {image.VerticalResolution}, dpi {dpiX} x {dpiY}, scaling {scalingX} x {scalingY}");
+
 
 			SizeWindow();
 
@@ -133,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 
 			sizeStatusLabel.Text = string.Format(
 				Resx.CropImageDialog_imageSize, Image.Width, Image.Height);
-			
+
 			pictureBox.Refresh();
 
 #if Logging
@@ -159,24 +163,25 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// height
 			var border =
-				SystemInformation.CaptionHeight +				// title bar
-				SystemInformation.FrameBorderSize.Height * 2 +	// horizontal borders, top/bottom
-				statusStrip.Height +							// status bar
+				SystemInformation.CaptionHeight +               // title bar
+				SystemInformation.FrameBorderSize.Height * 2 +  // horizontal borders, top/bottom
+				introPanel.Height +								// intro text panel
+				statusStrip.Height +                            // status bar
 				buttonPanel.Height;
 
 			var desired = Math.Max(
-				MinimumSize.Height,								// defined min size of dialog
-				Image.Height + border + ImageMargin * 2);		// image + borders + margins
+				MinimumSize.Height,                             // defined min size of dialog
+				Image.Height + border + ImageMargin * 2);       // image + borders + margins
 
 			Height = Math.Min(desired, Screen.FromControl(this).WorkingArea.Height);
 
 			// width
 			border =
-				SystemInformation.FrameBorderSize.Width * 2;	// vertical borders, left/right
+				SystemInformation.FrameBorderSize.Width * 2;    // vertical borders, left/right
 
 			desired = Math.Max(
-				MinimumSize.Width,								// defined min size of dialog
-				Image.Width + border + ImageMargin * 2);		// image + borders + margins
+				MinimumSize.Width,                              // defined min size of dialog
+				Image.Width + border + ImageMargin * 2);        // image + borders + margins
 
 			Width = Math.Min(desired, Screen.FromControl(this).WorkingArea.Width);
 		}
@@ -209,6 +214,15 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return 100;
+		}
+
+
+		private void CropImageDialog_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			if (original != Image)
+			{
+				original.Dispose();
+			}
 		}
 
 		#endregion Lifecycle
@@ -251,8 +265,8 @@ namespace River.OneMoreAddIn.Commands
 
 					if (right <= bounds.Left || bottom <= bounds.Top)
 					{
+						selectionBounds = Rectangle.Empty;
 						SetSelection(Rectangle.Empty);
-						cropButton.Enabled = false;
 					}
 					else
 					{
@@ -264,9 +278,9 @@ namespace River.OneMoreAddIn.Commands
 							(int)(right - bounds.X),
 							(int)(bottom - bounds.Y)
 							));
-
-						cropButton.Enabled = selectionBounds.Width > 0 && selectionBounds.Height > 0;
 					}
+
+					SetButtonEnabled();
 				}
 			}
 
@@ -770,8 +784,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				pictureBox.Refresh();
-
-				cropButton.Enabled = selectionBounds.Width > 0 && selectionBounds.Height > 0;
+				SetButtonEnabled();
 			}
 
 			moveState = MoveState.None;
@@ -779,7 +792,106 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// ---------------------------------------------------------------------------------------
+		// Rotation...
+
+		private void ChangeRotation(object sender, EventArgs e)
+		{
+			if (sender == rotationBar)
+			{
+				rotationBox.Value = rotationBar.Value;
+			}
+			else
+			{
+				rotationBar.Value = (int)rotationBox.Value;
+			}
+
+			Image = RotateBitmap((Bitmap)original, (float)rotationBox.Value);
+			pictureBox.Refresh();
+
+			SetButtonEnabled();
+		}
+
+
+		private Bitmap RotateBitmap(Bitmap bitmap, float angle)
+		{
+			PredictRotatedSize(bitmap, angle, out var width, out var height);
+
+			// draw rotated image as a new bitmap
+			var rotated = new Bitmap(width, height);
+
+			using (var g = Graphics.FromImage(rotated))
+			{
+				// smooth image interpolation
+				g.InterpolationMode = InterpolationMode.High;
+
+				g.Clear(Color.Transparent);
+				// clear with the color from image's upper left corner
+				//g.Clear(bitmap.GetPixel(0, 0));
+
+				// transformation image, rotating around its center
+				using (var matrix = new Matrix())
+				{
+					matrix.RotateAt(angle, new PointF(width / 2f, height / 2f));
+					g.Transform = matrix;
+
+					// draw the image centered on the bitmap
+					var left = (width - bitmap.Width) / 2;
+					var top = (height - bitmap.Height) / 2;
+					g.DrawImage(bitmap, left, top);
+				}
+			}
+
+			return rotated;
+		}
+
+
+		private void PredictRotatedSize(Bitmap bitmap, float angle, out int width, out int height)
+		{
+			// return the larger ratio, horizontal or vertical of the image
+			var points = new PointF[]
+			{
+				new PointF(0, 0),
+				new PointF(bitmap.Width, 0),
+				new PointF(bitmap.Width, bitmap.Height),
+				new PointF(0, bitmap.Height),
+			};
+
+			using (var matrix = new Matrix())
+			{
+				// rotate around the origin
+				matrix.Rotate(angle);
+				matrix.TransformPoints(points);
+			}
+
+			// scan for min/max...
+
+			var xmin = points[0].X;
+			var xmax = xmin;
+			var ymin = points[0].Y;
+			var ymax = ymin;
+			foreach (var point in points)
+			{
+				if (xmin > point.X) xmin = point.X;
+				if (xmax < point.X) xmax = point.X;
+				if (ymin > point.Y) ymin = point.Y;
+				if (ymax < point.Y) ymax = point.Y;
+			}
+
+			width = (int)Math.Round((xmax - xmin) * scalingX);
+			height = (int)Math.Round((ymax - ymin) * scalingY);
+		}
+
+
+		// ---------------------------------------------------------------------------------------
 		// Buttons
+
+		private void SetButtonEnabled()
+		{
+			cropButton.Enabled =
+				(rotationBar.Value > 0 && rotationBar.Value < 360) ||
+				(selectionBounds.Width > 0 && selectionBounds.Height > 0);
+		}
+
 
 		private void SelectButton_Click(object sender, EventArgs e)
 		{
@@ -841,6 +953,19 @@ namespace River.OneMoreAddIn.Commands
 			marchingTimer.Stop();
 
 			pictureBox.Refresh();
+		}
+
+
+		private void CropImageDialog_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control && e.KeyCode == Keys.D &&
+				selectionBounds.Width > 0 && selectionBounds.Height > 0)
+			{
+				selectionBounds = Rectangle.Empty;
+				SetSelection(Rectangle.Empty);
+				SetButtonEnabled();
+				e.Handled = true;
+			}
 		}
 	}
 }
