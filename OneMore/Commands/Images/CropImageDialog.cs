@@ -106,6 +106,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"introText",
 					"selectButton",
 					"cropButton",
 					"cancelButton"
@@ -802,7 +803,7 @@ namespace River.OneMoreAddIn.Commands
 				rotationBar.Value = (int)rotationBox.Value;
 			}
 
-			Image = RotateBitmap((Bitmap)original, (float)rotationBox.Value);
+			Image = Rotate((Bitmap)original, (float)rotationBox.Value);
 			pictureBox.Refresh();
 
 			sizeStatusLabel.Text = string.Format(
@@ -812,9 +813,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Bitmap RotateBitmap(Bitmap bitmap, float angle)
+		private Bitmap Rotate(Bitmap bitmap, float angle)
 		{
-			PredictRotatedSize(bitmap, angle, out var width, out var height);
+			var (width, height) = PredictRotatedSize(bitmap, angle);
 
 			// draw rotated image as a new bitmap
 			var rotated = new Bitmap(width, height);
@@ -845,8 +846,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void PredictRotatedSize(
-			Bitmap bitmap, float angle, out int width, out int height)
+		private (int width, int height) PredictRotatedSize(Bitmap bitmap, float angle)
 		{
 			// return the larger ratio, horizontal or vertical of the image
 			var points = new PointF[]
@@ -865,7 +865,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// scan for min/max...
-
 			var xmin = points[0].X;
 			var xmax = xmin;
 			var ymin = points[0].Y;
@@ -878,8 +877,7 @@ namespace River.OneMoreAddIn.Commands
 				if (ymax < point.Y) ymax = point.Y;
 			}
 
-			width = (int)Math.Round((xmax - xmin));
-			height = (int)Math.Round((ymax - ymin));
+			return ((int)Math.Round((xmax - xmin)), (int)Math.Round((ymax - ymin)));
 		}
 
 
@@ -965,6 +963,11 @@ namespace River.OneMoreAddIn.Commands
 				selectionBounds = Rectangle.Empty;
 				SetSelection(Rectangle.Empty);
 				SetButtonEnabled();
+				e.Handled = true;
+			}
+			else if (e.Control && e.KeyCode == Keys.A)
+			{
+				SelectButton_Click(sender, e);
 				e.Handled = true;
 			}
 		}

@@ -112,8 +112,8 @@
 			this.introText.Name = "introText";
 			this.introText.Size = new System.Drawing.Size(1463, 26);
 			this.introText.TabIndex = 0;
-			this.introText.Text = "Use the mouse to drag an area to crop. Use the slider below to rotate. Click OK t" +
-    "o finish.";
+			this.introText.Text = "Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to ro" +
+    "tate the image. Click OK to finish.";
 			// 
 			// buttonPanel
 			// 
