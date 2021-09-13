@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
-	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -23,12 +22,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				var (_, path, _) = one.GetPageInfo();
+				var (name, path, _) = one.GetPageInfo();
 
-				// GetDirectoryName will revert forward-slashes to backward-slashes
-				path = "<span style='font-style:italic'>"
-					+ Path.GetDirectoryName(path).Substring(1).Replace("\\", $" {RightArrow} ")
-					+ "</span>";
+				// strip page name from path and replace separators with arrows
+				path = path
+					.Substring(1, path.Length - name.Length - 2)
+					.Replace("/", $" {RightArrow} ");
+
+				path = $"<span style='font-style:italic'>{path}</span>";
 
 				// <one:Meta name="omBreadcrumb" content="1" />
 				var paragraph = page.Root

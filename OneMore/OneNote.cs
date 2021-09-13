@@ -632,7 +632,10 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public (string Name, string Path, string Link) GetPageInfo(string pageId = null)
 		{
-			var page = GetPage(pageId ?? CurrentPageId, PageDetail.Basic);
+			if (pageId == null)
+				pageId = CurrentPageId;
+
+			var page = GetPage(pageId, PageDetail.Basic);
 			if (page == null)
 			{
 				return (null, null, null);
@@ -642,21 +645,21 @@ namespace River.OneMoreAddIn
 			var name = page.Root.Attribute("name")?.Value;
 
 			// path
-			string path = null;
-			var sectionID = GetParent(page.PageId) ?? CurrentSectionId;
-			var section = GetSection(sectionID);
-			if (section != null)
+			var builder = new StringBuilder();
+			builder.Append($"/{name}");
+
+			string id = pageId;
+			while (!string.IsNullOrEmpty(id = GetParent(id)))
 			{
-				var uri = section.Attribute("path")?.Value;
-				if (!string.IsNullOrEmpty(uri))
-				{
-					path = "/" + Path.Combine(
-						Path.GetFileName(Path.GetDirectoryName(uri)),
-						Path.GetFileNameWithoutExtension(uri),
-						name
-						).Replace("\\", "/");
-				}
+				onenote.GetHierarchy(id, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
+				var x = XElement.Parse(xml);
+				var n = x.Attribute("name")?.Value;
+
+				if (n != null)
+					builder.Insert(0, $"/{n}");
 			}
+
+			string path = builder.ToString();
 
 			// link
 			string link = GetHyperlink(page.PageId, string.Empty);
@@ -731,14 +734,21 @@ namespace River.OneMoreAddIn
 			var name = section.Attribute("name")?.Value;
 
 			// path
-			string path = section.Attribute("path")?.Value;
-			if (!string.IsNullOrEmpty(path))
+			var builder = new StringBuilder();
+			builder.Append($"/{name}");
+
+			string id = CurrentSectionId;
+			while (!string.IsNullOrEmpty(id = GetParent(id)))
 			{
-				path = "/" + Path.Combine(
-					Path.GetFileName(Path.GetDirectoryName(path)),
-					Path.GetFileNameWithoutExtension(path)
-					).Replace("\\", "/");
+				onenote.GetHierarchy(id, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
+				var x = XElement.Parse(xml);
+				var n = x.Attribute("name")?.Value;
+
+				if (n != null)
+					builder.Insert(0, $"/{n}");
 			}
+
+			string path = builder.ToString();
 
 			// link
 			string link = null;
