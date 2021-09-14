@@ -62,6 +62,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Add caption to a selected images
 * Precisely crop a selected image
 * Resize a selected image or all images on the page
+* Rotate an image to any angle
 * Select all images on the page
 
 [Numbering commands](../../wiki/Numbering-Commands)
