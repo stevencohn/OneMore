@@ -1200,11 +1200,11 @@ Try again later</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Crop</value>
+    <value>Crop and Rotate</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Crop Image</value>
+    <value>Crop and Rotate</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -1216,7 +1216,7 @@ Try again later</value>
     <comment>cancel button</comment>
   </data>
   <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
-    <value>Crop</value>
+    <value>OK</value>
     <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
@@ -3401,5 +3401,9 @@ In this section</value>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>Fill Down (Ctrl + D)</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="CropImageDialog_introText.Text" xml:space="preserve">
+    <value>Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish.</value>
+    <comment>intro text label</comment>
   </data>
 </root>

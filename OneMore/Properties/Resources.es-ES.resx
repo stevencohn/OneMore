@@ -1096,11 +1096,11 @@ Vuelve a intentarlo más tarde</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Cosecha</value>
+    <value>Recortar y rotar</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Delimitar imagen</value>
+    <value>Recortar y rotar</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -3371,5 +3371,9 @@ Archivo de OneNote (* .one)</value>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>Rellenar (Ctrl + D)</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="CropImageDialog_introText.Text" xml:space="preserve">
+    <value>Use el mouse para seleccionar un área para recortar. </value>
+    <comment>intro text label</comment>
   </data>
 </root>

@@ -1097,11 +1097,11 @@ Probeer het later nog eens</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Bijsnijden</value>
+    <value>Bijsnijden en roteren</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Afbeelding bijsnijden</value>
+    <value>Bijsnijden en roteren</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -3371,5 +3371,9 @@ OneNote-bestand (*.one)</value>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>Opvullen (Ctrl + D)</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="CropImageDialog_introText.Text" xml:space="preserve">
+    <value>Gebruik de muis om een ​​gebied te selecteren dat u wilt bijsnijden. </value>
+    <comment>intro text label</comment>
   </data>
 </root>

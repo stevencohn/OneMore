@@ -1094,11 +1094,11 @@ OneNote 将自动关闭</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>裁剪</value>
+    <value>裁剪和旋转</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>裁剪图片</value>
+    <value>裁剪和旋转</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -3362,5 +3362,9 @@ OneNote 文件 (*.one)</value>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>向下填充 (Ctrl + D)</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="CropImageDialog_introText.Text" xml:space="preserve">
+    <value>使用鼠标选择要裁剪的区域。 </value>
+    <comment>intro text label</comment>
   </data>
 </root>

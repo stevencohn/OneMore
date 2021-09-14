@@ -1083,11 +1083,11 @@
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Ernte</value>
+    <value>Zuschneiden und drehen</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Bild zuschneiden</value>
+    <value>Zuschneiden und drehen</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -3356,5 +3356,9 @@ OneNote-Datei (*.one)</value>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>Nach unten ausfüllen (Strg + D)</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="CropImageDialog_introText.Text" xml:space="preserve">
+    <value>Verwenden Sie die Maus, um einen Bereich zum Zuschneiden auszuwählen. </value>
+    <comment>intro text label</comment>
   </data>
 </root>

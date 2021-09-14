@@ -1089,11 +1089,11 @@ Pourcentage</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Surgir</value>
+    <value>Recadrer et faire pivoter</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Recadrer l'image</value>
+    <value>Recadrer et faire pivoter</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -3365,5 +3365,9 @@ Fichier OneNote (*.one)</value>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>Remplir vers le bas (Ctrl + D)</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="CropImageDialog_introText.Text" xml:space="preserve">
+    <value>Utilisez la souris pour sélectionner une zone à recadrer. </value>
+    <comment>intro text label</comment>
   </data>
 </root>

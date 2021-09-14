@@ -1328,7 +1328,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crop.
+        ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string CropImageDialog_cropButton_Text {
             get {
@@ -1342,6 +1342,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CropImageDialog_imageSize {
             get {
                 return ResourceManager.GetString("CropImageDialog_imageSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish..
+        /// </summary>
+        internal static string CropImageDialog_introText_Text {
+            get {
+                return ResourceManager.GetString("CropImageDialog_introText.Text", resourceCulture);
             }
         }
         
@@ -1364,7 +1373,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crop Image.
+        ///   Looks up a localized string similar to Crop and Rotate.
         /// </summary>
         internal static string CropImageDialog_Text {
             get {
@@ -4601,7 +4610,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crop.
+        ///   Looks up a localized string similar to Crop and Rotate.
         /// </summary>
         internal static string ribCropImageButton_Label {
             get {
