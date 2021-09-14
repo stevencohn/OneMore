@@ -918,9 +918,6 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			// translate absolute selection bounds relative to zoomed image bounds
 			var ratio = MagicRatio();
 			var bounds = new Rectangle(
