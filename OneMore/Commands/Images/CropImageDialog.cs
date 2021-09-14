@@ -511,11 +511,13 @@ namespace River.OneMoreAddIn.Commands
 			{
 				startPoint.X = e.X;
 				startPoint.Y = e.Y;
+				moveState = MoveState.Sizing;
 				selectionBounds = new Rectangle(e.X, e.Y, 0, 0);
 			}
 			else
 			{
 				startPoint.X = startPoint.Y = -1;
+				moveState = MoveState.None;
 				selectionBounds = Rectangle.Empty;
 			}
 
@@ -772,7 +774,7 @@ namespace River.OneMoreAddIn.Commands
 
 				SetSelection(selectionBounds);
 
-				if (selectionBounds.IsEmpty)
+				if (selectionBounds.Width == 0 && selectionBounds.Height == 0)
 				{
 					marchingTimer.Stop();
 				}
@@ -911,10 +913,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CropButton_Click(object sender, EventArgs e)
 		{
-			if (selectionBounds.IsEmpty)
+			if (selectionBounds.Width == 0 && selectionBounds.Height == 0)
 			{
 				return;
 			}
+
+
+			System.Diagnostics.Debugger.Launch();
 
 			// translate absolute selection bounds relative to zoomed image bounds
 			var ratio = MagicRatio();
