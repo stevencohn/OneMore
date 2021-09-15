@@ -177,6 +177,9 @@ namespace River.OneMoreAddIn
 		public async Task InsertSnippetCmd(IRibbonControl control)
 			=> await factory.Run<InsertSnippetCommand>(control.Tag);
 
+		public async Task InsertSubpageCmd(IRibbonControl control)
+			=> await factory.Run<InsertSubpageCommand>(control.Tag);
+
 		public async Task InsertTocCmd(IRibbonControl control)
 			=> await factory.Run<InsertTocCommand>();
 

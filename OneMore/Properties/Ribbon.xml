@@ -383,6 +383,12 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertCalendarCmd"/>
               <button
+                id="ribSubpageButton"
+                imageMso="MasterDocumentInsertSubdocument"
+                label="Embedded Page"
+                getEnabled="GetBodyContext"
+                onAction="InsertSubpageCmd"/>
+              <button
                 id="ribInsertDateButton"
                 imageMso="HeaderFooterCurrentDate"
                 getLabel="GetRibbonLabel"
