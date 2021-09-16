@@ -397,6 +397,8 @@
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="Models\Bullet.cs" />
     <Compile Include="Models\ContentList.cs" />
+    <Compile Include="Models\Outline.cs" />
+    <Compile Include="Models\PageNamespace.cs" />
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />

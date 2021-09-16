@@ -952,6 +952,8 @@ namespace River.OneMoreAddIn
 					break;
 				case Scope.Pages:
 					dialog.TreeDepth = HierarchyElement.hePages;
+					restriction = HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks |
+						HierarchyElement.heSections | HierarchyElement.hePages;
 					break;
 			}
 
