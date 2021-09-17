@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if ((args.Length > 0) && (args[0] is bool update) && update)
 			{
-				await UpdateEmbeddedContent();
+				await UpdateContent();
 				return;
 			}
 
@@ -37,7 +37,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task UpdateEmbeddedContent()
+		//========================================================================================
+		// Update...
+
+		private async Task UpdateContent()
 		{
 			using (one = new OneNote(out page, out ns))
 			{
@@ -104,17 +107,17 @@ namespace River.OneMoreAddIn.Commands
 			PageNamespace.Set(ns);
 			outline = new Outline(outRoot);
 
-			var children = outline.Elements(ns + "OEChildren")
+			var snippets = outline.Elements(ns + "OEChildren")
 				.Where(e => !e.Elements(ns + "OE")
 					.Elements(ns + "Meta").Attributes(Page.EmbeddingsMetaName).Any());
 
-			if (children == null || !children.Any())
+			if (snippets == null || !snippets.Any())
 			{
 				UIHelper.ShowInfo(one.Window, "Source page contains no content2");
 				return new List<XElement>();
 			}
 
-			return children;
+			return snippets;
 		}
 
 
@@ -141,6 +144,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		//========================================================================================
+		// Embed...
+
 		private void EmbedContent()
 		{
 			using (var o = new OneNote())
@@ -162,8 +168,8 @@ namespace River.OneMoreAddIn.Commands
 
 			using (one = new OneNote(out page, out ns))
 			{
-				var children = GetSnippets(sourceId, out var source, out var outline);
-				if (!children.Any())
+				var snippets = GetSnippets(sourceId, out var source, out var outline);
+				if (!snippets.Any())
 				{
 					return;
 				}
@@ -189,7 +195,7 @@ namespace River.OneMoreAddIn.Commands
 				var width = outline.GetWidth();
 				table.SetColumnWidth(0, width == 0 ? 500 : width);
 
-				FillCell(table[0][0], children, source);
+				FillCell(table[0][0], snippets, source);
 
 				var paragraph = new Paragraph(table.Root);
 
