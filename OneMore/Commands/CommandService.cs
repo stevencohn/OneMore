@@ -8,6 +8,8 @@ namespace River.OneMoreAddIn
 	using System;
 	using System.IO.Pipes;
 	using System.Linq;
+	using System.Security.AccessControl;
+	using System.Security.Principal;
 	using System.Text;
 	using System.Threading;
 
@@ -59,9 +61,7 @@ namespace River.OneMoreAddIn
 					{
 						string data = null;
 
-						using (var server = new NamedPipeServerStream(pipe,
-							PipeDirection.In, 1, PipeTransmissionMode.Byte,
-							PipeOptions.Asynchronous))
+						using (var server = CreateSecuredPipe())
 						{
 							//logger.WriteLine($"command pipe started {pipe}");
 							await server.WaitForConnectionAsync();
@@ -101,6 +101,24 @@ namespace River.OneMoreAddIn
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.IsBackground = true;
 			thread.Start();
+		}
+
+
+		private NamedPipeServerStream CreateSecuredPipe()
+		{
+			var user = WindowsIdentity.GetCurrent().User;
+			var security = new PipeSecurity();
+
+			security.AddAccessRule(new PipeAccessRule(
+				user, PipeAccessRights.FullControl, AccessControlType.Allow));
+			
+			security.SetOwner(user);
+			security.SetGroup(user);
+
+			return new NamedPipeServerStream(
+				pipe, PipeDirection.In, 1,
+				PipeTransmissionMode.Byte, PipeOptions.Asynchronous,
+				255, 255, security);
 		}
 	}
 }

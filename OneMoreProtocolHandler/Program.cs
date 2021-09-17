@@ -15,7 +15,27 @@ namespace OneMoreProtocolHandler
 	{
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
 
+
 		static void Main(string[] args)
+		{
+			var arg = args[0];
+			if (arg == "--register")
+			{
+				Register();
+				return;
+			}
+
+			if (arg == "--unregister")
+			{
+				Unregister();
+				return;
+			}
+
+			SendCommand(args[0]);
+		}
+
+
+		static void SendCommand(string arg)
 		{
 			try
 			{
@@ -41,7 +61,7 @@ namespace OneMoreProtocolHandler
 					client.Connect(500);
 					Debug.WriteLine("pipe client connected");
 
-					var buffer = Encoding.UTF8.GetBytes(args[0]);
+					var buffer = Encoding.UTF8.GetBytes(arg);
 					client.Write(buffer, 0, buffer.Length);
 					client.Flush();
 					client.Close();
@@ -51,6 +71,18 @@ namespace OneMoreProtocolHandler
 			{
 				Debug.WriteLine(exc.Message);
 			}
+		}
+
+
+		static void Register()
+		{
+
+		}
+
+
+		static void Unregister()
+		{
+
 		}
 	}
 }
