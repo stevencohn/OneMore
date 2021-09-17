@@ -131,9 +131,7 @@ namespace River.OneMoreAddIn.Commands
 				.SetStyle("font-style:italic")
 				.SetAlignment("right");
 
-			header.AddFirst(new XElement(ns + "Meta",
-				new XAttribute("name", Page.EmbedHeaderMetaName),
-				new XAttribute("content", "1")));
+			header.AddFirst(new Meta(Page.EmbedHeaderMetaName, "1"));
 
 			cell.SetContent(new XElement(ns + "OEChildren", header));
 
@@ -192,19 +190,27 @@ namespace River.OneMoreAddIn.Commands
 					BordersVisible = true,
 				};
 
-				var width = outline.GetWidth();
-				table.SetColumnWidth(0, width == 0 ? 500 : width);
+				// is cursor positioned in an existing table cell?
+				XElement hostCell = container.Parent;
+				while (hostCell != null && hostCell.Name.LocalName != "Cell")
+				{
+					hostCell = hostCell.Parent;
+				}
+
+				if (hostCell == null)
+				{
+					// set width to width of source page outline
+					var width = outline.GetWidth();
+					table.SetColumnWidth(0, width == 0 ? 500 : width);
+				}
 
 				FillCell(table[0][0], snippets, source);
 
-				var paragraph = new Paragraph(table.Root);
-
-				paragraph.AddFirst(new XElement(ns + "Meta",
-					new XAttribute("name", Page.EmbeddedMetaName),
-					new XAttribute("content", source.PageId)
+				page.AddNextParagraph(new Paragraph(
+					new Meta(Page.EmbeddedMetaName, source.PageId),
+					table.Root
 					));
 
-				container.Add(paragraph);
 				await one.Update(page);
 			}
 		}

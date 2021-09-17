@@ -168,6 +168,8 @@ namespace River.OneMoreAddIn
 
 				RegisterHotkeys();
 
+				new CommandService().Startup();
+
 				logger.WriteLine($"ready");
 			}
 			catch (Exception exc)

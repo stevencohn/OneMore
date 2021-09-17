@@ -298,13 +298,13 @@
               <button
                 id="ribEmbedSubpageButton"
                 imageMso="MasterDocumentCreateSubdocument"
-                label="Embedded Page"
+                label="Embed Page"
                 getEnabled="GetBodyContext"
-                onAction="InsertSubpageCmd"/>
+                onAction="EmbedSubpageCmd"/>
               <button
                 id="ribUpdateSubpageButton"
                 imageMso="MasterDocumentInsertSubdocument"
-                label="Updated Embedded Page"
+                label="Updated Embedded Pages"
                 getEnabled="GetBodyContext"
                 onAction="UpdateSubpageCmd"/>
               <button

@@ -650,7 +650,7 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Gets a collection of fully selecte text runs
+		/// Gets a collection of fully selected text runs
 		/// </summary>
 		/// <param name="all">
 		/// If no selected elements are found and this value is true then return all elements;

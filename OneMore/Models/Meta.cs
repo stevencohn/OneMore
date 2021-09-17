@@ -10,10 +10,8 @@ namespace River.OneMoreAddIn.Models
 	/// <summary>
 	/// Represents a Meta element
 	/// </summary>
-	internal class Meta
+	internal class Meta : XElement
 	{
-		private readonly XElement root;
-
 
 		/// <summary>
 		/// Instantiates a new meta with the given content and predefined namespace
@@ -32,49 +30,33 @@ namespace River.OneMoreAddIn.Models
 		/// </summary>
 		/// <param name="ns">A namespace</param>
 		public Meta(XNamespace ns, string name, string content)
+			: base(ns + "Meta")
 		{
-			root = new XElement(ns + "Meta",
-				new XAttribute("name", name),
-				new XAttribute("content", content)
-				);
-		}
-
-
-		/// <summary>
-		/// Initialize a new meta by wrapping the given root XML
-		/// </summary>
-		/// <param name="root">An XElement describing a Meta element</param>
-		public Meta(XElement root)
-		{
-			this.root = root;
+			Add(new XAttribute("name", name));
+			Add(new XAttribute("content", content));
 		}
 
 
 		/// <summary>
 		/// Gets the name of this meta element
 		/// </summary>
-		public string Name => root.Attribute("name").Value;
+		public string MetaName => Attribute("name").Value;
 
 
 		/// <summary>
 		/// Gets the value of this meta element
 		/// </summary>
-		public string Content => root.Attribute("content").Value;
-
-
-		/// <summary>
-		/// Gets the XElement of this meta element
-		/// </summary>
-		public XElement Root => root;
+		public string Content => Attribute("content").Value;
 
 
 		/// <summary>
 		/// Sets the value of this meta element
 		/// </summary>
 		/// <param name="content"></param>
-		public void SetContent(string content)
+		public XElement SetContent(string content)
 		{
-			root.SetAttributeValue("content", content);
+			SetAttributeValue("content", content);
+			return this;
 		}
 	}
 }
