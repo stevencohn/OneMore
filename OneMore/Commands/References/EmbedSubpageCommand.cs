@@ -126,7 +126,10 @@ namespace River.OneMoreAddIn.Commands
 			var link = one.GetHyperlink(source.PageId, string.Empty);
 			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
-			var header = new Paragraph($"<a href=\"{link}\">Embedded from {source.Title}</a>")
+			var text = $"<a href=\"{link}\">Embedded from {source.Title}</a>" +
+				" | <a href=\"onemore://EmbedSubpageProxy/true/\">Refresh!</a>";
+
+			var header = new Paragraph(text)
 				.SetQuickStyle(citationIndex)
 				.SetStyle("font-style:italic")
 				.SetAlignment("right");

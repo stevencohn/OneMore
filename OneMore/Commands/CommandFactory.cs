@@ -93,7 +93,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-
 		private void RecordLastAction(Command command, params object[] args)
 		{
 			// ignore commands that pass the ribbon as an argument
