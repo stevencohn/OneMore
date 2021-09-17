@@ -13,13 +13,14 @@ namespace OneMoreProtocolHandler
 
 	class Program
 	{
+		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
 
 		static void Main(string[] args)
 		{
 			try
 			{
 				string pipeName = null;
-				var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn\CLSID", false);
+				var key = Registry.ClassesRoot.OpenSubKey(KeyPath, false);
 				if (key != null)
 				{
 					// get default value string
@@ -45,7 +46,6 @@ namespace OneMoreProtocolHandler
 					client.Flush();
 					client.Close();
 				}
-
 			}
 			catch (Exception exc)
 			{

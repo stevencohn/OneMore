@@ -241,6 +241,7 @@
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\References\BiLinkCommand.cs" />
+    <Compile Include="Commands\References\EmbedSubpageProxy.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
     <Compile Include="Commands\References\LinkDialog.cs">
       <SubType>Form</SubType>
@@ -269,7 +270,7 @@
       <DependentUpon>GeneralSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
-    <Compile Include="Commands\References\EmbedtSubpage.cs" />
+    <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
     <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
     <Compile Include="Commands\Tables\FillerModels\AlphaNumericFiller.cs" />
     <Compile Include="Commands\Tables\FillerModels\DateFiller.cs" />

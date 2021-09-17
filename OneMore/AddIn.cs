@@ -164,7 +164,7 @@ namespace River.OneMoreAddIn
 						$"OneNote process module: {module.FileName} ({module.FileVersionInfo.ProductVersion})");
 				}
 
-				new CommandService().Startup();
+				new CommandService(factory).Startup();
 
 				SetGeneralOptions();
 

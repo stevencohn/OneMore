@@ -7,68 +7,105 @@ namespace River.OneMoreAddIn
 	using Microsoft.Win32;
 	using System;
 	using System.IO.Pipes;
+	using System.Linq;
 	using System.Text;
+	using System.Threading;
 
 
+	/// <summary>
+	/// Listener for commands sent from OneMoreProtocolhandler through named pipe.
+	/// </summary>
 	internal class CommandService : Loggable
 	{
-		private readonly string pipeName;
+		private const string Protocol = "onemore://";
+		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
+
+		private readonly string pipe;
+		private readonly CommandFactory factory;
 
 
-		public CommandService()
+		public CommandService(CommandFactory factory)
 			: base()
 		{
-			var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn\CLSID", false);
+			var key = Registry.ClassesRoot.OpenSubKey(KeyPath, false);
 			if (key != null)
 			{
 				// get default value string
-				pipeName = (string)key.GetValue(string.Empty);
+				pipe = (string)key.GetValue(string.Empty);
 			}
+			else
+			{
+				logger.WriteLine($"error reading pipe name from {KeyPath}");
+			}
+
+			this.factory = factory;
 		}
+
 
 
 		public void Startup()
 		{
-			var server = new NamedPipeServerStream(pipeName,
-				PipeDirection.In, 1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous);
-
-			server.BeginWaitForConnection(new AsyncCallback(ConnectionCallBack), server);
-
-			logger.WriteLine($"command server started on pipe {pipeName}");
-		}
-
-
-		private void ConnectionCallBack(IAsyncResult result)
-		{
-			try
+			if (string.IsNullOrEmpty(pipe))
 			{
-				var server = (NamedPipeServerStream)result.AsyncState;
-				server.EndWaitForConnection(result);
-
-				// read the incoming message
-				var buffer = new byte[255];
-				server.Read(buffer, 0, 255);
-
-				var data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
-				logger.WriteLine($"pipe received [{data}]");
-
-				// Pass message back to calling form
-				//PipeMessage.Invoke(data);
-
-				// cleanup and destroy server so we can create a new one for next connection
-				server.Close();
-				server.Dispose();
-
-				// create new server and wait for next connection
-				server = new NamedPipeServerStream(pipeName,
-					PipeDirection.In, 1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous);
-
-				server.BeginWaitForConnection(new AsyncCallback(ConnectionCallBack), server);
+				logger.WriteLine("command service not started, missing pipe name");
+				return;
 			}
-			catch (Exception exc)
+
+			var thread = new Thread(async () =>
 			{
-				logger.WriteLine("pipe exception", exc);
-			}
+				long previous = 0;
+				long counter = 1;
+
+				while (counter != previous)
+				{
+					try
+					{
+						string data = null;
+
+						using (var server = new NamedPipeServerStream(pipe,
+							PipeDirection.In, 1, PipeTransmissionMode.Byte,
+							PipeOptions.Asynchronous))
+						{
+							//logger.WriteLine($"command pipe started {pipe}");
+							await server.WaitForConnectionAsync();
+
+							var buffer = new byte[255];
+							await server.ReadAsync(buffer, 0, 255);
+							data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
+							//logger.WriteLine($"pipe received [{data}]");
+
+							// clean up server so we can create a new one for next connection
+							server.Disconnect();
+							server.Close();
+						}
+
+						if (!string.IsNullOrEmpty(data) && data.StartsWith(Protocol))
+						{
+							// data specifies command as onemore protocol such as
+							// onemore://DoitCommand/arg1/arg2/arg2/
+
+							var parts = data.Substring(Protocol.Length)
+								.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+							var action = parts[0];
+							var arguments = parts.Skip(1).ToArray();
+
+							//logger.WriteLine($"invoking {action} with {arguments.Length} arguments");
+							await factory.Invoke(action, arguments);
+						}
+
+						counter++;
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("pipe exception", exc);
+					}
+				}
+			});
+
+			thread.SetApartmentState(ApartmentState.STA);
+			thread.IsBackground = true;
+			thread.Start();
 		}
 	}
 }
