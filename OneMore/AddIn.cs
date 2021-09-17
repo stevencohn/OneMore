@@ -164,11 +164,11 @@ namespace River.OneMoreAddIn
 						$"OneNote process module: {module.FileName} ({module.FileVersionInfo.ProductVersion})");
 				}
 
+				new CommandService().Startup();
+
 				SetGeneralOptions();
 
 				RegisterHotkeys();
-
-				new CommandService().Startup();
 
 				logger.WriteLine($"ready");
 			}
@@ -186,7 +186,7 @@ namespace River.OneMoreAddIn
 		{
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection("GeneralSheet");
-			EnablersEnabled = settings.Get<bool>("enablers", true);
+			EnablersEnabled = settings.Get("enablers", true);
 		}
 
 

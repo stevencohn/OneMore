@@ -4,6 +4,7 @@
 
 namespace OneMoreProtocolHandler
 {
+	using Microsoft.Win32;
 	using System;
 	using System.Diagnostics;
 	using System.IO.Pipes;
@@ -12,24 +13,34 @@ namespace OneMoreProtocolHandler
 
 	class Program
 	{
-		private const string PipeName = "River.OneMore";
-
 
 		static void Main(string[] args)
 		{
 			try
 			{
-				using (var client = new NamedPipeClientStream(".",
-					PipeName, PipeDirection.Out, PipeOptions.Asynchronous))
+				string pipeName = null;
+				var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn\CLSID", false);
+				if (key != null)
 				{
-					// The connect function will indefinitely wait for the pipe to become available
-					// If that is not acceptable specify a maximum waiting time (in ms)
-					client.Connect(1000);
-					Debug.WriteLine("[Client] Pipe connection established");
+					// get default value string
+					pipeName = (string)key.GetValue(string.Empty);
+				}
 
-					var data = args[0].Trim();
+				if (string.IsNullOrEmpty(pipeName))
+				{
+					// problem!
+					return;
+				}
 
-					byte[] buffer = Encoding.UTF8.GetBytes(data);
+				using (var client = new NamedPipeClientStream(".",
+					pipeName, PipeDirection.Out, PipeOptions.Asynchronous))
+				{
+					// being an event-driven program to bounce messages back to OneMore
+					// set timeout because we shouldn't need to wait for server ever!
+					client.Connect(500);
+					Debug.WriteLine("pipe client connected");
+
+					var buffer = Encoding.UTF8.GetBytes(args[0]);
 					client.Write(buffer, 0, buffer.Length);
 					client.Flush();
 					client.Close();

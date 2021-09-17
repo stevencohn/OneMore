@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using Microsoft.Win32;
 	using System;
 	using System.IO.Pipes;
 	using System.Text;
@@ -11,23 +12,29 @@ namespace River.OneMoreAddIn
 
 	internal class CommandService : Loggable
 	{
-		private const string PipeName = "River.OneMore";
+		private readonly string pipeName;
+
 
 		public CommandService()
 			: base()
 		{
-			//Computer\HKEY_CLASSES_ROOT\River.OneMoreAddIn\CLSID
+			var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn\CLSID", false);
+			if (key != null)
+			{
+				// get default value string
+				pipeName = (string)key.GetValue(string.Empty);
+			}
 		}
 
 
 		public void Startup()
 		{
-			var server = new NamedPipeServerStream(PipeName,
+			var server = new NamedPipeServerStream(pipeName,
 				PipeDirection.In, 1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous);
 
 			server.BeginWaitForConnection(new AsyncCallback(ConnectionCallBack), server);
 
-			logger.WriteLine("command server started");
+			logger.WriteLine($"command server started on pipe {pipeName}");
 		}
 
 
@@ -41,20 +48,21 @@ namespace River.OneMoreAddIn
 				// read the incoming message
 				var buffer = new byte[255];
 				server.Read(buffer, 0, 255);
-				var data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim();
+
+				var data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
 				logger.WriteLine($"pipe received [{data}]");
 
 				// Pass message back to calling form
 				//PipeMessage.Invoke(data);
 
-				// Kill original sever and create new wait server
+				// cleanup and destroy server so we can create a new one for next connection
 				server.Close();
 				server.Dispose();
 
-				server = new NamedPipeServerStream(PipeName,
+				// create new server and wait for next connection
+				server = new NamedPipeServerStream(pipeName,
 					PipeDirection.In, 1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous);
 
-				// Recursively wait for the connection again and again....
 				server.BeginWaitForConnection(new AsyncCallback(ConnectionCallBack), server);
 			}
 			catch (Exception exc)
