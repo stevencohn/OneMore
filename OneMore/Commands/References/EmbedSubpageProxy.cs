@@ -26,7 +26,9 @@ namespace River.OneMoreAddIn.Commands
 				bool.TryParse(arg, out update);
 			}
 
-			await new EmbedSubpageCommand().Execute(update);
+			var sourceId = args.Length > 1 ? args[1] as string : null;
+
+			await new EmbedSubpageCommand().Execute(update, sourceId);
 		}
 	}
 }

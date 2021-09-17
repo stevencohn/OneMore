@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.Security.Principal;
 	using System.Text;
 	using System.Threading;
+	using System.Web;
 
 
 	/// <summary>
@@ -55,7 +56,12 @@ namespace River.OneMoreAddIn
 
 			var thread = new Thread(async () =>
 			{
-				while (true)
+				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
+				// don't fall into an infinite loop. If it somehow miraculously recovers then
+				// errors is reset back to zero and normal processing continues...
+
+				var errors = 0;
+				while (errors < 5)
 				{
 					try
 					{
@@ -86,14 +92,20 @@ namespace River.OneMoreAddIn
 
 							var action = parts[0];
 							var arguments = parts.Skip(1).ToArray();
+							for (int i=0; i < arguments.Length; i++)
+							{
+								arguments[i] = HttpUtility.UrlDecode(arguments[i]);
+							}
 
-							//logger.WriteLine($"invoking {action} with {arguments.Length} arguments");
+							logger.WriteLine($"invoking {action}({string.Join(", ", arguments)})");
 							await factory.Invoke(action, arguments);
+							errors = 0;
 						}
 					}
 					catch (Exception exc)
 					{
 						logger.WriteLine("pipe exception", exc);
+						errors++;
 					}
 				}
 			});

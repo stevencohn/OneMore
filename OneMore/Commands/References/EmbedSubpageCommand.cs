@@ -27,7 +27,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if ((args.Length > 0) && (args[0] is bool update) && update)
 			{
-				await UpdateContent();
+				// not sure why logger is null here so we have to set it
+				logger = Logger.Current;
+
+				var sourceId = args.Length > 1 ? args[1] as string : null;
+				await UpdateContent(sourceId);
 				return;
 			}
 
@@ -40,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 		//========================================================================================
 		// Update...
 
-		private async Task UpdateContent()
+		private async Task UpdateContent(string sourceId)
 		{
 			using (one = new OneNote(out page, out ns))
 			{
@@ -48,6 +52,12 @@ namespace River.OneMoreAddIn.Commands
 
 				var metas = page.Root.Descendants(ns + "Meta")
 					.Where(e => e.Attribute("name").Value == Page.EmbeddedMetaName);
+
+				if (!string.IsNullOrEmpty(sourceId))
+				{
+					// refine filter by source pageId
+					metas = metas.Where(e => e.Attribute("content").Value == sourceId);
+				}
 
 				if (!metas.Any())
 				{
@@ -63,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 					var tableRoot = meta.ElementsAfterSelf(ns + "Table").FirstOrDefault();
 					if (tableRoot != null)
 					{
-						var sourceId = meta.Attribute("content").Value;
+						sourceId = meta.Attribute("content").Value;
 						var snippets = GetSnippets(sourceId, out var source, out var outline);
 						if (!snippets.Any())
 						{
@@ -127,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			var text = $"<a href=\"{link}\">Embedded from {source.Title}</a>" +
-				" | <a href=\"onemore://EmbedSubpageProxy/true/\">Refresh!</a>";
+				$" | <a href=\"onemore://EmbedSubpageProxy/true/{source.PageId}\">Refresh!</a>";
 
 			var header = new Paragraph(text)
 				.SetQuickStyle(citationIndex)
