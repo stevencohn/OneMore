@@ -53,10 +53,7 @@ namespace River.OneMoreAddIn
 
 			var thread = new Thread(async () =>
 			{
-				long previous = 0;
-				long counter = 1;
-
-				while (counter != previous)
+				while (true)
 				{
 					try
 					{
@@ -93,8 +90,6 @@ namespace River.OneMoreAddIn
 							//logger.WriteLine($"invoking {action} with {arguments.Length} arguments");
 							await factory.Invoke(action, arguments);
 						}
-
-						counter++;
 					}
 					catch (Exception exc)
 					{
