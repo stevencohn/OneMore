@@ -32,6 +32,8 @@ namespace River.OneMoreAddIn.Models
 		public static readonly string BreadcrumbMetaName = "omBreadcrumb";
 		// OE meta indicating content embedded content from another page
 		public static readonly string EmbeddedMetaName = "omEmbedded";
+		// OE meta indicating content embedded content header paragraph
+		public static readonly string EmbedHeaderMetaName = "omEmbedHeader";
 		// OE meta indicating content lists other pages where this page is embedded
 		public static readonly string EmbeddingsMetaName = "omEmbeddings";
 		// Page meta to keep track of rotating highlighter index

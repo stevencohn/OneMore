@@ -268,7 +268,7 @@
       <DependentUpon>GeneralSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
-    <Compile Include="Commands\Snippets\InsertSubpage.cs" />
+    <Compile Include="Commands\References\EmbedtSubpage.cs" />
     <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
     <Compile Include="Commands\Tables\FillerModels\AlphaNumericFiller.cs" />
     <Compile Include="Commands\Tables\FillerModels\DateFiller.cs" />
@@ -397,6 +397,7 @@
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="Models\Bullet.cs" />
     <Compile Include="Models\ContentList.cs" />
+    <Compile Include="Models\Meta.cs" />
     <Compile Include="Models\Outline.cs" />
     <Compile Include="Models\PageNamespace.cs" />
     <Compile Include="Models\Paragraph.cs" />

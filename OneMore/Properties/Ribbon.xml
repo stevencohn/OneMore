@@ -296,6 +296,18 @@
                 getEnabled="GetBodyContext"
                 onAction="FinishBiLinkCmd"/>
               <button
+                id="ribEmbedSubpageButton"
+                imageMso="MasterDocumentCreateSubdocument"
+                label="Embedded Page"
+                getEnabled="GetBodyContext"
+                onAction="InsertSubpageCmd"/>
+              <button
+                id="ribUpdateSubpageButton"
+                imageMso="MasterDocumentInsertSubdocument"
+                label="Updated Embedded Page"
+                getEnabled="GetBodyContext"
+                onAction="UpdateSubpageCmd"/>
+              <button
                 id="ribInsertQRButton"
                 getLabel="GetRibbonLabel"
                 imageMso="BarcodeInsert"
@@ -382,12 +394,6 @@
                 getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="InsertCalendarCmd"/>
-              <button
-                id="ribSubpageButton"
-                imageMso="MasterDocumentInsertSubdocument"
-                label="Embedded Page"
-                getEnabled="GetBodyContext"
-                onAction="InsertSubpageCmd"/>
               <button
                 id="ribInsertDateButton"
                 imageMso="HeaderFooterCurrentDate"
