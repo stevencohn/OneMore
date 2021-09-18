@@ -29,7 +29,8 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Remove empty headers and "extra" empty lines between paragraphs
 * Remove spacing between paragraphs and headings
 * Show/Hide the page date and time stamps under the title on page or all pages in section
-* Trim leading or trailing whitespace from selected text
+* Trim leading whitespace from selected text
+* Trim trailing whitespace from selected text
 
 [Custom Styles](../../wiki/Custom-styles)
 
