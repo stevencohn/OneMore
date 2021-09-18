@@ -18,9 +18,9 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features
+## Features (124)
 
-[Clean commands](../../wiki/Clean-Commands)
+[Clean commands](../../wiki/Clean-Commands) (9)
 
 * Change spacing between sentences to one or two spaces
 * Clear background color and reset text color of selected text
@@ -32,41 +32,45 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Trim leading whitespace from selected text
 * Trim trailing whitespace from selected text
 
-[Custom Styles](../../wiki/Custom-styles)
+[Custom Styles](../../wiki/Custom-styles) (6)
 
-* Manage custom style themes. Save, load separate themes
 * Apply custom styles to selected text
+* Load a custom theme of styles, user-defined and some provided with OneMore
+* Edit custom style themes
+* Create new styles based on the selected text
 * Apply an entire theme to a page
-* Change page background to any custom color with dark-mode awareness
+* Change page theme inluding background and styles, optioanally with dark-mode awareness
 
-[Edit Commands](../../wiki/Edit-Commands)
+[Edit Commands](../../wiki/Edit-Commands) (18)
 * Colorize selected text as a chosen programming language - _syntax highlighting_
-* Disable spell-check on the current page (F4)
+* Highlight selected text using a rotating array of colors
 * Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
+* Enabled spell-checking on the current page, resets to the current culture language
+* Disable spell-check on the current page (F4)
 * Change selected text to UPPERCASE, lowercase, Or Title Case
 * Increase/Decrease the font size of all content on the current page
-* Highlight selected text using a rotating array of colors
-* Invert text selection
 * Expand or Collapse indented outlines, save and restore outlining
+* Invert text selection
 * Join Paragraph to remove soft-breaks and join lines into a single flowing paragraph
+* Select all images on the page
 * Select all text on a page with similar formatting to the currently selected text
 
-[Favorites and Custom Snippets](../../wiki/Favorites)
+[Favorites and Custom Snippets](../../wiki/Favorites) (5)
 
 * Add any page in OneNote to the Favorites menu for quick access
 * Sort or reorder favorites using the Favorites Manager
 * Save and reuse custom snippets of content anywhere on any page
+* Quick access to user-defined plugins
 * Add a link to a special page containing all OneNote and OneMore keyboard shortcuts
 
-[Image commands](../../wiki/Image-Commands)
+[Image commands](../../wiki/Image-Commands) (4)
 
 * Add caption to a selected images
 * Precisely crop a selected image
 * Resize a selected image or all images on the page
 * Rotate an image to any angle
-* Select all images on the page
 
-[Numbering commands](../../wiki/Numbering-Commands)
+[Numbering commands](../../wiki/Numbering-Commands) (5)
 
 * Number page headings with numeric or alpha-numeric outline prefixes
 * Number all sections in the current notebook
@@ -74,74 +78,95 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Remove numbering from sections
 * Remove numbering from pages
 
-[Reference Commands](../../wiki/Reference-Commands)
-* Embed the contents of one page into the current pages
+[Reference Commands](../../wiki/Reference-Commands) (15)
 * Insert a new footnote (endnote) at the current location
 * Remove a footnote from either the label or from the footer description
 * Create bidirectional links between pages or paragraphs on a page
-* Link to current page from other pages that reference this page title
+* Embed the contents of one page into the current pages
+* Insert QR code representation of selected text
 * Map Linked Pages to report all pages that link to other pages
+* Link to current page from other pages that reference this page title
 * Refresh text of hyperlinks back to this page based on its title
 * Replace hyperlinked URLs with their Web page titles
 * Replace hyperlinked URLs with their downloaded images
 
-[Search commands](../../wiki/Search-Commands)
+[Search commands](../../wiki/Search-Commands) (4)
 
 * Search and replace text on the current page (Ctrl+H)
 * Search for keywords and copy or move selected pages (Alt + F)
 * Add arbitrary tags to a page
 * Search arbitrary page tags to index, copy, or move selected pages
 
-[Snippets commands](../../wiki/Snippets-Commands)
+[Snippets commands](../../wiki/Snippets-Commands) (16)
 
 * Insert single or double horizontal line
 * Insert breadcrumb at top of page
 * Insert Table of Contents of headers, pages, or sections
 * Insert small or large monthly calendar for a specific month
 * Insert sortable date, similar to 2020-12-23
-* Insert Info/Warn boxes similar to Confluence Info and Warn macros
-* Insert single-cell table, optionally wrap selecting content
+* Insert a text box, a single-cell table, and optionally wrap selecting content
 * Insert Code box similar to Confluence Code macro, optionally wrap selected content
+* Insert Info/Warn boxes similar to Confluence Info and Warn macros
 * Insert collapsable sections to hide secondary or sensitive information
 * Insert status labels similar to the Confluence status macro
 
-[Table commands](../../wiki/Table-Commands)
+[Table commands](../../wiki/Table-Commands) (12)
 
 * Calculate Excel-like formulas in tables (F5)
 * Delete formula from selected table cells
 * Highlight all cells on the page with custom formulas
 * Recalculate all formulas in selected tables on the page (Shift + F5)
-* Copy across and copy down to fill all or selected cells with a copy of a cell
-* Fill across and fill down to fill all or selected cells with increment values
 * Convert select text to a table
 * Insert Table Cells, shifting content as expected
 * Paste copied table cells by overlaying cells rather than inserting a nested table
+* Copy across and copy down to fill all or selected cells with a copy of a cell
+* Fill across and fill down to fill all or selected cells with increment values
 * Split table
 
-[Extra commands](../../wiki/Extra-Commands)
+[Extra commands](../../wiki/Extra-Commands) (10)
 
+* Generate a report of the size of notebooks, section, pages, and image and file attachments on pages
 * Add special icon to the page title, also appears in page hierarchy
 * Collapse the page hierarchy to see only top-level pages
-* Copy Section Groups and all child sections and pages to other notebooks and section groups
+* Prepend page titles with the created date of each page
 * Insert pronunciation of words from over a dozen languages
 * Merge pages, preserving formatting and position of outlines
-* Prepend page titles with the created date of each page
-* Sort pages, sections, or notebooks
 * Split current page into multiple pages
+* Sort pages, sections, or notebooks
 * Toggle strikethrough text next to all completed/incompleted tags
 * Report number of words on the page or in the selected region
 
-[Tools](../../wiki/Tools)
+[Main Menu](../../wiki/Tools) (7)
 
-* Analyze the size of notebooks, section, pages, and image and file attachments on pages
-* Archive a section or an entire notebook to a zip file with attachments
+* Replay the last OneMore action with a quick keyboard shortcut
 * Import MSWord, PowerPoint, Markdown and others into the current page or a new page
 * Import a Web page from a specified URL
 * Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
 * Invoke an external custom plugin to process a page
-* Replay the last OneMore action with a quick keyboard shortcut
 * View and edit the internal OneNote XML of the current page
+* Edit OneMore settings
 * Check for updates and install upgrades on-demand
+
+Context Menus
+  * Notebook context menu
+    * Archive the entire notebook to a zip of HTML files, including all images and attachments
+    * Number the sections in the notebook
+    * Remove section numbering
+  * Section context menu
+    * Add the section to the Favorites menu
+    * Archive the entire section to a zip of HTML files, including all images and attachments
+    * Prefix all page titles with a date stamp representing the data the page was created
+  * Section Group context menu
+    * Copy section group and its entire contents to another location (OneNote only has a _move_ command)
+  * Page context menu
+    * Export the page as HTML, PDF, Word, XML, or a .one file
+    * Merge two or more selected pages into one page
+    * Split the current page on _Heading 1_ boundaries or other options
+    * Click in a blank area of the Pages panel to add or remove page numbering
+  * Image context menu
+    * Add a centered caption to the image
+    * Crop and rotate the image
+    * Resize the image
 
 ### Why?
 
