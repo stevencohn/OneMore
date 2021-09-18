@@ -128,6 +128,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Sort pages, sections, or notebooks
 * Split current page into multiple pages
 * Toggle strikethrough text next to all completed/incompleted tags
+* Report number of words on the page or in the selected region
 
 [Tools](../../wiki/Tools)
 
