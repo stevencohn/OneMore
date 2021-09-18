@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Media;
 	using System.Text.RegularExpressions;
@@ -16,9 +17,12 @@ namespace River.OneMoreAddIn
 
 	internal class FootnoteEditor
 	{
+		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
+
 		private readonly OneNote one;
 		private readonly ILogger logger;
 		private readonly bool dark;
+		private readonly bool rightToLeft;
 
 		private Page page;
 		private XNamespace ns;
@@ -36,8 +40,10 @@ namespace River.OneMoreAddIn
 
 			page = one.GetPage();
 			ns = page.Namespace;
+			PageNamespace.Set(ns);
 
 			dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+			rightToLeft = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
 
 			logger = Logger.Current;
 		}
@@ -124,8 +130,21 @@ namespace River.OneMoreAddIn
 			// else build a new divider...
 
 			var line = string.Concat(Enumerable.Repeat("- ", 50));
-
 			page.EnsurePageWidth(line, "Courier New", 10f, one.WindowHandle);
+			if (rightToLeft)
+			{
+				line = $"<span stlye='{RefreshStyle}'>[</span><a href=\"onemore://RefreshFootnotesCommand/\">" +
+					$"<span style='{RefreshStyle}'>{Resx.AddFootnoteCommand_Refresh}</span></a>" +
+					$"<span style='{RefreshStyle}'>]</span> "
+					+ line.Substring(0, 42);
+			}
+			else
+			{
+				line = line.Substring(0, 42) +
+					$"<span stlye='{RefreshStyle}'>[</span><a href=\"onemore://RefreshFootnotesCommand/\">" +
+					$"<span style='{RefreshStyle}'>{Resx.AddFootnoteCommand_Refresh}</span></a>" +
+					$"<span style='{RefreshStyle}'>]</span> ";
+			}
 
 			var content = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
@@ -162,6 +181,11 @@ namespace River.OneMoreAddIn
 						),
 					new XElement(ns + "T", new XCData(line))
 					);
+
+				if (rightToLeft)
+				{
+					divider.SetAttributeValue("alignment", "right");
+				}
 
 				// add the divider line
 				content.Add(divider);
@@ -210,22 +234,35 @@ namespace River.OneMoreAddIn
 
 			var color = dark ? ";color:#5B9BD5" : string.Empty;
 
-			var cdata = new XElement("wrapper",
-				new XElement("a",
-					new XAttribute("href", link),
-					new XElement("span",
-						new XAttribute("style", $"font-family:'Calibri Light';font-size:11.0pt{color}"),
-						$"[{label}]"
-					)
-				),
+			var cdatalink = new XElement("a",
+				new XAttribute("href", link),
 				new XElement("span",
-					new XAttribute("style", "font-family:'Calibri Light';font-size:11.0pt"),
-					" new footnote"
+					new XAttribute("style", $"font-family:'Calibri Light';font-size:11.0pt{color}"),
+					$"[{label}]"
 				));
+
+			XElement cdata;
+			if (rightToLeft)
+			{
+				cdata = new XElement("wrapper",
+					new XElement("span",
+						new XAttribute("style", "font-family:'Calibri Light';font-size:11.0pt"),
+						"new footnote "),
+					cdatalink
+					);
+			}
+			else
+			{
+				cdata = new XElement("wrapper", cdatalink,
+					new XElement("span",
+						new XAttribute("style", "font-family:'Calibri Light';font-size:11.0pt"),
+						" new footnote")
+					);
+			}
 
 			color = dark ? "#BFBFBF" : "#151515";
 
-			var note = new XElement(ns + "OE",
+			var note = new Paragraph(
 				new XAttribute("style", $"color:{color}"),
 				new XElement(ns + "Meta",
 					new XAttribute("name", "omfootnote"),
@@ -235,6 +272,11 @@ namespace River.OneMoreAddIn
 					new XCData(cdata.GetInnerXml())
 					)
 				);
+
+			if (rightToLeft)
+			{
+				note.SetAlignment("right");
+			}
 
 			last.AddAfterSelf(note);
 

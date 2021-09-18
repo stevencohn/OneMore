@@ -32,14 +32,16 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 		private static Version GetVersion(string name, int latest)
 		{
-			var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false);
-			if (key != null)
+			using (var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false))
 			{
-				// get default value string
-				var value = (string)key.GetValue(string.Empty);
-				// extract version number
-				var version = new Version(value.Substring(value.LastIndexOf('.') + 1) + ".0");
-				return version;
+				if (key != null)
+				{
+					// get default value string
+					var value = (string)key.GetValue(string.Empty);
+					// extract version number
+					var version = new Version(value.Substring(value.LastIndexOf('.') + 1) + ".0");
+					return version;
+				}
 			}
 
 			// presume latest
@@ -77,27 +79,28 @@ namespace River.OneMoreAddIn.Helpers.Office
 		{
 			var version = GetOfficeVersion();
 
-			var key = Registry.CurrentUser.OpenSubKey(
-				$@"Software\Microsoft\Office\{version.Major}.{version.Minor}\Common");
-
-			if (key != null)
+			using (var key = Registry.CurrentUser.OpenSubKey(
+				$@"Software\Microsoft\Office\{version.Major}.{version.Minor}\Common"))
 			{
-				var theme = key.GetValue("UI Theme") as Int32?;
-				if (theme == null)
+				if (key != null)
 				{
-					theme = key.GetValue("Theme") as Int32?;
-				}
+					var theme = key.GetValue("UI Theme") as Int32?;
+					if (theme == null)
+					{
+						theme = key.GetValue("Theme") as Int32?;
+					}
 
-				if (theme != null)
-				{
-					/*
-					Colorful   0
-					Dark Gray  3
-					Black      4
-					White      5
-					*/
+					if (theme != null)
+					{
+						/*
+						Colorful   0
+						Dark Gray  3
+						Black      4
+						White      5
+						*/
 
-					return theme == 4;
+						return theme == 4;
+					}
 				}
 			}
 

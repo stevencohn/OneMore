@@ -3367,4 +3367,60 @@ OneNote 文件 (*.one)</value>
     <value>使用鼠标选择要裁剪的区域。 </value>
     <comment>intro text label</comment>
   </data>
+  <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
+    <value>源页面不包含任何内容</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoEmbedded" xml:space="preserve">
+    <value>未找到嵌入内容</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoSource" xml:space="preserve">
+    <value>找不到源页面</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Select" xml:space="preserve">
+    <value>选择页面</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedSubpageCommand_SelectIntro" xml:space="preserve">
+    <value>选择要嵌入此页面的页面</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
+    <value>嵌入页面</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
+    <value>将另一个页面的内容嵌入到当前页面</value>
+    <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
+    <value>更新嵌入页面</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribUpdateSubpageButton_Screentip" xml:space="preserve">
+    <value>更新此页面上的所有嵌入内容</value>
+    <comment>ribbon item screentip</comment>
+  </data>
+  <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
+    <value>此页面上没有标题</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertTocCommand_Refresh" xml:space="preserve">
+    <value>刷新</value>
+    <comment>refresh link</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
+    <value>刷新</value>
+    <comment>link</comment>
+  </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>链接参考</value>
+    <comment>title text</comment>
+  </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>刷新</value>
+    <comment>refresh link</comment>
+  </data>
 </root>

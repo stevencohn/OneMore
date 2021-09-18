@@ -3361,4 +3361,60 @@ OneNote-Datei (*.one)</value>
     <value>Verwenden Sie die Maus, um einen Bereich zum Zuschneiden auszuwählen. </value>
     <comment>intro text label</comment>
   </data>
+  <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
+    <value>Quellseite enthält keinen Inhalt</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoEmbedded" xml:space="preserve">
+    <value>Keine eingebetteten Inhalte gefunden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoSource" xml:space="preserve">
+    <value>Quellseite nicht gefunden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Select" xml:space="preserve">
+    <value>Seite auswählen</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedSubpageCommand_SelectIntro" xml:space="preserve">
+    <value>Wählen Sie die Seite aus, die Sie in diese Seite einbetten möchten</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
+    <value>Seite einbetten</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
+    <value>Inhalte einer anderen Seite in die aktuelle Seite einbetten</value>
+    <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
+    <value>Eingebettete Seiten aktualisieren</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribUpdateSubpageButton_Screentip" xml:space="preserve">
+    <value>Alle eingebetteten Inhalte auf dieser Seite aktualisieren</value>
+    <comment>ribbon item screentip</comment>
+  </data>
+  <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
+    <value>Es gibt keine Überschriften auf dieser Seite</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertTocCommand_Refresh" xml:space="preserve">
+    <value>Aktualisierung</value>
+    <comment>refresh link</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
+    <value>Aktualisierung</value>
+    <comment>link</comment>
+  </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>Verknüpfte Referenzen</value>
+    <comment>title text</comment>
+  </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>Aktualisierung</value>
+    <comment>refresh link</comment>
+  </data>
 </root>

@@ -296,6 +296,20 @@
                 getEnabled="GetBodyContext"
                 onAction="FinishBiLinkCmd"/>
               <button
+                id="ribEmbedSubpageButton"
+                imageMso="MasterDocumentCreateSubdocument"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="EmbedSubpageCmd"/>
+              <button
+                id="ribUpdateSubpageButton"
+                imageMso="MasterDocumentInsertSubdocument"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="UpdateSubpageCmd"/>
+              <button
                 id="ribInsertQRButton"
                 getLabel="GetRibbonLabel"
                 imageMso="BarcodeInsert"

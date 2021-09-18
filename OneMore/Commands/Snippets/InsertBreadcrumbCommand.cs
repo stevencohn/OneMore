@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class InsertBreadcrumbCommand : Command
 	{
+		// OE meta indicating content is a page hierarchy breadcrumb
+		private const string BreadcrumbMetaName = "omBreadcrumb";
+
 		private const string RightArrow = "\u2192";
 
 		public InsertBreadcrumbCommand()
@@ -38,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 					.Elements(ns + "OE")
 					.Elements(ns + "Meta")
 					.Where(e => 
-						e.Attributes().Any(a => a.Value.Equals(Page.BreadcrumbMetaName)))
+						e.Attributes().Any(a => a.Value.Equals(BreadcrumbMetaName)))
 					.Select(e => e.Parent)
 					.FirstOrDefault();
 
@@ -47,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					var index = page.GetQuickStyle(Styles.StandardStyles.Quote).Index;
 					paragraph = new Paragraph(ns,
 						new XElement(ns + "Meta",
-							new XAttribute("name", Page.BreadcrumbMetaName),
+							new XAttribute("name", BreadcrumbMetaName),
 							new XAttribute("content", "1")),
 						new XElement(ns + "T",
 							new XCData(path))

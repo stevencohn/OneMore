@@ -196,6 +196,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string AddFootnoteCommand_Refresh {
+            get {
+                return ResourceManager.GetString("AddFootnoteCommand_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one or more cells from the same row or the same column.
         /// </summary>
         internal static string AddFormula_linearMessage {
@@ -1562,6 +1571,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Source page contains no content.
+        /// </summary>
+        internal static string EmbedSubpageCommand_NoContent {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_NoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No embedded content found.
+        /// </summary>
+        internal static string EmbedSubpageCommand_NoEmbedded {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_NoEmbedded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source page not found.
+        /// </summary>
+        internal static string EmbedSubpageCommand_NoSource {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_NoSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string EmbedSubpageCommand_Refresh {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Page.
+        /// </summary>
+        internal static string EmbedSubpageCommand_Select {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the page to embed on this page.
+        /// </summary>
+        internal static string EmbedSubpageCommand_SelectIntro {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_SelectIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Architecture.
         /// </summary>
         internal static string Emoji_Architecture {
@@ -2751,6 +2814,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no headings on this page.
+        /// </summary>
+        internal static string InsertTocCommand_NoHeadings {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_NoHeadings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string InsertTocCommand_Refresh {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
         internal static string InsertTocCommand_TOC {
@@ -3030,6 +3111,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string LinkDialog_Text {
             get {
                 return ResourceManager.GetString("LinkDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linked References.
+        /// </summary>
+        internal static string LinkedReferencesCommand_Title {
+            get {
+                return ResourceManager.GetString("LinkedReferencesCommand_Title", resourceCulture);
             }
         }
         
@@ -4709,6 +4799,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embed Page.
+        /// </summary>
+        internal static string ribEmbedSubpageButton_Label {
+            get {
+                return ResourceManager.GetString("ribEmbedSubpageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Embed content of another page into the current page.
+        /// </summary>
+        internal static string ribEmbedSubpageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribEmbedSubpageButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expand/Collapse.
         /// </summary>
         internal static string ribExpandButton_Label {
@@ -5794,6 +5902,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribTrimLeadingButton_Screentip {
             get {
                 return ResourceManager.GetString("ribTrimLeadingButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Embedded Pages.
+        /// </summary>
+        internal static string ribUpdateSubpageButton_Label {
+            get {
+                return ResourceManager.GetString("ribUpdateSubpageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update all embedded content on this page.
+        /// </summary>
+        internal static string ribUpdateSubpageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribUpdateSubpageButton_Screentip", resourceCulture);
             }
         }
         

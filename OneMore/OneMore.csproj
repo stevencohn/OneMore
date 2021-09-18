@@ -213,6 +213,7 @@
     <Compile Include="Colorizer\Parser.cs" />
     <Compile Include="Colorizer\Provider.cs" />
     <Compile Include="Colorizer\Theme.cs" />
+    <Compile Include="Commands\CommandService.cs" />
     <Compile Include="Commands\Clean\BreakingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +241,7 @@
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\References\BiLinkCommand.cs" />
+    <Compile Include="Commands\References\EmbedSubpageProxy.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
     <Compile Include="Commands\References\LinkDialog.cs">
       <SubType>Form</SubType>
@@ -268,6 +270,7 @@
       <DependentUpon>GeneralSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
+    <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
     <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
     <Compile Include="Commands\Tables\FillerModels\AlphaNumericFiller.cs" />
     <Compile Include="Commands\Tables\FillerModels\DateFiller.cs" />
@@ -396,6 +399,9 @@
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="Models\Bullet.cs" />
     <Compile Include="Models\ContentList.cs" />
+    <Compile Include="Models\Meta.cs" />
+    <Compile Include="Models\Outline.cs" />
+    <Compile Include="Models\PageNamespace.cs" />
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
