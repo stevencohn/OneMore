@@ -14,6 +14,13 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class EmbedSubpageCommand : Command
 	{
+		// OE meta indicating content embedded content from another page
+		private const string EmbeddedMetaName = "omEmbedded";
+		// OE meta indicating content embedded content header paragraph
+		private const string EmbedHeaderMetaName = "omEmbedHeader";
+		// OE meta indicating content lists other pages where this page is embedded
+		private const string EmbeddingsMetaName = "omEmbeddings";
+
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
@@ -50,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 				// find all embedded sections...
 
 				var metas = page.Root.Descendants(ns + "Meta")
-					.Where(e => e.Attribute("name").Value == Page.EmbeddedMetaName);
+					.Where(e => e.Attribute("name").Value == EmbeddedMetaName);
 
 				if (!string.IsNullOrEmpty(sourceId))
 				{
@@ -118,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var snippets = outline.Elements(ns + "OEChildren")
 				.Where(e => !e.Elements(ns + "OE")
-					.Elements(ns + "Meta").Attributes(Page.EmbeddingsMetaName).Any());
+					.Elements(ns + "Meta").Attributes(EmbeddingsMetaName).Any());
 
 			if (snippets == null || !snippets.Any())
 			{
@@ -143,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 				.SetStyle("font-style:italic")
 				.SetAlignment("right");
 
-			header.AddFirst(new Meta(Page.EmbedHeaderMetaName, "1"));
+			header.AddFirst(new Meta(EmbedHeaderMetaName, "1"));
 
 			cell.SetContent(new XElement(ns + "OEChildren", header));
 
@@ -221,7 +228,7 @@ namespace River.OneMoreAddIn.Commands
 				FillCell(table[0][0], snippets, source);
 
 				page.AddNextParagraph(new Paragraph(
-					new Meta(Page.EmbeddedMetaName, source.PageId),
+					new Meta(EmbeddedMetaName, source.PageId),
 					table.Root
 					));
 

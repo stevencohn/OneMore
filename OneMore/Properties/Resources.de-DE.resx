@@ -3397,4 +3397,20 @@ OneNote-Datei (*.one)</value>
     <value>Alle eingebetteten Inhalte auf dieser Seite aktualisieren</value>
     <comment>ribbon item screentip</comment>
   </data>
+  <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
+    <value>Es gibt keine Überschriften auf dieser Seite</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertTocCommand_Refresh" xml:space="preserve">
+    <value>Aktualisierung</value>
+    <comment>refresh link</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
+    <value>Aktualisierung</value>
+    <comment>link</comment>
+  </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>Verknüpfte Referenzen</value>
+    <comment>title text</comment>
+  </data>
 </root>

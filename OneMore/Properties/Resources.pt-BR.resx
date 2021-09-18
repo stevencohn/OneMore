@@ -3412,4 +3412,20 @@ Arquivo OneNote (* .one)</value>
     <value>Atualize todo o conteúdo incorporado nesta página</value>
     <comment>ribbon item screentip</comment>
   </data>
+  <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
+    <value>Não há títulos nesta página</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertTocCommand_Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+    <comment>refresh link</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+    <comment>link</comment>
+  </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>Referências Ligadas</value>
+    <comment>title text</comment>
+  </data>
 </root>

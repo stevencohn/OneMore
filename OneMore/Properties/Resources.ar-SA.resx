@@ -3411,4 +3411,20 @@ ISO-code then comma then language name</comment>
     <value>تحديث كافة المحتويات المضمنة في هذه الصفحة</value>
     <comment>ribbon item screentip</comment>
   </data>
+  <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
+    <value>لا توجد عناوين في هذه الصفحة</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertTocCommand_Refresh" xml:space="preserve">
+    <value>ينعش</value>
+    <comment>refresh link</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
+    <value>ينعش</value>
+    <comment>link</comment>
+  </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>المراجع المرتبطة</value>
+    <comment>title text</comment>
+  </data>
 </root>

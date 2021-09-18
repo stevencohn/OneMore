@@ -3403,4 +3403,20 @@ OneNote 文件 (*.one)</value>
     <value>更新此页面上的所有嵌入内容</value>
     <comment>ribbon item screentip</comment>
   </data>
+  <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
+    <value>此页面上没有标题</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertTocCommand_Refresh" xml:space="preserve">
+    <value>刷新</value>
+    <comment>refresh link</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
+    <value>刷新</value>
+    <comment>link</comment>
+  </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>链接参考</value>
+    <comment>title text</comment>
+  </data>
 </root>

@@ -3106,6 +3106,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Linked References.
+        /// </summary>
+        internal static string LinkedReferencesCommand_Title {
+            get {
+                return ResourceManager.GetString("LinkedReferencesCommand_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Logo {

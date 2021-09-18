@@ -5,22 +5,30 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class LinkReferencesCommand : Command
 	{
-		// temporary attributes used to store info
+		// OE meta for linked references paragraph
+		private const string LinkRefsMeta = "omLinkedReferences";
+
+		// temporary attributes used for in-memory processing, not stored
 		private const string NameAttr = "omName";
 		private const string LinkedAttr = "omLinked";
 
+		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
+
 		private OneNote one;
 		private OneNote.Scope scope;
+		private Page page;
 		private XNamespace ns;
 
 
@@ -31,18 +39,51 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var dialog = new LinkDialog())
+			var prompt = true;
+			if (args.Length > 0 && args[0] is string refresh && refresh == "refresh")
 			{
-				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
-				{
-					return;
-				}
+				prompt = !Refresh();
+			}
 
-				scope = dialog.Scope;
+			if (prompt)
+			{
+				using (var dialog = new LinkDialog())
+				{
+					if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+					{
+						return;
+					}
+
+					scope = dialog.Scope;
+				}
 			}
 
 			var progressDialog = new UI.ProgressDialog(Execute);
 			await progressDialog.RunModeless();
+		}
+
+
+		private bool Refresh()
+		{
+			using (one = new OneNote(out page, out ns))
+			{
+				var meta = page.Root.Descendants(ns + "Meta")
+					.FirstOrDefault(e => e.Attribute("name").Value == LinkRefsMeta);
+
+				if (meta == null)
+				{
+					return false;
+				}
+
+				if (!Enum.TryParse(meta.Attribute("content").Value, out scope))
+				{
+					scope = OneNote.Scope.Pages;
+				}
+
+				// remove the containing OE so it can be regenerated
+				meta.Parent.Remove();
+				return true;
+			}
 		}
 
 
@@ -54,8 +95,16 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			using (one = new OneNote(out var page, out ns))
+			using (one = new OneNote())
 			{
+				if (page == null)
+				{
+					page = one.GetPage();
+					ns = page.Namespace;
+				}
+
+				PageNamespace.Set(ns);
+
 				var title = Unstamp(page.Title);
 
 				string startId = string.Empty;
@@ -136,8 +185,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if (updates > 0)
 				{
-					// even if cancellation is request, must update page with referals that
-					// were modified, otherwise, there will be referal pages that link to this page
+					// even if cancellation is request, must update page with referals that were
+					// modified, otherwise, there will be referal pages that link to this page
 					// without this page referring back!
 
 					AppendReferalBlock(page, referals);
@@ -189,8 +238,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var children = new XElement(ns + "OEChildren");
 
+			var refresh = "<a href=\"onemore://LinkReferencesCommand/refresh\">" +
+				$"<span style='{RefreshStyle}'>{Resx.InsertTocCommand_Refresh}</span></a>";
+
 			var block = new XElement(ns + "OE",
-				new XElement(ns + "T", new XCData("<span style='font-weight:bold'>Linked References</span>")),
+				new Meta(LinkRefsMeta, scope.ToString()),
+				new XElement(ns + "T", new XCData(
+					$"<span style='font-weight:bold'>{Resx.LinkedReferencesCommand_Title}</span> " +
+					$"<span style='{RefreshStyle}'>[{refresh}]</span>"
+					)),
 				children
 				);
 

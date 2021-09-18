@@ -3454,4 +3454,8 @@ In this section</value>
     <value>Refresh</value>
     <comment>link</comment>
   </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>Linked References</value>
+    <comment>title text</comment>
+  </data>
 </root>
