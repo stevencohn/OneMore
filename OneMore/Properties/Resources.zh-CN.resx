@@ -3419,4 +3419,8 @@ OneNote 文件 (*.one)</value>
     <value>链接参考</value>
     <comment>title text</comment>
   </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>刷新</value>
+    <comment>refresh link</comment>
+  </data>
 </root>

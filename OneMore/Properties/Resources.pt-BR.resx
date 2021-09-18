@@ -3428,4 +3428,8 @@ Arquivo OneNote (* .one)</value>
     <value>Referências Ligadas</value>
     <comment>title text</comment>
   </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+    <comment>refresh link</comment>
+  </data>
 </root>

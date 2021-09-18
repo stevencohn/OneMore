@@ -3422,4 +3422,8 @@ Fichier OneNote (*.one)</value>
     <value>Références liées</value>
     <comment>title text</comment>
   </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>Rafraîchir</value>
+    <comment>refresh link</comment>
+  </data>
 </root>

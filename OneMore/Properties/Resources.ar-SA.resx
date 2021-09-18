@@ -3427,4 +3427,8 @@ ISO-code then comma then language name</comment>
     <value>المراجع المرتبطة</value>
     <comment>title text</comment>
   </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>ينعش</value>
+    <comment>refresh link</comment>
+  </data>
 </root>

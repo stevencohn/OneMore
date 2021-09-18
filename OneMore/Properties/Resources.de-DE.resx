@@ -3413,4 +3413,8 @@ OneNote-Datei (*.one)</value>
     <value>Verknüpfte Referenzen</value>
     <comment>title text</comment>
   </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>Aktualisierung</value>
+    <comment>refresh link</comment>
+  </data>
 </root>

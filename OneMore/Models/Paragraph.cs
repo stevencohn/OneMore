@@ -34,13 +34,13 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public Paragraph(params XNode[] nodes)
+		public Paragraph(params XObject[] nodes)
 			: this(PageNamespace.Value, nodes)
 		{
 		}
 
 
-		public Paragraph(XNamespace ns, params XNode[] nodes)
+		public Paragraph(XNamespace ns, params XObject[] nodes)
 			: base(ns + "OE")
 		{
 			Add(nodes);

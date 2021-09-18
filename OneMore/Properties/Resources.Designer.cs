@@ -196,6 +196,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string AddFootnoteCommand_Refresh {
+            get {
+                return ResourceManager.GetString("AddFootnoteCommand_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one or more cells from the same row or the same column.
         /// </summary>
         internal static string AddFormula_linearMessage {

@@ -3458,4 +3458,8 @@ In this section</value>
     <value>Linked References</value>
     <comment>title text</comment>
   </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>refresh link</comment>
+  </data>
 </root>
