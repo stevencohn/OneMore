@@ -656,6 +656,8 @@ namespace River.OneMoreAddIn.Models
 		public IEnumerable<XElement> GetSelectedElements(bool all = true)
 		{
 			var selected = Root.Elements(Namespace + "Outline")
+				.Where(e => !e.Elements(Namespace + "Meta")
+					.Any(m => m.Attribute("name").Value.Equals(Page.TagBankMetaName)))
 				.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
