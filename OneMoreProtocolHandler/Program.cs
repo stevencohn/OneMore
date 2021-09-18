@@ -82,6 +82,7 @@ namespace OneMoreProtocolHandler
 		}
 
 
+		#region Registration
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		static void Register()
@@ -119,7 +120,8 @@ namespace OneMoreProtocolHandler
 					key = hive.CreateSubKey(path, true);
 				}
 
-				key.SetValue(string.Empty, Assembly.GetExecutingAssembly().Location);
+				var cmd = $"\"{Assembly.GetExecutingAssembly().Location}\" %1 %2 %3";
+				key.SetValue(string.Empty, cmd);
 				key.Dispose();
 			}
 
@@ -194,5 +196,6 @@ namespace OneMoreProtocolHandler
 				hive.DeleteSubKey(path, false);
 			}
 		}
+		#endregion Registration
 	}
 }
