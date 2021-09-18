@@ -1589,6 +1589,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string EmbedSubpageCommand_Refresh {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Page.
         /// </summary>
         internal static string EmbedSubpageCommand_Select {
@@ -2792,6 +2801,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertSnippets_CouldNotLoad {
             get {
                 return ResourceManager.GetString("InsertSnippets_CouldNotLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no headings on this page.
+        /// </summary>
+        internal static string InsertTocCommand_NoHeadings {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_NoHeadings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string InsertTocCommand_Refresh {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_Refresh", resourceCulture);
             }
         }
         
