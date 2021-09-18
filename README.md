@@ -74,6 +74,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Remove numbering from pages
 
 [Reference Commands](../../wiki/Reference-Commands)
+* Embed the contents of one page into the current pages
 * Insert a new footnote (endnote) at the current location
 * Remove a footnote from either the label or from the footer description
 * Create bidirectional links between pages or paragraphs on a page
