@@ -119,6 +119,10 @@ namespace River.OneMoreAddIn.Commands
 					new XCData($"<span style='font-weight:bold'>{Resx.InsertTocCommand_TOC}</span>")
 					)
 				)
+
+				// <span style='font-weight:bold;font-size:16.0pt;color:black'>Table of Contents </span>
+				// <span style='font-style:italic;font-size:9.0pt;color:#7F7F7F'>[Refresh]</span>]]></one:T>
+
 			};
 
 			// use the minimum intent level

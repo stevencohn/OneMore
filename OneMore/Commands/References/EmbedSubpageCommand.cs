@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class EmbedSubpageCommand : Command
@@ -36,8 +37,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			EmbedContent();
-
-			await Task.Yield();
 		}
 
 
@@ -61,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!metas.Any())
 				{
-					UIHelper.ShowInfo(one.Window, "No embedded content found");
+					UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoEmbedded);
 					return;
 				}
 
@@ -101,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 			source = one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
 			if (source == null)
 			{
-				UIHelper.ShowInfo(one.Window, "Source page not found");
+				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoSource);
 				outline = null;
 				return new List<XElement>();
 			}
@@ -109,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 			var outRoot = source.Root.Elements(source.Namespace + "Outline").FirstOrDefault();
 			if (outRoot == null)
 			{
-				UIHelper.ShowInfo(one.Window, "Source page contains no content1");
+				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoContent);
 				outline = null;
 				return new List<XElement>();
 			}
@@ -123,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (snippets == null || !snippets.Any())
 			{
-				UIHelper.ShowInfo(one.Window, "Source page contains no content2");
+				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoContent);
 				return new List<XElement>();
 			}
 
@@ -163,7 +162,8 @@ namespace River.OneMoreAddIn.Commands
 			using (var o = new OneNote())
 			{
 				o.SelectLocation(
-					"Select Page", "Select page to embed on this page",
+					Resx.EmbedSubpageCommand_Select,
+					Resx.EmbedSubpageCommand_SelectIntro,
 					OneNote.Scope.Pages, Callback);
 			}
 		}
@@ -187,14 +187,15 @@ namespace River.OneMoreAddIn.Commands
 
 				page.EnsureContentContainer();
 
-				var container = page.Root.Descendants(ns + "T")
+				var container = page.Root.Elements(ns + "Outline")
+					.Descendants(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all")
 					.Ancestors(ns + "OEChildren")
 					.FirstOrDefault();
 
 				if (container == null)
 				{
-					UIHelper.ShowInfo(one.Window, "Position cursor in body of page");
+					UIHelper.ShowInfo(one.Window, Resx.Error_BodyContext);
 					return;
 				}
 
