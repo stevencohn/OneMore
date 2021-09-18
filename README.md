@@ -43,12 +43,12 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 [Edit Commands](../../wiki/Edit-Commands) (18)
 * Colorize selected text as a chosen programming language - _syntax highlighting_
-* Highlight selected text using a rotating array of colors
-* Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl+Alt+V)
+* Highlight selected text using a rotating array of colors (Ctrl + Shift + H)
+* Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl + Alt + V)
 * Enabled spell-checking on the current page, resets to the current culture language
 * Disable spell-check on the current page (F4)
-* Change selected text to UPPERCASE, lowercase, Or Title Case
-* Increase/Decrease the font size of all content on the current page
+* Change selected text to UPPERCASE (Ctrl+Shift+Alt+U), lowercase (Ctrl+Shift+U), Or Title Case
+* Increase (Ctrl+Alt+Plus) or Decrease (Ctrl+Alt+Minus) the font size of all content on the current page
 * Expand or Collapse indented outlines, save and restore outlining
 * Invert text selection
 * Join Paragraph to remove soft-breaks and join lines into a single flowing paragraph
@@ -79,8 +79,8 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Remove numbering from pages
 
 [Reference Commands](../../wiki/Reference-Commands) (15)
-* Insert a new footnote (endnote) at the current location
-* Remove a footnote from either the label or from the footer description
+* Insert a new footnote (endnote) at the current location (Ctrl + Alt + F)
+* Remove a footnote from either the label or from the footer description (Ctrl + Shift + F)
 * Create bidirectional links between pages or paragraphs on a page
 * Embed the contents of one page into the current pages
 * Insert QR code representation of selected text
@@ -92,20 +92,20 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 [Search commands](../../wiki/Search-Commands) (4)
 
-* Search and replace text on the current page (Ctrl+H)
+* Search and replace text on the current page (Ctrl + H)
 * Search for keywords and copy or move selected pages (Alt + F)
-* Add arbitrary tags to a page
-* Search arbitrary page tags to index, copy, or move selected pages
+* Add arbitrary tags to a page (Alt + T)
+* Search arbitrary page tags to index, copy, or move selected pages (Ctrl + Alt + T)
 
 [Snippets commands](../../wiki/Snippets-Commands) (16)
 
-* Insert single or double horizontal line
+* Insert single (Shift + Alt + F11) or double (Shift + Alt + F12) horizontal line
 * Insert breadcrumb at top of page
 * Insert Table of Contents of headers, pages, or sections
 * Insert small or large monthly calendar for a specific month
-* Insert sortable date, similar to 2020-12-23
+* Insert sortable date, similar to 2020-12-23 (Ctrl + Shift + D)
 * Insert a text box, a single-cell table, and optionally wrap selecting content
-* Insert Code box similar to Confluence Code macro, optionally wrap selected content
+* Insert Code box similar to Confluence Code macro, optionally wrap selected content (F6)
 * Insert Info/Warn boxes similar to Confluence Info and Warn macros
 * Insert collapsable sections to hide secondary or sensitive information
 * Insert status labels similar to the Confluence status macro
@@ -120,7 +120,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Insert Table Cells, shifting content as expected
 * Paste copied table cells by overlaying cells rather than inserting a nested table
 * Copy across and copy down to fill all or selected cells with a copy of a cell
-* Fill across and fill down to fill all or selected cells with increment values
+* Fill across and fill down (Ctrl + D) to fill all or selected cells with increment values
 * Split table
 
 [Extra commands](../../wiki/Extra-Commands) (10)
@@ -138,12 +138,12 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 [Main Menu](../../wiki/Tools) (7)
 
-* Replay the last OneMore action with a quick keyboard shortcut
+* Replay the last OneMore action with a quick keyboard shortcut (Alt + Shift + R)
 * Import MSWord, PowerPoint, Markdown and others into the current page or a new page
 * Import a Web page from a specified URL
 * Export the current page or selected pages as HTML, PDF, MSWord, or as raw OneNote XML
 * Invoke an external custom plugin to process a page
-* View and edit the internal OneNote XML of the current page
+* View and edit the internal OneNote XML of the current page (Ctrl + Shift + Alt + X)
 * Edit OneMore settings
 * Check for updates and install upgrades on-demand
 
