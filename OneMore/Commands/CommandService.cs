@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class CommandService : Loggable
 	{
+		private const int MaxBytes = 255;
 		private const string Protocol = "onemore://";
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
 
@@ -72,8 +73,8 @@ namespace River.OneMoreAddIn
 							//logger.WriteLine($"command pipe started {pipe}");
 							await server.WaitForConnectionAsync();
 
-							var buffer = new byte[255];
-							await server.ReadAsync(buffer, 0, 255);
+							var buffer = new byte[MaxBytes];
+							await server.ReadAsync(buffer, 0, MaxBytes);
 							data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
 							//logger.WriteLine($"pipe received [{data}]");
 
@@ -97,17 +98,19 @@ namespace River.OneMoreAddIn
 								arguments[i] = HttpUtility.UrlDecode(arguments[i]);
 							}
 
-							logger.WriteLine($"invoking {action}({string.Join(", ", arguments)})");
+							logger.WriteLine($"..invoking {action}({string.Join(", ", arguments)})");
 							await factory.Invoke(action, arguments);
 							errors = 0;
 						}
 					}
 					catch (Exception exc)
 					{
-						logger.WriteLine("pipe exception", exc);
+						logger.WriteLine($"pipe exception {errors}", exc);
 						errors++;
 					}
 				}
+
+				logger.WriteLine("pipe no longer listening; check for exceptions above");
 			});
 
 			thread.SetApartmentState(ApartmentState.STA);
@@ -130,7 +133,7 @@ namespace River.OneMoreAddIn
 			return new NamedPipeServerStream(
 				pipe, PipeDirection.In, 1,
 				PipeTransmissionMode.Byte, PipeOptions.Asynchronous,
-				255, 255, security);
+				MaxBytes, MaxBytes, security);
 		}
 	}
 }
