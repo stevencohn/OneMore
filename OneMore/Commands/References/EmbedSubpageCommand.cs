@@ -126,6 +126,8 @@ namespace River.OneMoreAddIn.Commands
 					return null;
 				}
 
+				logger.WriteLine("recoverying from GetPage by mapping to hyperlink");
+
 				var token = new CancellationTokenSource();
 				var map = await one.BuildHyperlinkMap(OneNote.Scope.Sections, token.Token,
 					async (count) => { await Task.Yield(); },
@@ -180,6 +182,7 @@ namespace River.OneMoreAddIn.Commands
 			var match = Regex.Match(link, @"page-id=({[^}]+?})");
 			var linkId = match.Success ? match.Groups[1].Value : string.Empty;
 
+			var map = page.MergeQuickStyles(source);
 			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			var text = $"<a href=\"{link}\">Embedded from {source.Title}</a> | <a " +
@@ -196,6 +199,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var snippet in snippets)
 			{
+				page.ApplyStyleMapping(map, snippet);
 				cell.Root.Add(snippet);
 			}
 		}

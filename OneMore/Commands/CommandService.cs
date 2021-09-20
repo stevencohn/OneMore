@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class CommandService : Loggable
 	{
-		private const int MaxBytes = 255;
+		private const int MaxBytes = 512;
 		private const string Protocol = "onemore://";
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
 
