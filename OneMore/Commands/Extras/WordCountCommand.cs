@@ -4,9 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Models;
-	using System;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -24,20 +23,19 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection))
 			{
-				var cdatas = page.Root
-					.Descendants(ns + "Outline")
-					.Where(e => !e.Elements(ns + "Meta")
-						.Any(m => m.Attribute("name").Value.Equals(Page.TagBankMetaName)))
-					.DescendantNodes().OfType<XCData>();
-
+				var runs = page.GetSelectedElements(true);
 				var count = 0;
-				foreach (var cdata in cdatas)
+
+				foreach (var run in runs)
 				{
-					var text = cdata.GetWrapper().Value;
-					if (text.Trim().Length > 0)
+					var cdatas = run.DescendantNodes().OfType<XCData>();
+					foreach (var cdata in cdatas)
 					{
-						count += text.Split(new char[] { ' ' },
-							StringSplitOptions.RemoveEmptyEntries).Length;
+						var text = cdata.GetWrapper().Value.Trim();
+						if (text.Length > 0)
+						{
+							count += Regex.Matches(text, @"[\w]+").Count;
+						}
 					}
 				}
 

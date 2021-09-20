@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ApplyStylesCommand>();
 
 		public async Task ArchiveCmd(IRibbonControl control)
-			=> await factory.Run<ArchiveCommand>(control.Tag);
+			=> await factory.Run<ArchiveCommand>(control.Tag); // tag=scope
 
 		public async Task BreakingCmd(IRibbonControl control)
 			=> await factory.Run<BreakingCommand>();
@@ -64,7 +64,13 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ExpandoCommand>(Expando.Collapse);
 
 		public async Task ColorizeCmd(IRibbonControl control)
-			=> await factory.Run<ColorizeCommand>(control.Tag);
+			=> await factory.Run<ColorizeCommand>(control.Tag); // tag=language
+
+		public async Task CopyAcrossCmd(IRibbonControl control)
+			=> await factory.Run<FillCellsCommand>(FillCells.CopyAcross);
+
+		public async Task CopyDownCmd(IRibbonControl control)
+			=> await factory.Run<FillCellsCommand>(FillCells.CopyDown);
 
 		public async Task CropImageCmd(IRibbonControl control)
 			=> await factory.Run<CropImageCommand>();
@@ -93,6 +99,12 @@ namespace River.OneMoreAddIn
 		public async Task ExpandContentCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Expand);
 
+		public async Task FillAcrossCmd(IRibbonControl control)
+			=> await factory.Run<FillCellsCommand>(FillCells.FillAcross);
+
+		public async Task FillDownCmd(IRibbonControl control)
+			=> await factory.Run<FillCellsCommand>(FillCells.FillDown);
+
 		public async Task FinishBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("link");
 
@@ -100,7 +112,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<GetImagesCommand>(true);
 
 		public async Task GotoFavoriteCmd(IRibbonControl control)
-			=> await factory.Run<Commands.GotoFavoriteCommand>(control.Tag);
+			=> await factory.Run<GotoFavoriteCommand>(control.Tag); //tag=pageid
 
 		public async Task IncreaseFontSizeCmd(IRibbonControl control)
 			=> await factory.Run<AlterSizeCommand>(1);
@@ -122,6 +134,9 @@ namespace River.OneMoreAddIn
 
 		public async Task InsertBlueStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
+
+		public async Task InsertBreadcrumbCmd(IRibbonControl control)
+			=> await factory.Run<InsertBreadcrumbCommand>(StatusColor.Blue);
 
 		public async Task InsertCalendarCmd(IRibbonControl control)
 			=> await factory.Run<InsertCalendarCommand>();
@@ -160,7 +175,10 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Red);
 
 		public async Task InsertSnippetCmd(IRibbonControl control)
-			=> await factory.Run<InsertSnippetCommand>(control.Tag);
+			=> await factory.Run<InsertSnippetCommand>(control.Tag); // tag=filepath
+
+		public async Task EmbedSubpageCmd(IRibbonControl control)
+			=> await factory.Run<EmbedSubpageCommand>(false);
 
 		public async Task InsertTocCmd(IRibbonControl control)
 			=> await factory.Run<InsertTocCommand>();
@@ -176,6 +194,9 @@ namespace River.OneMoreAddIn
 
 		public async Task LinkReferencesCmd(IRibbonControl control)
 			=> await factory.Run<LinkReferencesCommand>();
+
+		public async Task LoadStylesCmd(IRibbonControl control)
+			=> await factory.Run<LoadStylesCommand>();
 
 		public async Task JoinParagraphCmd(IRibbonControl control)
 			=> await factory.Run<JoinParagraphCommand>();
@@ -225,6 +246,9 @@ namespace River.OneMoreAddIn
 		public async Task RefreshFootnotesCmd(IRibbonControl control)
 			=> await factory.Run<RefreshFootnotesCommand>();
 
+		public async Task RefreshPageLinksCmd(IRibbonControl control)
+			=> await factory.Run<RefreshPageLinksCommand>();
+
 		public async Task RemoveAuthorsCmd(IRibbonControl control)
 			=> await factory.Run<RemoveAuthorsCommand>();
 
@@ -256,7 +280,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ExpandoCommand>(Expando.Restore);
 
 		public async Task RunPluginCmd(IRibbonControl control)
-			=> await factory.Run<RunPluginCommand>(control.Tag);
+			=> await factory.Run<RunPluginCommand>(control.Tag); // tag=plugin
 
 		public async Task ExportCmd(IRibbonControl control)
 			=> await factory.Run<ExportCommand>();
@@ -274,7 +298,13 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SearchAndReplaceCommand>();
 
 		public async Task SearchWebCmd(IRibbonControl control)
-			=> await factory.Run<SearchWebCommand>(control.Tag);
+			=> await factory.Run<SearchWebCommand>(control.Tag); // tag=engine
+
+		public async Task SelectImagesCmd(IRibbonControl control)
+			=> await factory.Run<SelectImagesCommand>();
+
+		public async Task SelectStyleCmd(IRibbonControl control)
+			=> await factory.Run<SelectStyleCommand>();
 
 		public async Task SettingsCmd(IRibbonControl control)
 			=> await factory.Run<SettingsCommand>(ribbon);
@@ -326,6 +356,9 @@ namespace River.OneMoreAddIn
 
 		public async Task TrimLeadingCmd(IRibbonControl control)
 			=> await factory.Run<TrimCommand>(true);
+
+		public async Task UpdateSubpageCmd(IRibbonControl control)
+			=> await factory.Run<EmbedSubpageCommand>(true);
 
 		public async Task WordCountCmd(IRibbonControl control)
 			=> await factory.Run<WordCountCommand>();

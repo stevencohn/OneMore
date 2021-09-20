@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<CustomStyles>
+<Theme name="Orange" dark="false">
   <Style index="0" name="Heading 1" font="Calibri Light" fontColor="Black" fontSize="20.0" spaceBefore="14.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="1" name="Heading 2" font="Calibri Light" fontColor="#E67832" fontSize="18.0" spaceBefore="14.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="2" name="Heading 3" font="Calibri Light" fontColor="#823D0A" fontSize="16.0" spaceBefore="12.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
@@ -15,4 +15,4 @@
   <Style index="12" name="Emphasis" font="Calibri" fontColor="#4F81BD" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
   <Style index="13" name="Intense Emphasis" font="Calibri" fontColor="#C0504D" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
   <Style index="14" name="Subtle Emphasis" font="Calibri" fontColor="Gray" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
-</CustomStyles>
+</Theme>

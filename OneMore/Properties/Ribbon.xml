@@ -16,6 +16,11 @@
             getItemScreentip="GetStyleGalleryItemScreentip"
             onAction="ApplyStyleCmd">
             <button
+              id="ribLoadStylesButton"
+              getLabel="GetRibbonLabel"
+              imageMso="SharingOpenWssDocumentList"
+              onAction="LoadStylesCmd"/>
+            <button
               id="ribEditStylesButton"
               getLabel="GetRibbonLabel"
               imageMso="StylesModifyStyle"
@@ -195,6 +200,16 @@
                 imageMso="GroupMerge"
                 getLabel="GetRibbonLabel"
                 onAction="JoinParagraphCmd"/>
+              <button
+                id="ribSelectImagesButton"
+                imageMso="AdpDiagramArrangeSelection"
+                getLabel="GetRibbonLabel"
+                onAction="SelectImagesCmd"/>
+              <button
+                id="ribSelectStyleButton"
+                imageMso="StylesStyleInspector"
+                getLabel="GetRibbonLabel"
+                onAction="SelectStyleCmd"/>
             </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">
               <button
@@ -281,21 +296,40 @@
                 getEnabled="GetBodyContext"
                 onAction="FinishBiLinkCmd"/>
               <button
+                id="ribEmbedSubpageButton"
+                imageMso="MasterDocumentCreateSubdocument"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="EmbedSubpageCmd"/>
+              <button
+                id="ribUpdateSubpageButton"
+                imageMso="MasterDocumentInsertSubdocument"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="UpdateSubpageCmd"/>
+              <button
                 id="ribInsertQRButton"
                 getLabel="GetRibbonLabel"
                 imageMso="BarcodeInsert"
                 getEnabled="GetBodyContext"
                 onAction="InsertQRCmd"/>
               <button
+                id="ribMapButton"
+                getLabel="GetRibbonLabel"
+                imageMso="CreateMap"
+                onAction="MapCmd"/>
+              <button
                 id="ribLinkReferencesButton"
                 getLabel="GetRibbonLabel"
                 imageMso="TextBoxPreviousLinked"
                 onAction="LinkReferencesCmd"/>
               <button
-                id="ribMapButton"
+                id="ribRefreshPageLinksButton"
+                imageMso="SourceControlRefreshStatus"
                 getLabel="GetRibbonLabel"
-                imageMso="CreateMap"
-                onAction="MapCmd"/>
+                onAction="RefreshPageLinksCmd"/>
               <button
                 id="ribNameUrlsButton"
                 imageMso="AutoSigWebInsertHyperlink"
@@ -351,6 +385,11 @@
                 imageMso="WordInsertTableOfContents2"
                 getLabel="GetRibbonLabel"
                 onAction="InsertTocCmd"/>
+              <button
+                id="ribBreadcrumbButton"
+                imageMso="ShapeRightArrow"
+                getLabel="GetRibbonLabel"
+                onAction="InsertBreadcrumbCmd"/>
               <button
                 id="ribCalendarButton"
                 imageMso="CalendarInsert"
@@ -468,9 +507,34 @@
               <button
                 id="ribPasteCellsButton"
                 imageMso="PasteAsNestedTable"
-                label="Paste Cells"
+                getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
                 onAction="PasteCellsCmd"/>
+              <button
+                id="ribCopyAcrossButton"
+                imageMso="TableRowSelect"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="CopyAcrossCmd"/>
+              <button
+                id="ribCopyDownButton"
+                imageMso="TableColumnSelect"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="CopyDownCmd"/>
+              <button
+                id="ribFillAcrossButton"
+                imageMso="TableColumnsDistribute"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetBodyContext"
+                onAction="FillAcrossCmd"/>
+              <button
+                id="ribFillDownButton"
+                imageMso="TableRowsDistribute"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                getEnabled="GetBodyContext"
+                onAction="FillDownCmd"/>
               <button
                 id="ribSplitTableButton"
                 imageMso="TableSplitTable"
@@ -674,7 +738,7 @@
       <button
         id="ctxAddFavoriteSectionButton"
         imageMso="AddToFavorites"
-        label="Add to Favorites"
+        getLabel="GetRibbonLabel"
         onAction="AddFavoriteSectionCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button

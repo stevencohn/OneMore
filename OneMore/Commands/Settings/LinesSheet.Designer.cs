@@ -111,6 +111,7 @@ namespace River.OneMoreAddIn.Settings
 			// colorBox
 			// 
 			this.colorBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.colorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.colorBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.colorBox.Location = new System.Drawing.Point(93, 26);
 			this.colorBox.Name = "colorBox";

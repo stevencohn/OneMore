@@ -642,7 +642,7 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Gets a collection of fully selecte text runs
+		/// Gets a collection of fully selected text runs
 		/// </summary>
 		/// <param name="all">
 		/// If no selected elements are found and this value is true then return all elements;
@@ -656,6 +656,8 @@ namespace River.OneMoreAddIn.Models
 		public IEnumerable<XElement> GetSelectedElements(bool all = true)
 		{
 			var selected = Root.Elements(Namespace + "Outline")
+				.Where(e => !e.Elements(Namespace + "Meta")
+					.Any(m => m.Attribute("name").Value.Equals(Page.TagBankMetaName)))
 				.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
@@ -747,15 +749,14 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>
 		/// The one:T XElement or null if there is a selected range greater than zero
 		/// </returns>
-		public XElement GetTextCursor(bool merge = false)
+		public XElement GetTextCursor()
 		{
 			var selected = Root.Elements(Namespace + "Outline")
 				.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 
 			var count = selected.Count();
-
-			if (selected.Any() && count == 1)
+			if (count == 1)
 			{
 				var cursor = selected.First();
 				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA)
@@ -769,53 +770,19 @@ namespace River.OneMoreAddIn.Models
 						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
 						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
 					{
-						XElement merged = null;
-						if (merge && cursor.GetCData().Value == string.Empty)
-						{
-							// only merge if empty [], note cursor could be a hyperlink <a>..</a>
-							merged = MergeRuns(cursor);
-						}
-
 						SelectionScope = SelectionScope.Empty;
-
-						return merge ? merged : cursor;
-					}
-
-					if (merge)
-					{
 						return cursor;
 					}
 				}
 			}
 
-			SelectionScope = count > 1 ? SelectionScope.Region : SelectionScope.Empty;
+			SelectionScope = count > 1
+				? SelectionScope.Region
+				: SelectionScope.Empty; // else 0
 
-			// zero or more than one empty cdata are selected
+			// zero or more-than-one empty cdata are selected
 			return null;
 		}
-
-
-		// remove the empty CDATA[] cursor, combining the previous and next runs into one
-		private XElement MergeRuns(XElement cursor)
-		{
-			XElement merged = null;
-
-			if (cursor.PreviousNode is XElement prev)
-			{
-				if (cursor.NextNode is XElement next)
-				{
-					var cprev = prev.GetCData();
-					var cnext = next.GetCData();
-					cprev.Value = $"{cprev.Value}{cnext.Value}";
-					next.Remove();
-					merged = prev;
-				}
-			}
-
-			cursor.Remove();
-			return merged;
-		}
-
 
 
 		/// <summary>

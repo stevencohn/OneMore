@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1822 // member can be made static
 
-namespace River.OneMoreAddIn
+namespace River.OneMoreAddIn.Styles
 {
 	using System.Collections.Generic;
 	using System.Collections.Specialized;
@@ -46,44 +46,7 @@ namespace River.OneMoreAddIn
 		/// <param name="element"></param>
 		public Style(Dictionary<string, string> properties) : base()
 		{
-			if (properties.ContainsKey("font-family"))
-				FontFamily = properties["font-family"];
-
-			if (properties.ContainsKey("font-size"))
-				FontSize = properties["font-size"];
-
-			if (properties.ContainsKey("font-weight") && properties["font-weight"].Equals("bold"))
-				IsBold = true;
-
-			if (properties.ContainsKey("font-style") && properties["font-style"].Equals("italic"))
-				IsItalic = true;
-
-			if (properties.ContainsKey("text-decoration") && properties["text-decoration"].Contains("underline"))
-				IsUnderline = true;
-
-			if (properties.ContainsKey("text-decoration") && properties["text-decoration"].Contains("line-through"))
-				IsStrikethrough = true;
-
-			if (properties.ContainsKey("vertical-align") && properties["vertical-align"].Equals("super"))
-				IsSuperscript = true;
-
-			if (properties.ContainsKey("vertical-align") && properties["vertical-align"].Equals("sub"))
-				IsSubscript = true;
-
-			if (properties.ContainsKey("color"))
-				Color = properties["color"];
-
-			if (properties.ContainsKey("background"))
-				Highlight = properties["background"];
-
-			if (properties.ContainsKey("spaceBefore"))
-				SpaceBefore = properties["spaceBefore"];
-
-			if (properties.ContainsKey("spaceAfter"))
-				SpaceAfter = properties["spaceAfter"];
-
-			if (properties.ContainsKey("spacing"))
-				Spacing = properties["spacing"];
+			Merge(properties);
 
 			if ((spaceBefore > 0) || (spaceAfter > 0) || (spacing > 0))
 			{
@@ -328,6 +291,53 @@ namespace River.OneMoreAddIn
 				Color = other.Color;
 				if (other.Highlight != null) Highlight = other.Highlight;
 			}
+		}
+
+
+		/// <summary>
+		/// Merge or overlay the given style propeties onto the current style
+		/// </summary>
+		/// <param name="properties">A collection of properties to overlay</param>
+		public void Merge(Dictionary<string, string> properties)
+		{
+			if (properties.ContainsKey("font-family"))
+				FontFamily = properties["font-family"];
+
+			if (properties.ContainsKey("font-size"))
+				FontSize = properties["font-size"];
+
+			if (properties.ContainsKey("font-weight") && properties["font-weight"].Equals("bold"))
+				IsBold = true;
+
+			if (properties.ContainsKey("font-style") && properties["font-style"].Equals("italic"))
+				IsItalic = true;
+
+			if (properties.ContainsKey("text-decoration") && properties["text-decoration"].Contains("underline"))
+				IsUnderline = true;
+
+			if (properties.ContainsKey("text-decoration") && properties["text-decoration"].Contains("line-through"))
+				IsStrikethrough = true;
+
+			if (properties.ContainsKey("vertical-align") && properties["vertical-align"].Equals("super"))
+				IsSuperscript = true;
+
+			if (properties.ContainsKey("vertical-align") && properties["vertical-align"].Equals("sub"))
+				IsSubscript = true;
+
+			if (properties.ContainsKey("color"))
+				Color = properties["color"];
+
+			if (properties.ContainsKey("background"))
+				Highlight = properties["background"];
+
+			if (properties.ContainsKey("spaceBefore"))
+				SpaceBefore = properties["spaceBefore"];
+
+			if (properties.ContainsKey("spaceAfter"))
+				SpaceAfter = properties["spaceAfter"];
+
+			if (properties.ContainsKey("spacing"))
+				Spacing = properties["spacing"];
 		}
 
 

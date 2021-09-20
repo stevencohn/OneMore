@@ -196,6 +196,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string AddFootnoteCommand_Refresh {
+            get {
+                return ResourceManager.GetString("AddFootnoteCommand_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one or more cells from the same row or the same column.
         /// </summary>
         internal static string AddFormula_linearMessage {
@@ -340,7 +349,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Backups are stored locally along with a recycle bin folder. Backup location and number of copies is configured in the OneNote Options. This summary shows the total disk usage including all backup copies and the per-notebook recycle bins..
+        ///   Looks up a localized string similar to Notebooks can be stored locally or remotely on OneDrive. Remote notebooks can only be analyzed by their local backups as configured in the OneNote Options. This summary shows the total disk usage in either the data location for local notebooks or the backup location for remote notebooks including all backup copies and the per-notebook recycle bins..
         /// </summary>
         internal static string AnalyzeCommand_SummarySummary {
             get {
@@ -751,6 +760,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply style theme to this page.
+        /// </summary>
+        internal static string ChangePageColorDialog_applyBox {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_applyBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ChangePageColorDialog_cancelButton_Text {
@@ -760,20 +778,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom background....
+        ///   Looks up a localized string similar to Choose a custom color.
         /// </summary>
-        internal static string ChangePageColorDialog_customButton_Text {
+        internal static string ChangePageColorDialog_colorLink_Text {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_customButton.Text", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_colorLink.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dark background.
+        ///   Looks up a localized string similar to Color and theme may not have enough contrast.
         /// </summary>
-        internal static string ChangePageColorDialog_darkButton_Text {
+        internal static string ChangePageColorDialog_Contrast {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_darkButton.Text", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_Contrast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Theme:.
+        /// </summary>
+        internal static string ChangePageColorDialog_currentLabel {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_currentLabel", resourceCulture);
             }
         }
         
@@ -787,11 +814,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Light background.
+        ///   Looks up a localized string similar to Load a style theme.
         /// </summary>
-        internal static string ChangePageColorDialog_lightButton_Text {
+        internal static string ChangePageColorDialog_loadLink {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_lightButton.Text", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_loadLink", resourceCulture);
             }
         }
         
@@ -805,11 +832,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Page Color.
+        ///   Looks up a localized string similar to Change Page Theme.
         /// </summary>
         internal static string ChangePageColorDialog_Text {
             get {
                 return ResourceManager.GetString("ChangePageColorDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible..
+        /// </summary>
+        internal static string ChangePageColorDialog_themeIntroLabel {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_themeIntroLabel", resourceCulture);
             }
         }
         
@@ -1301,7 +1337,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crop.
+        ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string CropImageDialog_cropButton_Text {
             get {
@@ -1315,6 +1351,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CropImageDialog_imageSize {
             get {
                 return ResourceManager.GetString("CropImageDialog_imageSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish..
+        /// </summary>
+        internal static string CropImageDialog_introText_Text {
+            get {
+                return ResourceManager.GetString("CropImageDialog_introText.Text", resourceCulture);
             }
         }
         
@@ -1337,7 +1382,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crop Image.
+        ///   Looks up a localized string similar to Crop and Rotate.
         /// </summary>
         internal static string CropImageDialog_Text {
             get {
@@ -1437,19 +1482,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;CustomStyles&gt;
-        ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
-        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot;16.0&quot; spaceBefore=&quot;12.0&quot; sp [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string CustomStyles {
-            get {
-                return ResourceManager.GetString("CustomStyles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CustomStyles.xml.
         /// </summary>
         internal static string CustomStylesFilename {
@@ -1465,6 +1497,19 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Cyclist", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;Theme name=&quot;Orange&quot; dark=&quot;false&quot;&gt;
+        ///  &lt;Style index=&quot;0&quot; name=&quot;Heading 1&quot; font=&quot;Calibri Light&quot; fontColor=&quot;Black&quot; fontSize=&quot;20.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
+        ///  &lt;Style index=&quot;1&quot; name=&quot;Heading 2&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#E67832&quot; fontSize=&quot;18.0&quot; spaceBefore=&quot;14.0&quot; spaceAfter=&quot;0.0&quot; applyColors=&quot;true&quot; styleType=&quot;Heading&quot; /&gt;
+        ///  &lt;Style index=&quot;2&quot; name=&quot;Heading 3&quot; font=&quot;Calibri Light&quot; fontColor=&quot;#823D0A&quot; fontSize=&quot;16.0&quot; s [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DefaultStyles {
+            get {
+                return ResourceManager.GetString("DefaultStyles", resourceCulture);
             }
         }
         
@@ -1522,6 +1567,60 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source page contains no content.
+        /// </summary>
+        internal static string EmbedSubpageCommand_NoContent {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_NoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No embedded content found.
+        /// </summary>
+        internal static string EmbedSubpageCommand_NoEmbedded {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_NoEmbedded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source page not found.
+        /// </summary>
+        internal static string EmbedSubpageCommand_NoSource {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_NoSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string EmbedSubpageCommand_Refresh {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Page.
+        /// </summary>
+        internal static string EmbedSubpageCommand_Select {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the page to embed on this page.
+        /// </summary>
+        internal static string EmbedSubpageCommand_SelectIntro {
+            get {
+                return ResourceManager.GetString("EmbedSubpageCommand_SelectIntro", resourceCulture);
             }
         }
         
@@ -2508,6 +2607,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to click to change.
+        /// </summary>
+        internal static string InsertCalendarDialog_clickLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_clickLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading color.
+        /// </summary>
+        internal static string InsertCalendarDialog_colorLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_colorLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First day of week.
+        /// </summary>
+        internal static string InsertCalendarDialog_firstLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertCalendarDialog_firstLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Format.
         /// </summary>
         internal static string InsertCalendarDialog_formatLabel_Text {
@@ -2688,6 +2814,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no headings on this page.
+        /// </summary>
+        internal static string InsertTocCommand_NoHeadings {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_NoHeadings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string InsertTocCommand_Refresh {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
         internal static string InsertTocCommand_TOC {
@@ -2811,6 +2955,15 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Italic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select two or more lines to join.
+        /// </summary>
+        internal static string JoinParagraphCommand_Select {
+            get {
+                return ResourceManager.GetString("JoinParagraphCommand_Select", resourceCulture);
             }
         }
         
@@ -2958,6 +3111,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string LinkDialog_Text {
             get {
                 return ResourceManager.GetString("LinkDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Linked References.
+        /// </summary>
+        internal static string LinkedReferencesCommand_Title {
+            get {
+                return ResourceManager.GetString("LinkedReferencesCommand_Title", resourceCulture);
             }
         }
         
@@ -3813,6 +3975,87 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No references found to this page.
+        /// </summary>
+        internal static string RefreshPageLinksCommand_none {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksCommand_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated {0} pages.
+        /// </summary>
+        internal static string RefreshPageLinksCommand_updated {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksCommand_updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages in.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_groupBox_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_groupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All sections in the current notebook.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_notebookRadio_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_notebookRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All notebooks.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_notebooksRadio_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_notebooksRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current section.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_sectionRadio_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh Page References.
+        /// </summary>
+        internal static string RefreshPageLinksDialog_Text {
+            get {
+                return ResourceManager.GetString("RefreshPageLinksDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Screen clipping.
         /// </summary>
         internal static string RemoveCitations_Clippings {
@@ -4138,6 +4381,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to Favorites.
+        /// </summary>
+        internal static string ribAddFavoriteSectionButton_Label {
+            get {
+                return ResourceManager.GetString("ribAddFavoriteSectionButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Formula.
         /// </summary>
         internal static string ribAddFormulaButton_Label {
@@ -4313,6 +4565,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Breadcrumb.
+        /// </summary>
+        internal static string ribBreadcrumbButton_Label {
+            get {
+                return ResourceManager.GetString("ribBreadcrumbButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Sentence Spacing.
         /// </summary>
         internal static string ribBreakingButton_Label {
@@ -4403,6 +4664,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Across.
+        /// </summary>
+        internal static string ribCopyAcrossButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyAcrossButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Down.
+        /// </summary>
+        internal static string ribCopyDownButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyDownButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Section Group.
         /// </summary>
         internal static string ribCopyFolderButton_Label {
@@ -4421,7 +4700,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crop.
+        ///   Looks up a localized string similar to Crop and Rotate.
         /// </summary>
         internal static string ribCropImageButton_Label {
             get {
@@ -4520,6 +4799,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embed Page.
+        /// </summary>
+        internal static string ribEmbedSubpageButton_Label {
+            get {
+                return ResourceManager.GetString("ribEmbedSubpageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Embed content of another page into the current page.
+        /// </summary>
+        internal static string ribEmbedSubpageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribEmbedSubpageButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expand/Collapse.
         /// </summary>
         internal static string ribExpandButton_Label {
@@ -4570,6 +4867,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribFavoritesMenu_Label {
             get {
                 return ResourceManager.GetString("ribFavoritesMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Across.
+        /// </summary>
+        internal static string ribFillAcrossButton_Label {
+            get {
+                return ResourceManager.GetString("ribFillAcrossButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Down.
+        /// </summary>
+        internal static string ribFillDownButton_Label {
+            get {
+                return ResourceManager.GetString("ribFillDownButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Down (Ctrl + D).
+        /// </summary>
+        internal static string ribFillDownButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribFillDownButton_Screentip", resourceCulture);
             }
         }
         
@@ -4826,11 +5150,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Link References to this page.
+        ///   Looks up a localized string similar to Link References to this Page.
         /// </summary>
         internal static string ribLinkReferencesButton_Label {
             get {
                 return ResourceManager.GetString("ribLinkReferencesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Styles.
+        /// </summary>
+        internal static string ribLoadStylesButton_Label {
+            get {
+                return ResourceManager.GetString("ribLoadStylesButton_Label", resourceCulture);
             }
         }
         
@@ -4871,7 +5204,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Map Linked Pages.
+        ///   Looks up a localized string similar to Create Page Map.
         /// </summary>
         internal static string ribMapButton_Label {
             get {
@@ -4988,11 +5321,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Page Color.
+        ///   Looks up a localized string similar to Change Page Theme.
         /// </summary>
         internal static string ribPageColorButton_Label {
             get {
                 return ResourceManager.GetString("ribPageColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Cells.
+        /// </summary>
+        internal static string ribPasteCellsButton_Label {
+            get {
+                return ResourceManager.GetString("ribPasteCellsButton_Label", resourceCulture);
             }
         }
         
@@ -5092,6 +5434,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRefreshFootenotesButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRefreshFootenotesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh Page References.
+        /// </summary>
+        internal static string ribRefreshPageLinksButton_Label {
+            get {
+                return ResourceManager.GetString("ribRefreshPageLinksButton_Label", resourceCulture);
             }
         }
         
@@ -5308,6 +5659,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSearchMenu_Label {
             get {
                 return ResourceManager.GetString("ribSearchMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All Images.
+        /// </summary>
+        internal static string ribSelectImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribSelectImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select text with similar formatting.
+        /// </summary>
+        internal static string ribSelectStyleButton_Label {
+            get {
+                return ResourceManager.GetString("ribSelectStyleButton_Label", resourceCulture);
             }
         }
         
@@ -5533,6 +5902,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribTrimLeadingButton_Screentip {
             get {
                 return ResourceManager.GetString("ribTrimLeadingButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Embedded Pages.
+        /// </summary>
+        internal static string ribUpdateSubpageButton_Label {
+            get {
+                return ResourceManager.GetString("ribUpdateSubpageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update all embedded content on this page.
+        /// </summary>
+        internal static string ribUpdateSubpageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribUpdateSubpageButton_Screentip", resourceCulture);
             }
         }
         
@@ -6820,7 +7207,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
+        ///   Looks up a localized string similar to OK (Save).
         /// </summary>
         internal static string StyleDialog_okButton_Text {
             get {
@@ -6908,6 +7295,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string StyleDialog_Text {
             get {
                 return ResourceManager.GetString("StyleDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Styles.
+        /// </summary>
+        internal static string StyleDialog_ThemeText {
+            get {
+                return ResourceManager.GetString("StyleDialog_ThemeText", resourceCulture);
             }
         }
         
@@ -7203,6 +7599,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TextToTableDialog_unquoteBox_Text {
             get {
                 return ResourceManager.GetString("TextToTableDialog_unquoteBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Themes.
+        /// </summary>
+        internal static string ThemesFolder {
+            get {
+                return ResourceManager.GetString("ThemesFolder", resourceCulture);
             }
         }
         

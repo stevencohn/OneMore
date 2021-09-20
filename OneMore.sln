@@ -20,16 +20,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891C1-D812-4C1D-B6DC-2175A68C4ADC}"
 	ProjectSection(SolutionItems) = preProject
-		Themes\ConfluenceStyles6.xml = Themes\ConfluenceStyles6.xml
-		Themes\ConfluenceStyles7.xml = Themes\ConfluenceStyles7.xml
-		Themes\DarkStyles.xml = Themes\DarkStyles.xml
-		Themes\OrangeStyles.xml = Themes\OrangeStyles.xml
+		Themes\Confluence6.xml = Themes\Confluence6.xml
+		Themes\Confluence7.xml = Themes\Confluence7.xml
+		Themes\DarkBlue.xml = Themes\DarkBlue.xml
+		Themes\DarkGreen.xml = Themes\DarkGreen.xml
+		Themes\DarkOrange.xml = Themes\DarkOrange.xml
+		Themes\Orange.xml = Themes\Orange.xml
+		Themes\Standard.xml = Themes\Standard.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56ACB1-3CDF-48EB-B786-4F924E899CE2}"
 	ProjectSection(SolutionItems) = preProject
 		Plugins\Get-MeetingDate.ps1 = Plugins\Get-MeetingDate.ps1
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{31896922-72FF-4823-80C0-8EC46936AC71}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\OneNote_Keyboard_Shortcuts.zip = Templates\OneNote_Keyboard_Shortcuts.zip
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreProtocolHandler", "OneMoreProtocolHandler\OneMoreProtocolHandler.csproj", "{BD0FA4FC-8CA9-4056-93DD-14537A758D48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +88,24 @@ Global
 		{617FC926-3389-4888-B08B-29B28E413936}.Release|x64.Build.0 = Release
 		{617FC926-3389-4888-B08B-29B28E413936}.Release|x86.ActiveCfg = Release
 		{617FC926-3389-4888-B08B-29B28E413936}.Release|x86.Build.0 = Release
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Debug|x64.Build.0 = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Debug|x86.Build.0 = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.LocalDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.LocalDebug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.LocalDebug|x64.ActiveCfg = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.LocalDebug|x64.Build.0 = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.LocalDebug|x86.ActiveCfg = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.LocalDebug|x86.Build.0 = Debug|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Release|x64.ActiveCfg = Release|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Release|x64.Build.0 = Release|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Release|x86.ActiveCfg = Release|Any CPU
+		{BD0FA4FC-8CA9-4056-93DD-14537A758D48}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

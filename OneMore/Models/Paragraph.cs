@@ -9,8 +9,20 @@ namespace River.OneMoreAddIn.Models
 
 	internal class Paragraph : XElement
 	{
+		public Paragraph(string text)
+			: this(PageNamespace.Value, text)
+		{
+		}
+
+
 		public Paragraph(XNamespace ns, string text)
 			: this(ns, new XElement(ns + "T", new XCData(text)))
+		{
+		}
+
+
+		public Paragraph(XElement content)
+			: this(PageNamespace.Value, content)
 		{
 		}
 
@@ -22,7 +34,13 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public Paragraph(XNamespace ns, params XNode[] nodes)
+		public Paragraph(params XObject[] nodes)
+			: this(PageNamespace.Value, nodes)
+		{
+		}
+
+
+		public Paragraph(XNamespace ns, params XObject[] nodes)
 			: base(ns + "OE")
 		{
 			Add(nodes);

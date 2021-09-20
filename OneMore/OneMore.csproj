@@ -213,6 +213,7 @@
     <Compile Include="Colorizer\Parser.cs" />
     <Compile Include="Colorizer\Provider.cs" />
     <Compile Include="Colorizer\Theme.cs" />
+    <Compile Include="Commands\CommandService.cs" />
     <Compile Include="Commands\Clean\BreakingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +229,8 @@
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
+    <Compile Include="Commands\Edit\SelectImagesCommand.cs" />
+    <Compile Include="Commands\Edit\SelectStyleCommand.cs" />
     <Compile Include="Commands\Extras\DateStampCommand.cs" />
     <Compile Include="Commands\File\CopyFolderCommand.cs" />
     <Compile Include="Commands\File\ImportWebCommand.cs" />
@@ -238,6 +241,7 @@
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\References\BiLinkCommand.cs" />
+    <Compile Include="Commands\References\EmbedSubpageProxy.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
     <Compile Include="Commands\References\LinkDialog.cs">
       <SubType>Form</SubType>
@@ -246,6 +250,13 @@
       <DependentUpon>LinkDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Images\GetImagesCommand.cs" />
+    <Compile Include="Commands\References\RefreshPageLinksDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\References\RefreshPageLinksDialog.Designer.cs">
+      <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
     <Compile Include="Commands\Settings\LinesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -258,6 +269,17 @@
     <Compile Include="Commands\Settings\GeneralSheet.Designer.cs">
       <DependentUpon>GeneralSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
+    <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
+    <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
+    <Compile Include="Commands\Tables\FillerModels\AlphaNumericFiller.cs" />
+    <Compile Include="Commands\Tables\FillerModels\DateFiller.cs" />
+    <Compile Include="Commands\Tables\FillerModels\Filler.cs" />
+    <Compile Include="Commands\Tables\FillerModels\FillType.cs" />
+    <Compile Include="Commands\Tables\FillerModels\GenericFiller.cs" />
+    <Compile Include="Commands\Tables\FillerModels\IFiller.cs" />
+    <Compile Include="Commands\Tables\FillerModels\NumberFiller.cs" />
+    <Compile Include="Commands\Tables\FillCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsDialog.cs">
       <SubType>Form</SubType>
@@ -377,9 +399,18 @@
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="Models\Bullet.cs" />
     <Compile Include="Models\ContentList.cs" />
+    <Compile Include="Models\Meta.cs" />
+    <Compile Include="Models\Outline.cs" />
+    <Compile Include="Models\PageNamespace.cs" />
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
+    <Compile Include="Styles\StyleProperties.cs" />
+    <Compile Include="Styles\Theme.cs" />
+    <Compile Include="Styles\ThemeProvider.cs" />
+    <Compile Include="UI\ColorsComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\FormTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -534,7 +565,7 @@
     <Compile Include="UI\HierarchyView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Helpers\GalleryTileFactory.cs" />
+    <Compile Include="UI\TileFactory.cs" />
     <Compile Include="Commands\Snippets\InsertCodeBlockCommand.cs" />
     <Compile Include="Commands\Snippets\InsertExpandCommand.cs" />
     <Compile Include="Commands\Snippets\InsertInfoBlockCommand.cs" />
@@ -691,7 +722,6 @@
     <Compile Include="Styles\Style.cs" />
     <Compile Include="Styles\StyleAnalyzer.cs" />
     <Compile Include="Styles\StyleBase.cs" />
-    <Compile Include="Styles\StyleProvider.cs" />
     <Compile Include="Styles\StyleRecord.cs" />
     <Compile Include="Styles\StyleType.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -863,7 +893,7 @@
     <Content Include="Properties\Images\UpArrow.png" />
     <Content Include="Properties\Images\Logo.png" />
     <Content Include="Properties\Images\NoSpellCheck.png" />
-    <Content Include="Properties\CustomStyles.xml" />
+    <Content Include="Properties\DefaultStyles.xml" />
     <Content Include="Properties\Images\WrapText.png" />
     <Content Include="Properties\Ribbon.xml">
       <SubType>Designer</SubType>
@@ -881,6 +911,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\LinkDialog.resx">
       <DependentUpon>LinkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\References\RefreshPageLinksDialog.resx">
+      <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
       <DependentUpon>LinesSheet.cs</DependentUpon>

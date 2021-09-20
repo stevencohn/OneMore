@@ -2,10 +2,12 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-using System.Linq;
-
 namespace River.OneMoreAddIn.UI
 {
+	using System.Drawing;
+	using System.Linq;
+
+
 	#region LinqPad
 	/*
 	var basicColors = new List<Color>
@@ -120,6 +122,9 @@ namespace River.OneMoreAddIn.UI
 			0x400040,
 			0xFFFFFF
 		};
+
+
+		public static Color BlackSmoke => Color.FromArgb(64, 64, 64);
 
 
 		public static bool IsKnown (int candidate)

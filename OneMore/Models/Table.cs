@@ -225,6 +225,14 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Returns a collection of selected table cells in row/col order, all cells
+		/// in row 1, followed by all cells in row 2, followed by all cells in row 3...
+		/// </summary>
+		/// <param name="range">
+		/// The selection shape: Rows/vertical, Columns/horizontal, or Rectangular
+		/// </param>
+		/// <returns>An enumerable collection of TableCell</returns>
 		public IEnumerable<TableCell> GetSelectedCells(out TableSelectionRange range)
 		{
 			var selections =
@@ -250,7 +258,7 @@ namespace River.OneMoreAddIn.Models
 			var col = -1;
 			var row = -1;
 
-			// cells should be in order, from A1, A2, .. B1, B2, .. C1, C2, ..
+			// cells should be in order (row/col), from A1, B1, .. A2, B2, .. A3, B3, ..
 			foreach (var cell in cells)
 			{
 				// record first column and then notice when there are multiple cols selected
@@ -276,9 +284,11 @@ namespace River.OneMoreAddIn.Models
 			}
 			else if (col == int.MaxValue)
 			{
+				// horizontal selection, multiple columns in a single row
 				return TableSelectionRange.Columns;
 			}
 
+			// vertical selection, multiple rows in a single column
 			return TableSelectionRange.Rows;
 		}
 

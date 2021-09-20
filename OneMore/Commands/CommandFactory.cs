@@ -93,7 +93,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-
 		private void RecordLastAction(Command command, params object[] args)
 		{
 			// ignore commands that pass the ribbon as an argument
@@ -202,6 +201,35 @@ namespace River.OneMoreAddIn
 			{
 				await Task.Yield();
 			}
+		}
+
+
+		/// <summary>
+		/// Invokes a command using its name and an array of strings as arguments. If the
+		/// command's arguments are other types then this may need to defer to a proxy method
+		/// that converts the string values to their proper types and then invokes the target
+		/// command directly.
+		/// </summary>
+		/// <param name="action">The command name</param>
+		/// <param name="arguments">The arguments to pass to the command</param>
+		/// <returns></returns>
+		public async Task Invoke(string action, string[] arguments)
+		{
+			var name = $"River.OneMoreAddIn.Commands.{action}";
+			var type = Type.GetType(name, false);
+			if (type == null)
+			{
+				logger.WriteLine($"factory failed to find command {name}");
+				return;
+			}
+
+			if (!(Activator.CreateInstance(type) is Command command))
+			{
+				logger.WriteLine($"factory failed to create instance of '{name}'");
+				return;
+			}
+
+			await Run("Invoking", command, arguments);
 		}
 	}
 }

@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Globalization;
+	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -22,6 +24,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"yearLabel",
 					"monthLabel",
+					"firstLabel",
+					"colorLabel",
+					"clickLabel",
 					"formatLabel",
 					"smallRadio",
 					"largeRadio",
@@ -29,6 +34,9 @@ namespace River.OneMoreAddIn.Commands
 					"okButton",
 					"cancelButton"
 				});
+
+				sundayButton.Text = DateTimeFormatInfo.CurrentInfo.GetDayName(DayOfWeek.Sunday);
+				mondayButton.Text = DateTimeFormatInfo.CurrentInfo.GetDayName(DayOfWeek.Monday);
 			}
 
 			yearBox.Value = DateTime.Now.Year;
@@ -39,6 +47,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			monthBox.SelectedIndex = DateTime.Now.Month - 1;
+
+			if (CultureInfo.CurrentUICulture.DateTimeFormat.FirstDayOfWeek == DayOfWeek.Monday)
+			{
+				mondayButton.Checked = true;
+			}
+
+			// this is set in the forms designer as 222, 235, 246 
+			//colorBox.BackColor = System.Drawing.Color.FromArgb(0, 222, 235, 246); // "#DEEBF6"
 		}
 
 
@@ -48,9 +64,33 @@ namespace River.OneMoreAddIn.Commands
 		public int Month => monthBox.SelectedIndex + 1;
 
 
+		public DayOfWeek FirstDay => sundayButton.Checked ? DayOfWeek.Sunday : DayOfWeek.Monday;
+
+
+		public string HeaderShading => shadingBox.BackColor.ToRGBHtml();
+
+
 		public bool Large => largeRadio.Checked;
 
 
 		public bool Indent => indentBox.Checked;
+
+
+		private void ChangeHeadingColor(object sender, EventArgs e)
+		{
+			var location = PointToScreen(shadingBox.Location);
+
+			using (var dialog = new UI.MoreColorDialog(Resx.PageColorDialog_Text,
+				location.X + shadingBox.Bounds.Location.X + (shadingBox.Width / 2),
+				location.Y - 50))
+			{
+				dialog.Color = shadingBox.BackColor;
+
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					shadingBox.BackColor = dialog.Color;
+				}
+			}
+		}
 	}
 }

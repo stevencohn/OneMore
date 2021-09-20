@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -29,7 +30,7 @@ namespace River.OneMoreAddIn.Models
 		{
 			quickStyles = GetQuickStyles();
 
-			customStyles = new StyleProvider().GetStyles()
+			customStyles = new ThemeProvider().Theme.GetStyles()
 				.Where(e => e.StyleType == StyleType.Heading)
 				.OrderBy(e => e.Index)
 				.ToList();
@@ -160,7 +161,7 @@ namespace River.OneMoreAddIn.Models
 			if (child != null)
 			{
 				var analyzer = new StyleAnalyzer(Root);
-				var style = new Style(analyzer.CollectStyleProperties(child));
+				var style = analyzer.CollectStyleFrom(child);
 
 				// normalize style background to page background
 				if (style.Highlight != pageColor && pageColor == "automatic")

@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string Header2Shading = "#F2F2F2";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 		private const string LineCss = "font-family:'Courier New';font-size:10.0pt";
+		private const string Cloud = "<span style='font-family:\"Segoe UI Emoji\"'>\u2601</span>";
 		private const string RecycleBin = "OneNote_RecycleBin";
 
 		private bool showNotebookSummary;
@@ -32,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote one;
 		private XNamespace ns;
 		private string backupPath;
+		private string defaultPath;
 		private string divider;
 
 		private int heading1Index;
@@ -51,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote())
 			{
-				(backupPath, _, _) = one.GetFolders();
+				(backupPath, defaultPath, _) = one.GetFolders();
 
 				if (!Directory.Exists(backupPath))
 				{
@@ -144,11 +146,13 @@ namespace River.OneMoreAddIn.Commands
 			progress.Increment();
 
 			var backupUri = new Uri(backupPath).AbsoluteUri;
+			var folderUri = new Uri(defaultPath).AbsoluteUri;
 
 			container.Add(
 				new Paragraph(ns, "Summary").SetQuickStyle(heading1Index),
 				new Paragraph(ns, Resx.AnalyzeCommand_SummarySummary),
 				new Paragraph(ns, new ContentList(ns,
+					new Bullet(ns, $"<span style='font-style:italic'>Default location</span>: <a href=\"{folderUri}\">{defaultPath}</a>"),
 					new Bullet(ns, $"<span style='font-style:italic'>Backup location</span>: <a href=\"{backupUri}\">{backupPath}</a>")
 					)),
 				new Paragraph(ns, string.Empty)
@@ -176,12 +180,14 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var notebook in notebooks.Elements(ns + "Notebook"))
 			{
-				var name = notebook.Attribute("name").Value;
-
 				row = table.AddRow();
-				row[0].SetContent(name);
 
-				var path = Path.Combine(backupPath, name);
+				var name = notebook.Attribute("name").Value;
+				var remote = notebook.Attribute("path").Value.Contains("https://");
+
+				row[0].SetContent(remote ? $"{name} {Cloud}" : name);
+
+				var path = Path.Combine(remote ? backupPath : defaultPath, name);
 				if (Directory.Exists(path))
 				{
 					var dir = new DirectoryInfo(path);
@@ -394,7 +400,9 @@ namespace River.OneMoreAddIn.Commands
 
 				var title = folderPath == null ? name : Path.Combine(folderPath, name);
 				var subp = folderPath == null ? folderName : Path.Combine(folderPath, folderName);
-				var path = Path.Combine(backupPath, subp);
+
+				var remote = section.Attribute("path").Value.Contains("https://");
+				var path = Path.Combine(remote ? backupPath : defaultPath, subp);
 
 				var row = table.AddRow();
 
@@ -402,7 +410,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					row[0].SetContent(new Paragraph(ns, title));
 
-					var files = Directory.EnumerateFiles(path, $"{name}.one (On *).one").ToList();
+					var filter = remote ? $"{name}.one (On *).one" : $"{name}.one";
+					var files = Directory.EnumerateFiles(path, filter).ToList();
 					if (files.Count > 0)
 					{
 						long first = 0;
@@ -420,10 +429,19 @@ namespace River.OneMoreAddIn.Commands
 						if (all > 0)
 						{
 							row[1].SetContent(new Paragraph(ns, first.ToBytes(1)).SetAlignment("right"));
-							row[2].SetContent(new Paragraph(ns, files.Count.ToString()).SetAlignment("right"));
+
+							if (remote)
+							{
+								row[2].SetContent(new Paragraph(ns, files.Count.ToString()).SetAlignment("right"));
+							}
+
 							row[3].SetContent(new Paragraph(ns, all.ToBytes(1)).SetAlignment("right"));
 							total += all;
 						}
+					}
+					else
+					{
+						logger.WriteLine($"empty section {name} in {path}");
 					}
 				}
 				else

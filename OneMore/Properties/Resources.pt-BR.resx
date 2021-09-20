@@ -136,14 +136,6 @@
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Mais um</value>
   </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    Desativar verificação ortográfica
-    Ribbon OneMore menu item, no spell check on this page EDIT
-  </data>
-  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    Desativar verificação ortográfica para a página inteira (F4)
-    Ribbon OneMore menu item, no spell check on this page EDIT
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -222,9 +214,6 @@
   </data>
   <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>customstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="CustomColorsFilesname" xml:space="preserve">
     <value>CustomColors.xml</value>
@@ -490,10 +479,6 @@
     <value>Mais</value>
     <comment>Ribbon main button</comment>
   </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Definir cor da página</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
-  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Colar Rich Text</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -605,29 +590,13 @@ OneNote fechará automaticamente</value>
     <value>Versão {0}</value>
     <comment>the version of the add-in</comment>
   </data>
-  <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Mudar a cor da página</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancelar</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Plano de fundo personalizado ...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Fundo escuro</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>Depois de escolher uma cor de página, carregue um dos estilos predefinidos ou personalize seus próprios estilos para que todo o conteúdo tenha contraste suficiente para ser visível.</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Fundo claro</value>
-    <comment>button</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>Está bem</value>
@@ -1128,11 +1097,11 @@ Tente mais tarde</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Colheita</value>
+    <value>Recortar e girar</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Cortar imagem</value>
+    <value>Recortar e girar</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -1290,10 +1259,6 @@ Tente mais tarde</value>
   <data name="PluginDialog_okButton.Text" xml:space="preserve">
     <value>Corre</value>
     <comment>ok button</comment>
-  </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    Comando
-    label EDIT
   </data>
   <data name="PluginDialog_updateRadio.Text" xml:space="preserve">
     <value>Atualizar a página atual</value>
@@ -1621,14 +1586,6 @@ Símbolos: PI, E</value>
     <value>Pasta:</value>
     <comment>label</comment>
   </data>
-  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
-    Arquivo HTML (*.htm)
-Arquivo PDF (*.pdf)
-Arquivo Word (*.docx)
-Arquivo XML (*.xml)
-Arquivo OneNote (*.one)
-    combo box EDIT
-  </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Formato:</value>
     <comment>label</comment>
@@ -1665,10 +1622,6 @@ Arquivo OneNote (*.one)
     <value>Arquivo:</value>
     <comment>label</comment>
   </data>
-  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    Selecione um arquivo Word, PowerPoint, OneNote, Markdown ou XML
-    label EDIT
-  </data>
   <data name="ImportDialog_okButton.text" xml:space="preserve">
     <value>Está bem</value>
     <comment>button</comment>
@@ -1704,10 +1657,6 @@ Arquivo OneNote (*.one)
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Opções de palavras</value>
     <comment>group box</comment>
-  </data>
-  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    Todos os arquivos (* .docx; *. Pptx; *. Md; *. One; *. Xml) | * .docx; *. Pptx; *. Md; *. One; *. Xml | Arquivos do Word (* .doc 
-    openfiledialog filter EDIT
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Escolha o arquivo para importar</value>
@@ -1798,10 +1747,6 @@ Arquivo OneNote (*.one)
     <value>Escolha os comandos a serem exibidos no menu de contexto da página. </value>
     <comment>intro</comment>
   </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    ... Desativar verificação ortográfica
-    option EDIT
-  </data>
   <data name="ContextMenuSheet_ribPasteRtfButton" xml:space="preserve">
     <value>Colar Rich Text</value>
     <comment>option</comment>
@@ -1889,10 +1834,6 @@ Arquivo OneNote (*.one)
   <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
     <value>Insira um bloco de código (F6)</value>
     <comment>menu</comment>
-  </data>
-  <data name="SettingsDialog_Restart" xml:space="preserve">
-    Uma ou mais alterações exigem que o OneNote seja reiniciado. 
-    restart message EDIT
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Selecione uma ou mais células da tabela</value>
@@ -2042,10 +1983,6 @@ Arquivo OneNote (*.one)
     <value>Novo Estilo Personalizado</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>Está bem</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
     <value>Reordenar</value>
     <comment>button</comment>
@@ -2185,10 +2122,6 @@ Nesta secção</value>
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>Índice</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    Insira uma ou mais tags separadas por vírgulas. 
-    EDIT label
   </data>
   <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
     <value>Mover</value>
@@ -2581,10 +2514,6 @@ ISO-code then comma then language name</comment>
     <value>Atalhos de teclado do OneNote</value>
     <comment>favorite</comment>
   </data>
-  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    A nuvem não carrega o snippet de "{0}"
-    error message EDIT
-  </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Meus snippets personalizados</value>
     <comment>ribbon </comment>
@@ -2605,17 +2534,9 @@ ISO-code then comma then language name</comment>
     <value>Trechos</value>
     <comment>tree node</comment>
   </data>
-  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
-    Excluir snippet "{0}"
-    question EDIT
-  </data>
   <data name="SnippetsSheet_Text" xml:space="preserve">
     <value>Gerenciar meus snippets personalizados</value>
     <comment>SnippetsSheet</comment>
-  </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
-    Caixa de texto
-    ribbon EDIT
   </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Insira uma tabela de célula única, opcionalmente envolvendo o texto selecionado</value>
@@ -2838,7 +2759,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>Mapear páginas vinculadas</value>
+    <value>Criar Mapa de Página</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -2933,10 +2854,6 @@ ISO-code then comma then language name</comment>
     <value>Expandir Outlining</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribCollapseContentButton_Label" xml:space="preserve">
-    Recolher esboço
-    ribbon item EDIT
-  </data>
   <data name="ribTitlecaseButton_Label" xml:space="preserve">
     <value>Para caixa do título</value>
     <comment>rib button</comment>
@@ -3003,10 +2920,6 @@ ISO-code then comma then language name</comment>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>Referências de link</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    Referências de link para esta página
-    ribbon button EDIT
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
     <value>Tmeout</value>
@@ -3156,10 +3069,6 @@ ISO-code then comma then language name</comment>
     <value>Não foi possível criar um link bidirecional. </value>
     <comment>message box</comment>
   </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    Marcado "{0}" como âncora. 
-    message box EDIT
-  </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>Âncora inicial ainda não marcada. </value>
     <comment>message box</comment>
@@ -3183,10 +3092,6 @@ ISO-code then comma then language name</comment>
   <data name="ribStartBiLinkButton_Label" xml:space="preserve">
     <value>Iniciar link bidirecional</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>Os backups são armazenados localmente junto com uma pasta da lixeira. </value>
-    <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>Análise de armazenamento OneNote</value>
@@ -3256,8 +3161,275 @@ ISO-code then comma then language name</comment>
     <value>Analise o armazenamento de dados</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Escolha uma cor personalizada</value>
+    <comment>link</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>Estilos de carga</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>Aplicar tema de estilo a esta página</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Tema atual:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>Carregar um tema de estilo</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>Opcionalmente, carregue um dos temas de estilo predefinidos ou personalize seu próprio tema para que todo o conteúdo tenha contraste suficiente para ser visível.</value>
+    <comment>label</comment>
+  </data>
+  <data name="StyleDialog_ThemeText" xml:space="preserve">
+    <value>{0} Estilos</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
+    <value>A cor e o tema podem não ter contraste suficiente</value>
+    <comment>label</comment>
+  </data>
+  <data name="JoinParagraphCommand_Select" xml:space="preserve">
+    <value>Selecione duas ou mais linhas para unir</value>
+    <comment>info message</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
+    <value>Desativar verificação ortográfica</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Desativar verificação ortográfica para a página inteira (F4)</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribPageColorButton_Label" xml:space="preserve">
+    <value>Alterar o tema da página</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ChangePageColorDialog.Text" xml:space="preserve">
+    <value>Alterar o tema da página</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
+    <value>Comando</value>
+    <comment>label</comment>
+  </data>
+  <data name="ExportDialog_formatBox.Text" xml:space="preserve">
+    <value>Arquivo HTML (* .htm)
+Arquivo PDF (* .pdf)
+Arquivo Word (* .docx)
+Arquivo XML (* .xml)
+Arquivo OneNote (* .one)</value>
+    <comment>combo box</comment>
+  </data>
+  <data name="ImportDialog_introLabel.Text" xml:space="preserve">
+    <value>Selecione um arquivo Word, PowerPoint, OneNote, Markdown ou XML</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
+    <value>Todos os arquivos (* .docx; *. Pptx; *. Md; *. One; *. Xml) | * .docx; *. Pptx; *. Md; *. One; *. Xml | Arquivos do Word (* .doc </value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
+    <value>... Desativar verificação ortográfica</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="SettingsDialog_Restart" xml:space="preserve">
+    <value>Uma ou mais alterações exigem que o OneNote seja reiniciado. </value>
+    <comment>restart message</comment>
+  </data>
+  <data name="StyleDialog_okButton.Text" xml:space="preserve">
+    <value>OK (Salvar)</value>
+    <comment>button</comment>
+  </data>
+  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
+    <value>Insira uma ou mais tags separadas por vírgulas. </value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>A nuvem não carrega o snippet de "{0}"</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
+    <value>Excluir snippet "{0}"</value>
+    <comment>question</comment>
+  </data>
+  <data name="ribBoxButton_Label" xml:space="preserve">
+    <value>Caixa de texto</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCollapseContentButton_Label" xml:space="preserve">
+    <value>Recolher esboço</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribLinkReferencesButton_Label" xml:space="preserve">
+    Mapa de referências para esta página
+  <comment>ribbon button</comment></data>
+  <data name="BiLinkCommand_Marked" xml:space="preserve">
+    <value>Marcado "{0}" como a âncora. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
+    <value>Notebooks podem ser armazenados localmente ou remotamente no OneDrive. </value>
+    <comment>summary text</comment>
+  </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
-    Importar como imagens estáticas
-    checkbox EDIT
+    <value>Importar como imagens estáticas</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertCalendarDialog_clickLabel.Text" xml:space="preserve">
+    <value>clique para mudar</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_colorLabel.Text" xml:space="preserve">
+    <value>Cor do cabeçalho</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
+    <value>Primeiro dia da semana</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>Selecione o texto com formatação semelhante</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>Atualizar referências da página</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
+    <value>Páginas em</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Todas as seções do bloco de notas atual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Todos os cadernos</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
+    <value>A seção atual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
+    <value>Atualizar referências da página</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_none" xml:space="preserve">
+    <value>Nenhuma referência encontrada para esta página</value>
+    <comment>message</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_updated" xml:space="preserve">
+    <value>{0} páginas atualizadas</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>Migalhas de pão</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
+  <data name="ribSelectImagesButton_Label" xml:space="preserve">
+    <value>Selecione todas as imagens</value>
+    <comment>ribbon menu edit item</comment>
+  </data>
+  <data name="ribCopyAcrossButton_Label" xml:space="preserve">
+    <value>Copiar</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Label" xml:space="preserve">
+    <value>Anote</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillAcrossButton_Label" xml:space="preserve">
+    <value>Preencher</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillDownButton_Label" xml:space="preserve">
+    <value>Preencher</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Label" xml:space="preserve">
+    <value>Colar Células</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>Adicionar aos favoritos</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillDownButton_Screentip" xml:space="preserve">
+    <value>Preencher (Ctrl + D)</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="CropImageDialog_introText.Text" xml:space="preserve">
+    <value>Use o mouse para selecionar uma área a ser cortada. </value>
+    <comment>intro text label</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
+    <value>A página de origem não contém conteúdo</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoEmbedded" xml:space="preserve">
+    <value>Nenhum conteúdo incorporado encontrado</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoSource" xml:space="preserve">
+    <value>Página de origem não encontrada</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Select" xml:space="preserve">
+    <value>Selecione a página</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedSubpageCommand_SelectIntro" xml:space="preserve">
+    <value>Selecione a página para incorporar nesta página</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
+    <value>Página de incorporação</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
+    <value>Incorporar conteúdo de outra página na página atual</value>
+    <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
+    <value>Atualizar páginas incorporadas</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribUpdateSubpageButton_Screentip" xml:space="preserve">
+    <value>Atualize todo o conteúdo incorporado nesta página</value>
+    <comment>ribbon item screentip</comment>
+  </data>
+  <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
+    <value>Não há títulos nesta página</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertTocCommand_Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+    <comment>refresh link</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+    <comment>link</comment>
+  </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>Referências Ligadas</value>
+    <comment>title text</comment>
+  </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+    <comment>refresh link</comment>
   </data>
 </root>

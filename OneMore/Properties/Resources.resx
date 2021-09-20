@@ -223,9 +223,6 @@
   <data name="Watch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\watch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CustomStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>customstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="CustomColorsFilesname" xml:space="preserve">
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
@@ -495,7 +492,7 @@
     <comment>Ribbon main button</comment>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Set Page Color</value>
+    <value>Change Page Theme</value>
     <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
@@ -612,28 +609,20 @@ OneNote will close automatically</value>
     <comment>the version of the add-in</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
-    <value>Change Page Color</value>
+    <value>Change Page Theme</value>
     <comment>dialog title</comment>
   </data>
   <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
     <comment>cancel button</comment>
   </data>
-  <data name="ChangePageColorDialog_customButton.Text" xml:space="preserve">
-    <value>Custom background...</value>
-    <comment>button</comment>
-  </data>
-  <data name="ChangePageColorDialog_darkButton.Text" xml:space="preserve">
-    <value>Dark background</value>
-    <comment>button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>After choosing a page color, load one of the predefined styles or customize your own styles so all content has enough contrast to be visible.</value>
     <comment>instructions</comment>
   </data>
-  <data name="ChangePageColorDialog_lightButton.Text" xml:space="preserve">
-    <value>Light background</value>
-    <comment>button</comment>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Choose a custom color</value>
+    <comment>link</comment>
   </data>
   <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -1211,11 +1200,11 @@ Try again later</value>
     <comment>error message box</comment>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
-    <value>Crop</value>
+    <value>Crop and Rotate</value>
     <comment>Ribbon OneMore menu item, Images...</comment>
   </data>
   <data name="CropImageDialog.Text" xml:space="preserve">
-    <value>Crop Image</value>
+    <value>Crop and Rotate</value>
     <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
@@ -1227,7 +1216,7 @@ Try again later</value>
     <comment>cancel button</comment>
   </data>
   <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
-    <value>Crop</value>
+    <value>OK</value>
     <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
@@ -2278,7 +2267,7 @@ In this section</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>OK (Save)</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
@@ -2852,7 +2841,7 @@ In this section</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
-    <value>Map Linked Pages</value>
+    <value>Create Page Map</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
@@ -3023,7 +3012,7 @@ In this section</value>
     <comment>dialog title</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    <value>Link References to this page</value>
+    <value>Link References to this Page</value>
     <comment>ribbon button</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -3207,7 +3196,7 @@ In this section</value>
     <comment>SKIP notebook name</comment>
   </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>Backups are stored locally along with a recycle bin folder. Backup location and number of copies is configured in the OneNote Options. This summary shows the total disk usage including all backup copies and the per-notebook recycle bins.</value>
+    <value>Notebooks can be stored locally or remotely on OneDrive. Remote notebooks can only be analyzed by their local backups as configured in the OneNote Options. This summary shows the total disk usage in either the data location for local notebooks or the backup location for remote notebooks including all backup copies and the per-notebook recycle bins.</value>
     <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
@@ -3281,5 +3270,196 @@ In this section</value>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     <value>Import as static images</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ThemesFolder" xml:space="preserve">
+    <value>Themes</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="ribLoadStylesButton_Label" xml:space="preserve">
+    <value>Load Styles</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
+    <value>Apply style theme to this page</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Current Theme:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
+    <value>Load a style theme</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
+    <value>Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible.</value>
+    <comment>label</comment>
+  </data>
+  <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="StyleDialog_ThemeText" xml:space="preserve">
+    <value>{0} Styles</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ChangePageColorDialog_Contrast" xml:space="preserve">
+    <value>Color and theme may not have enough contrast</value>
+    <comment>label</comment>
+  </data>
+  <data name="JoinParagraphCommand_Select" xml:space="preserve">
+    <value>Select two or more lines to join</value>
+    <comment>info message</comment>
+  </data>
+  <data name="InsertCalendarDialog_clickLabel.Text" xml:space="preserve">
+    <value>click to change</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_colorLabel.Text" xml:space="preserve">
+    <value>Heading color</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
+    <value>First day of week</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribSelectStyleButton_Label" xml:space="preserve">
+    <value>Select text with similar formatting</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
+    <value>Refresh Page References</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
+    <value>Pages in</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebookRadio.Text" xml:space="preserve">
+    <value>All sections in the current notebook</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>All notebooks</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
+    <value>The current section</value>
+    <comment>radio</comment>
+  </data>
+  <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
+    <value>Refresh Page References</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_none" xml:space="preserve">
+    <value>No references found to this page</value>
+    <comment>message</comment>
+  </data>
+  <data name="RefreshPageLinksCommand_updated" xml:space="preserve">
+    <value>Updated {0} pages</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+    <value>Breadcrumb</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
+  <data name="ribSelectImagesButton_Label" xml:space="preserve">
+    <value>Select All Images</value>
+    <comment>ribbon menu edit item</comment>
+  </data>
+  <data name="ribCopyAcrossButton_Label" xml:space="preserve">
+    <value>Copy Across</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribCopyDownButton_Label" xml:space="preserve">
+    <value>Copy Down</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillAcrossButton_Label" xml:space="preserve">
+    <value>Fill Across</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillDownButton_Label" xml:space="preserve">
+    <value>Fill Down</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribPasteCellsButton_Label" xml:space="preserve">
+    <value>Paste Cells</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>Add to Favorites</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribFillDownButton_Screentip" xml:space="preserve">
+    <value>Fill Down (Ctrl + D)</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="CropImageDialog_introText.Text" xml:space="preserve">
+    <value>Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish.</value>
+    <comment>intro text label</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
+    <value>Source page contains no content</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoEmbedded" xml:space="preserve">
+    <value>No embedded content found</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_NoSource" xml:space="preserve">
+    <value>Source page not found</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Select" xml:space="preserve">
+    <value>Select Page</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedSubpageCommand_SelectIntro" xml:space="preserve">
+    <value>Select the page to embed on this page</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
+    <value>Embed Page</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
+    <value>Embed content of another page into the current page</value>
+    <comment>ribbon item screentip</comment>
+  </data>
+  <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
+    <value>Update Embedded Pages</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribUpdateSubpageButton_Screentip" xml:space="preserve">
+    <value>Update all embedded content on this page</value>
+    <comment>ribbon item screentip</comment>
+  </data>
+  <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
+    <value>There are no headings on this page</value>
+    <comment>message</comment>
+  </data>
+  <data name="InsertTocCommand_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>refresh link</comment>
+  </data>
+  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>link</comment>
+  </data>
+  <data name="LinkedReferencesCommand_Title" xml:space="preserve">
+    <value>Linked References</value>
+    <comment>title text</comment>
+  </data>
+  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>refresh link</comment>
   </data>
 </root>

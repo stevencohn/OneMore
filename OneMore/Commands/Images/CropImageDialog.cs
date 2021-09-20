@@ -13,7 +13,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing.Drawing2D;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-	using SysParams = System.Windows.SystemParameters;
 
 
 	/// <summary>
@@ -59,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int HandleSize = 8;
 
 		// the selection
+		private Image original;
 		private Point startPoint;
 		private Point endPoint;
 		private Point movePoint;
@@ -81,6 +81,8 @@ namespace River.OneMoreAddIn.Commands
 		private MoveState moveState;
 
 
+		#region Lifecycle
+
 		/// <summary>
 		/// Initialize a new dialog with defaults
 		/// </summary>
@@ -95,8 +97,6 @@ namespace River.OneMoreAddIn.Commands
 			selectionPath = new GraphicsPath();
 			selectionPath.Reset();
 
-			pictureBox.Image = new Bitmap(pictureBox.Width, pictureBox.Height);
-
 			handles = new List<SelectionHandle>();
 			moveState = MoveState.None;
 
@@ -106,6 +106,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"introText",
 					"selectButton",
 					"cropButton",
 					"cancelButton"
@@ -118,45 +119,22 @@ namespace River.OneMoreAddIn.Commands
 		/// Initialize a new dialog showing the given image
 		/// </summary>
 		/// <param name="image">An image to display and crop</param>
-		public CropImageDialog(Image image) : this()
+		public CropImageDialog(Image image)
+			: this()
 		{
-			Image = image;
+			Image = original = image;
 
+			// set scaling factors
 			(dpiX, dpiY) = UIHelper.GetDpiValues();
-
-			// the image may have a different resolution than the screen so combine both to compensate
 			scalingX = dpiX / image.HorizontalResolution;
 			scalingY = dpiY / image.VerticalResolution;
 
-			Height = (int)((Math.Min(image.Height * 1.25, SysParams.WorkArea.Height)
-				+ (buttonPanel.Height * 2)) * scalingY);
+			SizeWindow();
 
-			Width = (int)Math.Max(
-				Math.Min(image.Width * 1.5, SysParams.WorkArea.Width) * scalingX,
-				Height);
-
-			imageBounds = new Rectangle(
-				ImageMargin, ImageMargin,
-				(int)Math.Round(image.Width * scalingX),
-				(int)Math.Round(image.Height * scalingY));
-
-			picturePanel.AutoScrollMinSize = new Size(
-				imageBounds.Width + (ImageMargin * 2),
-				imageBounds.Height + (ImageMargin * 2));
-
-			try
-			{
-				brightness = GetBrightness((Bitmap)image);
-			}
-			catch
-			{
-				// Unable to cast object of type 'System.Drawing.Imaging.Metafile' 
-				// to type 'System.Drawing.Bitmap'
-				brightness = 100;
-			}
+			brightness = GetBrightness(image);
 
 			sizeStatusLabel.Text = string.Format(
-				Resx.CropImageDialog_imageSize, imageBounds.Width, imageBounds.Height);
+				Resx.CropImageDialog_imageSize, Image.Width, Image.Height);
 
 			pictureBox.Refresh();
 
@@ -179,6 +157,84 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void SizeWindow()
+		{
+			// height
+			var border =
+				SystemInformation.CaptionHeight +               // title bar
+				SystemInformation.FrameBorderSize.Height * 2 +  // horizontal borders, top/bottom
+				introPanel.Height +                             // intro text panel
+				statusStrip.Height +                            // status bar
+				buttonPanel.Height;
+
+			var desired = Math.Max(
+				MinimumSize.Height,                             // defined min size of dialog
+				Image.Height + border + ImageMargin * 2);       // image + borders + margins
+
+			Height = Math.Min(desired, Screen.FromControl(this).WorkingArea.Height);
+
+			// width
+			border =
+				SystemInformation.FrameBorderSize.Width * 2;    // vertical borders, left/right
+
+			desired = Math.Max(
+				MinimumSize.Width,                              // defined min size of dialog
+				Image.Width + border + ImageMargin * 2);        // image + borders + margins
+
+			Width = Math.Min(desired, Screen.FromControl(this).WorkingArea.Width);
+		}
+
+
+		private int GetBrightness(Image image)
+		{
+			if (image is Bitmap bitmap)
+			{
+				try
+				{
+					// the average brightness of the entire image (0=black, 100=white)
+					float brightnessValue = 0;
+
+					for (int i = 0; i < bitmap.Size.Width; i++)
+					{
+						for (int j = 0; j < bitmap.Size.Height; j++)
+						{
+							var color = bitmap.GetPixel(i, j);
+							brightnessValue += color.GetBrightness();
+						}
+					}
+
+					return (int)(brightnessValue / (bitmap.Size.Width * bitmap.Size.Height) * 100);
+				}
+				catch
+				{
+					return 100;
+				}
+			}
+
+			return 100;
+		}
+
+
+		private void CropImageDialog_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			if (original != Image)
+			{
+				original.Dispose();
+			}
+		}
+
+		#endregion Lifecycle
+
+
+		/// <summary>
+		/// Gets the cropped image, to be used after dialog closes with DialogResult.OK
+		/// </summary>
+		public Image Image { get; private set; }
+
+
+		// ---------------------------------------------------------------------------------------
+		// Paint
+
 		private void Picture_Hover(object sender, EventArgs e)
 		{
 			pictureBox.Focus();
@@ -193,14 +249,42 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		/// <summary>
-		/// Gets the cropped image, to be used after dialog closes with DialogResult.OK
-		/// </summary>
-		public Image Image { get; private set; }
+		private void pictureBox_SizeChanged(object sender, EventArgs e)
+		{
+			var g = pictureBox.CreateGraphics();
+			if (selectionRegion != null && !selectionRegion.IsEmpty(g))
+			{
+				var bounds = selectionRegion.GetBounds(g);
 
+				if (bounds.Right > imageBounds.Right || bounds.Bottom > imageBounds.Bottom)
+				{
+					var right = Math.Min(bounds.Right, imageBounds.Right);
+					var bottom = Math.Min(bounds.Bottom, imageBounds.Bottom);
 
-		// ---------------------------------------------------------------------------------------
-		// Paint
+					if (right <= bounds.Left || bottom <= bounds.Top)
+					{
+						selectionBounds = Rectangle.Empty;
+						SetSelection(Rectangle.Empty);
+					}
+					else
+					{
+						endPoint.X = (int)right;
+						endPoint.Y = (int)bottom;
+
+						SetSelection(new Rectangle(
+							(int)bounds.X, (int)bounds.Y,
+							(int)(right - bounds.X),
+							(int)(bottom - bounds.Y)
+							));
+					}
+
+					SetButtonEnabled();
+				}
+			}
+
+			pictureBox.Refresh();
+		}
+
 
 		private void Picture_Paint(object sender, PaintEventArgs e)
 		{
@@ -212,24 +296,58 @@ namespace River.OneMoreAddIn.Commands
 				e.Graphics.FillRectangle(brush, 0, 0, pictureBox.Width, pictureBox.Height);
 			}
 
-			if (Image != null)
+			if (Image == null)
 			{
-				// draw outline for images with transparency (png)
-				e.Graphics.DrawRectangle(Pens.Gray, imageBounds);
-				// draw image
-				e.Graphics.DrawImageUnscaled(Image, ImageMargin, ImageMargin);
-			}
-
-			if (selectionRegion.IsEmpty(e.Graphics))
-			{
-				statusLabel.Text = Resx.CropImageDialog_noSelection;
+				statusLabel.Text = "No image";
 				return;
 			}
 
-			// fill inner field of selected region
+			PaintImage(e.Graphics);
+
+			if (selectionRegion.IsEmpty(e.Graphics))
+			{
+				statusLabel.Text = "No selection";
+				return;
+			}
+
+			PaintSelection(e.Graphics);
+			UpdateStatus();
+		}
+
+
+		private void PaintImage(Graphics g)
+		{
+			// zoom image into viewable area
+			var ratio = MagicRatio();
+			imageBounds = new Rectangle(
+				ImageMargin, ImageMargin,
+				(int)Math.Round(Image.Width / ratio), (int)Math.Round(Image.Height / ratio));
+
+			// draw outline for images with transparency (png)
+			g.DrawRectangle(Pens.Gray, imageBounds);
+			// draw image
+			g.DrawImage(Image, imageBounds);
+		}
+
+
+		private double MagicRatio()
+		{
+			// return the larger ratio, horizontal or vertical of the image
+			return Math.Max(
+				// min of scaled image width or pictureBox width without margins
+				Image.Width / (Math.Min(Math.Round(Image.Width * scalingX), pictureBox.Width - ImageMargin * 2)),
+				// min of scaled image height or pictureBox height without margins
+				Image.Height / (Math.Min(Math.Round(Image.Height * scalingY), pictureBox.Height - ImageMargin * 2))
+				);
+		}
+
+
+		private void PaintSelection(Graphics g)
+		{
+			// fill inner field of selected region with transparent blue
 			using (var fill = new SolidBrush(Color.FromArgb(40, 0, 138, 244)))
 			{
-				e.Graphics.FillRegion(fill, selectionRegion);
+				g.FillRegion(fill, selectionRegion);
 			}
 
 			// draw marching ants outline
@@ -242,47 +360,55 @@ namespace River.OneMoreAddIn.Commands
 				// set up pen for the ants
 				using (var ant = new Bitmap(pictureBox.Width, pictureBox.Height))
 				{
-					using (var g = Graphics.FromImage(ant))
+					using (var gi = Graphics.FromImage(ant))
 					{
 						// region is magenta but we'll use that as our transparent color
-						g.Clear(Color.Magenta);
+						gi.Clear(Color.Magenta);
 
 						using (var outline = MakeOutlinePath())
 						{
-							g.DrawPath(Pens.Black, outline);
-							g.DrawPath(pen, outline);
+							gi.DrawPath(Pens.Black, outline);
+							gi.DrawPath(pen, outline);
 						}
 
-						g.FillRegion(Brushes.Magenta, selectionRegion);
+						gi.FillRegion(Brushes.Magenta, selectionRegion);
 					}
 
 					// make center of ant region transparent
 					ant.MakeTransparent(Color.Magenta);
 
 					// draw the ants on the image
-					e.Graphics.DrawImageUnscaled(ant, 0, 0);
+					g.DrawImageUnscaled(ant, 0, 0);
 				}
 
 				// draw resize handles
+				var bounds = selectionRegion.GetBounds(g);
 
-				var bounds = selectionRegion.GetBounds(e.Graphics);
+				AddHandle(SizingHandle.TopLeft, bounds.Left, bounds.Top, g);
+				AddHandle(SizingHandle.TopRight, bounds.Right, bounds.Top, g);
+				AddHandle(SizingHandle.BottomRight, bounds.Right, bounds.Bottom, g);
+				AddHandle(SizingHandle.BottomLeft, bounds.Left, bounds.Bottom, g);
 
-				AddHandle(SizingHandle.TopLeft, bounds.Left, bounds.Top, e.Graphics);
-				AddHandle(SizingHandle.TopRight, bounds.Right, bounds.Top, e.Graphics);
-				AddHandle(SizingHandle.BottomRight, bounds.Right, bounds.Bottom, e.Graphics);
-				AddHandle(SizingHandle.BottomLeft, bounds.Left, bounds.Bottom, e.Graphics);
-
-				AddHandle(SizingHandle.Top, bounds.Left + ((bounds.Right - bounds.Left) / 2), bounds.Top, e.Graphics);
-				AddHandle(SizingHandle.Right, bounds.Right, bounds.Top + ((bounds.Bottom - bounds.Top) / 2), e.Graphics);
-				AddHandle(SizingHandle.Bottom, bounds.Left + ((bounds.Right - bounds.Left) / 2), bounds.Bottom, e.Graphics);
-				AddHandle(SizingHandle.Left, bounds.Left, bounds.Top + ((bounds.Bottom - bounds.Top) / 2), e.Graphics);
+				AddHandle(SizingHandle.Top, bounds.Left + ((bounds.Right - bounds.Left) / 2), bounds.Top, g);
+				AddHandle(SizingHandle.Right, bounds.Right, bounds.Top + ((bounds.Bottom - bounds.Top) / 2), g);
+				AddHandle(SizingHandle.Bottom, bounds.Left + ((bounds.Right - bounds.Left) / 2), bounds.Bottom, g);
+				AddHandle(SizingHandle.Left, bounds.Left, bounds.Top + ((bounds.Bottom - bounds.Top) / 2), g);
 			}
+		}
 
-			statusLabel.Text = string.Format(Resx.CropImageDialog_bounds,
-				selectionBounds.X - ImageMargin, selectionBounds.Y - ImageMargin,
-				selectionBounds.Width, selectionBounds.Height
+
+		private void UpdateStatus()
+		{
+			var ratio = MagicRatio();
+			var r = new Rectangle(
+				(int)((selectionBounds.X - ImageMargin) * ratio),
+				(int)((selectionBounds.Y - ImageMargin) * ratio),
+				(int)(selectionBounds.Width * ratio),
+				(int)(selectionBounds.Height * ratio)
 				);
 
+			statusLabel.Text = string.Format(Resx.CropImageDialog_bounds, r.X, r.Y, r.Width, r.Height);
+			statusStrip.Invalidate();
 			statusStrip.Refresh();
 		}
 
@@ -326,24 +452,6 @@ namespace River.OneMoreAddIn.Commands
 				path.Widen(Pens.White);
 			}
 			return path;
-		}
-
-
-		private int GetBrightness(Bitmap image)
-		{
-			// the average brightness of the entire image (0=black, 100=white)
-			float brightnessValue = 0;
-
-			for (int i = 0; i < image.Size.Width; i++)
-			{
-				for (int j = 0; j < image.Size.Height; j++)
-				{
-					var color = image.GetPixel(i, j);
-					brightnessValue += color.GetBrightness();
-				}
-			}
-
-			return (int)(brightnessValue / (image.Size.Width * image.Size.Height) * 100);
 		}
 
 
@@ -403,11 +511,13 @@ namespace River.OneMoreAddIn.Commands
 			{
 				startPoint.X = e.X;
 				startPoint.Y = e.Y;
+				moveState = MoveState.Sizing;
 				selectionBounds = new Rectangle(e.X, e.Y, 0, 0);
 			}
 			else
 			{
 				startPoint.X = startPoint.Y = -1;
+				moveState = MoveState.None;
 				selectionBounds = Rectangle.Empty;
 			}
 
@@ -664,7 +774,7 @@ namespace River.OneMoreAddIn.Commands
 
 				SetSelection(selectionBounds);
 
-				if (selectionBounds.IsEmpty)
+				if (selectionBounds.Width == 0 && selectionBounds.Height == 0)
 				{
 					marchingTimer.Stop();
 				}
@@ -674,6 +784,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				pictureBox.Refresh();
+				SetButtonEnabled();
 			}
 
 			moveState = MoveState.None;
@@ -681,7 +792,107 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// ---------------------------------------------------------------------------------------
+		// Rotation...
+
+		private void ChangeRotation(object sender, EventArgs e)
+		{
+			if (sender == rotationBar)
+			{
+				rotationBox.Value = rotationBar.Value;
+			}
+			else
+			{
+				rotationBar.Value = (int)rotationBox.Value;
+			}
+
+			Image = Rotate((Bitmap)original, (float)rotationBox.Value);
+			pictureBox.Refresh();
+
+			sizeStatusLabel.Text = string.Format(
+				Resx.CropImageDialog_imageSize, Image.Width, Image.Height);
+
+			SetButtonEnabled();
+		}
+
+
+		private Bitmap Rotate(Bitmap bitmap, float angle)
+		{
+			var (width, height) = PredictRotatedSize(bitmap, angle);
+
+			// draw rotated image as a new bitmap
+			var rotated = new Bitmap(width, height);
+			rotated.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
+
+			using (var g = Graphics.FromImage(rotated))
+			{
+				// smooth image interpolation
+				g.InterpolationMode = InterpolationMode.High;
+
+				// transparent background; could instead use g.Clear(bitmap.GetPixel(0, 0))
+				g.Clear(Color.Transparent);
+
+				// rotate image around its center
+				using (var matrix = new Matrix())
+				{
+					matrix.RotateAt(angle, new PointF(width / 2f, height / 2f));
+					g.Transform = matrix;
+
+					// draw the image centered on the bitmap
+					g.DrawImage(bitmap,
+						(width - (bitmap.Width)) / 2,
+						(height - (bitmap.Height)) / 2);
+				}
+			}
+
+			return rotated;
+		}
+
+
+		private (int width, int height) PredictRotatedSize(Bitmap bitmap, float angle)
+		{
+			// return the larger ratio, horizontal or vertical of the image
+			var points = new PointF[]
+			{
+				new PointF(0, 0),
+				new PointF(bitmap.Width, 0),
+				new PointF(bitmap.Width, bitmap.Height),
+				new PointF(0, bitmap.Height),
+			};
+
+			using (var matrix = new Matrix())
+			{
+				// rotate around the origin
+				matrix.Rotate(angle);
+				matrix.TransformPoints(points);
+			}
+
+			// scan for min/max...
+			var xmin = points[0].X;
+			var xmax = xmin;
+			var ymin = points[0].Y;
+			var ymax = ymin;
+			foreach (var point in points)
+			{
+				if (xmin > point.X) xmin = point.X;
+				if (xmax < point.X) xmax = point.X;
+				if (ymin > point.Y) ymin = point.Y;
+				if (ymax < point.Y) ymax = point.Y;
+			}
+
+			return ((int)Math.Round((xmax - xmin)), (int)Math.Round((ymax - ymin)));
+		}
+
+
+		// ---------------------------------------------------------------------------------------
 		// Buttons
+
+		private void SetButtonEnabled()
+		{
+			cropButton.Enabled =
+				(rotationBar.Value > 0 && rotationBar.Value < 360) ||
+				(selectionBounds.Width > 0 && selectionBounds.Height > 0);
+		}
+
 
 		private void SelectButton_Click(object sender, EventArgs e)
 		{
@@ -702,22 +913,25 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CropButton_Click(object sender, EventArgs e)
 		{
-			if (selectionBounds.IsEmpty)
+			if (selectionBounds.Width == 0 && selectionBounds.Height == 0)
 			{
 				return;
 			}
 
+			// translate absolute selection bounds relative to zoomed image bounds
+			var ratio = MagicRatio();
 			var bounds = new Rectangle(
-				(int)Math.Round((selectionBounds.X - ImageMargin) / scalingX),
-				(int)Math.Round((selectionBounds.Y - ImageMargin) / scalingY),
-				(int)Math.Round(selectionBounds.Width / scalingX),
-				(int)Math.Round(selectionBounds.Height / scalingY));
+				(int)Math.Round((selectionBounds.X - ImageMargin) * ratio),
+				(int)Math.Round((selectionBounds.Y - ImageMargin) * ratio),
+				(int)Math.Round(selectionBounds.Width * ratio),
+				(int)Math.Round(selectionBounds.Height * ratio));
 #if Logging
 			Logger.Current.WriteLine(
 				$"CROP selectionBounds xy:{selectionBounds.X}x{selectionBounds.Y} " +
 				$"siz:{selectionBounds.Width}x{selectionBounds.Height} | " +
 				$"bounds xy:{bounds.X}x{bounds.Y} siz:{bounds.Width}x{bounds.Height}");
 #endif
+			// crop with translated bounds
 			var crop = new Bitmap(bounds.Width, bounds.Height);
 			crop.SetResolution(Image.HorizontalResolution, Image.VerticalResolution);
 
@@ -727,6 +941,7 @@ namespace River.OneMoreAddIn.Commands
 				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 				g.CompositingQuality = CompositingQuality.HighQuality;
 				g.DrawImage(Image, 0, 0, bounds, GraphicsUnit.Pixel);
+
 				Image = crop;
 			}
 
@@ -739,6 +954,24 @@ namespace River.OneMoreAddIn.Commands
 			marchingTimer.Stop();
 
 			pictureBox.Refresh();
+		}
+
+
+		private void CropImageDialog_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control && e.KeyCode == Keys.D &&
+				selectionBounds.Width > 0 && selectionBounds.Height > 0)
+			{
+				selectionBounds = Rectangle.Empty;
+				SetSelection(Rectangle.Empty);
+				SetButtonEnabled();
+				e.Handled = true;
+			}
+			else if (e.Control && e.KeyCode == Keys.A)
+			{
+				SelectButton_Click(sender, e);
+				e.Handled = true;
+			}
 		}
 	}
 }

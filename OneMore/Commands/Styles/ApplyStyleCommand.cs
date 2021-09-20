@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var selectedIndex = (int)args[0];
 
-			style = new StyleProvider().GetStyle(selectedIndex);
+			style = new ThemeProvider().Theme.GetStyle(selectedIndex);
 			if (style == null)
 			{
 				// could be from a CtrlAltShift+# but that indexed style doesn't exist
@@ -118,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 
 							if (prev != null)
 							{
-								logger.WriteLine("prev:" + prev.ToString(SaveOptions.None));
+								//logger.WriteLine("prev:" + prev.ToString(SaveOptions.None));
 
 								if (!prev.GetCData().EndsWithWhitespace())
 								{
@@ -137,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 
 							if (next != null)
 							{
-								logger.WriteLine("next:" + next.ToString(SaveOptions.None));
+								//logger.WriteLine("next:" + next.ToString(SaveOptions.None));
 
 								if (!next.GetCData().StartsWithWhitespace())
 								{

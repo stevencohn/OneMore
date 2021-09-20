@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class ShowKeyboardShortcutsCommand : Command
 	{
 		private const string TemplateUrl =
-			"https://github.com/stevencohn/OneMore/raw/master/Templates/OneNote_Keyboard_Shortcuts.zip";
+			"https://github.com/stevencohn/OneMore/raw/main/Templates/OneNote_Keyboard_Shortcuts.zip";
 
 		private OneNote one;
 
@@ -90,13 +90,18 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var response = await client.GetAsync(TemplateUrl).ConfigureAwait(false))
 				{
-					path = Path.GetTempFileName();
-					using (var output = File.Create(path))
+					if (response.IsSuccessStatusCode)
 					{
-						await response.Content.CopyToAsync(output).ConfigureAwait(false);
+						path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+						using (var output = File.Create(path))
+						{
+							await response.Content.CopyToAsync(output).ConfigureAwait(false);
+						}
+
+						return path;
 					}
 
-					return path;
+					logger.WriteLine($"error download shortcuts template ({response.StatusCode}): {response.ReasonPhrase}, {TemplateUrl}");
 				}
 			}
 			catch (Exception exc)

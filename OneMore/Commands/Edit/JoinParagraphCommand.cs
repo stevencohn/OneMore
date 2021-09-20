@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -42,7 +43,6 @@ namespace River.OneMoreAddIn.Commands
 						firstParent.Add(content.Elements());
 					}
 
-					//logger.WriteLine(page.Root);
 					await one.Update(page);
 				}
 			}
@@ -60,6 +60,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (runs.Count == 0)
 			{
+				return null;
+			}
+
+			var cursor = runs.First();
+			if (runs.Count == 1 && cursor.GetCData().Value == string.Empty)
+			{
+				UIHelper.ShowInfo(Resx.JoinParagraphCommand_Select);
 				return null;
 			}
 
@@ -103,6 +110,11 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// double it up
 					cdata.Value = $"{cdata.Value}<br>\n";
+				}
+
+				if (cdata.Value.Length > 0 && !cdata.EndsWithWhitespace())
+				{
+					cdata.Value = $"{cdata.Value} ";
 				}
 
 				content.Add(run);

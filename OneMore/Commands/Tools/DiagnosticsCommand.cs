@@ -47,6 +47,18 @@ namespace River.OneMoreAddIn.Commands
 				builder.AppendLine($"Page link: {Link}");
 				builder.AppendLine();
 
+				(Name, Path, Link) = one.GetSectionInfo();
+				builder.AppendLine($"Section name: {Name}");
+				builder.AppendLine($"Section path: {Path}");
+				builder.AppendLine($"Section link: {Link}");
+				builder.AppendLine();
+
+				var notebook = one.GetNotebook();
+				var notebookId = one.CurrentNotebookId;
+				builder.AppendLine($"Notebook name: {notebook.Attribute("name").Value}");
+				builder.AppendLine($"Notebook link: {one.GetHyperlink(notebookId, null)}");
+				builder.AppendLine();
+
 				one.ReportWindowDiagnostics(builder);
 
 				builder.AppendLine();

@@ -6,7 +6,8 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
-	using System.Linq;
+	using System.Collections.Generic;
+	using System.Drawing;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -15,8 +16,15 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class InsertCalendarCommand : Command
 	{
-		private const string HeaderShading = "#DEEBF6";
+		private struct Day
+		{
+			public int Date;
+			public bool InMonth;
+		}
+
+
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
+		private const string BrightCss = ";color:#FEFEFE";
 		private const string DailyCss = "font-family:Calibri;font-size:11.0pt";
 		private const string GhostCss = "font-family:Calibri;font-size:11.0pt;color:#BFBFBF";
 
@@ -39,11 +47,6 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				int year;
-				int month;
-				bool large;
-				bool indent;
-
 				using (var dialog = new InsertCalendarDialog())
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
@@ -51,30 +54,27 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
-					year = dialog.Year;
-					month = dialog.Month;
-					large = dialog.Large;
-					indent = dialog.Indent;
-				}
+					logger.WriteLine($"making calendar for {dialog.Month}/{dialog.Year}");
 
-				logger.WriteLine($"making calendar for {month}/{year} large:{large} indent:{indent}");
+					var days = MakeDayList(dialog.Year, dialog.Month, dialog.FirstDay);
 
-				var root = MakeCalendar(year, month, large);
-				var header = MakeHeader(year, month);
+					var root = MakeCalendar(days, dialog.FirstDay, dialog.Large, dialog.HeaderShading);
+					var header = MakeHeader(dialog.Year, dialog.Month);
 
-				if (indent)
-				{
-					header.Add(new XElement(ns + "OEChildren",
-							new XElement(ns + "OE",
-							root)
-						));
+					if (dialog.Indent)
+					{
+						header.Add(new XElement(ns + "OEChildren",
+								new XElement(ns + "OE",
+								root)
+							));
 
-					page.AddNextParagraph(header);
-				}
-				else
-				{
-					page.AddNextParagraph(root);
-					page.AddNextParagraph(header);
+						page.AddNextParagraph(header);
+					}
+					else
+					{
+						page.AddNextParagraph(root);
+						page.AddNextParagraph(header);
+					}
 				}
 
 				await one.Update(page);
@@ -82,18 +82,51 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private XElement MakeCalendar(int year, int month, bool large)
+		private List<Day> MakeDayList(int year, int month, DayOfWeek firstDay)
 		{
+			var days = new List<Day>();
+
 			var date = new DateTime(year, month, 1);
-			var first = (int)date.DayOfWeek;
-			var last = DateTime.DaysInMonth(year, month);
+
+			var first = date.DayOfWeek;
+			var last = DateTime.DaysInMonth(date.Year, date.Month);
+
+			var firstCol = firstDay == DayOfWeek.Sunday
+				? (int)first
+				: first == DayOfWeek.Sunday ? 6 : (int)first - 1;
+
+			if (firstCol > 0)
+			{
+				var prev = date.Subtract(new TimeSpan(1, 0, 0, 0));
+				var prevLast = DateTime.DaysInMonth(prev.Year, prev.Month);
+
+				for (int p = prevLast - firstCol + 1; p <= prevLast; p++)
+				{
+					days.Add(new Day { Date = p });
+				}
+			}
+
+			for (int day = 1; day <= last; day++)
+			{
+				days.Add(new Day { Date = day, InMonth = true });
+			}
+
+			var rest = 7 - days.Count % 7;
+			for (firstCol = 1; firstCol <= rest; firstCol++)
+			{
+				days.Add(new Day { Date = firstCol });
+			}
+
+			return days;
+		}
+
+
+		private XElement MakeCalendar(
+			List<Day> days, DayOfWeek firstDay, bool large, string shading)
+		{
 			var alignment = large ? "left" : "right";
 
-			// calc table rows including header
-			int term = first + last;
-			int rowCount = term / 7 + (term % 7 == 0 ? 1 : 2);
-
-			var table = new Table(ns, rowCount, 7)
+			var table = new Table(ns, days.Count / 7 + 1, 7)
 			{
 				BordersVisible = true
 			};
@@ -108,100 +141,70 @@ namespace River.OneMoreAddIn.Commands
 
 			// headers...
 
-			var header = table.Rows.First();
+			var css = ColorTranslator.FromHtml(shading).GetBrightness() < 0.5
+				? $"{HeaderCss}{BrightCss}"
+				: HeaderCss;
+
+			var header = table[0];
 			var format = AddIn.Culture.DateTimeFormat;
-			var dow = 0;
+			var dow = firstDay == DayOfWeek.Sunday ? 0 : 1;
 			foreach (var cell in header.Cells)
 			{
-				cell.ShadingColor = HeaderShading;
+				cell.ShadingColor = shading;
 
 				var name = large
-					? format.GetDayName((DayOfWeek)dow).ToUpper()
-					: format.GetShortestDayName((DayOfWeek)dow).ToUpper();
+					? format.GetDayName((DayOfWeek)(dow % 7)).ToUpper()
+					: format.GetShortestDayName((DayOfWeek)(dow % 7)).ToUpper();
 
-				cell.SetContent(new XElement(ns + "OE",
-					new XAttribute("alignment", alignment),
-					new XAttribute("style", HeaderCss),
-					new XElement(ns + "T", new XCData(name))
-					));
+				cell.SetContent(
+					new Paragraph(ns, name).SetAlignment(alignment).SetStyle(css));
 
 				dow++;
-			}
-
-			TableRow row;
-
-			// previous month days...
-
-			if (large && first > 0)
-			{
-				var prev = date.Subtract(new TimeSpan(-1, 0, 0, 0));
-				var prevLast = DateTime.DaysInMonth(prev.Year, prev.Month);
-				row = table.Rows.ElementAt(1);
-				for (int i = 0; i < first; i++)
-				{
-					int d = prevLast - first + i;
-					row.Cells.ElementAt(i).SetContent(new XElement(ns + "OE",
-						new XAttribute("alignment", alignment),
-						new XAttribute("style", GhostCss),
-						new XElement(ns + "T", new XCData(d.ToString()))
-						));
-				}
 			}
 
 			// days...
 
-			int day = 1;
-			int rindex = 1;
-			dow = first;
-			row = table.Rows.ElementAt(rindex);
-			while (day <= last)
+			int c = 0;
+			int r = 1;
+			var row = table[r];
+
+			foreach (var day in days)
 			{
-				var cell = row.Cells.ElementAt(dow);
-
-				var content = new XElement(ns + "OEChildren",
-					new XElement(ns + "OE",
-					new XAttribute("alignment", alignment),
-					new XAttribute("style", DailyCss),
-					new XElement(ns + "T", new XCData(day.ToString()))
-					));
-
-				if (large)
+				if (large || day.InMonth)
 				{
-					content.Add(
-						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
-						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
-						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)))
-						);
+					if (day.InMonth)
+					{
+						var content = new XElement(ns + "OEChildren",
+							new Paragraph(ns, day.Date.ToString())
+								.SetAlignment(alignment).SetStyle(DailyCss));
+
+						if (large)
+						{
+							content.Add(
+								new Paragraph(ns, string.Empty),
+								new Paragraph(ns, string.Empty),
+								new Paragraph(ns, string.Empty));
+						}
+
+						row[c].SetContent(content);
+					}
+					else if (large)
+					{
+						row[c].SetContent(
+							new Paragraph(ns, day.Date.ToString())
+								.SetAlignment(alignment).SetStyle(GhostCss));
+					}
 				}
 
-				cell.SetContent(content);
-
-				day++;
-				dow++;
-
-				if (dow > 6 && day <= last)
+				c++;
+				if (c > 6)
 				{
-					dow = 0;
-					rindex++;
-					row = table.Rows.ElementAt(rindex);
-				}
-			}
-
-			// next month days...
-
-			if (large && dow < 7)
-			{
-				day = 1;
-				while (dow < 7)
-				{
-					row.Cells.ElementAt(dow).SetContent(new XElement(ns + "OE",
-						new XAttribute("alignment", alignment),
-						new XAttribute("style", HeaderCss),
-						new XElement(ns + "T", new XCData(day.ToString()))
-						));
-
-					dow++;
-					day++;
+					c = 0;
+					r++;
+					if (r < table.RowCount)
+					{
+						row = table[r];
+					}
 				}
 			}
 
@@ -212,14 +215,9 @@ namespace River.OneMoreAddIn.Commands
 		private XElement MakeHeader(int year, int month)
 		{
 			var quick = page.GetQuickStyle(Styles.StandardStyles.Heading2);
+			var monthName = AddIn.Culture.DateTimeFormat.GetMonthName(month);
 
-			var format = AddIn.Culture.DateTimeFormat;
-			var monthName = format.GetMonthName(month);
-
-			return new XElement(ns + "OE",
-				new XAttribute("quickStyleIndex", quick.Index),
-				new XElement(ns + "T", new XCData($"{monthName} {year}"))
-				);
+			return new Paragraph(ns, $"{monthName} {year}").SetQuickStyle(quick.Index);
 		}
 	}
 }
