@@ -8,7 +8,6 @@ namespace OneMoreProtocolHandler
 {
 	using Microsoft.Win32;
 	using System;
-	using System.Diagnostics;
 	using System.IO.Pipes;
 	using System.Reflection;
 	using System.Text;
@@ -17,19 +16,18 @@ namespace OneMoreProtocolHandler
 	class Program
 	{
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
+		private static Logger logger;
 
 
 		static void Main(string[] args)
 		{
-			// project is configured as a Windows Application so add Console as an output
-			var listener = new TextWriterTraceListener(Console.Out);
-			Debug.Listeners.Add(listener);
-
 			if (args.Length == 0 || string.IsNullOrEmpty(args[0]))
 			{
 				// nothing to do
 				return;
 			}
+
+			logger = new Logger();
 
 			if (args[0] == "--register")
 			{
@@ -71,7 +69,8 @@ namespace OneMoreProtocolHandler
 					// being an event-driven program to bounce messages back to OneMore
 					// set timeout because we shouldn't need to wait for server ever!
 					client.Connect(500);
-					Debug.WriteLine("pipe client connected");
+					logger.WriteLine("pipe client connected");
+					logger.WriteLine($"writing '{arg}'");
 
 					var buffer = Encoding.UTF8.GetBytes(arg);
 					client.Write(buffer, 0, buffer.Length);
@@ -81,7 +80,8 @@ namespace OneMoreProtocolHandler
 			}
 			catch (Exception exc)
 			{
-				Debug.WriteLine(exc.Message);
+				logger.WriteLine($"error writing '{arg}'");
+				logger.WriteLine(exc);
 			}
 		}
 
@@ -93,6 +93,9 @@ namespace OneMoreProtocolHandler
 		{
 			// protocol handler...
 			// Registers this program as the handler for the onemore:// protocol
+
+			logger.WriteLine(string.Empty);
+			logger.WriteLine("Register...");
 
 			/*
 			[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\onemore]
@@ -106,26 +109,34 @@ namespace OneMoreProtocolHandler
 				RegistryHive.LocalMachine, RegistryView.Registry64))
 			{
 				var path = @"Software\Classes\onemore";
+
+				logger.WriteLine($@"opening HKLM:\{path}");
 				var key = hive.OpenSubKey(path, true);
 				if (key == null)
 				{
+					logger.WriteLine($@"creating HKLM:\{path}");
 					key = hive.CreateSubKey(path, true);
 				}
 
+				logger.WriteLine($@"setting properties of HKLM:\{path}");
 				key.SetValue(string.Empty, "URL:OneMore Protocol Handler");
 				key.SetValue("URL Protocol", string.Empty);
+				key.Flush();
 				key.Dispose();
 
 				path = $@"{path}\shell\open\command";
+				logger.WriteLine($@"opening HKLM:\{path}");
 				key = hive.OpenSubKey(path, true);
 				if (key == null)
 				{
-					Debug.WriteLine($@"creating HKLM:\{path}");
+					logger.WriteLine($@"creating HKLM:\{path}");
 					key = hive.CreateSubKey(path, true);
 				}
 
+				logger.WriteLine($@"setting properties of HKLM:\{path}");
 				var cmd = $"\"{Assembly.GetExecutingAssembly().Location}\" %1 %2 %3";
 				key.SetValue(string.Empty, cmd);
+				key.Flush();
 				key.Dispose();
 			}
 
@@ -143,10 +154,11 @@ namespace OneMoreProtocolHandler
 				var path = $@"Software\Policies\Microsoft\Office\{version}\Common\Security\" +
 					@"Trusted Protocols\All Applications\onemore:";
 
+				logger.WriteLine($@"opening HKCU:\{path}");
 				var key = hive.OpenSubKey(path, true);
 				if (key == null)
 				{
-					Debug.WriteLine($@"creating HKCU:\{path}");
+					logger.WriteLine($@"creating HKCU:\{path}");
 					try
 					{
 						key = hive.CreateSubKey(path, true);
@@ -154,7 +166,8 @@ namespace OneMoreProtocolHandler
 					}
 					catch (Exception exc)
 					{
-						WriteEvent($"error adding trusted procol '{exc.Message}'");
+						logger.WriteLine("error registering trusted protocol");
+						logger.WriteLine(exc);
 					}
 				}
 
@@ -173,11 +186,13 @@ namespace OneMoreProtocolHandler
 					var value = (string)key.GetValue(string.Empty);
 					// extract version number
 					var version = new Version(value.Substring(value.LastIndexOf('.') + 1) + ".0");
+					logger.WriteLine($"found Office version {latest}");
 					return version;
 				}
 			}
 
 			// presume latest
+			logger.WriteLine($"defaulting Office version to {latest}");
 			return new Version(latest, 0);
 		}
 
@@ -186,12 +201,15 @@ namespace OneMoreProtocolHandler
 
 		static void Unregister()
 		{
+			logger.WriteLine(string.Empty);
+			logger.WriteLine("Unregister...");
+
 			// protocol handler...
 			using (var hive = RegistryKey.OpenBaseKey(
 				RegistryHive.LocalMachine, RegistryView.Registry64))
 			{
 				var path = @"Software\Classes\onemore";
-				Debug.WriteLine($@"deleting HKLM:\{path}");
+				logger.WriteLine($@"deleting HKLM:\{path}");
 
 				try
 				{
@@ -199,7 +217,8 @@ namespace OneMoreProtocolHandler
 				}
 				catch (Exception exc)
 				{
-					WriteEvent($"error deleting protocol class: {exc.Message}");
+					logger.WriteLine("error deleting protocol class");
+					logger.WriteLine(exc);
 				}
 			}
 
@@ -212,7 +231,7 @@ namespace OneMoreProtocolHandler
 				var path = $@"Software\Policies\Microsoft\Office\{version}\Common\Security\" +
 					@"Trusted Protocols\All Applications\onemore:";
 
-				Debug.WriteLine($@"deleting HKCU:\{path}");
+				logger.WriteLine($@"deleting HKCU:\{path}");
 
 				try
 				{
@@ -220,24 +239,10 @@ namespace OneMoreProtocolHandler
 				}
 				catch (Exception exc)
 				{
-					WriteEvent($"error deleting trusted protocol: {exc.Message}");
+					logger.WriteLine("error deleting trusted protocol");
+					logger.WriteLine(exc);
 				}
 			}
-		}
-
-
-		private static void WriteEvent(string message)
-		{
-			if (!EventLog.SourceExists("OneMore"))
-			{
-				EventLog.CreateEventSource("OneMore", "Application");
-			}
-			var log = new EventLog("Application")
-			{
-				Source = "OneMore"
-			};
-			log.WriteEntry(message);
-			Debug.WriteLine($"event:{message}");
 		}
 		#endregion Registration
 	}
