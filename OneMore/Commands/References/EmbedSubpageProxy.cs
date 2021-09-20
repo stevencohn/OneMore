@@ -27,8 +27,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var sourceId = args.Length > 1 ? args[1] as string : null;
+			var linkId = args.Length > 2 ? args[2] as string : null;
 
-			await new EmbedSubpageCommand().Execute(update, sourceId);
+			await new EmbedSubpageCommand().Execute(update, sourceId, linkId);
 		}
 	}
 }

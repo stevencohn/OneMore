@@ -597,10 +597,17 @@ namespace River.OneMoreAddIn
 				return null;
 			}
 
-			onenote.GetPageContent(pageId, out var xml, (PageInfo)detail, XMLSchema.xs2013);
-			if (!string.IsNullOrEmpty(xml))
+			try
 			{
-				return new Page(XElement.Parse(xml));
+				onenote.GetPageContent(pageId, out var xml, (PageInfo)detail, XMLSchema.xs2013);
+				if (!string.IsNullOrEmpty(xml))
+				{
+					return new Page(XElement.Parse(xml));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error getting page {pageId}", exc);
 			}
 
 			return null;
@@ -620,8 +627,17 @@ namespace River.OneMoreAddIn
 				return null;
 			}
 
-			onenote.GetPageContent(pageId, out var xml, (PageInfo)detail, XMLSchema.xs2013);
-			return xml;
+			try
+			{
+				onenote.GetPageContent(pageId, out var xml, (PageInfo)detail, XMLSchema.xs2013);
+				return xml;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error getting page XML {pageId}", exc);
+			}
+
+			return null;
 		}
 
 
@@ -854,13 +870,13 @@ namespace River.OneMoreAddIn
 			var ns = GetNamespace(root);
 
 			var schemas = new XmlSchemaSet();
-			schemas.Add(ns.ToString(), 
+			schemas.Add(ns.ToString(),
 				XmlReader.Create(new StringReader(Resx._0336_OneNoteApplication_2013)));
 
 			bool valid = true;
 			document.Validate(schemas, (o, e) =>
 			{
-				if (o is XAttribute attribute && 
+				if (o is XAttribute attribute &&
 					e.Exception.InnerException?.HResult == MaxInclusiveHResult)
 				{
 					var exp = attribute.Value.IndexOf('E');

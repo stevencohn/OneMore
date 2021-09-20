@@ -21,6 +21,10 @@ namespace OneMoreProtocolHandler
 
 		static void Main(string[] args)
 		{
+			// project is configured as a Windows Application so add Console as an output
+			var listener = new TextWriterTraceListener(Console.Out);
+			Debug.Listeners.Add(listener);
+
 			if (args.Length == 0 || string.IsNullOrEmpty(args[0]))
 			{
 				// nothing to do
@@ -143,7 +147,15 @@ namespace OneMoreProtocolHandler
 				if (key == null)
 				{
 					Debug.WriteLine($@"creating HKCU:\{path}");
-					key = hive.CreateSubKey(path, true);
+					try
+					{
+						key = hive.CreateSubKey(path, true);
+						key.Flush();
+					}
+					catch (Exception exc)
+					{
+						WriteEvent($"error adding trusted procol '{exc.Message}'");
+					}
 				}
 
 				key.Dispose();
@@ -180,7 +192,15 @@ namespace OneMoreProtocolHandler
 			{
 				var path = @"Software\Classes\onemore";
 				Debug.WriteLine($@"deleting HKLM:\{path}");
-				hive.DeleteSubKeyTree(path, false);
+
+				try
+				{
+					hive.DeleteSubKeyTree(path, false);
+				}
+				catch (Exception exc)
+				{
+					WriteEvent($"error deleting protocol class: {exc.Message}");
+				}
 			}
 
 
@@ -193,8 +213,31 @@ namespace OneMoreProtocolHandler
 					@"Trusted Protocols\All Applications\onemore:";
 
 				Debug.WriteLine($@"deleting HKCU:\{path}");
-				hive.DeleteSubKey(path, false);
+
+				try
+				{
+					hive.DeleteSubKey(path, false);
+				}
+				catch (Exception exc)
+				{
+					WriteEvent($"error deleting trusted protocol: {exc.Message}");
+				}
 			}
+		}
+
+
+		private static void WriteEvent(string message)
+		{
+			if (!EventLog.SourceExists("OneMore"))
+			{
+				EventLog.CreateEventSource("OneMore", "Application");
+			}
+			var log = new EventLog("Application")
+			{
+				Source = "OneMore"
+			};
+			log.WriteEntry(message);
+			Debug.WriteLine($"event:{message}");
 		}
 		#endregion Registration
 	}

@@ -7,6 +7,8 @@ namespace River.OneMoreAddIn.Commands
 	using OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -14,6 +16,15 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class EmbedSubpageCommand : Command
 	{
+		private class SourceInfo
+		{
+			public IEnumerable<XElement> Snippets;
+			public string SourceId;
+			public Page Page;
+			public Outline Outline;
+		}
+
+
 		// OE meta indicating content embedded content from another page
 		private const string EmbeddedMetaName = "omEmbedded";
 		// OE meta indicating content embedded content header paragraph
@@ -39,7 +50,8 @@ namespace River.OneMoreAddIn.Commands
 				logger = Logger.Current;
 
 				var sourceId = args.Length > 1 ? args[1] as string : null;
-				await UpdateContent(sourceId);
+				var linkId = args.Length > 2 ? args[2] as string : null;
+				await UpdateContent(sourceId, linkId);
 				return;
 			}
 
@@ -50,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 		//========================================================================================
 		// Update...
 
-		private async Task UpdateContent(string sourceId)
+		private async Task UpdateContent(string sourceId, string linkId)
 		{
 			using (one = new OneNote(out page, out ns))
 			{
@@ -80,15 +92,16 @@ namespace River.OneMoreAddIn.Commands
 					if (tableRoot != null)
 					{
 						sourceId = meta.Attribute("content").Value;
-						var snippets = GetSnippets(sourceId, out var source, out var outline);
-						if (!snippets.Any())
+						var source = await GetSource(sourceId, linkId);
+						if (source == null || !source.Snippets.Any())
 						{
 							// error reading source
+							UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoEmbedded);
 							return;
 						}
 
 						var table = new Table(tableRoot);
-						FillCell(table[0][0], snippets, source);
+						FillCell(table[0][0], source.Snippets, source.Page);
 						updated = true;
 					}
 				}
@@ -101,27 +114,47 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private IEnumerable<XElement> GetSnippets(
-			string sourceId, out Page source, out Outline outline)
+		private async Task<SourceInfo> GetSource(string sourceId, string linkId)
 		{
-			source = one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
+			var source = one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
 			if (source == null)
 			{
-				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoSource);
-				outline = null;
-				return new List<XElement>();
+				if (linkId == null)
+				{
+					// linkId should only be null from EmbedContent because it's using the local
+					// reference to the page, but GetPage still couldn't find it so give up!
+					return null;
+				}
+
+				logger.WriteLine("recoverying from GetPage by mapping to hyperlink");
+
+				var token = new CancellationTokenSource();
+				var map = await one.BuildHyperlinkMap(OneNote.Scope.Sections, token.Token,
+					async (count) => { await Task.Yield(); },
+					async () => { await Task.Yield(); });
+
+				if (map.ContainsKey(linkId))
+				{
+					sourceId = map[linkId].PageID;
+					source = one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
+				}
+
+				if (source == null)
+				{
+					UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoSource);
+					return null;
+				}
 			}
 
 			var outRoot = source.Root.Elements(source.Namespace + "Outline").FirstOrDefault();
 			if (outRoot == null)
 			{
 				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoContent);
-				outline = null;
-				return new List<XElement>();
+				return null;
 			}
 
 			PageNamespace.Set(ns);
-			outline = new Outline(outRoot);
+			var outline = new Outline(outRoot);
 
 			var snippets = outline.Elements(ns + "OEChildren")
 				.Where(e => !e.Elements(ns + "OE")
@@ -130,20 +163,30 @@ namespace River.OneMoreAddIn.Commands
 			if (snippets == null || !snippets.Any())
 			{
 				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoContent);
-				return new List<XElement>();
+				return null;
 			}
 
-			return snippets;
+			return new SourceInfo
+			{
+				Snippets = snippets,
+				SourceId = sourceId,
+				Page = source,
+				Outline = outline
+			};
 		}
 
 
 		private void FillCell(TableCell cell, IEnumerable<XElement> snippets, Page source)
 		{
 			var link = one.GetHyperlink(source.PageId, string.Empty);
+			var match = Regex.Match(link, @"page-id=({[^}]+?})");
+			var linkId = match.Success ? match.Groups[1].Value : string.Empty;
+
+			var map = page.MergeQuickStyles(source);
 			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			var text = $"<a href=\"{link}\">Embedded from {source.Title}</a> | <a " +
-				$"href=\"onemore://EmbedSubpageProxy/true/{source.PageId}\">{Resx.EmbedSubpageCommand_Refresh}</a>";
+				$"href=\"onemore://EmbedSubpageProxy/true/{source.PageId}/{linkId}\">{Resx.EmbedSubpageCommand_Refresh}</a>";
 
 			var header = new Paragraph(text)
 				.SetQuickStyle(citationIndex)
@@ -156,6 +199,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var snippet in snippets)
 			{
+				page.ApplyStyleMapping(map, snippet);
 				cell.Root.Add(snippet);
 			}
 		}
@@ -186,8 +230,8 @@ namespace River.OneMoreAddIn.Commands
 
 			using (one = new OneNote(out page, out ns))
 			{
-				var snippets = GetSnippets(sourceId, out var source, out var outline);
-				if (!snippets.Any())
+				var source = await GetSource(sourceId, null);
+				if (source == null || !source.Snippets.Any())
 				{
 					return;
 				}
@@ -221,14 +265,14 @@ namespace River.OneMoreAddIn.Commands
 				if (hostCell == null)
 				{
 					// set width to width of source page outline
-					var width = outline.GetWidth();
+					var width = source.Outline.GetWidth();
 					table.SetColumnWidth(0, width == 0 ? 500 : width);
 				}
 
-				FillCell(table[0][0], snippets, source);
+				FillCell(table[0][0], source.Snippets, source.Page);
 
 				page.AddNextParagraph(new Paragraph(
-					new Meta(EmbeddedMetaName, source.PageId),
+					new Meta(EmbeddedMetaName, source.Page.PageId),
 					table.Root
 					));
 
