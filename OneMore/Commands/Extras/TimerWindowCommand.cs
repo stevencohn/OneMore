@@ -30,6 +30,8 @@ namespace River.OneMoreAddIn.Commands
 					window.FormClosed += CloseTimerWindow;
 					await window.RunModeless();
 				}
+
+				return;
 			}
 
 			if (window == null || window.IsDisposed)
