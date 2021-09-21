@@ -57,6 +57,11 @@
               getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
               onAction="ReplayCmd"/>
+            <button
+              id="ribStartTimerButton"
+              imageMso="StartTimer"
+              label="Start Timer"
+              onAction="StartTimerCmd"/>
             <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
               <button
                 id="ribBreakingButton"

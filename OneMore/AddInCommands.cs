@@ -327,6 +327,9 @@ namespace River.OneMoreAddIn
 		public async Task StartBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("mark");
 
+		public async Task StartTimerCmd(IRibbonControl control)
+			=> await factory.Run<StartTimerCommand>();
+
 		public async Task StrikeoutCmd(IRibbonControl control)
 			=> await factory.Run<StrikeoutCommand>();
 

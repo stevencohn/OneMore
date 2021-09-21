@@ -16,6 +16,9 @@ namespace River.OneMoreAddIn
 		public const int DEVICECAPS_DESKTOPVERTRES = 117;
 		public const int DEVICECAPS_DESKTOPHORZRES = 118;
 
+		public const int WM_NCLBUTTONDOWN = 0xA1;
+		public const int HT_CAPTION = 0x2;
+
 		public const int WM_HOTKEY = 0x312;
 		public const int WM_SYSCOMMAND = 0x112;
 		public const int MF_BYPOSITION = 0x400;
@@ -42,6 +45,18 @@ namespace River.OneMoreAddIn
 		public const int TVM_SETITEMW = 0x113f;
 
 		public const int TVM_GETITEM = 0x110C;
+
+
+		[DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+		public static extern IntPtr CreateRoundRectRgn
+		(
+			int nLeftRect,     // x-coordinate of upper-left corner
+			int nTopRect,      // y-coordinate of upper-left corner
+			int nRightRect,    // x-coordinate of lower-right corner
+			int nBottomRect,   // y-coordinate of lower-right corner
+			int nWidthEllipse, // width of ellipse
+			int nHeightEllipse // height of ellipse
+		);
 
 
 		/// <summary>
@@ -131,8 +146,16 @@ namespace River.OneMoreAddIn
 			IntPtr hMenu, int wPosition, int wFlags, int wIDNewItem, string lpNewItem);
 
 
+		[DllImport("user32.dll")]
+		public static extern bool ReleaseCapture();
+
+
 		[DllImport("user32.dll", CharSet = CharSet.Auto)]
 		public static extern IntPtr SendMessage(HandleRef hWnd, int msg, int wParam, ref TreeItem lParam);
+
+
+		[DllImport("user32.dll")]
+		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey
