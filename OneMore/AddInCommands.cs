@@ -93,6 +93,9 @@ namespace River.OneMoreAddIn
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
 
+		public async Task EmbedSubpageCmd(IRibbonControl control)
+			=> await factory.Run<EmbedSubpageCommand>(false);
+
 		public async Task EnableSpellCheckCmd(IRibbonControl control)
 			=> await factory.Run<SpellCheckCommand>(true);
 
@@ -177,8 +180,8 @@ namespace River.OneMoreAddIn
 		public async Task InsertSnippetCmd(IRibbonControl control)
 			=> await factory.Run<InsertSnippetCommand>(control.Tag); // tag=filepath
 
-		public async Task EmbedSubpageCmd(IRibbonControl control)
-			=> await factory.Run<EmbedSubpageCommand>(false);
+		public async Task InsertTimerCmd(IRibbonControl control)
+			=> await factory.Run<TimerWindowCommand>(true);
 
 		public async Task InsertTocCmd(IRibbonControl control)
 			=> await factory.Run<InsertTocCommand>();
@@ -326,6 +329,9 @@ namespace River.OneMoreAddIn
 
 		public async Task StartBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("mark");
+
+		public async Task StartTimerCmd(IRibbonControl control)
+			=> await factory.Run<TimerWindowCommand>();
 
 		public async Task StrikeoutCmd(IRibbonControl control)
 			=> await factory.Run<StrikeoutCommand>();

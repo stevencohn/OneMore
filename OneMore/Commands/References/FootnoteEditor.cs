@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
-	using System.Globalization;
 	using System.Linq;
 	using System.Media;
 	using System.Text.RegularExpressions;
@@ -17,15 +16,18 @@ namespace River.OneMoreAddIn
 
 	internal class FootnoteEditor
 	{
+		private const string FootnotesMeta = "omfootnotes";
+		private const string DividerContent = "divider";
+		private const string EmptyContent = "empty";
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
 
 		private readonly OneNote one;
 		private readonly ILogger logger;
 		private readonly bool dark;
-		private readonly bool rightToLeft;
 
 		private Page page;
 		private XNamespace ns;
+		private bool rightToLeft;
 
 		private XElement divider;
 
@@ -43,12 +45,15 @@ namespace River.OneMoreAddIn
 			PageNamespace.Set(ns);
 
 			dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
-			rightToLeft = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
 
 			logger = Logger.Current;
 		}
 
 
+		/// <summary>
+		/// Determines if the cursor context is appropriate for footnote operations
+		/// </summary>
+		/// <returns>True if the cursor is positioned in the body of the page</returns>
 		public bool ValidContext()
 		{
 			if (!page.ConfirmBodyContext())
@@ -67,6 +72,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public async Task AddFootnote()
 		{
+			// find the selected run, the insertion point
 			var element = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "T")
@@ -74,23 +80,19 @@ namespace River.OneMoreAddIn
 
 			if (element == null)
 			{
-				element = page.Root.Elements(ns + "Outline").LastOrDefault();
-			}
-
-			if (element == null)
-			{
-				logger.WriteLine($"{nameof(FootnoteEditor.AddFootnote)} could not find a selected outline");
-				SystemSounds.Exclamation.Play();
+				UIHelper.ShowError(one.Window, Resx.Error_BodyContext);
 				return;
 			}
 
 			// last selected paragraph OE
 			element = element.Parent;
 
+			// rtl paragraph, rtl page, or rtl Windows language
+			rightToLeft = element.Attribute("RTL")?.Value == "true" || page.IsRightToLeft();
+
 			if (!EnsureFootnoteFooter())
 			{
-				logger.WriteLine($"{nameof(FootnoteEditor.AddFootnote)} could not add footnote footer");
-				SystemSounds.Exclamation.Play();
+				UIHelper.ShowError(one.Window, Resx.Error_BodyContext);
 				return;
 			}
 
@@ -111,18 +113,37 @@ namespace River.OneMoreAddIn
 			<one:T><![CDATA[─ ─ . . . ─ ─]]></one:T>
 		  </one:OE>
 		*/
+		/// <summary>
+		/// Looks for the footer paragraph, marked with the meta "omfootnotes". If not found,
+		/// it will create this section.
+		/// </summary>
+		/// <returns>True if found or created; false is there was a problem</returns>
 		private bool EnsureFootnoteFooter()
 		{
-			divider = page.Root.Elements(ns + "Outline")
-				.Where(e => e.Attributes("selected").Any())
-				.Descendants(ns + "Meta")
-				.FirstOrDefault(e =>
-					e.Attribute("name").Value.Equals("omfootnotes") &&
-					e.Attribute("content").Value.Equals("divider"));
+			// the selected Outline must be the right context
+			var outline = page.Root.Elements(ns + "Outline")
+				.FirstOrDefault(e => e.Attributes("selected").Any());
+
+			if (outline == null)
+			{
+				logger.WriteLine($"could not add footnote footer; no selected outline");
+				return false;
+			}
+
+			var container = outline.Elements(ns + "OEChildren").FirstOrDefault();
+			if (container == null)
+			{
+				logger.WriteLine($"could not add footnote footer; no outline container");
+				return false;
+			}
+
+			divider = outline.Descendants(ns + "Meta").FirstOrDefault(e =>
+				e.Attribute("name").Value == FootnotesMeta &&
+				e.Attribute("content").Value == DividerContent);
 
 			if (divider != null)
 			{
-				// Meta parent's OE
+				// found the divider so return its parent OE
 				divider = divider.Parent;
 				return true;
 			}
@@ -131,75 +152,52 @@ namespace River.OneMoreAddIn
 
 			var line = string.Concat(Enumerable.Repeat("- ", 50));
 			page.EnsurePageWidth(line, "Courier New", 10f, one.WindowHandle);
+
+			// add a couple of empty lines for spacing
+			container.Add(
+				new Paragraph(
+					new Meta(FootnotesMeta, EmptyContent),
+					new XElement(ns + "T", string.Empty)
+					).SetRTL(rightToLeft),
+				new Paragraph(
+					new Meta(FootnotesMeta, EmptyContent),
+					new XElement(ns + "T", string.Empty)
+					).SetRTL(rightToLeft)
+				);
+
+			// build the divider line
+			line = line.Substring(0, 42) +
+				$"<span stlye='{RefreshStyle}'>[</span><a href=\"onemore://RefreshFootnotesCommand/\">" +
+				$"<span style='{RefreshStyle}'>{Resx.AddFootnoteCommand_Refresh}</span></a>" +
+				$"<span style='{RefreshStyle}'>]</span>";
+
+			var color = dark ? "#595959" : "#999696";
+			var style = $"font-family:'Courier New';font-size:10.0pt;color:{color}";
 			if (rightToLeft)
 			{
-				line = $"<span stlye='{RefreshStyle}'>[</span><a href=\"onemore://RefreshFootnotesCommand/\">" +
-					$"<span style='{RefreshStyle}'>{Resx.AddFootnoteCommand_Refresh}</span></a>" +
-					$"<span style='{RefreshStyle}'>]</span> "
-					+ line.Substring(0, 42);
-			}
-			else
-			{
-				line = line.Substring(0, 42) +
-					$"<span stlye='{RefreshStyle}'>[</span><a href=\"onemore://RefreshFootnotesCommand/\">" +
-					$"<span style='{RefreshStyle}'>{Resx.AddFootnoteCommand_Refresh}</span></a>" +
-					$"<span style='{RefreshStyle}'>]</span> ";
+				style = $"direction:rtl;{style};direction:rtl;unicode-bidi:embed";
 			}
 
-			var content = page.Root.Elements(ns + "Outline")
-				.Where(e => e.Attributes("selected").Any())
-				.Elements(ns + "OEChildren")
-				.FirstOrDefault();
+			var paragraph = new Paragraph(
+				new Meta(FootnotesMeta, DividerContent),
+				new XElement(ns + "T", new XCData(line))
+				)
+				.SetStyle(style)
+				.SetRTL(rightToLeft);
 
-			if (content != null)
-			{
-				// add a couple of empty lines for spacing
-				content.Add(new XElement(ns + "OE",
-					new XElement(ns + "Meta",
-						new XAttribute("name", "omfootnotes"),
-						new XAttribute("content", "empty")
-						),
-					new XElement(ns + "T", string.Empty)
-					));
+			// add the new divider line
+			divider = paragraph;
+			container.Add(divider);
 
-				content.Add(new XElement(ns + "OE",
-					new XElement(ns + "Meta",
-						new XAttribute("name", "omfootnotes"),
-						new XAttribute("content", "empty")
-						),
-					new XElement(ns + "T", string.Empty)
-					));
-
-				// build the divider line
-				var color = dark ? "#595959" : "#999696";
-
-				divider = new XElement(ns + "OE",
-					new XAttribute("style", $"font-family:'Courier New';font-size:10.0pt;color:{color}"),
-					new XElement(ns + "Meta",
-						new XAttribute("name", "omfootnotes"),
-						new XAttribute("content", "divider")
-						),
-					new XElement(ns + "T", new XCData(line))
-					);
-
-				if (rightToLeft)
-				{
-					divider.SetAttributeValue("alignment", "right");
-				}
-
-				// add the divider line
-				content.Add(divider);
-
-				return true;
-			}
-
-			logger.WriteLine(
-				$"{nameof(FootnoteEditor.EnsureFootnoteFooter)} could not add footnote section; OEChildren not found");
-
-			return false;
+			return true;
 		}
 
 
+		/// <summary>
+		/// Add a footnote to the footer section at the bottom of the outline
+		/// </summary>
+		/// <param name="textId">The objectId of the paragraph containing the cursor</param>
+		/// <returns>The footnote label, the footnote ID#</returns>
 		private async Task<string> WriteFootnoteText(string textId)
 		{
 			// find next footnote label
@@ -287,12 +285,17 @@ namespace River.OneMoreAddIn
 			page = one.GetPage();
 			ns = page.Namespace;
 
-			_ = EnsureFootnoteFooter();
+			EnsureFootnoteFooter();
 
 			return label;
 		}
 
 
+		/// <summary>
+		/// Insert the linked label at the cursor insertion point within the body text
+		/// </summary>
+		/// <param name="label">The footnote label; it's label ID#</param>
+		/// <returns></returns>
 		private bool WriteFootnoteRef(string label)
 		{
 			// find the new footer by its label and get its new objectID
@@ -361,6 +364,7 @@ namespace River.OneMoreAddIn
 
 		//=======================================================================================
 
+		#region Refresh
 		/// <summary>
 		/// Refreshes the label numbers so that all references are sequentially ordered starting
 		/// at 1 from the top of the page. This is needed when adding a new reference prior to
@@ -443,8 +447,8 @@ namespace River.OneMoreAddIn
 						.Where(e => e.Attributes("selected").Any())
 						.Descendants(ns + "Meta")
 						.FirstOrDefault(e =>
-							e.Attribute("name").Value.Equals("omfootnotes") &&
-							e.Attribute("content").Value.Equals("divider"))?
+							e.Attribute("name").Value.Equals(FootnotesMeta) &&
+							e.Attribute("content").Value.Equals(DividerContent))?
 						.Parent;
 
 					if (divider == null)
@@ -529,10 +533,12 @@ namespace River.OneMoreAddIn
 
 			return list;
 		}
+		#endregion Refresh
 
 
 		//=======================================================================================
 
+		#region Delete
 		/// <summary>
 		/// Removes the footnote at the current cursor position, either located on a footnote
 		/// reference or a footnote text.
@@ -628,8 +634,8 @@ namespace River.OneMoreAddIn
 				// remove blank lines before divider
 				var empties = divider.Parent.Descendants(ns + "Meta")
 					.Where(e =>
-						e.Attribute("name").Value.Equals("omfootnotes") &&
-						e.Attribute("content").Value.Equals("empty"))
+						e.Attribute("name").Value.Equals(FootnotesMeta) &&
+						e.Attribute("content").Value.Equals(EmptyContent))
 					.Select(e => e.Parent);
 
 				if (empties != null)
@@ -657,7 +663,7 @@ namespace River.OneMoreAddIn
 			var wrapper = data.GetWrapper();
 
 			var a = wrapper.Elements("a").Elements("span")
-				.Where(e => 
+				.Where(e =>
 					e.Attribute("style").Value.Contains("vertical-align:super") &&
 					e.Value.Equals($"[{label}]"))
 				.Select(e => e.Parent)
@@ -669,5 +675,6 @@ namespace River.OneMoreAddIn
 				data.Value = wrapper.GetInnerXml();
 			}
 		}
+		#endregion Delete
 	}
 }

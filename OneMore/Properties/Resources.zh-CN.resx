@@ -3423,4 +3423,24 @@ OneNote 文件 (*.one)</value>
     <value>刷新</value>
     <comment>refresh link</comment>
   </data>
+  <data name="ribInsertTimerButton_Label" xml:space="preserve">
+    <value>插入定时器</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartTimerButton_Label" xml:space="preserve">
+    <value>启动计时器</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="TimerWindow_closeButton.Text" xml:space="preserve">
+    <value>关闭计时器</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="TimerWindow_copyButton.Text" xml:space="preserve">
+    <value>复制当前时间</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="TimerWindow_resetButton.Text" xml:space="preserve">
+    <value>重启定时器</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

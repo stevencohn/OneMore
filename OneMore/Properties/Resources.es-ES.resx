@@ -3432,4 +3432,24 @@ Archivo de OneNote (* .one)</value>
     <value>Actualizar</value>
     <comment>refresh link</comment>
   </data>
+  <data name="ribInsertTimerButton_Label" xml:space="preserve">
+    <value>Insertar temporizador</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartTimerButton_Label" xml:space="preserve">
+    <value>Iniciar temporizador</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="TimerWindow_closeButton.Text" xml:space="preserve">
+    <value>Temporizador de cierre</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="TimerWindow_copyButton.Text" xml:space="preserve">
+    <value>Copiar hora actual</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="TimerWindow_resetButton.Text" xml:space="preserve">
+    <value>Reiniciar temporizador</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

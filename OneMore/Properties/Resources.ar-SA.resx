@@ -3431,4 +3431,24 @@ ISO-code then comma then language name</comment>
     <value>ينعش</value>
     <comment>refresh link</comment>
   </data>
+  <data name="ribInsertTimerButton_Label" xml:space="preserve">
+    <value>أدخل الموقت</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartTimerButton_Label" xml:space="preserve">
+    <value>بدء الموقت</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="TimerWindow_closeButton.Text" xml:space="preserve">
+    <value>أغلق الموقت</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="TimerWindow_copyButton.Text" xml:space="preserve">
+    <value>نسخ الوقت الحالي</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="TimerWindow_resetButton.Text" xml:space="preserve">
+    <value>أعد تشغيل المؤقت</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>

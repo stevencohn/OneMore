@@ -587,6 +587,16 @@
                 getLabel="GetRibbonLabel"
                 onAction="SortCmd"/>
               <button
+                id="ribStartTimerButton"
+                imageMso="StartTimer"
+                getLabel="GetRibbonLabel"
+                onAction="StartTimerCmd"/>
+              <button
+                id="ribInsertTimerButton"
+                imageMso="ShowJournalPage"
+                getLabel="GetRibbonLabel"
+                onAction="InsertTimerCmd"/>
+              <button
                 id="ribStrikeoutTasksButton"
                 imageMso="Strikethrough"
                 getLabel="GetRibbonLabel"

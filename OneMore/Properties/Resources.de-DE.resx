@@ -3417,4 +3417,24 @@ OneNote-Datei (*.one)</value>
     <value>Aktualisierung</value>
     <comment>refresh link</comment>
   </data>
+  <data name="ribInsertTimerButton_Label" xml:space="preserve">
+    <value>Timer einfügen</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribStartTimerButton_Label" xml:space="preserve">
+    <value>Timer starten</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="TimerWindow_closeButton.Text" xml:space="preserve">
+    <value>Timer schließen</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="TimerWindow_copyButton.Text" xml:space="preserve">
+    <value>Aktuelle Uhrzeit kopieren</value>
+    <comment>button tooltip</comment>
+  </data>
+  <data name="TimerWindow_resetButton.Text" xml:space="preserve">
+    <value>Timer neu starten</value>
+    <comment>button tooltip</comment>
+  </data>
 </root>
