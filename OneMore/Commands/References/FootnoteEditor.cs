@@ -43,7 +43,14 @@ namespace River.OneMoreAddIn
 			PageNamespace.Set(ns);
 
 			dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+
 			rightToLeft = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+			if (!rightToLeft)
+			{
+				// check is page is set up for right-to-left
+				rightToLeft = page.Root.Elements(ns + "PageSettings")
+					.Attributes().Any(a => a.Name.LocalName == "RTL" && a.Value == "true");
+			}
 
 			logger = Logger.Current;
 		}
