@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Win = System.Windows;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class TimerWindow : LocalizableForm
@@ -24,6 +25,16 @@ namespace River.OneMoreAddIn.Commands
 		public TimerWindow()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Localize(new string[]
+				{
+					"copyButton",
+					"resetButton",
+					"closeButton"
+				});
+			}
 
 			// create mask with rounded corners to overlay form
 			Region = Region.FromHrgn(Native.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));

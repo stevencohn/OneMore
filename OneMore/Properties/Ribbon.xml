@@ -57,16 +57,6 @@
               getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
               onAction="ReplayCmd"/>
-            <button
-              id="ribStartTimerButton"
-              imageMso="StartTimer"
-              label="Start Timer"
-              onAction="StartTimerCmd"/>
-            <button
-              id="ribInsertTimerButton"
-              imageMso="ShowJournalPage"
-              label="Insert Timer"
-              onAction="InsertTimerCmd"/>
             <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
               <button
                 id="ribBreakingButton"
@@ -596,6 +586,16 @@
                 imageMso="SortUp"
                 getLabel="GetRibbonLabel"
                 onAction="SortCmd"/>
+              <button
+                id="ribStartTimerButton"
+                imageMso="StartTimer"
+                getLabel="GetRibbonLabel"
+                onAction="StartTimerCmd"/>
+              <button
+                id="ribInsertTimerButton"
+                imageMso="ShowJournalPage"
+                getLabel="GetRibbonLabel"
+                onAction="InsertTimerCmd"/>
               <button
                 id="ribStrikeoutTasksButton"
                 imageMso="Strikethrough"

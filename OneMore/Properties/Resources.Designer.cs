@@ -5162,6 +5162,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert Timer.
+        /// </summary>
+        internal static string ribInsertTimerButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertTimerButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invert Selection.
         /// </summary>
         internal static string ribInvertSelectionButton_Label {
@@ -5797,6 +5806,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribStartBiLinkButton_Label {
             get {
                 return ResourceManager.GetString("ribStartBiLinkButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Timer.
+        /// </summary>
+        internal static string ribStartTimerButton_Label {
+            get {
+                return ResourceManager.GetString("ribStartTimerButton_Label", resourceCulture);
             }
         }
         
@@ -7638,6 +7656,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ThemesFolder {
             get {
                 return ResourceManager.GetString("ThemesFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Timer.
+        /// </summary>
+        internal static string TimerWindow_closeButton_Text {
+            get {
+                return ResourceManager.GetString("TimerWindow_closeButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Timer.
+        /// </summary>
+        internal static string TimerWindow_copyButton_Text {
+            get {
+                return ResourceManager.GetString("TimerWindow_copyButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart Timer.
+        /// </summary>
+        internal static string TimerWindow_resetButton_Text {
+            get {
+                return ResourceManager.GetString("TimerWindow_resetButton.Text", resourceCulture);
             }
         }
         

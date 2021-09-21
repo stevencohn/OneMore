@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Commands
 				if (window == null)
 				{
 					window = new TimerWindow();
-					window.FormClosed += Window_FormClosed;
+					window.FormClosed += CloseTimerWindow;
 					await window.RunModeless();
 				}
 			}
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Window_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+		private void CloseTimerWindow(object sender, System.Windows.Forms.FormClosedEventArgs e)
 		{
 			window.Dispose();
 			window = null;

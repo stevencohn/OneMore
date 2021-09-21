@@ -34,9 +34,9 @@ namespace River.OneMoreAddIn.Commands
 			this.timeLabel = new System.Windows.Forms.Label();
 			this.toolstrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
 			this.copyButton = new System.Windows.Forms.ToolStripButton();
-			this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+			this.spacer1 = new System.Windows.Forms.ToolStripLabel();
 			this.resetButton = new System.Windows.Forms.ToolStripButton();
-			this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+			this.spacer2 = new System.Windows.Forms.ToolStripLabel();
 			this.closeButton = new System.Windows.Forms.ToolStripButton();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.toolstrip.SuspendLayout();
@@ -59,9 +59,9 @@ namespace River.OneMoreAddIn.Commands
 			this.toolstrip.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.toolstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyButton,
-            this.toolStripLabel1,
+            this.spacer1,
             this.resetButton,
-            this.toolStripLabel2,
+            this.spacer2,
             this.closeButton});
 			this.toolstrip.Location = new System.Drawing.Point(0, 38);
 			this.toolstrip.Name = "toolstrip";
@@ -81,11 +81,11 @@ namespace River.OneMoreAddIn.Commands
 			this.copyButton.Text = "Copy Current Time";
 			this.copyButton.Click += new System.EventHandler(this.CopyTime);
 			// 
-			// toolStripLabel1
+			// spacer1
 			// 
-			this.toolStripLabel1.Name = "toolStripLabel1";
-			this.toolStripLabel1.Size = new System.Drawing.Size(10, 22);
-			this.toolStripLabel1.Text = " ";
+			this.spacer1.Name = "spacer1";
+			this.spacer1.Size = new System.Drawing.Size(10, 22);
+			this.spacer1.Text = " ";
 			// 
 			// resetButton
 			// 
@@ -97,11 +97,11 @@ namespace River.OneMoreAddIn.Commands
 			this.resetButton.Text = "Restart Timer";
 			this.resetButton.Click += new System.EventHandler(this.RestartTimer);
 			// 
-			// toolStripLabel2
+			// spacer2
 			// 
-			this.toolStripLabel2.Name = "toolStripLabel2";
-			this.toolStripLabel2.Size = new System.Drawing.Size(10, 22);
-			this.toolStripLabel2.Text = " ";
+			this.spacer2.Name = "spacer2";
+			this.spacer2.Size = new System.Drawing.Size(10, 22);
+			this.spacer2.Text = " ";
 			// 
 			// closeButton
 			// 
@@ -152,7 +152,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.ToolStripButton resetButton;
 		private System.Windows.Forms.ToolStripButton closeButton;
 		private System.Windows.Forms.Timer timer;
-		private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-		private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+		private System.Windows.Forms.ToolStripLabel spacer1;
+		private System.Windows.Forms.ToolStripLabel spacer2;
 	}
 }
