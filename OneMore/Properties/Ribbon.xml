@@ -62,6 +62,11 @@
               imageMso="StartTimer"
               label="Start Timer"
               onAction="StartTimerCmd"/>
+            <button
+              id="ribInsertTimerButton"
+              imageMso="ShowJournalPage"
+              label="Insert Timer"
+              onAction="InsertTimerCmd"/>
             <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
               <button
                 id="ribBreakingButton"

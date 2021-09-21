@@ -131,7 +131,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "TimerWindow";
-			this.Opacity = 0.8D;
+			this.Opacity = 0.85D;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "CountdownWindow";
 			this.Load += new System.EventHandler(this.TimerWindow_Load);

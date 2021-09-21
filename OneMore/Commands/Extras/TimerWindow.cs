@@ -4,13 +4,10 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Microsoft.Win32;
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
-	using System.IO.Pipes;
-	using System.Text;
 	using System.Windows.Forms;
 	using Win = System.Windows;
 
@@ -18,13 +15,10 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class TimerWindow : LocalizableForm
 	{
 
-		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
-
 		private readonly float scalingX;
 		private readonly float scalingY;
 		private int maxLeft;
 		private int maxTop;
-		private int seconds;
 
 
 		public TimerWindow()
@@ -41,6 +35,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public int Seconds { get; private set; }
+
+
 		private void TimerWindow_Load(object sender, EventArgs e)
 		{
 			var area = Screen.FromControl(this).WorkingArea;
@@ -51,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			maxLeft = Left;
 			maxTop = area.Height - Height - 50;
 
-			seconds = 0;
+			Seconds = 0;
 			timer.Enabled = true;
 			timer.Start();
 		}
@@ -71,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Tick(object sender, EventArgs e)
 		{
-			var span = TimeSpan.FromSeconds(++seconds);
+			var span = TimeSpan.FromSeconds(++Seconds);
 			timeLabel.Text = span.ToString("c");
 			timeLabel.Update();
 			TopMost = true;
@@ -90,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CopyTime(object sender, EventArgs e)
 		{
-			var stamp = TimeSpan.FromSeconds(++seconds).ToString("c");
+			var stamp = TimeSpan.FromSeconds(++Seconds).ToString("c");
 
 			SingleThreaded.Invoke(() =>
 			{
@@ -102,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RestartTimer(object sender, EventArgs e)
 		{
-			seconds = 0;
+			Seconds = 0;
 		}
 
 
@@ -112,49 +109,6 @@ namespace River.OneMoreAddIn.Commands
 			timer.Enabled = false;
 			timer.Dispose();
 			Close();
-		}
-
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-		private void SendCommand(string arg)
-		{
-			var msg = $"onemore://InsertTimerCommand/{seconds}";
-
-			try
-			{
-				string pipeName = null;
-				var key = Registry.ClassesRoot.OpenSubKey(KeyPath, false);
-				if (key != null)
-				{
-					// get default value string
-					pipeName = (string)key.GetValue(string.Empty);
-				}
-
-				if (string.IsNullOrEmpty(pipeName))
-				{
-					// problem!
-					return;
-				}
-
-				using (var client = new NamedPipeClientStream(".",
-					pipeName, PipeDirection.Out, PipeOptions.Asynchronous))
-				{
-					// being an event-driven program to bounce messages back to OneMore
-					// set timeout because we shouldn't need to wait for server ever!
-					client.Connect(500);
-
-					var buffer = Encoding.UTF8.GetBytes(msg);
-					client.Write(buffer, 0, buffer.Length);
-					client.Flush();
-					client.Close();
-				}
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"error writing '{msg}'");
-				logger.WriteLine(exc);
-			}
 		}
 	}
 }
