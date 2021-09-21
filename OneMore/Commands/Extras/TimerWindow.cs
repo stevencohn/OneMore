@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var area = Screen.FromControl(this).WorkingArea;
 
-			Left = (int)(area.Width - Width - (20 * scalingX));
+			Left = (int)(area.Width - Width - (10 * scalingX));
 			Top = (int)((SystemInformation.CaptionHeight + 5) * scalingY);
 
 			maxLeft = Left;
@@ -69,9 +69,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (maxLeft > 0)
 			{
-				if (Left < 1) Left = 1;
+				if (Left < 10) Left = 10;
 				if (Left > maxLeft) Left = maxLeft;
-				if (Top < 1) Top = 1;
+				if (Top < 10) Top = 10;
 				if (Top > maxTop) Top = maxTop;
 			}
 		}
