@@ -110,7 +110,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RestartTimer(object sender, EventArgs e)
 		{
-			Seconds = 0;
+			// start at -1 so the user will see Time Zero
+			Seconds = -1;
 		}
 
 

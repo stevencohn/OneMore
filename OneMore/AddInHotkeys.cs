@@ -46,6 +46,9 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(async () => await InsertHorizontalLineCmd(null),
 				Keys.F11, Hotmods.AltShift);
 
+			HotkeyManager.RegisterHotKey(async () => await InsertTimerCmd(null),
+				Keys.F2);
+
 			HotkeyManager.RegisterHotKey(async () => await DisableSpellCheckCmd(null),
 				Keys.F4);
 
