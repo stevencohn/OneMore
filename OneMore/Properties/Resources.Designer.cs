@@ -7669,7 +7669,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy Timer.
+        ///   Looks up a localized string similar to Copy Current Time.
         /// </summary>
         internal static string TimerWindow_copyButton_Text {
             get {

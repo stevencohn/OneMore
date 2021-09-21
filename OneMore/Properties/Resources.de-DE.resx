@@ -3430,7 +3430,7 @@ OneNote-Datei (*.one)</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_copyButton.Text" xml:space="preserve">
-    <value>Kopier-Timer</value>
+    <value>Aktuelle Uhrzeit kopieren</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_resetButton.Text" xml:space="preserve">

@@ -3445,7 +3445,7 @@ Arquivo OneNote (* .one)</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_copyButton.Text" xml:space="preserve">
-    <value>Copiar cronômetro</value>
+    <value>Copiar hora atual</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_resetButton.Text" xml:space="preserve">

@@ -3439,7 +3439,7 @@ Fichier OneNote (*.one)</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_copyButton.Text" xml:space="preserve">
-    <value>Minuteur de copie</value>
+    <value>Copier l'heure actuelle</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_resetButton.Text" xml:space="preserve">

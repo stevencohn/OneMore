@@ -3436,7 +3436,7 @@ OneNote 文件 (*.one)</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_copyButton.Text" xml:space="preserve">
-    <value>复印计时器</value>
+    <value>复制当前时间</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_resetButton.Text" xml:space="preserve">

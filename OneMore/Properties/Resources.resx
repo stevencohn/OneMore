@@ -3484,7 +3484,7 @@ ISO-code then comma then language name</comment>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_copyButton.Text" xml:space="preserve">
-    <value>Copy Timer</value>
+    <value>Copy Current Time</value>
     <comment>button tooltip</comment>
   </data>
   <data name="TimerWindow_resetButton.Text" xml:space="preserve">
