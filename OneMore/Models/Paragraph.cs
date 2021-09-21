@@ -61,6 +61,22 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public Paragraph SetRTL(bool enable)
+		{
+			if (enable)
+			{
+				SetAttributeValue("alignment", "right");
+				SetAttributeValue("RTL", "true");
+			}
+			else
+			{
+				SetAttributeValue("alignment", "left");
+				SetAttributeValue("RTL", "false");
+			}
+			return this;
+		}
+
+
 		public Paragraph SetStyle(string style)
 		{
 			SetAttributeValue("style", style);

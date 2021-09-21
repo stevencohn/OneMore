@@ -911,6 +911,20 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Determines if the page is configured for right-to-left text or the Windows
+		/// language is a right-to-left language
+		/// </summary>
+		/// <returns></returns>
+		public bool IsRightToLeft()
+		{
+			return
+				Root.Elements(Namespace + "PageSettings")
+					.Attributes().Any(a => a.Name.LocalName == "RTL" && a.Value == "true") ||
+				CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+		}
+
+
+		/// <summary>
 		/// Merges the given quick styles from a source page with the quick styles on the
 		/// current page, adjusting index values to avoid collisions with pre-existing styles
 		/// </summary>

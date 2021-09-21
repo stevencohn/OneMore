@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MakeWordBank(Page page, XNamespace ns, List<string> words)
 		{
-			var sep = AddIn.Culture.TextInfo.IsRightToLeft
+			var sep = page.IsRightToLeft()
 				? $" {AddIn.Culture.TextInfo.ListSeparator}"
 				: $"{AddIn.Culture.TextInfo.ListSeparator} ";
 
