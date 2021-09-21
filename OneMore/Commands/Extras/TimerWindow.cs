@@ -4,16 +4,21 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Win32;
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
+	using System.IO.Pipes;
+	using System.Text;
 	using System.Windows.Forms;
 	using Win = System.Windows;
 
 
 	internal partial class TimerWindow : LocalizableForm
 	{
+
+		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
 
 		private readonly float scalingX;
 		private readonly float scalingY;
@@ -28,24 +33,23 @@ namespace River.OneMoreAddIn.Commands
 
 			// create mask with rounded corners to overlay form
 			Region = Region.FromHrgn(Native.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+			TopMost = true;
+			TopLevel = true;
 
 			(scalingX, scalingY) = UIHelper.GetScalingFactors();
-
 			toolstrip.ImageScalingSize = new Size((int)(16 * scalingX), (int)(16 * scalingY));
 		}
 
 
 		private void TimerWindow_Load(object sender, EventArgs e)
 		{
-			UIHelper.SetForegroundWindow(this);
-			TopMost = true;
-			TopLevel = true;
+			var area = Screen.FromControl(this).WorkingArea;
 
+			Left = (int)(area.Width - Width - (20 * scalingX));
 			Top = (int)((SystemInformation.CaptionHeight + 5) * scalingY);
-			Left = (int)(Screen.FromControl(this).WorkingArea.Width - Width - (20 * scalingX));
 
-			maxTop = Screen.FromControl(this).WorkingArea.Height - Height - 50;
 			maxLeft = Left;
+			maxTop = area.Height - Height - 50;
 
 			seconds = 0;
 			timer.Enabled = true;
@@ -104,7 +108,53 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CloseWindow(object sender, EventArgs e)
 		{
+			timer.Stop();
+			timer.Enabled = false;
+			timer.Dispose();
 			Close();
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		private void SendCommand(string arg)
+		{
+			var msg = $"onemore://InsertTimerCommand/{seconds}";
+
+			try
+			{
+				string pipeName = null;
+				var key = Registry.ClassesRoot.OpenSubKey(KeyPath, false);
+				if (key != null)
+				{
+					// get default value string
+					pipeName = (string)key.GetValue(string.Empty);
+				}
+
+				if (string.IsNullOrEmpty(pipeName))
+				{
+					// problem!
+					return;
+				}
+
+				using (var client = new NamedPipeClientStream(".",
+					pipeName, PipeDirection.Out, PipeOptions.Asynchronous))
+				{
+					// being an event-driven program to bounce messages back to OneMore
+					// set timeout because we shouldn't need to wait for server ever!
+					client.Connect(500);
+
+					var buffer = Encoding.UTF8.GetBytes(msg);
+					client.Write(buffer, 0, buffer.Length);
+					client.Flush();
+					client.Close();
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error writing '{msg}'");
+				logger.WriteLine(exc);
+			}
 		}
 	}
 }
