@@ -1301,6 +1301,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Copy {
+            get {
+                object obj = ResourceManager.GetObject("Copy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot copy a folder into itself or one of its children.
         /// </summary>
         internal static string CopyFolderCommand_InvalidTarget {
@@ -1892,6 +1902,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string Error_SelectImage {
             get {
                 return ResourceManager.GetString("Error_SelectImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Exit {
+            get {
+                object obj = ResourceManager.GetObject("Exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -4368,6 +4388,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ResizeImagesDialog_widthLabel_Text {
             get {
                 return ResourceManager.GetString("ResizeImagesDialog_widthLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Restart {
+            get {
+                object obj = ResourceManager.GetObject("Restart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

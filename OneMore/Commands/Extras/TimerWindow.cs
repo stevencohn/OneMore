@@ -4,10 +4,12 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
+	using Win = System.Windows;
 
 
 	internal partial class TimerWindow : LocalizableForm
@@ -30,13 +32,15 @@ namespace River.OneMoreAddIn.Commands
 			(scalingX, scalingY) = UIHelper.GetScalingFactors();
 
 			toolstrip.ImageScalingSize = new Size((int)(16 * scalingX), (int)(16 * scalingY));
-			TopMost = true;
-			TopLevel = true;
 		}
 
 
 		private void TimerWindow_Load(object sender, EventArgs e)
 		{
+			UIHelper.SetForegroundWindow(this);
+			TopMost = true;
+			TopLevel = true;
+
 			Top = (int)((SystemInformation.CaptionHeight + 5) * scalingY);
 			Left = (int)(Screen.FromControl(this).WorkingArea.Width - Width - (20 * scalingX));
 
@@ -51,10 +55,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MoveWindow(object sender, EventArgs e)
 		{
-			if (Left < 1) Left = 1;
-			if (Left > maxLeft) Left = maxLeft;
-			if (Top < 1) Top = 1;
-			if (Top > maxTop) Top = maxTop;
+			if (maxLeft > 0)
+			{
+				if (Left < 1) Left = 1;
+				if (Left > maxLeft) Left = maxLeft;
+				if (Top < 1) Top = 1;
+				if (Top > maxTop) Top = maxTop;
+			}
 		}
 
 
@@ -63,6 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			var span = TimeSpan.FromSeconds(++seconds);
 			timeLabel.Text = span.ToString("c");
 			timeLabel.Update();
+			TopMost = true;
 		}
 
 
@@ -78,19 +86,19 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CopyTime(object sender, EventArgs e)
 		{
-			//
+			var stamp = TimeSpan.FromSeconds(++seconds).ToString("c");
+
+			SingleThreaded.Invoke(() =>
+			{
+				Win.Clipboard.SetText(stamp, Win.TextDataFormat.Text);
+			});
+
 		}
 
 
 		private void RestartTimer(object sender, EventArgs e)
 		{
 			seconds = 0;
-		}
-
-
-		private void EscapeWindow(object sender, KeyPressEventArgs e)
-		{
-			if (e.KeyChar == 27) Close();
 		}
 
 

@@ -17,9 +17,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var win = new TimerWindow();
-
-			await win.RunModeless();
+			await new TimerWindow().RunModeless();
 		}
 	}
 }
