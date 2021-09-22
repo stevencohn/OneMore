@@ -47,9 +47,7 @@ namespace River.OneMoreAddIn.Commands
 				if (run != null)
 				{
 					var stamp = TimeSpan.FromSeconds(window.Seconds).ToString("c");
-					var cdata = run.GetCData();
-					var empty = cdata.Value.Length == 0;
-					cdata.Value = stamp;
+					run.GetCData().Value = stamp;
 					run.Attribute("selected").Remove();
 
 					run.AddAfterSelf(new XElement(ns + "T",
