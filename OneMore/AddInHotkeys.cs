@@ -70,6 +70,9 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(async () => await SearchAndReplaceCmd(null),
 				Keys.H, Hotmods.Control);
 
+			HotkeyManager.RegisterHotKey(async () => await StartTimerCmd(null),
+				Keys.F2, Hotmods.Alt);
+
 			HotkeyManager.RegisterHotKey(async () => await TaggedCmd(null),
 				Keys.T, Hotmods.ControlAlt);
 

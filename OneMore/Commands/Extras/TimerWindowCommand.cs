@@ -7,7 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
-
+	using System.Xml.Linq;
 
 	internal class TimerWindowCommand : Command
 	{
@@ -47,7 +47,16 @@ namespace River.OneMoreAddIn.Commands
 				if (run != null)
 				{
 					var stamp = TimeSpan.FromSeconds(window.Seconds).ToString("c");
-					run.GetCData().Value = stamp;
+					var cdata = run.GetCData();
+					var empty = cdata.Value.Length == 0;
+					cdata.Value = stamp;
+					run.Attribute("selected").Remove();
+
+					run.AddAfterSelf(new XElement(ns + "T",
+						run.Attributes(),
+						new XAttribute("selected", "all"),
+						new XCData(string.Empty))
+						);
 
 					await one.Update(page);
 				}
