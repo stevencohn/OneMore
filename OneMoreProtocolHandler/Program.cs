@@ -132,7 +132,7 @@ namespace OneMoreProtocolHandler
 			*/
 
 			// this approach is probably a bit of overkill, but want to ensure ability to debug
-			// and diagnose any issues and make as fault-tolerant as possible...
+			// and diagnose any issues and make it as fault-tolerant as possible...
 
 			var classesPath = @"Software\Classes";
 			var onemorePath = "onemore";
@@ -241,6 +241,7 @@ namespace OneMoreProtocolHandler
 			// running as a custom action from the installer, this will run under an elevated
 			// context as the System account (S-1-5-18) so we need to impersonate the current
 			// user by referencing their hive from HKEY_USERS\sid\...
+			// HKEY_CURRENT_USER will point to the System account's hive and we don't want that!
 
 			using (var hive = Registry.Users.OpenSubKey(sid))
 			{
