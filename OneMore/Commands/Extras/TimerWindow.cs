@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 	using Win = System.Windows;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-
+	using System.Globalization;
 
 	internal partial class TimerWindow : LocalizableForm
 	{
@@ -58,6 +58,11 @@ namespace River.OneMoreAddIn.Commands
 
 			maxLeft = Left;
 			maxTop = area.Height - Height - 50;
+
+			if (CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
+			{
+				Left = (int)(10 * scalingX);
+			}
 
 			Seconds = 0;
 			timer.Enabled = true;

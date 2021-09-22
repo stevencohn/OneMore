@@ -18,7 +18,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features (124)
+## Features (126)
 
 [Clean commands](../../wiki/Clean-Commands) (9)
 
@@ -123,7 +123,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Fill across and fill down (Ctrl + D) to fill all or selected cells with increment values
 * Split table
 
-[Extra commands](../../wiki/Extra-Commands) (10)
+[Extra commands](../../wiki/Extra-Commands) (12)
 
 * Generate a report of the size of notebooks, section, pages, and image and file attachments on pages
 * Add special icon to the page title, also appears in page hierarchy
@@ -133,6 +133,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Merge pages, preserving formatting and position of outlines
 * Split current page into multiple pages
 * Sort pages, sections, or notebooks
+* Start and display a visual timer (Alt + F2) and insert the timer value (F2)
 * Toggle strikethrough text next to all completed/incompleted tags
 * Report number of words on the page or in the selected region
 
