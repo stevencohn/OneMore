@@ -107,14 +107,13 @@ namespace OneMoreProtocolHandler
 			logger.WriteLine(string.Empty);
 			logger.WriteLine("Register...");
 
+			var sid = WindowsIdentity.GetCurrent().User.Value;
+			var username = new SecurityIdentifier(sid).Translate(typeof(NTAccount)).ToString();
+
 			var elevated = new WindowsPrincipal(
 				WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
 
-			logger.WriteLine($"elevated:{(elevated ? "Yes" : "No")}");
-
-			var sid = WindowsIdentity.GetCurrent().User.Value;
-			var username = new SecurityIdentifier(sid).Translate(typeof(NTAccount)).ToString();
-			logger.WriteLine($"running as user {username} ({sid})");
+			logger.WriteLine($"running as user {username} ({sid}) {(elevated ? "elevated" : string.Empty)}");
 
 			RegisterProtocolHandler();
 			RegisterTrustedProtocol();
@@ -131,6 +130,10 @@ namespace OneMoreProtocolHandler
 			[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command]
 			@="C:\\Github\\OneMore\\bin\\Debug\\OneMoreProtocolHandler.exe"
 			*/
+
+			// this approach is probably a bit of overkill, but want to ensure ability to debug
+			// and diagnose any issues and make as fault-tolerant as possible...
+
 			var classesPath = @"Software\Classes";
 			var onemorePath = "onemore";
 			var path = $@"{classesPath}\{onemorePath}";
@@ -226,10 +229,7 @@ namespace OneMoreProtocolHandler
 			Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:]
 			*/
 
-			var username = Environment.GetEnvironmentVariable("USERNAME");
-			var account = new NTAccount(username);
-			var sid = ((SecurityIdentifier)account.Translate(typeof(SecurityIdentifier))).ToString();
-			logger.WriteLine($"registering trusted procol for user {username} ({sid})");
+			var sid = GetUserSid("registering trusted protocol");
 
 			var version = GetVersion("Excel", 16);
 			var policiesPath = @"Software\Policies";
@@ -237,6 +237,10 @@ namespace OneMoreProtocolHandler
 			var path = $@"{policiesPath}\{policyPath}";
 
 			logger.WriteLine($@"opening HKCU:\{path}");
+
+			// running as a custom action from the installer, this will run under an elevated
+			// context as the System account (S-1-5-18) so we need to impersonate the current
+			// user by referencing their hive from HKEY_USERS\sid\...
 
 			using (var hive = Registry.Users.OpenSubKey(sid))
 			{
@@ -284,6 +288,16 @@ namespace OneMoreProtocolHandler
 					}
 				}
 			}
+		}
+
+
+		static string GetUserSid(string note)
+		{
+			var username = Environment.GetEnvironmentVariable("USERNAME");
+			var account = new NTAccount(username);
+			var sid = ((SecurityIdentifier)account.Translate(typeof(SecurityIdentifier))).ToString();
+			logger.WriteLine($"{note} for user {username} ({sid})");
+			return sid;
 		}
 
 
@@ -346,10 +360,10 @@ namespace OneMoreProtocolHandler
 				}
 			}
 
-
 			// trusted protocol...
-			using (var hive = RegistryKey.OpenBaseKey(
-				RegistryHive.CurrentUser, RegistryView.Default))
+
+			var sid = GetUserSid("unregistering trusted protocol");
+			using (var hive = Registry.Users.OpenSubKey(sid))
 			{
 				var version = GetVersion("Excel", 16);
 				var path = $@"Software\Policies\Microsoft\Office\{version}\Common\Security\" +
