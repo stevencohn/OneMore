@@ -10,6 +10,8 @@ namespace OneMoreProtocolHandler
 	using System;
 	using System.IO.Pipes;
 	using System.Reflection;
+	using System.Security.AccessControl;
+	using System.Security.Principal;
 	using System.Text;
 
 
@@ -17,6 +19,14 @@ namespace OneMoreProtocolHandler
 	{
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
 		private static Logger logger;
+
+		private static RegistryRights rights =
+			RegistryRights.CreateSubKey |
+			RegistryRights.EnumerateSubKeys |
+			RegistryRights.QueryValues |
+			RegistryRights.ReadKey |
+			RegistryRights.SetValue |
+			RegistryRights.WriteKey;
 
 
 		static void Main(string[] args)
@@ -97,6 +107,22 @@ namespace OneMoreProtocolHandler
 			logger.WriteLine(string.Empty);
 			logger.WriteLine("Register...");
 
+			var elevated = new WindowsPrincipal(
+				WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+
+			logger.WriteLine($"elevated:{(elevated ? "Yes" : "No")}");
+
+			var sid = WindowsIdentity.GetCurrent().User.Value;
+			var username = new SecurityIdentifier(sid).Translate(typeof(NTAccount)).ToString();
+			logger.WriteLine($"running as user {username} ({sid})");
+
+			RegisterProtocolHandler();
+			RegisterTrustedProtocol();
+		}
+
+
+		static void RegisterProtocolHandler()
+		{
 			/*
 			[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\onemore]
 			@="URL:OneMore Protocol Handler"
@@ -104,74 +130,159 @@ namespace OneMoreProtocolHandler
 
 			[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command]
 			@="C:\\Github\\OneMore\\bin\\Debug\\OneMoreProtocolHandler.exe"
-			 */
-			using (var hive = RegistryKey.OpenBaseKey(
-				RegistryHive.LocalMachine, RegistryView.Registry64))
+			*/
+			var classesPath = @"Software\Classes";
+			var onemorePath = "onemore";
+			var path = $@"{classesPath}\{onemorePath}";
+
+			logger.WriteLine($@"opening HKLM:\{path}");
+			var hive = Registry.LocalMachine;
+			var parent = hive.OpenSubKey(path, RegistryKeyPermissionCheck.ReadWriteSubTree, rights);
+			if (parent == null)
 			{
-				var path = @"Software\Classes\onemore";
-
-				logger.WriteLine($@"opening HKLM:\{path}");
-				var key = hive.OpenSubKey(path, true);
-				if (key == null)
+				logger.WriteLine($@"creating HKLM:\{path}");
+				try
 				{
-					logger.WriteLine($@"creating HKLM:\{path}");
-					key = hive.CreateSubKey(path, true);
+					parent = hive.CreateSubKey(path, true);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error creating onemore parent key");
+					logger.WriteLine(exc);
+					return;
 				}
 
-				logger.WriteLine($@"setting properties of HKLM:\{path}");
-				key.SetValue(string.Empty, "URL:OneMore Protocol Handler");
-				key.SetValue("URL Protocol", string.Empty);
-				key.Flush();
-				key.Dispose();
-
-				path = $@"{path}\shell\open\command";
-				logger.WriteLine($@"opening HKLM:\{path}");
-				key = hive.OpenSubKey(path, true);
-				if (key == null)
+				if (parent == null)
 				{
-					logger.WriteLine($@"creating HKLM:\{path}");
-					key = hive.CreateSubKey(path, true);
+					logger.WriteLine("could not create onemore parent key, unknown reason");
+					return;
 				}
-
-				logger.WriteLine($@"setting properties of HKLM:\{path}");
-				var cmd = $"\"{Assembly.GetExecutingAssembly().Location}\" %1 %2 %3";
-				key.SetValue(string.Empty, cmd);
-				key.Flush();
-				key.Dispose();
 			}
 
-			// trusted protocol...
+			logger.WriteLine($@"setting properties of HKLM:\{path}");
+			parent.SetValue(string.Empty, "URL:OneMore Protocol Handler");
+			parent.SetValue("URL Protocol", string.Empty);
+
+			var cmdpath = @"shell\open\command";
+			logger.WriteLine($@"opening HKLM:\{path}\{cmdpath}");
+			var key = parent.OpenSubKey(cmdpath, RegistryKeyPermissionCheck.ReadWriteSubTree, rights);
+			if (key == null)
+			{
+				logger.WriteLine($@"creating HKLM:\{path}\{cmdpath}");
+				try
+				{
+					key = parent.CreateSubKey(cmdpath, true);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error creating onemore command");
+					logger.WriteLine(exc);
+					return;
+				}
+
+				if (key == null)
+				{
+					logger.WriteLine("could not create onemore command, unknown reason");
+					return;
+				}
+			}
+
+			logger.WriteLine($@"setting properties of HKLM:\{path}\{cmdpath}");
+			var cmd = $"\"{Assembly.GetExecutingAssembly().Location}\" %1 %2 %3";
+			key.SetValue(string.Empty, cmd);
+			key.Dispose();
+
+			parent.Dispose();
+
+			// confirm
+			using (key = hive.OpenSubKey($@"{path}\{cmdpath}", false))
+			{
+				if (key != null)
+				{
+					var value = key.GetValue(string.Empty, string.Empty) as string;
+					if (value == cmd)
+					{
+						logger.WriteLine($"key created {key.Name}");
+					}
+					else
+					{
+						logger.WriteLine("coult not get command value");
+					}
+				}
+				else
+				{
+					logger.WriteLine("key not created");
+				}
+			}
+		}
+
+
+		static void RegisterTrustedProtocol()
+		{
 			// Declares the onemore: protocol as trusted so OneNote doesn't show a security dialog
 
 			/*
-			[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\
-				Trusted Protocols\All Applications\onemore:]
+			[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\
+			Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:]
 			*/
-			using (var hive = RegistryKey.OpenBaseKey(
-				RegistryHive.CurrentUser, RegistryView.Registry64))
-			{
-				var version = GetVersion("Excel", 16);
-				var path = $@"Software\Policies\Microsoft\Office\{version}\Common\Security\" +
-					@"Trusted Protocols\All Applications\onemore:";
 
-				logger.WriteLine($@"opening HKCU:\{path}");
-				var key = hive.OpenSubKey(path, true);
-				if (key == null)
+			var username = Environment.GetEnvironmentVariable("USERNAME");
+			var account = new NTAccount(username);
+			var sid = ((SecurityIdentifier)account.Translate(typeof(SecurityIdentifier))).ToString();
+			logger.WriteLine($"registering trusted procol for user {username} ({sid})");
+
+			var version = GetVersion("Excel", 16);
+			var policiesPath = @"Software\Policies";
+			var policyPath = $@"Microsoft\Office\{version}\Common\Security\Trusted Protocols\All Applications\onemore:";
+			var path = $@"{policiesPath}\{policyPath}";
+
+			logger.WriteLine($@"opening HKCU:\{path}");
+
+			using (var hive = Registry.Users.OpenSubKey(sid))
+			{
+				var key = hive.OpenSubKey(path, false);
+				if (key != null)
 				{
-					logger.WriteLine($@"creating HKCU:\{path}");
-					try
-					{
-						key = hive.CreateSubKey(path, true);
-						key.Flush();
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine("error registering trusted protocol");
-						logger.WriteLine(exc);
-					}
+					key.Dispose();
+					logger.WriteLine("key already exists");
+					return;
 				}
 
-				key.Dispose();
+				logger.WriteLine($@"creating HKCU:\{path}");
+				try
+				{
+					using (var polKey = hive.OpenSubKey(policiesPath,
+						RegistryKeyPermissionCheck.ReadWriteSubTree, rights))
+					{
+						key = polKey.CreateSubKey(policyPath, false);
+						if (key == null)
+						{
+							logger.WriteLine("key not created, returned null");
+							return;
+						}
+
+						key.Dispose();
+					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error registering trusted protocol");
+					logger.WriteLine(exc);
+					return;
+				}
+
+				// confirm
+				using (key = hive.OpenSubKey(path, false))
+				{
+					if (key != null)
+					{
+						logger.WriteLine($"key created {key.Name}");
+					}
+					else
+					{
+						logger.WriteLine("key not created");
+					}
+				}
 			}
 		}
 
@@ -206,26 +317,39 @@ namespace OneMoreProtocolHandler
 
 			// protocol handler...
 			using (var hive = RegistryKey.OpenBaseKey(
-				RegistryHive.LocalMachine, RegistryView.Registry64))
+				RegistryHive.LocalMachine, RegistryView.Default))
 			{
 				var path = @"Software\Classes\onemore";
 				logger.WriteLine($@"deleting HKLM:\{path}");
 
 				try
 				{
-					hive.DeleteSubKeyTree(path, false);
+					hive.DeleteSubKeyTree(path, true);
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine("error deleting protocol class");
 					logger.WriteLine(exc);
 				}
+
+				// confirm
+				using (var key = hive.OpenSubKey(path, false))
+				{
+					if (key == null)
+					{
+						logger.WriteLine("key deleted");
+					}
+					else
+					{
+						logger.WriteLine("key not deleted");
+					}
+				}
 			}
 
 
 			// trusted protocol...
 			using (var hive = RegistryKey.OpenBaseKey(
-				RegistryHive.CurrentUser, RegistryView.Registry64))
+				RegistryHive.CurrentUser, RegistryView.Default))
 			{
 				var version = GetVersion("Excel", 16);
 				var path = $@"Software\Policies\Microsoft\Office\{version}\Common\Security\" +
@@ -235,12 +359,25 @@ namespace OneMoreProtocolHandler
 
 				try
 				{
-					hive.DeleteSubKey(path, false);
+					hive.DeleteSubKey(path, true);
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine("error deleting trusted protocol");
 					logger.WriteLine(exc);
+				}
+
+				// confirm
+				using (var key = hive.OpenSubKey(path, false))
+				{
+					if (key == null)
+					{
+						logger.WriteLine("key deleted");
+					}
+					else
+					{
+						logger.WriteLine("key not deleted");
+					}
 				}
 			}
 		}
