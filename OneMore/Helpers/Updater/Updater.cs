@@ -110,11 +110,16 @@ namespace River.OneMoreAddIn.Helpers.Updater
 
 		public async Task<bool> Update()
 		{
+			if (string.IsNullOrEmpty(productCode))
+			{
+				Logger.Current.WriteLine("missing product code");
+				return false;
+			}
+
 			// presume the msi has one of these two keywords in its name
 			var key = Environment.Is64BitProcess ? "x64" : "x86";
 
 			var asset = release.assets.FirstOrDefault(a => a.browser_download_url.Contains(key));
-
 			if (asset == null)
 			{
 				Logger.Current.WriteLine($"did not find installer asset for {key}");
@@ -142,9 +147,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine(
-					$"error downloading latest installer from {asset.browser_download_url}", exc);
-
+				Logger.Current.WriteLine($"error downloading {asset.browser_download_url}", exc);
 				return false;
 			}
 
@@ -158,12 +161,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 			using (var writer = new StreamWriter(script, false))
 			{
 				writer.WriteLine("taskkill /im ONENOTE.exe");
-
-				if (!string.IsNullOrEmpty(productCode))
-				{
-					writer.WriteLine($"start /wait msiexec /x{productCode}");
-				}
-
+				writer.WriteLine($"start /wait msiexec /x{productCode}");
 				writer.WriteLine(msi);
 			}
 
