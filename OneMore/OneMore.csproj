@@ -1018,6 +1018,9 @@
     <EmbeddedResource Include="Commands\Tools\UpdateDialog.resx">
       <DependentUpon>UpdateDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\MoreLinkLabel.resx">
+      <DependentUpon>MoreLinkLabel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>

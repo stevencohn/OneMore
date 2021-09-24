@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 			this.currentLabel = new System.Windows.Forms.Label();
 			this.versionLabel = new System.Windows.Forms.Label();
 			this.lastUpdatedLabel = new System.Windows.Forms.Label();
-			this.releaseNotesLink = new System.Windows.Forms.LinkLabel();
+			this.releaseNotesLink = new UI.MoreLinkLabel();
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.versionBox = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 			this.upVersionLabel = new System.Windows.Forms.Label();
 			this.upVersionBox = new System.Windows.Forms.Label();
 			this.upDescriptionLabel = new System.Windows.Forms.Label();
-			this.upReleaseNotesLink = new System.Windows.Forms.LinkLabel();
+			this.upReleaseNotesLink = new UI.MoreLinkLabel();
 			this.upIntroLabel = new System.Windows.Forms.Label();
 			this.upOKButton = new System.Windows.Forms.Button();
 			this.timer = new System.Windows.Forms.Timer(this.components);
@@ -351,7 +351,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label currentLabel;
 		private System.Windows.Forms.Label versionLabel;
 		private System.Windows.Forms.Label lastUpdatedLabel;
-		private System.Windows.Forms.LinkLabel releaseNotesLink;
+		private UI.MoreLinkLabel releaseNotesLink;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Label versionBox;
@@ -363,7 +363,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label upVersionLabel;
 		private System.Windows.Forms.Label upVersionBox;
 		private System.Windows.Forms.Label upDescriptionLabel;
-		private System.Windows.Forms.LinkLabel upReleaseNotesLink;
+		private UI.MoreLinkLabel upReleaseNotesLink;
 		private System.Windows.Forms.Label upIntroLabel;
 		private System.Windows.Forms.Label lineLabel;
 		private System.Windows.Forms.Label upLastUpdatedBox;
