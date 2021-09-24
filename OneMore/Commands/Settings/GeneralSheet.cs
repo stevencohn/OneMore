@@ -21,13 +21,15 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
-					"enablersBox"
+					"enablersBox",
+					"checkUpdatesBox"
 				});
 			}
 
 			var settings = provider.GetCollection(Name);
 
 			enablersBox.Checked = settings.Get("enablers", true);
+			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
 		}
 
 
@@ -35,7 +37,11 @@ namespace River.OneMoreAddIn.Settings
 		{
 			var settings = provider.GetCollection(Name);
 
-			if (settings.Add("enablers", enablersBox.Checked))
+			var updated = false;
+			if (settings.Add("enablers", enablersBox.Checked)) updated = true;
+			if (settings.Add("checkUpdates", checkUpdatesBox.Checked)) updated = true;
+
+			if (updated)
 			{
 				provider.SetCollection(settings);
 				AddIn.EnablersEnabled = enablersBox.Checked;

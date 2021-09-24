@@ -13,7 +13,9 @@ namespace River.OneMoreAddIn.Helpers.Updater
 	{
         public string url { get; set; }
 
-		public string id { get; set; }
+        public string html_url { get; set; }
+        
+        public string id { get; set; }
 
 		public string tag_name { get; set; }
 

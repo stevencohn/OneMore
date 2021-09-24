@@ -11,29 +11,86 @@ namespace River.OneMoreAddIn.Helpers.Updater
 	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
-	using System.Net;
-	using System.Net.Http;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
 
 
-	internal class Updater
+	internal interface IUpdateInfo
+	{
+		bool IsUpToDate { get; }
+		string InstalledDate { get; }
+		string InstalledUrl { get; }
+		string InstalledVersion { get; }
+		string UpdateDate { get; }
+		string UpdateDescription { get; }
+		string UpdateUrl { get; }
+		string UpdateVersion { get; }
+	}
+
+	internal class Updater : IUpdateInfo
 	{
 		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases/latest";
+		private const string TagUrl = "https://github.com/stevencohn/OneMore/releases/tag";
 
-		private HttpClient client;
 		private GitRelease release;
+		private readonly string productCode;
 
 
-		public string Tag => release.tag_name;
+		public bool IsUpToDate { get; private set; }
+		public string InstalledDate { get; private set; }
+		public string InstalledUrl { get; private set; }
+		public string InstalledVersion { get; private set; }
 
-		public string Name => release.name;
+		public string UpdateDate => release.published_at;
+		public string UpdateDescription => release.name;
+		public string UpdateUrl => release.html_url;
+		public string UpdateVersion => release.tag_name;
+
+
+		public Updater()
+		{
+			// get current installed info...
+
+			var path = Environment.Is64BitProcess
+				? @"Software\Microsoft\Windows\CurrentVersion\Uninstall"
+				: @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+
+			var root = Registry.LocalMachine.OpenSubKey(path);
+			if (root != null)
+			{
+				foreach (var subName in root.GetSubKeyNames())
+				{
+					var key = root.OpenSubKey(subName);
+					if (key != null)
+					{
+						var name = key.GetValue("DisplayName") as string;
+						if (name == "OneMoreAddIn")
+						{
+							var cmd = key.GetValue("UninstallString") as string;
+							if (!string.IsNullOrEmpty(cmd))
+							{
+								productCode = cmd.Substring(cmd.IndexOf('{'));
+							}
+
+							InstalledDate = key.GetValue("InstallDate") as string;
+
+							// found the OneMore key so our job is done here
+							break;
+						}
+					}
+				}
+			}
+
+			InstalledVersion = AssemblyInfo.Version;
+			InstalledUrl = $"{TagUrl}/{InstalledVersion}";
+		}
 
 
 		public async Task<bool> FetchLatestRelease()
 		{
-			client = HttpClientFactory.Create();
-			client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
+			var client = HttpClientFactory.Create();
+			if (!client.DefaultRequestHeaders.Contains("User-Agent"))
+				client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
 
 			try
 			{
@@ -53,15 +110,11 @@ namespace River.OneMoreAddIn.Helpers.Updater
 				return false;
 			}
 
+			var currentVersion = new Version(InstalledVersion);
+			var releaseVersion = new Version(release.tag_name);
+			IsUpToDate = currentVersion >= releaseVersion;
+
 			return true;
-		}
-
-
-		public bool IsUpToDate(string assemblyVersion)
-		{
-			var currentVersion = new Version(assemblyVersion);
-			var releaseVersion = new Version(Tag);
-			return currentVersion >= releaseVersion;
 		}
 
 
@@ -82,6 +135,10 @@ namespace River.OneMoreAddIn.Helpers.Updater
 
 			try
 			{
+				var client = HttpClientFactory.Create();
+				if (!client.DefaultRequestHeaders.Contains("User-Agent"))
+					client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
+
 				using (var response = await client.GetAsync(asset.browser_download_url))
 				{
 					using (var stream = await response.Content.ReadAsStreamAsync())
@@ -112,10 +169,9 @@ namespace River.OneMoreAddIn.Helpers.Updater
 			{
 				writer.WriteLine("taskkill /im ONENOTE.exe");
 
-				var code = GetProductCode();
-				if (!string.IsNullOrEmpty(code))
+				if (!string.IsNullOrEmpty(productCode))
 				{
-					writer.WriteLine("start /wait msiexec /x" + GetProductCode());
+					writer.WriteLine($"start /wait msiexec /x{productCode}");
 				}
 
 				writer.WriteLine(msi);
@@ -131,40 +187,6 @@ namespace River.OneMoreAddIn.Helpers.Updater
 			});
 
 			return true;
-		}
-
-
-		private static string GetProductCode()
-		{
-			string code = null;
-
-			var path = Environment.Is64BitProcess
-				? @"Software\Microsoft\Windows\CurrentVersion\Uninstall"
-				: @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
-
-			var root = Registry.LocalMachine.OpenSubKey(path);
-			if (root != null)
-			{
-				foreach (var subName in root.GetSubKeyNames())
-				{
-					var key = root.OpenSubKey(subName);
-					if (key != null)
-					{
-						var name = key.GetValue("DisplayName") as string;
-						if (name == "OneMoreAddIn")
-						{
-							var cmd = key.GetValue("UninstallString") as string;
-							if (!string.IsNullOrEmpty(cmd))
-							{
-								code = cmd.Substring(cmd.IndexOf('{'));
-								break;
-							}
-						}
-					}
-				}
-			}
-
-			return code;
 		}
 	}
 }

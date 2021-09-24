@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Helpers.Updater;
 	using System;
 	using System.IO;
 	using System.Windows.Forms;
@@ -20,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 
 			Logger.SetDesignMode(DesignMode);
 
-			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, River.OneMoreAddIn.AssemblyInfo.Version);
+			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, AssemblyInfo.Version);
 			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
 
 			var logpath = Logger.Current.LogPath;
@@ -58,32 +57,12 @@ namespace River.OneMoreAddIn.Commands
 		// async event handlers should be be declared 'async void'
 		private async void CheckForUpdates(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var updater = new Updater();
+			var updater = new UpdateCommand();
+			await updater.Execute(true);
 
-			if (await updater.FetchLatestRelease())
+			if (updater.Updated)
 			{
-				if (updater.IsUpToDate(River.OneMoreAddIn.AssemblyInfo.Version))
-				{
-					MessageBox.Show(
-						Resx.AboutDialog_LatestMessage,
-						Resx.AboutDialog_LatestTitle);
-
-					return;
-				}
-
-				var answer = MessageBox.Show(
-					string.Format(Resx.AboutDialog_NewVersionMessage, updater.Tag, updater.Name),
-					Resx.AboutDialog_NewVersionTitle,
-					MessageBoxButtons.YesNo);
-
-				if (answer == DialogResult.Yes)
-				{
-					var updating = await updater.Update();
-					if (updating)
-					{
-						Close();
-					}
-				}
+				Close();
 			}
 		}
 

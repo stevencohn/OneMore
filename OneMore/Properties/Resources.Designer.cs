@@ -2302,6 +2302,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for new versions of OneMore when OneNote starts.
+        /// </summary>
+        internal static string GeneralSheet_checkUpdatesBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_checkUpdatesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable dynamic menu context settings. Disable if you&apos;ve added OneMore commands to the Quick Access toolbar.
         /// </summary>
         internal static string GeneralSheet_enablersBox_Text {

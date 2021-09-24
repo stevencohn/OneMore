@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn
 	using System.Globalization;
 	using System.Management;
 	using System.Runtime.InteropServices;
+	using System.Threading.Tasks;
 
 
 	/// <summary>
@@ -164,11 +165,12 @@ namespace River.OneMoreAddIn
 						$"OneNote process module: {module.FileName} ({module.FileVersionInfo.ProductVersion})");
 				}
 
+				// command listener for Refresh links
 				new CommandService(factory).Startup();
-
-				SetGeneralOptions();
-
+				// hotkeys
 				RegisterHotkeys();
+				// activate enablers and update check
+				Task.Run(async () => { await SetGeneralOptions(); });
 
 				logger.WriteLine($"ready");
 			}
@@ -182,11 +184,16 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void SetGeneralOptions()
+		private async Task SetGeneralOptions()
 		{
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection("GeneralSheet");
 			EnablersEnabled = settings.Get("enablers", true);
+
+			if (settings.Get("checkUpdates", false))
+			{
+				await factory.Run<Commands.UpdateCommand>();
+			}
 		}
 
 
