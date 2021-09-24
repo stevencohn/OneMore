@@ -2,7 +2,7 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Helpers.Updater
+namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
 	internal interface IUpdateReport
 	{

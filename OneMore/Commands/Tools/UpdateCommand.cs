@@ -4,10 +4,9 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Helpers.Updater;
+	using River.OneMoreAddIn.Commands.Tools.Updater;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class UpdateCommand : Command

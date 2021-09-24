@@ -4,7 +4,7 @@
 
 #pragma warning disable S1075 // URIs should not be hardcoded
 
-namespace River.OneMoreAddIn.Helpers.Updater
+namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
 	using Microsoft.Win32;
 	using System;

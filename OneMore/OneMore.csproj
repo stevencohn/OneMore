@@ -411,7 +411,7 @@
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
-    <Compile Include="Helpers\Updater\IUpdateReport.cs" />
+    <Compile Include="Commands\Tools\Updater\IUpdateReport.cs" />
     <Compile Include="Models\Bullet.cs" />
     <Compile Include="Models\ContentList.cs" />
     <Compile Include="Models\Meta.cs" />
@@ -682,9 +682,9 @@
     <Compile Include="Commands\Settings\SheetBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Helpers\Updater\GitAsset.cs" />
-    <Compile Include="Helpers\Updater\GitRelease.cs" />
-    <Compile Include="Helpers\Updater\Updater.cs" />
+    <Compile Include="Commands\Tools\Updater\GitAsset.cs" />
+    <Compile Include="Commands\Tools\Updater\GitRelease.cs" />
+    <Compile Include="Commands\Tools\Updater\Updater.cs" />
     <Compile Include="Helpers\Extensions\XCDataExtensions.cs" />
     <Compile Include="Helpers\Extensions\XElementExtensions.cs" />
     <Compile Include="Commands\Tools\AboutDialog.cs">

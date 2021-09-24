@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Helpers.Updater;
+	using River.OneMoreAddIn.Commands.Tools.Updater;
 	using System;
 	using System.Globalization;
 	using System.Windows.Forms;
