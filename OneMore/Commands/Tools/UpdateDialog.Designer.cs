@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateDialog));
 			this.currentLabel = new System.Windows.Forms.Label();
 			this.versionLabel = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@ namespace River.OneMoreAddIn.Commands
 			this.upReleaseNotesLink = new System.Windows.Forms.LinkLabel();
 			this.upIntroLabel = new System.Windows.Forms.Label();
 			this.upOKButton = new System.Windows.Forms.Button();
+			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.readyPanel.SuspendLayout();
 			this.updatePanel.SuspendLayout();
 			this.SuspendLayout();
@@ -312,8 +314,13 @@ namespace River.OneMoreAddIn.Commands
 			this.upOKButton.Name = "upOKButton";
 			this.upOKButton.Size = new System.Drawing.Size(104, 42);
 			this.upOKButton.TabIndex = 7;
-			this.upOKButton.Text = "OK";
+			this.upOKButton.Text = "Update";
 			this.upOKButton.UseVisualStyleBackColor = true;
+			// 
+			// timer
+			// 
+			this.timer.Interval = 1000;
+			this.timer.Tick += new System.EventHandler(this.TimerTick);
 			// 
 			// UpdateDialog
 			// 
@@ -365,5 +372,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label upCurrentVersionBox;
 		private System.Windows.Forms.Label upReleaseDateBox;
 		private System.Windows.Forms.Label releaseDateLabel;
+		private System.Windows.Forms.Timer timer;
 	}
 }

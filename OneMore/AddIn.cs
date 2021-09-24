@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn
 		private IRibbonUI ribbon;                   // the ribbon control
 		private ILogger logger;                     // our diagnostic logger
 		private CommandFactory factory;
-		private Process process;                    // current process, to kill if necessary
+		private readonly Process process;           // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
 		private uint clockSpeed;                    // Mhz of CPU
 

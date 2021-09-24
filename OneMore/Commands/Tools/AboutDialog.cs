@@ -12,12 +12,21 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class AboutDialog : UI.LocalizableForm
 	{
+		private readonly CommandFactory factory;
+
 
 		public AboutDialog()
 		{
 			InitializeComponent();
 
 			Logger.SetDesignMode(DesignMode);
+		}
+
+
+		public AboutDialog(CommandFactory factory)
+			: this()
+		{
+			this.factory = factory;
 
 			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, AssemblyInfo.Version);
 			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
@@ -57,10 +66,8 @@ namespace River.OneMoreAddIn.Commands
 		// async event handlers should be be declared 'async void'
 		private async void CheckForUpdates(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var updater = new UpdateCommand();
-			await updater.Execute(true);
-
-			if (updater.Updated)
+			var command = await factory.Run<UpdateCommand>(true, this) as UpdateCommand;
+			if (command.Updated)
 			{
 				Close();
 			}

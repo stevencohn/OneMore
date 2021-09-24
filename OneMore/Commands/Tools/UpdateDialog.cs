@@ -5,30 +5,46 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Updater;
-	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Globalization;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class UpdateDialog : LocalizableForm
+	internal partial class UpdateDialog : UI.LocalizableForm
 	{
-		private string url;
+		private readonly string url;
 
 
 		public UpdateDialog()
 		{
 			InitializeComponent();
+
+			timer.Enabled = true;
+			timer.Start();
 		}
 
 
-		public UpdateDialog(IUpdateInfo info)
+		public UpdateDialog(IUpdateReport info)
 			: this()
 		{
-			if (!info.IsUpToDate)
+			if (info.IsUpToDate)
 			{
+				if (NeedsLocalizing())
+				{
+					Text = Resx.UpdateDialog_Text;
+					Localize(new string[]
+					{
+						"currentLabel",
+						"versionLabel",
+						"lastpdatedLabel",
+						"releaseNotesLink",
+						"okButton"
+					});
+				}
+
 				updatePanel.Visible = false;
-				Height = readyPanel.Height + okButton.Height + Padding.Top + Padding.Bottom;
+				Height = readyPanel.Height + okButton.Height + Padding.Top + Padding.Bottom * 2;
 				AcceptButton = okButton;
 				CancelButton = okButton;
 
@@ -38,9 +54,26 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
+				if (NeedsLocalizing())
+				{
+					Text = Resx.UpdateDialog_Text;
+					Localize(new string[]
+					{
+						"upIntroLabel",
+						"upVersionLabel",
+						"upDescriptionLabel",
+						"upReleaseDateLabel",
+						"upReleaseNotesLink",
+						"upCurrentVersionLabel",
+						"upLastUpdatedLabel",
+						"upOKButton",
+						"cancelButton"
+					});
+				}
+
 				readyPanel.Visible = false;
 				updatePanel.Top = readyPanel.Top;
-				Height = updatePanel.Height + upOKButton.Height + Padding.Top + Padding.Bottom;
+				Height = updatePanel.Height + upOKButton.Height + Padding.Top + Padding.Bottom * 2;
 				AcceptButton = upOKButton;
 				CancelButton = cancelButton;
 
@@ -48,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 				upDescriptionBox.Text = info.UpdateDescription;
 				upReleaseDateBox.Text = FormatDate(info.UpdateDate);
 				upCurrentVersionBox.Text = info.InstalledVersion;
-				upLastUpdatedBox.Text = info.InstalledDate;
+				upLastUpdatedBox.Text = FormatDate(info.InstalledDate);
 				url = info.UpdateUrl;
 			}
 		}
@@ -58,9 +91,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (value.Length == 8)
 			{
-				string[] format = { "yyyyMMdd" };
-
-				if (DateTime.TryParseExact(value, format,
+				if (DateTime.TryParseExact(value, new string[] { "yyyyMMdd" },
 					CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
 				{
 					return date.ToShortDateString();
@@ -81,6 +112,13 @@ namespace River.OneMoreAddIn.Commands
 		private void GotoReleaseNotes(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start(url);
+			timer.Enabled = false;
+			TopMost = false;
+		}
+
+		private void TimerTick(object sender, EventArgs e)
+		{
+			TopMost = true;
 		}
 	}
 }

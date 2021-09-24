@@ -32,14 +32,16 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (updater.IsUpToDate &&
-				(args.Length > 0) && (args[0] is bool report && report))
+			if (updater.IsUpToDate)
 			{
-				// up to date...
-				using (var dialog = new UpdateDialog(updater))
+				if (args.Length > 0 && args[0] is bool report && report)
 				{
-					dialog.TopMost = true;
-					dialog.ShowDialog();
+					// up to date...
+					using (var dialog = new UpdateDialog(updater))
+					{
+						dialog.ShowDialog(args.Length > 1 && args[0] is AboutDialog about
+							? about : new OneNote().Window);
+					}
 				}
 
 				return;
@@ -48,11 +50,11 @@ namespace River.OneMoreAddIn.Commands
 			DialogResult answer;
 			using (var dialog = new UpdateDialog(updater))
 			{
-				dialog.TopMost = true;
-				answer = dialog.ShowDialog();
+				answer = dialog.ShowDialog(args.Length > 1 && args[0] is AboutDialog about
+					? about : new OneNote().Window);
 			}
 
-			if (answer == DialogResult.Yes)
+			if (answer == DialogResult.OK)
 			{
 				Updated = await updater.Update();
 			}

@@ -15,19 +15,7 @@ namespace River.OneMoreAddIn.Helpers.Updater
 	using System.Web.Script.Serialization;
 
 
-	internal interface IUpdateInfo
-	{
-		bool IsUpToDate { get; }
-		string InstalledDate { get; }
-		string InstalledUrl { get; }
-		string InstalledVersion { get; }
-		string UpdateDate { get; }
-		string UpdateDescription { get; }
-		string UpdateUrl { get; }
-		string UpdateVersion { get; }
-	}
-
-	internal class Updater : IUpdateInfo
+	internal class Updater : IUpdateReport
 	{
 		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases/latest";
 		private const string TagUrl = "https://github.com/stevencohn/OneMore/releases/tag";
@@ -117,6 +105,8 @@ namespace River.OneMoreAddIn.Helpers.Updater
 			return true;
 		}
 
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		public async Task<bool> Update()
 		{

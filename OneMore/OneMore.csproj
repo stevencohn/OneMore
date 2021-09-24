@@ -411,6 +411,7 @@
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
+    <Compile Include="Helpers\Updater\IUpdateReport.cs" />
     <Compile Include="Models\Bullet.cs" />
     <Compile Include="Models\ContentList.cs" />
     <Compile Include="Models\Meta.cs" />
