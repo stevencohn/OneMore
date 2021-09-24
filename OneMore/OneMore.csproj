@@ -395,6 +395,13 @@
     <Compile Include="Commands\Tools\AnalyzeDialog.Designer.cs">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\UpdateCommand.cs" />
+    <Compile Include="Commands\Tools\UpdateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\UpdateDialog.Designer.cs">
+      <DependentUpon>UpdateDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
@@ -404,6 +411,7 @@
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
+    <Compile Include="Commands\Tools\Updater\IUpdateReport.cs" />
     <Compile Include="Models\Bullet.cs" />
     <Compile Include="Models\ContentList.cs" />
     <Compile Include="Models\Meta.cs" />
@@ -674,9 +682,9 @@
     <Compile Include="Commands\Settings\SheetBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Helpers\Updater\GitAsset.cs" />
-    <Compile Include="Helpers\Updater\GitRelease.cs" />
-    <Compile Include="Helpers\Updater\Updater.cs" />
+    <Compile Include="Commands\Tools\Updater\GitAsset.cs" />
+    <Compile Include="Commands\Tools\Updater\GitRelease.cs" />
+    <Compile Include="Commands\Tools\Updater\Updater.cs" />
     <Compile Include="Helpers\Extensions\XCDataExtensions.cs" />
     <Compile Include="Helpers\Extensions\XElementExtensions.cs" />
     <Compile Include="Commands\Tools\AboutDialog.cs">
@@ -1006,6 +1014,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\AnalyzeDialog.resx">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\UpdateDialog.resx">
+      <DependentUpon>UpdateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MoreLinkLabel.resx">
+      <DependentUpon>MoreLinkLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>

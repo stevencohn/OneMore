@@ -4,7 +4,7 @@
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace River.OneMoreAddIn.Helpers.Updater
+namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
     using System.Collections.Generic;
 
@@ -13,7 +13,9 @@ namespace River.OneMoreAddIn.Helpers.Updater
 	{
         public string url { get; set; }
 
-		public string id { get; set; }
+        public string html_url { get; set; }
+        
+        public string id { get; set; }
 
 		public string tag_name { get; set; }
 

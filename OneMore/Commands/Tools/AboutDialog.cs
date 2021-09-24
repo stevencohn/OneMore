@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Helpers.Updater;
 	using System;
 	using System.IO;
 	using System.Windows.Forms;
@@ -13,14 +12,23 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class AboutDialog : UI.LocalizableForm
 	{
+		private readonly CommandFactory factory;
+
 
 		public AboutDialog()
 		{
 			InitializeComponent();
 
 			Logger.SetDesignMode(DesignMode);
+		}
 
-			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, River.OneMoreAddIn.AssemblyInfo.Version);
+
+		public AboutDialog(CommandFactory factory)
+			: this()
+		{
+			this.factory = factory;
+
+			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text, AssemblyInfo.Version);
 			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
 
 			var logpath = Logger.Current.LogPath;
@@ -58,32 +66,10 @@ namespace River.OneMoreAddIn.Commands
 		// async event handlers should be be declared 'async void'
 		private async void CheckForUpdates(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var updater = new Updater();
-
-			if (await updater.FetchLatestRelease())
+			var command = await factory.Run<UpdateCommand>(true, this) as UpdateCommand;
+			if (command.Updated)
 			{
-				if (updater.IsUpToDate(River.OneMoreAddIn.AssemblyInfo.Version))
-				{
-					MessageBox.Show(
-						Resx.AboutDialog_LatestMessage,
-						Resx.AboutDialog_LatestTitle);
-
-					return;
-				}
-
-				var answer = MessageBox.Show(
-					string.Format(Resx.AboutDialog_NewVersionMessage, updater.Tag, updater.Name),
-					Resx.AboutDialog_NewVersionTitle,
-					MessageBoxButtons.YesNo);
-
-				if (answer == DialogResult.Yes)
-				{
-					var updating = await updater.Update();
-					if (updating)
-					{
-						Close();
-					}
-				}
+				Close();
 			}
 		}
 

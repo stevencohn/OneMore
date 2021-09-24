@@ -3452,4 +3452,68 @@ Arquivo OneNote (* .one)</value>
     <value>Reiniciar cronômetro</value>
     <comment>button tooltip</comment>
   </data>
+  <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
+    <value>Verifique se há novas versões do OneMore quando o OneNote é iniciado</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="UpdateDialog.Text" xml:space="preserve">
+    <value>Verifique se há atualizações do OneMore</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="UpdateDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_currentLabel.Text" xml:space="preserve">
+    <value>OneMore está atualizado</value>
+    <comment>panel title</comment>
+  </data>
+  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
+    <value>Ultima atualização:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
+    <value>Data de lançamento:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
+    <value>Notas de lançamento</value>
+    <comment>link</comment>
+  </data>
+  <data name="UpdateDialog_upCurrentVersionLabel.Text" xml:space="preserve">
+    <value>Versão Atual:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_upDescriptionLabel.Text" xml:space="preserve">
+    <value>Descrição:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_upIntroLabel.Text" xml:space="preserve">
+    <value>Atualização OneMore disponível</value>
+    <comment>panel title</comment>
+  </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>Ultima atualização:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
+    <value>Atualizar</value>
+    <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseNotesLink.Text" xml:space="preserve">
+    <value>Notas de lançamento</value>
+    <comment>link</comment>
+  </data>
+  <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
+    <value>Versão atualizada:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
+    <value>Versão instalada:</value>
+    <comment>label</comment>
+  </data>
 </root>

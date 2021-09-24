@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn
 		/// <typeparam name="T">The command type</typeparam>
 		/// <param name="args">The argument list</param>
 		/// <returns>Task</returns>
-		public async Task Run<T>(params object[] args) where T : Command, new()
+		public async Task<Command> Run<T>(params object[] args) where T : Command, new()
 		{
 			var command = new T();
 			await Run("Running", command, args);
@@ -59,6 +59,8 @@ namespace River.OneMoreAddIn
 			{
 				RecordLastAction(command, args);
 			}
+
+			return command;
 		}
 
 
@@ -67,10 +69,11 @@ namespace River.OneMoreAddIn
 			var type = command.GetType();
 			logger.Start($"{note} command {type.Name}");
 
-			command.SetLogger(logger);
-			command.SetRibbon(ribbon);
-			command.SetOwner(owner);
-			command.SetTrash(trash);
+			command.SetFactory(this)
+				.SetLogger(logger)
+				.SetRibbon(ribbon)
+				.SetOwner(owner)
+				.SetTrash(trash);
 
 			try
 			{

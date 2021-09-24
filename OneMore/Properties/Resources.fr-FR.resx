@@ -3446,4 +3446,68 @@ Fichier OneNote (*.one)</value>
     <value>Redémarrer la minuterie</value>
     <comment>button tooltip</comment>
   </data>
+  <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
+    <value>Rechercher de nouvelles versions de OneMore au démarrage de OneNote</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="UpdateDialog.Text" xml:space="preserve">
+    <value>Rechercher les mises à jour OneMore</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="UpdateDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_currentLabel.Text" xml:space="preserve">
+    <value>OneMore est à jour</value>
+    <comment>panel title</comment>
+  </data>
+  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
+    <value>Dernière mise à jour:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_okButton.Text" xml:space="preserve">
+    <value>d'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
+    <value>Date de sortie:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
+    <value>Notes de version</value>
+    <comment>link</comment>
+  </data>
+  <data name="UpdateDialog_upCurrentVersionLabel.Text" xml:space="preserve">
+    <value>Version actuelle:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_upDescriptionLabel.Text" xml:space="preserve">
+    <value>La description:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_upIntroLabel.Text" xml:space="preserve">
+    <value>Mise à jour OneMore disponible</value>
+    <comment>panel title</comment>
+  </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>Dernière mise à jour:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
+    <value>Mettre à jour</value>
+    <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseNotesLink.Text" xml:space="preserve">
+    <value>Notes de version</value>
+    <comment>link</comment>
+  </data>
+  <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
+    <value>Version de mise à jour:</value>
+    <comment>label</comment>
+  </data>
+  <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
+    <value>Version installée :</value>
+    <comment>label</comment>
+  </data>
 </root>

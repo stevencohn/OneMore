@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn
 		protected ILogger logger;
 		protected IRibbonUI ribbon;
 		protected IWin32Window owner;
+		protected CommandFactory factory;
 		protected List<IDisposable> trash;
 
 
@@ -41,27 +42,37 @@ namespace River.OneMoreAddIn
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Settings used by CommandFactory
 
-		public void SetLogger(ILogger value)
+		public Command SetFactory(CommandFactory value)
+		{
+			factory = value;
+			return this;
+		}
+
+		public Command SetLogger(ILogger value)
 		{
 			logger = value;
+			return this;
 		}
 
 
-		public void SetRibbon(IRibbonUI value)
+		public Command SetRibbon(IRibbonUI value)
 		{
 			ribbon = value;
+			return this;
 		}
 
 
-		public void SetOwner(IWin32Window value)
+		public Command SetOwner(IWin32Window value)
 		{
 			owner = value;
+			return this;
 		}
 
 
-		public void SetTrash(List<IDisposable> value)
+		public Command SetTrash(List<IDisposable> value)
 		{
 			trash = value;
+			return this;
 		}
 
 

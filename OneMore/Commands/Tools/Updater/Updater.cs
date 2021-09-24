@@ -4,139 +4,40 @@
 
 #pragma warning disable S1075 // URIs should not be hardcoded
 
-namespace River.OneMoreAddIn.Helpers.Updater
+namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
 	using Microsoft.Win32;
 	using System;
 	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
-	using System.Net;
-	using System.Net.Http;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
 
 
-	internal class Updater
+	internal class Updater : IUpdateReport
 	{
 		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases/latest";
+		private const string TagUrl = "https://github.com/stevencohn/OneMore/releases/tag";
 
-		private HttpClient client;
 		private GitRelease release;
+		private readonly string productCode;
 
 
-		public string Tag => release.tag_name;
+		public bool IsUpToDate { get; private set; }
+		public string InstalledDate { get; private set; }
+		public string InstalledUrl { get; private set; }
+		public string InstalledVersion { get; private set; }
 
-		public string Name => release.name;
+		public string UpdateDate => release.published_at;
+		public string UpdateDescription => release.name;
+		public string UpdateUrl => release.html_url;
+		public string UpdateVersion => release.tag_name;
 
 
-		public async Task<bool> FetchLatestRelease()
+		public Updater()
 		{
-			client = HttpClientFactory.Create();
-			client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
-
-			try
-			{
-				using (var response = await client.GetAsync(LatestUrl))
-				{
-					var body = await response.Content.ReadAsStringAsync();
-
-					// use the .NET Framework serializer;
-					// it's not great but I didn't want to pull in a nuget if I didn't need to
-					var serializer = new JavaScriptSerializer();
-					release = serializer.Deserialize<GitRelease>(body);
-				}
-			}
-			catch (Exception exc)
-			{
-				Logger.Current.WriteLine("error fetching latest release", exc);
-				return false;
-			}
-
-			return true;
-		}
-
-
-		public bool IsUpToDate(string assemblyVersion)
-		{
-			var currentVersion = new Version(assemblyVersion);
-			var releaseVersion = new Version(Tag);
-			return currentVersion >= releaseVersion;
-		}
-
-
-		public async Task<bool> Update()
-		{
-			// presume the msi has one of these two keywords in its name
-			var key = Environment.Is64BitProcess ? "x64" : "x86";
-
-			var asset = release.assets.FirstOrDefault(a => a.browser_download_url.Contains(key));
-
-			if (asset == null)
-			{
-				Logger.Current.WriteLine($"did not find installer asset for {key}");
-				return false;
-			}
-
-			var msi = Path.Combine(Path.GetTempPath(), asset.name);
-
-			try
-			{
-				using (var response = await client.GetAsync(asset.browser_download_url))
-				{
-					using (var stream = await response.Content.ReadAsStreamAsync())
-					{
-						using (var file = File.OpenWrite(msi))
-						{
-							stream.CopyTo(file);
-						}
-					}
-				}
-			}
-			catch (Exception exc)
-			{
-				Logger.Current.WriteLine(
-					$"error downloading latest installer from {asset.browser_download_url}", exc);
-
-				return false;
-			}
-
-			// windows installer command line options
-			// https://docs.microsoft.com/en-us/windows/win32/msi/command-line-options?redirectedfrom=MSDN
-
-			// make installer script, which runs as a separate process so we have a chance
-			// to terminate onenote before the msi runs
-
-			var script = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.bat");
-			using (var writer = new StreamWriter(script, false))
-			{
-				writer.WriteLine("taskkill /im ONENOTE.exe");
-
-				var code = GetProductCode();
-				if (!string.IsNullOrEmpty(code))
-				{
-					writer.WriteLine("start /wait msiexec /x" + GetProductCode());
-				}
-
-				writer.WriteLine(msi);
-			}
-
-			// run installer script
-
-			Process.Start(new ProcessStartInfo
-			{
-				FileName = script,
-				UseShellExecute = true,
-				WindowStyle = ProcessWindowStyle.Hidden
-			});
-
-			return true;
-		}
-
-
-		private static string GetProductCode()
-		{
-			string code = null;
+			// get current installed info...
 
 			var path = Environment.Is64BitProcess
 				? @"Software\Microsoft\Windows\CurrentVersion\Uninstall"
@@ -156,15 +57,124 @@ namespace River.OneMoreAddIn.Helpers.Updater
 							var cmd = key.GetValue("UninstallString") as string;
 							if (!string.IsNullOrEmpty(cmd))
 							{
-								code = cmd.Substring(cmd.IndexOf('{'));
-								break;
+								productCode = cmd.Substring(cmd.IndexOf('{'));
 							}
+
+							InstalledDate = key.GetValue("InstallDate") as string;
+
+							// found the OneMore key so our job is done here
+							break;
 						}
 					}
 				}
 			}
 
-			return code;
+			InstalledVersion = AssemblyInfo.Version;
+			InstalledUrl = $"{TagUrl}/{InstalledVersion}";
+		}
+
+
+		public async Task<bool> FetchLatestRelease()
+		{
+			var client = HttpClientFactory.Create();
+			if (!client.DefaultRequestHeaders.Contains("User-Agent"))
+				client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
+
+			try
+			{
+				using (var response = await client.GetAsync(LatestUrl))
+				{
+					var body = await response.Content.ReadAsStringAsync();
+
+					// use the .NET Framework serializer;
+					// it's not great but I didn't want to pull in a nuget if I didn't need to
+					var serializer = new JavaScriptSerializer();
+					release = serializer.Deserialize<GitRelease>(body);
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine("error fetching latest release", exc);
+				return false;
+			}
+
+			var currentVersion = new Version(InstalledVersion);
+			var releaseVersion = new Version(release.tag_name);
+			IsUpToDate = currentVersion >= releaseVersion;
+
+			return true;
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		public async Task<bool> Update()
+		{
+			if (string.IsNullOrEmpty(productCode))
+			{
+				Logger.Current.WriteLine("missing product code");
+				return false;
+			}
+
+			// presume the msi has one of these two keywords in its name
+			var key = Environment.Is64BitProcess ? "x64" : "x86";
+
+			var asset = release.assets.FirstOrDefault(a => a.browser_download_url.Contains(key));
+			if (asset == null)
+			{
+				Logger.Current.WriteLine($"did not find installer asset for {key}");
+				return false;
+			}
+
+			var msi = Path.Combine(Path.GetTempPath(), asset.name);
+
+			try
+			{
+				var client = HttpClientFactory.Create();
+				if (!client.DefaultRequestHeaders.Contains("User-Agent"))
+					client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
+
+				using (var response = await client.GetAsync(asset.browser_download_url))
+				{
+					using (var stream = await response.Content.ReadAsStreamAsync())
+					{
+						using (var file = File.OpenWrite(msi))
+						{
+							stream.CopyTo(file);
+						}
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error downloading {asset.browser_download_url}", exc);
+				return false;
+			}
+
+			// windows installer command line options
+			// https://docs.microsoft.com/en-us/windows/win32/msi/command-line-options?redirectedfrom=MSDN
+
+			// make installer script, which runs as a separate process so we have a chance
+			// to terminate onenote before the msi runs
+
+			var script = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.bat");
+			using (var writer = new StreamWriter(script, false))
+			{
+				writer.WriteLine("taskkill /im ONENOTE.exe");
+				writer.WriteLine($"start /wait msiexec /x{productCode}");
+				writer.WriteLine(msi);
+			}
+
+			// run installer script
+
+			Process.Start(new ProcessStartInfo
+			{
+				FileName = script,
+				UseShellExecute = true,
+				WindowStyle = ProcessWindowStyle.Hidden
+			});
+
+			return true;
 		}
 	}
 }

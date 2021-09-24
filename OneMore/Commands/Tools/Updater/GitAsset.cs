@@ -4,7 +4,7 @@
 
 #pragma warning disable IDE1006 // Naming Styles
 
-namespace River.OneMoreAddIn.Helpers.Updater
+namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
     internal class GitAsset
     {

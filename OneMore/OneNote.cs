@@ -476,12 +476,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public XElement CreateSection(XElement section, XElement parent)
-		{
-			return section;
-		}
-
-
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Get...
 

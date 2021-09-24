@@ -2302,6 +2302,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for new versions of OneMore when OneNote starts.
+        /// </summary>
+        internal static string GeneralSheet_checkUpdatesBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_checkUpdatesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable dynamic menu context settings. Disable if you&apos;ve added OneMore commands to the Quick Access toolbar.
         /// </summary>
         internal static string GeneralSheet_enablersBox_Text {
@@ -7794,6 +7803,141 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("UpArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string UpdateDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore is up to date.
+        /// </summary>
+        internal static string UpdateDialog_currentLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_currentLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last updated:.
+        /// </summary>
+        internal static string UpdateDialog_lastUpdatedLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_lastUpdatedLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string UpdateDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Release date:.
+        /// </summary>
+        internal static string UpdateDialog_releaseDateLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_releaseDateLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Release notes.
+        /// </summary>
+        internal static string UpdateDialog_releaseNotesLink_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_releaseNotesLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for OneMore Updates.
+        /// </summary>
+        internal static string UpdateDialog_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current version:.
+        /// </summary>
+        internal static string UpdateDialog_upCurrentVersionLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_upCurrentVersionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description:.
+        /// </summary>
+        internal static string UpdateDialog_upDescriptionLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_upDescriptionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore update available.
+        /// </summary>
+        internal static string UpdateDialog_upIntroLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_upIntroLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last updated:.
+        /// </summary>
+        internal static string UpdateDialog_upLastUpdatedLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_upLastUpdatedLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string UpdateDialog_upOKButton_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_upOKButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Release notes.
+        /// </summary>
+        internal static string UpdateDialog_upReleaseNotesLink_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_upReleaseNotesLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update version:.
+        /// </summary>
+        internal static string UpdateDialog_upVersionLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_upVersionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installed version:.
+        /// </summary>
+        internal static string UpdateDialog_versionLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_versionLabel.Text", resourceCulture);
             }
         }
         
