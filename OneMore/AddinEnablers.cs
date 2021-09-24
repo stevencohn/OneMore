@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn
 		private bool bodyContext = false;
 		private bool imageSelected = false;
 
-		public static bool EnablersEnabled = true;
+		public static bool EnablersEnabled { get; set; }
 
 
 		/// <summary>
