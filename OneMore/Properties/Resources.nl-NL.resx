@@ -3524,4 +3524,8 @@ OneNote-bestand (*.one)</value>
     <value>Sectiekleur</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
+    <value>... Aantal woorden</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

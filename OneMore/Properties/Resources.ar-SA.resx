@@ -3523,4 +3523,8 @@ ISO-code then comma then language name</comment>
     <value>لون القسم</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
+    <value>... عدد الكلمات</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

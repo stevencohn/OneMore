@@ -3515,4 +3515,8 @@ OneNote 文件 (*.one)</value>
     <value>截面颜色</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
+    <value>... 字数</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

@@ -46,6 +46,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribExpandContentButton",		// ... Expand Outline
 			"ribSaveCollapsedButton",		// ... Save Collapsed Outline
 			"ribRestoreCollapsedButton",	// ... Restore Collapsed Outline
+			"ribWordCountButton",			// ... Word Count
 			"ribReplaceButton",				// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
 			"ribInsertSingleLineButton",	// ... Single Line

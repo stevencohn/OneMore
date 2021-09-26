@@ -3509,4 +3509,8 @@ OneNote-Datei (*.one)</value>
     <value>Abschnittsfarbe</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
+    <value>... Wortzahl</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

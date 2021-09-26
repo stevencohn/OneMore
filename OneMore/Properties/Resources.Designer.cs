@@ -1283,6 +1283,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Word Count.
+        /// </summary>
+        internal static string ContextMenuSheet_ribWordCountButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribWordCountButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Yellow Status.
         /// </summary>
         internal static string ContextMenuSheet_ribYellowStatusButton {
