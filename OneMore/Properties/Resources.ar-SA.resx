@@ -3515,4 +3515,12 @@ ISO-code then comma then language name</comment>
     <value>الإصدار المثبت:</value>
     <comment>label</comment>
   </data>
+  <data name="ctxSectionColorButton_Label" xml:space="preserve">
+    <value>تخصيص لون القسم</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="SectionColor_Title" xml:space="preserve">
+    <value>لون القسم</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

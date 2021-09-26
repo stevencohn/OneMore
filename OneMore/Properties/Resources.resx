@@ -3555,4 +3555,12 @@ ISO-code then comma then language name</comment>
     <value>Installed version:</value>
     <comment>label</comment>
   </data>
+  <data name="ctxSectionColorButton_Label" xml:space="preserve">
+    <value>Customize Section Color</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="SectionColor_Title" xml:space="preserve">
+    <value>Section Color</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

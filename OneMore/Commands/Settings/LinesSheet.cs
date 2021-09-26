@@ -11,9 +11,6 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class LinesSheet : SheetBase
 	{
-		private readonly Color color;
-		private readonly decimal length;
-
 
 		public LinesSheet(SettingsProvider provider) : base(provider)
 		{
@@ -35,8 +32,8 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			colorBox.BackColor = color = settings.Get<Color>("color", Color.Black);
-			lengthBox.Value = length = settings.Get<decimal>("length", 100);
+			colorBox.BackColor = settings.Get<Color>("color", Color.Black);
+			lengthBox.Value = settings.Get<decimal>("length", 100);
 		}
 
 

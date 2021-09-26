@@ -3501,4 +3501,12 @@ OneNote-Datei (*.one)</value>
     <value>Installierte Version:</value>
     <comment>label</comment>
   </data>
+  <data name="ctxSectionColorButton_Label" xml:space="preserve">
+    <value>Abschnittsfarbe anpassen</value>
+    <comment>Context menu</comment>
+  </data>
+  <data name="SectionColor_Title" xml:space="preserve">
+    <value>Abschnittsfarbe</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

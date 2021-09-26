@@ -57,6 +57,7 @@ namespace River.OneMoreAddIn.UI
 			this.y = y;
 		}
 
+
 		protected override IntPtr HookProc(IntPtr hWnd, int msg, IntPtr wparam, IntPtr lparam)
 		{
 			// must call base HookProc before chaning window pos or SetWindowPos won't work

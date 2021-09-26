@@ -59,6 +59,14 @@ namespace River.OneMoreAddIn
 		);
 
 
+		[StructLayout(LayoutKind.Sequential)]
+		public struct Point
+		{
+			public int X;
+			public int Y;
+		}
+
+
 		/// <summary>
 		/// Specifies the position and size of a window
 		/// </summary>
@@ -95,17 +103,21 @@ namespace River.OneMoreAddIn
 		// Delegates...
 
 		public delegate void WinEventDelegate(
-			IntPtr hWinEventHook, uint eventType, IntPtr hwnd, 
+			IntPtr hWinEventHook, uint eventType, IntPtr hwnd,
 			int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Functions...
 
+		[DllImport("user32.dll")]
+		public static extern bool GetCursorPos(out Point lpPoint);
+
+
 		// https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-getdevicecaps?redirectedfrom=MSDN
 		[DllImport("gdi32.dll")]
 		public static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
-		
+
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getforegroundwindow
 		[DllImport("user32.dll")]
@@ -161,7 +173,7 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey
 		[DllImport("user32", SetLastError = true)]
 		public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
-		
+
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setforegroundwindow
 		[DllImport("user32.dll")]
@@ -172,8 +184,8 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setprocessdpiaware
 		[DllImport("user32.dll")]
 		public static extern bool SetProcessDPIAware();
-		
-		
+
+
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwineventhook
 		[DllImport("user32.dll")]
 		public static extern IntPtr SetWinEventHook(

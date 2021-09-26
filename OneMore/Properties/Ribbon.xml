@@ -767,6 +767,12 @@
         onAction="DateStampCmd"
         tag="section"
         insertBeforeMso="SectionRenameOneNote"/>
+      <button
+        id="ctxSectionColorButton"
+        imageMso="ShapeFillColorPicker"
+        getLabel="GetRibbonLabel"
+        onAction="SectionColorCmd"
+        insertBeforeMso="SectionRenameOneNote"/>
       <menuSeparator
         id="omSectionContextMenuSeparator"
         insertBeforeMso="SectionRenameOneNote"/>
