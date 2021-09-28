@@ -3507,10 +3507,6 @@ OneNote 文件 (*.one)</value>
     <value>已安装版本：</value>
     <comment>label</comment>
   </data>
-  <data name="ctxSectionColorButton_Label" xml:space="preserve">
-    <value>自定义部分颜色</value>
-    <comment>Context menu</comment>
-  </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>截面颜色</value>
     <comment>dialog title</comment>
@@ -3518,5 +3514,9 @@ OneNote 文件 (*.one)</value>
   <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
     <value>... 字数</value>
     <comment>context menu option</comment>
+  </data>
+  <data name="ribSectionColorButton_Label" xml:space="preserve">
+    <value>自定义部分颜色</value>
+    <comment>Context menu</comment>
   </data>
 </root>

@@ -3516,10 +3516,6 @@ OneNote-bestand (*.one)</value>
     <value>Geïnstalleerde versie:</value>
     <comment>label</comment>
   </data>
-  <data name="ctxSectionColorButton_Label" xml:space="preserve">
-    <value>Sectiekleur aanpassen</value>
-    <comment>Context menu</comment>
-  </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Sectiekleur</value>
     <comment>dialog title</comment>
@@ -3527,5 +3523,9 @@ OneNote-bestand (*.one)</value>
   <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
     <value>... Aantal woorden</value>
     <comment>context menu option</comment>
+  </data>
+  <data name="ribSectionColorButton_Label" xml:space="preserve">
+    <value>Sectiekleur aanpassen</value>
+    <comment>Context menu</comment>
   </data>
 </root>

@@ -4,7 +4,7 @@
 
 
 	/// <summary>
-	/// Some system CommonDialog windows like Color dialog, even with top-most  bit set using the
+	/// Some system CommonDialog windows like Color dialog, even with top-most bit set using the
 	/// SetWindowsPos function, will not appear top-most the first time they are displayed.
 	/// This invisible Form hosts the window and plays a trick with TopMost to force the dialog
 	/// to the top the first time it is shown.

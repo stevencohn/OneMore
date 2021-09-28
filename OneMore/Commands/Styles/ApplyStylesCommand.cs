@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Apply the user-defined custom styles to the page; this is done by apply the styles
+	/// Apply the user-defined custom styles to the page; this is done by applying the styles
 	/// directly to the QuickStyleDefs declarations at the top of the page XML
 	/// </summary>
 	internal class ApplyStylesCommand : Command

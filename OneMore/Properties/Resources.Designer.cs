@@ -1474,15 +1474,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customize Section Color.
-        /// </summary>
-        internal static string ctxSectionColorButton_Label {
-            get {
-                return ResourceManager.GetString("ctxSectionColorButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to To UPPERCASE.
         /// </summary>
         internal static string ctxUppercaseButton_Label {
@@ -5725,6 +5716,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSearchMenu_Label {
             get {
                 return ResourceManager.GetString("ribSearchMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize Section Color.
+        /// </summary>
+        internal static string ribSectionColorButton_Label {
+            get {
+                return ResourceManager.GetString("ribSectionColorButton_Label", resourceCulture);
             }
         }
         
