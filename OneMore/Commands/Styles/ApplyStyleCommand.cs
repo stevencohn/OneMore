@@ -38,6 +38,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// could be from a CtrlAltShift+# but that indexed style doesn't exist
 				// e.g. there are only 5 custom styles but the user pressed CtrlAltShift+6
+				// so just do nothing
 				return;
 			}
 
