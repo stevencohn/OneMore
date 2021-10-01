@@ -123,7 +123,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Fill across and fill down (Ctrl + D) to fill all or selected cells with increment values
 * Split table
 
-[Extra commands](../../wiki/Extra-Commands) (13)
+[Extra commands](../../wiki/Extra-Commands) (12)
 
 * Generate a report of the size of notebooks, section, pages, and image and file attachments on pages
 * Add special icon to the page title, also appears in page hierarchy
@@ -133,7 +133,6 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Merge pages, preserving formatting and position of outlines
 * Split current page into multiple pages
 * Sort pages, sections, or notebooks
-* Customize the tab color of sections beyond the set of colors provided by OneNote
 * Start and display a visual timer (Alt + F2) and insert the timer value (F2)
 * Toggle strikethrough text next to all completed/incompleted tags
 * Report number of words on the page or in the selected region
@@ -158,6 +157,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
     * Add the section to the Favorites menu
     * Archive the entire section to a zip of HTML files, including all images and attachments
     * Prefix all page titles with a date stamp representing the data the page was created
+    * Customize the tab color of sections beyond the set of colors provided by OneNote
   * Section Group context menu
     * Copy section group and its entire contents to another location (OneNote only has a _move_ command)
   * Page context menu
