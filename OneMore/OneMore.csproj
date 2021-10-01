@@ -395,6 +395,7 @@
     <Compile Include="Commands\Tools\AnalyzeDialog.Designer.cs">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\SectionColorCommand.cs" />
     <Compile Include="Commands\Tools\UpdateCommand.cs" />
     <Compile Include="Commands\Tools\UpdateDialog.cs">
       <SubType>Form</SubType>
@@ -759,6 +760,9 @@
     </Compile>
     <Compile Include="Styles\Stylizer.cs" />
     <Compile Include="Styles\XmlStyleBase.cs" />
+    <Compile Include="UI\WindowElevator.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Colorizer\Languages\csharp.png">

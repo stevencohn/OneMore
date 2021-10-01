@@ -3515,4 +3515,16 @@ ISO-code then comma then language name</comment>
     <value>الإصدار المثبت:</value>
     <comment>label</comment>
   </data>
+  <data name="SectionColor_Title" xml:space="preserve">
+    <value>لون القسم</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
+    <value>... عدد الكلمات</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribSectionColorButton_Label" xml:space="preserve">
+    <value>تخصيص لون القسم</value>
+    <comment>Context menu</comment>
+  </data>
 </root>

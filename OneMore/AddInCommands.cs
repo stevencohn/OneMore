@@ -303,6 +303,9 @@ namespace River.OneMoreAddIn
 		public async Task SearchWebCmd(IRibbonControl control)
 			=> await factory.Run<SearchWebCommand>(control.Tag); // tag=engine
 
+		public async Task SectionColorCmd(IRibbonControl control)
+			=> await factory.Run<SectionColorCommand>();
+
 		public async Task SelectImagesCmd(IRibbonControl control)
 			=> await factory.Run<SelectImagesCommand>();
 

@@ -3516,4 +3516,16 @@ Archivo de OneNote (* .one)</value>
     <value>Versión instalada:</value>
     <comment>label</comment>
   </data>
+  <data name="SectionColor_Title" xml:space="preserve">
+    <value>Color de la sección</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
+    <value>... El recuento de palabras</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribSectionColorButton_Label" xml:space="preserve">
+    <value>Personalizar el color de la sección</value>
+    <comment>Context menu</comment>
+  </data>
 </root>

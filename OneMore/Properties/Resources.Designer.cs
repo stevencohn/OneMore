@@ -1283,6 +1283,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Word Count.
+        /// </summary>
+        internal static string ContextMenuSheet_ribWordCountButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribWordCountButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Yellow Status.
         /// </summary>
         internal static string ContextMenuSheet_ribYellowStatusButton {
@@ -5711,6 +5720,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customize Section Color.
+        /// </summary>
+        internal static string ribSectionColorButton_Label {
+            get {
+                return ResourceManager.GetString("ribSectionColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select All Images.
         /// </summary>
         internal static string ribSelectImagesButton_Label {
@@ -6439,6 +6457,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchQF_Title {
             get {
                 return ResourceManager.GetString("SearchQF_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section Color.
+        /// </summary>
+        internal static string SectionColor_Title {
+            get {
+                return ResourceManager.GetString("SectionColor_Title", resourceCulture);
             }
         }
         

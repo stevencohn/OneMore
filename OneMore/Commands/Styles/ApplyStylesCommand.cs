@@ -14,8 +14,10 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Apply the user-defined custom styles to the page; this is done by apply the styles
-	/// directly to the QuickStyleDefs declarations at the top of the page XML
+	/// Apply the user-defined custom styles of the current them to all content within the page
+	/// by attempting to match standard styles with custom styles. Ror example, it will apply
+	/// custom-heading-1 to all standard-heading-1 content. This is done by applying the styles
+	/// directly to the QuickStyleDefs declarations.
 	/// </summary>
 	internal class ApplyStylesCommand : Command
 	{
@@ -32,41 +34,53 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Invoked from Custom Styles/Apply Styles to Page command
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
 			using (var one = new OneNote(out page, out ns))
 			{
-				var styles = new ThemeProvider().Theme.GetStyles();
-				if (ApplyStyles(styles))
+				if (ApplyCurrentTheme())
 				{
-					ApplyToLists(styles);
-
-					if (page.GetPageColor(out _, out _).GetBrightness() < 0.5)
-					{
-						ApplyToHyperlinks();
-					}
-
 					await one.Update(page);
 				}
 			}
 		}
 
 
+		/// <summary>
+		/// Invoked from ChangePageColor command
+		/// </summary>
+		/// <param name="page"></param>
 		public void Apply(Page page)
 		{
 			this.page = page;
 			ns = page.Namespace;
+			ApplyCurrentTheme();
+		}
 
+
+		private bool ApplyCurrentTheme()
+		{
 			var styles = new ThemeProvider().Theme.GetStyles();
 			if (ApplyStyles(styles))
 			{
+				// lists require some inline styling
 				ApplyToLists(styles);
 
 				if (page.GetPageColor(out _, out _).GetBrightness() < 0.5)
 				{
+					// hyperlinks require some inline styling
 					ApplyToHyperlinks();
 				}
+
+				return true;
 			}
+
+			return false;
 		}
 
 
@@ -133,6 +147,7 @@ namespace River.OneMoreAddIn.Commands
 
 			return applied;
 		}
+
 
 		private static Style FindStyle(List<Style> styles, string name)
 		{
