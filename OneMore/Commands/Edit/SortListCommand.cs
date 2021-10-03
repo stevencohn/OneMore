@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
@@ -37,10 +38,27 @@ namespace River.OneMoreAddIn.Commands
 					UIHelper.ShowMessage("Place the cursor on one list item");
 				}
 
+				bool includeAllLists;
+				bool includeChildLists;
+				bool includeNumberedLists;
+
+				using (var dialog = new SortListDialog())
+				{
+					var result = dialog.ShowDialog(one.Window);
+					if (result == DialogResult.Cancel)
+					{
+						return;
+					}
+
+					includeAllLists = dialog.IncludeAllLists;
+					includeChildLists = dialog.IncludeChildLists;
+					includeNumberedLists = dialog.IncludeNumberedLists;
+				}
+
 				// root is the list's containing OEChildren
 				var root = cursor.Parent.Parent;
 
-				OrderList(root, false);
+				OrderList(root, includeChildLists);
 
 				await one.Update(page);
 			}
@@ -49,10 +67,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void OrderList(XElement root, bool deep)
+		private void OrderList(XElement root, bool includeChildLists)
 		{
 			var items = root.Elements(ns + "OE")
-				.OrderBy(e => e.Element(ns + "T").Value)
+				.OrderBy(e => e.Element(ns + "T").GetCData().GetWrapper().Value)
 				.ToList();
 
 			root.ReplaceAll(items);

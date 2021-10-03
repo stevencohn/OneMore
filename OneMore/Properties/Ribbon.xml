@@ -213,7 +213,7 @@
               <button
                 id="ribSortListButton"
                 imageMso="Bullets"
-                label="Sort Bullet List"
+                label="Sort List"
                 onAction="SortListCmd"/>
             </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">

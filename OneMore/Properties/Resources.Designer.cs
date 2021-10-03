@@ -6973,6 +6973,87 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sort all top-level lists on the page.
+        /// </summary>
+        internal static string SortListDialog_allListsButton_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_allListsButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SortListDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include sub-lists.
+        /// </summary>
+        internal static string SortListDialog_deepBox_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_deepBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default is to sort the current list or only top level bullet lists.
+        /// </summary>
+        internal static string SortListDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string SortListDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        internal static string SortListDialog_optionsBox_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_optionsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort Lists.
+        /// </summary>
+        internal static string SortListDialog_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort only the current list.
+        /// </summary>
+        internal static string SortListDialog_thisListButton_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_thisListButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both bullet and numbered lists.
+        /// </summary>
+        internal static string SortListDialog_typeBox_Text {
+            get {
+                return ResourceManager.GetString("SortListDialog_typeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heading 1.
         /// </summary>
         internal static string SplitDialog_byHeading1Box_Text {
