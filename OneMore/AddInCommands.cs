@@ -324,6 +324,9 @@ namespace River.OneMoreAddIn
 		public async Task SortCmd(IRibbonControl control)
 			=> await factory.Run<SortCommand>();
 
+		public async Task SortListCmd(IRibbonControl control)
+			=> await factory.Run<SortListCommand>();
+
 		public async Task SplitCmd(IRibbonControl control)
 			=> await factory.Run<SplitCommand>();
 
