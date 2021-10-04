@@ -68,7 +68,8 @@ namespace River.OneMoreAddIn.Commands
 					var lists = page.Root.Descendants(ns + "OEChildren")
 						.Elements(ns + "OE")
 						.Elements(ns + "List")
-						.Select(e => e.Parent.Parent);
+						.Select(e => e.Parent.Parent)
+						.Distinct();
 
 					if (!includeChildLists)
 					{
@@ -81,7 +82,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						// whittle it down to only bulleted lists
 						lists = lists.Where(
-							e => !e.Elements(ns + "List").Elements(ns + "Number").Any());
+							e => !e.Elements(ns + "OE")
+								.Elements(ns + "List").Elements(ns + "Number").Any());
 					}
 
 					foreach (var list in lists)

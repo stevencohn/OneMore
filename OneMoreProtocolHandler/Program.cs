@@ -24,7 +24,7 @@ namespace OneMoreProtocolHandler
 		private static Logger logger;
 		private static int step;
 
-		private static RegistryRights rights =
+		private static readonly RegistryRights rights =
 			RegistryRights.CreateSubKey |
 			RegistryRights.EnumerateSubKeys |
 			RegistryRights.QueryValues |
