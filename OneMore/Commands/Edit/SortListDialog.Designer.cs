@@ -65,7 +65,6 @@ namespace River.OneMoreAddIn.Commands
 			// typeBox
 			// 
 			this.typeBox.AutoSize = true;
-			this.typeBox.Enabled = false;
 			this.typeBox.Location = new System.Drawing.Point(23, 148);
 			this.typeBox.Name = "typeBox";
 			this.typeBox.Size = new System.Drawing.Size(280, 24);
@@ -132,8 +131,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// SortListDialog
 			// 
+			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(620, 361);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.optionsBox);

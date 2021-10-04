@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 
 				using (var dialog = new SortListDialog())
 				{
-					var result = dialog.ShowDialog(one.Window);
+					var result = dialog.ShowDialog(owner);
 					if (result == DialogResult.Cancel)
 					{
 						return;
@@ -55,15 +55,32 @@ namespace River.OneMoreAddIn.Commands
 					includeNumberedLists = dialog.IncludeNumberedLists;
 				}
 
-				// root is the list's containing OEChildren
-				var root = cursor.Parent.Parent;
+				if (includeAllLists)
+				{
+					var lists = page.Root.Descendants(ns + "OEChildren")
+						.Elements(ns + "OE")
+						.Elements(ns + "List")
+						.Select(e => e.Parent.Parent);
 
-				OrderList(root, includeChildLists);
+					if (!includeChildLists)
+					{
+						lists = lists.Where(e => e.Parent.Elements().First().Name.LocalName != "List");
+					}
+
+					foreach (var list in lists)
+					{
+						OrderList(list, false);
+					}
+				}
+				else
+				{
+					// root is the list's containing OEChildren
+					var root = cursor.Parent.Parent;
+					OrderList(root, includeChildLists);
+				}
 
 				await one.Update(page);
 			}
-
-			await Task.Yield();
 		}
 
 
@@ -74,6 +91,18 @@ namespace River.OneMoreAddIn.Commands
 				.ToList();
 
 			root.ReplaceAll(items);
+
+			if (includeChildLists)
+			{
+				foreach (var item in items)
+				{
+					if (item.LastNode is XElement last &&
+						last.Name.LocalName == "OEChildren")
+					{
+						OrderList(last, includeChildLists);
+					}
+				}
+			}
 		}
 	}
 }
