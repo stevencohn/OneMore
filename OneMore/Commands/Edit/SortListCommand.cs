@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -12,6 +13,13 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SortListCommand : Command
 	{
+		private class ListItem
+		{
+			public XElement Item;
+			public string Text;
+			public List<XElement> Spaces;
+		}
+
 
 		private XNamespace ns;
 
@@ -64,7 +72,16 @@ namespace River.OneMoreAddIn.Commands
 
 					if (!includeChildLists)
 					{
-						lists = lists.Where(e => e.Parent.Elements().First().Name.LocalName != "List");
+						// whittle it down to only top level lists
+						lists = lists.Where(
+							e => e.Parent.Elements().First().Name.LocalName != "List");
+					}
+
+					if (!includeNumberedLists)
+					{
+						// whittle it down to only bulleted lists
+						lists = lists.Where(
+							e => !e.Elements(ns + "List").Elements(ns + "Number").Any());
 					}
 
 					foreach (var list in lists)
@@ -86,17 +103,53 @@ namespace River.OneMoreAddIn.Commands
 
 		private void OrderList(XElement root, bool includeChildLists)
 		{
+			// keep empty items with their preceding item, e.g. if an item with content is
+			// followed by two empty items then those two empty items are kept with the first
+
+			// find all non-empty items
 			var items = root.Elements(ns + "OE")
-				.OrderBy(e => e.Element(ns + "T").GetCData().GetWrapper().Value)
+				.Select(e => new { Element = e, Text = e.GetCData().Value })
+				.Where(item => item.Text.Length > 0)
+				.Select(item => new ListItem
+				{
+					Item = item.Element,
+					Text = item.Text,
+					Spaces = new List<XElement>()
+				})
 				.ToList();
 
-			root.ReplaceAll(items);
+			if (!items.Any())
+			{
+				// list contains only empty items!
+				return;
+			}
+
+			// for each item, drag along any immediately following empty items
+			foreach (var item in items)
+			{
+				var element = item.Item;
+				while (element.NextNode is XElement next &&
+					next.Element(ns + "T").GetCData().Value.Length == 0)
+				{
+					item.Spaces.Add(next);
+					element = next;
+				}
+			}
+
+			// sort and repopulate
+			root.RemoveAll();
+			foreach (var item in items.OrderBy(i => i.Text))
+			{
+				root.Add(item.Item);
+				root.Add(item.Spaces);
+			}
 
 			if (includeChildLists)
 			{
+				// DIVE! DIVE! DIVE!
 				foreach (var item in items)
 				{
-					if (item.LastNode is XElement last &&
+					if (item.Item.LastNode is XElement last &&
 						last.Name.LocalName == "OEChildren")
 					{
 						OrderList(last, includeChildLists);

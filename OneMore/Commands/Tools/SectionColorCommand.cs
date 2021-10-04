@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 					// otherwise, it will be hidden by the OneMore window
 					using (var elevator = new UI.WindowElevator(dialog))
 					{
-						var result = elevator.ShowDialog(one.Window);
+						var result = elevator.ShowDialog(owner);
 						if (result == DialogResult.OK)
 						{
 							section.SetAttributeValue("color", dialog.Color.ToRGBHtml());
