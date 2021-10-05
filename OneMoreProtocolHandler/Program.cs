@@ -126,7 +126,8 @@ namespace OneMoreProtocolHandler
 					return SUCCESS;
 				}
 
-				return FAILURE;
+				return SUCCESS;
+				//return FAILURE;
 			}
 			catch (Exception exc)
 			{
