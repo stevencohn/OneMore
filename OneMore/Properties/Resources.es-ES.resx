@@ -3528,4 +3528,48 @@ Archivo de OneNote (* .one)</value>
     <value>Personalizar el color de la sección</value>
     <comment>Context menu</comment>
   </data>
+  <data name="SortListDialog.Text" xml:space="preserve">
+    <value>Ordenar listas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SortListDialog_allListsButton.Text" xml:space="preserve">
+    <value>Ordenar todas las listas de nivel superior en la página</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_deepBox.Text" xml:space="preserve">
+    <value>Incluir sublistas</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListDialog_introLabel.Text" xml:space="preserve">
+    <value>El valor predeterminado es ordenar la lista actual o solo las listas de viñetas de nivel superior</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="SortListDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
+    <value>Opciones</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
+    <value>Ordenar solo la lista actual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_typeBox.Text" xml:space="preserve">
+    <value>Listas numeradas y con viñetas</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListCommand_BadContext" xml:space="preserve">
+    <value>Mover el cursor de texto a un elemento de una lista</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Lista Ordenada</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

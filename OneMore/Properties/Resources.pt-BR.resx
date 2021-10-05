@@ -3528,4 +3528,48 @@ Arquivo OneNote (* .one)</value>
     <value>Personalizar a cor da seção</value>
     <comment>Context menu</comment>
   </data>
+  <data name="SortListDialog.Text" xml:space="preserve">
+    <value>Classificar Listas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SortListDialog_allListsButton.Text" xml:space="preserve">
+    <value>Classifique todas as listas de nível superior na página</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_deepBox.Text" xml:space="preserve">
+    <value>Incluir sub-listas</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListDialog_introLabel.Text" xml:space="preserve">
+    <value>O padrão é classificar a lista atual ou apenas listas com marcadores de nível superior</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="SortListDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
+    <value>Opções</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
+    <value>Classifique apenas a lista atual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_typeBox.Text" xml:space="preserve">
+    <value>Tanto listas com marcadores quanto numeradas</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListCommand_BadContext" xml:space="preserve">
+    <value>Mova o cursor de texto para um item de uma lista</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Classificar lista</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

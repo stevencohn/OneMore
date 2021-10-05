@@ -210,6 +210,11 @@
                 imageMso="StylesStyleInspector"
                 getLabel="GetRibbonLabel"
                 onAction="SelectStyleCmd"/>
+              <button
+                id="ribSortListButton"
+                imageMso="Bullets"
+                getLabel="GetRibbonLabel"
+                onAction="SortListCmd"/>
             </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">
               <button

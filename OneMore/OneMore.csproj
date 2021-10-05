@@ -231,6 +231,13 @@
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
     <Compile Include="Commands\Edit\SelectImagesCommand.cs" />
     <Compile Include="Commands\Edit\SelectStyleCommand.cs" />
+    <Compile Include="Commands\Edit\SortListCommand.cs" />
+    <Compile Include="Commands\Edit\SortListDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Edit\SortListDialog.Designer.cs">
+      <DependentUpon>SortListDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Extras\TimerWindowCommand.cs" />
     <Compile Include="Commands\Extras\TimerWindow.cs">
       <SubType>Form</SubType>
@@ -927,6 +934,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
       <DependentUpon>BreakingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Edit\SortListDialog.resx">
+      <DependentUpon>SortListDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Extras\TimerWindow.resx">
       <DependentUpon>TimerWindow.cs</DependentUpon>

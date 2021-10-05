@@ -3567,4 +3567,48 @@ ISO-code then comma then language name</comment>
     <value>... Word Count</value>
     <comment>context menu option</comment>
   </data>
+  <data name="SortListDialog.Text" xml:space="preserve">
+    <value>Sort Lists</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SortListDialog_allListsButton.Text" xml:space="preserve">
+    <value>Sort all top-level lists on the page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_deepBox.Text" xml:space="preserve">
+    <value>Include sub-lists</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListDialog_introLabel.Text" xml:space="preserve">
+    <value>Default is to sort the current list or only top level bullet lists</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="SortListDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
+    <value>Options</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
+    <value>Sort only the current list</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_typeBox.Text" xml:space="preserve">
+    <value>Both bullet and numbered lists</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListCommand_BadContext" xml:space="preserve">
+    <value>Move the text cursor to an item of a list</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Sort List</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

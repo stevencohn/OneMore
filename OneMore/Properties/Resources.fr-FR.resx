@@ -3522,4 +3522,48 @@ Fichier OneNote (*.one)</value>
     <value>Personnaliser la couleur de la section</value>
     <comment>Context menu</comment>
   </data>
+  <data name="SortListDialog.Text" xml:space="preserve">
+    <value>Listes de tri</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SortListDialog_allListsButton.Text" xml:space="preserve">
+    <value>Trier toutes les listes de niveau supérieur sur la page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuler</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_deepBox.Text" xml:space="preserve">
+    <value>Inclure des sous-listes</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListDialog_introLabel.Text" xml:space="preserve">
+    <value>La valeur par défaut consiste à trier la liste actuelle ou uniquement les listes à puces de niveau supérieur</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="SortListDialog_okButton.Text" xml:space="preserve">
+    <value>d'accord</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
+    <value>Options</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
+    <value>Trier uniquement la liste actuelle</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_typeBox.Text" xml:space="preserve">
+    <value>Les listes à puces et numérotées</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListCommand_BadContext" xml:space="preserve">
+    <value>Déplacer le curseur de texte sur un élément d'une liste</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Liste de tri</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

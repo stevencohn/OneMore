@@ -3519,4 +3519,48 @@ OneNote 文件 (*.one)</value>
     <value>自定义部分颜色</value>
     <comment>Context menu</comment>
   </data>
+  <data name="SortListDialog.Text" xml:space="preserve">
+    <value>排序列表</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="SortListDialog_allListsButton.Text" xml:space="preserve">
+    <value>对页面上的所有顶级列表进行排序</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_deepBox.Text" xml:space="preserve">
+    <value>包括子列表</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListDialog_introLabel.Text" xml:space="preserve">
+    <value>默认是对当前列表进行排序或仅对顶级项目符号列表进行排序</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="SortListDialog_okButton.Text" xml:space="preserve">
+    <value>好的</value>
+    <comment>button</comment>
+  </data>
+  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
+    <value>选项</value>
+    <comment>group box</comment>
+  </data>
+  <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
+    <value>仅对当前列表排序</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortListDialog_typeBox.Text" xml:space="preserve">
+    <value>项目符号和编号列表</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SortListCommand_BadContext" xml:space="preserve">
+    <value>将文本光标移动到列表的一项</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>排序列表</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
