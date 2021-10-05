@@ -9,8 +9,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	/// <summary>
+	/// Sort the items in one or more bulleted or numbered lists
+	/// </summary>
 	internal class SortListCommand : Command
 	{
 		private class ListItem
@@ -36,14 +40,15 @@ namespace River.OneMoreAddIn.Commands
 				var cursor = page.GetTextCursor();
 				if (cursor == null)
 				{
-					UIHelper.ShowMessage("Place the cursor on one list item");
+					UIHelper.ShowMessage(Resx.SortListCommand_BadContext);
 					return;
 				}
 
 				if (!(cursor.Parent.FirstNode is XElement first) ||
 					first.Name.LocalName != "List")
 				{
-					UIHelper.ShowMessage("Place the cursor on one list item");
+					UIHelper.ShowMessage(Resx.SortListCommand_BadContext);
+					return;
 				}
 
 				bool includeAllLists;

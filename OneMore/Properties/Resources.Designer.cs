@@ -6973,6 +6973,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move the text cursor to an item of a list.
+        /// </summary>
+        internal static string SortListCommand_BadContext {
+            get {
+                return ResourceManager.GetString("SortListCommand_BadContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sort all top-level lists on the page.
         /// </summary>
         internal static string SortListDialog_allListsButton_Text {
