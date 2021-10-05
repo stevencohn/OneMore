@@ -39,5 +39,11 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool IncludeNumberedLists => typeBox.Checked;
+
+
+		private void LoadForm(object sender, System.EventArgs e)
+		{
+			ActiveControl = okButton;
+		}
 	}
 }
