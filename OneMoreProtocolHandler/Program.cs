@@ -361,10 +361,10 @@ namespace OneMoreProtocolHandler
 				// unregister is more lenient than register...
 				// if it doesn't succeed, it still completely with SUCCESS
 
-				var ok = UnregisterProtocolHandler();
-				ok = UnregisterTrustedProtocol() && ok;
+				var ok1 = UnregisterProtocolHandler();
+				var ok2 = UnregisterTrustedProtocol();
 
-				if (ok)
+				if (ok1 && ok2)
 				{
 					logger.WriteLine("completed successfully");
 				}
