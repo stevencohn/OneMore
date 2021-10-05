@@ -113,6 +113,10 @@ namespace River.OneMoreAddIn.Commands
 			// keep empty items with their preceding item, e.g. if an item with content is
 			// followed by two empty items then those two empty items are kept with the first
 
+			// list items look like OE/List,T or OE/List,Image, ...
+			// so this prefers to look for Ts so it can use its text to alphabetize and will
+			// order images and other sibling elements, usually putting them first
+
 			// find all non-empty items
 			var items = root.Elements(ns + "OE")
 				.Select(e => new { Element = e, Text = e.Element(ns + "T")?.GetCData().Value })
