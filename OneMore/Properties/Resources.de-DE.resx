@@ -3553,4 +3553,8 @@ OneNote-Datei (*.one)</value>
     <value>Bewegen Sie den Textcursor auf ein Element einer Liste</value>
     <comment>message box</comment>
   </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Sortierliste</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

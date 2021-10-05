@@ -3607,4 +3607,8 @@ ISO-code then comma then language name</comment>
     <value>Move the text cursor to an item of a list</value>
     <comment>message box</comment>
   </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Sort List</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

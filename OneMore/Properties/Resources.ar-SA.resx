@@ -3567,4 +3567,8 @@ ISO-code then comma then language name</comment>
     <value>حرك مؤشر النص إلى عنصر في قائمة</value>
     <comment>message box</comment>
   </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>قائمة الفرز</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

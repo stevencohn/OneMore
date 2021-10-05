@@ -3568,4 +3568,8 @@ OneNote-bestand (*.one)</value>
     <value>Verplaats de tekstcursor naar een item van een lijst</value>
     <comment>message box</comment>
   </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Sorteer lijst</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

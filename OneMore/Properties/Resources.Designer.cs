@@ -5792,6 +5792,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sort List.
+        /// </summary>
+        internal static string ribSortListButton_Label {
+            get {
+                return ResourceManager.GetString("ribSortListButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Spell Check.
         /// </summary>
         internal static string ribSpellCheckButton_Label {

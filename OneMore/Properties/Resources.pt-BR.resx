@@ -3568,4 +3568,8 @@ Arquivo OneNote (* .one)</value>
     <value>Mova o cursor de texto para um item de uma lista</value>
     <comment>message box</comment>
   </data>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Classificar lista</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
