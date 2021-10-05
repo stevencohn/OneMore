@@ -18,7 +18,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features (127)
+## Features (128)
 
 [Clean commands](../../wiki/Clean-Commands) (9)
 
@@ -54,6 +54,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Join Paragraph to remove soft-breaks and join lines into a single flowing paragraph
 * Select all images on the page
 * Select all text on a page with similar formatting to the currently selected text
+* Sort bulleted or numbered lists alphabetically
 
 [Favorites and Custom Snippets](../../wiki/Favorites) (5)
 
