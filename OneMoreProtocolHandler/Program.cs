@@ -19,10 +19,7 @@ namespace OneMoreProtocolHandler
 	{
 		private const int SUCCESS = 0;
 		private const int FAILURE = 1;
-
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
-		private static Logger logger;
-		private static int step;
 
 		private static readonly RegistryRights rights =
 			RegistryRights.CreateSubKey |
@@ -31,6 +28,10 @@ namespace OneMoreProtocolHandler
 			RegistryRights.ReadKey |
 			RegistryRights.SetValue |
 			RegistryRights.WriteKey;
+
+
+		private static Logger logger;
+		private static int step;
 
 
 		static void Main(string[] args)
