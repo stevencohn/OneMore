@@ -110,8 +110,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// find all non-empty items
 			var items = root.Elements(ns + "OE")
-				.Select(e => new { Element = e, Text = e.GetCData().Value })
-				.Where(item => item.Text.Length > 0)
+				.Select(e => new { Element = e, Text = e.Element(ns + "T")?.GetCData().Value })
+				.Where(item => item.Text == null || item.Text.Length > 0)
 				.Select(item => new ListItem
 				{
 					Item = item.Element,
@@ -131,7 +131,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var element = item.Item;
 				while (element.NextNode is XElement next &&
-					next.Element(ns + "T").GetCData().Value.Length == 0)
+					next.Element(ns + "T")?.GetCData().Value.Length == 0)
 				{
 					item.Spaces.Add(next);
 					element = next;
