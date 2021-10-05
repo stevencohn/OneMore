@@ -41,7 +41,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Apply an entire theme to a page
 * Change page theme inluding background and styles, optioanally with dark-mode awareness
 
-[Edit Commands](../../wiki/Edit-Commands) (18)
+[Edit Commands](../../wiki/Edit-Commands) (19)
 * Colorize selected text as a chosen programming language - _syntax highlighting_
 * Highlight selected text using a rotating array of colors (Ctrl + Shift + H)
 * Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl + Alt + V)
