@@ -321,11 +321,35 @@ namespace OneMoreProtocolHandler
 
 		static string GetUserSid(string note)
 		{
+			var domain = Environment.GetEnvironmentVariable("USERDOMAIN");
 			var username = Environment.GetEnvironmentVariable("USERNAME");
-			var account = new NTAccount(username);
-			var sid = ((SecurityIdentifier)account.Translate(typeof(SecurityIdentifier))).ToString();
-			logger.WriteLine($"{note} for user {username} ({sid})");
-			return sid;
+			var userdom = $@"{domain}\{username}";
+			logger.WriteLine($"translating user {userdom} to SID");
+
+			var tries = 0;
+			while (tries <= 2)
+			{
+				try
+				{
+					var account = new NTAccount(userdom);
+					var sid = ((SecurityIdentifier)account.Translate(typeof(SecurityIdentifier))).ToString();
+					logger.WriteLine($"{note} for user {userdom} ({sid})");
+					return sid;
+				}
+				catch (Exception exc)
+				{
+					if (tries > 2)
+					{
+						throw;
+					}
+					tries++;
+					logger.WriteLine(exc);
+					logger.WriteLine($"error translating, retrying {tries} of 2");
+					System.Threading.Thread.Sleep(100 * tries);
+				}
+			}
+
+			return null;
 		}
 
 
