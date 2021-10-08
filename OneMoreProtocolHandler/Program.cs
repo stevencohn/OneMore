@@ -107,7 +107,7 @@ namespace OneMoreProtocolHandler
 			// Registers this program as the handler for the onemore:// protocol
 
 			logger.WriteLine(string.Empty);
-			logger.WriteLine("Register...");
+			logger.WriteLine($"Register... version {AssemblyInfo.Version}");
 
 			try
 			{
@@ -379,7 +379,7 @@ namespace OneMoreProtocolHandler
 		static int Unregister()
 		{
 			logger.WriteLine(string.Empty);
-			logger.WriteLine("Unregister...");
+			logger.WriteLine($"Unregister... version {AssemblyInfo.Version}");
 
 			try
 			{

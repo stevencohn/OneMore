@@ -3,8 +3,8 @@
 Build both x86 and x64 msi
 
 .NOTES
-In order for devenv.com to successfully build a vdproj project, this command must be run once
-on the machine to configure Registry settings:
+In order for devenv.com to successfully build a vdproj project, the following commands must be 
+run once on the machine to configure Registry settings:
 
     cd 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild';
     .\DisableOutOfProcBuild.exe;
