@@ -323,7 +323,11 @@ namespace OneMoreProtocolHandler
 		{
 			var domain = Environment.GetEnvironmentVariable("USERDOMAIN");
 			var username = Environment.GetEnvironmentVariable("USERNAME");
-			var userdom = $@"{domain}\{username}";
+
+			var userdom = domain != null 
+				? $@"{domain.ToUpper()}\{username.ToLower()}"
+				: username.ToLower();
+
 			logger.WriteLine($"translating user {userdom} to SID");
 
 			var tries = 0;
@@ -338,14 +342,34 @@ namespace OneMoreProtocolHandler
 				}
 				catch (Exception exc)
 				{
-					if (tries > 2)
-					{
-						throw;
-					}
 					tries++;
 					logger.WriteLine(exc);
 					logger.WriteLine($"error translating, retrying {tries} of 2");
 					System.Threading.Thread.Sleep(100 * tries);
+				}
+			}
+
+			logger.WriteLine("fallback to search username in HKEY_USERS");
+
+			foreach (var sid in Registry.Users.GetSubKeyNames())
+			{
+				var key = Registry.Users.OpenSubKey($@"{sid}\Volatile Environment");
+				if (key != null)
+				{
+					var vname = key.GetValue("USERNAME") as string;
+					if (!string.IsNullOrEmpty(vname))
+					{
+						var vdomain = key.GetValue("USERDOMAIN") as string;
+						
+						var candidate = !string.IsNullOrEmpty(vdomain)
+							? $@"{vdomain.ToUpper()}\{vname.ToLower()}"
+							: vname.ToLower();
+
+						if (candidate == userdom)
+						{
+							return sid;
+						}
+					}
 				}
 			}
 
