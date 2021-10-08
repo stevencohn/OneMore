@@ -345,7 +345,7 @@ namespace OneMoreProtocolHandler
 					tries++;
 					logger.WriteLine(exc);
 					logger.WriteLine($"error translating, retrying {tries} of 2");
-					System.Threading.Thread.Sleep(100 * tries);
+					System.Threading.Thread.Sleep(200 * tries);
 				}
 			}
 
