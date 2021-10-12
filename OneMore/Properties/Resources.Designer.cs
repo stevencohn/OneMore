@@ -1925,7 +1925,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Outline state has been saved.
+        ///   Looks up a localized string similar to Outline state has been saved for this page.
         /// </summary>
         internal static string ExpandoCommand_Saved {
             get {
@@ -5383,6 +5383,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPageColorButton_Label {
             get {
                 return ResourceManager.GetString("ribPageColorButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string ribPageMenu_Label {
+            get {
+                return ResourceManager.GetString("ribPageMenu_Label", resourceCulture);
             }
         }
         
