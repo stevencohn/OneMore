@@ -3619,4 +3619,8 @@ ISO-code then comma then language name</comment>
     <value>Proofing Language</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... Proofing Language</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

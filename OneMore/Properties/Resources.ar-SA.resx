@@ -3575,4 +3575,12 @@ ISO-code then comma then language name</comment>
     <value>صفحة</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>لغة التدقيق</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... لغة التدقيق</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

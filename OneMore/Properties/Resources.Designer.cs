@@ -1148,6 +1148,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Proofing Language.
+        /// </summary>
+        internal static string ContextMenuSheet_ribProofingMenu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribProofingMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Red Status.
         /// </summary>
         internal static string ContextMenuSheet_ribRedStatusButton {

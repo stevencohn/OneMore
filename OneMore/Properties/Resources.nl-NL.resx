@@ -3576,4 +3576,12 @@ OneNote-bestand (*.one)</value>
     <value>Bladzijde</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>Proeftaal</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... Proeftaal</value>
+    <comment>context menu option</comment>
+  </data>
 </root>

@@ -3570,4 +3570,12 @@ Fichier OneNote (*.one)</value>
     <value>Page</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>Langue de vérification</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... Langue de vérification</value>
+    <comment>context menu option</comment>
+  </data>
 </root>
