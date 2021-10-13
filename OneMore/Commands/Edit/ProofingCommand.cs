@@ -9,12 +9,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
-	internal class SpellCheckCommand : Command
+	internal class ProofingCommand : Command
 	{
 		public const string NoLang = "yo";
 
 
-		public SpellCheckCommand()
+		public ProofingCommand()
 		{
 		}
 
