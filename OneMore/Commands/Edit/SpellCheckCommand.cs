@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 					page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", cultureName));
 				}
 
-				logger.WriteLine(page.Root);
+				//logger.WriteLine(page.Root);
 
 				await one.Update(page);
 
