@@ -19,6 +19,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/*
+		 * Note that if the lang is ambiguous for some text that is not the CurrentCulture
+		 * codec then OneNote will infer the language and inject a lang attribute in the CDATA
+		 */
+
+
 		public override async Task Execute(params object[] args)
 		{
 			var cultureName = (string)args[0];
