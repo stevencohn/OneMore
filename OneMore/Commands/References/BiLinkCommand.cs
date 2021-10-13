@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Hap = HtmlAgilityPack;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -225,16 +226,19 @@ namespace River.OneMoreAddIn
 			var newcopy = new SelectionRange(candidate.Clone());
 			newcopy.Deselect();
 
+			NormalizeCData(oldcopy.Root);
+			NormalizeCData(newcopy.Root);
+
 			var oldxml = Regex.Replace(oldcopy.ToString(), @"[\r\n]+", " ");
 			var newxml = Regex.Replace(newcopy.ToString(), @"[\r\n]+", " ");
 
 			if (oldxml != newxml)
 			{
-				//logger.WriteLine("differences found in anchor/candidate");
-				//logger.WriteLine($"oldxml/anchor {oldxml.Length}");
-				//logger.WriteLine(oldxml);
-				//logger.WriteLine($"newxml/candidate {newxml.Length}");
-				//logger.WriteLine(newxml);
+				logger.WriteLine("differences found in anchor/candidate");
+				logger.WriteLine($"oldxml/anchor {oldxml.Length}");
+				logger.WriteLine(oldxml);
+				logger.WriteLine($"newxml/candidate {newxml.Length}");
+				logger.WriteLine(newxml);
 
 				for (int i= 0; i < oldxml.Length && i < newxml.Length; i++)
 				{
@@ -247,6 +251,26 @@ namespace River.OneMoreAddIn
 			}
 
 			return oldxml != newxml;
+		}
+
+
+		private void NormalizeCData(XElement element)
+		{
+			/*
+			 * Solves one specific case where CDATA contains <span lang=code> without quotes
+			 * but is compared to <span lang='code'> with quotes. So this routine normalizes
+			 * those inner CDATA attribute values so they can be compared for equality.
+			 */
+			element.DescendantNodes().OfType<XCData>().ToList().ForEach(c =>
+			{
+				var doc = new Hap.HtmlDocument()
+				{
+					GlobalAttributeValueQuote = Hap.AttributeValueQuote.SingleQuote
+				};
+
+				doc.LoadHtml(c.Value);
+				c.ReplaceWith(new XCData(doc.DocumentNode.InnerHtml));
+			});
 		}
 
 
