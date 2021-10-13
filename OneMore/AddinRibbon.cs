@@ -292,6 +292,16 @@ namespace River.OneMoreAddIn
 					continue;
 				}
 
+				// special case to hide Proofing menu if language set is only 1
+				if (key == "ribProofingMenu")
+				{
+					var langs = Office.GetEditingLanguages();
+					if (langs == null || langs.Length < 2)
+					{
+						continue;
+					}
+				}
+
 				var element = root.Descendants()
 					.FirstOrDefault(e => e.Attribute("id")?.Value == key);
 

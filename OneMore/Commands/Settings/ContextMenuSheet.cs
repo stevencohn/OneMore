@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -83,11 +84,19 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
+			var langs = Office.GetEditingLanguages();
+			var noproof = langs == null || langs.Length < 2;
+
 			commandsBox.DisplayMember = "Text";
 
 			commandsBox.Items.Clear();
 			foreach (var key in keys)
 			{
+				if (key == "ribProofingMenu" && noproof)
+				{
+					continue;
+				}
+
 				var text = Resx.ResourceManager.GetString($"{Name}_{key}") ?? key;
 				commandsBox.Items.Add(new MenuItem(key, text));
 			}
