@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
+	using System.Threading;
 	using System.Threading.Tasks;
 
 
@@ -88,7 +89,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<DeleteFormulaCommand>();
 
 		public async Task DisableSpellCheckCmd(IRibbonControl control)
-			=> await factory.Run<SpellCheckCommand>(false);
+			=> await factory.Run<ProofingCommand>(ProofingCommand.NoLang);
 
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
@@ -97,7 +98,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<EmbedSubpageCommand>(false);
 
 		public async Task EnableSpellCheckCmd(IRibbonControl control)
-			=> await factory.Run<SpellCheckCommand>(true);
+			=> await factory.Run<ProofingCommand>(Thread.CurrentThread.CurrentUICulture.Name);
 
 		public async Task ExpandContentCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Expand);
@@ -311,6 +312,9 @@ namespace River.OneMoreAddIn
 
 		public async Task SelectStyleCmd(IRibbonControl control)
 			=> await factory.Run<SelectStyleCommand>();
+
+		public async Task SetProofingCmd(IRibbonControl control)
+			=> await factory.Run<ProofingCommand>(control.Tag); // tag=language
 
 		public async Task SettingsCmd(IRibbonControl control)
 			=> await factory.Run<SettingsCommand>(ribbon);

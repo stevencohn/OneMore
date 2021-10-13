@@ -3033,7 +3033,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon</comment>
   </data>
   <data name="ExpandoCommand_Saved" xml:space="preserve">
-    <value>Se ha guardado el estado del esquema</value>
+    <value>El estado del esquema se ha guardado para esta página</value>
     <comment>message box</comment>
   </data>
   <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
@@ -3571,5 +3571,17 @@ Archivo de OneNote (* .one)</value>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Lista Ordenada</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPageMenu_Label" xml:space="preserve">
+    <value>Página</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>Lenguaje de revisión</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... Lenguaje de revisión</value>
+    <comment>context menu option</comment>
   </data>
 </root>

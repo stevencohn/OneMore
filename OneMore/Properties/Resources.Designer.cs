@@ -1148,6 +1148,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Proofing Language.
+        /// </summary>
+        internal static string ContextMenuSheet_ribProofingMenu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribProofingMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Red Status.
         /// </summary>
         internal static string ContextMenuSheet_ribRedStatusButton {
@@ -1925,7 +1934,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Outline state has been saved.
+        ///   Looks up a localized string similar to Outline state has been saved for this page.
         /// </summary>
         internal static string ExpandoCommand_Saved {
             get {
@@ -5387,6 +5396,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string ribPageMenu_Label {
+            get {
+                return ResourceManager.GetString("ribPageMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paste Cells.
         /// </summary>
         internal static string ribPasteCellsButton_Label {
@@ -5437,6 +5455,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPronunciateButton_Label {
             get {
                 return ResourceManager.GetString("ribPronunciateButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proofing Language.
+        /// </summary>
+        internal static string ribProofingMenu_Label {
+            get {
+                return ResourceManager.GetString("ribProofingMenu_Label", resourceCulture);
             }
         }
         

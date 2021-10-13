@@ -3019,7 +3019,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon</comment>
   </data>
   <data name="ExpandoCommand_Saved" xml:space="preserve">
-    <value>Gliederungsstatus wurde gespeichert</value>
+    <value>Der Gliederungsstatus wurde für diese Seite gespeichert</value>
     <comment>message box</comment>
   </data>
   <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
@@ -3556,5 +3556,17 @@ OneNote-Datei (*.one)</value>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Sortierliste</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPageMenu_Label" xml:space="preserve">
+    <value>Buchseite</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>Sprache prüfen</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... Sprache prüfen</value>
+    <comment>context menu option</comment>
   </data>
 </root>

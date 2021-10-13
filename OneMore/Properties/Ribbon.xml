@@ -171,26 +171,6 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="DecreaseFontSizeCmd"/>
               <button
-                id="ribCollapseContentButton"
-                imageMso="CollapseAll"
-                getLabel="GetRibbonLabel"
-                onAction="CollapseContentCmd"/>
-              <button
-                id="ribExpandContentButton"
-                imageMso="OutlineExpandAll"
-                getLabel="GetRibbonLabel"
-                onAction="ExpandContentCmd"/>
-              <button
-                id="ribSaveCollapsedButton"
-                imageMso="SaveSelectionToFooterGallery"
-                getLabel="GetRibbonLabel"
-                onAction="SaveCollapsedCmd"/>
-              <button
-                id="ribRestoreCollapsedButton"
-                imageMso="OutlineShowDetail"
-                getLabel="GetRibbonLabel"
-                onAction="RestoreCollapsedCmd"/>
-              <button
                 id="ribInvertSelectionButton"
                 imageMso="BlackAndWhiteInverseGrayscale"
                 getLabel="GetRibbonLabel"
@@ -266,8 +246,41 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemovePageNumbersCmd"/>
             </menu>
-            <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert">
+            <menu id="ribPageMenu" getLabel="GetRibbonLabel" imageMso="PageOrientationPortrait">
               <button
+                id="ribCollapseContentButton"
+                imageMso="CollapseAll"
+                getLabel="GetRibbonLabel"
+                onAction="CollapseContentCmd"/>
+              <button
+                id="ribExpandContentButton"
+                imageMso="OutlineExpandAll"
+                getLabel="GetRibbonLabel"
+                onAction="ExpandContentCmd"/>
+              <button
+                id="ribSaveCollapsedButton"
+                imageMso="SaveSelectionToFooterGallery"
+                getLabel="GetRibbonLabel"
+                onAction="SaveCollapsedCmd"/>
+              <button
+                id="ribRestoreCollapsedButton"
+                imageMso="OutlineShowDetail"
+                getLabel="GetRibbonLabel"
+                onAction="RestoreCollapsedCmd"/>
+              <button
+                id="ribMergeButton"
+                imageMso="CompareAndCombine"
+                getLabel="GetRibbonLabel"
+                getEnabled="GetMultiPageContext"
+                onAction="MergeCmd"/>
+              <button
+                id="ribSplitButton"
+                imageMso="MasterDocumentSplitSubdocuments"
+                getLabel="GetRibbonLabel"
+                onAction="SplitCmd"/>
+            </menu>
+            <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert">
+                <button
                 id="ribFootnoteButton"
                 imageMso="FootnoteInsert"
                 getLabel="GetRibbonLabel"
@@ -575,17 +588,6 @@
                 imageMso="SpeakOnEnter"
                 getEnabled="GetBodyContext"
                 onAction="PronunciateCmd"/>
-              <button
-                id="ribMergeButton"
-                imageMso="CompareAndCombine"
-                getLabel="GetRibbonLabel"
-                getEnabled="GetMultiPageContext"
-                onAction="MergeCmd"/>
-              <button
-                id="ribSplitButton"
-                imageMso="MasterDocumentSplitSubdocuments"
-                getLabel="GetRibbonLabel"
-                onAction="SplitCmd"/>
               <button
                 id="ribSortButton"
                 imageMso="SortUp"

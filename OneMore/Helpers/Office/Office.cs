@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 {
 	using Microsoft.Win32;
 	using System;
+	using System.Collections.Generic;
 
 
 	/// <summary>
@@ -13,6 +14,45 @@ namespace River.OneMoreAddIn.Helpers.Office
 	/// </summary>
 	internal static class Office
 	{
+
+		/// <summary>
+		/// Get a collection of enabled Office editing and proofing languages
+		/// </summary>
+		/// <returns>An array of strings</returns>
+		public static string[] GetEditingLanguages()
+		{
+			/*
+			 * Enabled editing languages are stored here:
+			 * HKCU\SOFTWARE\Microsoft\Office\16.0\Common\LanguageResources\EnabledEditingLanguages
+			 * However, must also consider value of each entry where(I think)
+			 * 1 == preferred proofing language
+			 * 3 == secondary
+			 * 4 == installed but not enabled for proofing
+			 */
+
+			var version = GetOfficeVersion();
+			var path = $@"SOFTWARE\Microsoft\Office\{version}\Common\LanguageResources\EnabledEditingLanguages";
+
+			using (var key = Registry.CurrentUser.OpenSubKey(path, false))
+			{
+				if (key != null)
+				{
+					var list = new List<string>();
+					var names = key.GetValueNames();
+					foreach (var name in names)
+					{
+						if (key.GetValue(name) is int value && ((value & 1) == 1))
+						{
+							list.Add(name);
+						}
+					}
+					return list.ToArray();
+				}
+			}
+
+			return new string[0];
+		}
+
 
 		/// <summary>
 		/// Get installed version of Office, which may differ from version of OneNote

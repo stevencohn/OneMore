@@ -1023,7 +1023,7 @@ OneNote will close automatically</value>
     <comment>dialog title</comment>
   </data>
   <data name="ExpandoCommand_Saved" xml:space="preserve">
-    <value>Outline state has been saved</value>
+    <value>Outline state has been saved for this page</value>
     <comment>message box</comment>
   </data>
   <data name="Favorites_addButton_Label" xml:space="preserve">
@@ -3610,5 +3610,17 @@ ISO-code then comma then language name</comment>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>Sort List</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPageMenu_Label" xml:space="preserve">
+    <value>Page</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>Proofing Language</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... Proofing Language</value>
+    <comment>context menu option</comment>
   </data>
 </root>

@@ -3029,7 +3029,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon</comment>
   </data>
   <data name="ExpandoCommand_Saved" xml:space="preserve">
-    <value>تم حفظ حالة المخطط التفصيلي</value>
+    <value>تم حفظ حالة المخطط التفصيلي لهذه الصفحة</value>
     <comment>message box</comment>
   </data>
   <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
@@ -3570,5 +3570,17 @@ ISO-code then comma then language name</comment>
   <data name="ribSortListButton_Label" xml:space="preserve">
     <value>قائمة الفرز</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ribPageMenu_Label" xml:space="preserve">
+    <value>صفحة</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>لغة التدقيق</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... لغة التدقيق</value>
+    <comment>context menu option</comment>
   </data>
 </root>
