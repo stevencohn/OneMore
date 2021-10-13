@@ -15,6 +15,30 @@ namespace River.OneMoreAddIn.Helpers.Office
 	{
 
 		/// <summary>
+		/// Get a collection of Office editing and proofing languages
+		/// </summary>
+		/// <returns>An array of strings</returns>
+		/// <remarks>
+		/// HKCU\SOFTWARE\Microsoft\Office\16.0\Common\LanguageResources\EnabledEditingLanguages
+		/// </remarks>
+		public static string[] GetEditingLanguages()
+		{
+			var version = GetOfficeVersion();
+			var path = $@"SOFTWARE\Microsoft\Office\{version}\Common\LanguageResources\EnabledEditingLanguages";
+
+			using (var key = Registry.CurrentUser.OpenSubKey(path, false))
+			{
+				if (key != null)
+				{
+					return key.GetValueNames();
+				}
+			}
+
+			return new string[0];
+		}
+
+
+		/// <summary>
 		/// Get installed version of Office, which may differ from version of OneNote
 		/// </summary>
 		/// <returns></returns>

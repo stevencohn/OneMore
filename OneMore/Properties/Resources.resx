@@ -3615,4 +3615,8 @@ ISO-code then comma then language name</comment>
     <value>Page</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>Proofing Language</value>
+    <comment>ribbon menu</comment>
+  </data>
 </root>

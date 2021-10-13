@@ -5450,6 +5450,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proofing Language.
+        /// </summary>
+        internal static string ribProofingMenu_Label {
+            get {
+                return ResourceManager.GetString("ribProofingMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recalculate Formula.
         /// </summary>
         internal static string ribRecalculateFormulaButton_Label {
