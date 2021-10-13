@@ -234,11 +234,11 @@ namespace River.OneMoreAddIn
 
 			if (oldxml != newxml)
 			{
-				logger.WriteLine("differences found in anchor/candidate");
-				logger.WriteLine($"oldxml/anchor {oldxml.Length}");
-				logger.WriteLine(oldxml);
-				logger.WriteLine($"newxml/candidate {newxml.Length}");
-				logger.WriteLine(newxml);
+				//logger.WriteLine("differences found in anchor/candidate");
+				//logger.WriteLine($"oldxml/anchor {oldxml.Length}");
+				//logger.WriteLine(oldxml);
+				//logger.WriteLine($"newxml/candidate {newxml.Length}");
+				//logger.WriteLine(newxml);
 
 				for (int i= 0; i < oldxml.Length && i < newxml.Length; i++)
 				{
