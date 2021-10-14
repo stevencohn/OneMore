@@ -18,7 +18,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features (128)
+## Features (129)
 
 [Clean commands](../../wiki/Clean-Commands) (9)
 
@@ -41,8 +41,9 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Apply an entire theme to a page
 * Change page theme inluding background and styles, optioanally with dark-mode awareness
 
-[Edit Commands](../../wiki/Edit-Commands) (19)
+[Edit Commands](../../wiki/Edit-Commands) (20)
 * Colorize selected text as a chosen programming language - _syntax highlighting_
+* Set proofing language of selected text to one of the installed Office proofing languages
 * Highlight selected text using a rotating array of colors (Ctrl + Shift + H)
 * Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl + Alt + V)
 * Enabled spell-checking on the current page, resets to the current culture language
