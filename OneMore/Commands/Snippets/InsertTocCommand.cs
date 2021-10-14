@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 				var parts = meta.Attribute("content").Value.Split(';');
 				var options = parts.Select(p => p.Split('=')).ToDictionary(s => s[0], s => s[1]);
 				var addTopLinks = options.ContainsKey("addTopLinks") && options["addTopLinks"] == "True";
-				var rightAlignTopLinks= options.ContainsKey("rightAlignTopLinks") && options["rightAlignTopLinks"] == "True";
+				var rightAlignTopLinks = options.ContainsKey("rightAlignTopLinks") && options["rightAlignTopLinks"] == "True";
 
 				// remove the containing OE so it can be regenerated
 				meta.Parent.Remove();
@@ -191,7 +191,7 @@ namespace River.OneMoreAddIn.Commands
 
 				toc.Add(new Paragraph(text.ToString()).SetStyle($"color:{textColor}"));
 
-				if (addTopLinks)
+				if (addTopLinks && !heading.HasTopLink)
 				{
 					if (rightAlignTopLinks)
 					{

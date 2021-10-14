@@ -11,6 +11,8 @@ namespace River.OneMoreAddIn.Models
 	using System.Text.RegularExpressions;
 	using System.Xml;
 	using System.Xml.Linq;
+	using Hap = HtmlAgilityPack;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class Page
@@ -81,6 +83,7 @@ namespace River.OneMoreAddIn.Models
 								Style = style
 							};
 
+							CheckTopLink(heading);
 							headings.Add(heading);
 						}
 					}
@@ -102,6 +105,7 @@ namespace River.OneMoreAddIn.Models
 								Style = style
 							};
 
+							CheckTopLink(heading);
 							headings.Add(heading);
 						}
 					}
@@ -131,6 +135,47 @@ namespace River.OneMoreAddIn.Models
 			if (pageColor == null)
 			{
 				pageColor = "automatic";
+			}
+		}
+
+
+		private void CheckTopLink(Heading heading)
+		{
+			// quick test if it's a left-aligned [Top of page] link with square brackets
+			if (heading.Text.Contains('['))
+			{
+				// remove [Top of Page] link from text
+				var doc = new Hap.HtmlDocument();
+				doc.LoadHtml(heading.Text);
+				var text = doc.DocumentNode.InnerText;
+
+				var topmatch = Regex.Match(text, $@"\[?{Resx.InsertTocCommand_Top}\]?");
+				if (topmatch.Success)
+				{
+					heading.Text = text.Substring(0, topmatch.Index - 1);
+					heading.HasTopLink = true;
+					return;
+				}
+			}
+
+			// test if header has a right-aligned Top of page neighbor cell
+			var cell = heading.Root.Parent.Parent;
+
+			if (cell.Name.LocalName == "Cell" && 
+				cell.NextNode is XElement next && next.Name.LocalName == "Cell")
+			{
+				var cdata = next.DescendantNodes().OfType<XCData>().FirstOrDefault();
+				if (cdata != null)
+				{
+					var doc = new Hap.HtmlDocument();
+					doc.LoadHtml(cdata.Value);
+					var text = doc.DocumentNode.InnerText;
+
+					if (text == Resx.InsertTocCommand_Top)
+					{
+						heading.HasTopLink = true;
+					}
+				}
 			}
 		}
 
