@@ -34,6 +34,12 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// True if the header is followed by the [Top of page] link from TOC
+		/// </summary>
+		public bool HasTopLink;
+
+
+		/// <summary>
 		/// True if the header is an internal OneNote hyperlink to another page;
 		/// used by Split and Merge
 		/// </summary>

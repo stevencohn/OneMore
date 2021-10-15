@@ -263,7 +263,7 @@ namespace River.OneMoreAddIn
 			 */
 			element.DescendantNodes().OfType<XCData>().ToList().ForEach(c =>
 			{
-				var doc = new Hap.HtmlDocument()
+				var doc = new Hap.HtmlDocument
 				{
 					GlobalAttributeValueQuote = Hap.AttributeValueQuote.SingleQuote
 				};

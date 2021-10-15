@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 				var parts = meta.Attribute("content").Value.Split(';');
 				var options = parts.Select(p => p.Split('=')).ToDictionary(s => s[0], s => s[1]);
 				var addTopLinks = options.ContainsKey("addTopLinks") && options["addTopLinks"] == "True";
-				var rightAlignTopLinks= options.ContainsKey("rightAlignTopLinks") && options["rightAlignTopLinks"] == "True";
+				var rightAlignTopLinks = options.ContainsKey("rightAlignTopLinks") && options["rightAlignTopLinks"] == "True";
 
 				// remove the containing OE so it can be regenerated
 				meta.Parent.Remove();
@@ -167,13 +167,13 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			// use the minimum intent level
-			var minlevel = headings.Min(e => e.Style.Index);
+			var minlevel = headings.Min(e => e.Level);
 
 			foreach (var heading in headings)
 			{
 				var text = new StringBuilder();
 				var count = minlevel;
-				while (count < heading.Style.Index)
+				while (count < heading.Level)
 				{
 					text.Append("\t");
 					count++;
@@ -189,9 +189,11 @@ namespace River.OneMoreAddIn.Commands
 					text.Append(heading.Text);
 				}
 
+				//text.Append($"(count:{count}=level:{heading.Level})");
+
 				toc.Add(new Paragraph(text.ToString()).SetStyle($"color:{textColor}"));
 
-				if (addTopLinks)
+				if (addTopLinks && !heading.HasTopLink)
 				{
 					if (rightAlignTopLinks)
 					{
