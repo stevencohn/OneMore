@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(async () => await HighlightCmd(null),
 				Keys.H, Hotmods.ControlShift);
 
-			// this is an aweful hack to avoid a conflict with Italian keyboards that use AltGr
+			// this is an awful hack to avoid a conflict with Italian keyboards that use AltGr
 			// as Ctrl+Alt. This means users pressing AltGr+OemPlus to get a square bracket would
 			// instead end up increasing the font size of the page when they didn't mean to!
 			// So here we only register these hot keys for the US keyboard input layout.
