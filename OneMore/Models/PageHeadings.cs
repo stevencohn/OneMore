@@ -43,8 +43,10 @@ namespace River.OneMoreAddIn.Models
 
 			var blocks =
 				from e in Root.Elements(Namespace + "Outline").Descendants(Namespace + "OE")
+				// get the first non-empty CDATA
 				let c = e.Elements(Namespace + "T").DescendantNodes()
-					.FirstOrDefault(p => p.NodeType == XmlNodeType.CDATA) as XCData
+					.FirstOrDefault(p => 
+						p.NodeType == XmlNodeType.CDATA && (((XCData)p).Value.Length > 0)) as XCData
 				where c?.Value.Length > 0 && !Regex.IsMatch(c.Value, @"[\s\b]+<span[\s\b]+style=") &&
 					(e.Attribute("quickStyleIndex") != null || e.Attribute("style") != null)
 				select e;
@@ -115,7 +117,7 @@ namespace River.OneMoreAddIn.Models
 			// style.Index is used for TOC indenting, regardless of heading level
 			ResetHeadingStyleIndexes();
 
-			// Level is used as the intended Heading level, e.g. Heading4 level is 4
+			// Level is used as the indented Heading level, e.g. Heading4 level is 4
 			foreach (var heading in headings)
 			{
 				heading.Level = heading.Style.Index;
@@ -232,25 +234,34 @@ namespace River.OneMoreAddIn.Models
 		/// </summary>
 		private void ResetHeadingStyleIndexes()
 		{
-			quickStyles = quickStyles.Where(s => Regex.IsMatch(s.Name, @"h(\d+)")).ToList();
+			// internal names are h1..h6
+			quickStyles = quickStyles.Where(s => Regex.IsMatch(s.Name, @"^h\d$")).ToList();
 
 			foreach (var style in quickStyles)
 			{
-				var match = Regex.Match(style.Name, @"h(\d+)");
+				var match = Regex.Match(style.Name, @"^h(\d)$");
 				if (match.Success && match.Captures.Count > 0)
 				{
 					if (int.TryParse(match.Captures[0].Value, out var index))
 					{
-						style.Index = index;
+						style.Index = index - 1;
 					}
 				}
 			}
 
-			quickStyles = quickStyles.OrderBy(s => s.Index).ToList();
+			quickStyles = quickStyles.OrderBy(s => s.Name).ToList();
 
-			for (int i = 0; i < quickStyles.Count; i++)
+			string name = null;
+			for (int i = 0, j = 0; i < quickStyles.Count; i++)
 			{
-				quickStyles[i].Index = i;
+				// there are cases where OneNote will duplicate quick styles
+				if (quickStyles[i].Name != name)
+				{
+					name = quickStyles[i].Name;
+					j++;
+				}
+
+				quickStyles[i].Index = j;
 			}
 
 			for (int i = 0; i < customStyles.Count; i++)

@@ -167,13 +167,13 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			// use the minimum intent level
-			var minlevel = headings.Min(e => e.Style.Index);
+			var minlevel = headings.Min(e => e.Level);
 
 			foreach (var heading in headings)
 			{
 				var text = new StringBuilder();
 				var count = minlevel;
-				while (count < heading.Style.Index)
+				while (count < heading.Level)
 				{
 					text.Append("\t");
 					count++;
@@ -188,6 +188,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					text.Append(heading.Text);
 				}
+
+				//text.Append($"(count:{count}=level:{heading.Level})");
 
 				toc.Add(new Paragraph(text.ToString()).SetStyle($"color:{textColor}"));
 
