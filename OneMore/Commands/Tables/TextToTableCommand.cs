@@ -61,6 +61,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private Table TextToTable(XNamespace ns, List<XElement> selections)
 		{
+			// when pasting text with tabs \t from Notepad into OneNote, OneNote will preserve
+			// the tabs internally but the presentation XML through the COM API will transform
+			// them to a sequence of 8x "&nbsp;" so we can assume this represents a tab
+			string nbsp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
 			TextToTableDialog.Delimeter delimetedBy;
 			string delimeter;
 			int cols, rows;
@@ -79,6 +84,11 @@ namespace River.OneMoreAddIn.Commands
 				{
 					dialog.DelimetedBy = TextToTableDialog.Delimeter.Commas;
 					dialog.Columns = first.Split(new char[] { ',' }).Length;
+				}
+				else if (first.Contains(nbsp))
+				{
+					dialog.DelimetedBy = TextToTableDialog.Delimeter.Nbsp;
+					dialog.Columns = first.Split(new string[] { nbsp }, StringSplitOptions.None).Length;
 				}
 				else
 				{
@@ -101,6 +111,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					case TextToTableDialog.Delimeter.Commas: delimeter = ","; break;
 					case TextToTableDialog.Delimeter.Tabs: delimeter = "\t"; break;
+					case TextToTableDialog.Delimeter.Nbsp: delimeter = nbsp; break;
 					case TextToTableDialog.Delimeter.Other: delimeter = dialog.CustomDelimeter; break;
 					default: delimeter = string.Empty; break;
 				}
