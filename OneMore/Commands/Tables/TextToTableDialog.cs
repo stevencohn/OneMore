@@ -13,11 +13,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Paragraphs,
 			Tabs,
+			// variant of tabs; OneNote sometimes converts tabs to 8x "&nbsp;"
+			Nbsp,
 			Commas,
 			Other
 		}
 
 		private int userCols;
+		private bool nbsp;
 
 
 		public TextToTableDialog()
@@ -55,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			get
 			{
 				if (paragraphsRadio.Checked) return Delimeter.Paragraphs;
-				if (tabsRadio.Checked) return Delimeter.Tabs;
+				if (tabsRadio.Checked) return nbsp ? Delimeter.Nbsp : Delimeter.Tabs;
 				if (commasRadio.Checked) return Delimeter.Commas;
 				return Delimeter.Other;
 			}
@@ -66,6 +69,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					case Delimeter.Paragraphs: paragraphsRadio.Checked = true; break;
 					case Delimeter.Tabs: tabsRadio.Checked = true; break;
+					case Delimeter.Nbsp: tabsRadio.Checked = nbsp = true; break;
 					case Delimeter.Commas: commasRadio.Checked = true; break;
 					case Delimeter.Other: otherRadio.Checked = true; break;
 				}
