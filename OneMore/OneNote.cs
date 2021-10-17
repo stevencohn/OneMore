@@ -42,7 +42,8 @@ namespace River.OneMoreAddIn
 			PDF = PublishFormat.pfPDF,
 			Word = PublishFormat.pfWord,
 			XPS = PublishFormat.pfXPS,
-			XML = 1000
+			XML = 1000,
+			MD = 1001
 		}
 
 		public enum PageDetail

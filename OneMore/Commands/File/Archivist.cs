@@ -4,8 +4,9 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Models;
-	using System;
+    using Onenote2md.Pack;
+    using River.OneMoreAddIn.Models;
+using System;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
@@ -311,15 +312,32 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+		public void ExportMD(String pageID, string filename)
+		{
+			try
+			{
+				if (File.Exists(filename))
+				{
+					File.Delete(filename);
+				}
+				ExportHelper exportHelper = new ExportHelper();
+				exportHelper.ExportMD(pageID, filename);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error publishig page as MD", exc);
+				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, "MD") + "\n\n" + exc.Message);
+			}
+		}
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+			// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		/// <summary>
-		/// Export the given page content as raw XML to the specified file
-		/// </summary>
-		/// <param name="root">The root content of the page</param>
-		/// <param name="filename">The full path of the file to create/overwrite</param>
-		public void ExportXML(XElement root, string filename)
+			/// <summary>
+			/// Export the given page content as raw XML to the specified file
+			/// </summary>
+			/// <param name="root">The root content of the page</param>
+			/// <param name="filename">The full path of the file to create/overwrite</param>
+			public void ExportXML(XElement root, string filename)
 		{
 			try
 			{

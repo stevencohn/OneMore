@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-
+	using Onenote2md.Pack;
 
 	/// <summary>
 	/// Export one or more selected pages, optionally with attachments, to a folder
@@ -81,6 +81,7 @@ namespace River.OneMoreAddIn.Commands
 				case OneNote.ExportFormat.PDF: ext = ".pdf"; break;
 				case OneNote.ExportFormat.Word: ext = ".docx"; break;
 				case OneNote.ExportFormat.XML: ext = ".xml"; break;
+				case OneNote.ExportFormat.MD: ext = ".md"; break;
 				case OneNote.ExportFormat.OneNote: ext = ".one"; break;
 			}
 
@@ -115,6 +116,10 @@ namespace River.OneMoreAddIn.Commands
 					else if (format == OneNote.ExportFormat.XML)
 					{
 						archivist.ExportXML(page.Root, filename);
+					}
+					else if (format == OneNote.ExportFormat.MD)
+					{
+						archivist.ExportMD(pageID, filename);
 					}
 					else
 					{
