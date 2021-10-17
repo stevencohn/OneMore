@@ -225,7 +225,7 @@
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
-    <Compile Include="Commands\Edit\ExpandoCommand.cs" />
+    <Compile Include="Commands\Page\ExpandoCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommand.cs" />
@@ -313,11 +313,11 @@
     <Compile Include="Commands\References\MapDialog.Designer.cs">
       <DependentUpon>MapDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Extras\SplitCommand.cs" />
-    <Compile Include="Commands\Extras\SplitDialog.cs">
+    <Compile Include="Commands\Page\SplitCommand.cs" />
+    <Compile Include="Commands\Page\SplitDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\SplitDialog.Designer.cs">
+    <Compile Include="Commands\Page\SplitDialog.Designer.cs">
       <DependentUpon>SplitDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Favorites\ShowKeyboardShortcutsCommand.cs" />
@@ -395,11 +395,11 @@
     <Compile Include="Commands\Tables\SplitTableDialog.Designer.cs">
       <DependentUpon>SplitTableDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tools\AnalyzeCommand.cs" />
-    <Compile Include="Commands\Tools\AnalyzeDialog.cs">
+    <Compile Include="Commands\Extras\AnalyzeCommand.cs" />
+    <Compile Include="Commands\Extras\AnalyzeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Tools\AnalyzeDialog.Designer.cs">
+    <Compile Include="Commands\Extras\AnalyzeDialog.Designer.cs">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tools\SectionColorCommand.cs" />
@@ -481,14 +481,14 @@
     <Compile Include="Commands\Tools\DiagnosticsCommand.cs" />
     <Compile Include="Commands\Styles\EditStylesCommand.cs" />
     <Compile Include="Commands\References\AddFootnoteCommand.cs" />
-    <Compile Include="Commands\Extras\AddTitleIconCommand.cs" />
+    <Compile Include="Commands\Page\AddTitleIconCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
-    <Compile Include="Commands\Tools\CollapsePagesCommand.cs" />
+    <Compile Include="Commands\Extras\CollapsePagesCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\References\FootnoteEditor.cs" />
     <Compile Include="Commands\References\FootnoteReference.cs" />
     <Compile Include="Commands\Formulas\AddFormulaCommand.cs" />
-    <Compile Include="Commands\Extras\MergeCommand.cs" />
+    <Compile Include="Commands\Page\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
     <Compile Include="Commands\Images\ResizeImagesCommand.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarDialog.cs">
@@ -710,10 +710,10 @@
     <Compile Include="UI\MoreColorDialog.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\AddTitleIconDialog.cs">
+    <Compile Include="Commands\Page\AddTitleIconDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\AddTitleIconDialog.Designer.cs">
+    <Compile Include="Commands\Page\AddTitleIconDialog.Designer.cs">
       <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FontComboBox.cs">
@@ -962,7 +962,7 @@
     <EmbeddedResource Include="Commands\References\MapDialog.resx">
       <DependentUpon>MapDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Extras\SplitDialog.resx">
+    <EmbeddedResource Include="Commands\Page\SplitDialog.resx">
       <DependentUpon>SplitDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
@@ -1002,7 +1002,7 @@
     <EmbeddedResource Include="Commands\Images\CropImageDialog.resx">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Extras\AddTitleIconDialog.resx">
+    <EmbeddedResource Include="Commands\Page\AddTitleIconDialog.resx">
       <DependentUpon>AddTitleIconDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">
@@ -1026,7 +1026,7 @@
     <EmbeddedResource Include="Commands\Settings\FavoritesSheet.resx">
       <DependentUpon>FavoritesSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tools\AnalyzeDialog.resx">
+    <EmbeddedResource Include="Commands\Extras\AnalyzeDialog.resx">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\UpdateDialog.resx">
