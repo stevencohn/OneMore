@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-	using Onenote2md.Pack;
+	using Onenote2md;
 
 	/// <summary>
 	/// Export one or more selected pages, optionally with attachments, to a folder

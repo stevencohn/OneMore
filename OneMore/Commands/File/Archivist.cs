@@ -4,7 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-    using Onenote2md.Pack;
+    using Onenote2md;
+using Onenote2md.Core;
     using River.OneMoreAddIn.Models;
 using System;
 	using System.Collections.Generic;
@@ -17,8 +18,6 @@ using System;
 	using System.Web;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-
-
 	internal class Archivist : Loggable
 	{
 		private readonly OneNote one;
@@ -320,8 +319,11 @@ using System;
 				{
 					File.Delete(filename);
 				}
-				ExportHelper exportHelper = new ExportHelper();
-				exportHelper.ExportMD(pageID, filename);
+				var notebookParser = new NotebookParser();
+				var writer = new MDWriter(filename, true);
+				var generator = new MDGenerator(notebookParser);
+				generator.GeneratePageMD(pageID, writer);
+
 			}
 			catch (Exception exc)
 			{
