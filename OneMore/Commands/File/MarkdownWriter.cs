@@ -6,23 +6,29 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Collections.Generic;
+	using System.Drawing;
 	using System.IO;
 	using System.Linq;
 	using System.Xml.Linq;
 
+
 	internal class MarkdownWriter
 	{
 		private readonly Page page;
+		private readonly XNamespace ns;
 		private readonly List<Style> quicks;
 		private readonly Stack<int> qindexes;
 		private StreamWriter writer;
+		private int imageCounter;
 		private readonly ILogger logger = Logger.Current;
 
 
 		public MarkdownWriter(Page page)
 		{
 			this.page = page;
+			ns = page.Namespace;
 			quicks = page.GetQuickStyles();
 			qindexes = new Stack<int>();
 		}
@@ -35,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 				// awful presumptuous here!
 				logger.WriteLine($"# {page.Title}");
 
-				page.Root.Descendants(page.Namespace + "OEChildren")
+				page.Root.Descendants(ns + "OEChildren")
 					.Elements()
 					.ForEach(e => Write(e));
 
@@ -61,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 
 				case "T":
 					DetectQuickStyle(element);
-					if (newpara) Setup();
+					if (newpara) Stylize();
 					var text = Cleanup(element.GetCData());
 					logger.Write(text);
 					newpara = false;
@@ -73,6 +79,10 @@ namespace River.OneMoreAddIn.Commands
 
 				case "Number":
 					logger.Write($"{prefix}1. ");
+					break;
+
+				case "Image":
+					WriteImage(element);
 					break;
 			}
 
@@ -98,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private void Setup()
+		private void Stylize()
 		{
 			var index = qindexes.Pop();
 			var quick = quicks.First(q => q.Index == index);
@@ -124,7 +134,8 @@ namespace River.OneMoreAddIn.Commands
 				.Replace("\nhref", " href")
 				.Replace(";\nfont-size:", ";font-size:")
 				.Replace(";\ncolor:", ";color:")
-				.Replace(":\n", ": ");
+				.Replace(":\n", ": ")
+				.Replace("<br>", "  "); // usually followed by NL so leave it there
 
 			var wrapper = cdata.GetWrapper();
 			foreach (var span in wrapper.Elements("span"))
@@ -149,7 +160,38 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			foreach (var anchor in wrapper.Elements("a"))
+			{
+				var href = anchor.Attribute("href")?.Value;
+				if (!string.IsNullOrEmpty(href))
+				{
+					anchor.ReplaceWith(new XText($"[{anchor.Value}]({href})"));
+				}
+			}
+
 			return wrapper.GetInnerXml();
+		}
+
+
+		private void WriteImage(XElement element)
+		{
+			var data = element.Element(ns + "Data");
+			var binhex = Convert.FromBase64String(data.Value);
+			using (var stream = new MemoryStream(binhex, 0, binhex.Length))
+			{
+				using (var image = Image.FromStream(stream))
+				{
+					var size = element.Element(ns + "Size");
+					size.GetAttributeValue("width", out float width, image.Width);
+					size.GetAttributeValue("height", out float height, image.Height);
+
+					var name = page.Title.Replace(" ", string.Empty);
+					var filename = $"{name}_{++imageCounter}.png";
+					//image.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+
+					logger.Write($"![Image-{imageCounter}]({filename})");
+				}
+			}
 		}
 	}
 }
