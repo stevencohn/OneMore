@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#define LOGx
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -11,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
+	using System.Text;
 	using System.Xml.Linq;
 
 
@@ -18,88 +21,92 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly Page page;
 		private readonly XNamespace ns;
-		private readonly List<Style> quicks;
+		private readonly List<Style> quickStyles;
 		private readonly Stack<int> qindexes;
-		private StreamWriter writer;
 		private int imageCounter;
-		private readonly ILogger logger = Logger.Current;
+#if LOG
+		private readonly ILogger writer = Logger.Current;
+#else
+		private StreamWriter writer;
+		private string path;
+#endif
 
 
 		public MarkdownWriter(Page page)
 		{
 			this.page = page;
 			ns = page.Namespace;
-			quicks = page.GetQuickStyles();
+			quickStyles = page.GetQuickStyles();
 			qindexes = new Stack<int>();
 		}
 
 
 		public void Save(string filename)
 		{
-			//using (writer = File.CreateText(filename))
+#if !LOG
+			path = Path.GetDirectoryName(filename);
+			using (writer = File.CreateText(filename))
+#endif
 			{
-				// awful presumptuous here!
-				logger.WriteLine($"# {page.Title}");
+				writer.WriteLine($"# {page.Title}");
 
-				page.Root.Descendants(ns + "OEChildren")
+				page.Root.Elements(ns + "Outline")
+					.Elements(ns + "OEChildren")
 					.Elements()
 					.ForEach(e => Write(e));
 
-				logger.WriteLine();
+				writer.WriteLine();
 			}
 		}
 
 
-		private void Write(XElement element, string prefix = "", bool newpara = false)
+		private void Write(XElement element, string prefix = "", bool startParagraph = false)
 		{
-			bool kids = true;
 			bool qpush = false;
 
 			switch (element.Name.LocalName)
 			{
 				case "OEChildren":
 					qpush = DetectQuickStyle(element);
-					prefix = $"  {prefix}";
+					writer.WriteLine("  ");
+					prefix = prefix.Length == 0 ? ">" : $">{prefix}";
 					break;
 
 				case "OE":
 					qpush = DetectQuickStyle(element);
-					logger.Write(prefix);
-					newpara = true;
+					startParagraph = true;
 					break;
 
 				case "T":
 					qpush = DetectQuickStyle(element);
-					if (newpara) Stylize();
-					var text = Cleanup(element.GetCData());
-					logger.Write(text);
-					newpara = false;
+					if (startParagraph) Stylize(prefix);
+					WriteText(element.GetCData(), startParagraph);
 					break;
 
 				case "Bullet":
-					logger.Write($"{prefix}- ");
+					writer.Write($"{prefix}- ");
 					break;
 
 				case "Number":
-					logger.Write($"{prefix}1. ");
+					writer.Write($"{prefix}1. ");
 					break;
 
 				case "Image":
 					WriteImage(element);
-					kids = false;
 					break;
 			}
 
-			if (element.HasElements && kids)
+			if (element.HasElements)
 			{
 				foreach (var child in element.Elements())
 				{
-					Write(child, prefix, newpara);
+					Write(child, prefix, startParagraph);
+					startParagraph = false;
 				}
 
 				if (element.Name.LocalName == "OE")
 				{
-					logger.WriteLine();
+					writer.WriteLine("  ");
 				}
 			}
 
@@ -120,55 +127,52 @@ namespace River.OneMoreAddIn.Commands
 			return false;
 		}
 
-		private void Stylize()
+		private void Stylize(string prefix)
 		{
+			writer.Write(prefix);
+			if (qindexes.Count == 0) return;
 			var index = qindexes.Peek();
-			var quick = quicks.First(q => q.Index == index);
+			var quick = quickStyles.First(q => q.Index == index);
 			switch (quick.Name)
 			{
-				case "PageTitle": logger.Write("# "); break;
-				case "h1": logger.Write("# "); break;
-				case "h2": logger.Write("## "); break;
-				case "h3": logger.Write("### "); break;
-				case "h4": logger.Write("#### "); break;
-				case "h5": logger.Write("##### "); break;
-				case "h6": logger.Write("###### "); break;
-				case "cite": logger.Write("*"); break;
-				case "code": logger.Write("`"); break;
-				case "p": logger.Write(System.Environment.NewLine); break;
+				case "PageTitle": writer.Write("# "); break;
+				case "h1": writer.Write("# "); break;
+				case "h2": writer.Write("## "); break;
+				case "h3": writer.Write("### "); break;
+				case "h4": writer.Write("#### "); break;
+				case "h5": writer.Write("##### "); break;
+				case "h6": writer.Write("###### "); break;
+				// cite and code are both block-scope style, on the OE
+				case "cite": writer.Write("*"); break;
+				case "code": writer.Write("`"); break;
+				//case "p": logger.Write(Environment.NewLine); break;
 			}
 		}
 
-		private string Cleanup(XCData cdata)
+
+		private void WriteText(XCData cdata, bool startParagraph)
 		{
 			cdata.Value = cdata.Value
-				.Replace("\nstyle", " style")
-				.Replace("\nhref", " href")
-				.Replace(";\nfont-size:", ";font-size:")
-				.Replace(";\ncolor:", ";color:")
-				.Replace(":\n", ": ")
-				.Replace("<br>", "  "); // usually followed by NL so leave it there
+				.Replace("<br>", "  ") // usually followed by NL so leave it there
+				.Replace("[", "\\[")   // escape to prevent confusion with md links
+				.Trim();
 
 			var wrapper = cdata.GetWrapper();
-			foreach (var span in wrapper.Elements("span"))
+			foreach (var span in wrapper.Descendants("span").ToList())
 			{
 				var sat = span.Attribute("style");
-				if (sat != null)
+				var style = new Style(sat.Value);
+				if (style.IsBold || style.IsItalic || style.IsStrikethrough)
 				{
-					var style = new Style(sat.Value);
-					if (style.IsBold || style.IsItalic)
-					{
-						var stars = style.IsBold && style.IsItalic
-							? "***"
-							: (style.IsBold ? "**" : "*");
-
-						span.AddBeforeSelf(new XText(stars));
-						span.AddAfterSelf(new XText(stars));
-
-						style.IsBold = false;
-						style.IsItalic = false;
-						sat.Value = style.ToCss();
-					}
+					var text = span.Value;
+					if (style.IsStrikethrough) text = $"~~{text}~~";
+					if (style.IsItalic) text = $"*{text}*";
+					if (style.IsBold) text = $"**{text}**";
+					span.ReplaceWith(new XText(text));
+				}
+				else
+				{
+					span.ReplaceWith(new XText(span.Value));
 				}
 			}
 
@@ -181,7 +185,16 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			return wrapper.GetInnerXml();
+			var raw = wrapper.GetInnerXml()
+				.Replace("&gt;", "\\>")
+				.Replace("&lt;", "\\<");
+
+			if (startParagraph && raw.Length > 0 && raw.StartsWith("#"))
+			{
+				writer.Write("\\");
+			}
+
+			writer.Write(raw);
 		}
 
 
@@ -194,10 +207,12 @@ namespace River.OneMoreAddIn.Commands
 				using (var image = Image.FromStream(stream))
 				{
 					var name = page.Title.Replace(" ", string.Empty);
-					var filename = $"{name}_{++imageCounter}.png";
-					//image.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+					var filename = Path.Combine(path, $"{name}_{++imageCounter}.png");
+#if !LOG
+					image.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+#endif
 
-					logger.Write($"![Image-{imageCounter}]({filename})");
+					writer.Write($"![Image-{imageCounter}]({filename})");
 				}
 			}
 		}
