@@ -52,21 +52,24 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Write(XElement element, string prefix = "", bool newpara = false)
 		{
+			bool kids = true;
+			bool qpush = false;
+
 			switch (element.Name.LocalName)
 			{
 				case "OEChildren":
-					DetectQuickStyle(element);
+					qpush = DetectQuickStyle(element);
 					prefix = $"  {prefix}";
 					break;
 
 				case "OE":
-					DetectQuickStyle(element);
+					qpush = DetectQuickStyle(element);
 					logger.Write(prefix);
 					newpara = true;
 					break;
 
 				case "T":
-					DetectQuickStyle(element);
+					qpush = DetectQuickStyle(element);
 					if (newpara) Stylize();
 					var text = Cleanup(element.GetCData());
 					logger.Write(text);
@@ -83,10 +86,11 @@ namespace River.OneMoreAddIn.Commands
 
 				case "Image":
 					WriteImage(element);
+					kids = false;
 					break;
 			}
 
-			if (element.HasElements)
+			if (element.HasElements && kids)
 			{
 				foreach (var child in element.Elements())
 				{
@@ -98,19 +102,27 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine();
 				}
 			}
+
+			if (qpush)
+			{
+				qindexes.Pop();
+			}
 		}
 
-		private void DetectQuickStyle(XElement element)
+		private bool DetectQuickStyle(XElement element)
 		{
 			if (element.GetAttributeValue("quickStyleIndex", out int index))
 			{
 				qindexes.Push(index);
+				return true;
 			}
+
+			return false;
 		}
 
 		private void Stylize()
 		{
-			var index = qindexes.Pop();
+			var index = qindexes.Peek();
 			var quick = quicks.First(q => q.Index == index);
 			switch (quick.Name)
 			{
@@ -181,10 +193,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var image = Image.FromStream(stream))
 				{
-					var size = element.Element(ns + "Size");
-					size.GetAttributeValue("width", out float width, image.Width);
-					size.GetAttributeValue("height", out float height, image.Height);
-
 					var name = page.Title.Replace(" ", string.Empty);
 					var filename = $"{name}_{++imageCounter}.png";
 					//image.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
