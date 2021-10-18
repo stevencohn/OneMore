@@ -225,6 +225,7 @@
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
+    <Compile Include="Commands\File\MarkdownWriter.cs" />
     <Compile Include="Commands\Page\ExpandoCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
@@ -271,6 +272,7 @@
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
+    <Compile Include="Commands\Reminders\Reminder.cs" />
     <Compile Include="Commands\Settings\LinesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1146,9 +1148,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\Reminders\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>taskkill /fi "pid gt 0" /im ONENOTE.exe</PreBuildEvent>

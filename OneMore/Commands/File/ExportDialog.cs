@@ -58,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 					case 1: return OneNote.ExportFormat.PDF;
 					case 2: return OneNote.ExportFormat.Word;
 					case 3: return OneNote.ExportFormat.XML;
+					case 4: return OneNote.ExportFormat.Markdown;
 
 					default:
 						return OneNote.ExportFormat.OneNote;

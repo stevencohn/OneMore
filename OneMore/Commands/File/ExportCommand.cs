@@ -81,6 +81,7 @@ namespace River.OneMoreAddIn.Commands
 				case OneNote.ExportFormat.PDF: ext = ".pdf"; break;
 				case OneNote.ExportFormat.Word: ext = ".docx"; break;
 				case OneNote.ExportFormat.XML: ext = ".xml"; break;
+				case OneNote.ExportFormat.Markdown: ext = ".md"; break;
 				case OneNote.ExportFormat.OneNote: ext = ".one"; break;
 			}
 
@@ -115,6 +116,10 @@ namespace River.OneMoreAddIn.Commands
 					else if (format == OneNote.ExportFormat.XML)
 					{
 						archivist.ExportXML(page.Root, filename);
+					}
+					else if (format == OneNote.ExportFormat.Markdown)
+					{
+						archivist.ExportMarkdown(page, filename);
 					}
 					else
 					{

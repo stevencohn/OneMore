@@ -80,7 +80,8 @@
             "PDF File (*.pdf)",
             "Word File (*.docx)",
             "XML File (*.xml)",
-            "OneNote File (*.one)"});
+			"Markdown File (*.md)",
+			"OneNote File (*.one)"});
 			this.formatBox.Location = new System.Drawing.Point(55, 52);
 			this.formatBox.Margin = new System.Windows.Forms.Padding(2);
 			this.formatBox.Name = "formatBox";
