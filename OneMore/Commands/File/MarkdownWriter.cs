@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Drawing.Imaging;
 	using System.IO;
 	using System.Linq;
 	using System.Xml.Linq;
@@ -25,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 			public string Enclosure;
 		}
 
+		private const string Indent = ">"; //&nbsp;&nbsp;&nbsp;&nbsp;";
 
 		private readonly Page page;
 		private readonly XNamespace ns;
@@ -80,7 +82,7 @@ namespace River.OneMoreAddIn.Commands
 				case "OEChildren":
 					pushed = DetectQuickStyle(element);
 					writer.WriteLine("  ");
-					prefix = prefix.Length == 0 ? ">" : $">{prefix}";
+					prefix = prefix.Length == 0 ? Indent : $"{Indent}{prefix}";
 					break;
 
 				case "OE":
@@ -108,6 +110,11 @@ namespace River.OneMoreAddIn.Commands
 
 				case "Image":
 					WriteImage(element);
+					dive = false;
+					break;
+
+				case "InsertedFile":
+					WriteFile(element);
 					dive = false;
 					break;
 
@@ -154,6 +161,7 @@ namespace River.OneMoreAddIn.Commands
 				var quick = quickStyles.First(q => q.Index == index);
 				if (quick != null)
 				{
+					// cite becomes italic
 					if (quick.Name == "cite") context.Enclosure = "*";
 					else if (quick.Name == "code") context.Enclosure = "`";
 				}
@@ -180,6 +188,7 @@ namespace River.OneMoreAddIn.Commands
 				case "h4": writer.Write("#### "); break;
 				case "h5": writer.Write("##### "); break;
 				case "h6": writer.Write("###### "); break;
+				case "blockquote": writer.Write("> "); break;
 				// cite and code are both block-scope style, on the OE
 				case "cite": writer.Write("*"); break;
 				case "code": writer.Write("`"); break;
@@ -223,7 +232,7 @@ namespace River.OneMoreAddIn.Commands
 				case 131: writer.Write(":secret: "); break;			// password
 				case 133: writer.Write(":movie_camera: "); break;	// movie to see
 				case 132: writer.Write(":book: "); break;			// book to read
-				default: writer.Write(":red_circle: "); break;
+				default: writer.Write(":o: "); break;
 			}
 		}
 
@@ -238,11 +247,16 @@ namespace River.OneMoreAddIn.Commands
 			var wrapper = cdata.GetWrapper();
 			foreach (var span in wrapper.Descendants("span").ToList())
 			{
-				var style = new Style(span.Attribute("style").Value);
 				var text = span.Value;
-				if (style.IsStrikethrough) text = $"~~{text}~~";
-				if (style.IsItalic) text = $"*{text}*";
-				if (style.IsBold) text = $"**{text}**";
+				var att = span.Attribute("style");
+				// span might only have a lang attribute
+				if (att != null)
+				{
+					var style = new Style(span.Attribute("style").Value);
+					if (style.IsStrikethrough) text = $"~~{text}~~";
+					if (style.IsItalic) text = $"*{text}*";
+					if (style.IsBold) text = $"**{text}**";
+				}
 				span.ReplaceWith(new XText(text));
 			}
 
@@ -251,7 +265,15 @@ namespace River.OneMoreAddIn.Commands
 				var href = anchor.Attribute("href")?.Value;
 				if (!string.IsNullOrEmpty(href))
 				{
-					anchor.ReplaceWith(new XText($"[{anchor.Value}]({href})"));
+					if (href.StartsWith("onenote:") || href.StartsWith("onemore:"))
+					{
+						// removes the hyperlink but preserves the text
+						anchor.ReplaceWith(anchor.Value);
+					}
+					else
+					{
+						anchor.ReplaceWith(new XText($"[{anchor.Value}]({href})"));
+					}
 				}
 			}
 
@@ -277,21 +299,68 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var image = Image.FromStream(stream))
 				{
-					var name = page.Title.Replace(" ", string.Empty);
-					var filename = Path.Combine(path, $"{name}_{++imageCounter}.png");
+					var prefix = page.Title.Replace(" ", string.Empty);
+					var name = $"{prefix}_{++imageCounter}.png";
+					var filename = Path.Combine(path, name);
 #if !LOG
-					image.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+					image.Save(filename, ImageFormat.Png);
 #endif
 
-					writer.Write($"![Image-{imageCounter}]({filename})");
+					writer.Write($"![Image-{imageCounter}]({name})");
 				}
 			}
+		}
+
+
+		private void WriteFile(XElement element)
+		{
+			// get and validate source
+			var source = element.Attribute("pathSource")?.Value;
+			if (string.IsNullOrEmpty(source) || !File.Exists(source))
+			{
+				source = element.Attribute("pathCache")?.Value;
+				if (string.IsNullOrEmpty(source) || !File.Exists(source))
+				{
+					// broken link, remove marker
+					return;
+				}
+			}
+
+			// get preferredName; this will become the output file name
+			var name = element.Attribute("preferredName")?.Value;
+			if (string.IsNullOrEmpty(name))
+			{
+				// broken link, remove marker
+				return;
+			}
+
+			var target = Path.Combine(path, name);
+
+			try
+			{
+# if !LOG
+				// copy cached/source file to md output directory
+				File.Copy(source, target, true);
+#endif
+			}
+			catch
+			{
+				// error copying, drop marker
+				return;
+			}
+
+			// this is a relative path that allows us to move the folder around
+			var uri = new Uri(target).AbsoluteUri;
+			writer.WriteLine($"[{name}]({uri})");
 		}
 
 
 		private void WriteTable(XElement element)
 		{
 			var table = new Table(element);
+
+			// table needs a blank line before it
+			writer.WriteLine();
 
 			// header
 			writer.Write("|");
