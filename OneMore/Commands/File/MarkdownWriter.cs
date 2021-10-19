@@ -26,6 +26,9 @@ namespace River.OneMoreAddIn.Commands
 			public string Enclosure;
 		}
 
+		// no good way to indent text; closest alternative is to use a string of nbsp but that
+		// conflicts with other directives like headings and list numbering. so substitute
+		// indentations (OEChildren) with the blockquote directive instead
 		private const string Indent = ">"; //&nbsp;&nbsp;&nbsp;&nbsp;";
 
 		private readonly Page page;
