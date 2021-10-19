@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private string[] predefinedNames;
 		private Plugin plugin;
-		private bool single = false;
+		private readonly bool single = false;
 
 
 		public PluginDialog()
