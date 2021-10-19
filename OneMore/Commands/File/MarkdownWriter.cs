@@ -233,8 +233,9 @@ namespace River.OneMoreAddIn.Commands
 				case 118: writer.Write(":mailbox: "); break;        // contact
 				case 121: writer.Write(":musical_note: "); break;   // music to listen to
 				case 131: writer.Write(":secret: "); break;			// password
-				case 133: writer.Write(":movie_camera: "); break;	// movie to see
-				case 132: writer.Write(":book: "); break;			// book to read
+				case 133: writer.Write(":movie_camera: "); break;   // movie to see
+				case 132: writer.Write(":book: "); break;           // book to read
+				case 140: writer.Write(":zap: "); break;			// lightning bolt
 				default: writer.Write(":o: "); break;
 			}
 		}
