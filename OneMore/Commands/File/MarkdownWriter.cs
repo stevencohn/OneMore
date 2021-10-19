@@ -13,16 +13,23 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
-	using System.Text;
 	using System.Xml.Linq;
 
 
 	internal class MarkdownWriter
 	{
+		private class Context
+		{
+			public string Owner;
+			public int QuickStyleIndex;
+			public string Enclosure;
+		}
+
+
 		private readonly Page page;
 		private readonly XNamespace ns;
 		private readonly List<Style> quickStyles;
-		private readonly Stack<int> qindexes;
+		private readonly Stack<Context> contexts;
 		private int imageCounter;
 #if LOG
 		private readonly ILogger writer = Logger.Current;
@@ -37,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 			this.page = page;
 			ns = page.Namespace;
 			quickStyles = page.GetQuickStyles();
-			qindexes = new Stack<int>();
+			contexts = new Stack<Context>();
 		}
 
 
@@ -60,27 +67,31 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Write(XElement element, string prefix = "", bool startParagraph = false)
+		private void Write(XElement element,
+			string prefix = "",
+			bool startpara = false,
+			bool contained = false)
 		{
-			bool qpush = false;
+			bool pushed = false;
+			bool dive = true;
 
 			switch (element.Name.LocalName)
 			{
 				case "OEChildren":
-					qpush = DetectQuickStyle(element);
+					pushed = DetectQuickStyle(element);
 					writer.WriteLine("  ");
 					prefix = prefix.Length == 0 ? ">" : $">{prefix}";
 					break;
 
 				case "OE":
-					qpush = DetectQuickStyle(element);
-					startParagraph = true;
+					pushed = DetectQuickStyle(element);
+					startpara = true;
 					break;
 
 				case "T":
-					qpush = DetectQuickStyle(element);
-					if (startParagraph) Stylize(prefix);
-					WriteText(element.GetCData(), startParagraph);
+					pushed = DetectQuickStyle(element);
+					if (startpara) Stylize(prefix);
+					WriteText(element.GetCData(), startpara);
 					break;
 
 				case "Bullet":
@@ -93,46 +104,69 @@ namespace River.OneMoreAddIn.Commands
 
 				case "Image":
 					WriteImage(element);
+					dive = false;
+					break;
+
+				case "Table":
+					WriteTable(element);
+					dive = false;
 					break;
 			}
 
-			if (element.HasElements)
+			if (dive && element.HasElements)
 			{
 				foreach (var child in element.Elements())
 				{
-					Write(child, prefix, startParagraph);
-					startParagraph = false;
+					Write(child, prefix, startpara);
+					startpara = false;
+				}
+			}
+
+			var context = pushed ? contexts.Pop() : null;
+			if (element.Name.LocalName == "OE")
+			{
+				if (context != null && !string.IsNullOrEmpty(context.Enclosure))
+				{
+					writer.Write(context.Enclosure);
 				}
 
-				if (element.Name.LocalName == "OE")
+				if (!contained)
 				{
 					writer.WriteLine("  ");
 				}
 			}
-
-			if (qpush)
-			{
-				qindexes.Pop();
-			}
 		}
+
 
 		private bool DetectQuickStyle(XElement element)
 		{
 			if (element.GetAttributeValue("quickStyleIndex", out int index))
 			{
-				qindexes.Push(index);
+				var context = new Context
+				{
+					Owner = element.Name.LocalName,
+					QuickStyleIndex = index
+				};
+				var quick = quickStyles.First(q => q.Index == index);
+				if (quick != null)
+				{
+					if (quick.Name == "cite") context.Enclosure = "*";
+					else if (quick.Name == "code") context.Enclosure = "`";
+				}
+				contexts.Push(context);
 				return true;
 			}
 
 			return false;
 		}
 
+
 		private void Stylize(string prefix)
 		{
 			writer.Write(prefix);
-			if (qindexes.Count == 0) return;
-			var index = qindexes.Peek();
-			var quick = quickStyles.First(q => q.Index == index);
+			if (contexts.Count == 0) return;
+			var context = contexts.Peek();
+			var quick = quickStyles.First(q => q.Index == context.QuickStyleIndex);
 			switch (quick.Name)
 			{
 				case "PageTitle": writer.Write("# "); break;
@@ -155,25 +189,17 @@ namespace River.OneMoreAddIn.Commands
 			cdata.Value = cdata.Value
 				.Replace("<br>", "  ") // usually followed by NL so leave it there
 				.Replace("[", "\\[")   // escape to prevent confusion with md links
-				.Trim();
+				.TrimEnd();
 
 			var wrapper = cdata.GetWrapper();
 			foreach (var span in wrapper.Descendants("span").ToList())
 			{
-				var sat = span.Attribute("style");
-				var style = new Style(sat.Value);
-				if (style.IsBold || style.IsItalic || style.IsStrikethrough)
-				{
-					var text = span.Value;
-					if (style.IsStrikethrough) text = $"~~{text}~~";
-					if (style.IsItalic) text = $"*{text}*";
-					if (style.IsBold) text = $"**{text}**";
-					span.ReplaceWith(new XText(text));
-				}
-				else
-				{
-					span.ReplaceWith(new XText(span.Value));
-				}
+				var style = new Style(span.Attribute("style").Value);
+				var text = span.Value;
+				if (style.IsStrikethrough) text = $"~~{text}~~";
+				if (style.IsItalic) text = $"*{text}*";
+				if (style.IsBold) text = $"**{text}**";
+				span.ReplaceWith(new XText(text));
 			}
 
 			foreach (var anchor in wrapper.Elements("a"))
@@ -185,9 +211,10 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			// escape directives
 			var raw = wrapper.GetInnerXml()
-				.Replace("&gt;", "\\>")
-				.Replace("&lt;", "\\<");
+				.Replace("&lt;", "\\<")
+				.Replace("|", "\\|");
 
 			if (startParagraph && raw.Length > 0 && raw.StartsWith("#"))
 			{
@@ -214,6 +241,44 @@ namespace River.OneMoreAddIn.Commands
 
 					writer.Write($"![Image-{imageCounter}]({filename})");
 				}
+			}
+		}
+
+
+		private void WriteTable(XElement element)
+		{
+			var table = new Table(element);
+
+			// header
+			writer.Write("|");
+			for (int i = 0; i < table.ColumnCount; i++)
+			{
+				writer.Write($" {TableCell.IndexToLetters(i + 1)} |");
+			}
+			writer.WriteLine();
+
+			// separator
+			writer.Write("|");
+			for (int i = 0; i < table.ColumnCount; i++)
+			{
+				writer.Write(" :--- |");
+			}
+			writer.WriteLine();
+
+			// data
+			foreach (var row in table.Rows)
+			{
+				writer.Write("| ");
+				foreach (var cell in row.Cells)
+				{
+					cell.Root
+						.Element(ns + "OEChildren")
+						.Elements(ns + "OE")
+						.ForEach(e => Write(e, contained: true));
+
+					writer.Write(" | ");
+				}
+				writer.WriteLine();
 			}
 		}
 	}
