@@ -4,11 +4,13 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -128,7 +130,19 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			SaveDefaultPath(path);
+
 			UIHelper.ShowMessage(string.Format(Resx.SaveAsMany_Success, pageIDs.Count, path));
+		}
+
+
+		private void SaveDefaultPath(string path)
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("Export");
+			settings.Add("path", path);
+			provider.SetCollection(settings);
+			provider.Save();
 		}
 	}
 }

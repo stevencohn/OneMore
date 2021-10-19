@@ -6,9 +6,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Threading;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -37,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 				? Resx.ExportDialog_groupBox_OneText
 				: string.Format(Resx.ExportDialog_groupBox_Text, pageCount);
 
-			pathBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			pathBox.Text = LoadDefaultPath();
 			formatBox.SelectedIndex = 0;
 		}
 
@@ -64,6 +66,23 @@ namespace River.OneMoreAddIn.Commands
 						return OneNote.ExportFormat.OneNote;
 				}
 			}
+		}
+
+
+		private string LoadDefaultPath()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("Export");
+			if (settings != null)
+			{
+				var path = settings.Get<string>("path");
+				if (!string.IsNullOrEmpty(path))
+				{
+					return path;
+				}
+			}
+
+			return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 		}
 
 
