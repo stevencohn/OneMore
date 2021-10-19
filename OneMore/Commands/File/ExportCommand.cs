@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else if (format == OneNote.ExportFormat.Markdown)
 					{
-						archivist.ExportMarkdown(page, filename);
+						archivist.ExportMarkdown(page, filename, withAttachments);
 					}
 					else
 					{

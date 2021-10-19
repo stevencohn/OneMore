@@ -94,7 +94,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeFormat(object sender, EventArgs e)
 		{
-			attachmentsBox.Enabled = formatBox.SelectedIndex == 0;
+			attachmentsBox.Enabled = 
+				formatBox.SelectedIndex == 0 ||		// HTML
+				formatBox.SelectedIndex == 4;		// Markdown
 		}
 
 

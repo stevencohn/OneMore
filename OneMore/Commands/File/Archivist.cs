@@ -322,7 +322,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="root"></param>
 		/// <param name="filename"></param>
-		public void ExportMarkdown(Page page, string filename)
+		public void ExportMarkdown(Page page, string filename, bool withAttachments)
 		{
 			try
 			{
@@ -331,7 +331,7 @@ namespace River.OneMoreAddIn.Commands
 					File.Delete(filename);
 				}
 
-				var writer = new MarkdownWriter(page);
+				var writer = new MarkdownWriter(page, withAttachments);
 				writer.Save(filename);
 			}
 			catch (Exception exc)

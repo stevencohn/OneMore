@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly Page page;
 		private readonly XNamespace ns;
+		private readonly bool withAttachments;
 		private readonly List<Style> quickStyles;
 		private readonly Stack<Context> contexts;
 		private int imageCounter;
@@ -44,12 +45,13 @@ namespace River.OneMoreAddIn.Commands
 #endif
 
 
-		public MarkdownWriter(Page page)
+		public MarkdownWriter(Page page, bool withAttachments)
 		{
 			this.page = page;
 			ns = page.Namespace;
 			quickStyles = page.GetQuickStyles();
 			contexts = new Stack<Context>();
+			this.withAttachments = withAttachments;
 		}
 
 
@@ -85,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 				case "OEChildren":
 					pushed = DetectQuickStyle(element);
 					writer.WriteLine("  ");
-					prefix = prefix.Length == 0 ? Indent : $"{Indent}{prefix}";
+					prefix = $"{Indent}{prefix}";
 					break;
 
 				case "OE":
@@ -144,7 +146,9 @@ namespace River.OneMoreAddIn.Commands
 					writer.Write(context.Enclosure);
 				}
 
-				if (!contained)
+				// if not in a table cell
+				// or in a cell and this OE is followed by another OE
+				if (!contained ||(element.NextNode != null))
 				{
 					writer.WriteLine("  ");
 				}
@@ -338,24 +342,31 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var target = Path.Combine(path, name);
-
-			try
+			if (withAttachments)
 			{
-# if !LOG
-				// copy cached/source file to md output directory
-				File.Copy(source, target, true);
+				var target = Path.Combine(path, name);
+
+				try
+				{
+#if !LOG
+					// copy cached/source file to md output directory
+					File.Copy(source, target, true);
 #endif
-			}
-			catch
-			{
-				// error copying, drop marker
-				return;
-			}
+				}
+				catch
+				{
+					// error copying, drop marker
+					return;
+				}
 
-			// this is a relative path that allows us to move the folder around
-			var uri = new Uri(target).AbsoluteUri;
-			writer.WriteLine($"[{name}]({uri})");
+				// this is a relative path that allows us to move the folder around
+				var uri = new Uri(target).AbsoluteUri;
+				writer.WriteLine($"[{name}]({uri})");
+			}
+			else
+			{
+				writer.WriteLine($"(*File:{name}*)");
+			}
 		}
 
 
