@@ -88,6 +88,10 @@ namespace River.OneMoreAddIn.Commands
 					startpara = true;
 					break;
 
+				case "Tag":
+					WriteTag(element);
+					break;
+
 				case "T":
 					pushed = DetectQuickStyle(element);
 					if (startpara) Stylize(prefix);
@@ -180,6 +184,46 @@ namespace River.OneMoreAddIn.Commands
 				case "cite": writer.Write("*"); break;
 				case "code": writer.Write("`"); break;
 				//case "p": logger.Write(Environment.NewLine); break;
+			}
+		}
+
+
+		private void WriteTag(XElement element)
+		{
+			var symbol = page.Root.Elements(ns + "TagDef")
+				.Where(e => e.Attribute("index").Value == element.Attribute("index").Value)
+				.Select(e => int.Parse(e.Attribute("symbol").Value))
+				.FirstOrDefault();
+
+			switch (symbol)
+			{
+				case 3:     // to do
+				case 8:     // client request
+				case 12:	// schedule/callback
+				case 28:	// todo prio 1
+				case 71:    // todo prio 2
+				case 94:    // discuss person a/b
+				case 95:    // discuss manager
+					var check = element.Attribute("completed").Value == "true" ? "x" : " ";
+					writer.Write($"- [{check}] ");
+					break;
+
+				case 6: writer.Write(":question: "); break;         // question
+				case 13: writer.Write(":star: "); break;            // important
+				case 17: writer.Write(":exclamation: "); break;     // critical
+				case 18: writer.Write(":phone: "); break;           // phone
+				case 21: writer.Write(":bulb: "); break;            // idea
+				case 23: writer.Write(":house: "); break;           // address
+				case 33: writer.Write(":three: "); break;           // three
+				case 39: writer.Write(":zero: "); break;            // zero
+				case 51: writer.Write(":two: "); break;				// two
+				case 70: writer.Write(":one: "); break;				// one
+				case 118: writer.Write(":mailbox: "); break;        // contact
+				case 121: writer.Write(":musical_note: "); break;   // music to listen to
+				case 131: writer.Write(":secret: "); break;			// password
+				case 133: writer.Write(":movie_camera: "); break;	// movie to see
+				case 132: writer.Write(":book: "); break;			// book to read
+				default: writer.Write(":red_circle: "); break;
 			}
 		}
 

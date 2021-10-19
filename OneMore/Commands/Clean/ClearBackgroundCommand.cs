@@ -113,8 +113,11 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => e.Attribute("style"))
 				.ForEach(a =>
 				{
-					var style = new Style(a.Value);
-					style.Highlight = Style.Automatic;
+					var style = new Style(a.Value)
+					{
+						Highlight = Style.Automatic
+					};
+
 					a.Value = style.ToCss();
 					found = true;
 				});
