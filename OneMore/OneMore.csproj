@@ -272,6 +272,7 @@
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
+    <Compile Include="Commands\Reminders\Notifier.cs" />
     <Compile Include="Commands\Reminders\Reminder.cs" />
     <Compile Include="Commands\Settings\LinesSheet.cs">
       <SubType>UserControl</SubType>
