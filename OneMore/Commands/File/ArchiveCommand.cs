@@ -87,8 +87,8 @@ namespace River.OneMoreAddIn.Commands
 				token);
 
 			// use this temp folder as a sandbox for each page
-			var t = Path.GetTempFileName();
-			tempdir = Path.Combine(Path.GetDirectoryName(t), Path.GetFileNameWithoutExtension(t));
+			var t = Path.GetRandomFileName();
+			tempdir = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(t));
 			PathFactory.EnsurePathExists(tempdir);
 			logger.WriteLine($"building archive {zipPath}");
 

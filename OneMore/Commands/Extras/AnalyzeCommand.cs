@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 				var page = one.GetPage(pageId);
 				page.Title = Resx.AnalyzeCommand_Title;
-				page.SetMeta(Page.AnalysisMetaName, "true");
+				page.SetMeta(MetaNames.AnalysisReport, "true");
 
 				ns = page.Namespace;
 				heading1Index = page.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
@@ -535,7 +535,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var page = one.GetPage(pageId, OneNote.PageDetail.All);
 
-			if (page.GetMetaContent(Page.AnalysisMetaName) == "true")
+			if (page.GetMetaContent(MetaNames.AnalysisReport) == "true")
 			{
 				// skip a previously generated analysis report
 				return;

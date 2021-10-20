@@ -3213,6 +3213,7 @@ ISO-code then comma then language name</comment>
 PDF 文件 (*.pdf)
 Word 文件 (*.docx)
 XML 文件 (*.xml)
+降价文件 (*.md)
 OneNote 文件 (*.one)</value>
     <comment>combo box</comment>
   </data>

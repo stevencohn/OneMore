@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 				var updated = false;
 				var index = 0;
 
-				var meta = page.GetMetaContent(Page.HighlightMetaName);
+				var meta = page.GetMetaContent(MetaNames.HighlightIndex);
 				if (meta != null)
 				{
 					if (int.TryParse(meta, out index))
@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (updated)
 				{
-					page.SetMeta(Page.HighlightMetaName, index.ToString(CultureInfo.InvariantCulture));
+					page.SetMeta(MetaNames.HighlightIndex, index.ToString(CultureInfo.InvariantCulture));
 					await one.Update(page);
 				}
 			}

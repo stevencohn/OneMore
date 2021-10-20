@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var dialog = new TaggingDialog())
 				{
-					var content = page.GetMetaContent(Page.TaggingMetaName);
+					var content = page.GetMetaContent(MetaNames.TaggingLabels);
 					if (!string.IsNullOrEmpty(content))
 					{
 						var parts = content.Split(
@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					// tags will appear in user's lanuage so need to use appropriate separator
-					page.SetMeta(Page.TaggingMetaName,
+					page.SetMeta(MetaNames.TaggingLabels,
 						string.Join(AddIn.Culture.TextInfo.ListSeparator, dialog.Tags));
 
 					if (dialog.Tags.Any())
@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 			var outline = page.Root.Elements(ns + "Outline")
 				.FirstOrDefault(e => e.Elements().Any(x =>
 					x.Name.LocalName == "Meta" &&
-					x.Attribute("name").Value == Page.TagBankMetaName));
+					x.Attribute("name").Value == MetaNames.TaggingBank));
 
 			XCData cdata;
 
@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 						new XAttribute("height", "11"),
 						new XAttribute("isSetByUser", "true")),
 					new XElement(ns + "Meta",
-						new XAttribute("name", Page.TagBankMetaName),
+						new XAttribute("name", MetaNames.TaggingBank),
 						new XAttribute("content", "1")),
 					new XElement(ns + "OEChildren",
 						new XElement(ns + "OE",
@@ -169,7 +169,7 @@ namespace River.OneMoreAddIn.Commands
 			var outline = page.Root.Elements(ns + "Outline")
 				.FirstOrDefault(e => e.Elements().Any(x =>
 					x.Name.LocalName == "Meta" &&
-					x.Attribute("name").Value == Page.TagBankMetaName));
+					x.Attribute("name").Value == MetaNames.TaggingBank));
 
 			if (outline != null)
 			{

@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 			var children = page.Root
 				.Elements(ns + "Outline").Elements(ns + "OEChildren")
 				.Where(e => !e.Parent.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value.Equals(Page.TagBankMetaName)))
+					.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)))
 				.ToList();
 
 			if (children.Any())

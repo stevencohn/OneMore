@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Threading;
 	using System.Windows.Forms;
@@ -37,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 				? Resx.ExportDialog_groupBox_OneText
 				: string.Format(Resx.ExportDialog_groupBox_Text, pageCount);
 
-			pathBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			pathBox.Text = LoadDefaultPath();
 			formatBox.SelectedIndex = 0;
 		}
 
@@ -58,11 +59,29 @@ namespace River.OneMoreAddIn.Commands
 					case 1: return OneNote.ExportFormat.PDF;
 					case 2: return OneNote.ExportFormat.Word;
 					case 3: return OneNote.ExportFormat.XML;
+					case 4: return OneNote.ExportFormat.Markdown;
 
 					default:
 						return OneNote.ExportFormat.OneNote;
 				}
 			}
+		}
+
+
+		private string LoadDefaultPath()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("Export");
+			if (settings != null)
+			{
+				var path = settings.Get<string>("path");
+				if (!string.IsNullOrEmpty(path))
+				{
+					return path;
+				}
+			}
+
+			return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 		}
 
 
@@ -74,7 +93,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeFormat(object sender, EventArgs e)
 		{
-			attachmentsBox.Enabled = formatBox.SelectedIndex == 0;
+			attachmentsBox.Enabled = 
+				formatBox.SelectedIndex == 0 ||		// HTML
+				formatBox.SelectedIndex == 4;		// Markdown
 		}
 
 

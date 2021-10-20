@@ -3305,6 +3305,7 @@ Symbols: PI, E</value>
 PDF File (*.pdf)
 Word File (*.docx)
 XML File (*.xml)
+Markdown File (*.md)
 OneNote File (*.one)</value>
     <comment>combo box</comment>
   </data>

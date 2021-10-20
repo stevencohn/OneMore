@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 					case OneNote.Scope.Pages: scopeId = one.CurrentSectionId; break;
 				}
 
-				var root = await one.SearchMeta(scopeId, Page.TaggingMetaName);
+				var root = await one.SearchMeta(scopeId, MetaNames.TaggingLabels);
 
 				var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
 				var pages = root.Descendants(ns + "Page")
@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var page in pages)
 				{
 					var meta = page.Elements(ns + "Meta")
-						.FirstOrDefault(e => e.Attribute("name").Value == Page.TaggingMetaName);
+						.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.TaggingLabels);
 
 					if (meta != null)
 					{

@@ -3221,6 +3221,7 @@ ISO-code then comma then language name</comment>
 ملف PDF (* .pdf)
 ملف Word (* .docx)
 ملف XML (* .xml)
+ملف Markdown (* .md)
 ملف OneNote (* .one)</value>
     <comment>combo box</comment>
   </data>

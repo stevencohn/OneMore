@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Commands
 			bool matchCase;
 			bool useRegex;
 
-			using (var one = new OneNote(out var page, out var ns))
+			using (var one = new OneNote(out var page, out _))
 			{
 				var text = page.GetSelectedText();
 

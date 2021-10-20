@@ -76,6 +76,8 @@ namespace River.OneMoreAddIn.Commands
 
 				var stylizer = new Stylizer(style);
 				stylizer.ApplyStyle(run);
+
+				ClearHyperlinkBackground(run);
 				updated = true;
 
 				// deep prevents runs from being processed multiple times
@@ -92,6 +94,38 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return updated;
+		}
+
+
+		private void ClearHyperlinkBackground(XElement run)
+		{
+			// hyperlinks are further styled with their own span, usually including both the
+			// background and mso-highlight css attributes, but we only care about background
+			// attribute since rebuilding it with a Style object will wipe out mso-highlight.
+			// OneNote will manage the font color of hyperlinks so don't bother with that
+
+			var cdata = run.GetCData();
+			var wrapper = cdata.GetWrapper();
+
+			var found = false;
+			wrapper.Descendants("span")
+				.Where(e => e.Attribute("style").Value.Contains("background"))
+				.Select(e => e.Attribute("style"))
+				.ForEach(a =>
+				{
+					var style = new Style(a.Value)
+					{
+						Highlight = Style.Automatic
+					};
+
+					a.Value = style.ToCss();
+					found = true;
+				});
+
+			if (found)
+			{
+				cdata.Value = wrapper.GetInnerXml();
+			}
 		}
 
 

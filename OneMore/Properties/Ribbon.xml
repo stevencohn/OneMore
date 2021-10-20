@@ -248,6 +248,11 @@
             </menu>
             <menu id="ribPageMenu" getLabel="GetRibbonLabel" imageMso="PageOrientationPortrait">
               <button
+                id="ribFlagTitleButton"
+                imageMso="DataGraphicIconSet"
+                getLabel="GetRibbonLabel"
+                onAction="AddTitleIconCmd"/>
+              <button
                 id="ribCollapseContentButton"
                 imageMso="CollapseAll"
                 getLabel="GetRibbonLabel"
@@ -566,11 +571,6 @@
                 imageMso="FileCompactAndRepairDatabase"
                 getLabel="GetRibbonLabel"
                 onAction="AnalyzeCmd"/>
-              <button
-                id="ribFlagTitleButton"
-                imageMso="DataGraphicIconSet"
-                getLabel="GetRibbonLabel"
-                onAction="AddTitleIconCmd"/>
               <button
                 id="ribCollapsePagesButton"
                 imageMso="CollapseAll"

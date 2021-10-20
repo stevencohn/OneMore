@@ -58,12 +58,12 @@ namespace River.OneMoreAddIn.Commands
 		private const int HandleSize = 8;
 
 		// the selection
-		private Image original;
 		private Point startPoint;
 		private Point endPoint;
 		private Point movePoint;
 		private Rectangle selectionBounds;
 		private int antOffset;
+		private readonly Image original;
 		private readonly Region selectionRegion;
 		private readonly GraphicsPath selectionPath;
 		private readonly float dpiX;
@@ -249,7 +249,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void pictureBox_SizeChanged(object sender, EventArgs e)
+		private void PictureBox_SizeChanged(object sender, EventArgs e)
 		{
 			var g = pictureBox.CreateGraphics();
 			if (selectionRegion != null && !selectionRegion.IsEmpty(g))

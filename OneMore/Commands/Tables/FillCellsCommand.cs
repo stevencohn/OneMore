@@ -71,8 +71,8 @@ namespace River.OneMoreAddIn.Commands
 				var action = (FillCells)args[0];
 				switch (action)
 				{
-					case FillCells.CopyAcross: updated = CopyAcross(table, cells); break;
-					case FillCells.CopyDown: updated = CopyDown(table, cells); break;
+					case FillCells.CopyAcross: updated = CopyAcross(table); break;
+					case FillCells.CopyDown: updated = CopyDown(table); break;
 					case FillCells.FillAcross: updated = FillAcross(table, cells); break;
 					case FillCells.FillDown: updated = FillDown(table, cells); break;
 				}
@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool CopyAcross(Table table, List<TableCell> cells)
+		private bool CopyAcross(Table table)
 		{
 			if (maxCol == minCol)
 			{
@@ -107,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool CopyDown(Table table, List<TableCell> cells)
+		private bool CopyDown(Table table)
 		{
 			if (maxRow == minRow)
 			{

@@ -124,6 +124,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region ExportHtml
 		private void RewirePageLinks(Page page, string filename, string hpath, bool bookScope)
 		{
 			/*
@@ -308,6 +309,35 @@ namespace River.OneMoreAddIn.Commands
 				{
 					logger.WriteLine($"error writing {filename}", exc);
 				}
+			}
+		}
+
+		#endregion ExportHtml
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="root"></param>
+		/// <param name="filename"></param>
+		public void ExportMarkdown(Page page, string filename, bool withAttachments)
+		{
+			try
+			{
+				if (File.Exists(filename))
+				{
+					File.Delete(filename);
+				}
+
+				var writer = new MarkdownWriter(page, withAttachments);
+				writer.Save(filename);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error publishig page as Markdown", exc);
+				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, "Markdown") + "\n\n" + exc.Message);
 			}
 		}
 

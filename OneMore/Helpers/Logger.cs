@@ -221,6 +221,7 @@ namespace River.OneMoreAddIn
 				else
 				{
 					writer.WriteLine();
+					writer.Flush();
 				}
 			}
 		}

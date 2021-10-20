@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
@@ -81,6 +82,7 @@ namespace River.OneMoreAddIn.Commands
 				case OneNote.ExportFormat.PDF: ext = ".pdf"; break;
 				case OneNote.ExportFormat.Word: ext = ".docx"; break;
 				case OneNote.ExportFormat.XML: ext = ".xml"; break;
+				case OneNote.ExportFormat.Markdown: ext = ".md"; break;
 				case OneNote.ExportFormat.OneNote: ext = ".one"; break;
 			}
 
@@ -116,6 +118,10 @@ namespace River.OneMoreAddIn.Commands
 					{
 						archivist.ExportXML(page.Root, filename);
 					}
+					else if (format == OneNote.ExportFormat.Markdown)
+					{
+						archivist.ExportMarkdown(page, filename, withAttachments);
+					}
 					else
 					{
 						archivist.Export(page.PageId, filename, format);
@@ -123,7 +129,19 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			SaveDefaultPath(path);
+
 			UIHelper.ShowMessage(string.Format(Resx.SaveAsMany_Success, pageIDs.Count, path));
+		}
+
+
+		private void SaveDefaultPath(string path)
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("Export");
+			settings.Add("path", path);
+			provider.SetCollection(settings);
+			provider.Save();
 		}
 	}
 }
