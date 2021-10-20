@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Hap = HtmlAgilityPack;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -182,7 +183,8 @@ namespace River.OneMoreAddIn.Commands
 				if (!string.IsNullOrEmpty(heading.Link))
 				{
 					var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
-					text.Append($"<a href=\"{heading.Link}\"{linkColor}>{heading.Text}</a>");
+					var clean = RemoveHyperlinks(heading.Text);
+					text.Append($"<a href=\"{heading.Link}\"{linkColor}>{clean}</a>");
 				}
 				else
 				{
@@ -235,6 +237,25 @@ namespace River.OneMoreAddIn.Commands
 				);
 
 			await one.Update(page);
+		}
+
+
+		private string RemoveHyperlinks(string text)
+		{
+			// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
+
+			// use HAP to handle cases like <span lang=yo> without quotes
+			var doc = new Hap.HtmlDocument();
+			doc.LoadHtml($"<wrapper>{text}</wrapper>");
+			var wrapper = XElement.Parse(doc.DocumentNode.OuterHtml);
+
+			var links = wrapper.Elements("a").ToList();
+			foreach (var link in links)
+			{
+				link.ReplaceWith(link.Value);
+			}
+
+			return wrapper.ToString(SaveOptions.DisableFormatting);
 		}
 		#endregion InsertHeadingsTable
 
