@@ -3216,6 +3216,7 @@ ISO-code then comma then language name</comment>
 Fichier PDF (*.pdf)
 Fichier Word (*.docx)
 Fichier XML (*.xml)
+Fichier de démarques (*.md)
 Fichier OneNote (*.one)</value>
     <comment>combo box</comment>
   </data>

@@ -1974,6 +1974,7 @@ namespace River.OneMoreAddIn.Properties {
         ///PDF File (*.pdf)
         ///Word File (*.docx)
         ///XML File (*.xml)
+        ///Markdown File (*.md)
         ///OneNote File (*.one).
         /// </summary>
         internal static string ExportDialog_formatBox_Text {

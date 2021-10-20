@@ -26,18 +26,18 @@ namespace River.OneMoreAddIn.Models
 	/// </summary>
 	internal partial class Page
 	{
-		// Page meta to indicate data storage analysis report
-		public static readonly string AnalysisMetaName = "omAnalysisReport";
-		// Page meta to keep track of rotating highlighter index
-		public static readonly string HighlightMetaName = "omHighlightIndex";
-		// Page is reference linked to another page, so don't include it in subsequent links
-		public static readonly string LinkReferenceMetaName = "omLinkReference";
-		// Page is a reference map, so don't include it in subsequent maps
-		public static readonly string PageMapMetaName = "omPageMap";
-		// Outline meta to mark visible word bank
-		public static readonly string TagBankMetaName = "omTaggingBank";
-		// Page meta to specify page tag list
-		public static readonly string TaggingMetaName = "omTaggingLabels";
+		//// Page meta to indicate data storage analysis report
+		//public static readonly string AnalysisMetaName = "omAnalysisReport";
+		//// Page meta to keep track of rotating highlighter index
+		//public static readonly string HighlightMetaName = "omHighlightIndex";
+		//// Page is reference linked to another page, so don't include it in subsequent links
+		//public static readonly string LinkReferenceMetaName = "omLinkReference";
+		//// Page is a reference map, so don't include it in subsequent maps
+		//public static readonly string PageMapMetaName = "omPageMap";
+		//// Outline meta to mark visible word bank
+		//public static readonly string TagBankMetaName = "omTaggingBank";
+		//// Page meta to specify page tag list
+		//public static readonly string TaggingMetaName = "omTaggingLabels";
 
 
 		/// <summary>
@@ -657,7 +657,7 @@ namespace River.OneMoreAddIn.Models
 		{
 			var selected = Root.Elements(Namespace + "Outline")
 				.Where(e => !e.Elements(Namespace + "Meta")
-					.Any(m => m.Attribute("name").Value.Equals(Page.TagBankMetaName)))
+					.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)))
 				.Descendants(Namespace + "T")
 				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
 

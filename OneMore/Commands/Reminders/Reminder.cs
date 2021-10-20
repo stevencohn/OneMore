@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using Windows.UI.Notifications;
 
 
 	/*
@@ -24,5 +25,24 @@ namespace River.OneMoreAddIn.Commands
 		public DateTime Started;
 		public DateTime Due;
 		//public DateTime Completed;	// Tag.completionDate
+
+
+		public static void X()
+		{
+			// get a toast XML template
+			var doc = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastImageAndText04);
+
+			// fill in the text elements
+			var texts = doc.GetElementsByTagName("text");
+			for (int i = 0; i < texts.Length; i++)
+			{
+				texts[i].AppendChild(doc.CreateTextNode("Line " + i));
+			}
+
+			var toast = new ToastNotification(doc);
+
+			var appID = "OneMore Reminder";
+			ToastNotificationManager.CreateToastNotifier(appID).Show(toast);
+		}
 	}
 }

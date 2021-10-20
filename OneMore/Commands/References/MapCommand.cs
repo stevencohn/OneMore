@@ -199,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// don't map existing page maps
 			hierarchy.Descendants(ns + "Meta")
-				.Where(e => e.Attributes().Any(a => a.Value == Page.PageMapMetaName))
+				.Where(e => e.Attributes().Any(a => a.Value == MetaNames.PageMap))
 				.Select(e => e.Parent)
 				.Remove();
 
@@ -274,7 +274,7 @@ namespace River.OneMoreAddIn.Commands
 			one.CreatePage(sectionId, out var pageId);
 
 			var page = one.GetPage(pageId);
-			page.SetMeta(Page.PageMapMetaName, "true");
+			page.SetMeta(MetaNames.PageMap, "true");
 
 			switch (scope)
 			{

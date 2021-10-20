@@ -425,6 +425,7 @@
     <Compile Include="Models\Bullet.cs" />
     <Compile Include="Models\ContentList.cs" />
     <Compile Include="Models\Meta.cs" />
+    <Compile Include="Models\MetaNames.cs" />
     <Compile Include="Models\Outline.cs" />
     <Compile Include="Models\PageNamespace.cs" />
     <Compile Include="Models\Paragraph.cs" />
