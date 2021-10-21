@@ -48,7 +48,11 @@ namespace River.OneMoreAddIn.Commands
 		public string ObjectId { get; set; }
 
 		// one:Tag.index
-		public int TagIndex { get; set; }
+		public string TagIndex { get; set; }
+
+		// one:TagDef.symbol
+		[JsonIgnore]
+		public string Symbol { get; set; }
 
 		// one:Tag.disabled
 		[JsonIgnore]

@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			// we don't need no stinkin seconds
 			dateFormat = CultureInfo.CurrentCulture
 				.DateTimeFormat.FullDateTimePattern.Replace(":ss", string.Empty);
 
@@ -74,6 +75,11 @@ namespace River.OneMoreAddIn.Commands
 
 		public Reminder Reminder => reminder;
 
+
+		private void ChangeSubject(object sender, System.EventArgs e)
+		{
+			okButton.Enabled = subjectBox.Text.Trim().Length > 0;
+		}
 
 		private void ChangePercent(object sender, System.EventArgs e)
 		{

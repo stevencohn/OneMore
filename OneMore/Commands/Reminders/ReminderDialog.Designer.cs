@@ -132,6 +132,7 @@ namespace River.OneMoreAddIn.Commands
 			this.subjectBox.Name = "subjectBox";
 			this.subjectBox.Size = new System.Drawing.Size(709, 26);
 			this.subjectBox.TabIndex = 15;
+			this.subjectBox.TextChanged += new System.EventHandler(this.ChangeSubject);
 			// 
 			// statusLabel
 			// 
@@ -206,14 +207,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// startedBox
 			// 
-			this.startedBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.startedBox.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.startedBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.startedBox.Location = new System.Drawing.Point(145, 106);
 			this.startedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.startedBox.MaxLength = 200;
 			this.startedBox.Name = "startedBox";
 			this.startedBox.ReadOnly = true;
-			this.startedBox.Size = new System.Drawing.Size(434, 26);
+			this.startedBox.Size = new System.Drawing.Size(434, 19);
 			this.startedBox.TabIndex = 22;
 			// 
 			// startedLabel
@@ -236,14 +236,13 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// completedBox
 			// 
-			this.completedBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.completedBox.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.completedBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.completedBox.Location = new System.Drawing.Point(145, 184);
 			this.completedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.completedBox.MaxLength = 200;
 			this.completedBox.Name = "completedBox";
 			this.completedBox.ReadOnly = true;
-			this.completedBox.Size = new System.Drawing.Size(434, 26);
+			this.completedBox.Size = new System.Drawing.Size(434, 19);
 			this.completedBox.TabIndex = 24;
 			// 
 			// ReminderDialog

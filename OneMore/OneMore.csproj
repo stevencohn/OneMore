@@ -283,6 +283,7 @@
     <Compile Include="Commands\Reminders\ReminderDialog.Designer.cs">
       <DependentUpon>ReminderDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Reminders\ReminderSerializer.cs" />
     <Compile Include="Commands\Reminders\ReportRemindersCommand.cs" />
     <Compile Include="Commands\Settings\LinesSheet.cs">
       <SubType>UserControl</SubType>
