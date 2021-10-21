@@ -4,7 +4,32 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Newtonsoft.Json;
 	using System;
+
+
+	/// <summary>
+	/// User selected status
+	/// </summary>
+	internal enum ReminderStatus
+	{
+		NotStarted,
+		InProgress,
+		Completed,
+		Waiting,
+		Deferred
+	}
+
+
+	/// <summary>
+	/// User selected priority
+	/// </summary>
+	internal enum ReminderPriority
+	{
+		Low,
+		Medium,
+		High
+	}
 
 
 	/// <summary>
@@ -17,19 +42,42 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal class Reminder
 	{
-		public string Version;			// schema version
-		public string ObjectId;			// -> parent object ID
-		public int TagIndex;			// -> Tag index
-		public int Priority;
-		public int Percent;
-		public DateTime Start;			// stored as UTC
-		public DateTime Started;		// stored as UTC
-		public DateTime Due;			// stored as UTC
-		public string Subject;			// restrict to 200 chars
+		public int Version { get; set; } = 1;
 
-		// Note the following properties are managed directly from the Tag:
-		//public bool Disabled;			// -> Tag.disabled
-		//public DateTime Created;		// -> Tag.creationDate
-		//public DateTime Completed;	// -> Tag.completionDate
+		// parent object Id
+		public string ObjectId { get; set; }
+
+		// one:Tag.index
+		public int TagIndex { get; set; }
+
+		// one:Tag.disabled
+		[JsonIgnore]
+		public bool Disabled { get; set; }
+
+		public ReminderStatus Status { get; set; }
+
+		public ReminderPriority Priority { get; set; }
+
+		public int Percent { get; set; }
+
+		// one:Tab:creationDate
+		[JsonIgnore]
+		public DateTime Created { get; set; }
+
+		// stored as UTC, displayed local
+		public DateTime Start { get; set; }
+
+		// stored as UTC, displayed local
+		public DateTime Started { get; set; }
+
+		// stored as UTC, displayed local
+		public DateTime Due { get; set; }
+
+		// one:Tag:completionDate
+		[JsonIgnore]
+		public DateTime Completed { get; set; }
+
+		// maxlen 200 chars
+		public string Subject { get; set; }
 	}
 }

@@ -67,6 +67,9 @@ namespace River.OneMoreAddIn
 		public async Task ColorizeCmd(IRibbonControl control)
 			=> await factory.Run<ColorizeCommand>(control.Tag); // tag=language
 
+		public async Task CompleteReminderCmd(IRibbonControl control)
+			=> await factory.Run<CompleteReminderCommand>();
+
 		public async Task CopyAcrossCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.CopyAcross);
 
@@ -87,6 +90,9 @@ namespace River.OneMoreAddIn
 
 		public async Task DeleteFormulaCmd(IRibbonControl control)
 			=> await factory.Run<DeleteFormulaCommand>();
+
+		public async Task DeleteReminderCmd(IRibbonControl control)
+			=> await factory.Run<DeleteReminderCommand>();
 
 		public async Task DisableSpellCheckCmd(IRibbonControl control)
 			=> await factory.Run<ProofingCommand>(ProofingCommand.NoLang);
@@ -253,6 +259,9 @@ namespace River.OneMoreAddIn
 		public async Task RefreshPageLinksCmd(IRibbonControl control)
 			=> await factory.Run<RefreshPageLinksCommand>();
 
+		public async Task RemindCmd(IRibbonControl control)
+			=> await factory.Run<RemindCommand>();
+
 		public async Task RemoveAuthorsCmd(IRibbonControl control)
 			=> await factory.Run<RemoveAuthorsCommand>();
 
@@ -276,6 +285,9 @@ namespace River.OneMoreAddIn
 
 		public async Task ReplayCmd(IRibbonControl control)
 			=> await factory.ReplayLastAction();
+
+		public async Task ReportRemindersCmd(IRibbonControl control)
+			=> await factory.Run<ReportRemindersCommand>();
 
 		public async Task ResizeImagesCmd(IRibbonControl control)
 			=> await factory.Run<ResizeImagesCommand>();

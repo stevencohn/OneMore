@@ -21,7 +21,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// send the notification
 			var toast = new ToastNotification(doc);
-			var appID = "OneMore Reminder";
+			var appID = "OneMore Reminder"; // TODO: translate this!
+
 			ToastNotificationManager.CreateToastNotifier(appID).Show(toast);
 		}
 	}
