@@ -364,6 +364,23 @@
                 getLabel="GetRibbonLabel"
                 onAction="GetImagesCmd"/>
             </menu>
+            <menu id="ribRemindersMenu" label="Reminders" imageMso="ReminderGallery">
+              <button
+                id="ctxRemindButton"
+                imageMso="NewTask"
+                label="Add or Update Reminder"
+                onAction="RemindCmd"/>
+              <button
+                id="ctxCompleteReminderButton"
+                imageMso="AcceptTask"
+                label="Complete Reminder"
+                onAction="CompleteReminderCmd"/>
+              <button
+                id="ctxDeleteReminderButton"
+                imageMso="CancelTaskAssignment"
+                label="Delete Reminder"
+                onAction="DeleteReminderCmd"/>
+            </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI">
               <button
                 id="ribReplaceButton"
@@ -794,29 +811,6 @@
       <menuSeparator
         id="omSectionGroupContextMenuSeparator"
         insertBeforeMso="FolderRename"/>
-    </contextMenu>
-    <contextMenu idMso="ContextMenuTag">
-      <button
-        id="ctxRemindButton"
-        imageMso="NewTask"
-        label="Add or Update Reminder"
-        onAction="RemindCmd"
-        insertBeforeMso="NoteTagCheck"/>
-      <button
-        id="ctxCompleteReminderButton"
-        imageMso="AcceptTask"
-        label="Complete Reminder"
-        onAction="CompleteReminderCmd"
-        insertBeforeMso="NoteTagCheck"/>
-      <button
-        id="ctxDeleteReminderButton"
-        imageMso="CancelTaskAssignment"
-        label="Delete Reminder"
-        onAction="DeleteReminderCmd"
-        insertBeforeMso="NoteTagCheck"/>
-      <menuSeparator
-        id="omTagContextMenuSeparator"
-        insertBeforeMso="NoteTagCheck"/>
     </contextMenu>
   </contextMenus>
 </customUI>

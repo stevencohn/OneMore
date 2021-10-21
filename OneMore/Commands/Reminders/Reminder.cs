@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal class Reminder
 	{
-		public int Version { get; set; } = 1;
+		public int Version { get; set; }
 
 		// parent object Id
 		public string ObjectId { get; set; }
@@ -79,5 +79,16 @@ namespace River.OneMoreAddIn.Commands
 
 		// maxlen 200 chars
 		public string Subject { get; set; }
+
+
+		public Reminder()
+		{
+			Version = 1;
+			Created = DateTime.Now;
+			Start = DateTime.Now;
+			Started = DateTime.Now;
+			Due = DateTime.Now;
+			Completed = DateTime.Now;
+		}
 	}
 }

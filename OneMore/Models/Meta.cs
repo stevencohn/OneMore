@@ -81,7 +81,6 @@ namespace River.OneMoreAddIn.Models
 			{
 				using (var zipper = new GZipStream(stream, CompressionMode.Decompress))
 				{
-					// TODO: Future: check Version property for reader-makes-right
 					using (var reader = new StreamReader(zipper))
 					{
 						var content = JsonConvert.DeserializeObject<T>(

@@ -144,6 +144,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// statusBox
 			// 
+			this.statusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.statusBox.FormattingEnabled = true;
 			this.statusBox.Items.AddRange(new object[] {
             "Not started",
@@ -160,6 +161,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// priorityBox
 			// 
+			this.priorityBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.priorityBox.FormattingEnabled = true;
 			this.priorityBox.Items.AddRange(new object[] {
             "Low",
