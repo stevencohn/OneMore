@@ -10,6 +10,9 @@ namespace River.OneMoreAddIn.Models
 	/// <summary>
 	/// Represents a Meta element
 	/// </summary>
+	/// <remarks>
+	/// To delete a one:Meta element, you must also delete its parent container's objectID
+	/// </remarks>
 	internal class Meta : XElement
 	{
 

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Globalization;
+	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -12,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly string dateFormat;
 		private readonly Reminder reminder;
+		private string symbol;
 
 
 		public ReminderDialog()
@@ -70,6 +72,20 @@ namespace River.OneMoreAddIn.Commands
 			statusBox.SelectedIndex = (int)reminder.Status;
 			priorityBox.SelectedIndex = (int)reminder.Priority;
 			percentBox.Value = reminder.Percent;
+
+			if (!string.IsNullOrEmpty(reminder.Symbol))
+			{
+				var symval = int.Parse(reminder.Symbol);
+				using (var dialog = new UI.TagPickerDialog(0, 0))
+				{
+					var glyph = dialog.GetGlyph(symval);
+					if (glyph != null)
+					{
+						tagButton.Text = null;
+						tagButton.Image = glyph;
+					}
+				}
+			}
 		}
 
 
@@ -93,6 +109,36 @@ namespace River.OneMoreAddIn.Commands
 			if (statusBox.SelectedIndex == (int)ReminderStatus.NotStarted) percentBox.Value = 0;
 			else if (statusBox.SelectedIndex == (int)ReminderStatus.Completed) percentBox.Value = 100;
 			else if (statusBox.SelectedIndex == (int)ReminderStatus.InProgress && percentBox.Value == 100) percentBox.Value = 0;
+		}
+
+		private void SelectTag(object sender, System.EventArgs e)
+		{
+			var location = PointToScreen(tagButton.Location);
+
+			using (var dialog = new UI.TagPickerDialog(0, 0))
+			{
+				// TagPickerDialog customizes Left and Top in its constructor because most
+				// consumers place the tagButton in a groupBox and that offsets its true
+				// position, whereas here we need the actual location of tagButton
+				dialog.Left = location.X + (tagButton.Width / 2);
+				dialog.Top = location.Y + tagButton.Height - 3;
+
+				if (dialog.ShowDialog(this) == DialogResult.OK)
+				{
+					var glyph = dialog.GetGlyph();
+					if (glyph != null)
+					{
+						tagButton.Text = null;
+						tagButton.Image = glyph;
+					}
+					else
+					{
+						tagButton.Text = "?";
+					}
+
+					symbol = dialog.Symbol.ToString();
+				}
+			}
 		}
 
 		private void OK(object sender, System.EventArgs e)

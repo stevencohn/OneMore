@@ -48,6 +48,8 @@ namespace River.OneMoreAddIn.Commands
 			this.startedLabel = new System.Windows.Forms.Label();
 			this.completedLabel = new System.Windows.Forms.Label();
 			this.completedBox = new System.Windows.Forms.TextBox();
+			this.tagButton = new System.Windows.Forms.Button();
+			this.tagLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -56,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(648, 344);
+			this.okButton.Location = new System.Drawing.Point(624, 401);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 9;
@@ -68,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(754, 344);
+			this.cancelButton.Location = new System.Drawing.Point(730, 401);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;
@@ -79,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.startDateBox.CustomFormat = "dddd, MMMM d, yyyy h:mm tt";
 			this.startDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.startDateBox.Location = new System.Drawing.Point(145, 67);
+			this.startDateBox.Location = new System.Drawing.Point(145, 120);
 			this.startDateBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.startDateBox.Name = "startDateBox";
 			this.startDateBox.Size = new System.Drawing.Size(434, 26);
@@ -89,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.dueDateBox.CustomFormat = "dddd, MMMM d, yyyy h:mm tt";
 			this.dueDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dueDateBox.Location = new System.Drawing.Point(145, 145);
+			this.dueDateBox.Location = new System.Drawing.Point(145, 198);
 			this.dueDateBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.dueDateBox.Name = "dueDateBox";
 			this.dueDateBox.Size = new System.Drawing.Size(434, 26);
@@ -98,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 			// startDateLabel
 			// 
 			this.startDateLabel.AutoSize = true;
-			this.startDateLabel.Location = new System.Drawing.Point(23, 72);
+			this.startDateLabel.Location = new System.Drawing.Point(23, 125);
 			this.startDateLabel.Name = "startDateLabel";
 			this.startDateLabel.Size = new System.Drawing.Size(80, 20);
 			this.startDateLabel.TabIndex = 12;
@@ -107,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 			// dueDateLabel
 			// 
 			this.dueDateLabel.AutoSize = true;
-			this.dueDateLabel.Location = new System.Drawing.Point(23, 150);
+			this.dueDateLabel.Location = new System.Drawing.Point(23, 203);
 			this.dueDateLabel.Name = "dueDateLabel";
 			this.dueDateLabel.Size = new System.Drawing.Size(75, 20);
 			this.dueDateLabel.TabIndex = 13;
@@ -116,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 			// subjectLabel
 			// 
 			this.subjectLabel.AutoSize = true;
-			this.subjectLabel.Location = new System.Drawing.Point(23, 31);
+			this.subjectLabel.Location = new System.Drawing.Point(23, 84);
 			this.subjectLabel.Name = "subjectLabel";
 			this.subjectLabel.Size = new System.Drawing.Size(63, 20);
 			this.subjectLabel.TabIndex = 14;
@@ -126,18 +128,18 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.subjectBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.subjectBox.Location = new System.Drawing.Point(145, 28);
+			this.subjectBox.Location = new System.Drawing.Point(145, 81);
 			this.subjectBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.subjectBox.MaxLength = 200;
 			this.subjectBox.Name = "subjectBox";
-			this.subjectBox.Size = new System.Drawing.Size(709, 26);
+			this.subjectBox.Size = new System.Drawing.Size(685, 26);
 			this.subjectBox.TabIndex = 15;
 			this.subjectBox.TextChanged += new System.EventHandler(this.ChangeSubject);
 			// 
 			// statusLabel
 			// 
 			this.statusLabel.AutoSize = true;
-			this.statusLabel.Location = new System.Drawing.Point(23, 226);
+			this.statusLabel.Location = new System.Drawing.Point(23, 279);
 			this.statusLabel.Name = "statusLabel";
 			this.statusLabel.Size = new System.Drawing.Size(56, 20);
 			this.statusLabel.TabIndex = 16;
@@ -153,7 +155,7 @@ namespace River.OneMoreAddIn.Commands
             "Completed",
             "Waiting on someone else",
             "Deferred"});
-			this.statusBox.Location = new System.Drawing.Point(145, 223);
+			this.statusBox.Location = new System.Drawing.Point(145, 276);
 			this.statusBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.statusBox.Name = "statusBox";
 			this.statusBox.Size = new System.Drawing.Size(308, 28);
@@ -168,7 +170,7 @@ namespace River.OneMoreAddIn.Commands
             "Low",
             "Medium",
             "High"});
-			this.priorityBox.Location = new System.Drawing.Point(145, 264);
+			this.priorityBox.Location = new System.Drawing.Point(145, 317);
 			this.priorityBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.priorityBox.Name = "priorityBox";
 			this.priorityBox.Size = new System.Drawing.Size(242, 28);
@@ -177,7 +179,7 @@ namespace River.OneMoreAddIn.Commands
 			// priorityLabel
 			// 
 			this.priorityLabel.AutoSize = true;
-			this.priorityLabel.Location = new System.Drawing.Point(23, 267);
+			this.priorityLabel.Location = new System.Drawing.Point(23, 320);
 			this.priorityLabel.Name = "priorityLabel";
 			this.priorityLabel.Size = new System.Drawing.Size(56, 20);
 			this.priorityLabel.TabIndex = 19;
@@ -186,7 +188,7 @@ namespace River.OneMoreAddIn.Commands
 			// percentLabel
 			// 
 			this.percentLabel.AutoSize = true;
-			this.percentLabel.Location = new System.Drawing.Point(23, 307);
+			this.percentLabel.Location = new System.Drawing.Point(23, 360);
 			this.percentLabel.Name = "percentLabel";
 			this.percentLabel.Size = new System.Drawing.Size(95, 20);
 			this.percentLabel.TabIndex = 20;
@@ -199,7 +201,7 @@ namespace River.OneMoreAddIn.Commands
             0,
             0,
             0});
-			this.percentBox.Location = new System.Drawing.Point(145, 305);
+			this.percentBox.Location = new System.Drawing.Point(145, 358);
 			this.percentBox.Name = "percentBox";
 			this.percentBox.Size = new System.Drawing.Size(92, 26);
 			this.percentBox.TabIndex = 21;
@@ -208,7 +210,7 @@ namespace River.OneMoreAddIn.Commands
 			// startedBox
 			// 
 			this.startedBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.startedBox.Location = new System.Drawing.Point(145, 106);
+			this.startedBox.Location = new System.Drawing.Point(145, 159);
 			this.startedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.startedBox.MaxLength = 200;
 			this.startedBox.Name = "startedBox";
@@ -219,7 +221,7 @@ namespace River.OneMoreAddIn.Commands
 			// startedLabel
 			// 
 			this.startedLabel.AutoSize = true;
-			this.startedLabel.Location = new System.Drawing.Point(23, 109);
+			this.startedLabel.Location = new System.Drawing.Point(23, 162);
 			this.startedLabel.Name = "startedLabel";
 			this.startedLabel.Size = new System.Drawing.Size(62, 20);
 			this.startedLabel.TabIndex = 23;
@@ -228,7 +230,7 @@ namespace River.OneMoreAddIn.Commands
 			// completedLabel
 			// 
 			this.completedLabel.AutoSize = true;
-			this.completedLabel.Location = new System.Drawing.Point(23, 187);
+			this.completedLabel.Location = new System.Drawing.Point(23, 240);
 			this.completedLabel.Name = "completedLabel";
 			this.completedLabel.Size = new System.Drawing.Size(86, 20);
 			this.completedLabel.TabIndex = 25;
@@ -237,7 +239,7 @@ namespace River.OneMoreAddIn.Commands
 			// completedBox
 			// 
 			this.completedBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.completedBox.Location = new System.Drawing.Point(145, 184);
+			this.completedBox.Location = new System.Drawing.Point(145, 237);
 			this.completedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.completedBox.MaxLength = 200;
 			this.completedBox.Name = "completedBox";
@@ -245,13 +247,37 @@ namespace River.OneMoreAddIn.Commands
 			this.completedBox.Size = new System.Drawing.Size(434, 19);
 			this.completedBox.TabIndex = 24;
 			// 
+			// tagButton
+			// 
+			this.tagButton.BackColor = System.Drawing.SystemColors.Window;
+			this.tagButton.Location = new System.Drawing.Point(145, 30);
+			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
+			this.tagButton.Name = "tagButton";
+			this.tagButton.Size = new System.Drawing.Size(60, 38);
+			this.tagButton.TabIndex = 26;
+			this.tagButton.Text = "?";
+			this.tagButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.tagButton.UseVisualStyleBackColor = false;
+			this.tagButton.Click += new System.EventHandler(this.SelectTag);
+			// 
+			// tagLabel
+			// 
+			this.tagLabel.AutoSize = true;
+			this.tagLabel.Location = new System.Drawing.Point(23, 39);
+			this.tagLabel.Name = "tagLabel";
+			this.tagLabel.Size = new System.Drawing.Size(36, 20);
+			this.tagLabel.TabIndex = 27;
+			this.tagLabel.Text = "Tag";
+			// 
 			// ReminderDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(877, 405);
+			this.ClientSize = new System.Drawing.Size(853, 462);
+			this.Controls.Add(this.tagLabel);
+			this.Controls.Add(this.tagButton);
 			this.Controls.Add(this.completedLabel);
 			this.Controls.Add(this.completedBox);
 			this.Controls.Add(this.startedLabel);
@@ -304,5 +330,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label startedLabel;
 		private System.Windows.Forms.Label completedLabel;
 		private System.Windows.Forms.TextBox completedBox;
+		private System.Windows.Forms.Button tagButton;
+		private System.Windows.Forms.Label tagLabel;
 	}
 }
