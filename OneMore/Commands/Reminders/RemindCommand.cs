@@ -55,8 +55,6 @@ namespace River.OneMoreAddIn.Commands
 						if (SetReminder(paragraph, dialog.Reminder))
 						{
 							await one.Update(page);
-
-							new Notifier().Send("boo!");
 						}
 					}
 				}
