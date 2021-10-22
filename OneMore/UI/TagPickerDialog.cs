@@ -255,6 +255,20 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		public void Select(int symbol)
+		{
+			var zone = zones.FirstOrDefault(z => z.Symbol == symbol);
+			if (zone != null)
+			{
+				active = zone;
+				using (var pen = new Pen(Color.Magenta, 2f))
+				{
+					graphics.DrawRectangle(pen, active.Bounds);
+				}
+			}
+		}
+
+
 		private void pictureBox_MouseMove(object sender, MouseEventArgs e)
 		{
 			var mouseX = xScalingFactor == 0.0 ? e.X : (int)Math.Round(e.X / xScalingFactor);

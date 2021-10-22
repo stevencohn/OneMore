@@ -119,6 +119,11 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Left = location.X + (tagButton.Width / 2);
 				dialog.Top = location.Y + tagButton.Height - 3;
 
+				if (reminder?.Symbol is string sym && sym != "0")
+				{
+					dialog.Select(int.Parse(sym));
+				}
+
 				if (dialog.ShowDialog(this) == DialogResult.OK)
 				{
 					var glyph = dialog.GetGlyph();
