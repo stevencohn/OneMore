@@ -4,14 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System.Globalization;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class ReminderDialog : UI.LocalizableForm
 	{
-		private readonly string dateFormat;
 		private readonly Reminder reminder;
 		private string symbol;
 
@@ -39,12 +36,8 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			// we don't need no stinkin seconds
-			dateFormat = CultureInfo.CurrentCulture
-				.DateTimeFormat.FullDateTimePattern.Replace(":ss", string.Empty);
-
-			startDateBox.CustomFormat = dateFormat;
-			dueDateBox.CustomFormat = dateFormat;
+			startDateBox.CustomFormat = DateTimeExtensions.FriendlyPattern;
+			dueDateBox.CustomFormat = DateTimeExtensions.FriendlyPattern;
 		}
 
 
@@ -59,14 +52,14 @@ namespace River.OneMoreAddIn.Commands
 			if (reminder.Status == ReminderStatus.InProgress ||
 				reminder.Status == ReminderStatus.Completed)
 			{
-				startedBox.Text = reminder.Started.ToString(dateFormat);
+				startedBox.Text = reminder.Started.ToFriendlyString();
 			}
 
 			dueDateBox.Value = reminder.Due;
 
 			if (reminder.Status == ReminderStatus.Completed)
 			{
-				completedBox.Text = reminder.Completed.ToString(dateFormat);
+				completedBox.Text = reminder.Completed.ToFriendlyString();
 			}
 
 			statusBox.SelectedIndex = (int)reminder.Status;

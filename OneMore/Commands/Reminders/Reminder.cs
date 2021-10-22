@@ -42,16 +42,19 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal class Reminder
 	{
+		private const string BellSymbol = "97";
+
+
 		public int Version { get; set; }
 
 		// parent object Id
 		public string ObjectId { get; set; }
 
 		// one:Tag.index
+		[JsonIgnore]
 		public string TagIndex { get; set; }
 
 		// one:TagDef.symbol
-		[JsonIgnore]
 		public string Symbol { get; set; }
 
 		// one:Tag.disabled
@@ -85,9 +88,15 @@ namespace River.OneMoreAddIn.Commands
 		public string Subject { get; set; }
 
 
-		public Reminder()
+		/// <summary>
+		/// Initialize a new instance bound to the given objectId
+		/// </summary>
+		/// <param name="objectId">The ID of the containing paragraph OE</param>
+		public Reminder(string objectId)
 		{
+			ObjectId = objectId;
 			Version = 1;
+			Symbol = BellSymbol;
 			Created = DateTime.Now;
 			Start = DateTime.Now;
 			Started = DateTime.Now;

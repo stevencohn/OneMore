@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 
-			System.Diagnostics.Debugger.Launch();
+			//System.Diagnostics.Debugger.Launch();
 
 			using (var one = new OneNote(out page, out ns))
 			{
@@ -64,6 +64,7 @@ namespace River.OneMoreAddIn.Commands
 		private Reminder GetReminder(XElement paragraph)
 		{
 			Reminder reminder;
+			XElement tag;
 
 			var meta = paragraph.Elements(ns + "Meta")
 				.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.Reminder);
@@ -73,16 +74,30 @@ namespace River.OneMoreAddIn.Commands
 				reminder = new ReminderSerializer()
 					.Decode(meta.Attribute("content").Value);
 
-				if (reminder != null)
+				if (reminder != null && 
+					!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
 				{
 					// check tag still exists
-					if (paragraph.Elements(ns + "Tag")
-						.Any(e => e.Attribute("index").Value == reminder.TagIndex))
+					var index = page.GetTagDefIndex(reminder.Symbol);
+					tag = paragraph.Elements(ns + "Tag")
+						.FirstOrDefault(e => e.Attribute("index").Value == index);
+
+					if (tag != null)
 					{
+						if (tag.Attribute("completed").Value == "true" &&
+							reminder.Status != ReminderStatus.Completed)
+						{
+							reminder.Status = ReminderStatus.Completed;
+							reminder.Percent = 100;
+							reminder.Completed = DateTime.Parse(tag.Attribute("completionDate").Value);
+						}
+
 						return reminder;
 					}
 				}
 			}
+
+			// either no meta or meta is orphaned from its tag so create a new one...
 
 			var text = paragraph.Value;
 			if (text.Length > 50)
@@ -90,15 +105,15 @@ namespace River.OneMoreAddIn.Commands
 				text = text.Substring(0, 50) + "...";
 			}
 
-			reminder = new Reminder
+			reminder = new Reminder(paragraph.Attribute("objectID").Value)
 			{
-				ObjectId = paragraph.Attribute("objectID").Value,
 				Subject = text
 			};
 
-			var tag = paragraph.Elements(ns + "Tag").FirstOrDefault();
+			tag = paragraph.Elements(ns + "Tag").FirstOrDefault();
 			if (tag != null)
 			{
+				// use existing tag on paragraph
 				reminder.TagIndex = tag.Attribute("index").Value;
 				reminder.Symbol = page.GetTagDefSymbol(reminder.TagIndex);
 
@@ -110,6 +125,13 @@ namespace River.OneMoreAddIn.Commands
 					reminder.Completed = DateTime.Parse(completionDate.Value);
 				}
 			}
+			else
+			{
+				// use default symbol
+				// if dialog is cancelled, OneNote will clean up the unused TagDef
+				reminder.TagIndex = page.AddTagDef(reminder.Symbol,
+					$"Reminder due {reminder.Due.ToFriendlyString()}");
+			}
 
 			return reminder;
 		}
@@ -120,7 +142,9 @@ namespace River.OneMoreAddIn.Commands
 			var index = page.GetTagDefIndex(reminder.Symbol);
 			if (index == null)
 			{
-				index = page.AddTagDef(reminder.Symbol, "Reminder");
+				index = page.AddTagDef(reminder.Symbol,
+					$"Reminder due {reminder.Due.ToFriendlyString()}");
+
 				reminder.TagIndex = index;
 			}
 
@@ -129,10 +153,33 @@ namespace River.OneMoreAddIn.Commands
 
 			if (tag == null)
 			{
-				paragraph.AddFirst(new XElement(ns + "Tag",
+				// tags must be ordered by index even within their containing paragraph
+				// so take all, remove from paragraph, append, sort, re-add...
+
+				var tags = paragraph.Elements(ns + "Tag").ToList();
+				tags.ForEach(t => t.Remove());
+
+				var completed = reminder.Status == ReminderStatus.Completed
+					? "true" : "false";
+
+				tag = new XElement(ns + "Tag",
 					new XAttribute("index", index),
-					new XAttribute("completed", "false")
-					));
+					new XAttribute("completed", completed),
+					new XAttribute("disabled", "false")
+					);
+
+				tags.Add(tag);
+
+				paragraph.AddFirst(tags.OrderBy(t => t.Attribute("index").Value));
+			}
+			else
+			{
+				var tcompleted = tag.Attribute("completed").Value == "true";
+				var rcompleted = reminder.Status == ReminderStatus.Completed;
+				if (tcompleted != rcompleted)
+				{
+					tag.Attribute("completed").Value = rcompleted ? "true" : "false";
+				}
 			}
 
 			var encoded = new ReminderSerializer().Encode(reminder);
