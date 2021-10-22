@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Location = new System.Drawing.Point(624, 401);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 9;
+			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn.Commands
 			this.startDateBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.startDateBox.Name = "startDateBox";
 			this.startDateBox.Size = new System.Drawing.Size(434, 26);
-			this.startDateBox.TabIndex = 10;
+			this.startDateBox.TabIndex = 2;
 			// 
 			// dueDateBox
 			// 
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 			this.dueDateBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.dueDateBox.Name = "dueDateBox";
 			this.dueDateBox.Size = new System.Drawing.Size(434, 26);
-			this.dueDateBox.TabIndex = 11;
+			this.dueDateBox.TabIndex = 3;
 			// 
 			// startDateLabel
 			// 
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 			this.subjectBox.MaxLength = 200;
 			this.subjectBox.Name = "subjectBox";
 			this.subjectBox.Size = new System.Drawing.Size(685, 26);
-			this.subjectBox.TabIndex = 15;
+			this.subjectBox.TabIndex = 1;
 			this.subjectBox.TextChanged += new System.EventHandler(this.ChangeSubject);
 			// 
 			// statusLabel
@@ -159,7 +159,7 @@ namespace River.OneMoreAddIn.Commands
 			this.statusBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.statusBox.Name = "statusBox";
 			this.statusBox.Size = new System.Drawing.Size(308, 28);
-			this.statusBox.TabIndex = 17;
+			this.statusBox.TabIndex = 4;
 			this.statusBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStatus);
 			// 
 			// priorityBox
@@ -174,7 +174,7 @@ namespace River.OneMoreAddIn.Commands
 			this.priorityBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.priorityBox.Name = "priorityBox";
 			this.priorityBox.Size = new System.Drawing.Size(242, 28);
-			this.priorityBox.TabIndex = 18;
+			this.priorityBox.TabIndex = 5;
 			// 
 			// priorityLabel
 			// 
@@ -204,7 +204,7 @@ namespace River.OneMoreAddIn.Commands
 			this.percentBox.Location = new System.Drawing.Point(145, 358);
 			this.percentBox.Name = "percentBox";
 			this.percentBox.Size = new System.Drawing.Size(92, 26);
-			this.percentBox.TabIndex = 21;
+			this.percentBox.TabIndex = 6;
 			this.percentBox.ValueChanged += new System.EventHandler(this.ChangePercent);
 			// 
 			// startedBox
@@ -217,6 +217,7 @@ namespace River.OneMoreAddIn.Commands
 			this.startedBox.ReadOnly = true;
 			this.startedBox.Size = new System.Drawing.Size(434, 19);
 			this.startedBox.TabIndex = 22;
+			this.startedBox.TabStop = false;
 			// 
 			// startedLabel
 			// 
@@ -246,6 +247,7 @@ namespace River.OneMoreAddIn.Commands
 			this.completedBox.ReadOnly = true;
 			this.completedBox.Size = new System.Drawing.Size(434, 19);
 			this.completedBox.TabIndex = 24;
+			this.completedBox.TabStop = false;
 			// 
 			// tagButton
 			// 
@@ -254,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.tagButton.Name = "tagButton";
 			this.tagButton.Size = new System.Drawing.Size(60, 38);
-			this.tagButton.TabIndex = 26;
+			this.tagButton.TabIndex = 0;
 			this.tagButton.Text = "?";
 			this.tagButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.tagButton.UseVisualStyleBackColor = false;

@@ -3625,7 +3625,7 @@ ISO-code then comma then language name</comment>
     <comment>context menu option</comment>
   </data>
   <data name="RemindCommand_nameFormat" xml:space="preserve">
-    <value>Reminder: task due (0)</value>
+    <value>Reminder: task due {0}</value>
     <comment>tagdef name tooltip</comment>
   </data>
   <data name="RemindCommand_noContext" xml:space="preserve">

@@ -4149,7 +4149,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminder: task due (0).
+        ///   Looks up a localized string similar to Reminder: task due {0}.
         /// </summary>
         internal static string RemindCommand_nameFormat {
             get {

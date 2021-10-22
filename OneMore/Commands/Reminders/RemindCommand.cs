@@ -105,9 +105,15 @@ namespace River.OneMoreAddIn.Commands
 			// either no meta or meta is orphaned from its tag so create a new one...
 
 			var text = paragraph.Value;
-			if (text.Length > 50)
+
+			// get only raw text without <span> et al.
+			// this seem to work for Unicode strings like Chinese, whereas XElement.Parse breaks
+			text = System.Text.RegularExpressions
+				.Regex.Replace(text, "<[^>]+>", string.Empty);
+
+			if (text.Length > 40)
 			{
-				text = text.Substring(0, 50) + "...";
+				text = text.Substring(0, 40) + "...";
 			}
 
 			reminder = new Reminder(paragraph.Attribute("objectID").Value)
