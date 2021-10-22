@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class RemindCommand : Command
@@ -41,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (paragraph == null)
 				{
-					UIHelper.ShowInfo(one.Window, "Cursor must be positioned on a paragraph");
+					UIHelper.ShowInfo(one.Window, Resx.RemindCommand_noContext);
 					return;
 				}
 
@@ -84,6 +85,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (tag != null)
 					{
+						// synchronize reminder with tag
 						if (tag.Attribute("completed").Value == "true" &&
 							reminder.Status != ReminderStatus.Completed)
 						{
@@ -113,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 			tag = paragraph.Elements(ns + "Tag").FirstOrDefault();
 			if (tag != null)
 			{
-				// use existing tag on paragraph
+				// use existing tag on paragraph, synchronize reminder with this tag
 				reminder.TagIndex = tag.Attribute("index").Value;
 				reminder.Symbol = page.GetTagDefSymbol(reminder.TagIndex);
 
@@ -130,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 				// use default symbol
 				// if dialog is cancelled, OneNote will clean up the unused TagDef
 				reminder.TagIndex = page.AddTagDef(reminder.Symbol,
-					$"Reminder due {reminder.Due.ToFriendlyString()}");
+					string.Format(Resx.RemindCommand_nameFormat, reminder.Due.ToFriendlyString()));
 			}
 
 			return reminder;
@@ -143,7 +145,7 @@ namespace River.OneMoreAddIn.Commands
 			if (index == null)
 			{
 				index = page.AddTagDef(reminder.Symbol,
-					$"Reminder due {reminder.Due.ToFriendlyString()}");
+					string.Format(Resx.RemindCommand_nameFormat, reminder.Due.ToFriendlyString()));
 
 				reminder.TagIndex = index;
 			}
@@ -159,6 +161,7 @@ namespace River.OneMoreAddIn.Commands
 				var tags = paragraph.Elements(ns + "Tag").ToList();
 				tags.ForEach(t => t.Remove());
 
+				// synchronize tag with reminder
 				var completed = reminder.Status == ReminderStatus.Completed
 					? "true" : "false";
 
@@ -174,6 +177,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
+				// synchronize tag with reminder
 				var tcompleted = tag.Attribute("completed").Value == "true";
 				var rcompleted = reminder.Status == ReminderStatus.Completed;
 				if (tcompleted != rcompleted)

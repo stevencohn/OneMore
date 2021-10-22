@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class ReminderDialog : UI.LocalizableForm
@@ -19,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				//Text = Resx.ReminderDialog_Text;
+				Text = Resx.ReminderDialog_Text;
 
 				Localize(new string[]
 				{
@@ -29,7 +30,9 @@ namespace River.OneMoreAddIn.Commands
 					"dueDateLabel",
 					"completedLabel",
 					"statusLabel",
+					"statusBox",
 					"priorityLabel",
+					"priorityBox",
 					"percentLabel",
 					"okButton",
 					"cancelButton"

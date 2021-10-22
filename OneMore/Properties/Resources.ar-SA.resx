@@ -3584,4 +3584,74 @@ ISO-code then comma then language name</comment>
     <value>... لغة التدقيق</value>
     <comment>context menu option</comment>
   </data>
+  <data name="RemindCommand_nameFormat" xml:space="preserve">
+    <value>تذكير: مهمة مستحقة (0)</value>
+    <comment>tagdef name tooltip</comment>
+  </data>
+  <data name="RemindCommand_noContext" xml:space="preserve">
+    <value>يجب وضع المؤشر على فقرة</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="ReminderDialog.Text" xml:space="preserve">
+    <value>تذكير</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ReminderDialog_cancelButton.Text" xml:space="preserve">
+    <value>يلغي</value>
+    <comment>button</comment>
+  </data>
+  <data name="ReminderDialog_completedLabel.Text" xml:space="preserve">
+    <value>مكتمل</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_dueDateLabel.Text" xml:space="preserve">
+    <value>تاريخ الاستحقاق</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_okButton.Text" xml:space="preserve">
+    <value>نعم</value>
+    <comment>button</comment>
+  </data>
+  <data name="ReminderDialog_percentLabel.Text" xml:space="preserve">
+    <value>٪ مكتمل</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_priorityBox.Text" xml:space="preserve">
+    <value>قليل
+واسطة
+عالي</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ReminderDialog_priorityLabel.Text" xml:space="preserve">
+    <value>أولوية</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_startDateLabel.Text" xml:space="preserve">
+    <value>تاريخ البدء</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_startedLabel.Text" xml:space="preserve">
+    <value>بدأت</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_statusBox.Text" xml:space="preserve">
+    <value>لم يبدأ
+في تقدم
+مكتمل
+في انتظار شخص آخر
+مؤجل</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ReminderDialog_statusLabel.Text" xml:space="preserve">
+    <value>حالة</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_subjectLabel.Text" xml:space="preserve">
+    <value>موضوعات</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_tagLabel.Text" xml:space="preserve">
+    <value>بطاقة شعار</value>
+    <comment>label</comment>
+  </data>
 </root>

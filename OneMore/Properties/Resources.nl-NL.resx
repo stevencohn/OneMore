@@ -3585,4 +3585,74 @@ OneNote-bestand (*.one)</value>
     <value>... Proeftaal</value>
     <comment>context menu option</comment>
   </data>
+  <data name="RemindCommand_nameFormat" xml:space="preserve">
+    <value>Herinnering: taak af (0)</value>
+    <comment>tagdef name tooltip</comment>
+  </data>
+  <data name="RemindCommand_noContext" xml:space="preserve">
+    <value>Cursor moet op een alinea worden geplaatst</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="ReminderDialog.Text" xml:space="preserve">
+    <value>Herinnering</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ReminderDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuleren</value>
+    <comment>button</comment>
+  </data>
+  <data name="ReminderDialog_completedLabel.Text" xml:space="preserve">
+    <value>Voltooid</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_dueDateLabel.Text" xml:space="preserve">
+    <value>Opleveringsdatum</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_okButton.Text" xml:space="preserve">
+    <value>Oke</value>
+    <comment>button</comment>
+  </data>
+  <data name="ReminderDialog_percentLabel.Text" xml:space="preserve">
+    <value>% Compleet</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_priorityBox.Text" xml:space="preserve">
+    <value>Laag
+Medium
+Hoog</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ReminderDialog_priorityLabel.Text" xml:space="preserve">
+    <value>Prioriteit</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_startDateLabel.Text" xml:space="preserve">
+    <value>Startdatum</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_startedLabel.Text" xml:space="preserve">
+    <value>Begonnen</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_statusBox.Text" xml:space="preserve">
+    <value>Niet begonnen
+Bezig
+Voltooid
+Wachten op iemand anders
+Verschoven</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ReminderDialog_statusLabel.Text" xml:space="preserve">
+    <value>Toestand</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_subjectLabel.Text" xml:space="preserve">
+    <value>Onderwerp</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderDialog_tagLabel.Text" xml:space="preserve">
+    <value>Label</value>
+    <comment>label</comment>
+  </data>
 </root>

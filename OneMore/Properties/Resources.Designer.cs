@@ -4104,6 +4104,156 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reminder: task due (0).
+        /// </summary>
+        internal static string RemindCommand_nameFormat {
+            get {
+                return ResourceManager.GetString("RemindCommand_nameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cursor must be positioned on a paragraph.
+        /// </summary>
+        internal static string RemindCommand_noContext {
+            get {
+                return ResourceManager.GetString("RemindCommand_noContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ReminderDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        internal static string ReminderDialog_completedLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_completedLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due date.
+        /// </summary>
+        internal static string ReminderDialog_dueDateLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_dueDateLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string ReminderDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Complete.
+        /// </summary>
+        internal static string ReminderDialog_percentLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_percentLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low
+        ///Medium
+        ///High.
+        /// </summary>
+        internal static string ReminderDialog_priorityBox_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_priorityBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Priority.
+        /// </summary>
+        internal static string ReminderDialog_priorityLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_priorityLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        internal static string ReminderDialog_startDateLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_startDateLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started.
+        /// </summary>
+        internal static string ReminderDialog_startedLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_startedLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not started
+        ///In progress
+        ///Completed
+        ///Waiting on someone else
+        ///Deferred.
+        /// </summary>
+        internal static string ReminderDialog_statusBox_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_statusBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string ReminderDialog_statusLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_statusLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        internal static string ReminderDialog_subjectLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_subjectLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        internal static string ReminderDialog_tagLabel_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog_tagLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder.
+        /// </summary>
+        internal static string ReminderDialog_Text {
+            get {
+                return ResourceManager.GetString("ReminderDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Screen clipping.
         /// </summary>
         internal static string RemoveCitations_Clippings {
