@@ -119,7 +119,12 @@ namespace River.OneMoreAddIn.Commands
 
 			if (tag == null)
 			{
-				var index = page.AddTagDef(reminder.Symbol, "Reminder");
+				var index = page.GetTagDefIndex(reminder.Symbol);
+				if (index == null)
+				{
+					index = page.AddTagDef(reminder.Symbol, "Reminder");
+				}
+
 				paragraph.AddFirst(new XElement(ns + "Tag",
 					new XAttribute("index", index),
 					new XAttribute("completed", "false")
