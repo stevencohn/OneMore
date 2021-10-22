@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.UI.Notifications;
 
 
-	internal class Notifier
+	internal class ReminderManager
 	{
 		private static string imageCache;
 

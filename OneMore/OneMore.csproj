@@ -274,7 +274,7 @@
     <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
     <Compile Include="Commands\Reminders\CompleteReminderCommand.cs" />
     <Compile Include="Commands\Reminders\DeleteReminderCommand.cs" />
-    <Compile Include="Commands\Reminders\Notifier.cs" />
+    <Compile Include="Commands\Reminders\ReminderManager.cs" />
     <Compile Include="Commands\Reminders\RemindCommand.cs" />
     <Compile Include="Commands\Reminders\Reminder.cs" />
     <Compile Include="Commands\Reminders\RemindDialog.cs">
