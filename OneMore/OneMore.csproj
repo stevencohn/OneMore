@@ -416,7 +416,7 @@
     <Compile Include="Commands\Extras\AnalyzeDialog.Designer.cs">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tools\SectionColorCommand.cs" />
+    <Compile Include="Commands\Extras\SectionColorCommand.cs" />
     <Compile Include="Commands\Tools\UpdateCommand.cs" />
     <Compile Include="Commands\Tools\UpdateDialog.cs">
       <SubType>Form</SubType>
@@ -623,7 +623,7 @@
     <Compile Include="Commands\Search\SearchAndReplaceEditor.cs" />
     <Compile Include="Commands\Search\Atoms\TextAtom.cs" />
     <Compile Include="Commands\Tools\AboutCommand.cs" />
-    <Compile Include="Commands\Tools\SortCommand.cs" />
+    <Compile Include="Commands\Extras\SortCommand.cs" />
     <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorDialog.cs">
@@ -647,10 +647,10 @@
     <Compile Include="Commands\Search\SearchAndReplaceDialog.Designer.cs">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tools\SortDialog.cs">
+    <Compile Include="Commands\Extras\SortDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Tools\SortDialog.Designer.cs">
+    <Compile Include="Commands\Extras\SortDialog.Designer.cs">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BasicColors.cs" />
@@ -1072,7 +1072,7 @@
     <EmbeddedResource Include="Commands\Search\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tools\SortDialog.resx">
+    <EmbeddedResource Include="Commands\Extras\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
