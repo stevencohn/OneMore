@@ -11,6 +11,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text;
 
 
+	/// <summary>
+	/// Serializes and deserializes a Reminder for compact storage in a Meta tag. This solves
+	/// two problems. First, to obfuscate nested quotes within the XML. Second, to compress
+	/// the objects as compact as possible. The disadvange is that they have to be decoded
+	/// and deserialized before interrogation but it should be OK, right?!
+	/// </summary>
 	internal class ReminderSerializer
 	{
 		private const string JDateFormat = "yyyy-MM-ddTHH:mm";
