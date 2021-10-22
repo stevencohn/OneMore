@@ -364,21 +364,21 @@
                 getLabel="GetRibbonLabel"
                 onAction="GetImagesCmd"/>
             </menu>
-            <menu id="ribRemindersMenu" label="Reminders" imageMso="ReminderGallery">
+            <menu id="ribRemindersMenu" getLabel="GetRibbonLabel" imageMso="ReminderGallery">
               <button
-                id="ctxRemindButton"
+                id="ribRemindButton"
                 imageMso="NewTask"
-                label="Add or Update Reminder"
+                getLabel="GetRibbonLabel"
                 onAction="RemindCmd"/>
               <button
-                id="ctxCompleteReminderButton"
+                id="ribCompleteReminderButton"
                 imageMso="AcceptTask"
-                label="Complete Reminder"
+                getLabel="GetRibbonLabel"
                 onAction="CompleteReminderCmd"/>
               <button
-                id="ctxDeleteReminderButton"
+                id="ribDeleteReminderButton"
                 imageMso="CancelTaskAssignment"
-                label="Delete Reminder"
+                getLabel="GetRibbonLabel"
                 onAction="DeleteReminderCmd"/>
             </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI">

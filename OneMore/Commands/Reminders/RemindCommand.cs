@@ -55,6 +55,8 @@ namespace River.OneMoreAddIn.Commands
 						if (SetReminder(paragraph, dialog.Reminder))
 						{
 							await one.Update(page);
+
+							new Notifier().Send("boo!");
 						}
 					}
 				}
@@ -80,21 +82,24 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// check tag still exists
 					var index = page.GetTagDefIndex(reminder.Symbol);
-					tag = paragraph.Elements(ns + "Tag")
-						.FirstOrDefault(e => e.Attribute("index").Value == index);
-
-					if (tag != null)
+					if (index != null)
 					{
-						// synchronize reminder with tag
-						if (tag.Attribute("completed").Value == "true" &&
-							reminder.Status != ReminderStatus.Completed)
-						{
-							reminder.Status = ReminderStatus.Completed;
-							reminder.Percent = 100;
-							reminder.Completed = DateTime.Parse(tag.Attribute("completionDate").Value);
-						}
+						tag = paragraph.Elements(ns + "Tag")
+							.FirstOrDefault(e => e.Attribute("index").Value == index);
 
-						return reminder;
+						if (tag != null)
+						{
+							// synchronize reminder with tag
+							if (tag.Attribute("completed").Value == "true" &&
+								reminder.Status != ReminderStatus.Completed)
+							{
+								reminder.Status = ReminderStatus.Completed;
+								reminder.Percent = 100;
+								reminder.Completed = DateTime.Parse(tag.Attribute("completionDate").Value);
+							}
+
+							return reminder;
+						}
 					}
 				}
 			}

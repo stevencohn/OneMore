@@ -995,11 +995,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Complete Reminder.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCompleteReminderButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCompleteReminderButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Decrease Text Size.
         /// </summary>
         internal static string ContextMenuSheet_ribDecreaseFontSizeButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribDecreaseFontSizeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Delete Reminder.
+        /// </summary>
+        internal static string ContextMenuSheet_ribDeleteReminderButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribDeleteReminderButton", resourceCulture);
             }
         }
         
@@ -1162,6 +1180,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ContextMenuSheet_ribRedStatusButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribRedStatusButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Add or Update Reminders.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRemindButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRemindButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminders.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRemindersMenu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRemindersMenu", resourceCulture);
             }
         }
         
@@ -1566,6 +1602,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string DeleteFormulaCommand_NoFormulas {
             get {
                 return ResourceManager.GetString("DeleteFormulaCommand_NoFormulas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About to delete reminder. Would you also like to delete the tag associated with this reminder?.
+        /// </summary>
+        internal static string DeleteReminderCommand_deleteTag {
+            get {
+                return ResourceManager.GetString("DeleteReminderCommand_deleteTag", resourceCulture);
             }
         }
         
@@ -4872,6 +4917,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete Reminder.
+        /// </summary>
+        internal static string ribCompleteReminderButton_Label {
+            get {
+                return ResourceManager.GetString("ribCompleteReminderButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Across.
         /// </summary>
         internal static string ribCopyAcrossButton_Label {
@@ -4985,6 +5039,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribDeleteFormulaButton_Screentip {
             get {
                 return ResourceManager.GetString("ribDeleteFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Reminder.
+        /// </summary>
+        internal static string ribDeleteReminderButton_Label {
+            get {
+                return ResourceManager.GetString("ribDeleteReminderButton_Label", resourceCulture);
             }
         }
         
@@ -5678,6 +5741,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRefreshPageLinksButton_Label {
             get {
                 return ResourceManager.GetString("ribRefreshPageLinksButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add or Update Reminders.
+        /// </summary>
+        internal static string ribRemindButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemindButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminders.
+        /// </summary>
+        internal static string ribRemindersMenu_Label {
+            get {
+                return ResourceManager.GetString("ribRemindersMenu_Label", resourceCulture);
             }
         }
         
