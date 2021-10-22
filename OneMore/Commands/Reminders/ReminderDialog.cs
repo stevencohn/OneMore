@@ -149,6 +149,11 @@ namespace River.OneMoreAddIn.Commands
 			reminder.Status = (ReminderStatus)statusBox.SelectedIndex;
 			reminder.Priority = (ReminderPriority)priorityBox.SelectedIndex;
 			reminder.Percent = (int)percentBox.Value;
+
+			if (!string.IsNullOrEmpty(symbol) && symbol != "0")
+			{
+				reminder.Symbol = symbol;
+			}
 		}
 	}
 }

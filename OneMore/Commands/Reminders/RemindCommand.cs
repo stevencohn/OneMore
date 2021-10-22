@@ -27,6 +27,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
 			using (var one = new OneNote(out page, out ns))
 			{
 				PageNamespace.Set(ns);
@@ -114,17 +117,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool SetReminder(XElement paragraph, Reminder reminder)
 		{
+			var index = page.GetTagDefIndex(reminder.Symbol);
+			if (index == null)
+			{
+				index = page.AddTagDef(reminder.Symbol, "Reminder");
+				reminder.TagIndex = index;
+			}
+
 			var tag = paragraph.Elements(ns + "Tag")
-				.FirstOrDefault(e => e.Attribute("index").Value == reminder.TagIndex);
+				.FirstOrDefault(e => e.Attribute("index").Value == index);
 
 			if (tag == null)
 			{
-				var index = page.GetTagDefIndex(reminder.Symbol);
-				if (index == null)
-				{
-					index = page.AddTagDef(reminder.Symbol, "Reminder");
-				}
-
 				paragraph.AddFirst(new XElement(ns + "Tag",
 					new XAttribute("index", index),
 					new XAttribute("completed", "false")
