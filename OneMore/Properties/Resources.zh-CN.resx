@@ -3682,4 +3682,8 @@ OneNote 文件 (*.one)</value>
     <value>即将删除提醒。</value>
     <comment>message box</comment>
   </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>这一段没有提醒</value>
+    <comment>message box</comment>
+  </data>
 </root>

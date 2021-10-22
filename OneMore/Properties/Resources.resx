@@ -3730,4 +3730,8 @@ Deferred</value>
     <value>About to delete reminder. Would you also like to delete the tag associated with this reminder?</value>
     <comment>message box</comment>
   </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>There is no reminder on this paragraph</value>
+    <comment>message box</comment>
+  </data>
 </root>

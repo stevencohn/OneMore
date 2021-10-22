@@ -3690,4 +3690,8 @@ ISO-code then comma then language name</comment>
     <value>على وشك حذف التذكير. </value>
     <comment>message box</comment>
   </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>لا يوجد تذكير في هذه الفقرة</value>
+    <comment>message box</comment>
+  </data>
 </root>

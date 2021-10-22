@@ -3691,4 +3691,8 @@ Diferido</value>
     <value>Prestes a apagar o lembrete. </value>
     <comment>message box</comment>
   </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>Não há lembrete neste parágrafo</value>
+    <comment>message box</comment>
+  </data>
 </root>

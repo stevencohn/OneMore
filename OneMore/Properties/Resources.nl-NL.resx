@@ -3691,4 +3691,8 @@ Verschoven</value>
     <value>Staat op het punt de herinnering te verwijderen. </value>
     <comment>message box</comment>
   </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>Er is geen herinnering in deze paragraaf</value>
+    <comment>message box</comment>
+  </data>
 </root>

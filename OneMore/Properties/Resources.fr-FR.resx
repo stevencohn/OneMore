@@ -3685,4 +3685,8 @@ Différé</value>
     <value>Sur le point de supprimer le rappel. </value>
     <comment>message box</comment>
   </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>Il n'y a pas de rappel sur ce paragraphe</value>
+    <comment>message box</comment>
+  </data>
 </root>

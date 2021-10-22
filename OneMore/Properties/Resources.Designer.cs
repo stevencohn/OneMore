@@ -4167,6 +4167,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no reminder on this paragraph.
+        /// </summary>
+        internal static string RemindCommand_noReminder {
+            get {
+                return ResourceManager.GetString("RemindCommand_noReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string ReminderDialog_cancelButton_Text {

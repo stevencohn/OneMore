@@ -3676,4 +3676,8 @@ Aufgeschoben</value>
     <value>Erinnerung löschen. </value>
     <comment>message box</comment>
   </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>Es gibt keine Erinnerung zu diesem Absatz</value>
+    <comment>message box</comment>
+  </data>
 </root>
