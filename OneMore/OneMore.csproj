@@ -277,11 +277,11 @@
     <Compile Include="Commands\Reminders\Notifier.cs" />
     <Compile Include="Commands\Reminders\RemindCommand.cs" />
     <Compile Include="Commands\Reminders\Reminder.cs" />
-    <Compile Include="Commands\Reminders\ReminderDialog.cs">
+    <Compile Include="Commands\Reminders\RemindDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Reminders\ReminderDialog.Designer.cs">
-      <DependentUpon>ReminderDialog.cs</DependentUpon>
+    <Compile Include="Commands\Reminders\RemindDialog.Designer.cs">
+      <DependentUpon>RemindDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Reminders\ReminderSerializer.cs" />
     <Compile Include="Commands\Reminders\ReportRemindersCommand.cs" />
@@ -966,8 +966,8 @@
     <EmbeddedResource Include="Commands\References\RefreshPageLinksDialog.resx">
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Reminders\ReminderDialog.resx">
-      <DependentUpon>ReminderDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Reminders\RemindDialog.resx">
+      <DependentUpon>RemindDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
       <DependentUpon>LinesSheet.cs</DependentUpon>

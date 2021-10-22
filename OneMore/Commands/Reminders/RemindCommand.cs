@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var reminder = GetReminder(paragraph);
 
-				using (var dialog = new ReminderDialog(reminder))
+				using (var dialog = new RemindDialog(reminder))
 				{
 					if (dialog.ShowDialog(owner) == DialogResult.OK)
 					{

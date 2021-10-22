@@ -8,19 +8,19 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class ReminderDialog : UI.LocalizableForm
+	internal partial class RemindDialog : UI.LocalizableForm
 	{
 		private readonly Reminder reminder;
 		private string symbol;
 
 
-		public ReminderDialog()
+		public RemindDialog()
 		{
 			InitializeComponent();
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.ReminderDialog_Text;
+				Text = Resx.RemindDialog_Text;
 
 				Localize(new string[]
 				{
@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public ReminderDialog(Reminder reminder)
+		public RemindDialog(Reminder reminder)
 			: this()
 		{
 			this.reminder = reminder;

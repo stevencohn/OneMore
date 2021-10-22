@@ -3584,49 +3584,49 @@ OneNote 文件 (*.one)</value>
     <value>光标必须位于段落上</value>
     <comment>warning message</comment>
   </data>
-  <data name="ReminderDialog.Text" xml:space="preserve">
+  <data name="RemindDialog.Text" xml:space="preserve">
     <value>提醒</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ReminderDialog_cancelButton.Text" xml:space="preserve">
+  <data name="RemindDialog_cancelButton.Text" xml:space="preserve">
     <value>取消</value>
     <comment>button</comment>
   </data>
-  <data name="ReminderDialog_completedLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
     <value>完全的</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_dueDateLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>到期日</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_okButton.Text" xml:space="preserve">
+  <data name="RemindDialog_okButton.Text" xml:space="preserve">
     <value>好的</value>
     <comment>button</comment>
   </data>
-  <data name="ReminderDialog_percentLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
     <value>％ 完全的</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_priorityBox.Text" xml:space="preserve">
+  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
     <value>低的
 中等的
 高的</value>
     <comment>combobox</comment>
   </data>
-  <data name="ReminderDialog_priorityLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
     <value>优先事项</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_startDateLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
     <value>开始日期</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_startedLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
     <value>开始</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_statusBox.Text" xml:space="preserve">
+  <data name="RemindDialog_statusBox.Text" xml:space="preserve">
     <value>没有开始
 进行中
 完全的
@@ -3634,15 +3634,15 @@ OneNote 文件 (*.one)</value>
 延期</value>
     <comment>combobox</comment>
   </data>
-  <data name="ReminderDialog_statusLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
     <value>地位</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_subjectLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
     <value>主题</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_tagLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_tagLabel.Text" xml:space="preserve">
     <value>标签</value>
     <comment>label</comment>
   </data>

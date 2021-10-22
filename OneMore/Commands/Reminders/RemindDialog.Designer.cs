@@ -1,7 +1,7 @@
 ﻿
 namespace River.OneMoreAddIn.Commands
 {
-	partial class ReminderDialog
+	partial class RemindDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReminderDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemindDialog));
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.startDateBox = new System.Windows.Forms.DateTimePicker();

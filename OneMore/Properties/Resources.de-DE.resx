@@ -3578,49 +3578,49 @@ OneNote-Datei (*.one)</value>
     <value>Cursor muss auf einem Absatz positioniert sein</value>
     <comment>warning message</comment>
   </data>
-  <data name="ReminderDialog.Text" xml:space="preserve">
+  <data name="RemindDialog.Text" xml:space="preserve">
     <value>Erinnerung</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ReminderDialog_cancelButton.Text" xml:space="preserve">
+  <data name="RemindDialog_cancelButton.Text" xml:space="preserve">
     <value>Abbrechen</value>
     <comment>button</comment>
   </data>
-  <data name="ReminderDialog_completedLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
     <value>Vollendet</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_dueDateLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Geburtstermin</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_okButton.Text" xml:space="preserve">
+  <data name="RemindDialog_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>button</comment>
   </data>
-  <data name="ReminderDialog_percentLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
     <value>% Vollständig</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_priorityBox.Text" xml:space="preserve">
+  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
     <value>Niedrig
 Mittel
 Hoch</value>
     <comment>combobox</comment>
   </data>
-  <data name="ReminderDialog_priorityLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
     <value>Priorität</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_startDateLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
     <value>Startdatum</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_startedLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
     <value>Gestartet</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_statusBox.Text" xml:space="preserve">
+  <data name="RemindDialog_statusBox.Text" xml:space="preserve">
     <value>Nicht angefangen
 Im Gange
 Vollendet
@@ -3628,15 +3628,15 @@ Auf jemand anderen warten
 Aufgeschoben</value>
     <comment>combobox</comment>
   </data>
-  <data name="ReminderDialog_statusLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
     <value>Status</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_subjectLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
     <value>Gegenstand</value>
     <comment>label</comment>
   </data>
-  <data name="ReminderDialog_tagLabel.Text" xml:space="preserve">
+  <data name="RemindDialog_tagLabel.Text" xml:space="preserve">
     <value>Schild</value>
     <comment>label</comment>
   </data>
