@@ -54,6 +54,13 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (SetReminder(paragraph, dialog.Reminder))
 						{
+							page.SetMeta(MetaNames.Reminder,
+								page.Root.Elements(ns + "Outline")
+									.Descendants(ns + "Meta")
+									.Count(e => e.Attribute("name").Value == MetaNames.Reminder)
+									.ToString()
+								);
+
 							await one.Update(page);
 						}
 					}
