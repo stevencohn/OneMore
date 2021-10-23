@@ -5916,6 +5916,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reminder Summary Report.
+        /// </summary>
+        internal static string ribReportRemindersButton_Label {
+            get {
+                return ResourceManager.GetString("ribReportRemindersButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resize.
         /// </summary>
         internal static string ribResizeImagesButton_Label {

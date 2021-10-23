@@ -3694,4 +3694,8 @@ ISO-code then comma then language name</comment>
     <value>لا يوجد تذكير في هذه الفقرة</value>
     <comment>message box</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>تقرير ملخص التذكير</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

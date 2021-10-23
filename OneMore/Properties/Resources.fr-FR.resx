@@ -3689,4 +3689,8 @@ Différé</value>
     <value>Il n'y a pas de rappel sur ce paragraphe</value>
     <comment>message box</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Rapport récapitulatif de rappel</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

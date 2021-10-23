@@ -3686,4 +3686,8 @@ OneNote 文件 (*.one)</value>
     <value>这一段没有提醒</value>
     <comment>message box</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>提醒汇总报告</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

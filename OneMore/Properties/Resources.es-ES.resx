@@ -3695,4 +3695,8 @@ Diferido</value>
     <value>No hay recordatorio en este párrafo</value>
     <comment>message box</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Informe de resumen de recordatorio</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

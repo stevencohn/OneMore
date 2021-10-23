@@ -3695,4 +3695,8 @@ Diferido</value>
     <value>Não há lembrete neste parágrafo</value>
     <comment>message box</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Relatório de Resumo de Lembrete</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

@@ -3680,4 +3680,8 @@ Aufgeschoben</value>
     <value>Es gibt keine Erinnerung zu diesem Absatz</value>
     <comment>message box</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Zusammenfassungsbericht zur Erinnerung</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

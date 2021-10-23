@@ -3695,4 +3695,8 @@ Verschoven</value>
     <value>Er is geen herinnering in deze paragraaf</value>
     <comment>message box</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Samenvatting herinneringsrapport</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

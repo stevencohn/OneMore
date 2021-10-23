@@ -3734,4 +3734,8 @@ Deferred</value>
     <value>There is no reminder on this paragraph</value>
     <comment>message box</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Reminder Summary Report</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
