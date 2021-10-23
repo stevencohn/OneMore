@@ -66,9 +66,16 @@ namespace River.OneMoreAddIn.Commands
 					var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
 					foreach (var reminder in reminders)
 					{
-						if (!reminder.Silent)
+						var item = new Item { Meta = meta, Reminder = reminder };
+
+						if (reminder.Status == ReminderStatus.Completed ||
+							reminder.Status == ReminderStatus.Deferred)
 						{
-							Test(reminder);
+							inactive.Add(item);
+						}
+						else
+						{
+							active.Add(item);
 						}
 					}
 				}
