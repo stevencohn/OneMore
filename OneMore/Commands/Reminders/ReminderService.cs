@@ -63,12 +63,6 @@ namespace River.OneMoreAddIn.Commands
 				var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
 				var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
 
-				// ignore recycle bins
-				hierarchy.Elements(ns + "Notebook").Elements(ns + "SectionGroup")
-					.Where(e => e.Attribute("isRecycleBin") != null)
-					.ToList()
-					.ForEach(e => e.Remove());
-
 				var metas = hierarchy.Descendants(ns + "Meta").Where(e =>
 					e.Attribute("name").Value == MetaNames.Reminder &&
 					e.Attribute("content").Value.Length > 0);
@@ -84,7 +78,10 @@ namespace River.OneMoreAddIn.Commands
 					var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
 					foreach (var reminder in reminders)
 					{
-						Test(reminder);
+						if (!reminder.Silent)
+						{
+							Test(reminder);
+						}
 					}
 				}
 			}

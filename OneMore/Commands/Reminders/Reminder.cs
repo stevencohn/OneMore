@@ -67,6 +67,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public ReminderPriority Priority { get; set; }
 
+		public bool Silent { get; set; }
+
 		public int Percent { get; set; }
 
 		// one:Tab:creationDate
@@ -96,8 +98,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="objectId">The ID of the containing paragraph OE</param>
 		public Reminder(string objectId)
 		{
-			ObjectId = objectId;
 			Version = 1;
+			ObjectId = objectId;
 			Symbol = BellSymbol;
 			Created = DateTime.Now;
 			Start = DateTime.Now;
