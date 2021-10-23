@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ReminderService : Loggable
 	{
-		private const int sleep = 60000;
+		private const int sleep = 10000;
 
 		private static string imageCache;
 
@@ -63,14 +63,53 @@ namespace River.OneMoreAddIn.Commands
 				var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
 				var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
 
-				var pages = hierarchy.Descendants(ns + "Meta")
-					.Where(e => e.Attribute("content").Value != "0")
-					.Select(e => e.Parent)
-					.Distinct();
+				// ignore recycle bins
+				hierarchy.Elements(ns + "Notebook").Elements(ns + "SectionGroup")
+					.Where(e => e.Attribute("isRecycleBin") != null)
+					.ToList()
+					.ForEach(e => e.Remove());
 
+				var metas = hierarchy.Descendants(ns + "Meta").Where(e =>
+					e.Attribute("name").Value == MetaNames.Reminder &&
+					e.Attribute("content").Value.Length > 0);
+
+				if (!metas.Any())
+				{
+					return;
+				}
+
+				var serializer = new ReminderSerializer();
+				foreach (var meta in metas)
+				{
+					var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
+					foreach (var reminder in reminders)
+					{
+						Test(reminder);
+					}
+				}
 			}
 
 			await Task.Yield();
+		}
+
+
+		private void Test(Reminder reminder)
+		{
+			if (reminder.Status == ReminderStatus.NotStarted ||
+				reminder.Status == ReminderStatus.Waiting)
+			{
+				if (DateTime.UtcNow.CompareTo(reminder.Start) > 0)
+				{
+					logger.WriteLine($"reminder {reminder.Status} is post-start: {reminder.Subject}");
+				}
+			}
+			else if (reminder.Status == ReminderStatus.InProgress)
+			{
+				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)
+				{
+					logger.WriteLine($"reminder {reminder.Status} is post-due: {reminder.Subject}");
+				}
+			}
 		}
 
 

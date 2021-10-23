@@ -5,9 +5,12 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using Newtonsoft.Json;
+	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.IO.Compression;
+	using System.Linq;
 	using System.Text;
 
 
@@ -20,12 +23,112 @@ namespace River.OneMoreAddIn.Commands
 	internal class ReminderSerializer
 	{
 		private const string JDateFormat = "yyyy-MM-ddTHH:mm";
+		private const char Delimiter = ';';
 		private readonly ILogger logger;
 
 
 		public ReminderSerializer()
 		{
 			logger = Logger.Current;
+		}
+
+
+		/// <summary>
+		/// Retrieves the collection of reminders for the given page.
+		/// </summary>
+		/// <param name="page">The page containing reminders</param>
+		/// <returns>A List of Reminders; this may be an empty list</returns>
+		public List<Reminder> LoadReminders(Page page)
+		{
+			var meta = page.Root.Elements(page.Namespace + "Meta")
+				.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.Reminder);
+
+			if (meta != null)
+			{
+				return DecodeContent(meta.Attribute("content").Value);
+			}
+
+			return new List<Reminder>();
+		}
+
+
+		/// <summary>
+		/// Stores the given reminder on the page, possibly appending to a collection of
+		/// reminders that already exist on the page.
+		/// </summary>
+		/// <param name="page">The page to update</param>
+		/// <param name="reminder">The reminder to store</param>
+		public void StoreReminder(Page page, Reminder reminder)
+		{
+			var meta = page.Root.Elements(page.Namespace + "Meta")
+				.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.Reminder);
+
+			if (meta == null)
+			{
+				page.SetMeta(MetaNames.Reminder, Encode(reminder));
+				return;
+			}
+
+			var reminders = DecodeContent(meta.Attribute("content").Value);
+
+			var old = reminders.FirstOrDefault(r => r.ObjectId == reminder.ObjectId);
+			if (old != null)
+			{
+				reminders.Remove(old);
+			}
+
+			reminders.Add(reminder);
+
+			page.SetMeta(MetaNames.Reminder, EncodeContent(reminders));
+		}
+
+
+		/// <summary>
+		/// Encodes a collection of reminders into a string suited for storage in a single
+		/// page level one:Meta.content attribute. This page meta appears in the hierarchy
+		/// returned by one.FindMeta so becomes quickly searchable without fetching pages.
+		/// </summary>
+		/// <param name="reminders">A collection of reminders, normally a List</param>
+		/// <returns>A string of encoded reminders</returns>
+		public string EncodeContent(IEnumerable<Reminder> reminders)
+		{
+			var builder = new StringBuilder();
+			foreach (var reminder in reminders)
+			{
+				builder.Append(Encode(reminder));
+				builder.Append(Delimiter);
+			}
+
+			if (builder.Length == 0)
+			{
+				return string.Empty;
+			}
+
+			// strip off last delimiter
+			return builder.ToString(0, builder.Length - 1);
+		}
+
+
+		/// <summary>
+		/// Decodes a string of serialized reminders.
+		/// </summary>
+		/// <param name="content">The string to decode</param>
+		/// <returns>A List of reminders deserialized from the string</returns>
+		public List<Reminder> DecodeContent(string content)
+		{
+			var reminders = new List<Reminder>();
+			if (string.IsNullOrWhiteSpace(content))
+			{
+				return reminders;
+			}
+
+			var parts = content.Split(Delimiter);
+			foreach (var part in parts)
+			{
+				reminders.Add(Decode(part));
+			}
+
+			return reminders;
 		}
 
 

@@ -14,9 +14,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class DeleteReminderCommand : Command
 	{
-		private Page page;
-		private XNamespace ns;
-
 
 		public DeleteReminderCommand()
 		{
@@ -27,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out page, out ns))
+			using (var one = new OneNote(out var page, out var ns))
 			{
 				var paragraph = page.Root.Descendants(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all")
@@ -40,18 +37,38 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var reminder = CompleteReminderCommand.GetReminder(
-					page, ns, paragraph, out var meta, out var tag);
+				var serializer = new ReminderSerializer();
+				var reminders = serializer.LoadReminders(page);
+				if (!reminders.Any())
+				{
+					UIHelper.ShowError(one.Window, Resx.RemindCommand_noReminder);
+					return;
+				}
 
+				var objectID = paragraph.Attribute("objectID").Value;
+				var reminder = reminders.FirstOrDefault(r => r.ObjectId == objectID);
 				if (reminder == null)
 				{
 					UIHelper.ShowError(one.Window, Resx.RemindCommand_noReminder);
 					return;
 				}
 
+				XElement tag = null;
+				if (!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
+				{
+					reminder.TagIndex = page.GetTagDefIndex(reminder.Symbol);
+					if (reminder.TagIndex != null)
+					{
+						// confirm tag still exists
+						tag = paragraph.Elements(ns + "Tag")
+							.FirstOrDefault(e => e.Attribute("index").Value == reminder.TagIndex);
+					}
+				}
+
 				if (tag == null)
 				{
-					meta.Remove();
+					reminders.Remove(reminder);
+					page.SetMeta(MetaNames.Reminder, serializer.EncodeContent(reminders));
 					await one.Update(page);
 
 					UIHelper.ShowError(one.Window, Resx.RemindCommand_noReminder);
@@ -71,10 +88,8 @@ namespace River.OneMoreAddIn.Commands
 					tag.Remove();
 				}
 
-				meta.Remove();
-
-				// must delete OE objectID to delete one:Meta tags
-				paragraph.Attribute("objectID").Remove();
+				reminders.Remove(reminder);
+				page.SetMeta(MetaNames.Reminder, serializer.EncodeContent(reminders));
 
 				await one.Update(page);
 			}

@@ -36,9 +36,11 @@ namespace River.OneMoreAddIn.Commands
 	/// Describes a reminder associated with a tag.
 	/// </summary>
 	/// <remarks>
-	/// Reminders are serialized, compressed, and encoded per Meta.EncodeContent. Given that
-	/// meta content attibutes can be up to 262,144 chars long, this means we can store almost
-	/// 1000 reminders in a single meta; more than enough for a single page!
+	/// Reminders are serialized, compressed, encoded, and stored in a page level Meta. Storing
+	/// at the page level is necessary so they are discoverable using the one.FindMeta API, which
+	/// unfortunately does not find Meta elements nested within the body of a page. But given that
+	/// Meta content attibutes can be up to 262,144 chars long, this means we can store almost
+	/// 1000 encoded reminders in a single Meta; more than enough for a single page!
 	/// </remarks>
 	internal class Reminder
 	{

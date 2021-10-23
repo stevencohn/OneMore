@@ -37,20 +37,38 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var reminder = GetReminder(page, ns, paragraph, out var meta, out var tag);
+				var serializer = new ReminderSerializer();
+				var reminders = serializer.LoadReminders(page);
+				if (!reminders.Any())
+				{
+					UIHelper.ShowError(one.Window, Resx.RemindCommand_noReminder);
+					return;
+				}
+
+				var objectID = paragraph.Attribute("objectID").Value;
+				var reminder = reminders.FirstOrDefault(r => r.ObjectId == objectID);
 				if (reminder == null)
 				{
 					UIHelper.ShowError(one.Window, Resx.RemindCommand_noReminder);
 					return;
 				}
 
+				XElement tag = null;
+				if (!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
+				{
+					reminder.TagIndex = page.GetTagDefIndex(reminder.Symbol);
+					if (reminder.TagIndex != null)
+					{
+						// confirm tag still exists
+						tag = paragraph.Elements(ns + "Tag")
+							.FirstOrDefault(e => e.Attribute("index").Value == reminder.TagIndex);
+					}
+				}
+
 				if (tag == null)
 				{
-					meta.Remove();
-
-					// must delete OE objectID to clean up one:Meta tags
-					paragraph.Attribute("objectID").Remove();
-
+					reminders.Remove(reminder);
+					page.SetMeta(MetaNames.Reminder, serializer.EncodeContent(reminders));
 					await one.Update(page);
 
 					UIHelper.ShowError(one.Window, Resx.RemindCommand_noReminder);
@@ -62,44 +80,13 @@ namespace River.OneMoreAddIn.Commands
 				reminder.Status = ReminderStatus.Completed;
 				reminder.Percent = 100;
 				reminder.Completed = DateTime.UtcNow;
-				meta.Attribute("content").Value = new ReminderSerializer().Encode(reminder);
+				serializer.StoreReminder(page, reminder);
 
 				tag.Attribute("completed").Value = "true";
 				tag.SetAttributeValue("completionDate", reminder.Completed.ToString(dateFormat));
 
 				await one.Update(page);
 			}
-		}
-
-
-		public static Reminder GetReminder(Page page, XNamespace ns,
-			XElement paragraph, out XElement meta, out XElement tag)
-		{
-			tag = null;
-
-			meta = paragraph.Elements(ns + "Meta")
-				.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.Reminder);
-
-			if (meta == null)
-			{
-				return null;
-			}
-
-			var reminder = new ReminderSerializer().Decode(meta.Attribute("content").Value);
-
-			if (reminder != null &&
-				!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
-			{
-				reminder.TagIndex = page.GetTagDefIndex(reminder.Symbol);
-				if (reminder.TagIndex != null)
-				{
-					// confirm tag still exists
-					tag = paragraph.Elements(ns + "Tag")
-						.FirstOrDefault(e => e.Attribute("index").Value == reminder.TagIndex);
-				}
-			}
-
-			return reminder;
 		}
 	}
 }

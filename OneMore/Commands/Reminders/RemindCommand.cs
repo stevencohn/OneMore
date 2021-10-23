@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -54,13 +55,6 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (SetReminder(paragraph, dialog.Reminder))
 						{
-							page.SetMeta(MetaNames.Reminder,
-								page.Root.Elements(ns + "Outline")
-									.Descendants(ns + "Meta")
-									.Count(e => e.Attribute("name").Value == MetaNames.Reminder)
-									.ToString()
-								);
-
 							await one.Update(page);
 						}
 					}
@@ -74,13 +68,12 @@ namespace River.OneMoreAddIn.Commands
 			Reminder reminder;
 			XElement tag;
 
-			var meta = paragraph.Elements(ns + "Meta")
-				.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.Reminder);
+			var objectID = paragraph.Attribute("objectID").Value;
 
-			if (meta != null)
+			var reminders = new ReminderSerializer().LoadReminders(page);
+			if (reminders.Any())
 			{
-				reminder = new ReminderSerializer()
-					.Decode(meta.Attribute("content").Value);
+				reminder = reminders.FirstOrDefault(r => r.ObjectId == objectID);
 
 				if (reminder != null && 
 					!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
@@ -113,17 +106,15 @@ namespace River.OneMoreAddIn.Commands
 
 			var text = paragraph.Value;
 
-			// get only raw text without <span> et al.
-			// this seem to work for Unicode strings like Chinese, whereas XElement.Parse breaks
-			text = System.Text.RegularExpressions
-				.Regex.Replace(text, "<[^>]+>", string.Empty);
-
+			// get only raw text without <span> et al. This direct pattern match feels risky but
+			// it seems to work for Unicode strings like Chinese whereas XElement.Parse will fail
+			text = Regex.Replace(text, "<[^>]+>", string.Empty);
 			if (text.Length > 40)
 			{
 				text = text.Substring(0, 40) + "...";
 			}
 
-			reminder = new Reminder(paragraph.Attribute("objectID").Value)
+			reminder = new Reminder(objectID)
 			{
 				Subject = text
 			};
@@ -202,24 +193,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var encoded = new ReminderSerializer().Encode(reminder);
-			if (encoded == null)
-			{
-				return false;
-			}
-
-			var meta = paragraph.Elements(ns + "Meta")
-				.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.Reminder);
-
-			if (meta != null)
-			{
-				meta.Attribute("content").Value = encoded;
-			}
-			else
-			{
-				meta = new Meta(MetaNames.Reminder, encoded);
-				paragraph.Elements(ns + "Tag").Last().AddAfterSelf(meta);
-			}
+			new ReminderSerializer().StoreReminder(page, reminder);
 
 			return true;
 		}
