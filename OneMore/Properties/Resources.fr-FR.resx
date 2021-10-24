@@ -3698,7 +3698,7 @@ Différé</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>Il s'agit de rappels non encore terminés ou différés, classés par priorité et date d'échéance</value>
+    <value>Il s'agit de rappels non encore terminés ou différés et classés par priorité et date d'échéance</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3706,7 +3706,7 @@ Différé</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveSummary" xml:space="preserve">
-    <value>Il s'agit de rappels terminés ou différés, classés par statut, date d'achèvement et priorité</value>
+    <value>Il s'agit de rappels terminés ou différés et classés par statut, date d'achèvement et priorité</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_noReminders" xml:space="preserve">
@@ -3728,5 +3728,29 @@ Différé</value>
   <data name="ReminderReport_Refresh" xml:space="preserve">
     <value>Rafraîchir</value>
     <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>Réel</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Complété</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>Dû</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>d'accord</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Prévu</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Commencé</value>
   </data>
 </root>

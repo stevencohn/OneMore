@@ -3704,7 +3704,7 @@ Diferido</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>Estos son recordatorios aún no completados o aplazados, ordenados por prioridad y fecha de vencimiento.</value>
+    <value>Estos son recordatorios aún no completados o diferidos y ordenados por prioridad y fecha de vencimiento.</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3712,7 +3712,7 @@ Diferido</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveSummary" xml:space="preserve">
-    <value>Estos son recordatorios que se han completado o aplazado, ordenados por estado, fecha de finalización y prioridad.</value>
+    <value>Estos son recordatorios que se completaron o aplazaron y se ordenaron por estado, fecha de finalización y prioridad.</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_noReminders" xml:space="preserve">
@@ -3734,5 +3734,29 @@ Diferido</value>
   <data name="ReminderReport_Refresh" xml:space="preserve">
     <value>Actualizar</value>
     <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>Real</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Terminado</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>Vencer</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Planificado</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Comienzo</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Empezado</value>
   </data>
 </root>

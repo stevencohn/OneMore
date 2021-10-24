@@ -4317,7 +4317,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to These are reminders not yet completed or deferred, ordered by priority and due date.
+        ///   Looks up a localized string similar to These are reminders not yet completed or deferred and ordered by priority and due date.
         /// </summary>
         internal static string ReminderReport_ActiveSummary {
             get {
@@ -4335,7 +4335,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to These are reminders that have been completed or deferred, ordered by status, completion date, and priority.
+        ///   Looks up a localized string similar to These are reminders that have been completed or deferred and ordered by status, completion date, and priority.
         /// </summary>
         internal static string ReminderReport_InactiveSummary {
             get {
@@ -4344,7 +4344,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Laste updated.
+        ///   Looks up a localized string similar to Last updated.
         /// </summary>
         internal static string ReminderReport_LastUpdated {
             get {
@@ -4358,15 +4358,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ReminderReport_noReminders {
             get {
                 return ResourceManager.GetString("ReminderReport_noReminders", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Refresh.
-        /// </summary>
-        internal static string ReminderReport_Refresh {
-            get {
-                return ResourceManager.GetString("ReminderReport_Refresh", resourceCulture);
             }
         }
         
@@ -8432,6 +8423,87 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Watch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actual.
+        /// </summary>
+        internal static string word_Actual {
+            get {
+                return ResourceManager.GetString("word_Actual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string word_Cancel {
+            get {
+                return ResourceManager.GetString("word_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        internal static string word_Completed {
+            get {
+                return ResourceManager.GetString("word_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due.
+        /// </summary>
+        internal static string word_Due {
+            get {
+                return ResourceManager.GetString("word_Due", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string word_OK {
+            get {
+                return ResourceManager.GetString("word_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Planned.
+        /// </summary>
+        internal static string word_Planned {
+            get {
+                return ResourceManager.GetString("word_Planned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string word_Refresh {
+            get {
+                return ResourceManager.GetString("word_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string word_Start {
+            get {
+                return ResourceManager.GetString("word_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started.
+        /// </summary>
+        internal static string word_Started {
+            get {
+                return ResourceManager.GetString("word_Started", resourceCulture);
             }
         }
         

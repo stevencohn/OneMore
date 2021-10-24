@@ -34,8 +34,8 @@ namespace River.OneMoreAddIn.Commands
 					"priorityLabel",
 					"priorityBox",
 					"percentLabel",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 

@@ -24,10 +24,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private const string HeaderShading = "#DEEBF6";
+		private const string NotStartedShading = "#FFF2CC";
 		private const string OverdueShading = "#FADBD2";
 		private const string CompletedShading = "#E2EFD9";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 
+		private Page page;
 		private XNamespace ns;
 		private XElement container;
 		private int heading2Index;
@@ -96,7 +98,6 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				Page page;
 				string pageId = null;
 				if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
 				{
@@ -121,8 +122,7 @@ namespace River.OneMoreAddIn.Commands
 				var now = DateTime.Now.ToString(DateTimeExtensions.ShortFriendlyPattern);
 				container.Add(
 					new Paragraph($"{Resx.ReminderReport_LastUpdated} {now} " +
-						$"(<a href=\"onemore://ReportRemindersCommand/refresh\">" +
-						$"{Resx.ReminderReport_Refresh}</a>)"),
+						$"(<a href=\"onemore://ReportRemindersCommand/refresh\">{Resx.word_Refresh}</a>)"),
 					new Paragraph(string.Empty)
 					);
 
@@ -183,29 +183,42 @@ namespace River.OneMoreAddIn.Commands
 				.ThenBy(i => i.Reminder.Due))
 			{
 				row = table.AddRow();
-
-				var uri = one.GetHyperlink(item.Meta.Parent.Attribute("ID").Value, item.Reminder.ObjectId);
-				row[0].SetContent(new XElement(ns + "OEChildren",
-					new Paragraph($"<a href='{uri}'>{item.Reminder.Subject}</a>"),
-					new Paragraph(item.Path).SetQuickStyle(citeIndex)
-					));
-
+				row[0].SetContent(MakeReminder(one, item));
 				row[1].SetContent(statuses[(int)item.Reminder.Status]);
-				if (DateTime.UtcNow.CompareTo(item.Reminder.Due) > 0)
-				{
-					row[1].ShadingColor = OverdueShading;
-				}
-
 				row[2].SetContent(item.Reminder.Start.ToString(DateTimeExtensions.ShortFriendlyPattern));
 				row[3].SetContent(item.Reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern));
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
 				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));
+
+				if (DateTime.UtcNow.CompareTo(item.Reminder.Due) > 0)
+				{
+					row[1].ShadingColor = OverdueShading;
+				}
+				else if (item.Reminder.Status == ReminderStatus.NotStarted &&
+					DateTime.UtcNow.CompareTo(item.Reminder.Start) > 0)
+				{
+					row[1].ShadingColor = NotStartedShading;
+				}
 			}
 
 			container.Add(
 				new Paragraph(ns, table.Root),
 				new Paragraph(ns, string.Empty),
 				new Paragraph(ns, string.Empty)
+				);
+		}
+
+
+		private XElement MakeReminder(OneNote one, Item item)
+		{
+			var index = page.AddTagDef(item.Reminder.Symbol, string.Empty);
+			var uri = one.GetHyperlink(item.Meta.Parent.Attribute("ID").Value, item.Reminder.ObjectId);
+			return new XElement(ns + "OEChildren",
+				new XElement(ns + "OE",
+					new Tag(index, item.Reminder.Status == ReminderStatus.Completed).SetEnabled(false),
+					new XElement(ns + "T", new XCData($"<a href='{uri}'>{item.Reminder.Subject}</a>"))
+					),
+				new Paragraph(item.Path).SetQuickStyle(citeIndex)
 				);
 		}
 
@@ -226,16 +239,16 @@ namespace River.OneMoreAddIn.Commands
 
 			table.SetColumnWidth(0, 220);
 			table.SetColumnWidth(1, 70);
-			table.SetColumnWidth(2, 130);
-			table.SetColumnWidth(3, 130);
+			table.SetColumnWidth(2, 150);
+			table.SetColumnWidth(3, 170);
 			table.SetColumnWidth(4, 60);
 
 			var row = table[0];
 			row.SetShading(HeaderShading);
 			row[0].SetContent(new Paragraph(Resx.ReminderReport_ReminderColumn).SetStyle(HeaderCss));
 			row[1].SetContent(new Paragraph(Resx.RemindDialog_statusLabel_Text).SetStyle(HeaderCss));
-			row[2].SetContent(new Paragraph(Resx.RemindDialog_startDateLabel_Text).SetStyle(HeaderCss));
-			row[3].SetContent(new Paragraph(Resx.RemindDialog_completedLabel_Text).SetStyle(HeaderCss));
+			row[2].SetContent(new Paragraph(Resx.word_Planned).SetStyle(HeaderCss));
+			row[3].SetContent(new Paragraph(Resx.word_Actual).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
 
 			foreach (var item in inactive
@@ -244,27 +257,26 @@ namespace River.OneMoreAddIn.Commands
 				.ThenByDescending(i => i.Reminder.Priority))
 			{
 				row = table.AddRow();
-
-				var uri = one.GetHyperlink(item.Meta.Parent.Attribute("ID").Value, item.Reminder.ObjectId);
-				row[0].SetContent(new XElement(ns + "OEChildren",
-					new Paragraph($"<a href='{uri}'>{item.Reminder.Subject}</a>"),
-					new Paragraph(item.Path).SetQuickStyle(citeIndex)
-					));
-
+				row[0].SetContent(MakeReminder(one, item));
 				row[1].SetContent(statuses[(int)item.Reminder.Status]);
+
+				row[2].SetContent(
+					new Paragraph(
+						$"{Resx.word_Start}: {item.Reminder.Start.ToString(DateTimeExtensions.ShortFriendlyPattern)}<br/>\n" +
+						$"{Resx.word_Due}: {item.Reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern)}")
+					);
+
+				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
+
 				if (item.Reminder.Status == ReminderStatus.Completed)
 				{
 					row[1].ShadingColor = CompletedShading;
+					row[3].SetContent(
+						new Paragraph(
+							$"{Resx.word_Started}: {item.Reminder.Started.ToString(DateTimeExtensions.ShortFriendlyPattern)}<br/>\n" +
+							$"{Resx.word_Completed}: {item.Reminder.Completed.ToString(DateTimeExtensions.ShortFriendlyPattern)}")
+						);
 				}
-
-				row[2].SetContent(item.Reminder.Start.ToString(DateTimeExtensions.ShortFriendlyPattern));
-
-				if (item.Reminder.Status == ReminderStatus.Completed)
-				{
-					row[3].SetContent(item.Reminder.Completed.ToString(DateTimeExtensions.ShortFriendlyPattern));
-				}
-
-				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
 			}
 
 			container.Add(

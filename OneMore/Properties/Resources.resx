@@ -3743,7 +3743,7 @@ Deferred</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>These are reminders not yet completed or deferred, ordered by priority and due date</value>
+    <value>These are reminders not yet completed or deferred and ordered by priority and due date</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3751,7 +3751,7 @@ Deferred</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveSummary" xml:space="preserve">
-    <value>These are reminders that have been completed or deferred, ordered by status, completion date, and priority</value>
+    <value>These are reminders that have been completed or deferred and ordered by status, completion date, and priority</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_noReminders" xml:space="preserve">
@@ -3767,11 +3767,34 @@ Deferred</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_LastUpdated" xml:space="preserve">
-    <value>Laste updated</value>
+    <value>Last updated</value>
     <comment>text</comment>
   </data>
-  <data name="ReminderReport_Refresh" xml:space="preserve">
+  <data name="word_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>Due</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Planned</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
     <value>Refresh</value>
-    <comment>text</comment>
   </data>
 </root>

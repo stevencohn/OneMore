@@ -97,14 +97,18 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (DateTime.UtcNow.CompareTo(reminder.Start) > 0)
 				{
-					logger.WriteLine($"reminder {reminder.Status} is post-start: {reminder.Subject}");
+					var msg = $"reminder {reminder.Status} is post-start: {reminder.Subject}";
+					Send(msg);
+					logger.WriteLine(msg);
 				}
 			}
 			else if (reminder.Status == ReminderStatus.InProgress)
 			{
 				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)
 				{
-					logger.WriteLine($"reminder {reminder.Status} is post-due: {reminder.Subject}");
+					var msg = $"reminder {reminder.Status} is post-due: {reminder.Subject}";
+					Send(msg);
+					logger.WriteLine(msg);
 				}
 			}
 		}

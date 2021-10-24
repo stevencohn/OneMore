@@ -3689,7 +3689,7 @@ Aufgeschoben</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>Dies sind Erinnerungen, die noch nicht abgeschlossen oder aufgeschoben sind, geordnet nach Priorität und Fälligkeitsdatum</value>
+    <value>Dies sind Erinnerungen, die noch nicht abgeschlossen oder aufgeschoben und nach Priorität und Fälligkeitsdatum geordnet sind</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3697,7 +3697,7 @@ Aufgeschoben</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveSummary" xml:space="preserve">
-    <value>Dies sind erledigte oder verschobene Erinnerungen, sortiert nach Status, Fertigstellungsdatum und Priorität</value>
+    <value>Dies sind Erinnerungen, die abgeschlossen oder zurückgestellt und nach Status, Fertigstellungsdatum und Priorität geordnet sind</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_noReminders" xml:space="preserve">
@@ -3713,11 +3713,35 @@ Aufgeschoben</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_LastUpdated" xml:space="preserve">
-    <value>Letzte aktualisiert</value>
+    <value>Letzte Aktualisierung</value>
     <comment>text</comment>
   </data>
   <data name="ReminderReport_Refresh" xml:space="preserve">
     <value>Aktualisierung</value>
     <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>Tatsächlich</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Vollendet</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>Während</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Geplant</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Gestartet</value>
   </data>
 </root>

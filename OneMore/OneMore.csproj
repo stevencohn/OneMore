@@ -444,6 +444,7 @@
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Styles\StyleProperties.cs" />
     <Compile Include="Styles\Theme.cs" />
     <Compile Include="Styles\ThemeProvider.cs" />

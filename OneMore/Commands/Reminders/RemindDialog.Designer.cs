@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.startDateBox.CustomFormat = "dddd, MMMM d, yyyy h:mm tt";
 			this.startDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.startDateBox.Location = new System.Drawing.Point(145, 120);
+			this.startDateBox.Location = new System.Drawing.Point(181, 120);
 			this.startDateBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.startDateBox.Name = "startDateBox";
 			this.startDateBox.Size = new System.Drawing.Size(434, 26);
@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.dueDateBox.CustomFormat = "dddd, MMMM d, yyyy h:mm tt";
 			this.dueDateBox.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dueDateBox.Location = new System.Drawing.Point(145, 198);
+			this.dueDateBox.Location = new System.Drawing.Point(181, 198);
 			this.dueDateBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.dueDateBox.Name = "dueDateBox";
 			this.dueDateBox.Size = new System.Drawing.Size(434, 26);
@@ -128,11 +128,11 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.subjectBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.subjectBox.Location = new System.Drawing.Point(145, 81);
+			this.subjectBox.Location = new System.Drawing.Point(181, 81);
 			this.subjectBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.subjectBox.MaxLength = 200;
 			this.subjectBox.Name = "subjectBox";
-			this.subjectBox.Size = new System.Drawing.Size(685, 26);
+			this.subjectBox.Size = new System.Drawing.Size(649, 26);
 			this.subjectBox.TabIndex = 1;
 			this.subjectBox.TextChanged += new System.EventHandler(this.ChangeSubject);
 			// 
@@ -155,7 +155,7 @@ namespace River.OneMoreAddIn.Commands
             "Completed",
             "Waiting on someone else",
             "Deferred"});
-			this.statusBox.Location = new System.Drawing.Point(145, 276);
+			this.statusBox.Location = new System.Drawing.Point(181, 276);
 			this.statusBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.statusBox.Name = "statusBox";
 			this.statusBox.Size = new System.Drawing.Size(308, 28);
@@ -170,7 +170,7 @@ namespace River.OneMoreAddIn.Commands
             "Low",
             "Medium",
             "High"});
-			this.priorityBox.Location = new System.Drawing.Point(145, 317);
+			this.priorityBox.Location = new System.Drawing.Point(181, 317);
 			this.priorityBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.priorityBox.Name = "priorityBox";
 			this.priorityBox.Size = new System.Drawing.Size(242, 28);
@@ -201,7 +201,7 @@ namespace River.OneMoreAddIn.Commands
             0,
             0,
             0});
-			this.percentBox.Location = new System.Drawing.Point(145, 358);
+			this.percentBox.Location = new System.Drawing.Point(181, 358);
 			this.percentBox.Name = "percentBox";
 			this.percentBox.Size = new System.Drawing.Size(92, 26);
 			this.percentBox.TabIndex = 6;
@@ -210,7 +210,7 @@ namespace River.OneMoreAddIn.Commands
 			// startedBox
 			// 
 			this.startedBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.startedBox.Location = new System.Drawing.Point(145, 159);
+			this.startedBox.Location = new System.Drawing.Point(181, 159);
 			this.startedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.startedBox.MaxLength = 200;
 			this.startedBox.Name = "startedBox";
@@ -240,7 +240,7 @@ namespace River.OneMoreAddIn.Commands
 			// completedBox
 			// 
 			this.completedBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.completedBox.Location = new System.Drawing.Point(145, 237);
+			this.completedBox.Location = new System.Drawing.Point(181, 237);
 			this.completedBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.completedBox.MaxLength = 200;
 			this.completedBox.Name = "completedBox";
@@ -252,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 			// tagButton
 			// 
 			this.tagButton.BackColor = System.Drawing.SystemColors.Window;
-			this.tagButton.Location = new System.Drawing.Point(145, 30);
+			this.tagButton.Location = new System.Drawing.Point(181, 30);
 			this.tagButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.tagButton.Name = "tagButton";
 			this.tagButton.Size = new System.Drawing.Size(60, 38);
@@ -271,7 +271,7 @@ namespace River.OneMoreAddIn.Commands
 			this.tagLabel.TabIndex = 27;
 			this.tagLabel.Text = "Tag";
 			// 
-			// ReminderDialog
+			// RemindDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -302,7 +302,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "ReminderDialog";
+			this.Name = "RemindDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 20);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Reminder";

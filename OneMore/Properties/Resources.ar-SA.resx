@@ -3703,7 +3703,7 @@ ISO-code then comma then language name</comment>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>هذه تذكيرات لم تكتمل أو مؤجلة بعد ، مرتبة حسب الأولوية وتاريخ الاستحقاق</value>
+    <value>هذه تذكيرات لم تكتمل بعد أو مؤجلة وتم ترتيبها حسب الأولوية وتاريخ الاستحقاق</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3711,7 +3711,7 @@ ISO-code then comma then language name</comment>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveSummary" xml:space="preserve">
-    <value>هذه هي التذكيرات التي تم إكمالها أو تأجيلها ، مرتبة حسب الحالة وتاريخ الإكمال والأولوية</value>
+    <value>هذه هي التذكيرات التي تم إكمالها أو تأجيلها وترتيبها حسب الحالة وتاريخ الإكمال والأولوية</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_noReminders" xml:space="preserve">
@@ -3727,11 +3727,35 @@ ISO-code then comma then language name</comment>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_LastUpdated" xml:space="preserve">
-    <value>آخر تحديث</value>
+    <value>التحديث الاخير</value>
     <comment>text</comment>
   </data>
   <data name="ReminderReport_Refresh" xml:space="preserve">
     <value>ينعش</value>
     <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>فعلي</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>يلغي</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>مكتمل</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>بسبب</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>مخطط</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>يبدأ</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>بدأت</value>
   </data>
 </root>

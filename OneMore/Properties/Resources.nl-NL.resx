@@ -3704,7 +3704,7 @@ Verschoven</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>Dit zijn herinneringen die nog niet zijn voltooid of uitgesteld, gerangschikt op prioriteit en vervaldatum</value>
+    <value>Dit zijn herinneringen die nog niet zijn voltooid of uitgesteld en zijn geordend op prioriteit en vervaldatum</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3712,7 +3712,7 @@ Verschoven</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveSummary" xml:space="preserve">
-    <value>Dit zijn herinneringen die zijn voltooid of uitgesteld, gerangschikt op status, voltooiingsdatum en prioriteit</value>
+    <value>Dit zijn herinneringen die zijn voltooid of uitgesteld en zijn gerangschikt op status, voltooiingsdatum en prioriteit</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_noReminders" xml:space="preserve">
@@ -3734,5 +3734,29 @@ Verschoven</value>
   <data name="ReminderReport_Refresh" xml:space="preserve">
     <value>Vernieuwen</value>
     <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>Werkelijk</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Voltooid</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>Ten gevolge</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>Oke</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Gepland</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Begin</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Begonnen</value>
   </data>
 </root>

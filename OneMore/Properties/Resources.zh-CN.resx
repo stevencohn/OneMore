@@ -3695,7 +3695,7 @@ OneNote 文件 (*.one)</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>这些是尚未完成或推迟的提醒，按优先级和截止日期排序</value>
+    <value>这些是尚未完成或推迟的提醒，并按优先级和截止日期排序</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3703,7 +3703,7 @@ OneNote 文件 (*.one)</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveSummary" xml:space="preserve">
-    <value>这些是已完成或推迟的提醒，按状态、完成日期和优先级排序</value>
+    <value>这些是已完成或推迟并按状态、完成日期和优先级排序的提醒</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_noReminders" xml:space="preserve">
@@ -3719,11 +3719,35 @@ OneNote 文件 (*.one)</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_LastUpdated" xml:space="preserve">
-    <value>最新更新</value>
+    <value>最近更新时间</value>
     <comment>text</comment>
   </data>
   <data name="ReminderReport_Refresh" xml:space="preserve">
     <value>刷新</value>
     <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>实际的</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>完全的</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>到期的</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>好的</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>计划</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>开始</value>
   </data>
 </root>
