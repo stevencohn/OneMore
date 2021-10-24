@@ -3716,10 +3716,6 @@ Aufgeschoben</value>
     <value>Letzte Aktualisierung</value>
     <comment>text</comment>
   </data>
-  <data name="ReminderReport_Refresh" xml:space="preserve">
-    <value>Aktualisierung</value>
-    <comment>text</comment>
-  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Tatsächlich</value>
   </data>
@@ -3743,5 +3739,12 @@ Aufgeschoben</value>
   </data>
   <data name="word_Started" xml:space="preserve">
     <value>Gestartet</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>Aktualisierung</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Still</value>
+    <comment>checkbox</comment>
   </data>
 </root>

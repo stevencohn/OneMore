@@ -3730,10 +3730,6 @@ ISO-code then comma then language name</comment>
     <value>التحديث الاخير</value>
     <comment>text</comment>
   </data>
-  <data name="ReminderReport_Refresh" xml:space="preserve">
-    <value>ينعش</value>
-    <comment>text</comment>
-  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>فعلي</value>
   </data>
@@ -3757,5 +3753,12 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Started" xml:space="preserve">
     <value>بدأت</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>ينعش</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>صامتة</value>
+    <comment>checkbox</comment>
   </data>
 </root>

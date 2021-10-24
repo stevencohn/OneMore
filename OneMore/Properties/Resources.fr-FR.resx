@@ -3725,10 +3725,6 @@ Différé</value>
     <value>Dernière mise à jour</value>
     <comment>text</comment>
   </data>
-  <data name="ReminderReport_Refresh" xml:space="preserve">
-    <value>Rafraîchir</value>
-    <comment>text</comment>
-  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Réel</value>
   </data>
@@ -3752,5 +3748,12 @@ Différé</value>
   </data>
   <data name="word_Started" xml:space="preserve">
     <value>Commencé</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>Rafraîchir</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Silencieux</value>
+    <comment>checkbox</comment>
   </data>
 </root>

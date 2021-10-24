@@ -3722,10 +3722,6 @@ OneNote 文件 (*.one)</value>
     <value>最近更新时间</value>
     <comment>text</comment>
   </data>
-  <data name="ReminderReport_Refresh" xml:space="preserve">
-    <value>刷新</value>
-    <comment>text</comment>
-  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>实际的</value>
   </data>
@@ -3749,5 +3745,12 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="word_Started" xml:space="preserve">
     <value>开始</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>沉默的</value>
+    <comment>checkbox</comment>
   </data>
 </root>

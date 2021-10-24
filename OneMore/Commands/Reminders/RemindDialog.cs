@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 					"priorityLabel",
 					"priorityBox",
 					"percentLabel",
+					"silentBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -68,6 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			statusBox.SelectedIndex = (int)reminder.Status;
 			priorityBox.SelectedIndex = (int)reminder.Priority;
 			percentBox.Value = reminder.Percent;
+			silentBox.Checked = reminder.Silent;
 
 			if (!string.IsNullOrEmpty(reminder.Symbol))
 			{
@@ -150,6 +152,7 @@ namespace River.OneMoreAddIn.Commands
 			reminder.Status = (ReminderStatus)statusBox.SelectedIndex;
 			reminder.Priority = (ReminderPriority)priorityBox.SelectedIndex;
 			reminder.Percent = (int)percentBox.Value;
+			reminder.Silent = silentBox.Checked;
 
 			if (!string.IsNullOrEmpty(symbol) && symbol != "0")
 			{

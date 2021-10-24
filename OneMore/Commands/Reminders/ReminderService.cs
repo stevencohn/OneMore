@@ -6,8 +6,10 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
+	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -19,12 +21,15 @@ namespace River.OneMoreAddIn.Commands
 		private const int sleep = 60000;
 
 		private static string imageCache;
+		private string appId;
 
 
 		public void Startup()
 		{
 			var thread = new Thread(async () =>
 			{
+				LookupAppId();
+
 				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
 				// don't fall into an infinite loop. If it somehow miraculously recovers then
 				// errors is reset back to zero and normal processing continues...
@@ -56,6 +61,39 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void LookupAppId()
+		{
+			var builder = new StringBuilder();
+			using (var process = new Process
+			{
+				StartInfo = new ProcessStartInfo
+				{
+					FileName = @"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe",
+					Arguments = @"-command ""(Get-StartApps 'OneMore Reminder').AppID""",
+					CreateNoWindow = true,
+					UseShellExecute = false,
+					RedirectStandardOutput = true
+				}
+			})
+			{
+				if (process.Start())
+				{
+					while (!process.HasExited)
+					{
+						builder.Append(process.StandardOutput.ReadToEnd());
+					}
+				}
+			}
+
+			// output might only be a newline so ensure there's "enough" content
+			if (builder.Length > 2)
+			{
+				logger.WriteLine($"OneNoteProtocolHandler.appId={appId}");
+				appId = builder.ToString();
+			}
+		}
+
+
 		private async Task Scan()
 		{
 			using (var one = new OneNote())
@@ -76,11 +114,12 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var meta in metas)
 				{
 					var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
+					var pageID = meta.Parent.Attribute("ID").Value;
 					foreach (var reminder in reminders)
 					{
 						if (!reminder.Silent)
 						{
-							Test(reminder);
+							Test(reminder, pageID);
 						}
 					}
 				}
@@ -90,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Test(Reminder reminder)
+		private void Test(Reminder reminder, string pageID)
 		{
 			if (reminder.Status == ReminderStatus.NotStarted ||
 				reminder.Status == ReminderStatus.Waiting)
@@ -98,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 				if (DateTime.UtcNow.CompareTo(reminder.Start) > 0)
 				{
 					var msg = $"reminder {reminder.Status} is post-start: {reminder.Subject}";
-					Send(msg);
+					Send(msg, $"{pageID};{reminder.ObjectId}");
 					logger.WriteLine(msg);
 				}
 			}
@@ -107,14 +146,14 @@ namespace River.OneMoreAddIn.Commands
 				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)
 				{
 					var msg = $"reminder {reminder.Status} is post-due: {reminder.Subject}";
-					Send(msg);
+					Send(msg, $"{pageID};{reminder.ObjectId}");
 					logger.WriteLine(msg);
 				}
 			}
 		}
 
 
-		private void Send(string message)
+		private void Send(string message, string args)
 		{
 			// get a toast XML template
 			var doc = ToastNotificationManager
@@ -135,11 +174,16 @@ namespace River.OneMoreAddIn.Commands
 			var images = doc.GetElementsByTagName("image");
 			images[0].Attributes.GetNamedItem("src").NodeValue = imageCache;
 
+			// launch arguments
+			doc.DocumentElement.SetAttribute("launch", args);
+
+			logger.WriteLine(XElement.Parse(doc.GetXml()).ToString());
+
 			// send the notification
 			var toast = new ToastNotification(doc);
-			var appID = "OneMore Reminder"; // TODO: translate this!
 
-			ToastNotificationManager.CreateToastNotifier(appID).Show(toast);
+			var id = appId ?? "OneMore Reminder";
+			ToastNotificationManager.CreateToastNotifier(id).Show(toast);
 		}
 	}
 }

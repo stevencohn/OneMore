@@ -4241,6 +4241,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Silent.
+        /// </summary>
+        internal static string RemindDialog_silentBox_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_silentBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start date.
         /// </summary>
         internal static string RemindDialog_startDateLabel_Text {

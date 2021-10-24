@@ -50,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 			this.completedBox = new System.Windows.Forms.TextBox();
 			this.tagButton = new System.Windows.Forms.Button();
 			this.tagLabel = new System.Windows.Forms.Label();
+			this.silentBox = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -271,6 +272,16 @@ namespace River.OneMoreAddIn.Commands
 			this.tagLabel.TabIndex = 27;
 			this.tagLabel.Text = "Tag";
 			// 
+			// silentBox
+			// 
+			this.silentBox.AutoSize = true;
+			this.silentBox.Location = new System.Drawing.Point(624, 38);
+			this.silentBox.Name = "silentBox";
+			this.silentBox.Size = new System.Drawing.Size(75, 24);
+			this.silentBox.TabIndex = 28;
+			this.silentBox.Text = "Silent";
+			this.silentBox.UseVisualStyleBackColor = true;
+			// 
 			// RemindDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -278,6 +289,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(853, 462);
+			this.Controls.Add(this.silentBox);
 			this.Controls.Add(this.tagLabel);
 			this.Controls.Add(this.tagButton);
 			this.Controls.Add(this.completedLabel);
@@ -334,5 +346,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.TextBox completedBox;
 		private System.Windows.Forms.Button tagButton;
 		private System.Windows.Forms.Label tagLabel;
+		private System.Windows.Forms.CheckBox silentBox;
 	}
 }

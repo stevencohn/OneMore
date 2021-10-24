@@ -3731,10 +3731,6 @@ Diferido</value>
     <value>Ultima atualização</value>
     <comment>text</comment>
   </data>
-  <data name="ReminderReport_Refresh" xml:space="preserve">
-    <value>Atualizar</value>
-    <comment>text</comment>
-  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Real</value>
   </data>
@@ -3758,5 +3754,12 @@ Diferido</value>
   </data>
   <data name="word_Started" xml:space="preserve">
     <value>Iniciado</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Silencioso</value>
+    <comment>checkbox</comment>
   </data>
 </root>

@@ -3797,4 +3797,8 @@ Deferred</value>
   <data name="word_Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Silent</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

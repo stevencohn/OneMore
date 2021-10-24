@@ -3731,10 +3731,6 @@ Verschoven</value>
     <value>Laatst bijgewerkt</value>
     <comment>text</comment>
   </data>
-  <data name="ReminderReport_Refresh" xml:space="preserve">
-    <value>Vernieuwen</value>
-    <comment>text</comment>
-  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Werkelijk</value>
   </data>
@@ -3758,5 +3754,12 @@ Verschoven</value>
   </data>
   <data name="word_Started" xml:space="preserve">
     <value>Begonnen</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>Vernieuwen</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Stil</value>
+    <comment>checkbox</comment>
   </data>
 </root>
