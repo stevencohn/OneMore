@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
-	using System.Xml.Linq;
 	using Windows.UI.Notifications;
 
 
@@ -88,8 +87,8 @@ namespace River.OneMoreAddIn.Commands
 			// output might only be a newline so ensure there's "enough" content
 			if (builder.Length > 2)
 			{
+				appId = builder.ToString().Trim();
 				logger.WriteLine($"OneNoteProtocolHandler.appId={appId}");
-				appId = builder.ToString();
 			}
 		}
 
@@ -175,13 +174,14 @@ namespace River.OneMoreAddIn.Commands
 			images[0].Attributes.GetNamedItem("src").NodeValue = imageCache;
 
 			// launch arguments
-			doc.DocumentElement.SetAttribute("launch", args);
-
-			logger.WriteLine(XElement.Parse(doc.GetXml()).ToString());
+			doc.DocumentElement.SetAttribute("launch", $"onemore://RemindCommand/{args}");
+			// setting the protocol is key to makeing this work!
+			doc.DocumentElement.SetAttribute("activationType", "protocol");
 
 			// send the notification
 			var toast = new ToastNotification(doc);
 
+			// even if we don't have an activatable appId, we can still show a default title
 			var id = appId ?? "OneMore Reminder";
 			ToastNotificationManager.CreateToastNotifier(id).Show(toast);
 		}

@@ -29,8 +29,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-
-			//System.Diagnostics.Debugger.Launch();
+			if (args.Length > 0 && args[0] is string arg)
+			{
+				// received via toast activation
+				await NavigateToReminder(arg);
+				return;
+			}
 
 			using (var one = new OneNote(out page, out ns))
 			{
@@ -59,6 +63,16 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 				}
+			}
+		}
+
+
+		private async Task NavigateToReminder(string args)
+		{
+			var parts = args.Split(';');
+			using (var one = new OneNote())
+			{
+				await one.NavigateTo(parts[0], parts[1]);
 			}
 		}
 

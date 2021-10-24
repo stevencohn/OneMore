@@ -1086,6 +1086,21 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Forces OneNote to jump to a specific object on a given page.
+		/// </summary>
+		/// <param name="pageId">The page ID</param>
+		/// <param name="objectId">The object ID</param>
+		/// <returns></returns>
+		public async Task NavigateTo(string pageId, string objectId)
+		{
+			await InvokeWithRetry(() =>
+			{
+				onenote.NavigateTo(pageId, objectId);
+			});
+		}
+
+
+		/// <summary>
 		/// Search pages under the specified hierarchy node using the given query.
 		/// </summary>
 		/// <param name="nodeId">
