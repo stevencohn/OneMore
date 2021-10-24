@@ -3699,4 +3699,32 @@ Diferido</value>
     <value>Relatório de Resumo de Lembrete</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>Lembretes Ativos</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>Estes são lembretes ainda não concluídos ou adiados, ordenados por prioridade e data de vencimento</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>Lembretes Inativos</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>Estes são lembretes que foram concluídos ou adiados, ordenados por status, data de conclusão e prioridade</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>Sem lembretes para relatar</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>Lembrete</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>Relatório de Resumo de Lembrete</value>
+    <comment>report</comment>
+  </data>
 </root>

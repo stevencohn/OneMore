@@ -3699,4 +3699,32 @@ Diferido</value>
     <value>Informe de resumen de recordatorio</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>Recordatorios activos</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>Estos son recordatorios aún no completados o aplazados, ordenados por prioridad y fecha de vencimiento.</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>Recordatorios inactivos</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>Estos son recordatorios que se han completado o aplazado, ordenados por estado, fecha de finalización y prioridad.</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>No hay recordatorios para informar</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>Recordatorio</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>Informe de resumen de recordatorio</value>
+    <comment>report</comment>
+  </data>
 </root>

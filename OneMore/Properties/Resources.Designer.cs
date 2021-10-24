@@ -4308,6 +4308,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active Reminders.
+        /// </summary>
+        internal static string ReminderReport_ActiveReminders {
+            get {
+                return ResourceManager.GetString("ReminderReport_ActiveReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These are reminders not yet completed or deferred, ordered by priority and due date.
+        /// </summary>
+        internal static string ReminderReport_ActiveSummary {
+            get {
+                return ResourceManager.GetString("ReminderReport_ActiveSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive Reminders.
+        /// </summary>
+        internal static string ReminderReport_InactiveReminders {
+            get {
+                return ResourceManager.GetString("ReminderReport_InactiveReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These are reminders that have been completed or deferred, ordered by status, completion date, and priority.
+        /// </summary>
+        internal static string ReminderReport_InactiveSummary {
+            get {
+                return ResourceManager.GetString("ReminderReport_InactiveSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No reminders to report.
+        /// </summary>
+        internal static string ReminderReport_noReminders {
+            get {
+                return ResourceManager.GetString("ReminderReport_noReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder.
+        /// </summary>
+        internal static string ReminderReport_ReminderColumn {
+            get {
+                return ResourceManager.GetString("ReminderReport_ReminderColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder Summary Report.
+        /// </summary>
+        internal static string ReminderReport_Title {
+            get {
+                return ResourceManager.GetString("ReminderReport_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Screen clipping.
         /// </summary>
         internal static string RemoveCitations_Clippings {

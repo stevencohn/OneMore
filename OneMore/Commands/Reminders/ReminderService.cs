@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ReminderService : Loggable
 	{
-		private const int sleep = 10000;
+		private const int sleep = 60000;
 
 		private static string imageCache;
 

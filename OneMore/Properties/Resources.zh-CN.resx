@@ -3690,4 +3690,32 @@ OneNote 文件 (*.one)</value>
     <value>提醒汇总报告</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>主动提醒</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>这些是尚未完成或推迟的提醒，按优先级和截止日期排序</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>闲置提醒</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>这些是已完成或推迟的提醒，按状态、完成日期和优先级排序</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>没有提醒报告</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>提醒</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>提醒汇总报告</value>
+    <comment>report</comment>
+  </data>
 </root>

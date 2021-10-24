@@ -13,6 +13,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal enum ReminderStatus
 	{
+		// listed in sort order...
+
 		NotStarted,
 		InProgress,
 		Completed,
@@ -26,6 +28,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal enum ReminderPriority
 	{
+		// listed in sort order...
+
 		Low,
 		Medium,
 		High

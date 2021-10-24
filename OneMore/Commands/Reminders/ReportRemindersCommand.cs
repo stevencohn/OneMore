@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -18,19 +19,23 @@ namespace River.OneMoreAddIn.Commands
 		{
 			public XElement Meta;
 			public Reminder Reminder;
+			public string Path;
 		}
 
 
 		private const string HeaderShading = "#DEEBF6";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
+		private const string DateFormat = "MMM d, yyyy h:mm tt";
 
 		private XNamespace ns;
 		private XElement container;
-		private int heading1Index;
 		private int heading2Index;
+		private int citeIndex;
 
 		private readonly List<Item> active;
 		private readonly List<Item> inactive;
+		private string[] priorities;
+		private string[] statuses;
 
 
 		public ReportRemindersCommand()
@@ -56,20 +61,26 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!metas.Any())
 				{
-					UIHelper.ShowInfo(one.Window, "No reminders to report");
+					UIHelper.ShowInfo(one.Window, Resx.ReminderReport_noReminders);
 					return;
 				}
 
 				var serializer = new ReminderSerializer();
 				foreach (var meta in metas)
 				{
+					var path = meta.Ancestors().Reverse()
+						.Where(m => m.Attribute("name") != null)
+						.Select(m => m.Attribute("name").Value)
+						.Aggregate((a, b) => $"{a} > {b}");
+
 					var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
 					foreach (var reminder in reminders)
 					{
 						var item = new Item
 						{
 							Meta = meta,
-							Reminder = reminder
+							Reminder = reminder,
+							Path = path
 						};
 
 						if (reminder.Status == ReminderStatus.Completed ||
@@ -86,22 +97,29 @@ namespace River.OneMoreAddIn.Commands
 
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 				var page = one.GetPage(pageId);
-				page.Title = "Reminder Report"; // Resx.AnalyzeCommand_Title;
+				page.Title = Resx.ReminderReport_Title;
 				container = page.EnsureContentContainer();
 
 				ns = page.Namespace;
 				PageNamespace.Set(ns);
-
-				heading1Index = page.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
+				citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
-				container.Add(
-					new Paragraph("Reminder Summary").SetQuickStyle(heading1Index),
-					new Paragraph("blah blah blah)"),
-					new Paragraph(string.Empty)
-					);
+				priorities = Resx.RemindDialog_priorityBox_Text
+					.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
-				ReportActiveTasks();
+				statuses = Resx.RemindDialog_statusBox_Text
+					.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+				if (active.Any())
+				{
+					ReportActiveTasks(one);
+				}
+
+				if (inactive.Any())
+				{
+					ReportInactiveTasks(one);
+				}
 
 				await one.Update(page);
 				await one.NavigateTo(pageId);
@@ -109,21 +127,21 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReportActiveTasks()
+		private void ReportActiveTasks(OneNote one)
 		{
 			container.Add(
-				new Paragraph("Active Reminders").SetQuickStyle(heading2Index),
-				new Paragraph("blah blah blah"),
+				new Paragraph(Resx.ReminderReport_ActiveReminders).SetQuickStyle(heading2Index),
+				new Paragraph(Resx.ReminderReport_ActiveSummary),
 				new Paragraph(ns, string.Empty)
 				);
 
 			var table = new Table(ns, 1, 6)
 			{
-				HasHeaderRow = true
-				//,BordersVisible = true
+				HasHeaderRow = true,
+				BordersVisible = true
 			};
 
-			table.SetColumnWidth(0, 200);
+			table.SetColumnWidth(0, 220);
 			table.SetColumnWidth(1, 70);
 			table.SetColumnWidth(2, 130);
 			table.SetColumnWidth(3, 130);
@@ -132,22 +150,85 @@ namespace River.OneMoreAddIn.Commands
 
 			var row = table[0];
 			row.SetShading(HeaderShading);
-			row[0].SetContent(new Paragraph("Reminder").SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph("Status").SetStyle(HeaderCss));
-			row[2].SetContent(new Paragraph("Start").SetStyle(HeaderCss));
-			row[3].SetContent(new Paragraph("Due").SetStyle(HeaderCss));
-			row[4].SetContent(new Paragraph("Priority").SetStyle(HeaderCss));
-			row[5].SetContent(new Paragraph("% Complete").SetStyle(HeaderCss).SetAlignment("center"));
+			row[0].SetContent(new Paragraph(Resx.ReminderReport_ReminderColumn).SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph(Resx.RemindDialog_statusLabel_Text).SetStyle(HeaderCss));
+			row[2].SetContent(new Paragraph(Resx.RemindDialog_startDateLabel_Text).SetStyle(HeaderCss));
+			row[3].SetContent(new Paragraph(Resx.RemindDialog_dueDateLabel_Text).SetStyle(HeaderCss));
+			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
+			row[5].SetContent(new Paragraph(Resx.RemindDialog_percentLabel_Text).SetStyle(HeaderCss));
 
-			foreach (var item in active)
+			foreach (var item in active
+				.OrderByDescending(i => i.Reminder.Priority)
+				.ThenBy(i => i.Reminder.Due))
 			{
 				row = table.AddRow();
-				row[0].SetContent(item.Reminder.Subject);
-				row[1].SetContent(item.Reminder.Status.ToString());
-				row[2].SetContent(item.Reminder.Start.ToFriendlyString());
-				row[3].SetContent(item.Reminder.Due.ToFriendlyString());
-				row[4].SetContent(item.Reminder.Priority.ToString());
-				row[5].SetContent(item.Reminder.Percent.ToString("P"));
+
+				var uri = one.GetHyperlink(item.Meta.Parent.Attribute("ID").Value, item.Reminder.ObjectId);
+				row[0].SetContent(new XElement(ns + "OEChildren",
+					new Paragraph($"<a href='{uri}'>{item.Reminder.Subject}</a>"),
+					new Paragraph(item.Path).SetQuickStyle(citeIndex)
+					));
+
+				row[1].SetContent(statuses[(int)item.Reminder.Status]);
+				row[2].SetContent(item.Reminder.Start.ToString(DateFormat));
+				row[3].SetContent(item.Reminder.Due.ToString(DateFormat));
+				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
+				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));
+			}
+
+			container.Add(
+				new Paragraph(ns, table.Root),
+				new Paragraph(ns, string.Empty),
+				new Paragraph(ns, string.Empty)
+				);
+		}
+
+
+		private void ReportInactiveTasks(OneNote one)
+		{
+			container.Add(
+				new Paragraph(Resx.ReminderReport_InactiveReminders).SetQuickStyle(heading2Index),
+				new Paragraph(Resx.ReminderReport_InactiveSummary),
+				new Paragraph(ns, string.Empty)
+				);
+
+			var table = new Table(ns, 1, 5)
+			{
+				HasHeaderRow = true,
+				BordersVisible = true
+			};
+
+			table.SetColumnWidth(0, 220);
+			table.SetColumnWidth(1, 70);
+			table.SetColumnWidth(2, 130);
+			table.SetColumnWidth(3, 130);
+			table.SetColumnWidth(4, 60);
+
+			var row = table[0];
+			row.SetShading(HeaderShading);
+			row[0].SetContent(new Paragraph(Resx.ReminderReport_ReminderColumn).SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph(Resx.RemindDialog_statusLabel_Text).SetStyle(HeaderCss));
+			row[2].SetContent(new Paragraph(Resx.RemindDialog_startDateLabel_Text).SetStyle(HeaderCss));
+			row[3].SetContent(new Paragraph(Resx.RemindDialog_completedLabel_Text).SetStyle(HeaderCss));
+			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
+
+			foreach (var item in inactive
+				.OrderBy(i => i.Reminder.Status)
+				.ThenByDescending(i => i.Reminder.Completed)
+				.ThenByDescending(i => i.Reminder.Priority))
+			{
+				row = table.AddRow();
+
+				var uri = one.GetHyperlink(item.Meta.Parent.Attribute("ID").Value, item.Reminder.ObjectId);
+				row[0].SetContent(new XElement(ns + "OEChildren",
+					new Paragraph($"<a href='{uri}'>{item.Reminder.Subject}</a>"),
+					new Paragraph(item.Path).SetQuickStyle(citeIndex)
+					));
+
+				row[1].SetContent(statuses[(int)item.Reminder.Status]);
+				row[2].SetContent(item.Reminder.Start.ToString(DateFormat));
+				row[3].SetContent(item.Reminder.Completed.ToString(DateFormat));
+				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
 			}
 
 			container.Add(

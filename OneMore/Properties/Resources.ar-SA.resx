@@ -3698,4 +3698,32 @@ ISO-code then comma then language name</comment>
     <value>تقرير ملخص التذكير</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>تذكير نشط</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>هذه تذكيرات لم تكتمل أو مؤجلة بعد ، مرتبة حسب الأولوية وتاريخ الاستحقاق</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>تذكيرات غير نشطة</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>هذه هي التذكيرات التي تم إكمالها أو تأجيلها ، مرتبة حسب الحالة وتاريخ الإكمال والأولوية</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>لا تذكير للإبلاغ</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>تذكير</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>تقرير ملخص التذكير</value>
+    <comment>report</comment>
+  </data>
 </root>

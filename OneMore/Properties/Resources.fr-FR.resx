@@ -3693,4 +3693,32 @@ Différé</value>
     <value>Rapport récapitulatif de rappel</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>Rappels actifs</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>Il s'agit de rappels non encore terminés ou différés, classés par priorité et date d'échéance</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>Rappels inactifs</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>Il s'agit de rappels terminés ou différés, classés par statut, date d'achèvement et priorité</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>Aucun rappel à signaler</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>Rappel</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>Rapport récapitulatif de rappel</value>
+    <comment>report</comment>
+  </data>
 </root>

@@ -3699,4 +3699,32 @@ Verschoven</value>
     <value>Samenvatting herinneringsrapport</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>Actieve herinneringen</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>Dit zijn herinneringen die nog niet zijn voltooid of uitgesteld, gerangschikt op prioriteit en vervaldatum</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>Inactieve herinneringen</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>Dit zijn herinneringen die zijn voltooid of uitgesteld, gerangschikt op status, voltooiingsdatum en prioriteit</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>Geen herinneringen om te melden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>Herinnering</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>Samenvatting herinneringsrapport</value>
+    <comment>report</comment>
+  </data>
 </root>
