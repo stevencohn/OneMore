@@ -27,7 +27,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string OverdueShading = "#FADBD2";
 		private const string CompletedShading = "#E2EFD9";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
-		private const string DateFormat = "MMM d, yyyy h:mm tt";
 
 		private XNamespace ns;
 		private XElement container;
@@ -119,8 +118,9 @@ namespace River.OneMoreAddIn.Commands
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
 				citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
+				var now = DateTime.Now.ToString(DateTimeExtensions.ShortFriendlyPattern);
 				container.Add(
-					new Paragraph($"{Resx.ReminderReport_LastUpdated} {DateTime.Now.ToString(DateFormat)} " +
+					new Paragraph($"{Resx.ReminderReport_LastUpdated} {now} " +
 						$"(<a href=\"onemore://ReportRemindersCommand/refresh\">" +
 						$"{Resx.ReminderReport_Refresh}</a>)"),
 					new Paragraph(string.Empty)
@@ -196,8 +196,8 @@ namespace River.OneMoreAddIn.Commands
 					row[1].ShadingColor = OverdueShading;
 				}
 
-				row[2].SetContent(item.Reminder.Start.ToString(DateFormat));
-				row[3].SetContent(item.Reminder.Due.ToString(DateFormat));
+				row[2].SetContent(item.Reminder.Start.ToString(DateTimeExtensions.ShortFriendlyPattern));
+				row[3].SetContent(item.Reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern));
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
 				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));
 			}
@@ -257,11 +257,11 @@ namespace River.OneMoreAddIn.Commands
 					row[1].ShadingColor = CompletedShading;
 				}
 
-				row[2].SetContent(item.Reminder.Start.ToString(DateFormat));
+				row[2].SetContent(item.Reminder.Start.ToString(DateTimeExtensions.ShortFriendlyPattern));
 
 				if (item.Reminder.Status == ReminderStatus.Completed)
 				{
-					row[3].SetContent(item.Reminder.Completed.ToString(DateFormat));
+					row[3].SetContent(item.Reminder.Completed.ToString(DateTimeExtensions.ShortFriendlyPattern));
 				}
 
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);

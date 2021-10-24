@@ -16,6 +16,13 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets the pattern to express a friendly full date time string
+		/// without the day name. Used in reports.
+		/// </summary>
+		public static string ShortFriendlyPattern = "MMM d, yyyy h:mm tt";
+
+
+		/// <summary>
 		/// Gets the pattern to express a friendly full date time string.
 		/// Used to set custom formatting in DateTimePicker
 		/// </summary>
