@@ -3727,4 +3727,12 @@ Diferido</value>
     <value>Informe de resumen de recordatorio</value>
     <comment>report</comment>
   </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Última actualización</value>
+    <comment>text</comment>
+  </data>
+  <data name="ReminderReport_Refresh" xml:space="preserve">
+    <value>Actualizar</value>
+    <comment>text</comment>
+  </data>
 </root>

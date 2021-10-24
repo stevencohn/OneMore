@@ -3727,4 +3727,12 @@ Diferido</value>
     <value>Relatório de Resumo de Lembrete</value>
     <comment>report</comment>
   </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Laste atualizado</value>
+    <comment>text</comment>
+  </data>
+  <data name="ReminderReport_Refresh" xml:space="preserve">
+    <value>Atualizar</value>
+    <comment>text</comment>
+  </data>
 </root>

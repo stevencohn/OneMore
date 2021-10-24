@@ -3727,4 +3727,12 @@ Verschoven</value>
     <value>Samenvatting herinneringsrapport</value>
     <comment>report</comment>
   </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Laatst bijgewerkt</value>
+    <comment>text</comment>
+  </data>
+  <data name="ReminderReport_Refresh" xml:space="preserve">
+    <value>Vernieuwen</value>
+    <comment>text</comment>
+  </data>
 </root>

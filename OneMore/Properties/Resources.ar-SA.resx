@@ -3726,4 +3726,12 @@ ISO-code then comma then language name</comment>
     <value>تقرير ملخص التذكير</value>
     <comment>report</comment>
   </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>آخر تحديث</value>
+    <comment>text</comment>
+  </data>
+  <data name="ReminderReport_Refresh" xml:space="preserve">
+    <value>ينعش</value>
+    <comment>text</comment>
+  </data>
 </root>

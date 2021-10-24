@@ -3718,4 +3718,12 @@ OneNote 文件 (*.one)</value>
     <value>提醒汇总报告</value>
     <comment>report</comment>
   </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>最新更新</value>
+    <comment>text</comment>
+  </data>
+  <data name="ReminderReport_Refresh" xml:space="preserve">
+    <value>刷新</value>
+    <comment>text</comment>
+  </data>
 </root>

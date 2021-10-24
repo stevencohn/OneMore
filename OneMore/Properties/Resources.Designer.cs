@@ -4344,11 +4344,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Laste updated.
+        /// </summary>
+        internal static string ReminderReport_LastUpdated {
+            get {
+                return ResourceManager.GetString("ReminderReport_LastUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No reminders to report.
         /// </summary>
         internal static string ReminderReport_noReminders {
             get {
                 return ResourceManager.GetString("ReminderReport_noReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string ReminderReport_Refresh {
+            get {
+                return ResourceManager.GetString("ReminderReport_Refresh", resourceCulture);
             }
         }
         

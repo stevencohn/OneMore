@@ -24,6 +24,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private const string HeaderShading = "#DEEBF6";
+		private const string OverdueShading = "#FADBD2";
+		private const string CompletedShading = "#E2EFD9";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 		private const string DateFormat = "MMM d, yyyy h:mm tt";
 
@@ -95,15 +97,34 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				one.CreatePage(one.CurrentSectionId, out var pageId);
-				var page = one.GetPage(pageId);
-				page.Title = Resx.ReminderReport_Title;
-				container = page.EnsureContentContainer();
+				Page page;
+				string pageId = null;
+				if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
+				{
+					page = one.GetPage();
+					pageId = page.PageId;
+					container = page.EnsureContentContainer();
+					container.Elements().Remove();
+				}
+				else
+				{
+					one.CreatePage(one.CurrentSectionId, out pageId);
+					page = one.GetPage(pageId);
+					page.Title = Resx.ReminderReport_Title;
+					container = page.EnsureContentContainer();
+				}
 
 				ns = page.Namespace;
 				PageNamespace.Set(ns);
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
 				citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
+
+				container.Add(
+					new Paragraph($"{Resx.ReminderReport_LastUpdated} {DateTime.Now.ToString(DateFormat)} " +
+						$"(<a href=\"onemore://ReportRemindersCommand/refresh\">" +
+						$"{Resx.ReminderReport_Refresh}</a>)"),
+					new Paragraph(string.Empty)
+					);
 
 				priorities = Resx.RemindDialog_priorityBox_Text
 					.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
@@ -170,6 +191,11 @@ namespace River.OneMoreAddIn.Commands
 					));
 
 				row[1].SetContent(statuses[(int)item.Reminder.Status]);
+				if (DateTime.UtcNow.CompareTo(item.Reminder.Due) > 0)
+				{
+					row[1].ShadingColor = OverdueShading;
+				}
+
 				row[2].SetContent(item.Reminder.Start.ToString(DateFormat));
 				row[3].SetContent(item.Reminder.Due.ToString(DateFormat));
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
@@ -226,8 +252,18 @@ namespace River.OneMoreAddIn.Commands
 					));
 
 				row[1].SetContent(statuses[(int)item.Reminder.Status]);
+				if (item.Reminder.Status == ReminderStatus.Completed)
+				{
+					row[1].ShadingColor = CompletedShading;
+				}
+
 				row[2].SetContent(item.Reminder.Start.ToString(DateFormat));
-				row[3].SetContent(item.Reminder.Completed.ToString(DateFormat));
+
+				if (item.Reminder.Status == ReminderStatus.Completed)
+				{
+					row[3].SetContent(item.Reminder.Completed.ToString(DateFormat));
+				}
+
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
 			}
 

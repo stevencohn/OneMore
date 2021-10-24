@@ -3712,4 +3712,12 @@ Aufgeschoben</value>
     <value>Zusammenfassungsbericht zur Erinnerung</value>
     <comment>report</comment>
   </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Letzte aktualisiert</value>
+    <comment>text</comment>
+  </data>
+  <data name="ReminderReport_Refresh" xml:space="preserve">
+    <value>Aktualisierung</value>
+    <comment>text</comment>
+  </data>
 </root>

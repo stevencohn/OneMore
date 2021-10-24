@@ -3766,4 +3766,12 @@ Deferred</value>
     <value>Reminder Summary Report</value>
     <comment>report</comment>
   </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Laste updated</value>
+    <comment>text</comment>
+  </data>
+  <data name="ReminderReport_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>text</comment>
+  </data>
 </root>
