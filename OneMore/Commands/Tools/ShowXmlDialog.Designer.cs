@@ -380,7 +380,7 @@
 			this.pageInfoPanel.Controls.Add(this.pageInfoLabel);
 			this.pageInfoPanel.Location = new System.Drawing.Point(408, 8);
 			this.pageInfoPanel.Name = "pageInfoPanel";
-			this.pageInfoPanel.Size = new System.Drawing.Size(802, 105);
+			this.pageInfoPanel.Size = new System.Drawing.Size(802, 123);
 			this.pageInfoPanel.TabIndex = 9;
 			// 
 			// hideLFBox
@@ -415,7 +415,7 @@
 			this.pageInfoBox.Location = new System.Drawing.Point(94, 11);
 			this.pageInfoBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.pageInfoBox.Name = "pageInfoBox";
-			this.pageInfoBox.Size = new System.Drawing.Size(223, 84);
+			this.pageInfoBox.Size = new System.Drawing.Size(223, 104);
 			this.pageInfoBox.TabIndex = 4;
 			this.pageInfoBox.SelectedValueChanged += new System.EventHandler(this.ChangeInfoScope);
 			// 

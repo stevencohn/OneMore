@@ -3585,4 +3585,196 @@ OneNote-bestand (*.one)</value>
     <value>... Proeftaal</value>
     <comment>context menu option</comment>
   </data>
+  <data name="RemindCommand_nameFormat" xml:space="preserve">
+    <value>Herinnering: taak af (0)</value>
+    <comment>tagdef name tooltip</comment>
+  </data>
+  <data name="RemindCommand_noContext" xml:space="preserve">
+    <value>Cursor moet op een alinea worden geplaatst</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="RemindDialog.Text" xml:space="preserve">
+    <value>Herinnering</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemindDialog_cancelButton.Text" xml:space="preserve">
+    <value>Annuleren</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
+    <value>Voltooid</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
+    <value>Opleveringsdatum</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_okButton.Text" xml:space="preserve">
+    <value>Oke</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
+    <value>% Compleet</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
+    <value>Laag
+Medium
+Hoog</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
+    <value>Prioriteit</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
+    <value>Startdatum</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
+    <value>Begonnen</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_statusBox.Text" xml:space="preserve">
+    <value>Niet begonnen
+Bezig
+Voltooid
+Wachten op iemand anders
+Verschoven</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
+    <value>Toestand</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
+    <value>Onderwerp</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_tagLabel.Text" xml:space="preserve">
+    <value>Label</value>
+    <comment>label</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCompleteReminderButton" xml:space="preserve">
+    <value>... Volledige herinnering</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDeleteReminderButton" xml:space="preserve">
+    <value>... Herinnering verwijderen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemindButton" xml:space="preserve">
+    <value>... Herinneringen toevoegen of bijwerken</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemindersMenu" xml:space="preserve">
+    <value>Herinneringen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribCompleteReminderButton_Label" xml:space="preserve">
+    <value>Herinnering voltooien</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribDeleteReminderButton_Label" xml:space="preserve">
+    <value>Herinnering verwijderen</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindButton_Label" xml:space="preserve">
+    <value>Herinneringen toevoegen of bijwerken</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindersMenu_Label" xml:space="preserve">
+    <value>Herinneringen</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="DeleteReminderCommand_deleteTag" xml:space="preserve">
+    <value>Staat op het punt de herinnering te verwijderen. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>Er is geen herinnering in deze paragraaf</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Samenvatting herinneringsrapport</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>Actieve herinneringen</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>Dit zijn herinneringen die nog niet zijn voltooid of uitgesteld en zijn geordend op prioriteit en vervaldatum</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>Inactieve herinneringen</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>Dit zijn herinneringen die zijn voltooid of uitgesteld en zijn gerangschikt op status, voltooiingsdatum en prioriteit</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>Geen herinneringen om te melden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>Herinnering</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>Samenvatting herinneringsrapport</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Laatst bijgewerkt</value>
+    <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>Werkelijk</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Voltooid</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>Ten gevolge</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>Oke</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Gepland</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Begin</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Begonnen</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>Vernieuwen</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Stil</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>Taak is over de vervaldatum van {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>Taak is voorbij de startdatum van {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>Nog een herinnering</value>
+    <comment>toast header</comment>
+  </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>tot zwijgen gebracht</value>
+  </data>
 </root>

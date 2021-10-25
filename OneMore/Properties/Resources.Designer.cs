@@ -995,11 +995,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Complete Reminder.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCompleteReminderButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCompleteReminderButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Decrease Text Size.
         /// </summary>
         internal static string ContextMenuSheet_ribDecreaseFontSizeButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribDecreaseFontSizeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Delete Reminder.
+        /// </summary>
+        internal static string ContextMenuSheet_ribDeleteReminderButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribDeleteReminderButton", resourceCulture);
             }
         }
         
@@ -1162,6 +1180,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ContextMenuSheet_ribRedStatusButton {
             get {
                 return ResourceManager.GetString("ContextMenuSheet_ribRedStatusButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ... Add or Update Reminders.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRemindButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRemindButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminders.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRemindersMenu {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRemindersMenu", resourceCulture);
             }
         }
         
@@ -1566,6 +1602,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string DeleteFormulaCommand_NoFormulas {
             get {
                 return ResourceManager.GetString("DeleteFormulaCommand_NoFormulas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About to delete reminder. Would you also like to delete the tag associated with this reminder?.
+        /// </summary>
+        internal static string DeleteReminderCommand_deleteTag {
+            get {
+                return ResourceManager.GetString("DeleteReminderCommand_deleteTag", resourceCulture);
             }
         }
         
@@ -4104,6 +4149,273 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reminder: task due {0}.
+        /// </summary>
+        internal static string RemindCommand_nameFormat {
+            get {
+                return ResourceManager.GetString("RemindCommand_nameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cursor must be positioned on a paragraph.
+        /// </summary>
+        internal static string RemindCommand_noContext {
+            get {
+                return ResourceManager.GetString("RemindCommand_noContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no reminder on this paragraph.
+        /// </summary>
+        internal static string RemindCommand_noReminder {
+            get {
+                return ResourceManager.GetString("RemindCommand_noReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string RemindDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        internal static string RemindDialog_completedLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_completedLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due date.
+        /// </summary>
+        internal static string RemindDialog_dueDateLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_dueDateLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string RemindDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Complete.
+        /// </summary>
+        internal static string RemindDialog_percentLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_percentLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low
+        ///Medium
+        ///High.
+        /// </summary>
+        internal static string RemindDialog_priorityBox_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_priorityBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Priority.
+        /// </summary>
+        internal static string RemindDialog_priorityLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_priorityLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silent.
+        /// </summary>
+        internal static string RemindDialog_silentBox_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_silentBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        internal static string RemindDialog_startDateLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_startDateLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started.
+        /// </summary>
+        internal static string RemindDialog_startedLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_startedLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not started
+        ///In progress
+        ///Completed
+        ///Waiting on someone else
+        ///Deferred.
+        /// </summary>
+        internal static string RemindDialog_statusBox_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_statusBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string RemindDialog_statusLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_statusLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        internal static string RemindDialog_subjectLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_subjectLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        internal static string RemindDialog_tagLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_tagLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder.
+        /// </summary>
+        internal static string RemindDialog_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task is past its due date of {0}, &quot;{1}&quot;. Click here to navigate to this task.
+        /// </summary>
+        internal static string Reminder_PastDue {
+            get {
+                return ResourceManager.GetString("Reminder_PastDue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task is past its start date of {0}, &quot;{1}&quot;. Click here to navigate to this task.
+        /// </summary>
+        internal static string Reminder_PastStart {
+            get {
+                return ResourceManager.GetString("Reminder_PastStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Reminder.
+        /// </summary>
+        internal static string Reminder_ToastTitle {
+            get {
+                return ResourceManager.GetString("Reminder_ToastTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active Reminders.
+        /// </summary>
+        internal static string ReminderReport_ActiveReminders {
+            get {
+                return ResourceManager.GetString("ReminderReport_ActiveReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These are reminders not yet completed or deferred and ordered by priority and due date.
+        /// </summary>
+        internal static string ReminderReport_ActiveSummary {
+            get {
+                return ResourceManager.GetString("ReminderReport_ActiveSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive Reminders.
+        /// </summary>
+        internal static string ReminderReport_InactiveReminders {
+            get {
+                return ResourceManager.GetString("ReminderReport_InactiveReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These are reminders that have been completed or deferred and ordered by status, completion date, and priority.
+        /// </summary>
+        internal static string ReminderReport_InactiveSummary {
+            get {
+                return ResourceManager.GetString("ReminderReport_InactiveSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last updated.
+        /// </summary>
+        internal static string ReminderReport_LastUpdated {
+            get {
+                return ResourceManager.GetString("ReminderReport_LastUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No reminders to report.
+        /// </summary>
+        internal static string ReminderReport_noReminders {
+            get {
+                return ResourceManager.GetString("ReminderReport_noReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder.
+        /// </summary>
+        internal static string ReminderReport_ReminderColumn {
+            get {
+                return ResourceManager.GetString("ReminderReport_ReminderColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder Summary Report.
+        /// </summary>
+        internal static string ReminderReport_Title {
+            get {
+                return ResourceManager.GetString("ReminderReport_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Screen clipping.
         /// </summary>
         internal static string RemoveCitations_Clippings {
@@ -4722,6 +5034,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete Reminder.
+        /// </summary>
+        internal static string ribCompleteReminderButton_Label {
+            get {
+                return ResourceManager.GetString("ribCompleteReminderButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Across.
         /// </summary>
         internal static string ribCopyAcrossButton_Label {
@@ -4835,6 +5156,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribDeleteFormulaButton_Screentip {
             get {
                 return ResourceManager.GetString("ribDeleteFormulaButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Reminder.
+        /// </summary>
+        internal static string ribDeleteReminderButton_Label {
+            get {
+                return ResourceManager.GetString("ribDeleteReminderButton_Label", resourceCulture);
             }
         }
         
@@ -5532,6 +5862,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add or Update Reminders.
+        /// </summary>
+        internal static string ribRemindButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemindButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminders.
+        /// </summary>
+        internal static string ribRemindersMenu_Label {
+            get {
+                return ResourceManager.GetString("ribRemindersMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Author Information.
         /// </summary>
         internal static string ribRemoveAuthorsButton_Label {
@@ -5672,6 +6020,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribReplayButton_Screentip {
             get {
                 return ResourceManager.GetString("ribReplayButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminder Summary Report.
+        /// </summary>
+        internal static string ribReportRemindersButton_Label {
+            get {
+                return ResourceManager.GetString("ribReportRemindersButton_Label", resourceCulture);
             }
         }
         
@@ -8102,6 +8459,96 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("Watch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actual.
+        /// </summary>
+        internal static string word_Actual {
+            get {
+                return ResourceManager.GetString("word_Actual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string word_Cancel {
+            get {
+                return ResourceManager.GetString("word_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        internal static string word_Completed {
+            get {
+                return ResourceManager.GetString("word_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due.
+        /// </summary>
+        internal static string word_Due {
+            get {
+                return ResourceManager.GetString("word_Due", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string word_OK {
+            get {
+                return ResourceManager.GetString("word_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Planned.
+        /// </summary>
+        internal static string word_Planned {
+            get {
+                return ResourceManager.GetString("word_Planned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string word_Refresh {
+            get {
+                return ResourceManager.GetString("word_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silenced.
+        /// </summary>
+        internal static string word_Silenced {
+            get {
+                return ResourceManager.GetString("word_Silenced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string word_Start {
+            get {
+                return ResourceManager.GetString("word_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started.
+        /// </summary>
+        internal static string word_Started {
+            get {
+                return ResourceManager.GetString("word_Started", resourceCulture);
             }
         }
         

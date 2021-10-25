@@ -3624,4 +3624,196 @@ ISO-code then comma then language name</comment>
     <value>... Proofing Language</value>
     <comment>context menu option</comment>
   </data>
+  <data name="RemindCommand_nameFormat" xml:space="preserve">
+    <value>Reminder: task due {0}</value>
+    <comment>tagdef name tooltip</comment>
+  </data>
+  <data name="RemindCommand_noContext" xml:space="preserve">
+    <value>Cursor must be positioned on a paragraph</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="RemindDialog.Text" xml:space="preserve">
+    <value>Reminder</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemindDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
+    <value>Completed</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
+    <value>Due date</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
+    <value>% Complete</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
+    <value>Low
+Medium
+High</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
+    <value>Priority</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
+    <value>Start date</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
+    <value>Started</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_statusBox.Text" xml:space="preserve">
+    <value>Not started
+In progress
+Completed
+Waiting on someone else
+Deferred</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
+    <value>Status</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
+    <value>Subject</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_tagLabel.Text" xml:space="preserve">
+    <value>Tag</value>
+    <comment>label</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCompleteReminderButton" xml:space="preserve">
+    <value>... Complete Reminder</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDeleteReminderButton" xml:space="preserve">
+    <value>... Delete Reminder</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemindButton" xml:space="preserve">
+    <value>... Add or Update Reminders</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemindersMenu" xml:space="preserve">
+    <value>Reminders</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribCompleteReminderButton_Label" xml:space="preserve">
+    <value>Complete Reminder</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribDeleteReminderButton_Label" xml:space="preserve">
+    <value>Delete Reminder</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindButton_Label" xml:space="preserve">
+    <value>Add or Update Reminders</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindersMenu_Label" xml:space="preserve">
+    <value>Reminders</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="DeleteReminderCommand_deleteTag" xml:space="preserve">
+    <value>About to delete reminder. Would you also like to delete the tag associated with this reminder?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>There is no reminder on this paragraph</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Reminder Summary Report</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>Active Reminders</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>These are reminders not yet completed or deferred and ordered by priority and due date</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>Inactive Reminders</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>These are reminders that have been completed or deferred and ordered by status, completion date, and priority</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>No reminders to report</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>Reminder</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>Reminder Summary Report</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Last updated</value>
+    <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>Due</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Planned</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Silent</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>Task is past its due date of {0}, "{1}". Click here to navigate to this task</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>Task is past its start date of {0}, "{1}". Click here to navigate to this task</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>OneMore Reminder</value>
+    <comment>toast header</comment>
+  </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>Silenced</value>
+  </data>
 </root>

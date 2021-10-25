@@ -1086,6 +1086,21 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Forces OneNote to jump to a specific object on a given page.
+		/// </summary>
+		/// <param name="pageId">The page ID</param>
+		/// <param name="objectId">The object ID</param>
+		/// <returns></returns>
+		public async Task NavigateTo(string pageId, string objectId)
+		{
+			await InvokeWithRetry(() =>
+			{
+				onenote.NavigateTo(pageId, objectId);
+			});
+		}
+
+
+		/// <summary>
 		/// Search pages under the specified hierarchy node using the given query.
 		/// </summary>
 		/// <param name="nodeId">
@@ -1116,8 +1131,10 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="nodeId">The root node: notebook, section, or page</param>
 		/// <param name="name">The search string, meta key name</param>
+		/// <param name="includeRecycleBin">True to include recycle bin section groups</param>
 		/// <returns>A hierarchy XML starting at the given node.</returns>
-		public async Task<XElement> SearchMeta(string nodeId, string name)
+		public async Task<XElement> SearchMeta(
+			string nodeId, string name, bool includeRecycleBin = false)
 		{
 			string xml = null;
 
@@ -1126,7 +1143,21 @@ namespace River.OneMoreAddIn
 				onenote.FindMeta(nodeId, name, out xml, false, XMLSchema.xs2013);
 			});
 
-			return XElement.Parse(xml);
+			var hierarchy = XElement.Parse(xml);
+
+			if (includeRecycleBin)
+			{
+				return hierarchy;
+			}
+
+			// ignore recycle bins
+			var ns = hierarchy.GetNamespaceOfPrefix(Prefix);
+			hierarchy.Elements(ns + "Notebook").Elements(ns + "SectionGroup")
+				.Where(e => e.Attribute("isRecycleBin") != null)
+				.ToList()
+				.ForEach(e => e.Remove());
+
+			return hierarchy;
 		}
 
 

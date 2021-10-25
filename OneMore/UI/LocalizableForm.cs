@@ -2,6 +2,8 @@
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3011 // Reflection should not be used to increase accessibility of classes, methods, or fields
+
 namespace River.OneMoreAddIn.UI
 {
 	using System;
@@ -44,77 +46,105 @@ namespace River.OneMoreAddIn.UI
 		/// Set the Text property, or specified property, for each named control.
 		/// </summary>
 		/// <param name="keys">
-		/// A string array; each item is the name of the control to set the Text property, or can
-		/// specified the controlName.propertyName to set a named property rather than Text
+		/// A string array, each item can be one of these formats:
+		///   - "control"            sets the Text property of the named control
+		///   - "control.prop"       sets the prop property of the named control
+		///   - "control=resid"      sets the Text property of the named control to resid
+		///   - "control.prop=resid" sets the prop property of the named control to resid
+		/// resid override can be used to target common word_ phrases
 		/// </param>
 		protected void Localize(string[] keys)
 		{
 			foreach (var key in keys)
 			{
-				// named control and default Text property
-				var k = key;
-				var p = "Text";
+				var controlName = key;
+				var propName = "Text";
 
-				var dot = key.IndexOf('.');
-				if (dot > 0)
+				string resid = null;
+				var marker = controlName.IndexOf('=');
+				if (marker > 0)
 				{
-					// specific named property for this control
-					k = key.Substring(0, dot);
-					p = key.Substring(dot + 1);
+					// override with explicit resid
+					resid = controlName.Substring(marker + 1);
+					controlName = controlName.Substring(0, marker);
 				}
 
-				// Name will be the dialog class name, k is the control name, p is the property
-				var resid = $"{Name}_{k}.{p}";
-				string text;
+				marker = controlName.IndexOf('.');
+				if (marker > 0)
+				{
+					// override property name
+					propName = controlName.Substring(marker + 1);
+					controlName = controlName.Substring(0, marker);
+				}
 
+				if (resid == null)
+				{
+					// default resid form if not explicitly overriden
+					resid = $"{Name}_{controlName}.{propName}";
+				}
+
+				string text;
 				try
 				{
 					text = Resx.ResourceManager.GetString(resid, AddIn.Culture);
 					if (string.IsNullOrEmpty(text))
 					{
 						logger.WriteLine($"resource not found {resid}");
-						return;
+						continue;
 					}
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine($"error loading resource {resid}", exc);
-					return;
+					continue;
 				}
 
-				var control = Controls.Find(k, true).FirstOrDefault();
+				var control = Controls.Find(controlName, true).FirstOrDefault();
 				if (control != null)
 				{
-					var prop = control.GetType().GetProperty(p);
-					if (prop != null)
-						prop.SetValue(control, text, null);
+					if (control is ComboBox box)
+					{
+						box.Items.Clear();
+						box.Items.AddRange(text.Split(
+							new string[] { Environment.NewLine },
+							StringSplitOptions.RemoveEmptyEntries));
+					}
 					else
-						logger.WriteLine($"cannot find control property {k}.{p}");
+					{
+						var prop = control.GetType().GetProperty(propName);
+						if (prop != null)
+						{
+							//logger.WriteLine($"resx {controlName}.{propName} = {resid} = {text}");
+							prop.SetValue(control, text, null);
+						}
+						else
+							logger.WriteLine($"cannot find control property {controlName}.{propName}");
+					}
 				}
 				else
 				{
 					var bindings = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
-					var component = GetType().GetField(k, bindings)?.GetValue(this);
+					var component = GetType().GetField(controlName, bindings)?.GetValue(this);
 
 					if (component is Component comp)
 					{
-						var prop = comp.GetType().GetProperty(p, bindings);
+						var prop = comp.GetType().GetProperty(propName, bindings);
 						if (prop != null)
 							prop.SetValue(comp, text, null);
 						else
-							logger.WriteLine($"cannot find Component property {k}.{p}");
+							logger.WriteLine($"cannot find Component property {controlName}.{propName}");
 					}
 					else if (component is TreeNode node)
 					{
-						var prop = node.GetType().GetProperty(p, bindings);
+						var prop = node.GetType().GetProperty(propName, bindings);
 						if (prop != null)
 							prop.SetValue(node, text, null);
 						else
-							logger.WriteLine($"cannot find TreeNode property {k}.{p}");
+							logger.WriteLine($"cannot find TreeNode property {controlName}.{propName}");
 					}
 					else
 					{
-						logger.WriteLine($"cannot translate {k}, name not found");
+						logger.WriteLine($"cannot translate {controlName}, name not found");
 					}
 				}
 			}

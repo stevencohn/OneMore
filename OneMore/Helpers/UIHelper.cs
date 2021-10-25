@@ -196,7 +196,8 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static DialogResult ShowQuestion(string message, bool defaultYes = false)
+		public static DialogResult ShowQuestion(
+			string message, bool defaultYes = false, bool canCancel = false)
 		{
 			var defaultButton = defaultYes 
 				? MessageBoxDefaultButton.Button1 
@@ -204,7 +205,7 @@ namespace River.OneMoreAddIn
 
 			return MessageBox.Show(
 				message, Resx.ProgramName,
-				MessageBoxButtons.YesNo,
+				canCancel ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo,
 				MessageBoxIcon.Question,
 				defaultButton,
 				MessageBoxOptions.DefaultDesktopOnly);

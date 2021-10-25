@@ -3576,4 +3576,196 @@ OneNote 文件 (*.one)</value>
     <value>... 校对语言</value>
     <comment>context menu option</comment>
   </data>
+  <data name="RemindCommand_nameFormat" xml:space="preserve">
+    <value>提醒：任务到期 (0)</value>
+    <comment>tagdef name tooltip</comment>
+  </data>
+  <data name="RemindCommand_noContext" xml:space="preserve">
+    <value>光标必须位于段落上</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="RemindDialog.Text" xml:space="preserve">
+    <value>提醒</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemindDialog_cancelButton.Text" xml:space="preserve">
+    <value>取消</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
+    <value>完全的</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
+    <value>到期日</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_okButton.Text" xml:space="preserve">
+    <value>好的</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
+    <value>％ 完全的</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
+    <value>低的
+中等的
+高的</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
+    <value>优先事项</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
+    <value>开始日期</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
+    <value>开始</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_statusBox.Text" xml:space="preserve">
+    <value>没有开始
+进行中
+完全的
+等着别人
+延期</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
+    <value>地位</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
+    <value>主题</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_tagLabel.Text" xml:space="preserve">
+    <value>标签</value>
+    <comment>label</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCompleteReminderButton" xml:space="preserve">
+    <value>... 完整提醒</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDeleteReminderButton" xml:space="preserve">
+    <value>... 删除提醒</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemindButton" xml:space="preserve">
+    <value>... 添加或更新提醒</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemindersMenu" xml:space="preserve">
+    <value>提醒事项</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribCompleteReminderButton_Label" xml:space="preserve">
+    <value>完整提醒</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribDeleteReminderButton_Label" xml:space="preserve">
+    <value>删除提醒</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindButton_Label" xml:space="preserve">
+    <value>添加或更新提醒</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindersMenu_Label" xml:space="preserve">
+    <value>提醒事项</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="DeleteReminderCommand_deleteTag" xml:space="preserve">
+    <value>即将删除提醒。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>这一段没有提醒</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>提醒汇总报告</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>主动提醒</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>这些是尚未完成或推迟的提醒，并按优先级和截止日期排序</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>闲置提醒</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>这些是已完成或推迟并按状态、完成日期和优先级排序的提醒</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>没有提醒报告</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>提醒</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>提醒汇总报告</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>最近更新时间</value>
+    <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>实际的</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>完全的</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>到期的</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>好的</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>计划</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>沉默的</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>任务已超过其截止日期 {0}，“{1}”。</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>任务已超过其开始日期 {0}，“{1}”。</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>一个提醒</value>
+    <comment>toast header</comment>
+  </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>沉默</value>
+  </data>
 </root>

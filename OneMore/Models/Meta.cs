@@ -10,6 +10,9 @@ namespace River.OneMoreAddIn.Models
 	/// <summary>
 	/// Represents a Meta element
 	/// </summary>
+	/// <remarks>
+	/// To delete a one:Meta element, you must also delete its parent container's objectID
+	/// </remarks>
 	internal class Meta : XElement
 	{
 
@@ -44,7 +47,8 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Gets the value of this meta element
+		/// Gets the value of this meta element.
+		/// Note this may return encoded content; if so, use DecodeContent instead
 		/// </summary>
 		public string Content => Attribute("content").Value;
 

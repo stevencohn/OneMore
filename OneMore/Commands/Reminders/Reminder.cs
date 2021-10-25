@@ -4,45 +4,112 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Newtonsoft.Json;
 	using System;
-	using Windows.UI.Notifications;
 
 
-	/*
-	<one:Tag index="0" completed="false" disabled="false" creationDate="2021-10-17T16:18:32.000Z" />
-	<one:Tag index="0" completed="true" disabled="false" creationDate="2021-10-17T16:18:32.000Z" completionDate="2021-10-17T17:18:10.000Z" />
-	*/
+	/// <summary>
+	/// User selected status
+	/// </summary>
+	internal enum ReminderStatus
+	{
+		// listed in sort order...
 
+		NotStarted,
+		InProgress,
+		Completed,
+		Waiting,
+		Deferred
+	}
+
+
+	/// <summary>
+	/// User selected priority
+	/// </summary>
+	internal enum ReminderPriority
+	{
+		// listed in sort order...
+
+		Low,
+		Medium,
+		High
+	}
+
+
+	/// <summary>
+	/// Describes a reminder associated with a tag.
+	/// </summary>
+	/// <remarks>
+	/// Reminders are serialized, compressed, encoded, and stored in a page level Meta. Storing
+	/// at the page level is necessary so they are discoverable using the one.FindMeta API, which
+	/// unfortunately does not find Meta elements nested within the body of a page. But given that
+	/// Meta content attibutes can be up to 262,144 chars long, this means we can store almost
+	/// 1000 encoded reminders in a single Meta; more than enough for a single page!
+	/// </remarks>
 	internal class Reminder
 	{
-		public string ObjectId;
-		public int TagIndex;			// Tag.index
-		public int Priority;
-		public int Percent;
-		//public bool Disabled;			// Tag.disabled
-		//public DateTime Created;		// Tag.creationDate
-		public DateTime Start;
-		public DateTime Started;
-		public DateTime Due;
-		//public DateTime Completed;	// Tag.completionDate
+		private const string BellSymbol = "97";
 
 
-		public static void X()
+		public int Version { get; set; }
+
+		// parent object Id
+		public string ObjectId { get; set; }
+
+		// one:Tag.index
+		[JsonIgnore]
+		public string TagIndex { get; set; }
+
+		// one:TagDef.symbol
+		public string Symbol { get; set; }
+
+		// one:Tag.disabled
+		[JsonIgnore]
+		public bool Disabled { get; set; }
+
+		public ReminderStatus Status { get; set; }
+
+		public ReminderPriority Priority { get; set; }
+
+		public bool Silent { get; set; }
+
+		public int Percent { get; set; }
+
+		// one:Tab:creationDate
+		[JsonIgnore]
+		public DateTime Created { get; set; }
+
+		// stored as UTC, displayed local
+		public DateTime Start { get; set; }
+
+		// stored as UTC, displayed local
+		public DateTime Started { get; set; }
+
+		// stored as UTC, displayed local
+		public DateTime Due { get; set; }
+
+		// one:Tag:completionDate
+		[JsonIgnore]
+		public DateTime Completed { get; set; }
+
+		// maxlen 200 chars
+		public string Subject { get; set; }
+
+
+		/// <summary>
+		/// Initialize a new instance bound to the given objectId
+		/// </summary>
+		/// <param name="objectId">The ID of the containing paragraph OE</param>
+		public Reminder(string objectId)
 		{
-			// get a toast XML template
-			var doc = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastImageAndText04);
-
-			// fill in the text elements
-			var texts = doc.GetElementsByTagName("text");
-			for (int i = 0; i < texts.Length; i++)
-			{
-				texts[i].AppendChild(doc.CreateTextNode("Line " + i));
-			}
-
-			var toast = new ToastNotification(doc);
-
-			var appID = "OneMore Reminder";
-			ToastNotificationManager.CreateToastNotifier(appID).Show(toast);
+			Version = 1;
+			ObjectId = objectId;
+			Symbol = BellSymbol;
+			Created = DateTime.Now;
+			Start = DateTime.Now;
+			Started = DateTime.Now;
+			Due = DateTime.Now;
+			Completed = DateTime.Now;
 		}
 	}
 }

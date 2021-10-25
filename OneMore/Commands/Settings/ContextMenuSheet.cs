@@ -49,6 +49,10 @@ namespace River.OneMoreAddIn.Settings
 			"ribSaveCollapsedButton",		// ... Save Collapsed Outline
 			"ribRestoreCollapsedButton",	// ... Restore Collapsed Outline
 			"ribWordCountButton",			// ... Word Count
+			"ribRemindersMenu",				// Reminders
+			"ribRemindButton",				// ... Add or update reminder
+			"ribCompleteReminderButton",	// ... Complete reminder
+			"ribDeleteReminderButton",		// ... Delete reminder
 			"ribReplaceButton",				// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
 			"ribInsertSingleLineButton",	// ... Single Line

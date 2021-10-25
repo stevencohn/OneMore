@@ -3585,4 +3585,196 @@ Archivo de OneNote (* .one)</value>
     <value>... Lenguaje de revisión</value>
     <comment>context menu option</comment>
   </data>
+  <data name="RemindCommand_nameFormat" xml:space="preserve">
+    <value>Recordatorio: tarea pendiente (0)</value>
+    <comment>tagdef name tooltip</comment>
+  </data>
+  <data name="RemindCommand_noContext" xml:space="preserve">
+    <value>El cursor debe colocarse en un párrafo</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="RemindDialog.Text" xml:space="preserve">
+    <value>Recordatorio</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemindDialog_cancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
+    <value>Terminado</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
+    <value>Fecha de vencimiento</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_okButton.Text" xml:space="preserve">
+    <value>OK</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
+    <value>% Completo</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
+    <value>Bajo
+Medio
+Elevado</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
+    <value>Prioridad</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
+    <value>Fecha de inicio</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
+    <value>Empezado</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_statusBox.Text" xml:space="preserve">
+    <value>No empezado
+En curso
+Terminado
+Esperando a alguien más
+Diferido</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
+    <value>Estado</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
+    <value>Tema</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemindDialog_tagLabel.Text" xml:space="preserve">
+    <value>Etiqueta</value>
+    <comment>label</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCompleteReminderButton" xml:space="preserve">
+    <value>... Recordatorio completo</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDeleteReminderButton" xml:space="preserve">
+    <value>... Eliminar recordatorio</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemindButton" xml:space="preserve">
+    <value>... Agregar o actualizar recordatorios</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRemindersMenu" xml:space="preserve">
+    <value>Recordatorios</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribCompleteReminderButton_Label" xml:space="preserve">
+    <value>Recordatorio completo</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribDeleteReminderButton_Label" xml:space="preserve">
+    <value>Eliminar recordatorio</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindButton_Label" xml:space="preserve">
+    <value>Agregar o actualizar recordatorios</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribRemindersMenu_Label" xml:space="preserve">
+    <value>Recordatorios</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="DeleteReminderCommand_deleteTag" xml:space="preserve">
+    <value>A punto de eliminar el recordatorio. </value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>No hay recordatorio en este párrafo</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Informe de resumen de recordatorio</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>Recordatorios activos</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>Estos son recordatorios aún no completados o diferidos y ordenados por prioridad y fecha de vencimiento.</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>Recordatorios inactivos</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>Estos son recordatorios que se completaron o aplazaron y se ordenaron por estado, fecha de finalización y prioridad.</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>No hay recordatorios para informar</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>Recordatorio</value>
+    <comment>column</comment>
+  </data>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>Informe de resumen de recordatorio</value>
+    <comment>report</comment>
+  </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Última actualización</value>
+    <comment>text</comment>
+  </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>Real</value>
+  </data>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Terminado</value>
+  </data>
+  <data name="word_Due" xml:space="preserve">
+    <value>Vencer</value>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Planificado</value>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Comienzo</value>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Empezado</value>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Silencio</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>La tarea ha vencido su fecha de vencimiento de {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>La tarea ha superado su fecha de inicio de {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>OneMore recordatorio</value>
+    <comment>toast header</comment>
+  </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>Silenciado</value>
+  </data>
 </root>

@@ -911,6 +911,25 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Finds the symbol of the tag by its given index
+		/// </summary>
+		/// <param name="index">The index of the tag to find</param>
+		/// <returns>The symbol value or null if not found</returns>
+		public string GetTagDefSymbol(string index)
+		{
+			var tag = Root.Elements(Namespace + "TagDef")
+				.FirstOrDefault(e => e.Attribute("index").Value == index);
+
+			if (tag != null)
+			{
+				return tag.Attribute("symbol").Value;
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
 		/// Determines if the page is configured for right-to-left text or the Windows
 		/// language is a right-to-left language
 		/// </summary>

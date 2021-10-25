@@ -80,6 +80,8 @@ namespace River.OneMoreAddIn.Commands
 				page.SetMeta(MetaNames.AnalysisReport, "true");
 
 				ns = page.Namespace;
+				PageNamespace.Set(ns);
+
 				heading1Index = page.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
 
@@ -149,13 +151,13 @@ namespace River.OneMoreAddIn.Commands
 			var folderUri = new Uri(defaultPath).AbsoluteUri;
 
 			container.Add(
-				new Paragraph(ns, "Summary").SetQuickStyle(heading1Index),
-				new Paragraph(ns, Resx.AnalyzeCommand_SummarySummary),
-				new Paragraph(ns, new ContentList(ns,
-					new Bullet(ns, $"<span style='font-style:italic'>Default location</span>: <a href=\"{folderUri}\">{defaultPath}</a>"),
-					new Bullet(ns, $"<span style='font-style:italic'>Backup location</span>: <a href=\"{backupUri}\">{backupPath}</a>")
+				new Paragraph("Summary").SetQuickStyle(heading1Index),
+				new Paragraph(Resx.AnalyzeCommand_SummarySummary),
+				new Paragraph(new ContentList(ns,
+					new Bullet($"<span style='font-style:italic'>Default location</span>: <a href=\"{folderUri}\">{defaultPath}</a>"),
+					new Bullet($"<span style='font-style:italic'>Backup location</span>: <a href=\"{backupUri}\">{backupPath}</a>")
 					)),
-				new Paragraph(ns, string.Empty)
+				new Paragraph(string.Empty)
 				);
 
 			var table = new Table(ns, 1, 4)
@@ -171,10 +173,10 @@ namespace River.OneMoreAddIn.Commands
 
 			var row = table[0];
 			row.SetShading(HeaderShading);
-			row[0].SetContent(new Paragraph(ns, "Notebook").SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(ns, "Backups").SetStyle(HeaderCss).SetAlignment("center"));
-			row[2].SetContent(new Paragraph(ns, "RecycleBin").SetStyle(HeaderCss).SetAlignment("center"));
-			row[3].SetContent(new Paragraph(ns, "Total").SetStyle(HeaderCss).SetAlignment("center"));
+			row[0].SetContent(new Paragraph("Notebook").SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph("Backups").SetStyle(HeaderCss).SetAlignment("center"));
+			row[2].SetContent(new Paragraph("RecycleBin").SetStyle(HeaderCss).SetAlignment("center"));
+			row[3].SetContent(new Paragraph("Total").SetStyle(HeaderCss).SetAlignment("center"));
 
 			long total = 0;
 
@@ -199,9 +201,9 @@ namespace River.OneMoreAddIn.Commands
 						dir = new DirectoryInfo(repath);
 						var relength = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
 
-						row[1].SetContent(new Paragraph(ns, (size - relength).ToBytes(1)).SetAlignment("right"));
-						row[2].SetContent(new Paragraph(ns, relength.ToBytes(1)).SetAlignment("right"));
-						row[3].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+						row[1].SetContent(new Paragraph((size - relength).ToBytes(1)).SetAlignment("right"));
+						row[2].SetContent(new Paragraph(relength.ToBytes(1)).SetAlignment("right"));
+						row[3].SetContent(new Paragraph(size.ToBytes(1)).SetAlignment("right"));
 					}
 
 					total += size;
@@ -211,12 +213,12 @@ namespace River.OneMoreAddIn.Commands
 			if (total > 0)
 			{
 				row = table.AddRow();
-				row[3].SetContent(new Paragraph(ns, total.ToBytes(1)).SetAlignment("right"));
+				row[3].SetContent(new Paragraph(total.ToBytes(1)).SetAlignment("right"));
 			}
 
 			container.Add(
-				new Paragraph(ns, table.Root),
-				new Paragraph(ns, string.Empty)
+				new Paragraph(table.Root),
+				new Paragraph(string.Empty)
 				);
 		}
 
@@ -240,16 +242,16 @@ namespace River.OneMoreAddIn.Commands
 				.Except(knowns);
 
 			container.Add(
-				new Paragraph(ns, "Orphans").SetQuickStyle(heading2Index),
-				new Paragraph(ns, Resx.AnalyzeCommand_OrphanSummary)
+				new Paragraph("Orphans").SetQuickStyle(heading2Index),
+				new Paragraph(Resx.AnalyzeCommand_OrphanSummary)
 				);
 
 			if (!orphans.Any())
 			{
 				container.Add(
-					new Paragraph(ns, string.Empty),
-					new Paragraph(ns, Resx.AnalyzeCommand_NoOrphans),
-					new Paragraph(ns, string.Empty)
+					new Paragraph(string.Empty),
+					new Paragraph(Resx.AnalyzeCommand_NoOrphans),
+					new Paragraph(string.Empty)
 					);
 
 				return;
@@ -268,10 +270,10 @@ namespace River.OneMoreAddIn.Commands
 				var dir = new DirectoryInfo(Path.Combine(backupPath, orphan));
 				var size = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
 
-				list.Add(new Bullet(ns, $"{orphan} ({size.ToBytes(1)})"));
+				list.Add(new Bullet($"{orphan} ({size.ToBytes(1)})"));
 			}
 
-			container.Add(new Paragraph(ns, string.Empty));
+			container.Add(new Paragraph(string.Empty));
 		}
 
 
@@ -283,17 +285,17 @@ namespace River.OneMoreAddIn.Commands
 			progress.Increment();
 
 			container.Add(
-				new Paragraph(ns, "Cache").SetQuickStyle(heading2Index),
-				new Paragraph(ns, Resx.AnalyzeCommand_CacheSummary)
+				new Paragraph("Cache").SetQuickStyle(heading2Index),
+				new Paragraph(Resx.AnalyzeCommand_CacheSummary)
 				);
 
 			var cachePath = Path.Combine(Path.GetDirectoryName(backupPath), "cache");
 			if (!Directory.Exists(cachePath))
 			{
 				container.Add(
-					new Paragraph(ns, string.Empty),
-					new Paragraph(ns, Resx.AnalyzeCommand_NoCache),
-					new Paragraph(ns, string.Empty)
+					new Paragraph(string.Empty),
+					new Paragraph(Resx.AnalyzeCommand_NoCache),
+					new Paragraph(string.Empty)
 					);
 
 				return;
@@ -307,11 +309,11 @@ namespace River.OneMoreAddIn.Commands
 			container.Add(
 				new Paragraph(ns,
 					new ContentList(ns,
-						new Bullet(ns, $"<span style='font-style:italic'>Cache size</span>: {total.ToBytes(1)}"),
-						new Bullet(ns, $"<span style='font-style:italic'>Cache location</span>: <a href=\"{cacheUri}\">{cachePath}</a>")
+						new Bullet($"<span style='font-style:italic'>Cache size</span>: {total.ToBytes(1)}"),
+						new Bullet($"<span style='font-style:italic'>Cache location</span>: <a href=\"{cacheUri}\">{cachePath}</a>")
 						)
 					),
-				new Paragraph(ns, string.Empty)
+				new Paragraph(string.Empty)
 				);
 		}
 
@@ -324,7 +326,7 @@ namespace River.OneMoreAddIn.Commands
 				page.EnsurePageWidth(divider, "Courier new", 11f, one.WindowHandle);
 			}
 
-			container.Add(new Paragraph(ns, new XElement(ns + "T",
+			container.Add(new Paragraph(new XElement(ns + "T",
 				new XAttribute("style", LineCss),
 				new XCData($"{divider}<br/>")
 				)));
@@ -339,16 +341,16 @@ namespace River.OneMoreAddIn.Commands
 			progress.Increment();
 
 			container.Add(
-				new Paragraph(ns, "Sections").SetQuickStyle(heading1Index),
-				new Paragraph(ns, Resx.AnalyzeCommand_SectionSummary),
-				new Paragraph(ns, string.Empty)
+				new Paragraph("Sections").SetQuickStyle(heading1Index),
+				new Paragraph(Resx.AnalyzeCommand_SectionSummary),
+				new Paragraph(string.Empty)
 				);
 
 			// discover hierarchy bit by bit to avoid loading huge amounts of memory at once
 			foreach (var book in notebooks.Elements(ns + "Notebook"))
 			{
 				container.Add(
-					new Paragraph(ns, $"{book.Attribute("name").Value} Notebook")
+					new Paragraph($"{book.Attribute("name").Value} Notebook")
 						.SetQuickStyle(heading2Index));
 
 				var table = new Table(ns, 1, 4)
@@ -364,21 +366,21 @@ namespace River.OneMoreAddIn.Commands
 
 				var row = table[0];
 				row.SetShading(HeaderShading);
-				row[0].SetContent(new Paragraph(ns, "Section").SetStyle(HeaderCss));
-				row[1].SetContent(new Paragraph(ns, "Size on Disk").SetStyle(HeaderCss).SetAlignment("center"));
-				row[2].SetContent(new Paragraph(ns, "# of Copies").SetStyle(HeaderCss).SetAlignment("center"));
-				row[3].SetContent(new Paragraph(ns, "Total Size").SetStyle(HeaderCss).SetAlignment("center"));
+				row[0].SetContent(new Paragraph("Section").SetStyle(HeaderCss));
+				row[1].SetContent(new Paragraph("Size on Disk").SetStyle(HeaderCss).SetAlignment("center"));
+				row[2].SetContent(new Paragraph("# of Copies").SetStyle(HeaderCss).SetAlignment("center"));
+				row[3].SetContent(new Paragraph("Total Size").SetStyle(HeaderCss).SetAlignment("center"));
 
 				var notebook = one.GetNotebook(book.Attribute("ID").Value);
 
 				var total = ReportSections(table, notebook, null);
 
 				row = table.AddRow();
-				row[3].SetContent(new Paragraph(ns, total.ToBytes(1)).SetAlignment("right"));
+				row[3].SetContent(new Paragraph(total.ToBytes(1)).SetAlignment("right"));
 
 				container.Add(
-					new Paragraph(ns, table.Root),
-					new Paragraph(ns, string.Empty)
+					new Paragraph(table.Root),
+					new Paragraph(string.Empty)
 					);
 			}
 		}
@@ -408,7 +410,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (Directory.Exists(path))
 				{
-					row[0].SetContent(new Paragraph(ns, title));
+					row[0].SetContent(new Paragraph(title));
 
 					var filter = remote ? $"{name}.one (On *).one" : $"{name}.one";
 					var files = Directory.EnumerateFiles(path, filter).ToList();
@@ -428,14 +430,14 @@ namespace River.OneMoreAddIn.Commands
 
 						if (all > 0)
 						{
-							row[1].SetContent(new Paragraph(ns, first.ToBytes(1)).SetAlignment("right"));
+							row[1].SetContent(new Paragraph(first.ToBytes(1)).SetAlignment("right"));
 
 							if (remote)
 							{
-								row[2].SetContent(new Paragraph(ns, files.Count.ToString()).SetAlignment("right"));
+								row[2].SetContent(new Paragraph(files.Count.ToString()).SetAlignment("right"));
 							}
 
-							row[3].SetContent(new Paragraph(ns, all.ToBytes(1)).SetAlignment("right"));
+							row[3].SetContent(new Paragraph(all.ToBytes(1)).SetAlignment("right"));
 							total += all;
 						}
 					}
@@ -446,7 +448,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					row[0].SetContent(new Paragraph(ns, $"{title} <span style='font-style:italic'>(backup not found)</span>"));
+					row[0].SetContent(new Paragraph($"{title} <span style='font-style:italic'>(backup not found)</span>"));
 				}
 			}
 
@@ -498,13 +500,13 @@ namespace River.OneMoreAddIn.Commands
 
 			progress.SetMessage($"{title} pages...");
 
-			container.Add(new Paragraph(ns, $"{title} Section Pages").SetQuickStyle(heading1Index));
+			container.Add(new Paragraph($"{title} Section Pages").SetQuickStyle(heading1Index));
 			if (!shownPageSummary)
 			{
-				container.Add(new Paragraph(ns, Resx.AnalyzeCommand_PageSummary));
+				container.Add(new Paragraph(Resx.AnalyzeCommand_PageSummary));
 				shownPageSummary = true;
 			}
-			container.Add(new Paragraph(ns, string.Empty));
+			container.Add(new Paragraph(string.Empty));
 
 			var table = new Table(ns, 0, 1)
 			{
@@ -525,8 +527,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			container.Add(
-				new Paragraph(ns, table.Root),
-				new Paragraph(ns, string.Empty)
+				new Paragraph(table.Root),
+				new Paragraph(string.Empty)
 				);
 		}
 
@@ -551,7 +553,7 @@ namespace River.OneMoreAddIn.Commands
 			row.SetShading(HeaderShading);
 
 			var link = one.GetHyperlink(pageId, string.Empty);
-			row[0].SetContent(new Paragraph(ns, 
+			row[0].SetContent(new Paragraph(
 				$"<a href='{link}'>{page.Title}</a> ({length.ToBytes(1)})").SetStyle(HeaderCss));
 
 			var images = page.Root.Descendants(ns + "Image")
@@ -578,9 +580,9 @@ namespace River.OneMoreAddIn.Commands
 
 			row = detail[0];
 			row.SetShading(Header2Shading);
-			row[0].SetContent(new Paragraph(ns, "Image/File").SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(ns, "XML Size").SetStyle(HeaderCss).SetAlignment("center"));
-			row[2].SetContent(new Paragraph(ns, "Native Size").SetStyle(HeaderCss).SetAlignment("center"));
+			row[0].SetContent(new Paragraph("Image/File").SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph("XML Size").SetStyle(HeaderCss).SetAlignment("center"));
+			row[2].SetContent(new Paragraph("Native Size").SetStyle(HeaderCss).SetAlignment("center"));
 
 			foreach (var image in images)
 			{
@@ -622,7 +624,7 @@ namespace River.OneMoreAddIn.Commands
 					if (exists)
 					{
 						var size = new FileInfo(path).Length;
-						row[2].SetContent(new Paragraph(ns, size.ToBytes(1)).SetAlignment("right"));
+						row[2].SetContent(new Paragraph(size.ToBytes(1)).SetAlignment("right"));
 					}
 				}
 
@@ -653,7 +655,7 @@ namespace River.OneMoreAddIn.Commands
 					new XElement(ns + "OEChildren",
 						new XElement(ns + "OE", detail.Root)
 						)),
-				new Paragraph(ns, string.Empty)
+				new Paragraph(string.Empty)
 				));
 		}
 
@@ -707,8 +709,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			row[1].SetContent(new Paragraph(ns, data.Length.ToBytes(1)).SetAlignment("right"));
-			row[2].SetContent(new Paragraph(ns, bytes.Length.ToBytes(1)).SetAlignment("right"));
+			row[1].SetContent(new Paragraph(data.Length.ToBytes(1)).SetAlignment("right"));
+			row[2].SetContent(new Paragraph(bytes.Length.ToBytes(1)).SetAlignment("right"));
 		}
 
 

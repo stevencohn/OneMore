@@ -9,6 +9,13 @@ namespace River.OneMoreAddIn.Models
 
 	internal class Bullet : XElement
 	{
+
+		public Bullet(string text)
+			: this(PageNamespace.Value, text)
+		{
+		}
+
+
 		public Bullet(XNamespace ns, string text)
 			: this(ns, new XElement(ns + "T", new XCData(text)))
 		{

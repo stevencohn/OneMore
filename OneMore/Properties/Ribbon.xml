@@ -364,6 +364,28 @@
                 getLabel="GetRibbonLabel"
                 onAction="GetImagesCmd"/>
             </menu>
+            <menu id="ribRemindersMenu" getLabel="GetRibbonLabel" imageMso="ReminderGallery">
+              <button
+                id="ribRemindButton"
+                imageMso="NewTask"
+                getLabel="GetRibbonLabel"
+                onAction="RemindCmd"/>
+              <button
+                id="ribCompleteReminderButton"
+                imageMso="AcceptTask"
+                getLabel="GetRibbonLabel"
+                onAction="CompleteReminderCmd"/>
+              <button
+                id="ribDeleteReminderButton"
+                imageMso="CancelTaskAssignment"
+                getLabel="GetRibbonLabel"
+                onAction="DeleteReminderCmd"/>
+              <button
+                id="ribReportRemindersButton"
+                imageMso="ShowTaskDetailsPage"
+                getLabel="GetRibbonLabel"
+                onAction="ReportRemindersCmd"/>
+            </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI">
               <button
                 id="ribReplaceButton"

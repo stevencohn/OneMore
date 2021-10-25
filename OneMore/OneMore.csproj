@@ -272,7 +272,19 @@
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
+    <Compile Include="Commands\Reminders\CompleteReminderCommand.cs" />
+    <Compile Include="Commands\Reminders\DeleteReminderCommand.cs" />
+    <Compile Include="Commands\Reminders\ReminderService.cs" />
+    <Compile Include="Commands\Reminders\RemindCommand.cs" />
     <Compile Include="Commands\Reminders\Reminder.cs" />
+    <Compile Include="Commands\Reminders\RemindDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Reminders\RemindDialog.Designer.cs">
+      <DependentUpon>RemindDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Reminders\ReminderSerializer.cs" />
+    <Compile Include="Commands\Reminders\ReportRemindersCommand.cs" />
     <Compile Include="Commands\Settings\LinesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -404,7 +416,7 @@
     <Compile Include="Commands\Extras\AnalyzeDialog.Designer.cs">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tools\SectionColorCommand.cs" />
+    <Compile Include="Commands\Extras\SectionColorCommand.cs" />
     <Compile Include="Commands\Tools\UpdateCommand.cs" />
     <Compile Include="Commands\Tools\UpdateDialog.cs">
       <SubType>Form</SubType>
@@ -415,6 +427,7 @@
     <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
+    <Compile Include="Helpers\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
     <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
@@ -431,6 +444,7 @@
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Styles\StyleProperties.cs" />
     <Compile Include="Styles\Theme.cs" />
     <Compile Include="Styles\ThemeProvider.cs" />
@@ -610,7 +624,7 @@
     <Compile Include="Commands\Search\SearchAndReplaceEditor.cs" />
     <Compile Include="Commands\Search\Atoms\TextAtom.cs" />
     <Compile Include="Commands\Tools\AboutCommand.cs" />
-    <Compile Include="Commands\Tools\SortCommand.cs" />
+    <Compile Include="Commands\Extras\SortCommand.cs" />
     <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />
     <Compile Include="Commands\Styles\ChangePageColorDialog.cs">
@@ -634,10 +648,10 @@
     <Compile Include="Commands\Search\SearchAndReplaceDialog.Designer.cs">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tools\SortDialog.cs">
+    <Compile Include="Commands\Extras\SortDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Tools\SortDialog.Designer.cs">
+    <Compile Include="Commands\Extras\SortDialog.Designer.cs">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BasicColors.cs" />
@@ -953,6 +967,9 @@
     <EmbeddedResource Include="Commands\References\RefreshPageLinksDialog.resx">
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Reminders\RemindDialog.resx">
+      <DependentUpon>RemindDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
       <DependentUpon>LinesSheet.cs</DependentUpon>
     </EmbeddedResource>
@@ -1056,7 +1073,7 @@
     <EmbeddedResource Include="Commands\Search\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tools\SortDialog.resx">
+    <EmbeddedResource Include="Commands\Extras\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
