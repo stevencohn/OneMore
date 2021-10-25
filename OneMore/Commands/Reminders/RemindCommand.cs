@@ -75,8 +75,8 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var one = new OneNote())
 			{
-				await one.NavigateTo(pageId, objectId);
 				Native.SetForegroundWindow(one.WindowHandle);
+				await one.NavigateTo(pageId, objectId);
 	
 				page = one.GetPage(pageId);
 				ns = page.Namespace;
