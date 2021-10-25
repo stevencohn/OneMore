@@ -3795,4 +3795,8 @@ Différé</value>
     <value>Largeur de page</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>En attente jusqu'au {0}</value>
+    <comment>report</comment>
+  </data>
 </root>

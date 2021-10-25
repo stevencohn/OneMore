@@ -3801,4 +3801,8 @@ Diferido</value>
     <value>Ancho de página</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Pospuesto hasta las {0}</value>
+    <comment>report</comment>
+  </data>
 </root>

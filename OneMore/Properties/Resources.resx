@@ -3840,4 +3840,8 @@ Deferred</value>
     <value>Page width</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Snoozed until {0}</value>
+    <comment>report</comment>
+  </data>
 </root>

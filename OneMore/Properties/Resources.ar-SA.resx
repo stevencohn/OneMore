@@ -3800,4 +3800,8 @@ ISO-code then comma then language name</comment>
     <value>عرض الصفحة</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>غفوة حتى {0}</value>
+    <comment>report</comment>
+  </data>
 </root>

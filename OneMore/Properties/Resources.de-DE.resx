@@ -3786,4 +3786,8 @@ Aufgeschoben</value>
     <value>Seitenbreite</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Schlummert bis {0}</value>
+    <comment>report</comment>
+  </data>
 </root>

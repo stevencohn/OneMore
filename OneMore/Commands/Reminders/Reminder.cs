@@ -37,6 +37,27 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
+	/// User selected snooze time
+	/// </summary>
+	internal enum SnoozeRange
+	{
+		None,
+		S5minutes,
+		S10minutes,
+		S15minutes,
+		S30minutes,
+		S1hour,
+		S2hours,
+		S4hours,
+		S1day,
+		S2days,
+		S3days,
+		S1week,
+		S2weeks
+	}
+
+
+	/// <summary>
 	/// Describes a reminder associated with a tag.
 	/// </summary>
 	/// <remarks>
@@ -51,48 +72,104 @@ namespace River.OneMoreAddIn.Commands
 		private const string BellSymbol = "97";
 
 
+		/// <summary>
+		/// Gets the schema version of this model
+		/// </summary>
 		public int Version { get; set; }
 
-		// parent object Id
+
+		/// <summary>
+		/// Gets or sets the ID of the tagged paragraph
+		/// </summary>
 		public string ObjectId { get; set; }
+
 
 		// one:Tag.index
 		[JsonIgnore]
 		public string TagIndex { get; set; }
 
-		// one:TagDef.symbol
+
+		/// <summary>
+		/// Gets or sets the associated tag symbol ID, corresponds to one:TagDef.symbol
+		/// </summary>
 		public string Symbol { get; set; }
+
 
 		// one:Tag.disabled
 		[JsonIgnore]
 		public bool Disabled { get; set; }
 
+
+		/// <summary>
+		/// Gets or sets the assigned status of this reminder
+		/// </summary>
 		public ReminderStatus Status { get; set; }
 
+
+		/// <summary>
+		/// Gets or sets the assigned priority of this reminders
+		/// </summary>
 		public ReminderPriority Priority { get; set; }
 
+
+		/// <summary>
+		/// Gets or sets the silenced mode; true if silenced
+		/// </summary>
 		public bool Silent { get; set; }
 
+
+		/// <summary>
+		/// Gets or set the assigned snooze range
+		/// </summary>
+		public SnoozeRange Snooze { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the time until which this reminder is snoozed
+		/// </summary>
+		public DateTime SnoozeTime { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the percent complete
+		/// </summary>
 		public int Percent { get; set; }
+
 
 		// one:Tab:creationDate
 		[JsonIgnore]
 		public DateTime Created { get; set; }
 
-		// stored as UTC, displayed local
+
+		/// <summary>
+		/// Gets or sets the planned start date, stored as UTC, dispalyed as local
+		/// </summary>
 		public DateTime Start { get; set; }
 
-		// stored as UTC, displayed local
+
+		/// <summary>
+		/// Gets or sets the actual start date, stored as UTC, dispalyed as local
+		/// </summary>
 		public DateTime Started { get; set; }
 
-		// stored as UTC, displayed local
+
+		/// <summary>
+		/// Gets or sets the planned due date, stored as UTC, dispalyed as local
+		/// </summary>
 		public DateTime Due { get; set; }
 
-		// one:Tag:completionDate
+
+		/// <summary>
+		/// Gets or sets the actual completin date, stored as UTC, dispalyed as local
+		/// </summary>
 		[JsonIgnore]
 		public DateTime Completed { get; set; }
 
-		// maxlen 200 chars
+
+		/// <summary>
+		/// Gets or sets the subject, max is 200 characters.
+		/// Defaults to the text of the paragraph but can be overriden by the user
+		/// </summary>
 		public string Subject { get; set; }
 
 

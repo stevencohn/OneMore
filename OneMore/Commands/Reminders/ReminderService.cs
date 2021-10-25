@@ -92,6 +92,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Test(Reminder reminder, string pageID)
 		{
+			// is it currently snoozed?
+			if (reminder.Snooze != SnoozeRange.None &&
+				DateTime.UtcNow.CompareTo(reminder.SnoozeTime) < 0)
+			{
+				return;
+			}
+
+			// is it not started but after the planned start date?
 			if (reminder.Status == ReminderStatus.NotStarted ||
 				reminder.Status == ReminderStatus.Waiting)
 			{
@@ -107,6 +115,7 @@ namespace River.OneMoreAddIn.Commands
 						);
 				}
 			}
+			// is it not completed but after the planne due date?
 			else if (reminder.Status == ReminderStatus.InProgress)
 			{
 				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)

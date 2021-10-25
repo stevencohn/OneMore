@@ -3801,4 +3801,8 @@ Verschoven</value>
     <value>Paginabreedte</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Gesnoozed tot {0}</value>
+    <comment>report</comment>
+  </data>
 </root>

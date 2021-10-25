@@ -3792,4 +3792,8 @@ OneNote 文件 (*.one)</value>
     <value>页面宽度</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>延后至 {0}</value>
+    <comment>report</comment>
+  </data>
 </root>

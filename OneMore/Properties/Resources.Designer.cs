@@ -4452,6 +4452,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Snoozed until {0}.
+        /// </summary>
+        internal static string ReminderReport_SnoozedUntil {
+            get {
+                return ResourceManager.GetString("ReminderReport_SnoozedUntil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reminder Summary Report.
         /// </summary>
         internal static string ReminderReport_Title {

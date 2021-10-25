@@ -197,7 +197,21 @@ namespace River.OneMoreAddIn.Commands
 					row[1].SetContent(statuses[(int)item.Reminder.Status]);
 				}
 
-				row[2].SetContent(item.Reminder.Start.ToShortFriendlyString());
+				if (item.Reminder.Snooze != SnoozeRange.None)
+				{
+					var zmsg = string.Format(Resx.ReminderReport_SnoozedUntil,
+						item.Reminder.SnoozeTime.ToShortFriendlyString());
+
+					row[2].SetContent(new XElement(ns + "OEChildren",
+						new Paragraph(item.Reminder.Start.ToShortFriendlyString()),
+						new Paragraph(zmsg).SetQuickStyle(citeIndex)
+						));
+				}
+				else
+				{
+					row[2].SetContent(item.Reminder.Start.ToShortFriendlyString());
+				}
+
 				row[3].SetContent(item.Reminder.Due.ToShortFriendlyString());
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
 				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));

@@ -3801,4 +3801,8 @@ Diferido</value>
     <value>Largura da página</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Suspenso até {0}</value>
+    <comment>report</comment>
+  </data>
 </root>
