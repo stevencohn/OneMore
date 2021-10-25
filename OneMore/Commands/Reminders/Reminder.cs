@@ -160,9 +160,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Gets or sets the actual completin date, stored as UTC, dispalyed as local
+		/// Gets or sets the actual completin date, stored as UTC, dispalyed as local.
+		/// This is a copy of the Tag.completionDate attribute
 		/// </summary>
-		[JsonIgnore]
 		public DateTime Completed { get; set; }
 
 
