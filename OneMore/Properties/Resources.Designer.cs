@@ -8526,6 +8526,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Silenced.
+        /// </summary>
+        internal static string word_Silenced {
+            get {
+                return ResourceManager.GetString("word_Silenced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         internal static string word_Start {

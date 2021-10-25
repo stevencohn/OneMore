@@ -184,7 +184,19 @@ namespace River.OneMoreAddIn.Commands
 			{
 				row = table.AddRow();
 				row[0].SetContent(MakeReminder(one, item));
-				row[1].SetContent(statuses[(int)item.Reminder.Status]);
+
+				if (item.Reminder.Silent)
+				{
+					row[1].SetContent(new XElement(ns + "OEChildren",
+						new Paragraph(statuses[(int)item.Reminder.Status]),
+						new Paragraph(Resx.word_Silenced).SetQuickStyle(citeIndex)
+						));
+				}
+				else
+				{
+					row[1].SetContent(statuses[(int)item.Reminder.Status]);
+				}
+
 				row[2].SetContent(item.Reminder.Start.ToShortFriendlyString());
 				row[3].SetContent(item.Reminder.Due.ToShortFriendlyString());
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);

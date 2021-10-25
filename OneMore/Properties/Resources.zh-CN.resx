@@ -3765,4 +3765,7 @@ OneNote 文件 (*.one)</value>
     <value>一个提醒</value>
     <comment>toast header</comment>
   </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>沉默</value>
+  </data>
 </root>

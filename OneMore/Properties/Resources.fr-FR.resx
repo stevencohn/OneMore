@@ -3768,4 +3768,7 @@ Différé</value>
     <value>Rappel OneMore</value>
     <comment>toast header</comment>
   </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>Silencieux</value>
+  </data>
 </root>

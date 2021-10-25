@@ -3774,4 +3774,7 @@ Verschoven</value>
     <value>Nog een herinnering</value>
     <comment>toast header</comment>
   </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>tot zwijgen gebracht</value>
+  </data>
 </root>

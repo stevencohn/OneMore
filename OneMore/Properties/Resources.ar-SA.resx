@@ -3773,4 +3773,7 @@ ISO-code then comma then language name</comment>
     <value>واحد أكثر تذكير</value>
     <comment>toast header</comment>
   </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>صامت</value>
+  </data>
 </root>

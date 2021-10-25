@@ -3774,4 +3774,7 @@ Diferido</value>
     <value>Lembrete OneMore</value>
     <comment>toast header</comment>
   </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>Silenciado</value>
+  </data>
 </root>

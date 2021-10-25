@@ -3759,4 +3759,7 @@ Aufgeschoben</value>
     <value>OneMore-Erinnerung</value>
     <comment>toast header</comment>
   </data>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>Zum Schweigen gebracht</value>
+  </data>
 </root>
