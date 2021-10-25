@@ -79,6 +79,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!string.IsNullOrEmpty(reminder.Symbol))
 			{
+				symbol = reminder.Symbol;
 				var symval = int.Parse(reminder.Symbol);
 				using (var dialog = new UI.TagPickerDialog(0, 0))
 				{
@@ -136,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Left = location.X + (tagButton.Width / 2);
 				dialog.Top = location.Y + tagButton.Height - 3;
 
-				if (reminder?.Symbol is string sym && sym != "0")
+				if (symbol is string sym && sym != "0")
 				{
 					dialog.Select(int.Parse(sym));
 				}

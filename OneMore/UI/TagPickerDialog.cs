@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.UI
 		private readonly float yScalingFactor;
 
 		private readonly List<Zone> zones;
+		private Zone preset;
 		private Zone active;
 
 
@@ -213,6 +214,8 @@ namespace River.OneMoreAddIn.UI
 
 			Left = x;
 			Top = y + (Height / 2);
+
+			preset = null;
 		}
 
 
@@ -260,7 +263,7 @@ namespace River.OneMoreAddIn.UI
 			var zone = zones.FirstOrDefault(z => z.Symbol == symbol);
 			if (zone != null)
 			{
-				active = zone;
+				active = preset = zone;
 				using (var pen = new Pen(Color.Magenta, 2f))
 				{
 					graphics.DrawRectangle(pen, active.Bounds);
@@ -282,17 +285,27 @@ namespace River.OneMoreAddIn.UI
 			{
 				if ((active != null) && (zone != active))
 				{
-					// erase previous selection box
-					using (var pen = new Pen(Color.White, 2f))
+					if (active == preset)
 					{
-						graphics.DrawRectangle(pen, active.Bounds);
+						using (var pen = new Pen(Color.Magenta, 2f))
+						{
+							graphics.DrawRectangle(pen, preset.Bounds);
+						}
+					}
+					else
+					{
+						// erase previous selection box
+						using (var pen = new Pen(Color.White, 2f))
+						{
+							graphics.DrawRectangle(pen, active.Bounds);
+						}
 					}
 				}
 
 				active = zone;
 
 				// draw new selection box
-				using (var pen = new Pen(Color.Magenta, 2f))
+				using (var pen = new Pen(Color.Magenta, 2f) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dot })
 				{
 					graphics.DrawRectangle(pen, zone.Bounds);
 				}
@@ -319,6 +332,11 @@ namespace River.OneMoreAddIn.UI
 				using (var pen = new Pen(Color.White, 2f))
 				{
 					graphics.DrawRectangle(pen, active.Bounds);
+
+					if (preset != null)
+					{
+						graphics.DrawRectangle(pen, preset.Bounds);
+					}
 				}
 
 				graphics.Dispose();
