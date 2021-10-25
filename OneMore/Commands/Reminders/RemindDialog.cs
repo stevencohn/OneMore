@@ -167,7 +167,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (snoozeBox.SelectedIndex == 0)
 			{
-				if (reminder.Snooze == SnoozeRange.None)
+				if (reminder.Snooze == SnoozeRange.None ||
+					reminder.SnoozeTime.CompareTo(DateTime.UtcNow) < 0)
 				{
 					snoozeTimeLabel.Text = string.Empty;
 				}
