@@ -3799,7 +3799,7 @@ Deferred</value>
   </data>
   <data name="RemindDialog_silentBox.Text" xml:space="preserve">
     <value>Silence this reminder</value>
-    <comment>checkbox EDIT</comment>
+    <comment>checkbox</comment>
   </data>
   <data name="Reminder_PastDue" xml:space="preserve">
     <value>Task is past its due date of {0}, "{1}". Click here to navigate to this task</value>
