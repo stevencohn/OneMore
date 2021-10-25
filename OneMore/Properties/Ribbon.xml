@@ -248,6 +248,11 @@
             </menu>
             <menu id="ribPageMenu" getLabel="GetRibbonLabel" imageMso="PageOrientationPortrait">
               <button
+                id="ribArrangeContainersButton"
+                imageMso="WindowsArrangeAll"
+                getLabel="GetRibbonLabel"
+                onAction="ArrangeContainersCmd"/>
+              <button
                 id="ribFlagTitleButton"
                 imageMso="DataGraphicIconSet"
                 getLabel="GetRibbonLabel"

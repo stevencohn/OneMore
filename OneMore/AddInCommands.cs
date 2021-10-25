@@ -49,6 +49,9 @@ namespace River.OneMoreAddIn
 		public async Task ArchiveCmd(IRibbonControl control)
 			=> await factory.Run<ArchiveCommand>(control.Tag); // tag=scope
 
+		public async Task ArrangeContainersCmd(IRibbonControl control)
+			=> await factory.Run<ArrangeContainersCommand>();
+
 		public async Task BreakingCmd(IRibbonControl control)
 			=> await factory.Run<BreakingCommand>();
 

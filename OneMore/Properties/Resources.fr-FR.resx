@@ -3771,4 +3771,28 @@ Différé</value>
   <data name="word_Silenced" xml:space="preserve">
     <value>Silencieux</value>
   </data>
+  <data name="ribArrangeContainersButton_Label" xml:space="preserve">
+    <value>Organiser les conteneurs</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ArrangeContainersDialog.Text" xml:space="preserve">
+    <value>Organiser les conteneurs</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ArrangeContainersDialog_columnsLabel.Text" xml:space="preserve">
+    <value>Colonnes</value>
+    <comment>label</comment>
+  </data>
+  <data name="ArrangeContainersDialog_flowButton.Text" xml:space="preserve">
+    <value>Organiser en colonnes puis en lignes, ajuster à la largeur de la page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_verticalButton.Text" xml:space="preserve">
+    <value>Disposez tous les conteneurs verticalement, de haut en bas</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
+    <value>Largeur de page</value>
+    <comment>label</comment>
+  </data>
 </root>

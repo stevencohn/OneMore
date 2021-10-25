@@ -3762,4 +3762,28 @@ Aufgeschoben</value>
   <data name="word_Silenced" xml:space="preserve">
     <value>Zum Schweigen gebracht</value>
   </data>
+  <data name="ribArrangeContainersButton_Label" xml:space="preserve">
+    <value>Container anordnen</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ArrangeContainersDialog.Text" xml:space="preserve">
+    <value>Container anordnen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ArrangeContainersDialog_columnsLabel.Text" xml:space="preserve">
+    <value>Säulen</value>
+    <comment>label</comment>
+  </data>
+  <data name="ArrangeContainersDialog_flowButton.Text" xml:space="preserve">
+    <value>In Spalten und dann Zeilen anordnen, an Seitenbreite anpassen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_verticalButton.Text" xml:space="preserve">
+    <value>Alle Behälter vertikal von oben nach unten anordnen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
+    <value>Seitenbreite</value>
+    <comment>label</comment>
+  </data>
 </root>

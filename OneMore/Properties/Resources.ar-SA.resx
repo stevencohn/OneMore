@@ -3776,4 +3776,28 @@ ISO-code then comma then language name</comment>
   <data name="word_Silenced" xml:space="preserve">
     <value>صامت</value>
   </data>
+  <data name="ribArrangeContainersButton_Label" xml:space="preserve">
+    <value>ترتيب الحاويات</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ArrangeContainersDialog.Text" xml:space="preserve">
+    <value>ترتيب الحاويات</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ArrangeContainersDialog_columnsLabel.Text" xml:space="preserve">
+    <value>الأعمدة</value>
+    <comment>label</comment>
+  </data>
+  <data name="ArrangeContainersDialog_flowButton.Text" xml:space="preserve">
+    <value>قم بالترتيب في أعمدة ثم صفوف ، بحيث يتناسب مع عرض الصفحة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_verticalButton.Text" xml:space="preserve">
+    <value>رتب جميع الحاويات عموديًا ، من أعلى إلى أسفل</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
+    <value>عرض الصفحة</value>
+    <comment>label</comment>
+  </data>
 </root>

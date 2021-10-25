@@ -225,7 +225,14 @@
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
+    <Compile Include="Commands\Page\ArrangeContainersCommand.cs" />
     <Compile Include="Commands\File\MarkdownWriter.cs" />
+    <Compile Include="Commands\Page\ArrangeContainersDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Page\ArrangeContainersDialog.Designer.cs">
+      <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Page\ExpandoCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
@@ -960,6 +967,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ImportWebDialog.resx">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Page\ArrangeContainersDialog.resx">
+      <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\LinkDialog.resx">
       <DependentUpon>LinkDialog.cs</DependentUpon>
