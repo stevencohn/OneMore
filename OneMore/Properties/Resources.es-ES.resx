@@ -3777,4 +3777,28 @@ Diferido</value>
   <data name="word_Silenced" xml:space="preserve">
     <value>Silenciado</value>
   </data>
+  <data name="ribArrangeContainersButton_Label" xml:space="preserve">
+    <value>Organizar contenedores</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ArrangeContainersDialog.Text" xml:space="preserve">
+    <value>Organizar contenedores</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ArrangeContainersDialog_columnsLabel.Text" xml:space="preserve">
+    <value>Columnas</value>
+    <comment>label</comment>
+  </data>
+  <data name="ArrangeContainersDialog_flowButton.Text" xml:space="preserve">
+    <value>Organizar en columnas y luego en filas, ajustar al ancho de la página</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_verticalButton.Text" xml:space="preserve">
+    <value>Organizar todos los contenedores verticalmente, de arriba a abajo</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
+    <value>Ancho de página</value>
+    <comment>label</comment>
+  </data>
 </root>

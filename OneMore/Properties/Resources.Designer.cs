@@ -494,6 +494,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Columns.
+        /// </summary>
+        internal static string ArrangeContainersDialog_columnsLabel_Text {
+            get {
+                return ResourceManager.GetString("ArrangeContainersDialog_columnsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arrange in columns and then rows, fit to page width.
+        /// </summary>
+        internal static string ArrangeContainersDialog_flowButton_Text {
+            get {
+                return ResourceManager.GetString("ArrangeContainersDialog_flowButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arrange Containers.
+        /// </summary>
+        internal static string ArrangeContainersDialog_Text {
+            get {
+                return ResourceManager.GetString("ArrangeContainersDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arrange all containers vertically, top to bottom.
+        /// </summary>
+        internal static string ArrangeContainersDialog_verticalButton_Text {
+            get {
+                return ResourceManager.GetString("ArrangeContainersDialog_verticalButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page width.
+        /// </summary>
+        internal static string ArrangeContainersDialog_widthLabel_Text {
+            get {
+                return ResourceManager.GetString("ArrangeContainersDialog_widthLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Automobile {
@@ -4828,6 +4873,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribArchiveSectionButton_Screentip {
             get {
                 return ResourceManager.GetString("ribArchiveSectionButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arrange Containers.
+        /// </summary>
+        internal static string ribArrangeContainersButton_Label {
+            get {
+                return ResourceManager.GetString("ribArrangeContainersButton_Label", resourceCulture);
             }
         }
         

@@ -3777,4 +3777,28 @@ Verschoven</value>
   <data name="word_Silenced" xml:space="preserve">
     <value>tot zwijgen gebracht</value>
   </data>
+  <data name="ribArrangeContainersButton_Label" xml:space="preserve">
+    <value>Containers schikken</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ArrangeContainersDialog.Text" xml:space="preserve">
+    <value>Containers schikken</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ArrangeContainersDialog_columnsLabel.Text" xml:space="preserve">
+    <value>Kolommen</value>
+    <comment>label</comment>
+  </data>
+  <data name="ArrangeContainersDialog_flowButton.Text" xml:space="preserve">
+    <value>Rangschik in kolommen en vervolgens in rijen, passend bij paginabreedte</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_verticalButton.Text" xml:space="preserve">
+    <value>Rangschik alle containers verticaal, van boven naar beneden</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
+    <value>Paginabreedte</value>
+    <comment>label</comment>
+  </data>
 </root>
