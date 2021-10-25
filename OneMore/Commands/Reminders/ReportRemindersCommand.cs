@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
 				citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
-				var now = DateTime.Now.ToString(DateTimeExtensions.ShortFriendlyPattern);
+				var now = DateTime.Now.ToShortFriendlyString();
 				container.Add(
 					new Paragraph($"{Resx.ReminderReport_LastUpdated} {now} " +
 						$"(<a href=\"onemore://ReportRemindersCommand/refresh\">{Resx.word_Refresh}</a>)"),
@@ -185,8 +185,8 @@ namespace River.OneMoreAddIn.Commands
 				row = table.AddRow();
 				row[0].SetContent(MakeReminder(one, item));
 				row[1].SetContent(statuses[(int)item.Reminder.Status]);
-				row[2].SetContent(item.Reminder.Start.ToString(DateTimeExtensions.ShortFriendlyPattern));
-				row[3].SetContent(item.Reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern));
+				row[2].SetContent(item.Reminder.Start.ToShortFriendlyString());
+				row[3].SetContent(item.Reminder.Due.ToShortFriendlyString());
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
 				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));
 
@@ -262,8 +262,8 @@ namespace River.OneMoreAddIn.Commands
 
 				row[2].SetContent(
 					new Paragraph(
-						$"{Resx.word_Start}: {item.Reminder.Start.ToString(DateTimeExtensions.ShortFriendlyPattern)}<br/>\n" +
-						$"{Resx.word_Due}: {item.Reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern)}")
+						$"{Resx.word_Start}: {item.Reminder.Start.ToShortFriendlyString()}<br/>\n" +
+						$"{Resx.word_Due}: {item.Reminder.Due.ToShortFriendlyString()}")
 					);
 
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
@@ -273,8 +273,8 @@ namespace River.OneMoreAddIn.Commands
 					row[1].ShadingColor = CompletedShading;
 					row[3].SetContent(
 						new Paragraph(
-							$"{Resx.word_Started}: {item.Reminder.Started.ToString(DateTimeExtensions.ShortFriendlyPattern)}<br/>\n" +
-							$"{Resx.word_Completed}: {item.Reminder.Completed.ToString(DateTimeExtensions.ShortFriendlyPattern)}")
+							$"{Resx.word_Started}: {item.Reminder.Started.ToShortFriendlyString()}<br/>\n" +
+							$"{Resx.word_Completed}: {item.Reminder.Completed.ToShortFriendlyString()}")
 						);
 				}
 			}

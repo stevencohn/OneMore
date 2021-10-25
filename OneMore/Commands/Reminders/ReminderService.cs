@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 					Send(
 						string.Format(
 							Resx.Reminder_PastStart,
-							reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern),
+							reminder.Due.ToShortFriendlyString(),
 							reminder.Subject
 							),
 						$"{pageID};{reminder.ObjectId}"
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 					Send(
 						string.Format(
 							Resx.Reminder_PastDue, 
-							reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern),
+							reminder.Due.ToShortFriendlyString(),
 							reminder.Subject
 							),
 						$"{pageID};{reminder.ObjectId}"

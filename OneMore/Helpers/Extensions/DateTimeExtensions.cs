@@ -14,12 +14,7 @@ namespace River.OneMoreAddIn
 			CultureInfo.CurrentCulture.DateTimeFormat
 				.FullDateTimePattern.Replace(":ss", string.Empty);
 
-
-		/// <summary>
-		/// Gets the pattern to express a friendly full date time string
-		/// without the day name. Used in reports.
-		/// </summary>
-		public static string ShortFriendlyPattern = "MMM d, yyyy h:mm tt";
+		private const string ShortFriendlyPattern = "MMM d, yyyy h:mm tt";
 
 
 		/// <summary>
@@ -38,6 +33,17 @@ namespace River.OneMoreAddIn
 		public static string ToFriendlyString(this DateTime dttm)
 		{
 			return dttm.ToLocalTime().ToString(friendlyPattern);
+		}
+
+
+		/// <summary>
+		/// Gets a friendly date time string in local time similar to "October 22, 2021 11:20 AM"
+		/// </summary>
+		/// <param name="dttm">This DateTime to convert</param>
+		/// <returns>A formatted string</returns>
+		public static string ToShortFriendlyString(this DateTime dttm)
+		{
+			return dttm.ToLocalTime().ToString(ShortFriendlyPattern);
 		}
 	}
 }
