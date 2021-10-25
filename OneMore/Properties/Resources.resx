@@ -3798,8 +3798,8 @@ Deferred</value>
     <value>Refresh</value>
   </data>
   <data name="RemindDialog_silentBox.Text" xml:space="preserve">
-    <value>Silent</value>
-    <comment>checkbox</comment>
+    <value>Silence this reminder</value>
+    <comment>checkbox EDIT</comment>
   </data>
   <data name="Reminder_PastDue" xml:space="preserve">
     <value>Task is past its due date of {0}, "{1}". Click here to navigate to this task</value>
@@ -3843,5 +3843,33 @@ Deferred</value>
   <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
     <value>Snoozed until {0}</value>
     <comment>report</comment>
+  </data>
+  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
+    <value>Options</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
+    <value>Do not snooze
+5 minutes
+10 minutes
+15 minutes
+30 minutes
+1 hour
+2 hours
+4 hours
+1 day
+2 days
+3 days
+1 week
+2 weeks</value>
+    <comment>combox box</comment>
+  </data>
+  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
+    <value>Snooze</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
+    <value>Click snooze to be reminded in</value>
+    <comment>label</comment>
   </data>
 </root>

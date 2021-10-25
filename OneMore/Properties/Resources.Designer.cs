@@ -4257,6 +4257,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        internal static string RemindDialog_optionsBox_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_optionsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to % Complete.
         /// </summary>
         internal static string RemindDialog_percentLabel_Text {
@@ -4286,11 +4295,50 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Silent.
+        ///   Looks up a localized string similar to Silence this reminder.
         /// </summary>
         internal static string RemindDialog_silentBox_Text {
             get {
                 return ResourceManager.GetString("RemindDialog_silentBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not snooze
+        ///5 minutes
+        ///10 minutes
+        ///15 minutes
+        ///30 minutes
+        ///1 hour
+        ///2 hours
+        ///4 hours
+        ///1 day
+        ///2 days
+        ///3 days
+        ///1 week
+        ///2 weeks.
+        /// </summary>
+        internal static string RemindDialog_snoozeBox_Items {
+            get {
+                return ResourceManager.GetString("RemindDialog_snoozeBox.Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snooze.
+        /// </summary>
+        internal static string RemindDialog_snoozeButton_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_snoozeButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click snooze to be reminded in.
+        /// </summary>
+        internal static string RemindDialog_snoozeLabel_Text {
+            get {
+                return ResourceManager.GetString("RemindDialog_snoozeLabel.Text", resourceCulture);
             }
         }
         

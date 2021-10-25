@@ -52,10 +52,10 @@ namespace River.OneMoreAddIn.Commands
 			this.tagLabel = new System.Windows.Forms.Label();
 			this.silentBox = new System.Windows.Forms.CheckBox();
 			this.optionsBox = new System.Windows.Forms.GroupBox();
+			this.snoozeTimeLabel = new System.Windows.Forms.Label();
 			this.snoozeButton = new System.Windows.Forms.Button();
 			this.snoozeBox = new System.Windows.Forms.ComboBox();
 			this.snoozeLabel = new System.Windows.Forms.Label();
-			this.snoozeTimeLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
 			this.optionsBox.SuspendLayout();
 			this.SuspendLayout();
@@ -284,7 +284,7 @@ namespace River.OneMoreAddIn.Commands
 			this.silentBox.Location = new System.Drawing.Point(19, 28);
 			this.silentBox.Name = "silentBox";
 			this.silentBox.Size = new System.Drawing.Size(182, 24);
-			this.silentBox.TabIndex = 28;
+			this.silentBox.TabIndex = 0;
 			this.silentBox.Text = "Silence this reminder";
 			this.silentBox.UseVisualStyleBackColor = true;
 			// 
@@ -303,13 +303,22 @@ namespace River.OneMoreAddIn.Commands
 			this.optionsBox.TabStop = false;
 			this.optionsBox.Text = "Options";
 			// 
+			// snoozeTimeLabel
+			// 
+			this.snoozeTimeLabel.AutoSize = true;
+			this.snoozeTimeLabel.Location = new System.Drawing.Point(420, 91);
+			this.snoozeTimeLabel.Name = "snoozeTimeLabel";
+			this.snoozeTimeLabel.Size = new System.Drawing.Size(19, 20);
+			this.snoozeTimeLabel.TabIndex = 32;
+			this.snoozeTimeLabel.Text = "()";
+			// 
 			// snoozeButton
 			// 
 			this.snoozeButton.Enabled = false;
 			this.snoozeButton.Location = new System.Drawing.Point(275, 84);
 			this.snoozeButton.Name = "snoozeButton";
 			this.snoozeButton.Size = new System.Drawing.Size(121, 34);
-			this.snoozeButton.TabIndex = 31;
+			this.snoozeButton.TabIndex = 2;
 			this.snoozeButton.Text = "Snooze";
 			this.snoozeButton.UseVisualStyleBackColor = true;
 			this.snoozeButton.Click += new System.EventHandler(this.OK);
@@ -336,7 +345,7 @@ namespace River.OneMoreAddIn.Commands
 			this.snoozeBox.Location = new System.Drawing.Point(19, 88);
 			this.snoozeBox.Name = "snoozeBox";
 			this.snoozeBox.Size = new System.Drawing.Size(250, 28);
-			this.snoozeBox.TabIndex = 30;
+			this.snoozeBox.TabIndex = 1;
 			this.snoozeBox.SelectedIndexChanged += new System.EventHandler(this.SelectSnooze);
 			// 
 			// snoozeLabel
@@ -348,15 +357,6 @@ namespace River.OneMoreAddIn.Commands
 			this.snoozeLabel.Size = new System.Drawing.Size(224, 20);
 			this.snoozeLabel.TabIndex = 29;
 			this.snoozeLabel.Text = "Click snooze to be reminded in";
-			// 
-			// snoozeTimeLabel
-			// 
-			this.snoozeTimeLabel.AutoSize = true;
-			this.snoozeTimeLabel.Location = new System.Drawing.Point(420, 91);
-			this.snoozeTimeLabel.Name = "snoozeTimeLabel";
-			this.snoozeTimeLabel.Size = new System.Drawing.Size(19, 20);
-			this.snoozeTimeLabel.TabIndex = 32;
-			this.snoozeTimeLabel.Text = "()";
 			// 
 			// RemindDialog
 			// 

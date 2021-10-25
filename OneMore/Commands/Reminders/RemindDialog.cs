@@ -35,7 +35,11 @@ namespace River.OneMoreAddIn.Commands
 					"priorityLabel",
 					"priorityBox",
 					"percentLabel",
+					"optionsBox",
 					"silentBox",
+					"snoozeLabel",
+					"snoozeBox",
+					"snoozeButton",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});

@@ -159,6 +159,8 @@ namespace River.OneMoreAddIn.Commands
 			doc.DocumentElement.SetAttribute("launch", $"onemore://RemindCommand/{args}");
 			doc.DocumentElement.SetAttribute("activationType", "protocol");
 
+			logger.WriteLine(System.Xml.Linq.XElement.Parse(doc.DocumentElement.GetXml()));
+
 			// send the notification
 			ToastNotificationManager
 				.CreateToastNotifier(Resx.Reminder_ToastTitle)

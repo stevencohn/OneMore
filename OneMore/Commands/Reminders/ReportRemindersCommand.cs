@@ -110,6 +110,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					one.CreatePage(one.CurrentSectionId, out pageId);
 					page = one.GetPage(pageId);
+					page.SetMeta(MetaNames.ReminderReport, OneNote.Scope.Notebooks.ToString());
 					page.Title = Resx.ReminderReport_Title;
 					container = page.EnsureContentContainer();
 				}
