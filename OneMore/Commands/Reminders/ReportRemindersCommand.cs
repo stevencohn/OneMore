@@ -165,7 +165,7 @@ namespace River.OneMoreAddIn.Commands
 
 			table.SetColumnWidth(0, 220);
 			table.SetColumnWidth(1, 70);
-			table.SetColumnWidth(2, 130);
+			table.SetColumnWidth(2, 145);
 			table.SetColumnWidth(3, 130);
 			table.SetColumnWidth(4, 60);
 			table.SetColumnWidth(5, 60);
