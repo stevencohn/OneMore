@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var reminder = GetReminder(paragraph);
 
-				using (var dialog = new RemindDialog(reminder))
+				using (var dialog = new RemindDialog(reminder, false))
 				{
 					if (dialog.ShowDialog(owner) == DialogResult.OK)
 					{
@@ -70,9 +70,37 @@ namespace River.OneMoreAddIn.Commands
 		private async Task NavigateToReminder(string args)
 		{
 			var parts = args.Split(';');
+			var pageId = parts[0];
+			var objectId = parts[1];
+
 			using (var one = new OneNote())
 			{
-				await one.NavigateTo(parts[0], parts[1]);
+				Native.SetForegroundWindow(one.WindowHandle);
+				await one.NavigateTo(pageId, objectId);
+	
+				page = one.GetPage(pageId);
+				ns = page.Namespace;
+
+				var paragraph = page.Root.Descendants(ns + "OE")
+					.FirstOrDefault(e => e.Attribute("objectID").Value == objectId);
+
+				var reminder = GetReminder(paragraph);
+				if (reminder == null)
+				{
+					// TODO: message?
+					return;
+				}
+
+				using (var dialog = new RemindDialog(reminder, true))
+				{
+					if (dialog.ShowDialog(owner) == DialogResult.OK)
+					{
+						if (SetReminder(paragraph, dialog.Reminder))
+						{
+							await one.Update(page);
+						}
+					}
+				}
 			}
 		}
 
@@ -89,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				reminder = reminders.FirstOrDefault(r => r.ObjectId == objectID);
 
-				if (reminder != null && 
+				if (reminder != null &&
 					!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
 				{
 					// check tag still exists

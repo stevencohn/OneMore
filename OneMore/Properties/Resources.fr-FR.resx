@@ -3753,7 +3753,7 @@ Différé</value>
     <value>Rafraîchir</value>
   </data>
   <data name="RemindDialog_silentBox.Text" xml:space="preserve">
-    <value>Silencieux</value>
+    <value>Faire taire ce rappel</value>
     <comment>checkbox</comment>
   </data>
   <data name="Reminder_PastDue" xml:space="preserve">
@@ -3793,6 +3793,38 @@ Différé</value>
   </data>
   <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
     <value>Largeur de page</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>En attente jusqu'au {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
+    <value>Options</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
+    <value>Ne pas répéter
+5 minutes
+10 minutes
+15 minutes
+30 minutes
+1 heure
+2 heures
+4 heures
+Un jour
+2 jours
+3 jours
+1 semaine
+2 semaines</value>
+    <comment>combox box</comment>
+  </data>
+  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
+    <value>Roupillon</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
+    <value>Cliquez sur snooze pour être rappelé dans</value>
     <comment>label</comment>
   </data>
 </root>

@@ -3744,7 +3744,7 @@ Aufgeschoben</value>
     <value>Aktualisierung</value>
   </data>
   <data name="RemindDialog_silentBox.Text" xml:space="preserve">
-    <value>Still</value>
+    <value>Diese Erinnerung zum Schweigen bringen</value>
     <comment>checkbox</comment>
   </data>
   <data name="Reminder_PastDue" xml:space="preserve">
@@ -3784,6 +3784,38 @@ Aufgeschoben</value>
   </data>
   <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
     <value>Seitenbreite</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Schlummert bis {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
+    <value>Optionen</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
+    <value>Nicht dösen
+5 Minuten
+10 Minuten
+15 Minuten
+30 Minuten
+1 Stunde
+2 Stunden
+4 Stunden
+1 Tag
+2 Tage
+3 Tage
+1 Woche
+2 Wochen</value>
+    <comment>combox box</comment>
+  </data>
+  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
+    <value>Schlummern</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
+    <value>Klicken Sie auf Snooze, um daran erinnert zu werden</value>
     <comment>label</comment>
   </data>
 </root>

@@ -92,6 +92,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Test(Reminder reminder, string pageID)
 		{
+			// is it currently snoozed?
+			if (reminder.Snooze != SnoozeRange.None &&
+				DateTime.UtcNow.CompareTo(reminder.SnoozeTime) < 0)
+			{
+				return;
+			}
+
+			// is it not started but after the planned start date?
 			if (reminder.Status == ReminderStatus.NotStarted ||
 				reminder.Status == ReminderStatus.Waiting)
 			{
@@ -107,6 +115,7 @@ namespace River.OneMoreAddIn.Commands
 						);
 				}
 			}
+			// is it not completed but after the planne due date?
 			else if (reminder.Status == ReminderStatus.InProgress)
 			{
 				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)
@@ -126,6 +135,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Send(string message, string args)
 		{
+			/*
+			<toast launch="onemore://RemindCommand/{pageid};{objectid}" activationType="protocol">
+			  <visual>
+				<binding template="ToastImageAndText01">
+				  <image id="1" src="C:\Users\steve\AppData\Local\Temp\ylgs0dca.wry" />
+				  <text id="1">Task is past its start date of Nov 1, 2021 9:05 AM, "Now is the time". Click here to navigate to this task</text>
+				</binding>
+			  </visual>
+			</toast>
+			*/
+
 			// get a toast XML template
 			var doc = ToastNotificationManager
 				.GetTemplateContent(ToastTemplateType.ToastImageAndText01);
@@ -149,6 +169,8 @@ namespace River.OneMoreAddIn.Commands
 			// and not having to register a Start Menu application with an AppID
 			doc.DocumentElement.SetAttribute("launch", $"onemore://RemindCommand/{args}");
 			doc.DocumentElement.SetAttribute("activationType", "protocol");
+
+			//logger.WriteLine(System.Xml.Linq.XElement.Parse(doc.DocumentElement.GetXml()));
 
 			// send the notification
 			ToastNotificationManager

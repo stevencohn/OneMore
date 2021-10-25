@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -34,7 +35,11 @@ namespace River.OneMoreAddIn.Commands
 					"priorityLabel",
 					"priorityBox",
 					"percentLabel",
+					"optionsBox",
 					"silentBox",
+					"snoozeLabel",
+					"snoozeBox",
+					"snoozeButton",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -42,10 +47,11 @@ namespace River.OneMoreAddIn.Commands
 
 			startDateBox.CustomFormat = DateTimeExtensions.FriendlyPattern;
 			dueDateBox.CustomFormat = DateTimeExtensions.FriendlyPattern;
+			snoozeBox.SelectedIndex = 0;
 		}
 
 
-		public RemindDialog(Reminder reminder)
+		public RemindDialog(Reminder reminder, bool canSnooze)
 			: this()
 		{
 			this.reminder = reminder;
@@ -84,6 +90,15 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
+
+			snoozeTimeLabel.Text = string.Empty;
+			var snoozed = reminder.Snooze != SnoozeRange.None;
+			if (snoozed)
+			{
+				snoozeBox.SelectedIndex = (int)reminder.Snooze;
+			}
+
+			snoozeBox.Enabled = snoozeButton.Enabled = canSnooze || snoozed;
 		}
 
 
@@ -144,6 +159,53 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
+		private void SelectSnooze(object sender, EventArgs e)
+		{
+			// dialog not yet initialized
+			if (reminder == null) return;
+
+			if (snoozeBox.SelectedIndex == 0)
+			{
+				if (reminder.Snooze == SnoozeRange.None ||
+					reminder.SnoozeTime.CompareTo(DateTime.UtcNow) < 0)
+				{
+					snoozeTimeLabel.Text = string.Empty;
+				}
+				else
+				{
+					snoozeTimeLabel.Text = $"({reminder.SnoozeTime.ToShortFriendlyString()})";
+				}
+			}
+			else
+			{
+				var time = DateTime.UtcNow.Add(GetSnoozeSpan((SnoozeRange)snoozeBox.SelectedIndex));
+				snoozeTimeLabel.Text = $"({time.ToShortFriendlyString()})";
+			}
+		}
+
+
+		private TimeSpan GetSnoozeSpan(SnoozeRange range)
+		{
+			switch (range)
+			{
+				case SnoozeRange.S5minutes: return TimeSpan.FromMinutes(5);
+				case SnoozeRange.S10minutes: return TimeSpan.FromMinutes(10);
+				case SnoozeRange.S15minutes: return TimeSpan.FromMinutes(15);
+				case SnoozeRange.S30minutes: return TimeSpan.FromMinutes(30);
+				case SnoozeRange.S1hour: return TimeSpan.FromHours(1);
+				case SnoozeRange.S2hours: return TimeSpan.FromHours(2);
+				case SnoozeRange.S4hours: return TimeSpan.FromHours(4);
+				case SnoozeRange.S1day: return TimeSpan.FromDays(1);
+				case SnoozeRange.S2days: return TimeSpan.FromDays(2);
+				case SnoozeRange.S3days: return TimeSpan.FromDays(3);
+				case SnoozeRange.S1week: return TimeSpan.FromDays(7);
+				case SnoozeRange.S2weeks: return TimeSpan.FromDays(14);
+				default: return TimeSpan.Zero;
+			}
+		}
+
+
 		private void OK(object sender, System.EventArgs e)
 		{
 			reminder.Subject = subjectBox.Text.Trim();
@@ -157,6 +219,24 @@ namespace River.OneMoreAddIn.Commands
 			if (!string.IsNullOrEmpty(symbol) && symbol != "0")
 			{
 				reminder.Symbol = symbol;
+			}
+
+			if (sender == snoozeButton)
+			{
+				if (snoozeBox.SelectedIndex == 0)
+				{
+					reminder.Snooze = SnoozeRange.None;
+					reminder.SnoozeTime = reminder.Start;
+				}
+				else
+				{
+					TimeSpan span = TimeSpan.Zero;
+					reminder.Snooze = (SnoozeRange)snoozeBox.SelectedIndex;
+					reminder.SnoozeTime = DateTime.UtcNow.Add(GetSnoozeSpan(reminder.Snooze));
+				}
+
+				DialogResult = DialogResult.OK;
+				Close();
 			}
 		}
 	}

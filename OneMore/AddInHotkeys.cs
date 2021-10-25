@@ -73,6 +73,9 @@ namespace River.OneMoreAddIn
 			HotkeyManager.RegisterHotKey(async () => await ReplayCmd(null),
 				Keys.R, Hotmods.AltShift);
 
+			HotkeyManager.RegisterHotKey(async () => await RemindCmd(null),
+				Keys.F8);
+
 			HotkeyManager.RegisterHotKey(async () => await SearchCmd(null),
 				Keys.F, Hotmods.Alt);
 
@@ -100,7 +103,7 @@ namespace River.OneMoreAddIn
 				Keys.X, Hotmods.ControlAltShift);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<DiagnosticsCommand>(),
-				Keys.F8);
+				Keys.F8, Hotmods.Shift);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ClearLogCommand>(),
 				Keys.F8, Hotmods.Control);

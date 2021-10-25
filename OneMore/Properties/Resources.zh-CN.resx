@@ -3750,7 +3750,7 @@ OneNote 文件 (*.one)</value>
     <value>刷新</value>
   </data>
   <data name="RemindDialog_silentBox.Text" xml:space="preserve">
-    <value>沉默的</value>
+    <value>将此提醒静音</value>
     <comment>checkbox</comment>
   </data>
   <data name="Reminder_PastDue" xml:space="preserve">
@@ -3790,6 +3790,38 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
     <value>页面宽度</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>延后至 {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
+    <value>选项</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
+    <value>不要打盹
+5分钟
+10分钟
+15分钟
+30分钟
+1小时
+2小时
+4个小时
+1天
+2天
+3天
+1周
+2周</value>
+    <comment>combox box</comment>
+  </data>
+  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
+    <value>打盹</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
+    <value>点击暂停提醒</value>
     <comment>label</comment>
   </data>
 </root>

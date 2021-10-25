@@ -3759,7 +3759,7 @@ Diferido</value>
     <value>Atualizar</value>
   </data>
   <data name="RemindDialog_silentBox.Text" xml:space="preserve">
-    <value>Silencioso</value>
+    <value>Silencie este lembrete</value>
     <comment>checkbox</comment>
   </data>
   <data name="Reminder_PastDue" xml:space="preserve">
@@ -3799,6 +3799,38 @@ Diferido</value>
   </data>
   <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
     <value>Largura da página</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Suspenso até {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
+    <value>Opções</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
+    <value>Não soneca
+5 minutos
+10 minutos
+15 minutos
+30 minutos
+1 hora
+2 horas
+4 horas
+1 dia
+2 dias
+3 dias
+1 semana
+2 semanas</value>
+    <comment>combox box</comment>
+  </data>
+  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
+    <value>Soneca</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
+    <value>Clique em soneca para ser lembrado em</value>
     <comment>label</comment>
   </data>
 </root>

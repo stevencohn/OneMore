@@ -3758,7 +3758,7 @@ ISO-code then comma then language name</comment>
     <value>ينعش</value>
   </data>
   <data name="RemindDialog_silentBox.Text" xml:space="preserve">
-    <value>صامتة</value>
+    <value>كتم صوت هذا التذكير</value>
     <comment>checkbox</comment>
   </data>
   <data name="Reminder_PastDue" xml:space="preserve">
@@ -3798,6 +3798,38 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
     <value>عرض الصفحة</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>غفوة حتى {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
+    <value>خيارات</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
+    <value>لا تغف
+5 دقائق
+10 دقائق
+15 دقيقة
+30 دقيقة
+1 ساعة
+ساعاتين
+4 ساعات
+يوم 1
+2 أيام
+3 أيام
+أسبوع 1
+2 أسابيع</value>
+    <comment>combox box</comment>
+  </data>
+  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
+    <value>غفوة</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
+    <value>انقر فوق غفوة ليتم تذكيرك بها</value>
     <comment>label</comment>
   </data>
 </root>

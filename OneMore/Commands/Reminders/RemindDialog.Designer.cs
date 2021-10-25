@@ -51,7 +51,13 @@ namespace River.OneMoreAddIn.Commands
 			this.tagButton = new System.Windows.Forms.Button();
 			this.tagLabel = new System.Windows.Forms.Label();
 			this.silentBox = new System.Windows.Forms.CheckBox();
+			this.optionsBox = new System.Windows.Forms.GroupBox();
+			this.snoozeTimeLabel = new System.Windows.Forms.Label();
+			this.snoozeButton = new System.Windows.Forms.Button();
+			this.snoozeBox = new System.Windows.Forms.ComboBox();
+			this.snoozeLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
+			this.optionsBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// okButton
@@ -59,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(624, 401);
+			this.okButton.Location = new System.Drawing.Point(624, 563);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
@@ -71,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(730, 401);
+			this.cancelButton.Location = new System.Drawing.Point(730, 563);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;
@@ -275,12 +281,82 @@ namespace River.OneMoreAddIn.Commands
 			// silentBox
 			// 
 			this.silentBox.AutoSize = true;
-			this.silentBox.Location = new System.Drawing.Point(624, 38);
+			this.silentBox.Location = new System.Drawing.Point(19, 28);
 			this.silentBox.Name = "silentBox";
-			this.silentBox.Size = new System.Drawing.Size(75, 24);
-			this.silentBox.TabIndex = 28;
-			this.silentBox.Text = "Silent";
+			this.silentBox.Size = new System.Drawing.Size(182, 24);
+			this.silentBox.TabIndex = 0;
+			this.silentBox.Text = "Silence this reminder";
 			this.silentBox.UseVisualStyleBackColor = true;
+			// 
+			// optionsBox
+			// 
+			this.optionsBox.Controls.Add(this.snoozeTimeLabel);
+			this.optionsBox.Controls.Add(this.snoozeButton);
+			this.optionsBox.Controls.Add(this.snoozeBox);
+			this.optionsBox.Controls.Add(this.snoozeLabel);
+			this.optionsBox.Controls.Add(this.silentBox);
+			this.optionsBox.Location = new System.Drawing.Point(27, 402);
+			this.optionsBox.Name = "optionsBox";
+			this.optionsBox.Padding = new System.Windows.Forms.Padding(12, 6, 3, 3);
+			this.optionsBox.Size = new System.Drawing.Size(803, 137);
+			this.optionsBox.TabIndex = 29;
+			this.optionsBox.TabStop = false;
+			this.optionsBox.Text = "Options";
+			// 
+			// snoozeTimeLabel
+			// 
+			this.snoozeTimeLabel.AutoSize = true;
+			this.snoozeTimeLabel.Location = new System.Drawing.Point(420, 91);
+			this.snoozeTimeLabel.Name = "snoozeTimeLabel";
+			this.snoozeTimeLabel.Size = new System.Drawing.Size(19, 20);
+			this.snoozeTimeLabel.TabIndex = 32;
+			this.snoozeTimeLabel.Text = "()";
+			// 
+			// snoozeButton
+			// 
+			this.snoozeButton.Enabled = false;
+			this.snoozeButton.Location = new System.Drawing.Point(275, 84);
+			this.snoozeButton.Name = "snoozeButton";
+			this.snoozeButton.Size = new System.Drawing.Size(121, 34);
+			this.snoozeButton.TabIndex = 2;
+			this.snoozeButton.Text = "Snooze";
+			this.snoozeButton.UseVisualStyleBackColor = true;
+			this.snoozeButton.Click += new System.EventHandler(this.OK);
+			// 
+			// snoozeBox
+			// 
+			this.snoozeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.snoozeBox.Enabled = false;
+			this.snoozeBox.FormattingEnabled = true;
+			this.snoozeBox.Items.AddRange(new object[] {
+            "Do not snooze",
+            "5 minutes",
+            "10 minutes",
+            "15 minutes",
+            "30 minutes",
+            "1 hour",
+            "2 hours",
+            "4 hours",
+            "1 day",
+            "2 days",
+            "3 days",
+            "1 week",
+            "2 weeks"});
+			this.snoozeBox.Location = new System.Drawing.Point(19, 88);
+			this.snoozeBox.Name = "snoozeBox";
+			this.snoozeBox.Size = new System.Drawing.Size(250, 28);
+			this.snoozeBox.TabIndex = 1;
+			this.snoozeBox.SelectedIndexChanged += new System.EventHandler(this.SelectSnooze);
+			// 
+			// snoozeLabel
+			// 
+			this.snoozeLabel.AutoSize = true;
+			this.snoozeLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.snoozeLabel.Location = new System.Drawing.Point(15, 65);
+			this.snoozeLabel.Name = "snoozeLabel";
+			this.snoozeLabel.Size = new System.Drawing.Size(224, 20);
+			this.snoozeLabel.TabIndex = 29;
+			this.snoozeLabel.Text = "Click snooze to be reminded in";
 			// 
 			// RemindDialog
 			// 
@@ -288,8 +364,8 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(853, 462);
-			this.Controls.Add(this.silentBox);
+			this.ClientSize = new System.Drawing.Size(853, 624);
+			this.Controls.Add(this.optionsBox);
 			this.Controls.Add(this.tagLabel);
 			this.Controls.Add(this.tagButton);
 			this.Controls.Add(this.completedLabel);
@@ -319,6 +395,8 @@ namespace River.OneMoreAddIn.Commands
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Reminder";
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).EndInit();
+			this.optionsBox.ResumeLayout(false);
+			this.optionsBox.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -347,5 +425,10 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Button tagButton;
 		private System.Windows.Forms.Label tagLabel;
 		private System.Windows.Forms.CheckBox silentBox;
+		private System.Windows.Forms.GroupBox optionsBox;
+		private System.Windows.Forms.Button snoozeButton;
+		private System.Windows.Forms.ComboBox snoozeBox;
+		private System.Windows.Forms.Label snoozeLabel;
+		private System.Windows.Forms.Label snoozeTimeLabel;
 	}
 }

@@ -3759,7 +3759,7 @@ Verschoven</value>
     <value>Vernieuwen</value>
   </data>
   <data name="RemindDialog_silentBox.Text" xml:space="preserve">
-    <value>Stil</value>
+    <value>Zet deze herinnering op stil</value>
     <comment>checkbox</comment>
   </data>
   <data name="Reminder_PastDue" xml:space="preserve">
@@ -3799,6 +3799,38 @@ Verschoven</value>
   </data>
   <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
     <value>Paginabreedte</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Gesnoozed tot {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
+    <value>Opties</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
+    <value>Niet snoozen
+5 minuten
+10 minuten
+15 minuten
+30 minuten
+1 uur
+twee uur
+4 uur
+1 dag
+2 dagen
+3 dagen
+1 week
+2 weken</value>
+    <comment>combox box</comment>
+  </data>
+  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
+    <value>Snooze</value>
+    <comment>button</comment>
+  </data>
+  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
+    <value>Klik op snooze om een ​​herinnering te ontvangen over</value>
     <comment>label</comment>
   </data>
 </root>
