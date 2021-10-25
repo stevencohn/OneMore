@@ -3761,4 +3761,16 @@ ISO-code then comma then language name</comment>
     <value>صامتة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>تجاوزت المهمة تاريخ استحقاقها وهو {0} ، "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>تجاوزت المهمة تاريخ بدايتها في {0} ، "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>واحد أكثر تذكير</value>
+    <comment>toast header</comment>
+  </data>
 </root>

@@ -6,29 +6,26 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
-	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
-	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using Windows.UI.Notifications;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class ReminderService : Loggable
 	{
+		// check one a minute
 		private const int sleep = 60000;
 
 		private static string imageCache;
-		private string appId;
 
 
 		public void Startup()
 		{
 			var thread = new Thread(async () =>
 			{
-				LookupAppId();
-
 				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
 				// don't fall into an infinite loop. If it somehow miraculously recovers then
 				// errors is reset back to zero and normal processing continues...
@@ -57,39 +54,6 @@ namespace River.OneMoreAddIn.Commands
 			thread.IsBackground = true;
 			thread.Priority = ThreadPriority.BelowNormal;
 			thread.Start();
-		}
-
-
-		private void LookupAppId()
-		{
-			var builder = new StringBuilder();
-			using (var process = new Process
-			{
-				StartInfo = new ProcessStartInfo
-				{
-					FileName = @"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe",
-					Arguments = @"-command ""(Get-StartApps 'OneMore Reminder').AppID""",
-					CreateNoWindow = true,
-					UseShellExecute = false,
-					RedirectStandardOutput = true
-				}
-			})
-			{
-				if (process.Start())
-				{
-					while (!process.HasExited)
-					{
-						builder.Append(process.StandardOutput.ReadToEnd());
-					}
-				}
-			}
-
-			// output might only be a newline so ensure there's "enough" content
-			if (builder.Length > 2)
-			{
-				appId = builder.ToString().Trim();
-				logger.WriteLine($"OneNoteProtocolHandler.appId={appId}");
-			}
 		}
 
 
@@ -123,8 +87,6 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
-
-			await Task.Yield();
 		}
 
 
@@ -135,18 +97,28 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (DateTime.UtcNow.CompareTo(reminder.Start) > 0)
 				{
-					var msg = $"reminder {reminder.Status} is post-start: {reminder.Subject}";
-					Send(msg, $"{pageID};{reminder.ObjectId}");
-					logger.WriteLine(msg);
+					Send(
+						string.Format(
+							Resx.Reminder_PastStart,
+							reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern),
+							reminder.Subject
+							),
+						$"{pageID};{reminder.ObjectId}"
+						);
 				}
 			}
 			else if (reminder.Status == ReminderStatus.InProgress)
 			{
 				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)
 				{
-					var msg = $"reminder {reminder.Status} is post-due: {reminder.Subject}";
-					Send(msg, $"{pageID};{reminder.ObjectId}");
-					logger.WriteLine(msg);
+					Send(
+						string.Format(
+							Resx.Reminder_PastDue, 
+							reminder.Due.ToString(DateTimeExtensions.ShortFriendlyPattern),
+							reminder.Subject
+							),
+						$"{pageID};{reminder.ObjectId}"
+						);
 				}
 			}
 		}
@@ -162,28 +134,26 @@ namespace River.OneMoreAddIn.Commands
 			var texts = doc.GetElementsByTagName("text");
 			texts[0].AppendChild(doc.CreateTextNode(message));
 
-			// fill in the image
+			// fill the image...
 			if (imageCache == null || !File.Exists(imageCache))
 			{
 				imageCache = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-				Properties.Resources.Logo.Save(imageCache);
+				Resx.Logo.Save(imageCache);
 			}
 
 			// this should work with a pack:// resource but I can't figure out the URI!
 			var images = doc.GetElementsByTagName("image");
 			images[0].Attributes.GetNamedItem("src").NodeValue = imageCache;
 
-			// launch arguments
+			// launch arguments; setting protocol is key to making this work with onemore://
+			// and not having to register a Start Menu application with an AppID
 			doc.DocumentElement.SetAttribute("launch", $"onemore://RemindCommand/{args}");
-			// setting the protocol is key to makeing this work!
 			doc.DocumentElement.SetAttribute("activationType", "protocol");
 
 			// send the notification
-			var toast = new ToastNotification(doc);
-
-			// even if we don't have an activatable appId, we can still show a default title
-			var id = appId ?? "OneMore Reminder";
-			ToastNotificationManager.CreateToastNotifier(id).Show(toast);
+			ToastNotificationManager
+				.CreateToastNotifier(Resx.Reminder_ToastTitle)
+				.Show(new ToastNotification(doc));
 		}
 	}
 }

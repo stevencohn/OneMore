@@ -3762,4 +3762,16 @@ Verschoven</value>
     <value>Stil</value>
     <comment>checkbox</comment>
   </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>Taak is over de vervaldatum van {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>Taak is voorbij de startdatum van {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>Nog een herinnering</value>
+    <comment>toast header</comment>
+  </data>
 </root>

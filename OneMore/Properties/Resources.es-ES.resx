@@ -3762,4 +3762,16 @@ Diferido</value>
     <value>Silencio</value>
     <comment>checkbox</comment>
   </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>La tarea ha vencido su fecha de vencimiento de {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>La tarea ha superado su fecha de inicio de {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>OneMore recordatorio</value>
+    <comment>toast header</comment>
+  </data>
 </root>

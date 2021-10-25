@@ -3747,4 +3747,16 @@ Aufgeschoben</value>
     <value>Still</value>
     <comment>checkbox</comment>
   </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>Aufgabe hat das Fälligkeitsdatum {0}, "{1}" überschritten. </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>Aufgabe hat das Startdatum {0}, "{1}" überschritten. </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>OneMore-Erinnerung</value>
+    <comment>toast header</comment>
+  </data>
 </root>

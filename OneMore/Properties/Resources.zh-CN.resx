@@ -3753,4 +3753,16 @@ OneNote 文件 (*.one)</value>
     <value>沉默的</value>
     <comment>checkbox</comment>
   </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>任务已超过其截止日期 {0}，“{1}”。</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>任务已超过其开始日期 {0}，“{1}”。</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>一个提醒</value>
+    <comment>toast header</comment>
+  </data>
 </root>

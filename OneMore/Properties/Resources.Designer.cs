@@ -4317,6 +4317,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task is past its due date of {0}, &quot;{1}&quot;. Click here to navigate to this task.
+        /// </summary>
+        internal static string Reminder_PastDue {
+            get {
+                return ResourceManager.GetString("Reminder_PastDue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task is past its start date of {0}, &quot;{1}&quot;. Click here to navigate to this task.
+        /// </summary>
+        internal static string Reminder_PastStart {
+            get {
+                return ResourceManager.GetString("Reminder_PastStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Reminder.
+        /// </summary>
+        internal static string Reminder_ToastTitle {
+            get {
+                return ResourceManager.GetString("Reminder_ToastTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active Reminders.
         /// </summary>
         internal static string ReminderReport_ActiveReminders {

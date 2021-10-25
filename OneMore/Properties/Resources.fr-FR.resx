@@ -3756,4 +3756,16 @@ Différé</value>
     <value>Silencieux</value>
     <comment>checkbox</comment>
   </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>La tâche a dépassé sa date d'échéance de {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>La tâche a dépassé sa date de début de {0}, "{1}". </value>
+    <comment>toast message</comment>
+  </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>Rappel OneMore</value>
+    <comment>toast header</comment>
+  </data>
 </root>
