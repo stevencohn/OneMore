@@ -243,10 +243,16 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var index = page.AddTagDef(item.Reminder.Symbol, string.Empty);
 			var uri = one.GetHyperlink(item.Meta.Parent.Attribute("ID").Value, item.Reminder.ObjectId);
+
+			// uri might be null if making a cross-machine query since objectIDs are ephemeral
+			var text = uri != null
+				? $"<a href='{uri}'>{item.Reminder.Subject}</a>"
+				: item.Reminder.Subject;
+
 			return new XElement(ns + "OEChildren",
 				new XElement(ns + "OE",
 					new Tag(index, item.Reminder.Status == ReminderStatus.Completed).SetEnabled(false),
-					new XElement(ns + "T", new XCData($"<a href='{uri}'>{item.Reminder.Subject}</a>"))
+					new XElement(ns + "T", new XCData(text))
 					),
 				new Paragraph(item.Path).SetQuickStyle(citeIndex)
 				);

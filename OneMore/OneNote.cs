@@ -82,6 +82,8 @@ namespace River.OneMoreAddIn
 		public const string Prefix = "one";
 
 		private const int MaxInclusiveHResult = -2146231999;
+		private const int ObjectDoesNotExist = -2147213292;
+
 
 		private IApplication onenote;
 		private readonly ILogger logger;
@@ -503,8 +505,26 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetHyperlink(string pageId, string objectId)
 		{
-			onenote.GetHyperlinkToObject(pageId, objectId, out var hyperlink);
-			return hyperlink;
+			try
+			{
+				onenote.GetHyperlinkToObject(pageId, objectId, out var hyperlink);
+				return hyperlink;
+			}
+			catch (Exception exc)
+			{
+				if (exc.HResult == ObjectDoesNotExist)
+				{
+					// objectIDs are ephemeral, generated on-the-fly from the current machine
+					// so will not exist when viewing the same page on a different machine;
+					// they are consistent on a single machine, probably using some hardware
+					// based heuristics I presume
+					logger.WriteLine("GetHyperlink, object does not exist. Possible cross-machine query");
+					return null;
+				}
+
+				logger.WriteLine("GetHyperlink error", exc);
+				return null;
+			}
 		}
 
 
