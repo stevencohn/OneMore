@@ -18,7 +18,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features (133)
+## Features (137)
 
 [Clean commands](../../wiki/Clean-Commands) (9)
 
@@ -97,6 +97,12 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Refresh text of hyperlinks back to this page based on its title
 * Replace hyperlinked URLs with their Web page titles
 * Replace hyperlinked URLs with their downloaded images
+
+[Reminder commands](../../wiki/Reminder-Commands) (4)
+* Add or update a reminder for any paragraph on a page (F8)
+* Mark the selected reminder as completed
+* Delete the seleted reminder
+* Generate a detailed report of all reminders and their status
 
 [Search commands](../../wiki/Search-Commands) (4)
 
