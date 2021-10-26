@@ -56,39 +56,39 @@ namespace River.OneMoreAddIn.Commands
 			var now = DateTime.UtcNow;
 			var span = now.Subtract(started ? rem.Due : rem.Start);
 
-			if (started)
-			{
-				Logger.Current.WriteLine($"check due {rem.Due.ToLocalTime()} span={span.TotalHours}/{span.TotalMinutes}");
-			}
-			else
-			{
-				Logger.Current.WriteLine($"check start {rem.Start.ToLocalTime()} span={span.TotalHours}/{span.TotalMinutes}");
-			}
+			//if (started)
+			//{
+			//	Logger.Current.WriteLine($"check due {rem.Due.ToLocalTime()} span={span.TotalHours}/{span.TotalMinutes}");
+			//}
+			//else
+			//{
+			//	Logger.Current.WriteLine($"check start {rem.Start.ToLocalTime()} span={span.TotalHours}/{span.TotalMinutes}");
+			//}
 
 			// Pattern rules...
 
 			if (span.TotalHours > 4)
 			{
 				rem.ScheduledNotification = now.AddHours(12);
-				Logger.Current.WriteLine($"scheduled+12h {rem.ScheduledNotification.ToLocalTime()}");
+				//Logger.Current.WriteLine($"scheduled+12h {rem.ScheduledNotification.ToLocalTime()}");
 			}
 			else if (span.TotalMinutes >= 60)
 			{
 				// will fire 3x (2hr .. 4hr)
 				rem.ScheduledNotification = now.AddHours(1);
-				Logger.Current.WriteLine($"scheduled+1h {rem.ScheduledNotification.ToLocalTime()}");
+				//Logger.Current.WriteLine($"scheduled+1h {rem.ScheduledNotification.ToLocalTime()}");
 			}
 			else if (span.TotalMinutes >= (SleepyMinutes * 4))
 			{
 				// with sleep=5mins this will fire 4x (20mins .. 1hr)
 				rem.ScheduledNotification = now.AddMinutes(SleepyMinutes * 2);
-				Logger.Current.WriteLine($"scheduled+2 {rem.ScheduledNotification.ToLocalTime()}");
+				//Logger.Current.WriteLine($"scheduled+2 {rem.ScheduledNotification.ToLocalTime()}");
 			}
 			else
 			{
 				// with sleep=5mins this will fire 3x after initial scan
 				rem.ScheduledNotification = now.AddMinutes(SleepyMinutes);
-				Logger.Current.WriteLine($"scheduled+1 {rem.ScheduledNotification.ToLocalTime()}");
+				//Logger.Current.WriteLine($"scheduled+1 {rem.ScheduledNotification.ToLocalTime()}");
 			}
 		}
 

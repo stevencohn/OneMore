@@ -196,7 +196,14 @@ namespace River.OneMoreAddIn
 
 			if (settings.Get("checkUpdates", false))
 			{
-				await factory.Run<Commands.UpdateCommand>();
+				try
+				{
+					await factory.Run<Commands.UpdateCommand>();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error checking for updates", exc);
+				}
 			}
 		}
 
