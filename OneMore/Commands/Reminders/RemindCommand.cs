@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Native.SetForegroundWindow(one.WindowHandle);
 				await one.NavigateTo(pageId, objectId);
-	
+
 				page = one.GetPage(pageId);
 				ns = page.Namespace;
 
@@ -100,6 +100,16 @@ namespace River.OneMoreAddIn.Commands
 							await one.Update(page);
 						}
 					}
+				}
+
+				if (reminder.Silent || reminder.Snooze != SnoozeRange.None)
+				{
+					RemindScheduler.CancelOverride(reminder);
+				}
+				else
+				{
+					var started = DateTime.UtcNow.CompareTo(reminder.Started) > 0;
+					RemindScheduler.ScheduleNotification(reminder, started);
 				}
 			}
 		}

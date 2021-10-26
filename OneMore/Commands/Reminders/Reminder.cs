@@ -161,7 +161,8 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// Gets or sets the actual completin date, stored as UTC, dispalyed as local.
-		/// This is a copy of the Tag.completionDate attribute
+		/// This is a copy of the Tag.completionDate attribute but we persist it here as
+		/// well so the Report command doesn't need to dive into the page to look at the tag
 		/// </summary>
 		public DateTime Completed { get; set; }
 
@@ -171,6 +172,10 @@ namespace River.OneMoreAddIn.Commands
 		/// Defaults to the text of the paragraph but can be overriden by the user
 		/// </summary>
 		public string Subject { get; set; }
+
+
+		[JsonIgnore]
+		public DateTime ScheduledNotification { get; set; }
 
 
 		/// <summary>

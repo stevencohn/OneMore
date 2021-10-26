@@ -80,10 +80,23 @@ namespace River.OneMoreAddIn.Commands
 					var pageID = meta.Parent.Attribute("ID").Value;
 					foreach (var reminder in reminders)
 					{
-						if (!reminder.Silent)
+						if (reminder.Silent)
 						{
-							Test(reminder, pageID);
+							continue;
 						}
+
+						if (reminder.Snooze != SnoozeRange.None &&
+							DateTime.UtcNow.CompareTo(reminder.SnoozeTime) < 0)
+						{
+							continue;
+						}
+
+						if (RemindScheduler.WaitingOn(reminder))
+						{
+							continue;
+						}
+
+						Test(reminder, pageID);
 					}
 				}
 			}
@@ -92,13 +105,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Test(Reminder reminder, string pageID)
 		{
-			// is it currently snoozed?
-			if (reminder.Snooze != SnoozeRange.None &&
-				DateTime.UtcNow.CompareTo(reminder.SnoozeTime) < 0)
-			{
-				return;
-			}
-
 			// is it not started but after the planned start date?
 			if (reminder.Status == ReminderStatus.NotStarted ||
 				reminder.Status == ReminderStatus.Waiting)
@@ -113,9 +119,11 @@ namespace River.OneMoreAddIn.Commands
 							),
 						$"{pageID};{reminder.ObjectId}"
 						);
+
+					RemindScheduler.ScheduleNotification(reminder, false);
 				}
 			}
-			// is it not completed but after the planne due date?
+			// is it not completed but after the planned due date?
 			else if (reminder.Status == ReminderStatus.InProgress)
 			{
 				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)
@@ -128,6 +136,8 @@ namespace River.OneMoreAddIn.Commands
 							),
 						$"{pageID};{reminder.ObjectId}"
 						);
+
+					RemindScheduler.ScheduleNotification(reminder, true);
 				}
 			}
 		}
