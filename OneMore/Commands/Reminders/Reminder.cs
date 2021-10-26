@@ -184,14 +184,16 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="objectId">The ID of the containing paragraph OE</param>
 		public Reminder(string objectId)
 		{
+			var now = DateTime.UtcNow;
+
 			Version = 1;
 			ObjectId = objectId;
 			Symbol = BellSymbol;
-			Created = DateTime.Now;
-			Start = DateTime.Now;
-			Started = DateTime.Now;
-			Due = DateTime.Now;
-			Completed = DateTime.Now;
+			Created = now;
+			Start = now;
+			Started = now;
+			Due = now;
+			Completed = now;
 		}
 	}
 }

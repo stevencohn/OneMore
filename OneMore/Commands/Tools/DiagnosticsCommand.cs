@@ -77,6 +77,8 @@ namespace River.OneMoreAddIn.Commands
 				(float scalingX, float scalingY) = UIHelper.GetScalingFactors();
 				builder.AppendLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
 
+				RemindScheduler.ReportDiagnostics(builder);
+
 				builder.AppendLine(new string('-', 80));
 
 				logger.WriteLine(builder.ToString());

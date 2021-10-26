@@ -16,9 +16,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ReminderService : Loggable
 	{
-		// check one a minute
-		private const int sleep = 60000;
-
 		private static string logoFile;
 
 
@@ -44,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 						errors++;
 					}
 
-					await Task.Delay(sleep);
+					await Task.Delay(RemindScheduler.SleepyTime);
 				}
 
 				logger.WriteLine("reminder service has stopped; check for exceptions above");
@@ -93,7 +90,6 @@ namespace River.OneMoreAddIn.Commands
 
 						if (RemindScheduler.WaitingOn(reminder))
 						{
-							logger.WriteLine($"waiting on {reminder.Subject}");
 							continue;
 						}
 

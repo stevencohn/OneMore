@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Text;
 
 
 	/// <summary>
@@ -20,6 +21,14 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal static class RemindScheduler
 	{
+		private const int SleepyMinutes = 1;
+
+		/// <summary>
+		/// Amount of time (ms) the ReminderService sleeps in between its scans
+		/// </summary>
+		public const int SleepyTime = 60000 * SleepyMinutes;
+
+
 		private static readonly Dictionary<string, Reminder> cache 
 			= new Dictionary<string, Reminder>();
 
@@ -33,44 +42,54 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="started">True if the task is started; false if not completed</param>
 		public static void ScheduleNotification(Reminder reminder, bool started)
 		{
-			Reminder rem;
+			// always replace in the cache so it's updated with latest start/due values
+			Reminder rem = reminder;
 			if (cache.ContainsKey(reminder.ObjectId))
 			{
-				rem = cache[reminder.ObjectId];
+				cache[reminder.ObjectId] = reminder;
 			}
 			else
 			{
 				cache.Add(reminder.ObjectId, reminder);
-				rem = reminder;
 			}
 
 			var now = DateTime.UtcNow;
 			var span = now.Subtract(started ? rem.Due : rem.Start);
 
-			// Pattern looks like this:
-			//  <  6 mins = every  2 mins -- 2x (  1min ..  7mins)
-			//  < 36 mins = every 10 mins -- 3x ( 7mins .. 36mins)
-			//  <  4 hrs  = every  2 hour -- 3x (36mins .. 4h36m)
-			//  >  4 hrs  = every 12 hours
+			if (started)
+			{
+				Logger.Current.WriteLine($"check due {rem.Due.ToLocalTime()} span={span.TotalHours}/{span.TotalMinutes}");
+			}
+			else
+			{
+				Logger.Current.WriteLine($"check start {rem.Start.ToLocalTime()} span={span.TotalHours}/{span.TotalMinutes}");
+			}
+
+			// Pattern rules...
 
 			if (span.TotalHours > 4)
 			{
 				rem.ScheduledNotification = now.AddHours(12);
+				Logger.Current.WriteLine($"scheduled+12h {rem.ScheduledNotification.ToLocalTime()}");
 			}
-			else if (span.TotalMinutes >= 36)
+			else if (span.TotalMinutes >= 60)
 			{
+				// will fire 3x (2hr .. 4hr)
 				rem.ScheduledNotification = now.AddHours(1);
+				Logger.Current.WriteLine($"scheduled+1h {rem.ScheduledNotification.ToLocalTime()}");
 			}
-			else if (span.TotalMinutes >= 6)
+			else if (span.TotalMinutes >= (SleepyMinutes * 4))
 			{
-				rem.ScheduledNotification = now.AddMinutes(10);
+				// with sleep=5mins this will fire 4x (20mins .. 1hr)
+				rem.ScheduledNotification = now.AddMinutes(SleepyMinutes * 2);
+				Logger.Current.WriteLine($"scheduled+2 {rem.ScheduledNotification.ToLocalTime()}");
 			}
 			else
 			{
-				rem.ScheduledNotification = now.AddMinutes(2);
+				// with sleep=5mins this will fire 3x after initial scan
+				rem.ScheduledNotification = now.AddMinutes(SleepyMinutes);
+				Logger.Current.WriteLine($"scheduled+1 {rem.ScheduledNotification.ToLocalTime()}");
 			}
-
-			Logger.Current.WriteLine($"next notification {rem.ScheduledNotification.ToLocalTime()}");
 		}
 
 
@@ -83,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 			if (cache.ContainsKey(reminder.ObjectId))
 			{
 				cache.Remove(reminder.ObjectId);
-				reminder.ScheduledNotification = DateTime.MinValue;
+				reminder.ScheduledNotification = DateTime.MaxValue;
 			}
 		}
 
@@ -102,7 +121,24 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var rem = cache[reminder.ObjectId];
-			return DateTime.UtcNow.CompareTo(rem.ScheduledNotification) > 0;
+			return DateTime.UtcNow.CompareTo(rem.ScheduledNotification) < 0;
+		}
+
+
+		internal static void ReportDiagnostics(StringBuilder builder)
+		{
+			builder.AppendLine();
+			builder.AppendLine("RemindScheduler Cache");
+			foreach (var reminder in cache.Values)
+			{
+				var subject = reminder.Subject;
+				if (subject.Length > 40) subject = subject.Substring(0, 38);
+
+				var next = reminder.ScheduledNotification.ToLocalTime().ToString();
+				var start = reminder.Start.ToLocalTime().ToString();
+				var due = reminder.Due.ToLocalTime().ToString();
+				builder.AppendLine($"{subject,-20} next:{next,-23} start:{start,-23} due:{due}");
+			}
 		}
 	}
 }

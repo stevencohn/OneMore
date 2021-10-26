@@ -108,7 +108,11 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					var started = DateTime.UtcNow.CompareTo(reminder.Started) > 0;
+					var started = (
+						reminder.Status == ReminderStatus.InProgress ||
+						reminder.Status == ReminderStatus.Waiting) && 
+						DateTime.UtcNow.CompareTo(reminder.Started) > 0;
+
 					RemindScheduler.ScheduleNotification(reminder, started);
 				}
 			}
