@@ -9,7 +9,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Apply [colorized syntax highlighting](../../wiki/Edit-Commands) to snippets of source code
 * Create/edit/apply [custom styles](../../wiki/Custom-Styles-and-Favorites) with advanced options
 * Manage menu of [Favorites](../../wiki/Custom-Styles-and-Favorites) for one-click link to your most referenced pages
-* Save and reuse [custom snippets](../../wiki/Custom-Styles-and-Favorites) of content anywhere on any page
+* Save and reuse [custom snippets](../../wiki/Snippets-Commands) of content anywhere on any page
 * Add [formulas](../../wiki/Table-Commands) to table cell using Excel-like expressions
 
 
