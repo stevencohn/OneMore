@@ -179,6 +179,8 @@ namespace River.OneMoreAddIn.Commands
 			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
 			row[5].SetContent(new Paragraph(Resx.RemindDialog_percentLabel_Text).SetStyle(HeaderCss));
 
+			var now = DateTime.UtcNow;
+
 			foreach (var item in active
 				.OrderByDescending(i => i.Reminder.Priority)
 				.ThenBy(i => i.Reminder.Due))
@@ -198,7 +200,8 @@ namespace River.OneMoreAddIn.Commands
 					row[1].SetContent(statuses[(int)item.Reminder.Status]);
 				}
 
-				if (item.Reminder.Snooze != SnoozeRange.None)
+				if (item.Reminder.Snooze != SnoozeRange.None &&
+					item.Reminder.SnoozeTime.CompareTo(now) > 0)
 				{
 					var zmsg = string.Format(Resx.ReminderReport_SnoozedUntil,
 						item.Reminder.SnoozeTime.ToShortFriendlyString());
@@ -217,12 +220,12 @@ namespace River.OneMoreAddIn.Commands
 				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
 				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));
 
-				if (DateTime.UtcNow.CompareTo(item.Reminder.Due) > 0)
+				if (now.CompareTo(item.Reminder.Due) > 0)
 				{
 					row[1].ShadingColor = OverdueShading;
 				}
 				else if (item.Reminder.Status == ReminderStatus.NotStarted &&
-					DateTime.UtcNow.CompareTo(item.Reminder.Start) > 0)
+					now.CompareTo(item.Reminder.Start) > 0)
 				{
 					row[1].ShadingColor = NotStartedShading;
 				}

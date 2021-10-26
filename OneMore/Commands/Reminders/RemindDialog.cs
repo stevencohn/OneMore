@@ -93,7 +93,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			snoozeTimeLabel.Text = string.Empty;
-			var snoozed = reminder.Snooze != SnoozeRange.None;
+			var snoozed = reminder.Snooze != SnoozeRange.None &&
+				reminder.SnoozeTime.CompareTo(DateTime.UtcNow) > 0;
+
 			if (snoozed)
 			{
 				snoozeBox.SelectedIndex = (int)reminder.Snooze;
