@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 		// check one a minute
 		private const int sleep = 60000;
 
-		private static string imageCache;
+		private static string logoFile;
 
 
 		public void Startup()
@@ -93,6 +93,7 @@ namespace River.OneMoreAddIn.Commands
 
 						if (RemindScheduler.WaitingOn(reminder))
 						{
+							logger.WriteLine($"waiting on {reminder.Subject}");
 							continue;
 						}
 
@@ -165,15 +166,15 @@ namespace River.OneMoreAddIn.Commands
 			texts[0].AppendChild(doc.CreateTextNode(message));
 
 			// fill the image...
-			if (imageCache == null || !File.Exists(imageCache))
+			if (logoFile == null || !File.Exists(logoFile))
 			{
-				imageCache = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-				Resx.Logo.Save(imageCache);
+				logoFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+				Resx.Logo.Save(logoFile);
 			}
 
 			// this should work with a pack:// resource but I can't figure out the URI!
 			var images = doc.GetElementsByTagName("image");
-			images[0].Attributes.GetNamedItem("src").NodeValue = imageCache;
+			images[0].Attributes.GetNamedItem("src").NodeValue = logoFile;
 
 			// launch arguments; setting protocol is key to making this work with onemore://
 			// and not having to register a Start Menu application with an AppID

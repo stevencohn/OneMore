@@ -69,6 +69,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				rem.ScheduledNotification = now.AddMinutes(2);
 			}
+
+			Logger.Current.WriteLine($"next notification {rem.ScheduledNotification.ToLocalTime()}");
 		}
 
 
