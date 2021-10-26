@@ -7,9 +7,9 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Integrated with the OneNote ribbon, [context menus](../../wiki#extended-context-menus), and [keyboard shortcuts](../../wiki#keys) for easy access
 * [Customize the Text context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
 * Apply [colorized syntax highlighting](../../wiki/Edit-Commands) to snippets of source code
-* Create/edit/apply [custom styles](../../wiki/Custom-Styles) with advanced options
-* Manage menu of [Favorites](../../wiki/Favorites) for one-click link to your most referenced pages
-* Save and reuse [custom snippets](../../wiki/Favorites) of content anywhere on any page
+* Create/edit/apply [custom styles](../../wiki/Custom-Styles-and-Favorites) with advanced options
+* Manage menu of [Favorites](../../wiki/Custom-Styles-and-Favorites) for one-click link to your most referenced pages
+* Save and reuse [custom snippets](../../wiki/Custom-Styles-and-Favorites) of content anywhere on any page
 * Add [formulas](../../wiki/Table-Commands) to table cell using Excel-like expressions
 
 
@@ -32,7 +32,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Trim leading whitespace from selected text
 * Trim trailing whitespace from selected text
 
-[Custom Styles](../../wiki/Custom-styles) (6)
+[Custom Styles](../../wiki/Custom-styles-and-Favorites) (6)
 
 * Apply custom styles to selected text
 * Load a custom theme of styles, user-defined and some provided with OneMore
