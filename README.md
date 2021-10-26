@@ -18,7 +18,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features (129)
+## Features (133)
 
 [Clean commands](../../wiki/Clean-Commands) (9)
 
@@ -142,7 +142,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Toggle strikethrough text next to all completed/incompleted tags
 * Report number of words on the page or in the selected region
 
-[Main Menu](../../wiki/Tools) (7)
+[Main Menu](../../wiki/Tools) (8)
 
 * Replay the last OneMore action with a quick keyboard shortcut (Alt + Shift + R)
 * Import MSWord, PowerPoint, Markdown and others into the current page or a new page
