@@ -16,10 +16,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ReminderService : Loggable
 	{
-		// check one a minute
-		private const int sleep = 60000;
-
-		private static string imageCache;
+		private static string logoFile;
 
 
 		public void Startup()
@@ -44,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 						errors++;
 					}
 
-					await Task.Delay(sleep);
+					await Task.Delay(RemindScheduler.SleepyTime);
 				}
 
 				logger.WriteLine("reminder service has stopped; check for exceptions above");
@@ -80,10 +77,23 @@ namespace River.OneMoreAddIn.Commands
 					var pageID = meta.Parent.Attribute("ID").Value;
 					foreach (var reminder in reminders)
 					{
-						if (!reminder.Silent)
+						if (reminder.Silent)
 						{
-							Test(reminder, pageID);
+							continue;
 						}
+
+						if (reminder.Snooze != SnoozeRange.None &&
+							DateTime.UtcNow.CompareTo(reminder.SnoozeTime) < 0)
+						{
+							continue;
+						}
+
+						if (RemindScheduler.WaitingOn(reminder))
+						{
+							continue;
+						}
+
+						Test(reminder, pageID);
 					}
 				}
 			}
@@ -92,13 +102,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Test(Reminder reminder, string pageID)
 		{
-			// is it currently snoozed?
-			if (reminder.Snooze != SnoozeRange.None &&
-				DateTime.UtcNow.CompareTo(reminder.SnoozeTime) < 0)
-			{
-				return;
-			}
-
 			// is it not started but after the planned start date?
 			if (reminder.Status == ReminderStatus.NotStarted ||
 				reminder.Status == ReminderStatus.Waiting)
@@ -113,9 +116,11 @@ namespace River.OneMoreAddIn.Commands
 							),
 						$"{pageID};{reminder.ObjectId}"
 						);
+
+					RemindScheduler.ScheduleNotification(reminder, false);
 				}
 			}
-			// is it not completed but after the planne due date?
+			// is it not completed but after the planned due date?
 			else if (reminder.Status == ReminderStatus.InProgress)
 			{
 				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)
@@ -128,6 +133,8 @@ namespace River.OneMoreAddIn.Commands
 							),
 						$"{pageID};{reminder.ObjectId}"
 						);
+
+					RemindScheduler.ScheduleNotification(reminder, true);
 				}
 			}
 		}
@@ -155,15 +162,15 @@ namespace River.OneMoreAddIn.Commands
 			texts[0].AppendChild(doc.CreateTextNode(message));
 
 			// fill the image...
-			if (imageCache == null || !File.Exists(imageCache))
+			if (logoFile == null || !File.Exists(logoFile))
 			{
-				imageCache = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-				Resx.Logo.Save(imageCache);
+				logoFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+				Resx.Logo.Save(logoFile);
 			}
 
 			// this should work with a pack:// resource but I can't figure out the URI!
 			var images = doc.GetElementsByTagName("image");
-			images[0].Attributes.GetNamedItem("src").NodeValue = imageCache;
+			images[0].Attributes.GetNamedItem("src").NodeValue = logoFile;
 
 			// launch arguments; setting protocol is key to making this work with onemore://
 			// and not having to register a Start Menu application with an AppID

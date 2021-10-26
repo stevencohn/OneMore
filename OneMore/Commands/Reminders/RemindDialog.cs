@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 			this.reminder = reminder;
 
 			subjectBox.Text = reminder.Subject;
-			startDateBox.Value = reminder.Start;
+			startDateBox.Value = reminder.Start.ToLocalTime();
 
 			if (reminder.Status == ReminderStatus.InProgress ||
 				reminder.Status == ReminderStatus.Completed)
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 				startedBox.Text = reminder.Started.ToFriendlyString();
 			}
 
-			dueDateBox.Value = reminder.Due;
+			dueDateBox.Value = reminder.Due.ToLocalTime();
 
 			if (reminder.Status == ReminderStatus.Completed)
 			{
@@ -93,7 +93,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			snoozeTimeLabel.Text = string.Empty;
-			var snoozed = reminder.Snooze != SnoozeRange.None;
+			var snoozed = reminder.Snooze != SnoozeRange.None &&
+				reminder.SnoozeTime.CompareTo(DateTime.UtcNow) > 0;
+
 			if (snoozed)
 			{
 				snoozeBox.SelectedIndex = (int)reminder.Snooze;
@@ -210,8 +212,8 @@ namespace River.OneMoreAddIn.Commands
 		private void OK(object sender, System.EventArgs e)
 		{
 			reminder.Subject = subjectBox.Text.Trim();
-			reminder.Start = startDateBox.Value;
-			reminder.Due = dueDateBox.Value;
+			reminder.Start = startDateBox.Value.ToUniversalTime();
+			reminder.Due = dueDateBox.Value.ToUniversalTime();
 			reminder.Status = (ReminderStatus)statusBox.SelectedIndex;
 			reminder.Priority = (ReminderPriority)priorityBox.SelectedIndex;
 			reminder.Percent = (int)percentBox.Value;
@@ -231,7 +233,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					TimeSpan span = TimeSpan.Zero;
 					reminder.Snooze = (SnoozeRange)snoozeBox.SelectedIndex;
 					reminder.SnoozeTime = DateTime.UtcNow.Add(GetSnoozeSpan(reminder.Snooze));
 				}
