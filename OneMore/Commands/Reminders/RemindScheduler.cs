@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal static class RemindScheduler
 	{
-		private const int SleepyMinutes = 1;
+		private const int SleepyMinutes = 5;
 
 		/// <summary>
 		/// Amount of time (ms) the ReminderService sleeps in between its scans
@@ -80,13 +80,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else if (span.TotalMinutes >= (SleepyMinutes * 4))
 			{
-				// with sleep=5mins this will fire 4x (20mins .. 1hr)
+				// with sleep=5mins this will fire 3x (@ 20, 40, and 60mins)
 				rem.ScheduledNotification = now.AddMinutes(SleepyMinutes * 2);
 				//Logger.Current.WriteLine($"scheduled+2 {rem.ScheduledNotification.ToLocalTime()}");
 			}
 			else
 			{
-				// with sleep=5mins this will fire 3x after initial scan
+				// with sleep=5mins this will fire 3x after initial scan (5, 10, and 15mins)
 				rem.ScheduledNotification = now.AddMinutes(SleepyMinutes);
 				//Logger.Current.WriteLine($"scheduled+1 {rem.ScheduledNotification.ToLocalTime()}");
 			}
