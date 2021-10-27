@@ -3548,4 +3548,8 @@ OneNote 文件 (*.one)</value>
     <value>点击暂停提醒</value>
     <comment>label</comment>
   </data>
+  <data name="WordCountCommand_Selected" xml:space="preserve">
+    <value>选择的总字数：{0}</value>
+    <comment>message box</comment>
+  </data>
 </root>

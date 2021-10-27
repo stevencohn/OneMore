@@ -39,7 +39,14 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Count, count));
+				if (page.SelectionScope == SelectionScope.Empty)
+				{
+					UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Count, count));
+				}
+				else
+				{
+					UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Selected, count));
+				}
 			}
 
 			await Task.Yield();

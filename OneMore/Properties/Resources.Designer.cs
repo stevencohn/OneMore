@@ -8050,5 +8050,14 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("WordCountCommand_Count", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total words selected: {0}.
+        /// </summary>
+        internal static string WordCountCommand_Selected {
+            get {
+                return ResourceManager.GetString("WordCountCommand_Selected", resourceCulture);
+            }
+        }
     }
 }

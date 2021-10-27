@@ -471,7 +471,7 @@
     <Compile Include="Commands\File\ImportCommand.cs" />
     <Compile Include="Commands\Tools\ClearLogCommand.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\Extras\WordCountCommand.cs" />
+    <Compile Include="Commands\Page\WordCountCommand.cs" />
     <Compile Include="Commands\Tables\TextToTableCommand.cs" />
     <Compile Include="Commands\Formulas\Calculator.cs" />
     <Compile Include="Commands\Formulas\FormulaException.cs" />

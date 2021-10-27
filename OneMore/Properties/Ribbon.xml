@@ -288,6 +288,11 @@
                 imageMso="MasterDocumentSplitSubdocuments"
                 getLabel="GetRibbonLabel"
                 onAction="SplitCmd"/>
+              <button
+                id="ribWordCountButton"
+                imageMso="WordCount"
+                getLabel="GetRibbonLabel"
+                onAction="WordCountCmd"/>
             </menu>
             <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert">
                 <button
@@ -636,11 +641,6 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="StrikeoutCmd"/>
-              <button
-                id="ribWordCountButton"
-                imageMso="WordCount"
-                getLabel="GetRibbonLabel"
-                onAction="WordCountCmd"/>
             </menu>
             <menuSeparator id="sepTools" getTitle="GetRibbonLabel" />
             <button
