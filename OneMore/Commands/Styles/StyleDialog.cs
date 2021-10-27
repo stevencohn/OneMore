@@ -120,7 +120,7 @@ namespace River.OneMoreAddIn.Commands
 					"styleTypeLabel",
 					"applyColorsBox",
 					"okButton",
-					"cancelButton"
+					"cancelButton=word_Cancel"
 				});
 
 				styleTypeBox.Items.Clear();

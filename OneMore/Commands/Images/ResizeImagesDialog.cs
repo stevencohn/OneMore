@@ -108,8 +108,8 @@ namespace River.OneMoreAddIn.Commands
 					"origLabel",
 					"allLabel",
 					"qualBox.Text",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

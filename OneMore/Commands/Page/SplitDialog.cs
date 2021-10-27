@@ -31,8 +31,8 @@ namespace River.OneMoreAddIn.Commands
 					"filterGroup",
 					"taggedBox",
 					"tagLabel",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

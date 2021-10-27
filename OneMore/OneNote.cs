@@ -988,7 +988,7 @@ namespace River.OneMoreAddIn
 					break;
 			}
 
-			dialog.AddButton(Resx.OK, restriction, restriction, false);
+			dialog.AddButton(Resx.word_OK, restriction, restriction, false);
 
 			dialog.Run(new FilingCallback(callback));
 		}

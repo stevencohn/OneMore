@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 						"versionLabel",
 						"lastpdatedLabel",
 						"releaseNotesLink",
-						"okButton"
+						"okButton=word_OK"
 					});
 				}
 
@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 						"upCurrentVersionLabel",
 						"upLastUpdatedLabel",
 						"upOKButton",
-						"cancelButton"
+						"cancelButton=word_Cancel"
 					});
 				}
 

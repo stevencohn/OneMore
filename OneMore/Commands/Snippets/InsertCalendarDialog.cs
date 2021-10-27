@@ -31,8 +31,8 @@ namespace River.OneMoreAddIn.Commands
 					"smallRadio",
 					"largeRadio",
 					"indentBox",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 
 				sundayButton.Text = DateTimeFormatInfo.CurrentInfo.GetDayName(DayOfWeek.Sunday);

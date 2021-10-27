@@ -35,8 +35,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"wordLabel",
 					"languageLabel",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 

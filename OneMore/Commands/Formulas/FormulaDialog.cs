@@ -38,8 +38,8 @@ namespace River.OneMoreAddIn.Commands
 					"helpButton",
 					"helpBox",
 					"statusLabel",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 
 				formatBox.Items.Clear();

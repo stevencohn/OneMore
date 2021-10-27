@@ -30,8 +30,8 @@ namespace River.OneMoreAddIn.Commands
 					"withLabel",
 					"matchBox",
 					"regBox",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 

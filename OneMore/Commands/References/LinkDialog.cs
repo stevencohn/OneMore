@@ -24,8 +24,8 @@ namespace River.OneMoreAddIn.Commands
 					"notebooksRadio",
 					"notebookRadio",
 					"sectionRadio",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

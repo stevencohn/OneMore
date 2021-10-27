@@ -29,8 +29,8 @@ namespace River.OneMoreAddIn.Commands
 					"formatLabel",
 					"formatBox",
 					"attachmentsBox",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 

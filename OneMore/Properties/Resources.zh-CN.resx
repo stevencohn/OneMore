@@ -575,10 +575,6 @@ OneNote 将自动关闭</value>
     <value>更新 OneMore</value>
     <comment>message box title</comment>
   </data>
-  <data name="AboutDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>OK button</comment>
-  </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
     <value>OneMore Add-in for OneNote 2016</value>
     <comment>Add-in full name</comment>
@@ -591,17 +587,9 @@ OneNote 将自动关闭</value>
     <value>版本 {0}</value>
     <comment>the version of the add-in</comment>
   </data>
-  <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>选择页面颜色后，加载预定义的样式之一或自定义样式，以便所有内容具有足够的对比度以使其可见。</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>ok button</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>页面颜色</value>
@@ -621,10 +609,6 @@ OneNote 将自动关闭</value>
     <value>式</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>Cancel button</comment>
-  </data>
   <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
     <value>帮帮我</value>
     <comment>help checkbox button</comment>
@@ -641,25 +625,13 @@ OneNote 将自动关闭</value>
     <value>&lt;空&gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>OK button</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>重新排序自定义样式</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ReorderDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
     <value>重新排列样式在图库中的显示顺序。 同时更改目录中标题的顺序</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ReorderDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
     <value>调整图像大小</value>
@@ -677,10 +649,6 @@ OneNote 将自动关闭</value>
     <value>保持纵横比</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ResizeImagesDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
     <value>适用于</value>
     <comment>label</comment>
@@ -692,10 +660,6 @@ OneNote 将自动关闭</value>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>高度</value>
     <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
     <value>原始尺寸</value>
@@ -729,17 +693,9 @@ OneNote 将自动关闭</value>
     <value>宽度</value>
     <comment>label</comment>
   </data>
-  <data name="SearchAndReplaceDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>相符</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="SearchAndReplaceDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>ok button</comment>
   </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
     <value>搜索和替换</value>
@@ -761,10 +717,6 @@ OneNote 将自动关闭</value>
     <value>上升</value>
     <comment>radio</comment>
   </data>
-  <data name="SortDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SortDialog_createdButton.Text" xml:space="preserve">
     <value>创建日期</value>
     <comment>radio</comment>
@@ -784,10 +736,6 @@ OneNote 将自动关闭</value>
   <data name="SortDialog_nameButton.Text" xml:space="preserve">
     <value>名称</value>
     <comment>radio</comment>
-  </data>
-  <data name="SortDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>ok button</comment>
   </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>将注释固定在顶部和
@@ -928,10 +876,6 @@ OneNote 将自动关闭</value>
     <value>字母和数字</value>
     <comment>radio button</comment>
   </data>
-  <data name="OutlineDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
     <value>删除现有号码</value>
     <comment>checkbox</comment>
@@ -967,10 +911,6 @@ OneNote 将自动关闭</value>
   <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
     <value>数字</value>
     <comment>radio button</comment>
-  </data>
-  <data name="OutlineDialog_okButton.Text" xml:space="preserve">
-    <value>接受</value>
-    <comment>ok button</comment>
   </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
     <value>移除标签</value>
@@ -1105,14 +1045,6 @@ OneNote 将自动关闭</value>
     <value>选择的左上方：{0}，{1}。 边界矩形大小：{2} x {3}。</value>
     <comment>status bar text</comment>
   </data>
-  <data name="CropImageDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
-    <value>裁剪</value>
-    <comment>ok button</comment>
-  </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
     <value>图片尺寸：{0} x {1}</value>
     <comment>status bar text</comment>
@@ -1149,17 +1081,9 @@ OneNote 将自动关闭</value>
     <value>删除行间距</value>
     <comment>checkbox</comment>
   </data>
-  <data name="RemoveSpacingDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="RemoveSpacingDialog_headingsBox.Text" xml:space="preserve">
     <value>包括标题</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
     <value>全选</value>
@@ -1240,10 +1164,6 @@ OneNote 将自动关闭</value>
   <data name="PluginDialog.Text" xml:space="preserve">
     <value>运行插件</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PluginDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
   </data>
   <data name="PluginDialog_childBox.Text" xml:space="preserve">
     <value>创建为当前页面的子代</value>
@@ -1348,10 +1268,6 @@ OneNote 将自动关闭</value>
     <value>插入日历</value>
     <comment>dialog title</comment>
   </data>
-  <data name="InsertCalendarDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
     <value>格式</value>
     <comment>label</comment>
@@ -1363,10 +1279,6 @@ OneNote 将自动关闭</value>
   <data name="InsertCalendarDialog_monthLabel.Text" xml:space="preserve">
     <value>月</value>
     <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="InsertCalendarDialog_smallRadio.Text" xml:space="preserve">
     <value>小</value>
@@ -1404,10 +1316,6 @@ OneNote 将自动关闭</value>
     <value>将文本转换为表格</value>
     <comment>dialog title</comment>
   </data>
-  <data name="TextToTableDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="TextToTableDialog_columnsLabel.Text" xml:space="preserve">
     <value>列数：</value>
     <comment>label</comment>
@@ -1427,10 +1335,6 @@ OneNote 将自动关闭</value>
   <data name="TextToTableDialog_headerBox.Text" xml:space="preserve">
     <value>第一行是标题</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="TextToTableDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
   </data>
   <data name="TextToTableDialog_otherRadio.Text" xml:space="preserve">
     <value>其他</value>
@@ -1574,10 +1478,6 @@ OneNote 将自动关闭</value>
     <value>已计算</value>
     <comment>tag name</comment>
   </data>
-  <data name="ExportDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
     <value>夹：</value>
     <comment>label</comment>
@@ -1589,10 +1489,6 @@ OneNote 将自动关闭</value>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>导出{0}页</value>
     <comment>group box title</comment>
-  </data>
-  <data name="ExportDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="ExportDialog_Text" xml:space="preserve">
     <value>导出页面</value>
@@ -1610,17 +1506,9 @@ OneNote 将自动关闭</value>
     <value>{0}。 请参阅日志文件以获取详细信息</value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
-  <data name="ImportDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>文件：</value>
     <comment>label</comment>
-  </data>
-  <data name="ImportDialog_okButton.text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="ImportDialog_powerAppendButton.Text" xml:space="preserve">
     <value>附加到此页面</value>
@@ -1661,14 +1549,6 @@ OneNote 将自动关闭</value>
   <data name="FormulaDialog_decLabel.Text" xml:space="preserve">
     <value>小数位数：</value>
     <comment>label</comment>
-  </data>
-  <data name="OK" xml:space="preserve">
-    <value>接受</value>
-    <comment>General OK label</comment>
-  </data>
-  <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
   </data>
   <data name="SearchDialog_copyButton.Text" xml:space="preserve">
     <value>复制</value>
@@ -1830,17 +1710,9 @@ OneNote 将自动关闭</value>
     <value>插入单元格</value>
     <comment>dialog title</comment>
   </data>
-  <data name="InsertCellsDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="InsertCellsDialog_numLabel.Text" xml:space="preserve">
     <value>要插入的单元格数量：</value>
     <comment>numeric label</comment>
-  </data>
-  <data name="InsertCellsDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
     <value>下移单元格</value>
@@ -1874,17 +1746,9 @@ OneNote 将自动关闭</value>
     <value>将内容移动到每个链接的页面</value>
     <comment>label</comment>
   </data>
-  <data name="SplitDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
     <value>过滤</value>
     <comment>group box</comment>
-  </data>
-  <data name="SplitDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
     <value>分割为</value>
@@ -1928,10 +1792,6 @@ OneNote 将自动关闭</value>
   </data>
   <data name="StyleDialog_boldButton.Text" xml:space="preserve">
     <value>胆大</value>
-    <comment>button</comment>
-  </data>
-  <data name="StyleDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_colorButton.ToolTipText" xml:space="preserve">
@@ -2056,10 +1916,6 @@ OneNote 将自动关闭</value>
     <value>提升</value>
     <comment>button</comment>
   </data>
-  <data name="SettingsDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
     <value>上下文菜单</value>
     <comment>treenode</comment>
@@ -2067,10 +1923,6 @@ OneNote 将自动关闭</value>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>荧光笔主题</value>
     <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
     <value>色带栏</value>
@@ -2089,10 +1941,6 @@ OneNote 将自动关闭</value>
 在这个笔记本上
 在这个部分</value>
     <comment>drop down</comment>
-  </data>
-  <data name="TaggedDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
   </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>检查所有页面</value>
@@ -2148,17 +1996,9 @@ OneNote 将自动关闭</value>
     <value>标题图标</value>
     <comment>dialog title</comment>
   </data>
-  <data name="AddTitleIconDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
     <value>选择一个或多个图标以添加到页面标题</value>
     <comment>instructions</comment>
-  </data>
-  <data name="AddTitleIconDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
   </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>页码</value>
@@ -2168,10 +2008,6 @@ OneNote 将自动关闭</value>
     <value>字母数字</value>
     <comment>radio button</comment>
   </data>
-  <data name="NumberPagesDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
     <value>删除/清理现有编号</value>
     <comment>checkbox</comment>
@@ -2180,17 +2016,9 @@ OneNote 将自动关闭</value>
     <value>数字</value>
     <comment>radio button</comment>
   </data>
-  <data name="NumberPagesDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
-  </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">
     <value>语音学</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PronunciateDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
   </data>
   <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
     <value>语言</value>
@@ -2213,10 +2041,6 @@ zh-CN，中文（简体）</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
-  <data name="PronunciateDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
-  </data>
   <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
     <value>字</value>
     <comment>label</comment>
@@ -2225,17 +2049,9 @@ ISO-code then comma then language name</comment>
     <value>显示/隐藏日期和时间</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ToggleDttmDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ToggleDttmDialog_hideRadio.Text" xml:space="preserve">
     <value>隐藏日期和时间</value>
     <comment>radio button</comment>
-  </data>
-  <data name="ToggleDttmDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
   </data>
   <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
     <value>这一页</value>
@@ -2261,17 +2077,9 @@ ISO-code then comma then language name</comment>
     <value>目录</value>
     <comment>dialog title</comment>
   </data>
-  <data name="InsertTocDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
     <value>在此笔记本中添加带有部分表的页面</value>
     <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
     <value>在此页上插入标题表</value>
@@ -2292,10 +2100,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ShowXmlDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
   </data>
   <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
     <value>当前笔记本</value>
@@ -2389,10 +2193,6 @@ ISO-code then comma then language name</comment>
     <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
     <comment>message box</comment>
   </data>
-  <data name="MapDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>内页</value>
     <comment>group box</comment>
@@ -2404,10 +2204,6 @@ ISO-code then comma then language name</comment>
   <data name="MapDialog_notebooksRadio.Text" xml:space="preserve">
     <value>所有笔记本</value>
     <comment>radio</comment>
-  </data>
-  <data name="MapDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
     <value>当前部分</value>
@@ -2481,10 +2277,6 @@ ISO-code then comma then language name</comment>
     <value>保存代码段</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SaveSnippetDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>名称已被使用</value>
     <comment>label</comment>
@@ -2492,10 +2284,6 @@ ISO-code then comma then language name</comment>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>片段名称：</value>
     <comment>label</comment>
-  </data>
-  <data name="SaveSnippetDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
   </data>
   <data name="SaveSnippetDialog_invalidName" xml:space="preserve">
     <value>名称包含无效字符</value>
@@ -2817,17 +2605,9 @@ ISO-code then comma then language name</comment>
     <value>包括附件</value>
     <comment>checkbox</comment>
   </data>
-  <data name="BreakingDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
     <value>间距</value>
     <comment>group box</comment>
-  </data>
-  <data name="BreakingDialog_okButton.Text" xml:space="preserve">
-    <value>好的</value>
-    <comment>button</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>句子之间有一个空格</value>
@@ -2880,10 +2660,6 @@ ISO-code then comma then language name</comment>
     <value>...加入段落</value>
     <comment>context menu option</comment>
   </data>
-  <data name="LinkDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>页数</value>
     <comment>group box</comment>
@@ -2899,10 +2675,6 @@ ISO-code then comma then language name</comment>
   <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
     <value>所有笔记本</value>
     <comment>radio</comment>
-  </data>
-  <data name="LinkDialog_okButton.Text" xml:space="preserve">
-    <value>好的</value>
-    <comment>button</comment>
   </data>
   <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
     <value>当前部分</value>
@@ -2984,10 +2756,6 @@ ISO-code then comma then language name</comment>
     <value>附加到当前页面</value>
     <comment>radio</comment>
   </data>
-  <data name="ImportWebDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="ImportWebDialog_newChildButton.Text" xml:space="preserve">
     <value>创建为当前页面的新子级</value>
     <comment>radio</comment>
@@ -2995,10 +2763,6 @@ ISO-code then comma then language name</comment>
   <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
     <value>创建为新页面</value>
     <comment>radio</comment>
-  </data>
-  <data name="ImportWebDialog_okButton.Text" xml:space="preserve">
-    <value>好的</value>
-    <comment>button</comment>
   </data>
   <data name="ImportWebDialog_Text" xml:space="preserve">
     <value>导入网页</value>
@@ -3116,10 +2880,6 @@ ISO-code then comma then language name</comment>
     <value>包括此笔记本中所有部分的页面详细信息</value>
     <comment>radio</comment>
   </data>
-  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
     <value>没有页面详细信息</value>
     <comment>radio</comment>
@@ -3127,10 +2887,6 @@ ISO-code then comma then language name</comment>
   <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
     <value>包括笔记本备份摘要</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
-    <value>行</value>
-    <comment>button</comment>
   </data>
   <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
     <value>包括部分摘要</value>
@@ -3292,10 +3048,6 @@ OneNote 文件 (*.one)</value>
     <value>刷新页面参考</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="RefreshPageLinksDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
     <value>页数</value>
     <comment>group box</comment>
@@ -3307,10 +3059,6 @@ OneNote 文件 (*.one)</value>
   <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
     <value>所有笔记本</value>
     <comment>radio</comment>
-  </data>
-  <data name="RefreshPageLinksDialog_okButton.Text" xml:space="preserve">
-    <value>好的</value>
-    <comment>button</comment>
   </data>
   <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
     <value>当前部分</value>
@@ -3452,10 +3200,6 @@ OneNote 文件 (*.one)</value>
     <value>检查 OneMore 更新</value>
     <comment>dialog title</comment>
   </data>
-  <data name="UpdateDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="UpdateDialog_currentLabel.Text" xml:space="preserve">
     <value>OneMore 是最新的</value>
     <comment>panel title</comment>
@@ -3463,10 +3207,6 @@ OneNote 文件 (*.one)</value>
   <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
     <value>最近更新时间：</value>
     <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_okButton.Text" xml:space="preserve">
-    <value>好的</value>
-    <comment>button</comment>
   </data>
   <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
     <value>发布日期：</value>
@@ -3528,10 +3268,6 @@ OneNote 文件 (*.one)</value>
     <value>对页面上的所有顶级列表进行排序</value>
     <comment>radio</comment>
   </data>
-  <data name="SortListDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="SortListDialog_deepBox.Text" xml:space="preserve">
     <value>包括子列表</value>
     <comment>checkbox</comment>
@@ -3539,10 +3275,6 @@ OneNote 文件 (*.one)</value>
   <data name="SortListDialog_introLabel.Text" xml:space="preserve">
     <value>默认是对当前列表进行排序或仅对顶级项目符号列表进行排序</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SortListDialog_okButton.Text" xml:space="preserve">
-    <value>好的</value>
-    <comment>button</comment>
   </data>
   <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
     <value>选项</value>
@@ -3588,10 +3320,6 @@ OneNote 文件 (*.one)</value>
     <value>提醒</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemindDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
     <value>完全的</value>
     <comment>label</comment>
@@ -3599,10 +3327,6 @@ OneNote 文件 (*.one)</value>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>到期日</value>
     <comment>label</comment>
-  </data>
-  <data name="RemindDialog_okButton.Text" xml:space="preserve">
-    <value>好的</value>
-    <comment>button</comment>
   </data>
   <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
     <value>％ 完全的</value>

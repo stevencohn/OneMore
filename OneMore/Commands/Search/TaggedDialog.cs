@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 					"indexButton",
 					"moveButton",
 					"copyButton",
-					"cancelButton"
+					"cancelButton=word_Cancel"
 				});
 
 				scopeBox.Items.Clear();

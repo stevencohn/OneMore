@@ -29,8 +29,8 @@ namespace River.OneMoreAddIn.Commands
 					"alphaRadio",
 					"numRadio",
 					"cleanBox",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

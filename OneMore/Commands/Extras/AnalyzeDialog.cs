@@ -36,8 +36,8 @@ namespace River.OneMoreAddIn.Commands
 					"sectionDetailsBox",
 					"allDetailsBox",
 					"noDetailsBox",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}
