@@ -573,10 +573,6 @@ OneNote se cerrará automáticamente</value>
     <value>Actualizar OneMore</value>
     <comment>message box title</comment>
   </data>
-  <data name="AboutDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>OK button</comment>
-  </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
     <value>Complemento OneMore para OneNote 2016</value>
     <comment>Add-in full name</comment>
@@ -589,17 +585,9 @@ OneNote se cerrará automáticamente</value>
     <value>Versión {0}</value>
     <comment>the version of the add-in</comment>
   </data>
-  <data name="ChangePageColorDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ChangePageColorDialog_introLabel.Text" xml:space="preserve">
     <value>Después de elegir un color de página, cargue uno de los estilos predefinidos o personalice sus propios estilos para que todo el contenido tenga suficiente contraste para ser visible.</value>
     <comment>instructions</comment>
-  </data>
-  <data name="ChangePageColorDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>Color de página</value>
@@ -619,10 +607,6 @@ Porcentaje</value>
     <value>Fórmula</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>Cancel button</comment>
-  </data>
   <data name="FormulaDialog_helpButton.Text" xml:space="preserve">
     <value>Ayuda</value>
     <comment>help checkbox button</comment>
@@ -639,10 +623,6 @@ Porcentaje</value>
     <value>&amp;lt;vacío&amp;gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>OK button</comment>
-  </data>
   <data name="FormulaDialog_status_OK" xml:space="preserve">
     <value>Okay</value>
     <comment>label</comment>
@@ -651,17 +631,9 @@ Porcentaje</value>
     <value>Reordenar estilos personalizados</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ReorderDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
     <value>Reordene cómo aparecen los estilos en la galería. </value>
     <comment>instructions</comment>
-  </data>
-  <data name="ReorderDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
     <value>Cambiar el tamaño de la imagen</value>
@@ -679,10 +651,6 @@ Porcentaje</value>
     <value>Mantener la relación de aspecto</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ResizeImagesDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
     <value>Aplicar para</value>
     <comment>label</comment>
@@ -694,10 +662,6 @@ Porcentaje</value>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>Altura</value>
     <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
     <value>Tamaño original</value>
@@ -731,17 +695,9 @@ Porcentaje</value>
     <value>Anchura</value>
     <comment>label</comment>
   </data>
-  <data name="SearchAndReplaceDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Caso de partido</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="SearchAndReplaceDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="SearchAndReplaceDialog_Text" xml:space="preserve">
     <value>Buscar y reemplazar</value>
@@ -763,10 +719,6 @@ Porcentaje</value>
     <value>Ascendente</value>
     <comment>radio</comment>
   </data>
-  <data name="SortDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SortDialog_createdButton.Text" xml:space="preserve">
     <value>fecha de creacion</value>
     <comment>radio</comment>
@@ -786,10 +738,6 @@ Porcentaje</value>
   <data name="SortDialog_nameButton.Text" xml:space="preserve">
     <value>Nombre</value>
     <comment>radio</comment>
-  </data>
-  <data name="SortDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Fijar notas en la parte superior y
@@ -930,10 +878,6 @@ Cuadernos</value>
     <value>Alfanumérico</value>
     <comment>radio button</comment>
   </data>
-  <data name="OutlineDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
     <value>Eliminar/limpiar la numeración existente</value>
     <comment>checkbox</comment>
@@ -969,10 +913,6 @@ Cuadernos</value>
   <data name="OutlineDialog_numRadio.Text" xml:space="preserve">
     <value>Numérico</value>
     <comment>radio button</comment>
-  </data>
-  <data name="OutlineDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
     <value>Quitar etiquetas</value>
@@ -1107,14 +1047,6 @@ Vuelve a intentarlo más tarde</value>
     <value>Selección superior izquierda: {0}, {1}. </value>
     <comment>status bar text</comment>
   </data>
-  <data name="CropImageDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
-  <data name="CropImageDialog_cropButton.Text" xml:space="preserve">
-    <value>Cosecha</value>
-    <comment>ok button</comment>
-  </data>
   <data name="CropImageDialog_imageSize" xml:space="preserve">
     <value>Tamaño de imagen: {0} x {1}</value>
     <comment>status bar text</comment>
@@ -1151,17 +1083,9 @@ Vuelve a intentarlo más tarde</value>
     <value>Eliminar el espacio entre líneas</value>
     <comment>checkbox</comment>
   </data>
-  <data name="RemoveSpacingDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="RemoveSpacingDialog_headingsBox.Text" xml:space="preserve">
     <value>Incluir encabezados</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="RemoveSpacingDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
     <value>Seleccionar todo</value>
@@ -1242,10 +1166,6 @@ Vuelve a intentarlo más tarde</value>
   <data name="PluginDialog.Text" xml:space="preserve">
     <value>Ejecutar complemento</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PluginDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
   </data>
   <data name="PluginDialog_childBox.Text" xml:space="preserve">
     <value>Crear como hijo de la página actual</value>
@@ -1350,10 +1270,6 @@ Vuelve a intentarlo más tarde</value>
     <value>Insertar calendario</value>
     <comment>dialog title</comment>
   </data>
-  <data name="InsertCalendarDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
     <value>Formato</value>
     <comment>label</comment>
@@ -1365,10 +1281,6 @@ Vuelve a intentarlo más tarde</value>
   <data name="InsertCalendarDialog_monthLabel.Text" xml:space="preserve">
     <value>Mes</value>
     <comment>label</comment>
-  </data>
-  <data name="InsertCalendarDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="InsertCalendarDialog_smallRadio.Text" xml:space="preserve">
     <value>Pequeño</value>
@@ -1406,10 +1318,6 @@ Vuelve a intentarlo más tarde</value>
     <value>Convertir texto en tabla</value>
     <comment>dialog title</comment>
   </data>
-  <data name="TextToTableDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="TextToTableDialog_columnsLabel.Text" xml:space="preserve">
     <value>Número de columnas:</value>
     <comment>label</comment>
@@ -1429,10 +1337,6 @@ Vuelve a intentarlo más tarde</value>
   <data name="TextToTableDialog_headerBox.Text" xml:space="preserve">
     <value>La primera fila es un encabezado</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="TextToTableDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="TextToTableDialog_otherRadio.Text" xml:space="preserve">
     <value>Otro</value>
@@ -1577,10 +1481,6 @@ Símbolos: PI, E</value>
     <value>Calculado</value>
     <comment>tag name</comment>
   </data>
-  <data name="ExportDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
     <value>Carpeta:</value>
     <comment>label</comment>
@@ -1592,10 +1492,6 @@ Símbolos: PI, E</value>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>Exportar {0} páginas</value>
     <comment>group box title</comment>
-  </data>
-  <data name="ExportDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="ExportDialog_Text" xml:space="preserve">
     <value>Exportar páginas</value>
@@ -1613,17 +1509,9 @@ Símbolos: PI, E</value>
     <value>{0}. </value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
-  <data name="ImportDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>Archivo:</value>
     <comment>label</comment>
-  </data>
-  <data name="ImportDialog_okButton.text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="ImportDialog_powerAppendButton.Text" xml:space="preserve">
     <value>Agregar a esta página</value>
@@ -1665,19 +1553,11 @@ Símbolos: PI, E</value>
     <value>Lugares decimales:</value>
     <comment>label</comment>
   </data>
-  <data name="OK" xml:space="preserve">
-    <value>Okay</value>
-    <comment>General OK label</comment>
-  </data>
   <data name="SectionGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectiongroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SearchDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
   </data>
   <data name="SearchDialog_copyButton.Text" xml:space="preserve">
     <value>Copiar</value>
@@ -1842,17 +1722,9 @@ Símbolos: PI, E</value>
     <value>Insertar celdas</value>
     <comment>dialog title</comment>
   </data>
-  <data name="InsertCellsDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="InsertCellsDialog_numLabel.Text" xml:space="preserve">
     <value>Número de celdas para insertar:</value>
     <comment>numeric label</comment>
-  </data>
-  <data name="InsertCellsDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
     <value>Desplazar celdas hacia abajo</value>
@@ -1882,17 +1754,9 @@ Símbolos: PI, E</value>
     <value>Mover contenido a cada página vinculada</value>
     <comment>label</comment>
   </data>
-  <data name="SplitDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
     <value>Filtrar</value>
     <comment>group box</comment>
-  </data>
-  <data name="SplitDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
     <value>Dividido por</value>
@@ -1936,10 +1800,6 @@ Símbolos: PI, E</value>
   </data>
   <data name="StyleDialog_boldButton.Text" xml:space="preserve">
     <value>Negrita</value>
-    <comment>button</comment>
-  </data>
-  <data name="StyleDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_colorButton.ToolTipText" xml:space="preserve">
@@ -2064,10 +1924,6 @@ Encabezado - incluir en TOC</value>
     <value>Ascender</value>
     <comment>button</comment>
   </data>
-  <data name="SettingsDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="SettingsDialog_contextNode.Text" xml:space="preserve">
     <value>Menú de contexto</value>
     <comment>treenode</comment>
@@ -2075,10 +1931,6 @@ Encabezado - incluir en TOC</value>
   <data name="SettingsDialog_highlightNode.Text" xml:space="preserve">
     <value>Temas de resaltado</value>
     <comment>treenode</comment>
-  </data>
-  <data name="SettingsDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
     <value>Barra de la cinta</value>
@@ -2097,10 +1949,6 @@ Encabezado - incluir en TOC</value>
 En este cuaderno
 En esta sección</value>
     <comment>drop down</comment>
-  </data>
-  <data name="TaggedDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
   </data>
   <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
     <value>Ver todas las páginas</value>
@@ -2156,17 +2004,9 @@ En esta sección</value>
     <value>Iconos de título</value>
     <comment>dialog title</comment>
   </data>
-  <data name="AddTitleIconDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="AddTitleIconDialog_introLabel.Text" xml:space="preserve">
     <value>Seleccione uno o más iconos para agregar al título de la página</value>
     <comment>instructions</comment>
-  </data>
-  <data name="AddTitleIconDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Numeración de páginas</value>
@@ -2176,10 +2016,6 @@ En esta sección</value>
     <value>Alfanumérico</value>
     <comment>radio button</comment>
   </data>
-  <data name="NumberPagesDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="NumberPagesDialog_cleanBox.Text" xml:space="preserve">
     <value>Eliminar / limpiar la numeración existente</value>
     <comment>checkbox</comment>
@@ -2188,17 +2024,9 @@ En esta sección</value>
     <value>Numérico</value>
     <comment>radio button</comment>
   </data>
-  <data name="NumberPagesDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
-  </data>
   <data name="PronunciateDialog.Text" xml:space="preserve">
     <value>Fonética</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PronunciateDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
   </data>
   <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
     <value>Idioma</value>
@@ -2221,10 +2049,6 @@ zh-CN, chino (simplificado)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
-  <data name="PronunciateDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
-  </data>
   <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
     <value>Palabra</value>
     <comment>label</comment>
@@ -2233,17 +2057,9 @@ ISO-code then comma then language name</comment>
     <value>Mostrar / Ocultar fecha y hora</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ToggleDttmDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ToggleDttmDialog_hideRadio.Text" xml:space="preserve">
     <value>Ocultar fecha y hora</value>
     <comment>radio button</comment>
-  </data>
-  <data name="ToggleDttmDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
     <value>Esta página</value>
@@ -2269,17 +2085,9 @@ ISO-code then comma then language name</comment>
     <value>Tabla de contenido</value>
     <comment>dialog title</comment>
   </data>
-  <data name="InsertTocDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
     <value>Agregar página con tabla de secciones en este cuaderno</value>
     <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
     <value>Insertar tabla de títulos en esta página</value>
@@ -2300,10 +2108,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ShowXmlDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
   </data>
   <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
     <value>Cuaderno actual</value>
@@ -2397,10 +2201,6 @@ ISO-code then comma then language name</comment>
     <value>OneMore no pudo conectarse a OneNote, consulte el archivo de registro para obtener detalles de la excepción</value>
     <comment>message box</comment>
   </data>
-  <data name="MapDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>Páginas en</value>
     <comment>group box</comment>
@@ -2412,10 +2212,6 @@ ISO-code then comma then language name</comment>
   <data name="MapDialog_notebooksRadio.Text" xml:space="preserve">
     <value>Todos los cuadernos</value>
     <comment>radio</comment>
-  </data>
-  <data name="MapDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
     <value>La sección actual</value>
@@ -2489,10 +2285,6 @@ ISO-code then comma then language name</comment>
     <value>Guardar fragmento</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SaveSnippetDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>El nombre ya está en uso</value>
     <comment>label</comment>
@@ -2500,10 +2292,6 @@ ISO-code then comma then language name</comment>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>Nombre del fragmento:</value>
     <comment>label</comment>
-  </data>
-  <data name="SaveSnippetDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="SaveSnippetDialog_invalidName" xml:space="preserve">
     <value>Nombre contiene caracteres inválidos</value>
@@ -2825,17 +2613,9 @@ ISO-code then comma then language name</comment>
     <value>Incluir archivos adjuntos</value>
     <comment>checkbox</comment>
   </data>
-  <data name="BreakingDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
     <value>Espaciado</value>
     <comment>group box</comment>
-  </data>
-  <data name="BreakingDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Un espacio entre oraciones</value>
@@ -2888,10 +2668,6 @@ ISO-code then comma then language name</comment>
     <value>... Unir el párrafo</value>
     <comment>context menu option</comment>
   </data>
-  <data name="LinkDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>Páginas en</value>
     <comment>group box</comment>
@@ -2907,10 +2683,6 @@ ISO-code then comma then language name</comment>
   <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
     <value>Todos los cuadernos</value>
     <comment>radio</comment>
-  </data>
-  <data name="LinkDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
   </data>
   <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
     <value>La sección actual</value>
@@ -2992,10 +2764,6 @@ ISO-code then comma then language name</comment>
     <value>Agregar a la página actual</value>
     <comment>radio</comment>
   </data>
-  <data name="ImportWebDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="ImportWebDialog_newChildButton.Text" xml:space="preserve">
     <value>Crear como hijo nuevo de la página actual</value>
     <comment>radio</comment>
@@ -3003,10 +2771,6 @@ ISO-code then comma then language name</comment>
   <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
     <value>Crear como página nueva</value>
     <comment>radio</comment>
-  </data>
-  <data name="ImportWebDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
   </data>
   <data name="ImportWebDialog_Text" xml:space="preserve">
     <value>Importar página web</value>
@@ -3124,10 +2888,6 @@ ISO-code then comma then language name</comment>
     <value>Incluir detalles de la página para todas las secciones de este cuaderno</value>
     <comment>radio</comment>
   </data>
-  <data name="AnalyzeDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
     <value>Sin detalles de la página</value>
     <comment>radio</comment>
@@ -3135,10 +2895,6 @@ ISO-code then comma then language name</comment>
   <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
     <value>Incluir un resumen de la copia de seguridad del cuaderno</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="AnalyzeDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
   </data>
   <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
     <value>Incluir resumen de la sección</value>
@@ -3301,10 +3057,6 @@ Archivo de OneNote (* .one)</value>
     <value>Actualizar referencias de página</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="RefreshPageLinksDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
     <value>Páginas en</value>
     <comment>group box</comment>
@@ -3316,10 +3068,6 @@ Archivo de OneNote (* .one)</value>
   <data name="RefreshPageLinksDialog_notebooksRadio.Text" xml:space="preserve">
     <value>Todos los cuadernos</value>
     <comment>radio</comment>
-  </data>
-  <data name="RefreshPageLinksDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
   </data>
   <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
     <value>La sección actual</value>
@@ -3461,10 +3209,6 @@ Archivo de OneNote (* .one)</value>
     <value>Buscar actualizaciones de OneMore</value>
     <comment>dialog title</comment>
   </data>
-  <data name="UpdateDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="UpdateDialog_currentLabel.Text" xml:space="preserve">
     <value>OneMore está actualizado</value>
     <comment>panel title</comment>
@@ -3472,10 +3216,6 @@ Archivo de OneNote (* .one)</value>
   <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
     <value>Última actualización:</value>
     <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
   </data>
   <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
     <value>Fecha de lanzamiento:</value>
@@ -3537,10 +3277,6 @@ Archivo de OneNote (* .one)</value>
     <value>Ordenar todas las listas de nivel superior en la página</value>
     <comment>radio</comment>
   </data>
-  <data name="SortListDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="SortListDialog_deepBox.Text" xml:space="preserve">
     <value>Incluir sublistas</value>
     <comment>checkbox</comment>
@@ -3548,10 +3284,6 @@ Archivo de OneNote (* .one)</value>
   <data name="SortListDialog_introLabel.Text" xml:space="preserve">
     <value>El valor predeterminado es ordenar la lista actual o solo las listas de viñetas de nivel superior</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SortListDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
   </data>
   <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
     <value>Opciones</value>
@@ -3597,10 +3329,6 @@ Archivo de OneNote (* .one)</value>
     <value>Recordatorio</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemindDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
     <value>Terminado</value>
     <comment>label</comment>
@@ -3608,10 +3336,6 @@ Archivo de OneNote (* .one)</value>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Fecha de vencimiento</value>
     <comment>label</comment>
-  </data>
-  <data name="RemindDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
   </data>
   <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
     <value>% Completo</value>

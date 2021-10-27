@@ -51,8 +51,8 @@ namespace River.OneMoreAddIn.Commands
 					"ascButton",
 					"desButton",
 					"pinNotesBox",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 

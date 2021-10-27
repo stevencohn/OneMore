@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands.Search
 					"findLabel",
 					"moveButton",
 					"copyButton",
-					"cancelButton"
+					"cancelButton=word_Cancel"
 				});
 
 				scopeBox.Items.Clear();

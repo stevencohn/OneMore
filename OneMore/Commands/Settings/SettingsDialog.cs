@@ -44,8 +44,8 @@ namespace River.OneMoreAddIn.Settings
 
 				Localize(new string[]
 				{
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 
 				navTree.Nodes["generalNode"].Text = Resx.SettingsDialog_generalNode_Text;

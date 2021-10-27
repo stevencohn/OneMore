@@ -25,8 +25,8 @@ namespace River.OneMoreAddIn.Commands
 					"allListsButton",
 					"deepBox",
 					"typeBox",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

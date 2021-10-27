@@ -24,8 +24,8 @@ namespace River.OneMoreAddIn.Commands
 					"shiftDownRadio",
 					"shiftRightRadio",
 					"numLabel",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

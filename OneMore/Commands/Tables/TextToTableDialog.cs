@@ -46,8 +46,8 @@ namespace River.OneMoreAddIn.Commands
 					"rowsBox",
 					"headerBox",
 					"unquoteBox",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

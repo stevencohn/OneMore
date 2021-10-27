@@ -25,8 +25,8 @@ namespace River.OneMoreAddIn.Commands
 					"groupBox",
 					"oneButton",
 					"twoButton",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

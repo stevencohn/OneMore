@@ -49,8 +49,8 @@ namespace River.OneMoreAddIn.Commands
 					"createRadio",
 					"childBox",
 					"saveButton",
-					"okButton",
-					"cancelButton"
+					"okButton", // Run
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

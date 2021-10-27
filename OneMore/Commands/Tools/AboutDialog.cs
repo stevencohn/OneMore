@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"titleLabel",
-					"okButton",
+					"okButton=word_OK",
 					"clearLogLabel",
 					"updateLink"
 				});

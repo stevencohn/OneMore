@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 					"pagePathLabel",
 					"pageLinkLabel",
 					"okButton",
-					"cancelButton"
+					"cancelButton=word_Cancel"
 				});
 			}
 

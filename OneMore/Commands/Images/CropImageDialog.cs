@@ -108,8 +108,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introText",
 					"selectButton",
-					"cropButton",
-					"cancelButton"
+					"cropButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

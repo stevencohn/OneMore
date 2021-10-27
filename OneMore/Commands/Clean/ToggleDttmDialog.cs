@@ -28,8 +28,8 @@ namespace River.OneMoreAddIn.Commands
 					"scopeGroup",
 					"pageRadio",
 					"sectionRadio",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

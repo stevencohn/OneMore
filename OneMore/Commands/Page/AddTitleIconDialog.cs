@@ -71,8 +71,8 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introLabel",
-					"okButton",
-					"cancelButton"
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
 			}
 		}
