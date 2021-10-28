@@ -163,6 +163,25 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ChangeDate(object sender, EventArgs e)
+		{
+			if (sender == startDateBox)
+			{
+				if (startDateBox.Value.CompareTo(dueDateBox.Value) > 0)
+				{
+					dueDateBox.Value = startDateBox.Value;
+				}
+			}
+			else
+			{
+				if (dueDateBox.Value.CompareTo(startDateBox.Value) < 0)
+				{
+					startDateBox.Value = dueDateBox.Value;
+				}
+			}
+		}
+
+
 		private void SelectSnooze(object sender, EventArgs e)
 		{
 			// dialog not yet initialized

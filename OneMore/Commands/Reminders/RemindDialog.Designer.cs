@@ -93,6 +93,7 @@ namespace River.OneMoreAddIn.Commands
 			this.startDateBox.Name = "startDateBox";
 			this.startDateBox.Size = new System.Drawing.Size(434, 26);
 			this.startDateBox.TabIndex = 2;
+			this.startDateBox.ValueChanged += new System.EventHandler(this.ChangeDate);
 			// 
 			// dueDateBox
 			// 
@@ -103,6 +104,7 @@ namespace River.OneMoreAddIn.Commands
 			this.dueDateBox.Name = "dueDateBox";
 			this.dueDateBox.Size = new System.Drawing.Size(434, 26);
 			this.dueDateBox.TabIndex = 3;
+			this.dueDateBox.ValueChanged += new System.EventHandler(this.ChangeDate);
 			// 
 			// startDateLabel
 			// 

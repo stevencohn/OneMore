@@ -27,6 +27,8 @@ namespace River.OneMoreAddIn.Commands
 		private const string NotStartedShading = "#FFF2CC";
 		private const string OverdueShading = "#FADBD2";
 		private const string CompletedShading = "#E2EFD9";
+		private const string HighPriorityColor = "#E84C22";
+		private const string MediumPriorityColor = "#5B9BD5";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 
 		private Page page;
@@ -217,7 +219,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				row[3].SetContent(item.Reminder.Due.ToShortFriendlyString());
-				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
+				row[4].SetContent(MakePriority(item.Reminder.Priority));
 				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));
 
 				if (now.CompareTo(item.Reminder.Due) > 0)
@@ -235,26 +237,6 @@ namespace River.OneMoreAddIn.Commands
 				new Paragraph(ns, table.Root),
 				new Paragraph(ns, string.Empty),
 				new Paragraph(ns, string.Empty)
-				);
-		}
-
-
-		private XElement MakeReminder(OneNote one, Item item)
-		{
-			var index = page.AddTagDef(item.Reminder.Symbol, string.Empty);
-			var uri = one.GetHyperlink(item.Meta.Parent.Attribute("ID").Value, item.Reminder.ObjectId);
-
-			// uri might be null if making a cross-machine query since objectIDs are ephemeral
-			var text = uri != null
-				? $"<a href='{uri}'>{item.Reminder.Subject}</a>"
-				: item.Reminder.Subject;
-
-			return new XElement(ns + "OEChildren",
-				new XElement(ns + "OE",
-					new Tag(index, item.Reminder.Status == ReminderStatus.Completed).SetEnabled(false),
-					new XElement(ns + "T", new XCData(text))
-					),
-				new Paragraph(item.Path).SetQuickStyle(citeIndex)
 				);
 		}
 
@@ -302,7 +284,7 @@ namespace River.OneMoreAddIn.Commands
 						$"{Resx.word_Due}: {item.Reminder.Due.ToShortFriendlyString()}")
 					);
 
-				row[4].SetContent(priorities[(int)item.Reminder.Priority]);
+				row[4].SetContent(MakePriority(item.Reminder.Priority));
 
 				if (item.Reminder.Status == ReminderStatus.Completed)
 				{
@@ -319,6 +301,42 @@ namespace River.OneMoreAddIn.Commands
 				new Paragraph(ns, table.Root),
 				new Paragraph(ns, string.Empty)
 				);
+		}
+
+
+		private XElement MakeReminder(OneNote one, Item item)
+		{
+			var index = page.AddTagDef(item.Reminder.Symbol, string.Empty);
+			var uri = one.GetHyperlink(item.Meta.Parent.Attribute("ID").Value, item.Reminder.ObjectId);
+
+			// uri might be null if making a cross-machine query since objectIDs are ephemeral
+			var text = uri != null
+				? $"<a href='{uri}'>{item.Reminder.Subject}</a>"
+				: item.Reminder.Subject;
+
+			return new XElement(ns + "OEChildren",
+				new XElement(ns + "OE",
+					new Tag(index, item.Reminder.Status == ReminderStatus.Completed).SetEnabled(false),
+					new XElement(ns + "T", new XCData(text))
+					),
+				new Paragraph(item.Path).SetQuickStyle(citeIndex)
+				);
+		}
+
+
+		private XElement MakePriority(ReminderPriority priority)
+		{
+			var paragraph = new Paragraph(priorities[(int)priority]);
+			if (priority == ReminderPriority.High)
+			{
+				paragraph.SetAttributeValue("style", $"color:{HighPriorityColor};");
+			}
+			else if (priority == ReminderPriority.Medium)
+			{
+				paragraph.SetAttributeValue("style", $"color:{MediumPriorityColor};");
+			}
+
+			return paragraph;
 		}
 	}
 }
