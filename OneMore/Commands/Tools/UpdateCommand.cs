@@ -23,6 +23,16 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (!HttpClientFactory.IsNetworkAvailable())
+			{
+				if (args.Length > 0 && args[0] is bool report && report)
+				{
+					UIHelper.ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
+				}
+
+				return;
+			}
+
 			var updater = new Updater();
 
 			if (!await updater.FetchLatestRelease())

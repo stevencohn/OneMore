@@ -3084,6 +3084,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Network connection is not available.
+        /// </summary>
+        internal static string NetwordConnectionUnavailable {
+            get {
+                return ResourceManager.GetString("NetwordConnectionUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap NewStyle {

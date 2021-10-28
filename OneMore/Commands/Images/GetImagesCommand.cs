@@ -52,6 +52,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (!HttpClientFactory.IsNetworkAvailable())
+			{
+				UIHelper.ShowInfo(Resx.NetwordConnectionUnavailable);
+				return;
+			}
+
 			var result = MessageBox.Show(
 				Resx.GetImagesCommand_Cite,
 				Resx.OneMoreTab_Label,

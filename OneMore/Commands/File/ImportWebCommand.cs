@@ -35,6 +35,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (!HttpClientFactory.IsNetworkAvailable())
+			{
+				UIHelper.ShowInfo(Resx.NetwordConnectionUnavailable);
+				return;
+			}
+
 			using (var dialog = new ImportWebDialog())
 			{
 				if (dialog.ShowDialog(owner) != DialogResult.OK)

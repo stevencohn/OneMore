@@ -27,6 +27,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (!HttpClientFactory.IsNetworkAvailable())
+			{
+				UIHelper.ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
+				return;
+			}
+
 			using (var one = new OneNote(out var page, out _))
 			{
 				if (NameUrls(page))

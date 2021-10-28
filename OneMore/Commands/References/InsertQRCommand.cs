@@ -28,6 +28,12 @@ namespace River.OneMoreAddIn
 
 		public override async Task Execute(params object[] args)
 		{
+			if (!HttpClientFactory.IsNetworkAvailable())
+			{
+				UIHelper.ShowInfo(Resx.NetwordConnectionUnavailable);
+				return;
+			}
+
 			using (var one = new OneNote(out var page, out var ns))
 			{
 				var text = page.GetSelectedText();
