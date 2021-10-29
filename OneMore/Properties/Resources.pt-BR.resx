@@ -3428,7 +3428,7 @@ Diferido</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>Estes são lembretes ainda não concluídos ou adiados e ordenados por prioridade e data de vencimento</value>
+    <value>Estes são lembretes ainda não concluídos ou adiados e ordenados por data de vencimento, ano, semana do ano e prioridade</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3560,5 +3560,13 @@ Diferido</value>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Total de palavras selecionadas: {0}</value>
     <comment>message box</comment>
+  </data>
+  <data name="NetwordConnectionUnavailable" xml:space="preserve">
+    <value>A conexão de rede não está disponível</value>
+    <comment>error</comment>
+  </data>
+  <data name="ReminderReport_WeekOfYear" xml:space="preserve">
+    <value>Semana {0}</value>
+    <comment>report citation</comment>
   </data>
 </root>

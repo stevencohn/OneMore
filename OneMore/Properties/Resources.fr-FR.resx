@@ -3422,7 +3422,7 @@ Différé</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>Il s'agit de rappels non encore terminés ou différés et classés par priorité et date d'échéance</value>
+    <value>Il s'agit de rappels non encore terminés ou différés et classés par année de date d'échéance, semaine de l'année et priorité</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3554,5 +3554,13 @@ Un jour
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Nombre total de mots sélectionnés : {0}</value>
     <comment>message box</comment>
+  </data>
+  <data name="NetwordConnectionUnavailable" xml:space="preserve">
+    <value>La connexion réseau n'est pas disponible</value>
+    <comment>error</comment>
+  </data>
+  <data name="ReminderReport_WeekOfYear" xml:space="preserve">
+    <value>Semaine {0}</value>
+    <comment>report citation</comment>
   </data>
 </root>

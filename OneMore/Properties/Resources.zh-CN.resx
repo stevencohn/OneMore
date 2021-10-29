@@ -3419,7 +3419,7 @@ OneNote 文件 (*.one)</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>这些是尚未完成或推迟的提醒，并按优先级和截止日期排序</value>
+    <value>这些是尚未完成或推迟的提醒，并按截止日期年、年中的一周和优先级排序</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3551,5 +3551,13 @@ OneNote 文件 (*.one)</value>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>选择的总字数：{0}</value>
     <comment>message box</comment>
+  </data>
+  <data name="NetwordConnectionUnavailable" xml:space="preserve">
+    <value>网络连接不可用</value>
+    <comment>error</comment>
+  </data>
+  <data name="ReminderReport_WeekOfYear" xml:space="preserve">
+    <value>{0} 周</value>
+    <comment>report citation</comment>
   </data>
 </root>

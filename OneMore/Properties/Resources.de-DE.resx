@@ -3413,7 +3413,7 @@ Aufgeschoben</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>Dies sind Erinnerungen, die noch nicht abgeschlossen oder aufgeschoben und nach Priorität und Fälligkeitsdatum geordnet sind</value>
+    <value>Dies sind Mahnungen, die noch nicht abgeschlossen oder aufgeschoben und nach Fälligkeitsdatum Jahr, Woche des Jahres und Priorität geordnet sind</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3545,5 +3545,13 @@ Aufgeschoben</value>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Gesamtzahl der ausgewählten Wörter: {0}</value>
     <comment>message box</comment>
+  </data>
+  <data name="NetwordConnectionUnavailable" xml:space="preserve">
+    <value>Netzwerkverbindung ist nicht verfügbar</value>
+    <comment>error</comment>
+  </data>
+  <data name="ReminderReport_WeekOfYear" xml:space="preserve">
+    <value>Woche {0}</value>
+    <comment>report citation</comment>
   </data>
 </root>

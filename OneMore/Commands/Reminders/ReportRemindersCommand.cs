@@ -20,6 +20,8 @@ namespace River.OneMoreAddIn.Commands
 			public XElement Meta;
 			public Reminder Reminder;
 			public string Path;
+			public int Year;
+			public int WoYear;
 		}
 
 
@@ -70,6 +72,11 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				var culture = System.Globalization.CultureInfo.CurrentUICulture;
+				var calendar = culture.Calendar;
+				var weekRule = culture.DateTimeFormat.CalendarWeekRule;
+				var firstDay = culture.DateTimeFormat.FirstDayOfWeek;
+
 				var serializer = new ReminderSerializer();
 				foreach (var meta in metas)
 				{
@@ -85,7 +92,9 @@ namespace River.OneMoreAddIn.Commands
 						{
 							Meta = meta,
 							Reminder = reminder,
-							Path = path
+							Path = path,
+							Year = reminder.Due.Year,
+							WoYear = calendar.GetWeekOfYear(reminder.Due, weekRule, firstDay)
 						};
 
 						if (reminder.Status == ReminderStatus.Completed ||
@@ -183,15 +192,10 @@ namespace River.OneMoreAddIn.Commands
 
 			var now = DateTime.UtcNow;
 
-			//var culture = System.Globalization.CultureInfo.CurrentUICulture;
-			//var cal = culture.Calendar;
-			//var week = cal.GetWeekOfYear(now,
-			//	culture.DateTimeFormat.CalendarWeekRule,
-			//	culture.DateTimeFormat.FirstDayOfWeek);
-
 			foreach (var item in active
-				.OrderByDescending(i => i.Reminder.Priority)
-				.ThenBy(i => i.Reminder.Due))
+				.OrderBy(i => i.Year)
+				.ThenBy(i => i.WoYear)
+				.ThenByDescending(i => i.Reminder.Priority))
 			{
 				row = table.AddRow();
 				row[0].SetContent(MakeReminder(one, item));
@@ -224,7 +228,12 @@ namespace River.OneMoreAddIn.Commands
 					row[2].SetContent(item.Reminder.Start.ToShortFriendlyString());
 				}
 
-				row[3].SetContent(item.Reminder.Due.ToShortFriendlyString());
+				var woy = string.Format(Resx.ReminderReport_WeekOfYear, item.WoYear);
+				row[3].SetContent(new XElement(ns + "OEChildren",
+					new Paragraph(item.Reminder.Due.ToShortFriendlyString()),
+					new Paragraph(woy).SetQuickStyle(citeIndex)
+					));
+
 				row[4].SetContent(MakePriority(item.Reminder.Priority));
 				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));
 

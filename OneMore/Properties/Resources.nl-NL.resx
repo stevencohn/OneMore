@@ -3428,7 +3428,7 @@ Verschoven</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>Dit zijn herinneringen die nog niet zijn voltooid of uitgesteld en zijn geordend op prioriteit en vervaldatum</value>
+    <value>Dit zijn herinneringen die nog niet zijn voltooid of uitgesteld en zijn geordend op vervaldatum jaar, week van het jaar en prioriteit</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3560,5 +3560,13 @@ twee uur
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Totaal aantal geselecteerde woorden: {0}</value>
     <comment>message box</comment>
+  </data>
+  <data name="NetwordConnectionUnavailable" xml:space="preserve">
+    <value>Netwerkverbinding is niet beschikbaar</value>
+    <comment>error</comment>
+  </data>
+  <data name="ReminderReport_WeekOfYear" xml:space="preserve">
+    <value>week {0}</value>
+    <comment>report citation</comment>
   </data>
 </root>

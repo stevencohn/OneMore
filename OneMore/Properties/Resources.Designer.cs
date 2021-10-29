@@ -4086,7 +4086,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to These are reminders not yet completed or deferred and ordered by priority and due date.
+        ///   Looks up a localized string similar to These are reminders not yet completed or deferred and ordered by due date year, week of year, and priority.
         /// </summary>
         internal static string ReminderReport_ActiveSummary {
             get {
@@ -4154,6 +4154,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ReminderReport_Title {
             get {
                 return ResourceManager.GetString("ReminderReport_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week {0}.
+        /// </summary>
+        internal static string ReminderReport_WeekOfYear {
+            get {
+                return ResourceManager.GetString("ReminderReport_WeekOfYear", resourceCulture);
             }
         }
         

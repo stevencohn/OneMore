@@ -3467,7 +3467,7 @@ Deferred</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>These are reminders not yet completed or deferred and ordered by priority and due date</value>
+    <value>These are reminders not yet completed or deferred and ordered by due date year, week of year, and priority</value>
     <comment>report</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
@@ -3603,5 +3603,9 @@ Deferred</value>
   <data name="NetwordConnectionUnavailable" xml:space="preserve">
     <value>Network connection is not available</value>
     <comment>error</comment>
+  </data>
+  <data name="ReminderReport_WeekOfYear" xml:space="preserve">
+    <value>Week {0}</value>
+    <comment>report citation</comment>
   </data>
 </root>
