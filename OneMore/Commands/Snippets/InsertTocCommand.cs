@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Hap = HtmlAgilityPack;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -244,10 +243,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
 
-			// use HAP to handle cases like <span lang=yo> without quotes
-			var doc = new Hap.HtmlDocument();
-			doc.LoadHtml($"<wrapper>{text}</wrapper>");
-			var wrapper = XElement.Parse(doc.DocumentNode.OuterHtml);
+			// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
+			var wrapper = new XCData(text).GetWrapper();
 
 			var links = wrapper.Elements("a").ToList();
 			foreach (var link in links)

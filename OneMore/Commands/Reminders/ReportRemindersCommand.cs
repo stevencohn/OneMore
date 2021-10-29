@@ -183,6 +183,12 @@ namespace River.OneMoreAddIn.Commands
 
 			var now = DateTime.UtcNow;
 
+			//var culture = System.Globalization.CultureInfo.CurrentUICulture;
+			//var cal = culture.Calendar;
+			//var week = cal.GetWeekOfYear(now,
+			//	culture.DateTimeFormat.CalendarWeekRule,
+			//	culture.DateTimeFormat.FirstDayOfWeek);
+
 			foreach (var item in active
 				.OrderByDescending(i => i.Reminder.Priority)
 				.ThenBy(i => i.Reminder.Due))
