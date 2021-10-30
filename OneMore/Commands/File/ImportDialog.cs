@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.IO;
-	using System.Threading;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -130,14 +129,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void BrowseFile(object sender, EventArgs e)
+		private async void BrowseFile(object sender, EventArgs e)
 		{
 			try
 			{
-				string path = pathBox.Text;
-
-				// FolderBrowserDialog must run in an STA thread
-				var thread = new Thread(() =>
+				// OpenFileDialog must run in an STA thread
+				var path = await SingleThreaded.Invoke(() =>
 				{
 					using (var dialog = new OpenFileDialog()
 					{
@@ -145,7 +142,7 @@ namespace River.OneMoreAddIn.Commands
 						CheckFileExists = true,
 						DefaultExt = ".docx",
 						Filter = Resx.ImportDialog_OpenFileFilter,
-						InitialDirectory = path,
+						InitialDirectory = pathBox.Text,
 						Multiselect = false,
 						Title = Resx.ImportDialog_OpenFileTitle
 					})
@@ -153,18 +150,17 @@ namespace River.OneMoreAddIn.Commands
 						// cannot use owner parameter here or it will hang! cross-threading
 						if (dialog.ShowDialog() == DialogResult.OK)
 						{
-							path = dialog.FileName;
+							return dialog.FileName;
 						}
 					}
+
+					return null;
 				});
 
-				thread.SetApartmentState(ApartmentState.STA);
-				thread.IsBackground = true;
-				thread.Start();
-				thread.Join();
-
-				pathBox.Text = path;
-
+				if (path != null)
+				{
+					pathBox.Text = path;
+				}
 			}
 			catch (Exception exc)
 			{

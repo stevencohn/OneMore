@@ -28,13 +28,18 @@ namespace River.OneMoreAddIn.Commands
 					case OneNote.Scope.Pages: scopeId = one.CurrentSectionId; break;
 				}
 
+				var tags = new Dictionary<string, string>();
+
 				var root = await one.SearchMeta(scopeId, MetaNames.TaggingLabels);
+				if (root == null)
+				{
+					// may need to restart OneNote
+					return tags;
+				}
 
 				var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
 				var pages = root.Descendants(ns + "Page")
 					.OrderByDescending(e => e.Attribute("lastModifiedTime").Value);
-
-				var tags = new Dictionary<string, string>();
 
 				var count = 0;
 				foreach (var page in pages)

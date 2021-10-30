@@ -59,6 +59,12 @@ namespace River.OneMoreAddIn.Commands
 			using (var one = new OneNote())
 			{
 				var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
+				if (hierarchy == null)
+				{
+					// may need to restart OneNote
+					return;
+				}
+
 				var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				var metas = hierarchy.Descendants(ns + "Meta").Where(e =>

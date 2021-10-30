@@ -60,6 +60,12 @@ namespace River.OneMoreAddIn.Commands
 			using (var one = new OneNote())
 			{
 				var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
+				if (hierarchy == null)
+				{
+					UIHelper.ShowInfo(one.Window, "Could not create report at this time. Restart OneNote");
+					return;
+				}
+
 				var hns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				var metas = hierarchy.Descendants(hns + "Meta").Where(e =>

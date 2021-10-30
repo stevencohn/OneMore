@@ -42,6 +42,12 @@ namespace River.OneMoreAddIn.Commands
 				var context = SynchronizationContext.Current;
 
 				var results = await one.SearchMeta(string.Empty, "omKeyboardShortcuts");
+				if (results == null)
+				{
+					UIHelper.ShowInfo(one.Window, "Could not show page at this time. Restart OneNote");
+					return;
+				}
+
 				var ns = one.GetNamespace(results);
 
 				var pageId = results?.Descendants(ns + "Meta")

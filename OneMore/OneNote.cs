@@ -1163,6 +1163,12 @@ namespace River.OneMoreAddIn
 				onenote.FindMeta(nodeId, name, out xml, false, XMLSchema.xs2013);
 			});
 
+			if (xml == null)
+			{
+				// only case was immediately after an Office upgrade but...
+				return null;
+			}
+
 			var hierarchy = XElement.Parse(xml);
 
 			if (includeRecycleBin)
