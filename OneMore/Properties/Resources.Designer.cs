@@ -5649,6 +5649,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Ink.
+        /// </summary>
+        internal static string ribRemoveInkButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveInkButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Page Numbers.
         /// </summary>
         internal static string ribRemovePageNumbersButton_Label {

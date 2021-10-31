@@ -3572,4 +3572,8 @@ ISO-code then comma then language name</comment>
     <value>انقر فوق "نعم" لتحديث هذا التقرير الموجود أو "لا" لإنشاء تقرير جديد أو "إلغاء الأمر"</value>
     <comment>message box</comment>
   </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>إزالة الحبر</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

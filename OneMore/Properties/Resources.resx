@@ -3612,4 +3612,8 @@ Deferred</value>
     <value>Click Yes to update this existing report, No to create a new report, or Cancel</value>
     <comment>message box</comment>
   </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>Remove Ink</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

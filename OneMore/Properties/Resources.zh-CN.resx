@@ -3564,4 +3564,8 @@ OneNote 文件 (*.one)</value>
     <value>单击是更新此现有报告，单击否创建新报告，或单击取消</value>
     <comment>message box</comment>
   </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>去除墨水</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

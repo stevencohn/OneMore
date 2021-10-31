@@ -3573,4 +3573,8 @@ Diferido</value>
     <value>Clique em Sim para atualizar este relatório existente, Não para criar um novo relatório ou Cancelar</value>
     <comment>message box</comment>
   </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>Remover tinta</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

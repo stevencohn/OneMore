@@ -3558,4 +3558,8 @@ Aufgeschoben</value>
     <value>Klicken Sie auf Ja, um diesen vorhandenen Bericht zu aktualisieren, auf Nein, um einen neuen Bericht zu erstellen, oder auf Abbrechen</value>
     <comment>message box</comment>
   </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>Tinte entfernen</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

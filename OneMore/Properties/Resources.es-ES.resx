@@ -3573,4 +3573,8 @@ Diferido</value>
     <value>Haga clic en Sí para actualizar este informe existente, No para crear un nuevo informe o Cancelar</value>
     <comment>message box</comment>
   </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>Quitar tinta</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

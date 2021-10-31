@@ -277,6 +277,9 @@ namespace River.OneMoreAddIn
 		public async Task RemoveFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<RemoveFootnoteCommand>();
 
+		public async Task RemoveInkCmd(IRibbonControl control)
+			=> await factory.Run<RemoveInkCommand>();
+
 		public async Task RemovePageNumbersCmd(IRibbonControl control)
 			=> await factory.Run<RemovePageNumbersCommand>();
 

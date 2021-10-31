@@ -82,6 +82,11 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemoveCitationsCmd"/>
               <button
+                id="ribRemoveInkButton"
+                imageMso="InkDeleteAllInk"
+                getLabel="GetRibbonLabel"
+                onAction="RemoveInkCmd"/>
+              <button
                 id="ribRemoveEmptyButton"
                 imageMso="RecordsDeleteRecord"
                 getLabel="GetRibbonLabel"

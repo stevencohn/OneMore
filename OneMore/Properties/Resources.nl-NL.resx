@@ -3573,4 +3573,8 @@ twee uur
     <value>Klik op Ja om dit bestaande rapport bij te werken, op Nee om een ​​nieuw rapport te maken of op Annuleren</value>
     <comment>message box</comment>
   </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>Inkt verwijderen</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

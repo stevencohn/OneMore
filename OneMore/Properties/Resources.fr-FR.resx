@@ -3567,4 +3567,8 @@ Un jour
     <value>Cliquez sur Oui pour mettre à jour ce rapport existant, Non pour créer un nouveau rapport ou Annuler</value>
     <comment>message box</comment>
   </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>Supprimer l'encre</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
