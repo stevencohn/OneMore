@@ -85,6 +85,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Expand or Collapse indented outlines, save and restore outlining
 * Merge pages, preserving formatting and position of outlines
 * Split current page into multiple pages
+* Report number of words on the page or in the selected region
 
 [Reference Commands](../../wiki/Reference-Commands) (13)
 * Insert a new footnote (endnote) at the current location (Ctrl + Alt + F)
@@ -146,7 +147,6 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Sort pages, sections, or notebooks
 * Start and display a visual timer (Alt + F2) and insert the timer value (F2)
 * Toggle strikethrough text next to all completed/incompleted tags
-* Report number of words on the page or in the selected region
 
 [Main Menu](../../wiki/Tools) (8)
 
