@@ -3569,4 +3569,8 @@ Diferido</value>
     <value>Semana {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemindCommand_Reuse" xml:space="preserve">
+    <value>Clique em Sim para atualizar este relatório existente, Não para criar um novo relatório ou Cancelar</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -3608,4 +3608,8 @@ Deferred</value>
     <value>Week {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemindCommand_Reuse" xml:space="preserve">
+    <value>Click Yes to update this existing report, No to create a new report, or Cancel</value>
+    <comment>message box</comment>
+  </data>
 </root>

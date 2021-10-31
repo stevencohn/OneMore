@@ -3560,4 +3560,8 @@ OneNote 文件 (*.one)</value>
     <value>{0} 周</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemindCommand_Reuse" xml:space="preserve">
+    <value>单击是更新此现有报告，单击否创建新报告，或单击取消</value>
+    <comment>message box</comment>
+  </data>
 </root>

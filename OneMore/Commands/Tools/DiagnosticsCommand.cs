@@ -41,16 +41,16 @@ namespace River.OneMoreAddIn.Commands
 				builder.AppendLine($"Unfiled path: {unfiledFolder}");
 				builder.AppendLine();
 
-				var (Name, Path, Link) = one.GetPageInfo();
-				builder.AppendLine($"Page name: {Name}");
-				builder.AppendLine($"Page path: {Path}");
-				builder.AppendLine($"Page link: {Link}");
+				var info = one.GetPageInfo();
+				builder.AppendLine($"Page name: {info.Name}");
+				builder.AppendLine($"Page path: {info.Path}");
+				builder.AppendLine($"Page link: {info.Link}");
 				builder.AppendLine();
 
-				(Name, Path, Link) = one.GetSectionInfo();
-				builder.AppendLine($"Section name: {Name}");
-				builder.AppendLine($"Section path: {Path}");
-				builder.AppendLine($"Section link: {Link}");
+				info = one.GetSectionInfo();
+				builder.AppendLine($"Section name: {info.Name}");
+				builder.AppendLine($"Section path: {info.Path}");
+				builder.AppendLine($"Section link: {info.Link}");
 				builder.AppendLine();
 
 				var notebook = one.GetNotebook();

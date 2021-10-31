@@ -3568,4 +3568,8 @@ ISO-code then comma then language name</comment>
     <value>الأسبوع {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemindCommand_Reuse" xml:space="preserve">
+    <value>انقر فوق "نعم" لتحديث هذا التقرير الموجود أو "لا" لإنشاء تقرير جديد أو "إلغاء الأمر"</value>
+    <comment>message box</comment>
+  </data>
 </root>

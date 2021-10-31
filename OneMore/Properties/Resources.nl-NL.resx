@@ -3569,4 +3569,8 @@ twee uur
     <value>week {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemindCommand_Reuse" xml:space="preserve">
+    <value>Klik op Ja om dit bestaande rapport bij te werken, op Nee om een ​​nieuw rapport te maken of op Annuleren</value>
+    <comment>message box</comment>
+  </data>
 </root>

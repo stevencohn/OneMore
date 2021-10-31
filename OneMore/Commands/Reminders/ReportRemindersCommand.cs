@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string MediumPriorityColor = "#5B9BD5";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 
+		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 		private XElement container;
@@ -57,85 +58,49 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote())
+			using (one = new OneNote())
 			{
-				var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
-				if (hierarchy == null)
+				if (!await CollectReminders())
 				{
-					UIHelper.ShowInfo(one.Window, "Could not create report at this time. Restart OneNote");
 					return;
-				}
-
-				var hns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
-
-				var metas = hierarchy.Descendants(hns + "Meta").Where(e =>
-					e.Attribute("name").Value == MetaNames.Reminder &&
-					e.Attribute("content").Value.Length > 0);
-
-				if (!metas.Any())
-				{
-					UIHelper.ShowInfo(one.Window, Resx.ReminderReport_noReminders);
-					return;
-				}
-
-				var culture = System.Globalization.CultureInfo.CurrentUICulture;
-				var calendar = culture.Calendar;
-				var weekRule = culture.DateTimeFormat.CalendarWeekRule;
-				var firstDay = culture.DateTimeFormat.FirstDayOfWeek;
-
-				var serializer = new ReminderSerializer();
-				foreach (var meta in metas)
-				{
-					var path = meta.Ancestors().Reverse()
-						.Where(m => m.Attribute("name") != null)
-						.Select(m => m.Attribute("name").Value)
-						.Aggregate((a, b) => $"{a} > {b}");
-
-					var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
-					foreach (var reminder in reminders)
-					{
-						var item = new Item
-						{
-							Meta = meta,
-							Reminder = reminder,
-							Path = path,
-							Year = reminder.Due.Year,
-							WoYear = calendar.GetWeekOfYear(reminder.Due, weekRule, firstDay)
-						};
-
-						if (reminder.Status == ReminderStatus.Completed ||
-							reminder.Status == ReminderStatus.Deferred)
-						{
-							inactive.Add(item);
-						}
-						else
-						{
-							active.Add(item);
-						}
-					}
 				}
 
 				string pageId = null;
 				if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
 				{
 					page = one.GetPage();
+					ns = page.Namespace;
 					pageId = page.PageId;
-					container = page.EnsureContentContainer();
-					container.Elements().Remove();
+					ClearContent();
 				}
 				else
 				{
-					one.CreatePage(one.CurrentSectionId, out pageId);
-					page = one.GetPage(pageId);
-					page.SetMeta(MetaNames.ReminderReport, OneNote.Scope.Notebooks.ToString());
-					page.Title = Resx.ReminderReport_Title;
-					container = page.EnsureContentContainer();
+					pageId = await FindReport();
+					if (pageId == string.Empty)
+					{
+						return;
+					}
+
+					if (pageId == null)
+					{
+						one.CreatePage(one.CurrentSectionId, out pageId);
+						page = one.GetPage(pageId);
+						ns = page.Namespace;
+						page.SetMeta(MetaNames.ReminderReport, OneNote.Scope.Notebooks.ToString());
+						page.Title = Resx.ReminderReport_Title;
+					}
+					else
+					{
+						page = one.GetPage(pageId);
+						ns = page.Namespace;
+						ClearContent();
+					}
 				}
 
-				ns = page.Namespace;
 				PageNamespace.Set(ns);
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
 				citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
+				container = page.EnsureContentContainer();
 
 				var now = DateTime.Now.ToShortFriendlyString();
 				container.Add(
@@ -152,12 +117,12 @@ namespace River.OneMoreAddIn.Commands
 
 				if (active.Any())
 				{
-					ReportActiveTasks(one);
+					ReportActiveTasks();
 				}
 
 				if (inactive.Any())
 				{
-					ReportInactiveTasks(one);
+					ReportInactiveTasks();
 				}
 
 				await one.Update(page);
@@ -166,7 +131,126 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReportActiveTasks(OneNote one)
+		private async Task<bool> CollectReminders()
+		{
+			var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
+			if (hierarchy == null)
+			{
+				UIHelper.ShowInfo(one.Window, "Could not create report at this time. Restart OneNote");
+				return false;
+			}
+
+			var hns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var metas = hierarchy.Descendants(hns + "Meta").Where(e =>
+				e.Attribute("name").Value == MetaNames.Reminder &&
+				e.Attribute("content").Value.Length > 0);
+
+			if (!metas.Any())
+			{
+				UIHelper.ShowInfo(one.Window, Resx.ReminderReport_noReminders);
+				return false;
+			}
+
+			var culture = System.Globalization.CultureInfo.CurrentUICulture;
+			var calendar = culture.Calendar;
+			var weekRule = culture.DateTimeFormat.CalendarWeekRule;
+			var firstDay = culture.DateTimeFormat.FirstDayOfWeek;
+
+			var serializer = new ReminderSerializer();
+			foreach (var meta in metas)
+			{
+				var path = meta.Ancestors().Reverse()
+					.Where(m => m.Attribute("name") != null)
+					.Select(m => m.Attribute("name").Value)
+					.Aggregate((a, b) => $"{a} > {b}");
+
+				var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
+				foreach (var reminder in reminders)
+				{
+					var item = new Item
+					{
+						Meta = meta,
+						Reminder = reminder,
+						Path = path,
+						Year = reminder.Due.Year,
+						WoYear = calendar.GetWeekOfYear(reminder.Due, weekRule, firstDay)
+					};
+
+					if (reminder.Status == ReminderStatus.Completed ||
+						reminder.Status == ReminderStatus.Deferred)
+					{
+						inactive.Add(item);
+					}
+					else
+					{
+						active.Add(item);
+					}
+				}
+			}
+
+			return true;
+		}
+
+
+		private async Task<string> FindReport()
+		{
+			var hierarchy = await one.SearchMeta(string.Empty, MetaNames.ReminderReport);
+			if (hierarchy == null)
+			{
+				return null;
+			}
+
+			var hns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var pageId = hierarchy.Descendants(hns + "Meta")
+				.Where(e => e.Attribute("name").Value == MetaNames.ReminderReport)
+				.Select(e => e.Parent.Attribute("ID").Value)
+				.FirstOrDefault();
+
+			if (pageId == null)
+			{
+				return null;
+			}
+
+			var current = one.GetPageInfo();
+			var target = one.GetPageInfo(pageId);
+
+			await one.NavigateTo(pageId, string.Empty);
+			// absurd but NavigateTo needs time to settle down
+			await Task.Delay(100);
+
+			var answer = UIHelper.ShowQuestion(Resx.RemindCommand_Reuse, true, true);
+			if (answer == System.Windows.Forms.DialogResult.Yes)
+			{
+				return pageId;
+			}
+
+			await one.NavigateTo(current.PageId, string.Empty);
+			await Task.Delay(100);
+
+			// kind of hacky but ok...
+			return answer == System.Windows.Forms.DialogResult.Cancel ? String.Empty : null;
+		}
+
+
+		private void ClearContent()
+		{
+			var chalkOutlines = page.Root.Elements(ns + "Outline");
+			if (chalkOutlines != null)
+			{
+				// assume the first outline is the report, reuse it as our container
+				chalkOutlines.First().Elements().Remove();
+
+				// remove remaining outlines; this will NOT delete them from the page without
+				// and explicit DeletePageContent but this is OK because it will make our
+				// EnsureContainer select the proper outline
+				chalkOutlines.Skip(1).Remove();
+			}
+		}
+
+
+		private void ReportActiveTasks()
 		{
 			container.Add(
 				new Paragraph(Resx.ReminderReport_ActiveReminders).SetQuickStyle(heading2Index),
@@ -262,7 +346,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReportInactiveTasks(OneNote one)
+		private void ReportInactiveTasks()
 		{
 			container.Add(
 				new Paragraph(Resx.ReminderReport_InactiveReminders).SetQuickStyle(heading2Index),

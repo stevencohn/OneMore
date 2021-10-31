@@ -68,6 +68,17 @@ namespace River.OneMoreAddIn
 			SectionGroups = 100
 		}
 
+		public class HierarchyInfo
+		{
+			public string PageId;
+			public string SectionId; // immediate owner regardless of depth (e.g. SectionGroups)
+			public string NotebookId;
+			public string Name;
+			public string Path;
+			public string Link;
+		}
+
+
 		public class HyperlinkInfo
 		{
 			public string PageID;       // pageID
@@ -205,7 +216,7 @@ namespace River.OneMoreAddIn
 						retries++;
 						var ms = 250 * retries;
 
-						logger.WriteLine($"OneNote is busy, retyring in {ms}ms", exc);
+						logger.WriteLine($"OneNote is busy, retyring in {ms}ms");
 						await Task.Delay(ms);
 					}
 				}
@@ -661,7 +672,7 @@ namespace River.OneMoreAddIn
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
-		public (string Name, string Path, string Link) GetPageInfo(string pageId = null)
+		public HierarchyInfo GetPageInfo(string pageId = null)
 		{
 			if (pageId == null)
 				pageId = CurrentPageId;
@@ -669,33 +680,44 @@ namespace River.OneMoreAddIn
 			var page = GetPage(pageId, PageDetail.Basic);
 			if (page == null)
 			{
-				return (null, null, null);
+				return null;
 			}
 
-			// name
-			var name = page.Root.Attribute("name")?.Value;
+			var info = new HierarchyInfo
+			{
+				PageId = pageId,
+				Name = page.Root.Attribute("name")?.Value,
+				Link = GetHyperlink(page.PageId, string.Empty)
+			};
+
 
 			// path
 			var builder = new StringBuilder();
-			builder.Append($"/{name}");
+			builder.Append($"/{info.Name}");
 
 			string id = pageId;
 			while (!string.IsNullOrEmpty(id = GetParent(id)))
 			{
 				onenote.GetHierarchy(id, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
-				var x = XElement.Parse(xml);
-				var n = x.Attribute("name")?.Value;
+				var parent = XElement.Parse(xml);
+				var parentName = parent.Attribute("name")?.Value;
 
-				if (n != null)
-					builder.Insert(0, $"/{n}");
+				if (parentName != null)
+					builder.Insert(0, $"/{parentName}");
+
+				if (parent.Name.LocalName == "Section" && string.IsNullOrEmpty(info.SectionId))
+				{
+					info.SectionId = parent.Attribute("ID").Value;
+				}
+				else if (parent.Name.LocalName == "Notebook")
+				{
+					info.NotebookId = parent.Attribute("ID").Value;
+				}
 			}
 
-			string path = builder.ToString();
+			info.Path = builder.ToString();
 
-			// link
-			string link = GetHyperlink(page.PageId, string.Empty);
-
-			return (name, path, link);
+			return info;
 		}
 
 
@@ -753,20 +775,24 @@ namespace River.OneMoreAddIn
 		/// used to build up Favorites
 		/// </summary>
 		/// <returns></returns>
-		public (string Name, string Path, string Link) GetSectionInfo()
+		public HierarchyInfo GetSectionInfo()
 		{
 			var section = GetSection();
 			if (section == null)
 			{
-				return (null, null, null);
+				return null;
 			}
 
-			// name
-			var name = section.Attribute("name")?.Value;
+			var info = new HierarchyInfo
+			{
+				SectionId = CurrentSectionId,
+				NotebookId = CurrentNotebookId,
+				Name = section.Attribute("name")?.Value
+			};
 
 			// path
 			var builder = new StringBuilder();
-			builder.Append($"/{name}");
+			builder.Append($"/{info.Name}");
 
 			string id = CurrentSectionId;
 			while (!string.IsNullOrEmpty(id = GetParent(id)))
@@ -779,17 +805,15 @@ namespace River.OneMoreAddIn
 					builder.Insert(0, $"/{n}");
 			}
 
-			string path = builder.ToString();
+			info.Path = builder.ToString();
 
-			// link
-			string link = null;
 			var sectionId = section.Attribute("ID")?.Value;
 			if (sectionId != null)
 			{
-				link = GetHyperlink(sectionId, string.Empty);
+				info.Link = GetHyperlink(sectionId, string.Empty);
 			}
 
-			return (name, path, link);
+			return info;
 		}
 
 
@@ -1096,11 +1120,8 @@ namespace River.OneMoreAddIn
 			}
 			else
 			{
-				await InvokeWithRetry(() =>
-				{
-					// must be an ID
-					onenote.NavigateTo(uri);
-				});
+				// must be an ID
+				await NavigateTo(uri, string.Empty);
 			}
 		}
 

@@ -25,11 +25,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				var (name, path, _) = one.GetPageInfo();
+				var info = one.GetPageInfo();
 
 				// strip page name from path and replace separators with arrows
-				path = path
-					.Substring(1, path.Length - name.Length - 2)
+				var path = info.Path
+					.Substring(1, info.Path.Length - info.Name.Length - 2)
 					.Replace("/", $" {RightArrow} ");
 
 				path = $"<span style='font-style:italic'>{path}</span>";

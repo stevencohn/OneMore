@@ -3554,4 +3554,8 @@ Aufgeschoben</value>
     <value>Woche {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemindCommand_Reuse" xml:space="preserve">
+    <value>Klicken Sie auf Ja, um diesen vorhandenen Bericht zu aktualisieren, auf Nein, um einen neuen Bericht zu erstellen, oder auf Abbrechen</value>
+    <comment>message box</comment>
+  </data>
 </root>

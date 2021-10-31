@@ -3563,4 +3563,8 @@ Un jour
     <value>Semaine {0}</value>
     <comment>report citation</comment>
   </data>
+  <data name="RemindCommand_Reuse" xml:space="preserve">
+    <value>Cliquez sur Oui pour mettre à jour ce rapport existant, Non pour créer un nouveau rapport ou Annuler</value>
+    <comment>message box</comment>
+  </data>
 </root>
