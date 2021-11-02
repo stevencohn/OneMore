@@ -279,7 +279,6 @@ namespace River.OneMoreAddIn.Commands
 					table.Root
 					));
 
-				logger.WriteLine(page.Root);
 				await one.Update(page);
 			}
 		}
