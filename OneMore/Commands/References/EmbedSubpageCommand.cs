@@ -182,7 +182,8 @@ namespace River.OneMoreAddIn.Commands
 			var match = Regex.Match(link, @"page-id=({[^}]+?})");
 			var linkId = match.Success ? match.Groups[1].Value : string.Empty;
 
-			var map = page.MergeQuickStyles(source);
+			var tagmap = page.MergeTagDefs(source);
+			var quickmap = page.MergeQuickStyles(source);
 			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			var text = $"<a href=\"{link}\">Embedded from {source.Title}</a> | <a " +
@@ -199,7 +200,9 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var snippet in snippets)
 			{
-				page.ApplyStyleMapping(map, snippet);
+				page.ApplyStyleMapping(quickmap, snippet);
+				page.ApplyTagDefMapping(tagmap, snippet);
+
 				cell.Root.Add(snippet);
 			}
 		}

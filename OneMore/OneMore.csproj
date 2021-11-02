@@ -454,6 +454,8 @@
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TagDef.cs" />
+    <Compile Include="Models\TagDefMapping.cs" />
     <Compile Include="Styles\StyleProperties.cs" />
     <Compile Include="Styles\Theme.cs" />
     <Compile Include="Styles\ThemeProvider.cs" />

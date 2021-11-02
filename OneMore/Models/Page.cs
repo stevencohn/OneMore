@@ -200,7 +200,6 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>The index of the new tag or of the existing tag with the same symbol</returns>
 		public string AddTagDef(string symbol, string name, int tagType = 0)
 		{
-			//<one:TagDef index="0" type="0" symbol="140" fontColor="automatic" highlightColor="none" name="Calculated" />
 			var tags = Root.Elements(Namespace + "TagDef");
 
 			int index = 0;
@@ -228,6 +227,22 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public void AddTagDef(TagDef tagdef)
+		{
+			var tags = Root.Elements(Namespace + "TagDef");
+			if (tags?.Any() == true)
+			{
+				var tag = tags.FirstOrDefault(e => e.Attribute("symbol").Value == tagdef.Symbol);
+				if (tag != null)
+				{
+					return;
+				}
+			}
+
+			Root.AddFirst(tagdef);
+		}
+
+
 		/// <summary>
 		/// Apply the given quick style mappings to all descendents of the specified outline.
 		/// </summary>
@@ -251,6 +266,34 @@ namespace River.OneMoreAddIn.Models
 						foreach (var element in elements)
 						{
 							element.Attribute("quickStyleIndex").Value = index;
+						}
+					}
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Apply the given tagdef mappings to all descendants of the specified outline
+		/// </summary>
+		/// <param name="mapping"></param>
+		/// <param name="outline"></param>
+		public void ApplyTagDefMapping(List<TagDefMapping> mapping, XElement outline)
+		{
+			// reverse sort the indexes so logic doesn't overwrite subsequent index references
+			foreach (var map in mapping.OrderByDescending(s => s.TagDef.IndexValue))
+			{
+				if (map.OriginalIndex != map.TagDef.Index)
+				{
+					// apply new index to child outline elements
+					var elements = outline.Descendants(Namespace + "Tag")
+						.Where(e => e.Attribute("index")?.Value == map.OriginalIndex);
+
+					if (elements?.Any() == true)
+					{
+						foreach (var element in elements)
+						{
+							element.Attribute("index").Value = map.TagDef.Index;
 						}
 					}
 				}
@@ -811,7 +854,9 @@ namespace River.OneMoreAddIn.Models
 				}
 				else
 				{
-					quick.Index = int.Parse(sibling.Attribute("index").Value) + 1;
+					quick.Index = Root.Elements(Namespace + "QuickStyleDef")
+						.Max(e => int.Parse(e.Attribute("index").Value)) + 1;
+
 					sibling.AddAfterSelf(quick.ToElement(Namespace));
 				}
 
@@ -852,7 +897,7 @@ namespace River.OneMoreAddIn.Models
 
 		/// <summary>
 		/// Gets the quick style mappings for the current page. Used to copy or merge
-		/// copy on this page
+		/// content on this page
 		/// </summary>
 		/// <returns></returns>
 		public List<QuickStyleMapping> GetQuickStyleMap()
@@ -930,6 +975,19 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets the TagDef mappings for the current page. Used to copy or merge
+		/// content on this page
+		/// </summary>
+		/// <returns></returns>
+		public List<TagDefMapping> GetTagMap()
+		{
+			return Root.Elements(Namespace + "TagDef")
+				.Select(e => new TagDefMapping(e))
+				.ToList();
+		}
+
+
+		/// <summary>
 		/// Determines if the page is configured for right-to-left text or the Windows
 		/// language is a right-to-left language
 		/// </summary>
@@ -972,6 +1030,45 @@ namespace River.OneMoreAddIn.Models
 
 					map.Add(source);
 					AddQuickStyleDef(source.Element);
+				}
+
+				// else if found then the index may differ but keep it so it can be mapped
+				// to content later...
+			}
+
+			return map;
+		}
+
+
+		/// <summary>
+		/// Merges the TagDefs from a source page with the TagDefs on the current page,
+		/// adjusting index values to avoid collisions with pre-existing definitions
+		/// </summary>
+		/// <param name="sourcePage">
+		/// The page from which to copy TagDefs into this page. The value of the index
+		/// attribute of the TagDefs are updated for each definition
+		/// </param>
+		public List<TagDefMapping> MergeTagDefs(Page sourcePage)
+		{
+			var sourcemap = sourcePage.GetTagMap();
+			var map = GetTagMap();
+
+			var index = map.Any() ? map.Max(t => t.TagDef.IndexValue) + 1 : 0;
+
+			foreach (var source in sourcemap)
+			{
+				var tagdef = map.Find(t => t.TagDef.Equals(source.TagDef));
+				if (tagdef == null)
+				{
+					// no match so add it and set index to maxIndex+1
+					// O(n) is OK here; there should only be a few
+					source.TagDef.IndexValue = index++;
+
+					source.Element = new XElement(source.Element);
+					source.Element.Attribute("index").Value = source.TagDef.Index;
+
+					map.Add(source);
+					AddTagDef(source.TagDef);
 				}
 
 				// else if found then the index may differ but keep it so it can be mapped
