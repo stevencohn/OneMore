@@ -427,6 +427,12 @@
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Extras\SectionColorCommand.cs" />
+    <Compile Include="Commands\Tools\DiagnosticsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\DiagnosticsDialog.Designer.cs">
+      <DependentUpon>DiagnosticsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tools\UpdateCommand.cs" />
     <Compile Include="Commands\Tools\UpdateDialog.cs">
       <SubType>Form</SubType>
@@ -1063,6 +1069,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Extras\AnalyzeDialog.resx">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\DiagnosticsDialog.resx">
+      <DependentUpon>DiagnosticsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\UpdateDialog.resx">
       <DependentUpon>UpdateDialog.cs</DependentUpon>

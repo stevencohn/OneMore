@@ -3569,4 +3569,12 @@ Aufgeschoben</value>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>Entfernen Sie Tags, die nicht mit Erinnerungen verknüpft sind</value>
   </data>
+  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
+    <value>Diagnose geschrieben an</value>
+    <comment>label</comment>
+  </data>
+  <data name="DiagnosticsDialog_Text" xml:space="preserve">
+    <value>OneMore-Diagnose</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

@@ -1561,6 +1561,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diagnostics written to.
+        /// </summary>
+        internal static string DiagnosticsDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("DiagnosticsDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Diagnostics.
+        /// </summary>
+        internal static string DiagnosticsDialog_Text {
+            get {
+                return ResourceManager.GetString("DiagnosticsDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset Settings.
         /// </summary>
         internal static string DialogResetSettings_Text {

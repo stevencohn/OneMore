@@ -3584,4 +3584,12 @@ Diferido</value>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>Remover tags não associadas a lembretes</value>
   </data>
+  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
+    <value>Diagnóstico escrito para</value>
+    <comment>label</comment>
+  </data>
+  <data name="DiagnosticsDialog_Text" xml:space="preserve">
+    <value>OneMore Diagnostics</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

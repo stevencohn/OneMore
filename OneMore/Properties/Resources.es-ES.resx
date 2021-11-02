@@ -3584,4 +3584,12 @@ Diferido</value>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>Eliminar etiquetas no asociadas con recordatorios</value>
   </data>
+  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
+    <value>Diagnósticos escritos en</value>
+    <comment>label</comment>
+  </data>
+  <data name="DiagnosticsDialog_Text" xml:space="preserve">
+    <value>Diagnóstico OneMore</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

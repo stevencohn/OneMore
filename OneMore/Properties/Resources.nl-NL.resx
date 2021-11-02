@@ -3584,4 +3584,12 @@ twee uur
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>Tags verwijderen die niet aan herinneringen zijn gekoppeld</value>
   </data>
+  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
+    <value>Diagnostiek geschreven naar</value>
+    <comment>label</comment>
+  </data>
+  <data name="DiagnosticsDialog_Text" xml:space="preserve">
+    <value>OneMore Diagnostiek</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

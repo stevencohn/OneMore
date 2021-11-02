@@ -3623,4 +3623,12 @@ Deferred</value>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>Remove tags not associated with reminders</value>
   </data>
+  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
+    <value>Diagnostics written to</value>
+    <comment>label</comment>
+  </data>
+  <data name="DiagnosticsDialog_Text" xml:space="preserve">
+    <value>OneMore Diagnostics</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

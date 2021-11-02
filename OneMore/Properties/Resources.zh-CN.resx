@@ -3575,4 +3575,12 @@ OneNote 文件 (*.one)</value>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>删除与提醒无关的标签</value>
   </data>
+  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
+    <value>诊断写入</value>
+    <comment>label</comment>
+  </data>
+  <data name="DiagnosticsDialog_Text" xml:space="preserve">
+    <value>OneMore诊断</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

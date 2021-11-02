@@ -3583,4 +3583,12 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>إزالة العلامات غير المرتبطة بالتذكيرات</value>
   </data>
+  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
+    <value>تشخيصات مكتوبة ل</value>
+    <comment>label</comment>
+  </data>
+  <data name="DiagnosticsDialog_Text" xml:space="preserve">
+    <value>تشخيص واحد أكثر</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

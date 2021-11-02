@@ -83,7 +83,10 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine(builder.ToString());
 
-				UIHelper.ShowInfo($"Diagnostics written to {logger.LogPath}");
+				using (var dialog = new DiagnosticsDialog(logger.LogPath))
+				{
+					dialog.ShowDialog(owner);
+				}
 			}
 
 			await Task.Yield();
