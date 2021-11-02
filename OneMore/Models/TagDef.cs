@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Models
 			set
 			{
 				indexValue = value;
-				Attribute("index").Value = Value.ToString();
+				Attribute("index").Value = value.ToString();
 			}
 		}
 

@@ -272,9 +272,6 @@ namespace River.OneMoreAddIn.Commands
 					table.SetColumnWidth(0, width == 0 ? 500 : width);
 				}
 
-
-				System.Diagnostics.Debugger.Launch();
-
 				FillCell(table[0][0], source.Snippets, source.Page);
 
 				page.AddNextParagraph(new Paragraph(
