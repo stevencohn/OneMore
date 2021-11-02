@@ -3577,4 +3577,11 @@ Diferido</value>
     <value>Remover tinta</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
+    <value>Remover Tags</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
+    <value>Remover tags não associadas a lembretes</value>
+  </data>
 </root>

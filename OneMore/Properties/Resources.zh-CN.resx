@@ -3568,4 +3568,11 @@ OneNote 文件 (*.one)</value>
     <value>去除墨水</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
+    <value>移除标签</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
+    <value>删除与提醒无关的标签</value>
+  </data>
 </root>

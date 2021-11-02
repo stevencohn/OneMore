@@ -3577,4 +3577,11 @@ twee uur
     <value>Inkt verwijderen</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
+    <value>Tags verwijderen</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
+    <value>Tags verwijderen die niet aan herinneringen zijn gekoppeld</value>
+  </data>
 </root>

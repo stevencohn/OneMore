@@ -5712,6 +5712,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Tags.
+        /// </summary>
+        internal static string ribRemoveTagsButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveTagsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove tags not associated with reminders.
+        /// </summary>
+        internal static string ribRemoveTagsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveTagsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search and Replace.
         /// </summary>
         internal static string ribReplaceButton_Label {

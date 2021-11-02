@@ -3616,4 +3616,11 @@ Deferred</value>
     <value>Remove Ink</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
+    <value>Remove Tags</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
+    <value>Remove tags not associated with reminders</value>
+  </data>
 </root>

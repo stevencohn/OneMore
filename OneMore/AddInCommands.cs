@@ -289,6 +289,9 @@ namespace River.OneMoreAddIn
 		public async Task RemoveSpacingCmd(IRibbonControl control)
 			=> await factory.Run<RemoveSpacingCommand>();
 
+		public async Task RemoveTagsCmd(IRibbonControl control)
+			=> await factory.Run<RemoveTagsCommand>();
+
 		public async Task ReplayCmd(IRibbonControl control)
 			=> await factory.ReplayLastAction();
 

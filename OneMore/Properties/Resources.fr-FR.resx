@@ -3571,4 +3571,11 @@ Un jour
     <value>Supprimer l'encre</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
+    <value>Supprimer les balises</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
+    <value>Supprimer les balises non associées aux rappels</value>
+  </data>
 </root>
