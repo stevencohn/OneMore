@@ -99,20 +99,21 @@ namespace River.OneMoreAddIn.Commands
 							continue;
 						}
 
-						Test(reminder, pageID);
+						await Test(reminder, pageID, one);
 					}
 				}
 			}
 		}
 
 
-		private void Test(Reminder reminder, string pageID)
+		private async Task Test(Reminder reminder, string pageID, OneNote one)
 		{
 			// is it not started but after the planned start date?
 			if (reminder.Status == ReminderStatus.NotStarted ||
 				reminder.Status == ReminderStatus.Waiting)
 			{
-				if (DateTime.UtcNow.CompareTo(reminder.Start) > 0)
+				if (DateTime.UtcNow.CompareTo(reminder.Start) > 0 &&
+					await ReminderIsValid(reminder, pageID, one))
 				{
 					Send(
 						string.Format(
@@ -129,7 +130,8 @@ namespace River.OneMoreAddIn.Commands
 			// is it not completed but after the planned due date?
 			else if (reminder.Status == ReminderStatus.InProgress)
 			{
-				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0)
+				if (DateTime.UtcNow.CompareTo(reminder.Due) > 0 &&
+					await ReminderIsValid(reminder, pageID, one))
 				{
 					Send(
 						string.Format(
@@ -143,6 +145,52 @@ namespace River.OneMoreAddIn.Commands
 					RemindScheduler.ScheduleNotification(reminder, true);
 				}
 			}
+		}
+
+
+		// if the user deletes the paragraph containing a reminder, the Meta will be orphaned
+		// so this verifies that the paragraph still exists and clears the Meta if it does not
+		private async Task<bool> ReminderIsValid(Reminder reminder, string pageID, OneNote one)
+		{
+			var page = one.GetPage(pageID, OneNote.PageDetail.Basic);
+			if (page == null)
+			{
+				// must be an error?
+				logger.WriteLine($"reminder page not found {pageID}");
+				return false;
+			}
+
+			if (page.Root.Descendants(page.Namespace + "OE")
+				.Any(e => e.Attribute("objectID").Value == reminder.ObjectId))
+			{
+				// reminder is valid, keep it!
+				return true;
+			}
+
+			// clear the orphaned reminder...
+
+			var serializer = new ReminderSerializer();
+			var reminders = serializer.LoadReminders(page);
+			if (!reminders.Any())
+			{
+				// must be an error?
+				logger.WriteLine($"reminder not found on page {pageID}");
+				return false;
+			}
+
+			var orphan = reminders.FirstOrDefault(r => r.ObjectId == reminder.ObjectId);
+			if (orphan == null)
+			{
+				// must be an error?
+				logger.WriteLine($"reminder not found in page meta {pageID}");
+				return false;
+			}
+
+			reminders.Remove(orphan);
+			page.SetMeta(MetaNames.Reminder, serializer.EncodeContent(reminders)); 
+			await one.Update(page);
+
+			return false;
 		}
 
 
