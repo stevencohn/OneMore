@@ -979,7 +979,7 @@ namespace River.OneMoreAddIn.Models
 		/// content on this page
 		/// </summary>
 		/// <returns></returns>
-		public List<TagDefMapping> GetTagMap()
+		public List<TagDefMapping> GetTagDefMap()
 		{
 			return Root.Elements(Namespace + "TagDef")
 				.Select(e => new TagDefMapping(e))
@@ -1050,8 +1050,8 @@ namespace River.OneMoreAddIn.Models
 		/// </param>
 		public List<TagDefMapping> MergeTagDefs(Page sourcePage)
 		{
-			var sourcemap = sourcePage.GetTagMap();
-			var map = GetTagMap();
+			var sourcemap = sourcePage.GetTagDefMap();
+			var map = GetTagDefMap();
 
 			var index = map.Any() ? map.Max(t => t.TagDef.IndexValue) + 1 : 0;
 

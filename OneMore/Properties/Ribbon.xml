@@ -99,6 +99,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemoveSpacingCmd"/>
               <button
+                id="ribRemoveTagsButton"
+                imageMso="AdpOutputOperationsTableRemove"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="RemoveTagsCmd"/>
+              <button
                 id="ribToggleDttmButton"
                 imageMso="MessageHeaderToggle"
                 getLabel="GetRibbonLabel"

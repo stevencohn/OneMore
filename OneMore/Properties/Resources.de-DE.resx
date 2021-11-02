@@ -3562,4 +3562,11 @@ Aufgeschoben</value>
     <value>Tinte entfernen</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
+    <value>Schlagwörter entfernen</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
+    <value>Entfernen Sie Tags, die nicht mit Erinnerungen verknüpft sind</value>
+  </data>
 </root>

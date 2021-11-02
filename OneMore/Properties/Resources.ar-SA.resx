@@ -3576,4 +3576,11 @@ ISO-code then comma then language name</comment>
     <value>إزالة الحبر</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
+    <value>إزالة العلامات</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
+    <value>إزالة العلامات غير المرتبطة بالتذكيرات</value>
+  </data>
 </root>
