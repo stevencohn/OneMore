@@ -182,7 +182,8 @@ namespace River.OneMoreAddIn.Commands
 			var match = Regex.Match(link, @"page-id=({[^}]+?})");
 			var linkId = match.Success ? match.Groups[1].Value : string.Empty;
 
-			var map = page.MergeQuickStyles(source);
+			var tagmap = page.MergeTagDefs(source);
+			var quickmap = page.MergeQuickStyles(source);
 			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			var text = $"<a href=\"{link}\">Embedded from {source.Title}</a> | <a " +
@@ -199,7 +200,9 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var snippet in snippets)
 			{
-				page.ApplyStyleMapping(map, snippet);
+				page.ApplyStyleMapping(quickmap, snippet);
+				page.ApplyTagDefMapping(tagmap, snippet);
+
 				cell.Root.Add(snippet);
 			}
 		}
@@ -269,6 +272,9 @@ namespace River.OneMoreAddIn.Commands
 					table.SetColumnWidth(0, width == 0 ? 500 : width);
 				}
 
+
+				System.Diagnostics.Debugger.Launch();
+
 				FillCell(table[0][0], source.Snippets, source.Page);
 
 				page.AddNextParagraph(new Paragraph(
@@ -276,6 +282,7 @@ namespace River.OneMoreAddIn.Commands
 					table.Root
 					));
 
+				logger.WriteLine(page.Root);
 				await one.Update(page);
 			}
 		}
