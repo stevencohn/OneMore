@@ -323,17 +323,21 @@ namespace River.OneMoreAddIn
 					continue;
 				}
 
-				// special case to avoid collisions between Edit\Colorize and Colorize
-				if (id.Value == "ribEditMenu" && ccommands.Keys.Contains("ribColorizeMenu"))
-				{
-					var sub = item.Elements()
-						.FirstOrDefault(e => e.Attribute("id")?.Value == "ribColorizeMenu");
+				// special case to avoid collisions between a top menu and its submenu, such as
+				// Edit/Colorize and Colorize both chosen; in this case the submenu, Colorize,
+				// will be placed as an item in the context menu but removed from the copy of
+				// Edit menu in the context menu...
 
-					if (sub != null)
+				if (id.Value == "ribEditMenu")
+				{
+					if (ccommands.Keys.Contains("ribColorizeMenu"))
 					{
-						// allows top level context menu Colorize submenu
-						// but removes the context menu Edit\Colorize submenu
-						sub.Remove();
+						item.Elements().Where(e => e.Attribute("id")?.Value == "ribColorizeMenu").Remove();
+					}
+
+					if (ccommands.Keys.Contains("ribProofingMenu"))
+					{
+						item.Elements().Where(e => e.Attribute("id")?.Value == "ribProofingMenu").Remove();
 					}
 				}
 
