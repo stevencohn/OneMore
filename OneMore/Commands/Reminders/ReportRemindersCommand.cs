@@ -109,11 +109,15 @@ namespace River.OneMoreAddIn.Commands
 					new Paragraph(string.Empty)
 					);
 
+				// for some Github cloners, multiline items in the Resx file are delimeted
+				// wth only CR instead of NLCR so allow for any possibility
+				var delims = new[] { Environment.NewLine, "\r", "\n" };
+
 				priorities = Resx.RemindDialog_priorityBox_Text
-					.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+					.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
 				statuses = Resx.RemindDialog_statusBox_Text
-					.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+					.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
 				if (active.Any())
 				{
