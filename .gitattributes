@@ -1,1 +1,2 @@
 *.txt eol=crlf
+*.resx eol=crlf
