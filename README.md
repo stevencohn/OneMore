@@ -246,8 +246,10 @@ effectively perform an _upgrade_. This is the preferred method and can be done i
 
 1. Open the OneMore About dialog and click Check for updates. If there is a new version available,
 you will be given the option of upgrading. OneNote will be shut down to perform the upgrade.
-2. Download the OneMore installer and run it. There is no need to uninstall the previous version;
-the new installer will simply overwrite the old files and _upgrade_ OneMore.
+2. Or, download the OneMore installer and run it. There is no need to uninstall the previous version;
+the new installer will simply overwrite the old files and _upgrade_ OneMore. Note that when you
+download the installer, you will need to unblock it by opening its Properties dialog and clicking
+the _Unblock_ checkbox.
 
 ### How to Install OneNote
 
