@@ -239,6 +239,16 @@ Tested recently with:
 5. Run OneNote and enjoy
 
 
+### How to Upgrade OneMore
+
+The OneMore installer is built such that it can be installed on top of an older version and will
+effectively perform an _upgrade_. This is the preferred method and can be done in one of two ways:
+
+1. Open the OneMore About dialog and click Check for updates. If there is a new version available,
+you will be given the option of upgrading. OneNote will be shut down to perform the upgrade.
+2. Download the OneMore installer and run it. There is no need to uninstall the previous version;
+the new installer will simply overwrite the old files and _upgrade_ OneMore.
+
 ### How to Install OneNote
 
 Microsoft has been pushing people to use the OneNote app and OneNote online, which suck in my opinion, and have removed OneNote from the Office 2019 installer. But you can still install it after installing Office or even install it standalone!
