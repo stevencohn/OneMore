@@ -318,7 +318,9 @@ namespace River.OneMoreAddIn
 			}
 
 			// count pages so we can update countCallback and continue
-			var total = container.Descendants(ns + "Page").Count();
+			var total = container.Descendants(ns + "Page")
+				.Count(e => e.Attribute("isInRecycleBin") == null);
+
 			if (total > 0)
 			{
 				if (countCallback != null)
@@ -359,16 +361,17 @@ namespace River.OneMoreAddIn
 					var name = element.Attribute("name").Value;
 					var link = GetHyperlink(ID, string.Empty);
 					var match = pageEx.Match(link);
-					if (match.Success)
+					var hyperId = match.Groups[1].Value;
+
+					if (match.Success && !hyperlinks.ContainsKey(hyperId))
 					{
 						//logger.WriteLine($"MAP path:{path} fullpath:{full} name:{name}");
-
-						hyperlinks.Add(match.Groups[1].Value,
+						hyperlinks.Add(hyperId,
 							new HyperlinkInfo
 							{
 								PageID = ID,
 								SectionID = null,
-								HyperID = match.Groups[1].Value,
+								HyperID = hyperId,
 								Name = name,
 								Path = path,
 								FullPath = full,
@@ -384,6 +387,13 @@ namespace River.OneMoreAddIn
 			{
 				foreach (var element in root.Elements())
 				{
+					if (element.Attribute("isRecycleBin") != null ||
+						element.Attribute("isInRecycleBin") != null)
+					{
+						//logger.WriteLine("MAP skip recycle bin");
+						continue;
+					}
+
 					if (element.Name.LocalName == "Notebooks" ||
 						element.Name.LocalName == "UnfiledNotes")
 					{
