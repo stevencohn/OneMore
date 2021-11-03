@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			using (var writer = new StreamWriter(script, false))
 			{
 				writer.WriteLine("taskkill /im ONENOTE.exe");
-				writer.WriteLine($"start /wait msiexec /x{productCode}");
+				//writer.WriteLine($"start /wait msiexec /x{productCode}");
 				writer.WriteLine(msi);
 			}
 
