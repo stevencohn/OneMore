@@ -18,16 +18,18 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features (137)
+## Features (139)
 
-[Clean commands](../../wiki/Clean-Commands) (9)
+[Clean commands](../../wiki/Clean-Commands) (11)
 
 * Change spacing between sentences to one or two spaces
 * Clear background color and reset text color of selected text
 * Remove author/citation information from paragraphs
 * Remove pasted screen clipping and URL citation lines from page
 * Remove empty headers and "extra" empty lines between paragraphs
+* Remove ink annotations from the current page
 * Remove spacing between paragraphs and headings
+* Remove tags from the current page, those not associated with reminders
 * Show/Hide the page date and time stamps under the title on page or all pages in section
 * Trim leading whitespace from selected text
 * Trim trailing whitespace from selected text
