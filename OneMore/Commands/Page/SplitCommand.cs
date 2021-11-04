@@ -55,9 +55,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task SplitPage(bool byHeading, int tagSymbol)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
 			var headers = GetHeaders(byHeading, tagSymbol);
 
 			if (headers.Count == 0)
