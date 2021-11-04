@@ -55,6 +55,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task SplitPage(bool byHeading, int tagSymbol)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
 			var headers = GetHeaders(byHeading, tagSymbol);
 
 			if (headers.Count == 0)
@@ -141,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// find all H1 headings
 				headers = page.GetHeadings(one)
-					.Where(h => h.Level == 0)
+					.Where(h => h.Level == 1)
 					.Select(h => new Heading
 					{
 						Root = h.Root,
