@@ -5091,6 +5091,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fit Grid to Text.
+        /// </summary>
+        internal static string ribFitGridButton_Label {
+            get {
+                return ResourceManager.GetString("ribFitGridButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Icon to Page Title.
         /// </summary>
         internal static string ribFlagTitleButton_Label {

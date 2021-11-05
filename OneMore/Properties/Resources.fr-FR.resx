@@ -3614,4 +3614,8 @@ Un jour
     <value>La page ne contient pas de texte de paragraphe normal</value>
     <comment>message</comment>
   </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Ajuster la grille au texte</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

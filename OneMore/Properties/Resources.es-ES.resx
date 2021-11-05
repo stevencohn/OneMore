@@ -3620,4 +3620,8 @@ Diferido</value>
     <value>La página no contiene texto de párrafo regular</value>
     <comment>message</comment>
   </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Ajustar cuadrícula al texto</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

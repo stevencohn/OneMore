@@ -3619,4 +3619,8 @@ ISO-code then comma then language name</comment>
     <value>الصفحة لا تحتوي على نص فقرة عادي</value>
     <comment>message</comment>
   </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>احتواء الشبكة على النص</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

@@ -3605,4 +3605,8 @@ Aufgeschoben</value>
     <value>Seite enthält keinen regulären Absatztext</value>
     <comment>message</comment>
   </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Raster an Text anpassen</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

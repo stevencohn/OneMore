@@ -291,7 +291,7 @@
               <button
                 id="ribFitGridButton"
                 imageMso="SizeToGridOutlook"
-                label="Fit Grid to Text"
+                getLabel="GetRibbonLabel"
                 onAction="FitGridToTextCmd"/>
               <button
                 id="ribMergeButton"

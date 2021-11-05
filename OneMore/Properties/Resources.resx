@@ -3659,4 +3659,8 @@ Deferred</value>
     <value>Page contains no regular paragraph text</value>
     <comment>message</comment>
   </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Fit Grid to Text</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

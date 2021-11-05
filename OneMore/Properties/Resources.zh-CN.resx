@@ -3611,4 +3611,8 @@ OneNote 文件 (*.one)</value>
     <value>页面不包含常规段落文本</value>
     <comment>message</comment>
   </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>使网格适合文本</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

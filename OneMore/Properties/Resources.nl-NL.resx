@@ -3620,4 +3620,8 @@ twee uur
     <value>Pagina bevat geen gewone alineatekst</value>
     <comment>message</comment>
   </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Raster aanpassen aan tekst</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
