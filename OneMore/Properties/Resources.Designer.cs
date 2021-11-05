@@ -2130,6 +2130,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically adjust grid to most common font size.
+        /// </summary>
+        internal static string FitGridToTextDialog_autoButton_Text {
+            get {
+                return ResourceManager.GetString("FitGridToTextDialog_autoButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize grid size.
+        /// </summary>
+        internal static string FitGridToTextDialog_customButton_Text {
+            get {
+                return ResourceManager.GetString("FitGridToTextDialog_customButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommended size for {0}pt font is {1}.
+        /// </summary>
+        internal static string FitGridToTextDialog_recommendation {
+            get {
+                return ResourceManager.GetString("FitGridToTextDialog_recommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        internal static string FitGridToTextDialog_sizeLabel_Text {
+            get {
+                return ResourceManager.GetString("FitGridToTextDialog_sizeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fit Grid to Text.
+        /// </summary>
+        internal static string FitGridToTextDialog_Text {
+            get {
+                return ResourceManager.GetString("FitGridToTextDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Flag {
