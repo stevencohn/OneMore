@@ -2130,6 +2130,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable grid lines before using this command.
+        /// </summary>
+        internal static string FitGridToTextCommand_noGrid {
+            get {
+                return ResourceManager.GetString("FitGridToTextCommand_noGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page contains no regular paragraph text.
+        /// </summary>
+        internal static string FitGridToTextCommand_noText {
+            get {
+                return ResourceManager.GetString("FitGridToTextCommand_noText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatically adjust grid to most common font size.
         /// </summary>
         internal static string FitGridToTextDialog_autoButton_Text {

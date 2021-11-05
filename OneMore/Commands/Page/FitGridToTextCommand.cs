@@ -33,14 +33,14 @@ namespace River.OneMoreAddIn.Commands
 
 				if (rule == null)
 				{
-					UIHelper.ShowMessage("Enable grid lines before using this command");
+					UIHelper.ShowMessage(Resx.FitGridToTextCommand_noGrid);
 					return;
 				}
 
 				var quickStyles = page.GetQuickStyles().Where(s => s.Name == "p");
 				if (!quickStyles.Any())
 				{
-					UIHelper.ShowMessage("Page contains no regular paragraph text");
+					UIHelper.ShowMessage(Resx.FitGridToTextCommand_noText);
 					return;
 				}
 
