@@ -4,6 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Styles;
+	using System.Drawing;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -23,37 +25,60 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic))
 			{
-                var rules = page.Root.Elements(ns + "RuleLines")
-                    .FirstOrDefault(e => e.Attribute("visible")?.Value == "true");
+				var rules = page.Root.Elements(ns + "RuleLines")
+					.FirstOrDefault(e => e.Attribute("visible")?.Value == "true");
 
-                if (rules == null)
+				if (rules == null)
 				{
-                    UIHelper.ShowMessage("Enable grid lines before using this command");
-                    return;
+					UIHelper.ShowMessage("Enable grid lines before using this command");
+					return;
 				}
 
-                var styles = page.GetQuickStyles().Where(s => s.Name == "p");
-                var pindexes = styles.Select(s => s.Index.ToString());
+				var styles = page.GetQuickStyles().Where(s => s.Name == "p");
+				var pindexes = styles.Select(s => s.Index.ToString());
 
-                var common = page.Root.Descendants(ns + "OE")
-                    .Where(e => pindexes.Contains(e.Attribute("index").Value))
-                    .Select(e => new
-                    {
-                        Index = e.Attribute("index").Value,
-                        Css = e.Attribute("style")?.Value
-                    })
-                    .GroupBy(o => o.Index)
-                    .Select(group => new
-                    {
-                        Index = group.Key,
-                        Css = group.Select(g => g.Css),
-                        Count = group.Count()
-                    })
-                    .OrderByDescending(g => g.Count)
-                    .Take(1);
+				var common = page.Root.Descendants(ns + "OE")
+					.Where(e => pindexes.Contains(e.Attribute("index").Value))
+					.Select(e => new
+					{
+						Index = e.Attribute("index").Value,
+						Css = e.Attribute("style")?.Value
+					})
+					.GroupBy(o => o.Index)
+					.Select(group => new
+					{
+						Index = group.Key,
+						Css = group.Select(g => g.Css),
+						Count = group.Count()
+					})
+					.OrderByDescending(g => g.Count)
+					.Take(1);
 
+				Style style = null;
+				var height = CalculateLineHeight(style);
 
 				await one.Update(page);
+			}
+		}
+
+
+		private double CalculateLineHeight(Style style)
+		{
+			using (var image = new Bitmap(1, 1))
+			{
+				using (var g = Graphics.FromImage(image))
+				{
+					var fontSize = float.Parse(style.FontSize);
+					using (var font = new Font(style.FontFamily, fontSize, FontStyle.Regular))
+					{
+						// the height of a single line is apparently greater than
+						// half of two lines! so use difference...
+						var size1 = g.MeasureString("A", font);
+						var size2 = g.MeasureString("A\nA", font);
+						var linespace = (size1.Height * 2) - size2.Height;
+						return (size1.Height - linespace) / 2;
+					}
+				}
 			}
 		}
 	}
