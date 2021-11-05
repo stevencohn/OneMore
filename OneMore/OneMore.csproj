@@ -264,6 +264,7 @@
     <Compile Include="Commands\File\ImportWebDialog.Designer.cs">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Page\FitGridToTextCommand.cs" />
     <Compile Include="Commands\References\BiLinkCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageProxy.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
