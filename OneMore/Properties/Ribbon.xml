@@ -289,6 +289,11 @@
                 getLabel="GetRibbonLabel"
                 onAction="RestoreCollapsedCmd"/>
               <button
+                id="ribFitGridButton"
+                imageMso="SizeToGridOutlook"
+                getLabel="GetRibbonLabel"
+                onAction="FitGridToTextCmd"/>
+              <button
                 id="ribMergeButton"
                 imageMso="CompareAndCombine"
                 getLabel="GetRibbonLabel"

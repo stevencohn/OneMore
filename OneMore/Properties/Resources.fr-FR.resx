@@ -3586,4 +3586,36 @@ Un jour
     <value>Diagnostic OneMore</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
+    <value>Ajuster automatiquement la grille à la taille de police la plus courante</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
+    <value>Personnaliser la taille de la grille</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
+    <value>La taille recommandée pour la {0}police pt est {1}</value>
+    <comment>text box</comment>
+  </data>
+  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Taille</value>
+    <comment>label</comment>
+  </data>
+  <data name="FitGridToTextDialog_Text" xml:space="preserve">
+    <value>Ajuster la grille au texte</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
+    <value>Activer les lignes de quadrillage avant d'utiliser cette commande</value>
+    <comment>message</comment>
+  </data>
+  <data name="FitGridToTextCommand_noText" xml:space="preserve">
+    <value>La page ne contient pas de texte de paragraphe normal</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Ajuster la grille au texte</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

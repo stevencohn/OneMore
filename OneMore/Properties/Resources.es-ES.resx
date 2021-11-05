@@ -3592,4 +3592,36 @@ Diferido</value>
     <value>Diagnóstico OneMore</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
+    <value>Ajusta automáticamente la cuadrícula al tamaño de fuente más común</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
+    <value>Personalizar el tamaño de la cuadrícula</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
+    <value>El tamaño recomendado para la fuente de {0} pt es {1}.</value>
+    <comment>text box</comment>
+  </data>
+  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Tamaño</value>
+    <comment>label</comment>
+  </data>
+  <data name="FitGridToTextDialog_Text" xml:space="preserve">
+    <value>Ajustar cuadrícula al texto</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
+    <value>Habilite las líneas de la cuadrícula antes de usar este comando</value>
+    <comment>message</comment>
+  </data>
+  <data name="FitGridToTextCommand_noText" xml:space="preserve">
+    <value>La página no contiene texto de párrafo regular</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Ajustar cuadrícula al texto</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

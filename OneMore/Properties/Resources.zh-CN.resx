@@ -3583,4 +3583,36 @@ OneNote 文件 (*.one)</value>
     <value>OneMore诊断</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
+    <value>自动将网格调整为最常见的字体大小</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
+    <value>自定义网格大小</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
+    <value>{0}pt 字体的推荐大小为 {1}</value>
+    <comment>text box</comment>
+  </data>
+  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
+    <value>尺寸</value>
+    <comment>label</comment>
+  </data>
+  <data name="FitGridToTextDialog_Text" xml:space="preserve">
+    <value>使网格适合文本</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
+    <value>使用此命令前启用网格线</value>
+    <comment>message</comment>
+  </data>
+  <data name="FitGridToTextCommand_noText" xml:space="preserve">
+    <value>页面不包含常规段落文本</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>使网格适合文本</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

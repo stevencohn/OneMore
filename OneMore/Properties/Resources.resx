@@ -3631,4 +3631,36 @@ Deferred</value>
     <value>OneMore Diagnostics</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
+    <value>Automatically adjust grid to most common font size</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
+    <value>Customize grid size</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
+    <value>Recommended size for {0}pt font is {1}</value>
+    <comment>text box</comment>
+  </data>
+  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Size</value>
+    <comment>label</comment>
+  </data>
+  <data name="FitGridToTextDialog_Text" xml:space="preserve">
+    <value>Fit Grid to Text</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
+    <value>Enable grid lines before using this command</value>
+    <comment>message</comment>
+  </data>
+  <data name="FitGridToTextCommand_noText" xml:space="preserve">
+    <value>Page contains no regular paragraph text</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Fit Grid to Text</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

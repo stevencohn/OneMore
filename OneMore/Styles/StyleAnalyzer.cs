@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn.Styles
 				properties.Add(CollectFromParagraph(element));
 			}
 
-			if (id != null)
+			if (id != null && !catalog.ContainsKey(id))
 			{
 				catalog.Add(id, properties);
 			}

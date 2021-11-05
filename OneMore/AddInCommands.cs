@@ -121,6 +121,9 @@ namespace River.OneMoreAddIn
 		public async Task FinishBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("link");
 
+		public async Task FitGridToTextCmd(IRibbonControl control)
+			=> await factory.Run<FitGridToTextCommand>();
+
 		public async Task GetImagesCmd(IRibbonControl control)
 			=> await factory.Run<GetImagesCommand>(true);
 

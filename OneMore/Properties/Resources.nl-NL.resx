@@ -3592,4 +3592,36 @@ twee uur
     <value>OneMore Diagnostiek</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
+    <value>Pas het raster automatisch aan de meest voorkomende lettergrootte aan</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
+    <value>Pas de rastergrootte aan</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
+    <value>Aanbevolen grootte voor {0}pt-lettertype is {1}</value>
+    <comment>text box</comment>
+  </data>
+  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Maat</value>
+    <comment>label</comment>
+  </data>
+  <data name="FitGridToTextDialog_Text" xml:space="preserve">
+    <value>Raster aanpassen aan tekst</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
+    <value>Rasterlijnen inschakelen voordat u deze opdracht gebruikt</value>
+    <comment>message</comment>
+  </data>
+  <data name="FitGridToTextCommand_noText" xml:space="preserve">
+    <value>Pagina bevat geen gewone alineatekst</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Raster aanpassen aan tekst</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

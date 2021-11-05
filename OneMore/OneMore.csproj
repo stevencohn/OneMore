@@ -264,6 +264,13 @@
     <Compile Include="Commands\File\ImportWebDialog.Designer.cs">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Page\FitGridToTextCommand.cs" />
+    <Compile Include="Commands\Page\FitGridToTextDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Page\FitGridToTextDialog.Designer.cs">
+      <DependentUpon>FitGridToTextDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\References\BiLinkCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageProxy.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
@@ -981,6 +988,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Page\ArrangeContainersDialog.resx">
       <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Page\FitGridToTextDialog.resx">
+      <DependentUpon>FitGridToTextDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\LinkDialog.resx">
       <DependentUpon>LinkDialog.cs</DependentUpon>

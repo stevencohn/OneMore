@@ -3577,4 +3577,36 @@ Aufgeschoben</value>
     <value>OneMore-Diagnose</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
+    <value>Raster automatisch an die gängigste Schriftgröße anpassen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
+    <value>Rastergröße anpassen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
+    <value>Empfohlene Größe für {0}pt-Schriftart ist {1}</value>
+    <comment>text box</comment>
+  </data>
+  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Größe</value>
+    <comment>label</comment>
+  </data>
+  <data name="FitGridToTextDialog_Text" xml:space="preserve">
+    <value>Raster an Text anpassen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
+    <value>Aktivieren Sie Rasterlinien, bevor Sie diesen Befehl verwenden</value>
+    <comment>message</comment>
+  </data>
+  <data name="FitGridToTextCommand_noText" xml:space="preserve">
+    <value>Seite enthält keinen regulären Absatztext</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Raster an Text anpassen</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

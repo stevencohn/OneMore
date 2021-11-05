@@ -3591,4 +3591,36 @@ ISO-code then comma then language name</comment>
     <value>تشخيص واحد أكثر</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
+    <value>ضبط الشبكة تلقائيًا على حجم الخط الأكثر شيوعًا</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
+    <value>تخصيص حجم الشبكة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
+    <value>الحجم الموصى به لخط {0} هو {1}</value>
+    <comment>text box</comment>
+  </data>
+  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
+    <value>مقاس</value>
+    <comment>label</comment>
+  </data>
+  <data name="FitGridToTextDialog_Text" xml:space="preserve">
+    <value>احتواء الشبكة على النص</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
+    <value>قم بتمكين خطوط الشبكة قبل استخدام هذا الأمر</value>
+    <comment>message</comment>
+  </data>
+  <data name="FitGridToTextCommand_noText" xml:space="preserve">
+    <value>الصفحة لا تحتوي على نص فقرة عادي</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>احتواء الشبكة على النص</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
