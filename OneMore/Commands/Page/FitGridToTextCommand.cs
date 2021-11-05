@@ -82,6 +82,13 @@ namespace River.OneMoreAddIn.Commands
 						if (dialog.ShowDialog(owner) == System.Windows.Forms.DialogResult.OK)
 						{
 							rule.Attribute("spacing").Value = dialog.Spacing.ToString();
+
+							var vertical = rule.Parent.Element(ns + "Vertical");
+							if (vertical != null)
+							{
+								vertical.Attribute("spacing").Value = dialog.Spacing.ToString();
+							}
+
 							await one.Update(page);
 						}
 					}
