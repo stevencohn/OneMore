@@ -104,7 +104,11 @@ namespace River.OneMoreAddIn.Commands
 						var size1 = g.MeasureString("A", font);
 						var size2 = g.MeasureString("A\nA", font);
 						var linespace = (size1.Height * 2) - size2.Height;
-						return (size1.Height - linespace) / 2;
+
+						// (g.DpiY / 144) means this will work for 100% desktop scaling
+						// and for %150 desktop scaling...
+
+						return (size1.Height - linespace) / (g.DpiY / 144) / 2;
 					}
 				}
 			}
