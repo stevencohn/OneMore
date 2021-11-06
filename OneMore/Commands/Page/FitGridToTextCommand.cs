@@ -60,8 +60,7 @@ namespace River.OneMoreAddIn.Commands
 					.Select(group => new
 					{
 						group.Key.Index,
-						Element = group.Select(g => g.Element).First(),
-						Css = group.Select(g => g.Css).First(),
+						group.First().Element,
 						Count = group.Count()
 					})
 					// grab the most commonly used; if there are two equally
