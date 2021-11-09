@@ -118,7 +118,10 @@ Begin
         Write-Host "... building x$bitness MSI" -ForegroundColor Yellow
 
         # output file cannot exist before build
-        Remove-Item .\Debug\*.* -Force -Confirm:$false
+        if (Test-Path .\Debug\*)
+        {
+            Remove-Item .\Debug\*.* -Force -Confirm:$false
+        }
 
         # build
         . $devenv .\OneMoreSetup.vdproj /build "Debug|x$bitness" /project Setup /projectconfig Debug
