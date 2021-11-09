@@ -2986,7 +2986,7 @@ ISO-code then comma then language name</comment>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>جميع الملفات (* .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml | ملفات Word (* .doc </value>
+    <value>جميع الملفات (* .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. doc؛ *. pptx؛ * ppt؛ *. md؛ *. one؛ *. xml </value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
@@ -3622,5 +3622,9 @@ ISO-code then comma then language name</comment>
   <data name="ribFitGridButton_Label" xml:space="preserve">
     <value>احتواء الشبكة على النص</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
+    <value>لم يتم تثبيت منتج Office المطلوب</value>
+    <comment>label</comment>
   </data>
 </root>

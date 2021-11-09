@@ -2986,7 +2986,7 @@ Archivo de OneNote (* .one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Todos los archivos (* .docx; *. Pptx; *. Md; *. One; *. Xml) | * .docx; *. Pptx; *. Md; *. One; *. Xml | Archivos de Word (* .doc </value>
+    <value>Todos los archivos (* .docx; *. Pptx; *. Md; *. One; *. Xml) | * .docx; *. Doc; *. Pptx; * ppt; *. Md; *. One; *. Xml </value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
@@ -3623,5 +3623,9 @@ Diferido</value>
   <data name="ribFitGridButton_Label" xml:space="preserve">
     <value>Ajustar cuadrícula al texto</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
+    <value>El producto de Office requerido no está instalado</value>
+    <comment>label</comment>
   </data>
 </root>
