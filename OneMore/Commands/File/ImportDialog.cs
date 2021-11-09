@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using System;
 	using System.IO;
 	using System.Windows.Forms;
@@ -23,12 +24,21 @@ namespace River.OneMoreAddIn.Commands
 			Markdown
 		}
 
+
+		private readonly bool wordInstalled;
+		private readonly bool powerPointInstalled;
+
+
 		public ImportDialog()
 		{
 			InitializeComponent();
 
+			wordInstalled = Office.IsWordInstalled();
+			powerPointInstalled = Office.IsPowerPointInstalled();
+
 			wordGroup.Visible = false;
 			powerGroup.Visible = false;
+			notInstalledLabel.Visible = false;
 
 			browseButton.Top = pathBox.Top;
 			browseButton.Height = pathBox.Height;
@@ -48,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 					"powerAppendButton",
 					"powerCreateButton",
 					"powerSectionButton",
+					"notInstalledLabel",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -81,30 +92,36 @@ namespace River.OneMoreAddIn.Commands
 
 				switch (ext)
 				{
+					case ".doc":
 					case ".docx":
-						wordGroup.Visible = true;
+						wordGroup.Visible = wordInstalled;
 						powerGroup.Visible = false;
-						okButton.Enabled = true;
+						notInstalledLabel.Visible = !wordInstalled;
+						okButton.Enabled = wordInstalled;
 						Format = Formats.Word;
 						break;
 
 					case ".md":
 						wordGroup.Visible = false;
 						powerGroup.Visible = false;
+						notInstalledLabel.Visible = false;
 						okButton.Enabled = true;
 						Format = Formats.Markdown;
 						break;
 
+					case ".ppt":
 					case ".pptx":
 						wordGroup.Visible = false;
-						powerGroup.Visible = true;
-						okButton.Enabled = true;
+						powerGroup.Visible = powerPointInstalled;
+						notInstalledLabel.Visible = !powerPointInstalled;
+						okButton.Enabled = powerPointInstalled;
 						Format = Formats.PowerPoint;
 						break;
 
 					case ".xml":
 						wordGroup.Visible = false;
 						powerGroup.Visible = false;
+						notInstalledLabel.Visible = false;
 						okButton.Enabled = true;
 						Format = Formats.Xml;
 						break;
@@ -112,12 +129,14 @@ namespace River.OneMoreAddIn.Commands
 					case ".one":
 						wordGroup.Visible = false;
 						powerGroup.Visible = false;
+						notInstalledLabel.Visible = false;
 						okButton.Enabled = true;
 						Format = Formats.OneNote;
 						break;
 
 					default:
 						wordGroup.Visible = powerGroup.Visible = false;
+						notInstalledLabel.Visible = false;
 						okButton.Enabled = false;
 						break;
 				}

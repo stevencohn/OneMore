@@ -2978,7 +2978,7 @@ OneNote 文件 (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>所有文件 (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word 文件 (*.doc </value>
+    <value>所有文件 (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.md;*.one;*.xml </value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
@@ -3614,5 +3614,9 @@ OneNote 文件 (*.one)</value>
   <data name="ribFitGridButton_Label" xml:space="preserve">
     <value>使网格适合文本</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
+    <value>未安装所需的 Office 产品</value>
+    <comment>label</comment>
   </data>
 </root>

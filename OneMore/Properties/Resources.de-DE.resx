@@ -2972,7 +2972,7 @@ OneNote-Datei (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Alle Dateien (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.pptx;*.md;*.one;*.xml|Word-Dateien (*.doc </value>
+    <value>Alle Dateien (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.md;*.one;*.xml </value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
@@ -3608,5 +3608,9 @@ Aufgeschoben</value>
   <data name="ribFitGridButton_Label" xml:space="preserve">
     <value>Raster an Text anpassen</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
+    <value>Das erforderliche Office-Produkt ist nicht installiert</value>
+    <comment>label</comment>
   </data>
 </root>
