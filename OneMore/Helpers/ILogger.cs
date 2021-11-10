@@ -47,6 +47,12 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Starts a diagnostics section without headers; end with Stop()
+		/// </summary>
+		void StartDiagnostic();
+
+
+		/// <summary>
 		/// Writes a new text message without a newline, can be used to 
 		/// append text to an already-started log entry
 		/// </summary>

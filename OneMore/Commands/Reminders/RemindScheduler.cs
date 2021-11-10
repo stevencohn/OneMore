@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Text;
 
 
 	/// <summary>
@@ -125,10 +124,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		internal static void ReportDiagnostics(StringBuilder builder)
+		internal static void ReportDiagnostics(ILogger logger)
 		{
-			builder.AppendLine();
-			builder.AppendLine("RemindScheduler Cache");
+			logger.WriteLine();
+			logger.WriteLine("RemindScheduler Cache");
 			foreach (var reminder in cache.Values)
 			{
 				var subject = reminder.Subject;
@@ -137,7 +136,7 @@ namespace River.OneMoreAddIn.Commands
 				var next = reminder.ScheduledNotification.ToLocalTime().ToString();
 				var start = reminder.Start.ToLocalTime().ToString();
 				var due = reminder.Due.ToLocalTime().ToString();
-				builder.AppendLine($"{subject,-20} next:{next,-23} start:{start,-23} due:{due}");
+				logger.WriteLine($"- start:{start,22} due:{due,22} next:{next,22} \"{subject}\"");
 			}
 		}
 	}

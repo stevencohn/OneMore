@@ -6,8 +6,8 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Diagnostics;
 	using System.Reflection;
-	using System.Text;
 	using System.Threading.Tasks;
+
 
 	internal class DiagnosticsCommand : Command
 	{
@@ -20,74 +20,76 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var builder = new StringBuilder();
-			builder.AppendLine("Diagnostics.Execute()");
-			builder.AppendLine(new string('-', 80));
+			logger.StartDiagnostic();
+			logger.WriteLine("Diagnostics.Execute()");
+			logger.WriteLine(new string('-', 80));
 
 			var processes = Process.GetProcessesByName("ONENOTE");
 			var module = processes.Length > 0 ? processes[0].MainModule.FileName : "unknown";
 
-			builder.AppendLine($"ONENOTE...: {module}");
-			builder.AppendLine($"Addin path: {Assembly.GetExecutingAssembly().Location}");
-			builder.AppendLine($"Data path.: {PathFactory.GetAppDataPath()}");
-			builder.AppendLine($"Log path..: {logger.LogPath}");
-			builder.AppendLine();
+			logger.WriteLine($"ONENOTE...: {module}");
+			logger.WriteLine($"Addin path: {Assembly.GetExecutingAssembly().Location}");
+			logger.WriteLine($"Data path.: {PathFactory.GetAppDataPath()}");
+			logger.WriteLine($"Log path..: {logger.LogPath}");
+			logger.WriteLine();
 
 			using (var one = new OneNote())
 			{
 				var (backupFolder, defaultFolder, unfiledFolder) = one.GetFolders();
-				builder.AppendLine($"Default path: {defaultFolder}");
-				builder.AppendLine($"Backup  path: {backupFolder}");
-				builder.AppendLine($"Unfiled path: {unfiledFolder}");
-				builder.AppendLine();
+				logger.WriteLine($"Default path: {defaultFolder}");
+				logger.WriteLine($"Backup  path: {backupFolder}");
+				logger.WriteLine($"Unfiled path: {unfiledFolder}");
+				logger.WriteLine();
 
 				var info = one.GetPageInfo();
-				builder.AppendLine($"Page name: {info.Name}");
-				builder.AppendLine($"Page path: {info.Path}");
-				builder.AppendLine($"Page link: {info.Link}");
-				builder.AppendLine();
+				logger.WriteLine($"Page name: {info.Name}");
+				logger.WriteLine($"Page path: {info.Path}");
+				logger.WriteLine($"Page link: {info.Link}");
+				logger.WriteLine();
 
 				info = one.GetSectionInfo();
-				builder.AppendLine($"Section name: {info.Name}");
-				builder.AppendLine($"Section path: {info.Path}");
-				builder.AppendLine($"Section link: {info.Link}");
-				builder.AppendLine();
+				logger.WriteLine($"Section name: {info.Name}");
+				logger.WriteLine($"Section path: {info.Path}");
+				logger.WriteLine($"Section link: {info.Link}");
+				logger.WriteLine();
 
 				var notebook = one.GetNotebook();
 				var notebookId = one.CurrentNotebookId;
-				builder.AppendLine($"Notebook name: {notebook.Attribute("name").Value}");
-				builder.AppendLine($"Notebook link: {one.GetHyperlink(notebookId, null)}");
-				builder.AppendLine();
+				logger.WriteLine($"Notebook name: {notebook.Attribute("name").Value}");
+				logger.WriteLine($"Notebook link: {one.GetHyperlink(notebookId, null)}");
+				logger.WriteLine();
 
-				one.ReportWindowDiagnostics(builder);
+				one.ReportWindowDiagnostics(logger);
 
-				builder.AppendLine();
+				logger.WriteLine();
 
 				var page = one.GetPage();
 				var pageColor = page.GetPageColor(out _, out _);
 				var pageBrightness = pageColor.GetBrightness();
 
-				builder.AppendLine($"Page background: {pageColor.ToRGBHtml()}");
-				builder.AppendLine($"Page brightness: {pageBrightness}");
-				builder.AppendLine($"Page is dark...: {pageBrightness < 0.5}");
+				logger.WriteLine($"Page background: {pageColor.ToRGBHtml()}");
+				logger.WriteLine($"Page brightness: {pageBrightness}");
+				logger.WriteLine($"Page is dark...: {pageBrightness < 0.5}");
 
 				(float dpiX, float dpiY) = UIHelper.GetDpiValues();
-				builder.AppendLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
+				logger.WriteLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
 
 				(float scalingX, float scalingY) = UIHelper.GetScalingFactors();
-				builder.AppendLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
+				logger.WriteLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
 
-				RemindScheduler.ReportDiagnostics(builder);
+				RemindCommand.ReportDiagnostics(logger);
+				RemindScheduler.ReportDiagnostics(logger);
 
-				builder.AppendLine(new string('-', 80));
-
-				logger.WriteLine(builder.ToString());
+				logger.WriteLine(new string('-', 80));
 
 				using (var dialog = new DiagnosticsDialog(logger.LogPath))
 				{
 					dialog.ShowDialog(owner);
 				}
 			}
+
+			// turn headers back on
+			logger.End();
 
 			await Task.Yield();
 		}

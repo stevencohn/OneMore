@@ -253,5 +253,31 @@ namespace River.OneMoreAddIn.Commands
 
 			return true;
 		}
+
+
+		internal static void ReportDiagnostics(ILogger logger)
+		{
+			using (var one = new OneNote(out var page, out var ns))
+			{
+				logger.WriteLine();
+				logger.WriteLine($"Reminders on current page ({page.Title})");
+				var reminders = new ReminderSerializer().LoadReminders(page);
+
+				foreach (var reminder in reminders)
+				{
+					var subject = reminder.Subject;
+					if (subject.Length > 40) subject = subject.Substring(0, 38);
+					var start = reminder.Start.ToLocalTime().ToString();
+					var due = reminder.Due.ToLocalTime().ToString();
+
+					var anyOid = page.Root.Descendants(ns + "OE")
+						.Any(e => e.Attribute("objectID").Value == reminder.ObjectId);
+
+					var orphan = anyOid ? String.Empty : "(orphaned) ";
+
+					logger.WriteLine($"- start:{start,22} due:{due,22} {orphan}\"{subject}\"");
+				}
+			}
+		}
 	}
 }

@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn
 		private string preamble;
 		private bool isNewline;
 		private bool isDisposed;
+		private bool writeHeader;
 		private TextWriter writer;
 		private Stopwatch clock;
 
@@ -46,6 +47,7 @@ namespace River.OneMoreAddIn
 			writer = null;
 			isNewline = true;
 			isDisposed = false;
+			writeHeader = true;
 		}
 
 
@@ -148,6 +150,7 @@ namespace River.OneMoreAddIn
 		public void End()
 		{
 			preamble = string.Empty;
+			writeHeader = true;
 		}
 
 
@@ -185,6 +188,12 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public void StartDiagnostic()
+		{
+			writeHeader = false;
+		}
+
+
 		public void StopClock()
 		{
 			clock?.Stop();
@@ -195,7 +204,7 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline)
+				if (isNewline && writeHeader)
 				{
 					writer.Write(MakeHeader());
 				}
@@ -230,7 +239,7 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline)
+				if (isNewline && writeHeader)
 				{
 					writer.Write(MakeHeader());
 				}
@@ -254,7 +263,7 @@ namespace River.OneMoreAddIn
 		{
 			if (EnsureWriter())
 			{
-				if (isNewline)
+				if (isNewline && writeHeader)
 				{
 					writer.Write(MakeHeader());
 				}

@@ -1222,20 +1222,20 @@ namespace River.OneMoreAddIn
 		/// Special helper for DiagnosticsCommand
 		/// </summary>
 		/// <param name="builder"></param>
-		public void ReportWindowDiagnostics(StringBuilder builder)
+		public void ReportWindowDiagnostics(ILogger logger)
 		{
 			var win = onenote.Windows.CurrentWindow;
 
-			builder.AppendLine($"CurrentNotebookId: {win.CurrentNotebookId}");
-			builder.AppendLine($"CurrentPageId....: {win.CurrentPageId}");
-			builder.AppendLine($"CurrentSectionId.: {win.CurrentSectionId}");
-			builder.AppendLine($"CurrentSecGrpId..: {win.CurrentSectionGroupId}");
-			builder.AppendLine($"DockedLocation...: {win.DockedLocation}");
-			builder.AppendLine($"IsFullPageView...: {win.FullPageView}");
-			builder.AppendLine($"IsSideNote.......: {win.SideNote}");
-			builder.AppendLine();
+			logger.WriteLine($"CurrentNotebookId: {win.CurrentNotebookId}");
+			logger.WriteLine($"CurrentPageId....: {win.CurrentPageId}");
+			logger.WriteLine($"CurrentSectionId.: {win.CurrentSectionId}");
+			logger.WriteLine($"CurrentSecGrpId..: {win.CurrentSectionGroupId}");
+			logger.WriteLine($"DockedLocation...: {win.DockedLocation}");
+			logger.WriteLine($"IsFullPageView...: {win.FullPageView}");
+			logger.WriteLine($"IsSideNote.......: {win.SideNote}");
+			logger.WriteLine();
 
-			builder.AppendLine($"Windows ({onenote.Windows.Count})");
+			logger.WriteLine($"Windows ({onenote.Windows.Count})");
 
 			var e = onenote.Windows.GetEnumerator();
 			while (e.MoveNext())
@@ -1246,13 +1246,13 @@ namespace River.OneMoreAddIn
 					(IntPtr)window.WindowHandle,
 					out var processId);
 
-				builder.Append($"- window [processId:{processId}, threadId:{threadId}]");
-				builder.Append($" handle:{window.WindowHandle:x} active:{window.Active}");
+				logger.Write($"- window [pid:{processId}, tid:{threadId}]");
+				logger.Write($" handle:{window.WindowHandle:x} active:{window.Active}");
 
-				if (window.WindowHandle == onenote.Windows.CurrentWindow.WindowHandle)
-				{
-					builder.AppendLine(" (current)");
-				}
+				logger.WriteLine(
+					window.WindowHandle == onenote.Windows.CurrentWindow.WindowHandle
+					? " (current)"
+					: string.Empty);
 			}
 		}
 	}
