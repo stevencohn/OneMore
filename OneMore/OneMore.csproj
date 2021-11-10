@@ -1079,6 +1079,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tables\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Numbering\OutlineDialog.resx">
       <DependentUpon>OutlineDialog.cs</DependentUpon>
