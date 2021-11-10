@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Commands.Formulas;
+	using River.OneMoreAddIn.Commands.Tables.Formulas;
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;

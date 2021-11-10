@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Formulas
+namespace River.OneMoreAddIn.Commands.Tables.Formulas
 {
 
 	internal enum FormulaFormat

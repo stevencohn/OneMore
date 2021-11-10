@@ -371,7 +371,7 @@
     </Compile>
     <Compile Include="Commands\Favorites\ShowKeyboardShortcutsCommand.cs" />
     <Compile Include="Commands\References\InsertQRCommand.cs" />
-    <Compile Include="Commands\Formulas\Formula.cs" />
+    <Compile Include="Commands\Tables\Formulas\Formula.cs" />
     <Compile Include="Commands\References\RefreshFootnotesCommand.cs" />
     <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
@@ -508,22 +508,22 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Page\WordCountCommand.cs" />
     <Compile Include="Commands\Tables\TextToTableCommand.cs" />
-    <Compile Include="Commands\Formulas\Calculator.cs" />
-    <Compile Include="Commands\Formulas\FormulaException.cs" />
-    <Compile Include="Commands\Formulas\FunctionEventArgs.cs" />
-    <Compile Include="Commands\Formulas\MathFunctions.cs" />
-    <Compile Include="Commands\Formulas\SymbolEventArgs.cs" />
-    <Compile Include="Commands\Formulas\TextParser.cs" />
+    <Compile Include="Commands\Tables\Formulas\Calculator.cs" />
+    <Compile Include="Commands\Tables\Formulas\FormulaException.cs" />
+    <Compile Include="Commands\Tables\Formulas\FunctionEventArgs.cs" />
+    <Compile Include="Commands\Tables\Formulas\MathFunctions.cs" />
+    <Compile Include="Commands\Tables\Formulas\SymbolEventArgs.cs" />
+    <Compile Include="Commands\Tables\Formulas\TextParser.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
     <Compile Include="Commands\Clean\RemoveEmptyCommand.cs" />
     <Compile Include="Commands\Clean\ToggleDttmCommand.cs" />
-    <Compile Include="Commands\Formulas\Processor.cs" />
-    <Compile Include="Commands\Formulas\DeleteFormulaCommand.cs" />
-    <Compile Include="Commands\Formulas\FormulaEnums.cs" />
-    <Compile Include="Commands\Formulas\HighlightFormulaCommand.cs" />
-    <Compile Include="Commands\Formulas\RecalculateFormulaCommand.cs" />
+    <Compile Include="Commands\Tables\Formulas\Processor.cs" />
+    <Compile Include="Commands\Tables\DeleteFormulaCommand.cs" />
+    <Compile Include="Commands\Tables\Formulas\FormulaEnums.cs" />
+    <Compile Include="Commands\Tables\HighlightFormulaCommand.cs" />
+    <Compile Include="Commands\Tables\RecalculateFormulaCommand.cs" />
     <Compile Include="Commands\Images\CropImageCommand.cs" />
     <Compile Include="Commands\Numbering\NumberPagesCommand.cs" />
     <Compile Include="Commands\Numbering\NumberSectionsCommand.cs" />
@@ -547,7 +547,7 @@
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\References\FootnoteEditor.cs" />
     <Compile Include="Commands\References\FootnoteReference.cs" />
-    <Compile Include="Commands\Formulas\AddFormulaCommand.cs" />
+    <Compile Include="Commands\Tables\AddFormulaCommand.cs" />
     <Compile Include="Commands\Page\MergeCommand.cs" />
     <Compile Include="Commands\Styles\NewStyleCommand.cs" />
     <Compile Include="Commands\Images\ResizeImagesCommand.cs" />
@@ -563,10 +563,10 @@
     <Compile Include="Commands\File\ExportDialog.Designer.cs">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Formulas\FormulaDialog.cs">
+    <Compile Include="Commands\Tables\FormulaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Formulas\FormulaDialog.Designer.cs">
+    <Compile Include="Commands\Tables\FormulaDialog.Designer.cs">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Numbering\OutlineDialog.cs">
@@ -1077,7 +1077,7 @@
     <EmbeddedResource Include="Commands\File\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Formulas\FormulaDialog.resx">
+    <EmbeddedResource Include="Commands\Tables\FormulaDialog.resx">
       <DependentUpon>FormulaDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Numbering\OutlineDialog.resx">

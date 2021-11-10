@@ -5,20 +5,23 @@
  * Based on the C# Expression Evaluator by Jonathan Wood, 2010
  */
 
-namespace River.OneMoreAddIn.Commands.Formulas
+namespace River.OneMoreAddIn.Commands.Tables.Formulas
 {
 	using System;
+	using System.Collections.Generic;
 
 
 	/// <summary>
-	/// Arguments sent to the ProcessSymbol event handler
+	/// Arguments sent to the ProcessFunction event handler
 	/// </summary>
-	internal class SymbolEventArgs : EventArgs
+	internal class FunctionEventArgs : EventArgs
 	{
 		public string Name { get; set; }
 
+		public List<double> Parameters { get; set; }
+
 		public double Result { get; set; }
 
-		public SymbolStatus Status { get; set; }
+		public FunctionStatus Status { get; set; }
 	}
 }

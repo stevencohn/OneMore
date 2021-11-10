@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Commands.Formulas;
+	using River.OneMoreAddIn.Commands.Tables.Formulas;
 	using System;
 	using System.Drawing;
 	using System.Text.RegularExpressions;
