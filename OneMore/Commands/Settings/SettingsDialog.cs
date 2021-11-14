@@ -70,6 +70,15 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void InitializeLoad(object sender, EventArgs e)
+		{
+			// width and height will be correct at this point; otherwise,
+			// we would need to calculate them based on screen scaling
+			MinimumSize = new System.Drawing.Size(Width, Height);
+			FormBorderStyle = FormBorderStyle.Sizable;
+		}
+
+
 		public bool RestartNeeded => restart;
 
 

@@ -178,6 +178,7 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "OneMore Settings";
+			this.Load += new System.EventHandler(this.InitializeLoad);
 			this.buttonPanel.ResumeLayout(false);
 			this.editorPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
