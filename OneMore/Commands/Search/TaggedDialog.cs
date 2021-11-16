@@ -225,10 +225,6 @@ namespace River.OneMoreAddIn.Commands
 		// async event handlers should be be declared 'async void'
 		private async void Search(object sender, EventArgs e)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			checkAllLabel.Enabled = false;
 			clearAllLabel.Enabled = false;
 			resultTree.Nodes.Clear();
