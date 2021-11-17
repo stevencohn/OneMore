@@ -274,7 +274,7 @@ namespace River.OneMoreAddIn.Commands
 			var dead = new List<XElement>();
 			foreach (var meta in metas)
 			{
-				var content = meta.Attribute("content").Value.ToLower();
+				var content = meta.Attribute("content").Value;
 				if (string.IsNullOrEmpty(content))
 				{
 					// meta content may be empty because it's no longer used on a page;
@@ -283,7 +283,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					var tags = meta.Attribute("content").Value.ToLower()
+					var tags = content.ToLower()
 						.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries)
 						.Select(v => v.Trim())
 						.ToList();
