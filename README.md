@@ -200,7 +200,7 @@ questions and tips in a timely manner.
 
 Please consider a sponsorship or one-time donation, click here:
 
-   [![Sponsor](../../wiki/images/Sponsor.png)]((https://github.com/sponsors/stevencohn))
+   [![Sponsor](../../wiki/images/Sponsor.png)](https://github.com/sponsors/stevencohn)
 
 
 ### Minimum Prerequisites for Development
