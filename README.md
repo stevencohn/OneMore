@@ -198,8 +198,9 @@ appreciation that I humbly request that you consider a small donation to support
 of OneMore. In exchange, I pledge to continue listening with an open mind and to respond to your
 questions and tips in a timely manner.
 
-_Click here, click now, click often! >>_  
->  [![Donate](../../wiki/images/Donate.png)](https://paypal.me/stevenmcohn?locale.x=en_US)
+Please consider a sponsorship or one-time donation, click here:
+
+   [![Sponsor](../../wiki/images/Sponsor.png)](https://github.com/sponsors/stevencohn)
 
 
 ### Minimum Prerequisites for Development
