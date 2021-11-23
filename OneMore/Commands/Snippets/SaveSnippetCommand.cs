@@ -6,6 +6,8 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using WindowsInput;
+	using WindowsInput.Native;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 	using Win = System.Windows;
 
@@ -31,7 +33,10 @@ namespace River.OneMoreAddIn.Commands
 				// since the Hotkey message loop is watching all input, explicitly setting
 				// focus on the OneNote main window provides a direct path for SendKeys
 				Native.SetForegroundWindow(one.WindowHandle);
-				SendKeys.SendWait("^(c)");
+
+				//SendKeys.SendWait("^(c)");
+				new InputSimulator().Keyboard
+					.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_C);
 
 				// SendWait can be very unpredictable so wait a little
 				await Task.Delay(200);
@@ -52,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new SaveSnippetDialog())
 			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				if (dialog.ShowDialog(Owner) != DialogResult.OK)
 				{
 					return;
 				}

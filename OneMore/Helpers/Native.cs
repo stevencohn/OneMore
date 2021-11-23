@@ -134,10 +134,18 @@ namespace River.OneMoreAddIn
 		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
 
 
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-iswindow
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool IsWindow(IntPtr hWnd);
+
+
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-loadcursora		
 		[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
 		public static extern IntPtr LoadCursor(IntPtr hInstance, int lpCursorName);
 
 
+		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setcursor
 		[DllImport("user32.dll", CharSet = CharSet.Auto)]
 		public static extern IntPtr SetCursor(IntPtr hCursor);
 
