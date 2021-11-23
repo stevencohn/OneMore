@@ -228,6 +228,7 @@ Tested recently with:
 #### Dependencies
 
 * [HtmlAgilityPack](https://www.nuget.org/packages/HtmlAgilityPack) - nuget, MIT license
+* [InputSimulator](https://github.com/michaelnoonan/inputsimulator) - nuget, MIT license
 * [MarkdownDeep](https://github.com/toptensoftware/markdowndeep) - DLL in external folder
 * [PuppeteerSharp](https://www.nuget.org/packages/PuppeteerSharp/) - nuget, MIT license
 
