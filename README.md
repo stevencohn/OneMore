@@ -228,7 +228,7 @@ Tested recently with:
 #### Dependencies
 
 * [HtmlAgilityPack](https://www.nuget.org/packages/HtmlAgilityPack) - nuget, MIT license
-   * Normalize HTML and non-conformant XML to standardized XML that can be consumed by XElement.Parse
+   * Normalize HTML and non-conformant XML to well-formed XML that can be consumed by XElement.Parse
 * [InputSimulator](https://github.com/michaelnoonan/inputsimulator) - nuget, MIT license
    * Replaces the use of SendKeys.Send, adding support for multilingual keyboards
 * [MarkdownDeep](https://github.com/toptensoftware/markdowndeep) - DLL in external folder
