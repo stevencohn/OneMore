@@ -2,7 +2,7 @@
 // Copyright © 2021 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
-namespace OneMoreProtocolHandler
+namespace OneMoreSetupActions
 {
 	using System;
 	using System.IO;
