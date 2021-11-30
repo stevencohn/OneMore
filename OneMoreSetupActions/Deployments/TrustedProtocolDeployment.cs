@@ -9,23 +9,22 @@ namespace OneMoreSetupActions
 	using System.Security.Principal;
 
 
-	internal class TrustedProtocolActions
+	internal class TrustedProtocolDeployment : Deployment
 	{
-		private readonly Logger logger;
-		private readonly Stepper stepper;
 
-
-		public TrustedProtocolActions(Logger logger, Stepper stepper)
+		public TrustedProtocolDeployment(Logger logger, Stepper stepper)
+			: base(logger, stepper)
 		{
-			this.logger = logger;
-			this.stepper = stepper;
 		}
 
 
 		//========================================================================================
 
-		public bool Register()
+		public override bool Install()
 		{
+			logger.WriteLine();
+			logger.WriteLine("TrustedProtocolDeployment.Install ---");
+
 			// Declares the onemore: protocol as trusted so OneNote doesn't show a security dialog
 
 			/*
@@ -181,9 +180,10 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
-		public bool Unregister()
+		public override bool Uninstall()
 		{
-			// trusted protocol...
+			logger.WriteLine();
+			logger.WriteLine("TrustedProtocolDeployment.Uninstall ---");
 
 			var sid = GetUserSid("unregistering trusted protocol");
 			using (var hive = Registry.Users.OpenSubKey(sid))

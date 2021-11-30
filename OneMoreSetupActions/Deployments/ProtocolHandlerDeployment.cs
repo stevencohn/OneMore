@@ -10,23 +10,22 @@ namespace OneMoreSetupActions
 	using System.Reflection;
 
 
-	internal class ProtocolHandlerActions
+	internal class ProtocolHandlerDeployment : Deployment
 	{
 		private const string ProtocolHandler = "OneMoreProtocolHandler.exe";
 
-		private readonly Logger logger;
-		private readonly Stepper stepper;
 
-
-		public ProtocolHandlerActions(Logger logger, Stepper stepper)
+		public ProtocolHandlerDeployment(Logger logger, Stepper stepper)
+			: base(logger, stepper)
 		{
-			this.logger = logger;
-			this.stepper = stepper;
 		}
 
 
-		public bool Register()
+		public override bool Install()
 		{
+			logger.WriteLine();
+			logger.WriteLine("ProtocolHandlerDeployment.Install ---");
+
 			/*
 			[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\onemore]
 			@="URL:OneMore Protocol Handler"
@@ -142,8 +141,11 @@ namespace OneMoreSetupActions
 		}
 
 
-		public bool Unregister()
+		public override bool Uninstall()
 		{
+			logger.WriteLine();
+			logger.WriteLine("ProtocolHandlerDeployment.Uninstall ---");
+
 			// protocol handler...
 			using (var hive = RegistryKey.OpenBaseKey(
 				RegistryHive.LocalMachine, RegistryView.Default))
