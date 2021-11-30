@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{200381E7-37C7-4B30-9F5E-81FA44BF83CC}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>OneMoreSetupActions</RootNamespace>
     <AssemblyName>OneMoreSetupActions</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -49,13 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Deployments\Deployment.cs" />
+    <Compile Include="Deployments\EdgeWebViewDeployment.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProtocolHandlerActions.cs" />
+    <Compile Include="Deployments\ProtocolHandlerDeployment.cs" />
     <Compile Include="RegistryHelper.cs" />
     <Compile Include="Stepper.cs" />
-    <Compile Include="TrustedProtocolActions.cs" />
+    <Compile Include="Deployments\TrustedProtocolDeployment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

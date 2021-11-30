@@ -6,7 +6,6 @@
 
 namespace OneMoreSetupActions
 {
-	using Microsoft.Win32;
 	using System;
 	using System.Security.Principal;
 
@@ -31,13 +30,38 @@ namespace OneMoreSetupActions
 			logger = new Logger("OneMoreSetup");
 			stepper = new Stepper();
 
+			ReportContext();
+
 			if (args[0] == "--install")
 			{
-				Environment.Exit(Register());
+				Environment.Exit(Install());
 			}
 			else if (args[0] == "--uninstall")
 			{
-				Environment.Exit(Unregister());
+				Environment.Exit(Uninstall());
+			}
+
+			// direct calls for testing...
+
+			else if (args[0] == "--install-handler")
+			{
+				var ok = new ProtocolHandlerDeployment(logger, stepper).Install();
+				Environment.Exit(ok ? SUCCESS : FAILURE);
+			}
+			else if (args[0] == "--install-trusted")
+			{
+				var ok = new TrustedProtocolDeployment(logger, stepper).Install();
+				Environment.Exit(ok ? SUCCESS : FAILURE);
+			}
+			else if (args[0] == "--install-edge")
+			{
+				var ok = new EdgeWebViewDeployment(logger, stepper).Install();
+				Environment.Exit(ok ? SUCCESS : FAILURE);
+			}
+			else if (args[0] == "--uninstall-edge")
+			{
+				var ok = new EdgeWebViewDeployment(logger, stepper).Uninstall();
+				Environment.Exit(ok ? SUCCESS : FAILURE);
 			}
 			else
 			{
@@ -47,31 +71,38 @@ namespace OneMoreSetupActions
 		}
 
 
-		static int Register()
+		static void ReportContext()
+		{
+			var sid = WindowsIdentity.GetCurrent().User.Value;
+			var username = new SecurityIdentifier(sid).Translate(typeof(NTAccount)).ToString();
+
+			var elevated = new WindowsPrincipal(
+				WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
+
+			logger.WriteLine($"OneMore installer running as user {username} ({sid}) {(elevated ? "elevated" : string.Empty)}");
+
+		}
+
+
+		static int Install()
 		{
 			// protocol handler...
 			// Registers this program as the handler for the onemore:// protocol
 
-			logger.WriteLine(string.Empty);
+			logger.WriteLine();
 			logger.WriteLine($"Register... version {AssemblyInfo.Version}");
 
 			try
 			{
-				var sid = WindowsIdentity.GetCurrent().User.Value;
-				var username = new SecurityIdentifier(sid).Translate(typeof(NTAccount)).ToString();
-
-				var elevated = new WindowsPrincipal(
-					WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
-
-				logger.WriteLine($"running as user {username} ({sid}) {(elevated ? "elevated" : string.Empty)}");
-
-				if (new ProtocolHandlerActions(logger, stepper).Register() &&
-					new TrustedProtocolActions(logger, stepper).Register())
+				if (new ProtocolHandlerDeployment(logger, stepper).Install() &&
+					new TrustedProtocolDeployment(logger, stepper).Install() &&
+					new EdgeWebViewDeployment(logger, stepper).Install())
 				{
 					logger.WriteLine("completed successfully");
 					return SUCCESS;
 				}
 
+				logger.WriteLine("completed suspiciously");
 				return SUCCESS;
 				//return FAILURE;
 			}
@@ -84,9 +115,9 @@ namespace OneMoreSetupActions
 		}
 
 
-		static int Unregister()
+		static int Uninstall()
 		{
-			logger.WriteLine(string.Empty);
+			logger.WriteLine();
 			logger.WriteLine($"Unregister... version {AssemblyInfo.Version}");
 
 			try
@@ -94,8 +125,8 @@ namespace OneMoreSetupActions
 				// unregister is more lenient than register...
 				// if it doesn't succeed, it still completely with SUCCESS
 
-				var ok1 = new ProtocolHandlerActions(logger, stepper).Unregister();
-				var ok2 = new TrustedProtocolActions(logger, stepper).Unregister();
+				var ok1 = new ProtocolHandlerDeployment(logger, stepper).Uninstall();
+				var ok2 = new TrustedProtocolDeployment(logger, stepper).Uninstall();
 
 				if (ok1 && ok2)
 				{

@@ -51,8 +51,15 @@ namespace OneMoreSetupActions
 		#endregion Lifecycle
 
 
+		public void WriteLine()
+		{
+			WriteLine(string.Empty);
+		}
+
+
 		public void WriteLine(string message)
 		{
+			Console.WriteLine(message);
 			writer.WriteLine(message);
 			writer.Flush();
 		}
@@ -60,7 +67,9 @@ namespace OneMoreSetupActions
 
 		public void WriteLine(Exception exc)
 		{
-			writer.WriteLine(FormatDetails(exc));
+			var msg = FormatDetails(exc);
+			Console.WriteLine(msg);
+			writer.WriteLine(msg);
 			writer.Flush();
 		}
 
