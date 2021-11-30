@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 			separator = AddIn.Culture.TextInfo.ListSeparator;
 			SelectedPages = new List<string>();
 
-			// disposed in Dispose()
+			// disposed in Designer.cs/Dispose()
 			one = new OneNote();
 		}
 
@@ -274,17 +274,27 @@ namespace River.OneMoreAddIn.Commands
 			var dead = new List<XElement>();
 			foreach (var meta in metas)
 			{
-				var tags = meta.Attribute("content").Value.ToLower()
-					.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries)
-					.Select(v => v.Trim())
-					.ToList();
-
-				if (tags.Count > 0)
+				var content = meta.Attribute("content").Value;
+				if (string.IsNullOrEmpty(content))
 				{
-					if ((excludedTags.Count > 0 && tags.Any(t => excludedTags.Contains(t))) ||
-						(includedTags.Count > 0 && !tags.Any(t => includedTags.Contains(t))))
+					// meta content may be empty because it's no longer used on a page;
+					// empty metas exist because page-level metas cannot be removed!
+					dead.Add(meta.Parent);
+				}
+				else
+				{
+					var tags = content.ToLower()
+						.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries)
+						.Select(v => v.Trim())
+						.ToList();
+
+					if (tags.Count > 0)
 					{
-						dead.Add(meta.Parent);
+						if ((excludedTags.Count > 0 && tags.Any(t => excludedTags.Contains(t))) ||
+							(includedTags.Count > 0 && !tags.Any(t => includedTags.Contains(t))))
+						{
+							dead.Add(meta.Parent);
+						}
 					}
 				}
 			}

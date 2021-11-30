@@ -39,6 +39,26 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Gets the main OneNote window
+		/// </summary>
+		public IWin32Window Owner
+		{
+			get
+			{
+				if (owner == null || !Native.IsWindow(owner.Handle))
+				{
+					using (var one = new OneNote())
+					{
+						owner = one.Window;
+					}
+				}
+
+				return owner;
+			}
+		}
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Settings used by CommandFactory
 

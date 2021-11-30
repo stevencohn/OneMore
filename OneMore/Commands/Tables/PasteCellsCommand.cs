@@ -8,8 +8,9 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using WindowsInput;
+	using WindowsInput.Native;
 	using Hap = HtmlAgilityPack;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 	using Win = System.Windows;
@@ -211,7 +212,10 @@ namespace River.OneMoreAddIn.Commands
 			// since the Hotkey message loop is watching all input, explicitly setting
 			// focus on the OneNote main window provides a direct path for SendKeys
 			Native.SetForegroundWindow(one.WindowHandle);
-			SendKeys.SendWait("^(v)");
+
+			//SendKeys.SendWait("^(v)");
+			new InputSimulator().Keyboard
+				.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
 
 			var page = one.GetPage(pageId);
 			one.DeleteHierarchy(pageId);

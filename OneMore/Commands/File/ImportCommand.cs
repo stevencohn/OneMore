@@ -4,18 +4,20 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using MarkdownDeep;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
-	using MarkdownDeep;
 	using System;
 	using System.Drawing;
 	using System.IO;
+	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using WindowsInput;
+	using WindowsInput.Native;
 	using Win = System.Windows;
-	using System.Text;
 
 	internal class ImportCommand : Command
 	{
@@ -349,7 +351,9 @@ namespace River.OneMoreAddIn.Commands
 					// both SetText and SendWait are very unpredictable so wait a little
 					await Task.Delay(200);
 
-					SendKeys.SendWait("^(v)");
+					//SendKeys.SendWait("^(v)");
+					new InputSimulator().Keyboard
+						.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
 				}
 			}
 			catch (Exception exc)

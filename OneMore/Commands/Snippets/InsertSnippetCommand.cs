@@ -5,7 +5,8 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Threading.Tasks;
-	using System.Windows.Forms;
+	using WindowsInput;
+	using WindowsInput.Native;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 	using Win = System.Windows;
 
@@ -47,7 +48,9 @@ namespace River.OneMoreAddIn.Commands
 			// both SetText and SendWait are very unpredictable so wait a little
 			await Task.Delay(200);
 
-			SendKeys.SendWait("^(v)");
+			//SendKeys.SendWait("^(v)");
+			new InputSimulator().Keyboard
+				.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
 		}
 	}
 }

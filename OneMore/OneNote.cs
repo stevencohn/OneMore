@@ -705,8 +705,8 @@ namespace River.OneMoreAddIn
 			var builder = new StringBuilder();
 			builder.Append($"/{info.Name}");
 
-			string id = pageId;
-			while (!string.IsNullOrEmpty(id = GetParent(id)))
+			var id = GetParent(pageId);
+			while (!string.IsNullOrEmpty(id))
 			{
 				onenote.GetHierarchy(id, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
 				var parent = XElement.Parse(xml);
@@ -723,6 +723,8 @@ namespace River.OneMoreAddIn
 				{
 					info.NotebookId = parent.Attribute("ID").Value;
 				}
+
+				id = GetParent(id);
 			}
 
 			info.Path = builder.ToString();
@@ -804,8 +806,8 @@ namespace River.OneMoreAddIn
 			var builder = new StringBuilder();
 			builder.Append($"/{info.Name}");
 
-			string id = CurrentSectionId;
-			while (!string.IsNullOrEmpty(id = GetParent(id)))
+			var id = GetParent(CurrentSectionId);
+			while (!string.IsNullOrEmpty(id))
 			{
 				onenote.GetHierarchy(id, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
 				var x = XElement.Parse(xml);
@@ -813,6 +815,8 @@ namespace River.OneMoreAddIn
 
 				if (n != null)
 					builder.Insert(0, $"/{n}");
+
+				id = GetParent(id);
 			}
 
 			info.Path = builder.ToString();
@@ -1028,7 +1032,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private class FilingCallback : IQuickFilingDialogCallback
+		private sealed class FilingCallback : IQuickFilingDialogCallback
 		{
 			private readonly SelectLocationCallback userCallback;
 

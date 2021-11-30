@@ -22,21 +22,29 @@ Begin
 
     function FindVisualStudio
     {
+        $0 = 'C:\Program Files\Microsoft Visual Studio\2022'
+        if (FindVS $0) { return $true }
+
         $0 = 'C:\Program Files (x86)\Microsoft Visual Studio\2019'
-        $script:devenv = Join-Path $0 'Enterprise\Common7\IDE\devenv.com'
+        return FindVS $0
+    }
+    function FindVS
+    {
+        param($vsroot)
+        $script:devenv = Join-Path $vsroot 'Enterprise\Common7\IDE\devenv.com'
 
         if (!(Test-Path $devenv))
         {
-            $script:devenv = Join-Path $0 'Professional\Common7\IDE\devenv.com'
+            $script:devenv = Join-Path $vsroot 'Professional\Common7\IDE\devenv.com'
         }
         if (!(Test-Path $devenv))
         {
-            $script:devenv = Join-Path $0 'Community\Common7\IDE\devenv.com'
+            $script:devenv = Join-Path $vsroot 'Community\Common7\IDE\devenv.com'
         }
 
         if (!(Test-Path $devenv))
         {
-            Write-Host 'devenv not found' -ForegroundColor Yellow
+            Write-Host "devenv not found in $vsroot" -ForegroundColor Yellow
             return $false
         }
 
