@@ -7,11 +7,16 @@
 namespace OneMoreSetupActions
 {
 	using System;
+	using System.Diagnostics;
+	using System.Runtime.InteropServices;
 	using System.Security.Principal;
 
 
 	class Program
 	{
+		[DllImport("user32.dll")]
+		static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
 		private const int SUCCESS = 0;
 		private const int FAILURE = 1;
 
@@ -21,6 +26,13 @@ namespace OneMoreSetupActions
 
 		static void Main(string[] args)
 		{
+			// hide this console window
+			// - This program needs to run as a console app so it blocks while the edge webview2
+			// - installer runs and completes. But we want to hide the window so the user can't
+			// - close it while the installer is running, leaving it in a bad state.
+			// - Can comment this out for debugging
+			ShowWindow(Process.GetCurrentProcess().MainWindowHandle, 0);
+
 			if (args.Length == 0 || string.IsNullOrEmpty(args[0]))
 			{
 				// nothing to do
