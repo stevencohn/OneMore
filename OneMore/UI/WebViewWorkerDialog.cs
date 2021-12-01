@@ -1,4 +1,7 @@
-﻿
+﻿//************************************************************************************************
+// Copyright © 2021 Steven M Cohn.  All rights reserved.
+//************************************************************************************************
+
 #pragma warning disable CS3001 // Argument type is not CLS-compliant
 
 namespace River.OneMoreAddIn.UI
@@ -57,36 +60,26 @@ namespace River.OneMoreAddIn.UI
 		// Form.Loaded
 		private async void StartWorkLoaded(object sender, EventArgs e)
 		{
-			Logger.Current.WriteLine("start, creating env");
-
-			var env = await CoreWebView2Environment.CreateAsync(null,
-				Path.Combine(PathFactory.GetAppDataPath(), Resx.ProgramName));
-
-			Logger.Current.WriteLine($"start, userdata = {env.UserDataFolder}");
-
 			try
 			{
+				var env = await CoreWebView2Environment.CreateAsync(null,
+					Path.Combine(PathFactory.GetAppDataPath(), Resx.ProgramName));
+
 				await webView.EnsureCoreWebView2Async(env);
+				await startup(webView);
 			}
 			catch (Exception exc)
 			{
 				Logger.Current.WriteLine(exc.Message, exc);
 			}
-
-			Logger.Current.WriteLine("start, running startup");
-			await startup(webView);
-
-			Logger.Current.WriteLine("start, done");
 		}
 
 
 		// WebView2.NavigationComplete
-		private async void WorkNavComplete(object sender, CoreWebView2NavigationCompletedEventArgs e)
+		private async void WorkNavComplete(
+			object sender, CoreWebView2NavigationCompletedEventArgs e)
 		{
-			Logger.Current.WriteLine("navcompleted, working...");
 			await work(webView);
-
-			Logger.Current.WriteLine("navcompleted, work done, closing");
 			Close();
 		}
 	}

@@ -38,9 +38,9 @@
 			this.webView.CreationProperties = null;
 			this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
 			this.webView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.webView.Location = new System.Drawing.Point(7, 7);
+			this.webView.Location = new System.Drawing.Point(10, 10);
 			this.webView.Name = "webView";
-			this.webView.Size = new System.Drawing.Size(387, 185);
+			this.webView.Size = new System.Drawing.Size(580, 278);
 			this.webView.TabIndex = 0;
 			this.webView.ZoomFactor = 1D;
 			this.webView.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.WorkNavComplete);
@@ -52,6 +52,7 @@
 			this.ClientSize = new System.Drawing.Size(600, 298);
 			this.Controls.Add(this.webView);
 			this.Name = "WebViewWorkerDialog";
+			this.Opacity = 0D;
 			this.Padding = new System.Windows.Forms.Padding(10);
 			this.Text = "WebViewWorkerDialog";
 			this.Load += new System.EventHandler(this.StartWorkLoaded);

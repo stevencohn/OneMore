@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Microsoft.Web.WebView2.Core;
-	using Microsoft.Web.WebView2.WinForms;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Drawing;
@@ -76,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			progress.SetMaximum(3);
+			progress.SetMaximum(6);
 			progress.SetMessage($"Importing {address}...");
 
 			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -88,19 +86,18 @@ namespace River.OneMoreAddIn.Commands
 				using (var form = new UI.WebViewWorkerDialog(
 					new UI.WebViewWorker(async (webview) =>
 					{
-						logger.WriteLine("startup-worker, navigating...");
+						progress.Increment();
 						webview.Source = new Uri(address);
 						await Task.Yield();
-						logger.WriteLine("startup-worker, done");
+						progress.Increment();
 						return true;
 					}),
 					new UI.WebViewWorker(async (webview) =>
 					{
-						logger.WriteLine("worker, sleeping...");
+						progress.Increment();
 						await Task.Delay(2000);
-						logger.WriteLine("worker, rendering pdf");
 						await webview.CoreWebView2.PrintToPdfAsync(pdfFile).ConfigureAwait(true);
-						logger.WriteLine("worker, pdf done");
+						progress.Increment();
 						return true;
 					})))
 				{
@@ -124,54 +121,60 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				logger.WriteLine("rendering images");
+
+				Page page = null;
 				using (var one = new OneNote())
 				{
-					var page = target == ImportWebTarget.Append
+					page = target == ImportWebTarget.Append
 						? one.GetPage()
 						: await CreatePage(one,
 							target == ImportWebTarget.ChildPage ? one.GetPage() : null, address);
+				}
 
-					var ns = page.Namespace;
-					var container = page.EnsureContentContainer();
+				var ns = page.Namespace;
+				var container = page.EnsureContentContainer();
 
-					var file = await StorageFile.GetFileFromPathAsync(pdfFile);
-					var doc = await Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(file);
+				var file = await StorageFile.GetFileFromPathAsync(pdfFile);
+				var doc = await Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(file);
 
-					progress.SetMaximum((int)doc.PageCount);
+				progress.SetMaximum((int)doc.PageCount);
 
-					for (int i = 0; i < doc.PageCount; i++)
+				for (int i = 0; i < doc.PageCount; i++)
+				{
+					progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
+					progress.Increment();
+
+					//logger.WriteLine($"rasterizing page {i}");
+					var pdfpage = doc.GetPage((uint)i);
+
+					using (var stream = new InMemoryRandomAccessStream())
 					{
-						progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
-						progress.Increment();
+						await pdfpage.RenderToStreamAsync(stream);
 
-						//logger.WriteLine($"rasterizing page {i}");
-						var pdfpage = doc.GetPage((uint)i);
-
-						using (var stream = new InMemoryRandomAccessStream())
+						using (var image = new Bitmap(stream.AsStream()))
 						{
-							await pdfpage.RenderToStreamAsync(stream);
-
-							using (var image = new Bitmap(stream.AsStream()))
-							{
-								var data = Convert.ToBase64String(
-									(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
-									);
-
-								container.Add(new XElement(ns + "OE",
-									new XElement(ns + "Image",
-										new XAttribute("format", "png"),
-										new XElement(ns + "Size",
-											new XAttribute("width", $"{image.Width}.0"),
-											new XAttribute("height", $"{image.Height}.0")),
-										new XElement(ns + "Data", data)
-									)),
-									new Paragraph(ns, " ")
+							var data = Convert.ToBase64String(
+								(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
 								);
-							}
+
+							container.Add(new XElement(ns + "OE",
+								new XElement(ns + "Image",
+									new XAttribute("format", "png"),
+									new XElement(ns + "Size",
+										new XAttribute("width", $"{image.Width}.0"),
+										new XAttribute("height", $"{image.Height}.0")),
+									new XElement(ns + "Data", data)
+								)),
+								new Paragraph(ns, " ")
+							);
 						}
 					}
+				}
 
-					progress.SetMessage($"Updating page");
+				progress.SetMessage($"Updating page");
+
+				using (var one = new OneNote())
+				{
 					await one.Update(page);
 				}
 			}
