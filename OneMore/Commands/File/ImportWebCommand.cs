@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			progress.SetMaximum(6);
+			progress.SetMaximum(4);
 			progress.SetMessage($"Importing {address}...");
 
 			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -86,17 +86,16 @@ namespace River.OneMoreAddIn.Commands
 				using (var form = new UI.WebViewWorkerDialog(
 					new UI.WebViewWorker(async (webview) =>
 					{
-						progress.Increment();
 						webview.Source = new Uri(address);
-						await Task.Yield();
 						progress.Increment();
+						await Task.Yield();
 						return true;
 					}),
 					new UI.WebViewWorker(async (webview) =>
 					{
 						progress.Increment();
 						await Task.Delay(2000);
-						await webview.CoreWebView2.PrintToPdfAsync(pdfFile).ConfigureAwait(true);
+						await webview.CoreWebView2.PrintToPdfAsync(pdfFile);
 						progress.Increment();
 						return true;
 					})))
@@ -117,11 +116,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// convert PDF pages to images...
+			logger.WriteLine("rendering images");
 
 			try
 			{
-				logger.WriteLine("rendering images");
-
 				Page page = null;
 				using (var one = new OneNote())
 				{
@@ -181,6 +179,20 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc.Message, exc);
+			}
+			finally
+			{
+				if (File.Exists(pdfFile))
+				{
+					try
+					{
+						File.Delete(pdfFile);
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("error deleting PDF file", exc);
+					}
+				}
 			}
 
 			logger.WriteTime("import complete");
