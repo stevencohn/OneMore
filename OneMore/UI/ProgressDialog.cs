@@ -159,7 +159,8 @@ namespace River.OneMoreAddIn.UI
 					catch (Exception exc)
 					{
 						DialogResult = DialogResult.Cancel;
-						logger.WriteLine("error executing work", exc);
+						//logger.WriteLine("error executing work", exc);
+						logger.WriteLine(exc.Message, exc);
 					}
 
 					Close();

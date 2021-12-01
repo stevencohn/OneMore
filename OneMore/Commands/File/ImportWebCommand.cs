@@ -4,6 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Web.WebView2.Core;
+	using Microsoft.Web.WebView2.WinForms;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Drawing;
@@ -17,7 +19,6 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.Storage;
 	using Windows.Storage.Streams;
 	using Hap = HtmlAgilityPack;
-	using PS = PuppeteerSharp;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -78,94 +79,120 @@ namespace River.OneMoreAddIn.Commands
 			progress.SetMaximum(3);
 			progress.SetMessage($"Importing {address}...");
 
-			// download chromium...
-
 			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-			var appDataPath = PathFactory.GetAppDataPath();
 
-			logger.WriteLine("fetching chromium");
-			var fetcher = new PS.BrowserFetcher(
-				new PS.BrowserFetcherOptions { Path = appDataPath });
+			await SingleThreaded.Invoke(async () =>
+			{
+				logger.WriteLine("automating edge");
+				var source = new TaskCompletionSource<bool>();
+				var webview = new WebView2();
+				webview.NavigationCompleted += async (sender, args) =>
+				{
+					await Task.Delay(2000);
+					logger.WriteLine("rendering pdf");
+					await webview.CoreWebView2.PrintToPdfAsync(pdfFile).ConfigureAwait(true);
+					webview.Dispose();
+					logger.WriteLine("pdf done");
+					source.SetResult(true);
+				};
 
-			// automate chromium to get page and save as PDF...
+				var userDataFolder = Path.Combine(PathFactory.GetAppDataPath(), Resx.ProgramName);
+				var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
 
-			var revision = await fetcher.DownloadAsync();
+				try
+				{
+					logger.WriteLine("ensuring core ready");
+					await webview.EnsureCoreWebView2Async(env)
+						.ContinueWith(t =>
+						{
+							if (t.IsFaulted)
+							{
+								logger.WriteLine(t.Exception.Message, t.Exception);
+							}
+						});
+
+					logger.WriteLine($"navigating to {address}");
+					webview.Source = new Uri(address);
+
+					logger.WriteLine("awaiting completion");
+					await source.Task;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine(exc.Message, exc);
+				}
+			});
 
 			if (token.IsCancellationRequested)
 			{
 				return;
 			}
 
-			logger.WriteLine("automating chromium");
-			using (var browser = await PS.Puppeteer.LaunchAsync(
-				new PS.LaunchOptions { Headless = true, ExecutablePath = revision.ExecutablePath }))
+			if (!File.Exists(pdfFile))
 			{
-				using (var page = await browser.NewPageAsync())
-				{
-					logger.WriteLine("fetching page");
-					await page.GoToAsync(address);
-
-					logger.WriteLine("converting to pdf");
-					await page.PdfAsync(pdfFile);
-				}
-			}
-
-			if (token.IsCancellationRequested)
-			{
+				logger.WriteLine($"PDF file not found, {pdfFile}");
 				return;
 			}
 
 			// convert PDF pages to images...
 
-			using (var one = new OneNote())
+			try
 			{
-				var page = target == ImportWebTarget.Append
-					? one.GetPage()
-					: await CreatePage(one,
-						target == ImportWebTarget.ChildPage ? one.GetPage() : null, address);
-
-				var ns = page.Namespace;
-				var container = page.EnsureContentContainer();
-
-				var file = await StorageFile.GetFileFromPathAsync(pdfFile);
-				var doc = await Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(file);
-
-				progress.SetMaximum((int)doc.PageCount);
-
-				for (int i = 0; i < doc.PageCount; i++)
+				logger.WriteLine("rendering images");
+				using (var one = new OneNote())
 				{
-					progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
-					progress.Increment();
+					var page = target == ImportWebTarget.Append
+						? one.GetPage()
+						: await CreatePage(one,
+							target == ImportWebTarget.ChildPage ? one.GetPage() : null, address);
 
-					//logger.WriteLine($"rasterizing page {i}");
-					var pdfpage = doc.GetPage((uint)i);
+					var ns = page.Namespace;
+					var container = page.EnsureContentContainer();
 
-					using (var stream = new InMemoryRandomAccessStream())
+					var file = await StorageFile.GetFileFromPathAsync(pdfFile);
+					var doc = await Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(file);
+
+					progress.SetMaximum((int)doc.PageCount);
+
+					for (int i = 0; i < doc.PageCount; i++)
 					{
-						await pdfpage.RenderToStreamAsync(stream);
+						progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
+						progress.Increment();
 
-						using (var image = new Bitmap(stream.AsStream()))
+						//logger.WriteLine($"rasterizing page {i}");
+						var pdfpage = doc.GetPage((uint)i);
+
+						using (var stream = new InMemoryRandomAccessStream())
 						{
-							var data = Convert.ToBase64String(
-								(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
-								);
+							await pdfpage.RenderToStreamAsync(stream);
 
-							container.Add(new XElement(ns + "OE",
-								new XElement(ns + "Image",
-									new XAttribute("format", "png"),
-									new XElement(ns + "Size",
-										new XAttribute("width", $"{image.Width}.0"),
-										new XAttribute("height", $"{image.Height}.0")),
-									new XElement(ns + "Data", data)
-								)),
-								new Paragraph(ns, " ")
-							);
+							using (var image = new Bitmap(stream.AsStream()))
+							{
+								var data = Convert.ToBase64String(
+									(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
+									);
+
+								container.Add(new XElement(ns + "OE",
+									new XElement(ns + "Image",
+										new XAttribute("format", "png"),
+										new XElement(ns + "Size",
+											new XAttribute("width", $"{image.Width}.0"),
+											new XAttribute("height", $"{image.Height}.0")),
+										new XElement(ns + "Data", data)
+									)),
+									new Paragraph(ns, " ")
+								);
+							}
 						}
 					}
-				}
 
-				progress.SetMessage($"Updating page");
-				await one.Update(page);
+					progress.SetMessage($"Updating page");
+					await one.Update(page);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc.Message, exc);
 			}
 
 			logger.WriteTime("import complete");
