@@ -135,6 +135,8 @@ namespace River.OneMoreAddIn.Commands
 				var file = await StorageFile.GetFileFromPathAsync(pdfFile);
 				var doc = await Windows.Data.Pdf.PdfDocument.LoadFromFileAsync(file);
 
+				await file.DeleteAsync();
+
 				progress.SetMaximum((int)doc.PageCount);
 
 				for (int i = 0; i < doc.PageCount; i++)
@@ -179,20 +181,6 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc.Message, exc);
-			}
-			finally
-			{
-				if (File.Exists(pdfFile))
-				{
-					try
-					{
-						File.Delete(pdfFile);
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine("error deleting PDF file", exc);
-					}
-				}
 			}
 
 			logger.WriteTime("import complete");
