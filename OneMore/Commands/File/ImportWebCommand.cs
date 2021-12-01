@@ -81,45 +81,30 @@ namespace River.OneMoreAddIn.Commands
 
 			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-			await SingleThreaded.Invoke(async () =>
+			// WebView2 needs to run in an STA thread
+			await SingleThreaded.Invoke(() =>
 			{
-				logger.WriteLine("automating edge");
-				var source = new TaskCompletionSource<bool>();
-				var webview = new WebView2();
-				webview.NavigationCompleted += async (sender, args) =>
+				// WebView2 needs a message pump so host in its own invisible worker dialog
+				using (var form = new UI.WebViewWorkerDialog(
+					new UI.WebViewWorker(async (webview) =>
+					{
+						logger.WriteLine("startup-worker, navigating...");
+						webview.Source = new Uri(address);
+						await Task.Yield();
+						logger.WriteLine("startup-worker, done");
+						return true;
+					}),
+					new UI.WebViewWorker(async (webview) =>
+					{
+						logger.WriteLine("worker, sleeping...");
+						await Task.Delay(2000);
+						logger.WriteLine("worker, rendering pdf");
+						await webview.CoreWebView2.PrintToPdfAsync(pdfFile).ConfigureAwait(true);
+						logger.WriteLine("worker, pdf done");
+						return true;
+					})))
 				{
-					await Task.Delay(2000);
-					logger.WriteLine("rendering pdf");
-					await webview.CoreWebView2.PrintToPdfAsync(pdfFile).ConfigureAwait(true);
-					webview.Dispose();
-					logger.WriteLine("pdf done");
-					source.SetResult(true);
-				};
-
-				var userDataFolder = Path.Combine(PathFactory.GetAppDataPath(), Resx.ProgramName);
-				var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
-
-				try
-				{
-					logger.WriteLine("ensuring core ready");
-					await webview.EnsureCoreWebView2Async(env)
-						.ContinueWith(t =>
-						{
-							if (t.IsFaulted)
-							{
-								logger.WriteLine(t.Exception.Message, t.Exception);
-							}
-						});
-
-					logger.WriteLine($"navigating to {address}");
-					webview.Source = new Uri(address);
-
-					logger.WriteLine("awaiting completion");
-					await source.Task;
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine(exc.Message, exc);
+					form.ShowDialog(progress);
 				}
 			});
 
