@@ -17,7 +17,6 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.Storage;
 	using Windows.Storage.Streams;
 	using Hap = HtmlAgilityPack;
-	using PS = PuppeteerSharp;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -75,54 +74,60 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			progress.SetMaximum(3);
+			progress.SetMaximum(4);
 			progress.SetMessage($"Importing {address}...");
 
-			// download chromium...
-
 			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-			var appDataPath = PathFactory.GetAppDataPath();
 
-			logger.WriteLine("fetching chromium");
-			var fetcher = new PS.BrowserFetcher(
-				new PS.BrowserFetcherOptions { Path = appDataPath });
-
-			// automate chromium to get page and save as PDF...
-
-			var revision = await fetcher.DownloadAsync();
+			// WebView2 needs to run in an STA thread
+			await SingleThreaded.Invoke(() =>
+			{
+				// WebView2 needs a message pump so host in its own invisible worker dialog
+				using (var form = new UI.WebViewWorkerDialog(
+					new UI.WebViewWorker(async (webview) =>
+					{
+						webview.Source = new Uri(address);
+						progress.Increment();
+						await Task.Yield();
+						return true;
+					}),
+					new UI.WebViewWorker(async (webview) =>
+					{
+						progress.Increment();
+						await Task.Delay(2000);
+						await webview.CoreWebView2.PrintToPdfAsync(pdfFile);
+						progress.Increment();
+						return true;
+					})))
+				{
+					form.ShowDialog(progress);
+				}
+			});
 
 			if (token.IsCancellationRequested)
 			{
 				return;
 			}
 
-			logger.WriteLine("automating chromium");
-			using (var browser = await PS.Puppeteer.LaunchAsync(
-				new PS.LaunchOptions { Headless = true, ExecutablePath = revision.ExecutablePath }))
+			if (!File.Exists(pdfFile))
 			{
-				using (var page = await browser.NewPageAsync())
-				{
-					logger.WriteLine("fetching page");
-					await page.GoToAsync(address);
-
-					logger.WriteLine("converting to pdf");
-					await page.PdfAsync(pdfFile);
-				}
-			}
-
-			if (token.IsCancellationRequested)
-			{
+				logger.WriteLine($"PDF file not found, {pdfFile}");
 				return;
 			}
 
 			// convert PDF pages to images...
+			logger.WriteLine("rendering images");
 
-			using (var one = new OneNote())
+			try
 			{
-				var page = target == ImportWebTarget.Append
-					? one.GetPage()
-					: await CreatePage(one,
-						target == ImportWebTarget.ChildPage ? one.GetPage() : null, address);
+				Page page = null;
+				using (var one = new OneNote())
+				{
+					page = target == ImportWebTarget.Append
+						? one.GetPage()
+						: await CreatePage(one,
+							target == ImportWebTarget.ChildPage ? one.GetPage() : null, address);
+				}
 
 				var ns = page.Namespace;
 				var container = page.EnsureContentContainer();
@@ -165,7 +170,29 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				progress.SetMessage($"Updating page");
-				await one.Update(page);
+
+				using (var one = new OneNote())
+				{
+					await one.Update(page);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc.Message, exc);
+			}
+			finally
+			{
+				if (File.Exists(pdfFile))
+				{
+					try
+					{
+						File.Delete(pdfFile);
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("error deleting PDF file", exc);
+					}
+				}
 			}
 
 			logger.WriteTime("import complete");
