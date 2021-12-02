@@ -125,8 +125,9 @@ namespace River.OneMoreAddIn
 		public OneNote(out Page page, out XNamespace ns, PageDetail detail = PageDetail.Selection)
 			: this()
 		{
+			// page may be null if in an empty section
 			page = GetPage(detail);
-			ns = page.Namespace;
+			ns = page?.Namespace;
 		}
 
 

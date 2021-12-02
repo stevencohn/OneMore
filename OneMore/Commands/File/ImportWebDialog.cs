@@ -39,6 +39,15 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			using (var one = new OneNote(out var page, out _))
+			{
+				if (page == null)
+				{
+					newChildButton.Enabled = false;
+					appendButton.Enabled = false;
+				}
+			}
 		}
 
 
