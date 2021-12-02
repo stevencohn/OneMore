@@ -33,8 +33,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			wordInstalled = Office.IsWordInstalled();
-			powerPointInstalled = Office.IsPowerPointInstalled();
+			wordInstalled = Office.IsInstalled("Word");
+			powerPointInstalled = Office.IsInstalled("Powerpoint");
 
 			wordGroup.Visible = false;
 			powerGroup.Visible = false;

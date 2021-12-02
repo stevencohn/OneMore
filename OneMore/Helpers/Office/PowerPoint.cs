@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 				var path = Path.Combine(
 					Path.GetTempPath(),
-					Path.GetFileNameWithoutExtension(Path.GetTempFileName()));
+					Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
 
 				if (!Directory.Exists(path))
 				{
