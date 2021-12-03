@@ -375,6 +375,7 @@
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
     <Compile Include="Helpers\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ProcessExtensions.cs" />
     <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />

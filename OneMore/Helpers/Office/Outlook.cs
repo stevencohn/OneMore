@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 
 	/// <summary>
-	/// 
+	/// Automated interaction with Outlook
 	/// </summary>
 	internal class Outlook : IDisposable
 	{
@@ -27,9 +27,6 @@ namespace River.OneMoreAddIn.Helpers.Office
 		public Outlook()
 		{
 			outlook = new Application();
-
-			// if Outlook is already open then don't close it in Dispose
-			disposed = Process.GetProcessesByName("OUTLOOK").Any();
 		}
 
 
@@ -37,8 +34,19 @@ namespace River.OneMoreAddIn.Helpers.Office
 		{
 			if (!disposed)
 			{
-				outlook.Quit();
-				disposed = true;
+				// this automation class will create a process with the -Embedding cmdline
+				// switch but a user-started Outlook will not so look for a user process
+				// and skip disposing so we don't interrupt the user's interactive session
+				if (!Process.GetProcessesByName("OUTLOOK")
+					.Any(p =>
+					{
+						var cmd = p.GetCommandLine();
+						return cmd != null && !cmd.Contains("-Embedding");
+					}))
+				{
+					outlook.Quit();
+					disposed = true;
+				}
 			}
 
 			if (outlook != null)
