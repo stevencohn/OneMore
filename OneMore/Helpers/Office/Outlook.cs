@@ -139,6 +139,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			task.Save();
 
+			Marshal.ReleaseComObject(task);
 			return true;
 		}
 	}
