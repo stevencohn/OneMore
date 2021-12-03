@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 	using Microsoft.Office.Interop.Word;
 	using System;
 	using System.IO;
+	using System.Runtime.InteropServices;
 
 
 	internal class Word : IDisposable
@@ -29,6 +30,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 			if (!disposed)
 			{
 				word.Quit();
+				Marshal.ReleaseComObject(word);
+
 				word = null;
 				disposed = true;
 			}

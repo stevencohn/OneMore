@@ -6,56 +6,9 @@ namespace River.OneMoreAddIn.Helpers.Office
 {
 	using Microsoft.Office.Interop.Outlook;
 	using System;
-	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Linq;
 	using System.Runtime.InteropServices;
-
-	internal enum OutlookImportance
-	{
-		Low = OlImportance.olImportanceLow,
-		Normal = OlImportance.olImportanceNormal,
-		High = OlImportance.olImportanceHigh
-	}
-	internal enum OutlookTaskStatus
-	{
-		Complete = OlTaskStatus.olTaskComplete,
-		Deferred = OlTaskStatus.olTaskDeferred,
-		InProgress = OlTaskStatus.olTaskInProgress,
-		NotStarted = OlTaskStatus.olTaskNotStarted,
-		Waiting = OlTaskStatus.olTaskWaiting
-	}
-
-	internal class OutlookTasks : List<OutlookTask> { }
-
-	internal class OutlookTaskFolders : List<OutlookTaskFolder> { }
-
-	internal class OutlookTask
-	{
-		public string Name { get; set; }
-		public string EntryID { get; set; }
-		public bool Complete { get; set; }
-		public DateTime DateCompleted { get; set; }
-		public DateTime DueDate { get; set; }
-		public OutlookImportance Importance { get; set; }
-		public int PercentComplete { get; set; }
-		public OutlookTaskStatus Status { get; set; }
-		public string OneNoteTaskID { get; set; }
-		public string OneNoteURL { get; set; }
-	}
-
-	internal class OutlookTaskFolder
-	{
-		public string Name { get; set; }
-		public string EntryID { get; set; }
-		public OutlookTaskFolders Folders { get; private set; }
-		public OutlookTasks Tasks { get; private set; }
-		public OutlookTaskFolder()
-		{
-			Folders = new OutlookTaskFolders();
-			Tasks = new OutlookTasks();
-		}
-	}
 
 
 	/// <summary>
@@ -68,7 +21,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the Outlook interop application. If Outlook is not
+		/// currently running, it will be started
 		/// </summary>
 		public Outlook()
 		{
@@ -87,7 +41,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 				disposed = true;
 			}
 
-			outlook = null;
+			if (outlook != null)
+			{
+				Marshal.ReleaseComObject(outlook);
+				outlook = null;
+			}
 		}
 
 
@@ -99,7 +57,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 
 		/// <summary>
-		/// 
+		/// Builds a hierarchy of task folders populated with their tasks
 		/// </summary>
 		/// <returns></returns>
 		public OutlookTaskFolders GetTaskHierarchy()
@@ -124,7 +82,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 			{
 				folder.Tasks.Add(new OutlookTask
 				{
-					Name = item.Subject,
+					Subject = item.Subject,
 					EntryID = item.EntryID,
 					Complete = item.Complete,
 					DateCompleted = item.DateCompleted,
@@ -149,6 +107,39 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			Marshal.ReleaseComObject(parent);
 			return container;
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="entryID"></param>
+		/// <param name="oneNoteTaskID"></param>
+		/// <param name="oneNoteURL"></param>
+		/// <returns></returns>
+		public bool BindTaskToOneNote(string entryID, string oneNoteTaskID, string oneNoteURL)
+		{
+			var task = outlook.Session.GetItemFromID(entryID) as TaskItem;
+			if (task == null)
+			{
+				return false;
+			}
+
+			UserProperty prop;
+
+			prop = task.UserProperties.Find("OneNoteTaskID")
+				?? task.UserProperties.Add("OneNoteTaskID", OlUserPropertyType.olText);
+
+			prop.Value = oneNoteTaskID;
+
+			prop = task.UserProperties.Find("OneNoteURL")
+				?? task.UserProperties.Add("OneNoteURL", OlUserPropertyType.olText);
+			
+			prop.Value = oneNoteURL;
+
+			task.Save();
+
+			return true;
 		}
 	}
 }

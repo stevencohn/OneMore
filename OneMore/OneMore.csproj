@@ -378,6 +378,9 @@
     <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookEnums.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookTaskFolders.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookTasks.cs" />
     <Compile Include="Helpers\Office\Outlook.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
