@@ -44,7 +44,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 						return cmd != null && !cmd.Contains("-Embedding");
 					}))
 				{
-					outlook.Quit();
+					// unfortunately, the above assumptions are not true; if an embedded instance
+					// is running and Outlook UI is then started, the embedded instance will
+					// take over so we still have an -Embedding processing serving UI!
+					//outlook.Quit();
+					Marshal.ReleaseComObject(outlook);
 					disposed = true;
 				}
 			}
@@ -93,6 +97,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 					Subject = item.Subject,
 					EntryID = item.EntryID,
 					Complete = item.Complete,
+					CreationTime = item.CreationTime,
 					DateCompleted = item.DateCompleted,
 					DueDate = item.DueDate,
 					Importance = (OutlookImportance)item.Importance,
@@ -121,33 +126,30 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="entryID"></param>
-		/// <param name="oneNoteTaskID"></param>
-		/// <param name="oneNoteURL"></param>
+		/// <param name="task"></param>
 		/// <returns></returns>
-		public bool BindTaskToOneNote(string entryID, string oneNoteTaskID, string oneNoteURL)
+		public bool SaveTask(OutlookTask task)
 		{
-			var task = outlook.Session.GetItemFromID(entryID) as TaskItem;
-			if (task == null)
+			if (!(outlook.Session.GetItemFromID(task.EntryID) is TaskItem item))
 			{
 				return false;
 			}
 
 			UserProperty prop;
 
-			prop = task.UserProperties.Find("OneNoteTaskID")
-				?? task.UserProperties.Add("OneNoteTaskID", OlUserPropertyType.olText);
+			prop = item.UserProperties.Find("OneNoteTaskID")
+				?? item.UserProperties.Add("OneNoteTaskID", OlUserPropertyType.olText);
 
-			prop.Value = oneNoteTaskID;
+			prop.Value = task.OneNoteTaskID;
 
-			prop = task.UserProperties.Find("OneNoteURL")
-				?? task.UserProperties.Add("OneNoteURL", OlUserPropertyType.olText);
+			prop = item.UserProperties.Find("OneNoteURL")
+				?? item.UserProperties.Add("OneNoteURL", OlUserPropertyType.olText);
 			
-			prop.Value = oneNoteURL;
+			prop.Value = task.OneNoteURL;
 
-			task.Save();
+			item.Save();
 
-			Marshal.ReleaseComObject(task);
+			Marshal.ReleaseComObject(item);
 			return true;
 		}
 	}

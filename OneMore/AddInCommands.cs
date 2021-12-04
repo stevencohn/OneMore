@@ -130,6 +130,9 @@ namespace River.OneMoreAddIn
 		public async Task GotoFavoriteCmd(IRibbonControl control)
 			=> await factory.Run<GotoFavoriteCommand>(control.Tag); //tag=pageid
 
+		public async Task ImportOutlookTasksCmd(IRibbonControl control)
+			=> await factory.Run<ImportOutlookTasksCommand>();
+
 		public async Task IncreaseFontSizeCmd(IRibbonControl control)
 			=> await factory.Run<AlterSizeCommand>(1);
 

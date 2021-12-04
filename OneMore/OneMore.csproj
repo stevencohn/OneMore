@@ -213,6 +213,7 @@
     <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
     <Compile Include="Commands\Reminders\CompleteReminderCommand.cs" />
     <Compile Include="Commands\Reminders\DeleteReminderCommand.cs" />
+    <Compile Include="Commands\Reminders\ImportOutlookTasksCommand.cs" />
     <Compile Include="Commands\Reminders\RemindScheduler.cs" />
     <Compile Include="Commands\Reminders\ReminderService.cs" />
     <Compile Include="Commands\Reminders\RemindCommand.cs" />

@@ -411,6 +411,11 @@
                 imageMso="ShowTaskDetailsPage"
                 getLabel="GetRibbonLabel"
                 onAction="ReportRemindersCmd"/>
+              <button
+                id="ribImportOutlookTasksButton"
+                imageMso="ImportOutlook"
+                label="Import Tasks from Outlook"
+                onAction="ImportOutlookTasksCmd"/>
             </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI">
               <button

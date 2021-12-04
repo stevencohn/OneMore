@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// </summary>
 		public string EntryID { get; set; }
 
+		public DateTime CreationTime { get; set; }
 		public bool Complete { get; set; }
 		public DateTime DateCompleted { get; set; }
 		public DateTime DueDate { get; set; }
