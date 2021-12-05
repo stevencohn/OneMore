@@ -214,6 +214,12 @@
     <Compile Include="Commands\Reminders\CompleteReminderCommand.cs" />
     <Compile Include="Commands\Reminders\DeleteReminderCommand.cs" />
     <Compile Include="Commands\Reminders\ImportOutlookTasksCommand.cs" />
+    <Compile Include="Commands\Reminders\ImportOutlookTasksDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Reminders\ImportOutlookTasksDialog.Designer.cs">
+      <DependentUpon>ImportOutlookTasksDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Reminders\RemindScheduler.cs" />
     <Compile Include="Commands\Reminders\ReminderService.cs" />
     <Compile Include="Commands\Reminders\RemindCommand.cs" />
@@ -931,6 +937,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\RefreshPageLinksDialog.resx">
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Reminders\ImportOutlookTasksDialog.resx">
+      <DependentUpon>ImportOutlookTasksDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Reminders\RemindDialog.resx">
       <DependentUpon>RemindDialog.cs</DependentUpon>
