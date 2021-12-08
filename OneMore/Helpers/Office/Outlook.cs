@@ -80,13 +80,15 @@ namespace River.OneMoreAddIn.Helpers.Office
 		}
 
 		private OutlookTaskFolders GetTaskHierarchy(
-			Folder parent, OutlookTaskFolders container)
+			Folder parent, OutlookTaskFolders container, string path = null)
 		{
 			var folder = new OutlookTaskFolder
 			{
 				Name = parent.Name,
 				EntryID = parent.EntryID
 			};
+
+			path = path == null ? parent.Name : $"{path}/{parent.Name}";
 
 			var items = parent.Items;
 			items.IncludeRecurrences = true;
@@ -103,6 +105,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 					Importance = (OutlookImportance)item.Importance,
 					PercentComplete = item.PercentComplete,
 					Status = (OutlookTaskStatus)item.Status,
+					FolderPath = path,
 					OneNoteTaskID = item.UserProperties["OneNoteTaskID"]?.Value as string,
 					OneNoteURL = item.UserProperties["OneNoteTaskURL"]?.Value as string
 				});
@@ -114,7 +117,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			foreach (Folder child in parent.Folders)
 			{
-				GetTaskHierarchy(child, folder.Folders);
+				GetTaskHierarchy(child, folder.Folders, path);
 				Marshal.ReleaseComObject(child);
 			}
 

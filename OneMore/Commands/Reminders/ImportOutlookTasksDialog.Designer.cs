@@ -34,8 +34,9 @@
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.treeView = new System.Windows.Forms.TreeView();
-			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
+			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.listView = new System.Windows.Forms.ListView();
 			this.buttonPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -86,11 +87,19 @@
 			this.treeView.Location = new System.Drawing.Point(23, 98);
 			this.treeView.Name = "treeView";
 			this.treeView.SelectedImageIndex = 0;
-			this.treeView.Size = new System.Drawing.Size(763, 417);
+			this.treeView.Size = new System.Drawing.Size(769, 116);
 			this.treeView.TabIndex = 12;
+			this.treeView.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.TreeView_BeforeCheck);
 			this.treeView.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterCollapse);
 			this.treeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterExpand);
-			this.treeView.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.TreeView_BeforeSelect);
+			// 
+			// imageList
+			// 
+			this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+			this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList.Images.SetKeyName(0, "FolderClose.png");
+			this.imageList.Images.SetKeyName(1, "FolderOpen.png");
+			this.imageList.Images.SetKeyName(2, "Task.png");
 			// 
 			// buttonPanel
 			// 
@@ -103,13 +112,21 @@
 			this.buttonPanel.Size = new System.Drawing.Size(766, 47);
 			this.buttonPanel.TabIndex = 13;
 			// 
-			// imageList
+			// listView
 			// 
-			this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-			this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList.Images.SetKeyName(0, "FolderClose.png");
-			this.imageList.Images.SetKeyName(1, "FolderOpen.png");
-			this.imageList.Images.SetKeyName(2, "Task.png");
+			this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.listView.CheckBoxes = true;
+			this.listView.HideSelection = false;
+			this.listView.Location = new System.Drawing.Point(23, 238);
+			this.listView.Name = "listView";
+			this.listView.ShowGroups = false;
+			this.listView.Size = new System.Drawing.Size(766, 283);
+			this.listView.SmallImageList = this.imageList;
+			this.listView.TabIndex = 14;
+			this.listView.UseCompatibleStateImageBehavior = false;
+			this.listView.View = System.Windows.Forms.View.List;
 			// 
 			// ImportOutlookTasksDialog
 			// 
@@ -118,6 +135,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(812, 591);
+			this.Controls.Add(this.listView);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
 			this.Controls.Add(this.treeView);
@@ -143,5 +161,6 @@
 		private System.Windows.Forms.TreeView treeView;
 		private System.Windows.Forms.Panel buttonPanel;
 		private System.Windows.Forms.ImageList imageList;
+		private System.Windows.Forms.ListView listView;
 	}
 }

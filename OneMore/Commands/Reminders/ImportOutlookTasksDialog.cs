@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Office;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -12,6 +13,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ImportOutlookTasksDialog : UI.LocalizableForm
 	{
+		private readonly bool ready = false;
+
+
 		public ImportOutlookTasksDialog()
 		{
 			InitializeComponent();
@@ -33,8 +37,27 @@ namespace River.OneMoreAddIn.Commands
 			: this()
 		{
 			PopulateTree(folders);
-
 			treeView.ExpandAll();
+			ready = true;
+		}
+
+
+		public ImportOutlookTasksDialog(IEnumerable<OutlookTask> tasks)
+			: this()
+		{
+			PopulateList(tasks);
+			ready = true;
+		}
+
+
+		private void PopulateList(IEnumerable<OutlookTask> tasks)
+		{
+			foreach (var task in tasks)
+			{
+				var item = new ListViewItem($"{task.FolderPath}/{task.Subject}", 2);
+				item.Checked = !string.IsNullOrEmpty(task.OneNoteTaskID);
+				listView.Items.Add(item);
+			}
 		}
 
 
@@ -65,25 +88,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void TreeView_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+		private void TreeView_AfterCollapse(object sender, TreeViewEventArgs e)
 		{
-			if (e.Node.Tag is OutlookTask task)
+			e.Node.ImageIndex = 0;
+		}
+
+
+		private void TreeView_AfterExpand(object sender, TreeViewEventArgs e)
+		{
+			e.Node.ImageIndex = 1;
+		}
+
+
+		private void TreeView_BeforeCheck(object sender, TreeViewCancelEventArgs e)
+		{
+			if (ready && e.Node.Tag is OutlookTask task)
 			{
 				if (!string.IsNullOrEmpty(task.OneNoteTaskID))
 				{
 					e.Cancel = true;
 				}
 			}
-		}
-
-		private void TreeView_AfterCollapse(object sender, TreeViewEventArgs e)
-		{
-			e.Node.ImageIndex = 0;
-		}
-
-		private void TreeView_AfterExpand(object sender, TreeViewEventArgs e)
-		{
-			e.Node.ImageIndex = 1;
 		}
 	}
 }

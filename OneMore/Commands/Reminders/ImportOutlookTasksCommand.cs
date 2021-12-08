@@ -22,21 +22,18 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			IEnumerable<OutlookTask> tasks;
 			using (var outlook = new Outlook())
 			{
 				var folders = outlook.GetTaskHierarchy();
+				var tasks = FlattenAndPrune(folders);
 
-				using (var dialog = new ImportOutlookTasksDialog(folders))
+				using (var dialog = new ImportOutlookTasksDialog(tasks))
 				{
 					if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 					{
 						return;
 					}
 				}
-
-				tasks = Flatten(folders)
-					.Where(t => string.IsNullOrEmpty(t.OneNoteTaskID));
 
 				if (!tasks.Any())
 				{
@@ -91,18 +88,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private IEnumerable<OutlookTask> Flatten(OutlookTaskFolders folders)
+		private IEnumerable<OutlookTask> FlattenAndPrune(OutlookTaskFolders folders)
 		{
 			foreach (var folder in folders)
 			{
-				foreach (var task in folder.Tasks)
+				foreach (var task in folder.Tasks
+					.Where(t => string.IsNullOrEmpty(t.OneNoteTaskID)))
 				{
 					yield return task;
 				}
 
-				foreach (var t in Flatten(folder.Folders))
+				foreach (var task in FlattenAndPrune(folder.Folders)
+					.Where(t => string.IsNullOrEmpty(t.OneNoteTaskID)))
 				{
-					yield return t;
+					yield return task;
 				}
 			}
 		}

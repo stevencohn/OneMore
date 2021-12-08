@@ -36,6 +36,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 		public OutlookTaskStatus Status { get; set; }
 
 		/// <summary>
+		/// Gets or sets a transient property indicating the full folder path of the task
+		/// </summary>
+		public string FolderPath { get; set; }
+
+		/// <summary>
 		/// Gets or sets the ID assigned to this task by OneNote
 		/// </summary>
 		public string OneNoteTaskID { get; set; }
