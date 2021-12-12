@@ -4,16 +4,52 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Aga.Controls.Tree;
+	using Aga.Controls.Tree.NodeControls;
 	using River.OneMoreAddIn.Helpers.Office;
-	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class ImportOutlookTasksDialog : UI.LocalizableForm
 	{
-		private readonly bool ready = false;
+		private readonly TreeModel model;
+
+
+		private sealed class TaskNodeIcon : NodeIcon
+		{
+			private readonly Image task;
+			private readonly Image opened;
+			private readonly Image closed;
+
+			public TaskNodeIcon()
+			{
+				task = MakeTransparent(Resx.Task);
+				opened = MakeTransparent(Resx.FolderOpen);
+				closed = MakeTransparent(Resx.FolderClose);
+			}
+
+			private static Image MakeTransparent(Bitmap bitmap)
+			{
+				bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+				return bitmap;
+			}
+
+			protected override Image GetIcon(TreeNodeAdv node)
+			{
+				Image icon = base.GetIcon(node);
+				if (icon != null)
+					return icon;
+				else if (node.IsLeaf)
+					return task;
+				else if (node.CanExpand && node.IsExpanded)
+					return opened;
+				else
+					return closed;
+			}
+		}
 
 
 		public ImportOutlookTasksDialog()
@@ -30,84 +66,107 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
-		}
 
+			var nodeCheckBox = new NodeCheckBox
+			{
+				DataPropertyName = "CheckState",
+				EditEnabled = true,
+				LeftMargin = 0,
+				ThreeState = true
+			};
+			nodeCheckBox.CheckStateChanged += CheckStateChanged;
+			tree.NodeControls.Add(nodeCheckBox);
+
+			tree.NodeControls.Add(new TaskNodeIcon
+			{
+				LeftMargin = 1,
+				ScaleMode = ImageScaleMode.Clip
+			});
+
+			tree.NodeControls.Add(new NodeTextBox
+			{
+				DataPropertyName = "Text",
+				LeftMargin = 3
+			});
+
+			model = new TreeModel();
+			tree.Model = model;
+		}
 
 		public ImportOutlookTasksDialog(OutlookTaskFolders folders)
 			: this()
 		{
 			PopulateTree(folders);
-			treeView.ExpandAll();
-			ready = true;
+			tree.ExpandAll();
 		}
 
 
-		public ImportOutlookTasksDialog(IEnumerable<OutlookTask> tasks)
-			: this()
-		{
-			PopulateList(tasks);
-			ready = true;
-		}
-
-
-		private void PopulateList(IEnumerable<OutlookTask> tasks)
-		{
-			foreach (var task in tasks)
-			{
-				var item = new ListViewItem($"{task.FolderPath}/{task.Subject}", 2);
-				item.Checked = !string.IsNullOrEmpty(task.OneNoteTaskID);
-				listView.Items.Add(item);
-			}
-		}
-
-
-		private void PopulateTree(OutlookTaskFolders folders, TreeNode parent = null)
+		private void PopulateTree(OutlookTaskFolders folders, Node parent = null)
 		{
 			foreach (var folder in folders)
 			{
-				var node = parent == null
-					? treeView.Nodes.Add(folder.EntryID, folder.Name, 0)
-					: parent.Nodes.Add(folder.EntryID, folder.Name, 0);
-
+				var node = new Node(folder.Name);
 				node.Tag = folder;
 
 				PopulateTree(folder.Folders, node);
 
+				var locked = 0;
 				foreach (var task in folder.Tasks)
 				{
-					var leaf = node.Nodes.Add(task.EntryID, task.Subject, 2);
+					var leaf = new Node(task.Subject);
 					leaf.Tag = task;
 
 					if (!string.IsNullOrEmpty(task.OneNoteTaskID))
 					{
-						leaf.Checked = true;
-						leaf.ForeColor = SystemColors.GrayText;
+						leaf.IsChecked = true;
+						leaf.IsEnabled = false;
+						locked++;
 					}
+
+					node.Nodes.Add(leaf);
+				}
+
+				if (locked == folder.Tasks.Count)
+					node.CheckState = CheckState.Checked;
+				else if (locked > 0)
+					node.CheckState = CheckState.Indeterminate;
+
+				if (parent == null)
+				{
+					model.Nodes.Add(node);
+				}
+				else
+				{
+					parent.Nodes.Add(node);
 				}
 			}
 		}
 
 
-		private void TreeView_AfterCollapse(object sender, TreeViewEventArgs e)
+		private void CheckStateChanged(object sender, TreePathEventArgs e)
 		{
-			e.Node.ImageIndex = 0;
-		}
-
-
-		private void TreeView_AfterExpand(object sender, TreeViewEventArgs e)
-		{
-			e.Node.ImageIndex = 1;
-		}
-
-
-		private void TreeView_BeforeCheck(object sender, TreeViewCancelEventArgs e)
-		{
-			if (ready && e.Node.Tag is OutlookTask task)
+			var nodeCheckBox = tree.NodeControls.FirstOrDefault(c => c is NodeCheckBox) as NodeCheckBox;
+			if (nodeCheckBox != null)
 			{
-				if (!string.IsNullOrEmpty(task.OneNoteTaskID))
+				nodeCheckBox.CheckStateChanged -= CheckStateChanged;
+
+				var node = model.FindNode(e.Path);
+				if (node != null)
 				{
-					e.Cancel = true;
+					CheckStateChanged(node, node.CheckState);
 				}
+
+				nodeCheckBox.CheckStateChanged += CheckStateChanged;
+			}
+		}
+
+
+		private void CheckStateChanged(Node node, CheckState state)
+		{
+			if (node.Tag is OutlookTaskFolder folder)
+			{
+				var n = model.FindNode(e.Path);
+				var checkbox = n.CheckState
 			}
 		}
 	}

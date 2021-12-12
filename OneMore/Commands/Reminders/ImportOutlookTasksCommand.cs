@@ -25,9 +25,8 @@ namespace River.OneMoreAddIn.Commands
 			using (var outlook = new Outlook())
 			{
 				var folders = outlook.GetTaskHierarchy();
-				var tasks = FlattenAndPrune(folders);
 
-				using (var dialog = new ImportOutlookTasksDialog(tasks))
+				using (var dialog = new ImportOutlookTasksDialog(folders))
 				{
 					if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 					{
@@ -35,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
+				var tasks = FlattenAndPrune(folders);
 				if (!tasks.Any())
 				{
 					return;

@@ -2205,6 +2205,26 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FolderClose {
+            get {
+                object obj = ResourceManager.GetObject("FolderClose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FolderOpen {
+            get {
+                object obj = ResourceManager.GetObject("FolderOpen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FontColor {
             get {
                 object obj = ResourceManager.GetObject("FontColor", resourceCulture);
@@ -7718,6 +7738,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TaggedDialog_Title {
             get {
                 return ResourceManager.GetString("TaggedDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Task {
+            get {
+                object obj = ResourceManager.GetObject("Task", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

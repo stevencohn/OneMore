@@ -75,6 +75,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aga.Controls">
+      <HintPath>External\Aga.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="extensibility, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -851,9 +854,12 @@
     <None Include="Properties\Emoji\Memo.png" />
     <None Include="Properties\Emoji\Passwords.png" />
     <None Include="Properties\Images\Copy.png" />
+    <Content Include="Properties\Images\Edit.png" />
     <Content Include="Properties\Images\Editor.ico" />
     <Content Include="Properties\Images\Exclamation.png" />
     <None Include="Properties\Images\Exit.png" />
+    <Content Include="Properties\Images\FolderClose.png" />
+    <Content Include="Properties\Images\FolderOpen.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
     <Content Include="Properties\Emoji\Pencil.png" />
@@ -898,6 +904,7 @@
     <Content Include="Properties\Images\Strikethrough.png" />
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
+    <Content Include="Properties\Images\Task.png" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />
