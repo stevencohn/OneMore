@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Aga.Controls.Tree;
 	using Aga.Controls.Tree.NodeControls;
 	using River.OneMoreAddIn.Helpers.Office;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly TreeModel model;
 
 
+		#region class TaskNodeIcon
 		private sealed class TaskNodeIcon : NodeIcon
 		{
 			private readonly Image task;
@@ -39,10 +41,11 @@ namespace River.OneMoreAddIn.Commands
 
 			protected override Image GetIcon(TreeNodeAdv node)
 			{
-				Image icon = base.GetIcon(node);
+				/*Image icon = base.GetIcon(node);
 				if (icon != null)
 					return icon;
-				else if (node.IsLeaf)
+				else */ 
+				if (node.Tag is Node subnode && subnode.Tag is OutlookTask)
 					return task;
 				else if (node.CanExpand && node.IsExpanded)
 					return opened;
@@ -50,6 +53,7 @@ namespace River.OneMoreAddIn.Commands
 					return closed;
 			}
 		}
+		#endregion class TaskNodeIcon
 
 
 		public ImportOutlookTasksDialog()
@@ -67,12 +71,13 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			// prepare TreeViewAdv...
+
 			var nodeCheckBox = new NodeCheckBox
 			{
 				DataPropertyName = "CheckState",
 				EditEnabled = true,
-				LeftMargin = 0,
-				ThreeState = true
+				LeftMargin = 0
 			};
 			nodeCheckBox.CheckStateChanged += CheckStateChanged;
 			tree.NodeControls.Add(nodeCheckBox);
@@ -93,6 +98,7 @@ namespace River.OneMoreAddIn.Commands
 			tree.Model = model;
 		}
 
+
 		public ImportOutlookTasksDialog(OutlookTaskFolders folders)
 			: this()
 		{
@@ -110,7 +116,6 @@ namespace River.OneMoreAddIn.Commands
 
 				PopulateTree(folder.Folders, node);
 
-				var locked = 0;
 				foreach (var task in folder.Tasks)
 				{
 					var leaf = new Node(task.Subject);
@@ -120,16 +125,10 @@ namespace River.OneMoreAddIn.Commands
 					{
 						leaf.IsChecked = true;
 						leaf.IsEnabled = false;
-						locked++;
 					}
 
 					node.Nodes.Add(leaf);
 				}
-
-				if (locked == folder.Tasks.Count)
-					node.CheckState = CheckState.Checked;
-				else if (locked > 0)
-					node.CheckState = CheckState.Indeterminate;
 
 				if (parent == null)
 				{
@@ -143,6 +142,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public IEnumerable<OutlookTask> SelectedTasks =>
+			GetSelectedTask(model.Root, new List<OutlookTask>());
+
+
 		private void CheckStateChanged(object sender, TreePathEventArgs e)
 		{
 			var nodeCheckBox = tree.NodeControls.FirstOrDefault(c => c is NodeCheckBox) as NodeCheckBox;
@@ -153,7 +156,19 @@ namespace River.OneMoreAddIn.Commands
 				var node = model.FindNode(e.Path);
 				if (node != null)
 				{
-					CheckStateChanged(node, node.CheckState);
+					if (node.Tag is OutlookTask task)
+					{
+						CheckFolderState(node.Parent);
+					}
+					else if (node.Tag is OutlookTaskFolder folder)
+					{
+						if (node.CheckState != CheckState.Indeterminate)
+						{
+							node.Nodes
+								.Where(n => n.Tag is OutlookTask t && string.IsNullOrEmpty(t.OneNoteTaskID))
+								.ForEach(n => n.CheckState = node.CheckState);
+						}
+					}
 				}
 
 				nodeCheckBox.CheckStateChanged += CheckStateChanged;
@@ -161,13 +176,55 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void CheckStateChanged(Node node, CheckState state)
+		private void CheckFolderState(Node node)
 		{
-			if (node.Tag is OutlookTaskFolder folder)
+			var userChecked = 0;
+			var userUnchecked = 0;
+			foreach (var child in node.Nodes.Where(n => 
+				n.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID)))
 			{
-				var n = model.FindNode(e.Path);
-				var checkbox = n.CheckState
+				if (child.IsChecked)
+				{
+					userChecked++;
+				}
+				else
+				{
+					userUnchecked++;
+				}
 			}
+
+			if (userChecked > 0 && userUnchecked == 0)
+			{
+				node.IsChecked = true;
+			}
+			else if (userChecked == 0 && userUnchecked > 0)
+			{
+				node.IsChecked = false;
+			}
+			else
+			{
+				node.CheckState = CheckState.Indeterminate;
+			}
+		}
+
+
+		private IEnumerable<OutlookTask> GetSelectedTask(Node node, List<OutlookTask> tasks)
+		{
+			var t = node.Nodes.Where(n => n.Tag is OutlookTask task && 
+				string.IsNullOrEmpty(task.OneNoteTaskID) && n.IsChecked)
+				.Select(n => n.Tag as OutlookTask);
+
+			if (t.Any())
+			{
+				tasks.AddRange(t);
+			}
+
+			foreach (var child in node.Nodes.Where(n => n.Tag is OutlookTaskFolder))
+			{
+				GetSelectedTask(child, tasks);
+			}
+
+			return tasks;
 		}
 	}
 }

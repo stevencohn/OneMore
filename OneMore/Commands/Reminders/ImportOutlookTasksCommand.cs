@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var outlook = new Outlook())
 			{
 				var folders = outlook.GetTaskHierarchy();
+				IEnumerable<OutlookTask> tasks;
 
 				using (var dialog = new ImportOutlookTasksDialog(folders))
 				{
@@ -32,19 +33,20 @@ namespace River.OneMoreAddIn.Commands
 					{
 						return;
 					}
+
+					tasks = dialog.SelectedTasks;
+					if (!tasks.Any())
+					{
+						return;
+					}
 				}
 
-				var tasks = FlattenAndPrune(folders);
-				if (!tasks.Any())
-				{
-					return;
-				}
-
-				var list = tasks.ToList();
+				logger.WriteLine($"selected {tasks.Count()} tasks");
+				return;
 
 				using (var one = new OneNote(out var page, out var ns))
 				{
-					foreach (var task in list)
+					foreach (var task in tasks)
 					{
 						task.OneNoteTaskID = Guid.NewGuid().ToString("b").ToUpper();
 
@@ -68,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 					page = one.GetPage(page.PageId, OneNote.PageDetail.Basic);
 					ns = page.Namespace;
 
-					foreach (var task in list)
+					foreach (var task in tasks)
 					{
 						var paragraph = page.Root.Descendants(ns + "OutlookTask")
 							.Where(e => e.Attribute("guidTask").Value == task.OneNoteTaskID)
@@ -83,25 +85,6 @@ namespace River.OneMoreAddIn.Commands
 							outlook.SaveTask(task);
 						}
 					}
-				}
-			}
-		}
-
-
-		private IEnumerable<OutlookTask> FlattenAndPrune(OutlookTaskFolders folders)
-		{
-			foreach (var folder in folders)
-			{
-				foreach (var task in folder.Tasks
-					.Where(t => string.IsNullOrEmpty(t.OneNoteTaskID)))
-				{
-					yield return task;
-				}
-
-				foreach (var task in FlattenAndPrune(folder.Folders)
-					.Where(t => string.IsNullOrEmpty(t.OneNoteTaskID)))
-				{
-					yield return task;
 				}
 			}
 		}
