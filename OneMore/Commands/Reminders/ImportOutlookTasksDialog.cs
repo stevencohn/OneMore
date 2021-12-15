@@ -28,23 +28,13 @@ namespace River.OneMoreAddIn.Commands
 
 			public TaskNodeIcon()
 			{
-				task = MakeTransparent(Resx.Task);
-				opened = MakeTransparent(Resx.FolderOpen);
-				closed = MakeTransparent(Resx.FolderClose);
-			}
-
-			private static Image MakeTransparent(Bitmap bitmap)
-			{
-				bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
-				return bitmap;
+				task = Resx.Task;
+				opened = Resx.FolderOpen;
+				closed = Resx.FolderClose;
 			}
 
 			protected override Image GetIcon(TreeNodeAdv node)
 			{
-				/*Image icon = base.GetIcon(node);
-				if (icon != null)
-					return icon;
-				else */ 
 				if (node.Tag is Node subnode && subnode.Tag is OutlookTask)
 					return task;
 				else if (node.CanExpand && node.IsExpanded)

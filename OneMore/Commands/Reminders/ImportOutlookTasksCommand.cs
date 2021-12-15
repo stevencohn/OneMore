@@ -22,10 +22,11 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			IEnumerable<OutlookTask> tasks = null;
+
 			using (var outlook = new Outlook())
 			{
 				var folders = outlook.GetTaskHierarchy();
-				IEnumerable<OutlookTask> tasks;
 
 				using (var dialog = new ImportOutlookTasksDialog(folders))
 				{
@@ -40,36 +41,40 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 				}
+			}
 
-				logger.WriteLine($"selected {tasks.Count()} tasks");
-				return;
+			logger.WriteLine($"selected {tasks.Count()} tasks");
 
-				using (var one = new OneNote(out var page, out var ns))
+			using (var one = new OneNote(out var page, out var ns))
+			{
+				foreach (var task in tasks)
 				{
-					foreach (var task in tasks)
-					{
-						task.OneNoteTaskID = Guid.NewGuid().ToString("b").ToUpper();
+					logger.WriteLine($"importing \"{task.Subject}\"");
 
-						page.AddNextParagraph(
-							new XElement(ns + "OE",
-								new XElement(ns + "OutlookTask",
-									new XAttribute("startDate", task.CreationTime.ToZuluString()),
-									new XAttribute("dueDate", task.DueDate.ToZuluString()),
-									new XAttribute("guidTask", task.OneNoteTaskID),
-									new XAttribute("completed", task.Complete.ToString().ToLower()),
-									new XAttribute("creationDate", task.CreationTime.ToZuluString())
-									),
-								new XElement(ns + "T",
-									new XCData(task.Subject))
-							));
-					}
+					task.OneNoteTaskID = Guid.NewGuid().ToString("b").ToUpper();
 
-					await one.Update(page);
+					page.AddNextParagraph(
+						new XElement(ns + "OE",
+							new XElement(ns + "OutlookTask",
+								new XAttribute("startDate", task.CreationTime.ToZuluString()),
+								new XAttribute("dueDate", task.DueDate.ToZuluString()),
+								new XAttribute("guidTask", task.OneNoteTaskID),
+								new XAttribute("completed", task.Complete.ToString().ToLower()),
+								new XAttribute("creationDate", task.CreationTime.ToZuluString())
+								),
+							new XElement(ns + "T",
+								new XCData(task.Subject))
+						));
+				}
 
-					// re-fetch page to get IDs of new paragraphs...
-					page = one.GetPage(page.PageId, OneNote.PageDetail.Basic);
-					ns = page.Namespace;
+				await one.Update(page);
 
+				// re-fetch page to get IDs of new paragraphs...
+				page = one.GetPage(page.PageId, OneNote.PageDetail.Basic);
+				ns = page.Namespace;
+
+				using (var outlook = new Outlook())
+				{
 					foreach (var task in tasks)
 					{
 						var paragraph = page.Root.Descendants(ns + "OutlookTask")

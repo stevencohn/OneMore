@@ -138,21 +138,26 @@ namespace River.OneMoreAddIn.Helpers.Office
 				return false;
 			}
 
-			UserProperty prop;
+			try
+			{
+				UserProperty prop;
+				prop = item.UserProperties.Find("OneNoteTaskID")
+					?? item.UserProperties.Add("OneNoteTaskID", OlUserPropertyType.olText);
 
-			prop = item.UserProperties.Find("OneNoteTaskID")
-				?? item.UserProperties.Add("OneNoteTaskID", OlUserPropertyType.olText);
+				prop.Value = task.OneNoteTaskID;
 
-			prop.Value = task.OneNoteTaskID;
+				prop = item.UserProperties.Find("OneNoteURL")
+					?? item.UserProperties.Add("OneNoteURL", OlUserPropertyType.olText);
 
-			prop = item.UserProperties.Find("OneNoteURL")
-				?? item.UserProperties.Add("OneNoteURL", OlUserPropertyType.olText);
-			
-			prop.Value = task.OneNoteURL;
+				prop.Value = task.OneNoteURL;
 
-			item.Save();
+				item.Save();
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(item);
+			}
 
-			Marshal.ReleaseComObject(item);
 			return true;
 		}
 	}
