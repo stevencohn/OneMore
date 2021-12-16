@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				string pageId = null;
+				string pageId;
 				if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
 				{
 					page = one.GetPage();
@@ -161,6 +161,10 @@ namespace River.OneMoreAddIn.Commands
 			var weekRule = culture.DateTimeFormat.CalendarWeekRule;
 			var firstDay = culture.DateTimeFormat.FirstDayOfWeek;
 
+
+			System.Diagnostics.Debugger.Launch();
+
+
 			var serializer = new ReminderSerializer();
 			foreach (var meta in metas)
 			{
@@ -240,7 +244,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ClearContent()
 		{
-			var chalkOutlines = page.Root.Elements(ns + "Outline");
+			var chalkOutlines = page.Root.Elements(ns + "Outline")
+				.Where(e => !e.Elements(ns + "Meta")
+					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
+
 			if (chalkOutlines != null)
 			{
 				// assume the first outline is the report, reuse it as our container

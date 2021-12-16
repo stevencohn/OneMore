@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string TocOptionsMeta = "omTocOptions";
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
+		private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
 		private OneNote one;
 
@@ -124,7 +125,11 @@ namespace River.OneMoreAddIn.Commands
 			var ns = page.Namespace;
 			PageNamespace.Set(ns);
 
-			var top = page.Root.Element(ns + "Outline")?.Element(ns + "OEChildren");
+			var top = page.Root.Elements(ns + "Outline")
+				.FirstOrDefault(e => !e.Elements(ns + "Meta")
+					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank))?
+				.Element(ns + "OEChildren");
+
 			if (top == null)
 			{
 				UIHelper.ShowError(Resx.InsertTocCommand_NoHeadings);
@@ -175,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 				var count = minlevel;
 				while (count < heading.Level)
 				{
-					text.Append("\t");
+					text.Append(Indent8);
 					count++;
 				}
 
@@ -279,7 +284,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var text = new StringBuilder();
 				var level = int.Parse(element.Attribute("pageLevel").Value);
-				while (level > 0)
+				while (level > 1)
 				{
 					text.Append("\t");
 					level--;
