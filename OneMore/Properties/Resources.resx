@@ -3680,4 +3680,16 @@ Deferred</value>
     <value>Include a synopsis of each page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Import Tasks from Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote</value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Note that OneNote does not bind completely to task that are not in the Outlook Tasks folder. Tasks from sub-folders are shown in red to indicate that their status flags will not update automatically after importing.</value>
+    <comment>rich text box</comment>
+  </data>
 </root>

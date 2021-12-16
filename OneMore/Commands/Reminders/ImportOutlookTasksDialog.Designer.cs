@@ -33,6 +33,7 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.introBox = new System.Windows.Forms.TextBox();
+			this.warningBox = new System.Windows.Forms.RichTextBox();
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.tree = new Aga.Controls.Tree.TreeViewAdv();
 			this.buttonPanel = new System.Windows.Forms.Panel();
@@ -70,10 +71,22 @@
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
 			this.introBox.ReadOnly = true;
-			this.introBox.Size = new System.Drawing.Size(772, 64);
+			this.introBox.Size = new System.Drawing.Size(772, 51);
 			this.introBox.TabIndex = 0;
 			this.introBox.Text = "Choose an entire folder or individual tasks to import from Outlook into OneNote. " +
     "Disabled items indicate tasks already linked to OneNote";
+			// 
+			// warningBox
+			// 
+			this.warningBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.warningBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.warningBox.Enabled = false;
+			this.warningBox.Location = new System.Drawing.Point(20, 71);
+			this.warningBox.Name = "warningBox";
+			this.warningBox.ReadOnly = true;
+			this.warningBox.Size = new System.Drawing.Size(772, 79);
+			this.warningBox.TabIndex = 0;
+			this.warningBox.Text = resources.GetString("warningBox.Text");
 			// 
 			// imageList
 			// 
@@ -98,7 +111,7 @@
 			this.tree.FullRowSelectInactiveColor = System.Drawing.Color.Empty;
 			this.tree.LineColor = System.Drawing.SystemColors.ControlDark;
 			this.tree.LoadOnDemand = true;
-			this.tree.Location = new System.Drawing.Point(20, 84);
+			this.tree.Location = new System.Drawing.Point(20, 150);
 			this.tree.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tree.Model = null;
 			this.tree.Name = "tree";
@@ -106,7 +119,7 @@
 			this.tree.SelectedNode = null;
 			this.tree.SelectionMode = Aga.Controls.Tree.TreeSelectionMode.MultiSameParent;
 			this.tree.ShowPerformance = false;
-			this.tree.Size = new System.Drawing.Size(772, 440);
+			this.tree.Size = new System.Drawing.Size(772, 374);
 			this.tree.TabIndex = 0;
 			// 
 			// buttonPanel
@@ -127,6 +140,7 @@
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(812, 591);
 			this.Controls.Add(this.tree);
+			this.Controls.Add(this.warningBox);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -148,6 +162,7 @@
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.TextBox introBox;
+		private System.Windows.Forms.RichTextBox warningBox;
 		private System.Windows.Forms.Panel buttonPanel;
 		private System.Windows.Forms.ImageList imageList;
 		private Aga.Controls.Tree.TreeViewAdv tree;

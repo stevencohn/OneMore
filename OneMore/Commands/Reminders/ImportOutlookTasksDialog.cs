@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Aga.Controls.Tree;
 	using Aga.Controls.Tree.NodeControls;
 	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
@@ -20,13 +21,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		#region class TaskNodeIcon
-		private sealed class TaskNodeIcon : NodeIcon
+		private sealed class TreeNodeIcon : NodeIcon
 		{
 			private readonly Image task;
 			private readonly Image opened;
 			private readonly Image closed;
 
-			public TaskNodeIcon()
+			public TreeNodeIcon()
 			{
 				task = Resx.Task;
 				opened = Resx.FolderOpen;
@@ -52,13 +53,25 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				//Text = Resx.RemindDialog_Text;
+				Text = Resx.ImportOutlookTasksDialog_Text;
 
 				Localize(new string[]
 				{
+					"introBox",
+					"warningBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
+			}
+			else
+			{
+				// customization only for English
+				warningBox.Clear();
+				warningBox.AppendText("Note that OneNote does not bind completely to task that " +
+					"are not in the Outlook Tasks folder. Tasks from sub-folders are shown ");
+				warningBox.AppendFormattedText("in red", Color.Firebrick);
+				warningBox.AppendFormattedText(" to indicate that their status flags will not update " +
+					"automatically after importing.", SystemColors.GrayText);
 			}
 
 			// prepare TreeViewAdv...
@@ -72,17 +85,23 @@ namespace River.OneMoreAddIn.Commands
 			nodeCheckBox.CheckStateChanged += CheckStateChanged;
 			tree.NodeControls.Add(nodeCheckBox);
 
-			tree.NodeControls.Add(new TaskNodeIcon
+			tree.NodeControls.Add(new TreeNodeIcon
 			{
 				LeftMargin = 1,
 				ScaleMode = ImageScaleMode.Clip
 			});
 
-			tree.NodeControls.Add(new NodeTextBox
+			var treeNodeTextBox = new NodeTextBox
 			{
 				DataPropertyName = "Text",
 				LeftMargin = 3
-			});
+			};
+			treeNodeTextBox.DrawText += (sender, args) =>
+			{
+				if (args.Node.Level > 2)
+					args.TextColor = Color.Firebrick;
+			};
+			tree.NodeControls.Add(treeNodeTextBox);
 
 			model = new TreeModel();
 			tree.Model = model;
@@ -138,10 +157,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CheckStateChanged(object sender, TreePathEventArgs e)
 		{
-			var nodeCheckBox = tree.NodeControls.FirstOrDefault(c => c is NodeCheckBox) as NodeCheckBox;
-			if (nodeCheckBox != null)
+			if (tree.NodeControls.FirstOrDefault(c => c is NodeCheckBox) is NodeCheckBox box)
 			{
-				nodeCheckBox.CheckStateChanged -= CheckStateChanged;
+				box.CheckStateChanged -= CheckStateChanged;
 
 				var node = model.FindNode(e.Path);
 				if (node != null)
@@ -161,7 +179,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				nodeCheckBox.CheckStateChanged += CheckStateChanged;
+				box.CheckStateChanged += CheckStateChanged;
 			}
 		}
 

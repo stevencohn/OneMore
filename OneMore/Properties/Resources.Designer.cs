@@ -2612,6 +2612,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_introBox_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Tasks from Outlook.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note that OneNote does not bind completely to task that are not in the Outlook Tasks folder. Tasks from sub-folders are shown in red to indicate that their status flags will not update automatically after importing..
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_warningBox_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_warningBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Web page not found or returned empty content.
         /// </summary>
         internal static string ImportWebCommand_BadUrl {

@@ -540,6 +540,7 @@
     <Compile Include="Commands\File\PluginDialog.Designer.cs">
       <DependentUpon>PluginDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\RichTextBoxExtensions.cs" />
     <Compile Include="UI\TagPickerDialog.cs">
       <SubType>Form</SubType>
     </Compile>

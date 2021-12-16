@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ReportRemindersCommand : Command
 	{
-		private class Item
+		private sealed class Item
 		{
 			public XElement Meta;
 			public Reminder Reminder;
