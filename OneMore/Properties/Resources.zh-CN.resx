@@ -3619,4 +3619,8 @@ OneNote 文件 (*.one)</value>
     <value>未安装所需的 Office 产品</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>包括每个页面的概要</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

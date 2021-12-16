@@ -829,10 +829,11 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// 
+		/// Gets the specified standard quick style and ensures it's QuickStyleDef is
+		/// included on the page
 		/// </summary>
-		/// <param name="key"></param>
-		/// <returns></returns>
+		/// <param name="key">A StandardStyles value</param>
+		/// <returns>A Style</returns>
 		public Style GetQuickStyle(StandardStyles key)
 		{
 			string name = key.ToName();

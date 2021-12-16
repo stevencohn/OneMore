@@ -3628,4 +3628,8 @@ twee uur
     <value>Het vereiste Office-product is niet geïnstalleerd</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>Voeg een samenvatting van elke pagina toe</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

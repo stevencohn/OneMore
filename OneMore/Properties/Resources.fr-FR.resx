@@ -3622,4 +3622,8 @@ Un jour
     <value>Le produit Office requis n'est pas installé</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>Inclure un synopsis de chaque page</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -3613,4 +3613,8 @@ Aufgeschoben</value>
     <value>Das erforderliche Office-Produkt ist nicht installiert</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>Fügen Sie eine Zusammenfassung jeder Seite hinzu</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

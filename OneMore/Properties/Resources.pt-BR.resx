@@ -3628,4 +3628,8 @@ Diferido</value>
     <value>O produto Office necessário não está instalado</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>Inclui uma sinopse de cada página</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

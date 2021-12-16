@@ -3175,6 +3175,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include a synopsis of each page.
+        /// </summary>
+        internal static string MapDialog_synopsisBox_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_synopsisBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Page Map.
         /// </summary>
         internal static string MapDialog_Text {

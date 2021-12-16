@@ -3627,4 +3627,8 @@ ISO-code then comma then language name</comment>
     <value>لم يتم تثبيت منتج Office المطلوب</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>تضمين ملخص لكل صفحة</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
