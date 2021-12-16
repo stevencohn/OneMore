@@ -441,7 +441,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="TaggedCmd"/>
             </menu>
-            <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel" imageMso="GroupInsertShapes" getEnabled="GetBodyContext">
+            <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel" imageMso="GroupInsertShapes">
               <button
                 id="ribInsertSingleLineButton"
                 imageMso="HorizontalLineInsert"
@@ -541,7 +541,7 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertBlueStatusCmd"/>
             </menu>
-            <menu id="ribTableMenu" getLabel="GetRibbonLabel" imageMso="TableInsert" getEnabled="GetBodyContext">
+            <menu id="ribTableMenu" getLabel="GetRibbonLabel" imageMso="TableInsert" enabled="true">
               <button
                 id="ribAddFormulaButton"
                 imageMso="TableFormulaDialog"
@@ -559,14 +559,12 @@
                 id="ribHighlightFormulaButton"
                 imageMso="PivotTableListFormulas"
                 getLabel="GetRibbonLabel"
-                getEnabled="GetBodyContext"
                 onAction="HighlightFormulaCmd"/>
               <button
                 id="ribRecalculateFormulaButton"
                 imageMso="CalculateSheet"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                getEnabled="GetBodyContext"
                 onAction="RecalculateFormulaCmd"/>
               <button
                 id="ribTextToTableButton"

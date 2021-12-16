@@ -58,6 +58,12 @@ namespace River.OneMoreAddIn
 		{
 			if (EnablersEnabled)
 			{
+				// special hook to force setbodycontext earlier
+				if (control.Id == "ribFootnoteButton")
+				{
+					SetBodyContext(control);
+				}
+
 				//logger.WriteLine($"GetBodyContext({control.Id}) bodyContext:{bodyContext}");
 				ribbon.Invalidate();
 				return bodyContext;
