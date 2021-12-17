@@ -3617,4 +3617,16 @@ Aufgeschoben</value>
     <value>Fügen Sie eine Zusammenfassung jeder Seite hinzu</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Aufgaben aus Outlook importieren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Wählen Sie einen ganzen Ordner oder einzelne Aufgaben aus, die Sie aus Outlook in OneNote importieren möchten. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Beachten Sie, dass OneNote nicht vollständig an Aufgaben bindet, die sich nicht im Outlook-Aufgabenordner befinden. </value>
+    <comment>rich text box</comment>
+  </data>
 </root>

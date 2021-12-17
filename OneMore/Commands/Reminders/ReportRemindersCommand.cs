@@ -161,10 +161,6 @@ namespace River.OneMoreAddIn.Commands
 			var weekRule = culture.DateTimeFormat.CalendarWeekRule;
 			var firstDay = culture.DateTimeFormat.FirstDayOfWeek;
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			var serializer = new ReminderSerializer();
 			foreach (var meta in metas)
 			{

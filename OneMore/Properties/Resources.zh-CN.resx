@@ -3623,4 +3623,16 @@ OneNote 文件 (*.one)</value>
     <value>包括每个页面的概要</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>从 Outlook 导入任务</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>选择要从 Outlook 导入 OneNote 的整个文件夹或单个任务。</value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>请注意，OneNote 不会完全绑定到不在 Outlook 任务文件夹中的任务。</value>
+    <comment>rich text box</comment>
+  </data>
 </root>

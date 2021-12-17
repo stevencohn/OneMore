@@ -3632,4 +3632,16 @@ Diferido</value>
     <value>Inclui uma sinopse de cada página</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Importar tarefas do Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Escolha uma pasta inteira ou tarefas individuais para importar do Outlook para o OneNote. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Observe que o OneNote não se vincula completamente a tarefas que não estão na pasta Tarefas do Outlook. </value>
+    <comment>rich text box</comment>
+  </data>
 </root>

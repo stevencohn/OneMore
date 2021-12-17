@@ -3632,4 +3632,16 @@ twee uur
     <value>Voeg een samenvatting van elke pagina toe</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Taken importeren vanuit Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Kies een hele map of afzonderlijke taken om vanuit Outlook in OneNote te importeren. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Houd er rekening mee dat OneNote niet volledig bindt aan taken die niet in de map Outlook-taken staan. </value>
+    <comment>rich text box</comment>
+  </data>
 </root>

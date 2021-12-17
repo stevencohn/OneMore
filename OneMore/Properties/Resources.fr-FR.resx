@@ -3626,4 +3626,16 @@ Un jour
     <value>Inclure un synopsis de chaque page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Importer des tâches depuis Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Choisissez un dossier entier ou des tâches individuelles à importer d'Outlook dans OneNote. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Notez que OneNote ne se lie pas complètement aux tâches qui ne se trouvent pas dans le dossier Tâches Outlook. </value>
+    <comment>rich text box</comment>
+  </data>
 </root>

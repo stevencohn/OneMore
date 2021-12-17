@@ -3631,4 +3631,16 @@ ISO-code then comma then language name</comment>
     <value>تضمين ملخص لكل صفحة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>مهام الاستيراد من Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>اختر مجلدا كاملا أو مهام فردية للاستيراد من Outlook إلى OneNote. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>لاحظ أن OneNote لا يرتبط بشكل كامل بالمهمة غير الموجودة في مجلد مهام Outlook. </value>
+    <comment>rich text box</comment>
+  </data>
 </root>
