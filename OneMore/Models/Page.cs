@@ -161,6 +161,15 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public void AddNextParagraph(params XElement[] content)
+		{
+			foreach (var item in content)
+			{
+				InsertParagraph(item, false);
+			}
+		}
+
+
 		/// <summary>
 		/// Adds the given QuickStyleDef element in the proper document order, just after
 		/// the TagDef elements if there are any
@@ -987,7 +996,7 @@ namespace River.OneMoreAddIn.Models
 		/// </param>
 		public void InsertParagraph(XElement content, bool before = true)
 		{
-			var current = Root.Descendants(Namespace + "OE").LastOrDefault(e => 
+			var current = Root.Descendants(Namespace + "OE").LastOrDefault(e =>
 				e.Elements(Namespace + "T").Attributes("selected").Any(a => a.Value == "all"));
 
 			if (current != null)
@@ -1002,9 +1011,18 @@ namespace River.OneMoreAddIn.Models
 				else
 					current.AddAfterSelf(content);
 			}
-		}       
-		
-		
+		}
+
+
+		public void InsertParagraph(params XElement[] content)
+		{
+			foreach (var e in content)
+			{
+				InsertParagraph(e, false);
+			}
+		}
+
+
 		/// <summary>
 		/// Determines if the page is configured for right-to-left text or the Windows
 		/// language is a right-to-left language

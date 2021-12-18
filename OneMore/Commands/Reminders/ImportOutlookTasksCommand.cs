@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string NormalImportanceColor = "#5B9BD5";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 
+		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 		private string[] importances;
@@ -68,13 +69,16 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine($"selected {tasks.Count()} tasks");
 
-			if (genTable)
+			using (one = new OneNote(out page, out ns))
 			{
-				await GenerateTableReport(tasks);
-			}
-			else
-			{
-				await GenerateListReport(tasks);
+				if (genTable)
+				{
+					await GenerateTableReport(tasks);
+				}
+				else
+				{
+					await GenerateListReport(tasks);
+				}
 			}
 		}
 
@@ -87,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task GenerateTableReport(IEnumerable<OutlookTask> tasks)
 		{
-			using (var one = new OneNote(out page, out ns))
+			using (one = new OneNote(out page, out ns))
 			{
 				GenerateTable(tasks);
 
@@ -161,6 +165,20 @@ namespace River.OneMoreAddIn.Commands
 				row[4].SetContent(MakeImportance(task.Importance));
 				row[5].SetContent((task.PercentComplete / 100.0).ToString("P0"));
 			}
+
+			var nowf = DateTime.Now.ToShortFriendlyString();
+
+			page.AddNextParagraph(
+				new Paragraph(Resx.ReminderReport_ActiveReminders).SetQuickStyle(heading2Index),
+				new Paragraph($"{Resx.ReminderReport_LastUpdated} {nowf} " +
+					$"(<a href=\"onemore://ReportRemindersCommand/refresh\">{Resx.word_Refresh}</a>)"),
+				new Paragraph(string.Empty),
+				new Paragraph(table.Root).SetMeta(TableMeta, Guid.NewGuid().ToString("b").ToUpper()),
+				new Paragraph(string.Empty),
+				new Paragraph(string.Empty)
+				);
+
+			one.Update(page);
 		}
 
 
@@ -228,42 +246,39 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var ordered = tasks.OrderBy(t => t.FolderPath).ThenBy(t => t.Subject);
 
-			using (var one = new OneNote(out page, out ns))
+			foreach (var task in ordered)
+			{
+				//logger.WriteLine($"importing \"{task.FolderPath}/{task.Subject}\"");
+				page.InsertParagraph(MakeTaskReference(task));
+			}
+
+			await one.Update(page);
+
+			// re-fetch page to get IDs of new paragraphs...
+			page = one.GetPage(page.PageId, OneNote.PageDetail.Basic);
+			ns = page.Namespace;
+
+			// find the containing Outline to optimize the lookup loop below
+			var outline = page.Root.Descendants(ns + "OutlookTask")
+				.Where(e => e.Attribute("guidTask").Value == ordered.First().OneNoteTaskID)
+				.Select(e => e.FirstAncestor(ns + "Outline"))
+				.First();
+
+			using (var outlook = new Outlook())
 			{
 				foreach (var task in ordered)
 				{
-					//logger.WriteLine($"importing \"{task.FolderPath}/{task.Subject}\"");
-					page.InsertParagraph(MakeTaskReference(task));
-				}
+					var paragraph = outline.Descendants(ns + "OutlookTask")
+						.Where(e => e.Attribute("guidTask").Value == task.OneNoteTaskID)
+						.Select(e => e.Parent)
+						.FirstOrDefault();
 
-				await one.Update(page);
-
-				// re-fetch page to get IDs of new paragraphs...
-				page = one.GetPage(page.PageId, OneNote.PageDetail.Basic);
-				ns = page.Namespace;
-
-				// find the containing Outline to optimize the lookup loop below
-				var outline = page.Root.Descendants(ns + "OutlookTask")
-					.Where(e => e.Attribute("guidTask").Value == ordered.First().OneNoteTaskID)
-					.Select(e => e.FirstAncestor(ns + "Outline"))
-					.First();
-
-				using (var outlook = new Outlook())
-				{
-					foreach (var task in ordered)
+					if (paragraph != null)
 					{
-						var paragraph = outline.Descendants(ns + "OutlookTask")
-							.Where(e => e.Attribute("guidTask").Value == task.OneNoteTaskID)
-							.Select(e => e.Parent)
-							.FirstOrDefault();
+						var id = paragraph.Attribute("objectID").Value;
+						task.OneNoteURL = one.GetHyperlink(page.PageId, id);
 
-						if (paragraph != null)
-						{
-							var id = paragraph.Attribute("objectID").Value;
-							task.OneNoteURL = one.GetHyperlink(page.PageId, id);
-
-							outlook.SaveTask(task);
-						}
+						outlook.SaveTask(task);
 					}
 				}
 			}
