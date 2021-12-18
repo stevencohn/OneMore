@@ -3644,4 +3644,12 @@ Diferido</value>
     <value>Observe que o OneNote não se vincula completamente a tarefas que não estão na pasta Tarefas do Outlook. </value>
     <comment>rich text box</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>Gerar lista de tarefas</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>Gerar tabela de detalhes de tarefas</value>
+    <comment>radio</comment>
+  </data>
 </root>

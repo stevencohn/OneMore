@@ -157,18 +157,7 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="content">The content to add</param>
 		public void AddNextParagraph(XElement content)
 		{
-			var current = Root.Descendants(Namespace + "OE")
-				.LastOrDefault(e => e.Elements(Namespace + "T").Attributes("selected").Any(a => a.Value == "all"));
-
-			if (current != null)
-			{
-				if (content.Name.LocalName != "OE")
-				{
-					content = new XElement(Namespace + "OE", content);
-				}
-
-				current.AddAfterSelf(content);
-			}
+			InsertParagraph(content, false);
 		}
 
 
@@ -988,6 +977,34 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Adds the given content immediately before or after the selected insertion point;
+		/// this will not replace selected regions.
+		/// </summary>
+		/// <param name="content">The content to insert</param>
+		/// <param name="before">
+		/// If true then insert before the insertion point; otherwise insert after the insertion point
+		/// </param>
+		public void InsertParagraph(XElement content, bool before = true)
+		{
+			var current = Root.Descendants(Namespace + "OE").LastOrDefault(e => 
+				e.Elements(Namespace + "T").Attributes("selected").Any(a => a.Value == "all"));
+
+			if (current != null)
+			{
+				if (content.Name.LocalName != "OE")
+				{
+					content = new XElement(Namespace + "OE", content);
+				}
+
+				if (before)
+					current.AddBeforeSelf(content);
+				else
+					current.AddAfterSelf(content);
+			}
+		}       
+		
+		
 		/// <summary>
 		/// Determines if the page is configured for right-to-left text or the Windows
 		/// language is a right-to-left language

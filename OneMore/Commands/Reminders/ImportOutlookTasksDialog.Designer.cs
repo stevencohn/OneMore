@@ -37,7 +37,11 @@
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.tree = new Aga.Controls.Tree.TreeViewAdv();
 			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.optionsPanel = new System.Windows.Forms.Panel();
+			this.listButton = new System.Windows.Forms.RadioButton();
+			this.tableButton = new System.Windows.Forms.RadioButton();
 			this.buttonPanel.SuspendLayout();
+			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// okButton
@@ -119,18 +123,50 @@
 			this.tree.SelectedNode = null;
 			this.tree.SelectionMode = Aga.Controls.Tree.TreeSelectionMode.MultiSameParent;
 			this.tree.ShowPerformance = false;
-			this.tree.Size = new System.Drawing.Size(772, 374);
+			this.tree.Size = new System.Drawing.Size(772, 302);
 			this.tree.TabIndex = 0;
 			// 
 			// buttonPanel
 			// 
-			this.buttonPanel.Controls.Add(this.cancelButton);
-			this.buttonPanel.Controls.Add(this.okButton);
+			this.buttonPanel.Controls.Add(this.tableButton);
+			this.buttonPanel.Controls.Add(this.listButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(20, 524);
+			this.buttonPanel.Location = new System.Drawing.Point(20, 452);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(772, 47);
+			this.buttonPanel.Size = new System.Drawing.Size(772, 72);
 			this.buttonPanel.TabIndex = 13;
+			// 
+			// optionsPanel
+			// 
+			this.optionsPanel.Controls.Add(this.cancelButton);
+			this.optionsPanel.Controls.Add(this.okButton);
+			this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.optionsPanel.Location = new System.Drawing.Point(20, 524);
+			this.optionsPanel.Name = "optionsPanel";
+			this.optionsPanel.Size = new System.Drawing.Size(772, 47);
+			this.optionsPanel.TabIndex = 14;
+			// 
+			// listButton
+			// 
+			this.listButton.AutoSize = true;
+			this.listButton.Checked = true;
+			this.listButton.Location = new System.Drawing.Point(3, 8);
+			this.listButton.Name = "listButton";
+			this.listButton.Size = new System.Drawing.Size(159, 24);
+			this.listButton.TabIndex = 0;
+			this.listButton.TabStop = true;
+			this.listButton.Text = "Generate task list";
+			this.listButton.UseVisualStyleBackColor = true;
+			// 
+			// tableButton
+			// 
+			this.tableButton.AutoSize = true;
+			this.tableButton.Location = new System.Drawing.Point(3, 38);
+			this.tableButton.Name = "tableButton";
+			this.tableButton.Size = new System.Drawing.Size(217, 24);
+			this.tableButton.TabIndex = 1;
+			this.tableButton.Text = "Generate task detail table";
+			this.tableButton.UseVisualStyleBackColor = true;
 			// 
 			// ImportOutlookTasksDialog
 			// 
@@ -143,6 +179,7 @@
 			this.Controls.Add(this.warningBox);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
+			this.Controls.Add(this.optionsPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -152,6 +189,8 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Import Tasks from Outlook";
 			this.buttonPanel.ResumeLayout(false);
+			this.buttonPanel.PerformLayout();
+			this.optionsPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -163,8 +202,11 @@
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.TextBox introBox;
 		private System.Windows.Forms.RichTextBox warningBox;
+		private System.Windows.Forms.Panel optionsPanel;
 		private System.Windows.Forms.Panel buttonPanel;
 		private System.Windows.Forms.ImageList imageList;
 		private Aga.Controls.Tree.TreeViewAdv tree;
+		private System.Windows.Forms.RadioButton tableButton;
+		private System.Windows.Forms.RadioButton listButton;
 	}
 }

@@ -3638,4 +3638,12 @@ Un jour
     <value>Notez que OneNote ne se lie pas complètement aux tâches qui ne se trouvent pas dans le dossier Tâches Outlook. </value>
     <comment>rich text box</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>Générer une liste de tâches</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>Générer le tableau des détails de la tâche</value>
+    <comment>radio</comment>
+  </data>
 </root>

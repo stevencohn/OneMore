@@ -88,7 +88,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 				EntryID = parent.EntryID
 			};
 
-			path = path == null ? parent.Name : $"{path}/{parent.Name}";
+			path = path == null ? parent.Name : $"{path}{OutlookTask.PathDelimeter}{parent.Name}";
 
 			var items = parent.Items;
 			items.IncludeRecurrences = true;

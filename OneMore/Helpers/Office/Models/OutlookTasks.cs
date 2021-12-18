@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 	/// </summary>
 	internal class OutlookTask
 	{
+		public const string PathDelimeter = "/";
+
 		public string Subject { get; set; }
 
 		/// <summary>
@@ -49,5 +51,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// Gets or sets the URL of where this task is embedded on a OneNote page
 		/// </summary>
 		public string OneNoteURL { get; set; }
+
+
+		// Temporary properties used for report generation...
+
+		public int Year { get; set; }
+		public int WoYear { get; set; }
 	}
 }

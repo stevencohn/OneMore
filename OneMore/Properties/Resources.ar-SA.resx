@@ -3643,4 +3643,12 @@ ISO-code then comma then language name</comment>
     <value>لاحظ أن OneNote لا يرتبط بشكل كامل بالمهمة غير الموجودة في مجلد مهام Outlook. </value>
     <comment>rich text box</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>إنشاء قائمة المهام</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>إنشاء جدول تفاصيل المهمة</value>
+    <comment>radio</comment>
+  </data>
 </root>

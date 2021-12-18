@@ -3644,4 +3644,12 @@ twee uur
     <value>Houd er rekening mee dat OneNote niet volledig bindt aan taken die niet in de map Outlook-taken staan. </value>
     <comment>rich text box</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>Takenlijst genereren</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>Taakdetailtabel genereren</value>
+    <comment>radio</comment>
+  </data>
 </root>

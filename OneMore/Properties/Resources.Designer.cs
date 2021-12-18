@@ -2621,6 +2621,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate task list.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_listButton_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_listButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate task detail table.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_tableButton_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_tableButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Tasks from Outlook.
         /// </summary>
         internal static string ImportOutlookTasksDialog_Text {
@@ -3482,6 +3500,93 @@ namespace River.OneMoreAddIn.Properties {
         internal static string OutlineDialog_Text {
             get {
                 return ResourceManager.GetString("OutlineDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Completed.
+        /// </summary>
+        internal static string OutlookTaskReport_DateCompleted {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_DateCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due Date.
+        /// </summary>
+        internal static string OutlookTaskReport_DueDate {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_DueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importance.
+        /// </summary>
+        internal static string OutlookTaskReport_Importance {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Importance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low
+        ///Medium
+        ///High.
+        /// </summary>
+        internal static string OutlookTaskReport_importances {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_importances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Complete.
+        /// </summary>
+        internal static string OutlookTaskReport_Percent {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Percent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string OutlookTaskReport_Status {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed
+        ///Deferred
+        ///In Progress
+        ///Not Started
+        ///Waiting.
+        /// </summary>
+        internal static string OutlookTaskReport_statuses {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_statuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task.
+        /// </summary>
+        internal static string OutlookTaskReport_Task {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Task", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week (0).
+        /// </summary>
+        internal static string OutlookTaskReport_Week {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Week", resourceCulture);
             }
         }
         

@@ -59,6 +59,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introBox",
 					"warningBox",
+					"listButton",
+					"tableButton",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -153,6 +155,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public IEnumerable<OutlookTask> SelectedTasks =>
 			GetSelectedTask(model.Root, new List<OutlookTask>());
+
+
+		public bool ShowDetailedTable => tableButton.Checked;
 
 
 		private void CheckStateChanged(object sender, TreePathEventArgs e)
