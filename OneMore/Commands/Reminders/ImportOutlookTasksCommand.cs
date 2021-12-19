@@ -79,6 +79,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					await GenerateListReport(tasks);
 				}
+
+				BindTasks(tasks);
 			}
 		}
 
@@ -91,11 +93,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task GenerateTableReport(IEnumerable<OutlookTask> tasks)
 		{
-			using (one = new OneNote(out page, out ns))
-			{
-				await GenerateTable(tasks);
-				await one.Update(page);
-			}
+			await GenerateTable(tasks);
+			await one.Update(page);
 		}
 
 
@@ -154,9 +153,9 @@ namespace River.OneMoreAddIn.Commands
 					row[1].ShadingColor = OverdueShading;
 				}
 
-				if (task.DueDate.Year == OutlookTask.UnspecifiedYear)
+				if (task.DueDate.Year > OutlookTask.UnspecifiedYear)
 				{
-					row[2].SetContent("-");
+					row[2].SetContent(string.Empty);
 				}
 				else
 				{
@@ -167,9 +166,9 @@ namespace River.OneMoreAddIn.Commands
 						));
 				}
 
-				if (task.PercentComplete < 100 || task.DateCompleted.Year == OutlookTask.UnspecifiedYear)
+				if (task.PercentComplete < 100 || task.DateCompleted.Year > OutlookTask.UnspecifiedYear)
 				{
-					row[3].SetContent("-");
+					row[3].SetContent(string.Empty);
 				}
 				else
 				{
@@ -183,7 +182,7 @@ namespace River.OneMoreAddIn.Commands
 			var nowf = DateTime.Now.ToShortFriendlyString();
 
 			page.AddNextParagraph(
-				new Paragraph(Resx.ReminderReport_ActiveReminders).SetQuickStyle(heading2Index),
+				new Paragraph(Resx.OutlookTaskReport_Title).SetQuickStyle(heading2Index),
 				new Paragraph($"{Resx.ReminderReport_LastUpdated} {nowf} " +
 					$"(<a href=\"onemore://ReportRemindersCommand/refresh\">{Resx.word_Refresh}</a>)"),
 				new Paragraph(string.Empty),
@@ -209,7 +208,10 @@ namespace River.OneMoreAddIn.Commands
 				task.WoYear = calendar.GetWeekOfYear(task.DueDate, weekRule, firstDay);
 			}
 
-			return tasks.OrderBy(t => t.FolderPath).ThenBy(t => t.Subject);
+			return tasks.OrderBy(t => t.FolderPath)
+				.ThenBy(t => t.Year)
+				.ThenBy(t => t.WoYear)
+				.ThenBy(t => t.Subject);
 		}
 
 
@@ -267,20 +269,24 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await one.Update(page);
+		}
 
+
+		private void BindTasks(IEnumerable<OutlookTask> tasks)
+		{
 			// re-fetch page to get IDs of new paragraphs...
 			page = one.GetPage(page.PageId, OneNote.PageDetail.Basic);
 			ns = page.Namespace;
 
 			// find the containing Outline to optimize the lookup loop below
 			var outline = page.Root.Descendants(ns + "OutlookTask")
-				.Where(e => e.Attribute("guidTask").Value == ordered.First().OneNoteTaskID)
+				.Where(e => e.Attribute("guidTask").Value == tasks.First().OneNoteTaskID)
 				.Select(e => e.FirstAncestor(ns + "Outline"))
 				.First();
 
 			using (var outlook = new Outlook())
 			{
-				foreach (var task in ordered)
+				foreach (var task in tasks)
 				{
 					var paragraph = outline.Descendants(ns + "OutlookTask")
 						.Where(e => e.Attribute("guidTask").Value == task.OneNoteTaskID)

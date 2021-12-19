@@ -90,11 +90,6 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			path = path == null ? parent.Name : $"{path}{OutlookTask.PathDelimeter}{parent.Name}";
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
-
 			var items = parent.Items;
 			items.IncludeRecurrences = true;
 			foreach (TaskItem item in items)

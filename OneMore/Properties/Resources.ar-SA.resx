@@ -3651,4 +3651,50 @@ ISO-code then comma then language name</comment>
     <value>إنشاء جدول تفاصيل المهمة</value>
     <comment>radio</comment>
   </data>
+  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
+    <value>تاريخ الاستحقاق</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>أهمية</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>قليل
+متوسط
+متوسط</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>٪ إكمال</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>حالة</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>مكتمل
+مؤجل
+في تقدم
+لم يبدأ
+منتظر</value>
+    <comment>reprot</comment>
+  </data>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>مهمة</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>الأسبوع {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>مهام Outlook</value>
+    <comment>report</comment>
+  </data>
 </root>

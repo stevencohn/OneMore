@@ -3582,7 +3582,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Week (0).
+        ///   Looks up a localized string similar to Outlook Tasks.
+        /// </summary>
+        internal static string OutlookTaskReport_Title {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week {0}.
         /// </summary>
         internal static string OutlookTaskReport_Week {
             get {

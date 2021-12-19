@@ -3643,4 +3643,50 @@ OneNote 文件 (*.one)</value>
     <value>生成任务明细表</value>
     <comment>radio</comment>
   </data>
+  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
+    <value>完成日期</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
+    <value>截止日期</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>重要性</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>低的
+中等的
+高的</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>％ 完全的</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>地位</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>完全的
+延期
+进行中
+没有开始
+等待</value>
+    <comment>reprot</comment>
+  </data>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>任务</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>{0} 周</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>展望任务</value>
+    <comment>report</comment>
+  </data>
 </root>

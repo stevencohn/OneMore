@@ -3652,4 +3652,50 @@ Diferido</value>
     <value>Generar tabla de detalles de tareas</value>
     <comment>radio</comment>
   </data>
+  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
+    <value>Fecha de finalización</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
+    <value>Fecha de vencimiento</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>Importancia</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>Bajo
+Medio
+Alto</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>% Completo</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>Estado</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>Terminado
+Diferido
+En curso
+No empezado
+Espera</value>
+    <comment>reprot</comment>
+  </data>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>Tarea</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>Semana {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>Tareas de Outlook</value>
+    <comment>report</comment>
+  </data>
 </root>

@@ -3646,4 +3646,50 @@ Un jour
     <value>Générer le tableau des détails de la tâche</value>
     <comment>radio</comment>
   </data>
+  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
+    <value>Rendez-vous complet</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
+    <value>Date d'échéance</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>Importance</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>Meugler
+Moyen
+Haut</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>% Compléter</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>Statut</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>Complété
+Différé
+En cours
+Pas commencé
+En attendant</value>
+    <comment>reprot</comment>
+  </data>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>Tâche</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>Semaine {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>Tâches Outlook</value>
+    <comment>report</comment>
+  </data>
 </root>

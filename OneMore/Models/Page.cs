@@ -163,9 +163,12 @@ namespace River.OneMoreAddIn.Models
 
 		public void AddNextParagraph(params XElement[] content)
 		{
-			foreach (var item in content)
+			// consumer will build content array in document-order but InsertParagraph inserts
+			// just prior to the insertion point which will reverse the order of content items
+			// so insert them in reverse order intentionally so they show up correctly
+			for (var i = content.Length - 1; i >= 0; i--)
 			{
-				InsertParagraph(item, false);
+				InsertParagraph(content[i], false);
 			}
 		}
 

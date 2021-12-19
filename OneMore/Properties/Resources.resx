@@ -3739,7 +3739,11 @@ Waiting</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_Week" xml:space="preserve">
-    <value>Week (0)</value>
+    <value>Week {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>Outlook Tasks</value>
     <comment>report</comment>
   </data>
 </root>
