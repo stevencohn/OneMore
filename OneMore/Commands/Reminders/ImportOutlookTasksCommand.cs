@@ -105,7 +105,9 @@ namespace River.OneMoreAddIn.Commands
 				var table = new Table(element);
 
 				var taskIDs = table.Root.Descendants(ns + "OutlookTask")
-					.Select(e => e.Attribute("guidTask").Value);
+					.Select(e => e.Attribute("guidTask").Value)
+					// ref by list so they're not disposed when we clear the table XElement
+					.ToList();
 
 				if (!taskIDs.Any())
 				{
@@ -113,9 +115,13 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				taskIDs.ForEach(t => logger.WriteLine($"taskid={t}"));
+
+				table.Clear(true);
+
 				using (var outlook = new Outlook())
 				{
-					var tasks = outlook.LoadTasks(taskIDs);
+					var tasks = outlook.LoadTasksByID(taskIDs);
 					PopulateTable(table, tasks);
 				}
 
@@ -171,6 +177,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void PopulateTable(Table table, IEnumerable<OutlookTask> tasks)
 		{
+			PageNamespace.Set(ns);
 			var citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			// for some Github cloners, multiline items in the Resx file are delimeted
