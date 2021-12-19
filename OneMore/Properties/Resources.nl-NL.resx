@@ -3652,14 +3652,6 @@ twee uur
     <value>Taakdetailtabel genereren</value>
     <comment>radio</comment>
   </data>
-  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
-    <value>Datum voltooid</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
-    <value>Deadline</value>
-    <comment>report</comment>
-  </data>
   <data name="OutlookTaskReport_Importance" xml:space="preserve">
     <value>Belang</value>
     <comment>report</comment>
@@ -3679,12 +3671,12 @@ Hoog</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
-    <value>Voltooid
-Verschoven
+    <value>Niet begonnen
 Bezig
-Niet begonnen
-Aan het wachten</value>
-    <comment>reprot</comment>
+Voltooid
+Aan het wachten
+Verschoven</value>
+    <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_Task" xml:space="preserve">
     <value>Taak</value>
@@ -3696,6 +3688,14 @@ Aan het wachten</value>
   </data>
   <data name="OutlookTaskReport_Title" xml:space="preserve">
     <value>Outlook-taken</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>Verschuldigd/voltooid</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>Begin datum</value>
     <comment>report</comment>
   </data>
 </root>

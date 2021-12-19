@@ -3643,14 +3643,6 @@ OneNote 文件 (*.one)</value>
     <value>生成任务明细表</value>
     <comment>radio</comment>
   </data>
-  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
-    <value>完成日期</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
-    <value>截止日期</value>
-    <comment>report</comment>
-  </data>
   <data name="OutlookTaskReport_Importance" xml:space="preserve">
     <value>重要性</value>
     <comment>report</comment>
@@ -3670,12 +3662,12 @@ OneNote 文件 (*.one)</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
-    <value>完全的
-延期
+    <value>没有开始
 进行中
-没有开始
-等待</value>
-    <comment>reprot</comment>
+完全的
+等待
+延期</value>
+    <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_Task" xml:space="preserve">
     <value>任务</value>
@@ -3687,6 +3679,14 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="OutlookTaskReport_Title" xml:space="preserve">
     <value>展望任务</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>到期/已完成</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>开始日期</value>
     <comment>report</comment>
   </data>
 </root>

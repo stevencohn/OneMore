@@ -3504,20 +3504,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date Completed.
+        ///   Looks up a localized string similar to Due/Completed.
         /// </summary>
-        internal static string OutlookTaskReport_DateCompleted {
+        internal static string OutlookTaskReport_DateDue {
             get {
-                return ResourceManager.GetString("OutlookTaskReport_DateCompleted", resourceCulture);
+                return ResourceManager.GetString("OutlookTaskReport_DateDue", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Due Date.
+        ///   Looks up a localized string similar to Start Date.
         /// </summary>
-        internal static string OutlookTaskReport_DueDate {
+        internal static string OutlookTaskReport_DateStarted {
             get {
-                return ResourceManager.GetString("OutlookTaskReport_DueDate", resourceCulture);
+                return ResourceManager.GetString("OutlookTaskReport_DateStarted", resourceCulture);
             }
         }
         
@@ -3560,11 +3560,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Completed
-        ///Deferred
+        ///   Looks up a localized string similar to Not Started
         ///In Progress
-        ///Not Started
-        ///Waiting.
+        ///Completed
+        ///Waiting
+        ///Deferred.
         /// </summary>
         internal static string OutlookTaskReport_statuses {
             get {

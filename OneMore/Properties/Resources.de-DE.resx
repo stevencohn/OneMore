@@ -3637,14 +3637,6 @@ Aufgeschoben</value>
     <value>Aufgabendetailtabelle erstellen</value>
     <comment>radio</comment>
   </data>
-  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
-    <value>Datum der Fertigstellung</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
-    <value>Geburtstermin</value>
-    <comment>report</comment>
-  </data>
   <data name="OutlookTaskReport_Importance" xml:space="preserve">
     <value>Bedeutung</value>
     <comment>report</comment>
@@ -3664,12 +3656,12 @@ Hoch</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
-    <value>Vollendet
-Aufgeschoben
+    <value>Nicht angefangen
 In Bearbeitung
-Nicht angefangen
-Warten</value>
-    <comment>reprot</comment>
+Vollendet
+Warten
+Aufgeschoben</value>
+    <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_Task" xml:space="preserve">
     <value>Aufgabe</value>
@@ -3681,6 +3673,14 @@ Warten</value>
   </data>
   <data name="OutlookTaskReport_Title" xml:space="preserve">
     <value>Outlook-Aufgaben</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>Fällig/Abgeschlossen</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>Startdatum</value>
     <comment>report</comment>
   </data>
 </root>

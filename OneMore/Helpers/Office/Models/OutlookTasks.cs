@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		public DateTime DueDate { get; set; }
 		public OutlookImportance Importance { get; set; }
 		public int PercentComplete { get; set; }
+		public DateTime StartDate { get; set; }
 		public OutlookTaskStatus Status { get; set; }
 
 		/// <summary>

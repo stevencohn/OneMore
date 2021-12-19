@@ -37,9 +37,9 @@
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.tree = new Aga.Controls.Tree.TreeViewAdv();
 			this.buttonPanel = new System.Windows.Forms.Panel();
-			this.optionsPanel = new System.Windows.Forms.Panel();
-			this.listButton = new System.Windows.Forms.RadioButton();
 			this.tableButton = new System.Windows.Forms.RadioButton();
+			this.listButton = new System.Windows.Forms.RadioButton();
+			this.optionsPanel = new System.Windows.Forms.Panel();
 			this.buttonPanel.SuspendLayout();
 			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -136,6 +136,28 @@
 			this.buttonPanel.Size = new System.Drawing.Size(772, 72);
 			this.buttonPanel.TabIndex = 13;
 			// 
+			// tableButton
+			// 
+			this.tableButton.AutoSize = true;
+			this.tableButton.Checked = true;
+			this.tableButton.Location = new System.Drawing.Point(3, 8);
+			this.tableButton.Name = "tableButton";
+			this.tableButton.Size = new System.Drawing.Size(217, 24);
+			this.tableButton.TabIndex = 1;
+			this.tableButton.TabStop = true;
+			this.tableButton.Text = "Generate task detail table";
+			this.tableButton.UseVisualStyleBackColor = true;
+			// 
+			// listButton
+			// 
+			this.listButton.AutoSize = true;
+			this.listButton.Location = new System.Drawing.Point(3, 38);
+			this.listButton.Name = "listButton";
+			this.listButton.Size = new System.Drawing.Size(159, 24);
+			this.listButton.TabIndex = 0;
+			this.listButton.Text = "Generate task list";
+			this.listButton.UseVisualStyleBackColor = true;
+			// 
 			// optionsPanel
 			// 
 			this.optionsPanel.Controls.Add(this.cancelButton);
@@ -145,28 +167,6 @@
 			this.optionsPanel.Name = "optionsPanel";
 			this.optionsPanel.Size = new System.Drawing.Size(772, 47);
 			this.optionsPanel.TabIndex = 14;
-			// 
-			// listButton
-			// 
-			this.listButton.AutoSize = true;
-			this.listButton.Checked = true;
-			this.listButton.Location = new System.Drawing.Point(3, 8);
-			this.listButton.Name = "listButton";
-			this.listButton.Size = new System.Drawing.Size(159, 24);
-			this.listButton.TabIndex = 0;
-			this.listButton.TabStop = true;
-			this.listButton.Text = "Generate task list";
-			this.listButton.UseVisualStyleBackColor = true;
-			// 
-			// tableButton
-			// 
-			this.tableButton.AutoSize = true;
-			this.tableButton.Location = new System.Drawing.Point(3, 38);
-			this.tableButton.Name = "tableButton";
-			this.tableButton.Size = new System.Drawing.Size(217, 24);
-			this.tableButton.TabIndex = 1;
-			this.tableButton.Text = "Generate task detail table";
-			this.tableButton.UseVisualStyleBackColor = true;
 			// 
 			// ImportOutlookTasksDialog
 			// 

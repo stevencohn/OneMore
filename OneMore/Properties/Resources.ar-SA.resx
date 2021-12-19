@@ -3651,14 +3651,6 @@ ISO-code then comma then language name</comment>
     <value>إنشاء جدول تفاصيل المهمة</value>
     <comment>radio</comment>
   </data>
-  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
-    <value>تاريخ الانتهاء</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
-    <value>تاريخ الاستحقاق</value>
-    <comment>report</comment>
-  </data>
   <data name="OutlookTaskReport_Importance" xml:space="preserve">
     <value>أهمية</value>
     <comment>report</comment>
@@ -3678,12 +3670,12 @@ ISO-code then comma then language name</comment>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
-    <value>مكتمل
-مؤجل
+    <value>لم يبدأ
 في تقدم
-لم يبدأ
-منتظر</value>
-    <comment>reprot</comment>
+مكتمل
+منتظر
+مؤجل</value>
+    <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_Task" xml:space="preserve">
     <value>مهمة</value>
@@ -3695,6 +3687,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="OutlookTaskReport_Title" xml:space="preserve">
     <value>مهام Outlook</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>مستحق / مكتمل</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>تاريخ البدء</value>
     <comment>report</comment>
   </data>
 </root>

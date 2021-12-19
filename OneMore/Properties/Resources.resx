@@ -3700,12 +3700,12 @@ Deferred</value>
     <value>Generate task detail table</value>
     <comment>radio</comment>
   </data>
-  <data name="OutlookTaskReport_DateCompleted" xml:space="preserve">
-    <value>Date Completed</value>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>Due/Completed</value>
     <comment>report</comment>
   </data>
-  <data name="OutlookTaskReport_DueDate" xml:space="preserve">
-    <value>Due Date</value>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>Start Date</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_Importance" xml:space="preserve">
@@ -3727,12 +3727,12 @@ High</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
-    <value>Completed
-Deferred
+    <value>Not Started
 In Progress
-Not Started
-Waiting</value>
-    <comment>reprot</comment>
+Completed
+Waiting
+Deferred</value>
+    <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_Task" xml:space="preserve">
     <value>Task</value>

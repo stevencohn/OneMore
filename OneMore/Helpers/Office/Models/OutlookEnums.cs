@@ -23,10 +23,10 @@ namespace River.OneMoreAddIn.Helpers.Office
 	/// </summary>
 	internal enum OutlookTaskStatus
 	{
-		Complete = OlTaskStatus.olTaskComplete,
-		Deferred = OlTaskStatus.olTaskDeferred,
-		InProgress = OlTaskStatus.olTaskInProgress,
 		NotStarted = OlTaskStatus.olTaskNotStarted,
-		Waiting = OlTaskStatus.olTaskWaiting
+		InProgress = OlTaskStatus.olTaskInProgress,
+		Complete = OlTaskStatus.olTaskComplete,
+		Waiting = OlTaskStatus.olTaskWaiting,
+		Deferred = OlTaskStatus.olTaskDeferred
 	}
 }

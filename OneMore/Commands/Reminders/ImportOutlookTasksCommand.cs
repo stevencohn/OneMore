@@ -17,11 +17,13 @@ namespace River.OneMoreAddIn.Commands
 	internal class ImportOutlookTasksCommand : Command
 	{
 		private const string TableMeta = "omOutlookTasks";
-		private const string HeaderShading = "#DEEBF6";
-		private const string OverdueShading = "#FADBD2";
-		private const string CompletedShading = "#E2EFD9";
-		private const string HighImportanceColor = "#E84C22";
-		private const string NormalImportanceColor = "#5B9BD5";
+		private const string HeaderShading = "#DEEBF6";         // blue
+		private const string OverdueShading = "#FADBD2";        // red
+		private const string CompletedColor = "#70AD47";        // green
+		private const string CompletedShading = "#E2EFD9";      // green
+		private const string NotStartedShading = "#FFF2CC";     // yellow
+		private const string HighImportanceColor = "#E84C22";   // red
+		private const string NormalImportanceColor = "#5B9BD5"; // blue
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 
 		private OneNote one;
@@ -41,8 +43,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
 			{
-				tasks = ExtractTasks();
-				await GenerateTableReport(tasks);
+				await UpdateTableReport();
+				return;
 			}
 
 			var genTable = false;
@@ -67,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			logger.WriteLine($"selected {tasks.Count()} tasks");
+			//logger.WriteLine($"selected {tasks.Count()} tasks");
 
 			using (one = new OneNote(out page, out ns))
 			{
@@ -85,23 +87,90 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private IEnumerable<OutlookTask> ExtractTasks()
+		private async Task UpdateTableReport()
 		{
-			return new List<OutlookTask>();
+			using (one = new OneNote(out page, out ns))
+			{
+				var element = page.Root.Descendants(ns + "Meta")
+					.Where(e => e.Attribute("name").Value == TableMeta)
+					.Select(e => e.Parent.Element(ns + "Table"))
+					.FirstOrDefault();
+
+				if (element == null)
+				{
+					UIHelper.ShowInfo("Outlook task table not found. It may have been deleted");
+					return;
+				}
+
+				var table = new Table(element);
+
+				var taskIDs = table.Root.Descendants(ns + "OutlookTask")
+					.Select(e => e.Attribute("guidTask").Value);
+
+				if (!taskIDs.Any())
+				{
+					UIHelper.ShowInfo("Table contains no Outlook tasks. Rows may have been deleted");
+					return;
+				}
+
+				using (var outlook = new Outlook())
+				{
+					var tasks = outlook.LoadTasks(taskIDs);
+					PopulateTable(table, tasks);
+				}
+
+				await one.Update(page);
+			}
 		}
 
 
 		private async Task GenerateTableReport(IEnumerable<OutlookTask> tasks)
 		{
-			await GenerateTable(tasks);
+			PageNamespace.Set(ns);
+			var heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
+
+			var table = new Table(ns, 1, 6)
+			{
+				HasHeaderRow = true,
+				BordersVisible = true
+			};
+
+			table.SetColumnWidth(0, 220);
+			table.SetColumnWidth(1, 70);
+			table.SetColumnWidth(2, 140);
+			table.SetColumnWidth(3, 130);
+			table.SetColumnWidth(4, 60);
+			table.SetColumnWidth(5, 60);
+
+			var row = table[0];
+			row.SetShading(HeaderShading);
+			row[0].SetContent(new Paragraph(Resx.OutlookTaskReport_Task).SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph(Resx.OutlookTaskReport_Status).SetStyle(HeaderCss));
+			row[2].SetContent(new Paragraph(Resx.OutlookTaskReport_DateStarted).SetStyle(HeaderCss));
+			row[3].SetContent(new Paragraph(Resx.OutlookTaskReport_DateDue).SetStyle(HeaderCss));
+			row[4].SetContent(new Paragraph(Resx.OutlookTaskReport_Importance).SetStyle(HeaderCss));
+			row[5].SetContent(new Paragraph(Resx.OutlookTaskReport_Percent).SetStyle(HeaderCss));
+
+			PopulateTable(table, tasks);
+
+			var nowf = DateTime.Now.ToShortFriendlyString();
+
+			page.AddNextParagraph(
+				new Paragraph(Resx.OutlookTaskReport_Title).SetQuickStyle(heading2Index),
+				new Paragraph($"{Resx.ReminderReport_LastUpdated} {nowf} " +
+					$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh\">{Resx.word_Refresh}</a>)"),
+				new Paragraph(string.Empty),
+				new Paragraph(table.Root).SetMeta(TableMeta, Guid.NewGuid().ToString("b").ToUpper()),
+				new Paragraph(string.Empty),
+				new Paragraph(string.Empty)
+				);
+
 			await one.Update(page);
 		}
 
 
-		private async Task GenerateTable(IEnumerable<OutlookTask> tasks)
+		private void PopulateTable(Table table, IEnumerable<OutlookTask> tasks)
 		{
-			PageNamespace.Set(ns);
-			var heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
 			var citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			// for some Github cloners, multiline items in the Resx file are delimeted
@@ -114,33 +183,11 @@ namespace River.OneMoreAddIn.Commands
 			var statuses = Resx.OutlookTaskReport_statuses
 				.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
-			var table = new Table(ns, 1, 6)
-			{
-				HasHeaderRow = true,
-				BordersVisible = true
-			};
-
-			table.SetColumnWidth(0, 220);
-			table.SetColumnWidth(1, 70);
-			table.SetColumnWidth(2, 115);
-			table.SetColumnWidth(3, 110);
-			table.SetColumnWidth(4, 60);
-			table.SetColumnWidth(5, 60);
-
-			var row = table[0];
-			row.SetShading(HeaderShading);
-			row[0].SetContent(new Paragraph(Resx.OutlookTaskReport_Task).SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(Resx.OutlookTaskReport_Status).SetStyle(HeaderCss));
-			row[2].SetContent(new Paragraph(Resx.OutlookTaskReport_DueDate).SetStyle(HeaderCss));
-			row[3].SetContent(new Paragraph(Resx.OutlookTaskReport_DateCompleted).SetStyle(HeaderCss));
-			row[4].SetContent(new Paragraph(Resx.OutlookTaskReport_Importance).SetStyle(HeaderCss));
-			row[5].SetContent(new Paragraph(Resx.OutlookTaskReport_Percent).SetStyle(HeaderCss));
-
 			var now = DateTime.UtcNow;
 
 			foreach (var task in OrderTasks(tasks))
 			{
-				row = table.AddRow();
+				var row = table.AddRow();
 				row[0].SetContent(MakeTaskReference(task));
 
 				row[1].SetContent(statuses[(int)task.Status]);
@@ -152,46 +199,42 @@ namespace River.OneMoreAddIn.Commands
 				{
 					row[1].ShadingColor = OverdueShading;
 				}
-
-				if (task.DueDate.Year > OutlookTask.UnspecifiedYear)
+				else if (task.Status == OutlookTaskStatus.NotStarted &&
+					now.CompareTo(task.StartDate) > 0)
 				{
-					row[2].SetContent(string.Empty);
+					row[1].ShadingColor = NotStartedShading;
 				}
-				else
+
+				row[2].SetContent(task.StartDate.Year > OutlookTask.UnspecifiedYear
+					? string.Empty
+					: task.DueDate.ToShortFriendlyString());
+
+				if (task.PercentComplete == 100 && task.DateCompleted.Year < OutlookTask.UnspecifiedYear)
+				{
+					if (task.DueDate.Year < OutlookTask.UnspecifiedYear)
+					{
+						row[3].SetContent(new XElement(ns + "OEChildren",
+							new Paragraph($"<span style='color:{CompletedColor}'>{task.DateCompleted.ToShortFriendlyString()}</span>"),
+							new Paragraph($"Due: {task.DueDate.ToShortFriendlyString()}").SetQuickStyle(citeIndex)
+							));
+					}
+					else
+					{
+						row[3].SetContent(task.DateCompleted.ToShortFriendlyString());
+					}
+				}
+				else if (task.DueDate.Year < OutlookTask.UnspecifiedYear)
 				{
 					var woy = string.Format(Resx.OutlookTaskReport_Week, task.WoYear);
-					row[2].SetContent(new XElement(ns + "OEChildren",
+					row[3].SetContent(new XElement(ns + "OEChildren",
 						new Paragraph(task.DueDate.ToShortFriendlyString()),
 						new Paragraph(woy).SetQuickStyle(citeIndex)
 						));
 				}
 
-				if (task.PercentComplete < 100 || task.DateCompleted.Year > OutlookTask.UnspecifiedYear)
-				{
-					row[3].SetContent(string.Empty);
-				}
-				else
-				{
-					row[3].SetContent(task.DateCompleted.ToShortFriendlyString());
-				}
-
 				row[4].SetContent(MakeImportance(task.Importance));
 				row[5].SetContent((task.PercentComplete / 100.0).ToString("P0"));
 			}
-
-			var nowf = DateTime.Now.ToShortFriendlyString();
-
-			page.AddNextParagraph(
-				new Paragraph(Resx.OutlookTaskReport_Title).SetQuickStyle(heading2Index),
-				new Paragraph($"{Resx.ReminderReport_LastUpdated} {nowf} " +
-					$"(<a href=\"onemore://ReportRemindersCommand/refresh\">{Resx.word_Refresh}</a>)"),
-				new Paragraph(string.Empty),
-				new Paragraph(table.Root).SetMeta(TableMeta, Guid.NewGuid().ToString("b").ToUpper()),
-				new Paragraph(string.Empty),
-				new Paragraph(string.Empty)
-				);
-
-			await one.Update(page);
 		}
 
 

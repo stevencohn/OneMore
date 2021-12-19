@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 {
 	using Microsoft.Office.Interop.Outlook;
 	using System;
+	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Linq;
 	using System.Runtime.InteropServices;
@@ -18,6 +19,15 @@ namespace River.OneMoreAddIn.Helpers.Office
 	{
 		private Application outlook;
 		private bool disposed;
+
+		#region class FolderPath
+		private sealed class FolderPath
+		{
+			public string EntryID { get; set; }
+			public string Path { get; set; }
+		}
+		#endregion class FolderPath
+
 
 
 		/// <summary>
@@ -104,6 +114,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 					DueDate = item.DueDate,
 					Importance = (OutlookImportance)item.Importance,
 					PercentComplete = item.PercentComplete,
+					StartDate = item.StartDate,
 					Status = (OutlookTaskStatus)item.Status,
 					FolderPath = path,
 					OneNoteTaskID = item.UserProperties["OneNoteTaskID"]?.Value as string,
@@ -123,6 +134,75 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			Marshal.ReleaseComObject(parent);
 			return container;
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="taskIDs"></param>
+		/// <returns></returns>
+		public OutlookTasks LoadTasks(IEnumerable<string> taskIDs)
+		{
+			var paths = GetFolders();
+			var tasks = new OutlookTasks();
+			foreach (var id in taskIDs)
+			{
+				if (outlook.Session.GetItemFromID(id) is TaskItem item)
+				{
+					var parent = item.Parent as Folder;
+
+					tasks.Add(new OutlookTask
+					{
+						Subject = item.Subject,
+						EntryID = item.EntryID,
+						Complete = item.Complete,
+						CreationTime = item.CreationTime,
+						DateCompleted = item.DateCompleted,
+						DueDate = item.DueDate,
+						Importance = (OutlookImportance)item.Importance,
+						PercentComplete = item.PercentComplete,
+						StartDate = item.StartDate,
+						Status = (OutlookTaskStatus)item.Status,
+						FolderPath = paths[parent.EntryID],
+						OneNoteTaskID = item.UserProperties["OneNoteTaskID"]?.Value as string,
+						OneNoteURL = item.UserProperties["OneNoteTaskURL"]?.Value as string
+					});
+
+					Marshal.ReleaseComObject(item);
+					Marshal.ReleaseComObject(parent);
+				}
+			}
+
+			return tasks;
+		}
+
+
+		/// <summary>
+		/// Builds a lookup cache of folders to optimize LoadTask so it doesn't need to
+		/// discover the hierarchy path of each TaskItem.
+		/// </summary>
+		/// <returns></returns>
+		private Dictionary<string, string> GetFolders()
+		{
+			var root = outlook.Session.GetDefaultFolder(OlDefaultFolders.olFolderTasks) as Folder;
+			return GetFolders(root, null).ToDictionary(e => e.EntryID, e => e.Path);
+		}
+
+		private IEnumerable<FolderPath> GetFolders(Folder folder, string path)
+		{
+			var currpath = path == null ? folder.Name : $"{path}/{folder.Name}";
+			yield return new FolderPath { EntryID = folder.EntryID, Path = currpath };
+			foreach (Folder child in folder.Folders)
+			{
+				var xx = GetFolders(child, currpath);
+				foreach (var x in xx)
+				{
+					yield return x;
+				}
+
+				Marshal.ReleaseComObject(child);
+			}
 		}
 
 
