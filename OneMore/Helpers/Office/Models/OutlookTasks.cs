@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 	internal class OutlookTask
 	{
 		public const string PathDelimeter = "/";
+		public const int UnspecifiedYear = 4500;
 
 		public string Subject { get; set; }
 

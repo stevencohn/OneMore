@@ -93,14 +93,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out page, out ns))
 			{
-				GenerateTable(tasks);
-
+				await GenerateTable(tasks);
 				await one.Update(page);
 			}
 		}
 
 
-		private void GenerateTable(IEnumerable<OutlookTask> tasks)
+		private async Task GenerateTable(IEnumerable<OutlookTask> tasks)
 		{
 			PageNamespace.Set(ns);
 			var heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
@@ -134,8 +133,8 @@ namespace River.OneMoreAddIn.Commands
 			row[0].SetContent(new Paragraph(Resx.OutlookTaskReport_Task).SetStyle(HeaderCss));
 			row[1].SetContent(new Paragraph(Resx.OutlookTaskReport_Status).SetStyle(HeaderCss));
 			row[2].SetContent(new Paragraph(Resx.OutlookTaskReport_DueDate).SetStyle(HeaderCss));
-			row[3].SetContent(new Paragraph(Resx.OutlookTaskReport_DueDate).SetStyle(HeaderCss));
-			row[4].SetContent(new Paragraph(Resx.OutlookTaskReport_importances).SetStyle(HeaderCss));
+			row[3].SetContent(new Paragraph(Resx.OutlookTaskReport_DateCompleted).SetStyle(HeaderCss));
+			row[4].SetContent(new Paragraph(Resx.OutlookTaskReport_Importance).SetStyle(HeaderCss));
 			row[5].SetContent(new Paragraph(Resx.OutlookTaskReport_Percent).SetStyle(HeaderCss));
 
 			var now = DateTime.UtcNow;
@@ -155,13 +154,28 @@ namespace River.OneMoreAddIn.Commands
 					row[1].ShadingColor = OverdueShading;
 				}
 
-				var woy = string.Format(Resx.OutlookTaskReport_Week, task.WoYear);
-				row[2].SetContent(new XElement(ns + "OEChildren",
-					new Paragraph(task.DueDate.ToShortFriendlyString()),
-					new Paragraph(woy).SetQuickStyle(citeIndex)
-					));
+				if (task.DueDate.Year == OutlookTask.UnspecifiedYear)
+				{
+					row[2].SetContent("-");
+				}
+				else
+				{
+					var woy = string.Format(Resx.OutlookTaskReport_Week, task.WoYear);
+					row[2].SetContent(new XElement(ns + "OEChildren",
+						new Paragraph(task.DueDate.ToShortFriendlyString()),
+						new Paragraph(woy).SetQuickStyle(citeIndex)
+						));
+				}
 
-				row[3].SetContent(task.DateCompleted.ToShortFriendlyString());
+				if (task.PercentComplete < 100 || task.DateCompleted.Year == OutlookTask.UnspecifiedYear)
+				{
+					row[3].SetContent("-");
+				}
+				else
+				{
+					row[3].SetContent(task.DateCompleted.ToShortFriendlyString());
+				}
+
 				row[4].SetContent(MakeImportance(task.Importance));
 				row[5].SetContent((task.PercentComplete / 100.0).ToString("P0"));
 			}
@@ -178,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 				new Paragraph(string.Empty)
 				);
 
-			one.Update(page);
+			await one.Update(page);
 		}
 
 
