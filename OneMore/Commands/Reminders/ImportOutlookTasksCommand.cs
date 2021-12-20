@@ -95,20 +95,21 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task UpdateTableReport()
 		{
-			using (one = new OneNote(out page, out ns))
+			using (one = new OneNote(out page, out ns, OneNote.PageDetail.Basic))
 			{
-				var element = page.Root.Descendants(ns + "Meta")
-					.Where(e => e.Attribute("name").Value == TableMeta)
-					.Select(e => e.Parent.Element(ns + "Table"))
-					.FirstOrDefault();
+				var meta = page.Root.Descendants(ns + "Meta")
+					.FirstOrDefault(e =>
+						e.Attribute("name").Value == TableMeta &&
+						e.Parent.Elements(ns + "Table").Any());
 
-				if (element == null)
+				if (meta == null)
 				{
 					UIHelper.ShowInfo("Outlook task table not found. It may have been deleted");
 					return;
 				}
 
-				var table = new Table(element);
+				var guid = meta.Attribute("content").Value;
+				var table = new Table(meta.Parent.Elements(ns + "Table").First());
 
 				var taskIDs = table.Root.Descendants(ns + "OutlookTask")
 					.Select(e => e.Attribute("guidTask").Value)
@@ -121,14 +122,41 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				taskIDs.ForEach(t => logger.WriteLine($"taskid={t}"));
-
-				table.Clear(true);
+				PrepareTableContext();
 
 				using (var outlook = new Outlook())
 				{
 					var tasks = outlook.LoadTasksByID(taskIDs);
-					PopulateTable(table, tasks);
+					foreach (var task in tasks)
+					{
+						var row = table.Rows.FirstOrDefault(r => r.Root
+							.Element(ns + "Cell")
+							.Element(ns + "OEChildren")
+							.Element(ns + "OE")
+							.Element(ns + "OutlookTask")?
+							.Attribute("guidTask").Value == task.OneNoteTaskID);
+
+						if (row != null)
+						{
+							PopulateRow(row, task, false);
+						}
+					}
+				}
+
+				// update "Last updated..." line...
+
+				var stamp = page.Root.Descendants(ns + "Meta")
+					.Where(e =>
+						e.Attribute("name").Value == RefreshMeta &&
+						e.Attribute("content").Value == guid)
+					.Select(e => e.Parent.Elements(ns + "T").FirstOrDefault())
+					.FirstOrDefault();
+
+				if (stamp != null)
+				{
+					stamp.GetCData().Value =
+						$"{Resx.ReminderReport_LastUpdated} {DateTime.Now.ToShortFriendlyString()} " +
+						$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh\">{Resx.word_Refresh}</a>)";
 				}
 
 				await one.Update(page);
@@ -163,17 +191,24 @@ namespace River.OneMoreAddIn.Commands
 			row[4].SetContent(new Paragraph(Resx.OutlookTaskReport_Importance).SetStyle(HeaderCss));
 			row[5].SetContent(new Paragraph(Resx.OutlookTaskReport_Percent).SetStyle(HeaderCss));
 
-			PopulateTable(table, tasks);
+			PrepareTableContext();
+
+			foreach (var task in OrderTasks(tasks))
+			{
+				row = table.AddRow();
+				PopulateRow(row, task);
+			}
 
 			var nowf = DateTime.Now.ToShortFriendlyString();
+			var guid = Guid.NewGuid().ToString("b").ToUpper();
 
 			page.AddNextParagraph(
 				new Paragraph(Resx.OutlookTaskReport_Title).SetQuickStyle(heading2Index),
 				new Paragraph($"{Resx.ReminderReport_LastUpdated} {nowf} " +
 					$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh\">{Resx.word_Refresh}</a>)")
-					.SetMeta(RefreshMeta, Guid.NewGuid().ToString("b").ToUpper()),
+					.SetMeta(RefreshMeta, guid),
 				new Paragraph(string.Empty),
-				new Paragraph(table.Root).SetMeta(TableMeta, Guid.NewGuid().ToString("b").ToUpper()),
+				new Paragraph(table.Root).SetMeta(TableMeta, guid),
 				new Paragraph(string.Empty),
 				new Paragraph(string.Empty)
 				);
@@ -182,7 +217,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void PopulateTable(Table table, IEnumerable<OutlookTask> tasks)
+		private void PrepareTableContext()
 		{
 			PageNamespace.Set(ns);
 			citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
@@ -198,17 +233,18 @@ namespace River.OneMoreAddIn.Commands
 				.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
 			now = DateTime.UtcNow;
-
-			foreach (var task in OrderTasks(tasks))
-			{
-				var row = table.AddRow();
-				PopulateRow(row, task);
-			}
 		}
 
-		private void PopulateRow(TableRow row, OutlookTask task)
+
+		private void PopulateRow(TableRow row, OutlookTask task, bool creating = true)
 		{
-			row[0].SetContent(MakeTaskReference(task));
+			if (creating)
+			{
+				// First column contains OutlookTask with status flag. This column cannot be
+				// touched at all when updating the page otherwise OneNote seems to lose context
+				// and disconnects the task from Outlook
+				row[0].SetContent(MakeTaskReference(task));
+			}
 
 			row[1].SetContent(statuses[(int)task.Status]);
 			if (task.Status == OutlookTaskStatus.Complete)
