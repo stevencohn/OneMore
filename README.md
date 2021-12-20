@@ -235,9 +235,6 @@ Tested recently with:
    * Replaces the use of SendKeys.Send, adding support for multilingual keyboards
 * [MarkdownDeep](https://github.com/toptensoftware/markdowndeep) - DLL in external folder
    * Transforms markdown to HTML when importing md files
-* [PuppeteerSharp](https://www.nuget.org/packages/PuppeteerSharp/) - nuget, MIT license
-   * Automates the import of Web pages and conversion to PDF
-   * Note that this bloats the installer and the installed footprint since it includes Chromium; eventually switching to WebView2 or similar is possible when WebView2 is more capable of supporting both headless and export to PDF
 
 
 ### How to Install OneMore
