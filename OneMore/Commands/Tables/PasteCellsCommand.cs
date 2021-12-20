@@ -32,10 +32,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			using (one = new OneNote(out var page, out var ns))
 			{
 				// make sure cursor is positioned in a target table...
