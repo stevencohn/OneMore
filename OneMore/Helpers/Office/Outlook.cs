@@ -21,7 +21,6 @@ namespace River.OneMoreAddIn.Helpers.Office
 		private Application outlook;
 		private bool disposed;
 
-		private CultureInfo culture;
 		private Calendar calendar;
 		private CalendarWeekRule weekRule;
 		private DayOfWeek firstDay;
@@ -91,7 +90,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <returns></returns>
 		public OutlookTaskFolders GetTaskHierarchy()
 		{
-			culture = CultureInfo.CurrentUICulture;
+			var culture = CultureInfo.CurrentUICulture;
 			calendar = culture.Calendar;
 			weekRule = culture.DateTimeFormat.CalendarWeekRule;
 			firstDay = culture.DateTimeFormat.FirstDayOfWeek;

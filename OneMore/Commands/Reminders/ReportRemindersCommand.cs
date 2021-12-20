@@ -218,7 +218,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var current = one.GetPageInfo();
-			var target = one.GetPageInfo(pageId);
 
 			await one.NavigateTo(pageId, string.Empty);
 			// absurd but NavigateTo needs time to settle down

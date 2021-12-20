@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// hover boundary around each resize handle (larger than handle glyph itself)
-		private class SelectionHandle
+		private sealed class SelectionHandle
 		{
 			public SizingHandle Position;
 			public RectangleF Bounds;
