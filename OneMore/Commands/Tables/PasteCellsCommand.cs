@@ -32,6 +32,10 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
+
 			using (one = new OneNote(out var page, out var ns))
 			{
 				// make sure cursor is positioned in a target table...
@@ -213,9 +217,11 @@ namespace River.OneMoreAddIn.Commands
 			// focus on the OneNote main window provides a direct path for SendKeys
 			Native.SetForegroundWindow(one.WindowHandle);
 
-			//SendKeys.SendWait("^(v)");
 			new InputSimulator().Keyboard
 				.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+
+			// yeah this is dumb but have to wait for paste to complete
+			await Task.Delay(200);
 
 			var page = one.GetPage(pageId);
 			one.DeleteHierarchy(pageId);
