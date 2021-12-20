@@ -3627,4 +3627,74 @@ ISO-code then comma then language name</comment>
     <value>لم يتم تثبيت منتج Office المطلوب</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>تضمين ملخص لكل صفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>مهام الاستيراد من Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>اختر مجلدا كاملا أو مهام فردية للاستيراد من Outlook إلى OneNote. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>لاحظ أن OneNote لا يرتبط بشكل كامل بالمهمة غير الموجودة في مجلد مهام Outlook. </value>
+    <comment>rich text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>إنشاء قائمة المهام</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>إنشاء جدول تفاصيل المهمة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>أهمية</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>قليل
+متوسط
+متوسط</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>٪ إكمال</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>حالة</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>لم يبدأ
+في تقدم
+مكتمل
+منتظر
+مؤجل</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>مهمة</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>الأسبوع {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>مهام Outlook</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>مستحق / مكتمل</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>تاريخ البدء</value>
+    <comment>report</comment>
+  </data>
 </root>

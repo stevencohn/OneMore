@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 	using Microsoft.Office.Interop.Word;
 	using System;
 	using System.IO;
+	using System.Runtime.InteropServices;
 
 
 	internal class Word : IDisposable
@@ -29,6 +30,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 			if (!disposed)
 			{
 				word.Quit();
+				Marshal.ReleaseComObject(word);
+
 				word = null;
 				disposed = true;
 			}
@@ -48,7 +51,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			try
 			{
-				target = Path.GetTempFileName();
+				target = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 				object format = WdSaveFormat.wdFormatHTML;
 
 				// open document
@@ -100,7 +103,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 				para.Range.Paste();
 
 				// save as HTML
-				target = Path.GetTempFileName();
+				target = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 				object format = WdSaveFormat.wdFormatHTML;
 
 				doc.SaveAs2(ref target, ref format);

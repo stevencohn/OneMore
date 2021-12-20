@@ -54,6 +54,17 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public Paragraph SetMeta(string name, string content)
+		{
+			AddFirst(new XElement(PageNamespace.Value + "Meta",
+				new XAttribute("name", name),
+				new XAttribute("content", content)
+				));
+
+			return this;
+		}
+
+
 		public Paragraph SetQuickStyle(int index)
 		{
 			SetAttributeValue("quickStyleIndex", index);

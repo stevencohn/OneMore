@@ -75,11 +75,17 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aga.Controls">
+      <HintPath>External\Aga.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="extensibility, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="MarkdownDeep">
       <HintPath>External\MarkdownDeep.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -210,6 +216,13 @@
     <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
     <Compile Include="Commands\Reminders\CompleteReminderCommand.cs" />
     <Compile Include="Commands\Reminders\DeleteReminderCommand.cs" />
+    <Compile Include="Commands\Reminders\ImportOutlookTasksCommand.cs" />
+    <Compile Include="Commands\Reminders\ImportOutlookTasksDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Reminders\ImportOutlookTasksDialog.Designer.cs">
+      <DependentUpon>ImportOutlookTasksDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Reminders\RemindScheduler.cs" />
     <Compile Include="Commands\Reminders\ReminderService.cs" />
     <Compile Include="Commands\Reminders\RemindCommand.cs" />
@@ -372,9 +385,14 @@
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
     <Compile Include="Helpers\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ProcessExtensions.cs" />
     <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookEnums.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookTaskFolders.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookTasks.cs" />
+    <Compile Include="Helpers\Office\Outlook.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="Commands\Tools\Updater\IUpdateReport.cs" />
@@ -522,6 +540,7 @@
     <Compile Include="Commands\File\PluginDialog.Designer.cs">
       <DependentUpon>PluginDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\RichTextBoxExtensions.cs" />
     <Compile Include="UI\TagPickerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -836,9 +855,12 @@
     <None Include="Properties\Emoji\Memo.png" />
     <None Include="Properties\Emoji\Passwords.png" />
     <None Include="Properties\Images\Copy.png" />
+    <Content Include="Properties\Images\Edit.png" />
     <Content Include="Properties\Images\Editor.ico" />
     <Content Include="Properties\Images\Exclamation.png" />
     <None Include="Properties\Images\Exit.png" />
+    <Content Include="Properties\Images\FolderClose.png" />
+    <Content Include="Properties\Images\FolderOpen.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
     <Content Include="Properties\Emoji\Pencil.png" />
@@ -883,6 +905,7 @@
     <Content Include="Properties\Images\Strikethrough.png" />
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
+    <Content Include="Properties\Images\Task.png" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />
@@ -922,6 +945,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\RefreshPageLinksDialog.resx">
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Reminders\ImportOutlookTasksDialog.resx">
+      <DependentUpon>ImportOutlookTasksDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Reminders\RemindDialog.resx">
       <DependentUpon>RemindDialog.cs</DependentUpon>

@@ -2205,6 +2205,26 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FolderClose {
+            get {
+                object obj = ResourceManager.GetObject("FolderClose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FolderOpen {
+            get {
+                object obj = ResourceManager.GetObject("FolderOpen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FontColor {
             get {
                 object obj = ResourceManager.GetObject("FontColor", resourceCulture);
@@ -2588,6 +2608,51 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImportDialog_wordGroup_Text {
             get {
                 return ResourceManager.GetString("ImportDialog_wordGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_introBox_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate task list.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_listButton_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_listButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate task detail table.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_tableButton_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_tableButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Tasks from Outlook.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note that OneNote does not bind completely to task that are not in the Outlook Tasks folder. Tasks from sub-folders are shown in red to indicate that their status flags will not update automatically after importing..
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_warningBox_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_warningBox.Text", resourceCulture);
             }
         }
         
@@ -3155,6 +3220,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include a synopsis of each page.
+        /// </summary>
+        internal static string MapDialog_synopsisBox_Text {
+            get {
+                return ResourceManager.GetString("MapDialog_synopsisBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Page Map.
         /// </summary>
         internal static string MapDialog_Text {
@@ -3426,6 +3500,102 @@ namespace River.OneMoreAddIn.Properties {
         internal static string OutlineDialog_Text {
             get {
                 return ResourceManager.GetString("OutlineDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due/Completed.
+        /// </summary>
+        internal static string OutlookTaskReport_DateDue {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_DateDue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        internal static string OutlookTaskReport_DateStarted {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_DateStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importance.
+        /// </summary>
+        internal static string OutlookTaskReport_Importance {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Importance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low
+        ///Medium
+        ///High.
+        /// </summary>
+        internal static string OutlookTaskReport_importances {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_importances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % Complete.
+        /// </summary>
+        internal static string OutlookTaskReport_Percent {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Percent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string OutlookTaskReport_Status {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Started
+        ///In Progress
+        ///Completed
+        ///Waiting
+        ///Deferred.
+        /// </summary>
+        internal static string OutlookTaskReport_statuses {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_statuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task.
+        /// </summary>
+        internal static string OutlookTaskReport_Task {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Task", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outlook Tasks.
+        /// </summary>
+        internal static string OutlookTaskReport_Title {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week {0}.
+        /// </summary>
+        internal static string OutlookTaskReport_Week {
+            get {
+                return ResourceManager.GetString("OutlookTaskReport_Week", resourceCulture);
             }
         }
         
@@ -7718,6 +7888,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TaggedDialog_Title {
             get {
                 return ResourceManager.GetString("TaggedDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Task {
+            get {
+                object obj = ResourceManager.GetObject("Task", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

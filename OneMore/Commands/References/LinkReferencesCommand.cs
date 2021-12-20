@@ -19,10 +19,12 @@ namespace River.OneMoreAddIn.Commands
 	{
 		// OE meta for linked references paragraph
 		private const string LinkRefsMeta = "omLinkedReferences";
+		private const string SynopsisMeta = "omShowSynopsis";
 
 		// temporary attributes used for in-memory processing, not stored
 		private const string NameAttr = "omName";
 		private const string LinkedAttr = "omLinked";
+		private const string SynopsisAttr = "omSynopsis";
 
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
 
@@ -30,6 +32,7 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote.Scope scope;
 		private Page page;
 		private XNamespace ns;
+		private bool showSynopsis;
 
 
 		public LinkReferencesCommand()
@@ -55,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					scope = dialog.Scope;
+					showSynopsis = dialog.Synopsis;
 				}
 			}
 
@@ -67,6 +71,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out page, out ns))
 			{
+				// find linked references content block...
+
 				var meta = page.Root.Descendants(ns + "Meta")
 					.FirstOrDefault(e => e.Attribute("name").Value == LinkRefsMeta);
 
@@ -78,6 +84,16 @@ namespace River.OneMoreAddIn.Commands
 				if (!Enum.TryParse(meta.Attribute("content").Value, out scope))
 				{
 					scope = OneNote.Scope.Pages;
+				}
+
+				// determine synopsis option...
+
+				var meta2 = meta.Parent.Elements(ns + "Meta")
+					.FirstOrDefault(e => e.Attribute("name").Value == SynopsisMeta);
+
+				if (meta2 != null)
+				{
+					bool.TryParse(meta2.Attribute("content").Value, out showSynopsis);
 				}
 
 				// remove the containing OE so it can be regenerated
@@ -169,6 +185,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						await one.Update(refpage);
 						referal.SetAttributeValue(LinkedAttr, "true");
+						referal.SetAttributeValue(SynopsisAttr, GetSynopsis(refpage));
 						updates++;
 					}
 					else
@@ -234,15 +251,36 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private string GetSynopsis(Page page)
+		{
+			var body = page.Root
+				.Elements(ns + "Outline")
+				.FirstOrDefault(e => !e.Parent.Elements(ns + "Meta")
+					.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)));
+
+			if (body == null)
+			{
+				return null;
+			}
+
+			var synopsis = body.TextValue();
+			return synopsis.Length < 111 ? synopsis : synopsis.Substring(0, 110);
+		}
+
+
 		private void AppendReferalBlock(Page page, IEnumerable<XElement> referals)
 		{
 			var children = new XElement(ns + "OEChildren");
+			var citeStyle = page.GetQuickStyle(Styles.StandardStyles.Citation);
+
+			PageNamespace.Set(ns);
 
 			var refresh = "<a href=\"onemore://LinkReferencesCommand/refresh\">" +
 				$"<span style='{RefreshStyle}'>{Resx.InsertTocCommand_Refresh}</span></a>";
 
-			var block = new XElement(ns + "OE",
+			var block = new Paragraph(
 				new Meta(LinkRefsMeta, scope.ToString()),
+				new Meta(SynopsisMeta, showSynopsis.ToString().ToLower()),
 				new XElement(ns + "T", new XCData(
 					$"<span style='font-weight:bold'>{Resx.LinkedReferencesCommand_Title}</span> " +
 					$"<span style='{RefreshStyle}'>[{refresh}]</span>"
@@ -254,15 +292,25 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var link = one.GetHyperlink(referal.Attribute("ID").Value, string.Empty);
 				var name = referal.Attribute(NameAttr) ?? referal.Attribute("name");
+				var synopsis = referal.Attribute(SynopsisAttr).Value ?? string.Empty;
 
-				children.Add(new XElement(ns + "OE",
-					new XElement(ns + "List", new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
-					new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name.Value}</a>"))
+				children.Add(
+					new Paragraph(
+						new XElement(ns + "List", new XElement(ns + "Bullet", new XAttribute("bullet", "2"))),
+						new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name.Value}</a>"))
 					));
+
+				if (showSynopsis)
+				{
+					children.Add(
+						new Paragraph(synopsis).SetQuickStyle(citeStyle.Index),
+						new Paragraph(string.Empty)
+						);
+				}
 			}
 
 			var container = page.EnsureContentContainer();
-			container.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
+			container.Add(new Paragraph(string.Empty));
 			container.Add(block);
 		}
 	}

@@ -207,6 +207,21 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public void Clear(bool keepHeader)
+		{
+			if (keepHeader)
+			{
+				rows.RemoveRange(1, rows.Count - 1);
+				Root.Descendants(ns + "Row").Skip(1).Remove();
+			}
+			else
+			{
+				Root = new XElement(ns + "Table", columns);
+				rows.Clear();
+			}
+		}
+
+
 		public void FixColumns(bool locked)
 		{
 			var isLocked = locked.ToString().ToLower();

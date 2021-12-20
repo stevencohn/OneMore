@@ -3628,4 +3628,74 @@ twee uur
     <value>Het vereiste Office-product is niet geïnstalleerd</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>Voeg een samenvatting van elke pagina toe</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Taken importeren vanuit Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Kies een hele map of afzonderlijke taken om vanuit Outlook in OneNote te importeren. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Houd er rekening mee dat OneNote niet volledig bindt aan taken die niet in de map Outlook-taken staan. </value>
+    <comment>rich text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>Takenlijst genereren</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>Taakdetailtabel genereren</value>
+    <comment>radio</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>Belang</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>Laag
+Medium
+Hoog</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>% Compleet</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>Toestand</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>Niet begonnen
+Bezig
+Voltooid
+Aan het wachten
+Verschoven</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>Taak</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>week {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>Outlook-taken</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>Verschuldigd/voltooid</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>Begin datum</value>
+    <comment>report</comment>
+  </data>
 </root>

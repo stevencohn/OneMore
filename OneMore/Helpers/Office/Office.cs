@@ -90,23 +90,13 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 
 		/// <summary>
-		/// Determines if Word is installed
+		/// Determines if the named app is installed
 		/// </summary>
+		/// <param name="name">One of Powerpoint, Outlook, or Word</param>
 		/// <returns></returns>
-		public static bool IsWordInstalled()
+		public static bool IsInstalled(string name)
 		{
-			var type = Type.GetTypeFromProgID("Word.Application");
-			return type != null;
-		}
-
-
-		/// <summary>
-		/// Determines if PowerPoint is installed
-		/// </summary>
-		/// <returns></returns>
-		public static bool IsPowerPointInstalled()
-		{
-			var type = Type.GetTypeFromProgID("Powerpoint.Application");
+			var type = Type.GetTypeFromProgID($"{name}.Application");
 			return type != null;
 		}
 

@@ -45,5 +45,16 @@ namespace River.OneMoreAddIn
 		{
 			return dttm.ToLocalTime().ToString(ShortFriendlyPattern);
 		}
+
+
+		/// <summary>
+		/// Gets a string formatted to universal Zulu time appropriate for XML
+		/// </summary>
+		/// <param name="dttm"></param>
+		/// <returns></returns>
+		public static string ToZuluString(this DateTime dttm)
+		{
+			return dttm.ToUniversalTime().ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffff'Z'");
+		}
 	}
 }

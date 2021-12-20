@@ -3613,4 +3613,74 @@ Aufgeschoben</value>
     <value>Das erforderliche Office-Produkt ist nicht installiert</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>Fügen Sie eine Zusammenfassung jeder Seite hinzu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Aufgaben aus Outlook importieren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Wählen Sie einen ganzen Ordner oder einzelne Aufgaben aus, die Sie aus Outlook in OneNote importieren möchten. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Beachten Sie, dass OneNote nicht vollständig an Aufgaben bindet, die sich nicht im Outlook-Aufgabenordner befinden. </value>
+    <comment>rich text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>Aufgabenliste erstellen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>Aufgabendetailtabelle erstellen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>Bedeutung</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>Niedrig
+Mittel
+Hoch</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>% Vollständig</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>Nicht angefangen
+In Bearbeitung
+Vollendet
+Warten
+Aufgeschoben</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>Aufgabe</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>Woche {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>Outlook-Aufgaben</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>Fällig/Abgeschlossen</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>Startdatum</value>
+    <comment>report</comment>
+  </data>
 </root>

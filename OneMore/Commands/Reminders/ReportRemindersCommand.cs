@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ReportRemindersCommand : Command
 	{
-		private class Item
+		private sealed class Item
 		{
 			public XElement Meta;
 			public Reminder Reminder;
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				string pageId = null;
+				string pageId;
 				if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
 				{
 					page = one.GetPage();
@@ -218,7 +218,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var current = one.GetPageInfo();
-			var target = one.GetPageInfo(pageId);
 
 			await one.NavigateTo(pageId, string.Empty);
 			// absurd but NavigateTo needs time to settle down
@@ -240,7 +239,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ClearContent()
 		{
-			var chalkOutlines = page.Root.Elements(ns + "Outline");
+			var chalkOutlines = page.Root.Elements(ns + "Outline")
+				.Where(e => !e.Elements(ns + "Meta")
+					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
+
 			if (chalkOutlines != null)
 			{
 				// assume the first outline is the report, reuse it as our container

@@ -3622,4 +3622,74 @@ Un jour
     <value>Le produit Office requis n'est pas installé</value>
     <comment>label</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>Inclure un synopsis de chaque page</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Importer des tâches depuis Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Choisissez un dossier entier ou des tâches individuelles à importer d'Outlook dans OneNote. </value>
+    <comment>text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Notez que OneNote ne se lie pas complètement aux tâches qui ne se trouvent pas dans le dossier Tâches Outlook. </value>
+    <comment>rich text box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>Générer une liste de tâches</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>Générer le tableau des détails de la tâche</value>
+    <comment>radio</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>Importance</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>Meugler
+Moyen
+Haut</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>% Compléter</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>Statut</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>Pas commencé
+En cours
+Complété
+En attendant
+Différé</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>Tâche</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>Semaine {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>Tâches Outlook</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>Échéance/Terminé</value>
+    <comment>report</comment>
+  </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>Date de début</value>
+    <comment>report</comment>
+  </data>
 </root>

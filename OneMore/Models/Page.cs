@@ -157,17 +157,18 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="content">The content to add</param>
 		public void AddNextParagraph(XElement content)
 		{
-			var current = Root.Descendants(Namespace + "OE")
-				.LastOrDefault(e => e.Elements(Namespace + "T").Attributes("selected").Any(a => a.Value == "all"));
+			InsertParagraph(content, false);
+		}
 
-			if (current != null)
+
+		public void AddNextParagraph(params XElement[] content)
+		{
+			// consumer will build content array in document-order but InsertParagraph inserts
+			// just prior to the insertion point which will reverse the order of content items
+			// so insert them in reverse order intentionally so they show up correctly
+			for (var i = content.Length - 1; i >= 0; i--)
 			{
-				if (content.Name.LocalName != "OE")
-				{
-					content = new XElement(Namespace + "OE", content);
-				}
-
-				current.AddAfterSelf(content);
+				InsertParagraph(content[i], false);
 			}
 		}
 
@@ -829,10 +830,11 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// 
+		/// Gets the specified standard quick style and ensures it's QuickStyleDef is
+		/// included on the page
 		/// </summary>
-		/// <param name="key"></param>
-		/// <returns></returns>
+		/// <param name="key">A StandardStyles value</param>
+		/// <returns>A Style</returns>
 		public Style GetQuickStyle(StandardStyles key)
 		{
 			string name = key.ToName();
@@ -984,6 +986,43 @@ namespace River.OneMoreAddIn.Models
 			return Root.Elements(Namespace + "TagDef")
 				.Select(e => new TagDefMapping(e))
 				.ToList();
+		}
+
+
+		/// <summary>
+		/// Adds the given content immediately before or after the selected insertion point;
+		/// this will not replace selected regions.
+		/// </summary>
+		/// <param name="content">The content to insert</param>
+		/// <param name="before">
+		/// If true then insert before the insertion point; otherwise insert after the insertion point
+		/// </param>
+		public void InsertParagraph(XElement content, bool before = true)
+		{
+			var current = Root.Descendants(Namespace + "OE").LastOrDefault(e =>
+				e.Elements(Namespace + "T").Attributes("selected").Any(a => a.Value == "all"));
+
+			if (current != null)
+			{
+				if (content.Name.LocalName != "OE")
+				{
+					content = new XElement(Namespace + "OE", content);
+				}
+
+				if (before)
+					current.AddBeforeSelf(content);
+				else
+					current.AddAfterSelf(content);
+			}
+		}
+
+
+		public void InsertParagraph(params XElement[] content)
+		{
+			foreach (var e in content)
+			{
+				InsertParagraph(e, false);
+			}
 		}
 
 

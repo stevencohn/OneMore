@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ImportWord(string filepath, bool append)
 		{
-			if (!Office.IsWordInstalled())
+			if (!Office.IsInstalled("Word"))
 			{
 				UIHelper.ShowMessage("Word is not installed");
 			}
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ImportPowerPoint(string filepath, bool append, bool split)
 		{
-			if (!Office.IsPowerPointInstalled())
+			if (!Office.IsInstalled("Powerpoint"))
 			{
 				UIHelper.ShowMessage("PowerPoint is not installed");
 			}

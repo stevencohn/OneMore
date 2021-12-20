@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 	using Microsoft.Office.Interop.PowerPoint;
 	using System;
 	using System.IO;
+	using System.Runtime.InteropServices;
 
 
 	internal class PowerPoint : IDisposable
@@ -29,6 +30,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 			if (!disposed)
 			{
 				power.Quit();
+				Marshal.ReleaseComObject(power);
+
 				power = null;
 				disposed = true;
 			}
@@ -65,7 +68,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 				var path = Path.Combine(
 					Path.GetTempPath(),
-					Path.GetFileNameWithoutExtension(Path.GetTempFileName()));
+					Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
 
 				if (!Directory.Exists(path))
 				{

@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 					"notebooksRadio",
 					"notebookRadio",
 					"sectionRadio",
+					"synopsisBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -40,5 +41,8 @@ namespace River.OneMoreAddIn.Commands
 				return OneNote.Scope.Pages;
 			}
 		}
+
+
+		public bool Synopsis => synopsisBox.Checked;
 	}
 }

@@ -18,7 +18,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features (139)
+## Features (142)
 
 [Clean commands](../../wiki/Clean-Commands) (11)
 
@@ -81,10 +81,11 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Remove numbering from sections
 * Remove numbering from pages
 
-[Page Commands](../../wiki/Page-Commands) (8)
+[Page Commands](../../wiki/Page-Commands) (10)
 * Arrange containers vertically or in columns
 * Add special icon to the page title, also appears in page hierarchy
 * Expand or Collapse indented outlines, save and restore outlining
+* Fit background grid spacing to most common text size
 * Merge pages, preserving formatting and position of outlines
 * Split current page into multiple pages
 * Report number of words on the page or in the selected region
@@ -101,11 +102,12 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Replace hyperlinked URLs with their Web page titles
 * Replace hyperlinked URLs with their downloaded images
 
-[Reminder commands](../../wiki/Reminder-Commands) (4)
+[Reminder commands](../../wiki/Reminder-Commands) (5)
 * Add or update a reminder for any paragraph on a page (F8)
 * Mark the selected reminder as completed
 * Delete the seleted reminder
 * Generate a detailed report of all reminders and their status
+* Import Tasks from Outlook
 
 [Search commands](../../wiki/Search-Commands) (4)
 
@@ -233,9 +235,6 @@ Tested recently with:
    * Replaces the use of SendKeys.Send, adding support for multilingual keyboards
 * [MarkdownDeep](https://github.com/toptensoftware/markdowndeep) - DLL in external folder
    * Transforms markdown to HTML when importing md files
-* [PuppeteerSharp](https://www.nuget.org/packages/PuppeteerSharp/) - nuget, MIT license
-   * Automates the import of Web pages and conversion to PDF
-   * Note that this bloats the installer and the installed footprint since it includes Chromium; eventually switching to WebView2 or similar is possible when WebView2 is more capable of supporting both headless and export to PDF
 
 
 ### How to Install OneMore

@@ -17,8 +17,8 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
-		/// Properly deep clones the given element, possibly restoring the "one:" namespace
-		/// prefix if it is not present, e.g. from a snipet of a larger document.
+		/// OneMore Extension >> Properly deep clones the given element, possibly restoring the
+		/// "one:" namespace prefix if it is not present, e.g. from a snipet of a larger document.
 		/// </summary>
 		/// <param name="element"></param>
 		/// <returns></returns>
@@ -52,8 +52,9 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Extract the style properties of this element by looking at its "style" attribute
-		/// if one exists and possibly its immediate CDATA child and any span/style attributes.
+		/// OneMore Extension >> Extract the style properties of this element by looking at its
+		/// "style" attribute if one exists and possibly its immediate CDATA child and any
+		/// span/style attributes.
 		/// </summary>
 		/// <param name="element">A one:T text run that may have a style attribute</param>
 		/// <param name="nested">
@@ -133,7 +134,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Returns the CData node from the current element
+		/// OneMore Extension >> Returns the CData node from the current element
 		/// </summary>
 		/// <param name="element">A one:T element</param>
 		/// <returns>An XCData node or null if none</returns>
@@ -145,7 +146,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Returns the InnerXml of the given element
+		/// OneMore Extension >> Returns the InnerXml of the given element
 		/// </summary>
 		/// <param name="element">The element to interogate</param>
 		/// <param name="singleQuote">
@@ -195,7 +196,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Remove and return the first textual word from the element content
+		/// OneMore Extension >> Remove and return the first textual word from the element content
 		/// </summary>
 		/// <param name="element">The element to modify</param>
 		/// <param name="styled">Return the word preserving its styled span parent</param>
@@ -296,7 +297,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Remove and return the last textual word from the element content
+		/// OneMore Extension >> Remove and return the last textual word from the element content
 		/// </summary>
 		/// <param name="element">The element to modify</param>
 		/// <param name="styled">Return the word preserving its styled span parent</param>
@@ -398,11 +399,12 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// 
+		/// OneMore Extension >> Find the closest named ancestor element,
+		/// aborting if the breakout element is discovered first.
 		/// </summary>
-		/// <param name="element"></param>
-		/// <param name="name"></param>
-		/// <param name="breakout"></param>
+		/// <param name="element">The current element</param>
+		/// <param name="name">The element name to find</param>
+		/// <param name="breakout">The element name to signal abort</param>
 		/// <returns></returns>
 		public static XElement FirstAncestor(this XElement element, XName name, XName breakout = null)
 		{
@@ -428,12 +430,25 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// OneMore Extension >> Extract the sanitized text value of the given element
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns></returns>
 		public static string TextValue(this XElement element)
 		{
 			return element.Value.ToXmlWrapper().Value;
 		}
 
 
+		/// <summary>
+		/// OneMore Extension >> Get the value of the named attribute or a default if not present
+		/// </summary>
+		/// <param name="element"></param>
+		/// <param name="name"></param>
+		/// <param name="value"></param>
+		/// <param name="defaultV"></param>
+		/// <returns></returns>
 		public static bool GetAttributeValue(
 			this XElement element, string name, out string value, string defaultV = null)
 		{
@@ -448,6 +463,16 @@ namespace River.OneMoreAddIn
 			return false;
 		}
 
+
+		/// <summary>
+		/// OneMore Extension >> Get a typed named attribute value or a default value
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="element"></param>
+		/// <param name="name"></param>
+		/// <param name="value"></param>
+		/// <param name="defaultV"></param>
+		/// <returns></returns>
 		public static bool GetAttributeValue<T>(
 			this XElement element, string name, out T value, T defaultV = default)
 		{
@@ -476,7 +501,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Set or add the specified attribute with the given value.
+		/// OneMore Extension >> Set or add the specified attribute with the given value.
 		/// </summary>
 		/// <param name="element">The element to affect</param>
 		/// <param name="name">The name of the attribute</param>
