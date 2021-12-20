@@ -69,6 +69,9 @@ namespace OneMoreSetupActions
 				logger.WriteLine(exc);
 			}
 
+			// deprecate
+			CleanupChromium();
+
 			return true;
 		}
 
@@ -132,7 +135,43 @@ namespace OneMoreSetupActions
 				logger.WriteLine("WebView client key not found in Registry");
 			}
 
+			// deprecate
+			CleanupChromium();
+
 			return false;
+		}
+
+
+		/// <summary>
+		/// Temporary action to clean up the chromium folder under AppData\Roaming\OneMore.
+		/// This method can be removed after a few release cycles.
+		/// </summary>
+		private void CleanupChromium()
+		{
+			var path = Path.Combine(Environment.GetEnvironmentVariable("APPDATA"), "OneMore");
+			if (!Directory.Exists(path))
+			{
+				return;
+			}
+
+			var chrome = Directory.GetFiles(path, "chrome.exe", SearchOption.AllDirectories).FirstOrDefault();
+			if (chrome == null)
+			{
+				return;
+			}
+
+			try
+			{
+				var parent = Path.GetDirectoryName(Path.GetDirectoryName(chrome));
+				logger.WriteLine($"cleaning up chromium {parent}");
+
+				Directory.Delete(parent, true);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error cleaning up chromium");
+				logger.WriteLine(exc);
+			}
 		}
 	}
 }
