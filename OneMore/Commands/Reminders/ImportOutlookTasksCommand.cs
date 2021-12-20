@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	internal class ImportOutlookTasksCommand : Command
 	{
 		private const string TableMeta = "omOutlookTasks";
+		private const string RefreshMeta = "omOutlookTasksRefresh";
+
 		private const string HeaderShading = "#DEEBF6";         // blue
 		private const string OverdueShading = "#FADBD2";        // red
 		private const string CompletedColor = "#70AD47";        // green
@@ -24,12 +26,16 @@ namespace River.OneMoreAddIn.Commands
 		private const string NotStartedShading = "#FFF2CC";     // yellow
 		private const string HighImportanceColor = "#E84C22";   // red
 		private const string NormalImportanceColor = "#5B9BD5"; // blue
+
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 		private string[] importances;
+		private string[] statuses;
+		private DateTime now;
+		private int citeIndex;
 
 
 		public ImportOutlookTasksCommand()
@@ -164,7 +170,8 @@ namespace River.OneMoreAddIn.Commands
 			page.AddNextParagraph(
 				new Paragraph(Resx.OutlookTaskReport_Title).SetQuickStyle(heading2Index),
 				new Paragraph($"{Resx.ReminderReport_LastUpdated} {nowf} " +
-					$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh\">{Resx.word_Refresh}</a>)"),
+					$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh\">{Resx.word_Refresh}</a>)")
+					.SetMeta(RefreshMeta, Guid.NewGuid().ToString("b").ToUpper()),
 				new Paragraph(string.Empty),
 				new Paragraph(table.Root).SetMeta(TableMeta, Guid.NewGuid().ToString("b").ToUpper()),
 				new Paragraph(string.Empty),
@@ -178,7 +185,7 @@ namespace River.OneMoreAddIn.Commands
 		private void PopulateTable(Table table, IEnumerable<OutlookTask> tasks)
 		{
 			PageNamespace.Set(ns);
-			var citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
+			citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			// for some Github cloners, multiline items in the Resx file are delimeted
 			// wth only CR instead of NLCR so allow for any possibility
@@ -187,63 +194,69 @@ namespace River.OneMoreAddIn.Commands
 			importances = Resx.OutlookTaskReport_importances
 				.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
-			var statuses = Resx.OutlookTaskReport_statuses
+			statuses = Resx.OutlookTaskReport_statuses
 				.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
-			var now = DateTime.UtcNow;
+			now = DateTime.UtcNow;
 
 			foreach (var task in OrderTasks(tasks))
 			{
 				var row = table.AddRow();
-				row[0].SetContent(MakeTaskReference(task));
-
-				row[1].SetContent(statuses[(int)task.Status]);
-				if (task.Status == OutlookTaskStatus.Complete)
-				{
-					row[1].ShadingColor = CompletedShading;
-				}
-				else if (now.CompareTo(task.DueDate) > 0)
-				{
-					row[1].ShadingColor = OverdueShading;
-				}
-				else if (task.Status == OutlookTaskStatus.NotStarted &&
-					now.CompareTo(task.StartDate) > 0)
-				{
-					row[1].ShadingColor = NotStartedShading;
-				}
-
-				row[2].SetContent(task.StartDate.Year > OutlookTask.UnspecifiedYear
-					? string.Empty
-					: task.DueDate.ToShortFriendlyString());
-
-				if (task.PercentComplete == 100 && task.DateCompleted.Year < OutlookTask.UnspecifiedYear)
-				{
-					if (task.DueDate.Year < OutlookTask.UnspecifiedYear)
-					{
-						row[3].SetContent(new XElement(ns + "OEChildren",
-							new Paragraph($"<span style='color:{CompletedColor}'>{task.DateCompleted.ToShortFriendlyString()}</span>"),
-							new Paragraph($"Due: {task.DueDate.ToShortFriendlyString()}").SetQuickStyle(citeIndex)
-							));
-					}
-					else
-					{
-						row[3].SetContent(task.DateCompleted.ToShortFriendlyString());
-					}
-				}
-				else if (task.DueDate.Year < OutlookTask.UnspecifiedYear)
-				{
-					var woy = string.Format(Resx.OutlookTaskReport_Week, task.WoYear);
-					row[3].SetContent(new XElement(ns + "OEChildren",
-						new Paragraph(task.DueDate.ToShortFriendlyString()),
-						new Paragraph(woy).SetQuickStyle(citeIndex)
-						));
-				}
-
-				row[4].SetContent(MakeImportance(task.Importance));
-				row[5].SetContent((task.PercentComplete / 100.0).ToString("P0"));
+				PopulateRow(row, task);
 			}
 		}
 
+		private void PopulateRow(TableRow row, OutlookTask task)
+		{
+			row[0].SetContent(MakeTaskReference(task));
+
+			row[1].SetContent(statuses[(int)task.Status]);
+			if (task.Status == OutlookTaskStatus.Complete)
+			{
+				row[1].ShadingColor = CompletedShading;
+			}
+			else if (now.CompareTo(task.DueDate) > 0)
+			{
+				row[1].ShadingColor = OverdueShading;
+			}
+			else if (task.Status == OutlookTaskStatus.NotStarted &&
+				now.CompareTo(task.StartDate) > 0)
+			{
+				row[1].ShadingColor = NotStartedShading;
+			}
+			// TODO: set default shading color?
+
+			row[2].SetContent(task.StartDate.Year > OutlookTask.UnspecifiedYear
+				? string.Empty
+				: task.DueDate.ToShortFriendlyString());
+
+			if (task.PercentComplete == 100 && task.DateCompleted.Year < OutlookTask.UnspecifiedYear)
+			{
+				if (task.DueDate.Year < OutlookTask.UnspecifiedYear)
+				{
+					row[3].SetContent(new XElement(ns + "OEChildren",
+						new Paragraph($"<span style='color:{CompletedColor}'>{task.DateCompleted.ToShortFriendlyString()}</span>"),
+						new Paragraph($"Due: {task.DueDate.ToShortFriendlyString()}").SetQuickStyle(citeIndex)
+						));
+				}
+				else
+				{
+					row[3].SetContent(task.DateCompleted.ToShortFriendlyString());
+				}
+			}
+			else if (task.DueDate.Year < OutlookTask.UnspecifiedYear)
+			{
+				var woy = string.Format(Resx.OutlookTaskReport_Week, task.WoYear);
+				row[3].SetContent(new XElement(ns + "OEChildren",
+					new Paragraph(task.DueDate.ToShortFriendlyString()),
+					new Paragraph(woy).SetQuickStyle(citeIndex)
+					));
+			}
+
+			row[4].SetContent(MakeImportance(task.Importance));
+			row[5].SetContent((task.PercentComplete / 100.0).ToString("P0"));
+
+		}
 
 		private IEnumerable<OutlookTask> OrderTasks(IEnumerable<OutlookTask> tasks)
 		{
