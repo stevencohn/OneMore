@@ -50,9 +50,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			IEnumerable<OutlookTask> tasks = null;
 
-			if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
+			if (args.Length > 1 && args[0] is string refreshArg && refreshArg == "refresh")
 			{
-				await UpdateTableReport();
+				await UpdateTableReport(args[1] as string);
 				return;
 			}
 
@@ -94,13 +94,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task UpdateTableReport()
+		private async Task UpdateTableReport(string guid)
 		{
 			using (one = new OneNote(out page, out ns, OneNote.PageDetail.Basic))
 			{
 				var meta = page.Root.Descendants(ns + "Meta")
 					.FirstOrDefault(e =>
 						e.Attribute("name").Value == TableMeta &&
+						e.Attribute("content").Value == guid &&
 						e.Parent.Elements(ns + "Table").Any());
 
 				if (meta == null)
@@ -109,7 +110,6 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var guid = meta.Attribute("content").Value;
 				var table = new Table(meta.Parent.Elements(ns + "Table").First());
 
 				var taskIDs = table.Root.Descendants(ns + "OutlookTask")
@@ -157,7 +157,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					stamp.GetCData().Value =
 						$"{Resx.ReminderReport_LastUpdated} {DateTime.Now.ToShortFriendlyString()} " +
-						$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh\">{Resx.word_Refresh}</a>)";
+						$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh/{guid}\">{Resx.word_Refresh}</a>)";
 				}
 
 				await one.Update(page);
@@ -210,7 +210,7 @@ namespace River.OneMoreAddIn.Commands
 			page.AddNextParagraph(
 				new Paragraph(Resx.OutlookTaskReport_Title).SetQuickStyle(heading2Index),
 				new Paragraph($"{Resx.ReminderReport_LastUpdated} {nowf} " +
-					$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh\">{Resx.word_Refresh}</a>)")
+					$"(<a href=\"onemore://ImportOutlookTasksCommand/refresh/{guid}\">{Resx.word_Refresh}</a>)")
 					.SetMeta(RefreshMeta, guid),
 				new Paragraph(string.Empty),
 				new Paragraph(table.Root).SetMeta(TableMeta, guid),
