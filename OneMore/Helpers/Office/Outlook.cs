@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.Globalization;
 	using System.Linq;
 	using System.Runtime.InteropServices;
 
@@ -19,6 +20,12 @@ namespace River.OneMoreAddIn.Helpers.Office
 	{
 		private Application outlook;
 		private bool disposed;
+
+		private CultureInfo culture;
+		private Calendar calendar;
+		private CalendarWeekRule weekRule;
+		private DayOfWeek firstDay;
+
 
 		#region class FolderPath
 		private sealed class FolderPath
@@ -84,6 +91,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <returns></returns>
 		public OutlookTaskFolders GetTaskHierarchy()
 		{
+			culture = CultureInfo.CurrentUICulture;
+			calendar = culture.Calendar;
+			weekRule = culture.DateTimeFormat.CalendarWeekRule;
+			firstDay = culture.DateTimeFormat.FirstDayOfWeek;
+
 			return GetTaskHierarchy(
 				outlook.Session.GetDefaultFolder(OlDefaultFolders.olFolderTasks) as Folder,
 				new OutlookTaskFolders());
@@ -117,6 +129,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 					StartDate = item.StartDate,
 					Status = (OutlookTaskStatus)item.Status,
 					FolderPath = path,
+					Year = item.DueDate.Year,
+					WoYear = calendar.GetWeekOfYear(item.DueDate, weekRule, firstDay),
 					OneNoteTaskID = item.UserProperties["OneNoteTaskID"]?.Value as string,
 					OneNoteURL = item.UserProperties["OneNoteTaskURL"]?.Value as string
 				});

@@ -14,6 +14,9 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	/// <summary>
+	/// Generates a list or a detailed table of selected Outlook tasks
+	/// </summary>
 	internal class ImportOutlookTasksCommand : Command
 	{
 		private const string TableMeta = "omOutlookTasks";
@@ -53,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var genTable = false;
+			var detailed = false;
 			using (var outlook = new Outlook())
 			{
 				var folders = outlook.GetTaskHierarchy();
@@ -71,15 +74,13 @@ namespace River.OneMoreAddIn.Commands
 						return;
 					}
 
-					genTable = dialog.ShowDetailedTable;
+					detailed = dialog.ShowDetailedTable;
 				}
 			}
 
-			//logger.WriteLine($"selected {tasks.Count()} tasks");
-
 			using (one = new OneNote(out page, out ns))
 			{
-				if (genTable)
+				if (detailed)
 				{
 					await GenerateTableReport(tasks);
 				}
@@ -193,7 +194,11 @@ namespace River.OneMoreAddIn.Commands
 
 			PrepareTableContext();
 
-			foreach (var task in OrderTasks(tasks))
+			foreach (var task in tasks
+				.OrderBy(t => t.FolderPath)
+				.ThenBy(t => t.Year)
+				.ThenBy(t => t.WoYear)
+				.ThenBy(t => t.Subject))
 			{
 				row = table.AddRow();
 				PopulateRow(row, task);
@@ -292,25 +297,6 @@ namespace River.OneMoreAddIn.Commands
 			row[4].SetContent(MakeImportance(task.Importance));
 			row[5].SetContent((task.PercentComplete / 100.0).ToString("P0"));
 
-		}
-
-		private IEnumerable<OutlookTask> OrderTasks(IEnumerable<OutlookTask> tasks)
-		{
-			var culture = System.Globalization.CultureInfo.CurrentUICulture;
-			var calendar = culture.Calendar;
-			var weekRule = culture.DateTimeFormat.CalendarWeekRule;
-			var firstDay = culture.DateTimeFormat.FirstDayOfWeek;
-
-			foreach (var task in tasks)
-			{
-				task.Year = task.DueDate.Year;
-				task.WoYear = calendar.GetWeekOfYear(task.DueDate, weekRule, firstDay);
-			}
-
-			return tasks.OrderBy(t => t.FolderPath)
-				.ThenBy(t => t.Year)
-				.ThenBy(t => t.WoYear)
-				.ThenBy(t => t.Subject);
 		}
 
 
