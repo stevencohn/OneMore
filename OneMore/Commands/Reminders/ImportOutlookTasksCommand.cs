@@ -48,6 +48,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (!Office.IsInstalled("Outlook"))
+			{
+				UIHelper.ShowInfo("Outlook must be installed to use this command");
+				return;
+			}
+
 			IEnumerable<OutlookTask> tasks = null;
 
 			if (args.Length > 1 && args[0] is string refreshArg && refreshArg == "refresh")
