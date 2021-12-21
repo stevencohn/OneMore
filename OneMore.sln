@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29905.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMore", "OneMore\OneMore.csproj", "{D874E185-08FE-48C5-BADE-0FE84060C978}"
 EndProject
@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE = LICENSE
 		Reference\onenotecontrols-2016.xlsx = Reference\onenotecontrols-2016.xlsx
 		README.md = README.md
+		register-onemore.reg = register-onemore.reg
+		setdevreg.ps1 = setdevreg.ps1
 		setversion.ps1 = setversion.ps1
 	EndProjectSection
 EndProject
@@ -54,7 +56,7 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D874E185-08FE-48C5-BADE-0FE84060C978}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D874E185-08FE-48C5-BADE-0FE84060C978}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{D874E185-08FE-48C5-BADE-0FE84060C978}.Debug|x64.ActiveCfg = Debug|x64
 		{D874E185-08FE-48C5-BADE-0FE84060C978}.Debug|x64.Build.0 = Debug|x64
 		{D874E185-08FE-48C5-BADE-0FE84060C978}.Debug|x86.ActiveCfg = Debug|x86
