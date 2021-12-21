@@ -106,7 +106,7 @@ namespace OneMoreSetupActions
 				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
 				ProtocolHandler);
 
-			var cmd = $"\"{exe}\" %1 %2 %3";
+			var cmd = $"\"{exe}\" %1 %2 %3 %4 %5";
 
 			key.SetValue(string.Empty, cmd);
 			key.Dispose();

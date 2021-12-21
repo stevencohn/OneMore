@@ -33,9 +33,17 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("EdgeWebViewDeployment.Install ---");
 
+			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
+			if (key != null)
+			{
+				logger.WriteLine("WebView2 Runtime is already installed");
+				CleanupChromium();
+				return true;
+			}
+
 			var bootstrap = Path.Combine(
-				Path.GetTempPath(),
-				Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".exe");
+			Path.GetTempPath(),
+			Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".exe");
 
 			if (!DownloadBootstrap(bootstrap))
 			{
