@@ -92,9 +92,9 @@ namespace River.OneMoreAddIn.Commands
 					scope = OneNote.Scope.Pages;
 				}
 
-				// TODO: deprecated; determine synopsis option... if not on refresh URI
+				// TODO: deprecated; determine options... if not on refresh URI
 
-				if (!synopses)
+				if (!synopses && !unindexed)
 				{
 					var meta2 = meta.Parent.Elements(ns + "Meta")
 						.FirstOrDefault(e => e.Attribute("name").Value == SynopsisMeta);
