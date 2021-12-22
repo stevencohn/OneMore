@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		private Page page;
 		private XNamespace ns;
 		private bool showSynopsis;
+		private bool unindexed;
 
 
 		public LinkReferencesCommand()
@@ -59,6 +60,7 @@ namespace River.OneMoreAddIn.Commands
 
 					scope = dialog.Scope;
 					showSynopsis = dialog.Synopsis;
+					unindexed = dialog.Unindexed;
 				}
 			}
 
@@ -131,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				logger.WriteLine($"searching for '{title}'");
-				var results = one.Search(startId, title);
+				var results = one.Search(startId, title, unindexed);
 
 				if (token.IsCancellationRequested)
 				{
@@ -146,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 				var total = referals.Count();
 				if (total == 0)
 				{
-					logger.WriteLine("no referals found");
+					UIHelper.ShowInfo(Resx.LinkReferencesCommand_noref);
 					return;
 				}
 
@@ -235,15 +237,15 @@ namespace River.OneMoreAddIn.Commands
 			var pages = results.Descendants(ns + "Page")
 				.Where(e => e.Attribute("ID").Value != pageId);
 
-			foreach (var page in pages)
+			foreach (var pg in pages)
 			{
 				// add omName attribute to page with its notebook/section/page path
 
-				page.Add(new XAttribute(NameAttr,
-					page.Ancestors().InDocumentOrder()
+				pg.Add(new XAttribute(NameAttr,
+					pg.Ancestors().InDocumentOrder()
 						.Where(e => e.Name.LocalName != "Notebooks")
 						.Aggregate(string.Empty, (a, b) => a + b.Attribute("name").Value + "/")
-						+ page.Attribute("name").Value
+						+ pg.Attribute("name").Value
 					));
 			}
 

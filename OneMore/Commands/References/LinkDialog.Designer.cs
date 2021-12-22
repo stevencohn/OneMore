@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinkDialog));
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
@@ -38,6 +39,8 @@ namespace River.OneMoreAddIn.Commands
 			this.groupBox = new System.Windows.Forms.GroupBox();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.synopsisBox = new System.Windows.Forms.CheckBox();
+			this.unindexedBox = new System.Windows.Forms.CheckBox();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -45,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(311, 307);
+			this.okButton.Location = new System.Drawing.Point(311, 335);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
@@ -56,7 +59,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(437, 307);
+			this.cancelButton.Location = new System.Drawing.Point(437, 335);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -132,13 +135,26 @@ namespace River.OneMoreAddIn.Commands
 			this.synopsisBox.Text = "Include a synopsis of each page";
 			this.synopsisBox.UseVisualStyleBackColor = true;
 			// 
+			// unindexedBox
+			// 
+			this.unindexedBox.AutoSize = true;
+			this.unindexedBox.Location = new System.Drawing.Point(46, 286);
+			this.unindexedBox.Name = "unindexedBox";
+			this.unindexedBox.Size = new System.Drawing.Size(271, 24);
+			this.unindexedBox.TabIndex = 8;
+			this.unindexedBox.Text = "Include unindexed pages in query";
+			this.tooltip.SetToolTip(this.unindexedBox, "Enable to search newer text that has not yet been indexed by OneNote. This may be" +
+        " slower.");
+			this.unindexedBox.UseVisualStyleBackColor = true;
+			// 
 			// LinkDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(580, 358);
+			this.ClientSize = new System.Drawing.Size(580, 386);
+			this.Controls.Add(this.unindexedBox);
 			this.Controls.Add(this.synopsisBox);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.groupBox);
@@ -169,5 +185,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.GroupBox groupBox;
 		private System.Windows.Forms.Label introLabel;
 		private System.Windows.Forms.CheckBox synopsisBox;
+		private System.Windows.Forms.CheckBox unindexedBox;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

@@ -3698,4 +3698,16 @@ Verschoven</value>
     <value>Begin datum</value>
     <comment>report</comment>
   </data>
+  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
+    <value>Niet-geïndexeerde pagina's opnemen in zoekopdracht</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
+    <value>Inschakelen om naar nieuwere tekst te zoeken die nog niet is geïndexeerd door OneNote. </value>
+    <comment>tooltip on checkbox</comment>
+  </data>
+  <data name="LinkReferencesCommand_noref" xml:space="preserve">
+    <value>Geen referenties gevonden. </value>
+    <comment>message</comment>
+  </data>
 </root>
