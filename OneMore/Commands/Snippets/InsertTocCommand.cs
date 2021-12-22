@@ -93,6 +93,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// TODO: deprecated!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//       This routine can be removed and just replaced with a direct call to InsertToc
+		//       from the main Execute method
 		private async Task<bool> RefreshToc(bool jumplinks, bool alignlinks)
 		{
 			using (one = new OneNote(out var page, out var ns))
