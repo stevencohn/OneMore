@@ -942,6 +942,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\LinkDialog.resx">
       <DependentUpon>LinkDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\RefreshPageLinksDialog.resx">
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
