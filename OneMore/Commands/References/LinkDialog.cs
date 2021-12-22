@@ -25,9 +25,12 @@ namespace River.OneMoreAddIn.Commands
 					"notebookRadio",
 					"sectionRadio",
 					"synopsisBox",
+					"unindexedBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
+
+				tooltip.SetToolTip(unindexedBox, Resx.LinkDialog_unindexedBox_Tooltip);
 			}
 		}
 
@@ -44,5 +47,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool Synopsis => synopsisBox.Checked;
+
+
+		public bool Unindexed => unindexedBox.Checked;
 	}
 }

@@ -3683,4 +3683,16 @@ Aufgeschoben</value>
     <value>Startdatum</value>
     <comment>report</comment>
   </data>
+  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
+    <value>Nicht indizierte Seiten in die Abfrage einschließen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
+    <value>Aktivieren, um neueren Text zu durchsuchen, der noch nicht von OneNote indiziert wurde. </value>
+    <comment>tooltip on checkbox</comment>
+  </data>
+  <data name="LinkReferencesCommand_noref" xml:space="preserve">
+    <value>Keine Referenzen gefunden. </value>
+    <comment>message</comment>
+  </data>
 </root>

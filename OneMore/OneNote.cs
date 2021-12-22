@@ -1164,10 +1164,11 @@ namespace River.OneMoreAddIn
 		/// or CurrentPageId
 		/// </param>
 		/// <param name="query">The search string</param>
+		/// <param name="unindexed">True to include unindexed pages in query</param>
 		/// <returns>An hierarchy of pages whose content matches the search string</returns>
-		public XElement Search(string nodeId, string query)
+		public XElement Search(string nodeId, string query, bool unindexed = false)
 		{
-			onenote.FindPages(nodeId, query, out var xml, false, false, XMLSchema.xs2013);
+			onenote.FindPages(nodeId, query, out var xml, unindexed, false, XMLSchema.xs2013);
 
 			var results = XElement.Parse(xml);
 

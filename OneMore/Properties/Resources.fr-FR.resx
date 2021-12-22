@@ -3692,4 +3692,16 @@ Différé</value>
     <value>Date de début</value>
     <comment>report</comment>
   </data>
+  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
+    <value>Inclure les pages non indexées dans la requête</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
+    <value>Activez pour rechercher du texte plus récent qui n'a pas encore été indexé par OneNote. </value>
+    <comment>tooltip on checkbox</comment>
+  </data>
+  <data name="LinkReferencesCommand_noref" xml:space="preserve">
+    <value>Aucune référence trouvée. </value>
+    <comment>message</comment>
+  </data>
 </root>

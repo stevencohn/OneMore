@@ -3746,4 +3746,16 @@ Deferred</value>
     <value>Outlook Tasks</value>
     <comment>report</comment>
   </data>
+  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
+    <value>Include unindexed pages in query</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
+    <value>Enable to search newer text that has not yet been indexed by OneNote. This may be slower.</value>
+    <comment>tooltip on checkbox</comment>
+  </data>
+  <data name="LinkReferencesCommand_noref" xml:space="preserve">
+    <value>No references found. Consider enabling the option to include unindexed pages</value>
+    <comment>message</comment>
+  </data>
 </root>

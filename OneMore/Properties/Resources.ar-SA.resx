@@ -3697,4 +3697,16 @@ ISO-code then comma then language name</comment>
     <value>تاريخ البدء</value>
     <comment>report</comment>
   </data>
+  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
+    <value>تضمين صفحات غير مفهرسة في الاستعلام</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
+    <value>تمكين للبحث عن نص أحدث لم تتم فهرسته بواسطة OneNote بعد. </value>
+    <comment>tooltip on checkbox</comment>
+  </data>
+  <data name="LinkReferencesCommand_noref" xml:space="preserve">
+    <value>لم يتم العثور على مراجع. </value>
+    <comment>message</comment>
+  </data>
 </root>
