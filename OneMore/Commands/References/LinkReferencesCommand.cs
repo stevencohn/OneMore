@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		// OE meta for linked references paragraph
 		private const string LinkRefsMeta = "omLinkedReferences";
+
+		// TODO: deprecated
 		private const string SynopsisMeta = "omShowSynopsis";
 
 		// temporary attributes used for in-memory processing, not stored
@@ -32,7 +34,8 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote.Scope scope;
 		private Page page;
 		private XNamespace ns;
-		private bool showSynopsis;
+		private bool refreshing;
+		private bool synopses;
 		private bool unindexed;
 
 
@@ -43,13 +46,14 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var prompt = true;
 			if (args.Length > 0 && args[0] is string refresh && refresh == "refresh")
 			{
-				prompt = !Refresh();
+				synopses = args.Any(a => a as string == "synopsis");
+				unindexed = args.Any(a => a as string == "unindexed");
+				refreshing = Refresh();
 			}
 
-			if (prompt)
+			if (!refreshing)
 			{
 				using (var dialog = new LinkDialog())
 				{
@@ -59,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					scope = dialog.Scope;
-					showSynopsis = dialog.Synopsis;
+					synopses = dialog.Synopsis;
 					unindexed = dialog.Unindexed;
 				}
 			}
@@ -88,14 +92,17 @@ namespace River.OneMoreAddIn.Commands
 					scope = OneNote.Scope.Pages;
 				}
 
-				// determine synopsis option...
+				// TODO: deprecated; determine synopsis option... if not on refresh URI
 
-				var meta2 = meta.Parent.Elements(ns + "Meta")
-					.FirstOrDefault(e => e.Attribute("name").Value == SynopsisMeta);
-
-				if (meta2 != null)
+				if (!synopses)
 				{
-					bool.TryParse(meta2.Attribute("content").Value, out showSynopsis);
+					var meta2 = meta.Parent.Elements(ns + "Meta")
+						.FirstOrDefault(e => e.Attribute("name").Value == SynopsisMeta);
+
+					if (meta2 != null)
+					{
+						bool.TryParse(meta2.Attribute("content").Value, out synopses);
+					}
 				}
 
 				// remove the containing OE so it can be regenerated
@@ -277,12 +284,14 @@ namespace River.OneMoreAddIn.Commands
 
 			PageNamespace.Set(ns);
 
-			var refresh = "<a href=\"onemore://LinkReferencesCommand/refresh\">" +
-				$"<span style='{RefreshStyle}'>{Resx.InsertTocCommand_Refresh}</span></a>";
+			var cmd = "onemore://LinkReferencesCommand/refresh";
+			if (synopses) cmd = $"{cmd}/synopsis";
+			if (unindexed) cmd = $"{cmd}/unindexed";
+
+			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.InsertTocCommand_Refresh}</span></a>";
 
 			var block = new Paragraph(
 				new Meta(LinkRefsMeta, scope.ToString()),
-				new Meta(SynopsisMeta, showSynopsis.ToString().ToLower()),
 				new XElement(ns + "T", new XCData(
 					$"<span style='font-weight:bold'>{Resx.LinkedReferencesCommand_Title}</span> " +
 					$"<span style='{RefreshStyle}'>[{refresh}]</span>"
@@ -302,7 +311,7 @@ namespace River.OneMoreAddIn.Commands
 						new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name.Value}</a>"))
 					));
 
-				if (showSynopsis)
+				if (synopses)
 				{
 					children.Add(
 						new Paragraph(synopsis).SetQuickStyle(citeStyle.Index),
@@ -311,8 +320,25 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			// double-check if there is an existing block and replace it
+			var existing = page.Root.Descendants(ns + "Meta")
+				.Where(e => e.Attribute("name").Value == LinkRefsMeta)
+				.Select(e => e.Parent)
+				.FirstOrDefault();
+
+			if (existing != null)
+			{
+				existing.ReplaceWith(block);
+				return;
+			}
+
 			var container = page.EnsureContentContainer();
-			container.Add(new Paragraph(string.Empty));
+
+			if (!refreshing)
+			{
+				container.Add(new Paragraph(string.Empty));
+			}
+
 			container.Add(block);
 		}
 	}
