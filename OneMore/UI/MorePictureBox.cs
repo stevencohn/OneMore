@@ -23,16 +23,16 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		protected override void WndProc(ref Message msg)
+		protected override void WndProc(ref Message m)
 		{
-			if (msg.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
+			if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
 			{
 				Native.SetCursor(hcursor);
-				msg.Result = IntPtr.Zero; // indicate handled
+				m.Result = IntPtr.Zero; // indicate handled
 				return;
 			}
 
-			base.WndProc(ref msg);
+			base.WndProc(ref m);
 		}
 	}
 }

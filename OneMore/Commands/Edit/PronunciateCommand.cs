@@ -24,12 +24,12 @@ namespace River.OneMoreAddIn.Commands
 		private string isoCode;
 
 
-		private class Phonetics
+		private sealed class Phonetics
 		{
 			public string text;
 		}
 
-		private class Definition
+		private sealed class Definition
 		{
 			public Phonetics[] phonetics;
 		}

@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.UI
 
 	public partial class TagPickerDialog : Form
 	{
-		private class Zone
+		private sealed class Zone
 		{
 			public int Symbol;
 			public Rectangle Bounds;

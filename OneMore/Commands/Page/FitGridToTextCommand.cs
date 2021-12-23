@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (common != null)
 				{
-					var quickStyle = quickStyles.FirstOrDefault(s => s.Index.ToString() == common.Index);
+					//var quickStyle = quickStyles.FirstOrDefault(s => s.Index.ToString() == common.Index);
 
 					var analyzer = new StyleAnalyzer(page.Root);
 					var style = analyzer.CollectStyleFrom(common.Element);

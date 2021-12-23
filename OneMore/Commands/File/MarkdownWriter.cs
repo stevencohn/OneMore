@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class MarkdownWriter
 	{
-		private class Context
+		private sealed class Context
 		{
 			public string Owner;
 			public int QuickStyleIndex;

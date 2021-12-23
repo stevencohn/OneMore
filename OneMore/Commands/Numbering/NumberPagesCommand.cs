@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class NumberPagesCommand : Command
 	{
-		private class PageBasics
+		private sealed class PageBasics
 		{
 			public string ID;
 			public string Name;

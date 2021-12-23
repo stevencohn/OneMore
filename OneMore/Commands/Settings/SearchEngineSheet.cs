@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class SearchEngineSheet : SheetBase
 	{
-		private class SearchEngine
+		private sealed class SearchEngine
 		{
 			public Image Image { get; set; }
 			public string Name { get; set; }

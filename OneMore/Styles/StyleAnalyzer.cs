@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Styles
 	/// </remarks>
 	internal class StyleAnalyzer
 	{
-		private class Catalog : Dictionary<string, StyleProperties> { }
+		private sealed class Catalog : Dictionary<string, StyleProperties> { }
 
 		private readonly Catalog catalog;
 		private readonly XElement root;

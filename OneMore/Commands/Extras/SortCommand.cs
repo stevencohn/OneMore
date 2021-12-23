@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SortCommand : Command
 	{
-		private class PageNode
+		private sealed class PageNode
 		{
 			public XElement Page;
 			public List<XElement> Children;

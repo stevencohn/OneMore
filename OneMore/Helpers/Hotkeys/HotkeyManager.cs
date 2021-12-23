@@ -186,7 +186,7 @@ namespace River.OneMoreAddIn
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Private message interceptor
 
-		private class MessageWindow : Form
+		private sealed class MessageWindow : Form
 		{
 			private readonly uint msgThreadId;
 

@@ -33,9 +33,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public double Spacing => customButton.Enabled ? (double)sizeBox.Value : spacing;
-
-
 		public FitGridToTextDialog(string fontSize, double spacing)
 			: this()
 		{
@@ -45,6 +42,9 @@ namespace River.OneMoreAddIn.Commands
 			recommendBox.Text = string.Format(
 				Resx.FitGridToTextDialog_recommendation, fontSize, spacing);
 		}
+
+
+		public double Spacing => customButton.Enabled ? (double)sizeBox.Value : spacing;
 
 
 		private void ChangeSelection(object sender, EventArgs e)

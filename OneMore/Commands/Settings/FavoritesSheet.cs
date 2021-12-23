@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class FavoritesSheet : SheetBase
 	{
-		private class Favorite
+		private sealed class Favorite
 		{
 			public int Index { get; set; }
 			public XElement Root { get; set; }

@@ -25,7 +25,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
 		private OneNote one;
-		private bool refreshing;
 
 
 		public InsertTocCommand()
@@ -100,8 +99,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote(out var page, out var ns))
 			{
-				refreshing = true;
-
 				var meta = page.Root.Descendants(ns + "Meta")
 					.FirstOrDefault(e => e.Attribute("name").Value == TocMeta);
 
@@ -131,7 +128,6 @@ namespace River.OneMoreAddIn.Commands
 					return true;
 				}
 
-				refreshing = false;
 				return false;
 			}
 		}

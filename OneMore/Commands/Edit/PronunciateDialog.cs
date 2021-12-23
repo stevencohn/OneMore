@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class PronunciateDialog : UI.LocalizableForm
 	{
-		private class LanguageItem
+		private sealed class LanguageItem
 		{
 			public string Code;
 			public string Name;

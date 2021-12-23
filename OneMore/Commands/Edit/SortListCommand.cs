@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class SortListCommand : Command
 	{
-		private class ListItem
+		private sealed class ListItem
 		{
 			public XElement Item;
 			public string Text;

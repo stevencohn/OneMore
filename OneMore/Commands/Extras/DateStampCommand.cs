@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class DateStampCommand : Command
 	{
-		private class PageInfo
+		private sealed class PageInfo
 		{
 			public string ID;
 			public string Name;

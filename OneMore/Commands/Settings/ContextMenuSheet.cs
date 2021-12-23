@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Settings
 	internal partial class ContextMenuSheet : SheetBase
 	{
 
-		private class MenuItem
+		private sealed class MenuItem
 		{
 			public string Key { get; set; }
 			public string Text { get; set; }

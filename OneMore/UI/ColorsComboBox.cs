@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn.UI
 	/// </summary>
 	internal class ColorsComboBox : ComboBox
 	{
-		private class Swatch
+		private sealed class Swatch
 		{
 			public readonly string Name;
 			public Color Color;

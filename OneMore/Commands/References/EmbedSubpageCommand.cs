@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class EmbedSubpageCommand : Command
 	{
-		private class SourceInfo
+		private sealed class SourceInfo
 		{
 			public IEnumerable<XElement> Snippets;
 			public string SourceId;
