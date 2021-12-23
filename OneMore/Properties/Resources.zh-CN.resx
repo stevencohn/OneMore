@@ -3701,4 +3701,12 @@ OneNote 文件 (*.one)</value>
     <value>没有找到参考。</value>
     <comment>message</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>未找到孤立任务</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>重置 {0} 个孤立任务</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -3,6 +3,8 @@
 //************************************************************************************************
 // based on https://www.codeproject.com/articles/27748/marching-ants
 
+#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
+
 #define xLogging
 
 namespace River.OneMoreAddIn.Commands

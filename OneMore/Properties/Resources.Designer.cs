@@ -2630,6 +2630,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No orphaned tasks were found.
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_noorphans {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_noorphans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset {0} orphaned task(s).
+        /// </summary>
+        internal static string ImportOutlookTasksDialog_reset {
+            get {
+                return ResourceManager.GetString("ImportOutlookTasksDialog_reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate task detail table.
         /// </summary>
         internal static string ImportOutlookTasksDialog_tableButton_Text {

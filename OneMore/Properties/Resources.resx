@@ -3758,4 +3758,12 @@ Deferred</value>
     <value>No references found. Consider enabling the option to include unindexed pages</value>
     <comment>message</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>No orphaned tasks were found</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>Reset {0} orphaned task(s)</value>
+    <comment>message box</comment>
+  </data>
 </root>

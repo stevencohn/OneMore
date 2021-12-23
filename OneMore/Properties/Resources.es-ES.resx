@@ -3710,4 +3710,12 @@ Diferido</value>
     <value>No se encontraron referencias. </value>
     <comment>message</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>No se encontraron tareas huérfanas</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>Restablecer {0} tareas huérfanas</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
+
 namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;

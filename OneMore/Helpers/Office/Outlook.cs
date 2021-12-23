@@ -131,7 +131,9 @@ namespace River.OneMoreAddIn.Helpers.Office
 					Year = item.DueDate.Year,
 					WoYear = calendar.GetWeekOfYear(item.DueDate, weekRule, firstDay),
 					OneNoteTaskID = item.UserProperties["OneNoteTaskID"]?.Value as string,
-					OneNoteURL = item.UserProperties["OneNoteTaskURL"]?.Value as string
+					OneNoteURL = item.UserProperties["OneNoteURL"]?.Value as string,
+					OneNotePageID = item.UserProperties["OneNotePageID"]?.Value as string,
+					OneNoteObjectID = item.UserProperties["OneNoteObjectID"]?.Value as string
 				});
 
 				Marshal.ReleaseComObject(item);
@@ -202,16 +204,10 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			try
 			{
-				UserProperty prop;
-				prop = item.UserProperties.Find("OneNoteTaskID")
-					?? item.UserProperties.Add("OneNoteTaskID", OlUserPropertyType.olText);
-
-				prop.Value = task.OneNoteTaskID;
-
-				prop = item.UserProperties.Find("OneNoteURL")
-					?? item.UserProperties.Add("OneNoteURL", OlUserPropertyType.olText);
-
-				prop.Value = task.OneNoteURL;
+				SetUserProperty(item, "OneNoteTaskID", task.OneNoteTaskID);
+				SetUserProperty(item, "OneNoteURL", task.OneNoteURL);
+				SetUserProperty(item, "OneNotePageID", task.OneNotePageID);
+				SetUserProperty(item, "OneNoteObjectID", task.OneNoteObjectID);
 
 				item.Save();
 			}
@@ -221,6 +217,32 @@ namespace River.OneMoreAddIn.Helpers.Office
 			}
 
 			return true;
+		}
+
+
+		private void SetUserProperty(TaskItem item, string name, string value)
+		{
+			if (string.IsNullOrEmpty(value))
+			{
+				// UserProperties is a base-1 index!
+				var index = 1;
+				while (index <= item.UserProperties.Count && item.UserProperties[index].Name != name)
+				{
+					index++;
+				}
+
+				if (index < item.UserProperties.Count)
+				{
+					item.UserProperties.Remove(index);
+				}
+			}
+			else
+			{
+				var prop = item.UserProperties.Find(name)
+					?? item.UserProperties.Add(name, OlUserPropertyType.olText);
+
+				prop.Value = value;
+			}
 		}
 	}
 }

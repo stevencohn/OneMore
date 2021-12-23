@@ -3709,4 +3709,12 @@ ISO-code then comma then language name</comment>
     <value>لم يتم العثور على مراجع. </value>
     <comment>message</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>لم يتم العثور على المهام المعزولة</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>إعادة تعيين {0} مهمة (مهام) معزولة</value>
+    <comment>message box</comment>
+  </data>
 </root>

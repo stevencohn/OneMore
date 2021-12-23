@@ -34,12 +34,14 @@
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.warningBox = new System.Windows.Forms.RichTextBox();
+			this.resetLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.tree = new Aga.Controls.Tree.TreeViewAdv();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.tableButton = new System.Windows.Forms.RadioButton();
 			this.listButton = new System.Windows.Forms.RadioButton();
 			this.optionsPanel = new System.Windows.Forms.Panel();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.buttonPanel.SuspendLayout();
 			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -88,9 +90,25 @@
 			this.warningBox.Location = new System.Drawing.Point(20, 71);
 			this.warningBox.Name = "warningBox";
 			this.warningBox.ReadOnly = true;
-			this.warningBox.Size = new System.Drawing.Size(772, 79);
+			this.warningBox.Size = new System.Drawing.Size(772, 66);
 			this.warningBox.TabIndex = 0;
 			this.warningBox.Text = resources.GetString("warningBox.Text");
+			// 
+			// resetLabel
+			// 
+			this.resetLabel.AutoSize = true;
+			this.resetLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.resetLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.resetLabel.LinkColor = System.Drawing.Color.DimGray;
+			this.resetLabel.Location = new System.Drawing.Point(30, 15);
+			this.resetLabel.Name = "resetLabel";
+			this.resetLabel.Size = new System.Drawing.Size(166, 20);
+			this.resetLabel.TabIndex = 11;
+			this.resetLabel.TabStop = true;
+			this.resetLabel.Text = "Reset orphaned tasks";
+			this.toolTip.SetToolTip(this.resetLabel, "An orphaned task is one that was imported but its linked paragraph was deleted. T" +
+        "his will reset orphaned tasks so they can be imported again.");
+			this.resetLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetOrphanedTasks);
 			// 
 			// imageList
 			// 
@@ -115,7 +133,7 @@
 			this.tree.FullRowSelectInactiveColor = System.Drawing.Color.Empty;
 			this.tree.LineColor = System.Drawing.SystemColors.ControlDark;
 			this.tree.LoadOnDemand = true;
-			this.tree.Location = new System.Drawing.Point(20, 150);
+			this.tree.Location = new System.Drawing.Point(20, 137);
 			this.tree.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tree.Model = null;
 			this.tree.Name = "tree";
@@ -123,7 +141,7 @@
 			this.tree.SelectedNode = null;
 			this.tree.SelectionMode = Aga.Controls.Tree.TreeSelectionMode.MultiSameParent;
 			this.tree.ShowPerformance = false;
-			this.tree.Size = new System.Drawing.Size(772, 302);
+			this.tree.Size = new System.Drawing.Size(772, 315);
 			this.tree.TabIndex = 0;
 			// 
 			// buttonPanel
@@ -160,6 +178,7 @@
 			// 
 			// optionsPanel
 			// 
+			this.optionsPanel.Controls.Add(this.resetLabel);
 			this.optionsPanel.Controls.Add(this.cancelButton);
 			this.optionsPanel.Controls.Add(this.okButton);
 			this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -191,6 +210,7 @@
 			this.buttonPanel.ResumeLayout(false);
 			this.buttonPanel.PerformLayout();
 			this.optionsPanel.ResumeLayout(false);
+			this.optionsPanel.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -208,5 +228,7 @@
 		private Aga.Controls.Tree.TreeViewAdv tree;
 		private System.Windows.Forms.RadioButton tableButton;
 		private System.Windows.Forms.RadioButton listButton;
+		private UI.MoreLinkLabel resetLabel;
+		private System.Windows.Forms.ToolTip toolTip;
 	}
 }
