@@ -330,8 +330,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResetTask(Node node, OutlookTask task)
 		{
-			logger.WriteLine($"resetting {task.Subject}");
-
 			task.OneNoteTaskID = null;
 			task.OneNoteURL = null;
 			task.OneNotePageID = null;
