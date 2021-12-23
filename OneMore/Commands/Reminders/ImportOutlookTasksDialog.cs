@@ -82,6 +82,9 @@ namespace River.OneMoreAddIn.Commands
 					"automatically after importing.", SystemColors.GrayText);
 			}
 
+			resetInfoLabel.Visible = false;
+			resetInfoLabel.Left = resetLabel.Left;
+
 			// prepare TreeViewAdv...
 
 			var nodeCheckBox = new NodeCheckBox
@@ -260,28 +263,31 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					outlook = new Outlook();
-					count = ResetOrphanedTasks(map, model.Root, 0);
+					count = ResetOrphanedTasks(map, model.Root);
 				}
 				finally
 				{
 					outlook.Dispose();
 				}
 
+				resetLabel.Visible = false;
+				resetInfoLabel.Visible = true;
 				if (count == 0)
 				{
-					UIHelper.ShowMessage(Resx.ImportOutlookTasksDialog_noorphans);
+					resetInfoLabel.Text = Resx.ImportOutlookTasksDialog_noorphans;
 				}
 				else
 				{
-					UIHelper.ShowMessage(
-						string.Format(Resx.ImportOutlookTasksDialog_reset, count));
+					resetInfoLabel.Text =
+						string.Format(Resx.ImportOutlookTasksDialog_reset, count);
 				}
 			}
 		}
 
 
-		private int ResetOrphanedTasks(Dictionary<string, HyperlinkInfo> map, Node node, int count)
+		private int ResetOrphanedTasks(Dictionary<string, HyperlinkInfo> map, Node node)
 		{
+			var count = 0;
 			var taskNodes = node.Nodes
 				.Where(n => n.Tag is OutlookTask task && !string.IsNullOrEmpty(task.OneNoteURL));
 
@@ -315,7 +321,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var child in node.Nodes.Where(n => n.Tag is OutlookTaskFolder))
 			{
-				ResetOrphanedTasks(map, child, count);
+				count += ResetOrphanedTasks(map, child);
 			}
 
 			return count;
@@ -324,6 +330,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResetTask(Node node, OutlookTask task)
 		{
+			logger.WriteLine($"resetting {task.Subject}");
+
 			task.OneNoteTaskID = null;
 			task.OneNoteURL = null;
 			task.OneNotePageID = null;
@@ -332,7 +340,7 @@ namespace River.OneMoreAddIn.Commands
 			outlook.SaveTask(task);
 
 			node.IsEnabled = true;
-			node.IsChecked = false;
+			node.IsChecked = true;
 		}
 	}
 }

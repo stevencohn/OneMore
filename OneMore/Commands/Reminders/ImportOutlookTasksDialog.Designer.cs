@@ -42,6 +42,7 @@
 			this.listButton = new System.Windows.Forms.RadioButton();
 			this.optionsPanel = new System.Windows.Forms.Panel();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.resetInfoLabel = new System.Windows.Forms.Label();
 			this.buttonPanel.SuspendLayout();
 			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -178,6 +179,7 @@
 			// 
 			// optionsPanel
 			// 
+			this.optionsPanel.Controls.Add(this.resetInfoLabel);
 			this.optionsPanel.Controls.Add(this.resetLabel);
 			this.optionsPanel.Controls.Add(this.cancelButton);
 			this.optionsPanel.Controls.Add(this.okButton);
@@ -186,6 +188,15 @@
 			this.optionsPanel.Name = "optionsPanel";
 			this.optionsPanel.Size = new System.Drawing.Size(772, 47);
 			this.optionsPanel.TabIndex = 14;
+			// 
+			// resetInfoLabel
+			// 
+			this.resetInfoLabel.AutoSize = true;
+			this.resetInfoLabel.Location = new System.Drawing.Point(236, 15);
+			this.resetInfoLabel.Name = "resetInfoLabel";
+			this.resetInfoLabel.Size = new System.Drawing.Size(76, 20);
+			this.resetInfoLabel.TabIndex = 12;
+			this.resetInfoLabel.Text = "reset-info";
 			// 
 			// ImportOutlookTasksDialog
 			// 
@@ -230,5 +241,6 @@
 		private System.Windows.Forms.RadioButton listButton;
 		private UI.MoreLinkLabel resetLabel;
 		private System.Windows.Forms.ToolTip toolTip;
+		private System.Windows.Forms.Label resetInfoLabel;
 	}
 }
