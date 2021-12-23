@@ -257,30 +257,20 @@ namespace River.OneMoreAddIn.Commands
 			using (one = new OneNote())
 			{
 				var source = new CancellationTokenSource();
-				var map = await one.BuildHyperlinkMap(OneNote.Scope.Sections, source.Token);
-				var count = 0;
+				var map = await one.BuildHyperlinkMap(Scope.Sections, source.Token);
 
-				try
+				var count = 0;
+				using (outlook = new Outlook())
 				{
-					outlook = new Outlook();
 					count = ResetOrphanedTasks(map, model.Root);
-				}
-				finally
-				{
-					outlook.Dispose();
 				}
 
 				resetLabel.Visible = false;
 				resetInfoLabel.Visible = true;
-				if (count == 0)
-				{
-					resetInfoLabel.Text = Resx.ImportOutlookTasksDialog_noorphans;
-				}
-				else
-				{
-					resetInfoLabel.Text =
-						string.Format(Resx.ImportOutlookTasksDialog_reset, count);
-				}
+
+				resetInfoLabel.Text = count == 0
+					? Resx.ImportOutlookTasksDialog_noorphans
+					: string.Format(Resx.ImportOutlookTasksDialog_reset, count);
 			}
 		}
 
