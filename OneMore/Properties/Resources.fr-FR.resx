@@ -3704,4 +3704,12 @@ Différé</value>
     <value>Aucune référence trouvée. </value>
     <comment>message</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>Aucune tâche orpheline n'a été trouvée</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>Réinitialiser {0} tâche(s) orpheline(s)</value>
+    <comment>message box</comment>
+  </data>
 </root>

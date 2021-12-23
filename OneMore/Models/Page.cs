@@ -3,6 +3,7 @@
 //************************************************************************************************
 
 #pragma warning disable S1155 // "Any()" should be used to test for emptiness
+#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
 #pragma warning disable S4136 // Method overloads should be grouped together
 
 namespace River.OneMoreAddIn.Models

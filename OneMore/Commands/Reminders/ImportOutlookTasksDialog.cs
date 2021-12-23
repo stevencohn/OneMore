@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
+
 namespace River.OneMoreAddIn.Commands
 {
 	using Aga.Controls.Tree;
@@ -11,13 +13,17 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Threading;
 	using System.Windows.Forms;
+	using static River.OneMoreAddIn.OneNote;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class ImportOutlookTasksDialog : UI.LocalizableForm
 	{
-		private readonly TreeModel model;
+		private TreeModel model;
+		private OneNote one;
+		private Outlook outlook;
 
 
 		#region class TaskNodeIcon
@@ -122,8 +128,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			foreach (var folder in folders)
 			{
-				var node = new Node(folder.Name);
-				node.Tag = folder;
+				var node = new Node(folder.Name)
+				{
+					Tag = folder
+				};
 
 				PopulateTree(folder.Folders, node);
 
@@ -238,6 +246,93 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return tasks;
+		}
+
+
+		private async void ResetOrphanedTasks(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			using (one = new OneNote())
+			{
+				var source = new CancellationTokenSource();
+				var map = await one.BuildHyperlinkMap(OneNote.Scope.Sections, source.Token);
+				var count = 0;
+
+				try
+				{
+					outlook = new Outlook();
+					count = ResetOrphanedTasks(map, model.Root, 0);
+				}
+				finally
+				{
+					outlook.Dispose();
+				}
+
+				if (count == 0)
+				{
+					UIHelper.ShowMessage(Resx.ImportOutlookTasksDialog_noorphans);
+				}
+				else
+				{
+					UIHelper.ShowMessage(
+						string.Format(Resx.ImportOutlookTasksDialog_reset, count));
+				}
+			}
+		}
+
+
+		private int ResetOrphanedTasks(Dictionary<string, HyperlinkInfo> map, Node node, int count)
+		{
+			var taskNodes = node.Nodes
+				.Where(n => n.Tag is OutlookTask task && !string.IsNullOrEmpty(task.OneNoteURL));
+
+			if (taskNodes.Any())
+			{
+				foreach (var taskNode in taskNodes)
+				{
+					var task = taskNode.Tag as OutlookTask;
+
+					var key = one.GetHyperKey(task.OneNoteURL);
+					if (map.ContainsKey(key))
+					{
+						var page = one.GetPage(map[key].PageID, PageDetail.Basic);
+						if (page == null)
+						{
+							ResetTask(taskNode, task);
+							count++;
+						}
+						else
+						{
+							if (!page.Root.Descendants(page.Namespace + "OutlookTask")
+								.Any(e => e.Attribute("guidTask").Value == task.OneNoteTaskID))
+							{
+								ResetTask(taskNode, task);
+								count++;
+							}
+						}
+					}
+				}
+			}
+
+			foreach (var child in node.Nodes.Where(n => n.Tag is OutlookTaskFolder))
+			{
+				ResetOrphanedTasks(map, child, count);
+			}
+
+			return count;
+		}
+
+
+		private void ResetTask(Node node, OutlookTask task)
+		{
+			task.OneNoteTaskID = null;
+			task.OneNoteURL = null;
+			task.OneNotePageID = null;
+			task.OneNoteObjectID = null;
+
+			outlook.SaveTask(task);
+
+			node.IsEnabled = true;
+			node.IsChecked = false;
 		}
 	}
 }

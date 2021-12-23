@@ -3710,4 +3710,12 @@ Verschoven</value>
     <value>Geen referenties gevonden. </value>
     <comment>message</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>Er zijn geen verweesde taken gevonden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>{0} verweesde taak(en) resetten</value>
+    <comment>message box</comment>
+  </data>
 </root>

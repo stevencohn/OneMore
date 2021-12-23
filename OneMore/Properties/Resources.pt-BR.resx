@@ -3710,4 +3710,12 @@ Diferido</value>
     <value>Nenhuma referência encontrada. </value>
     <comment>message</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>Nenhuma tarefa órfã foi encontrada</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>Redefinir {0} tarefa (s) órfã (s)</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -44,6 +44,9 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// </summary>
 		public string FolderPath { get; set; }
 
+
+		// UserProperties...
+
 		/// <summary>
 		/// Gets or sets the ID assigned to this task by OneNote
 		/// </summary>
@@ -53,6 +56,10 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// Gets or sets the URL of where this task is embedded on a OneNote page
 		/// </summary>
 		public string OneNoteURL { get; set; }
+
+		public string OneNotePageID { get; set; }
+
+		public string OneNoteObjectID { get; set; }
 
 
 		// Temporary properties used for report generation...

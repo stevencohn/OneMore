@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
+#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
+
 namespace River.OneMoreAddIn.Settings
 {
 	using Microsoft.Office.Core;

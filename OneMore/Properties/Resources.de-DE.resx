@@ -3695,4 +3695,12 @@ Aufgeschoben</value>
     <value>Keine Referenzen gefunden. </value>
     <comment>message</comment>
   </data>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>Es wurden keine verwaisten Aufgaben gefunden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>{0} verwaiste Aufgabe(n) zurücksetzen</value>
+    <comment>message box</comment>
+  </data>
 </root>

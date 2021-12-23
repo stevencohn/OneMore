@@ -327,8 +327,6 @@ namespace River.OneMoreAddIn
 				if (countCallback != null)
 					await countCallback(total);
 
-				pageEx = new Regex(@"page-id=({[^}]+?})");
-
 				await BuildHyperlinkMap(hyperlinks, container, rootPath, null, token, stepCallback);
 			}
 
@@ -361,10 +359,9 @@ namespace River.OneMoreAddIn
 					var ID = element.Attribute("ID").Value;
 					var name = element.Attribute("name").Value;
 					var link = GetHyperlink(ID, string.Empty);
-					var match = pageEx.Match(link);
-					var hyperId = match.Groups[1].Value;
+					var hyperId = GetHyperKey(link);
 
-					if (match.Success && !hyperlinks.ContainsKey(hyperId))
+					if (hyperId != null && !hyperlinks.ContainsKey(hyperId))
 					{
 						//logger.WriteLine($"MAP path:{path} fullpath:{full} name:{name}");
 						hyperlinks.Add(hyperId,
@@ -424,6 +421,23 @@ namespace River.OneMoreAddIn
 					}
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Reads the page-id part of the given onenote:// hyperlink URI
+		/// </summary>
+		/// <param name="uri">A onenote:// hyperlink URI</param>
+		/// <returns>The page-id value or null if not found</returns>
+		public string GetHyperKey(string uri)
+		{
+			if (pageEx == null)
+			{
+				pageEx = new Regex(@"page-id=({[^}]+?})");
+			}
+
+			var match = pageEx.Match(uri);
+			return match.Success ? match.Groups[1].Value : null;
 		}
 
 
