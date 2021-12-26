@@ -104,8 +104,10 @@ namespace OneMoreCalendar
 			{
 				using (var g = CreateGraphics())
 				{
-					var brush = hotspot.Item.Modified.Month == month ? Brushes.White : Brushes.WhiteSmoke;
-					g.FillRectangle(brush, hotspot.Clip);
+					g.FillRectangle(
+						hotspot.Item.Modified.Month == month ? Brushes.White : Brushes.WhiteSmoke,
+						hotspot.Clip);
+
 					g.DrawString(hotspot.Item.Title, itemFont, Brushes.Black, hotspot.Clip, format);
 				}
 
@@ -247,18 +249,5 @@ namespace OneMoreCalendar
 			base.OnResize(e);
 			Invalidate();
 		}
-
-
-		//protected override void WndProc(ref Message msg)
-		//{
-		//	if (msg.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
-		//	{
-		//		Native.SetCursor(hcursor);
-		//		msg.Result = IntPtr.Zero; // indicate handled
-		//		return;
-		//	}
-
-		//	base.WndProc(ref msg);
-		//}
 	}
 }
