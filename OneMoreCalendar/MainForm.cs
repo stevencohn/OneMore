@@ -30,7 +30,7 @@ namespace OneMoreCalendar
 			var days = MakeDayList(now.Year, now.Month, DayOfWeek.Sunday, pages);
 
 
-			monthView = new MonthView(days)
+			monthView = new MonthView(now, days)
 			{
 				BackColor = System.Drawing.Color.White,
 				Dock = DockStyle.Fill,

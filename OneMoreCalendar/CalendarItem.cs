@@ -20,9 +20,17 @@ namespace OneMoreCalendar
 	internal class CalendarItem
 	{
 		public string PageID { get; set; }
+
+
 		public string Section { get; set; }
+
+
 		public string Title { get; set; }
+
+
 		public DateTime Created { get; set; }
+
+
 		public DateTime Modified { get; set; }
 	}
 }
