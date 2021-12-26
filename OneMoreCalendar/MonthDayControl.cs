@@ -46,7 +46,7 @@ namespace OneMoreCalendar
 
 			if (Item != null)
 			{
-				e.Graphics.DrawString(Item.Date.Day.ToString(), font, Brushes.Black, box.X + 3, box.Y + 1);
+				e.Graphics.DrawString(Item.Modified.Day.ToString(), font, Brushes.Black, box.X + 3, box.Y + 1);
 
 
 			}

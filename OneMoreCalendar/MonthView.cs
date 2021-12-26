@@ -62,9 +62,10 @@ namespace OneMoreCalendar
 			var row = 0;
 			var col = 0;
 
-			var font = new Font("Segoe UI", 10.0f, FontStyle.Regular);
-			var bg = new SolidBrush(ColorTranslator.FromHtml("#FFF4E8F3"));
-			var pen = new Pen(Color.DarkGray, 0.1f);
+			var headFont = new Font("Segoe UI", 10.0f, FontStyle.Regular);
+			var bodyFont = new Font("Segoe UI", 9.0f, FontStyle.Regular);
+			var headBack = new SolidBrush(ColorTranslator.FromHtml("#FFF4E8F3"));
+			var headPen = new Pen(Color.DarkGray, 0.1f);
 
 			foreach (var day in Days)
 			{
@@ -72,25 +73,50 @@ namespace OneMoreCalendar
 
 				var box = new Rectangle(
 					col * dayWidth, row * dayHeight,
-					dayWidth, font.Height + 2);
+					dayWidth, headFont.Height + 2);
 
-				e.Graphics.FillRectangle(bg, box);
-				e.Graphics.DrawRectangle(pen, box);
+				e.Graphics.FillRectangle(headBack, box);
+				e.Graphics.DrawRectangle(headPen, box);
 
-				e.Graphics.DrawString(day.Date.Day.ToString(), font,
+				e.Graphics.DrawString(day.Date.Day.ToString(), headFont,
 					day.InMonth ? Brushes.Black : Brushes.Gray,
 					box.X + 3, box.Y + 1);
 
 				// body...
 
-				box = new Rectangle(
-					col * dayWidth + 1, row * dayHeight + font.Height + 3,
-					dayWidth - 2, dayHeight - font.Height - 2
-					);
-
 				if (!day.InMonth)
 				{
+					box = new Rectangle(
+						col * dayWidth + 1, row * dayHeight + headFont.Height + 3,
+						dayWidth - 2, dayHeight - headFont.Height - 2
+						);
+
 					e.Graphics.FillRectangle(Brushes.WhiteSmoke, box);
+				}
+
+				if (day.Items.Count > 0)
+				{
+					box = new Rectangle(
+						col * dayWidth + 3, row * dayHeight + headFont.Height + 6,
+						dayWidth - 8, dayHeight - headFont.Height - 8
+						);
+
+					var format = new StringFormat(
+						StringFormatFlags.LineLimit | StringFormatFlags.NoWrap, 1003)
+					{
+						Trimming = StringTrimming.EllipsisCharacter
+					};
+
+					int i = 0;
+					foreach (var item in day.Items)
+					{
+						var clip = new Rectangle(
+							box.Left, box.Top + (bodyFont.Height * i),
+							box.Width, bodyFont.Height);
+
+						e.Graphics.DrawString(item.Title, bodyFont, Brushes.Black, clip, format);
+						i++;
+					}
 				}
 
 				col++;

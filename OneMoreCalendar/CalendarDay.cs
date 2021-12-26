@@ -19,6 +19,6 @@ namespace OneMoreCalendar
 		public bool InMonth { get; set; }
 
 
-		public CalendarItems Items { get; set; }
+		public CalendarItems Items { get; set; } = new CalendarItems();
 	}
 }

@@ -5,7 +5,7 @@
 namespace OneMoreCalendar
 {
 	using System;
-	using System.Collections.Generic;
+	using System.Linq;
 	using System.Windows.Forms;
 
 
@@ -18,9 +18,16 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
+			Width = 1500;
+			Height = 1000;
+
+
+			var provider = new OneNoteProvider();
+			var pages = provider.GetPages();
+
 
 			var now = DateTime.Now;
-			var days = MakeDayList(now.Year, now.Month, DayOfWeek.Sunday);
+			var days = MakeDayList(now.Year, now.Month, DayOfWeek.Sunday, pages);
 
 
 			monthView = new MonthView(days)
@@ -35,27 +42,10 @@ namespace OneMoreCalendar
 			};
 
 			contentPanel.Controls.Add(monthView);
-
-
-			/*
-var item = new CalendarItem
-{
-	Date = DateTime.Now,
-	PageID = "page-id",
-	Title = "Title!"
-};
-
-var day = new MonthDayControl(item)
-{
-	Dock = DockStyle.Fill
-};
-
-table.Controls.Add(day, 0, 0);
-*/
 		}
 
 
-		private CalendarDays MakeDayList(int year, int month, DayOfWeek firstDay)
+		private CalendarDays MakeDayList(int year, int month, DayOfWeek firstDay, CalendarItems items)
 		{
 			var days = new CalendarDays();
 
@@ -82,9 +72,20 @@ table.Controls.Add(day, 0, 0);
 
 			// month
 
-			for (int day = 1; day <= last; day++)
+			for (int i = 1; i <= last; i++)
 			{
-				days.Add(new CalendarDay { Date = date, InMonth = true });
+				var day = new CalendarDay { Date = date, InMonth = true };
+
+				var pp = items.Where(p => p.Modified.Year == date.Year && p.Modified.Month == date.Month && p.Modified.Day == date.Day);
+				if (pp.Any())
+				{
+					foreach (var p in pp)
+					{
+						day.Items.Add(p);
+					}
+				}
+
+				days.Add(day);
 				date = date.AddDays(1.0);
 			}
 
