@@ -29,6 +29,7 @@ namespace OneMoreCalendar
 		private readonly StringFormat format;
 		private readonly List<Hotspot> hotspots = new List<Hotspot>();
 		private Hotspot hotspot;
+		private int dowOffset;
 		private int month;
 
 
@@ -144,18 +145,43 @@ namespace OneMoreCalendar
 		{
 			e.Graphics.Clear(Color.White);
 
+			var dowFont = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
+			var dowFormat = System.Threading.Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
+			var firstDow = dowFormat.FirstDayOfWeek;
+			dowOffset = dowFont.Height + 2;
+
 			var pen = new Pen(Color.DarkGray, 0.1f);
 
+			// day of week names...
+
 			var dayWidth = Width / 7;
-			for (int i = 1; i < 7; i++)
+			var dow = firstDow == DayOfWeek.Sunday ? 0 : 1;
+			for (int i = 0; i < 7; i++, dow++)
 			{
-				e.Graphics.DrawLine(pen, i * dayWidth, 0, i * dayWidth, e.ClipRectangle.Height);
+				var name = dowFormat.GetDayName((DayOfWeek)(dow % 7)).ToUpper();
+				var size = e.Graphics.MeasureString(name, dowFont);
+				var clip = new Rectangle(
+					(dayWidth * i) + (int)((dayWidth - size.Width) / 2), 1,
+					(int)size.Width, dowFont.Height + 2);
+
+				e.Graphics.DrawString(name, dowFont, Brushes.SlateGray, clip, format);
 			}
 
-			var dayHeight = Height / 5;
+			// vertical lines...
+
+			for (int i = 1; i < 7; i++)
+			{
+				e.Graphics.DrawLine(pen, i * dayWidth, dowOffset, i * dayWidth, e.ClipRectangle.Height);
+			}
+
+			// horizontal lines...
+
+			var dayHeight = (Height - dowOffset) / 5;
 			for (int i = 1; i < 5; i++)
 			{
-				e.Graphics.DrawLine(pen, 0, i * dayHeight, e.ClipRectangle.Width, i * dayHeight);
+				e.Graphics.DrawLine(pen,
+					0, i * dayHeight + dowOffset,
+					e.ClipRectangle.Width, i * dayHeight + dowOffset);
 			}
 		}
 
@@ -163,7 +189,7 @@ namespace OneMoreCalendar
 		private void PaintDays(PaintEventArgs e)
 		{
 			var dayWidth = Width / 7;
-			var dayHeight = Height / 5;
+			var dayHeight = (Height - dowOffset) / 5;
 			var row = 0;
 			var col = 0;
 
@@ -178,12 +204,13 @@ namespace OneMoreCalendar
 				// header...
 
 				var box = new Rectangle(
-					col * dayWidth, row * dayHeight,
+					col * dayWidth, row * dayHeight + dowOffset,
 					dayWidth, headFont.Height + 2);
 
 				if (day.Date.Year == now.Year && day.Date.Month == now.Month && day.Date.Day == now.Day)
 				{
-					e.Graphics.FillRectangle(new SolidBrush(ColorTranslator.FromHtml(TodayHeadColor)), box);
+					e.Graphics.FillRectangle(
+						new SolidBrush(ColorTranslator.FromHtml(TodayHeadColor)), box);
 				}
 				else
 				{
@@ -201,7 +228,7 @@ namespace OneMoreCalendar
 				if (!day.InMonth)
 				{
 					box = new Rectangle(
-						col * dayWidth + 1, row * dayHeight + headFont.Height + 3,
+						col * dayWidth + 1, row * dayHeight + headFont.Height + 3 + dowOffset,
 						dayWidth - 2, dayHeight - headFont.Height - 2
 						);
 
@@ -211,7 +238,7 @@ namespace OneMoreCalendar
 				if (day.Items.Count > 0)
 				{
 					box = new Rectangle(
-						col * dayWidth + 3, row * dayHeight + headFont.Height + 6,
+						col * dayWidth + 3, row * dayHeight + headFont.Height + 6 + dowOffset,
 						dayWidth - 8, dayHeight - headFont.Height - 8
 						);
 
