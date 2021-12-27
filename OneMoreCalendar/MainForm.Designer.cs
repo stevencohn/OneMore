@@ -51,6 +51,7 @@
 			// 
 			// nextButton
 			// 
+			this.nextButton.Enabled = false;
 			this.nextButton.FlatAppearance.BorderSize = 0;
 			this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.nextButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -32,7 +32,7 @@ namespace OneMoreCalendar
 			var text = Forward ? "⏵" : "⏴";
 			var size = pevent.Graphics.MeasureString(text, Font);
 
-			using (var brush = new SolidBrush(ForeColor))
+			using (var brush = new SolidBrush(Enabled ? ForeColor : Color.DarkGray))
 			{
 				pevent.Graphics.DrawString(text, Font, brush,
 					(int)((Width - size.Width) / 2),
@@ -44,26 +44,38 @@ namespace OneMoreCalendar
 
 		protected override void OnMouseDown(MouseEventArgs mevent)
 		{
-			BackColor = PressedColor;
-			base.OnMouseDown(mevent);
+			if (Enabled)
+			{
+				BackColor = PressedColor;
+				base.OnMouseDown(mevent);
+			}
 		}
 
 		protected override void OnMouseUp(MouseEventArgs mevent)
 		{
-			BackColor = HoverColor;
-			base.OnMouseUp(mevent);
+			if (Enabled)
+			{
+				BackColor = HoverColor;
+				base.OnMouseUp(mevent);
+			}
 		}
 
 		protected override void OnMouseLeave(EventArgs e)
 		{
-			BackColor = SystemColors.Control;
-			base.OnMouseLeave(e);
+			if (Enabled)
+			{
+				BackColor = SystemColors.Control;
+				base.OnMouseLeave(e);
+			}
 		}
 
 		protected override void OnMouseEnter(EventArgs e)
 		{
-			BackColor = HoverColor;
-			base.OnMouseEnter(e);
+			if (Enabled)
+			{
+				BackColor = HoverColor;
+				base.OnMouseEnter(e);
+			}
 		}
 	}
 }

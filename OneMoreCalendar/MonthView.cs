@@ -9,6 +9,7 @@ namespace OneMoreCalendar
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Threading;
 	using System.Windows.Forms;
 
 
@@ -30,7 +31,10 @@ namespace OneMoreCalendar
 		private readonly List<Hotspot> hotspots = new List<Hotspot>();
 		private Hotspot hotspot;
 		private int dowOffset;
-		private int month;
+
+		private DateTime date;
+		private CalendarDays days;
+		private DayOfWeek firstDow;
 
 
 		public MonthView()
@@ -49,15 +53,75 @@ namespace OneMoreCalendar
 		}
 
 
-		public MonthView(DateTime time, CalendarDays days)
+		public MonthView(DateTime date, CalendarItems items)
 			: this()
 		{
-			month = time.Month;
-			Days = days;
+			SetMonth(date, items);
 		}
 
 
-		public CalendarDays Days { get; set; }
+		public void SetMonth(DateTime date, CalendarItems items)
+		{
+			this.date = new DateTime(date.Year, date.Month, 1).Date;
+
+			firstDow = Thread.CurrentThread.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
+			MakeDayList(items);
+		}
+
+
+		private void MakeDayList(CalendarItems items)
+		{
+			days = new CalendarDays();
+
+			var first = date.DayOfWeek;
+			var last = DateTime.DaysInMonth(date.Year, date.Month);
+
+			var dow = firstDow == DayOfWeek.Sunday
+				? (int)first
+				: first == DayOfWeek.Sunday ? 6 : (int)first - 1;
+
+			var runner = date.Date;
+
+			// previous month
+
+			if (dow > 0)
+			{
+				runner = runner.AddDays(-dow);
+				for (int i = 0; i < dow; i++)
+				{
+					days.Add(new CalendarDay { Date = runner });
+					runner = runner.AddDays(1.0);
+				}
+			}
+
+			// month
+
+			for (int i = 1; i <= last; i++)
+			{
+				var day = new CalendarDay { Date = runner, InMonth = true };
+
+				var pp = items.Where(p => p.Modified.Date.Equals(runner));
+				if (pp.Any())
+				{
+					foreach (var p in pp)
+					{
+						day.Items.Add(p);
+					}
+				}
+
+				days.Add(day);
+				runner = runner.AddDays(1.0);
+			}
+
+			// next month
+
+			var rest = 7 - days.Count % 7;
+			for (int i = 0; i < rest; i++)
+			{
+				days.Add(new CalendarDay { Date = runner });
+				runner = runner.AddDays(1.0);
+			}
+		}
 
 
 		protected void SuspendDrawing(Action action)
@@ -106,7 +170,7 @@ namespace OneMoreCalendar
 				using (var g = CreateGraphics())
 				{
 					g.FillRectangle(
-						hotspot.Item.Modified.Month == month ? Brushes.White : Brushes.WhiteSmoke,
+						hotspot.Item.Modified.Month == date.Month ? Brushes.White : Brushes.WhiteSmoke,
 						hotspot.Clip);
 
 					g.DrawString(hotspot.Item.Title, itemFont, Brushes.Black, hotspot.Clip, format);
@@ -148,8 +212,7 @@ namespace OneMoreCalendar
 			// day of week names...
 
 			var dowFont = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
-			var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
-			var firstDow = culture.FirstDayOfWeek;
+			var culture = Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
 			dowOffset = dowFont.Height + 2;
 
 			var dowFormat = new StringFormat
@@ -207,9 +270,9 @@ namespace OneMoreCalendar
 			var headBack = new SolidBrush(ColorTranslator.FromHtml(HeadBackColor));
 			var headPen = new Pen(Color.DarkGray, 0.1f);
 
-			var now = DateTime.Now;
+			var now = DateTime.Now.Date;
 
-			foreach (var day in Days)
+			foreach (var day in days)
 			{
 				// header...
 
