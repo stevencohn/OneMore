@@ -30,8 +30,8 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.topPanel = new System.Windows.Forms.Panel();
-			this.nextButton = new System.Windows.Forms.Button();
-			this.prevButton = new System.Windows.Forms.Button();
+			this.nextButton = new OneMoreCalendar.NavigationButton();
+			this.prevButton = new OneMoreCalendar.NavigationButton();
 			this.dateLabel = new System.Windows.Forms.Label();
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.contentPanel = new System.Windows.Forms.Panel();
@@ -54,12 +54,13 @@
 			this.nextButton.FlatAppearance.BorderSize = 0;
 			this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.nextButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.nextButton.Location = new System.Drawing.Point(40, 15);
+			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.nextButton.Forward = true;
+			this.nextButton.Location = new System.Drawing.Point(44, 17);
 			this.nextButton.Name = "nextButton";
-			this.nextButton.Size = new System.Drawing.Size(42, 61);
+			this.nextButton.Size = new System.Drawing.Size(31, 54);
 			this.nextButton.TabIndex = 2;
-			this.nextButton.Text = "⏵";
-			this.nextButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.nextButton.Text = ">";
 			this.nextButton.UseVisualStyleBackColor = true;
 			// 
 			// prevButton
@@ -67,11 +68,13 @@
 			this.prevButton.FlatAppearance.BorderSize = 0;
 			this.prevButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.prevButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.prevButton.Location = new System.Drawing.Point(12, 15);
+			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.prevButton.Forward = false;
+			this.prevButton.Location = new System.Drawing.Point(12, 17);
 			this.prevButton.Name = "prevButton";
-			this.prevButton.Size = new System.Drawing.Size(42, 61);
+			this.prevButton.Size = new System.Drawing.Size(31, 54);
 			this.prevButton.TabIndex = 1;
-			this.prevButton.Text = "⏴";
+			this.prevButton.Text = "<";
 			this.prevButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.prevButton.UseVisualStyleBackColor = true;
 			// 
@@ -79,7 +82,7 @@
 			// 
 			this.dateLabel.AutoSize = true;
 			this.dateLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dateLabel.Location = new System.Drawing.Point(88, 22);
+			this.dateLabel.Location = new System.Drawing.Point(81, 17);
 			this.dateLabel.Name = "dateLabel";
 			this.dateLabel.Size = new System.Drawing.Size(292, 54);
 			this.dateLabel.TabIndex = 0;
@@ -126,8 +129,8 @@
 		private System.Windows.Forms.Panel bottomPanel;
 		private System.Windows.Forms.Panel contentPanel;
 		private System.Windows.Forms.Label dateLabel;
-		private System.Windows.Forms.Button nextButton;
-		private System.Windows.Forms.Button prevButton;
+		private NavigationButton nextButton;
+		private NavigationButton prevButton;
 	}
 }
 

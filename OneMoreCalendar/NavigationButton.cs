@@ -1,11 +1,13 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OneMoreCalendar
 {
 	internal class NavigationButton : Button
 	{
-		private bool forward;
+		private readonly Color PressedColor = ColorTranslator.FromHtml("#FFF2C4F2");
+		private readonly Color HoverColor = ColorTranslator.FromHtml("#FFE0B1DE");
 
 
 		public NavigationButton()
@@ -20,30 +22,48 @@ namespace OneMoreCalendar
 			Forward = true;
 		}
 
+		public bool Forward { get; set; }
 
-		public bool Forward
-		{
-			get
-			{
-				return forward;
-			}
-
-			set
-			{
-				forward = value;
-				Text = forward ? "⏵" : "⏴";
-			}
-		}
 
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
-			base.OnPaint(pevent);
+			pevent.Graphics.Clear(BackColor);
+
+			var text = Forward ? "⏵" : "⏴";
+			var size = pevent.Graphics.MeasureString(text, Font);
+
+			using (var brush = new SolidBrush(ForeColor))
+			{
+				pevent.Graphics.DrawString(text, Font, brush,
+					(int)((Width - size.Width) / 2),
+					(int)((Height - size.Height) / 2)
+					);
+			}
 		}
 
 
-		protected override void OnPaintBackground(PaintEventArgs pevent)
+		protected override void OnMouseDown(MouseEventArgs mevent)
 		{
-			base.OnPaintBackground(pevent);
+			BackColor = PressedColor;
+			base.OnMouseDown(mevent);
+		}
+
+		protected override void OnMouseUp(MouseEventArgs mevent)
+		{
+			BackColor = HoverColor;
+			base.OnMouseUp(mevent);
+		}
+
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			BackColor = SystemColors.Control;
+			base.OnMouseLeave(e);
+		}
+
+		protected override void OnMouseEnter(EventArgs e)
+		{
+			BackColor = HoverColor;
+			base.OnMouseEnter(e);
 		}
 	}
 }
