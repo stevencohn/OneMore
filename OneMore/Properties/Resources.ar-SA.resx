@@ -3717,4 +3717,8 @@ ISO-code then comma then language name</comment>
     <value>إعادة تعيين {0} مهمة (مهام) معزولة</value>
     <comment>message box</comment>
   </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>استبدل المسافات في اسم الملف بالشرطات السفلية</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

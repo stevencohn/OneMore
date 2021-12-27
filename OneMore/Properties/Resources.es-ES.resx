@@ -3718,4 +3718,8 @@ Diferido</value>
     <value>Restablecer {0} tareas huérfanas</value>
     <comment>message box</comment>
   </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Reemplazar espacios en el nombre del archivo con guiones bajos</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

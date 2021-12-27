@@ -3703,4 +3703,8 @@ Aufgeschoben</value>
     <value>{0} verwaiste Aufgabe(n) zurücksetzen</value>
     <comment>message box</comment>
   </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Ersetzen Sie Leerzeichen im Dateinamen durch Unterstriche</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

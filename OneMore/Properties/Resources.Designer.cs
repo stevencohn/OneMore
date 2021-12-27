@@ -2020,6 +2020,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace spaces in the file name with underscores.
+        /// </summary>
+        internal static string ExportDialog_underBox_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_underBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Family {

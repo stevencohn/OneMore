@@ -3709,4 +3709,8 @@ OneNote 文件 (*.one)</value>
     <value>重置 {0} 个孤立任务</value>
     <comment>message box</comment>
   </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>用下划线替换文件名中的空格</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -3718,4 +3718,8 @@ Verschoven</value>
     <value>{0} verweesde taak(en) resetten</value>
     <comment>message box</comment>
   </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Vervang spaties in de bestandsnaam door onderstrepingstekens</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

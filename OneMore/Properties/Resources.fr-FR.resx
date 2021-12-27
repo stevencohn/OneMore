@@ -3712,4 +3712,8 @@ Différé</value>
     <value>Réinitialiser {0} tâche(s) orpheline(s)</value>
     <comment>message box</comment>
   </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Remplacer les espaces dans le nom du fichier par des traits de soulignement</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -3766,4 +3766,8 @@ Deferred</value>
     <value>Reset {0} orphaned task(s)</value>
     <comment>message box</comment>
   </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Replace spaces in the file name with underscores</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

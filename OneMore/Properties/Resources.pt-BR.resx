@@ -3718,4 +3718,8 @@ Diferido</value>
     <value>Redefinir {0} tarefa (s) órfã (s)</value>
     <comment>message box</comment>
   </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Substitua os espaços no nome do arquivo por sublinhados</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
