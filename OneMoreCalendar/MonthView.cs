@@ -23,7 +23,7 @@ namespace OneMoreCalendar
 		private const string HeadBackColor = "#FFF4E8F3";
 		private const string TodayHeadColor = "#FFD6A6D3";
 
-		private readonly IntPtr hcursor;
+		private readonly IntPtr hand;
 		private readonly Font itemFont;
 		private readonly Font hotFont;
 		private readonly StringFormat format;
@@ -37,7 +37,7 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
-			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
+			hand = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
 			itemFont = new Font("Segoe UI", 9.0f, FontStyle.Regular);
 			hotFont = new Font("Segoe UI", 9.0f, FontStyle.Regular | FontStyle.Underline);
 
@@ -96,7 +96,7 @@ namespace OneMoreCalendar
 			{
 				if (hotspot != null)
 				{
-					Native.SetCursor(hcursor);
+					Native.SetCursor(hand);
 				}
 				return;
 			}
@@ -125,7 +125,7 @@ namespace OneMoreCalendar
 				}
 
 				hotspot = spot;
-				Native.SetCursor(hcursor);
+				Native.SetCursor(hand);
 			}
 		}
 
@@ -145,33 +145,38 @@ namespace OneMoreCalendar
 		{
 			e.Graphics.Clear(Color.White);
 
-			var dowFont = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
-			var dowFormat = System.Threading.Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
-			var firstDow = dowFormat.FirstDayOfWeek;
-			dowOffset = dowFont.Height + 2;
-
-			var pen = new Pen(Color.DarkGray, 0.1f);
-
 			// day of week names...
 
+			var dowFont = new Font("Segoe UI Light", 10.0f, FontStyle.Regular);
+			var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
+			var firstDow = culture.FirstDayOfWeek;
+			dowOffset = dowFont.Height + 2;
+
+			var dowFormat = new StringFormat
+			{
+				Alignment = StringAlignment.Center,
+				FormatFlags = StringFormatFlags.NoWrap | StringFormatFlags.LineLimit,
+				Trimming = StringTrimming.EllipsisCharacter
+			};
+
 			var dayWidth = Width / 7;
+
+			// day names and vertical lines...
+
+			var pen = new Pen(Color.DarkGray, 0.1f);
 			var dow = firstDow == DayOfWeek.Sunday ? 0 : 1;
+
 			for (int i = 0; i < 7; i++, dow++)
 			{
-				var name = dowFormat.GetDayName((DayOfWeek)(dow % 7)).ToUpper();
-				var size = e.Graphics.MeasureString(name, dowFont);
-				var clip = new Rectangle(
-					(dayWidth * i) + (int)((dayWidth - size.Width) / 2), 1,
-					(int)size.Width, dowFont.Height + 2);
+				var name = culture.GetDayName((DayOfWeek)(dow % 7)).ToUpper();
+				var clip = new Rectangle(dayWidth * i, 1, dayWidth, dowFont.Height + 2);
+				e.Graphics.DrawString(name, dowFont, Brushes.SlateGray, clip, dowFormat);
 
-				e.Graphics.DrawString(name, dowFont, Brushes.SlateGray, clip, format);
-			}
-
-			// vertical lines...
-
-			for (int i = 1; i < 7; i++)
-			{
-				e.Graphics.DrawLine(pen, i * dayWidth, dowOffset, i * dayWidth, e.ClipRectangle.Height);
+				if (i < 6)
+				{
+					var x = (i + 1) * dayWidth;
+					e.Graphics.DrawLine(pen, x, dowOffset, x, e.ClipRectangle.Height);
+				}
 			}
 
 			// horizontal lines...
@@ -183,6 +188,10 @@ namespace OneMoreCalendar
 					0, i * dayHeight + dowOffset,
 					e.ClipRectangle.Width, i * dayHeight + dowOffset);
 			}
+
+			dowFormat.Dispose();
+			dowFont.Dispose();
+			pen.Dispose();
 		}
 
 
@@ -194,6 +203,7 @@ namespace OneMoreCalendar
 			var col = 0;
 
 			var headFont = new Font("Segoe UI", 10.0f, FontStyle.Regular);
+			var headFore = new SolidBrush(ColorTranslator.FromHtml(TodayHeadColor));
 			var headBack = new SolidBrush(ColorTranslator.FromHtml(HeadBackColor));
 			var headPen = new Pen(Color.DarkGray, 0.1f);
 
@@ -207,15 +217,10 @@ namespace OneMoreCalendar
 					col * dayWidth, row * dayHeight + dowOffset,
 					dayWidth, headFont.Height + 2);
 
-				if (day.Date.Year == now.Year && day.Date.Month == now.Month && day.Date.Day == now.Day)
-				{
-					e.Graphics.FillRectangle(
-						new SolidBrush(ColorTranslator.FromHtml(TodayHeadColor)), box);
-				}
-				else
-				{
-					e.Graphics.FillRectangle(headBack, box);
-				}
+				e.Graphics.FillRectangle(
+					// compare only date part
+					day.Date.Date.Equals(now.Date) ? headFore : headBack,
+					box);
 
 				e.Graphics.DrawRectangle(headPen, box);
 
@@ -268,6 +273,11 @@ namespace OneMoreCalendar
 					row++;
 				}
 			}
+
+			headFore.Dispose();
+			headFont.Dispose();
+			headBack.Dispose();
+			headPen.Dispose();
 		}
 
 

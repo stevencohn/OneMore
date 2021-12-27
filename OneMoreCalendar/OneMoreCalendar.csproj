@@ -60,6 +60,9 @@
     <Compile Include="MonthView.Designer.cs">
       <DependentUpon>MonthView.cs</DependentUpon>
     </Compile>
+    <Compile Include="NavigationButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="OneNoteProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

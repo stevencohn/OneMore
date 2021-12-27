@@ -30,18 +30,60 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.topPanel = new System.Windows.Forms.Panel();
+			this.nextButton = new System.Windows.Forms.Button();
+			this.prevButton = new System.Windows.Forms.Button();
+			this.dateLabel = new System.Windows.Forms.Label();
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.contentPanel = new System.Windows.Forms.Panel();
-			this.contentPanel.SuspendLayout();
+			this.topPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// topPanel
 			// 
+			this.topPanel.Controls.Add(this.nextButton);
+			this.topPanel.Controls.Add(this.prevButton);
+			this.topPanel.Controls.Add(this.dateLabel);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Size = new System.Drawing.Size(978, 95);
 			this.topPanel.TabIndex = 0;
+			// 
+			// nextButton
+			// 
+			this.nextButton.FlatAppearance.BorderSize = 0;
+			this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.nextButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.nextButton.Location = new System.Drawing.Point(40, 15);
+			this.nextButton.Name = "nextButton";
+			this.nextButton.Size = new System.Drawing.Size(42, 61);
+			this.nextButton.TabIndex = 2;
+			this.nextButton.Text = "⏵";
+			this.nextButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.nextButton.UseVisualStyleBackColor = true;
+			// 
+			// prevButton
+			// 
+			this.prevButton.FlatAppearance.BorderSize = 0;
+			this.prevButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.prevButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.prevButton.Location = new System.Drawing.Point(12, 15);
+			this.prevButton.Name = "prevButton";
+			this.prevButton.Size = new System.Drawing.Size(42, 61);
+			this.prevButton.TabIndex = 1;
+			this.prevButton.Text = "⏴";
+			this.prevButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.prevButton.UseVisualStyleBackColor = true;
+			// 
+			// dateLabel
+			// 
+			this.dateLabel.AutoSize = true;
+			this.dateLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dateLabel.Location = new System.Drawing.Point(88, 22);
+			this.dateLabel.Name = "dateLabel";
+			this.dateLabel.Size = new System.Drawing.Size(292, 54);
+			this.dateLabel.TabIndex = 0;
+			this.dateLabel.Text = "December 2021";
 			// 
 			// bottomPanel
 			// 
@@ -72,7 +114,8 @@
 			this.MinimumSize = new System.Drawing.Size(700, 500);
 			this.Name = "MainForm";
 			this.Text = "OneMore Calendar";
-			this.contentPanel.ResumeLayout(false);
+			this.topPanel.ResumeLayout(false);
+			this.topPanel.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -82,6 +125,9 @@
 		private System.Windows.Forms.Panel topPanel;
 		private System.Windows.Forms.Panel bottomPanel;
 		private System.Windows.Forms.Panel contentPanel;
+		private System.Windows.Forms.Label dateLabel;
+		private System.Windows.Forms.Button nextButton;
+		private System.Windows.Forms.Button prevButton;
 	}
 }
 
