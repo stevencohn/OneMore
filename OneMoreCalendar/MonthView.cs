@@ -24,6 +24,7 @@ namespace OneMoreCalendar
 
 		private const string HeadBackColor = "#FFF4E8F3";
 		private const string TodayHeadColor = "#FFD6A6D3";
+		private const string MoreGlyph = "⏷"; // \u23F7
 
 		private readonly IntPtr hand;
 		private readonly Font itemFont;
@@ -333,9 +334,12 @@ namespace OneMoreCalendar
 						dayWidth - 8, dayHeight - headFont.Height - 8
 						);
 
-					int i = 0;
-					foreach (var item in day.Items)
+					var maxItems = box.Height / itemFont.Height;
+
+					for (int i = 0; i < day.Items.Count && i < maxItems; i++)
 					{
+						var item = day.Items[i];
+
 						var clip = new Rectangle(
 							box.Left, box.Top + (itemFont.Height * i),
 							box.Width, itemFont.Height);
@@ -347,8 +351,13 @@ namespace OneMoreCalendar
 							Clip = clip,
 							Item = item
 						});
+					}
 
-						i++;
+					if (maxItems < day.Items.Count)
+					{
+						var size = e.Graphics.MeasureString(MoreGlyph, itemFont);
+						e.Graphics.DrawString(MoreGlyph, itemFont, Brushes.DarkGray,
+							box.Right - size.Width, box.Bottom - size.Height);
 					}
 				}
 
