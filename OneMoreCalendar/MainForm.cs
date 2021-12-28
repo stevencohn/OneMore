@@ -4,6 +4,7 @@
 
 namespace OneMoreCalendar
 {
+	using River.OneMoreAddIn;
 	using System;
 	using System.Windows.Forms;
 
@@ -36,8 +37,22 @@ namespace OneMoreCalendar
 				Size = new System.Drawing.Size(978, 506),
 				TabIndex = 0
 			};
+			monthView.ClickedPage += MonthView_ClickedPage;
 
 			contentPanel.Controls.Add(monthView);
+		}
+
+
+		private async void MonthView_ClickedPage(object sender, CalendarPageEventArgs e)
+		{
+			using (var one = new OneNote())
+			{
+				var url = one.GetHyperlink(e.PageID, string.Empty);
+				if (url != null)
+				{
+					await one.NavigateTo(url);
+				}
+			}
 		}
 	}
 }

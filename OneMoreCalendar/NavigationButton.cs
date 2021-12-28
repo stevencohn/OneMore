@@ -6,8 +6,10 @@ namespace OneMoreCalendar
 {
 	internal class NavigationButton : Button
 	{
-		private readonly Color PressedColor = ColorTranslator.FromHtml("#FFF2C4F2");
-		private readonly Color HoverColor = ColorTranslator.FromHtml("#FFE0B1DE");
+		private readonly Color PressedColor = ColorTranslator.FromHtml("#FFF0DAEE");
+		private readonly Color PressedBorder = ColorTranslator.FromHtml("#FF9E5499");
+		private readonly Color HoverColor = ColorTranslator.FromHtml("#FFF7EDF7");
+		private readonly Color HoverBorder = ColorTranslator.FromHtml("#FFF0DAEE");
 
 
 		public NavigationButton()
@@ -28,6 +30,16 @@ namespace OneMoreCalendar
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			pevent.Graphics.Clear(BackColor);
+
+			if (Enabled && BackColor != SystemColors.Control)
+			{
+				using (var pen = new Pen(MouseButtons == MouseButtons.Left ? PressedBorder : HoverBorder, 1))
+				{
+					pevent.Graphics.DrawRectangle(pen,
+						pevent.ClipRectangle.X, pevent.ClipRectangle.Y,
+						pevent.ClipRectangle.Width - 1, pevent.ClipRectangle.Height - 1);
+				}
+			}
 
 			var text = Forward ? "⏵" : "⏴";
 			var size = pevent.Graphics.MeasureString(text, Font);

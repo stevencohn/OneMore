@@ -13,7 +13,41 @@ namespace OneMoreCalendar
 	using System.Windows.Forms;
 
 
-	internal partial class MonthView : UserControl
+	internal delegate void CalendarDayHandler(object sender, CalendarDayEventArgs e);
+	internal delegate void CalendarPageHandler(object sender, CalendarPageEventArgs e);
+
+	internal class CalendarDayEventArgs : EventArgs
+	{
+		public CalendarDayEventArgs(DateTime dayDate)
+			: base()
+		{
+			DayDate = dayDate;
+		}
+
+		public DateTime DayDate { get; private set; }
+	}
+	internal class CalendarPageEventArgs : EventArgs
+	{
+		public CalendarPageEventArgs(string pageID)
+			: base()
+		{
+			PageID = pageID;
+		}
+
+		public string PageID { get; private set; }
+	}
+
+
+	internal interface ICalendarView
+	{
+		void SetRange(DateTime startDate, DateTime endDate, CalendarItems items);
+
+		event CalendarDayHandler ClickedDay;
+		event CalendarPageHandler ClickedPage;
+	}
+
+
+	internal partial class MonthView : UserControl, ICalendarView
 	{
 		private sealed class Hotspot
 		{
@@ -36,6 +70,9 @@ namespace OneMoreCalendar
 		private CalendarDays days;
 		private DayOfWeek firstDow;
 
+		public event CalendarDayHandler ClickedDay;
+		public event CalendarPageHandler ClickedPage;
+
 
 		public MonthView()
 		{
@@ -56,13 +93,13 @@ namespace OneMoreCalendar
 		public MonthView(DateTime date, CalendarItems items)
 			: this()
 		{
-			SetMonth(date, items);
+			SetRange(date, date, items);
 		}
 
 
-		public void SetMonth(DateTime date, CalendarItems items)
+		public void SetRange(DateTime startDate, DateTime endDate, CalendarItems items)
 		{
-			this.date = new DateTime(date.Year, date.Month, 1).Date;
+			date = new DateTime(startDate.Year, startDate.Month, 1).Date;
 
 			firstDow = Thread.CurrentThread.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
 			MakeDayList(items);
@@ -133,20 +170,13 @@ namespace OneMoreCalendar
 		}
 
 
-		protected override async void OnMouseClick(MouseEventArgs e)
+		protected override void OnMouseClick(MouseEventArgs e)
 		{
 			base.OnMouseClick(e);
 			var spot = hotspots.FirstOrDefault(h => h.Clip.Contains(e.Location));
-			if (spot != null)
+			if (spot != null && ClickedPage != null)
 			{
-				using (var one = new OneNote())
-				{
-					var url = one.GetHyperlink(spot.Item.PageID, string.Empty);
-					if (url != null)
-					{
-						await one.NavigateTo(url);
-					}
-				}
+				ClickedPage(this, new CalendarPageEventArgs(spot.Item.PageID));
 			}
 		}
 
