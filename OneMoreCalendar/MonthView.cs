@@ -66,12 +66,17 @@ namespace OneMoreCalendar
 		}
 
 
+		public DateTime Date => date;
+
+
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarItems items)
 		{
 			date = new DateTime(startDate.Year, startDate.Month, 1).Date;
 
 			firstDow = Thread.CurrentThread.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
 			MakeDayList(items);
+
+			Invalidate();
 		}
 
 

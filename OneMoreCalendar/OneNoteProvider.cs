@@ -11,38 +11,30 @@ namespace OneMoreCalendar
 
 	internal class OneNoteProvider
 	{
-		public CalendarItems GetPages()
+		private OneNote one;
+
+
+		public CalendarItems GetPages(DateTime startDate, DateTime endDate)
 		{
-			using (var one = new OneNote())
+			using (one = new OneNote())
 			{
-				// find Personal notebook...
-
-				var notebooks = one.GetNotebooks();
+				var notebooks = GetNotebooks();
 				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
-
-				var personalID = notebooks.Elements(ns + "Notebook")
-					.Where(e => e.Attribute("name").Value == "Personal")
-					.Select(e => e.Attribute("ID").Value)
-					.FirstOrDefault();
-
-
-				var notebook = one.GetNotebook(personalID, OneNote.Scope.Pages);
-				ns = notebook.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				// filter to selected month...
 
-				var now = DateTime.Now;
 				//var filter = "dateTime";
 				var filter = "lastModifiedTime";
 
 				var list = new CalendarItems();
 				
-				list.AddRange(notebook.Elements().Elements(ns + "Page")
-					.Select(e => new { Page = e, Time = DateTime.Parse(e.Attribute(filter).Value) })
-					.Where(e => e.Time.Year == now.Year && e.Time.Month == now.Month)
-					.OrderBy(e => e.Time)
+				list.AddRange(notebooks.Descendants(ns + "Page")
+					.Select(e => new { Page = e, Date = DateTime.Parse(e.Attribute(filter).Value) })
+					.Where(e => e.Date.CompareTo(startDate) >= 0 && e.Date.CompareTo(endDate) <= 0)
+					.OrderBy(e => e.Date)
 					.Select(e => new CalendarItem
 					{
+						Notebook = e.Page.Parent.Parent.Attribute("name").Value,
 						Section = e.Page.Parent.Attribute("name").Value,
 						Title = e.Page.Attribute("name").Value,
 						Created = DateTime.Parse(e.Page.Attribute("dateTime").Value),
@@ -52,6 +44,20 @@ namespace OneMoreCalendar
 
 				return list;
 			}
+		}
+
+
+		private XElement GetNotebooks()
+		{
+			var notebooks = one.GetNotebooks();
+			var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var personalID = notebooks.Elements(ns + "Notebook")
+				.Where(e => e.Attribute("name").Value == "Personal")
+				.Select(e => e.Attribute("ID").Value)
+				.FirstOrDefault();
+
+			return one.GetNotebook(personalID, OneNote.Scope.Pages);
 		}
 	}
 }

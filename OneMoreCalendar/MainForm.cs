@@ -12,7 +12,6 @@ namespace OneMoreCalendar
 	public partial class MainForm : Form
 	{
 		private MonthView monthView;
-		private OneNoteProvider provider;
 
 
 		public MainForm()
@@ -22,10 +21,8 @@ namespace OneMoreCalendar
 			Width = 1500;
 			Height = 1000;
 
-			provider = new OneNoteProvider();
-			var pages = provider.GetPages();
-
 			var now = DateTime.Now.Date;
+			var pages = new OneNoteProvider().GetPages(now, now);
 
 			monthView = new MonthView(now, pages)
 			{
@@ -58,6 +55,36 @@ namespace OneMoreCalendar
 				{
 					await one.NavigateTo(url);
 				}
+			}
+		}
+
+		private void GotoPrevious(object sender, EventArgs e)
+		{
+			var startDate = monthView.Date.AddMonths(-1);
+			var endDate = new DateTime(startDate.Year, startDate.Month,
+				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
+
+			monthView.SetRange(startDate, endDate, new OneNoteProvider().GetPages(startDate, endDate));
+
+			dateLabel.Text = startDate.ToString();
+
+			nextButton.Enabled = true;
+		}
+
+		private void GotoNext(object sender, EventArgs e)
+		{
+			var startDate = monthView.Date.AddMonths(1);
+			var endDate = new DateTime(startDate.Year, startDate.Month,
+				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
+
+			monthView.SetRange(startDate, endDate, new OneNoteProvider().GetPages(startDate, endDate));
+
+			dateLabel.Text = startDate.ToString();
+
+			var now = DateTime.Now;
+			if (startDate.Year == now.Year && startDate.Month == now.Month)
+			{
+				nextButton.Enabled = false;
 			}
 		}
 	}

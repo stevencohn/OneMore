@@ -63,6 +63,7 @@
 			this.nextButton.TabIndex = 2;
 			this.nextButton.Text = ">";
 			this.nextButton.UseVisualStyleBackColor = true;
+			this.nextButton.Click += new System.EventHandler(this.GotoNext);
 			// 
 			// prevButton
 			// 
@@ -78,6 +79,7 @@
 			this.prevButton.Text = "<";
 			this.prevButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.prevButton.UseVisualStyleBackColor = true;
+			this.prevButton.Click += new System.EventHandler(this.GotoPrevious);
 			// 
 			// dateLabel
 			// 
