@@ -66,7 +66,7 @@ namespace OneMoreCalendar
 
 			monthView.SetRange(startDate, endDate, new OneNoteProvider().GetPages(startDate, endDate));
 
-			dateLabel.Text = startDate.ToString();
+			dateLabel.Text = startDate.ToString("MMMM yyyy");
 
 			nextButton.Enabled = true;
 		}
@@ -79,12 +79,38 @@ namespace OneMoreCalendar
 
 			monthView.SetRange(startDate, endDate, new OneNoteProvider().GetPages(startDate, endDate));
 
-			dateLabel.Text = startDate.ToString();
+			dateLabel.Text = startDate.ToString("MMMM yyyy");
 
 			var now = DateTime.Now;
 			if (startDate.Year == now.Year && startDate.Month == now.Month)
 			{
 				nextButton.Enabled = false;
+			}
+		}
+
+
+		protected override bool IsInputKey(Keys keyData)
+		{
+			switch (keyData)
+			{
+				case Keys.Right:
+				case Keys.Left:
+				case Keys.Up:
+				case Keys.Down:
+					return true;
+			}
+			return base.IsInputKey(keyData);
+		}
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			base.OnKeyDown(e);
+			if (e.KeyCode == Keys.Left || e.KeyCode == Keys.PageUp)
+			{
+				GotoPrevious(this, e);
+			}
+			else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.PageDown)
+			{
+				GotoNext(this, e);
 			}
 		}
 	}

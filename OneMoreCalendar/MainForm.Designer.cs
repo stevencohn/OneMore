@@ -51,12 +51,12 @@
 			// 
 			// nextButton
 			// 
+			this.nextButton.Direction = System.Windows.Forms.ArrowDirection.Right;
 			this.nextButton.Enabled = false;
 			this.nextButton.FlatAppearance.BorderSize = 0;
 			this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.nextButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.nextButton.Forward = true;
 			this.nextButton.Location = new System.Drawing.Point(44, 17);
 			this.nextButton.Name = "nextButton";
 			this.nextButton.Size = new System.Drawing.Size(31, 54);
@@ -67,11 +67,11 @@
 			// 
 			// prevButton
 			// 
+			this.prevButton.Direction = System.Windows.Forms.ArrowDirection.Left;
 			this.prevButton.FlatAppearance.BorderSize = 0;
 			this.prevButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.prevButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.prevButton.Forward = false;
 			this.prevButton.Location = new System.Drawing.Point(12, 17);
 			this.prevButton.Name = "prevButton";
 			this.prevButton.Size = new System.Drawing.Size(31, 54);
@@ -117,6 +117,7 @@
 			this.Controls.Add(this.bottomPanel);
 			this.Controls.Add(this.topPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.KeyPreview = true;
 			this.MinimumSize = new System.Drawing.Size(700, 500);
 			this.Name = "MainForm";
 			this.Text = "OneMore Calendar";

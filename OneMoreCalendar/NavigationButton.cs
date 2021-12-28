@@ -11,6 +11,8 @@ namespace OneMoreCalendar
 		private readonly Color HoverColor = ColorTranslator.FromHtml("#FFF7EDF7");
 		private readonly Color HoverBorder = ColorTranslator.FromHtml("#FFF0DAEE");
 
+		private readonly Color backColor;
+
 
 		public NavigationButton()
 		{
@@ -21,17 +23,18 @@ namespace OneMoreCalendar
 			TextAlign = ContentAlignment.MiddleCenter;
 			UseVisualStyleBackColor = true;
 
-			Forward = true;
+			Direction = ArrowDirection.Right;
+			backColor = BackColor;
 		}
 
-		public bool Forward { get; set; }
+		public ArrowDirection Direction { get; set; }
 
 
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			pevent.Graphics.Clear(BackColor);
 
-			if (Enabled && BackColor != SystemColors.Control)
+			if (Enabled && BackColor != backColor)
 			{
 				using (var pen = new Pen(MouseButtons == MouseButtons.Left ? PressedBorder : HoverBorder, 1))
 				{
@@ -41,12 +44,20 @@ namespace OneMoreCalendar
 				}
 			}
 
-			var text = Forward ? "⏵" : "⏴";
-			var size = pevent.Graphics.MeasureString(text, Font);
+			string arrow;
+			switch (Direction)
+			{
+				case ArrowDirection.Right: arrow = "⏵"; break; // \u23F5
+				case ArrowDirection.Up: arrow = "⏶"; break; // \u23F6
+				case ArrowDirection.Down: arrow = "⏷"; break; // \u23F7
+				default: arrow = "⏴"; break; // \u23F4
+			}
+
+			var size = pevent.Graphics.MeasureString(arrow, Font);
 
 			using (var brush = new SolidBrush(Enabled ? ForeColor : Color.DarkGray))
 			{
-				pevent.Graphics.DrawString(text, Font, brush,
+				pevent.Graphics.DrawString(arrow, Font, brush,
 					(int)((Width - size.Width) / 2),
 					(int)((Height - size.Height) / 2)
 					);
@@ -76,7 +87,7 @@ namespace OneMoreCalendar
 		{
 			if (Enabled)
 			{
-				BackColor = SystemColors.Control;
+				BackColor = backColor;
 				base.OnMouseLeave(e);
 			}
 		}
