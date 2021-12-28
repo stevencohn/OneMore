@@ -48,13 +48,16 @@
   <ItemGroup>
     <Compile Include="CalendarDay.cs" />
     <Compile Include="CalendarItem.cs" />
+    <Compile Include="ICalendarView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MonthView.cs" />
+    <Compile Include="MonthView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="MonthView.Designer.cs">
       <DependentUpon>MonthView.cs</DependentUpon>
     </Compile>

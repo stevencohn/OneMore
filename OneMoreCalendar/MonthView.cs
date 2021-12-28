@@ -13,46 +13,13 @@ namespace OneMoreCalendar
 	using System.Windows.Forms;
 
 
-	internal delegate void CalendarDayHandler(object sender, CalendarDayEventArgs e);
-	internal delegate void CalendarPageHandler(object sender, CalendarPageEventArgs e);
-
-	internal class CalendarDayEventArgs : EventArgs
-	{
-		public CalendarDayEventArgs(DateTime dayDate)
-			: base()
-		{
-			DayDate = dayDate;
-		}
-
-		public DateTime DayDate { get; private set; }
-	}
-	internal class CalendarPageEventArgs : EventArgs
-	{
-		public CalendarPageEventArgs(string pageID)
-			: base()
-		{
-			PageID = pageID;
-		}
-
-		public string PageID { get; private set; }
-	}
-
-
-	internal interface ICalendarView
-	{
-		void SetRange(DateTime startDate, DateTime endDate, CalendarItems items);
-
-		event CalendarDayHandler ClickedDay;
-		event CalendarPageHandler ClickedPage;
-	}
-
-
 	internal partial class MonthView : UserControl, ICalendarView
 	{
 		private sealed class Hotspot
 		{
-			public CalendarItem Item;
 			public Rectangle Clip;
+			public DateTime Date;
+			public CalendarItem Item;
 		}
 
 		private const string HeadBackColor = "#FFF4E8F3";
@@ -62,7 +29,7 @@ namespace OneMoreCalendar
 		private readonly Font itemFont;
 		private readonly Font hotFont;
 		private readonly StringFormat format;
-		private readonly List<Hotspot> hotspots = new List<Hotspot>();
+		private readonly List<Hotspot> hotspots;
 		private Hotspot hotspot;
 		private int dowOffset;
 
@@ -81,6 +48,8 @@ namespace OneMoreCalendar
 			hand = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
 			itemFont = new Font("Segoe UI", 9.0f, FontStyle.Regular);
 			hotFont = new Font("Segoe UI", 9.0f, FontStyle.Regular | FontStyle.Underline);
+
+			hotspots = new List<Hotspot>();
 
 			format = new StringFormat
 			{
@@ -174,9 +143,16 @@ namespace OneMoreCalendar
 		{
 			base.OnMouseClick(e);
 			var spot = hotspots.FirstOrDefault(h => h.Clip.Contains(e.Location));
-			if (spot != null && ClickedPage != null)
+			if (spot != null)
 			{
-				ClickedPage(this, new CalendarPageEventArgs(spot.Item.PageID));
+				if (spot.Item != null)
+				{
+					ClickedPage?.Invoke(this, new CalendarPageEventArgs(spot.Item.PageID));
+				}
+				else
+				{
+					ClickedDay?.Invoke(this, new CalendarDayEventArgs(spot.Date));
+				}
 			}
 		}
 
@@ -197,13 +173,16 @@ namespace OneMoreCalendar
 
 			if (hotspot != null)
 			{
-				using (var g = CreateGraphics())
+				if (hotspot.Item != null)
 				{
-					g.FillRectangle(
-						hotspot.Item.Modified.Month == date.Month ? Brushes.White : Brushes.WhiteSmoke,
-						hotspot.Clip);
+					using (var g = CreateGraphics())
+					{
+						g.FillRectangle(
+							hotspot.Item.Modified.Month == date.Month ? Brushes.White : Brushes.WhiteSmoke,
+							hotspot.Clip);
 
-					g.DrawString(hotspot.Item.Title, itemFont, Brushes.Black, hotspot.Clip, format);
+						g.DrawString(hotspot.Item.Title, itemFont, Brushes.Black, hotspot.Clip, format);
+					}
 				}
 
 				hotspot = null;
@@ -212,10 +191,13 @@ namespace OneMoreCalendar
 
 			if (spot != null)
 			{
-				using (var g = CreateGraphics())
+				if (spot.Item != null)
 				{
-					g.FillRectangle(Brushes.White, spot.Clip);
-					g.DrawString(spot.Item.Title, hotFont, Brushes.Blue, spot.Clip, format);
+					using (var g = CreateGraphics())
+					{
+						g.FillRectangle(Brushes.White, spot.Clip);
+						g.DrawString(spot.Item.Title, hotFont, Brushes.Blue, spot.Clip, format);
+					}
 				}
 
 				hotspot = spot;
@@ -321,6 +303,12 @@ namespace OneMoreCalendar
 					day.InMonth ? Brushes.Black : Brushes.Gray,
 					box.X + 3, box.Y + 1);
 
+				hotspots.Add(new Hotspot
+				{
+					Clip = box,
+					Date = day.Date
+				});
+
 				// body...
 
 				if (!day.InMonth)
@@ -351,8 +339,8 @@ namespace OneMoreCalendar
 
 						hotspots.Add(new Hotspot
 						{
-							Item = item,
-							Clip = clip
+							Clip = clip,
+							Item = item
 						});
 
 						i++;

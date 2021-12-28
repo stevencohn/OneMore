@@ -37,11 +37,17 @@ namespace OneMoreCalendar
 				Size = new System.Drawing.Size(978, 506),
 				TabIndex = 0
 			};
+
 			monthView.ClickedPage += MonthView_ClickedPage;
+			monthView.ClickedDay += MonthView_ClickedDay;
 
 			contentPanel.Controls.Add(monthView);
 		}
 
+		private void MonthView_ClickedDay(object sender, CalendarDayEventArgs e)
+		{
+			MessageBox.Show($"clicked {e.DayDate}");
+		}
 
 		private async void MonthView_ClickedPage(object sender, CalendarPageEventArgs e)
 		{
