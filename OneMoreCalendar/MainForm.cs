@@ -11,7 +11,7 @@ namespace OneMoreCalendar
 
 	public partial class MainForm : Form
 	{
-		private MonthView monthView;
+		private readonly MonthView monthView;
 
 
 		public MainForm()
@@ -21,8 +21,11 @@ namespace OneMoreCalendar
 			Width = 1500;
 			Height = 1000;
 
-			var now = DateTime.Now.Date;
-			var pages = new OneNoteProvider().GetPages(now, now);
+			var now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+			var endDate = new DateTime(now.Year, now.Month,
+				DateTime.DaysInMonth(now.Year, now.Month)).Date;
+
+			var pages = new OneNoteProvider().GetPages(now, endDate);
 
 			monthView = new MonthView(now, pages)
 			{
@@ -110,7 +113,10 @@ namespace OneMoreCalendar
 			}
 			else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.PageDown)
 			{
-				GotoNext(this, e);
+				if (nextButton.Enabled)
+				{
+					GotoNext(this, e);
+				}
 			}
 		}
 	}

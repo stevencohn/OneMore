@@ -287,6 +287,7 @@ namespace OneMoreCalendar
 			var headFore = new SolidBrush(ColorTranslator.FromHtml(TodayHeadColor));
 			var headBack = new SolidBrush(ColorTranslator.FromHtml(HeadBackColor));
 			var headPen = new Pen(Color.DarkGray, 0.1f);
+			var moreSize = e.Graphics.MeasureString(MoreGlyph, itemFont);
 
 			var now = DateTime.Now.Date;
 
@@ -342,7 +343,8 @@ namespace OneMoreCalendar
 
 						var clip = new Rectangle(
 							box.Left, box.Top + (itemFont.Height * i),
-							box.Width, itemFont.Height);
+							i == maxItems - 1 && day.Items.Count > maxItems ? box.Width - (int)moreSize.Width : box.Width,
+							itemFont.Height);
 
 						e.Graphics.DrawString(item.Title, itemFont, Brushes.Black, clip, format);
 
@@ -355,9 +357,8 @@ namespace OneMoreCalendar
 
 					if (maxItems < day.Items.Count)
 					{
-						var size = e.Graphics.MeasureString(MoreGlyph, itemFont);
 						e.Graphics.DrawString(MoreGlyph, itemFont, Brushes.DarkGray,
-							box.Right - size.Width, box.Bottom - size.Height);
+							box.Right - moreSize.Width, box.Bottom - moreSize.Height);
 					}
 				}
 

@@ -29,6 +29,7 @@ namespace OneMoreCalendar
 				var list = new CalendarItems();
 				
 				list.AddRange(notebooks.Descendants(ns + "Page")
+					.Where(e => e.Attribute("isInRecycleBin") == null)
 					.Select(e => new { Page = e, Date = DateTime.Parse(e.Attribute(filter).Value) })
 					.Where(e => e.Date.CompareTo(startDate) >= 0 && e.Date.CompareTo(endDate) <= 0)
 					.OrderBy(e => e.Date)
