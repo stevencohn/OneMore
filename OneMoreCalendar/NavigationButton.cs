@@ -1,9 +1,14 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿//************************************************************************************************
+// Copyright © 2021 Steven M. Cohn. All Rights Reserved.
+//************************************************************************************************
 
 namespace OneMoreCalendar
 {
+	using System;
+	using System.Drawing;
+	using System.Windows.Forms;
+
+
 	internal class NavigationButton : Button
 	{
 		private readonly Color PressedColor = ColorTranslator.FromHtml("#FFF0DAEE");
@@ -76,11 +81,8 @@ namespace OneMoreCalendar
 
 		protected override void OnMouseUp(MouseEventArgs mevent)
 		{
-			if (Enabled)
-			{
-				BackColor = HoverColor;
-				base.OnMouseUp(mevent);
-			}
+			BackColor = Enabled ? HoverColor : backColor;
+			base.OnMouseUp(mevent);
 		}
 
 		protected override void OnMouseLeave(EventArgs e)
@@ -94,11 +96,8 @@ namespace OneMoreCalendar
 
 		protected override void OnMouseEnter(EventArgs e)
 		{
-			if (Enabled)
-			{
-				BackColor = HoverColor;
-				base.OnMouseEnter(e);
-			}
+			BackColor = Enabled ? HoverColor : backColor;
+			base.OnMouseEnter(e);
 		}
 	}
 }

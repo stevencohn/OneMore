@@ -29,6 +29,7 @@ namespace OneMoreCalendar
 		private readonly IntPtr hand;
 		private readonly Font itemFont;
 		private readonly Font hotFont;
+		private readonly Font moreFont;
 		private readonly StringFormat format;
 		private readonly List<Hotspot> hotspots;
 		private Hotspot hotspot;
@@ -49,6 +50,7 @@ namespace OneMoreCalendar
 			hand = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
 			itemFont = new Font("Segoe UI", 9.0f, FontStyle.Regular);
 			hotFont = new Font("Segoe UI", 9.0f, FontStyle.Regular | FontStyle.Underline);
+			moreFont = new Font("Segoe UI", 14.0f, FontStyle.Regular);
 
 			hotspots = new List<Hotspot>();
 
@@ -357,8 +359,8 @@ namespace OneMoreCalendar
 
 					if (maxItems < day.Items.Count)
 					{
-						e.Graphics.DrawString(MoreGlyph, itemFont, Brushes.DarkGray,
-							box.Right - moreSize.Width, box.Bottom - moreSize.Height);
+						e.Graphics.DrawString(MoreGlyph, moreFont, Brushes.DarkGray,
+							box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4);
 					}
 				}
 
