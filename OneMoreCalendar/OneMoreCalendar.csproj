@@ -61,6 +61,12 @@
     <Compile Include="MonthView.Designer.cs">
       <DependentUpon>MonthView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MoreCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MoreCheckedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NavigationButton.cs">
       <SubType>Component</SubType>
     </Compile>

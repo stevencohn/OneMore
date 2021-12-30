@@ -30,16 +30,22 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.topPanel = new System.Windows.Forms.Panel();
+			this.createdBox = new OneMoreCalendar.MoreCheckBox();
+			this.modifiedBox = new OneMoreCalendar.MoreCheckBox();
 			this.nextButton = new OneMoreCalendar.NavigationButton();
 			this.prevButton = new OneMoreCalendar.NavigationButton();
 			this.dateLabel = new System.Windows.Forms.Label();
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.contentPanel = new System.Windows.Forms.Panel();
+			this.moreCheckedListBox1 = new OneMoreCalendar.MoreCheckedListBox();
 			this.topPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// topPanel
 			// 
+			this.topPanel.Controls.Add(this.moreCheckedListBox1);
+			this.topPanel.Controls.Add(this.createdBox);
+			this.topPanel.Controls.Add(this.modifiedBox);
 			this.topPanel.Controls.Add(this.nextButton);
 			this.topPanel.Controls.Add(this.prevButton);
 			this.topPanel.Controls.Add(this.dateLabel);
@@ -48,6 +54,32 @@
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Size = new System.Drawing.Size(978, 95);
 			this.topPanel.TabIndex = 0;
+			// 
+			// createdBox
+			// 
+			this.createdBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.createdBox.AutoSize = true;
+			this.createdBox.Location = new System.Drawing.Point(778, 21);
+			this.createdBox.Name = "createdBox";
+			this.createdBox.Size = new System.Drawing.Size(114, 24);
+			this.createdBox.TabIndex = 3;
+			this.createdBox.Text = "Created on";
+			this.createdBox.UseVisualStyleBackColor = true;
+			this.createdBox.CheckedChanged += new System.EventHandler(this.ChangeFilter);
+			// 
+			// modifiedBox
+			// 
+			this.modifiedBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.modifiedBox.AutoSize = true;
+			this.modifiedBox.Checked = true;
+			this.modifiedBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.modifiedBox.Location = new System.Drawing.Point(778, 51);
+			this.modifiedBox.Name = "modifiedBox";
+			this.modifiedBox.Size = new System.Drawing.Size(152, 24);
+			this.modifiedBox.TabIndex = 4;
+			this.modifiedBox.Text = "Last modified on";
+			this.modifiedBox.UseVisualStyleBackColor = true;
+			this.modifiedBox.CheckedChanged += new System.EventHandler(this.ChangeFilter);
 			// 
 			// nextButton
 			// 
@@ -108,6 +140,18 @@
 			this.contentPanel.Size = new System.Drawing.Size(978, 506);
 			this.contentPanel.TabIndex = 2;
 			// 
+			// moreCheckedListBox1
+			// 
+			this.moreCheckedListBox1.FormattingEnabled = true;
+			this.moreCheckedListBox1.Items.AddRange(new object[] {
+            "one",
+            "two",
+            "three"});
+			this.moreCheckedListBox1.Location = new System.Drawing.Point(482, 20);
+			this.moreCheckedListBox1.Name = "moreCheckedListBox1";
+			this.moreCheckedListBox1.Size = new System.Drawing.Size(180, 50);
+			this.moreCheckedListBox1.TabIndex = 5;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -135,6 +179,9 @@
 		private System.Windows.Forms.Label dateLabel;
 		private NavigationButton nextButton;
 		private NavigationButton prevButton;
+		private MoreCheckBox modifiedBox;
+		private MoreCheckBox createdBox;
+		private MoreCheckedListBox moreCheckedListBox1;
 	}
 }
 

@@ -18,7 +18,8 @@ namespace OneMoreCalendar
 		{
 			using (one = new OneNote())
 			{
-				var notebooks = GetNotebooks();
+				//var notebooks = GetNotebooks();
+				var notebooks = one.GetNotebooks(OneNote.Scope.Pages);
 				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				// filter to selected month...

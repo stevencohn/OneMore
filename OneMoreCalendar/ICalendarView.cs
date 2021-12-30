@@ -37,9 +37,9 @@ namespace OneMoreCalendar
 
 	internal interface ICalendarView
 	{
-		void SetRange(DateTime startDate, DateTime endDate, CalendarItems items);
-
 		event CalendarDayHandler ClickedDay;
 		event CalendarPageHandler ClickedPage;
+
+		void SetRange(DateTime startDate, DateTime endDate, CalendarItems items);
 	}
 }
