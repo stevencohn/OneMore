@@ -16,6 +16,7 @@ namespace OneMoreCalendar
         public MoreCheckedListBox()
             : base()
 		{
+			CheckOnClick = true;
 		}
 
 
@@ -31,21 +32,21 @@ namespace OneMoreCalendar
 			var boxColor = ColorTranslator.FromHtml(BoxColor);
 			using (var pen = new Pen(boxColor))
 			{
-				g.DrawRectangle(pen, 0, e.Bounds.Y + 1, 14, 14);
+				g.DrawRectangle(pen, 0, e.Bounds.Y + 1, 12, 12);
 			}
 
-			if (e.State == DrawItemState.Checked)
+			if (CheckedItems.Contains(Items[e.Index]))
 			{
 				using (var brush = new SolidBrush(boxColor))
 				{
-					g.FillRectangle(brush, 2, e.Bounds.Y + 3, 11, 11);
+					g.FillRectangle(brush, 2, e.Bounds.Y + 3, 9, 9);
 				}
 			}
 
 			var size = g.MeasureString(Text, Font);
 			using (var brush = new SolidBrush(ForeColor))
 			{
-				g.DrawString(Text, Font, brush,
+				g.DrawString(Items[e.Index].ToString(), Font, brush,
 					new Rectangle(16, // standard icon size
 						e.Bounds.Y,
 						e.Bounds.Width - 16,
@@ -82,7 +83,7 @@ namespace OneMoreCalendar
 				// Delete unckecks all, [Shift + Delete] checks all.
 				for (int i = 0; i < Items.Count; i++)
 				{
-					SetItemChecked(i, e.Shift);
+					//SetItemChecked(i, e.Shift);
 				}
 				e.Handled = true;
 			}

@@ -30,14 +30,14 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.topPanel = new System.Windows.Forms.Panel();
-			this.createdBox = new OneMoreCalendar.MoreCheckBox();
-			this.modifiedBox = new OneMoreCalendar.MoreCheckBox();
-			this.nextButton = new OneMoreCalendar.NavigationButton();
-			this.prevButton = new OneMoreCalendar.NavigationButton();
 			this.dateLabel = new System.Windows.Forms.Label();
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.contentPanel = new System.Windows.Forms.Panel();
 			this.moreCheckedListBox1 = new OneMoreCalendar.MoreCheckedListBox();
+			this.createdBox = new OneMoreCalendar.MoreCheckBox();
+			this.modifiedBox = new OneMoreCalendar.MoreCheckBox();
+			this.nextButton = new OneMoreCalendar.NavigationButton();
+			this.prevButton = new OneMoreCalendar.NavigationButton();
 			this.topPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,6 +54,45 @@
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Size = new System.Drawing.Size(978, 95);
 			this.topPanel.TabIndex = 0;
+			// 
+			// dateLabel
+			// 
+			this.dateLabel.AutoSize = true;
+			this.dateLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dateLabel.Location = new System.Drawing.Point(81, 17);
+			this.dateLabel.Name = "dateLabel";
+			this.dateLabel.Size = new System.Drawing.Size(292, 54);
+			this.dateLabel.TabIndex = 0;
+			this.dateLabel.Text = "December 2021";
+			// 
+			// bottomPanel
+			// 
+			this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.bottomPanel.Location = new System.Drawing.Point(0, 601);
+			this.bottomPanel.Name = "bottomPanel";
+			this.bottomPanel.Size = new System.Drawing.Size(978, 43);
+			this.bottomPanel.TabIndex = 1;
+			// 
+			// contentPanel
+			// 
+			this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.contentPanel.Location = new System.Drawing.Point(0, 95);
+			this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.contentPanel.Name = "contentPanel";
+			this.contentPanel.Size = new System.Drawing.Size(978, 506);
+			this.contentPanel.TabIndex = 2;
+			// 
+			// moreCheckedListBox1
+			// 
+			this.moreCheckedListBox1.FormattingEnabled = true;
+			this.moreCheckedListBox1.Items.AddRange(new object[] {
+            "one",
+            "two",
+            "three"});
+			this.moreCheckedListBox1.Location = new System.Drawing.Point(476, 12);
+			this.moreCheckedListBox1.Name = "moreCheckedListBox1";
+			this.moreCheckedListBox1.Size = new System.Drawing.Size(180, 73);
+			this.moreCheckedListBox1.TabIndex = 5;
 			// 
 			// createdBox
 			// 
@@ -112,45 +151,6 @@
 			this.prevButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.prevButton.UseVisualStyleBackColor = true;
 			this.prevButton.Click += new System.EventHandler(this.GotoPrevious);
-			// 
-			// dateLabel
-			// 
-			this.dateLabel.AutoSize = true;
-			this.dateLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dateLabel.Location = new System.Drawing.Point(81, 17);
-			this.dateLabel.Name = "dateLabel";
-			this.dateLabel.Size = new System.Drawing.Size(292, 54);
-			this.dateLabel.TabIndex = 0;
-			this.dateLabel.Text = "December 2021";
-			// 
-			// bottomPanel
-			// 
-			this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.bottomPanel.Location = new System.Drawing.Point(0, 601);
-			this.bottomPanel.Name = "bottomPanel";
-			this.bottomPanel.Size = new System.Drawing.Size(978, 43);
-			this.bottomPanel.TabIndex = 1;
-			// 
-			// contentPanel
-			// 
-			this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.contentPanel.Location = new System.Drawing.Point(0, 95);
-			this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
-			this.contentPanel.Name = "contentPanel";
-			this.contentPanel.Size = new System.Drawing.Size(978, 506);
-			this.contentPanel.TabIndex = 2;
-			// 
-			// moreCheckedListBox1
-			// 
-			this.moreCheckedListBox1.FormattingEnabled = true;
-			this.moreCheckedListBox1.Items.AddRange(new object[] {
-            "one",
-            "two",
-            "three"});
-			this.moreCheckedListBox1.Location = new System.Drawing.Point(482, 20);
-			this.moreCheckedListBox1.Name = "moreCheckedListBox1";
-			this.moreCheckedListBox1.Size = new System.Drawing.Size(180, 50);
-			this.moreCheckedListBox1.TabIndex = 5;
 			// 
 			// MainForm
 			// 
