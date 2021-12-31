@@ -6,17 +6,15 @@ namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
-	using System.Xml.Linq;
 
 	internal class OneNoteProvider
 	{
-		private OneNote one;
-
 
 		public CalendarItems GetPages(DateTime startDate, DateTime endDate)
 		{
-			using (one = new OneNote())
+			using (var one = new OneNote())
 			{
 				//var notebooks = GetNotebooks();
 				var notebooks = one.GetNotebooks(OneNote.Scope.Pages);
@@ -28,7 +26,7 @@ namespace OneMoreCalendar
 				var filter = "lastModifiedTime";
 
 				var list = new CalendarItems();
-				
+
 				list.AddRange(notebooks.Descendants(ns + "Page")
 					.Where(e => e.Attribute("isInRecycleBin") == null)
 					.Select(e => new { Page = e, Date = DateTime.Parse(e.Attribute(filter).Value) })
@@ -49,17 +47,16 @@ namespace OneMoreCalendar
 		}
 
 
-		private XElement GetNotebooks()
+		public IEnumerable<Notebook> GetNotebooks()
 		{
-			var notebooks = one.GetNotebooks();
-			var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
+			using (var one = new OneNote())
+			{
+				var notebooks = one.GetNotebooks();
+				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 
-			var personalID = notebooks.Elements(ns + "Notebook")
-				.Where(e => e.Attribute("name").Value == "Personal")
-				.Select(e => e.Attribute("ID").Value)
-				.FirstOrDefault();
-
-			return one.GetNotebook(personalID, OneNote.Scope.Pages);
+				return notebooks.Elements(ns + "Notebook")
+					.Select(e => new Notebook(e));
+			}
 		}
 	}
 }

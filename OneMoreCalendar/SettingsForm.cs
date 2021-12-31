@@ -61,6 +61,17 @@ namespace OneMoreCalendar
 		}
 
 
+
+		private void ValidateCheckedItems(object sender, ItemCheckEventArgs e)
+		{
+			// ensure that at least one notebook is checked
+			if (e.NewValue == CheckState.Unchecked && notebooksBox.CheckedItems.Count == 1)
+			{
+				e.NewValue = CheckState.Checked;
+			}
+		}
+
+
 		private void SettingsForm_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Escape)

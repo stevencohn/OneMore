@@ -112,6 +112,7 @@
 			this.notebooksBox.Name = "notebooksBox";
 			this.notebooksBox.Size = new System.Drawing.Size(445, 138);
 			this.notebooksBox.TabIndex = 7;
+			this.notebooksBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ValidateCheckedItems);
 			// 
 			// createdBox
 			// 

@@ -64,15 +64,10 @@ namespace OneMoreCalendar
 					root.Add(notebooks);
 				}
 
-				using (var one = new OneNote())
+				var books = new OneNoteProvider().GetNotebooks();
+				foreach (var book in books)
 				{
-					var books = one.GetNotebooks();
-					var ns = books.GetNamespaceOfPrefix(OneNote.Prefix);
-					foreach (var id in books.Elements(ns + "Notebook")
-						.Select(e => e.Attribute("ID").Value))
-					{
-						notebooks.Add(new XElement("notebook", id));
-					}
+					notebooks.Add(new XElement("notebook", book.ID));
 				}
 			}
 		}
@@ -90,15 +85,8 @@ namespace OneMoreCalendar
 			var ids = root.Elements("notebooks").Elements("notebook").Select(e => e.Value);
 			if (!ids.Any())
 			{
-				using (var one = new OneNote())
-				{
-					var books = one.GetNotebooks();
-					var ns = books.GetNamespaceOfPrefix(OneNote.Prefix);
-
-					ids = books.Elements(ns + "Notebook")
-						.Select(e => e.Attribute("ID").Value)
-						.ToList();
-				}
+				var books = new OneNoteProvider().GetNotebooks();
+				ids = books.Select(b => b.ID).ToList();
 			}
 
 			return ids;
@@ -112,18 +100,11 @@ namespace OneMoreCalendar
 			var provider = new SettingsProvider();
 			var ids = provider.GetNotebookIDs();
 
-			using (var one = new OneNote())
+			var books = new OneNoteProvider().GetNotebooks();
+			foreach (var book in books)
 			{
-				var books = one.GetNotebooks();
-				var ns = books.GetNamespaceOfPrefix(OneNote.Prefix);
-
-				foreach (var book in books.Elements(ns + "Notebook"))
-				{
-					notebooks.Add(new Notebook(book)
-					{
-						Checked = ids.Contains(book.Attribute("ID").Value)
-					});
-				}
+				book.Checked = ids.Contains(book.ID);
+				notebooks.Add(book);
 			}
 
 			return notebooks;
@@ -156,11 +137,11 @@ namespace OneMoreCalendar
 			element = filters.Element("modified");
 			if (element == null)
 			{
-				filters.Add(new XElement("modified", created.ToString().ToLower()));
+				filters.Add(new XElement("modified", modified.ToString().ToLower()));
 			}
 			else
 			{
-				element.Value = created.ToString().ToLower();
+				element.Value = modified.ToString().ToLower();
 			}
 		}
 
