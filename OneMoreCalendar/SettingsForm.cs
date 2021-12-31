@@ -26,7 +26,7 @@ namespace OneMoreCalendar
 				foreach (var notebook in notebooks)
 				{
 					notebooksBox.Items.Add(notebook);
-					notebooksBox.SetItemChecked(notebooksBox.Items.Count - 1, true);
+					notebooksBox.SetItemChecked(notebooksBox.Items.Count - 1, notebook.Checked);
 				}
 			}
 		}

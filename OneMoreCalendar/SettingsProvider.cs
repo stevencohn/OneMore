@@ -50,7 +50,7 @@ namespace OneMoreCalendar
 			var filters = root.Element("filters");
 			if (filters == null)
 			{
-				root.Add(new XElement("filter",
+				root.Add(new XElement("filters",
 					new XElement("modified", true)
 					));
 			}
@@ -85,40 +85,44 @@ namespace OneMoreCalendar
 			root.Elements("filters").Elements("modified").Any(e => e.Value.Equals("true"));
 
 
-		public IEnumerable<Notebook> GetNotebooks()
+		public IEnumerable<string> GetNotebookIDs()
 		{
-			var notebooks = new List<Notebook>();
 			var ids = root.Elements("notebooks").Elements("notebook").Select(e => e.Value);
-			if (ids.Any())
+			if (!ids.Any())
 			{
 				using (var one = new OneNote())
 				{
 					var books = one.GetNotebooks();
 					var ns = books.GetNamespaceOfPrefix(OneNote.Prefix);
 
-					foreach (var id in ids)
-					{
-						var book = books.Elements(ns + "Notebook")
-							.FirstOrDefault(e => e.Attribute("ID").Value == id);
-
-						if (book != null)
-						{
-							notebooks.Add(new Notebook(book));
-						}
-					}
+					ids = books.Elements(ns + "Notebook")
+						.Select(e => e.Attribute("ID").Value)
+						.ToList();
 				}
 			}
 
-			if (!notebooks.Any())
+			return ids;
+		}
+
+
+		public IEnumerable<Notebook> GetNotebooks()
+		{
+			var notebooks = new List<Notebook>();
+
+			var provider = new SettingsProvider();
+			var ids = provider.GetNotebookIDs();
+
+			using (var one = new OneNote())
 			{
-				using (var one = new OneNote())
+				var books = one.GetNotebooks();
+				var ns = books.GetNamespaceOfPrefix(OneNote.Prefix);
+
+				foreach (var book in books.Elements(ns + "Notebook"))
 				{
-					var books = one.GetNotebooks();
-					var ns = books.GetNamespaceOfPrefix(OneNote.Prefix);
-					foreach (var book in books.Elements(ns + "Notebook"))
+					notebooks.Add(new Notebook(book)
 					{
-						notebooks.Add(new Notebook(book));
-					}
+						Checked = ids.Contains(book.Attribute("ID").Value)
+					});
 				}
 			}
 

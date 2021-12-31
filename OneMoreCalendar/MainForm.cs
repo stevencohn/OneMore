@@ -184,7 +184,6 @@ namespace OneMoreCalendar
 
 			if (settingsForm.DialogResult == DialogResult.OK)
 			{
-				MessageBox.Show("OK");
 			}
 		}
 
