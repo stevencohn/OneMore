@@ -13,6 +13,7 @@ namespace OneMoreCalendar
 	{
 		private readonly MonthView monthView;
 		private SettingsForm settingsForm;
+		private FormWindowState? winstate = null;
 
 
 		public MainForm()
@@ -22,20 +23,19 @@ namespace OneMoreCalendar
 			Width = 1500;
 			Height = 1000;
 
-			var now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-			var endDate = new DateTime(now.Year, now.Month,
-				DateTime.DaysInMonth(now.Year, now.Month)).Date;
+			var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+			var endDate = new DateTime(startDate.Year, startDate.Month,
+				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
 
-			var pages = new OneNoteProvider().GetPages(now, endDate);
+			var pages = new OneNoteProvider().GetPages(startDate, endDate);
 
-			monthView = new MonthView(now, pages)
+			monthView = new MonthView(startDate, pages)
 			{
 				BackColor = System.Drawing.Color.White,
 				Dock = DockStyle.Fill,
 				Location = new System.Drawing.Point(0, 0),
 				Margin = new Padding(0),
 				Name = "monthView",
-				Size = new System.Drawing.Size(978, 506),
 				TabIndex = 0
 			};
 
@@ -44,6 +44,15 @@ namespace OneMoreCalendar
 
 			contentPanel.Controls.Add(monthView);
 		}
+
+		private void ChangeView(object sender, EventArgs e)
+		{
+		}
+
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Month view...
 
 		private void MonthView_ClickedDay(object sender, CalendarDayEventArgs e)
 		{
@@ -68,7 +77,8 @@ namespace OneMoreCalendar
 			var endDate = new DateTime(startDate.Year, startDate.Month,
 				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
 
-			monthView.SetRange(startDate, endDate, new OneNoteProvider().GetPages(startDate, endDate));
+			monthView.SetRange(startDate, endDate,
+				new OneNoteProvider().GetPages(startDate, endDate));
 
 			dateLabel.Text = startDate.ToString("MMMM yyyy");
 
@@ -81,7 +91,8 @@ namespace OneMoreCalendar
 			var endDate = new DateTime(startDate.Year, startDate.Month,
 				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
 
-			monthView.SetRange(startDate, endDate, new OneNoteProvider().GetPages(startDate, endDate));
+			monthView.SetRange(startDate, endDate,
+				new OneNoteProvider().GetPages(startDate, endDate));
 
 			dateLabel.Text = startDate.ToString("MMMM yyyy");
 
@@ -121,6 +132,54 @@ namespace OneMoreCalendar
 			}
 		}
 
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Dealing with the settings form...
+
+		private void ShowSettings(object sender, EventArgs e)
+		{
+			if (settingsForm == null)
+			{
+				settingsForm = new SettingsForm();
+				var location = PointToScreen(settingsButton.Location);
+				location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
+
+				settingsForm.Location = location;
+				settingsForm.FormClosing += ClosingSettings;
+				settingsForm.FormClosed += ClosedSettings;
+				settingsForm.Show(this);
+			}
+			else
+			{
+				settingsForm.FormClosing -= ClosingSettings;
+				settingsForm.FormClosed -= ClosedSettings;
+				settingsForm.Close();
+				settingsForm.Dispose();
+				settingsForm = null;
+			}
+		}
+
+		private void ClosedSettings(object sender, FormClosedEventArgs e)
+		{
+			settingsForm.FormClosed -= ClosedSettings;
+			settingsForm.FormClosing -= ClosingSettings;
+			settingsForm.Dispose();
+			settingsForm = null;
+		}
+
+		private void ClosingSettings(object sender, FormClosingEventArgs e)
+		{
+			settingsButton.Checked = false;
+
+			if (settingsForm.DialogResult == DialogResult.OK)
+			{
+				//settingsForm.ShowCreated
+				//settingsForm.ShowModified
+				//var notebooks = settingsForm.Notebooks;
+			}
+		}
+
+
 		protected override void OnMove(EventArgs e)
 		{
 			base.OnMove(e);
@@ -132,11 +191,11 @@ namespace OneMoreCalendar
 			}
 		}
 
-		FormWindowState? prevWindowState = null;
+
 		protected override void OnResize(EventArgs e)
 		{
 			base.OnResize(e);
-			if (WindowState != prevWindowState)
+			if (WindowState == winstate)
 			{
 				if (settingsForm?.Visible == true)
 				{
@@ -144,51 +203,20 @@ namespace OneMoreCalendar
 					location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
 					settingsForm.Location = location;
 				}
-				prevWindowState = WindowState;
+
+				winstate = WindowState;
 			}
 		}
 
-		private void ShowSettings(object sender, EventArgs e)
+		protected override void OnSizeChanged(EventArgs e)
 		{
-			if (settingsForm == null)
+			base.OnSizeChanged(e);
+			if (settingsForm?.Visible == true)
 			{
-				settingsForm = new SettingsForm();
 				var location = PointToScreen(settingsButton.Location);
 				location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
 				settingsForm.Location = location;
-				settingsForm.FormClosing += SettingsForm_FormClosing;
-				settingsForm.FormClosed += SettingsForm_FormClosed;
-				settingsForm.Show(this);
 			}
-			else
-			{
-				settingsForm.FormClosing -= SettingsForm_FormClosing;
-				settingsForm.FormClosed -= SettingsForm_FormClosed;
-				settingsForm.Close();
-				settingsForm.Dispose();
-				settingsForm = null;
-			}
-		}
-
-		private void SettingsForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			settingsForm.FormClosed -= SettingsForm_FormClosed;
-			settingsForm.FormClosing -= SettingsForm_FormClosing;
-			settingsForm.Dispose();
-			settingsForm = null;
-		}
-
-		private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			settingsButton.Checked = false;
-
-			if (settingsForm.DialogResult == DialogResult.OK)
-			{
-			}
-		}
-
-		private void ChangeView(object sender, EventArgs e)
-		{
 		}
 	}
 }

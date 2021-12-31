@@ -35,7 +35,7 @@ namespace OneMoreCalendar
 		public bool ShowCreated => createdBox.Checked;
 
 
-		public bool ShowLastModified => modifiedBox.Checked;
+		public bool ShowModified => modifiedBox.Checked;
 
 
 		public IEnumerable<Notebook> Notebooks => GetNotebooks();
