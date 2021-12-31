@@ -21,8 +21,6 @@ namespace OneMoreCalendar
 			Width = 1500;
 			Height = 1000;
 
-			modifiedBox.Left = createdBox.Left;
-
 			var now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 			var endDate = new DateTime(now.Year, now.Month,
 				DateTime.DaysInMonth(now.Year, now.Month)).Date;
@@ -124,9 +122,21 @@ namespace OneMoreCalendar
 
 		private void ChangeFilter(object sender, EventArgs e)
 		{
-			if (!createdBox.Checked && !modifiedBox.Checked)
+			//if (!createdBox.Checked && !modifiedBox.Checked)
+			//{
+			//	modifiedBox.Checked = true;
+			//}
+		}
+
+		private void ShowSettings(object sender, EventArgs e)
+		{
+			using (var form = new SettingsForm())
 			{
-				modifiedBox.Checked = true;
+				var location = PointToScreen(settingsButton.Location);
+				location.Offset(-(form.Width - settingsButton.Width), settingsButton.Height);
+
+				form.Location = location;
+				form.Show(this);
 			}
 		}
 	}
