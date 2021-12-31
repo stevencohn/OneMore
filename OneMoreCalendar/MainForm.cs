@@ -12,6 +12,7 @@ namespace OneMoreCalendar
 	public partial class MainForm : Form
 	{
 		private readonly MonthView monthView;
+		private SettingsForm settingsForm;
 
 
 		public MainForm()
@@ -120,23 +121,75 @@ namespace OneMoreCalendar
 			}
 		}
 
-		private void ChangeFilter(object sender, EventArgs e)
+		protected override void OnMove(EventArgs e)
 		{
-			//if (!createdBox.Checked && !modifiedBox.Checked)
-			//{
-			//	modifiedBox.Checked = true;
-			//}
+			base.OnMove(e);
+			if (settingsForm?.Visible == true)
+			{
+				var location = PointToScreen(settingsButton.Location);
+				location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
+				settingsForm.Location = location;
+			}
 		}
 
-		private SettingsForm sform;
+		FormWindowState? prevWindowState = null;
+		protected override void OnResize(EventArgs e)
+		{
+			base.OnResize(e);
+			if (WindowState != prevWindowState)
+			{
+				if (settingsForm?.Visible == true)
+				{
+					var location = PointToScreen(settingsButton.Location);
+					location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
+					settingsForm.Location = location;
+				}
+				prevWindowState = WindowState;
+			}
+		}
+
 		private void ShowSettings(object sender, EventArgs e)
 		{
-			sform = new SettingsForm();
-			var location = PointToScreen(settingsButton.Location);
-			location.Offset(-(sform.Width - settingsButton.Width), settingsButton.Height);
+			if (settingsForm == null)
+			{
+				settingsForm = new SettingsForm();
+				var location = PointToScreen(settingsButton.Location);
+				location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
+				settingsForm.Location = location;
+				settingsForm.FormClosing += SettingsForm_FormClosing;
+				settingsForm.FormClosed += SettingsForm_FormClosed;
+				settingsForm.Show(this);
+			}
+			else
+			{
+				settingsForm.FormClosing -= SettingsForm_FormClosing;
+				settingsForm.FormClosed -= SettingsForm_FormClosed;
+				settingsForm.Close();
+				settingsForm.Dispose();
+				settingsForm = null;
+			}
+		}
 
-			sform.Location = location;
-			sform.Show(this);
+		private void SettingsForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			settingsForm.FormClosed -= SettingsForm_FormClosed;
+			settingsForm.FormClosing -= SettingsForm_FormClosing;
+			settingsForm.Dispose();
+			settingsForm = null;
+		}
+
+		private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			settingsButton.Checked = false;
+
+			if (settingsForm.DialogResult == DialogResult.OK)
+			{
+				MessageBox.Show("OK");
+			}
+		}
+
+		private void ChangeView(object sender, EventArgs e)
+		{
 		}
 	}
 }
