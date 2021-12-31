@@ -22,6 +22,11 @@ namespace OneMoreCalendar
 
 		protected override void OnDrawItem(DrawItemEventArgs e)
 		{
+			if (Items.Count == 0)
+			{
+				return;
+			}
+
 			var g = e.Graphics;
 
 			using (var brush = new SolidBrush(BackColor))
@@ -35,7 +40,7 @@ namespace OneMoreCalendar
 				g.DrawRectangle(pen, 0, e.Bounds.Y + 1, 12, 12);
 			}
 
-			if (CheckedItems.Contains(Items[e.Index]))
+			if (CheckedIndices.Contains(e.Index))
 			{
 				using (var brush = new SolidBrush(boxColor))
 				{

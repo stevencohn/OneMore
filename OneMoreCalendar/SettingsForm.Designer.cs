@@ -108,10 +108,6 @@
 			this.notebooksBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.notebooksBox.CheckOnClick = true;
 			this.notebooksBox.FormattingEnabled = true;
-			this.notebooksBox.Items.AddRange(new object[] {
-            "one",
-            "two",
-            "three"});
 			this.notebooksBox.Location = new System.Drawing.Point(48, 220);
 			this.notebooksBox.Name = "notebooksBox";
 			this.notebooksBox.Size = new System.Drawing.Size(445, 138);

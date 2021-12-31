@@ -8,11 +8,27 @@ namespace OneMoreCalendar
 	using System.Windows.Forms;
 
 
-	public partial class SettingsForm : Form
+	internal partial class SettingsForm : Form
 	{
 		public SettingsForm()
 		{
 			InitializeComponent();
+
+			if (!DesignMode)
+			{
+				var provider = new SettingsProvider();
+
+				createdBox.Checked = provider.ShowCreated;
+				modifiedBox.Checked = provider.ShowModified;
+
+				var notebooks = provider.GetNotebooks();
+				notebooksBox.Items.Clear();
+				foreach (var notebook in notebooks)
+				{
+					notebooksBox.Items.Add(notebook);
+					notebooksBox.SetItemChecked(notebooksBox.Items.Count - 1, true);
+				}
+			}
 		}
 
 
@@ -22,17 +38,17 @@ namespace OneMoreCalendar
 		public bool ShowLastModified => modifiedBox.Checked;
 
 
-		public IEnumerable<string> NotebookIDs => GetSelectedNotebooks();
+		public IEnumerable<Notebook> Notebooks => GetNotebooks();
 
 
-		private IEnumerable<string> GetSelectedNotebooks()
+		private IEnumerable<Notebook> GetNotebooks()
 		{
-			var list = new List<string>();
-			foreach (var item in notebooksBox.CheckedItems)
+			var notebooks = new List<Notebook>();
+			foreach (Notebook notebook in notebooksBox.CheckedItems)
 			{
-				list.Add(item.ToString());
+				notebooks.Add(notebook);
 			}
-			return list;
+			return notebooks;
 		}
 
 
@@ -62,6 +78,17 @@ namespace OneMoreCalendar
 
 		private void Apply(object sender, System.EventArgs e)
 		{
+			var provider = new SettingsProvider();
+			provider.SetFilter(createdBox.Checked, modifiedBox.Checked);
+
+			var ids = new List<string>();
+			foreach (Notebook notebook in notebooksBox.CheckedItems)
+			{
+				ids.Add(notebook.ID);
+			}
+			provider.SetNotebookIDs(ids);
+			provider.Save();
+
 			Close();
 		}
 	}
