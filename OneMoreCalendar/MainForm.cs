@@ -23,18 +23,10 @@ namespace OneMoreCalendar
 			Width = 1500;
 			Height = 1000;
 
-			var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-			var endDate = new DateTime(startDate.Year, startDate.Month,
-				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
-
-			var pages = new OneNoteProvider().GetPages(startDate, endDate);
-
-			monthView = new MonthView(startDate, pages)
+			monthView = new MonthView()
 			{
-				BackColor = System.Drawing.Color.White,
 				Dock = DockStyle.Fill,
 				Location = new System.Drawing.Point(0, 0),
-				Margin = new Padding(0),
 				Name = "monthView",
 				TabIndex = 0
 			};
@@ -43,6 +35,14 @@ namespace OneMoreCalendar
 			monthView.ClickedDay += MonthView_ClickedDay;
 
 			contentPanel.Controls.Add(monthView);
+
+			var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+			var endDate = new DateTime(startDate.Year, startDate.Month,
+				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
+
+			var pages = new OneNoteProvider().GetPages(startDate, endDate);
+
+			monthView.SetRange(startDate, endDate, pages);
 		}
 
 		private void ChangeView(object sender, EventArgs e)
