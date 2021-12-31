@@ -117,7 +117,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="settings-64.png" />
+    <Content Include="day-32.png" />
+    <Content Include="month-32.png" />
+    <Content Include="settings-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
