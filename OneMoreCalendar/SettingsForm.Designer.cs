@@ -31,9 +31,9 @@
 			this.optionsLabel = new System.Windows.Forms.Label();
 			this.notebooksLabel = new System.Windows.Forms.Label();
 			this.settingsPanel = new System.Windows.Forms.Panel();
+			this.notebooksBox = new OneMoreCalendar.MoreCheckedListBox();
 			this.createdBox = new OneMoreCalendar.MoreCheckBox();
 			this.modifiedBox = new OneMoreCalendar.MoreCheckBox();
-			this.notebooksBox = new OneMoreCalendar.MoreCheckedListBox();
 			this.settingsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -75,6 +75,21 @@
 			this.settingsPanel.Size = new System.Drawing.Size(518, 450);
 			this.settingsPanel.TabIndex = 2;
 			// 
+			// notebooksBox
+			// 
+			this.notebooksBox.BackColor = System.Drawing.SystemColors.Control;
+			this.notebooksBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.notebooksBox.CheckOnClick = true;
+			this.notebooksBox.FormattingEnabled = true;
+			this.notebooksBox.Items.AddRange(new object[] {
+            "one",
+            "two",
+            "three"});
+			this.notebooksBox.Location = new System.Drawing.Point(48, 220);
+			this.notebooksBox.Name = "notebooksBox";
+			this.notebooksBox.Size = new System.Drawing.Size(445, 184);
+			this.notebooksBox.TabIndex = 7;
+			// 
 			// createdBox
 			// 
 			this.createdBox.AutoSize = true;
@@ -97,21 +112,6 @@
 			this.modifiedBox.Text = "Last modified on";
 			this.modifiedBox.UseVisualStyleBackColor = true;
 			// 
-			// notebooksBox
-			// 
-			this.notebooksBox.BackColor = System.Drawing.SystemColors.Control;
-			this.notebooksBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.notebooksBox.CheckOnClick = true;
-			this.notebooksBox.FormattingEnabled = true;
-			this.notebooksBox.Items.AddRange(new object[] {
-            "one",
-            "two",
-            "three"});
-			this.notebooksBox.Location = new System.Drawing.Point(48, 220);
-			this.notebooksBox.Name = "notebooksBox";
-			this.notebooksBox.Size = new System.Drawing.Size(445, 184);
-			this.notebooksBox.TabIndex = 7;
-			// 
 			// SettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -124,6 +124,8 @@
 			this.Name = "SettingsForm";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.TopMost = true;
 			this.settingsPanel.ResumeLayout(false);
 			this.settingsPanel.PerformLayout();
 			this.ResumeLayout(false);

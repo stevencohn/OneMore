@@ -128,16 +128,15 @@ namespace OneMoreCalendar
 			//}
 		}
 
+		private SettingsForm sform;
 		private void ShowSettings(object sender, EventArgs e)
 		{
-			using (var form = new SettingsForm())
-			{
-				var location = PointToScreen(settingsButton.Location);
-				location.Offset(-(form.Width - settingsButton.Width), settingsButton.Height);
+			sform = new SettingsForm();
+			var location = PointToScreen(settingsButton.Location);
+			location.Offset(-(sform.Width - settingsButton.Width), settingsButton.Height);
 
-				form.Location = location;
-				form.Show(this);
-			}
+			sform.Location = location;
+			sform.Show(this);
 		}
 	}
 }
