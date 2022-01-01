@@ -22,10 +22,7 @@ namespace OneMoreCalendar
 		public string PageID { get; set; }
 
 
-		public string Notebook { get; set; }
-
-
-		public string Section { get; set; }
+		public string Path { get; set; }
 
 
 		public string Title { get; set; }

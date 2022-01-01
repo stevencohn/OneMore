@@ -31,22 +31,23 @@ namespace OneMoreCalendar
 				TabIndex = 0
 			};
 
-			monthView.ClickedPage += MonthView_ClickedPage;
-			monthView.ClickedDay += MonthView_ClickedDay;
+			monthView.ClickedPage += NavigateToPage;
+			monthView.ClickedDay += ShowDayView;
 
 			contentPanel.Controls.Add(monthView);
 
-			var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-			var endDate = new DateTime(startDate.Year, startDate.Month,
-				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
-
-			var pages = new OneNoteProvider().GetPages(startDate, endDate);
-
-			monthView.SetRange(startDate, endDate, pages);
+			SetMonthView(0);
 		}
+
 
 		private void ChangeView(object sender, EventArgs e)
 		{
+			if (sender == monthButton)
+			{
+			}
+			else
+			{
+			}
 		}
 
 
@@ -54,54 +55,47 @@ namespace OneMoreCalendar
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Month view...
 
-		private void MonthView_ClickedDay(object sender, CalendarDayEventArgs e)
-		{
-			MessageBox.Show($"clicked {e.DayDate}");
-		}
-
-		private async void MonthView_ClickedPage(object sender, CalendarPageEventArgs e)
-		{
-			using (var one = new OneNote())
-			{
-				var url = one.GetHyperlink(e.PageID, string.Empty);
-				if (url != null)
-				{
-					await one.NavigateTo(url);
-				}
-			}
-		}
-
 		private void GotoPrevious(object sender, EventArgs e)
 		{
-			var startDate = monthView.Date.AddMonths(-1);
-			var endDate = new DateTime(startDate.Year, startDate.Month,
-				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
-
-			monthView.SetRange(startDate, endDate,
-				new OneNoteProvider().GetPages(startDate, endDate));
-
-			dateLabel.Text = startDate.ToString("MMMM yyyy");
-
-			nextButton.Enabled = true;
+			SetMonthView(-1);
 		}
 
 		private void GotoNext(object sender, EventArgs e)
 		{
-			var startDate = monthView.Date.AddMonths(1);
-			var endDate = new DateTime(startDate.Year, startDate.Month,
-				DateTime.DaysInMonth(startDate.Year, startDate.Month)).Date;
+			SetMonthView(1);
+		}
 
-			monthView.SetRange(startDate, endDate,
-				new OneNoteProvider().GetPages(startDate, endDate));
+		private void SetMonthView(int delta)
+		{
+			var startDate = monthView.StartDate.AddMonths(delta);
+			var endDate = startDate.EndOfMonth();
+			var settings = new SettingsProvider();
+
+			var pages = new OneNoteProvider().GetPages(
+				startDate, endDate,
+				settings.GetNotebookIDs(),
+				settings.ShowCreated, settings.ShowModified, false);
+
+			monthView.SetRange(startDate, endDate, pages);
 
 			dateLabel.Text = startDate.ToString("MMMM yyyy");
 
 			var now = DateTime.Now;
-			if (startDate.Year == now.Year && startDate.Month == now.Month)
-			{
-				nextButton.Enabled = false;
-			}
+			nextButton.Enabled = !(startDate.Year == now.Year && startDate.Month == now.Month);
 		}
+
+
+		private void ShowDayView(object sender, CalendarDayEventArgs e)
+		{
+			MessageBox.Show($"clicked {e.DayDate}");
+		}
+
+
+		private async void NavigateToPage(object sender, CalendarPageEventArgs e)
+		{
+			await new OneNoteProvider().NavigateTo(e.PageID);
+		}
+
 
 
 		protected override bool IsInputKey(Keys keyData)
@@ -173,9 +167,7 @@ namespace OneMoreCalendar
 
 			if (settingsForm.DialogResult == DialogResult.OK)
 			{
-				//settingsForm.ShowCreated
-				//settingsForm.ShowModified
-				//var notebooks = settingsForm.Notebooks;
+				SetMonthView(0);
 			}
 		}
 

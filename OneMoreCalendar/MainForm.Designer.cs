@@ -33,12 +33,14 @@
 			this.monthButton = new System.Windows.Forms.RadioButton();
 			this.dayButton = new System.Windows.Forms.RadioButton();
 			this.settingsButton = new System.Windows.Forms.CheckBox();
+			this.dateLabel = new System.Windows.Forms.Label();
+			this.contentPanel = new System.Windows.Forms.Panel();
+			this.statusStrip = new System.Windows.Forms.StatusStrip();
+			this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.nextButton = new OneMoreCalendar.NavigationButton();
 			this.prevButton = new OneMoreCalendar.NavigationButton();
-			this.dateLabel = new System.Windows.Forms.Label();
-			this.bottomPanel = new System.Windows.Forms.Panel();
-			this.contentPanel = new System.Windows.Forms.Panel();
 			this.topPanel.SuspendLayout();
+			this.statusStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// topPanel
@@ -71,7 +73,7 @@
 			this.monthButton.Name = "monthButton";
 			this.monthButton.Size = new System.Drawing.Size(64, 64);
 			this.monthButton.TabIndex = 6;
-			this.monthButton.TabStop = false;
+			this.monthButton.TabStop = true;
 			this.monthButton.UseVisualStyleBackColor = true;
 			this.monthButton.CheckedChanged += new System.EventHandler(this.ChangeView);
 			// 
@@ -90,7 +92,6 @@
 			this.dayButton.Name = "dayButton";
 			this.dayButton.Size = new System.Drawing.Size(64, 64);
 			this.dayButton.TabIndex = 5;
-			this.dayButton.TabStop = false;
 			this.dayButton.UseVisualStyleBackColor = true;
 			this.dayButton.CheckedChanged += new System.EventHandler(this.ChangeView);
 			// 
@@ -112,6 +113,43 @@
 			this.settingsButton.TabStop = false;
 			this.settingsButton.UseVisualStyleBackColor = true;
 			this.settingsButton.Click += new System.EventHandler(this.ShowSettings);
+			// 
+			// dateLabel
+			// 
+			this.dateLabel.AutoSize = true;
+			this.dateLabel.Font = new System.Drawing.Font("Segoe UI Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
+			this.dateLabel.Location = new System.Drawing.Point(81, 17);
+			this.dateLabel.Name = "dateLabel";
+			this.dateLabel.Size = new System.Drawing.Size(284, 54);
+			this.dateLabel.TabIndex = 0;
+			this.dateLabel.Text = "December 2021";
+			// 
+			// contentPanel
+			// 
+			this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.contentPanel.Location = new System.Drawing.Point(0, 95);
+			this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.contentPanel.Name = "contentPanel";
+			this.contentPanel.Size = new System.Drawing.Size(978, 527);
+			this.contentPanel.TabIndex = 2;
+			// 
+			// statusStrip
+			// 
+			this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+			this.statusStrip.Location = new System.Drawing.Point(0, 622);
+			this.statusStrip.Name = "statusStrip";
+			this.statusStrip.Size = new System.Drawing.Size(978, 22);
+			this.statusStrip.TabIndex = 0;
+			this.statusStrip.Text = "statusStrip1";
+			// 
+			// statusLabel
+			// 
+			this.statusLabel.Margin = new System.Windows.Forms.Padding(9, 4, 0, 3);
+			this.statusLabel.Name = "statusLabel";
+			this.statusLabel.Size = new System.Drawing.Size(0, 15);
 			// 
 			// nextButton
 			// 
@@ -145,41 +183,13 @@
 			this.prevButton.UseVisualStyleBackColor = true;
 			this.prevButton.Click += new System.EventHandler(this.GotoPrevious);
 			// 
-			// dateLabel
-			// 
-			this.dateLabel.AutoSize = true;
-			this.dateLabel.Font = new System.Drawing.Font("Segoe UI Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.dateLabel.Location = new System.Drawing.Point(81, 17);
-			this.dateLabel.Name = "dateLabel";
-			this.dateLabel.Size = new System.Drawing.Size(284, 54);
-			this.dateLabel.TabIndex = 0;
-			this.dateLabel.Text = "December 2021";
-			// 
-			// bottomPanel
-			// 
-			this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.bottomPanel.Location = new System.Drawing.Point(0, 601);
-			this.bottomPanel.Name = "bottomPanel";
-			this.bottomPanel.Size = new System.Drawing.Size(978, 43);
-			this.bottomPanel.TabIndex = 1;
-			// 
-			// contentPanel
-			// 
-			this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.contentPanel.Location = new System.Drawing.Point(0, 95);
-			this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
-			this.contentPanel.Name = "contentPanel";
-			this.contentPanel.Size = new System.Drawing.Size(978, 506);
-			this.contentPanel.TabIndex = 2;
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(978, 644);
 			this.Controls.Add(this.contentPanel);
-			this.Controls.Add(this.bottomPanel);
+			this.Controls.Add(this.statusStrip);
 			this.Controls.Add(this.topPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
@@ -188,14 +198,16 @@
 			this.Text = "OneMore Calendar";
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
+			this.statusStrip.ResumeLayout(false);
+			this.statusStrip.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
 		private System.Windows.Forms.Panel topPanel;
-		private System.Windows.Forms.Panel bottomPanel;
 		private System.Windows.Forms.Panel contentPanel;
 		private System.Windows.Forms.Label dateLabel;
 		private NavigationButton nextButton;
@@ -203,6 +215,8 @@
 		private System.Windows.Forms.CheckBox settingsButton;
 		private System.Windows.Forms.RadioButton monthButton;
 		private System.Windows.Forms.RadioButton dayButton;
+		private System.Windows.Forms.StatusStrip statusStrip;
+		private System.Windows.Forms.ToolStripStatusLabel statusLabel;
 	}
 }
 

@@ -59,6 +59,8 @@ namespace OneMoreCalendar
 				Trimming = StringTrimming.EllipsisCharacter,
 				FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
 			};
+
+			date = DateTime.Now.StartOfMonth();
 		}
 
 
@@ -69,12 +71,14 @@ namespace OneMoreCalendar
 		}
 
 
-		public DateTime Date => date;
+		public DateTime StartDate => date;
+
+		public DateTime EndDate => date.EndOfMonth();
 
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarItems items)
 		{
-			date = new DateTime(startDate.Year, startDate.Month, 1).Date;
+			date = startDate.StartOfMonth();
 
 			firstDow = Thread.CurrentThread.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
 			MakeDayList(items);

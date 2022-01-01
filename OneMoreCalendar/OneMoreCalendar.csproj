@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CalendarDay.cs" />
     <Compile Include="CalendarItem.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="ICalendarView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

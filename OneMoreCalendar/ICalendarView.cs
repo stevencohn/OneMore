@@ -40,6 +40,10 @@ namespace OneMoreCalendar
 		event CalendarDayHandler ClickedDay;
 		event CalendarPageHandler ClickedPage;
 
+		DateTime StartDate { get; }
+
+		DateTime EndDate { get; }
+
 		void SetRange(DateTime startDate, DateTime endDate, CalendarItems items);
 	}
 }
