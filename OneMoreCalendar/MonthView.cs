@@ -40,6 +40,7 @@ namespace OneMoreCalendar
 		private DayOfWeek firstDow;
 
 		public event CalendarDayHandler ClickedDay;
+		public event CalendarHoverHandler HoverPage;
 		public event CalendarPageHandler ClickedPage;
 
 
@@ -159,7 +160,7 @@ namespace OneMoreCalendar
 			{
 				if (spot.Item != null)
 				{
-					ClickedPage?.Invoke(this, new CalendarPageEventArgs(spot.Item.PageID));
+					ClickedPage?.Invoke(this, new CalendarPageEventArgs(spot.Item));
 				}
 				else
 				{
@@ -195,6 +196,8 @@ namespace OneMoreCalendar
 
 						g.DrawString(hotspot.Item.Title, itemFont, Brushes.Black, hotspot.Clip, format);
 					}
+
+					HoverPage?.Invoke(this, new CalendarPageEventArgs(null));
 				}
 
 				hotspot = null;
@@ -210,6 +213,8 @@ namespace OneMoreCalendar
 						g.FillRectangle(Brushes.White, spot.Clip);
 						g.DrawString(spot.Item.Title, hotFont, Brushes.Blue, spot.Clip, format);
 					}
+
+					HoverPage?.Invoke(this, new CalendarPageEventArgs(spot.Item));
 				}
 
 				hotspot = spot;

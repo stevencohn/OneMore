@@ -8,6 +8,7 @@ namespace OneMoreCalendar
 
 
 	internal delegate void CalendarDayHandler(object sender, CalendarDayEventArgs e);
+	internal delegate void CalendarHoverHandler(object sender, CalendarPageEventArgs e);
 	internal delegate void CalendarPageHandler(object sender, CalendarPageEventArgs e);
 
 
@@ -25,19 +26,20 @@ namespace OneMoreCalendar
 
 	internal class CalendarPageEventArgs : EventArgs
 	{
-		public CalendarPageEventArgs(string pageID)
+		public CalendarPageEventArgs(CalendarItem item)
 			: base()
 		{
-			PageID = pageID;
+			Item = item;
 		}
 
-		public string PageID { get; private set; }
+		public CalendarItem Item { get; private set; }
 	}
 
 
 	internal interface ICalendarView
 	{
 		event CalendarDayHandler ClickedDay;
+		event CalendarHoverHandler HoverPage;
 		event CalendarPageHandler ClickedPage;
 
 		DateTime StartDate { get; }

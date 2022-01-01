@@ -50,7 +50,7 @@ namespace OneMoreCalendar
 						Path = a.Page.Ancestors()
 							.Where(n => n.Attribute("name") != null)
 							.Select(n => n.Attribute("name").Value)
-							.Aggregate((name1, name2) => $"{name2}/{name1}"),
+							.Aggregate((name1, name2) => $"{name2} > {name1}"),
 						Title = a.Page.Attribute("name").Value,
 						Created = a.Created,
 						Modified = a.Modified

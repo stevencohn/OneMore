@@ -37,6 +37,9 @@
 			this.contentPanel = new System.Windows.Forms.Panel();
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.statusCreatedLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.statusSpringLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.statusModifiedLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.nextButton = new OneMoreCalendar.NavigationButton();
 			this.prevButton = new OneMoreCalendar.NavigationButton();
 			this.topPanel.SuspendLayout();
@@ -131,17 +134,20 @@
 			this.contentPanel.Location = new System.Drawing.Point(0, 95);
 			this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.contentPanel.Name = "contentPanel";
-			this.contentPanel.Size = new System.Drawing.Size(978, 527);
+			this.contentPanel.Size = new System.Drawing.Size(978, 517);
 			this.contentPanel.TabIndex = 2;
 			// 
 			// statusStrip
 			// 
 			this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel});
-			this.statusStrip.Location = new System.Drawing.Point(0, 622);
+            this.statusLabel,
+            this.statusSpringLabel,
+            this.statusCreatedLabel,
+            this.statusModifiedLabel});
+			this.statusStrip.Location = new System.Drawing.Point(0, 612);
 			this.statusStrip.Name = "statusStrip";
-			this.statusStrip.Size = new System.Drawing.Size(978, 22);
+			this.statusStrip.Size = new System.Drawing.Size(978, 32);
 			this.statusStrip.TabIndex = 0;
 			this.statusStrip.Text = "statusStrip1";
 			// 
@@ -149,7 +155,28 @@
 			// 
 			this.statusLabel.Margin = new System.Windows.Forms.Padding(9, 4, 0, 3);
 			this.statusLabel.Name = "statusLabel";
-			this.statusLabel.Size = new System.Drawing.Size(0, 15);
+			this.statusLabel.Size = new System.Drawing.Size(136, 25);
+			this.statusLabel.Text = "page-path-here";
+			// 
+			// statusCreatedLabel
+			// 
+			this.statusCreatedLabel.Margin = new System.Windows.Forms.Padding(0, 4, 30, 3);
+			this.statusCreatedLabel.Name = "statusCreatedLabel";
+			this.statusCreatedLabel.Size = new System.Drawing.Size(77, 25);
+			this.statusCreatedLabel.Text = "Created:";
+			// 
+			// statusSpringLabel
+			// 
+			this.statusSpringLabel.Name = "statusSpringLabel";
+			this.statusSpringLabel.Size = new System.Drawing.Size(567, 25);
+			this.statusSpringLabel.Spring = true;
+			// 
+			// statusModifiedLabel
+			// 
+			this.statusModifiedLabel.Margin = new System.Windows.Forms.Padding(0, 4, 10, 3);
+			this.statusModifiedLabel.Name = "statusModifiedLabel";
+			this.statusModifiedLabel.Size = new System.Drawing.Size(88, 25);
+			this.statusModifiedLabel.Text = "Modified:";
 			// 
 			// nextButton
 			// 
@@ -217,6 +244,9 @@
 		private System.Windows.Forms.RadioButton dayButton;
 		private System.Windows.Forms.StatusStrip statusStrip;
 		private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+		private System.Windows.Forms.ToolStripStatusLabel statusSpringLabel;
+		private System.Windows.Forms.ToolStripStatusLabel statusCreatedLabel;
+		private System.Windows.Forms.ToolStripStatusLabel statusModifiedLabel;
 	}
 }
 

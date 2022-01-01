@@ -20,6 +20,10 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
+			statusLabel.Text = string.Empty;
+			statusCreatedLabel.Text = string.Empty;
+			statusModifiedLabel.Text = string.Empty;
+
 			Width = 1500;
 			Height = 1000;
 
@@ -33,6 +37,7 @@ namespace OneMoreCalendar
 
 			monthView.ClickedPage += NavigateToPage;
 			monthView.ClickedDay += ShowDayView;
+			monthView.HoverPage += ShowPageStatus;
 
 			contentPanel.Controls.Add(monthView);
 
@@ -54,6 +59,23 @@ namespace OneMoreCalendar
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Month view...
+
+		private void ShowPageStatus(object sender, CalendarPageEventArgs e)
+		{
+			if (e.Item != null)
+			{
+				statusLabel.Text = $"{e.Item.Path} > {e.Item.Title}";
+				statusCreatedLabel.Text = $"Created: {e.Item.Created.ToShortFriendlyString()}";
+				statusModifiedLabel.Text = $"Modified: {e.Item.Modified.ToShortFriendlyString()}";
+			}
+			else
+			{
+				statusLabel.Text = string.Empty;
+				statusCreatedLabel.Text = string.Empty;
+				statusModifiedLabel.Text = string.Empty;
+			}
+		}
+
 
 		private void GotoPrevious(object sender, EventArgs e)
 		{
@@ -93,7 +115,7 @@ namespace OneMoreCalendar
 
 		private async void NavigateToPage(object sender, CalendarPageEventArgs e)
 		{
-			await new OneNoteProvider().NavigateTo(e.PageID);
+			await new OneNoteProvider().NavigateTo(e.Item.PageID);
 		}
 
 
