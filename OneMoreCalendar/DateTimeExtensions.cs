@@ -5,7 +5,7 @@
 namespace OneMoreCalendar
 {
 	using System;
-
+	using System.Threading;
 
 	internal static class DateTimeExtensions
 	{
@@ -49,6 +49,35 @@ namespace OneMoreCalendar
 		public static DateTime StartOfMonth(this DateTime date)
 		{
 			return new DateTime(date.Year, date.Month, 1).Date;
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="date"></param>
+		/// <returns></returns>
+		public static DateTime EndOfCalendarView(this DateTime date)
+		{
+			return date.StartOfCalendarMonthView().AddDays(41);
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="date"></param>
+		/// <returns></returns>
+		public static DateTime StartOfCalendarMonthView(this DateTime date)
+		{
+			var start = date.Date;
+			var firstDay = Thread.CurrentThread.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
+
+			var day = firstDay == DayOfWeek.Sunday
+				? (int)start.DayOfWeek
+				: start.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)start.DayOfWeek - 1;
+
+			return day == 0 ? start : start.AddDays(-day);
 		}
 	}
 }

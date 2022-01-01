@@ -12,11 +12,24 @@ namespace OneMoreCalendar
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// 
+	/// </summary>
 	internal class OneNoteProvider
 	{
 		private OneNote one;
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="startDate"></param>
+		/// <param name="endDate"></param>
+		/// <param name="notebookIDs"></param>
+		/// <param name="created"></param>
+		/// <param name="modified"></param>
+		/// <param name="deleted"></param>
+		/// <returns></returns>
 		public CalendarItems GetPages(
 			DateTime startDate, DateTime endDate,
 			IEnumerable<string> notebookIDs,
@@ -63,6 +76,8 @@ namespace OneMoreCalendar
 
 		private XElement GetNotebooks(IEnumerable<string> ids)
 		{
+			// attempt optimal ways to load...
+
 			if (!ids.Any())
 			{
 				return one.GetNotebooks(OneNote.Scope.Pages);
@@ -93,6 +108,10 @@ namespace OneMoreCalendar
 		}
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public IEnumerable<Notebook> GetNotebooks()
 		{
 			using (one = new OneNote())
@@ -106,7 +125,11 @@ namespace OneMoreCalendar
 		}
 
 
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="pageID"></param>
+		/// <returns></returns>
 		public async Task NavigateTo(string pageID)
 		{
 			using (one = new OneNote())

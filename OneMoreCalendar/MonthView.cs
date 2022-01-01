@@ -20,11 +20,13 @@ namespace OneMoreCalendar
 			public Rectangle Clip;
 			public DateTime Date;
 			public CalendarItem Item;
+			public bool InMonth;
 		}
 
 		private const string HeadBackColor = "#FFF4E8F3";
 		private const string TodayHeadColor = "#FFD6A6D3";
 		private const string MoreGlyph = "⏷"; // \u23F7
+		private const int Weeks = 6;
 
 		private readonly IntPtr hand;
 		private readonly Font itemFont;
@@ -100,6 +102,7 @@ namespace OneMoreCalendar
 				: first == DayOfWeek.Sunday ? 6 : (int)first - 1;
 
 			var runner = date.Date;
+			var count = 0;
 
 			// previous month
 
@@ -108,8 +111,14 @@ namespace OneMoreCalendar
 				runner = runner.AddDays(-dow);
 				for (int i = 0; i < dow; i++)
 				{
-					days.Add(new CalendarDay { Date = runner });
+					var day = new CalendarDay { Date = runner };
+
+					var pp = items.Where(p => p.Modified.Date.Equals(runner));
+					pp.ForEach(p => day.Items.Add(p));
+
+					days.Add(day);
 					runner = runner.AddDays(1.0);
+					count++;
 				}
 			}
 
@@ -120,25 +129,27 @@ namespace OneMoreCalendar
 				var day = new CalendarDay { Date = runner, InMonth = true };
 
 				var pp = items.Where(p => p.Modified.Date.Equals(runner));
-				if (pp.Any())
-				{
-					foreach (var p in pp)
-					{
-						day.Items.Add(p);
-					}
-				}
+				pp.ForEach(p => day.Items.Add(p));
 
 				days.Add(day);
 				runner = runner.AddDays(1.0);
+				count++;
 			}
 
 			// next month
 
 			var rest = 7 - days.Count % 7;
-			for (int i = 0; i < rest; i++)
+			//for (int i = 0; i < rest ; i++)
+			while (count < 42)
 			{
-				days.Add(new CalendarDay { Date = runner });
+				var day = new CalendarDay { Date = runner };
+
+				var pp = items.Where(p => p.Modified.Date.Equals(runner));
+				pp.ForEach(p => day.Items.Add(p));
+
+				days.Add(day);
 				runner = runner.AddDays(1.0);
+				count++;
 			}
 		}
 
@@ -194,7 +205,8 @@ namespace OneMoreCalendar
 							hotspot.Item.Modified.Month == date.Month ? Brushes.White : Brushes.WhiteSmoke,
 							hotspot.Clip);
 
-						g.DrawString(hotspot.Item.Title, itemFont, Brushes.Black, hotspot.Clip, format);
+						var brush = hotspot.InMonth ? Brushes.Black : Brushes.Gray;
+						g.DrawString(hotspot.Item.Title, itemFont, brush, hotspot.Clip, format);
 					}
 
 					HoverPage?.Invoke(this, new CalendarPageEventArgs(null));
@@ -210,7 +222,8 @@ namespace OneMoreCalendar
 				{
 					using (var g = CreateGraphics())
 					{
-						g.FillRectangle(Brushes.White, spot.Clip);
+						var brush = spot.InMonth ? Brushes.White : Brushes.WhiteSmoke;
+						g.FillRectangle(brush, spot.Clip);
 						g.DrawString(spot.Item.Title, hotFont, Brushes.Blue, spot.Clip, format);
 					}
 
@@ -273,8 +286,8 @@ namespace OneMoreCalendar
 
 			// horizontal lines...
 
-			var dayHeight = (Height - dowOffset) / 5;
-			for (int i = 1; i < 5; i++)
+			var dayHeight = (Height - dowOffset) / Weeks;
+			for (int i = 1; i < Weeks; i++)
 			{
 				e.Graphics.DrawLine(pen,
 					0, i * dayHeight + dowOffset,
@@ -290,7 +303,7 @@ namespace OneMoreCalendar
 		private void PaintDays(PaintEventArgs e)
 		{
 			var dayWidth = Width / 7;
-			var dayHeight = (Height - dowOffset) / 5;
+			var dayHeight = (Height - dowOffset) / Weeks;
 			var row = 0;
 			var col = 0;
 
@@ -324,11 +337,13 @@ namespace OneMoreCalendar
 				hotspots.Add(new Hotspot
 				{
 					Clip = box,
-					Date = day.Date
+					Date = day.Date,
+					InMonth = day.InMonth
 				});
 
 				// body...
 
+				var brush = Brushes.Black;
 				if (!day.InMonth)
 				{
 					box = new Rectangle(
@@ -337,6 +352,7 @@ namespace OneMoreCalendar
 						);
 
 					e.Graphics.FillRectangle(Brushes.WhiteSmoke, box);
+					brush = Brushes.Gray;
 				}
 
 				if (day.Items.Count > 0)
@@ -357,12 +373,13 @@ namespace OneMoreCalendar
 							i == maxItems - 1 && day.Items.Count > maxItems ? box.Width - (int)moreSize.Width : box.Width,
 							itemFont.Height);
 
-						e.Graphics.DrawString(item.Title, itemFont, Brushes.Black, clip, format);
+						e.Graphics.DrawString(item.Title, itemFont, brush, clip, format);
 
 						hotspots.Add(new Hotspot
 						{
 							Clip = clip,
-							Item = item
+							Item = item,
+							InMonth = day.InMonth
 						});
 					}
 

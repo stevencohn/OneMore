@@ -12,6 +12,9 @@ namespace OneMoreCalendar
 	internal delegate void CalendarPageHandler(object sender, CalendarPageEventArgs e);
 
 
+	/// <summary>
+	/// 
+	/// </summary>
 	internal class CalendarDayEventArgs : EventArgs
 	{
 		public CalendarDayEventArgs(DateTime dayDate)
@@ -24,6 +27,9 @@ namespace OneMoreCalendar
 	}
 
 
+	/// <summary>
+	/// 
+	/// </summary>
 	internal class CalendarPageEventArgs : EventArgs
 	{
 		public CalendarPageEventArgs(CalendarItem item)
@@ -36,6 +42,9 @@ namespace OneMoreCalendar
 	}
 
 
+	/// <summary>
+	/// 
+	/// </summary>
 	internal interface ICalendarView
 	{
 		event CalendarDayHandler ClickedDay;

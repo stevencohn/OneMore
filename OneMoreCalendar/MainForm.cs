@@ -94,7 +94,8 @@ namespace OneMoreCalendar
 			var settings = new SettingsProvider();
 
 			var pages = new OneNoteProvider().GetPages(
-				startDate, endDate,
+				startDate.StartOfCalendarMonthView(),
+				endDate.EndOfCalendarView(),
 				settings.GetNotebookIDs(),
 				settings.ShowCreated, settings.ShowModified, false);
 
