@@ -11,6 +11,17 @@ namespace OneMoreCalendar
 	{
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="date"></param>
+		/// <returns></returns>
+		public static DateTime EndOfCalendarView(this DateTime date)
+		{
+			return date.StartOfCalendarMonthView().AddDays(41);
+		}
+
+
+		/// <summary>
 		/// Gets the date of the last day of the month of the given DateTime
 		/// </summary>
 		/// <param name="date">A date specifying any day of a month</param>
@@ -22,6 +33,18 @@ namespace OneMoreCalendar
 				date.Month,
 				DateTime.DaysInMonth(date.Year, date.Month))
 				.Date;
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="date"></param>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		public static bool EqualsMonth(this DateTime date, DateTime other)
+		{
+			return date.Year == other.Year && date.Month == other.Month;
 		}
 
 
@@ -49,17 +72,6 @@ namespace OneMoreCalendar
 		public static DateTime StartOfMonth(this DateTime date)
 		{
 			return new DateTime(date.Year, date.Month, 1).Date;
-		}
-
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="date"></param>
-		/// <returns></returns>
-		public static DateTime EndOfCalendarView(this DateTime date)
-		{
-			return date.StartOfCalendarMonthView().AddDays(41);
 		}
 
 

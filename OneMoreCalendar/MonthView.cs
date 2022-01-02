@@ -138,8 +138,6 @@ namespace OneMoreCalendar
 
 			// next month
 
-			var rest = 7 - days.Count % 7;
-			//for (int i = 0; i < rest ; i++)
 			while (count < 42)
 			{
 				var day = new CalendarDay { Date = runner };

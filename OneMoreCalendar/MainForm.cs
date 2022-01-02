@@ -103,8 +103,7 @@ namespace OneMoreCalendar
 
 			dateLabel.Text = startDate.ToString("MMMM yyyy");
 
-			var now = DateTime.Now;
-			nextButton.Enabled = !(startDate.Year == now.Year && startDate.Month == now.Month);
+			nextButton.Enabled = !DateTime.Now.EqualsMonth(startDate);
 		}
 
 
