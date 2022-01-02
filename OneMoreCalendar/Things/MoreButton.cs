@@ -88,17 +88,6 @@ namespace OneMoreCalendar
 		}
 
 
-		public new bool Enabled
-		{
-			get { return base.Enabled; }
-
-			set
-			{
-				base.Enabled = value;
-				OnEnabledChanged(new EventArgs());
-			}
-		}
-
 		protected override void OnEnabledChanged(EventArgs e)
 		{
 			if (Image != null)
@@ -111,7 +100,7 @@ namespace OneMoreCalendar
 				else
 				{
 					enabledImage = Image;
-					Image = Properties.Resources.settings_32.ConvertToGrayscale();
+					Image = ((Bitmap)Image).ConvertToGrayscale();
 				}
 			}
 
