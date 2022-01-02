@@ -56,6 +56,9 @@
     <Compile Include="Things\BitmapExtensions.cs" />
     <Compile Include="Things\DateTimeExtensions.cs" />
     <Compile Include="Things\GraphicsExtensions.cs" />
+    <Compile Include="Things\MoreButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Things\MouseState.cs" />
     <Compile Include="ICalendarView.cs" />
     <Compile Include="MainForm.cs">
@@ -133,6 +136,7 @@
     <Content Include="Assets\Logo.ico" />
     <Content Include="Assets\month-32.png" />
     <Content Include="Assets\settings-32.png" />
+    <Content Include="Assets\today-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

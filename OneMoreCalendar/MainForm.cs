@@ -62,6 +62,12 @@ namespace OneMoreCalendar
 		}
 
 
+		private async void ShowToday(object sender, EventArgs e)
+		{
+			await SetMonthView(0);
+		}
+
+
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Month view...
@@ -95,7 +101,10 @@ namespace OneMoreCalendar
 
 		private async Task SetMonthView(int delta)
 		{
-			var startDate = monthView.StartDate.AddMonths(delta);
+			var startDate = delta == 0 
+				? DateTime.Now.StartOfMonth() 
+				: monthView.StartDate.AddMonths(delta);
+
 			var endDate = startDate.EndOfMonth();
 			var settings = new SettingsProvider();
 

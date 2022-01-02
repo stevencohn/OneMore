@@ -13,12 +13,12 @@ namespace OneMoreCalendar
 
 		public static Bitmap ConvertToGrayscale(this Bitmap original)
 		{
-			//create a blank bitmap the same size as original
+			// blank bitmap the same size as original
 			var grayscale = new Bitmap(original.Width, original.Height);
 
 			using (var g = Graphics.FromImage(grayscale))
 			{
-				//create the grayscale ColorMatrix
+				// grayscale matrix
 				var colorMatrix = new ColorMatrix(new float[][]
 				{
 					new float[] { 0.3f,  0.3f,  0.3f,  0, 0},
@@ -32,7 +32,7 @@ namespace OneMoreCalendar
 				{
 					attributes.SetColorMatrix(colorMatrix);
 
-					//draw the original image on the new image using the grayscale color matrix
+					// redraw original image onto new image using grayscale color matrix
 					g.DrawImage(original,
 						new Rectangle(0, 0, original.Width, original.Height),
 						0, 0, original.Width, original.Height,
