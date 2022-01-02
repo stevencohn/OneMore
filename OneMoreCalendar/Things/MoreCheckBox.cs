@@ -46,7 +46,7 @@ namespace OneMoreCalendar
 			{
 				if (Enabled && (MouseState != MouseState.None || Checked))
 				{
-					var color = MouseState.HasFlag(MouseState.Pressed) || Checked
+					var color = MouseState.HasFlag(MouseState.Pushed) || Checked
 						? AppColors.PressedColor
 						: AppColors.HoverColor;
 
@@ -55,7 +55,7 @@ namespace OneMoreCalendar
 						g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
 					}
 
-					color = MouseState.HasFlag(MouseState.Pressed) || Checked
+					color = MouseState.HasFlag(MouseState.Pushed) || Checked
 						? AppColors.PressedBorder
 						: AppColors.HoverBorder;
 
@@ -127,7 +127,7 @@ namespace OneMoreCalendar
 		{
 			if (Enabled)
 			{
-				MouseState |= MouseState.Pressed;
+				MouseState |= MouseState.Pushed;
 				base.OnMouseDown(mevent);
 			}
 		}
@@ -137,7 +137,7 @@ namespace OneMoreCalendar
 		{
 			if (Enabled)
 			{
-				MouseState &= ~MouseState.Pressed;
+				MouseState &= ~MouseState.Pushed;
 				base.OnMouseUp(mevent);
 			}
 		}

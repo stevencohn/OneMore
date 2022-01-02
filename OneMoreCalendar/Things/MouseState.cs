@@ -12,6 +12,6 @@ namespace OneMoreCalendar
 	{
 		None = 0,
 		Hover = 1,
-		Pressed = 2
+		Pushed = 2
 	}
 }
