@@ -34,6 +34,12 @@ namespace OneMoreCalendar
 
 			FormBorderStyle = FormBorderStyle.None;
 			Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, Radius, Radius));
+		}
+
+
+		protected override async void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
 
 			if (!DesignMode)
 			{
@@ -42,7 +48,7 @@ namespace OneMoreCalendar
 				createdBox.Checked = provider.ShowCreated;
 				modifiedBox.Checked = provider.ShowModified;
 
-				var notebooks = provider.GetNotebooks();
+				var notebooks = await provider.GetNotebooks();
 				notebooksBox.Items.Clear();
 				foreach (var notebook in notebooks)
 				{

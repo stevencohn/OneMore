@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (one = new OneNote())
 			{
-				var hierarchy = GetHierarchy();
+				var hierarchy = await GetHierarchy();
 
 				if (token.IsCancellationRequested)
 				{
@@ -177,17 +177,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private XElement GetHierarchy()
+		private async Task<XElement> GetHierarchy()
 		{
 			XElement hierarchy;
 			switch (scope)
 			{
 				case OneNote.Scope.Notebooks: // all notebooks
-					hierarchy = one.GetNotebooks(OneNote.Scope.Pages);
+					hierarchy = await one.GetNotebooks(OneNote.Scope.Pages);
 					break;
 
 				case OneNote.Scope.Sections: // all sectios in current notebook
-					hierarchy = one.GetNotebook(OneNote.Scope.Pages);
+					hierarchy = await one.GetNotebook(OneNote.Scope.Pages);
 					break;
 
 				default: // current section

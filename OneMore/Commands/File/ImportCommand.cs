@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var one = new OneNote())
 				{
-					var section = one.CreateSection(Path.GetFileNameWithoutExtension(filepath));
+					var section = await one.CreateSection(Path.GetFileNameWithoutExtension(filepath));
 					var sectionId = section.Attribute("ID").Value;
 					var ns = one.GetNamespace(section);
 

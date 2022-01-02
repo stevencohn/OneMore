@@ -6,6 +6,7 @@ namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
 	using System;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
@@ -40,8 +41,13 @@ namespace OneMoreCalendar
 			monthView.HoverPage += ShowPageStatus;
 
 			contentPanel.Controls.Add(monthView);
+		}
 
-			SetMonthView(0);
+
+		protected override async void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			await SetMonthView(0);
 		}
 
 
@@ -77,26 +83,26 @@ namespace OneMoreCalendar
 		}
 
 
-		private void GotoPrevious(object sender, EventArgs e)
+		private async void GotoPrevious(object sender, EventArgs e)
 		{
-			SetMonthView(-1);
+			await SetMonthView(-1);
 		}
 
-		private void GotoNext(object sender, EventArgs e)
+		private async void GotoNext(object sender, EventArgs e)
 		{
-			SetMonthView(1);
+			await SetMonthView(1);
 		}
 
-		private void SetMonthView(int delta)
+		private async Task SetMonthView(int delta)
 		{
 			var startDate = monthView.StartDate.AddMonths(delta);
 			var endDate = startDate.EndOfMonth();
 			var settings = new SettingsProvider();
 
-			var pages = new OneNoteProvider().GetPages(
+			var pages = await new OneNoteProvider().GetPages(
 				startDate.StartOfCalendarMonthView(),
 				endDate.EndOfCalendarView(),
-				settings.GetNotebookIDs(),
+				await settings.GetNotebookIDs(),
 				settings.ShowCreated, settings.ShowModified, false);
 
 			monthView.SetRange(startDate, endDate, pages);
@@ -181,13 +187,13 @@ namespace OneMoreCalendar
 			settingsForm = null;
 		}
 
-		private void ClosingSettings(object sender, FormClosingEventArgs e)
+		private async void ClosingSettings(object sender, FormClosingEventArgs e)
 		{
 			settingsButton.Checked = false;
 
 			if (settingsForm.DialogResult == DialogResult.OK)
 			{
-				SetMonthView(0);
+				await SetMonthView(0);
 			}
 		}
 

@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 				bookScope = scope == "notebook";
 
 				hierarchy = bookScope
-					? one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Pages)
+					? await one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Pages)
 					: one.GetSection(one.CurrentSectionId);
 
 				var ns = one.GetNamespace(hierarchy);

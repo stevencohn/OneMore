@@ -257,12 +257,12 @@ namespace River.OneMoreAddIn
 			XElement container;
 			if (scope == Scope.Notebooks)
 			{
-				container = GetNotebooks(Scope.Pages);
+				container = await GetNotebooks(Scope.Pages);
 			}
 			else if (scope == Scope.Sections || scope == Scope.Pages)
 			{
 				// get the notebook even if scope if Pages so we can infer the full path
-				container = GetNotebook(Scope.Pages);
+				container = await GetNotebook(Scope.Pages);
 			}
 			else
 			{
@@ -460,10 +460,10 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="name">The name of the new section</param>
 		/// <returns>The Section element</returns>
-		public XElement CreateSection(string name)
+		public async Task<XElement> CreateSection(string name)
 		{
 			// find the current section in this notebook (may be in section group)
-			var notebook = GetNotebook();
+			var notebook = await GetNotebook();
 			var ns = GetNamespace(notebook);
 			var current = notebook.Descendants(ns + "Section")
 				.FirstOrDefault(e => e.Attribute("isCurrentlyViewed")?.Value == "true");
@@ -579,9 +579,9 @@ namespace River.OneMoreAddIn
 		/// Gets the current notebook with a hierarchy of sections
 		/// </summary>
 		/// <returns>A Notebook element with Section children</returns>
-		public XElement GetNotebook(Scope scope = Scope.Sections)
+		public async Task<XElement> GetNotebook(Scope scope = Scope.Sections)
 		{
-			return GetNotebook(CurrentNotebookId, scope);
+			return await GetNotebook(CurrentNotebookId, scope);
 		}
 
 
@@ -590,18 +590,25 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="id">The ID of the notebook</param>
 		/// <returns>A Notebook element with Section children</returns>
-		public XElement GetNotebook(string id, Scope scope = Scope.Sections)
+		public async Task<XElement> GetNotebook(string id, Scope scope = Scope.Sections)
 		{
-			if (!string.IsNullOrEmpty(id))
+			if (string.IsNullOrEmpty(id))
+			{
+				return null;
+			}
+
+			XElement root = null;
+
+			await InvokeWithRetry(() =>
 			{
 				onenote.GetHierarchy(id, (HierarchyScope)scope, out var xml, XMLSchema.xs2013);
 				if (!string.IsNullOrEmpty(xml))
 				{
-					return XElement.Parse(xml);
+					root = XElement.Parse(xml);
 				}
-			}
+			});
 
-			return null;
+			return root;
 		}
 
 
@@ -609,18 +616,22 @@ namespace River.OneMoreAddIn
 		/// Gets a root note containing Notebook elements
 		/// </summary>
 		/// <returns>A Notebooks element with Notebook children</returns>
-		public XElement GetNotebooks(Scope scope = Scope.Notebooks)
+		public async Task<XElement> GetNotebooks(Scope scope = Scope.Notebooks)
 		{
-			// find the ID of the current notebook
-			onenote.GetHierarchy(
+			XElement root = null;
+
+			await InvokeWithRetry(() =>
+			{
+				onenote.GetHierarchy(
 				string.Empty, (HierarchyScope)scope, out var xml, XMLSchema.xs2013);
 
-			if (!string.IsNullOrEmpty(xml))
-			{
-				return XElement.Parse(xml);
-			}
+				if (!string.IsNullOrEmpty(xml))
+				{
+					root = XElement.Parse(xml);
+				}
+			});
 
-			return null;
+			return root;
 		}
 
 

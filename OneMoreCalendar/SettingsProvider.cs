@@ -9,6 +9,7 @@ namespace OneMoreCalendar
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -63,12 +64,6 @@ namespace OneMoreCalendar
 					notebooks = new XElement("notebooks");
 					root.Add(notebooks);
 				}
-
-				var books = new OneNoteProvider().GetNotebooks();
-				foreach (var book in books)
-				{
-					notebooks.Add(new XElement("notebook", book.ID));
-				}
 			}
 		}
 
@@ -80,12 +75,12 @@ namespace OneMoreCalendar
 			root.Elements("filters").Elements("modified").Any(e => e.Value.Equals("true"));
 
 
-		public IEnumerable<string> GetNotebookIDs()
+		public async Task<IEnumerable<string>> GetNotebookIDs()
 		{
 			var ids = root.Elements("notebooks").Elements("notebook").Select(e => e.Value);
 			if (!ids.Any())
 			{
-				var books = new OneNoteProvider().GetNotebooks();
+				var books = await new OneNoteProvider().GetNotebooks();
 				ids = books.Select(b => b.ID).ToList();
 			}
 
@@ -93,14 +88,14 @@ namespace OneMoreCalendar
 		}
 
 
-		public IEnumerable<Notebook> GetNotebooks()
+		public async Task<IEnumerable<Notebook>> GetNotebooks()
 		{
 			var notebooks = new List<Notebook>();
 
 			var provider = new SettingsProvider();
-			var ids = provider.GetNotebookIDs();
+			var ids = await provider.GetNotebookIDs();
 
-			var books = new OneNoteProvider().GetNotebooks();
+			var books = await new OneNoteProvider().GetNotebooks();
 			foreach (var book in books)
 			{
 				book.Checked = ids.Contains(book.ID);

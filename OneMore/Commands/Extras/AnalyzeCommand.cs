@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 					progress.Show(owner);
 
 					var container = page.EnsureContentContainer();
-					var notebooks = one.GetNotebooks();
+					var notebooks = await one.GetNotebooks();
 
 					var prev = false;
 
@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 							WriteHorizontalLine(page, container);
 						}
 
-						ReportSections(container, notebooks);
+						await ReportSections(container, notebooks);
 						prev = true;
 					}
 
@@ -132,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 							WriteHorizontalLine(page, container);
 						}
 
-						ReportAllPages(container, one.GetNotebook(), null, pageId);
+						ReportAllPages(container, await one.GetNotebook(), null, pageId);
 					}
 
 					progress.SetMessage("Updating report...");
@@ -337,7 +337,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void ReportSections(XElement container, XElement notebooks)
+		private async Task ReportSections(XElement container, XElement notebooks)
 		{
 			progress.SetMessage("Sections...");
 			progress.Increment();
@@ -373,7 +373,7 @@ namespace River.OneMoreAddIn.Commands
 				row[2].SetContent(new Paragraph("# of Copies").SetStyle(HeaderCss).SetAlignment("center"));
 				row[3].SetContent(new Paragraph("Total Size").SetStyle(HeaderCss).SetAlignment("center"));
 
-				var notebook = one.GetNotebook(book.Attribute("ID").Value);
+				var notebook = await one.GetNotebook(book.Attribute("ID").Value);
 
 				var total = ReportSections(table, notebook, null);
 

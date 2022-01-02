@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote())
 			{
-				var notebook = one.GetNotebook();
+				var notebook = await one.GetNotebook();
 				if (notebook != null)
 				{
 					pattern = new Regex(@"^(\(\d+\)\s).+");

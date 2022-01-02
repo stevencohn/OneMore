@@ -30,14 +30,14 @@ namespace OneMoreCalendar
 		/// <param name="modified"></param>
 		/// <param name="deleted"></param>
 		/// <returns></returns>
-		public CalendarItems GetPages(
+		public async Task<CalendarItems> GetPages(
 			DateTime startDate, DateTime endDate,
 			IEnumerable<string> notebookIDs,
 			bool created, bool modified, bool deleted)
 		{
 			using (one = new OneNote())
 			{
-				var notebooks = GetNotebooks(notebookIDs);
+				var notebooks = await GetNotebooks(notebookIDs);
 				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				// filter to selected month...
@@ -74,16 +74,16 @@ namespace OneMoreCalendar
 		}
 
 
-		private XElement GetNotebooks(IEnumerable<string> ids)
+		private async Task<XElement> GetNotebooks(IEnumerable<string> ids)
 		{
 			// attempt optimal ways to load...
 
 			if (!ids.Any())
 			{
-				return one.GetNotebooks(OneNote.Scope.Pages);
+				return await one.GetNotebooks(OneNote.Scope.Pages);
 			}
 
-			var notebooks = one.GetNotebooks();
+			var notebooks = await one.GetNotebooks();
 			var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 			if (ids.Count() == notebooks.Elements(ns + "Notebook").Count())
 			{
@@ -93,7 +93,7 @@ namespace OneMoreCalendar
 
 				if (found == ids.Count())
 				{
-					return one.GetNotebooks(OneNote.Scope.Pages);
+					return await one.GetNotebooks(OneNote.Scope.Pages);
 				}
 			}
 
@@ -112,11 +112,11 @@ namespace OneMoreCalendar
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public IEnumerable<Notebook> GetNotebooks()
+		public async Task<IEnumerable<Notebook>> GetNotebooks()
 		{
 			using (one = new OneNote())
 			{
-				var notebooks = one.GetNotebooks();
+				var notebooks = await one.GetNotebooks();
 				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				return notebooks.Elements(ns + "Notebook")

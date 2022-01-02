@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					// source folder will be in current notebook
-					var notebook = one.GetNotebook(OneNote.Scope.Pages);
+					var notebook = await one.GetNotebook(OneNote.Scope.Pages);
 					var ns = one.GetNamespace(notebook);
 
 					// use current page to ascend back to closest folder to handle nesting...

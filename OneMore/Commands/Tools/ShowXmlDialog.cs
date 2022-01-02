@@ -337,7 +337,7 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Tabs
 
-		private void ChangeSelectedTab(object sender, EventArgs e)
+		private async void ChangeSelectedTab(object sender, EventArgs e)
 		{
 			if (tabs.SelectedIndex == 0)
 			{
@@ -351,7 +351,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (hierBox.TextLength == 0)
 				{
-					ShowHierarchy(one.GetNotebooks(), "one.GetNotebooks()");
+					ShowHierarchy(await one.GetNotebooks(), "one.GetNotebooks()");
 				}
 
 				pageBox.Select(0, 0);
@@ -363,21 +363,21 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void GetNotebooks(object sender, EventArgs e)
+		private async void GetNotebooks(object sender, EventArgs e)
 		{
-			ShowHierarchy(one.GetNotebooks(), "one.GetNotebooks()");
+			ShowHierarchy(await one.GetNotebooks(), "one.GetNotebooks()");
 		}
 
 
-		private void GetNotebook(object sender, EventArgs e)
+		private async void GetNotebook(object sender, EventArgs e)
 		{
-			ShowHierarchy(one.GetNotebook(), "one.GetNotebook()");
+			ShowHierarchy(await one.GetNotebook(), "one.GetNotebook()");
 		}
 
 
-		private void GetSection(object sender, EventArgs e)
+		private async void GetSection(object sender, EventArgs e)
 		{
-			ShowHierarchy(one.GetNotebook(OneNote.Scope.Pages),
+			ShowHierarchy(await one.GetNotebook(OneNote.Scope.Pages),
 				"one.GetNotebook(OneNote.Scope.Pages)");
 		}
 
@@ -414,7 +414,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void RunManual(object sender, EventArgs e)
+		private async void RunManual(object sender, EventArgs e)
 		{
 			try
 			{
@@ -423,7 +423,7 @@ namespace River.OneMoreAddIn.Commands
 				switch (manualFxBox.SelectedIndex)
 				{
 					case 0:
-						content = one.GetNotebook(manualIdBox.Text, OneNote.Scope.Pages);
+						content = await one.GetNotebook(manualIdBox.Text, OneNote.Scope.Pages);
 						break;
 
 					case 1:
