@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,7 +51,11 @@
   <ItemGroup>
     <Compile Include="CalendarDay.cs" />
     <Compile Include="CalendarItem.cs" />
-    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="Things\AppColors.cs" />
+    <Compile Include="Things\BitmapExtensions.cs" />
+    <Compile Include="Things\DateTimeExtensions.cs" />
+    <Compile Include="Things\GraphicsExtensions.cs" />
+    <Compile Include="Things\MouseState.cs" />
     <Compile Include="ICalendarView.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -62,10 +69,10 @@
     <Compile Include="MonthView.Designer.cs">
       <DependentUpon>MonthView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MoreCheckBox.cs">
+    <Compile Include="Things\MoreCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MoreCheckedListBox.cs">
+    <Compile Include="Things\MoreCheckedListBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="NavigationButton.cs">
@@ -96,6 +103,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
@@ -120,9 +128,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="day-32.png" />
-    <Content Include="month-32.png" />
-    <Content Include="settings-32.png" />
+    <Content Include="Assets\day-32.png" />
+    <Content Include="Assets\Logo.ico" />
+    <Content Include="Assets\month-32.png" />
+    <Content Include="Assets\settings-32.png" />
+    <Content Include="Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

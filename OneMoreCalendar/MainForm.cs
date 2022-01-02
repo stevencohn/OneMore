@@ -152,9 +152,9 @@ namespace OneMoreCalendar
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Dealing with the settings form...
 
-		private void ShowSettings(object sender, EventArgs e)
+		private void ToggleSettings(object sender, EventArgs e)
 		{
-			if (settingsForm == null)
+			if (settingsButton.Checked)
 			{
 				settingsForm = new SettingsForm();
 				var location = PointToScreen(settingsButton.Location);
@@ -170,8 +170,6 @@ namespace OneMoreCalendar
 				settingsForm.FormClosing -= ClosingSettings;
 				settingsForm.FormClosed -= ClosedSettings;
 				settingsForm.Close();
-				settingsForm.Dispose();
-				settingsForm = null;
 			}
 		}
 

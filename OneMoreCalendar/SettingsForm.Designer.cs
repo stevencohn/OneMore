@@ -63,8 +63,7 @@
 			// 
 			// settingsPanel
 			// 
-			this.settingsPanel.BackColor = System.Drawing.SystemColors.Window;
-			this.settingsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.settingsPanel.BackColor = System.Drawing.Color.Transparent;
 			this.settingsPanel.Controls.Add(this.okButton);
 			this.settingsPanel.Controls.Add(this.cancelButton);
 			this.settingsPanel.Controls.Add(this.notebooksBox);
@@ -117,17 +116,19 @@
 			// createdBox
 			// 
 			this.createdBox.AutoSize = true;
+			this.createdBox.BackColor = System.Drawing.Color.White;
 			this.createdBox.Location = new System.Drawing.Point(48, 72);
 			this.createdBox.Name = "createdBox";
 			this.createdBox.Size = new System.Drawing.Size(114, 24);
 			this.createdBox.TabIndex = 5;
 			this.createdBox.Text = "Created on";
-			this.createdBox.UseVisualStyleBackColor = true;
+			this.createdBox.UseVisualStyleBackColor = false;
 			this.createdBox.CheckedChanged += new System.EventHandler(this.ChangeFilter);
 			// 
 			// modifiedBox
 			// 
 			this.modifiedBox.AutoSize = true;
+			this.modifiedBox.BackColor = System.Drawing.Color.White;
 			this.modifiedBox.Checked = true;
 			this.modifiedBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.modifiedBox.Location = new System.Drawing.Point(48, 102);
@@ -135,13 +136,14 @@
 			this.modifiedBox.Size = new System.Drawing.Size(152, 24);
 			this.modifiedBox.TabIndex = 6;
 			this.modifiedBox.Text = "Last modified on";
-			this.modifiedBox.UseVisualStyleBackColor = true;
+			this.modifiedBox.UseVisualStyleBackColor = false;
 			this.modifiedBox.CheckedChanged += new System.EventHandler(this.ChangeFilter);
 			// 
 			// SettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(518, 450);
 			this.Controls.Add(this.settingsPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

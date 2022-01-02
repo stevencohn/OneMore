@@ -32,16 +32,16 @@
 			this.topPanel = new System.Windows.Forms.Panel();
 			this.monthButton = new System.Windows.Forms.RadioButton();
 			this.dayButton = new System.Windows.Forms.RadioButton();
-			this.settingsButton = new System.Windows.Forms.CheckBox();
+			this.settingsButton = new OneMoreCalendar.MoreCheckBox();
+			this.nextButton = new OneMoreCalendar.NavigationButton();
+			this.prevButton = new OneMoreCalendar.NavigationButton();
 			this.dateLabel = new System.Windows.Forms.Label();
 			this.contentPanel = new System.Windows.Forms.Panel();
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.statusCreatedLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusSpringLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.statusCreatedLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusModifiedLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.nextButton = new OneMoreCalendar.NavigationButton();
-			this.prevButton = new OneMoreCalendar.NavigationButton();
 			this.topPanel.SuspendLayout();
 			this.statusStrip.SuspendLayout();
 			this.SuspendLayout();
@@ -102,20 +102,45 @@
 			// 
 			this.settingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.settingsButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.settingsButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.settingsButton.FlatAppearance.BorderSize = 0;
-			this.settingsButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(218)))), ((int)(((byte)(238)))));
-			this.settingsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(218)))), ((int)(((byte)(238)))));
-			this.settingsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(237)))), ((int)(((byte)(247)))));
 			this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.settingsButton.Image = ((System.Drawing.Image)(resources.GetObject("settingsButton.Image")));
+			this.settingsButton.Image = global::OneMoreCalendar.Properties.Resources.settings_32;
 			this.settingsButton.Location = new System.Drawing.Point(902, 12);
 			this.settingsButton.Name = "settingsButton";
 			this.settingsButton.Size = new System.Drawing.Size(64, 64);
 			this.settingsButton.TabIndex = 4;
-			this.settingsButton.TabStop = false;
-			this.settingsButton.UseVisualStyleBackColor = true;
-			this.settingsButton.Click += new System.EventHandler(this.ShowSettings);
+			this.settingsButton.CheckedChanged += new System.EventHandler(this.ToggleSettings);
+			// 
+			// nextButton
+			// 
+			this.nextButton.Direction = System.Windows.Forms.ArrowDirection.Right;
+			this.nextButton.Enabled = false;
+			this.nextButton.FlatAppearance.BorderSize = 0;
+			this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.nextButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
+			this.nextButton.Location = new System.Drawing.Point(44, 17);
+			this.nextButton.Name = "nextButton";
+			this.nextButton.Size = new System.Drawing.Size(31, 54);
+			this.nextButton.TabIndex = 2;
+			this.nextButton.Text = ">";
+			this.nextButton.UseVisualStyleBackColor = true;
+			this.nextButton.Click += new System.EventHandler(this.GotoNext);
+			// 
+			// prevButton
+			// 
+			this.prevButton.Direction = System.Windows.Forms.ArrowDirection.Left;
+			this.prevButton.FlatAppearance.BorderSize = 0;
+			this.prevButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.prevButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
+			this.prevButton.Location = new System.Drawing.Point(12, 17);
+			this.prevButton.Name = "prevButton";
+			this.prevButton.Size = new System.Drawing.Size(31, 54);
+			this.prevButton.TabIndex = 1;
+			this.prevButton.Text = "<";
+			this.prevButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.prevButton.UseVisualStyleBackColor = true;
+			this.prevButton.Click += new System.EventHandler(this.GotoPrevious);
 			// 
 			// dateLabel
 			// 
@@ -158,6 +183,12 @@
 			this.statusLabel.Size = new System.Drawing.Size(136, 25);
 			this.statusLabel.Text = "page-path-here";
 			// 
+			// statusSpringLabel
+			// 
+			this.statusSpringLabel.Name = "statusSpringLabel";
+			this.statusSpringLabel.Size = new System.Drawing.Size(613, 25);
+			this.statusSpringLabel.Spring = true;
+			// 
 			// statusCreatedLabel
 			// 
 			this.statusCreatedLabel.Margin = new System.Windows.Forms.Padding(0, 4, 30, 3);
@@ -165,50 +196,12 @@
 			this.statusCreatedLabel.Size = new System.Drawing.Size(77, 25);
 			this.statusCreatedLabel.Text = "Created:";
 			// 
-			// statusSpringLabel
-			// 
-			this.statusSpringLabel.Name = "statusSpringLabel";
-			this.statusSpringLabel.Size = new System.Drawing.Size(567, 25);
-			this.statusSpringLabel.Spring = true;
-			// 
 			// statusModifiedLabel
 			// 
 			this.statusModifiedLabel.Margin = new System.Windows.Forms.Padding(0, 4, 10, 3);
 			this.statusModifiedLabel.Name = "statusModifiedLabel";
 			this.statusModifiedLabel.Size = new System.Drawing.Size(88, 25);
 			this.statusModifiedLabel.Text = "Modified:";
-			// 
-			// nextButton
-			// 
-			this.nextButton.Direction = System.Windows.Forms.ArrowDirection.Right;
-			this.nextButton.Enabled = false;
-			this.nextButton.FlatAppearance.BorderSize = 0;
-			this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.nextButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.nextButton.Location = new System.Drawing.Point(44, 17);
-			this.nextButton.Name = "nextButton";
-			this.nextButton.Size = new System.Drawing.Size(31, 54);
-			this.nextButton.TabIndex = 2;
-			this.nextButton.Text = ">";
-			this.nextButton.UseVisualStyleBackColor = true;
-			this.nextButton.Click += new System.EventHandler(this.GotoNext);
-			// 
-			// prevButton
-			// 
-			this.prevButton.Direction = System.Windows.Forms.ArrowDirection.Left;
-			this.prevButton.FlatAppearance.BorderSize = 0;
-			this.prevButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.prevButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.prevButton.Location = new System.Drawing.Point(12, 17);
-			this.prevButton.Name = "prevButton";
-			this.prevButton.Size = new System.Drawing.Size(31, 54);
-			this.prevButton.TabIndex = 1;
-			this.prevButton.Text = "<";
-			this.prevButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.prevButton.UseVisualStyleBackColor = true;
-			this.prevButton.Click += new System.EventHandler(this.GotoPrevious);
 			// 
 			// MainForm
 			// 
@@ -239,7 +232,7 @@
 		private System.Windows.Forms.Label dateLabel;
 		private NavigationButton nextButton;
 		private NavigationButton prevButton;
-		private System.Windows.Forms.CheckBox settingsButton;
+		private MoreCheckBox settingsButton;
 		private System.Windows.Forms.RadioButton monthButton;
 		private System.Windows.Forms.RadioButton dayButton;
 		private System.Windows.Forms.StatusStrip statusStrip;

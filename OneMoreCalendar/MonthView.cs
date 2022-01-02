@@ -26,7 +26,6 @@ namespace OneMoreCalendar
 		private const string HeadBackColor = "#FFF4E8F3";
 		private const string TodayHeadColor = "#FFD6A6D3";
 		private const string MoreGlyph = "⏷"; // \u23F7
-		private const int Weeks = 6;
 
 		private readonly IntPtr hand;
 		private readonly Font itemFont;
@@ -36,6 +35,7 @@ namespace OneMoreCalendar
 		private readonly List<Hotspot> hotspots;
 		private Hotspot hotspot;
 		private int dowOffset;
+		private int weeks;
 
 		private DateTime date;
 		private CalendarDays days;
@@ -102,7 +102,6 @@ namespace OneMoreCalendar
 				: first == DayOfWeek.Sunday ? 6 : (int)first - 1;
 
 			var runner = date.Date;
-			var count = 0;
 
 			// previous month
 
@@ -118,7 +117,6 @@ namespace OneMoreCalendar
 
 					days.Add(day);
 					runner = runner.AddDays(1.0);
-					count++;
 				}
 			}
 
@@ -133,21 +131,23 @@ namespace OneMoreCalendar
 
 				days.Add(day);
 				runner = runner.AddDays(1.0);
-				count++;
 			}
 
 			// next month
 
-			while (count < 42)
+			var rest = 7 - days.Count % 7;
+			if (rest < 7)
 			{
-				var day = new CalendarDay { Date = runner };
+				for (int i = 0; i < rest; i++)
+				{
+					var day = new CalendarDay { Date = runner };
 
-				var pp = items.Where(p => p.Modified.Date.Equals(runner));
-				pp.ForEach(p => day.Items.Add(p));
+					var pp = items.Where(p => p.Modified.Date.Equals(runner));
+					pp.ForEach(p => day.Items.Add(p));
 
-				days.Add(day);
-				runner = runner.AddDays(1.0);
-				count++;
+					days.Add(day);
+					runner = runner.AddDays(1.0);
+				}
 			}
 		}
 
@@ -284,8 +284,9 @@ namespace OneMoreCalendar
 
 			// horizontal lines...
 
-			var dayHeight = (Height - dowOffset) / Weeks;
-			for (int i = 1; i < Weeks; i++)
+			weeks = days.Count / 7;
+			var dayHeight = (Height - dowOffset) / weeks;
+			for (int i = 1; i < weeks; i++)
 			{
 				e.Graphics.DrawLine(pen,
 					0, i * dayHeight + dowOffset,
@@ -301,7 +302,7 @@ namespace OneMoreCalendar
 		private void PaintDays(PaintEventArgs e)
 		{
 			var dayWidth = Width / 7;
-			var dayHeight = (Height - dowOffset) / Weeks;
+			var dayHeight = (Height - dowOffset) / weeks;
 			var row = 0;
 			var col = 0;
 

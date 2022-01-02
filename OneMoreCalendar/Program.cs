@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿//************************************************************************************************
+// Copyright © 2021 Steven M. Cohn. All Rights Reserved.
+//************************************************************************************************
 
 namespace OneMoreCalendar
 {
+	using River.OneMoreAddIn;
+	using System;
+	using System.Windows.Forms;
+
+
 	internal static class Program
 	{
 		/// <summary>
@@ -14,6 +17,9 @@ namespace OneMoreCalendar
 		[STAThread]
 		static void Main()
 		{
+			Logger.SetApplication("OneMoreCalendar");
+			Logger.Current.WriteLine("Startup");
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
