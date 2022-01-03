@@ -19,7 +19,7 @@ namespace OneMoreCalendar
 		{
 			public Rectangle Clip;
 			public DateTime Date;
-			public CalendarItem Item;
+			public CalendarPage Item;
 			public bool InMonth;
 		}
 
@@ -63,16 +63,11 @@ namespace OneMoreCalendar
 		}
 
 
-		public MonthView(DateTime date, CalendarItems items)
+		public MonthView(DateTime date, CalendarPages items)
 			: this()
 		{
 			SetRange(date, date, items);
 		}
-
-
-		public DateTime StartDate => date;
-
-		public DateTime EndDate => date.EndOfMonth();
 
 
 		public event CalendarDayHandler ClickedDay;
@@ -82,7 +77,7 @@ namespace OneMoreCalendar
 		public event CalendarPageHandler ClickedPage;
 
 
-		public void SetRange(DateTime startDate, DateTime endDate, CalendarItems items)
+		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages items)
 		{
 			date = startDate.StartOfMonth();
 
@@ -93,7 +88,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private void MakeDayList(CalendarItems items)
+		private void MakeDayList(CalendarPages items)
 		{
 			days = new CalendarDays();
 

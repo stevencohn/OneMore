@@ -12,7 +12,10 @@ namespace OneMoreCalendar
 
 	public partial class MainForm : Form
 	{
-		private readonly MonthView monthView;
+		private DateTime date;
+		private CalendarPages pages;
+
+		private MonthView monthView;
 		private DayView dayView;
 		private SettingsForm settingsForm;
 		private FormWindowState? winstate = null;
@@ -28,6 +31,12 @@ namespace OneMoreCalendar
 
 			Width = 1500;
 			Height = 1000;
+		}
+
+
+		protected override async void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
 
 			monthView = new MonthView
 			{
@@ -42,91 +51,81 @@ namespace OneMoreCalendar
 			monthView.HoverPage += ShowPageStatus;
 
 			contentPanel.Controls.Add(monthView);
+
+			await SetMonth(0);
 		}
 
 
-		protected override async void OnLoad(EventArgs e)
+		private async Task SetMonth(int delta)
 		{
-			base.OnLoad(e);
-			await SetMonthView(0);
+			date = delta == 0
+				? DateTime.Now.StartOfMonth()
+				: date.AddMonths(delta);
+
+			var endDate = date.EndOfMonth();
+
+			DateTime viewStart, viewEnd;
+			if (dayButton.Checked)
+			{
+				viewStart = date;
+				viewEnd = date.EndOfMonth();
+			}
+			else
+			{
+				viewStart = date.StartOfCalendarMonthView();
+				viewEnd = date.EndOfCalendarView();
+			}
+
+			var settings = new SettingsProvider();
+
+			pages = await new OneNoteProvider().GetPages(
+				viewStart,
+				viewEnd,
+				await settings.GetNotebookIDs(),
+				settings.Created, settings.Modified, false);
+
+			if (monthButton.Checked)
+			{
+				monthView.SetRange(date, endDate, pages);
+			}
+			else
+			{
+				dayView.SetRange(date, endDate, pages);
+			}
+
+			dateLabel.Text = date.ToString("MMMM yyyy");
+
+			nextButton.Enabled = todayButton.Enabled = !DateTime.Now.EqualsMonth(date);
 		}
 
 
+		/// <summary>
+		/// Respond to the day/month view buttons
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void ChangeView(object sender, EventArgs e)
 		{
 			if (sender == monthButton)
 			{
 				contentPanel.Controls.Remove(dayView);
 				contentPanel.Controls.Add(monthView);
+
+				monthView.SetRange(date.StartOfCalendarMonthView(), date.EndOfCalendarView(), pages);
 			}
 			else
 			{
-				ShowDayView(sender, new CalendarDayEventArgs(monthView.StartDate));
+				ShowDayView(sender, new CalendarDayEventArgs(date));
 			}
 		}
 
 
-		private async void ShowToday(object sender, EventArgs e)
-		{
-			await SetMonthView(0);
-		}
-
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// Month view...
-
-		private void ShowPageStatus(object sender, CalendarPageEventArgs e)
-		{
-			if (e.Item != null)
-			{
-				statusLabel.Text = $"{e.Item.Path} > {e.Item.Title}";
-				statusCreatedLabel.Text = $"Created: {e.Item.Created.ToShortFriendlyString()}";
-				statusModifiedLabel.Text = $"Modified: {e.Item.Modified.ToShortFriendlyString()}";
-			}
-			else
-			{
-				statusLabel.Text = string.Empty;
-				statusCreatedLabel.Text = string.Empty;
-				statusModifiedLabel.Text = string.Empty;
-			}
-		}
-
-
-		private async void GotoPrevious(object sender, EventArgs e)
-		{
-			await SetMonthView(-1);
-		}
-
-		private async void GotoNext(object sender, EventArgs e)
-		{
-			await SetMonthView(1);
-		}
-
-		private async Task SetMonthView(int delta)
-		{
-			var startDate = delta == 0 
-				? DateTime.Now.StartOfMonth() 
-				: monthView.StartDate.AddMonths(delta);
-
-			var endDate = startDate.EndOfMonth();
-			var settings = new SettingsProvider();
-
-			var pages = await new OneNoteProvider().GetPages(
-				startDate.StartOfCalendarMonthView(),
-				endDate.EndOfCalendarView(),
-				await settings.GetNotebookIDs(),
-				settings.ShowCreated, settings.ShowModified, false);
-
-			monthView.SetRange(startDate, endDate, pages);
-
-			dateLabel.Text = startDate.ToString("MMMM yyyy");
-
-			nextButton.Enabled = todayButton.Enabled = !DateTime.Now.EqualsMonth(startDate);
-		}
-
-
-		private void ShowDayView(object sender, CalendarDayEventArgs e)
+		/// <summary>
+		/// Respond to the monthView Day header to show daily details
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private async void ShowDayView(object sender, CalendarDayEventArgs e)
 		{
 			contentPanel.Controls.Remove(monthView);
 
@@ -139,43 +138,98 @@ namespace OneMoreCalendar
 					Name = "dayView",
 					TabIndex = 0
 				};
+
+				dayView.HoverPage += ShowPageStatus;
 			}
 
+			var endDate = date.EndOfMonth();
+			var settings = new SettingsProvider();
+
+			pages = await new OneNoteProvider().GetPages(
+				date, endDate,
+				await settings.GetNotebookIDs(),
+				settings.Created, settings.Modified, false);
+
+			dayView.SetRange(date, endDate, pages);
 			contentPanel.Controls.Add(dayView);
+		}
+
+
+		/// <summary>
+		/// Respond to the previous button
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private async void GotoPrevious(object sender, EventArgs e)
+		{
+			await SetMonth(-1);
+		}
+
+
+		/// <summary>
+		/// Respond to the next button
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private async void GotoNext(object sender, EventArgs e)
+		{
+			await SetMonth(1);
+		}
+
+
+		/// <summary>
+		/// Respond to the Today button
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private async void ShowToday(object sender, EventArgs e)
+		{
+			await SetMonth(0);
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Month view...
+
+		private void ShowPageStatus(object sender, CalendarPageEventArgs e)
+		{
+			if (e.Page != null)
+			{
+				statusLabel.Text = $"{e.Page.Path} > {e.Page.Title}";
+				statusCreatedLabel.Text = $"Created: {e.Page.Created.ToShortFriendlyString()}";
+				statusModifiedLabel.Text = $"Modified: {e.Page.Modified.ToShortFriendlyString()}";
+			}
+			else
+			{
+				statusLabel.Text = string.Empty;
+				statusCreatedLabel.Text = string.Empty;
+				statusModifiedLabel.Text = string.Empty;
+			}
 		}
 
 
 		private async void NavigateToPage(object sender, CalendarPageEventArgs e)
 		{
-			await new OneNoteProvider().NavigateTo(e.Item.PageID);
+			await new OneNoteProvider().NavigateTo(e.Page.PageID);
 		}
 
 
-
-		protected override bool IsInputKey(Keys keyData)
-		{
-			switch (keyData)
-			{
-				case Keys.Right:
-				case Keys.Left:
-				case Keys.Up:
-				case Keys.Down:
-					return true;
-			}
-			return base.IsInputKey(keyData);
-		}
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
 			base.OnKeyDown(e);
-			if (e.KeyCode == Keys.Left || e.KeyCode == Keys.PageUp)
+
+			if (monthButton.Checked)
 			{
-				GotoPrevious(this, e);
-			}
-			else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.PageDown)
-			{
-				if (nextButton.Enabled)
+				if (e.KeyCode == Keys.PageUp)
 				{
-					GotoNext(this, e);
+					GotoPrevious(this, e);
+				}
+				else if (e.KeyCode == Keys.PageDown)
+				{
+					if (nextButton.Enabled)
+					{
+						GotoNext(this, e);
+					}
 				}
 			}
 		}
@@ -219,10 +273,13 @@ namespace OneMoreCalendar
 
 			if (settingsForm.DialogResult == DialogResult.OK)
 			{
-				await SetMonthView(0);
+				await SetMonth(0);
 			}
 		}
 
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Basic window management...
 
 		protected override void OnMove(EventArgs e)
 		{

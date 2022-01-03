@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalendarDay.cs" />
-    <Compile Include="CalendarItem.cs" />
+    <Compile Include="CalendarPage.cs" />
     <Compile Include="DayView.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -45,8 +45,8 @@ namespace OneMoreCalendar
 			{
 				var provider = new SettingsProvider();
 
-				createdBox.Checked = provider.ShowCreated;
-				modifiedBox.Checked = provider.ShowModified;
+				createdBox.Checked = provider.Created;
+				modifiedBox.Checked = provider.Modified;
 
 				var notebooks = await provider.GetNotebooks();
 				notebooksBox.Items.Clear();
@@ -117,7 +117,7 @@ namespace OneMoreCalendar
 		private void Apply(object sender, EventArgs e)
 		{
 			var provider = new SettingsProvider();
-			provider.SetFilter(createdBox.Checked, modifiedBox.Checked);
+			provider.SetFilter(createdBox.Checked, modifiedBox.Checked, false);
 
 			var ids = new List<string>();
 			foreach (Notebook notebook in notebooksBox.CheckedItems)

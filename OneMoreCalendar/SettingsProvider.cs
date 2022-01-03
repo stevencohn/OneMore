@@ -68,10 +68,13 @@ namespace OneMoreCalendar
 		}
 
 
-		public bool ShowCreated =>
+		public bool Created =>
 			root.Elements("filters").Elements("created").Any(e => e.Value.Equals("true"));
 
-		public bool ShowModified => 
+		public bool Deleted =>
+			root.Elements("filters").Elements("deleted").Any(e => e.Value.Equals("true"));
+
+		public bool Modified => 
 			root.Elements("filters").Elements("modified").Any(e => e.Value.Equals("true"));
 
 
@@ -106,37 +109,31 @@ namespace OneMoreCalendar
 		}
 
 
-		public void SetFilter(bool created, bool modified)
+		public void SetFilter(bool created, bool modified, bool deleted)
 		{
 			var filters = root.Element("filters");
 			if (filters == null)
 			{
-				filters = new XElement("filters",
-					new XElement("created", created.ToString().ToLower()),
-					new XElement("modified", modified.ToString().ToLower())
-					);
-
+				filters = new XElement("filters");
 				root.Add(filters);
 			}
 
-			var element = filters.Element("created");
-			if (element == null)
-			{
-				filters.Add(new XElement("created", created.ToString().ToLower()));
-			}
-			else
-			{
-				element.Value = created.ToString().ToLower();
-			}
+			SetFilter(filters, "created", created);
+			SetFilter(filters, "modified", modified);
+			SetFilter(filters, "deleted", deleted);
+		}
 
-			element = filters.Element("modified");
+
+		private void SetFilter(XElement filters, string name, bool value)
+		{
+			var element = filters.Element(name);
 			if (element == null)
 			{
-				filters.Add(new XElement("modified", modified.ToString().ToLower()));
+				filters.Add(new XElement(name, value.ToString().ToLower()));
 			}
 			else
 			{
-				element.Value = modified.ToString().ToLower();
+				element.Value = value.ToString().ToLower();
 			}
 		}
 

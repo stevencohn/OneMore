@@ -32,13 +32,13 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal class CalendarPageEventArgs : EventArgs
 	{
-		public CalendarPageEventArgs(CalendarItem item)
+		public CalendarPageEventArgs(CalendarPage page)
 			: base()
 		{
-			Item = item;
+			Page = page;
 		}
 
-		public CalendarItem Item { get; private set; }
+		public CalendarPage Page { get; private set; }
 	}
 
 
@@ -51,10 +51,6 @@ namespace OneMoreCalendar
 		event CalendarHoverHandler HoverPage;
 		event CalendarPageHandler ClickedPage;
 
-		DateTime StartDate { get; }
-
-		DateTime EndDate { get; }
-
-		void SetRange(DateTime startDate, DateTime endDate, CalendarItems items);
+		void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages);
 	}
 }

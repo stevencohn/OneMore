@@ -30,7 +30,7 @@ namespace OneMoreCalendar
 		/// <param name="modified"></param>
 		/// <param name="deleted"></param>
 		/// <returns></returns>
-		public async Task<CalendarItems> GetPages(
+		public async Task<CalendarPages> GetPages(
 			DateTime startDate, DateTime endDate,
 			IEnumerable<string> notebookIDs,
 			bool created, bool modified, bool deleted)
@@ -42,7 +42,7 @@ namespace OneMoreCalendar
 
 				// filter to selected month...
 
-				var list = new CalendarItems();
+				var list = new CalendarPages();
 
 				list.AddRange(notebooks.Descendants(ns + "Page")
 					.Where(e => deleted || e.Attribute("isInRecycleBin") == null)
@@ -54,10 +54,10 @@ namespace OneMoreCalendar
 						Deleted = e.Attribute("isInRecycleBin") != null
 					})
 					.Where(a =>
-						(!created || (created && a.Created.InRange(startDate, endDate))) &&
-						(!modified || (modified && a.Modified.InRange(startDate, endDate))))
+						(created && a.Created.InRange(startDate, endDate)) ||
+						(modified && a.Modified.InRange(startDate, endDate)))
 					.OrderBy(a => created ? a.Created : a.Modified)
-					.Select(a => new CalendarItem
+					.Select(a => new CalendarPage
 					{
 						PageID = a.Page.Attribute("ID").Value,
 						Path = a.Page.Ancestors()

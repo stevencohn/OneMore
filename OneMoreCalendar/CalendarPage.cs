@@ -6,18 +6,19 @@ namespace OneMoreCalendar
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Drawing;
 
 
 	/// <summary>
 	/// 
 	/// </summary>
-	internal class CalendarItems : List<CalendarItem> { }
+	internal class CalendarPages : List<CalendarPage> { }
 
 
 	/// <summary>
 	/// 
 	/// </summary>
-	internal class CalendarItem
+	internal class CalendarPage
 	{
 		public string PageID { get; set; }
 
@@ -32,5 +33,8 @@ namespace OneMoreCalendar
 
 
 		public DateTime Modified { get; set; }
+
+
+		public Rectangle Bounds { get; set; } = Rectangle.Empty;
 	}
 }
