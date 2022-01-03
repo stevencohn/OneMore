@@ -12,16 +12,15 @@ namespace OneMoreCalendar
 	/// <summary>
 	/// Custom Button
 	/// </summary>
-	internal class MoreButton : Button
+	internal class MoreRadioButton : RadioButton
 	{
 		private const int Radius = 4;
-		private Image enabledImage;
 
 
 		/// <summary>
 		/// Initialize a new instance.
 		/// </summary>
-		public MoreButton()
+		public MoreRadioButton()
 		{
 			// force Paint event to fire
 			SetStyle(ControlStyles.UserPaint, true);
@@ -36,54 +35,62 @@ namespace OneMoreCalendar
 		public MouseState MouseState { get; private set; }
 
 
-		public bool ShowBorder { get; set; }
-
-
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
 			var g = pevent.Graphics;
 			g.Clear(BackColor);
 
-			if (Enabled && MouseState != MouseState.None)
+			if (Appearance == Appearance.Button)
 			{
-				var color = MouseState.HasFlag(MouseState.Pushed)
-					? AppColors.PressedColor
-					: AppColors.HoverColor;
-
-				using (var brush = new SolidBrush(color))
+				if (Enabled && (MouseState != MouseState.None || Checked))
 				{
-					g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+					var color = MouseState.HasFlag(MouseState.Pushed) || Checked
+						? AppColors.PressedColor
+						: AppColors.HoverColor;
+
+					using (var brush = new SolidBrush(color))
+					{
+						g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+					}
+
+					color = MouseState.HasFlag(MouseState.Pushed) || Checked
+						? AppColors.PressedBorder
+						: AppColors.HoverBorder;
+
+					using (var pen = new Pen(color))
+					{
+						g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+					}
 				}
-			}
 
-			if (ShowBorder || (Enabled && MouseState != MouseState.None))
-			{
-				var color = MouseState.HasFlag(MouseState.Pushed)
-					? AppColors.PressedBorder
-					: AppColors.HoverBorder;
-
-				using (var pen = new Pen(color))
-				{
-					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
-				}
-			}
-
-			if (Image != null)
-			{
 				g.DrawImageUnscaled(Image,
 					(pevent.ClipRectangle.Width - Image.Width) / 2,
 					(pevent.ClipRectangle.Height - Image.Height) / 2
 					);
 			}
-
-			if (!string.IsNullOrEmpty(Text))
+			else
 			{
+				using (var pen = new Pen(AppColors.CheckBoxColor))
+				{
+					g.DrawRectangle(pen, 0, 1, 14, 14);
+				}
+
+				if (Checked)
+				{
+					using (var brush = new SolidBrush(AppColors.CheckBoxColor))
+					{
+						g.FillRectangle(brush, 2, 3, 11, 11);
+					}
+				}
+
 				var size = g.MeasureString(Text, Font);
-				using (var brush = new SolidBrush(Enabled ? ForeColor : Color.Gray))
+				using (var brush = new SolidBrush(ForeColor))
 				{
 					g.DrawString(Text, Font, brush,
-						(pevent.ClipRectangle.Width - size.Width) / 2,
-						(pevent.ClipRectangle.Height - size.Height) / 2,
+						new Rectangle(16, // standard icon size
+							(pevent.ClipRectangle.Height - (int)size.Height) / 2,
+							pevent.ClipRectangle.Width - 16,
+							(int)size.Height),
 						new StringFormat
 						{
 							Trimming = StringTrimming.EllipsisCharacter,
@@ -96,21 +103,19 @@ namespace OneMoreCalendar
 
 		protected override void OnEnabledChanged(EventArgs e)
 		{
-			if (Image != null)
+			if (Appearance == Appearance.Button)
 			{
 				if (Enabled)
 				{
 					Image.Dispose();
-					Image = enabledImage;
+					Image = Properties.Resources.settings_32;
 				}
 				else
 				{
-					enabledImage = Image;
-					Image = ((Bitmap)Image).ConvertToGrayscale();
+					Image.Dispose();
+					Image = Properties.Resources.settings_32.ConvertToGrayscale();
 				}
 			}
-
-			MouseState = MouseState.None;
 
 			base.OnEnabledChanged(e);
 		}

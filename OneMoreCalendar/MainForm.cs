@@ -13,6 +13,7 @@ namespace OneMoreCalendar
 	public partial class MainForm : Form
 	{
 		private readonly MonthView monthView;
+		private DayView dayView;
 		private SettingsForm settingsForm;
 		private FormWindowState? winstate = null;
 
@@ -28,7 +29,7 @@ namespace OneMoreCalendar
 			Width = 1500;
 			Height = 1000;
 
-			monthView = new MonthView()
+			monthView = new MonthView
 			{
 				Dock = DockStyle.Fill,
 				Location = new System.Drawing.Point(0, 0),
@@ -55,9 +56,12 @@ namespace OneMoreCalendar
 		{
 			if (sender == monthButton)
 			{
+				contentPanel.Controls.Remove(dayView);
+				contentPanel.Controls.Add(monthView);
 			}
 			else
 			{
+				ShowDayView(sender, new CalendarDayEventArgs(monthView.StartDate));
 			}
 		}
 
@@ -124,7 +128,20 @@ namespace OneMoreCalendar
 
 		private void ShowDayView(object sender, CalendarDayEventArgs e)
 		{
-			MessageBox.Show($"clicked {e.DayDate}");
+			contentPanel.Controls.Remove(monthView);
+
+			if (dayView == null)
+			{
+				dayView = new DayView
+				{
+					Dock = DockStyle.Fill,
+					Location = new System.Drawing.Point(0, 0),
+					Name = "dayView",
+					TabIndex = 0
+				};
+			}
+
+			contentPanel.Controls.Add(dayView);
 		}
 
 

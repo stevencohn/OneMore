@@ -52,11 +52,20 @@
   <ItemGroup>
     <Compile Include="CalendarDay.cs" />
     <Compile Include="CalendarItem.cs" />
+    <Compile Include="DayView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DayView.Designer.cs">
+      <DependentUpon>DayView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Things\AppColors.cs" />
     <Compile Include="Things\BitmapExtensions.cs" />
     <Compile Include="Things\DateTimeExtensions.cs" />
     <Compile Include="Things\GraphicsExtensions.cs" />
     <Compile Include="Things\MoreButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Things\MoreRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Things\MouseState.cs" />
@@ -93,6 +102,9 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsProvider.cs" />
+    <EmbeddedResource Include="DayView.resx">
+      <DependentUpon>DayView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

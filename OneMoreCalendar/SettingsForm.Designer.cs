@@ -31,8 +31,8 @@
 			this.optionsLabel = new System.Windows.Forms.Label();
 			this.notebooksLabel = new System.Windows.Forms.Label();
 			this.settingsPanel = new System.Windows.Forms.Panel();
-			this.okButton = new System.Windows.Forms.Button();
-			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new OneMoreCalendar.MoreButton();
+			this.cancelButton = new OneMoreCalendar.MoreButton();
 			this.notebooksBox = new OneMoreCalendar.MoreCheckedListBox();
 			this.createdBox = new OneMoreCalendar.MoreCheckBox();
 			this.modifiedBox = new OneMoreCalendar.MoreCheckBox();
@@ -81,24 +81,28 @@
 			// 
 			// okButton
 			// 
+			this.okButton.BackColor = System.Drawing.SystemColors.Window;
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Location = new System.Drawing.Point(349, 403);
 			this.okButton.Name = "okButton";
+			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(75, 34);
 			this.okButton.TabIndex = 9;
 			this.okButton.Text = "Apply";
-			this.okButton.UseVisualStyleBackColor = true;
+			this.okButton.UseVisualStyleBackColor = false;
 			this.okButton.Click += new System.EventHandler(this.Apply);
 			// 
 			// cancelButton
 			// 
+			this.cancelButton.BackColor = System.Drawing.SystemColors.Window;
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.Location = new System.Drawing.Point(430, 403);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(75, 34);
 			this.cancelButton.TabIndex = 8;
 			this.cancelButton.Text = "Cancel";
-			this.cancelButton.UseVisualStyleBackColor = true;
+			this.cancelButton.UseVisualStyleBackColor = false;
 			this.cancelButton.Click += new System.EventHandler(this.Cancel);
 			// 
 			// notebooksBox
@@ -170,7 +174,7 @@
 		private MoreCheckBox createdBox;
 		private MoreCheckBox modifiedBox;
 		private MoreCheckedListBox notebooksBox;
-		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Button cancelButton;
+		private MoreButton okButton;
+		private MoreButton cancelButton;
 	}
 }

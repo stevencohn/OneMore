@@ -41,10 +41,6 @@ namespace OneMoreCalendar
 		private CalendarDays days;
 		private DayOfWeek firstDow;
 
-		public event CalendarDayHandler ClickedDay;
-		public event CalendarHoverHandler HoverPage;
-		public event CalendarPageHandler ClickedPage;
-
 
 		public MonthView()
 		{
@@ -77,6 +73,13 @@ namespace OneMoreCalendar
 		public DateTime StartDate => date;
 
 		public DateTime EndDate => date.EndOfMonth();
+
+
+		public event CalendarDayHandler ClickedDay;
+
+		public event CalendarHoverHandler HoverPage;
+
+		public event CalendarPageHandler ClickedPage;
 
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarItems items)
