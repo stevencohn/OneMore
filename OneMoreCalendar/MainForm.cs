@@ -63,26 +63,13 @@ namespace OneMoreCalendar
 				: date.AddMonths(delta);
 
 			var endDate = date.EndOfMonth();
-
-			DateTime viewStart, viewEnd;
-			if (dayButton.Checked)
-			{
-				viewStart = date;
-				viewEnd = date.EndOfMonth();
-			}
-			else
-			{
-				viewStart = date.StartOfCalendarMonthView();
-				viewEnd = date.EndOfCalendarView();
-			}
-
 			var settings = new SettingsProvider();
 
 			pages = await new OneNoteProvider().GetPages(
-				viewStart,
-				viewEnd,
+				date.StartOfCalendarMonthView(),
+				date.EndOfCalendarView(),
 				await settings.GetNotebookIDs(),
-				settings.Created, settings.Modified, false);
+				settings.Created, settings.Modified, settings.Deleted);
 
 			if (monthButton.Checked)
 			{
@@ -111,7 +98,7 @@ namespace OneMoreCalendar
 				contentPanel.Controls.Remove(dayView);
 				contentPanel.Controls.Add(monthView);
 
-				monthView.SetRange(date.StartOfCalendarMonthView(), date.EndOfCalendarView(), pages);
+				monthView.SetRange(date, date.EndOfMonth(), pages);
 			}
 			else
 			{
@@ -140,15 +127,17 @@ namespace OneMoreCalendar
 				};
 
 				dayView.HoverPage += ShowPageStatus;
+				dayView.ClickedPage += NavigateToPage;
 			}
 
 			var endDate = date.EndOfMonth();
 			var settings = new SettingsProvider();
 
 			pages = await new OneNoteProvider().GetPages(
-				date, endDate,
+				date.StartOfCalendarMonthView(),
+				date.EndOfCalendarView(),
 				await settings.GetNotebookIDs(),
-				settings.Created, settings.Modified, false);
+				settings.Created, settings.Modified, settings.Deleted);
 
 			dayView.SetRange(date, endDate, pages);
 			contentPanel.Controls.Add(dayView);

@@ -16,6 +16,8 @@ namespace OneMoreCalendar
 
 		public static Color HoverBorder => ColorTranslator.FromHtml("#FFF0DAEE");
 
+		public static Color RowColor => ColorTranslator.FromHtml("#FFFDFAFE");
+
 		public static Color PressedColor => ColorTranslator.FromHtml("#FFF0DAEE");
 
 		public static Color PressedBorder => ColorTranslator.FromHtml("#FF9E5499");

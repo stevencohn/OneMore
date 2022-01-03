@@ -35,6 +35,9 @@ namespace OneMoreCalendar
 		public DateTime Modified { get; set; }
 
 
+		public bool IsDeleted { get; set; }
+
+
 		public Rectangle Bounds { get; set; } = Rectangle.Empty;
 	}
 }

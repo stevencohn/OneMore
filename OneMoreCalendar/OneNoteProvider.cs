@@ -51,7 +51,7 @@ namespace OneMoreCalendar
 						Page = e,
 						Created = DateTime.Parse(e.Attribute("dateTime").Value),
 						Modified = DateTime.Parse(e.Attribute("lastModifiedTime").Value),
-						Deleted = e.Attribute("isInRecycleBin") != null
+						IsDeleted = e.Attribute("isInRecycleBin") != null
 					})
 					.Where(a =>
 						(created && a.Created.InRange(startDate, endDate)) ||
@@ -66,7 +66,8 @@ namespace OneMoreCalendar
 							.Aggregate((name1, name2) => $"{name2} > {name1}"),
 						Title = a.Page.Attribute("name").Value,
 						Created = a.Created,
-						Modified = a.Modified
+						Modified = a.Modified,
+						IsDeleted = a.IsDeleted
 					}));
 
 				return list;

@@ -36,6 +36,7 @@
 			this.notebooksBox = new OneMoreCalendar.MoreCheckedListBox();
 			this.createdBox = new OneMoreCalendar.MoreCheckBox();
 			this.modifiedBox = new OneMoreCalendar.MoreCheckBox();
+			this.deletedBox = new OneMoreCalendar.MoreCheckBox();
 			this.settingsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -55,7 +56,7 @@
 			this.notebooksLabel.AutoSize = true;
 			this.notebooksLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.notebooksLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.notebooksLabel.Location = new System.Drawing.Point(23, 171);
+			this.notebooksLabel.Location = new System.Drawing.Point(23, 179);
 			this.notebooksLabel.Name = "notebooksLabel";
 			this.notebooksLabel.Size = new System.Drawing.Size(131, 32);
 			this.notebooksLabel.TabIndex = 1;
@@ -64,6 +65,7 @@
 			// settingsPanel
 			// 
 			this.settingsPanel.BackColor = System.Drawing.Color.Transparent;
+			this.settingsPanel.Controls.Add(this.deletedBox);
 			this.settingsPanel.Controls.Add(this.okButton);
 			this.settingsPanel.Controls.Add(this.cancelButton);
 			this.settingsPanel.Controls.Add(this.notebooksBox);
@@ -111,7 +113,7 @@
 			this.notebooksBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.notebooksBox.CheckOnClick = true;
 			this.notebooksBox.FormattingEnabled = true;
-			this.notebooksBox.Location = new System.Drawing.Point(48, 220);
+			this.notebooksBox.Location = new System.Drawing.Point(48, 228);
 			this.notebooksBox.Name = "notebooksBox";
 			this.notebooksBox.Size = new System.Drawing.Size(445, 138);
 			this.notebooksBox.TabIndex = 7;
@@ -142,6 +144,17 @@
 			this.modifiedBox.Text = "Last modified on";
 			this.modifiedBox.UseVisualStyleBackColor = false;
 			this.modifiedBox.CheckedChanged += new System.EventHandler(this.ChangeFilter);
+			// 
+			// deletedBox
+			// 
+			this.deletedBox.AutoSize = true;
+			this.deletedBox.BackColor = System.Drawing.Color.White;
+			this.deletedBox.Location = new System.Drawing.Point(48, 132);
+			this.deletedBox.Name = "deletedBox";
+			this.deletedBox.Size = new System.Drawing.Size(201, 24);
+			this.deletedBox.TabIndex = 10;
+			this.deletedBox.Text = "Included deleted pages";
+			this.deletedBox.UseVisualStyleBackColor = false;
 			// 
 			// SettingsForm
 			// 
@@ -176,5 +189,6 @@
 		private MoreCheckedListBox notebooksBox;
 		private MoreButton okButton;
 		private MoreButton cancelButton;
+		private MoreCheckBox deletedBox;
 	}
 }
