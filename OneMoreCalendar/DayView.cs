@@ -62,7 +62,7 @@ namespace OneMoreCalendar
 			while (date <= endDate)
 			{
 				var daypages = new CalendarPages();
-				daypages.AddRange(pages.Where(p => 
+				daypages.AddRange(pages.Where(p =>
 					p.Created.Date.Equals(date) || p.Modified.Date.Equals(date)));
 
 				listbox.Items.Add(new DayItem
@@ -127,15 +127,11 @@ namespace OneMoreCalendar
 					var bounds = new Rectangle(
 						HeadWidth + 20, top, (int)size.Width + 2, (int)size.Height);
 
-					if (page.IsDeleted)
-					{
-						e.Graphics.DrawString(page.Title, deletedFont, Brushes.Gray, bounds);
-					}
-					else
-					{
-						e.Graphics.DrawString(page.Title, listbox.Font, Brushes.Black, bounds);
-						page.Bounds = bounds;
-					}
+					e.Graphics.DrawString(page.Title,
+						page.IsDeleted ? deletedFont : listbox.Font,
+						Brushes.Black, bounds);
+
+					page.Bounds = bounds;
 
 					e.Graphics.DrawString(page.Created.ToShortFriendlyString(),
 						listbox.Font, Brushes.Black, e.Bounds.Width - DateWidth * 2, top);
@@ -218,7 +214,9 @@ namespace OneMoreCalendar
 						g.FillRectangle(brush, page.Bounds);
 					}
 
-					g.DrawString(page.Title, hotFont, Brushes.Blue, page.Bounds, format);
+					g.DrawString(page.Title,
+						page.IsDeleted ? deletedFont : hotFont,
+						Brushes.Blue, page.Bounds, format);
 				}
 
 				HoverPage?.Invoke(this, new CalendarPageEventArgs(page));

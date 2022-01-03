@@ -19,7 +19,7 @@ namespace OneMoreCalendar
 		{
 			public Rectangle Clip;
 			public DateTime Date;
-			public CalendarPage Item;
+			public CalendarPage Page;
 			public bool InMonth;
 		}
 
@@ -28,9 +28,9 @@ namespace OneMoreCalendar
 		private const string MoreGlyph = "⏷"; // \u23F7
 
 		private readonly IntPtr hand;
-		private readonly Font itemFont;
 		private readonly Font hotFont;
 		private readonly Font moreFont;
+		private readonly Font deletedFont;
 		private readonly StringFormat format;
 		private readonly List<Hotspot> hotspots;
 		private Hotspot hotspot;
@@ -47,8 +47,8 @@ namespace OneMoreCalendar
 			InitializeComponent();
 
 			hand = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-			itemFont = new Font("Segoe UI", 9.0f, FontStyle.Regular);
-			hotFont = new Font("Segoe UI", 9.0f, FontStyle.Regular | FontStyle.Underline);
+			hotFont = new Font(Font, FontStyle.Regular | FontStyle.Underline);
+			deletedFont = new Font(Font, FontStyle.Regular | FontStyle.Strikeout);
 			moreFont = new Font("Segoe UI", 14.0f, FontStyle.Regular);
 
 			hotspots = new List<Hotspot>();
@@ -63,13 +63,6 @@ namespace OneMoreCalendar
 		}
 
 
-		public MonthView(DateTime date, CalendarPages items)
-			: this()
-		{
-			SetRange(date, date, items);
-		}
-
-
 		public event CalendarDayHandler ClickedDay;
 
 		public event CalendarHoverHandler HoverPage;
@@ -77,18 +70,18 @@ namespace OneMoreCalendar
 		public event CalendarPageHandler ClickedPage;
 
 
-		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages items)
+		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
 		{
 			date = startDate.StartOfMonth();
 
 			firstDow = Thread.CurrentThread.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
-			MakeDayList(items);
+			MakeDayList(pages);
 
 			Invalidate();
 		}
 
 
-		private void MakeDayList(CalendarPages items)
+		private void MakeDayList(CalendarPages pages)
 		{
 			days = new CalendarDays();
 
@@ -110,8 +103,8 @@ namespace OneMoreCalendar
 				{
 					var day = new CalendarDay { Date = runner };
 
-					var pp = items.Where(p => p.Modified.Date.Equals(runner));
-					pp.ForEach(p => day.Items.Add(p));
+					var pp = pages.Where(p => p.Modified.Date.Equals(runner));
+					pp.ForEach(p => day.Pages.Add(p));
 
 					days.Add(day);
 					runner = runner.AddDays(1.0);
@@ -124,8 +117,8 @@ namespace OneMoreCalendar
 			{
 				var day = new CalendarDay { Date = runner, InMonth = true };
 
-				var pp = items.Where(p => p.Modified.Date.Equals(runner));
-				pp.ForEach(p => day.Items.Add(p));
+				var pp = pages.Where(p => p.Modified.Date.Equals(runner));
+				pp.ForEach(p => day.Pages.Add(p));
 
 				days.Add(day);
 				runner = runner.AddDays(1.0);
@@ -140,8 +133,8 @@ namespace OneMoreCalendar
 				{
 					var day = new CalendarDay { Date = runner };
 
-					var pp = items.Where(p => p.Modified.Date.Equals(runner));
-					pp.ForEach(p => day.Items.Add(p));
+					var pp = pages.Where(p => p.Modified.Date.Equals(runner));
+					pp.ForEach(p => day.Pages.Add(p));
 
 					days.Add(day);
 					runner = runner.AddDays(1.0);
@@ -165,9 +158,9 @@ namespace OneMoreCalendar
 			var spot = hotspots.FirstOrDefault(h => h.Clip.Contains(e.Location));
 			if (spot != null)
 			{
-				if (spot.Item != null)
+				if (spot.Page != null)
 				{
-					ClickedPage?.Invoke(this, new CalendarPageEventArgs(spot.Item));
+					ClickedPage?.Invoke(this, new CalendarPageEventArgs(spot.Page));
 				}
 				else
 				{
@@ -193,16 +186,23 @@ namespace OneMoreCalendar
 
 			if (hotspot != null)
 			{
-				if (hotspot.Item != null)
+				if (hotspot.Page != null)
 				{
 					using (var g = CreateGraphics())
 					{
 						g.FillRectangle(
-							hotspot.Item.Modified.Month == date.Month ? Brushes.White : Brushes.WhiteSmoke,
+							hotspot.Page.Modified.Month == date.Month ? Brushes.White : Brushes.WhiteSmoke,
 							hotspot.Clip);
 
-						var brush = hotspot.InMonth ? Brushes.Black : Brushes.Gray;
-						g.DrawString(hotspot.Item.Title, itemFont, brush, hotspot.Clip, format);
+						if (hotspot.Page.IsDeleted)
+						{
+							g.DrawString(hotspot.Page.Title, deletedFont, Brushes.Gray, hotspot.Clip, format);
+						}
+						else
+						{
+							var brush = hotspot.InMonth ? Brushes.Black : Brushes.Gray;
+							g.DrawString(hotspot.Page.Title, Font, brush, hotspot.Clip, format);
+						}
 					}
 
 					HoverPage?.Invoke(this, new CalendarPageEventArgs(null));
@@ -214,16 +214,19 @@ namespace OneMoreCalendar
 
 			if (spot != null)
 			{
-				if (spot.Item != null)
+				if (spot.Page != null)
 				{
 					using (var g = CreateGraphics())
 					{
 						var brush = spot.InMonth ? Brushes.White : Brushes.WhiteSmoke;
 						g.FillRectangle(brush, spot.Clip);
-						g.DrawString(spot.Item.Title, hotFont, Brushes.Blue, spot.Clip, format);
+
+						g.DrawString(spot.Page.Title, 
+							spot.Page.IsDeleted ? deletedFont : hotFont,
+							Brushes.Blue, spot.Clip, format);
 					}
 
-					HoverPage?.Invoke(this, new CalendarPageEventArgs(spot.Item));
+					HoverPage?.Invoke(this, new CalendarPageEventArgs(spot.Page));
 				}
 
 				hotspot = spot;
@@ -308,7 +311,7 @@ namespace OneMoreCalendar
 			var headFore = new SolidBrush(ColorTranslator.FromHtml(TodayHeadColor));
 			var headBack = new SolidBrush(ColorTranslator.FromHtml(HeadBackColor));
 			var headPen = new Pen(Color.DarkGray, 0.1f);
-			var moreSize = e.Graphics.MeasureString(MoreGlyph, itemFont);
+			var moreSize = e.Graphics.MeasureString(MoreGlyph, Font);
 
 			var now = DateTime.Now.Date;
 
@@ -340,7 +343,6 @@ namespace OneMoreCalendar
 
 				// body...
 
-				var brush = Brushes.Black;
 				if (!day.InMonth)
 				{
 					box = new Rectangle(
@@ -349,38 +351,39 @@ namespace OneMoreCalendar
 						);
 
 					e.Graphics.FillRectangle(Brushes.WhiteSmoke, box);
-					brush = Brushes.Gray;
 				}
 
-				if (day.Items.Count > 0)
+				if (day.Pages.Count > 0)
 				{
 					box = new Rectangle(
 						col * dayWidth + 3, row * dayHeight + headFont.Height + 6 + dowOffset,
 						dayWidth - 8, dayHeight - headFont.Height - 8
 						);
 
-					var maxItems = box.Height / itemFont.Height;
+					var maxItems = box.Height / Font.Height;
 
-					for (int i = 0; i < day.Items.Count && i < maxItems; i++)
+					for (int i = 0; i < day.Pages.Count && i < maxItems; i++)
 					{
-						var item = day.Items[i];
+						var page = day.Pages[i];
 
 						var clip = new Rectangle(
-							box.Left, box.Top + (itemFont.Height * i),
-							i == maxItems - 1 && day.Items.Count > maxItems ? box.Width - (int)moreSize.Width : box.Width,
-							itemFont.Height);
+							box.Left, box.Top + (Font.Height * i),
+							i == maxItems - 1 && day.Pages.Count > maxItems ? box.Width - (int)moreSize.Width : box.Width,
+							Font.Height);
 
-						e.Graphics.DrawString(item.Title, itemFont, brush, clip, format);
+						e.Graphics.DrawString(page.Title,
+							page.IsDeleted ? deletedFont : Font,
+							page.IsDeleted || !day.InMonth ? Brushes.Gray : Brushes.Black, clip, format);
 
 						hotspots.Add(new Hotspot
 						{
 							Clip = clip,
-							Item = item,
+							Page = page,
 							InMonth = day.InMonth
 						});
 					}
 
-					if (maxItems < day.Items.Count)
+					if (maxItems < day.Pages.Count)
 					{
 						e.Graphics.DrawString(MoreGlyph, moreFont, Brushes.DarkGray,
 							box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4);
