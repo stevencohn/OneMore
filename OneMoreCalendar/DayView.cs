@@ -157,7 +157,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private void HighlightPage(object sender, MouseEventArgs e)
+		private void HoverHighlight(object sender, MouseEventArgs e)
 		{
 			var day = listbox.Items.OfType<DayItem>()
 				.FirstOrDefault(d => d.Bounds.Contains(e.Location));

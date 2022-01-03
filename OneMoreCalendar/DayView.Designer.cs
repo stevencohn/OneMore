@@ -47,7 +47,7 @@
 			this.listbox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawDay);
 			this.listbox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureDay);
 			this.listbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ScrollDays);
-			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HighlightPage);
+			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HoverHighlight);
 			// 
 			// DayView
 			// 
