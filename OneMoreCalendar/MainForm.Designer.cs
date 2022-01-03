@@ -30,12 +30,8 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.topPanel = new System.Windows.Forms.Panel();
-			this.todayButton = new OneMoreCalendar.MoreButton();
 			this.monthButton = new System.Windows.Forms.RadioButton();
 			this.dayButton = new System.Windows.Forms.RadioButton();
-			this.settingsButton = new OneMoreCalendar.MoreCheckBox();
-			this.nextButton = new OneMoreCalendar.NavigationButton();
-			this.prevButton = new OneMoreCalendar.NavigationButton();
 			this.dateLabel = new System.Windows.Forms.Label();
 			this.contentPanel = new System.Windows.Forms.Panel();
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -43,35 +39,28 @@
 			this.statusSpringLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusCreatedLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusModifiedLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.nextButton = new OneMoreCalendar.MoreButton();
+			this.prevButton = new OneMoreCalendar.MoreButton();
+			this.todayButton = new OneMoreCalendar.MoreButton();
+			this.settingsButton = new OneMoreCalendar.MoreCheckBox();
 			this.topPanel.SuspendLayout();
 			this.statusStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// topPanel
 			// 
+			this.topPanel.Controls.Add(this.nextButton);
+			this.topPanel.Controls.Add(this.prevButton);
 			this.topPanel.Controls.Add(this.todayButton);
 			this.topPanel.Controls.Add(this.monthButton);
 			this.topPanel.Controls.Add(this.dayButton);
 			this.topPanel.Controls.Add(this.settingsButton);
-			this.topPanel.Controls.Add(this.nextButton);
-			this.topPanel.Controls.Add(this.prevButton);
 			this.topPanel.Controls.Add(this.dateLabel);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Size = new System.Drawing.Size(978, 92);
 			this.topPanel.TabIndex = 0;
-			// 
-			// todayButton
-			// 
-			this.todayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.todayButton.Image = global::OneMoreCalendar.Properties.Resources.today_32;
-			this.todayButton.Location = new System.Drawing.Point(619, 12);
-			this.todayButton.Name = "todayButton";
-			this.todayButton.Size = new System.Drawing.Size(64, 64);
-			this.todayButton.TabIndex = 7;
-			this.todayButton.UseVisualStyleBackColor = true;
-			this.todayButton.Click += new System.EventHandler(this.ShowToday);
 			// 
 			// monthButton
 			// 
@@ -111,56 +100,12 @@
 			this.dayButton.UseVisualStyleBackColor = true;
 			this.dayButton.CheckedChanged += new System.EventHandler(this.ChangeView);
 			// 
-			// settingsButton
-			// 
-			this.settingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.settingsButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.settingsButton.Image = global::OneMoreCalendar.Properties.Resources.settings_32;
-			this.settingsButton.Location = new System.Drawing.Point(902, 12);
-			this.settingsButton.Name = "settingsButton";
-			this.settingsButton.Size = new System.Drawing.Size(64, 64);
-			this.settingsButton.TabIndex = 4;
-			this.settingsButton.CheckedChanged += new System.EventHandler(this.ToggleSettings);
-			// 
-			// nextButton
-			// 
-			this.nextButton.Direction = System.Windows.Forms.ArrowDirection.Right;
-			this.nextButton.Enabled = false;
-			this.nextButton.FlatAppearance.BorderSize = 0;
-			this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.nextButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.nextButton.Location = new System.Drawing.Point(49, 12);
-			this.nextButton.Name = "nextButton";
-			this.nextButton.Size = new System.Drawing.Size(31, 54);
-			this.nextButton.TabIndex = 2;
-			this.nextButton.Text = ">";
-			this.nextButton.UseVisualStyleBackColor = true;
-			this.nextButton.Click += new System.EventHandler(this.GotoNext);
-			// 
-			// prevButton
-			// 
-			this.prevButton.Direction = System.Windows.Forms.ArrowDirection.Left;
-			this.prevButton.FlatAppearance.BorderSize = 0;
-			this.prevButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.prevButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.prevButton.Location = new System.Drawing.Point(12, 12);
-			this.prevButton.Name = "prevButton";
-			this.prevButton.Size = new System.Drawing.Size(31, 54);
-			this.prevButton.TabIndex = 1;
-			this.prevButton.Text = "<";
-			this.prevButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.prevButton.UseVisualStyleBackColor = true;
-			this.prevButton.Click += new System.EventHandler(this.GotoPrevious);
-			// 
 			// dateLabel
 			// 
 			this.dateLabel.AutoSize = true;
 			this.dateLabel.Font = new System.Drawing.Font("Segoe UI Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.dateLabel.Location = new System.Drawing.Point(86, 12);
+			this.dateLabel.Location = new System.Drawing.Point(88, 12);
 			this.dateLabel.Name = "dateLabel";
 			this.dateLabel.Size = new System.Drawing.Size(284, 54);
 			this.dateLabel.TabIndex = 0;
@@ -216,6 +161,58 @@
 			this.statusModifiedLabel.Size = new System.Drawing.Size(88, 25);
 			this.statusModifiedLabel.Text = "Modified:";
 			// 
+			// nextButton
+			// 
+			this.nextButton.Enabled = false;
+			this.nextButton.FlatAppearance.BorderSize = 0;
+			this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.nextButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
+			this.nextButton.Location = new System.Drawing.Point(50, 12);
+			this.nextButton.Name = "nextButton";
+			this.nextButton.Size = new System.Drawing.Size(32, 54);
+			this.nextButton.TabIndex = 9;
+			this.nextButton.Text = "⏵";
+			this.nextButton.UseVisualStyleBackColor = true;
+			this.nextButton.Click += new System.EventHandler(this.GotoNext);
+			// 
+			// prevButton
+			// 
+			this.prevButton.FlatAppearance.BorderSize = 0;
+			this.prevButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.prevButton.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
+			this.prevButton.Location = new System.Drawing.Point(12, 12);
+			this.prevButton.Name = "prevButton";
+			this.prevButton.Size = new System.Drawing.Size(32, 54);
+			this.prevButton.TabIndex = 8;
+			this.prevButton.Text = "⏴";
+			this.prevButton.UseVisualStyleBackColor = true;
+			this.prevButton.Click += new System.EventHandler(this.GotoPrevious);
+			// 
+			// todayButton
+			// 
+			this.todayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.todayButton.Image = global::OneMoreCalendar.Properties.Resources.today_32;
+			this.todayButton.Location = new System.Drawing.Point(619, 12);
+			this.todayButton.Name = "todayButton";
+			this.todayButton.Size = new System.Drawing.Size(64, 64);
+			this.todayButton.TabIndex = 7;
+			this.todayButton.UseVisualStyleBackColor = true;
+			this.todayButton.Click += new System.EventHandler(this.ShowToday);
+			// 
+			// settingsButton
+			// 
+			this.settingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.settingsButton.Appearance = System.Windows.Forms.Appearance.Button;
+			this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.settingsButton.Image = global::OneMoreCalendar.Properties.Resources.settings_32;
+			this.settingsButton.Location = new System.Drawing.Point(902, 12);
+			this.settingsButton.Name = "settingsButton";
+			this.settingsButton.Size = new System.Drawing.Size(64, 64);
+			this.settingsButton.TabIndex = 4;
+			this.settingsButton.CheckedChanged += new System.EventHandler(this.ToggleSettings);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -243,8 +240,6 @@
 		private System.Windows.Forms.Panel topPanel;
 		private System.Windows.Forms.Panel contentPanel;
 		private System.Windows.Forms.Label dateLabel;
-		private NavigationButton nextButton;
-		private NavigationButton prevButton;
 		private MoreCheckBox settingsButton;
 		private System.Windows.Forms.RadioButton monthButton;
 		private System.Windows.Forms.RadioButton dayButton;
@@ -254,6 +249,8 @@
 		private System.Windows.Forms.ToolStripStatusLabel statusCreatedLabel;
 		private System.Windows.Forms.ToolStripStatusLabel statusModifiedLabel;
 		private MoreButton todayButton;
+		private MoreButton prevButton;
+		private MoreButton nextButton;
 	}
 }
 

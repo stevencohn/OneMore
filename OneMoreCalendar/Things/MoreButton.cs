@@ -73,11 +73,11 @@ namespace OneMoreCalendar
 			if (!string.IsNullOrEmpty(Text))
 			{
 				var size = g.MeasureString(Text, Font);
-				using (var brush = new SolidBrush(ForeColor))
+				using (var brush = new SolidBrush(Enabled ? ForeColor : Color.Gray))
 				{
 					g.DrawString(Text, Font, brush,
-						(pevent.ClipRectangle.Width + size.Width) / 2,
-						(pevent.ClipRectangle.Height + size.Height) / 2,
+						(pevent.ClipRectangle.Width - size.Width) / 2,
+						(pevent.ClipRectangle.Height - size.Height) / 2,
 						new StringFormat
 						{
 							Trimming = StringTrimming.EllipsisCharacter,
@@ -103,6 +103,8 @@ namespace OneMoreCalendar
 					Image = ((Bitmap)Image).ConvertToGrayscale();
 				}
 			}
+
+			MouseState = MouseState.None;
 
 			base.OnEnabledChanged(e);
 		}
