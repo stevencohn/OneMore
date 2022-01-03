@@ -216,7 +216,7 @@ namespace OneMoreCalendar
 
 					g.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : hotFont,
-						Brushes.Blue, page.Bounds, format);
+						Brushes.DarkOrchid, page.Bounds, format);
 				}
 
 				HoverPage?.Invoke(this, new CalendarPageEventArgs(page));

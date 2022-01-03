@@ -223,7 +223,7 @@ namespace OneMoreCalendar
 
 						g.DrawString(spot.Page.Title, 
 							spot.Page.IsDeleted ? deletedFont : hotFont,
-							Brushes.Blue, spot.Clip, format);
+							Brushes.DarkOrchid, spot.Clip, format);
 					}
 
 					HoverPage?.Invoke(this, new CalendarPageEventArgs(spot.Page));
