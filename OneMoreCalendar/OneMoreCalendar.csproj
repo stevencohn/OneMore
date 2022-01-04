@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="CalendarDay.cs" />
     <Compile Include="CalendarPage.cs" />
     <Compile Include="DayView.cs">
@@ -70,11 +76,11 @@
     </Compile>
     <Compile Include="Things\MouseState.cs" />
     <Compile Include="ICalendarView.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="CalendarForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="CalendarForm.Designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MonthView.cs">
       <SubType>UserControl</SubType>
@@ -88,9 +94,6 @@
     <Compile Include="Things\MoreCheckedListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="NavigationButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Notebook.cs" />
     <Compile Include="OneNoteProvider.cs" />
     <Compile Include="Program.cs" />
@@ -102,17 +105,29 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsProvider.cs" />
+    <Compile Include="Things\RoundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SnapshotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SnapshotForm.Designer.cs">
+      <DependentUpon>SnapshotForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="YearsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="YearsForm.Designer.cs">
       <DependentUpon>YearsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DayView.resx">
       <DependentUpon>DayView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="CalendarForm.resx">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonthView.resx">
       <DependentUpon>MonthView.cs</DependentUpon>
@@ -129,6 +144,9 @@
     </Compile>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SnapshotForm.resx">
+      <DependentUpon>SnapshotForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YearsForm.resx">
       <DependentUpon>YearsForm.cs</DependentUpon>

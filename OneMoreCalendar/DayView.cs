@@ -52,6 +52,7 @@ namespace OneMoreCalendar
 		public event CalendarDayHandler ClickedDay;
 		public event CalendarHoverHandler HoverPage;
 		public event CalendarPageHandler ClickedPage;
+		public event CalendarSnapshotHandler SnappedPage;
 
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
@@ -98,10 +99,7 @@ namespace OneMoreCalendar
 
 		private void DrawDay(object sender, DrawItemEventArgs e)
 		{
-			using (var brush = new SolidBrush(e.Index % 2 == 1 ? AppColors.RowColor : Color.White))
-			{
-				e.Graphics.FillRectangle(brush, e.Bounds);
-			}
+			e.Graphics.FillRectangle(e.Index % 2 == 1 ? AppColors.RowBrush : Brushes.White, e.Bounds);
 
 			e.Graphics.DrawLine(Pens.LightGray, e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Top);
 			//e.Graphics.DrawLine(Pens.LightGray, HeadWidth, e.Bounds.Top, HeadWidth, e.Bounds.Bottom);
@@ -190,10 +188,7 @@ namespace OneMoreCalendar
 				using (var g = listbox.CreateGraphics())
 				{
 					var index = listbox.Items.IndexOf(hotday);
-					using (var brush = new SolidBrush(index % 2 == 1 ? AppColors.RowColor : Color.White))
-					{
-						g.FillRectangle(brush, hotpage.Bounds);
-					}
+					g.FillRectangle(index % 2 == 1 ? AppColors.RowBrush : Brushes.White, hotpage.Bounds);
 
 					g.DrawString(hotpage.Title, listbox.Font, Brushes.Black, hotpage.Bounds, format);
 				}
@@ -209,10 +204,7 @@ namespace OneMoreCalendar
 				using (var g = listbox.CreateGraphics())
 				{
 					var index = listbox.Items.IndexOf(day);
-					using (var brush = new SolidBrush(index % 2 == 1 ? AppColors.RowColor : Color.White))
-					{
-						g.FillRectangle(brush, page.Bounds);
-					}
+					g.FillRectangle(index % 2 == 1 ? AppColors.RowBrush : Brushes.White, page.Bounds);
 
 					g.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : hotFont,

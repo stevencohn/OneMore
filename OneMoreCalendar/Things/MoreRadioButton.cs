@@ -44,23 +44,17 @@ namespace OneMoreCalendar
 			{
 				if (Enabled && (MouseState != MouseState.None || Checked))
 				{
-					var color = MouseState.HasFlag(MouseState.Pushed) || Checked
-						? AppColors.PressedColor
-						: AppColors.HoverColor;
+					var brush = MouseState.HasFlag(MouseState.Pushed) || Checked
+						? AppColors.PressedBrush
+						: AppColors.HoverBrush;
 
-					using (var brush = new SolidBrush(color))
-					{
-						g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
-					}
+					g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
 
-					color = MouseState.HasFlag(MouseState.Pushed) || Checked
-						? AppColors.PressedBorder
-						: AppColors.HoverBorder;
+					var pen = MouseState.HasFlag(MouseState.Pushed) || Checked
+						? AppColors.PressedPen
+						: AppColors.HoverPen;
 
-					using (var pen = new Pen(color))
-					{
-						g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
-					}
+					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
 				}
 
 				g.DrawImageUnscaled(Image,

@@ -37,6 +37,8 @@
 			this.notebooksBox = new OneMoreCalendar.MoreCheckedListBox();
 			this.createdBox = new OneMoreCalendar.MoreCheckBox();
 			this.modifiedBox = new OneMoreCalendar.MoreCheckBox();
+			this.logLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.aboutLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.settingsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -73,6 +75,8 @@
 			this.settingsPanel.Controls.Add(this.modifiedBox);
 			this.settingsPanel.Controls.Add(this.notebooksLabel);
 			this.settingsPanel.Controls.Add(this.optionsLabel);
+			this.settingsPanel.Controls.Add(this.logLink);
+			this.settingsPanel.Controls.Add(this.aboutLink);
 			this.settingsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.settingsPanel.Location = new System.Drawing.Point(0, 0);
 			this.settingsPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -156,6 +160,40 @@
 			this.modifiedBox.UseVisualStyleBackColor = false;
 			this.modifiedBox.CheckedChanged += new System.EventHandler(this.ChangeFilter);
 			// 
+			// logLink
+			// 
+			this.logLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.logLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.logLink.AutoSize = true;
+			this.logLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.logLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.logLink.Location = new System.Drawing.Point(15, 408);
+			this.logLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.logLink.MaximumSize = new System.Drawing.Size(420, 0);
+			this.logLink.Name = "logLink";
+			this.logLink.Size = new System.Drawing.Size(97, 20);
+			this.logLink.TabIndex = 5;
+			this.logLink.TabStop = true;
+			this.logLink.Text = "Open log file";
+			this.logLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLog);
+			// 
+			// aboutLink
+			// 
+			this.aboutLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.aboutLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.aboutLink.AutoSize = true;
+			this.aboutLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.aboutLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.aboutLink.Location = new System.Drawing.Point(135, 408);
+			this.aboutLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.aboutLink.MaximumSize = new System.Drawing.Size(420, 0);
+			this.aboutLink.Name = "aboutLink";
+			this.aboutLink.Size = new System.Drawing.Size(52, 20);
+			this.aboutLink.TabIndex = 5;
+			this.aboutLink.TabStop = true;
+			this.aboutLink.Text = "About";
+			this.aboutLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ShowAbout);
+			// 
 			// SettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -190,5 +228,7 @@
 		private MoreButton okButton;
 		private MoreButton cancelButton;
 		private MoreCheckBox deletedBox;
+		private River.OneMoreAddIn.UI.MoreLinkLabel logLink;
+		private River.OneMoreAddIn.UI.MoreLinkLabel aboutLink;
 	}
 }

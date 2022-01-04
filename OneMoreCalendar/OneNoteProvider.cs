@@ -7,17 +7,39 @@ namespace OneMoreCalendar
 	using River.OneMoreAddIn;
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
 
 	/// <summary>
-	/// 
+	/// An abstraction of the OneNote class, provides a bit of decoupling between
+	/// the calendar app and the OneNote addin library
 	/// </summary>
 	internal class OneNoteProvider
 	{
 		private OneNote one;
+
+
+		/// <summary>
+		/// Export an EMF representation of the specified page to the TEMP folder
+		/// </summary>
+		/// <param name="pageID"></param>
+		/// <returns>The path of the file generated</returns>
+		public string Export(string pageID)
+		{
+			var path = Path.Combine(
+				Path.GetTempPath(),
+				Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".emf");
+
+			using (one = new OneNote())
+			{
+				one.Export(pageID, path, OneNote.ExportFormat.EMF);
+			}
+
+			return path;
+		}
 
 
 		/// <summary>
@@ -46,6 +68,7 @@ namespace OneMoreCalendar
 
 				pages.AddRange(notebooks.Descendants(ns + "Page")
 					.Where(e => deleted || e.Attribute("isInRecycleBin") == null)
+					// collect all pages
 					.Select(e => new
 					{
 						Page = e,
@@ -53,10 +76,13 @@ namespace OneMoreCalendar
 						Modified = DateTime.Parse(e.Attribute("lastModifiedTime").Value),
 						IsDeleted = e.Attribute("isInRecycleBin") != null
 					})
+					// filter by one or both filters
 					.Where(a =>
 						(created && a.Created.InRange(startDate, endDate)) ||
 						(modified && a.Modified.InRange(startDate, endDate)))
+					// prefer creation time
 					.OrderBy(a => created ? a.Created : a.Modified)
+					// pretty it up
 					.Select(a => new CalendarPage
 					{
 						PageID = a.Page.Attribute("ID").Value,
@@ -110,7 +136,7 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
-		/// 
+		/// Get a collection of all available notebooks
 		/// </summary>
 		/// <returns></returns>
 		public async Task<IEnumerable<Notebook>> GetNotebooks()
@@ -127,7 +153,7 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
-		/// 
+		/// Get a collection of all unique years in the given notebooks
 		/// </summary>
 		/// <param name="notebookIDs"></param>
 		/// <returns></returns>
@@ -152,7 +178,7 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
-		/// 
+		/// Open OneNote and navigate to the specified page
 		/// </summary>
 		/// <param name="pageID"></param>
 		/// <returns></returns>

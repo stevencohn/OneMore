@@ -18,11 +18,11 @@ namespace OneMoreCalendar
 		static void Main()
 		{
 			Logger.SetApplication("OneMoreCalendar");
-			Logger.Current.WriteLine("Startup");
+			Logger.Current.WriteLine("Starting OneMoreCalendar");
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			Application.Run(new CalendarForm());
 		}
 	}
 }

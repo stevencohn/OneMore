@@ -4,41 +4,53 @@
 
 namespace OneMoreCalendar
 {
+	using River.OneMoreAddIn;
 	using System;
 	using System.Drawing;
 	using System.Linq;
-	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 
 
-	internal partial class YearsForm : Form
+	/// <summary>
+	/// Present a popup window from which the user can choose a year
+	/// </summary>
+	internal partial class YearsForm : RoundForm
 	{
-		private const int Radius = 8;
+
+		private const int ItemRadius = 4;
+
+		private int skipYear; // exclude currently displayed year
+		private ListViewItem hoveredItem;
 
 
-		[DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-		private static extern IntPtr CreateRoundRectRgn
-		(
-			int nLeftRect,     // x-coordinate of upper-left corner
-			int nTopRect,      // y-coordinate of upper-left corner
-			int nRightRect,    // x-coordinate of lower-right corner
-			int nBottomRect,   // y-coordinate of lower-right corner
-			int nWidthEllipse, // width of ellipse
-			int nHeightEllipse // height of ellipse
-		);
-
-
+		/// <summary>
+		/// Consumers should call YearsForm(int)
+		/// </summary>
 		public YearsForm()
+			: base()
 		{
 			InitializeComponent();
-
-			FormBorderStyle = FormBorderStyle.None;
-			Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, Radius, Radius));
 		}
 
 
+		/// <summary>
+		/// Initialize the form
+		/// </summary>
+		/// <param name="year">The year to exclude from the list</param>
+		public YearsForm(int year)
+			: this()
+		{
+			skipYear = year;
+		}
+
+
+		/// <summary>
+		/// Preload the years to display
+		/// </summary>
+		/// <param name="e"></param>
 		protected override async void OnLoad(EventArgs e)
 		{
+			// call RoundForm.base to draw background
 			base.OnLoad(e);
 
 			if (!DesignMode)
@@ -48,51 +60,104 @@ namespace OneMoreCalendar
 
 				years.ToList().ForEach(y =>
 				{
-					listView.Items.Add(y.ToString());
+					if (y != skipYear)
+					{
+						listView.Items.Add(y.ToString());
+					}
 				});
 			}
 		}
 
 
-		public int Year => 2022;
+		/// <summary>
+		/// Gets the chosen year
+		/// </summary>
+		public int Year { get; private set; }
 
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Handlers...
 
-		private void YearsForm_KeyDown(object sender, KeyEventArgs e)
+		private void EscapeForm(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Escape)
 			{
-				Close();
+				JustLeave(sender, e);
 			}
 		}
 
 
-		private void Cancel(object sender, EventArgs e)
+		private void JustLeave(object sender, EventArgs e)
 		{
+			DialogResult = DialogResult.Cancel;
 			Close();
 		}
 
 
-		private void Apply(object sender, EventArgs e)
+		private void DrawItem(object sender, DrawListViewItemEventArgs e)
 		{
-
-			Close();
-		}
-
-		private void YearsForm_Leave(object sender, EventArgs e)
-		{
-			Close();
-		}
-
-
-		protected override void OnPaintBackground(PaintEventArgs e)
-		{
-			base.OnPaintBackground(e);
-
-			using (var pen = new Pen(AppColors.PressedBorder))
+			if (hoveredItem == e.Item)
 			{
-				var r = new Rectangle(0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1);
-				e.Graphics.DrawRoundedRectangle(pen, r, Radius);
+				var size = e.Graphics.MeasureString(e.Item.Text, listView.Font);
+				var bounds = new Rectangle(e.Bounds.X, e.Bounds.Y, (int)size.Width + 8, e.Bounds.Height);
+
+				e.Graphics.FillRoundedRectangle(AppColors.HoverBrush, bounds, ItemRadius);
+				e.Graphics.DrawRoundedRectangle(AppColors.HoverPen, bounds, ItemRadius);
+			}
+			else
+			{
+				e.Graphics.FillRectangle(Brushes.White, e.Bounds);
+			}
+
+			e.Graphics.DrawString(e.Item.Text, listView.Font, AppColors.TextBrush, e.Bounds);
+		}
+
+
+		private void HoverMouse(object sender, MouseEventArgs e)
+		{
+			var item = listView.GetItemAt(e.X, e.Y);
+			if (hoveredItem == item)
+			{
+				return;
+			}
+
+			// unhighlight old
+
+			int index;
+			if (hoveredItem != null)
+			{
+				var oldItem = hoveredItem;
+				hoveredItem = null;
+
+				index = listView.Items.IndexOf(oldItem);
+
+				DrawItem(sender, new DrawListViewItemEventArgs(
+					listView.CreateGraphics(), oldItem, 
+					listView.GetItemRect(index), index, ListViewItemStates.Default));
+			}
+
+			// highlight new
+
+			hoveredItem = item;
+			if (hoveredItem != null)
+			{
+				index = listView.Items.IndexOf(hoveredItem);
+
+				DrawItem(sender, new DrawListViewItemEventArgs(
+					listView.CreateGraphics(), hoveredItem,
+					listView.GetItemRect(index), index, ListViewItemStates.Hot));
+			}
+		}
+
+
+		private void ChooseYear(object sender, MouseEventArgs e)
+		{
+			var item = listView.GetItemAt(e.X, e.Y);
+			if (item != null)
+			{
+				Year = int.Parse(item.Text);
+				DialogResult = DialogResult.OK;
+				Close();
 			}
 		}
 	}

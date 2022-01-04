@@ -20,5 +20,8 @@ namespace OneMoreCalendar
 
 
 		public CalendarPages Pages { get; set; } = new CalendarPages();
+
+
+		public int ScrollOffset { get; set; } = 0;
 	}
 }

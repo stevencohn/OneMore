@@ -12,14 +12,16 @@ namespace OneMoreCalendar
 
 		public static Color CheckBoxColor => ColorTranslator.FromHtml("#FF73356E");
 
-		public static Color HoverColor => ColorTranslator.FromHtml("#FFF7EDF7");
+		public static Brush HoverBrush => new SolidBrush(ColorTranslator.FromHtml("#FFF7EDF7"));
 
-		public static Color HoverBorder => ColorTranslator.FromHtml("#FFF0DAEE");
+		public static Pen HoverPen => new Pen(ColorTranslator.FromHtml("#FFF0DAEE"));
 
-		public static Color RowColor => ColorTranslator.FromHtml("#FFFDFAFE");
+		public static Brush RowBrush => new SolidBrush(ColorTranslator.FromHtml("#FFFDFAFE"));
 
-		public static Color PressedColor => ColorTranslator.FromHtml("#FFF0DAEE");
+		public static Brush PressedBrush => new SolidBrush(ColorTranslator.FromHtml("#FFF0DAEE"));
 
-		public static Color PressedBorder => ColorTranslator.FromHtml("#FF9E5499");
+		public static Pen PressedPen => new Pen(ColorTranslator.FromHtml("#FF9E5499"));
+
+		public static Brush TextBrush => new SolidBrush(Color.FromArgb(115, 53, 110));
 	}
 }

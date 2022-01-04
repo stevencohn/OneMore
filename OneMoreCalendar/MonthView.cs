@@ -17,7 +17,7 @@ namespace OneMoreCalendar
 	{
 		private sealed class Hotspot
 		{
-			public Rectangle Clip;
+			public Rectangle Bounds;
 			public DateTime Date;
 			public CalendarPage Page;
 			public bool InMonth;
@@ -68,6 +68,8 @@ namespace OneMoreCalendar
 		public event CalendarHoverHandler HoverPage;
 
 		public event CalendarPageHandler ClickedPage;
+
+		public event CalendarSnapshotHandler SnappedPage;
 
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
@@ -143,19 +145,34 @@ namespace OneMoreCalendar
 		}
 
 
-		protected void SuspendDrawing(Action action)
-		{
-			Native.SendMessage(Handle, Native.WM_SETREDRAW, false, 0);
-			action();
-			Native.SendMessage(Handle, Native.WM_SETREDRAW, true, 0);
-			Refresh();
-		}
+		//protected void SuspendDrawing(Action action)
+		//{
+		//	Native.SendMessage(Handle, Native.WM_SETREDRAW, false, 0);
+		//	action();
+		//	Native.SendMessage(Handle, Native.WM_SETREDRAW, true, 0);
+		//	Refresh();
+		//}
 
 
-		protected override void OnMouseClick(MouseEventArgs e)
+		protected override async void OnMouseClick(MouseEventArgs e)
 		{
 			base.OnMouseClick(e);
-			var spot = hotspots.FirstOrDefault(h => h.Clip.Contains(e.Location));
+
+			Hotspot spot;
+
+			if (e.Button == MouseButtons.Right)
+			{
+				spot = hotspots.FirstOrDefault(h => h.Bounds.Contains(e.Location));
+				if (spot != null)
+				{
+					SnappedPage?.Invoke(this,
+						new CalendarSnapshotEventArgs(spot.Page, spot.Bounds));
+				}
+
+				return;
+			}
+
+			spot = hotspots.FirstOrDefault(h => h.Bounds.Contains(e.Location));
 			if (spot != null)
 			{
 				if (spot.Page != null)
@@ -174,7 +191,7 @@ namespace OneMoreCalendar
 		{
 			base.OnMouseMove(e);
 
-			var spot = hotspots.FirstOrDefault(h => h.Clip.Contains(e.Location));
+			var spot = hotspots.FirstOrDefault(h => h.Bounds.Contains(e.Location));
 			if (spot == hotspot)
 			{
 				if (hotspot != null)
@@ -192,16 +209,16 @@ namespace OneMoreCalendar
 					{
 						g.FillRectangle(
 							hotspot.Page.Modified.Month == date.Month ? Brushes.White : Brushes.WhiteSmoke,
-							hotspot.Clip);
+							hotspot.Bounds);
 
 						if (hotspot.Page.IsDeleted)
 						{
-							g.DrawString(hotspot.Page.Title, deletedFont, Brushes.Gray, hotspot.Clip, format);
+							g.DrawString(hotspot.Page.Title, deletedFont, Brushes.Gray, hotspot.Bounds, format);
 						}
 						else
 						{
 							var brush = hotspot.InMonth ? Brushes.Black : Brushes.Gray;
-							g.DrawString(hotspot.Page.Title, Font, brush, hotspot.Clip, format);
+							g.DrawString(hotspot.Page.Title, Font, brush, hotspot.Bounds, format);
 						}
 					}
 
@@ -219,11 +236,11 @@ namespace OneMoreCalendar
 					using (var g = CreateGraphics())
 					{
 						var brush = spot.InMonth ? Brushes.White : Brushes.WhiteSmoke;
-						g.FillRectangle(brush, spot.Clip);
+						g.FillRectangle(brush, spot.Bounds);
 
 						g.DrawString(spot.Page.Title, 
 							spot.Page.IsDeleted ? deletedFont : hotFont,
-							Brushes.DarkOrchid, spot.Clip, format);
+							Brushes.DarkOrchid, spot.Bounds, format);
 					}
 
 					HoverPage?.Invoke(this, new CalendarPageEventArgs(spot.Page));
@@ -336,7 +353,7 @@ namespace OneMoreCalendar
 
 				hotspots.Add(new Hotspot
 				{
-					Clip = box,
+					Bounds = box,
 					Date = day.Date,
 					InMonth = day.InMonth
 				});
@@ -377,7 +394,7 @@ namespace OneMoreCalendar
 
 						hotspots.Add(new Hotspot
 						{
-							Clip = clip,
+							Bounds = clip,
 							Page = page,
 							InMonth = day.InMonth
 						});

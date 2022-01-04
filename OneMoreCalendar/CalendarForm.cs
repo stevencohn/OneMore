@@ -6,23 +6,26 @@ namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
 	using System;
-	using System.Linq;
+	using System.Drawing.Imaging;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
 
-	public partial class MainForm : Form
+	/// <summary>
+	/// Main OneMoreCalendar form
+	/// </summary>
+	public partial class CalendarForm : Form
 	{
 		private DateTime date;
 		private CalendarPages pages;
 
 		private MonthView monthView;
 		private DayView dayView;
+		private YearsForm yearsForm;
 		private SettingsForm settingsForm;
-		private FormWindowState? winstate = null;
 
 
-		public MainForm()
+		public CalendarForm()
 		{
 			InitializeComponent();
 
@@ -30,7 +33,7 @@ namespace OneMoreCalendar
 			statusCreatedLabel.Text = string.Empty;
 			statusModifiedLabel.Text = string.Empty;
 
-			Width = 1500;
+			Width = 1500; // TODO: save as settings?
 			Height = 1000;
 		}
 
@@ -50,6 +53,7 @@ namespace OneMoreCalendar
 			monthView.ClickedPage += NavigateToPage;
 			monthView.ClickedDay += ShowDayView;
 			monthView.HoverPage += ShowPageStatus;
+			monthView.SnappedPage += SnappedPage;
 
 			contentPanel.Controls.Add(monthView);
 
@@ -59,9 +63,12 @@ namespace OneMoreCalendar
 
 		private async Task SetMonth(int delta)
 		{
-			date = delta == 0
-				? DateTime.Now.StartOfMonth()
-				: date.AddMonths(delta);
+			if (delta < 1000)
+			{
+				date = delta == 0
+					? DateTime.Now.StartOfMonth()
+					: date.AddMonths(delta);
+			}
 
 			var endDate = date.EndOfMonth();
 			var settings = new SettingsProvider();
@@ -178,6 +185,25 @@ namespace OneMoreCalendar
 		}
 
 
+		private SnapshotForm snapForm;
+		private void SnappedPage(object sender, CalendarSnapshotEventArgs e)
+		{
+			var path = new OneNoteProvider().Export(e.Page.PageID);
+			Logger.Current.WriteLine($"exported page '{e.Page.Title}' to {path}");
+
+			snapForm = new SnapshotForm(path);
+			snapForm.Location = e.Bounds.Location;
+			snapForm.Deactivate += DeactivateSnap;
+			snapForm.Show(this);
+		}
+
+		private void DeactivateSnap(object sender, EventArgs e)
+		{
+			snapForm.Dispose();
+			snapForm = null;
+		}
+
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Month view...
 
@@ -204,29 +230,83 @@ namespace OneMoreCalendar
 		}
 
 
-		protected override void OnKeyDown(KeyEventArgs e)
+		protected override async void OnKeyDown(KeyEventArgs e)
 		{
 			base.OnKeyDown(e);
 
-			if (monthButton.Checked)
+			if (e.KeyCode == Keys.PageUp || (e.Control && e.KeyCode == Keys.Right))
 			{
-				if (e.KeyCode == Keys.PageUp)
+				GotoPrevious(this, e);
+			}
+			else if (e.KeyCode == Keys.PageDown || (e.Control && e.KeyCode == Keys.Left))
+			{
+				if (nextButton.Enabled)
 				{
-					GotoPrevious(this, e);
+					GotoNext(this, e);
 				}
-				else if (e.KeyCode == Keys.PageDown)
+			}
+			else if (e.KeyCode == Keys.F5)
+			{
+				await SetMonth(date.Year);
+			}
+			else if (e.KeyCode == Keys.Home)
+			{
+				await SetMonth(0);
+			}
+			else if (e.Control && (e.KeyCode == Keys.Tab))
+			{
+				if (monthButton.Checked)
 				{
-					if (nextButton.Enabled)
-					{
-						GotoNext(this, e);
-					}
+					dayButton.Checked = true;
+					monthButton.Checked = false;
+				}
+				else
+				{
+					monthButton.Checked = true;
+					dayButton.Checked = false;
 				}
 			}
 		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// Dealing with the settings form...
+		// Years form...
+
+		private void DropDownYears(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			yearsForm = new YearsForm(date.Year);
+			var location = PointToScreen(dateLabel.Location);
+			location.Offset(0, dateLabel.Height);
+
+			yearsForm.Location = location;
+			yearsForm.Deactivate += DeactivateYears;
+			yearsForm.Show(this);
+		}
+
+		private async void DeactivateYears(object sender, EventArgs e)
+		{
+			TopMost = false;
+			TopMost = true;
+			TopMost = false;
+
+			if (yearsForm.Year > 0)
+			{
+				date = new DateTime(yearsForm.Year, date.Month, 1);
+				if (date.CompareTo(DateTime.Now.Date) > 0)
+				{
+					date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+				}
+
+				await SetMonth(date.Year);
+			}
+
+			yearsForm.Dispose();
+			yearsForm = null;
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Settings form...
 
 		private void ToggleSettings(object sender, EventArgs e)
 		{
@@ -239,15 +319,29 @@ namespace OneMoreCalendar
 				settingsForm.Location = location;
 				settingsForm.FormClosing += ClosingSettings;
 				settingsForm.FormClosed += ClosedSettings;
+				settingsForm.Deactivate += DeactivateSettings;
 				settingsForm.Show(this);
 			}
 			else
 			{
 				settingsForm.FormClosing -= ClosingSettings;
 				settingsForm.FormClosed -= ClosedSettings;
+				settingsForm.Deactivate -= DeactivateSettings;
 				settingsForm.Close();
 			}
 		}
+
+
+		private async void ClosingSettings(object sender, FormClosingEventArgs e)
+		{
+			settingsButton.Checked = false;
+
+			if (settingsForm.DialogResult == DialogResult.OK)
+			{
+				await SetMonth(date.Year);
+			}
+		}
+
 
 		private void ClosedSettings(object sender, FormClosedEventArgs e)
 		{
@@ -257,80 +351,14 @@ namespace OneMoreCalendar
 			settingsForm = null;
 		}
 
-		private async void ClosingSettings(object sender, FormClosingEventArgs e)
-		{
-			settingsButton.Checked = false;
 
-			if (settingsForm.DialogResult == DialogResult.OK)
+		private void DeactivateSettings(object sender, EventArgs e)
+		{
+			if (!settingsForm.Busy)
 			{
-				await SetMonth(0);
+				settingsButton.Checked = false;
+				ClosedSettings(sender, null);
 			}
-		}
-
-
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// Basic window management...
-
-		protected override void OnMove(EventArgs e)
-		{
-			base.OnMove(e);
-			if (settingsForm?.Visible == true)
-			{
-				var location = PointToScreen(settingsButton.Location);
-				location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
-				settingsForm.Location = location;
-			}
-		}
-
-
-		protected override void OnResize(EventArgs e)
-		{
-			base.OnResize(e);
-			if (WindowState == winstate)
-			{
-				if (settingsForm?.Visible == true)
-				{
-					var location = PointToScreen(settingsButton.Location);
-					location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
-					settingsForm.Location = location;
-				}
-
-				winstate = WindowState;
-			}
-		}
-
-		protected override void OnSizeChanged(EventArgs e)
-		{
-			base.OnSizeChanged(e);
-			if (settingsForm?.Visible == true)
-			{
-				var location = PointToScreen(settingsButton.Location);
-				location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
-				settingsForm.Location = location;
-			}
-		}
-
-
-		private Form yearsForm;
-		private async void DropDownYears(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			var years = await new OneNoteProvider()
-				.GetYears(await new SettingsProvider().GetNotebookIDs());
-
-			yearsForm = new YearsForm();
-			var location = PointToScreen(dateLabel.Location);
-			location.Offset(0, dateLabel.Height);
-
-			yearsForm.Location = location;
-			//yearsForm.FormClosing += ClosingSettings;
-			yearsForm.FormClosed += YearsForm_FormClosed;
-			yearsForm.Show(this);
-		}
-
-		private void YearsForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			TopMost = false;
-			TopMost = true;
 		}
 	}
 }

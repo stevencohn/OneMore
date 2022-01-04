@@ -12,6 +12,13 @@ namespace OneMoreCalendar
 	/// <summary>
 	/// Custom Button
 	/// </summary>
+	/// <remarks>
+	/// ArrowDirections
+	/// "⏵" // \u23F5
+	/// "⏶" // \u23F6
+	/// "⏷" // \u23F7
+	/// "⏴" // \u23F4
+	/// </remarks>
 	internal class MoreButton : Button
 	{
 		private const int Radius = 4;
@@ -46,26 +53,16 @@ namespace OneMoreCalendar
 
 			if (Enabled && MouseState != MouseState.None)
 			{
-				var color = MouseState.HasFlag(MouseState.Pushed)
-					? AppColors.PressedColor
-					: AppColors.HoverColor;
-
-				using (var brush = new SolidBrush(color))
-				{
-					g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
-				}
+				g.FillRoundedRectangle(
+					MouseState.HasFlag(MouseState.Pushed) ? AppColors.PressedBrush : AppColors.HoverBrush,
+					pevent.ClipRectangle, Radius);
 			}
 
 			if (ShowBorder || (Enabled && MouseState != MouseState.None))
 			{
-				var color = MouseState.HasFlag(MouseState.Pushed)
-					? AppColors.PressedBorder
-					: AppColors.HoverBorder;
-
-				using (var pen = new Pen(color))
-				{
-					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
-				}
+				g.DrawRoundedRectangle(
+					MouseState.HasFlag(MouseState.Pushed) ? AppColors.PressedPen : AppColors.HoverPen,
+					pevent.ClipRectangle, Radius);
 			}
 
 			if (Image != null)
@@ -136,22 +133,22 @@ namespace OneMoreCalendar
 		}
 
 
-		protected override void OnMouseLeave(EventArgs eventargs)
+		protected override void OnMouseLeave(EventArgs e)
 		{
 			if (Enabled)
 			{
 				MouseState &= ~MouseState.Hover;
-				base.OnMouseLeave(eventargs);
+				base.OnMouseLeave(e);
 			}
 		}
 
 
-		protected override void OnMouseEnter(EventArgs eventargs)
+		protected override void OnMouseEnter(EventArgs e)
 		{
 			if (Enabled)
 			{
 				MouseState |= MouseState.Hover;
-				base.OnMouseEnter(eventargs);
+				base.OnMouseEnter(e);
 			}
 		}
 	}
