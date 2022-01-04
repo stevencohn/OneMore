@@ -31,12 +31,12 @@
 			this.optionsLabel = new System.Windows.Forms.Label();
 			this.notebooksLabel = new System.Windows.Forms.Label();
 			this.settingsPanel = new System.Windows.Forms.Panel();
+			this.deletedBox = new OneMoreCalendar.MoreCheckBox();
 			this.okButton = new OneMoreCalendar.MoreButton();
 			this.cancelButton = new OneMoreCalendar.MoreButton();
 			this.notebooksBox = new OneMoreCalendar.MoreCheckedListBox();
 			this.createdBox = new OneMoreCalendar.MoreCheckBox();
 			this.modifiedBox = new OneMoreCalendar.MoreCheckBox();
-			this.deletedBox = new OneMoreCalendar.MoreCheckBox();
 			this.settingsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -80,6 +80,17 @@
 			this.settingsPanel.Padding = new System.Windows.Forms.Padding(20);
 			this.settingsPanel.Size = new System.Drawing.Size(518, 450);
 			this.settingsPanel.TabIndex = 2;
+			// 
+			// deletedBox
+			// 
+			this.deletedBox.AutoSize = true;
+			this.deletedBox.BackColor = System.Drawing.Color.White;
+			this.deletedBox.Location = new System.Drawing.Point(48, 132);
+			this.deletedBox.Name = "deletedBox";
+			this.deletedBox.Size = new System.Drawing.Size(201, 24);
+			this.deletedBox.TabIndex = 10;
+			this.deletedBox.Text = "Included deleted pages";
+			this.deletedBox.UseVisualStyleBackColor = false;
 			// 
 			// okButton
 			// 
@@ -144,17 +155,6 @@
 			this.modifiedBox.Text = "Last modified on";
 			this.modifiedBox.UseVisualStyleBackColor = false;
 			this.modifiedBox.CheckedChanged += new System.EventHandler(this.ChangeFilter);
-			// 
-			// deletedBox
-			// 
-			this.deletedBox.AutoSize = true;
-			this.deletedBox.BackColor = System.Drawing.Color.White;
-			this.deletedBox.Location = new System.Drawing.Point(48, 132);
-			this.deletedBox.Name = "deletedBox";
-			this.deletedBox.Size = new System.Drawing.Size(201, 24);
-			this.deletedBox.TabIndex = 10;
-			this.deletedBox.Text = "Included deleted pages";
-			this.deletedBox.UseVisualStyleBackColor = false;
 			// 
 			// SettingsForm
 			// 

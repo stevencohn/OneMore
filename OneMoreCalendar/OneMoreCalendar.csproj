@@ -102,6 +102,12 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsProvider.cs" />
+    <Compile Include="YearsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YearsForm.Designer.cs">
+      <DependentUpon>YearsForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DayView.resx">
       <DependentUpon>DayView.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YearsForm.resx">
+      <DependentUpon>YearsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

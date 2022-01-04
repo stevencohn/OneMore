@@ -6,6 +6,7 @@ namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
 	using System;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -307,6 +308,29 @@ namespace OneMoreCalendar
 				location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
 				settingsForm.Location = location;
 			}
+		}
+
+
+		private Form yearsForm;
+		private async void DropDownYears(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			var years = await new OneNoteProvider()
+				.GetYears(await new SettingsProvider().GetNotebookIDs());
+
+			yearsForm = new YearsForm();
+			var location = PointToScreen(dateLabel.Location);
+			location.Offset(0, dateLabel.Height);
+
+			yearsForm.Location = location;
+			//yearsForm.FormClosing += ClosingSettings;
+			yearsForm.FormClosed += YearsForm_FormClosed;
+			yearsForm.Show(this);
+		}
+
+		private void YearsForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			TopMost = false;
+			TopMost = true;
 		}
 	}
 }

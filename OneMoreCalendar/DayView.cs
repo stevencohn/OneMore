@@ -82,9 +82,9 @@ namespace OneMoreCalendar
 		{
 			if (listbox.Items[e.Index] is DayItem day)
 			{
-				e.ItemHeight = day.Pages.Count == 0 ?
-					listbox.Font.Height + (VPadding * 2)
-					: day.Pages.Count * listbox.Font.Height + (VPadding * 2);
+				e.ItemHeight = day.Pages.Count > 1
+					? (day.Pages.Count * listbox.Font.Height) + (VPadding * 3)
+					: listbox.Font.Height + (VPadding * 2);
 			}
 			else
 			{

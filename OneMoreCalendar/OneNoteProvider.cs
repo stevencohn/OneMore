@@ -42,9 +42,9 @@ namespace OneMoreCalendar
 
 				// filter to selected month...
 
-				var list = new CalendarPages();
+				var pages = new CalendarPages();
 
-				list.AddRange(notebooks.Descendants(ns + "Page")
+				pages.AddRange(notebooks.Descendants(ns + "Page")
 					.Where(e => deleted || e.Attribute("isInRecycleBin") == null)
 					.Select(e => new
 					{
@@ -70,7 +70,7 @@ namespace OneMoreCalendar
 						IsDeleted = a.IsDeleted
 					}));
 
-				return list;
+				return pages;
 			}
 		}
 
@@ -122,6 +122,31 @@ namespace OneMoreCalendar
 
 				return notebooks.Elements(ns + "Notebook")
 					.Select(e => new Notebook(e));
+			}
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="notebookIDs"></param>
+		/// <returns></returns>
+		public async Task<IEnumerable<int>> GetYears(IEnumerable<string> notebookIDs)
+		{
+			using (one = new OneNote())
+			{
+				var notebooks = await GetNotebooks(notebookIDs);
+				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
+
+				var pages = notebooks.Descendants(ns + "Page");
+
+				var years = pages
+					.Select(p => DateTime.Parse(p.Attribute("dateTime").Value).Year)
+					.Union(pages.Select(p => DateTime.Parse(p.Attribute("lastModifiedTime").Value).Year))
+					.Distinct()
+					.OrderByDescending(y => y);
+
+				return years;
 			}
 		}
 
