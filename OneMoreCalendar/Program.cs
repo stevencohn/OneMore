@@ -11,6 +11,9 @@ namespace OneMoreCalendar
 
 	internal static class Program
 	{
+		public static CalendarForm MainForm;
+
+
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -22,7 +25,9 @@ namespace OneMoreCalendar
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new CalendarForm());
+
+			MainForm = new CalendarForm();
+			Application.Run(MainForm);
 		}
 	}
 }

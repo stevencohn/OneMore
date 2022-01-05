@@ -55,22 +55,26 @@ namespace OneMoreCalendar
 			if (!DesignMode && File.Exists(Path))
 			{
 				using (var source = new Metafile(Path))
-				using (var target = new Bitmap(pictureBox.Width, pictureBox.Height))
-				using (var g = Graphics.FromImage(target))
 				{
-					// resize the image 150%
-					g.DrawImage(source,
-						new Rectangle(0, 0, (int)(target.Width * 1.5), (int)(target.Height * 1.5)),
-						new Rectangle(0, 0, source.Width, source.Height),
-						GraphicsUnit.Pixel
-						);
+					var target = new Bitmap(pictureBox.Width, pictureBox.Height);
+					using (var g = Graphics.FromImage(target))
+					{
+						// resize the image 150%
+						g.DrawImage(source,
+							new Rectangle(0, 0, (int)(target.Width * 1.5), (int)(target.Height * 1.5)),
+							new Rectangle(0, 0, source.Width, source.Height),
+							GraphicsUnit.Pixel
+							);
 
-					var path = System.IO.Path.Combine(
-						System.IO.Path.GetTempPath(),
-						System.IO.Path.GetRandomFileName() + ".png");
+						//var path = System.IO.Path.Combine(
+						//	System.IO.Path.GetTempPath(),
+						//	System.IO.Path.GetRandomFileName() + ".png");
 
-					target.Save(path, ImageFormat.Png);
-					pictureBox.ImageLocation = path;
+						//target.Save(path, ImageFormat.Png);
+						//pictureBox.ImageLocation = path;
+
+						pictureBox.Image = target;
+					}
 				}
 			}
 		}

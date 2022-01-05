@@ -103,7 +103,7 @@ namespace OneMoreCalendar
 			Busy = true;
 			using (var dialog = new AboutDialog())
 			{
-				dialog.ShowDialog(this);
+				dialog.ShowDialog(Program.MainForm);
 			}
 			Busy = false;
 		}

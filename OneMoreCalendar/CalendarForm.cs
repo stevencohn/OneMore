@@ -59,6 +59,10 @@ namespace OneMoreCalendar
 			contentPanel.Controls.Add(monthView);
 
 			await SetMonth(0);
+
+			// when started from OneNote, need to force window to top
+			TopMost = true;
+			TopMost = false;
 		}
 
 
