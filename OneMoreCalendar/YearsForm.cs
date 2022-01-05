@@ -14,7 +14,7 @@ namespace OneMoreCalendar
 	/// <summary>
 	/// Present a popup window from which the user can choose a year
 	/// </summary>
-	internal partial class YearsForm : RoundForm
+	internal partial class YearsForm : RoundedForm
 	{
 
 		private const int ItemRadius = 4;

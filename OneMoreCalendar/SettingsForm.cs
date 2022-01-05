@@ -12,7 +12,7 @@ namespace OneMoreCalendar
 	/// <summary>
 	/// Present a popup window for user settings
 	/// </summary>
-	internal partial class SettingsForm : RoundForm
+	internal partial class SettingsForm : RoundedForm
 	{
 
 		public SettingsForm()

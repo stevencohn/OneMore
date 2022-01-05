@@ -14,7 +14,7 @@ namespace OneMoreCalendar
 	/// <summary>
 	/// Present a popup window showing a snapshot of a page
 	/// </summary>
-	internal partial class SnapshotForm : RoundForm
+	internal partial class SnapshotForm : RoundedForm
 	{
 
 		/// <summary>

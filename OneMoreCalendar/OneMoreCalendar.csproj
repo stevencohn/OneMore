@@ -105,7 +105,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsProvider.cs" />
-    <Compile Include="Things\RoundForm.cs">
+    <Compile Include="Things\RoundedForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SnapshotForm.cs">
