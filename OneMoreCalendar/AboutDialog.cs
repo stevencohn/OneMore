@@ -6,7 +6,6 @@ namespace OneMoreCalendar
 {
 	using System;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class AboutDialog : Form

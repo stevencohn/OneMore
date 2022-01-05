@@ -17,9 +17,6 @@ namespace OneMoreCalendar
 	internal partial class SnapshotForm : RoundForm
 	{
 
-		private CalendarPage page;
-
-
 		/// <summary>
 		/// Consumers should call SnapshotForm(string)
 		/// </summary>
@@ -38,7 +35,6 @@ namespace OneMoreCalendar
 			: this()
 		{
 			Path = path;
-			this.page = page;
 			pathLabel.Text = page.Path;
 		}
 
