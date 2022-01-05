@@ -54,9 +54,9 @@
 			this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.titleLabel.Location = new System.Drawing.Point(156, 26);
 			this.titleLabel.Name = "titleLabel";
-			this.titleLabel.Size = new System.Drawing.Size(324, 25);
+			this.titleLabel.Size = new System.Drawing.Size(329, 25);
 			this.titleLabel.TabIndex = 1;
-			this.titleLabel.Text = "OneMoreCalendar for OneNote 2016";
+			this.titleLabel.Text = "OneMore Calendar for OneNote 2016";
 			// 
 			// versionLabel
 			// 
@@ -130,7 +130,7 @@
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "OneMoreCalendar";
+			this.Text = "OneMore Calendar";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
