@@ -47,20 +47,22 @@
 			// 
 			// topPanel
 			// 
+			this.topPanel.BackColor = System.Drawing.Color.White;
 			this.topPanel.Controls.Add(this.pathLabel);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(7, 9);
 			this.topPanel.Name = "topPanel";
-			this.topPanel.Size = new System.Drawing.Size(370, 34);
+			this.topPanel.Size = new System.Drawing.Size(370, 28);
 			this.topPanel.TabIndex = 1;
 			// 
 			// pictureBox
 			// 
+			this.pictureBox.BackColor = System.Drawing.Color.White;
 			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox.Location = new System.Drawing.Point(7, 43);
+			this.pictureBox.Location = new System.Drawing.Point(7, 37);
+			this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
 			this.pictureBox.Name = "pictureBox";
-			this.pictureBox.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-			this.pictureBox.Size = new System.Drawing.Size(370, 448);
+			this.pictureBox.Size = new System.Drawing.Size(370, 454);
 			this.pictureBox.TabIndex = 2;
 			this.pictureBox.TabStop = false;
 			// 

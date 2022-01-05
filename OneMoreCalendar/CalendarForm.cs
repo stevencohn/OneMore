@@ -7,6 +7,7 @@ namespace OneMoreCalendar
 	using River.OneMoreAddIn;
 	using System;
 	using System.Drawing.Imaging;
+	using System.IO;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -136,6 +137,7 @@ namespace OneMoreCalendar
 
 				dayView.HoverPage += ShowPageStatus;
 				dayView.ClickedPage += NavigateToPage;
+				dayView.SnappedPage += SnappedPage;
 			}
 
 			var endDate = date.EndOfMonth();
@@ -191,16 +193,35 @@ namespace OneMoreCalendar
 			var path = new OneNoteProvider().Export(e.Page.PageID);
 			Logger.Current.WriteLine($"exported page '{e.Page.Title}' to {path}");
 
-			snapForm = new SnapshotForm(path);
-			snapForm.Location = e.Bounds.Location;
+			var location = PointToScreen(e.Bounds.Location);
+			location.Offset(50, 70);
+
+			snapForm = new SnapshotForm(e.Page, path);
+			snapForm.Location = location;
 			snapForm.Deactivate += DeactivateSnap;
 			snapForm.Show(this);
 		}
 
 		private void DeactivateSnap(object sender, EventArgs e)
 		{
-			snapForm.Dispose();
-			snapForm = null;
+			if (snapForm != null)
+			{
+				var path = snapForm.Path;
+				snapForm.Dispose();
+				snapForm = null;
+
+				if (File.Exists(path))
+				{
+					try
+					{
+						File.Delete(path);
+					}
+					catch (Exception exc)
+					{
+						Logger.Current.WriteLine("error deleting temp metafile", exc);
+					}
+				}
+			}
 		}
 
 

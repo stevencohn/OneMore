@@ -8,7 +8,6 @@ namespace OneMoreCalendar
 	using System.Drawing;
 	using System.Drawing.Imaging;
 	using System.IO;
-	using System.Linq;
 	using System.Windows.Forms;
 
 
@@ -18,7 +17,7 @@ namespace OneMoreCalendar
 	internal partial class SnapshotForm : RoundForm
 	{
 
-		private string pathToEmf;
+		private CalendarPage page;
 
 
 		/// <summary>
@@ -35,11 +34,17 @@ namespace OneMoreCalendar
 		/// Initialize the form
 		/// </summary>
 		/// <param name="path">Path of the .emf file to display</param>
-		public SnapshotForm(string path)
+		public SnapshotForm(CalendarPage page, string path)
 			: this()
 		{
-			pathToEmf = path;
+			Path = path;
+			this.page = page;
+			pathLabel.Text = page.Path;
 		}
+
+
+		public string Path { get; private set; }
+
 
 
 		/// <summary>
@@ -51,10 +56,26 @@ namespace OneMoreCalendar
 			// call RoundForm.base to draw background
 			base.OnLoad(e);
 
-			if (!DesignMode && File.Exists(pathToEmf))
+			if (!DesignMode && File.Exists(Path))
 			{
-				var meta = new Metafile(pathToEmf);
-				pictureBox.Image = meta;
+				using (var source = new Metafile(Path))
+				using (var target = new Bitmap(pictureBox.Width, pictureBox.Height))
+				using (var g = Graphics.FromImage(target))
+				{
+					// resize the image 150%
+					g.DrawImage(source,
+						new Rectangle(0, 0, (int)(target.Width * 1.5), (int)(target.Height * 1.5)),
+						new Rectangle(0, 0, source.Width, source.Height),
+						GraphicsUnit.Pixel
+						);
+
+					var path = System.IO.Path.Combine(
+						System.IO.Path.GetTempPath(),
+						System.IO.Path.GetRandomFileName() + ".png");
+
+					target.Save(path, ImageFormat.Png);
+					pictureBox.ImageLocation = path;
+				}
 			}
 		}
 

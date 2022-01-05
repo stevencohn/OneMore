@@ -154,7 +154,7 @@ namespace OneMoreCalendar
 		//}
 
 
-		protected override async void OnMouseClick(MouseEventArgs e)
+		protected override void OnMouseClick(MouseEventArgs e)
 		{
 			base.OnMouseClick(e);
 

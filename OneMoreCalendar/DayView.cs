@@ -219,11 +219,18 @@ namespace OneMoreCalendar
 			}
 		}
 
-		private void ReviewView(object sender, EventArgs e)
+		private void ResizeView(object sender, EventArgs e)
 		{
 			listbox.Invalidate();
 		}
 
+
+		/*
+		 * Note that MouseClick event doesn't capture right-clicks but MouseUp does.
+		 * Also note that if the control overrides OnMouseClick then that *will* capture both
+		 * left and right buttons. Windows Forms is fun!
+		 * 
+		 */
 		private void ClickPage(object sender, MouseEventArgs e)
 		{
 			var day = listbox.Items.OfType<DayItem>()
@@ -234,7 +241,14 @@ namespace OneMoreCalendar
 				var page = day.Pages.FirstOrDefault(p => p.Bounds.Contains(e.Location));
 				if (page != null)
 				{
-					ClickedPage?.Invoke(this, new CalendarPageEventArgs(page));
+					if (e.Button == MouseButtons.Right)
+					{
+						SnappedPage?.Invoke(this, new CalendarSnapshotEventArgs(page, page.Bounds));
+					}
+					else
+					{
+						ClickedPage?.Invoke(this, new CalendarPageEventArgs(page));
+					}
 				}
 			}
 		}

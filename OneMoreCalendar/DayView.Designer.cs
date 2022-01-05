@@ -44,12 +44,12 @@
 			this.listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.listbox.Size = new System.Drawing.Size(743, 409);
 			this.listbox.TabIndex = 0;
-			this.listbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ClickPage);
 			this.listbox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawDay);
 			this.listbox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureDay);
 			this.listbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ScrollDays);
 			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HoverHighlight);
-			this.listbox.Resize += new System.EventHandler(this.ReviewView);
+			this.listbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ClickPage);
+			this.listbox.Resize += new System.EventHandler(this.ResizeView);
 			// 
 			// DayView
 			// 
