@@ -11,7 +11,7 @@ namespace OneMoreCalendar
 
 	internal static class Program
 	{
-		public static CalendarForm MainForm;
+		public static readonly CalendarForm MainForm;
 
 
 		/// <summary>
