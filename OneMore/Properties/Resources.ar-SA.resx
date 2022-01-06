@@ -1287,8 +1287,8 @@
     <comment>label</comment>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
-    <value>التقويم</value>
-    <comment>Ribbon OneMore menu item, snippets</comment>
+    <value>تقويم</value>
+    <comment>Ribbon OneMore-Calendar command</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
@@ -3720,5 +3720,13 @@ ISO-code then comma then language name</comment>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
     <value>استبدل المسافات في اسم الملف بالشرطات السفلية</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ribFileMenu_Label" xml:space="preserve">
+    <value>ملف</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribInsertCalendarButton_Label" xml:space="preserve">
+    <value>تقويم</value>
+    <comment>ribbon button</comment>
   </data>
 </root>

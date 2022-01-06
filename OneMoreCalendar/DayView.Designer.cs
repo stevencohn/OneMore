@@ -28,8 +28,19 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.listbox = new System.Windows.Forms.ListBox();
+			this.headerPanel = new System.Windows.Forms.Panel();
+			this.listbox = new OneMoreCalendar.MoreListBox();
 			this.SuspendLayout();
+			// 
+			// headerPanel
+			// 
+			this.headerPanel.BackColor = System.Drawing.Color.White;
+			this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.headerPanel.Location = new System.Drawing.Point(0, 0);
+			this.headerPanel.Name = "headerPanel";
+			this.headerPanel.Size = new System.Drawing.Size(743, 37);
+			this.headerPanel.TabIndex = 1;
+			this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintHeaderPanel);
 			// 
 			// listbox
 			// 
@@ -38,24 +49,26 @@
 			this.listbox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
 			this.listbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.listbox.FormattingEnabled = true;
-			this.listbox.Location = new System.Drawing.Point(0, 0);
+			this.listbox.Location = new System.Drawing.Point(0, 37);
 			this.listbox.Margin = new System.Windows.Forms.Padding(0);
 			this.listbox.Name = "listbox";
 			this.listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-			this.listbox.Size = new System.Drawing.Size(743, 409);
+			this.listbox.Size = new System.Drawing.Size(743, 372);
 			this.listbox.TabIndex = 0;
-			this.listbox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawDay);
-			this.listbox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureDay);
-			this.listbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ScrollDays);
-			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HoverHighlight);
-			this.listbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ClickPage);
-			this.listbox.Resize += new System.EventHandler(this.ResizeView);
+			this.listbox.Scrolled += new System.Windows.Forms.ScrollEventHandler(this.LbScrolled);
+			this.listbox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LbDrawItem);
+			this.listbox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.LbMeasureItem);
+			this.listbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LbKeyDown);
+			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LbMouseMove);
+			this.listbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LbMouseUp);
+			this.listbox.Resize += new System.EventHandler(this.LbResize);
 			// 
 			// DayView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.listbox);
+			this.Controls.Add(this.headerPanel);
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "DayView";
 			this.Size = new System.Drawing.Size(743, 409);
@@ -65,6 +78,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.ListBox listbox;
+		private MoreListBox listbox;
+		private System.Windows.Forms.Panel headerPanel;
 	}
 }

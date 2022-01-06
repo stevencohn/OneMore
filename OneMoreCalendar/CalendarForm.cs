@@ -6,7 +6,6 @@ namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
 	using System;
-	using System.Drawing.Imaging;
 	using System.IO;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -108,7 +107,7 @@ namespace OneMoreCalendar
 		{
 			if (sender == monthButton)
 			{
-				contentPanel.Controls.Remove(dayView);
+				contentPanel.Controls.Clear();
 				contentPanel.Controls.Add(monthView);
 
 				monthView.SetRange(date, date.EndOfMonth(), pages);
@@ -127,7 +126,7 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		private async void ShowDayView(object sender, CalendarDayEventArgs e)
 		{
-			contentPanel.Controls.Remove(monthView);
+			contentPanel.Controls.Clear();
 
 			if (dayView == null)
 			{

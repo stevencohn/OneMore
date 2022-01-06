@@ -64,11 +64,26 @@
     <Compile Include="DayView.Designer.cs">
       <DependentUpon>DayView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailPagePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailPagePanel.Designer.cs">
+      <DependentUpon>DetailPagePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailView.Designer.cs">
+      <DependentUpon>DetailView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Things\AppColors.cs" />
     <Compile Include="Things\BitmapExtensions.cs" />
     <Compile Include="Things\DateTimeExtensions.cs" />
     <Compile Include="Things\GraphicsExtensions.cs" />
     <Compile Include="Things\MoreButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Things\MoreListBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Things\MoreRadioButton.cs">
@@ -128,6 +143,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailPagePanel.resx">
+      <DependentUpon>DetailPagePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailView.resx">
+      <DependentUpon>DetailView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonthView.resx">
       <DependentUpon>MonthView.cs</DependentUpon>

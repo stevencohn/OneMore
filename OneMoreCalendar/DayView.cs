@@ -21,8 +21,9 @@ namespace OneMoreCalendar
 		}
 
 
-		private const int HeadWidth = 170;
-		private const int DateWidth = 170;
+		private const int HeadWidth = 170; // day
+		private const int PathWidth = 250; // path
+		private const int DateWidth = 170; // created, modified
 		private const int VPadding = 6;
 
 		private DayItem hotday;
@@ -79,7 +80,28 @@ namespace OneMoreCalendar
 		}
 
 
-		private void MeasureDay(object sender, MeasureItemEventArgs e)
+		private void PaintHeaderPanel(object sender, PaintEventArgs e)
+		{
+			using (var font = new Font("Segoe UI Light", 10.0f, FontStyle.Regular))
+			{
+				headerPanel.Height = font.Height + VPadding;
+				var y = (headerPanel.Height - font.Height) / 2;
+
+				var size = e.Graphics.MeasureString("DATE", font);
+				e.Graphics.DrawString("DATE", font, Brushes.SlateGray,
+					(HeadWidth - size.Width) / 2, y);
+
+				var width = e.ClipRectangle.Width - SystemInformation.VerticalScrollBarWidth;
+
+				e.Graphics.DrawString("SECTION", font, Brushes.SlateGray, HeadWidth + 20, y);
+				e.Graphics.DrawString("PAGE", font, Brushes.SlateGray, HeadWidth + PathWidth + 40, y);
+				e.Graphics.DrawString("CREATED", font, Brushes.SlateGray, width - DateWidth * 2, y);
+				e.Graphics.DrawString("MODIFIED", font, Brushes.SlateGray, width - DateWidth, y);
+			}
+		}
+
+
+		private void LbMeasureItem(object sender, MeasureItemEventArgs e)
 		{
 			if (listbox.Items[e.Index] is DayItem day)
 			{
@@ -97,7 +119,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private void DrawDay(object sender, DrawItemEventArgs e)
+		private void LbDrawItem(object sender, DrawItemEventArgs e)
 		{
 			e.Graphics.FillRectangle(e.Index % 2 == 1 ? AppColors.RowBrush : Brushes.White, e.Bounds);
 
@@ -120,20 +142,28 @@ namespace OneMoreCalendar
 				var top = e.Bounds.Top + VPadding;
 				foreach (var page in day.Pages)
 				{
+					// predict width of page title
 					size = e.Graphics.MeasureString(page.Title, listbox.Font);
 
+					// section
+					e.Graphics.DrawString(page.Path,
+						listbox.Font, Brushes.Black, HeadWidth + 20, top, format);
+
+					// title
 					var bounds = new Rectangle(
-						HeadWidth + 20, top, (int)size.Width + 2, (int)size.Height);
+						HeadWidth + PathWidth + 40, top, (int)size.Width + 2, (int)size.Height);
 
 					e.Graphics.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : listbox.Font,
-						Brushes.Black, bounds);
+						Brushes.Black, bounds, format);
 
 					page.Bounds = bounds;
 
+					// created
 					e.Graphics.DrawString(page.Created.ToShortFriendlyString(),
 						listbox.Font, Brushes.Black, e.Bounds.Width - DateWidth * 2, top);
 
+					// modified
 					e.Graphics.DrawString(page.Modified.ToShortFriendlyString(),
 						listbox.Font, Brushes.Black, e.Bounds.Width - DateWidth, top);
 
@@ -142,28 +172,30 @@ namespace OneMoreCalendar
 			}
 		}
 
-		private void ScrollDays(object sender, KeyEventArgs e)
+		private void LbKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Down)
 			{
-				var index = listbox.IndexFromPoint(new Point(listbox.Left + 5, listbox.Bottom - 5));
-				if (index < listbox.Items.Count - 1)
-				{
-					listbox.TopIndex = index + 1;
-				}
+				listbox.ScrollDown();
+				//var index = listbox.IndexFromPoint(new Point(listbox.Left + 5, listbox.Bottom - 5));
+				//if (index < listbox.Items.Count - 1)
+				//{
+				//	listbox.TopIndex = index + 1;
+				//}
 			}
 			else if (e.KeyCode == Keys.Up)
 			{
-				var index = listbox.IndexFromPoint(new Point(listbox.Left + 5, listbox.Top + 5));
-				if (index > 0)
-				{
-					listbox.TopIndex = index - 1;
-				}
+				listbox.ScrollUp();
+				//var index = listbox.IndexFromPoint(new Point(listbox.Left + 5, listbox.Top + 5));
+				//if (index > 0)
+				//{
+				//	listbox.TopIndex = index - 1;
+				//}
 			}
 		}
 
 
-		private void HoverHighlight(object sender, MouseEventArgs e)
+		private void LbMouseMove(object sender, MouseEventArgs e)
 		{
 			var day = listbox.Items.OfType<DayItem>()
 				.FirstOrDefault(d => d.Bounds.Contains(e.Location));
@@ -219,7 +251,7 @@ namespace OneMoreCalendar
 			}
 		}
 
-		private void ResizeView(object sender, EventArgs e)
+		private void LbResize(object sender, EventArgs e)
 		{
 			listbox.Invalidate();
 		}
@@ -231,7 +263,7 @@ namespace OneMoreCalendar
 		 * left and right buttons. Windows Forms is fun!
 		 * 
 		 */
-		private void ClickPage(object sender, MouseEventArgs e)
+		private void LbMouseUp(object sender, MouseEventArgs e)
 		{
 			var day = listbox.Items.OfType<DayItem>()
 				.FirstOrDefault(d => d.Bounds.Contains(e.Location));
@@ -251,6 +283,11 @@ namespace OneMoreCalendar
 					}
 				}
 			}
+		}
+
+		private void LbScrolled(object sender, ScrollEventArgs e)
+		{
+			Logger.Current.WriteLine($"scrolled {e.Type} @ {e.ScrollOrientation}, {e.OldValue} >> {e.NewValue}");
 		}
 	}
 }

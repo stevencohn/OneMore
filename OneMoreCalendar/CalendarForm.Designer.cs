@@ -157,6 +157,7 @@
 			this.dateLabel.Name = "dateLabel";
 			this.dateLabel.Size = new System.Drawing.Size(284, 54);
 			this.dateLabel.TabIndex = 0;
+			this.dateLabel.TabStop = true;
 			this.dateLabel.Text = "December 2021";
 			this.dateLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DropDownYears);
 			// 
