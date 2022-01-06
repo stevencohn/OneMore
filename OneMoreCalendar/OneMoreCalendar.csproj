@@ -181,4 +181,7 @@
     <Content Include="Assets\today-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>taskkill /fi "pid gt 0" /im OneMoreCalendar.exe</PreBuildEvent>
+  </PropertyGroup>
 </Project>
