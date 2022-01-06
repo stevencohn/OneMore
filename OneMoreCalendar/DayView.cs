@@ -121,6 +121,11 @@ namespace OneMoreCalendar
 
 		private void LbDrawItem(object sender, DrawItemEventArgs e)
 		{
+			if (e.Index < 0)
+			{
+				return;
+			}
+
 			e.Graphics.FillRectangle(e.Index % 2 == 1 ? AppColors.RowBrush : Brushes.White, e.Bounds);
 
 			e.Graphics.DrawLine(Pens.LightGray, e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Top);
@@ -253,6 +258,7 @@ namespace OneMoreCalendar
 
 		private void LbResize(object sender, EventArgs e)
 		{
+			headerPanel.Invalidate();
 			listbox.Invalidate();
 		}
 

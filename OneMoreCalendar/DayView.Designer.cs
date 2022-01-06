@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.headerPanel = new System.Windows.Forms.Panel();
-			this.listbox = new OneMoreCalendar.MoreListBox();
+			this.listbox = new MoreListBox();
 			this.SuspendLayout();
 			// 
 			// headerPanel
@@ -55,13 +55,13 @@
 			this.listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.listbox.Size = new System.Drawing.Size(743, 372);
 			this.listbox.TabIndex = 0;
-			this.listbox.Scrolled += new System.Windows.Forms.ScrollEventHandler(this.LbScrolled);
 			this.listbox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LbDrawItem);
 			this.listbox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.LbMeasureItem);
 			this.listbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LbKeyDown);
 			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LbMouseMove);
 			this.listbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LbMouseUp);
 			this.listbox.Resize += new System.EventHandler(this.LbResize);
+			this.listbox.Scrolled += new System.Windows.Forms.ScrollEventHandler(this.LbScrolled);
 			// 
 			// DayView
 			// 
