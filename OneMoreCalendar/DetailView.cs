@@ -2,6 +2,8 @@
 // Copyright © 2022 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
+#pragma warning disable CS0067  // The event is never used
+
 namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
@@ -11,7 +13,7 @@ namespace OneMoreCalendar
 	using System.Windows.Forms;
 
 
-	internal partial class DayView : UserControl, ICalendarView
+	internal partial class DetailView : UserControl, ICalendarView
 	{
 		private sealed class DayItem
 		{
@@ -34,7 +36,7 @@ namespace OneMoreCalendar
 		private readonly StringFormat format;
 
 
-		public DayView()
+		public DetailView()
 		{
 			InitializeComponent();
 
@@ -80,7 +82,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private void PaintHeaderPanel(object sender, PaintEventArgs e)
+		private void HeaderPanelPaint(object sender, PaintEventArgs e)
 		{
 			using (var font = new Font("Segoe UI Light", 10.0f, FontStyle.Regular))
 			{
@@ -101,7 +103,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private void LbMeasureItem(object sender, MeasureItemEventArgs e)
+		private void ListBoxMeasureItem(object sender, MeasureItemEventArgs e)
 		{
 			if (listbox.Items[e.Index] is DayItem day)
 			{
@@ -119,7 +121,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private void LbDrawItem(object sender, DrawItemEventArgs e)
+		private void ListBoxDrawItem(object sender, DrawItemEventArgs e)
 		{
 			if (e.Index < 0)
 			{
@@ -177,7 +179,7 @@ namespace OneMoreCalendar
 			}
 		}
 
-		private void LbKeyDown(object sender, KeyEventArgs e)
+		private void ListBoxKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Down)
 			{
@@ -200,7 +202,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private void LbMouseMove(object sender, MouseEventArgs e)
+		private void ListBoxMouseMove(object sender, MouseEventArgs e)
 		{
 			var day = listbox.Items.OfType<DayItem>()
 				.FirstOrDefault(d => d.Bounds.Contains(e.Location));
@@ -256,7 +258,7 @@ namespace OneMoreCalendar
 			}
 		}
 
-		private void LbResize(object sender, EventArgs e)
+		private void ListBoxResize(object sender, EventArgs e)
 		{
 			headerPanel.Invalidate();
 			listbox.Invalidate();
@@ -269,7 +271,7 @@ namespace OneMoreCalendar
 		 * left and right buttons. Windows Forms is fun!
 		 * 
 		 */
-		private void LbMouseUp(object sender, MouseEventArgs e)
+		private void ListBoxMouseUp(object sender, MouseEventArgs e)
 		{
 			var day = listbox.Items.OfType<DayItem>()
 				.FirstOrDefault(d => d.Bounds.Contains(e.Location));
@@ -291,9 +293,10 @@ namespace OneMoreCalendar
 			}
 		}
 
-		private void LbScrolled(object sender, ScrollEventArgs e)
+		private void ListBoxScrolled(object sender, ScrollEventArgs e)
 		{
-			Logger.Current.WriteLine($"scrolled {e.Type} @ {e.ScrollOrientation}, {e.OldValue} >> {e.NewValue}");
+			Logger.Current.WriteLine(
+				$"scrolled {e.Type} @ {e.ScrollOrientation}, {e.OldValue} >> {e.NewValue}");
 		}
 	}
 }

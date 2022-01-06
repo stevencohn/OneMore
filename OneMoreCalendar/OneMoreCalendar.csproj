@@ -58,11 +58,11 @@
     </Compile>
     <Compile Include="CalendarDay.cs" />
     <Compile Include="CalendarPage.cs" />
-    <Compile Include="DayView.cs">
+    <Compile Include="DetailView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DayView.Designer.cs">
-      <DependentUpon>DayView.cs</DependentUpon>
+    <Compile Include="DetailView.Designer.cs">
+      <DependentUpon>DetailView.cs</DependentUpon>
     </Compile>
     <Compile Include="Things\AppColors.cs" />
     <Compile Include="Things\BitmapExtensions.cs" />
@@ -126,8 +126,8 @@
     <EmbeddedResource Include="AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DayView.resx">
-      <DependentUpon>DayView.cs</DependentUpon>
+    <EmbeddedResource Include="DetailView.resx">
+      <DependentUpon>DetailView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>

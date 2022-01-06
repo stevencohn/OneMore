@@ -1,6 +1,6 @@
 ﻿namespace OneMoreCalendar
 {
-	partial class DayView
+	partial class DetailView
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -40,7 +40,7 @@
 			this.headerPanel.Name = "headerPanel";
 			this.headerPanel.Size = new System.Drawing.Size(743, 37);
 			this.headerPanel.TabIndex = 1;
-			this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintHeaderPanel);
+			this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.HeaderPanelPaint);
 			// 
 			// listbox
 			// 
@@ -55,13 +55,13 @@
 			this.listbox.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.listbox.Size = new System.Drawing.Size(743, 372);
 			this.listbox.TabIndex = 0;
-			this.listbox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LbDrawItem);
-			this.listbox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.LbMeasureItem);
-			this.listbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LbKeyDown);
-			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LbMouseMove);
-			this.listbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LbMouseUp);
-			this.listbox.Resize += new System.EventHandler(this.LbResize);
-			this.listbox.Scrolled += new System.Windows.Forms.ScrollEventHandler(this.LbScrolled);
+			this.listbox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ListBoxDrawItem);
+			this.listbox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.ListBoxMeasureItem);
+			this.listbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListBoxKeyDown);
+			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ListBoxMouseMove);
+			this.listbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ListBoxMouseUp);
+			this.listbox.Resize += new System.EventHandler(this.ListBoxResize);
+			this.listbox.Scrolled += new System.Windows.Forms.ScrollEventHandler(this.ListBoxScrolled);
 			// 
 			// DayView
 			// 

@@ -1,4 +1,10 @@
-﻿
+﻿//************************************************************************************************
+// Copyright © 2022 Steven M. Cohn. All Rights Reserved.
+//************************************************************************************************
+
+#pragma warning disable S4487 // Unread "private" fields should be removed
+#pragma warning disable S3459 // Unassigned members should be removed
+
 namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
@@ -84,16 +90,16 @@ namespace OneMoreCalendar
 			Logger.Current.WriteLine($"wheel delta:{e.Delta} pos:{info.Position} min:{info.Min} max:{info.Max}");
 		}
 
-		protected override void WndProc(ref Message msg)
+		protected override void WndProc(ref Message m)
 		{
-			if (msg.Msg == WM_VSCROLL)
+			if (m.Msg == WM_VSCROLL)
 			{
 				if (Scrolled != null)
 				{
 					var info = GetScrollInfo();
 					Logger.Current.WriteLine($"wndproc pos:{info.Position} min:{info.Min} max:{info.Max}");
 
-					if (msg.WParam.ToInt32() == SB_ENDSCROLL)
+					if (m.WParam.ToInt32() == SB_ENDSCROLL)
 					{
 						Scrolled(this, new ScrollEventArgs(
 							ScrollEventType.EndScroll,
@@ -103,7 +109,7 @@ namespace OneMoreCalendar
 				}
 			}
 
-			base.WndProc(ref msg);
+			base.WndProc(ref m);
 		}
 	}
 }

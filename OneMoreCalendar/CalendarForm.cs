@@ -20,7 +20,7 @@ namespace OneMoreCalendar
 		private CalendarPages pages;
 
 		private MonthView monthView;
-		private DayView dayView;
+		private DetailView detailView;
 		private YearsForm yearsForm;
 		private SettingsForm settingsForm;
 
@@ -89,7 +89,7 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				dayView.SetRange(date, endDate, pages);
+				detailView.SetRange(date, endDate, pages);
 			}
 
 			dateLabel.Text = date.ToString("MMMM yyyy");
@@ -128,9 +128,9 @@ namespace OneMoreCalendar
 		{
 			contentPanel.Controls.Clear();
 
-			if (dayView == null)
+			if (detailView == null)
 			{
-				dayView = new DayView
+				detailView = new DetailView
 				{
 					Dock = DockStyle.Fill,
 					Location = new System.Drawing.Point(0, 0),
@@ -138,9 +138,9 @@ namespace OneMoreCalendar
 					TabIndex = 0
 				};
 
-				dayView.HoverPage += ShowPageStatus;
-				dayView.ClickedPage += NavigateToPage;
-				dayView.SnappedPage += SnappedPage;
+				detailView.HoverPage += ShowPageStatus;
+				detailView.ClickedPage += NavigateToPage;
+				detailView.SnappedPage += SnappedPage;
 			}
 
 			var endDate = date.EndOfMonth();
@@ -152,8 +152,8 @@ namespace OneMoreCalendar
 				await settings.GetNotebookIDs(),
 				settings.Created, settings.Modified, settings.Deleted);
 
-			dayView.SetRange(date, endDate, pages);
-			contentPanel.Controls.Add(dayView);
+			detailView.SetRange(date, endDate, pages);
+			contentPanel.Controls.Add(detailView);
 		}
 
 

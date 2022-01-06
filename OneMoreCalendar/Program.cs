@@ -2,6 +2,8 @@
 // Copyright © 2021 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
+#pragma warning disable S2223 // Non-constant static fields should not be visible
+
 namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
@@ -11,7 +13,7 @@ namespace OneMoreCalendar
 
 	internal static class Program
 	{
-		public static readonly CalendarForm MainForm;
+		public static CalendarForm MainForm;
 
 
 		/// <summary>
