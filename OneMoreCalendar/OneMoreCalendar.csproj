@@ -108,6 +108,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsProvider.cs" />
+    <Compile Include="Things\RectangleExtensions.cs" />
     <Compile Include="Things\RoundedForm.cs">
       <SubType>Form</SubType>
     </Compile>

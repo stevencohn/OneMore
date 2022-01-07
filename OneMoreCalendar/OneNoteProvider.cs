@@ -96,6 +96,16 @@ namespace OneMoreCalendar
 						IsDeleted = a.IsDeleted
 					}));
 
+				pages.ForEach(page =>
+				{
+					var DeletedPages = "OneNote_RecycleBin > Deleted Pages";
+					if (page.Path.EndsWith(DeletedPages))
+					{
+						page.Path = page.Path.Substring(
+							0, page.Path.Length - DeletedPages.Length) + "Recycle Bin";
+					}
+				});
+
 				return pages;
 			}
 		}

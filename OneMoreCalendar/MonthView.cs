@@ -99,7 +99,6 @@ namespace OneMoreCalendar
 			var runner = date.Date;
 
 			// previous month
-
 			if (dow > 0)
 			{
 				runner = runner.AddDays(-dow);
@@ -111,7 +110,6 @@ namespace OneMoreCalendar
 			}
 
 			// month
-
 			for (int i = 1; i <= last; i++)
 			{
 				MakeDay(days, pages, runner, settings.Modified, true);
@@ -119,7 +117,6 @@ namespace OneMoreCalendar
 			}
 
 			// next month
-
 			var rest = 7 - days.Count % 7;
 			if (rest < 7)
 			{
@@ -139,12 +136,12 @@ namespace OneMoreCalendar
 
 			// filtering prioritizes modified over created and prevent pages from being
 			// displayed twice in the month if both created and modified in the same month
-			var pp = pages.Where(p =>
+			var pags = pages.Where(p =>
 				(modified && p.Modified.Date.Equals(date)) ||
 				(!modified && p.Created.Date.Equals(date))
 				);
 
-			pp.ForEach(p => day.Pages.Add(p));
+			pags.ForEach(p => day.Pages.Add(p));
 
 			days.Add(day);
 		}

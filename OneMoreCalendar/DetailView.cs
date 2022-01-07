@@ -155,13 +155,15 @@ namespace OneMoreCalendar
 				// pages
 				var top = e.Bounds.Top + VPadding;
 				foreach (var page in day.Pages)
-				{
+				{						
 					// predict width of page title
 					size = e.Graphics.MeasureString(page.Title, listbox.Font);
 
+					var color = page.IsDeleted ? Brushes.Gray : Brushes.Black;
+
 					// section
 					e.Graphics.DrawString(page.Path,
-						listbox.Font, Brushes.Black, HeadWidth + 20, top, format);
+						listbox.Font, color, HeadWidth + 20, top, format);
 
 					// title
 					var bounds = new Rectangle(
@@ -169,17 +171,17 @@ namespace OneMoreCalendar
 
 					e.Graphics.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : listbox.Font,
-						Brushes.Black, bounds, format);
+						color, bounds, format);
 
 					page.Bounds = bounds;
 
 					// created
 					e.Graphics.DrawString(page.Created.ToShortFriendlyString(),
-						listbox.Font, Brushes.Black, e.Bounds.Width - DateWidth * 2, top);
+						listbox.Font, color, e.Bounds.Width - DateWidth * 2, top);
 
 					// modified
 					e.Graphics.DrawString(page.Modified.ToShortFriendlyString(),
-						listbox.Font, Brushes.Black, e.Bounds.Width - DateWidth, top);
+						listbox.Font, color, e.Bounds.Width - DateWidth, top);
 
 					top += (int)size.Height;
 				}
@@ -236,7 +238,10 @@ namespace OneMoreCalendar
 					var index = listbox.Items.IndexOf(hotday);
 					g.FillRectangle(index % 2 == 1 ? AppColors.RowBrush : Brushes.White, hotpage.Bounds);
 
-					g.DrawString(hotpage.Title, listbox.Font, Brushes.Black, hotpage.Bounds, format);
+					g.DrawString(hotpage.Title,
+						hotpage.IsDeleted ? deletedFont : listbox.Font,
+						hotpage.IsDeleted ? Brushes.Gray : Brushes.Black,
+						hotpage.Bounds, format);
 				}
 
 				HoverPage?.Invoke(this, new CalendarPageEventArgs(null));

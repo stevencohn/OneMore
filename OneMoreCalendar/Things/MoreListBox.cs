@@ -48,6 +48,17 @@ namespace OneMoreCalendar
 		public event ScrollEventHandler Scrolled = null;
 
 
+		public int GetScrollOffset()
+		{
+			var offset = 0;
+			for (int i = 0; i < TopIndex; i++)
+			{
+				offset += GetItemHeight(i);
+			}
+
+			return offset;
+		}
+
 		public bool ScrollDown()
 		{
 			return Scroll(1);
