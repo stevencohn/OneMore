@@ -87,6 +87,8 @@ namespace OneMoreCalendar
 		{
 			days = new CalendarDays();
 
+			var settings = new SettingsProvider();
+
 			var first = date.DayOfWeek;
 			var last = DateTime.DaysInMonth(date.Year, date.Month);
 
@@ -103,12 +105,7 @@ namespace OneMoreCalendar
 				runner = runner.AddDays(-dow);
 				for (int i = 0; i < dow; i++)
 				{
-					var day = new CalendarDay { Date = runner };
-
-					var pp = pages.Where(p => p.Modified.Date.Equals(runner));
-					pp.ForEach(p => day.Pages.Add(p));
-
-					days.Add(day);
+					MakeDay(days, pages, runner, settings.Modified);
 					runner = runner.AddDays(1.0);
 				}
 			}
@@ -117,12 +114,7 @@ namespace OneMoreCalendar
 
 			for (int i = 1; i <= last; i++)
 			{
-				var day = new CalendarDay { Date = runner, InMonth = true };
-
-				var pp = pages.Where(p => p.Modified.Date.Equals(runner));
-				pp.ForEach(p => day.Pages.Add(p));
-
-				days.Add(day);
+				MakeDay(days, pages, runner, settings.Modified, true);
 				runner = runner.AddDays(1.0);
 			}
 
@@ -133,15 +125,28 @@ namespace OneMoreCalendar
 			{
 				for (int i = 0; i < rest; i++)
 				{
-					var day = new CalendarDay { Date = runner };
-
-					var pp = pages.Where(p => p.Modified.Date.Equals(runner));
-					pp.ForEach(p => day.Pages.Add(p));
-
-					days.Add(day);
+					MakeDay(days, pages, runner, settings.Modified);
 					runner = runner.AddDays(1.0);
 				}
 			}
+		}
+
+		private void MakeDay(
+			CalendarDays days, CalendarPages pages, 
+			DateTime date, bool modified, bool inMonth = false)
+		{
+			var day = new CalendarDay { Date = date, InMonth = inMonth };
+
+			// filtering prioritizes modified over created and prevent pages from being
+			// displayed twice in the month if both created and modified in the same month
+			var pp = pages.Where(p =>
+				(modified && p.Modified.Date.Equals(date)) ||
+				(!modified && p.Created.Date.Equals(date))
+				);
+
+			pp.ForEach(p => day.Pages.Add(p));
+
+			days.Add(day);
 		}
 
 
@@ -238,7 +243,7 @@ namespace OneMoreCalendar
 						var brush = spot.InMonth ? Brushes.White : Brushes.WhiteSmoke;
 						g.FillRectangle(brush, spot.Bounds);
 
-						g.DrawString(spot.Page.Title, 
+						g.DrawString(spot.Page.Title,
 							spot.Page.IsDeleted ? deletedFont : hotFont,
 							Brushes.DarkOrchid, spot.Bounds, format);
 					}

@@ -65,9 +65,16 @@ namespace OneMoreCalendar
 			var date = startDate;
 			while (date <= endDate)
 			{
+				var settings = new SettingsProvider();
+
 				var daypages = new CalendarPages();
+
+				// filtering prioritizes modified over created and prevent pages from being
+				// displayed twice in the month if both created and modified in the same month
 				daypages.AddRange(pages.Where(p =>
-					p.Created.Date.Equals(date) || p.Modified.Date.Equals(date)));
+					(settings.Modified && p.Modified.Date.Equals(date)) ||
+					(!settings.Modified && p.Created.Date.Equals(date))
+					));
 
 				listbox.Items.Add(new DayItem
 				{
@@ -295,6 +302,7 @@ namespace OneMoreCalendar
 
 		private void ListBoxScrolled(object sender, ScrollEventArgs e)
 		{
+			listbox.Invalidate();
 			Logger.Current.WriteLine(
 				$"scrolled {e.Type} @ {e.ScrollOrientation}, {e.OldValue} >> {e.NewValue}");
 		}
