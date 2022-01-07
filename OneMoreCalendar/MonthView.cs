@@ -15,7 +15,7 @@ namespace OneMoreCalendar
 
 	internal partial class MonthView : UserControl, ICalendarView
 	{
-		private sealed class Hotspot
+		private sealed class Hotspot // kinda polymorphic
 		{
 			public Rectangle Bounds;
 			public DateTime Date;
@@ -25,6 +25,7 @@ namespace OneMoreCalendar
 
 		private const string HeadBackColor = "#FFF4E8F3";
 		private const string TodayHeadColor = "#FFD6A6D3";
+		private const string LessGlyph = "⏶"; // \u23F6
 		private const string MoreGlyph = "⏷"; // \u23F7
 
 		private readonly IntPtr hand;
@@ -64,11 +65,8 @@ namespace OneMoreCalendar
 
 
 		public event CalendarDayHandler ClickedDay;
-
 		public event CalendarHoverHandler HoverPage;
-
 		public event CalendarPageHandler ClickedPage;
-
 		public event CalendarSnapshotHandler SnappedPage;
 
 
@@ -203,6 +201,10 @@ namespace OneMoreCalendar
 				return;
 			}
 
+			var width = Width / 7 - 8;
+
+			// clear previously active...
+
 			if (hotspot != null)
 			{
 				if (hotspot.Page != null)
@@ -215,7 +217,9 @@ namespace OneMoreCalendar
 
 						if (hotspot.Page.IsDeleted)
 						{
-							g.DrawString(hotspot.Page.Title, deletedFont, Brushes.Gray, hotspot.Bounds, format);
+							g.DrawString(hotspot.Page.Title, deletedFont, Brushes.Gray,
+								new Rectangle(hotspot.Bounds.X, hotspot.Bounds.Y, width, hotspot.Bounds.Height),
+								format);
 						}
 						else
 						{
@@ -231,6 +235,8 @@ namespace OneMoreCalendar
 				Native.SetCursor(Cursors.Default.Handle);
 			}
 
+			// highlight hovered...
+
 			if (spot != null)
 			{
 				if (spot.Page != null)
@@ -242,7 +248,9 @@ namespace OneMoreCalendar
 
 						g.DrawString(spot.Page.Title,
 							spot.Page.IsDeleted ? deletedFont : hotFont,
-							Brushes.DarkOrchid, spot.Bounds, format);
+							Brushes.DarkOrchid,
+							new Rectangle(spot.Bounds.X, spot.Bounds.Y, width, spot.Bounds.Height),
+							format);
 					}
 
 					HoverPage?.Invoke(this, new CalendarPageEventArgs(spot.Page));
@@ -364,6 +372,7 @@ namespace OneMoreCalendar
 
 				if (!day.InMonth)
 				{
+					// gray background for prev/next month days
 					box = new Rectangle(
 						col * dayWidth + 1, row * dayHeight + headFont.Height + 3 + dowOffset,
 						dayWidth - 2, dayHeight - headFont.Height - 2
@@ -374,34 +383,40 @@ namespace OneMoreCalendar
 
 				if (day.Pages.Count > 0)
 				{
+					// content box with padding
 					box = new Rectangle(
 						col * dayWidth + 3, row * dayHeight + headFont.Height + 6 + dowOffset,
 						dayWidth - 8, dayHeight - headFont.Height - 8
 						);
 
+					// how many lines fit in the box
 					var maxItems = box.Height / Font.Height;
 
 					for (int i = 0; i < day.Pages.Count && i < maxItems; i++)
 					{
 						var page = day.Pages[i];
 
+						// max length of string with ellipses
 						var clip = new Rectangle(
 							box.Left, box.Top + (Font.Height * i),
 							i == maxItems - 1 && day.Pages.Count > maxItems ? box.Width - (int)moreSize.Width : box.Width,
 							Font.Height);
 
-						e.Graphics.DrawString(page.Title,
-							page.IsDeleted ? deletedFont : Font,
+						var font = page.IsDeleted ? deletedFont : Font;
+						e.Graphics.DrawString(page.Title, font,
 							page.IsDeleted || !day.InMonth ? Brushes.Gray : Brushes.Black, clip, format);
 
+						// actual length of string for hyperlink hovering
+						var size = e.Graphics.MeasureString(page.Title, font, clip.Width, format);
 						hotspots.Add(new Hotspot
 						{
-							Bounds = clip,
+							Bounds = new Rectangle(clip.X, clip.Y, (int)size.Width + 2, (int)size.Height),
 							Page = page,
 							InMonth = day.InMonth
 						});
 					}
 
+					// show glyphs if scrolling is needed
 					if (maxItems < day.Pages.Count)
 					{
 						e.Graphics.DrawString(MoreGlyph, moreFont, Brushes.DarkGray,
