@@ -6,7 +6,7 @@ namespace OneMoreCalendar
 {
 	using System;
 	using System.Collections.Generic;
-
+	using System.Drawing;
 
 	internal class CalendarDays : List<CalendarDay> { }
 
@@ -17,6 +17,9 @@ namespace OneMoreCalendar
 
 
 		public bool InMonth { get; set; }
+
+
+		public Rectangle Bounds { get; set; }
 
 
 		public CalendarPages Pages { get; set; } = new CalendarPages();
