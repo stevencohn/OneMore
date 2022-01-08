@@ -17,7 +17,7 @@ namespace OneMoreCalendar
 	{
 		private enum Hottype { Day, Page, Up, Down }
 
-		private sealed class Hotspot // kinda polymorphic
+		private sealed class Hotspot
 		{
 			public Hottype Type;
 			public Rectangle Bounds;
@@ -25,6 +25,7 @@ namespace OneMoreCalendar
 			public CalendarDay Day;
 			public CalendarPage Page;
 		}
+
 
 		private const string HeadBackColor = "#FFF4E8F3";
 		private const string TodayHeadColor = "#FFD6A6D3";
@@ -35,17 +36,17 @@ namespace OneMoreCalendar
 		private readonly Font hotFont;
 		private readonly Font moreFont;
 		private readonly Font deletedFont;
+		private readonly Size moreSize;
 		private readonly StringFormat format;
 		private readonly List<Hotspot> hotspots;
-		private Hotspot hotspot;
-		private Size moreSize;
-		private int dowOffset;
-		private int maxItems;
-		private int weeks;
 
 		private DateTime date;
 		private CalendarDays days;
 		private DayOfWeek firstDow;
+		private Hotspot hotspot;
+		private int dowOffset;
+		private int maxItems;
+		private int weeks;
 
 
 		public MonthView()
@@ -155,15 +156,6 @@ namespace OneMoreCalendar
 		}
 
 
-		//protected void SuspendDrawing(Action action)
-		//{
-		//	Native.SendMessage(Handle, Native.WM_SETREDRAW, false, 0);
-		//	action();
-		//	Native.SendMessage(Handle, Native.WM_SETREDRAW, true, 0);
-		//	Refresh();
-		//}
-
-
 		protected override void OnMouseClick(MouseEventArgs e)
 		{
 			base.OnMouseClick(e);
@@ -194,18 +186,20 @@ namespace OneMoreCalendar
 					break;
 
 				case Hottype.Up:
-					ScrollDay(spot, -1);
+					ScrollDay(spot);
 					break;
 
 				case Hottype.Down:
-					ScrollDay(spot, 1);
+					ScrollDay(spot);
 					break;
 			}
 		}
 
 
-		private void ScrollDay(Hotspot spot, int delta)
+		private void ScrollDay(Hotspot spot)
 		{
+			var delta = spot.Type == Hottype.Up ? -1 : 1;
+
 			var offset = spot.Day.ScrollOffset + delta;
 			if (offset < 0 || offset > spot.Day.Pages.Count - maxItems)
 			{
@@ -434,63 +428,7 @@ namespace OneMoreCalendar
 					dayWidth - 2, dayHeight - headFont.Height - 4
 					);
 
-				// body...
-
-				if (!day.InMonth)
-				{
-					// gray background for prev/next month days
-					e.Graphics.FillRectangle(Brushes.WhiteSmoke, day.Bounds);
-				}
-
-				if (day.Pages.Count > 0)
-				{
-					// content box with padding
-					box = new Rectangle(
-						col * dayWidth + 3, row * dayHeight + headFont.Height + 6 + dowOffset,
-						dayWidth - 8, dayHeight - headFont.Height - 8
-						);
-
-					for (int i = 0; i < day.Pages.Count && i < maxItems; i++)
-					{
-						var page = day.Pages[i];
-
-						// shrink width if showing scroller glyphs
-						var width = day.Pages.Count > maxItems && i >= maxItems - 2
-							? box.Width - moreSize.Width
-							: box.Width;
-
-						// max length of string with ellipses
-						var clip = new Rectangle(
-							box.Left, box.Top + (Font.Height * i),
-							width, Font.Height);
-
-						var font = page.IsDeleted ? deletedFont : Font;
-						e.Graphics.DrawString(page.Title, font,
-							page.IsDeleted || !day.InMonth ? Brushes.Gray : Brushes.Black, clip, format);
-
-						// actual length of string for hyperlink hovering
-						var size = e.Graphics.MeasureString(page.Title, font, clip.Width, format);
-						hotspots.Add(new Hotspot
-						{
-							Type = Hottype.Page,
-							Bounds = new Rectangle(clip.X, clip.Y, (int)size.Width + 2, (int)size.Height),
-							Page = page,
-							InMonth = day.InMonth
-						});
-					}
-
-					// show glyphs if scrolling is needed
-					if (maxItems < day.Pages.Count)
-					{
-						AddGlyph(e.Graphics, day,
-							new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 4),
-							Hottype.Up, moreSize);
-
-						AddGlyph(e.Graphics, day,
-							new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4),
-							Hottype.Down, moreSize);
-					}
-				}
+				PaintDay(e.Graphics, day);
 
 				col++;
 				if (col > 6)
@@ -509,9 +447,7 @@ namespace OneMoreCalendar
 
 		private void PaintDay(Graphics g, CalendarDay day)
 		{
-			Logger.Current.WriteLine($"drawday {day.ScrollOffset} bounds {day.Bounds}");
-
-			g.FillRectangle(day.InMonth ? Brushes.LightYellow : Brushes.WhiteSmoke, day.Bounds);
+			g.FillRectangle(day.InMonth ? Brushes.White : Brushes.WhiteSmoke, day.Bounds);
 
 			if (day.Pages.Count == 0)
 			{
@@ -543,11 +479,11 @@ namespace OneMoreCalendar
 					page.IsDeleted || !day.InMonth ? Brushes.Gray : Brushes.Black, clip, format);
 
 				// actual length of string for hyperlink hovering
-				var size = g.MeasureString(page.Title, font, clip.Width, format);
+				var size = g.MeasureString(page.Title, font, clip.Width, format).ToSize();
 				hotspots.Add(new Hotspot
 				{
 					Type = Hottype.Page,
-					Bounds = new Rectangle(clip.X, clip.Y, (int)size.Width + 2, (int)size.Height),
+					Bounds = new Rectangle(clip.X, clip.Y, size.Width + 2, size.Height),
 					Page = page,
 					InMonth = day.InMonth
 				});
@@ -557,7 +493,7 @@ namespace OneMoreCalendar
 			if (maxItems < day.Pages.Count)
 			{
 				AddGlyph(g, day,
-					new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 4),
+					new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7),
 					Hottype.Up, moreSize);
 
 				AddGlyph(g, day,
@@ -567,7 +503,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private void AddGlyph(Graphics g, CalendarDay day, Point location, Hottype type, SizeF size)
+		private void AddGlyph(Graphics g, CalendarDay day, Point location, Hottype type, Size size)
 		{
 			g.DrawString(type == Hottype.Up ? LessGlyph : MoreGlyph,
 				moreFont, Brushes.DarkGray, location);
@@ -575,7 +511,7 @@ namespace OneMoreCalendar
 			hotspots.Add(new Hotspot
 			{
 				Type = type,
-				Bounds = new Rectangle(location.X, location.Y, (int)size.Width, (int)size.Height),
+				Bounds = new Rectangle(location.X, location.Y, size.Width, size.Height),
 				Day = day,
 				InMonth = day.InMonth
 			});
