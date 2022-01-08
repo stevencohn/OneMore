@@ -430,7 +430,7 @@ namespace OneMoreCalendar
 
 				// day content box
 				day.Bounds = new Rectangle(
-					col * dayWidth + 1, row * dayHeight + headFont.Height + 3 + dowOffset,
+					col * dayWidth + 1, row * dayHeight + headFont.Height + 4 + dowOffset,
 					dayWidth - 2, dayHeight - headFont.Height - 4
 					);
 
@@ -520,7 +520,7 @@ namespace OneMoreCalendar
 
 			// content box with padding
 			var box = new Rectangle(
-				day.Bounds.X + 3, day.Bounds.Y,
+				day.Bounds.X + 3, day.Bounds.Y + 2,
 				day.Bounds.Width - 8,
 				day.Bounds.Height - 8);
 
