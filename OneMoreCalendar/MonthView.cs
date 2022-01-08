@@ -186,9 +186,6 @@ namespace OneMoreCalendar
 					break;
 
 				case Hottype.Up:
-					ScrollDay(spot);
-					break;
-
 				case Hottype.Down:
 					ScrollDay(spot);
 					break;
@@ -198,9 +195,7 @@ namespace OneMoreCalendar
 
 		private void ScrollDay(Hotspot spot)
 		{
-			var delta = spot.Type == Hottype.Up ? -1 : 1;
-
-			var offset = spot.Day.ScrollOffset + delta;
+			var offset = spot.Day.ScrollOffset + (spot.Type == Hottype.Up ? -1 : 1);
 			if (offset < 0 || offset > spot.Day.Pages.Count - maxItems)
 			{
 				return;
@@ -477,6 +472,12 @@ namespace OneMoreCalendar
 				var font = page.IsDeleted ? deletedFont : Font;
 				g.DrawString(page.Title, font,
 					page.IsDeleted || !day.InMonth ? Brushes.Gray : Brushes.Black, clip, format);
+
+				var dead = hotspots.FirstOrDefault(h => h.Page == page);
+				if (dead != null)
+				{
+					hotspots.Remove(dead);
+				}
 
 				// actual length of string for hyperlink hovering
 				var size = g.MeasureString(page.Title, font, clip.Width, format).ToSize();
