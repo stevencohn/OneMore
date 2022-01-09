@@ -23,6 +23,8 @@ namespace River.OneMoreAddIn.Commands
 			// presume same location as executing addin assembly
 
 			var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+			// special override for my own debugging
 			if (location.StartsWith(@"C:\Github\OneMore"))
 			{
 				location = @"C:\Github\OneMore\OneMoreCalendar\bin\Debug";
