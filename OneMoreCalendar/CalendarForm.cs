@@ -35,6 +35,9 @@ namespace OneMoreCalendar
 
 			Width = 1500; // TODO: save as settings?
 			Height = 1000;
+
+			// TODO: beta
+			Text = $"{Text} (BETA)";
 		}
 
 

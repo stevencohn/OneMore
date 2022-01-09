@@ -15,7 +15,8 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
-			versionLabel.Text = string.Format(versionLabel.Text, AssemblyInfo.Version);
+			// TODO: beta
+			versionLabel.Text = string.Format(versionLabel.Text, AssemblyInfo.Version) + " (BETA)";
 			copyLabel.Text = string.Format(copyLabel.Text, DateTime.Now.Year);
 		}
 
