@@ -43,7 +43,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Apply an entire theme to a page
 * Change page theme inluding background and styles, optioanally with dark-mode awareness
 
-[File Commands]() (4)
+[File Commands](../../wiki/Tools) (4)
 * Import MSWord, PowerPoint, Markdown and others into the current page or a new page
 * Import a Web page from a specified URL
 * Export the current page or selected pages as HTML, PDF, MSWord, Markdown, or as raw OneNote XML
