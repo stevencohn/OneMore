@@ -26,5 +26,11 @@ namespace OneMoreCalendar
 
 
 		public int ScrollOffset { get; set; } = 0;
+
+
+		public MoreButton UpButton;
+
+
+		public MoreButton DownButton;
 	}
 }

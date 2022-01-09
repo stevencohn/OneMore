@@ -88,6 +88,14 @@ namespace OneMoreCalendar
 			firstDow = Thread.CurrentThread.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
 			MakeDayList(pages);
 
+			for (int i = Controls.Count - 1; i >= 0; i--)
+			{
+				if (Controls[i] is MoreButton)
+				{
+					Controls.RemoveAt(i);
+				}
+			}
+
 			Invalidate();
 		}
 
@@ -212,7 +220,7 @@ namespace OneMoreCalendar
 
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
-			base.OnMouseMove(e);
+			//base.OnMouseMove(e);
 
 			var spot = hotspots.FirstOrDefault(h => h.Bounds.Contains(e.Location));
 
@@ -255,16 +263,6 @@ namespace OneMoreCalendar
 
 					HoverPage?.Invoke(this, new CalendarPageEventArgs(null));
 				}
-				else if (hotspot.Type == Hottype.Up)
-				{
-					using (var g = CreateGraphics())
-						g.DrawString(LessGlyph, moreFont, Brushes.DarkGray, hotspot.Bounds);
-				}
-				else if (hotspot.Type == Hottype.Down)
-				{
-					using (var g = CreateGraphics())
-						g.DrawString(MoreGlyph, moreFont, Brushes.DarkGray, hotspot.Bounds);
-				}
 
 				hotspot = null;
 				Native.SetCursor(Cursors.Default.Handle);
@@ -290,16 +288,6 @@ namespace OneMoreCalendar
 
 					HoverPage?.Invoke(this, new CalendarPageEventArgs(spot.Page));
 				}
-				else if (spot.Type == Hottype.Up)
-				{
-					using (var g = CreateGraphics())
-						g.DrawString(LessGlyph, moreFont, Brushes.DarkOrchid, spot.Bounds);
-				}
-				else if (spot.Type == Hottype.Down)
-				{
-					using (var g = CreateGraphics())
-						g.DrawString(MoreGlyph, moreFont, Brushes.DarkOrchid, spot.Bounds);
-				}
 
 				hotspot = spot;
 				Native.SetCursor(hand);
@@ -310,7 +298,7 @@ namespace OneMoreCalendar
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
-
+			
 			hotspots.Clear();
 
 			PaintGrid(e);
@@ -449,6 +437,12 @@ namespace OneMoreCalendar
 				return;
 			}
 
+			day.Pages.ForEach(p =>
+			{
+				var index = hotspots.FindIndex(h => h.Page == p);
+				if (index >= 0) hotspots.RemoveAt(index);
+			});
+
 			// content box with padding
 			var box = new Rectangle(
 				day.Bounds.X + 3, day.Bounds.Y + 2,
@@ -473,12 +467,6 @@ namespace OneMoreCalendar
 				g.DrawString(page.Title, font,
 					page.IsDeleted || !day.InMonth ? Brushes.Gray : Brushes.Black, clip, format);
 
-				var dead = hotspots.FirstOrDefault(h => h.Page == page);
-				if (dead != null)
-				{
-					hotspots.Remove(dead);
-				}
-
 				// actual length of string for hyperlink hovering
 				var size = g.MeasureString(page.Title, font, clip.Width, format).ToSize();
 				hotspots.Add(new Hotspot
@@ -490,32 +478,62 @@ namespace OneMoreCalendar
 				});
 			}
 
-			// show glyphs if scrolling is needed
+			// scroll buttons
 			if (maxItems < day.Pages.Count)
 			{
-				AddGlyph(g, day,
-					new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7),
-					Hottype.Up, moreSize);
+				if (day.UpButton == null)
+				{
+					MakeScrollButton(Hottype.Up, day,
+						new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7));
+				}
 
-				AddGlyph(g, day,
-					new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4),
-					Hottype.Down, moreSize);
+				if (day.DownButton == null)
+				{
+					MakeScrollButton(Hottype.Down, day,
+						new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4));
+				}
 			}
 		}
 
 
-		private void AddGlyph(Graphics g, CalendarDay day, Point location, Hottype type, Size size)
+		private void MakeScrollButton(Hottype type, CalendarDay day, Point location)
 		{
-			g.DrawString(type == Hottype.Up ? LessGlyph : MoreGlyph,
-				moreFont, Brushes.DarkGray, location);
-
-			hotspots.Add(new Hotspot
+			// this Hotspot is only used to restore the location of the button
+			// not as a hover region
+			var spot = new Hotspot
 			{
 				Type = type,
-				Bounds = new Rectangle(location.X, location.Y, size.Width, size.Height),
-				Day = day,
-				InMonth = day.InMonth
-			});
+				Bounds = new Rectangle(location.X, location.Y, 0, 0),
+				Day = day
+			};
+
+			var button = new MoreButton();
+			button.Font = moreFont;
+			button.Location = location;
+			button.Text = type == Hottype.Up ? LessGlyph : MoreGlyph;
+			button.Size = new Size(moreSize.Width + 4, moreSize.Height + 4);
+			button.Tag = spot;
+			button.Click += ClickScrollButton;
+			Controls.Add(button);
+
+			if (type == Hottype.Up)
+			{
+				day.UpButton = button;
+			}
+			else
+			{
+				day.DownButton = button;
+			}
+		}
+
+
+		private void ClickScrollButton(object sender, EventArgs e)
+		{
+			var spot = ((MoreButton)sender).Tag as Hotspot;
+			if (spot != null)
+			{
+				ScrollDay(spot);
+			}
 		}
 
 
