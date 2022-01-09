@@ -207,6 +207,29 @@
                 getLabel="GetRibbonLabel"
                 onAction="SortListCmd"/>
             </menu>
+            <menu id="ribFileMenu" getLabel="GetRibbonLabel" imageMso="FileOpen">
+              <button
+                id="ribImportButton"
+                imageMso="FileOpen"
+                getLabel="GetRibbonLabel"
+                onAction="ImportCmd"/>
+              <button
+                id="ribImportWebButton"
+                imageMso="ImportHtmlDocument"
+                getLabel="GetRibbonLabel"
+                onAction="ImportWebCmd"/>
+              <button
+                id="ribExportButton"
+                imageMso="FileSave"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="ExportCmd"/>
+              <button
+                id="ribPluginButton"
+                imageMso="ComAddInsDialog"
+                getLabel="GetRibbonLabel"
+                onAction="RunPluginCmd"/>
+            </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">
               <button
                 id="ribCaptionButton"
@@ -467,7 +490,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="InsertBreadcrumbCmd"/>
               <button
-                id="ribCalendarButton"
+                id="ribInsertCalendarButton"
                 imageMso="CalendarInsert"
                 getLabel="GetRibbonLabel"
                 getEnabled="GetBodyContext"
@@ -663,26 +686,11 @@
             </menu>
             <menuSeparator id="sepTools" getTitle="GetRibbonLabel" />
             <button
-              id="ribImportButton"
-              imageMso="FileOpen"
-              getLabel="GetRibbonLabel"
-              onAction="ImportCmd"/>
-            <button
-              id="ribImportWebButton"
-              imageMso="ImportHtmlDocument"
-              getLabel="GetRibbonLabel"
-              onAction="ImportWebCmd"/>
-            <button
-              id="ribExportButton"
-              imageMso="FileSave"
+              id="ribCalendarButton"
+              imageMso="OpenAttachedCalendar"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
-              onAction="ExportCmd"/>
-            <button
-              id="ribPluginButton"
-              imageMso="ComAddInsDialog"
-              getLabel="GetRibbonLabel"
-              onAction="RunPluginCmd"/>
+              onAction="CalendarCmd"/>
             <button
               id="ribShowXmlButton"
               imageMso="XmlSource"

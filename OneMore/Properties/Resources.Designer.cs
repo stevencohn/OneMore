@@ -2020,6 +2020,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace spaces in the file name with underscores.
+        /// </summary>
+        internal static string ExportDialog_underBox_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_underBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Family {
@@ -5279,6 +5288,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string ribFileMenu_Label {
+            get {
+                return ResourceManager.GetString("ribFileMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fill Across.
         /// </summary>
         internal static string ribFillAcrossButton_Label {
@@ -5473,6 +5491,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInfoBlockButton_Label {
             get {
                 return ResourceManager.GetString("ribInfoBlockButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendar.
+        /// </summary>
+        internal static string ribInsertCalendarButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertCalendarButton_Label", resourceCulture);
             }
         }
         

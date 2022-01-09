@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var one = new OneNote())
 			{
-				var hierarchy = GetHierarchy(one);
+				var hierarchy = await GetHierarchy(one);
 				var ns = one.GetNamespace(hierarchy);
 
 				var pageList = hierarchy.Descendants(ns + "Page")
@@ -140,15 +140,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private XElement GetHierarchy(OneNote one)
+		private async Task<XElement> GetHierarchy(OneNote one)
 		{
 			switch (scope)
 			{
 				case OneNote.Scope.Notebooks:
-					return one.GetNotebooks(OneNote.Scope.Pages);
+					return await one.GetNotebooks(OneNote.Scope.Pages);
 
 				case OneNote.Scope.Sections:
-					return one.GetNotebook(OneNote.Scope.Pages);
+					return await one.GetNotebook(OneNote.Scope.Pages);
 
 				default:
 					return one.GetSection();

@@ -367,6 +367,7 @@
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Extras\SectionColorCommand.cs" />
+    <Compile Include="Commands\Tools\CalendarCommand.cs" />
     <Compile Include="Commands\Tools\DiagnosticsDialog.cs">
       <SubType>Form</SubType>
     </Compile>

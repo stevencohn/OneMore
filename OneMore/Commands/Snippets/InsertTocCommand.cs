@@ -373,7 +373,7 @@ namespace River.OneMoreAddIn.Commands
 			var ns = page.Namespace;
 
 			var scope = includePages ? OneNote.Scope.Pages : OneNote.Scope.Sections;
-			var notebook = one.GetNotebook(scope);
+			var notebook = await one.GetNotebook(scope);
 
 			page.Title = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
 

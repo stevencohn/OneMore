@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine($"Section link: {info.Link}");
 				logger.WriteLine();
 
-				var notebook = one.GetNotebook();
+				var notebook = await one.GetNotebook();
 				var notebookId = one.CurrentNotebookId;
 				logger.WriteLine($"Notebook name: {notebook.Attribute("name").Value}");
 				logger.WriteLine($"Notebook link: {one.GetHyperlink(notebookId, null)}");

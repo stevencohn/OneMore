@@ -1285,7 +1285,7 @@ Pourcentage</value>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>Calendrier</value>
-    <comment>Ribbon OneMore menu item, snippets</comment>
+    <comment>Ribbon OneMore-Calendar command</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
@@ -3711,5 +3711,17 @@ Différé</value>
   <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
     <value>Réinitialiser {0} tâche(s) orpheline(s)</value>
     <comment>message box</comment>
+  </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Remplacer les espaces dans le nom du fichier par des traits de soulignement</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ribFileMenu_Label" xml:space="preserve">
+    <value>Déposer</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribInsertCalendarButton_Label" xml:space="preserve">
+    <value>Calendrier</value>
+    <comment>ribbon button</comment>
   </data>
 </root>

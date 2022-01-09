@@ -442,7 +442,7 @@ OneNote will close automatically</value>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>Calendar</value>
-    <comment>Ribbon OneMore menu item, snippets</comment>
+    <comment>Ribbon OneMore-Calendar command</comment>
   </data>
   <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
     <value>Cell range must be within one column or within one row</value>
@@ -3765,5 +3765,17 @@ Deferred</value>
   <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
     <value>Reset {0} orphaned task(s)</value>
     <comment>message box</comment>
+  </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Replace spaces in the file name with underscores</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ribFileMenu_Label" xml:space="preserve">
+    <value>File</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribInsertCalendarButton_Label" xml:space="preserve">
+    <value>Calendar</value>
+    <comment>ribbon button</comment>
   </data>
 </root>

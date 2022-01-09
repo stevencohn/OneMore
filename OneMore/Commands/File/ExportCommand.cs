@@ -58,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			OneNote.ExportFormat format;
 			string path;
 			bool withAttachments;
+			bool useUnderscores;
 
 			// dialog...
 
@@ -71,6 +72,7 @@ namespace River.OneMoreAddIn.Commands
 				path = dialog.FolderPath;
 				format = dialog.Format;
 				withAttachments = dialog.WithAttachments;
+				useUnderscores = dialog.UseUnderscores;
 			}
 
 			// prepare...
@@ -98,7 +100,8 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var pageID in pageIDs)
 				{
 					var page = one.GetPage(pageID, OneNote.PageDetail.BinaryData);
-					var filename = Path.Combine(path, page.Title.Replace(' ', '_') + ext);
+					var title = useUnderscores ? page.Title.Replace(' ', '_') : page.Title;
+					var filename = Path.Combine(path, title + ext);
 
 					progress.SetMessage(filename);
 					progress.Increment();

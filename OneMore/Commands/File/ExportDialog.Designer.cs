@@ -38,35 +38,34 @@
 			this.browseButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
+			this.underBox = new System.Windows.Forms.CheckBox();
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// folderLabel
 			// 
 			this.folderLabel.AutoSize = true;
-			this.folderLabel.Location = new System.Drawing.Point(9, 29);
-			this.folderLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.folderLabel.Location = new System.Drawing.Point(14, 45);
 			this.folderLabel.Name = "folderLabel";
-			this.folderLabel.Size = new System.Drawing.Size(39, 13);
+			this.folderLabel.Size = new System.Drawing.Size(58, 20);
 			this.folderLabel.TabIndex = 0;
 			this.folderLabel.Text = "Folder:";
 			// 
 			// pathBox
 			// 
-			this.pathBox.Location = new System.Drawing.Point(55, 27);
-			this.pathBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 6);
+			this.pathBox.Location = new System.Drawing.Point(82, 42);
+			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 9);
 			this.pathBox.Name = "pathBox";
-			this.pathBox.Size = new System.Drawing.Size(268, 20);
+			this.pathBox.Size = new System.Drawing.Size(400, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
 			// 
 			// formatLabel
 			// 
 			this.formatLabel.AutoSize = true;
-			this.formatLabel.Location = new System.Drawing.Point(9, 54);
-			this.formatLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.formatLabel.Location = new System.Drawing.Point(14, 83);
 			this.formatLabel.Name = "formatLabel";
-			this.formatLabel.Size = new System.Drawing.Size(42, 13);
+			this.formatLabel.Size = new System.Drawing.Size(64, 20);
 			this.formatLabel.TabIndex = 2;
 			this.formatLabel.Text = "Format:";
 			// 
@@ -80,12 +79,11 @@
             "PDF File (*.pdf)",
             "Word File (*.docx)",
             "XML File (*.xml)",
-			"Markdown File (*.md)",
-			"OneNote File (*.one)"});
-			this.formatBox.Location = new System.Drawing.Point(55, 52);
-			this.formatBox.Margin = new System.Windows.Forms.Padding(2);
+            "Markdown File (*.md)",
+            "OneNote File (*.one)"});
+			this.formatBox.Location = new System.Drawing.Point(82, 80);
 			this.formatBox.Name = "formatBox";
-			this.formatBox.Size = new System.Drawing.Size(168, 21);
+			this.formatBox.Size = new System.Drawing.Size(250, 28);
 			this.formatBox.TabIndex = 3;
 			this.formatBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFormat);
 			// 
@@ -94,17 +92,17 @@
 			this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox.Controls.Add(this.underBox);
 			this.groupBox.Controls.Add(this.attachmentsBox);
 			this.groupBox.Controls.Add(this.browseButton);
 			this.groupBox.Controls.Add(this.pathBox);
 			this.groupBox.Controls.Add(this.folderLabel);
 			this.groupBox.Controls.Add(this.formatBox);
 			this.groupBox.Controls.Add(this.formatLabel);
-			this.groupBox.Location = new System.Drawing.Point(12, 12);
-			this.groupBox.Margin = new System.Windows.Forms.Padding(2);
+			this.groupBox.Location = new System.Drawing.Point(18, 18);
 			this.groupBox.Name = "groupBox";
-			this.groupBox.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-			this.groupBox.Size = new System.Drawing.Size(395, 115);
+			this.groupBox.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
+			this.groupBox.Size = new System.Drawing.Size(592, 197);
 			this.groupBox.TabIndex = 5;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "Export 2 Pages";
@@ -113,9 +111,10 @@
 			// 
 			this.attachmentsBox.AutoSize = true;
 			this.attachmentsBox.Enabled = false;
-			this.attachmentsBox.Location = new System.Drawing.Point(55, 78);
+			this.attachmentsBox.Location = new System.Drawing.Point(82, 120);
+			this.attachmentsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.attachmentsBox.Name = "attachmentsBox";
-			this.attachmentsBox.Size = new System.Drawing.Size(122, 17);
+			this.attachmentsBox.Size = new System.Drawing.Size(180, 24);
 			this.attachmentsBox.TabIndex = 5;
 			this.attachmentsBox.Text = "Include attachments";
 			this.attachmentsBox.UseVisualStyleBackColor = true;
@@ -123,10 +122,9 @@
 			// browseButton
 			// 
 			this.browseButton.Image = global::River.OneMoreAddIn.Properties.Resources.Open;
-			this.browseButton.Location = new System.Drawing.Point(326, 26);
-			this.browseButton.Margin = new System.Windows.Forms.Padding(2);
+			this.browseButton.Location = new System.Drawing.Point(489, 40);
 			this.browseButton.Name = "browseButton";
-			this.browseButton.Size = new System.Drawing.Size(29, 22);
+			this.browseButton.Size = new System.Drawing.Size(44, 34);
 			this.browseButton.TabIndex = 4;
 			this.browseButton.UseVisualStyleBackColor = true;
 			this.browseButton.Click += new System.EventHandler(this.BrowseFolders);
@@ -135,10 +133,9 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(341, 137);
-			this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
+			this.cancelButton.Location = new System.Drawing.Point(512, 231);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.Size = new System.Drawing.Size(67, 25);
+			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
@@ -148,31 +145,39 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(270, 137);
-			this.okButton.Margin = new System.Windows.Forms.Padding(2);
+			this.okButton.Location = new System.Drawing.Point(405, 231);
 			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(67, 25);
+			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
+			// underBox
+			// 
+			this.underBox.AutoSize = true;
+			this.underBox.Location = new System.Drawing.Point(82, 152);
+			this.underBox.Name = "underBox";
+			this.underBox.Size = new System.Drawing.Size(380, 24);
+			this.underBox.TabIndex = 6;
+			this.underBox.Text = "Replace spaces in the filename with underscores";
+			this.underBox.UseVisualStyleBackColor = true;
+			// 
 			// ExportDialog
 			// 
 			this.AcceptButton = this.okButton;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(419, 174);
+			this.ClientSize = new System.Drawing.Size(628, 288);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.groupBox);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ExportDialog";
-			this.Padding = new System.Windows.Forms.Padding(10);
+			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Export Pages";
@@ -193,5 +198,6 @@
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.CheckBox attachmentsBox;
+		private System.Windows.Forms.CheckBox underBox;
 	}
 }

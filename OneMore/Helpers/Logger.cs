@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn
 	{
 		private static ILogger instance;
 		private static bool designMode;
+		private static string appname = "OneMore";
 
 		private readonly bool stdio;
 		private readonly int processId;
@@ -41,7 +42,7 @@ namespace River.OneMoreAddIn
 
 			LogPath = Path.Combine(
 				Path.GetTempPath(),
-				designMode ? "OneMore-design.log" : "OneMore.log");
+				designMode ? $"{appname}-design.log" : $"{appname}.log");
 
 			preamble = string.Empty;
 			writer = null;
@@ -96,7 +97,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public string LogPath { get; }
+		public string LogPath { get; private set; }
 
 
 		private bool EnsureWriter()
@@ -151,6 +152,12 @@ namespace River.OneMoreAddIn
 		{
 			preamble = string.Empty;
 			writeHeader = true;
+		}
+
+
+		public static void SetApplication(string name)
+		{
+			appname = name;
 		}
 
 

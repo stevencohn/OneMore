@@ -1292,7 +1292,7 @@ Vuelve a intentarlo más tarde</value>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>Calendario</value>
-    <comment>Ribbon OneMore menu item, snippets</comment>
+    <comment>Ribbon OneMore-Calendar command</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Mayús + {1})</value>
@@ -3717,5 +3717,17 @@ Diferido</value>
   <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
     <value>Restablecer {0} tareas huérfanas</value>
     <comment>message box</comment>
+  </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Reemplazar espacios en el nombre del archivo con guiones bajos</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ribFileMenu_Label" xml:space="preserve">
+    <value>Archivo</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribInsertCalendarButton_Label" xml:space="preserve">
+    <value>Calendario</value>
+    <comment>ribbon button</comment>
   </data>
 </root>

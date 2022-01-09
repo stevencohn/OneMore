@@ -18,7 +18,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![screenshot](../../wiki/images/Screenshot.png)
 
 <a name="features"></a>
-## Features (142)
+## Features (143)
 
 [Clean commands](../../wiki/Clean-Commands) (11)
 
@@ -42,6 +42,13 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Create new styles based on the selected text
 * Apply an entire theme to a page
 * Change page theme inluding background and styles, optioanally with dark-mode awareness
+
+[File Commands](../../wiki/Tools) (4)
+* Import MSWord, PowerPoint, Markdown and others into the current page or a new page
+* Import a Web page from a specified URL
+* Export the current page or selected pages as HTML, PDF, MSWord, Markdown, or as raw OneNote XML
+* Invoke an external custom plugin to process a page
+
 
 [Edit Commands](../../wiki/Edit-Commands) (16)
 * Colorize selected text as a chosen programming language - _syntax highlighting_
@@ -152,13 +159,10 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Start and display a visual timer (Alt + F2) and insert the timer value (F2)
 * Toggle strikethrough text next to all completed/incompleted tags
 
-[Main Menu](../../wiki/Tools) (8)
+[Main Menu](../../wiki/Tools) (5)
 
+* Run OneMore Calendar
 * Replay the last OneMore action with a quick keyboard shortcut (Alt + Shift + R)
-* Import MSWord, PowerPoint, Markdown and others into the current page or a new page
-* Import a Web page from a specified URL
-* Export the current page or selected pages as HTML, PDF, MSWord, Markdown, or as raw OneNote XML
-* Invoke an external custom plugin to process a page
 * View and edit the internal OneNote XML of the current page (Ctrl + Shift + Alt + X)
 * Edit OneMore settings
 * Check for updates and install upgrades on-demand

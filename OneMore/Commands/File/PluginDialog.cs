@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 		public string PageName { set; private get; }
 
 
-		protected async override void OnLoad(EventArgs e)
+		protected override async void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 

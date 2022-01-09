@@ -2,6 +2,8 @@
 // Copyright © 2019 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S3241 // Methods should not return values that are never used
+
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
@@ -55,11 +57,11 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case OneNote.Scope.Sections:
-					SortSections(sorting, direction, pinNotes);
+					await SortSections(sorting, direction, pinNotes);
 					break;
 
 				case OneNote.Scope.Notebooks:
-					SortNotebooks(sorting, direction);
+					await SortNotebooks(sorting, direction);
 					break;
 			}
 
@@ -201,7 +203,7 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Sections
 
-		private void SortSections(
+		private async Task SortSections(
 			SortDialog.Sortings sorting, SortDialog.Directions direction, bool pinNotes)
 		{
 			#region Notes
@@ -223,7 +225,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var one = new OneNote())
 			{
 				// get the current notebook with its sections
-				var notebook = one.GetNotebook();
+				var notebook = await one.GetNotebook();
 
 				if (notebook == null)
 				{
@@ -326,7 +328,7 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Notebooks
 
-		private void SortNotebooks(SortDialog.Sortings sorting, SortDialog.Directions direction)
+		private async Task SortNotebooks(SortDialog.Sortings sorting, SortDialog.Directions direction)
 		{
 			#region Notes
 			/*
@@ -338,7 +340,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var one = new OneNote())
 			{
-				var root = one.GetNotebooks();
+				var root = await one.GetNotebooks();
 				var ns = one.GetNamespace(root);
 
 				// nickname is display name whereas name is the folder name

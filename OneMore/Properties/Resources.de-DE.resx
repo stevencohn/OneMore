@@ -1271,7 +1271,7 @@
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>Kalender</value>
-    <comment>Ribbon OneMore menu item, snippets</comment>
+    <comment>Ribbon OneMore-Calendar command</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Strg + Alt + Umschalt + {1})</value>
@@ -3702,5 +3702,17 @@ Aufgeschoben</value>
   <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
     <value>{0} verwaiste Aufgabe(n) zurücksetzen</value>
     <comment>message box</comment>
+  </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Ersetzen Sie Leerzeichen im Dateinamen durch Unterstriche</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ribFileMenu_Label" xml:space="preserve">
+    <value>Datei</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribInsertCalendarButton_Label" xml:space="preserve">
+    <value>Kalender</value>
+    <comment>ribbon button</comment>
   </data>
 </root>

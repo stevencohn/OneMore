@@ -32,7 +32,9 @@ namespace River.OneMoreAddIn
 		/// <returns>A formatted string</returns>
 		public static string ToFriendlyString(this DateTime dttm)
 		{
-			return dttm.ToLocalTime().ToString(friendlyPattern);
+			return dttm.Kind == DateTimeKind.Utc
+				? dttm.ToLocalTime().ToString(friendlyPattern)
+				: dttm.ToString(FriendlyPattern);
 		}
 
 
@@ -43,7 +45,9 @@ namespace River.OneMoreAddIn
 		/// <returns>A formatted string</returns>
 		public static string ToShortFriendlyString(this DateTime dttm)
 		{
-			return dttm.ToLocalTime().ToString(ShortFriendlyPattern);
+			return dttm.Kind == DateTimeKind.Utc
+				? dttm.ToLocalTime().ToString(ShortFriendlyPattern)
+				: dttm.ToString(ShortFriendlyPattern);
 		}
 
 
@@ -54,7 +58,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static string ToZuluString(this DateTime dttm)
 		{
-			return dttm.ToUniversalTime().ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffff'Z'");
+			return dttm.Kind == DateTimeKind.Utc
+				? dttm.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffff'Z'")
+				: dttm.ToUniversalTime().ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffff'Z'");
 		}
 	}
 }

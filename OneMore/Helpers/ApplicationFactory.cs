@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
 	using System;
+	using System.Runtime.InteropServices;
 
 
 	/// <summary>
@@ -25,9 +26,43 @@ namespace River.OneMoreAddIn
 		/// <returns>An IApplication</returns>
 		public static IApplication CreateApplication()
 		{
-			return type == null
-				? new Application()
-				: Activator.CreateInstance(type) as IApplication;
+			IApplication app = null;
+			int retries = 0;
+
+			try
+			{
+				while (retries < 3)
+				{
+					try
+					{
+						app = type == null
+							? new Application()
+							: Activator.CreateInstance(type) as IApplication;
+
+						if (retries > 0)
+						{
+							Logger.Current.WriteLine(
+								$"completed successfully after {retries} retries");
+						}
+
+						retries = int.MaxValue;
+					}
+					catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrCOMBusy)
+					{
+						retries++;
+						var ms = 250 * retries;
+
+						Logger.Current.WriteLine($"OneNote is busy, retyring in {ms}ms");
+						System.Threading.Thread.Sleep(ms);
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error instantiating OneNote IApplication after {retries} retries", exc);
+			}
+
+			return app;
 		}
 
 

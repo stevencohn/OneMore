@@ -1290,7 +1290,7 @@ OneNote 将自动关闭</value>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>日历</value>
-    <comment>Ribbon OneMore menu item, snippets</comment>
+    <comment>Ribbon OneMore-Calendar command</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
@@ -3708,5 +3708,17 @@ OneNote 文件 (*.one)</value>
   <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
     <value>重置 {0} 个孤立任务</value>
     <comment>message box</comment>
+  </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>用下划线替换文件名中的空格</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ribFileMenu_Label" xml:space="preserve">
+    <value>文件</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="ribInsertCalendarButton_Label" xml:space="preserve">
+    <value>日历</value>
+    <comment>ribbon button</comment>
   </data>
 </root>
