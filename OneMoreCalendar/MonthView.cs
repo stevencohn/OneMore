@@ -192,11 +192,6 @@ namespace OneMoreCalendar
 				case Hottype.Day:
 					ClickedDay?.Invoke(this, new CalendarDayEventArgs(spot.Day.Date));
 					break;
-
-				case Hottype.Up:
-				case Hottype.Down:
-					ScrollDay(spot);
-					break;
 			}
 		}
 
@@ -298,7 +293,7 @@ namespace OneMoreCalendar
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
-			
+
 			hotspots.Clear();
 
 			PaintGrid(e);
@@ -486,11 +481,21 @@ namespace OneMoreCalendar
 					MakeScrollButton(Hottype.Up, day,
 						new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7));
 				}
+				else
+				{
+					day.UpButton.Location =
+						new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7);
+				}
 
 				if (day.DownButton == null)
 				{
 					MakeScrollButton(Hottype.Down, day,
 						new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4));
+				}
+				else
+				{
+					day.DownButton.Location =
+						new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4);
 				}
 			}
 		}
@@ -511,9 +516,9 @@ namespace OneMoreCalendar
 			button.Font = moreFont;
 			button.Location = location;
 			button.Text = type == Hottype.Up ? LessGlyph : MoreGlyph;
-			button.Size = new Size(moreSize.Width + 4, moreSize.Height + 4);
+			button.Size = new Size(moreSize.Width + 4, moreSize.Height + 2);
 			button.Tag = spot;
-			button.Click += ClickScrollButton;
+			button.MouseDown += ClickScrollButton;
 			Controls.Add(button);
 
 			if (type == Hottype.Up)

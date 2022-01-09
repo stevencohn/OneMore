@@ -5,6 +5,7 @@
 namespace OneMoreCalendar
 {
 	using System;
+	using System.ComponentModel;
 	using System.Drawing;
 	using System.Windows.Forms;
 
@@ -22,19 +23,44 @@ namespace OneMoreCalendar
 	internal class MoreButton : Button
 	{
 		private const int Radius = 4;
+		private IContainer components;
+		private MouseEventArgs downArgs = null;
 		private Image enabledImage;
+		private Timer timer;
 
 
 		/// <summary>
 		/// Initialize a new instance.
 		/// </summary>
 		public MoreButton()
+			: base()
 		{
+			InitializeComponent();
+
+			InitialDelay = 400;
+			RepeatInterval = 62;
+
 			// force Paint event to fire
 			SetStyle(ControlStyles.UserPaint, true);
 			// reduce flickering
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 		}
+
+		private void InitializeComponent()
+		{
+			components = new Container();
+			timer = new Timer(components);
+			SuspendLayout();
+			timer.Tick += new EventHandler(Tick);
+			ResumeLayout(false);
+		}
+
+
+		/// <summary>
+		/// Pause before starting repeat
+		/// </summary>
+		[DefaultValue(400)]
+		public int InitialDelay { set; get; }
 
 
 		/// <summary>
@@ -43,6 +69,17 @@ namespace OneMoreCalendar
 		public MouseState MouseState { get; private set; }
 
 
+		/// <summary>
+		/// Interval between repeat firings
+		/// </summary>
+		[DefaultValue(62)]
+		public int RepeatInterval { set; get; }
+
+
+		/// <summary>
+		/// Gets or sets a value indicating whether or not to draw the button border even
+		/// when in normal state
+		/// </summary>
 		public bool ShowBorder { get; set; }
 
 
@@ -118,8 +155,18 @@ namespace OneMoreCalendar
 			if (Enabled)
 			{
 				MouseState |= MouseState.Pushed;
-				base.OnMouseDown(mevent);
+				timer.Enabled = false;
+				downArgs = mevent;
+				Tick(null, EventArgs.Empty);
 			}
+		}
+
+
+		private void Tick(object sender, EventArgs e)
+		{
+			base.OnMouseDown(downArgs);
+			timer.Interval = timer.Enabled ? RepeatInterval : InitialDelay;
+			timer.Enabled = true;
 		}
 
 
@@ -128,6 +175,7 @@ namespace OneMoreCalendar
 			if (Enabled)
 			{
 				MouseState &= ~MouseState.Pushed;
+				timer.Enabled = false;
 				base.OnMouseUp(mevent);
 			}
 		}
