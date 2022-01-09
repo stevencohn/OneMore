@@ -514,6 +514,7 @@ namespace OneMoreCalendar
 
 			var button = new MoreButton();
 			button.Font = moreFont;
+			button.ForeColor = AppColors.ControlColor;
 			button.Location = location;
 			button.Text = type == Hottype.Up ? LessGlyph : MoreGlyph;
 			button.Size = new Size(moreSize.Width + 4, moreSize.Height + 2);

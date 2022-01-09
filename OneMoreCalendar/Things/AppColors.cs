@@ -10,7 +10,7 @@ namespace OneMoreCalendar
 	internal static class AppColors
 	{
 
-		public static Color CheckBoxColor => ColorTranslator.FromHtml("#FF73356E");
+		public static Color ControlColor => ColorTranslator.FromHtml("#FF73356E");
 
 		public static Brush HoverBrush => new SolidBrush(ColorTranslator.FromHtml("#FFF7EDF7"));
 

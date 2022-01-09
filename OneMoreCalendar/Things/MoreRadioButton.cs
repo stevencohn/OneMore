@@ -64,14 +64,14 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				using (var pen = new Pen(AppColors.CheckBoxColor))
+				using (var pen = new Pen(AppColors.ControlColor))
 				{
 					g.DrawRectangle(pen, 0, 1, 14, 14);
 				}
 
 				if (Checked)
 				{
-					using (var brush = new SolidBrush(AppColors.CheckBoxColor))
+					using (var brush = new SolidBrush(AppColors.ControlColor))
 					{
 						g.FillRectangle(brush, 2, 3, 11, 11);
 					}
