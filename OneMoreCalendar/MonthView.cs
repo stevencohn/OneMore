@@ -92,7 +92,9 @@ namespace OneMoreCalendar
 			{
 				if (Controls[i] is MoreButton)
 				{
+					var c = Controls[i];
 					Controls.RemoveAt(i);
+					c.Dispose();
 				}
 			}
 
