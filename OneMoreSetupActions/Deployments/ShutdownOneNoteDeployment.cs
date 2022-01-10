@@ -30,7 +30,17 @@ namespace OneMoreSetupActions
 		{
 			logger.WriteLine();
 			logger.WriteLine("ShutdownOneNoteDeployment.Uninstall ---");
-			return StopProcess();
+
+			var status = FAILURE;
+			var tries = 0;
+			
+			while (status == FAILURE && tries < 2)
+			{
+				status = StopProcess();
+				tries++;
+			}
+
+			return status;
 		}
 
 
