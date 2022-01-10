@@ -21,7 +21,7 @@ namespace OneMoreSetupActions
 		}
 
 
-		public override bool Install()
+		public override int Install()
 		{
 			logger.WriteLine();
 			logger.WriteLine("ProtocolHandlerDeployment.Install ---");
@@ -59,13 +59,13 @@ namespace OneMoreSetupActions
 				{
 					logger.WriteLine("error creating onemore parent key");
 					logger.WriteLine(exc);
-					return false;
+					return FAILURE;
 				}
 
 				if (parent == null)
 				{
 					logger.WriteLine("could not create onemore parent key, unknown reason");
-					return false;
+					return FAILURE;
 				}
 			}
 
@@ -90,13 +90,13 @@ namespace OneMoreSetupActions
 				{
 					logger.WriteLine("error creating onemore command");
 					logger.WriteLine(exc);
-					return false;
+					return FAILURE;
 				}
 
 				if (key == null)
 				{
 					logger.WriteLine("could not create onemore command, unknown reason");
-					return false;
+					return FAILURE;
 				}
 			}
 
@@ -114,7 +114,7 @@ namespace OneMoreSetupActions
 			parent.Dispose();
 
 			// confirm
-			var verified = true;
+			var verified = SUCCESS;
 			using (key = hive.OpenSubKey($@"{path}\{cmdpath}", false))
 			{
 				if (key != null)
@@ -127,13 +127,13 @@ namespace OneMoreSetupActions
 					else
 					{
 						logger.WriteLine("coult not get command value");
-						verified = false;
+						verified = FAILURE;
 					}
 				}
 				else
 				{
 					logger.WriteLine("key not created");
-					verified = false;
+					verified = FAILURE;
 				}
 			}
 
@@ -141,7 +141,7 @@ namespace OneMoreSetupActions
 		}
 
 
-		public override bool Uninstall()
+		public override int Uninstall()
 		{
 			logger.WriteLine();
 			logger.WriteLine("ProtocolHandlerDeployment.Uninstall ---");
@@ -161,11 +161,11 @@ namespace OneMoreSetupActions
 				{
 					logger.WriteLine("warning deleting protocol class");
 					logger.WriteLine(exc);
-					return false;
+					return FAILURE;
 				}
 
 				// confirm
-				var verified = true;
+				var verified = SUCCESS;
 				using (var key = hive.OpenSubKey(path, false))
 				{
 					if (key == null)
@@ -175,7 +175,7 @@ namespace OneMoreSetupActions
 					else
 					{
 						logger.WriteLine("key not deleted");
-						verified = false;
+						verified = FAILURE;
 					}
 				}
 
