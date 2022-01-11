@@ -28,7 +28,7 @@ namespace OneMoreSetupActions
 		}
 
 
-		public override bool Install()
+		public override int Install()
 		{
 			logger.WriteLine();
 			logger.WriteLine("EdgeWebViewDeployment.Install ---");
@@ -38,7 +38,7 @@ namespace OneMoreSetupActions
 			{
 				logger.WriteLine("WebView2 Runtime is already installed");
 				CleanupChromium();
-				return true;
+				return SUCCESS;
 			}
 
 			var bootstrap = Path.Combine(
@@ -47,7 +47,7 @@ namespace OneMoreSetupActions
 
 			if (!DownloadBootstrap(bootstrap))
 			{
-				return false;
+				return FAILURE;
 			}
 
 			logger.WriteLine("running bootstrap");
@@ -80,7 +80,7 @@ namespace OneMoreSetupActions
 			// deprecate
 			CleanupChromium();
 
-			return true;
+			return SUCCESS;
 		}
 
 
@@ -110,7 +110,7 @@ namespace OneMoreSetupActions
 		}
 
 
-		public override bool Uninstall()
+		public override int Uninstall()
 		{
 			logger.WriteLine();
 			logger.WriteLine("EdgeWebViewDeployment.Uninstall ---");
@@ -130,7 +130,7 @@ namespace OneMoreSetupActions
 						logger.WriteLine($"command: {command}");
 
 						Process.Start(match.Groups[1].Value, match.Groups[2].Value).WaitForExit();
-						return true;
+						return SUCCESS;
 					}
 				}
 				else
@@ -146,7 +146,7 @@ namespace OneMoreSetupActions
 			// deprecate
 			CleanupChromium();
 
-			return false;
+			return FAILURE;
 		}
 
 

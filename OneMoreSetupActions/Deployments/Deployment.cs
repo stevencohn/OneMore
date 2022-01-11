@@ -7,6 +7,9 @@ namespace OneMoreSetupActions
 
 	internal abstract class Deployment
 	{
+		public const int SUCCESS = 0;
+		public const int FAILURE = 1;
+
 		protected readonly Logger logger;
 		protected readonly Stepper stepper;
 
@@ -18,9 +21,9 @@ namespace OneMoreSetupActions
 		}
 
 
-		public abstract bool Install();
+		public abstract int Install();
 
 
-		public abstract bool Uninstall();
+		public abstract int Uninstall();
 	}
 }

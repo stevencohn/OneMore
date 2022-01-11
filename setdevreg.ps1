@@ -23,36 +23,49 @@ Begin
 Process
 {
     $here = Get-Location
-    $guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
     $dll = Join-Path $here 'OneMore\bin\x86\Debug\River.OneMoreAddIn.dll'
+    if (!(Test-Path $dll))
+    {
+        Write-Host "cannot find $dll"
+        return
+    }
 
+    $guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
+    $pv = MaKeVersion (Get-Item $dll | % { $_.VersionInfo.ProductVersion })
+
+    # onemore:// protocol handler registration
 	$0 = 'Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command'
     if (Test-Path $0)
     {
-        $1 = Join-Path $here 'OneMoreProtocolHandler\bin\Debug\OneMoreProtocolHandler.exe'
+        $exe = Join-Path $here 'OneMoreProtocolHandler\bin\Debug\OneMoreProtocolHandler.exe'
         Write-Host "setting $0"
-	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value "$1 %1 %2 %3 %4 %5"
+	    Set-ItemProperty $0 -Name '(Default)' -Type String -Value "$exe %1 %2 %3 %4 %5"
     }
 
+    # CLSID
     $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$guid\InprocServer32"
     if (Test-Path $0)
     {
         Write-Host "setting $0"
+        $asm = "River.OneMoreAddIn, Version=$pv, Culture=neutral, PublicKeyToken=null"
+	    Set-ItemProperty $0 -Name Assembly -Type String -Value $asm
 	    Set-ItemProperty $0 -Name CodeBase -Type String -Value $dll
     }
 
-    if (Test-Path $dll)
+    $1 = "Registry::HKEY_CLASSES_ROOT\CLSID\$guid\InprocServer32\$pv"
+    if (!(Test-Path $1))
     {
-        $pv = MaKeVersion (Get-Item $dll | % { $_.VersionInfo.ProductVersion })
-        $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$guid\InprocServer32\$pv"
-        Write-Host "testing $0"
-        if (Test-Path $0)
-        {
-            Write-Host "setting $0"
-            Set-ItemProperty $0 -Name CodeBase -Type String -Value $dll
-        }
+        write-Host "creating $1"
+        New-Item -Path $0 -Name $pv | Out-Null
+        $asm = "River.OneMoreAddIn, Version=$pv, Culture=neutral, PublicKeyToken=null"
+	    Set-ItemProperty $1 -Name 'Assembly' -Type String -Value $asm
+        Set-ItemProperty $1 -Name 'Class' -Type String -Value 'River.OneMoreAddIn.AddIn'
+        Set-ItemProperty $1 -Name 'RuntimeVersion' (Get-ItemPropertyValue $0 -Name 'RuntimeVersion')
     }
+    Write-Host "setting $1"
+    Set-ItemProperty $1 -Name CodeBase -Type String -Value $dll
 
+    # app path
     $0 = 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll'
     if (Test-Path $0)
     {

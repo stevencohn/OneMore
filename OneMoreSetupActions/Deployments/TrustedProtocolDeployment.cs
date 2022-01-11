@@ -20,7 +20,7 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
-		public override bool Install()
+		public override int Install()
 		{
 			logger.WriteLine();
 			logger.WriteLine("TrustedProtocolDeployment.Install ---");
@@ -53,7 +53,7 @@ namespace OneMoreSetupActions
 				{
 					key.Dispose();
 					logger.WriteLine("key already exists");
-					return true;
+					return SUCCESS;
 				}
 
 				logger.WriteLine($@"step {stepper.Step()}: creating HKCU:\{path}");
@@ -66,7 +66,7 @@ namespace OneMoreSetupActions
 						if (key == null)
 						{
 							logger.WriteLine("key not created, returned null");
-							return false;
+							return FAILURE;
 						}
 
 						key.Dispose();
@@ -76,11 +76,11 @@ namespace OneMoreSetupActions
 				{
 					logger.WriteLine("error registering trusted protocol");
 					logger.WriteLine(exc);
-					return false;
+					return FAILURE;
 				}
 
 				// confirm
-				var verified = true;
+				var verified = SUCCESS;
 				using (key = hive.OpenSubKey(path, false))
 				{
 					if (key != null)
@@ -90,7 +90,7 @@ namespace OneMoreSetupActions
 					else
 					{
 						logger.WriteLine("key not created");
-						verified = false;
+						verified = FAILURE;
 					}
 				}
 
@@ -180,7 +180,7 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
-		public override bool Uninstall()
+		public override int Uninstall()
 		{
 			logger.WriteLine();
 			logger.WriteLine("TrustedProtocolDeployment.Uninstall ---");
@@ -202,11 +202,11 @@ namespace OneMoreSetupActions
 				{
 					logger.WriteLine("warning deleting trusted protocol");
 					logger.WriteLine(exc);
-					return false;
+					return FAILURE;
 				}
 
 				// confirm
-				var verified = true;
+				var verified = SUCCESS;
 				using (var key = hive.OpenSubKey(path, false))
 				{
 					if (key == null)
@@ -216,7 +216,7 @@ namespace OneMoreSetupActions
 					else
 					{
 						logger.WriteLine("key not deleted");
-						verified = false;
+						verified = FAILURE;
 					}
 				}
 

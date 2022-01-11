@@ -17,9 +17,6 @@ namespace OneMoreSetupActions
 		[DllImport("user32.dll")]
 		static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
-		private const int SUCCESS = 0;
-		private const int FAILURE = 1;
-
 		private static Logger logger;
 		private static Stepper stepper;
 
@@ -44,42 +41,59 @@ namespace OneMoreSetupActions
 
 			ReportContext();
 
-			if (args[0] == "--install")
+			int status;
+
+			switch (args[0])
 			{
-				Environment.Exit(Install());
-			}
-			else if (args[0] == "--uninstall")
-			{
-				Environment.Exit(Uninstall());
+				case "--install":
+					status = Install();
+					break;
+
+				case "--uninstall":
+					status = Uninstall();
+					break;
+
+				// direct calls for testing...
+
+				case "--install-handler":
+					status = new ProtocolHandlerDeployment(logger, stepper).Install();
+					break;
+
+				case "--install-edge":
+					status = new EdgeWebViewDeployment(logger, stepper).Install();
+					break;
+
+				case "--install-registry":
+					status = new RegistryDeployment(logger, stepper).Install();
+					break;
+
+				case "--install-shutdown":
+					status = new ShutdownOneNoteDeployment(logger, stepper).Install();
+					break;
+
+				case "--install-trusted":
+					status = new TrustedProtocolDeployment(logger, stepper).Install();
+					break;
+
+				case "--uninstall-edge":
+					status = new EdgeWebViewDeployment(logger, stepper).Uninstall();
+					break;
+
+				case "--uninstall-registry":
+					status = new RegistryDeployment(logger, stepper).Uninstall();
+					break;
+
+				case "--uninstall-shutdown":
+					status = new ShutdownOneNoteDeployment(logger, stepper).Uninstall();
+					break;
+
+				default:
+					logger.WriteLine($"unrecognized command: {args[0]}");
+					status = Deployment.FAILURE;
+					break;
 			}
 
-			// direct calls for testing...
-
-			else if (args[0] == "--install-handler")
-			{
-				var ok = new ProtocolHandlerDeployment(logger, stepper).Install();
-				Environment.Exit(ok ? SUCCESS : FAILURE);
-			}
-			else if (args[0] == "--install-trusted")
-			{
-				var ok = new TrustedProtocolDeployment(logger, stepper).Install();
-				Environment.Exit(ok ? SUCCESS : FAILURE);
-			}
-			else if (args[0] == "--install-edge")
-			{
-				var ok = new EdgeWebViewDeployment(logger, stepper).Install();
-				Environment.Exit(ok ? SUCCESS : FAILURE);
-			}
-			else if (args[0] == "--uninstall-edge")
-			{
-				var ok = new EdgeWebViewDeployment(logger, stepper).Uninstall();
-				Environment.Exit(ok ? SUCCESS : FAILURE);
-			}
-			else
-			{
-				logger.WriteLine($"unrecognized command: {args[0]}");
-				Environment.Exit(FAILURE);
-			}
+			Environment.Exit(status);
 		}
 
 
@@ -91,8 +105,8 @@ namespace OneMoreSetupActions
 			var elevated = new WindowsPrincipal(
 				WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
 
-			logger.WriteLine($"OneMore installer running as user {username} ({sid}) {(elevated ? "elevated" : string.Empty)}");
-
+			var elve = elevated ? "elevated" : string.Empty;
+			logger.WriteLine($"OneMore installer running as user {username} ({sid}) {elve}");
 		}
 
 
@@ -106,23 +120,24 @@ namespace OneMoreSetupActions
 
 			try
 			{
-				if (new ProtocolHandlerDeployment(logger, stepper).Install() &&
-					new TrustedProtocolDeployment(logger, stepper).Install() &&
-					new EdgeWebViewDeployment(logger, stepper).Install())
+				if (new ShutdownOneNoteDeployment(logger, stepper).Install() == Deployment.SUCCESS &&
+					new ProtocolHandlerDeployment(logger, stepper).Install() == Deployment.SUCCESS &&
+					new TrustedProtocolDeployment(logger, stepper).Install() == Deployment.SUCCESS &&
+					new EdgeWebViewDeployment(logger, stepper).Install() == Deployment.SUCCESS)
 				{
 					logger.WriteLine("completed successfully");
-					return SUCCESS;
+					return Deployment.SUCCESS;
 				}
 
 				logger.WriteLine("completed suspiciously");
-				return SUCCESS;
+				return Deployment.SUCCESS;
 				//return FAILURE;
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine("error registering");
 				logger.WriteLine(exc);
-				return FAILURE;
+				return Deployment.FAILURE;
 			}
 		}
 
@@ -134,13 +149,15 @@ namespace OneMoreSetupActions
 
 			try
 			{
-				// unregister is more lenient than register...
-				// if it doesn't succeed, it still completely with SUCCESS
+				// unregister is more lenient than register... if any of these
+				// actions don't succeed, we can still complete with SUCCESS
 
-				var ok1 = new ProtocolHandlerDeployment(logger, stepper).Uninstall();
-				var ok2 = new TrustedProtocolDeployment(logger, stepper).Uninstall();
+				var ok0 = new ShutdownOneNoteDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
+				var ok1 = new ProtocolHandlerDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
+				var ok2 = new TrustedProtocolDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
+				var ok3 = new RegistryDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
 
-				if (ok1 && ok2)
+				if (ok0 && ok1 && ok2 && ok3)
 				{
 					logger.WriteLine("completed successfully");
 				}
@@ -149,13 +166,13 @@ namespace OneMoreSetupActions
 					logger.WriteLine("completed with warnings");
 				}
 
-				return SUCCESS;
+				return Deployment.SUCCESS;
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine("error unregistering");
 				logger.WriteLine(exc);
-				return FAILURE;
+				return Deployment.FAILURE;
 			}
 		}
 	}
