@@ -13,7 +13,10 @@ run once on the machine to configure Registry settings:
 
 # CmdletBinding adds -Verbose functionality, SupportsShouldProcess adds -WhatIf
 [CmdletBinding(SupportsShouldProcess = $true)]
-param ([int] $configbits)
+param (
+    [int] $configbits = 64,
+    [switch] $both
+    )
 
 Begin
 {
@@ -148,16 +151,14 @@ Process
     {
         PreserveVdproj
 
-        if ($configbits)
-        {
-            Configure $configbits
-            Build $configbits
-        }
-        else
+        if ($configbits -eq 86 -or $both)
         {
             Configure 86
             Build 86
+        }
 
+        if ($configBits -eq 64 -or $both)
+        {
             Configure 64
             Build 64
         }
