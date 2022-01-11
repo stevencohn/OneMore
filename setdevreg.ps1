@@ -56,7 +56,7 @@ Process
     if (!(Test-Path $1))
     {
         write-Host "creating $1"
-        New-Item -Path $0 -Name $pv
+        New-Item -Path $0 -Name $pv | Out-Null
         $asm = "River.OneMoreAddIn, Version=$pv, Culture=neutral, PublicKeyToken=null"
 	    Set-ItemProperty $1 -Name 'Assembly' -Type String -Value $asm
         Set-ItemProperty $1 -Name 'Class' -Type String -Value 'River.OneMoreAddIn.AddIn'
