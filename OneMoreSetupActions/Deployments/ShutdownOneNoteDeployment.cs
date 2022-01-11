@@ -9,7 +9,7 @@ namespace OneMoreSetupActions
 
 	internal class ShutdownOneNoteDeployment : Deployment
 	{
-		private const string OneNoteName= "ONENOTE";
+		private const string OneNoteName = "ONENOTE";
 
 
 		public ShutdownOneNoteDeployment(Logger logger, Stepper stepper)
@@ -33,7 +33,7 @@ namespace OneMoreSetupActions
 
 			var status = FAILURE;
 			var tries = 0;
-			
+
 			while (status == FAILURE && tries < 2)
 			{
 				status = StopProcess();

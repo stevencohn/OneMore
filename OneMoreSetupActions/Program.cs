@@ -59,20 +59,28 @@ namespace OneMoreSetupActions
 					status = new ProtocolHandlerDeployment(logger, stepper).Install();
 					break;
 
-				case "--install-trusted":
-					status = new TrustedProtocolDeployment(logger, stepper).Install();
-					break;
-
 				case "--install-edge":
 					status = new EdgeWebViewDeployment(logger, stepper).Install();
+					break;
+
+				case "--install-registry":
+					status = new RegistryDeployment(logger, stepper).Install();
 					break;
 
 				case "--install-shutdown":
 					status = new ShutdownOneNoteDeployment(logger, stepper).Install();
 					break;
 
+				case "--install-trusted":
+					status = new TrustedProtocolDeployment(logger, stepper).Install();
+					break;
+
 				case "--uninstall-edge":
 					status = new EdgeWebViewDeployment(logger, stepper).Uninstall();
+					break;
+
+				case "--uninstall-registry":
+					status = new RegistryDeployment(logger, stepper).Uninstall();
 					break;
 
 				case "--uninstall-shutdown":
@@ -147,8 +155,9 @@ namespace OneMoreSetupActions
 				var ok0 = new ShutdownOneNoteDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
 				var ok1 = new ProtocolHandlerDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
 				var ok2 = new TrustedProtocolDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
+				var ok3 = new RegistryDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
 
-				if (ok0 && ok1 && ok2)
+				if (ok0 && ok1 && ok2 && ok3)
 				{
 					logger.WriteLine("completed successfully");
 				}
