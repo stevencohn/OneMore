@@ -49,7 +49,7 @@
             imageMso="EditLinks"
             getContent="GetFavoritesContent" />
 
-          <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" getImage="GetOneMoreRibbonImage">
+          <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" showImage="true" getImage="GetOneMoreRibbonImage">
             <button
               id="ribReplayButton"
               imageMso="MoviePlayAutomatically"
@@ -57,7 +57,7 @@
               getScreentip="GetRibbonScreentip"
               getEnabled="SetBodyContext"
               onAction="ReplayCmd"/>
-            <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear">
+            <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" showImage="true">
               <button
                 id="ribBreakingButton"
                 imageMso="CharacterSpacingGallery"
@@ -123,7 +123,7 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="TrimLeadingCmd"/>
             </menu>
-            <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage">
+            <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true">
               <menu
                 id="ribColorizeMenu"
                 imageMso="SmartArtChangeColorsGallery"
@@ -207,7 +207,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="SortListCmd"/>
             </menu>
-            <menu id="ribFileMenu" getLabel="GetRibbonLabel" imageMso="FileOpen">
+            <menu id="ribFileMenu" getLabel="GetRibbonLabel" imageMso="FileOpen" showImage="true">
               <button
                 id="ribImportButton"
                 imageMso="FileOpen"
@@ -230,7 +230,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="RunPluginCmd"/>
             </menu>
-            <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill">
+            <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill" showImage="true">
               <button
                 id="ribCaptionButton"
                 imageMso="CaptionInsert"
@@ -249,7 +249,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="ResizeImagesCmd"/>
             </menu>
-            <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering">
+            <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true">
               <button
                 id="ribOutlineButton"
                 imageMso="OutlineShowDetail"
@@ -280,7 +280,7 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemovePageNumbersCmd"/>
             </menu>
-            <menu id="ribPageMenu" getLabel="GetRibbonLabel" imageMso="PageOrientationPortrait">
+            <menu id="ribPageMenu" getLabel="GetRibbonLabel" imageMso="PageOrientationPortrait" showImage="true">
               <button
                 id="ribArrangeContainersButton"
                 imageMso="WindowsArrangeAll"
@@ -333,7 +333,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="WordCountCmd"/>
             </menu>
-            <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert">
+            <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert" showImage="true">
                 <button
                 id="ribFootnoteButton"
                 imageMso="FootnoteInsert"
@@ -413,7 +413,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="GetImagesCmd"/>
             </menu>
-            <menu id="ribRemindersMenu" getLabel="GetRibbonLabel" imageMso="ReminderGallery">
+            <menu id="ribRemindersMenu" getLabel="GetRibbonLabel" imageMso="ReminderGallery" showImage="true">
               <button
                 id="ribRemindButton"
                 imageMso="NewTask"
@@ -440,7 +440,7 @@
                 label="Import Tasks from Outlook"
                 onAction="ImportOutlookTasksCmd"/>
             </menu>
-            <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI">
+            <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true">
               <button
                 id="ribReplaceButton"
                 imageMso="ReplaceDialog"
@@ -464,7 +464,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="TaggedCmd"/>
             </menu>
-            <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel" imageMso="GroupInsertShapes">
+            <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel" imageMso="GroupInsertShapes" showImage="true">
               <button
                 id="ribInsertSingleLineButton"
                 imageMso="HorizontalLineInsert"
@@ -564,7 +564,7 @@
                 getEnabled="GetBodyContext"
                 onAction="InsertBlueStatusCmd"/>
             </menu>
-            <menu id="ribTableMenu" getLabel="GetRibbonLabel" imageMso="TableInsert" enabled="true">
+            <menu id="ribTableMenu" getLabel="GetRibbonLabel" imageMso="TableInsert" showImage="true" enabled="true">
               <button
                 id="ribAddFormulaButton"
                 imageMso="TableFormulaDialog"
@@ -639,7 +639,7 @@
                 getEnabled="GetBodyContext"
                 onAction="SplitTableCmd"/>
             </menu>
-            <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote">
+            <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote" showImage="true">
               <button
                 id="ribAnalyzeButton"
                 imageMso="FileCompactAndRepairDatabase"
