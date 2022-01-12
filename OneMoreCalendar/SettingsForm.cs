@@ -27,6 +27,10 @@ namespace OneMoreCalendar
 			// call RoundForm.base to draw background
 			base.OnLoad(e);
 
+			// TODO: why is emptyBox getting truncated?
+			emptyBox.AutoSize = false;
+			emptyBox.Width += 25;
+
 			if (!DesignMode)
 			{
 				var provider = new SettingsProvider();
@@ -34,6 +38,7 @@ namespace OneMoreCalendar
 				createdBox.Checked = provider.Created;
 				modifiedBox.Checked = provider.Modified;
 				deletedBox.Checked = provider.Deleted;
+				emptyBox.Checked = !provider.Empty;
 
 				var notebooks = await provider.GetNotebooks();
 				notebooksBox.Items.Clear();
@@ -50,6 +55,9 @@ namespace OneMoreCalendar
 
 
 		public bool ShowCreated => createdBox.Checked;
+
+
+		public bool ShowEmpty => !emptyBox.Checked;
 
 
 		public bool ShowDeleted => deletedBox.Checked;
@@ -127,7 +135,10 @@ namespace OneMoreCalendar
 		private void Apply(object sender, EventArgs e)
 		{
 			var provider = new SettingsProvider();
-			provider.SetFilter(createdBox.Checked, modifiedBox.Checked, deletedBox.Checked);
+
+			provider.SetFilter(
+				createdBox.Checked, modifiedBox.Checked,
+				deletedBox.Checked, !emptyBox.Checked);
 
 			var ids = new List<string>();
 			foreach (Notebook notebook in notebooksBox.CheckedItems)

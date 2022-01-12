@@ -76,11 +76,14 @@ namespace OneMoreCalendar
 					(!settings.Modified && p.Created.Date.Equals(date))
 					));
 
-				listbox.Items.Add(new DayItem
+				if (daypages.Any() || settings.Empty)
 				{
-					Date = date,
-					Pages = daypages
-				});
+					listbox.Items.Add(new DayItem
+					{
+						Date = date,
+						Pages = daypages
+					});
+				}
 
 				date = date.AddDays(1);
 			}

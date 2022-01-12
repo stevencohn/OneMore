@@ -31,6 +31,7 @@
 			this.optionsLabel = new System.Windows.Forms.Label();
 			this.notebooksLabel = new System.Windows.Forms.Label();
 			this.settingsPanel = new System.Windows.Forms.Panel();
+			this.emptyBox = new OneMoreCalendar.MoreCheckBox();
 			this.deletedBox = new OneMoreCalendar.MoreCheckBox();
 			this.okButton = new OneMoreCalendar.MoreButton();
 			this.cancelButton = new OneMoreCalendar.MoreButton();
@@ -55,10 +56,11 @@
 			// 
 			// notebooksLabel
 			// 
+			this.notebooksLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.notebooksLabel.AutoSize = true;
 			this.notebooksLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.notebooksLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.notebooksLabel.Location = new System.Drawing.Point(23, 179);
+			this.notebooksLabel.Location = new System.Drawing.Point(23, 215);
 			this.notebooksLabel.Name = "notebooksLabel";
 			this.notebooksLabel.Size = new System.Drawing.Size(131, 32);
 			this.notebooksLabel.TabIndex = 1;
@@ -67,6 +69,7 @@
 			// settingsPanel
 			// 
 			this.settingsPanel.BackColor = System.Drawing.Color.Transparent;
+			this.settingsPanel.Controls.Add(this.emptyBox);
 			this.settingsPanel.Controls.Add(this.deletedBox);
 			this.settingsPanel.Controls.Add(this.okButton);
 			this.settingsPanel.Controls.Add(this.cancelButton);
@@ -82,8 +85,19 @@
 			this.settingsPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.settingsPanel.Name = "settingsPanel";
 			this.settingsPanel.Padding = new System.Windows.Forms.Padding(20);
-			this.settingsPanel.Size = new System.Drawing.Size(518, 450);
+			this.settingsPanel.Size = new System.Drawing.Size(518, 486);
 			this.settingsPanel.TabIndex = 2;
+			// 
+			// emptyBox
+			// 
+			this.emptyBox.AutoSize = true;
+			this.emptyBox.BackColor = System.Drawing.Color.White;
+			this.emptyBox.Location = new System.Drawing.Point(48, 162);
+			this.emptyBox.Name = "emptyBox";
+			this.emptyBox.Size = new System.Drawing.Size(244, 24);
+			this.emptyBox.TabIndex = 11;
+			this.emptyBox.Text = "Hide empty days in detail view";
+			this.emptyBox.UseVisualStyleBackColor = false;
 			// 
 			// deletedBox
 			// 
@@ -98,9 +112,10 @@
 			// 
 			// okButton
 			// 
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.BackColor = System.Drawing.SystemColors.Window;
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(349, 403);
+			this.okButton.Location = new System.Drawing.Point(349, 439);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(75, 34);
@@ -111,9 +126,10 @@
 			// 
 			// cancelButton
 			// 
+			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.BackColor = System.Drawing.SystemColors.Window;
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(430, 403);
+			this.cancelButton.Location = new System.Drawing.Point(430, 439);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(75, 34);
@@ -124,11 +140,13 @@
 			// 
 			// notebooksBox
 			// 
+			this.notebooksBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.notebooksBox.BackColor = System.Drawing.SystemColors.Window;
 			this.notebooksBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.notebooksBox.CheckOnClick = true;
 			this.notebooksBox.FormattingEnabled = true;
-			this.notebooksBox.Location = new System.Drawing.Point(48, 228);
+			this.notebooksBox.Location = new System.Drawing.Point(48, 264);
 			this.notebooksBox.Name = "notebooksBox";
 			this.notebooksBox.Size = new System.Drawing.Size(445, 138);
 			this.notebooksBox.TabIndex = 7;
@@ -167,7 +185,7 @@
 			this.logLink.AutoSize = true;
 			this.logLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.logLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.logLink.Location = new System.Drawing.Point(15, 408);
+			this.logLink.Location = new System.Drawing.Point(15, 444);
 			this.logLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.logLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.logLink.Name = "logLink";
@@ -184,7 +202,7 @@
 			this.aboutLink.AutoSize = true;
 			this.aboutLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.aboutLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.aboutLink.Location = new System.Drawing.Point(135, 408);
+			this.aboutLink.Location = new System.Drawing.Point(135, 444);
 			this.aboutLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.aboutLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.aboutLink.Name = "aboutLink";
@@ -199,7 +217,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(518, 450);
+			this.ClientSize = new System.Drawing.Size(518, 486);
 			this.Controls.Add(this.settingsPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.KeyPreview = true;
@@ -230,5 +248,6 @@
 		private MoreCheckBox deletedBox;
 		private River.OneMoreAddIn.UI.MoreLinkLabel logLink;
 		private River.OneMoreAddIn.UI.MoreLinkLabel aboutLink;
+		private MoreCheckBox emptyBox;
 	}
 }
