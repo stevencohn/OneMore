@@ -198,13 +198,15 @@ namespace River.OneMoreAddIn.Commands
 		private void Send(string message, string args)
 		{
 			// this is for debugging; if SilentReminders value exists then only log
-			var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn", false);
-			if (key != null)
+			using (var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn", false))
 			{
-				if ((string)key.GetValue("SilentReminders") == "true")
+				if (key != null)
 				{
-					logger.WriteLine($"Toast: {message}");
-					return;
+					if ((string)key.GetValue("SilentReminders") == "true")
+					{
+						logger.WriteLine($"Toast: {message}");
+						return;
+					}
 				}
 			}
 

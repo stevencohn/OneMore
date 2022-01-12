@@ -89,6 +89,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private string FormatDate(string value)
 		{
+			if (value == null)
+			{
+				logger.WriteLine("InstallDate is null");
+				return "unknown";
+			}
+
 			if (value.Length == 8)
 			{
 				if (DateTime.TryParseExact(value, new string[] { "yyyyMMdd" },

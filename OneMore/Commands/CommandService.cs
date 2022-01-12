@@ -32,15 +32,17 @@ namespace River.OneMoreAddIn
 		public CommandService(CommandFactory factory)
 			: base()
 		{
-			var key = Registry.ClassesRoot.OpenSubKey(KeyPath, false);
-			if (key != null)
+			using (var key = Registry.ClassesRoot.OpenSubKey(KeyPath, false))
 			{
-				// get default value string
-				pipe = (string)key.GetValue(string.Empty);
-			}
-			else
-			{
-				logger.WriteLine($"error reading pipe name from {KeyPath}");
+				if (key != null)
+				{
+					// get default value string
+					pipe = (string)key.GetValue(string.Empty);
+				}
+				else
+				{
+					logger.WriteLine($"error reading pipe name from {KeyPath}");
+				}
 			}
 
 			this.factory = factory;
