@@ -54,7 +54,7 @@ namespace OneMoreCalendar
 			};
 
 			monthView.ClickedPage += NavigateToPage;
-			monthView.ClickedDay += ShowDayView;
+			monthView.ClickedDay += ClickDayView;
 			monthView.HoverPage += ShowPageStatus;
 			monthView.SnappedPage += SnappedPage;
 
@@ -119,6 +119,12 @@ namespace OneMoreCalendar
 			{
 				ShowDayView(sender, new CalendarDayEventArgs(date));
 			}
+		}
+
+
+		private void ClickDayView(object sender, CalendarDayEventArgs e)
+		{
+			dayButton.Checked = true;
 		}
 
 

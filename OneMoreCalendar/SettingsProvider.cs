@@ -71,8 +71,21 @@ namespace OneMoreCalendar
 		public bool Created =>
 			root.Elements("filters").Elements("created").Any(e => e.Value.Equals("true"));
 
+
 		public bool Deleted =>
 			root.Elements("filters").Elements("deleted").Any(e => e.Value.Equals("true"));
+
+
+		public bool Empty
+		{
+			get
+			{
+				// default is true if empty filter is missing
+				var empties = root.Elements("filters").Elements("empty");
+				return empties == null || empties.Any(e => e.Value.Equals("true"));
+			}
+		}
+
 
 		public bool Modified => 
 			root.Elements("filters").Elements("modified").Any(e => e.Value.Equals("true"));
@@ -109,7 +122,7 @@ namespace OneMoreCalendar
 		}
 
 
-		public void SetFilter(bool created, bool modified, bool deleted)
+		public void SetFilter(bool created, bool modified, bool deleted, bool empty)
 		{
 			var filters = root.Element("filters");
 			if (filters == null)
@@ -121,6 +134,7 @@ namespace OneMoreCalendar
 			SetFilter(filters, "created", created);
 			SetFilter(filters, "modified", modified);
 			SetFilter(filters, "deleted", deleted);
+			SetFilter(filters, "empty", empty);
 		}
 
 
