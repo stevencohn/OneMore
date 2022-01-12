@@ -137,7 +137,7 @@ namespace OneMoreCalendar
 			notebooks.Elements(ns + "Notebook").Remove();
 			foreach (var id in ids)
 			{
-				var book = one.GetNotebook(id, OneNote.Scope.Pages);
+				var book = await one.GetNotebook(id, OneNote.Scope.Pages);
 				notebooks.Add(book);
 			}
 
