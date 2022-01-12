@@ -123,18 +123,24 @@ namespace River.OneMoreAddIn.Settings
 			var settings = provider.GetCollection(Name);
 			for (var i = 0; i < keys.Length; i++)
 			{
-				if (commandsBox.GetItemChecked(i))
+				// index might be greater than count-1 only if the settings collection contains
+				// more items than now are defined in the commandsBox; this is unlikely but...?
+
+				if (i < commandsBox.Items.Count)
 				{
-					if (settings.Add(keys[i], true))
+					if (commandsBox.GetItemChecked(i))
 					{
-						updated = true;
+						if (!settings.Contains(keys[i]) && settings.Add(keys[i], true))
+						{
+							updated = true;
+						}
 					}
-				}
-				else
-				{
-					if (settings.Remove(keys[i]))
+					else
 					{
-						updated = true;
+						if (settings.Contains(keys[i]) && settings.Remove(keys[i]))
+						{
+							updated = true;
+						}
 					}
 				}
 			}
