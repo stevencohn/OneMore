@@ -36,5 +36,5 @@ jobs:
       #  run: vstest.console.exe .\tests\Sandbox.Tests\bin\Release\Sandbox.Tests.dll
       
       - name: Build solution
-        run: pwsh.exe -command 'get-command msbuild'
+        run: pwsh.exe -command '(get-command msbuild).Source'
         #run: .\build.ps1
