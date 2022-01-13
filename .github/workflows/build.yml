@@ -9,19 +9,19 @@ on:
 jobs:  
   build:    
     runs-on: windows-latest
-    
+
     steps:      
       - uses: actions/checkout@v2
-      
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
-        
+
+      #- name: Setup MSBuild
+      #  uses: microsoft/setup-msbuild@v1
+
       - name: Setup devenv
         uses: seanmiddleditch/gha-setup-vsdevenv@master
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
-        
+
       #- name: Setup VSTest
       #  uses: darenm/Setup-VSTest@v1
 
@@ -34,12 +34,9 @@ jobs:
       #- name: Build Solution
       #  run: |
       #    msbuild.exe Sandbox.sln /p:platform="Any CPU" /p:configuration="Release"
-        
+
       #- name: Run Tests
       #  run: vstest.console.exe .\tests\Sandbox.Tests\bin\Release\Sandbox.Tests.dll
-      
+
       - name: Build solution
-        run: |
-          pwsh.exe -command '(get-command msbuild).Source'
-          pwsh.exe -command '(get-command devenv).Source'
-        #run: .\build.ps1
+        run: .\build.ps1
