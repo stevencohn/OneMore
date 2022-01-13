@@ -155,7 +155,7 @@ Process
     
     dir 'C:\Program Files (x86)\Microsoft Visual Studio\Shared\Visual Studio Tools for Office\PIA\Office15'
 
-    <#if (FindVisualStudio)
+    <# if (FindVisualStudio)
     {
         PreserveVdproj
 
