@@ -27,6 +27,7 @@ Begin
     {
         if ((Get-Command devenv) -ne $null)
         {
+            $script:devenv = (Get-Command devenv).Source
             return $true
         }
 
