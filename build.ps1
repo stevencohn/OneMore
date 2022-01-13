@@ -25,6 +25,11 @@ Begin
 
     function FindVisualStudio
     {
+        if ((Get-Command devenv) -ne $null)
+        {
+            return true
+        }
+
         $0 = 'C:\Program Files\Microsoft Visual Studio\2022'
         if (FindVS $0) { return $true }
 
