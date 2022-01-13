@@ -15,7 +15,6 @@ jobs:
 
       #- name: Setup MSBuild
       #  uses: microsoft/setup-msbuild@v1
-
       - name: Setup devenv
         uses: seanmiddleditch/gha-setup-vsdevenv@master
 
@@ -41,3 +40,9 @@ jobs:
       - name: Build solution
         shell: powershell
         run: .\build.ps1
+
+      #- name: Upload installer
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: installer
+      #    path: %temp%\onemore_v_x64.msi
