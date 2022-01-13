@@ -15,6 +15,9 @@ jobs:
       
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
+        
+      - name: Setup devenv
+        uses: seanmiddleditch/gha-setup-vsdevenv@master
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
@@ -36,5 +39,7 @@ jobs:
       #  run: vstest.console.exe .\tests\Sandbox.Tests\bin\Release\Sandbox.Tests.dll
       
       - name: Build solution
-        run: pwsh.exe -command '(get-command msbuild).Source'
+        run: |
+          pwsh.exe -command '(get-command msbuild).Source'
+          pwsh.exe -command '(get-command devenv).Source'
         #run: .\build.ps1
