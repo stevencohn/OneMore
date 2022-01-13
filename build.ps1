@@ -27,7 +27,7 @@ Begin
     {
         if ((Get-Command devenv) -ne $null)
         {
-            return true
+            return $true
         }
 
         $0 = 'C:\Program Files\Microsoft Visual Studio\2022'
