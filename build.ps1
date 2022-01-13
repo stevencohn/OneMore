@@ -152,8 +152,10 @@ Process
 {
     Push-Location OneMoreSetup
     $script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
+    
+    dir 'C:\Program Files (x86)\Microsoft Visual Studio\Shared\Visual Studio Tools for Office\PIA\Office15'
 
-    if (FindVisualStudio)
+    <#if (FindVisualStudio)
     {
         PreserveVdproj
 
@@ -170,7 +172,7 @@ Process
         }
 
         RestoreVdproj
-    }
+    }#>
 
     Pop-Location
 }
