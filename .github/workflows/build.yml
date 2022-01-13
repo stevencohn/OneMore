@@ -31,8 +31,8 @@ jobs:
       - name: Navigate to Workspace
         run: cd $GITHUB_WORKSPACE
 
-      #- name: Restore Packages
-      #  run: nuget restore OneMore.sln
+      - name: Restore Packages
+        run: nuget restore OneMore.sln
 
       #- name: Build Solution
       #  run: |
