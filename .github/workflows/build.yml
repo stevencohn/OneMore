@@ -39,4 +39,5 @@ jobs:
       #  run: vstest.console.exe .\tests\Sandbox.Tests\bin\Release\Sandbox.Tests.dll
 
       - name: Build solution
-        run: pwsh.exe -command .\build.ps1
+        shell: powershell
+        run: .\build.ps1
