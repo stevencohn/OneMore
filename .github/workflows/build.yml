@@ -24,7 +24,7 @@ jobs:
 
       - name: Install VSIX
         shell: powershell
-        run: .\setup-vsix.ps1
+        run: .\install-vsix.ps1
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5

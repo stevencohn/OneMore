@@ -13,12 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Reference\0336.OneNoteApplication_2013.xsd = Reference\0336.OneNoteApplication_2013.xsd
 		build.ps1 = build.ps1
 		Reference\customui14.xsd = Reference\customui14.xsd
+		install-vsix.ps1 = install-vsix.ps1
 		LICENSE = LICENSE
 		Reference\onenotecontrols-2016.xlsx = Reference\onenotecontrols-2016.xlsx
 		README.md = README.md
 		register-onemore.reg = register-onemore.reg
 		setdevreg.ps1 = setdevreg.ps1
-		setup-vsix.ps1 = setup-vsix.ps1
 		setversion.ps1 = setversion.ps1
 	EndProjectSection
 EndProject
@@ -50,10 +50,20 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreCalendar", "OneMoreCalendar\OneMoreCalendar.csproj", "{1F87159C-B663-4464-B272-E0C57BE22306}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}"
+	ProjectSection(SolutionItems) = preProject
+		.github\FUNDING.yml = .github\FUNDING.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5771E974-F302-4CB6-86B8-B57C74C07709}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEMPLATE", "{147D185C-D069-495B-955A-74C81BDD20CF}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
+		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
+		.github\ISSUE_TEMPLATE\question.md = .github\ISSUE_TEMPLATE\question.md
 	EndProjectSection
 EndProject
 Global
@@ -132,6 +142,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
 		{5771E974-F302-4CB6-86B8-B57C74C07709} = {AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}
+		{147D185C-D069-495B-955A-74C81BDD20CF} = {AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19E5943B-AB7E-4164-98B6-0C88B01BFABE}
