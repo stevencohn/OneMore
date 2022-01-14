@@ -2413,6 +2413,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display language (must restart OneNote).
+        /// </summary>
+        internal static string GeneralSheet_langLabel_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_langLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General Options.
         /// </summary>
         internal static string GeneralSheet_Title {

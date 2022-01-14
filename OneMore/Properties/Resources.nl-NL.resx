@@ -3730,4 +3730,8 @@ Verschoven</value>
     <value>Kalender</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
+    <value>Weergavetaal (moet OneNote opnieuw starten)</value>
+    <comment>label</comment>
+  </data>
 </root>
