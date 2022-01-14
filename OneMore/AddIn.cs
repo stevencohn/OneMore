@@ -58,9 +58,11 @@ namespace River.OneMoreAddIn
 			var thread = System.Threading.Thread.CurrentThread;
 			Culture = thread.CurrentUICulture;
 
-			//Culture = CultureInfo.GetCultureInfo("en-GB");
-			//thread.CurrentCulture = Culture;
-			//thread.CurrentUICulture = Culture;
+			var settings = new SettingsProvider().GetCollection("GeneralSheet");
+			var lang = settings.Get("language", "en-US");
+			Culture = CultureInfo.GetCultureInfo(lang);
+			thread.CurrentCulture = Culture;
+			thread.CurrentUICulture = Culture;
 
 			GetCurrentClockSpeed();
 

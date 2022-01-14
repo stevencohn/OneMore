@@ -33,6 +33,8 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.checkUpdatesBox = new System.Windows.Forms.CheckBox();
 			this.enablersBox = new System.Windows.Forms.CheckBox();
+			this.langLabel = new System.Windows.Forms.Label();
+			this.langBox = new System.Windows.Forms.ComboBox();
 			this.layoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -51,6 +53,8 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.langBox);
+			this.layoutPanel.Controls.Add(this.langLabel);
 			this.layoutPanel.Controls.Add(this.checkUpdatesBox);
 			this.layoutPanel.Controls.Add(this.enablersBox);
 			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -85,6 +89,24 @@ namespace River.OneMoreAddIn.Settings
     " the Quick Access toolbar";
 			this.enablersBox.UseVisualStyleBackColor = true;
 			// 
+			// langLabel
+			// 
+			this.langLabel.AutoSize = true;
+			this.langLabel.Location = new System.Drawing.Point(3, 131);
+			this.langLabel.Name = "langLabel";
+			this.langLabel.Size = new System.Drawing.Size(297, 20);
+			this.langLabel.TabIndex = 2;
+			this.langLabel.Text = "Display language (must restart OneNote)";
+			// 
+			// langBox
+			// 
+			this.langBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.langBox.FormattingEnabled = true;
+			this.langBox.Location = new System.Drawing.Point(7, 154);
+			this.langBox.Name = "langBox";
+			this.langBox.Size = new System.Drawing.Size(345, 28);
+			this.langBox.TabIndex = 3;
+			// 
 			// GeneralSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -96,6 +118,7 @@ namespace River.OneMoreAddIn.Settings
 			this.Padding = new System.Windows.Forms.Padding(13, 8, 15, 10);
 			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
+			this.layoutPanel.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -107,5 +130,7 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Panel layoutPanel;
 		private System.Windows.Forms.CheckBox enablersBox;
 		private System.Windows.Forms.CheckBox checkUpdatesBox;
+		private System.Windows.Forms.ComboBox langBox;
+		private System.Windows.Forms.Label langLabel;
 	}
 }

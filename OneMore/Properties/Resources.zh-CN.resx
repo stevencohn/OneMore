@@ -3721,4 +3721,8 @@ OneNote 文件 (*.one)</value>
     <value>日历</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
+    <value>显示语言（必须重启 OneNote）</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -3778,4 +3778,8 @@ Deferred</value>
     <value>Calendar</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
+    <value>Display language (must restart OneNote)</value>
+    <comment>label</comment>
+  </data>
 </root>

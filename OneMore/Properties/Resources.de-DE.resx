@@ -3715,4 +3715,8 @@ Aufgeschoben</value>
     <value>Kalender</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
+    <value>Anzeigesprache (OneNote muss neu gestartet werden)</value>
+    <comment>label</comment>
+  </data>
 </root>

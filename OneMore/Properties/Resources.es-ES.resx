@@ -3730,4 +3730,8 @@ Diferido</value>
     <value>Calendario</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
+    <value>Idioma de visualización (debe reiniciar OneNote)</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -3729,4 +3729,8 @@ ISO-code then comma then language name</comment>
     <value>تقويم</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
+    <value>لغة العرض (يجب إعادة تشغيل OneNote)</value>
+    <comment>label</comment>
+  </data>
 </root>
