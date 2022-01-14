@@ -22,6 +22,10 @@ jobs:
       - name: Setup devenv
         uses: seanmiddleditch/gha-setup-vsdevenv@master
 
+      - name: Install VSIX
+        shell: powershell
+        run: .\setup-vsix.ps1
+
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
 
