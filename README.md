@@ -212,7 +212,7 @@ Please consider a sponsorship or one-time donation, click here:
 ### Minimum Prerequisites for Development
 
 * Developed for Windows 10
-* Microsoft Visual Studio 2019<sup>1</sup>, C# 7
+* Microsoft Visual Studio 2019<sup>1</sup> including Office primary interop assemblies
 * Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)<sup>2</sup>
 * Microsoft [Visual Studio 2019 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects)
 * .NET Framework 4.8
