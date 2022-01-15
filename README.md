@@ -17,6 +17,9 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 
 ![screenshot](../../wiki/images/Screenshot.png)
 
+### The new Calendar app
+![Calendar](../../wiki/images/Calendar.png)
+
 <a name="features"></a>
 ## Features (143)
 
