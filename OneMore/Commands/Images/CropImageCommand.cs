@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 				var images = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				if (images?.Count() > 1)
+				if (images == null || images.Count() > 1)
 				{
 					UIHelper.ShowError(Resx.CropImage_oneImage);
 					return;
