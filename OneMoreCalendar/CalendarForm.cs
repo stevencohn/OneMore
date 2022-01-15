@@ -393,5 +393,15 @@ namespace OneMoreCalendar
 				ClosedSettings(sender, null);
 			}
 		}
+
+		private void ResizeTopPanel(object sender, EventArgs e)
+		{
+			prevButton.Invalidate();
+			nextButton.Invalidate();
+			todayButton.Invalidate();
+			monthButton.Invalidate();
+			dayButton.Invalidate();
+			settingsButton.Invalidate();
+		}
 	}
 }

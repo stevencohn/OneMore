@@ -500,6 +500,20 @@ namespace OneMoreCalendar
 						new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4);
 				}
 			}
+			else
+			{
+				if (day.UpButton != null)
+				{
+					day.UpButton.Dispose();
+					day.UpButton = null;
+				}
+
+				if (day.DownButton != null)
+				{
+					day.DownButton.Dispose();
+					day.DownButton = null;
+				}
+			}
 		}
 
 

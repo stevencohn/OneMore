@@ -10,12 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2679BE09-8144-4B5B-957E-D463F00FA66E}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		Reference\0336.OneNoteApplication_2013.xsd = Reference\0336.OneNoteApplication_2013.xsd
 		build.ps1 = build.ps1
-		Reference\customui14.xsd = Reference\customui14.xsd
 		install-vsix.ps1 = install-vsix.ps1
 		LICENSE = LICENSE
-		Reference\onenotecontrols-2016.xlsx = Reference\onenotecontrols-2016.xlsx
 		README.md = README.md
 		register-onemore.reg = register-onemore.reg
 		setdevreg.ps1 = setdevreg.ps1
@@ -64,6 +61,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISSUE_TEMPLATE", "ISSUE_TEM
 		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
 		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
 		.github\ISSUE_TEMPLATE\question.md = .github\ISSUE_TEMPLATE\question.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{64F48016-BB0D-4F25-89BE-00444FD64C53}"
+	ProjectSection(SolutionItems) = preProject
+		Reference\0336.OneNoteApplication_2013.xsd = Reference\0336.OneNoteApplication_2013.xsd
+		Reference\customui14.xsd = Reference\customui14.xsd
+		Reference\onenotecontrols-2016.xlsx = Reference\onenotecontrols-2016.xlsx
 	EndProjectSection
 EndProject
 Global
@@ -140,9 +144,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{B33891C1-D812-4C1D-B6DC-2175A68C4ADC} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
+		{9D56ACB1-3CDF-48EB-B786-4F924E899CE2} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
+		{31896922-72FF-4823-80C0-8EC46936AC71} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
 		{AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
 		{5771E974-F302-4CB6-86B8-B57C74C07709} = {AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}
 		{147D185C-D069-495B-955A-74C81BDD20CF} = {AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}
+		{64F48016-BB0D-4F25-89BE-00444FD64C53} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19E5943B-AB7E-4164-98B6-0C88B01BFABE}

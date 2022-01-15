@@ -47,7 +47,7 @@
 			// 
 			// topPanel
 			// 
-			this.topPanel.BackColor = System.Drawing.Color.White;
+			this.topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(251)))));
 			this.topPanel.Controls.Add(this.pathLabel);
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(7, 9);
@@ -57,7 +57,7 @@
 			// 
 			// pictureBox
 			// 
-			this.pictureBox.BackColor = System.Drawing.Color.White;
+			this.pictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(251)))));
 			this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBox.Location = new System.Drawing.Point(7, 37);
 			this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
@@ -70,7 +70,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.White;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(251)))));
 			this.ClientSize = new System.Drawing.Size(384, 500);
 			this.Controls.Add(this.pictureBox);
 			this.Controls.Add(this.topPanel);

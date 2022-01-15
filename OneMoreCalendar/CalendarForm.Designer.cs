@@ -61,6 +61,7 @@
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Size = new System.Drawing.Size(978, 92);
 			this.topPanel.TabIndex = 0;
+			this.topPanel.Resize += new System.EventHandler(this.ResizeTopPanel);
 			// 
 			// dayButton
 			// 
