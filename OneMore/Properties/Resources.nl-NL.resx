@@ -3738,4 +3738,8 @@ Verschoven</value>
     <value>Deze afbeelding is van een afdruk. Als het wordt bijgesneden, wordt het niet langer gekoppeld aan dat originele bestand. Wil je doorgaan met croppen?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
+    <value>Taken importeren vanuit Outlook</value>
+    <comment>ribbon Reminders item</comment>
+  </data>
 </root>

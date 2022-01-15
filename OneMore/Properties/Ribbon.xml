@@ -437,7 +437,7 @@
               <button
                 id="ribImportOutlookTasksButton"
                 imageMso="ImportOutlook"
-                label="Import Tasks from Outlook"
+                getLabel="GetRibbonLabel"
                 onAction="ImportOutlookTasksCmd"/>
             </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true">

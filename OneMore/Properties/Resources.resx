@@ -3786,4 +3786,8 @@ Deferred</value>
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
+    <value>Import Tasks from Outlook</value>
+    <comment>ribbon Reminders item</comment>
+  </data>
 </root>

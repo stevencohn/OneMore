@@ -3732,4 +3732,8 @@ Différé</value>
     <value>Cette image provient d'une impression. S'il est recadré, il ne sera plus associé à ce fichier d'origine. Voulez-vous continuer à recadrer ?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
+    <value>Importer des tâches depuis Outlook</value>
+    <comment>ribbon Reminders item</comment>
+  </data>
 </root>

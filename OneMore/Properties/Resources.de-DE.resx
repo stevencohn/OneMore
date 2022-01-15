@@ -3723,4 +3723,8 @@ Aufgeschoben</value>
     <value>Dieses Bild stammt von einem Ausdruck. Wenn es beschnitten wird, ist es nicht mehr mit dieser Originaldatei verknüpft. Möchten Sie mit dem Zuschneiden fortfahren?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
+    <value>Importieren Sie Aufgaben aus Outlook</value>
+    <comment>ribbon Reminders item</comment>
+  </data>
 </root>

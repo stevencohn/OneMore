@@ -436,7 +436,12 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetFavoritesContent(IRibbonControl control)
 		{
-			//logger.WriteLine($"GetFavoritesContent({control.Id})");
+			//logger.WriteLine($"GetFavoritesContent({control.Id}) culture:{AddIn.Culture.Name}");
+
+			// TODO: this doesn't seem to work!
+			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Culture;
+			System.Threading.Thread.CurrentThread.CurrentUICulture = AddIn.Culture;
+
 			var favorites = new FavoritesProvider(ribbon).LoadFavoritesMenu();
 
 			var sep = favorites.Elements()

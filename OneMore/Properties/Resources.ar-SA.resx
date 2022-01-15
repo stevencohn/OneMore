@@ -3022,8 +3022,9 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    مراجع الخريطة لهذه الصفحة
-  <comment>ribbon button</comment></data>
+    <value>مراجع الخريطة لهذه الصفحة</value>
+    <comment>ribbon button</comment>
+  </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>تم وضع علامة "{0}" على أنها نقطة الارتساء. </value>
     <comment>message box</comment>
@@ -3736,5 +3737,9 @@ ISO-code then comma then language name</comment>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
     <comment>message box, question</comment>
+  </data>
+  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
+    <value>استيراد المهام من Outlook</value>
+    <comment>ribbon Reminders item</comment>
   </data>
 </root>
