@@ -3734,4 +3734,8 @@ Diferido</value>
     <value>Idioma de visualización (debe reiniciar OneNote)</value>
     <comment>label</comment>
   </data>
+  <data name="CropImageDialog_printout" xml:space="preserve">
+    <value>Esta imagen es de una impresión. Si se recorta, ya no estará asociado con ese archivo original. ¿Quieres seguir recortando?</value>
+    <comment>message box, question</comment>
+  </data>
 </root>

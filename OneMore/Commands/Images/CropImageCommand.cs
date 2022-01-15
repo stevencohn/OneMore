@@ -36,14 +36,22 @@ namespace River.OneMoreAddIn.Commands
 				var images = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				if (images?.Count() == 1)
-				{
-					await CropImage(images.First());
-				}
-				else
+				if (images?.Count() > 1)
 				{
 					UIHelper.ShowError(Resx.CropImage_oneImage);
+					return;
 				}
+
+				var image = images.First();
+				if (image.Attributes().Any(a => a.Name == "isPrintOut"))
+				{
+					if (UIHelper.ShowQuestion(Resx.CropImageDialog_printout) != DialogResult.Yes)
+					{
+						return;
+					}
+				}
+
+				await CropImage(image);
 			}
 		}
 
