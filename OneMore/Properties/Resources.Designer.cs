@@ -5477,6 +5477,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Tasks from Outlook.
+        /// </summary>
+        internal static string ribImportOutlookTasksButton_Label {
+            get {
+                return ResourceManager.GetString("ribImportOutlookTasksButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Web Page.
         /// </summary>
         internal static string ribImportWebButton_Label {

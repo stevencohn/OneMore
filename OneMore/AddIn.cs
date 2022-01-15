@@ -56,7 +56,6 @@ namespace River.OneMoreAddIn
 			UIHelper.PrepareUI();
 
 			var thread = System.Threading.Thread.CurrentThread;
-			Culture = thread.CurrentUICulture;
 
 			var settings = new SettingsProvider().GetCollection("GeneralSheet");
 			var lang = settings.Get("language", "en-US");

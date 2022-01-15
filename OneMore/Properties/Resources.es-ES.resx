@@ -3738,4 +3738,8 @@ Diferido</value>
     <value>Esta imagen es de una impresión. Si se recorta, ya no estará asociado con ese archivo original. ¿Quieres seguir recortando?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
+    <value>Importar tareas desde Outlook</value>
+    <comment>ribbon Reminders item</comment>
+  </data>
 </root>

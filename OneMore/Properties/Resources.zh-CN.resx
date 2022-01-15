@@ -1771,7 +1771,7 @@ OneNote 将自动关闭</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>进口</value>
+    <value>导入</value>
     <comment>ribbon item</comment>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
@@ -2737,7 +2737,7 @@ ISO-code then comma then language name</comment>
     <comment>context menu item</comment>
   </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
-    <value>桌子</value>
+    <value>表格</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribReplayButton_Label" xml:space="preserve">
@@ -3014,8 +3014,9 @@ OneNote 文件 (*.one)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    将引用映射到此页面
-  <comment>ribbon button</comment></data>
+    <value>将引用映射到此页面</value>
+    <comment>ribbon button</comment>
+  </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>将“{0}”标记为锚点。</value>
     <comment>message box</comment>
@@ -3728,5 +3729,9 @@ OneNote 文件 (*.one)</value>
   <data name="CropImageDialog_printout" xml:space="preserve">
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
     <comment>message box, question</comment>
+  </data>
+  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
+    <value>从 Outlook 导入任务</value>
+    <comment>ribbon Reminders item</comment>
   </data>
 </root>

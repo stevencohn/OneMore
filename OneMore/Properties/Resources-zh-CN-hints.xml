@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hints>
+  <hint name="ribTableMenu_Label">
+    <source>
+      Table
+    </source>
+    <preferred>
+      表格
+    </preferred>
+  </hint>
+  <hint name="ribImportButton_Label">
+    <source>
+      Import
+    </source>
+    <preferred>
+      导入
+    </preferred>
+  </hint>
+</hints>
