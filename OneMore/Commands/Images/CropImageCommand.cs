@@ -85,6 +85,10 @@ namespace River.OneMoreAddIn.Commands
 							size.SetAttributeValue("height", $"{setHeight:0.0}");
 							size.SetAttributeValue("isSetByUser", "true");
 
+							element.Attributes("xpsFileIndex").Remove();
+							element.Attributes("originalPageNumber").Remove();
+							element.Attributes("isPrintOut").Remove();
+
 							await one.Update(page);
 						}
 					}
