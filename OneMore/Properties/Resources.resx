@@ -3782,4 +3782,8 @@ Deferred</value>
     <value>Display language (must restart OneNote)</value>
     <comment>label</comment>
   </data>
+  <data name="CropImageDialog_printout" xml:space="preserve">
+    <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
+    <comment>message box, question</comment>
+  </data>
 </root>

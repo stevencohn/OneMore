@@ -36,14 +36,22 @@ namespace River.OneMoreAddIn.Commands
 				var images = page.Root.Descendants(ns + "Image")?
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				if (images?.Count() == 1)
-				{
-					await CropImage(images.First());
-				}
-				else
+				if (images == null || images.Count() > 1)
 				{
 					UIHelper.ShowError(Resx.CropImage_oneImage);
+					return;
 				}
+
+				var image = images.First();
+				if (image.Attributes().Any(a => a.Name == "isPrintOut"))
+				{
+					if (UIHelper.ShowQuestion(Resx.CropImageDialog_printout) != DialogResult.Yes)
+					{
+						return;
+					}
+				}
+
+				await CropImage(image);
 			}
 		}
 
@@ -84,6 +92,15 @@ namespace River.OneMoreAddIn.Commands
 							size.SetAttributeValue("width", $"{setWidth:0.0}");
 							size.SetAttributeValue("height", $"{setHeight:0.0}");
 							size.SetAttributeValue("isSetByUser", "true");
+
+							// when a document is printed to OneNote as a series of page images,
+							// such as a PDF, then each image is added a top-level elements and
+							// marked with XPS attributes. These attributes must be removed or
+							// OneNote will prevent proper cropping
+
+							element.Attributes("xpsFileIndex").Remove();
+							element.Attributes("originalPageNumber").Remove();
+							element.Attributes("isPrintOut").Remove();
 
 							await one.Update(page);
 						}

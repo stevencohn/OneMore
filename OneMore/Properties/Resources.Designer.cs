@@ -1383,6 +1383,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?.
+        /// </summary>
+        internal static string CropImageDialog_printout {
+            get {
+                return ResourceManager.GetString("CropImageDialog_printout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select All.
         /// </summary>
         internal static string CropImageDialog_selectButton_Text {

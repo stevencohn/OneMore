@@ -3734,4 +3734,8 @@ Verschoven</value>
     <value>Weergavetaal (moet OneNote opnieuw starten)</value>
     <comment>label</comment>
   </data>
+  <data name="CropImageDialog_printout" xml:space="preserve">
+    <value>Deze afbeelding is van een afdruk. Als het wordt bijgesneden, wordt het niet langer gekoppeld aan dat originele bestand. Wil je doorgaan met croppen?</value>
+    <comment>message box, question</comment>
+  </data>
 </root>

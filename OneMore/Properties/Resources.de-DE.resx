@@ -3719,4 +3719,8 @@ Aufgeschoben</value>
     <value>Anzeigesprache (OneNote muss neu gestartet werden)</value>
     <comment>label</comment>
   </data>
+  <data name="CropImageDialog_printout" xml:space="preserve">
+    <value>Dieses Bild stammt von einem Ausdruck. Wenn es beschnitten wird, ist es nicht mehr mit dieser Originaldatei verknüpft. Möchten Sie mit dem Zuschneiden fortfahren?</value>
+    <comment>message box, question</comment>
+  </data>
 </root>

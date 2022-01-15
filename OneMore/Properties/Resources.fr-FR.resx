@@ -3728,4 +3728,8 @@ Différé</value>
     <value>Langue d'affichage (doit redémarrer OneNote)</value>
     <comment>label</comment>
   </data>
+  <data name="CropImageDialog_printout" xml:space="preserve">
+    <value>Cette image provient d'une impression. S'il est recadré, il ne sera plus associé à ce fichier d'origine. Voulez-vous continuer à recadrer ?</value>
+    <comment>message box, question</comment>
+  </data>
 </root>
