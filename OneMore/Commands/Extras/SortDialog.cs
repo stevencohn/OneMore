@@ -14,14 +14,6 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class SortDialog : UI.LocalizableForm
 	{
 
-		public enum Sortings
-		{
-			ByName,
-			ByCreated,
-			ByModified
-		}
-
-
 		public enum Directions
 		{
 			Ascending,
@@ -86,9 +78,12 @@ namespace River.OneMoreAddIn.Commands
 		public bool PinNotes => pinNotesBox.Checked;
 
 
-		public Sortings Soring =>
-			nameButton.Checked ? Sortings.ByName
-			: (createdButton.Checked ? Sortings.ByCreated : Sortings.ByModified);
+		public SortCommand.SortBy Sorting =>
+			nameButton.Checked
+				? SortCommand.SortBy.Name
+				: (createdButton.Checked
+					? SortCommand.SortBy.Created
+					: SortCommand.SortBy.Modified);
 
 
 		private void OK(object sender, EventArgs e)
