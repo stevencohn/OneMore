@@ -1904,7 +1904,8 @@ Try again later</value>
     <comment>error</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Pages in this section
+    <value>Children of Current Page
+Pages in this section
 Sections in this notebook
 Notebooks</value>
     <comment>scope dropdown, one per line</comment>
@@ -3789,5 +3790,25 @@ Deferred</value>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Import Tasks from Outlook</value>
     <comment>ribbon Reminders item</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Sort Notebooks</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Sort Sections in Notebook</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Sort Child Pages</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Sort Pages in Section</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Sort Pages in Section</value>
+    <comment>ribbon/context menu</comment>
   </data>
 </root>

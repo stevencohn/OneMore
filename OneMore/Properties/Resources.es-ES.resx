@@ -745,8 +745,9 @@ Notas rápidas al final</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Páginas en esta sección
-Secciones de este cuaderno
+    <value>Hijos de la página actual
+Páginas en esta sección
+Secciones en este cuaderno
 Cuadernos</value>
     <comment>scope dropdown, one per line</comment>
   </data>
@@ -3741,5 +3742,25 @@ Diferido</value>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Importar tareas desde Outlook</value>
     <comment>ribbon Reminders item</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Ordenar cuadernos</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Ordenar secciones en el cuaderno</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Ordenar páginas secundarias</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Ordenar páginas en la sección</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Ordenar páginas en la sección</value>
+    <comment>ribbon/context menu</comment>
   </data>
 </root>

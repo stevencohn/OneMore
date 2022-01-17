@@ -741,7 +741,10 @@ Pourcentage</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Pages de cette section\n</value>
+    <value>Enfants de la page actuelle
+Pages de cette rubrique
+Sections de ce bloc-notes
+Des cahiers</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
@@ -3735,5 +3738,25 @@ Différé</value>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Importer des tâches depuis Outlook</value>
     <comment>ribbon Reminders item</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Trier les cahiers</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Trier les sections dans le bloc-notes</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Trier les pages enfants</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Trier les pages dans la section</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Trier les pages dans la section</value>
+    <comment>ribbon/context menu</comment>
   </data>
 </root>

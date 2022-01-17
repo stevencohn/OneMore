@@ -361,6 +361,18 @@ namespace River.OneMoreAddIn
 		public async Task SortListCmd(IRibbonControl control)
 			=> await factory.Run<SortListCommand>();
 
+		public async Task SortPageCmd(IRibbonControl control)
+			=> await factory.Run<SortCommand>(OneNote.Scope.Children);
+
+		public async Task SortPagesCmd(IRibbonControl control)
+			=> await factory.Run<SortCommand>(OneNote.Scope.Pages);
+
+		public async Task SortSectionsCmd(IRibbonControl control)
+			=> await factory.Run<SortCommand>(OneNote.Scope.Sections);
+
+		public async Task SortNotebooksCmd(IRibbonControl control)
+			=> await factory.Run<SortCommand>(OneNote.Scope.Notebooks);
+
 		public async Task SplitCmd(IRibbonControl control)
 			=> await factory.Run<SplitCommand>();
 

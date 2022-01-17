@@ -741,7 +741,8 @@
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>صفحات في هذا القسم
+    <value>أطفال الصفحة الحالية
+صفحات في هذا القسم
 أقسام في هذا دفتر الملاحظات
 دفاتر الملاحظات</value>
     <comment>scope dropdown, one per line</comment>
@@ -3741,5 +3742,25 @@ ISO-code then comma then language name</comment>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>استيراد المهام من Outlook</value>
     <comment>ribbon Reminders item</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>فرز دفاتر الملاحظات</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>فرز الأقسام في Notebook</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>فرز الصفحات الفرعية</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>فرز الصفحات في المقطع</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>فرز الصفحات في المقطع</value>
+    <comment>ribbon/context menu</comment>
   </data>
 </root>

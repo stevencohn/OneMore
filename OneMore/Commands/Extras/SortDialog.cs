@@ -14,14 +14,6 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class SortDialog : UI.LocalizableForm
 	{
 
-		public enum Sortings
-		{
-			ByName,
-			ByCreated,
-			ByModified
-		}
-
-
 		public enum Directions
 		{
 			Ascending,
@@ -56,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			scopeBox.SelectedIndex = 0;
+			scopeBox.SelectedIndex = 1;
 		}
 
 
@@ -66,14 +58,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				switch (scopeBox.SelectedIndex)
 				{
-					case 0:
-						return OneNote.Scope.Pages;
-
-					case 1:
-						return OneNote.Scope.Sections;
-
-					default:
-						return OneNote.Scope.Notebooks;
+					case 0: return OneNote.Scope.Children;
+					case 1: return OneNote.Scope.Pages;
+					case 2: return OneNote.Scope.Sections;
+					default: return OneNote.Scope.Notebooks;
 				}
 			}
 		}
@@ -86,9 +74,27 @@ namespace River.OneMoreAddIn.Commands
 		public bool PinNotes => pinNotesBox.Checked;
 
 
-		public Sortings Soring =>
-			nameButton.Checked ? Sortings.ByName
-			: (createdButton.Checked ? Sortings.ByCreated : Sortings.ByModified);
+		public SortCommand.SortBy Sorting =>
+			nameButton.Checked
+				? SortCommand.SortBy.Name
+				: (createdButton.Checked
+					? SortCommand.SortBy.Created
+					: SortCommand.SortBy.Modified);
+
+
+		public void SetScope(OneNote.Scope scope)
+		{
+			switch (scope)
+			{
+				case OneNote.Scope.Children: scopeBox.SelectedIndex = 0; break;
+				case OneNote.Scope.Pages: scopeBox.SelectedIndex = 1; break;
+				case OneNote.Scope.Sections: scopeBox.SelectedIndex = 2; break;
+				case OneNote.Scope.Notebooks: scopeBox.SelectedIndex = 3; break;
+				default: return;
+			}
+
+			scopeBox.Enabled = false;
+		}
 
 
 		private void OK(object sender, EventArgs e)
@@ -105,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeSelection(object sender, EventArgs e)
 		{
-			createdButton.Enabled = scopeBox.SelectedIndex == 0;
+			createdButton.Enabled = scopeBox.SelectedIndex <= 1;
 			if (!createdButton.Enabled)
 			{
 				if (createdButton.Checked)
@@ -114,7 +120,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			pinNotesBox.Enabled = (scopeBox.SelectedIndex == 1);
+			pinNotesBox.Enabled = (scopeBox.SelectedIndex == 2);
 		}
 	}
 }

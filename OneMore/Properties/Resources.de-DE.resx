@@ -735,7 +735,10 @@
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Seiten in diesem Abschnitt\n</value>
+    <value>Kinder der aktuellen Seite
+Seiten in diesem Abschnitt
+Abschnitte in diesem Notizbuch
+Notizbücher</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
@@ -3726,5 +3729,25 @@ Aufgeschoben</value>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Importieren Sie Aufgaben aus Outlook</value>
     <comment>ribbon Reminders item</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Notizbücher sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Abschnitte im Notizbuch sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Untergeordnete Seiten sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Seiten im Abschnitt sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Seiten im Abschnitt sortieren</value>
+    <comment>ribbon/context menu</comment>
   </data>
 </root>

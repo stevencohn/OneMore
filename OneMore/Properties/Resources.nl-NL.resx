@@ -746,9 +746,10 @@ Snelle notities onderaan</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Pagina's in deze sectie
+    <value>Kinderen van huidige pagina
+Pagina's in deze sectie
 Secties in dit notitieboek
-Notebooks</value>
+Notitieboekjes</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
@@ -3741,5 +3742,25 @@ Verschoven</value>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Taken importeren vanuit Outlook</value>
     <comment>ribbon Reminders item</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Notitieboeken sorteren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Secties sorteren in Notebook</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Sorteer onderliggende pagina's</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Sorteer pagina's in sectie</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Sorteer pagina's in sectie</value>
+    <comment>ribbon/context menu</comment>
   </data>
 </root>

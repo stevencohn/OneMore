@@ -6296,6 +6296,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sort Notebooks.
+        /// </summary>
+        internal static string ribSortNotebooksButton_Label {
+            get {
+                return ResourceManager.GetString("ribSortNotebooksButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort Sections in Notebook.
+        /// </summary>
+        internal static string ribSortNotebookSectionsButton_Label {
+            get {
+                return ResourceManager.GetString("ribSortNotebookSectionsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort Child Pages.
+        /// </summary>
+        internal static string ribSortPageButton_Label {
+            get {
+                return ResourceManager.GetString("ribSortPageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort Pages in Section.
+        /// </summary>
+        internal static string ribSortPagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribSortPagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort Pages in Section.
+        /// </summary>
+        internal static string ribSortSectionPagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribSortSectionPagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Spell Check.
         /// </summary>
         internal static string ribSpellCheckButton_Label {
@@ -7349,7 +7394,8 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pages in this section
+        ///   Looks up a localized string similar to Children of Current Page
+        ///Pages in this section
         ///Sections in this notebook
         ///Notebooks.
         /// </summary>

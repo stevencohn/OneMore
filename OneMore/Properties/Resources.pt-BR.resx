@@ -746,9 +746,10 @@ Notas rápidas para baixo</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Páginas nesta seção
+    <value>Filhos da página atual
+Páginas nesta seção
 Seções neste caderno
-Notebooks</value>
+Cadernos</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
@@ -3741,5 +3742,25 @@ Diferido</value>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Importar tarefas do Outlook</value>
     <comment>ribbon Reminders item</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Classificar cadernos</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Classificar seções no bloco de anotações</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Classificar páginas filhas</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Classificar páginas na seção</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Classificar páginas na seção</value>
+    <comment>ribbon/context menu</comment>
   </data>
 </root>

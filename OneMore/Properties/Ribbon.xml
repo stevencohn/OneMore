@@ -439,6 +439,12 @@
                 imageMso="ImportOutlook"
                 getLabel="GetRibbonLabel"
                 onAction="ImportOutlookTasksCmd"/>
+              <button
+                id="ribStrikeoutTasksButton"
+                imageMso="Strikethrough"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="StrikeoutCmd"/>
             </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true">
               <button
@@ -677,12 +683,6 @@
                 imageMso="ShowJournalPage"
                 getLabel="GetRibbonLabel"
                 onAction="InsertTimerCmd"/>
-              <button
-                id="ribStrikeoutTasksButton"
-                imageMso="Strikethrough"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="StrikeoutCmd"/>
             </menu>
             <menuSeparator id="sepTools" getTitle="GetRibbonLabel" />
             <button
@@ -735,9 +735,26 @@
         getScreentip="GetRibbonScreentip"
         onAction="RemoveSectionNumbersCmd"
         insertBeforeMso="ShareThisNotebook"/>
+      <button
+        id="ctxSortNotebookSectionsButton"
+        imageMso="SortUp"
+        getLabel="GetRibbonLabel"
+        onAction="SortSectionsCmd"
+        insertBeforeMso="ShareThisNotebook"/>
       <menuSeparator
         id="omNotebookContextMenuSeparator"
         insertBeforeMso="ShareThisNotebook"/>
+    </contextMenu>
+    <contextMenu idMso="ContextMenuNotebookArea">
+      <button
+        id="ctxSortNotebooksButton"
+        imageMso="SortUp"
+        getLabel="GetRibbonLabel"
+        onAction="SortNotebooksCmd"
+        insertBeforeMso="SectionInsert"/>
+      <menuSeparator
+        id="omNotebooksContextMenuSeparator"
+        insertBeforeMso="SectionInsert"/>
     </contextMenu>
     <contextMenu idMso="ContextMenuPage">
       <button
@@ -760,6 +777,12 @@
         getLabel="GetRibbonLabel"
         onAction="SplitCmd"
         insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxSortPageButton"
+        imageMso="SortUp"
+        getLabel="GetRibbonLabel"
+        onAction="SortPageCmd"
+        insertBeforeMso="RenamePageOneNote"/>
       <menuSeparator
         id="omPageContextMenuSeparator"
         insertBeforeMso="RenamePageOneNote"/>
@@ -778,6 +801,13 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="RemovePageNumbersCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxSortPagesButton"
+        imageMso="SortUp"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SortPagesCmd"
         insertBeforeMso="RenamePageOneNote"/>
     </contextMenu>
     <contextMenu idMso="ContextMenuPicture">
@@ -831,6 +861,12 @@
         imageMso="ShapeFillColorPicker"
         getLabel="GetRibbonLabel"
         onAction="SectionColorCmd"
+        insertBeforeMso="SectionRenameOneNote"/>
+      <button
+        id="ctxSortSectionPagesButton"
+        imageMso="SortUp"
+        getLabel="GetRibbonLabel"
+        onAction="SortPagesCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <menuSeparator
         id="omSectionContextMenuSeparator"

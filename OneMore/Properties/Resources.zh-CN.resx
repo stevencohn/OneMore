@@ -743,9 +743,10 @@ OneNote 将自动关闭</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>本节中的页面
-本笔记本中的章节
-笔记本电脑</value>
+    <value>当前页面的孩子
+本节中的页面
+此笔记本中的部分
+笔记本</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
@@ -3733,5 +3734,25 @@ OneNote 文件 (*.one)</value>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>从 Outlook 导入任务</value>
     <comment>ribbon Reminders item</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>排序笔记本</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>对笔记本中的部分进行排序</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>对子页面进行排序</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>对部分中的页面进行排序</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>对部分中的页面进行排序</value>
+    <comment>ribbon/context menu</comment>
   </data>
 </root>
