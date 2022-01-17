@@ -3743,4 +3743,24 @@ Diferido</value>
     <value>Importar tareas desde Outlook</value>
     <comment>ribbon Reminders item</comment>
   </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Ordenar cuadernos</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Ordenar secciones en el cuaderno</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Ordenar páginas secundarias</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Ordenar páginas en la sección</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Ordenar páginas en la sección</value>
+    <comment>ribbon/context menu</comment>
+  </data>
 </root>

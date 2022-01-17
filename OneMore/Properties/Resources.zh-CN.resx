@@ -3735,4 +3735,24 @@ OneNote 文件 (*.one)</value>
     <value>从 Outlook 导入任务</value>
     <comment>ribbon Reminders item</comment>
   </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>排序笔记本</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>对笔记本中的部分进行排序</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>对子页面进行排序</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>对部分中的页面进行排序</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>对部分中的页面进行排序</value>
+    <comment>ribbon/context menu</comment>
+  </data>
 </root>

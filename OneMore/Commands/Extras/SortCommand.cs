@@ -135,11 +135,12 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// pages within section
 					tree = SortPageTree(tree, ascending, cleaner);
-					section.Elements().Remove();
-					section.Add(FlattenPageTree(tree));
 				}
 
+				section.Elements().Remove();
+				section.Add(FlattenPageTree(tree));
 				//logger.WriteLine(section);
+
 				one.UpdateHierarchy(section);
 			}
 

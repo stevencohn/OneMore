@@ -3730,4 +3730,24 @@ Aufgeschoben</value>
     <value>Importieren Sie Aufgaben aus Outlook</value>
     <comment>ribbon Reminders item</comment>
   </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Notizbücher sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Abschnitte im Notizbuch sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Untergeordnete Seiten sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Seiten im Abschnitt sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Seiten im Abschnitt sortieren</value>
+    <comment>ribbon/context menu</comment>
+  </data>
 </root>

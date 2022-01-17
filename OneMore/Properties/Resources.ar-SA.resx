@@ -3743,4 +3743,24 @@ ISO-code then comma then language name</comment>
     <value>استيراد المهام من Outlook</value>
     <comment>ribbon Reminders item</comment>
   </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>فرز دفاتر الملاحظات</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>فرز الأقسام في Notebook</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>فرز الصفحات الفرعية</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>فرز الصفحات في المقطع</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>فرز الصفحات في المقطع</value>
+    <comment>ribbon/context menu</comment>
+  </data>
 </root>

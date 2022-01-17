@@ -738,7 +738,7 @@
       <button
         id="ctxSortNotebookSectionsButton"
         imageMso="SortUp"
-        label="Sort Sections in Notebook"
+        getLabel="GetRibbonLabel"
         onAction="SortSectionsCmd"
         insertBeforeMso="ShareThisNotebook"/>
       <menuSeparator
@@ -749,7 +749,7 @@
       <button
         id="ctxSortNotebooksButton"
         imageMso="SortUp"
-        label="Sort Notebooks"
+        getLabel="GetRibbonLabel"
         onAction="SortNotebooksCmd"
         insertBeforeMso="SectionInsert"/>
       <menuSeparator
@@ -780,7 +780,7 @@
       <button
         id="ctxSortPageButton"
         imageMso="SortUp"
-        label="Sort Child Pages"
+        getLabel="GetRibbonLabel"
         onAction="SortPageCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <menuSeparator
@@ -805,7 +805,7 @@
       <button
         id="ctxSortPagesButton"
         imageMso="SortUp"
-        label="Sort Pages in Section"
+        getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SortPagesCmd"
         insertBeforeMso="RenamePageOneNote"/>
@@ -865,7 +865,7 @@
       <button
         id="ctxSortSectionPagesButton"
         imageMso="SortUp"
-        label="Sort Pages in Section"
+        getLabel="GetRibbonLabel"
         onAction="SortPagesCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <menuSeparator
