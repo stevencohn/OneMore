@@ -86,6 +86,20 @@ namespace River.OneMoreAddIn.Commands
 					: SortCommand.SortBy.Modified);
 
 
+		public void SetScope(OneNote.Scope scope)
+		{
+			switch (scope)
+			{
+				case OneNote.Scope.Pages: scopeBox.SelectedIndex = 0; break;
+				case OneNote.Scope.Sections: scopeBox.SelectedIndex = 1; break;
+				case OneNote.Scope.Notebooks: scopeBox.SelectedIndex = 2; break;
+				default: return;
+			}
+
+			scopeBox.Enabled = false;
+		}
+
+
 		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;

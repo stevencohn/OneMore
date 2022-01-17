@@ -49,6 +49,11 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new SortDialog())
 			{
+				if (args != null && args.Length > 0 && args[0] is OneNote.Scope scopeArg)
+				{
+					dialog.SetScope(scopeArg);
+				}
+
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
 					return;
@@ -65,11 +70,11 @@ namespace River.OneMoreAddIn.Commands
 			switch (scope)
 			{
 				case OneNote.Scope.Children:
-					SortPages(sorting, ascending, null);
+					SortPages(sorting, ascending, true);
 					break;
 
 				case OneNote.Scope.Pages:
-					SortPages(sorting, ascending, null);
+					SortPages(sorting, ascending, false);
 					break;
 
 				case OneNote.Scope.Sections:
@@ -87,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Pages
 
-		private void SortPages(SortBy sorting, bool ascending, string pageID)
+		private void SortPages(SortBy sorting, bool ascending, bool children)
 		{
 			#region Notes
 			/*
@@ -97,8 +102,6 @@ namespace River.OneMoreAddIn.Commands
 			 * page are indicated by pageLevel; they are not recursive child elements.
 			 */
 			#endregion Notes
-
-			string selectedPageID = null;
 
 			logger.StartClock();
 
@@ -119,24 +122,25 @@ namespace River.OneMoreAddIn.Commands
 						: e.Attribute("lastModifiedTime").Value
 					);
 
-				if (selectedPageID == null)
+				if (children)
 				{
-					tree = SortPageTree(tree, ascending, cleaner);
-
-					section.Elements().Remove();
-					section.Add(FlattenPageTree(tree));
-				}
-				else
-				{
-					var root = FindStartingNode(tree, selectedPageID);
+					// sub-pages of currently selected page
+					var root = FindStartingNode(tree, one.CurrentPageId);
 					if (root?.Nodes.Any() == true)
 					{
 						root.Nodes = SortPageTree(root.Nodes, ascending, cleaner);
 					}
 				}
+				else
+				{
+					// pages within section
+					tree = SortPageTree(tree, ascending, cleaner);
+					section.Elements().Remove();
+					section.Add(FlattenPageTree(tree));
+				}
 
-				logger.WriteLine(section);
-				//one.UpdateHierarchy(section);
+				//logger.WriteLine(section);
+				one.UpdateHierarchy(section);
 			}
 
 			logger.WriteTime(nameof(SortPages));
@@ -174,15 +178,12 @@ namespace River.OneMoreAddIn.Commands
 			var start = tree.FirstOrDefault(n => n.Root.Attribute("ID").Value == pageID);
 			if (start == null)
 			{
-				foreach (var node in tree)
+				foreach (var node in tree.Where(node => node.Nodes.Any()))
 				{
-					if (node.Nodes.Any())
+					start = FindStartingNode(node.Nodes, pageID);
+					if (start != null)
 					{
-						start = FindStartingNode(node.Nodes, pageID);
-						if (start != null)
-						{
-							break;
-						}
+						break;
 					}
 				}
 			}
