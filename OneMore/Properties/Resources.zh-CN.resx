@@ -743,9 +743,10 @@ OneNote 将自动关闭</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>本节中的页面
-本笔记本中的章节
-笔记本电脑</value>
+    <value>当前页面的孩子
+本节中的页面
+此笔记本中的部分
+笔记本</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">

@@ -746,9 +746,10 @@ Notas rápidas para baixo</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Páginas nesta seção
+    <value>Filhos da página atual
+Páginas nesta seção
 Seções neste caderno
-Notebooks</value>
+Cadernos</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">

@@ -1904,7 +1904,8 @@ Try again later</value>
     <comment>error</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Pages in this section
+    <value>Children of Current Page
+Pages in this section
 Sections in this notebook
 Notebooks</value>
     <comment>scope dropdown, one per line</comment>

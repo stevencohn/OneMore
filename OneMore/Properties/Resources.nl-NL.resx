@@ -746,9 +746,10 @@ Snelle notities onderaan</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Pagina's in deze sectie
+    <value>Kinderen van huidige pagina
+Pagina's in deze sectie
 Secties in dit notitieboek
-Notebooks</value>
+Notitieboekjes</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">

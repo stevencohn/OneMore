@@ -178,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 			var start = tree.FirstOrDefault(n => n.Root.Attribute("ID").Value == pageID);
 			if (start == null)
 			{
-				foreach (var node in tree.Where(node => node.Nodes.Any()))
+				foreach (var node in tree.Where(n => n.Nodes.Any()))
 				{
 					start = FindStartingNode(node.Nodes, pageID);
 					if (start != null)

@@ -781,7 +781,7 @@
         id="ctxSortPageButton"
         imageMso="SortUp"
         label="Sort Child Pages"
-        onAction="SortChildPagesCmd"
+        onAction="SortPageCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <menuSeparator
         id="omPageContextMenuSeparator"

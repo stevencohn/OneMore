@@ -745,8 +745,9 @@ Notas rápidas al final</value>
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Páginas en esta sección
-Secciones de este cuaderno
+    <value>Hijos de la página actual
+Páginas en esta sección
+Secciones en este cuaderno
 Cuadernos</value>
     <comment>scope dropdown, one per line</comment>
   </data>

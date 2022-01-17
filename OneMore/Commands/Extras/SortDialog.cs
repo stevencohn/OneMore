@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			scopeBox.SelectedIndex = 0;
+			scopeBox.SelectedIndex = 1;
 		}
 
 
@@ -58,14 +58,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				switch (scopeBox.SelectedIndex)
 				{
-					case 0:
-						return OneNote.Scope.Pages;
-
-					case 1:
-						return OneNote.Scope.Sections;
-
-					default:
-						return OneNote.Scope.Notebooks;
+					case 0: return OneNote.Scope.Children;
+					case 1: return OneNote.Scope.Pages;
+					case 2: return OneNote.Scope.Sections;
+					default: return OneNote.Scope.Notebooks;
 				}
 			}
 		}
@@ -90,9 +86,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			switch (scope)
 			{
-				case OneNote.Scope.Pages: scopeBox.SelectedIndex = 0; break;
-				case OneNote.Scope.Sections: scopeBox.SelectedIndex = 1; break;
-				case OneNote.Scope.Notebooks: scopeBox.SelectedIndex = 2; break;
+				case OneNote.Scope.Children: scopeBox.SelectedIndex = 0; break;
+				case OneNote.Scope.Pages: scopeBox.SelectedIndex = 1; break;
+				case OneNote.Scope.Sections: scopeBox.SelectedIndex = 2; break;
+				case OneNote.Scope.Notebooks: scopeBox.SelectedIndex = 3; break;
 				default: return;
 			}
 
@@ -114,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangeSelection(object sender, EventArgs e)
 		{
-			createdButton.Enabled = scopeBox.SelectedIndex == 0;
+			createdButton.Enabled = scopeBox.SelectedIndex <= 1;
 			if (!createdButton.Enabled)
 			{
 				if (createdButton.Checked)
@@ -123,7 +120,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			pinNotesBox.Enabled = (scopeBox.SelectedIndex == 1);
+			pinNotesBox.Enabled = (scopeBox.SelectedIndex == 2);
 		}
 	}
 }

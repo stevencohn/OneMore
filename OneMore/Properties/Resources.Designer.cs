@@ -7349,7 +7349,8 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pages in this section
+        ///   Looks up a localized string similar to Children of Current Page
+        ///Pages in this section
         ///Sections in this notebook
         ///Notebooks.
         /// </summary>

@@ -735,7 +735,10 @@
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>Seiten in diesem Abschnitt\n</value>
+    <value>Kinder der aktuellen Seite
+Seiten in diesem Abschnitt
+Abschnitte in diesem Notizbuch
+Notizbücher</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">

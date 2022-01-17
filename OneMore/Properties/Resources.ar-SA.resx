@@ -741,7 +741,8 @@
     <comment>checkbox</comment>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
-    <value>صفحات في هذا القسم
+    <value>أطفال الصفحة الحالية
+صفحات في هذا القسم
 أقسام في هذا دفتر الملاحظات
 دفاتر الملاحظات</value>
     <comment>scope dropdown, one per line</comment>
