@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Media;
 	using System.Text.RegularExpressions;
@@ -84,11 +85,22 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			// last selected paragraph OE
-			element = element.Parent;
+			// containing paragraph of selected run
+			var parent = element.Parent;
+
+			// ensure RTL is set appropriately
+			var lang = parent.Attribute("lang")?.Value;
+			if (!string.IsNullOrEmpty(lang))
+			{
+				var culture = new CultureInfo(lang);
+				if (culture.TextInfo.IsRightToLeft)
+				{
+					parent.SetAttributeValue("RTL", "true");
+				}
+			}
 
 			// rtl paragraph, rtl page, or rtl Windows language
-			rightToLeft = element.Attribute("RTL")?.Value == "true" || page.IsRightToLeft();
+			rightToLeft = parent.Attribute("RTL")?.Value == "true" || page.IsRightToLeft();
 
 			if (!EnsureFootnoteFooter())
 			{
@@ -96,7 +108,7 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			var label = await WriteFootnoteText(element.Attribute("objectID").Value);
+			var label = await WriteFootnoteText(parent.Attribute("objectID").Value);
 
 			if (WriteFootnoteRef(label))
 			{
@@ -273,7 +285,7 @@ namespace River.OneMoreAddIn
 
 			if (rightToLeft)
 			{
-				note.SetAlignment("right");
+				note.SetRTL(rightToLeft);
 			}
 
 			last.AddAfterSelf(note);
@@ -343,10 +355,10 @@ namespace River.OneMoreAddIn
 				var cdata = element.DescendantNodes().OfType<XCData>().Last();
 				if (cdata != null)
 				{
-					cdata.ReplaceWith(
-						new XCData(cdata.Value + note.ToString(SaveOptions.DisableFormatting))
-						);
+					cdata.Value = 
+						$"{cdata.Value}{note.ToString(SaveOptions.DisableFormatting)}";
 
+					// set insertion just after footnote ref
 					element.Attribute("selected").Remove();
 
 					element.AddAfterSelf(new XElement(ns + "T",
@@ -360,82 +372,6 @@ namespace River.OneMoreAddIn
 
 			return false;
 		}
-		/*
-		private bool WriteFootnoteRef(string label)
-		{
-			// find the new footer by its label and get its new objectID
-			var noteId = page.Root.Descendants(ns + "Meta")
-				.Where(e =>
-					e.Attribute("name").Value.Equals("omfootnote") &&
-					e.Attribute("content").Value.Equals(label))
-				.Select(e => e.Parent.Attribute("objectID").Value)
-				.FirstOrDefault();
-
-			if (noteId == null)
-			{
-				return false;
-			}
-
-			var link = one.GetHyperlink(page.PageId, noteId);
-
-			// <a href="...">
-			//  <span style='vertical-align:super'>[1]</span>
-			// </a>
-
-			var note = new XElement("a",
-				new XAttribute("href", link),
-				new XElement("span",
-					new XAttribute("style", "vertical-align:super"),
-					new XText($"[{label}]")
-					)
-				);
-
-			// TODO: color isn't applied correctly on dark pages, why?
-			if (dark)
-			{
-				note.Add(new XAttribute("style", "color:'#5B9BD5'"));
-			}
-
-			// find the element in the new page instance of XML
-			var runs = page.Root.Elements(ns + "Outline")
-				.Where(e => e.Attributes("selected").Any())
-				.Descendants(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all");
-
-			var element = rightToLeft ? runs.FirstOrDefault() : runs.LastOrDefault();
-			if (element != null)
-			{
-				// add footnote link to end of selection range paragraph
-				var nodes = element.DescendantNodes().OfType<XCData>();
-				var cdata = rightToLeft ? nodes.First() : nodes.Last();
-				if (cdata != null)
-				{
-					if (rightToLeft)
-					{
-						cdata.ReplaceWith(
-							new XCData(note.ToString(SaveOptions.DisableFormatting) + cdata.Value)
-							);
-					}
-					else
-					{
-						cdata.ReplaceWith(
-							new XCData(cdata.Value + note.ToString(SaveOptions.DisableFormatting))
-							);
-					}
-
-					element.Attribute("selected").Remove();
-
-					element.AddAfterSelf(new XElement(ns + "T",
-						new XAttribute("selected", "all"),
-						new XCData(string.Empty))
-						);
-
-					return true;
-				}
-			}
-
-			return false;
-		}		 */
 
 
 		//=======================================================================================
