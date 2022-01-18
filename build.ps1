@@ -25,9 +25,10 @@ Begin
 
     function FindVisualStudio
     {
-        if ((Get-Command devenv) -ne $null)
+        $cmd = Get-Command devenv -ErrorAction:SilentlyContinue
+        if ($cmd -ne $null)
         {
-            $script:devenv = (Get-Command devenv).Source
+            $script:devenv = $cmd.Source
             return $true
         }
 
