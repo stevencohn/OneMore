@@ -132,7 +132,9 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			}
 
 			// presume the msi has one of these two keywords in its name
-			var key = Environment.Is64BitProcess ? "x64" : "x86";
+			// NOTE that only the x64 installer is released as of Dec 2021 so this will
+			// still fail if the user's computer is 32-bit. But seriously, who still has one?!
+			var key = Environment.Is64BitOperatingSystem ? "x64" : "x86";
 
 			var asset = release.assets.FirstOrDefault(a => a.browser_download_url.Contains(key));
 			if (asset == null)
