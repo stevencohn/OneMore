@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Commands;
+	using System.Collections.Generic;
 	using System.Windows.Forms;
 
 
@@ -15,22 +16,24 @@ namespace River.OneMoreAddIn
 			var locale = System.Threading.Thread.CurrentThread.CurrentCulture.KeyboardLayoutId;
 			logger.WriteLine($"defining hotkeys for input locale {locale}");
 
+			var map = GetKeyboardDefaults();
+
 			HotkeyManager.Initialize();
 
 			HotkeyManager.RegisterHotKey(async () => await AddFootnoteCmd(null),
-				Keys.F, Hotmods.ControlAlt);
+				map[nameof(AddFootnoteCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await AddFormulaCmd(null),
-				Keys.F5);
+				map[nameof(AddFormulaCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await DecreaseFontSizeCmd(null),
-				Keys.OemMinus, Hotmods.ControlAlt);
+				map[nameof(DecreaseFontSizeCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await FillDownCmd(null),
-				Keys.D, Hotmods.Control);
+				map[nameof(FillDownCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await HighlightCmd(null),
-				Keys.H, Hotmods.ControlShift);
+				map[nameof(HighlightCmd)]);
 
 			// this is an awful hack to avoid a conflict with Italian keyboards that use AltGr
 			// as Ctrl+Alt. This means users pressing AltGr+OemPlus to get a square bracket would
@@ -40,102 +43,154 @@ namespace River.OneMoreAddIn
 			if (locale == 1033)
 			{
 				HotkeyManager.RegisterHotKey(async () => await IncreaseFontSizeCmd(null),
-					Keys.Oemplus, Hotmods.ControlAlt);
+					map[nameof(IncreaseFontSizeCmd)]);
 			}
 
 			HotkeyManager.RegisterHotKey(async () => await InsertCodeBlockCmd(null),
-				Keys.F6);
+				map[nameof(InsertCodeBlockCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await InsertDateCmd(null),
-				Keys.D, Hotmods.ControlShift);
+				map[nameof(InsertDateCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await InsertDoubleHorizontalLineCmd(null),
-				Keys.F12, Hotmods.AltShift);
+				map[nameof(InsertDoubleHorizontalLineCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await InsertHorizontalLineCmd(null),
-				Keys.F11, Hotmods.AltShift);
+				map[nameof(InsertHorizontalLineCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await InsertTimerCmd(null),
-				Keys.F2);
+				map[nameof(InsertTimerCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await DisableSpellCheckCmd(null),
-				Keys.F4);
+				map[nameof(DisableSpellCheckCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await PasteRtfCmd(null),
-				Keys.V, Hotmods.ControlAlt);
+				map[nameof(PasteRtfCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await RecalculateFormulaCmd(null),
-				Keys.F5, Hotmods.Shift);
+				map[nameof(RecalculateFormulaCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await RemoveFootnoteCmd(null),
-				Keys.F, Hotmods.ControlShift);
+				map[nameof(RemoveFootnoteCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await ReplayCmd(null),
-				Keys.R, Hotmods.AltShift);
+				map[nameof(ReplayCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await RemindCmd(null),
-				Keys.F8);
+				map[nameof(RemindCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await SearchCmd(null),
-				Keys.F, Hotmods.Alt);
+				map[nameof(SearchCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await SearchAndReplaceCmd(null),
-				Keys.H, Hotmods.Control);
+				map[nameof(SearchAndReplaceCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await StartTimerCmd(null),
-				Keys.F2, Hotmods.Alt);
+				map[nameof(StartTimerCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await TaggedCmd(null),
-				Keys.T, Hotmods.ControlAlt);
+				map[nameof(TaggedCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await TaggingCmd(null),
-				Keys.T, Hotmods.Alt);
+				map[nameof(TaggingCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await ToLowercaseCmd(null),
-				Keys.U, Hotmods.ControlShift);
+				map[nameof(ToLowercaseCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await ToUppercaseCmd(null),
-				Keys.U, Hotmods.ControlAltShift);
+				map[nameof(ToUppercaseCmd)]);
 
 			// tools
 
 			HotkeyManager.RegisterHotKey(async () => await ShowXmlCmd(null),
-				Keys.X, Hotmods.ControlAltShift);
+				map[nameof(ShowXmlCmd)]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<DiagnosticsCommand>(),
-				Keys.F8, Hotmods.Shift);
+				map[nameof(DiagnosticsCommand)]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ClearLogCommand>(),
-				Keys.F8, Hotmods.Control);
+				map[nameof(ClearLogCommand)]);
 
 			// custom styles, CtrlAltShift+1..9
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(0),
-				Keys.D1, Hotmods.ControlAltShift);
+				map["ApplyStyle1"]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(1),
-				Keys.D2, Hotmods.ControlAltShift);
+				map["ApplyStyle2"]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(2),
-				Keys.D3, Hotmods.ControlAltShift);
+				map["ApplyStyle3"]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(3),
-				Keys.D4, Hotmods.ControlAltShift);
+				map["ApplyStyle4"]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(4),
-				Keys.D5, Hotmods.ControlAltShift);
+				map["ApplyStyle5"]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(5),
-				Keys.D6, Hotmods.ControlAltShift);
+				map["ApplyStyle6"]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(6),
-				Keys.D7, Hotmods.ControlAltShift);
+				map["ApplyStyle7"]);
 
 			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(7),
-				Keys.D8, Hotmods.ControlAltShift);
+				map["ApplyStyle8"]);
 
-			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(9),
-				Keys.D9, Hotmods.ControlAltShift);
+			HotkeyManager.RegisterHotKey(async () => await factory.Run<ApplyStyleCommand>(8),
+				map["ApplyStyle9"]);
+		}
+
+
+		private Dictionary<string, Hotkey> GetKeyboardDefaults()
+		{
+			var map = new Dictionary<string, Hotkey>
+			{
+				{ nameof(AddFootnoteCmd), new Hotkey(Keys.F, Hotmods.ControlAlt) },
+				{ nameof(AddFormulaCmd), new Hotkey(Keys.F5) },
+				{ nameof(DecreaseFontSizeCmd), new Hotkey(Keys.OemMinus, Hotmods.ControlAlt) },
+				{ nameof(FillDownCmd), new Hotkey(Keys.D, Hotmods.Control) },
+				{ nameof(HighlightCmd), new Hotkey(Keys.H, Hotmods.ControlShift) },
+				{ nameof(IncreaseFontSizeCmd), new Hotkey(Keys.Oemplus, Hotmods.ControlAlt) },
+				{ nameof(InsertCodeBlockCmd), new Hotkey(Keys.F6) },
+				{ nameof(InsertDateCmd), new Hotkey(Keys.D, Hotmods.ControlShift) },
+				{ nameof(InsertDoubleHorizontalLineCmd), new Hotkey(Keys.F12, Hotmods.AltShift) },
+				{ nameof(InsertHorizontalLineCmd), new Hotkey(Keys.F11, Hotmods.AltShift) },
+				{ nameof(InsertTimerCmd), new Hotkey(Keys.F2) },
+				{ nameof(DisableSpellCheckCmd), new Hotkey(Keys.F4) },
+				{ nameof(PasteRtfCmd), new Hotkey(Keys.V, Hotmods.ControlAlt) },
+				{ nameof(RecalculateFormulaCmd), new Hotkey(Keys.F5, Hotmods.Shift) },
+				{ nameof(RemoveFootnoteCmd), new Hotkey(Keys.F, Hotmods.ControlShift) },
+				{ nameof(ReplayCmd), new Hotkey(Keys.R, Hotmods.AltShift) },
+				{ nameof(RemindCmd), new Hotkey(Keys.F8) },
+				{ nameof(SearchCmd), new Hotkey(Keys.F, Hotmods.Alt) },
+				{ nameof(SearchAndReplaceCmd), new Hotkey(Keys.H, Hotmods.Control) },
+				{ nameof(StartTimerCmd), new Hotkey(Keys.F2, Hotmods.Alt) },
+				{ nameof(TaggedCmd), new Hotkey(Keys.T, Hotmods.ControlAlt) },
+				{ nameof(TaggingCmd), new Hotkey(Keys.T, Hotmods.Alt) },
+				{ nameof(ToLowercaseCmd), new Hotkey(Keys.U, Hotmods.ControlShift) },
+				{ nameof(ToUppercaseCmd), new Hotkey(Keys.U, Hotmods.ControlAltShift) },
+
+				// tools
+
+				{ nameof(ShowXmlCmd), new Hotkey(Keys.X, Hotmods.ControlAltShift) },
+				{ nameof(DiagnosticsCommand), new Hotkey(Keys.F8, Hotmods.Shift) },
+				{ nameof(ClearLogCommand), new Hotkey(Keys.F8, Hotmods.Control) },
+
+				// custom styles
+
+				{ "ApplyStyle1", new Hotkey(Keys.D1, Hotmods.ControlAltShift) },
+				{ "ApplyStyle2", new Hotkey(Keys.D2, Hotmods.ControlAltShift) },
+				{ "ApplyStyle3", new Hotkey(Keys.D3, Hotmods.ControlAltShift) },
+				{ "ApplyStyle4", new Hotkey(Keys.D4, Hotmods.ControlAltShift) },
+				{ "ApplyStyle5", new Hotkey(Keys.D5, Hotmods.ControlAltShift) },
+				{ "ApplyStyle6", new Hotkey(Keys.D6, Hotmods.ControlAltShift) },
+				{ "ApplyStyle7", new Hotkey(Keys.D7, Hotmods.ControlAltShift) },
+				{ "ApplyStyle8", new Hotkey(Keys.D8, Hotmods.ControlAltShift) },
+				{ "ApplyStyle9", new Hotkey(Keys.D9, Hotmods.ControlAltShift) }
+			};
+
+			return map;
 		}
 	}
 }

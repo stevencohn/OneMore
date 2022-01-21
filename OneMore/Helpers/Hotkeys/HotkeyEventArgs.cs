@@ -33,6 +33,13 @@ namespace River.OneMoreAddIn
 		public uint Value { get; private set; }
 
 
+		/// <summary>
+		/// Initialize a new event from the given WM_HOTKEY msg.LParam value; this value is
+		/// a longword where the low-order word contains the modifiers and the high-order
+		/// word contains the Keys. The modifiers bitmask are not equivalent to the same
+		/// Keys modifiers - Control, Shift, Alt - so must be remapped if needed
+		/// </summary>
+		/// <param name="hotKeyParam"></param>
 		public HotkeyEventArgs(IntPtr hotKeyParam)
 		{
 			Value = (uint)hotKeyParam.ToInt64();

@@ -72,10 +72,12 @@ namespace River.OneMoreAddIn.Settings
 			if (e.KeyCode == Keys.Back ||
 				(e.Modifiers != 0 &&
 				 e.KeyCode != Keys.ControlKey &&
+				 e.KeyCode != Keys.LControlKey &&
+				 e.KeyCode != Keys.RControlKey &&
 				 e.KeyCode != Keys.ShiftKey &&
 				 e.KeyCode != Keys.LShiftKey &&
 				 e.KeyCode != Keys.RShiftKey &&
-				 e.KeyCode != Keys.Menu &&
+				 e.KeyCode != Keys.Menu && // alt
 				 e.KeyCode != Keys.LMenu &&
 				 e.KeyCode != Keys.RMenu))
 			{
