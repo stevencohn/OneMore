@@ -3811,4 +3811,16 @@ Deferred</value>
     <value>Sort Pages in Section</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Command</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
+    <value>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</value>
+    <comment>label</comment>
+  </data>
+  <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
+    <value>Key Sequence</value>
+    <comment>gridview column</comment>
+  </data>
 </root>

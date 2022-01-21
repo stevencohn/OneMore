@@ -3091,6 +3091,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Command.
+        /// </summary>
+        internal static string KeyboardSheet_cmdColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("KeyboardSheet_cmdColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage my custom keyboard shortcuts. Select a command and press a key sequence..
+        /// </summary>
+        internal static string KeyboardSheet_introLabel_Text {
+            get {
+                return ResourceManager.GetString("KeyboardSheet_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key Sequence.
+        /// </summary>
+        internal static string KeyboardSheet_keyColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("KeyboardSheet_keyColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Label {

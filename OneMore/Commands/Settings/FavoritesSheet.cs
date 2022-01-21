@@ -52,9 +52,7 @@ namespace River.OneMoreAddIn.Settings
 					"upButton",
 					"downButton",
 					"deleteLabel",
-					"deleteButton",
-					"okButton",
-					"cancelButton"
+					"deleteButton"
 				});
 
 				nameColumn.HeaderText = Resx.FavoritesSheet_nameColumn_HeaderText;

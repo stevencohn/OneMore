@@ -47,9 +47,7 @@ namespace River.OneMoreAddIn.Settings
 					"downButton",
 					"refreshButton",
 					"deleteLabel",
-					"deleteButton",
-					"okButton",
-					"cancelButton"
+					"deleteButton"
 				});
 
 				iconColumn.HeaderText = Resx.SearchEngineDialog_iconColumn_HeaderText;
