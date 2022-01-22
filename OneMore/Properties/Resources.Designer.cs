@@ -394,6 +394,87 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply Style 1.
+        /// </summary>
+        internal static string ApplyStyle1Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle1Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Style 2.
+        /// </summary>
+        internal static string ApplyStyle2Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle2Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Style 3.
+        /// </summary>
+        internal static string ApplyStyle3Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle3Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Style 4.
+        /// </summary>
+        internal static string ApplyStyle4Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle4Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Style 5.
+        /// </summary>
+        internal static string ApplyStyle5Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle5Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Style 6.
+        /// </summary>
+        internal static string ApplyStyle6Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle6Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Style 7.
+        /// </summary>
+        internal static string ApplyStyle7Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle7Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Style 8.
+        /// </summary>
+        internal static string ApplyStyle8Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle8Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Style 9.
+        /// </summary>
+        internal static string ApplyStyle9Command {
+            get {
+                return ResourceManager.GetString("ApplyStyle9Command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Architecture {
@@ -856,6 +937,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ClearLog_Title {
             get {
                 return ResourceManager.GetString("ClearLog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Log File.
+        /// </summary>
+        internal static string ClearLogCommand {
+            get {
+                return ResourceManager.GetString("ClearLogCommand", resourceCulture);
             }
         }
         
@@ -1566,6 +1656,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string DeleteReminderCommand_deleteTag {
             get {
                 return ResourceManager.GetString("DeleteReminderCommand_deleteTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dump Diagnostics to Log.
+        /// </summary>
+        internal static string DiagnosticsCommand {
+            get {
+                return ResourceManager.GetString("DiagnosticsCommand", resourceCulture);
             }
         }
         

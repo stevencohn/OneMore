@@ -99,8 +99,6 @@ namespace River.OneMoreAddIn
 		}
 
 
-
-
 		// runs as a delegated routine within the context of MessageWindow
 		private static void Register(IntPtr hwnd, int id, uint modifiers, uint key)
 		{

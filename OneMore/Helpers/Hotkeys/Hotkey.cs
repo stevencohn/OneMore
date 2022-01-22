@@ -24,9 +24,9 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public Hotkey(Keys key)
+		public Hotkey(Keys keys)
+			: this(keys & Keys.KeyCode, keys & Keys.Modifiers)
 		{
-			Key = (uint)key;
 		}
 
 
@@ -102,6 +102,22 @@ namespace River.OneMoreAddIn
 
 				return keys;
 			}
+		}
+
+
+		public override string ToString()
+		{
+			var sequence = string.Empty;
+
+			if ((Keys)Key != Keys.Back)
+			{
+				if ((Modifiers & (uint)Hotmods.Control) > 0) sequence = $"{sequence}Ctrl+";
+				if ((Modifiers & (uint)Hotmods.Shift) > 0) sequence = $"{sequence}Shift+";
+				if ((Modifiers & (uint)Hotmods.Alt) > 0) sequence = $"{sequence}Alt+";
+				sequence = $"{sequence}{(Keys)Key}";
+			}
+
+			return sequence;
 		}
 	}
 }

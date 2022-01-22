@@ -9,6 +9,8 @@ namespace River.OneMoreAddIn.Settings
 	using Microsoft.Office.Core;
 	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.Linq;
+	using System.Reflection;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -18,13 +20,15 @@ namespace River.OneMoreAddIn.Settings
 		private sealed class Sequence
 		{
 			public string Command { get; set; }
-			public string Keys { get; set; }
+			public Hotkey Hotkey { get; set; }
 		}
 
 
 		private readonly IRibbonUI ribbon;
 		private readonly BindingList<Sequence> keyboard;
 		private bool updated = false;
+
+		private Dictionary<string, Sequence> kbdefaults;
 
 
 		public KeyboardSheet(SettingsProvider provider, IRibbonUI ribbon)
@@ -48,7 +52,7 @@ namespace River.OneMoreAddIn.Settings
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Command";
-			gridView.Columns[1].DataPropertyName = "Keys";
+			gridView.Columns[1].DataPropertyName = "Hotkey";
 
 			this.ribbon = ribbon;
 
@@ -59,18 +63,30 @@ namespace River.OneMoreAddIn.Settings
 
 		private List<Sequence> LoadKeyboard()
 		{
-			return new List<Sequence>
-			{
-				new Sequence { Command = "Foo", Keys = "Ctrl+A" },
-				new Sequence { Command = "Bar", Keys = "Ctrl+B" }
-			};
+			kbdefaults = typeof(AddIn).GetMethods()
+				.Select(m => m.GetCustomAttribute(typeof(CommandAttribute), false))
+				.Where(a => a != null)
+				.Select(a => new Sequence
+				{
+					Command = ((CommandAttribute)a).ResID,
+					Hotkey = new Hotkey(((CommandAttribute)a).DefaultKeys)
+				})
+				.ToDictionary(k => k.Command, v => v);
+
+			return kbdefaults
+				.OrderBy(k => k.Value.Command)
+				.Select(k => k.Value)
+				.ToList();
 		}
 
 
-		private void gridView_KeyDown(object sender, KeyEventArgs e)
+		private void AssignOnKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Back ||
+			if ( // clear assignment
+				 e.KeyCode == Keys.Back ||
+				 // any combination of ctrl+shift+alt+win
 				(e.Modifiers != 0 &&
+				 // ensure modifiers also comes with a value key
 				 e.KeyCode != Keys.ControlKey &&
 				 e.KeyCode != Keys.LControlKey &&
 				 e.KeyCode != Keys.RControlKey &&
@@ -79,35 +95,26 @@ namespace River.OneMoreAddIn.Settings
 				 e.KeyCode != Keys.RShiftKey &&
 				 e.KeyCode != Keys.Menu && // alt
 				 e.KeyCode != Keys.LMenu &&
-				 e.KeyCode != Keys.RMenu))
+				 e.KeyCode != Keys.RMenu) ||
+				 // F1..F24
+				(e.Modifiers == 0 &&
+				 e.KeyCode >= Keys.F1 &&
+				 e.KeyCode <= Keys.F24))
 			{
+				// ignore Shift without a Fn key
 				if ((e.Modifiers == Keys.Shift) && (e.KeyCode < Keys.F1 || e.KeyCode > Keys.F24))
 				{
 					return;
 				}
 
-				if (e.Modifiers == (Keys)((int)Keys.Control + (int)Keys.Shift) && e.KeyCode == Keys.C)
-				{
-					e.Handled = true;
-					return;
-				}
-
-				var sequence = string.Empty;
-
-				if (e.KeyCode != Keys.Back)
-				{
-					if (e.Control) sequence = "Ctrl+";
-					if (e.Shift) sequence = $"{sequence}Shift+";
-					if (e.Alt) sequence = $"{sequence}Alt+";
-					sequence = $"{sequence}{e.KeyCode}";
-				}
-
-				Logger.Current.WriteLine($"keys=[{sequence}]");
-
 				if (gridView.SelectedCells.Count > 0)
 				{
+					var hotkey = new Hotkey(e.KeyCode, e.Modifiers);
+
 					var cell = gridView.SelectedCells[0];
-					gridView.Rows[cell.RowIndex].Cells["keyColumn"].Value = sequence;
+					gridView.Rows[cell.RowIndex].Cells["keyColumn"].Value = hotkey;
+
+
 				}
 
 				e.Handled = true;

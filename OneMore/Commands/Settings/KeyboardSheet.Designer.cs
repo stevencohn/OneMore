@@ -58,7 +58,7 @@
 			this.gridView.ShowEditingIcon = false;
 			this.gridView.Size = new System.Drawing.Size(780, 427);
 			this.gridView.TabIndex = 2;
-			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_KeyDown);
+			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AssignOnKeyDown);
 			// 
 			// cmdColumn
 			// 

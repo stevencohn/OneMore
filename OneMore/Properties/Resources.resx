@@ -3823,4 +3823,37 @@ Deferred</value>
     <value>Key Sequence</value>
     <comment>gridview column</comment>
   </data>
+  <data name="ClearLogCommand" xml:space="preserve">
+    <value>Clear Log File</value>
+  </data>
+  <data name="DiagnosticsCommand" xml:space="preserve">
+    <value>Dump Diagnostics to Log</value>
+  </data>
+  <data name="ApplyStyle1Command" xml:space="preserve">
+    <value>Apply Style 1</value>
+  </data>
+  <data name="ApplyStyle2Command" xml:space="preserve">
+    <value>Apply Style 2</value>
+  </data>
+  <data name="ApplyStyle3Command" xml:space="preserve">
+    <value>Apply Style 3</value>
+  </data>
+  <data name="ApplyStyle4Command" xml:space="preserve">
+    <value>Apply Style 4</value>
+  </data>
+  <data name="ApplyStyle5Command" xml:space="preserve">
+    <value>Apply Style 5</value>
+  </data>
+  <data name="ApplyStyle6Command" xml:space="preserve">
+    <value>Apply Style 6</value>
+  </data>
+  <data name="ApplyStyle7Command" xml:space="preserve">
+    <value>Apply Style 7</value>
+  </data>
+  <data name="ApplyStyle8Command" xml:space="preserve">
+    <value>Apply Style 8</value>
+  </data>
+  <data name="ApplyStyle9Command" xml:space="preserve">
+    <value>Apply Style 9</value>
+  </data>
 </root>
