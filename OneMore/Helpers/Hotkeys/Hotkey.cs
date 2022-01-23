@@ -138,6 +138,11 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Set the key bindings for this instance
+		/// </summary>
+		/// <param name="keys">The subject key</param>
+		/// <param name="modifiers">The modifiers</param>
 		public void SetKeys(Keys keys, Keys modifiers)
 		{
 			Key = (uint)keys;
@@ -166,7 +171,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Makes a pretty user-facing description of the key sequence
+		/// Makes a pretty user-facing description of the full key binding
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()
