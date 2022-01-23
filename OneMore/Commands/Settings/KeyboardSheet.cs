@@ -43,6 +43,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 		#endregion KeyMap
 
+		private const string SettingsName = "commands";
 
 		private readonly IRibbonUI ribbon;
 		private readonly BindingList<KeyMap> map;
@@ -101,7 +102,7 @@ namespace River.OneMoreAddIn.Settings
 
 			// create clones to preserve the defaults
 
-			var settings = provider.GetCollection(Name)?.Get<XElement>("commands");
+			var settings = provider.GetCollection(Name)?.Get<XElement>(SettingsName);
 			foreach (var map in defaultMap)
 			{
 				var command = settings?.Elements("command")
@@ -237,7 +238,7 @@ namespace River.OneMoreAddIn.Settings
 		public override bool CollectSettings()
 		{
 			// record changes from defaults
-			var element = new XElement("commands");
+			var element = new XElement(SettingsName);
 			for (int i = 0; i < map.Count; i++)
 			{
 				if (!map[i].Hotkey.Equals(defaultMap[i].Hotkey))
@@ -249,20 +250,53 @@ namespace River.OneMoreAddIn.Settings
 				}
 			}
 
-			var updated = true;
+			var updated = false;
 
 			// compare against saved settings
-			var settings = provider.GetCollection(Name)?.Get<XElement>("commands");
-			if (settings != null)
+			var collection = provider.GetCollection(Name);
+			if (collection != null)
 			{
-				updated = true;
+				var settings = collection.Get<XElement>(SettingsName);
+				if (settings != null)
+				{
+					if (settings.Elements().Count() != element.Elements().Count())
+					{
+						updated = true;
+					}
+					else
+					{
+						foreach (var candidate in element.Elements("command"))
+						{
+							var setting = settings.Elements("command")
+								.FirstOrDefault(e =>
+									e.Attribute("command")?.Value == candidate.Attribute("command").Value);
+
+							if (setting == null ||
+								setting.Attribute("keys").Value != candidate.Attribute("keys").Value)
+							{
+								updated = true;
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					updated = element.HasElements;
+				}
 			}
 
 			if (updated)
 			{
-				var collection = provider.GetCollection(Name);
-				collection.Add("commands", element);
-				provider.SetCollection(collection);
+				if (element.HasElements)
+				{
+					collection.Add(SettingsName, element);
+					provider.SetCollection(collection);
+				}
+				else
+				{
+					provider.RemoveCollection(Name);
+				}
 
 				ribbon.InvalidateControl("ribOneMoreMenu");
 			}
