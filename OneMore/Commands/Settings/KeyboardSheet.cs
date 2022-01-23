@@ -68,14 +68,20 @@ namespace River.OneMoreAddIn.Settings
 				.Where(a => a != null)
 				.Select(a => new Sequence
 				{
-					Command = ((CommandAttribute)a).ResID,
+					Command = Resx.ResourceManager.GetString(((CommandAttribute)a).ResID),
 					Hotkey = new Hotkey(((CommandAttribute)a).DefaultKeys)
 				})
 				.ToDictionary(k => k.Command, v => v);
 
-			return kbdefaults
-				.OrderBy(k => k.Value.Command)
-				.Select(k => k.Value)
+			// create clones to preserve the defaults
+
+			return kbdefaults.Values
+				.OrderBy(s => s.Command)
+				.Select(s => new Sequence
+				{
+					Command = s.Command,
+					Hotkey = new Hotkey(s.Hotkey)
+				})
 				.ToList();
 		}
 
@@ -109,15 +115,52 @@ namespace River.OneMoreAddIn.Settings
 
 				if (gridView.SelectedCells.Count > 0)
 				{
-					var hotkey = new Hotkey(e.KeyCode, e.Modifiers);
+					var code = e.KeyData & Keys.KeyCode; //== Keys.Back ? Keys.None : e.KeyData;
+					var hotkey = new Hotkey(code, e.Modifiers);
 
 					var cell = gridView.SelectedCells[0];
 					gridView.Rows[cell.RowIndex].Cells["keyColumn"].Value = hotkey;
 
-
+					ResolveDuplicates(cell.RowIndex);
 				}
 
 				e.Handled = true;
+			}
+		}
+
+
+		private void ResolveDuplicates(int index)
+		{
+			var hotkey = keyboard[index].Hotkey;
+
+			int i = 0;
+			while (i < keyboard.Count)
+			{
+				if (i != index && keyboard[i].Hotkey.Equals(hotkey))
+				{
+					gridView.Rows[i].Cells["keyColumn"].Value = new Hotkey(Keys.Back);
+					break;
+				}
+
+				i++;
+			}
+
+			// reset any blank command to default key if not already used
+			for (i = 0; i < keyboard.Count; i++)
+			{
+				if (i != index)
+				{
+					var cell = gridView.Rows[i].Cells["keyColumn"];
+					Logger.Current.WriteLine($"testing {i} {(Hotkey)cell.Value}");
+					if (((Hotkey)cell.Value).Keys == Keys.Back)
+					{
+						var defkey = kbdefaults.Values.ElementAt(i).Hotkey;
+						if (!keyboard.Any(k => k.Hotkey.Equals(defkey)))
+						{
+							cell.Value = new Hotkey(defkey);
+						}
+					}
+				}
 			}
 		}
 

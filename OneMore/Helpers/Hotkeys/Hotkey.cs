@@ -71,6 +71,13 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public Hotkey(Hotkey original)
+		{
+			Key = original.Key;
+			Modifiers = original.Modifiers;
+		}
+
+
 		public Keys Keys => (Keys)Key;
 
 
@@ -105,15 +112,33 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public override bool Equals(object obj)
+		{
+			if (obj is Hotkey other)
+			{
+				return other.Key == Key && other.Modifiers == Modifiers;
+			}
+
+			return false;
+		}
+
+
+		public override int GetHashCode()
+		{
+			return Key.GetHashCode() + Modifiers.GetHashCode();
+		}
+
+
 		public override string ToString()
 		{
 			var sequence = string.Empty;
 
 			if ((Keys)Key != Keys.Back)
 			{
-				if ((Modifiers & (uint)Hotmods.Control) > 0) sequence = $"{sequence}Ctrl+";
-				if ((Modifiers & (uint)Hotmods.Shift) > 0) sequence = $"{sequence}Shift+";
-				if ((Modifiers & (uint)Hotmods.Alt) > 0) sequence = $"{sequence}Alt+";
+				var mods = (Hotmods)Modifiers;
+				if (mods.HasFlag(Hotmods.Control)) sequence = $"{sequence}Ctrl+";
+				if (mods.HasFlag(Hotmods.Shift)) sequence = $"{sequence}Shift+";
+				if (mods.HasFlag(Hotmods.Alt)) sequence = $"{sequence}Alt+";
 				sequence = $"{sequence}{(Keys)Key}";
 			}
 
