@@ -43,7 +43,6 @@ namespace River.OneMoreAddIn
 		private static volatile IntPtr handle;
 		private static uint threadId;
 		private static bool registered = false;
-		private static int counter = 0xE000;
 		private static GCHandle gch;
 
 
@@ -82,16 +81,14 @@ namespace River.OneMoreAddIn
 		{
 			resetEvent.WaitOne();
 
-			int keyId = Interlocked.Increment(ref counter);
-			var modifiers = hotkey.Modifiers | (uint)Hotmods.NoRepeat;
+			var modifiers = hotkey.HotModifiers | (uint)HotModifier.NoRepeat;
 
 			window.Invoke(
 				new RegisterHotkeyDelegate(Register),
-				handle, keyId, modifiers, hotkey.Key);
+				handle, hotkey.Id, modifiers, hotkey.Key);
 
-			hotkey.Id = keyId;
 			hotkey.Action = action;
-			hotkey.Modifiers = modifiers;
+			hotkey.HotModifiers = modifiers;
 
 			registeredKeys.Add(hotkey);
 
@@ -137,7 +134,7 @@ namespace River.OneMoreAddIn
 			var key = registeredKeys
 				.FirstOrDefault(k => 
 					k.Key == (uint)e.Key && 
-					k.Modifiers == (uint)(e.Modifiers|Hotmods.NoRepeat));
+					k.HotModifiers == (uint)(e.HotModifiers|HotModifier.NoRepeat));
 
 			if (key != null)
 			{
@@ -207,7 +204,7 @@ namespace River.OneMoreAddIn
 						{
 							//Logger.Current.WriteLine("hotkey re-registering");
 							registeredKeys.ForEach(k =>
-								Native.RegisterHotKey(handle, k.Id, k.Modifiers, k.Key));
+								Native.RegisterHotKey(handle, k.Id, k.HotModifiers, k.Key));
 
 							registered = true;
 						}

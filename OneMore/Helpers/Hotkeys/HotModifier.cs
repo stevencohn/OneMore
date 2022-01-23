@@ -11,8 +11,10 @@ namespace River.OneMoreAddIn
 	/// Key modifiers used for hot keys
 	/// </summary>
 	[Flags]
-	internal enum Hotmods
+	internal enum HotModifier : uint
 	{
+		None = 0,
+
 		Alt = 1,
 		Control = 2,
 		Shift = 4,

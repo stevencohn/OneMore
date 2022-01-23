@@ -3190,6 +3190,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        internal static string KeyboardSheet_clearButton_Text {
+            get {
+                return ResourceManager.GetString("KeyboardSheet_clearButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command.
         /// </summary>
         internal static string KeyboardSheet_cmdColumn_HeaderText {
@@ -3213,6 +3222,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string KeyboardSheet_keyColumn_HeaderText {
             get {
                 return ResourceManager.GetString("KeyboardSheet_keyColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset all.
+        /// </summary>
+        internal static string KeyboardSheet_resetAllButton_Text {
+            get {
+                return ResourceManager.GetString("KeyboardSheet_resetAllButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string KeyboardSheet_resetButton_Text {
+            get {
+                return ResourceManager.GetString("KeyboardSheet_resetButton.Text", resourceCulture);
             }
         }
         

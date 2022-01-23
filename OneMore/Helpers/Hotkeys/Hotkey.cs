@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Threading;
 	using System.Windows.Forms;
 
 
@@ -13,96 +14,110 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class Hotkey
 	{
-		public int Id;
-		public uint Key;		// Keys
-		public uint Modifiers;  // Hotmods
-		public Action Action;
+		private static int counter = 0xE000;
 
 
 		public Hotkey()
 		{
+			Id = Interlocked.Increment(ref counter);
 		}
 
 
+		/// <summary>
+		/// Used during hot key registration, translate a Keys longword with both subject key
+		/// and modifiers to a new Hotkey
+		/// </summary>
+		/// <param name="keys">A Forms.Keys with both lower-order bits specifying the subject key
+		/// and high-order bits specifying the modifier keys</param>
 		public Hotkey(Keys keys)
 			: this(keys & Keys.KeyCode, keys & Keys.Modifiers)
 		{
 		}
 
 
-		public Hotkey(Keys key, Hotmods modifiers)
-		{
-			Key = (uint)key;
-			Modifiers = (uint)modifiers;
-		}
-
-
+		/// <summary>
+		/// Initialize a new instance from Forms.Keys subject and modifiers
+		/// </summary>
+		/// <param name="key">The subject key</param>
+		/// <param name="modifiers">Forms.Keys modifiers</param>
 		public Hotkey(Keys key, Keys modifiers)
 		{
-			Key = (uint)key;
-			Modifiers = 0;
-			
-			if (modifiers.HasFlag(Keys.Control) ||
-				modifiers.HasFlag(Keys.LControlKey) ||
-				modifiers.HasFlag(Keys.RControlKey))
-			{
-				Modifiers += (uint)Hotmods.Control;
-			}
-
-			if (modifiers.HasFlag(Keys.Shift) ||
-				modifiers.HasFlag(Keys.LShiftKey) ||
-				modifiers.HasFlag(Keys.RShiftKey))
-			{
-				Modifiers += (uint)Hotmods.Shift;
-			}
-
-			if (modifiers.HasFlag(Keys.Alt) ||
-				modifiers.HasFlag(Keys.RMenu) ||
-				modifiers.HasFlag(Keys.LMenu))
-			{
-				Modifiers += (uint)Hotmods.Alt;
-			}
-
-			if (modifiers.HasFlag(Keys.LWin) ||
-				modifiers.HasFlag(Keys.RWin))
-			{
-				Modifiers += (uint)Hotmods.Windows;
-			}
+			SetKeys(key, modifiers);
 		}
 
 
+		/// <summary>
+		/// Initialize a new instance by copying the given instance
+		/// </summary>
+		/// <param name="original">A Hotkey to copy</param>
 		public Hotkey(Hotkey original)
 		{
 			Key = original.Key;
-			Modifiers = original.Modifiers;
+			HotModifiers = original.HotModifiers;
 		}
 
 
+		/// <summary>
+		/// Gets or sets the action for this hot key
+		/// </summary>
+		public Action Action { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the hot modifiers bits of this hot key
+		/// </summary>
+		public uint HotModifiers { get; set; }
+
+
+		/// <summary>
+		/// Gets the unique ID of this hot key
+		/// </summary>
+		public int Id { get; private set; }
+
+
+		/// <summary>
+		/// Gets or sets the subject key of this hot key
+		/// Equivalent to Forms.Keys
+		/// </summary>
+		public uint Key { get; set; }
+
+
+		/// <summary>
+		/// Gets the subject keys as a Forms.Keys
+		/// </summary>
 		public Keys Keys => (Keys)Key;
 
 
-		public Keys KeyMods
+		/// <summary>
+		/// Gets the modifiers as a Forms.Keys
+		/// </summary>
+		public Keys Modifiers
 		{
 			get
 			{
+				if (HotModifiers == (uint)HotModifier.None)
+				{
+					return Keys.None;
+				}
+
 				var keys = Keys.None;
 
-				if ((Modifiers & (uint)Hotmods.Control) > 0)
+				if ((HotModifiers & (uint)HotModifier.Control) > 0)
 				{
 					keys |= Keys.Control;
 				}
 
-				if ((Modifiers & (uint)Hotmods.Shift) > 0)
+				if ((HotModifiers & (uint)HotModifier.Shift) > 0)
 				{
 					keys |= Keys.Shift;
 				}
 
-				if ((Modifiers & (uint)Hotmods.Alt) > 0)
+				if ((HotModifiers & (uint)HotModifier.Alt) > 0)
 				{
 					keys |= Keys.Alt;
 				}
 
-				if ((Modifiers & (uint)Hotmods.Windows) > 0)
+				if ((HotModifiers & (uint)HotModifier.Windows) > 0)
 				{
 					keys |= Keys.LWin;
 				}
@@ -112,37 +127,83 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Compares this instance with a given instance
+		/// </summary>
+		/// <param name="obj">Another Hotkey to compare</param>
+		/// <returns>True if both the subject and modifiers are the same as this instance</returns>
 		public override bool Equals(object obj)
 		{
 			if (obj is Hotkey other)
 			{
-				return other.Key == Key && other.Modifiers == Modifiers;
+				return other.Key == Key && other.HotModifiers == HotModifiers;
 			}
 
 			return false;
 		}
 
 
+		/// <summary>
+		/// Gets the unique hash of this instance
+		/// </summary>
+		/// <returns></returns>
 		public override int GetHashCode()
 		{
-			return Key.GetHashCode() + Modifiers.GetHashCode();
+			return Id.GetHashCode();
 		}
 
 
-		public override string ToString()
+		public void SetKeys(Keys keys, Keys modifiers)
 		{
-			var sequence = string.Empty;
+			Key = (uint)keys;
+			HotModifiers = 0;
 
-			if ((Keys)Key != Keys.Back)
+			if (modifiers.HasFlag(Keys.Control) ||
+				modifiers.HasFlag(Keys.LControlKey) ||
+				modifiers.HasFlag(Keys.RControlKey))
 			{
-				var mods = (Hotmods)Modifiers;
-				if (mods.HasFlag(Hotmods.Control)) sequence = $"{sequence}Ctrl+";
-				if (mods.HasFlag(Hotmods.Shift)) sequence = $"{sequence}Shift+";
-				if (mods.HasFlag(Hotmods.Alt)) sequence = $"{sequence}Alt+";
-				sequence = $"{sequence}{(Keys)Key}";
+				HotModifiers += (uint)HotModifier.Control;
 			}
 
-			return sequence;
+			if (modifiers.HasFlag(Keys.Shift) ||
+				modifiers.HasFlag(Keys.LShiftKey) ||
+				modifiers.HasFlag(Keys.RShiftKey))
+			{
+				HotModifiers += (uint)HotModifier.Shift;
+			}
+
+			if (modifiers.HasFlag(Keys.Alt) ||
+				modifiers.HasFlag(Keys.RMenu) ||
+				modifiers.HasFlag(Keys.LMenu))
+			{
+				HotModifiers += (uint)HotModifier.Alt;
+			}
+
+			if (modifiers.HasFlag(Keys.LWin) ||
+				modifiers.HasFlag(Keys.RWin))
+			{
+				HotModifiers += (uint)HotModifier.Windows;
+			}
+		}
+
+
+		/// <summary>
+		/// Makes a pretty user-facing description of the key sequence
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString()
+		{
+			if (Keys == Keys.None || Keys == Keys.Back)
+			{
+				return string.Empty;
+			}
+
+			var sequence = string.Empty;
+			var mods = (HotModifier)HotModifiers;
+			if (mods.HasFlag(HotModifier.Control)) sequence = $"{sequence}Ctrl+";
+			if (mods.HasFlag(HotModifier.Shift)) sequence = $"{sequence}Shift+";
+			if (mods.HasFlag(HotModifier.Alt)) sequence = $"{sequence}Alt+";
+			return $"{sequence}{(Keys)Key}";
 		}
 	}
 }

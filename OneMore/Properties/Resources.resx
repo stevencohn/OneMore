@@ -3856,4 +3856,16 @@ Deferred</value>
   <data name="ApplyStyle9Command" xml:space="preserve">
     <value>Apply Style 9</value>
   </data>
+  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
+    <value>Clear</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
+    <value>Reset all</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
+    <value>Reset</value>
+    <comment>toolstrip button</comment>
+  </data>
 </root>

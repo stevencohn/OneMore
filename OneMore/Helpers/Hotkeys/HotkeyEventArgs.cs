@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Key modifiers: ctrl, shift, alt
 		/// </summary>
-		public Hotmods Modifiers { get; private set; }
+		public HotModifier HotModifiers { get; private set; }
 
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn
 		{
 			Value = (uint)hotKeyParam.ToInt64();
 			Key = (Keys)((Value & 0xffff0000) >> 16);
-			Modifiers = (Hotmods)(Value & 0x0000ffff);
+			HotModifiers = (HotModifier)(Value & 0x0000ffff);
 		}
 	}
 }

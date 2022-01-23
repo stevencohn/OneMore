@@ -640,7 +640,7 @@
     <Compile Include="Helpers\Hotkeys\Hotkey.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyEventArgs.cs" />
     <Compile Include="Helpers\Hotkeys\HotkeyManager.cs" />
-    <Compile Include="Helpers\Hotkeys\Hotmods.cs" />
+    <Compile Include="Helpers\Hotkeys\HotModifier.cs" />
     <Compile Include="Helpers\Extensions\IntExtensions.cs" />
     <Compile Include="Helpers\ILogger.cs" />
     <Compile Include="Helpers\Native.cs" />

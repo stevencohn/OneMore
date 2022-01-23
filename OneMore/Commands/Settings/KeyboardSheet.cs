@@ -12,23 +12,40 @@ namespace River.OneMoreAddIn.Settings
 	using System.Linq;
 	using System.Reflection;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class KeyboardSheet : SheetBase
 	{
-		private sealed class Sequence
+		#region KeyMap
+		private sealed class KeyMap : INotifyPropertyChanged
 		{
-			public string Command { get; set; }
-			public Hotkey Hotkey { get; set; }
+			public event PropertyChangedEventHandler PropertyChanged;
+
+			public KeyMap(string methodName, string description, Hotkey hotkey)
+			{
+				MethodName = methodName;
+				Description = description;
+				Hotkey = hotkey;
+			}
+
+			public string MethodName { get; private set; }
+			public string Description { get; private set; }
+			public Hotkey Hotkey { get; private set; }
+
+			public void SetKeys(Keys keys, Keys modifiers)
+			{
+				Hotkey.SetKeys(keys, modifiers);
+				PropertyChanged(this, new PropertyChangedEventArgs(nameof(Hotkey)));
+			}
 		}
+		#endregion KeyMap
 
 
 		private readonly IRibbonUI ribbon;
-		private readonly BindingList<Sequence> keyboard;
-		private bool updated = false;
-
-		private Dictionary<string, Sequence> kbdefaults;
+		private readonly BindingList<KeyMap> map;
+		private List<KeyMap> defaultMap;
 
 
 		public KeyboardSheet(SettingsProvider provider, IRibbonUI ribbon)
@@ -43,7 +60,10 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Localize(new string[]
 				{
-					"introLabel"
+					"introLabel",
+					"clearButton",
+					"resetButton",
+					"resetAllButton"
 				});
 
 				cmdColumn.HeaderText = Resx.KeyboardSheet_cmdColumn_HeaderText;
@@ -51,46 +71,46 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			gridView.AutoGenerateColumns = false;
-			gridView.Columns[0].DataPropertyName = "Command";
+			gridView.Columns[0].DataPropertyName = "Description";
 			gridView.Columns[1].DataPropertyName = "Hotkey";
 
 			this.ribbon = ribbon;
 
-			keyboard = new BindingList<Sequence>(LoadKeyboard());
-			gridView.DataSource = keyboard;
+			map = new BindingList<KeyMap>(LoadKeyboardMap());
+			gridView.DataSource = map;
 		}
 
 
-		private List<Sequence> LoadKeyboard()
+		private List<KeyMap> LoadKeyboardMap()
 		{
-			kbdefaults = typeof(AddIn).GetMethods()
-				.Select(m => m.GetCustomAttribute(typeof(CommandAttribute), false))
-				.Where(a => a != null)
-				.Select(a => new Sequence
+			defaultMap = typeof(AddIn).GetMethods()
+				.Select(m => new
 				{
-					Command = Resx.ResourceManager.GetString(((CommandAttribute)a).ResID),
-					Hotkey = new Hotkey(((CommandAttribute)a).DefaultKeys)
+					MethodName = m.Name,
+					Attr = (CommandAttribute)m.GetCustomAttribute(typeof(CommandAttribute), false)
 				})
-				.ToDictionary(k => k.Command, v => v);
+				.Where(a => a.Attr != null)
+				.Select(a => new KeyMap(
+					a.MethodName,
+					Resx.ResourceManager.GetString(a.Attr.ResID),
+					new Hotkey(a.Attr.DefaultKeys)
+					))
+				.OrderBy(k => k.Description)
+				.ToList();
 
 			// create clones to preserve the defaults
 
-			return kbdefaults.Values
-				.OrderBy(s => s.Command)
-				.Select(s => new Sequence
-				{
-					Command = s.Command,
-					Hotkey = new Hotkey(s.Hotkey)
-				})
+			return defaultMap
+				.Select(s => new KeyMap(s.MethodName, s.Description, new Hotkey(s.Hotkey)))
 				.ToList();
 		}
 
 
 		private void AssignOnKeyDown(object sender, KeyEventArgs e)
 		{
-			if ( // clear assignment
+			if ( // clear assignment (Back is explicit clear, None is implicit resolve)
 				 e.KeyCode == Keys.Back ||
-				 // any combination of ctrl+shift+alt+win
+				// any combination of ctrl+shift+alt+win
 				(e.Modifiers != 0 &&
 				 // ensure modifiers also comes with a value key
 				 e.KeyCode != Keys.ControlKey &&
@@ -102,7 +122,7 @@ namespace River.OneMoreAddIn.Settings
 				 e.KeyCode != Keys.Menu && // alt
 				 e.KeyCode != Keys.LMenu &&
 				 e.KeyCode != Keys.RMenu) ||
-				 // F1..F24
+				// F1..F24
 				(e.Modifiers == 0 &&
 				 e.KeyCode >= Keys.F1 &&
 				 e.KeyCode <= Keys.F24))
@@ -115,13 +135,10 @@ namespace River.OneMoreAddIn.Settings
 
 				if (gridView.SelectedCells.Count > 0)
 				{
-					var code = e.KeyData & Keys.KeyCode; //== Keys.Back ? Keys.None : e.KeyData;
-					var hotkey = new Hotkey(code, e.Modifiers);
+					var index = gridView.SelectedCells[0].RowIndex;
+					map[index].SetKeys(e.KeyData & Keys.KeyCode, e.Modifiers);
 
-					var cell = gridView.SelectedCells[0];
-					gridView.Rows[cell.RowIndex].Cells["keyColumn"].Value = hotkey;
-
-					ResolveDuplicates(cell.RowIndex);
+					ResolveDuplicates(index);
 				}
 
 				e.Handled = true;
@@ -131,33 +148,40 @@ namespace River.OneMoreAddIn.Settings
 
 		private void ResolveDuplicates(int index)
 		{
-			var hotkey = keyboard[index].Hotkey;
+			var hotkey = map[index].Hotkey;
+
+			// Back is explicit clear, None is implicit resolve
+			if (hotkey.Keys == Keys.Back)
+			{
+				return;
+			}
 
 			int i = 0;
-			while (i < keyboard.Count)
+			while (i < map.Count)
 			{
-				if (i != index && keyboard[i].Hotkey.Equals(hotkey))
+				if (i != index && map[i].Hotkey.Equals(hotkey))
 				{
-					gridView.Rows[i].Cells["keyColumn"].Value = new Hotkey(Keys.Back);
+					map[i].SetKeys(Keys.None, Keys.None);
 					break;
 				}
 
 				i++;
 			}
 
-			// reset any blank command to default key if not already used
-			for (i = 0; i < keyboard.Count; i++)
+			// reset any blank command to default key if not used elsewhere
+			for (i = 0; i < map.Count; i++)
 			{
 				if (i != index)
 				{
-					var cell = gridView.Rows[i].Cells["keyColumn"];
-					Logger.Current.WriteLine($"testing {i} {(Hotkey)cell.Value}");
-					if (((Hotkey)cell.Value).Keys == Keys.Back)
+					if (map[i].Hotkey.Keys == Keys.None)
 					{
-						var defkey = kbdefaults.Values.ElementAt(i).Hotkey;
-						if (!keyboard.Any(k => k.Hotkey.Equals(defkey)))
+						// lookup the default for this command
+						var defkey = defaultMap[i].Hotkey;
+
+						// ensure the default isn't used elsewhere
+						if (!map.Any(k => k.Hotkey.Equals(defkey)))
 						{
-							cell.Value = new Hotkey(defkey);
+							map[i].SetKeys(defkey.Keys, defkey.Modifiers);
 						}
 					}
 				}
@@ -165,14 +189,71 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void ClearCommand(object sender, System.EventArgs e)
+		{
+			if (gridView.SelectedCells.Count > 0)
+			{
+				var index = gridView.SelectedCells[0].RowIndex;
+				map[index].SetKeys(Keys.Back, Keys.None);
+			}
+		}
+
+
+		private void ResetCommand(object sender, System.EventArgs e)
+		{
+			if (gridView.SelectedCells.Count > 0)
+			{
+				var index = gridView.SelectedCells[0].RowIndex;
+				var defkey = defaultMap[index].Hotkey;
+				map[index].SetKeys(defkey.Keys, defkey.Modifiers);
+				ResolveDuplicates(index);
+			}
+		}
+
+
+		private void ResetAllDefaults(object sender, System.EventArgs e)
+		{
+			for (int i = 0; i < map.Count; i++)
+			{
+				map[i].SetKeys(defaultMap[i].Hotkey.Keys, defaultMap[i].Hotkey.Modifiers);
+			}
+		}
+
+
 		public override bool CollectSettings()
 		{
+			// record changes from defaults
+			var element = new XElement("commands");
+			for (int i = 0; i < map.Count; i++)
+			{
+				if (!map[i].Hotkey.Equals(defaultMap[i].Hotkey))
+				{
+					element.Add(new XElement("command",
+						new XAttribute("command", map[i].MethodName),
+						new XAttribute("keys", map[i].Hotkey.Keys | map[i].Hotkey.Modifiers)
+						));
+				}
+			}
+
+			var updated = true;
+
+			// compare against saved settings
+			var settings = provider.GetCollection(Name)?.Get<XElement>("commands");
+			if (settings != null)
+			{
+				updated = true;
+			}
+
 			if (updated)
 			{
+				var collection = provider.GetCollection(Name);
+				collection.Add("commands", element);
+				provider.SetCollection(collection);
+
 				ribbon.InvalidateControl("ribOneMoreMenu");
 			}
 
-			return false;
+			return updated;
 		}
 	}
 }
