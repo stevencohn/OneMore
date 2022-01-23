@@ -17,12 +17,6 @@ namespace River.OneMoreAddIn
 		private static int counter = 0xE000;
 
 
-		public Hotkey()
-		{
-			Id = Interlocked.Increment(ref counter);
-		}
-
-
 		/// <summary>
 		/// Used during hot key registration, translate a Keys longword with both subject key
 		/// and modifiers to a new Hotkey
@@ -30,19 +24,9 @@ namespace River.OneMoreAddIn
 		/// <param name="keys">A Forms.Keys with both lower-order bits specifying the subject key
 		/// and high-order bits specifying the modifier keys</param>
 		public Hotkey(Keys keys)
-			: this(keys & Keys.KeyCode, keys & Keys.Modifiers)
 		{
-		}
-
-
-		/// <summary>
-		/// Initialize a new instance from Forms.Keys subject and modifiers
-		/// </summary>
-		/// <param name="key">The subject key</param>
-		/// <param name="modifiers">Forms.Keys modifiers</param>
-		public Hotkey(Keys key, Keys modifiers)
-		{
-			SetKeys(key, modifiers);
+			Id = Interlocked.Increment(ref counter);
+			SetKeys(keys & Keys.KeyCode, keys & Keys.Modifiers);
 		}
 
 
