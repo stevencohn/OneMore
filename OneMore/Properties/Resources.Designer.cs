@@ -7210,6 +7210,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keyboard.
+        /// </summary>
+        internal static string SettingsDialog_keyboardNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_keyboardNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Horizontal Lines.
         /// </summary>
         internal static string SettingsDialog_linesNode_Text {

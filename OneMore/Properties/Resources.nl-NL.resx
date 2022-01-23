@@ -3820,4 +3820,8 @@ Verschoven</value>
     <value>Resetten</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Toetsenbord</value>
+    <comment>treenode</comment>
+  </data>
 </root>

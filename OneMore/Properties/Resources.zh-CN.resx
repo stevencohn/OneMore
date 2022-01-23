@@ -3812,4 +3812,8 @@ OneNote 文件 (*.one)</value>
     <value>重启</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>键盘</value>
+    <comment>treenode</comment>
+  </data>
 </root>

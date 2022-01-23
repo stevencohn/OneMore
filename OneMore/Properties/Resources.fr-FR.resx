@@ -3816,4 +3816,8 @@ Différé</value>
     <value>Réinitialiser</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Clavier</value>
+    <comment>treenode</comment>
+  </data>
 </root>

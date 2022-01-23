@@ -3820,4 +3820,8 @@ Diferido</value>
     <value>Redefinir</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Teclado</value>
+    <comment>treenode</comment>
+  </data>
 </root>

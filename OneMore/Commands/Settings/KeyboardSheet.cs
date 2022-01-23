@@ -103,18 +103,18 @@ namespace River.OneMoreAddIn.Settings
 			// create clones to preserve the defaults
 
 			var settings = provider.GetCollection(Name)?.Get<XElement>(SettingsName);
-			foreach (var map in defaultMap)
+			foreach (var defmap in defaultMap)
 			{
 				var command = settings?.Elements("command")
-					.FirstOrDefault(e => e.Attribute("command")?.Value == map.MethodName);
+					.FirstOrDefault(e => e.Attribute("command")?.Value == defmap.MethodName);
 
 				if (Enum.TryParse<Keys>(command?.Attribute("keys")?.Value, true, out var keys))
 				{
-					yield return new KeyMap(map.MethodName, map.Description, new Hotkey(keys));
+					yield return new KeyMap(defmap.MethodName, defmap.Description, new Hotkey(keys));
 				}
 				else
 				{
-					yield return new KeyMap(map.MethodName, map.Description, new Hotkey(map.Hotkey));
+					yield return new KeyMap(defmap.MethodName, defmap.Description, new Hotkey(defmap.Hotkey));
 				}
 			}
 		}

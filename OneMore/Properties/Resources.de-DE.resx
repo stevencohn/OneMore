@@ -3807,4 +3807,8 @@ Aufgeschoben</value>
     <value>Zurücksetzen</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Klaviatur</value>
+    <comment>treenode</comment>
+  </data>
 </root>

@@ -110,8 +110,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private static void RefreshImage(SearchEngine engine)
 		{
-			ServicePointManager.SecurityProtocol =
-				SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
 			try
 			{
