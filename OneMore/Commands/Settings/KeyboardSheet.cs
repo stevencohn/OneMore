@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using Microsoft.Office.Core;
+	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Linq;
@@ -76,12 +77,12 @@ namespace River.OneMoreAddIn.Settings
 
 			this.ribbon = ribbon;
 
-			map = new BindingList<KeyMap>(LoadKeyboardMap());
+			map = new BindingList<KeyMap>(LoadKeyboardMap().ToList());
 			gridView.DataSource = map;
 		}
 
 
-		private List<KeyMap> LoadKeyboardMap()
+		private IEnumerable<KeyMap> LoadKeyboardMap()
 		{
 			defaultMap = typeof(AddIn).GetMethods()
 				.Select(m => new
@@ -100,9 +101,21 @@ namespace River.OneMoreAddIn.Settings
 
 			// create clones to preserve the defaults
 
-			return defaultMap
-				.Select(s => new KeyMap(s.MethodName, s.Description, new Hotkey(s.Hotkey)))
-				.ToList();
+			var settings = provider.GetCollection(Name)?.Get<XElement>("commands");
+			foreach (var map in defaultMap)
+			{
+				var command = settings?.Elements("command")
+					.FirstOrDefault(e => e.Attribute("command")?.Value == map.MethodName);
+
+				if (Enum.TryParse<Keys>(command?.Attribute("keys")?.Value, true, out var keys))
+				{
+					yield return new KeyMap(map.MethodName, map.Description, new Hotkey(keys));
+				}
+				else
+				{
+					yield return new KeyMap(map.MethodName, map.Description, new Hotkey(map.Hotkey));
+				}
+			}
 		}
 
 
@@ -150,7 +163,8 @@ namespace River.OneMoreAddIn.Settings
 		{
 			var hotkey = map[index].Hotkey;
 
-			// Back is explicit clear, None is implicit resolve
+			// Back is explicit clear, None is implicit resolve...
+
 			if (hotkey.Keys == Keys.Back)
 			{
 				return;
