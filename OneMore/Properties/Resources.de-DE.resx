@@ -3750,4 +3750,69 @@ Aufgeschoben</value>
     <value>Seiten im Abschnitt sortieren</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Befehl</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
+    <value>Verwalten Sie meine benutzerdefinierten Tastenkombinationen. Wählen Sie einen Befehl aus und drücken Sie eine Tastenfolge.</value>
+    <comment>label</comment>
+  </data>
+  <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
+    <value>Schlüsselfolge</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="ClearLogCommand" xml:space="preserve">
+    <value>Protokolldatei löschen</value>
+  </data>
+  <data name="DiagnosticsCommand" xml:space="preserve">
+    <value>Dump Diagnostics to Log</value>
+  </data>
+  <data name="ApplyStyle1Command" xml:space="preserve">
+    <value>Stil 1 anwenden</value>
+  </data>
+  <data name="ApplyStyle2Command" xml:space="preserve">
+    <value>Stil 2 anwenden</value>
+  </data>
+  <data name="ApplyStyle3Command" xml:space="preserve">
+    <value>Stil 3 anwenden</value>
+  </data>
+  <data name="ApplyStyle4Command" xml:space="preserve">
+    <value>Stil 4 anwenden</value>
+  </data>
+  <data name="ApplyStyle5Command" xml:space="preserve">
+    <value>Stil 5 anwenden</value>
+  </data>
+  <data name="ApplyStyle6Command" xml:space="preserve">
+    <value>Stil 6 anwenden</value>
+  </data>
+  <data name="ApplyStyle7Command" xml:space="preserve">
+    <value>Stil 7 anwenden</value>
+  </data>
+  <data name="ApplyStyle8Command" xml:space="preserve">
+    <value>Stil 8 anwenden</value>
+  </data>
+  <data name="ApplyStyle9Command" xml:space="preserve">
+    <value>Stil 9 anwenden</value>
+  </data>
+  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
+    <value>Klar</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
+    <value>Alles zurücksetzen</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
+    <value>Zurücksetzen</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Klaviatur</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>Klaviatur</value>
+    <comment>sheet</comment>
+  </data>
 </root>

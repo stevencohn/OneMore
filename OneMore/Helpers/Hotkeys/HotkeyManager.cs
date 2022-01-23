@@ -43,7 +43,6 @@ namespace River.OneMoreAddIn
 		private static volatile IntPtr handle;
 		private static uint threadId;
 		private static bool registered = false;
-		private static int counter = 0xE000;
 		private static GCHandle gch;
 
 
@@ -74,56 +73,24 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Registers a new global hotkey
-		/// </summary>
-		/// <param name="key">The primary key code</param>
-		/// <param name="modifiers">The key modifiers such as Ctrl, Shift, and Alt</param>
-		public static void RegisterHotKey(Keys key, Hotmods modifiers = 0)
-		{
-			resetEvent.WaitOne();
-
-			int keyId = Interlocked.Increment(ref counter);
-			modifiers |= Hotmods.NoRepeat;
-
-			window.Invoke(
-				new RegisterHotkeyDelegate(Register),
-				handle, keyId, (uint)modifiers, (uint)key);
-
-			registeredKeys.Add(new Hotkey
-			{
-				Id = keyId,
-				Key = (uint)key,
-				Modifiers = (uint)modifiers
-			});
-
-			registered = true;
-		}
-
-
-		/// <summary>
 		/// Registers a new global hotkey bound to the given action.
 		/// </summary>
 		/// <param name="action">The action to invoke when the hotkey is pressed</param>
-		/// <param name="key">They key identifier</param>
-		/// <param name="modifiers">The key modifiers, if any</param>
-		public static void RegisterHotKey(Action action, Keys key, Hotmods modifiers = 0)
+		/// <param name="hotkey">The Hotkey specifying the Key and Modifiers</param>
+		public static void RegisterHotKey(Action action, Hotkey hotkey)
 		{
 			resetEvent.WaitOne();
 
-			int keyId = Interlocked.Increment(ref counter);
-			modifiers |= Hotmods.NoRepeat;
+			var modifiers = hotkey.HotModifiers | (uint)HotModifier.NoRepeat;
 
 			window.Invoke(
 				new RegisterHotkeyDelegate(Register),
-				handle, keyId, (uint)modifiers, (uint)key);
+				handle, hotkey.Id, modifiers, hotkey.Key);
 
-			registeredKeys.Add(new Hotkey
-			{
-				Id = keyId,
-				Key = (uint)key,
-				Modifiers = (uint)modifiers,
-				Action = action
-			});
+			hotkey.Action = action;
+			hotkey.HotModifiers = modifiers;
+
+			registeredKeys.Add(hotkey);
 
 			registered = true;
 		}
@@ -167,7 +134,7 @@ namespace River.OneMoreAddIn
 			var key = registeredKeys
 				.FirstOrDefault(k => 
 					k.Key == (uint)e.Key && 
-					k.Modifiers == (uint)(e.Modifiers|Hotmods.NoRepeat));
+					k.HotModifiers == (uint)(e.HotModifiers|HotModifier.NoRepeat));
 
 			if (key != null)
 			{
@@ -237,7 +204,7 @@ namespace River.OneMoreAddIn
 						{
 							//Logger.Current.WriteLine("hotkey re-registering");
 							registeredKeys.ForEach(k =>
-								Native.RegisterHotKey(handle, k.Id, k.Modifiers, k.Key));
+								Native.RegisterHotKey(handle, k.Id, k.HotModifiers, k.Key));
 
 							registered = true;
 						}

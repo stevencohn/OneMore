@@ -3763,4 +3763,69 @@ ISO-code then comma then language name</comment>
     <value>فرز الصفحات في المقطع</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>يأمر</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
+    <value>إدارة اختصارات لوحة المفاتيح المخصصة الخاصة بي. حدد أمرًا واضغط على تسلسل المفاتيح.</value>
+    <comment>label</comment>
+  </data>
+  <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
+    <value>تسلسل المفتاح</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="ClearLogCommand" xml:space="preserve">
+    <value>مسح ملف السجل</value>
+  </data>
+  <data name="DiagnosticsCommand" xml:space="preserve">
+    <value>تفريغ التشخيصات في السجل</value>
+  </data>
+  <data name="ApplyStyle1Command" xml:space="preserve">
+    <value>تطبيق النمط 1</value>
+  </data>
+  <data name="ApplyStyle2Command" xml:space="preserve">
+    <value>تطبيق النمط 2</value>
+  </data>
+  <data name="ApplyStyle3Command" xml:space="preserve">
+    <value>تطبيق النمط 3</value>
+  </data>
+  <data name="ApplyStyle4Command" xml:space="preserve">
+    <value>تطبيق النمط 4</value>
+  </data>
+  <data name="ApplyStyle5Command" xml:space="preserve">
+    <value>تطبيق النمط 5</value>
+  </data>
+  <data name="ApplyStyle6Command" xml:space="preserve">
+    <value>تطبيق النمط 6</value>
+  </data>
+  <data name="ApplyStyle7Command" xml:space="preserve">
+    <value>تطبيق النمط 7</value>
+  </data>
+  <data name="ApplyStyle8Command" xml:space="preserve">
+    <value>تطبيق النمط 8</value>
+  </data>
+  <data name="ApplyStyle9Command" xml:space="preserve">
+    <value>تطبيق النمط 9</value>
+  </data>
+  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
+    <value>صافي</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
+    <value>إعادة ضبط الجميع</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
+    <value>إعادة ضبط</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>لوحة المفاتيح</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>لوحة المفاتيح</value>
+    <comment>sheet</comment>
+  </data>
 </root>

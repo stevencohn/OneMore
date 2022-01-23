@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Commands;
 	using System.Threading;
 	using System.Threading.Tasks;
-
+	using System.Windows.Forms;
 
 	public partial class AddIn
 	{
@@ -28,9 +28,13 @@ namespace River.OneMoreAddIn
 		public void AddFavoriteSectionCmd(IRibbonControl control)
 			=> new FavoritesProvider(ribbon).AddFavorite(true);
 
+
+		[Command("ribFootnoteButton_Label", Keys.Control | Keys.Alt | Keys.F)]
 		public async Task AddFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<AddFootnoteCommand>();
 
+
+		[Command("ribAddFormulaButton_Label", Keys.F5)]
 		public async Task AddFormulaCmd(IRibbonControl control)
 			=> await factory.Run<AddFormulaCommand>();
 
@@ -39,6 +43,52 @@ namespace River.OneMoreAddIn
 
 		public async Task AnalyzeCmd(IRibbonControl control)
 			=> await factory.Run<AnalyzeCommand>();
+
+
+		[Command("ApplyStyle1Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D1)]
+		public async Task ApplyStyle1Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(0);
+
+
+		[Command("ApplyStyle2Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D2)]
+		public async Task ApplyStyle2Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(1);
+
+
+		[Command("ApplyStyle3Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D3)]
+		public async Task ApplyStyle3Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(2);
+
+
+		[Command("ApplyStyle4Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D4)]
+		public async Task ApplyStyle4Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(3);
+
+
+		[Command("ApplyStyle5Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D5)]
+		public async Task ApplyStyle5Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(4);
+
+
+		[Command("ApplyStyle6Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D6)]
+		public async Task ApplyStyle6Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(5);
+
+
+		[Command("ApplyStyle7Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D7)]
+		public async Task ApplyStyle7Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(6);
+
+
+		[Command("ApplyStyle8Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D8)]
+		public async Task ApplyStyle8Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(7);
+
+
+		[Command("ApplyStyle9Command", Keys.Control | Keys.Alt | Keys.Shift | Keys.D9)]
+		public async Task ApplyStyle9Cmd(IRibbonControl control)
+			=> await factory.Run<ApplyStyleCommand>(8);
+
 
 		public async Task ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
 			=> await factory.Run<ApplyStyleCommand>(selectedIndex);
@@ -63,6 +113,12 @@ namespace River.OneMoreAddIn
 
 		public async Task ClearBackgroundCmd(IRibbonControl control)
 			=> await factory.Run<ClearBackgroundCommand>();
+
+
+		[Command("ClearLogCommand", Keys.Control | Keys.F8)]
+		public async Task ClearLogCmd(IRibbonControl control)
+			=> await factory.Run<ClearLogCommand>();
+
 
 		public async Task CollapsePagesCmd(IRibbonControl control)
 			=> await factory.Run<CollapsePagesCommand>();
@@ -91,8 +147,11 @@ namespace River.OneMoreAddIn
 		public async Task DateStampCmd(IRibbonControl control)
 			=> await factory.Run<DateStampCommand>();
 
+
+		[Command("ribDecreaseFontSizeButton_Label", Keys.Control | Keys.Alt | Keys.OemMinus)]
 		public async Task DecreaseFontSizeCmd(IRibbonControl control)
 			=> await factory.Run<AlterSizeCommand>(-1);
+
 
 		public async Task DeleteFormulaCmd(IRibbonControl control)
 			=> await factory.Run<DeleteFormulaCommand>();
@@ -100,8 +159,16 @@ namespace River.OneMoreAddIn
 		public async Task DeleteReminderCmd(IRibbonControl control)
 			=> await factory.Run<DeleteReminderCommand>();
 
+
+		[Command("DiagnosticsCommand", Keys.Shift | Keys.F8)]
+		public async Task DiagnosticsCmd(IRibbonControl control)
+			=> await factory.Run<DiagnosticsCommand>();
+
+
+		[Command("ribNoSpellCheckButton_Label", Keys.F4)]
 		public async Task DisableSpellCheckCmd(IRibbonControl control)
 			=> await factory.Run<ProofingCommand>(ProofingCommand.NoLang);
+
 
 		public async Task EditStylesCmd(IRibbonControl control)
 			=> await factory.Run<EditStylesCommand>();
@@ -118,8 +185,11 @@ namespace River.OneMoreAddIn
 		public async Task FillAcrossCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.FillAcross);
 
+
+		[Command("ribFillDownButton_Label", Keys.Control | Keys.D)]
 		public async Task FillDownCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.FillDown);
+
 
 		public async Task FinishBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("link");
@@ -136,11 +206,16 @@ namespace River.OneMoreAddIn
 		public async Task ImportOutlookTasksCmd(IRibbonControl control)
 			=> await factory.Run<ImportOutlookTasksCommand>();
 
+
+		[Command("ribIncreaseFontSizeButton_Label", Keys.Control | Keys.Alt | Keys.Oemplus)]
 		public async Task IncreaseFontSizeCmd(IRibbonControl control)
 			=> await factory.Run<AlterSizeCommand>(1);
 
+
+		[Command("ribHighlightButton_Label", Keys.Control | Keys.Shift | Keys.H)]
 		public async Task HighlightCmd(IRibbonControl control)
 			=> await factory.Run<HighlightCommand>();
+
 
 		public async Task HighlightFormulaCmd(IRibbonControl control)
 			=> await factory.Run<HighlightFormulaCommand>();
@@ -166,14 +241,21 @@ namespace River.OneMoreAddIn
 		public async Task InsertCellsCmd(IRibbonControl control)
 			=> await factory.Run<InsertCellsCommand>();
 
+
+		[Command("ribCodeBlockButton_Label", Keys.F6)]
 		public async Task InsertCodeBlockCmd(IRibbonControl control)
 			=> await factory.Run<InsertCodeBlockCommand>(true);
 
+
+		[Command("ribInsertDateButton_Label", Keys.Control | Keys.Shift | Keys.D)]
 		public async Task InsertDateCmd(IRibbonControl control)
 			=> await factory.Run<InsertDateCommand>();
 
+
+		[Command("ribInsertDoubleLineButton_Label", Keys.Alt | Keys.Shift| Keys.F12)]
 		public async Task InsertDoubleHorizontalLineCmd(IRibbonControl control)
 			=> await factory.Run<InsertLineCommand>('═');
+
 
 		public async Task InsertExpandCmd(IRibbonControl control)
 			=> await factory.Run<InsertExpandCommand>();
@@ -184,8 +266,11 @@ namespace River.OneMoreAddIn
 		public async Task InsertGreenStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Green);
 
+
+		[Command("ribInsertSingleLineButton_Label", Keys.Alt | Keys.Shift | Keys.F11)]
 		public async Task InsertHorizontalLineCmd(IRibbonControl control)
 			=> await factory.Run<InsertLineCommand>('─');
+
 
 		public async Task InsertInfoBlockCmd(IRibbonControl control)
 			=> await factory.Run<InsertInfoBlockCommand>(false);
@@ -199,8 +284,11 @@ namespace River.OneMoreAddIn
 		public async Task InsertSnippetCmd(IRibbonControl control)
 			=> await factory.Run<InsertSnippetCommand>(control.Tag); // tag=filepath
 
+
+		[Command("ribInsertTimerButton_Label", Keys.F2)]
 		public async Task InsertTimerCmd(IRibbonControl control)
 			=> await factory.Run<TimerWindowCommand>(true);
+
 
 		public async Task InsertTocCmd(IRibbonControl control)
 			=> await factory.Run<InsertTocCommand>();
@@ -256,14 +344,20 @@ namespace River.OneMoreAddIn
 		public async Task PasteCellsCmd(IRibbonControl control)
 			=> await factory.Run<PasteCellsCommand>();
 
+
+		[Command("ribPasteRtfButton_Label", Keys.Control | Keys.Alt | Keys.V)]
 		public async Task PasteRtfCmd(IRibbonControl control)
 			=> await factory.Run<PasteRtfCommand>();
+
 
 		public async Task PronunciateCmd(IRibbonControl control)
 			=> await factory.Run<PronunciateCommand>();
 
+
+		[Command("ribRecalculateFormulaButton_Label", Keys.Shift | Keys.F5)]
 		public async Task RecalculateFormulaCmd(IRibbonControl control)
 			=> await factory.Run<RecalculateFormulaCommand>();
+
 
 		public async Task RefreshFootnotesCmd(IRibbonControl control)
 			=> await factory.Run<RefreshFootnotesCommand>();
@@ -271,8 +365,11 @@ namespace River.OneMoreAddIn
 		public async Task RefreshPageLinksCmd(IRibbonControl control)
 			=> await factory.Run<RefreshPageLinksCommand>();
 
+
+		[Command("ribRemindButton_Label", Keys.F8)]
 		public async Task RemindCmd(IRibbonControl control)
 			=> await factory.Run<RemindCommand>();
+
 
 		public async Task RemoveAuthorsCmd(IRibbonControl control)
 			=> await factory.Run<RemoveAuthorsCommand>();
@@ -283,8 +380,11 @@ namespace River.OneMoreAddIn
 		public async Task RemoveEmptyCmd(IRibbonControl control)
 			=> await factory.Run<RemoveEmptyCommand>();
 
+
+		[Command("ribFootnoteRemoveButton_Label", Keys.Control | Keys.Shift | Keys.F)]
 		public async Task RemoveFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<RemoveFootnoteCommand>();
+
 
 		public async Task RemoveInkCmd(IRibbonControl control)
 			=> await factory.Run<RemoveInkCommand>();
@@ -301,8 +401,11 @@ namespace River.OneMoreAddIn
 		public async Task RemoveTagsCmd(IRibbonControl control)
 			=> await factory.Run<RemoveTagsCommand>();
 
+
+		[Command("ribReplayButton_Label", Keys.Alt | Keys.Shift | Keys.R)]
 		public async Task ReplayCmd(IRibbonControl control)
 			=> await factory.ReplayLastAction();
+
 
 		public async Task ReportRemindersCmd(IRibbonControl control)
 			=> await factory.Run<ReportRemindersCommand>();
@@ -325,11 +428,16 @@ namespace River.OneMoreAddIn
 		public async Task SaveSnippetCmd(IRibbonControl control)
 			=> await factory.Run<SaveSnippetCommand>();
 
+
+		[Command("ribSearchButton_Label", Keys.Alt | Keys.F)]
 		public async Task SearchCmd(IRibbonControl control)
 			=> await factory.Run<SearchCommand>();
 
+
+		[Command("ribReplaceButton_Label", Keys.Control | Keys.H)]
 		public async Task SearchAndReplaceCmd(IRibbonControl control)
 			=> await factory.Run<SearchAndReplaceCommand>();
+
 
 		public async Task SearchWebCmd(IRibbonControl control)
 			=> await factory.Run<SearchWebCommand>(control.Tag); // tag=engine
@@ -352,8 +460,11 @@ namespace River.OneMoreAddIn
 		public async Task ShowKeyboardShortcutsCmd(IRibbonControl control)
 			=> await factory.Run<ShowKeyboardShortcutsCommand>();
 
+
+		[Command("ribShowXmlButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.X)]
 		public async Task ShowXmlCmd(IRibbonControl control)
 			=> await factory.Run<ShowXmlCommand>();
+
 
 		public async Task SortCmd(IRibbonControl control)
 			=> await factory.Run<SortCommand>();
@@ -382,23 +493,34 @@ namespace River.OneMoreAddIn
 		public async Task StartBiLinkCmd(IRibbonControl control)
 			=> await factory.Run<BiLinkCommand>("mark");
 
+
+		[Command("ribStartTimerButton_Label", Keys.Alt | Keys.F2)]
 		public async Task StartTimerCmd(IRibbonControl control)
 			=> await factory.Run<TimerWindowCommand>();
+
 
 		public async Task StrikeoutCmd(IRibbonControl control)
 			=> await factory.Run<StrikeoutCommand>();
 
+
+		[Command("ribTaggedButton_Label", Keys.Control | Keys.Alt | Keys.T)]
 		public async Task TaggedCmd(IRibbonControl control)
 			=> await factory.Run<TaggedCommand>();
 
+
+		[Command("ribTaggingButton_Label", Keys.Alt | Keys.T)]
 		public async Task TaggingCmd(IRibbonControl control)
 			=> await factory.Run<TaggingCommand>();
+
 
 		public async Task TextToTableCmd(IRibbonControl control)
 			=> await factory.Run<TextToTableCommand>();
 
+
+		[Command("ribLowercaseButton_Label", Keys.Control | Keys.Shift | Keys.U)]
 		public async Task ToLowercaseCmd(IRibbonControl control)
 			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Lowercase);
+
 
 		public async Task ToggleDttmCmd(IRibbonControl control)
 			=> await factory.Run<ToggleDttmCommand>();
@@ -406,8 +528,11 @@ namespace River.OneMoreAddIn
 		public async Task ToTitlecaseCmd(IRibbonControl control)
 			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Titlecase);
 
+
+		[Command("ribUppercaseButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.U)]
 		public async Task ToUppercaseCmd(IRibbonControl control)
 			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Uppercase);
+
 
 		public async Task TrimCmd(IRibbonControl control)
 			=> await factory.Run<TrimCommand>(false);

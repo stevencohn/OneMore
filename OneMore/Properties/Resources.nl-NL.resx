@@ -3763,4 +3763,69 @@ Verschoven</value>
     <value>Sorteer pagina's in sectie</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Opdracht</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
+    <value>Beheer mijn aangepaste sneltoetsen. Selecteer een opdracht en druk op een toetsenreeks.</value>
+    <comment>label</comment>
+  </data>
+  <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
+    <value>Toetsvolgorde</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="ClearLogCommand" xml:space="preserve">
+    <value>Logbestand wissen</value>
+  </data>
+  <data name="DiagnosticsCommand" xml:space="preserve">
+    <value>Diagnostiek dumpen om te loggen</value>
+  </data>
+  <data name="ApplyStyle1Command" xml:space="preserve">
+    <value>Pas stijl 1 toe</value>
+  </data>
+  <data name="ApplyStyle2Command" xml:space="preserve">
+    <value>Pas stijl 2 toe</value>
+  </data>
+  <data name="ApplyStyle3Command" xml:space="preserve">
+    <value>Pas stijl 3 toe</value>
+  </data>
+  <data name="ApplyStyle4Command" xml:space="preserve">
+    <value>Pas stijl 4 toe</value>
+  </data>
+  <data name="ApplyStyle5Command" xml:space="preserve">
+    <value>Pas stijl 5 toe</value>
+  </data>
+  <data name="ApplyStyle6Command" xml:space="preserve">
+    <value>Pas stijl 6 toe</value>
+  </data>
+  <data name="ApplyStyle7Command" xml:space="preserve">
+    <value>Pas stijl 7 toe</value>
+  </data>
+  <data name="ApplyStyle8Command" xml:space="preserve">
+    <value>Pas stijl 8 toe</value>
+  </data>
+  <data name="ApplyStyle9Command" xml:space="preserve">
+    <value>Pas stijl 9 toe</value>
+  </data>
+  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
+    <value>Duidelijk</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
+    <value>Alles resetten</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
+    <value>Resetten</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Toetsenbord</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>Toetsenbord</value>
+    <comment>sheet</comment>
+  </data>
 </root>

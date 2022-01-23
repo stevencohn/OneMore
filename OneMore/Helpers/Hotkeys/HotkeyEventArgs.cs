@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Key modifiers: ctrl, shift, alt
 		/// </summary>
-		public Hotmods Modifiers { get; private set; }
+		public HotModifier HotModifiers { get; private set; }
 
 
 		/// <summary>
@@ -33,11 +33,18 @@ namespace River.OneMoreAddIn
 		public uint Value { get; private set; }
 
 
+		/// <summary>
+		/// Initialize a new event from the given WM_HOTKEY msg.LParam value; this value is
+		/// a longword where the low-order word contains the modifiers and the high-order
+		/// word contains the Keys. The modifiers bitmask are not equivalent to the same
+		/// Keys modifiers - Control, Shift, Alt - so must be remapped if needed
+		/// </summary>
+		/// <param name="hotKeyParam"></param>
 		public HotkeyEventArgs(IntPtr hotKeyParam)
 		{
 			Value = (uint)hotKeyParam.ToInt64();
 			Key = (Keys)((Value & 0xffff0000) >> 16);
-			Modifiers = (Hotmods)(Value & 0x0000ffff);
+			HotModifiers = (HotModifier)(Value & 0x0000ffff);
 		}
 	}
 }

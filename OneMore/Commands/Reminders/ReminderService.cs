@@ -195,6 +195,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private bool warned;
 		private void Send(string message, string args)
 		{
 			// this is for debugging; if SilentReminders value exists then only log
@@ -202,6 +203,12 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (key != null)
 				{
+					if (!warned)
+					{
+						logger.WriteLine("HKCR::River.OneMoreAddin SilientReminders is set to true");
+						warned = true;
+					}
+
 					if ((string)key.GetValue("SilentReminders") == "true")
 					{
 						logger.WriteLine($"Toast: {message}");

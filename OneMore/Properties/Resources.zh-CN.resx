@@ -3755,4 +3755,69 @@ OneNote 文件 (*.one)</value>
     <value>对部分中的页面进行排序</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>命令</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
+    <value>管理我的自定义键盘快捷键。选择一个命令并按下一个按键序列。</value>
+    <comment>label</comment>
+  </data>
+  <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
+    <value>键序列</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="ClearLogCommand" xml:space="preserve">
+    <value>清除日志文件</value>
+  </data>
+  <data name="DiagnosticsCommand" xml:space="preserve">
+    <value>将诊断转储到日志</value>
+  </data>
+  <data name="ApplyStyle1Command" xml:space="preserve">
+    <value>应用样式 1</value>
+  </data>
+  <data name="ApplyStyle2Command" xml:space="preserve">
+    <value>应用样式 2</value>
+  </data>
+  <data name="ApplyStyle3Command" xml:space="preserve">
+    <value>应用样式 3</value>
+  </data>
+  <data name="ApplyStyle4Command" xml:space="preserve">
+    <value>应用样式 4</value>
+  </data>
+  <data name="ApplyStyle5Command" xml:space="preserve">
+    <value>应用样式 5</value>
+  </data>
+  <data name="ApplyStyle6Command" xml:space="preserve">
+    <value>应用样式 6</value>
+  </data>
+  <data name="ApplyStyle7Command" xml:space="preserve">
+    <value>应用样式 7</value>
+  </data>
+  <data name="ApplyStyle8Command" xml:space="preserve">
+    <value>应用样式 8</value>
+  </data>
+  <data name="ApplyStyle9Command" xml:space="preserve">
+    <value>应用样式 9</value>
+  </data>
+  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
+    <value>清除</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
+    <value>重置所有</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
+    <value>重启</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>键盘</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>键盘</value>
+    <comment>sheet</comment>
+  </data>
 </root>

@@ -45,9 +45,7 @@ namespace River.OneMoreAddIn.Settings
 				{
 					"introLabel",
 					"deleteLabel",
-					"deleteButton",
-					"okButton",
-					"cancelButton"
+					"deleteButton"
 				});
 
 				nameColumn.HeaderText = Resx.SnippetsSheet_nameColumn_HeaderText;

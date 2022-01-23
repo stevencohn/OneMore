@@ -3811,4 +3811,69 @@ Deferred</value>
     <value>Sort Pages in Section</value>
     <comment>ribbon/context menu</comment>
   </data>
+  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Command</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
+    <value>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</value>
+    <comment>label</comment>
+  </data>
+  <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
+    <value>Key Sequence</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="ClearLogCommand" xml:space="preserve">
+    <value>Clear Log File</value>
+  </data>
+  <data name="DiagnosticsCommand" xml:space="preserve">
+    <value>Dump Diagnostics to Log</value>
+  </data>
+  <data name="ApplyStyle1Command" xml:space="preserve">
+    <value>Apply Style 1</value>
+  </data>
+  <data name="ApplyStyle2Command" xml:space="preserve">
+    <value>Apply Style 2</value>
+  </data>
+  <data name="ApplyStyle3Command" xml:space="preserve">
+    <value>Apply Style 3</value>
+  </data>
+  <data name="ApplyStyle4Command" xml:space="preserve">
+    <value>Apply Style 4</value>
+  </data>
+  <data name="ApplyStyle5Command" xml:space="preserve">
+    <value>Apply Style 5</value>
+  </data>
+  <data name="ApplyStyle6Command" xml:space="preserve">
+    <value>Apply Style 6</value>
+  </data>
+  <data name="ApplyStyle7Command" xml:space="preserve">
+    <value>Apply Style 7</value>
+  </data>
+  <data name="ApplyStyle8Command" xml:space="preserve">
+    <value>Apply Style 8</value>
+  </data>
+  <data name="ApplyStyle9Command" xml:space="preserve">
+    <value>Apply Style 9</value>
+  </data>
+  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
+    <value>Clear</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
+    <value>Reset all</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
+    <value>Reset</value>
+    <comment>toolstrip button</comment>
+  </data>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Keyboard</value>
+    <comment>treenode</comment>
+  </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>Keyboard</value>
+    <comment>sheet</comment>
+  </data>
 </root>
