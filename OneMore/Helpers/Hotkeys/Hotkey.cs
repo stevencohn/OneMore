@@ -102,25 +102,10 @@ namespace River.OneMoreAddIn
 
 				var keys = Keys.None;
 
-				if ((HotModifiers & (uint)HotModifier.Control) > 0)
-				{
-					keys |= Keys.Control;
-				}
-
-				if ((HotModifiers & (uint)HotModifier.Shift) > 0)
-				{
-					keys |= Keys.Shift;
-				}
-
-				if ((HotModifiers & (uint)HotModifier.Alt) > 0)
-				{
-					keys |= Keys.Alt;
-				}
-
-				if ((HotModifiers & (uint)HotModifier.Windows) > 0)
-				{
-					keys |= Keys.LWin;
-				}
+				if ((HotModifiers & (uint)HotModifier.Control) > 0) keys |= Keys.Control;
+				if ((HotModifiers & (uint)HotModifier.Shift) > 0) keys |= Keys.Shift;
+				if ((HotModifiers & (uint)HotModifier.Alt) > 0) keys |= Keys.Alt;
+				if ((HotModifiers & (uint)HotModifier.Windows) > 0) keys |= Keys.LWin;
 
 				return keys;
 			}
@@ -158,29 +143,22 @@ namespace River.OneMoreAddIn
 			Key = (uint)keys;
 			HotModifiers = 0;
 
-			if (modifiers.HasFlag(Keys.Control) ||
-				modifiers.HasFlag(Keys.LControlKey) ||
-				modifiers.HasFlag(Keys.RControlKey))
+			if ((modifiers & (Keys.Control | Keys.LControlKey | Keys.RControlKey)) > 0)
 			{
 				HotModifiers += (uint)HotModifier.Control;
 			}
 
-			if (modifiers.HasFlag(Keys.Shift) ||
-				modifiers.HasFlag(Keys.LShiftKey) ||
-				modifiers.HasFlag(Keys.RShiftKey))
+			if ((modifiers & (Keys.Shift | Keys.LShiftKey | Keys.RShiftKey)) > 0)
 			{
 				HotModifiers += (uint)HotModifier.Shift;
 			}
 
-			if (modifiers.HasFlag(Keys.Alt) ||
-				modifiers.HasFlag(Keys.RMenu) ||
-				modifiers.HasFlag(Keys.LMenu))
+			if ((modifiers & (Keys.Alt | Keys.RMenu | Keys.LMenu)) > 0)
 			{
 				HotModifiers += (uint)HotModifier.Alt;
 			}
 
-			if (modifiers.HasFlag(Keys.LWin) ||
-				modifiers.HasFlag(Keys.RWin))
+			if ((modifiers & (Keys.LWin | Keys.RWin)) > 0)
 			{
 				HotModifiers += (uint)HotModifier.Windows;
 			}
