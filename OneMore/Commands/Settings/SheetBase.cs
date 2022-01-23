@@ -82,7 +82,7 @@ namespace River.OneMoreAddIn.Settings
 		/// <returns>True if the sheets needs to be localized; language is not default 'en'</returns>
 		protected static bool NeedsLocalizing()
 		{
-			return Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName != "en";
+			return AddIn.Culture.TwoLetterISOLanguageName != "en";
 		}
 	}
 }

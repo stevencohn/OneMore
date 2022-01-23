@@ -3824,4 +3824,8 @@ Verschoven</value>
     <value>Toetsenbord</value>
     <comment>treenode</comment>
   </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>Toetsenbord</value>
+    <comment>sheet</comment>
+  </data>
 </root>

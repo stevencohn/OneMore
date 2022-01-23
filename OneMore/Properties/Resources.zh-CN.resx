@@ -3816,4 +3816,8 @@ OneNote 文件 (*.one)</value>
     <value>键盘</value>
     <comment>treenode</comment>
   </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>键盘</value>
+    <comment>sheet</comment>
+  </data>
 </root>

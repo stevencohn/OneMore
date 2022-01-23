@@ -3820,4 +3820,8 @@ Différé</value>
     <value>Clavier</value>
     <comment>treenode</comment>
   </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>Clavier</value>
+    <comment>sheet</comment>
+  </data>
 </root>

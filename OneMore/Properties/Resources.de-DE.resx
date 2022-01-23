@@ -3811,4 +3811,8 @@ Aufgeschoben</value>
     <value>Klaviatur</value>
     <comment>treenode</comment>
   </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>Klaviatur</value>
+    <comment>sheet</comment>
+  </data>
 </root>

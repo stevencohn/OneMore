@@ -3824,4 +3824,8 @@ ISO-code then comma then language name</comment>
     <value>لوحة المفاتيح</value>
     <comment>treenode</comment>
   </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>لوحة المفاتيح</value>
+    <comment>sheet</comment>
+  </data>
 </root>
