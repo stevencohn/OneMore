@@ -46,8 +46,6 @@ namespace River.OneMoreAddIn.Commands
 
 			presetRadio.Checked = true;
 			Radio_Click(presetRadio, null);
-			//pctRadio.Enabled = false;
-			//absRadio.Enabled = false;
 
 			settings = new SettingsProvider();
 			presetUpDown.Value = settings.GetImageWidth();
