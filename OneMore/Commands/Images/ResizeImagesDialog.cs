@@ -117,15 +117,20 @@ namespace River.OneMoreAddIn.Commands
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+		public bool MaintainAspect => aspectBox.Checked;
+
+
 		public decimal HeightPixels => heightUpDown.Value;
+
 
 		public decimal WidthPixels => widthUpDown.Value;
 
-		public bool MaintainAspect => aspectBox.Checked;
 
 		public decimal Percent => pctRadio.Checked ? pctUpDown.Value : 0;
 
+
 		public bool PreserveSize => preserveBox.Checked;
+
 
 		public int Quality => qualBar.Value;
 
