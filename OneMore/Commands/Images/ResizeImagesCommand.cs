@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 			using (var image = ReadImage(element))
 			{
 				// when pasting an image onto the page, width or height can be zero
-				// OneNote ignore both if either is zero so we'll do the same...
+				// OneNote ignores both if either is zero so we'll do the same...
 				if (viewWidth == 0 || viewHeight == 0)
 				{
 					viewWidth = image.Width;
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 								size.Attribute("height").Value, CultureInfo.InvariantCulture);
 
 							// when pasting an image onto the page, width or height can be zero
-							// OneNote ignore both if either is zero so we'll do the same...
+							// OneNote ignores both if either is zero so we'll do the same...
 							if (viewWidth == 0 || viewHeight == 0)
 							{
 								viewWidth = image.Width;
@@ -137,7 +137,10 @@ namespace River.OneMoreAddIn.Commands
 							else
 							{
 								width = (int)dialog.WidthPixels;
-								height = (int)(viewHeight * (dialog.WidthPixels / viewWidth));
+
+								height = dialog.MaintainAspect
+									? (int)(viewHeight * (dialog.WidthPixels / viewWidth))
+									: (int)dialog.HeightPixels;
 							}
 
 							if (!dialog.PreserveSize)
@@ -148,7 +151,6 @@ namespace River.OneMoreAddIn.Commands
 								}
 							}
 
-							logger.WriteLine($"resize from {viewWidth}x{viewHeight} to {width}x{height}");
 							size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
 							size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
 							size.SetAttributeValue("isSetByUser", "true");
