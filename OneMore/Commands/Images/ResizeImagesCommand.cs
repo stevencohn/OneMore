@@ -37,8 +37,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if ((elements == null) || !elements.Any())
 				{
-					elements = page.Root.Descendants(ns + "Image")
-						.Where(e => e.Attribute("backgroundImage")?.Value != "true");
+					// starting at Outline should exclude all background images
+					elements = page.Root.Elements(ns + "Outline").Descendants(ns + "Image");
 				}
 
 				if (elements != null)
