@@ -66,6 +66,10 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var image = ReadImage(element))
 			{
+				// when pasting an image onto the page, width and height can be zero
+				if (viewWidth == 0) viewWidth = image.Width;
+				if (viewHeight == 0) viewHeight = image.Height;
+
 				using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
 				{
 					var result = dialog.ShowDialog(owner);
