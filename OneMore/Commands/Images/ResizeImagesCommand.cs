@@ -37,7 +37,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if ((elements == null) || !elements.Any())
 				{
-					elements = page.Root.Descendants(ns + "Image");
+					// starting at Outline should exclude all background images
+					elements = page.Root.Elements(ns + "Outline").Descendants(ns + "Image");
 				}
 
 				if (elements != null)
@@ -65,6 +66,14 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var image = ReadImage(element))
 			{
+				// when pasting an image onto the page, width or height can be zero
+				// OneNote ignores both if either is zero so we'll do the same...
+				if (viewWidth == 0 || viewHeight == 0)
+				{
+					viewWidth = image.Width;
+					viewHeight = image.Height;
+				}
+
 				using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
 				{
 					var result = dialog.ShowDialog(owner);
@@ -99,34 +108,53 @@ namespace River.OneMoreAddIn.Commands
 				var result = dialog.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
-					var width = dialog.WidthPixels.ToString(CultureInfo.InvariantCulture);
-
 					foreach (var element in elements)
 					{
-						var size = element.Element(ns + "Size");
-
-						var imageWidth = (int)decimal.Parse(
-							size.Attribute("width").Value, CultureInfo.InvariantCulture);
-
-						var imageHeight = (int)decimal.Parse(
-							size.Attribute("height").Value, CultureInfo.InvariantCulture);
-
-						var height = (int)(imageHeight * (dialog.WidthPixels / imageWidth));
-
-						if (!dialog.PreserveSize)
+						using (var image = ReadImage(element))
 						{
-							using (var image = ReadImage(element))
+							var size = element.Element(ns + "Size");
+
+							var viewWidth = (int)decimal.Parse(
+								size.Attribute("width").Value, CultureInfo.InvariantCulture);
+
+							var viewHeight = (int)decimal.Parse(
+								size.Attribute("height").Value, CultureInfo.InvariantCulture);
+
+							// when pasting an image onto the page, width or height can be zero
+							// OneNote ignores both if either is zero so we'll do the same...
+							if (viewWidth == 0 || viewHeight == 0)
 							{
-								using (var data = image.Resize((int)dialog.WidthPixels, height, dialog.Quality))
+								viewWidth = image.Width;
+								viewHeight = image.Height;
+							}
+
+							int width, height;
+							if (dialog.Percent > 0)
+							{
+								width = (int)(viewWidth * (dialog.Percent / 100));
+								height = (int)(viewHeight * (dialog.Percent / 100));
+							}
+							else
+							{
+								width = (int)dialog.WidthPixels;
+
+								height = dialog.MaintainAspect
+									? (int)(viewHeight * (dialog.WidthPixels / viewWidth))
+									: (int)dialog.HeightPixels;
+							}
+
+							if (!dialog.PreserveSize)
+							{
+								using (var data = image.Resize(width, height, dialog.Quality))
 								{
 									WriteImage(element, data);
 								}
 							}
-						}
 
-						size.SetAttributeValue("width",  width);
-						size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
-						size.SetAttributeValue("isSetByUser", "true");
+							size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
+							size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
+							size.SetAttributeValue("isSetByUser", "true");
+						}
 					}
 
 					await one.Update(page);

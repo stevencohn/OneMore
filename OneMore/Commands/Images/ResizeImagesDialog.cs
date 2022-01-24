@@ -46,8 +46,6 @@ namespace River.OneMoreAddIn.Commands
 
 			presetRadio.Checked = true;
 			Radio_Click(presetRadio, null);
-			pctRadio.Enabled = false;
-			absRadio.Enabled = false;
 
 			settings = new SettingsProvider();
 			presetUpDown.Value = settings.GetImageWidth();
@@ -117,10 +115,16 @@ namespace River.OneMoreAddIn.Commands
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+		public bool MaintainAspect => aspectBox.Checked;
+
+
 		public decimal HeightPixels => heightUpDown.Value;
 
 
 		public decimal WidthPixels => widthUpDown.Value;
+
+
+		public decimal Percent => pctRadio.Checked ? pctUpDown.Value : 0;
 
 
 		public bool PreserveSize => preserveBox.Checked;

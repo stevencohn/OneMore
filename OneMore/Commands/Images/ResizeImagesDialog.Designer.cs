@@ -132,6 +132,11 @@ namespace River.OneMoreAddIn.Commands
             0,
             0,
             0});
+			this.pctUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.pctUpDown.Name = "pctUpDown";
 			this.pctUpDown.Size = new System.Drawing.Size(95, 26);
 			this.pctUpDown.TabIndex = 4;
