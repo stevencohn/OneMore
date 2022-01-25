@@ -4815,6 +4815,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply to.
+        /// </summary>
+        internal static string ResizeImagesDialog_applyToLabel {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_applyToLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maintain aspect ratio.
         /// </summary>
         internal static string ResizeImagesDialog_aspectBox_Text {
@@ -4824,20 +4833,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply to.
+        ///   Looks up a localized string similar to View size.
         /// </summary>
         internal static string ResizeImagesDialog_currentLabel_Text {
             get {
                 return ResourceManager.GetString("ResizeImagesDialog_currentLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current size.
-        /// </summary>
-        internal static string ResizeImagesDialog_currentLabelSize_Text {
-            get {
-                return ResourceManager.GetString("ResizeImagesDialog_currentLabelSize.Text", resourceCulture);
             }
         }
         
@@ -4851,7 +4851,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Original size.
+        ///   Looks up a localized string similar to Storage size.
         /// </summary>
         internal static string ResizeImagesDialog_origLabel_Text {
             get {
@@ -4883,6 +4883,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ResizeImagesDialog_pctRadio_Text {
             get {
                 return ResourceManager.GetString("ResizeImagesDialog_pctRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preserve storage size.
+        /// </summary>
+        internal static string ResizeImagesDialog_preserveBox_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_preserveBox.Text", resourceCulture);
             }
         }
         

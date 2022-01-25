@@ -19,12 +19,12 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly SettingsProvider settings;
 		private readonly Image image;
-		private readonly string tempfile;
-		private readonly int currentWidth;
-		private readonly int currentHeight;
+		private readonly string temp;
+		private readonly int viewWidth;
+		private readonly int viewHeight;
 		private int originalWidth;
 		private int originalHeight;
-		private bool suspended;
+		private bool suspended = true;
 
 
 		/// <summary>
@@ -37,15 +37,15 @@ namespace River.OneMoreAddIn.Commands
 
 			originalWidth = originalHeight = 1;
 
-			// disable controls that do not apply...
+			// hide controls that do not apply...
 
-			currentLabel.Text = Resx.ResizeImagesDialog_currentLabel_Text;
+			currentLabel.Text = Resx.ResizeImagesDialog_applyToLabel;
 			allLabel.Left = sizeLink.Left;
 			allLabel.Visible = true;
 			origLabel.Visible = sizeLink.Visible = origSizeLink.Visible = false;
 
 			presetRadio.Checked = true;
-			Radio_Click(presetRadio, null);
+			RadioClick(presetRadio, null);
 
 			settings = new SettingsProvider();
 			presetUpDown.Value = settings.GetImageWidth();
@@ -61,25 +61,25 @@ namespace River.OneMoreAddIn.Commands
 			Initialize();
 
 			this.image = image;
-			tempfile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+			temp = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-			suspended = true;
-			currentWidth = viewWidth;
-			currentHeight = viewHeight;
+			this.viewWidth = viewWidth;
+			this.viewHeight = viewHeight;
 
 			sizeLink.Text = string.Format(
-				Resx.ResizeImagesDialog_sizeLink_Text, currentWidth, currentHeight);
+				Resx.ResizeImagesDialog_sizeLink_Text, this.viewWidth, this.viewHeight);
 
-			widthUpDown.Value = originalWidth = image.Width;
-			heightUpDown.Value = originalHeight = image.Height;
+			originalWidth = image.Width;
+			originalHeight = image.Height;
 
 			origSizeLink.Text = string.Format(
 				Resx.ResizeImagesDialog_sizeLink_Text, originalWidth, originalHeight);
 
+			widthUpDown.Value = viewWidth;
+			heightUpDown.Value = viewHeight;
+
 			settings = new SettingsProvider();
 			presetUpDown.Value = settings.GetImageWidth();
-
-			suspended = false;
 
 			EstimateStorage();
 		}
@@ -95,21 +95,31 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"currentLabel",
+					"origLabel",
+					"allLabel",
 					"pctRadio",
-					"absRadio",
-					"presetRadio",
-					"presetLabel",
 					"pctLabel",
+					"absRadio",
 					"aspectBox",
 					"widthLabel",
 					"heightLabel",
-					"origLabel",
-					"allLabel",
-					"qualBox.Text",
+					"presetRadio",
+					"presetLabel",
+					"preserveBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
+
+				qualLabel.Text = string.Format(Resx.ResizeImageDialog_qualLabel_Text, qualBar.Value);
 			}
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			suspended = false;
 		}
 
 
@@ -133,11 +143,15 @@ namespace River.OneMoreAddIn.Commands
 		public int Quality => qualBar.Value;
 
 
+		/// <summary>
+		/// Get the resized image used for size estimation.
+		/// </summary>
+		/// <returns></returns>
 		public Image GetImage()
 		{
-			if (!string.IsNullOrEmpty(tempfile) && File.Exists(tempfile))
+			if (!string.IsNullOrEmpty(temp) && File.Exists(temp))
 			{
-				return Image.FromFile(tempfile);
+				return Image.FromFile(temp);
 			}
 
 			return null;
@@ -152,30 +166,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void OK(object sender, EventArgs e)
+		private void ResetToCurrentSize(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			if (presetRadio.Checked)
-			{
-				settings.SetImageWidth((int)(presetUpDown.Value));
-				settings.Save();
-
-				suspended = true;
-				widthUpDown.Value = presetUpDown.Value;
-				heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
-			}
-
-			DialogResult = DialogResult.OK;
+			RadioClick(absRadio, null);
+			absRadio.Checked = true;
+			widthUpDown.Value = viewWidth;
+			heightUpDown.Value = viewHeight;
+			EstimateStorage();
 		}
 
 
-		private void Cancel(object sender, EventArgs e)
+		private void ResetToOriginalSize(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			DialogResult = DialogResult.Cancel;
-			Close();
+			RadioClick(absRadio, null);
+			absRadio.Checked = true;
+			widthUpDown.Value = originalWidth;
+			heightUpDown.Value = originalHeight;
+			EstimateStorage();
 		}
 
 
-		private void Radio_Click(object sender, EventArgs e)
+		private void RadioClick(object sender, EventArgs e)
 		{
 			pctUpDown.Enabled = sender == pctRadio;
 
@@ -188,38 +199,28 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ResetCurrentSize(object sender, LinkLabelLinkClickedEventArgs e)
+		private void RadioKeyDown(object sender, KeyEventArgs e)
 		{
-			Radio_Click(absRadio, null);
-			absRadio.Checked = true;
-			widthUpDown.Value = currentWidth;
-			heightUpDown.Value = currentHeight;
-			EstimateStorage();
+			if (e.KeyCode == Keys.Enter)
+			{
+				e.Handled = true;
+				OK(this, e);
+			}
 		}
 
 
-		private void ResetOriginalSize(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			Radio_Click(absRadio, null);
-			absRadio.Checked = true;
-			widthUpDown.Value = originalWidth;
-			heightUpDown.Value = originalHeight;
-			EstimateStorage();
-		}
-
-
-		private void pctUpDown_ValueChanged(object sender, EventArgs e)
+		private void PercentValueChanged(object sender, EventArgs e)
 		{
 			suspended = true;
-			widthUpDown.Value = (int)(originalWidth * (pctUpDown.Value / 100));
-			heightUpDown.Value = (int)(originalHeight * (pctUpDown.Value / 100));
+			widthUpDown.Value = (int)(viewWidth * (pctUpDown.Value / 100));
+			heightUpDown.Value = (int)(viewHeight * (pctUpDown.Value / 100));
 			EstimateStorage();
 			
 			suspended = false;
 		}
 
 
-		private void aspectBox_CheckedChanged(object sender, EventArgs e)
+		private void MaintainAspectCheckedChanged(object sender, EventArgs e)
 		{
 			if (aspectBox.Checked)
 			{
@@ -232,7 +233,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void widthUpDown_ValueChanged(object sender, EventArgs e)
+		private void WidthValueChanged(object sender, EventArgs e)
 		{
 			if (suspended)
 				return;
@@ -251,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void heightUpDown_ValueChanged(object sender, EventArgs e)
+		private void HeightValueChanged(object sender, EventArgs e)
 		{
 			if (suspended)
 				return;
@@ -270,8 +271,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void presetUpDown_ValueChanged(object sender, EventArgs e)
+		private void OpacityValueChanged(object sender, EventArgs e)
 		{
+			EstimateStorage();
+		}
+
+
+		private void PresetValueChanged(object sender, EventArgs e)
+		{
+			if (suspended)
+				return;
+
 			suspended = true;
 			widthUpDown.Value = (int)presetUpDown.Value;
 			heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
@@ -311,14 +321,47 @@ namespace River.OneMoreAddIn.Commands
 				// resize image without disposing it, use a temp variable 'resized' to dispose
 				using (var resized = image.Resize(rewidth, reheight, Quality))
 				{
-					resized.Save(tempfile);
+					if (opacityBox.Value < 100)
+					{
+						using (var t = ((Bitmap)image).SetOpacity((int)opacityBox.Value / 100f))
+						{
+							t.Save(temp);
+						}
+					}
+					else
+					{
+						resized.Save(temp);
+					}
 				}
 
 				logger.WriteTime("resized image");
 
-				var size = new FileInfo(tempfile).Length;
+				var size = new FileInfo(temp).Length;
 				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size.ToBytes(1));
 			}
+		}
+
+
+		private void OK(object sender, EventArgs e)
+		{
+			if (presetRadio.Checked)
+			{
+				settings.SetImageWidth((int)(presetUpDown.Value));
+				settings.Save();
+
+				suspended = true;
+				widthUpDown.Value = presetUpDown.Value;
+				heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
+			}
+
+			DialogResult = DialogResult.OK;
+		}
+
+
+		private void Cancel(object sender, EventArgs e)
+		{
+			DialogResult = DialogResult.Cancel;
+			Close();
 		}
 	}
 }

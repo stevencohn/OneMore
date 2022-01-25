@@ -90,6 +90,8 @@ namespace River.OneMoreAddIn.Commands
 							}
 						}
 
+						logger.WriteLine($"resizing from {viewWidth}x{viewHeight} to {dialog.WidthPixels}x{dialog.HeightPixels}");
+
 						size.SetAttributeValue("width", dialog.WidthPixels.ToString(CultureInfo.InvariantCulture));
 						size.SetAttributeValue("height", dialog.HeightPixels.ToString(CultureInfo.InvariantCulture));
 						size.SetAttributeValue("isSetByUser", "true");

@@ -653,11 +653,7 @@ Percentage</value>
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>Van toepassing op</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>Huidige grootte</value>
+    <value>Bekijk grootte</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
@@ -665,7 +661,7 @@ Percentage</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Originele grootte</value>
+    <value>Opslaggrootte:</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
@@ -3827,5 +3823,13 @@ Verschoven</value>
   <data name="KeyboardSheet.Text" xml:space="preserve">
     <value>Toetsenbord</value>
     <comment>sheet</comment>
+  </data>
+  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
+    <value>Van toepassing op</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Opslaggrootte behouden</value>
+    <comment>checkbox</comment>
   </data>
 </root>

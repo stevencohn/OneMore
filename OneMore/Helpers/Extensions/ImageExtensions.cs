@@ -90,6 +90,37 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Renders a new image as a copy of the given image with a desired opacity
+		/// </summary>
+		/// <param name="image">The original image to copy</param>
+		/// <param name="opacity">The desired opacity value as a percentage (0.0 .. 1.0)</param>
+		/// <returns></returns>
+		public static Image SetOpacity(this Image image, float opacity)
+		{
+			var copy = new Bitmap(image.Width, image.Height);
+			using (var graphics = Graphics.FromImage(copy))
+			{
+				var matrix = new ColorMatrix
+				{
+					Matrix33 = opacity
+				};
+
+				using (var atts = new ImageAttributes())
+				{
+					atts.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+					graphics.DrawImage(image,
+						new Rectangle(0, 0, copy.Width, copy.Height),
+						0, 0, image.Width, image.Height,
+						GraphicsUnit.Pixel, atts);
+				}
+			}
+
+			return copy;
+		}
+
+
+		/// <summary>
 		/// Sets the quality level of the given image.
 		/// </summary>
 		/// <param name="image"></param>

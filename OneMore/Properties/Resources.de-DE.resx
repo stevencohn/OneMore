@@ -643,11 +643,7 @@
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>Gelten</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>Momentane Größe</value>
+    <value>Größe anzeigen</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
@@ -655,7 +651,7 @@
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Originalgröße</value>
+    <value>Speichergröße</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
@@ -3814,5 +3810,13 @@ Aufgeschoben</value>
   <data name="KeyboardSheet.Text" xml:space="preserve">
     <value>Klaviatur</value>
     <comment>sheet</comment>
+  </data>
+  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
+    <value>Gelten</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Speichergröße beibehalten</value>
+    <comment>checkbox</comment>
   </data>
 </root>

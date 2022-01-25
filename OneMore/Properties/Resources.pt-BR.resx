@@ -653,11 +653,7 @@ Percentagem</value>
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>Aplicar a</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>Tamanho atual</value>
+    <value>Ver tamanho</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
@@ -665,7 +661,7 @@ Percentagem</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Tamanho original</value>
+    <value>Tamanho do armazenamento</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
@@ -3827,5 +3823,13 @@ Diferido</value>
   <data name="KeyboardSheet.Text" xml:space="preserve">
     <value>Teclado</value>
     <comment>sheet</comment>
+  </data>
+  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
+    <value>Aplicar a</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Preservar o tamanho do armazenamento</value>
+    <comment>checkbox</comment>
   </data>
 </root>
