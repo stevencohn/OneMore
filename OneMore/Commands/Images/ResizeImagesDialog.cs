@@ -10,7 +10,6 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Drawing;
-	using System.IO;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -19,11 +18,12 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly SettingsProvider settings;
 		private readonly Image image;
-		private readonly string temp;
 		private readonly int viewWidth;
 		private readonly int viewHeight;
 		private int originalWidth;
 		private int originalHeight;
+		private Image preview;
+		private int storageSize;
 		private bool suspended = true;
 
 
@@ -44,11 +44,14 @@ namespace River.OneMoreAddIn.Commands
 			allLabel.Visible = true;
 			origLabel.Visible = sizeLink.Visible = origSizeLink.Visible = false;
 
+			previewGroup.Visible = false;
+			Width -= (previewGroup.Width + Padding.Right);
+
 			presetRadio.Checked = true;
 			RadioClick(presetRadio, null);
 
 			settings = new SettingsProvider();
-			presetUpDown.Value = settings.GetImageWidth();
+			presetUpDown.Value = settings.GetCollection("images").Get("mruWidth", 500);
 		}
 
 
@@ -61,7 +64,6 @@ namespace River.OneMoreAddIn.Commands
 			Initialize();
 
 			this.image = image;
-			temp = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
 			this.viewWidth = viewWidth;
 			this.viewHeight = viewHeight;
@@ -79,9 +81,9 @@ namespace River.OneMoreAddIn.Commands
 			heightUpDown.Value = viewHeight;
 
 			settings = new SettingsProvider();
-			presetUpDown.Value = settings.GetImageWidth();
+			presetUpDown.Value = settings.GetCollection("images").Get("mruWidth", 500);
 
-			EstimateStorage();
+			DrawPreview();
 		}
 
 
@@ -107,6 +109,7 @@ namespace River.OneMoreAddIn.Commands
 					"presetRadio",
 					"presetLabel",
 					"preserveBox",
+					"previewBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -125,13 +128,16 @@ namespace River.OneMoreAddIn.Commands
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		public bool MaintainAspect => aspectBox.Checked;
-
-
 		public decimal HeightPixels => heightUpDown.Value;
 
 
-		public decimal WidthPixels => widthUpDown.Value;
+		public decimal ImageOpacity => opacityBox.Value;
+
+
+		public int ImageQuality => qualBar.Value;
+
+
+		public bool MaintainAspect => aspectBox.Checked;
 
 
 		public decimal Percent => pctRadio.Checked ? pctUpDown.Value : 0;
@@ -140,29 +146,93 @@ namespace River.OneMoreAddIn.Commands
 		public bool PreserveSize => preserveBox.Checked;
 
 
-		public int Quality => qualBar.Value;
+		public decimal WidthPixels => widthUpDown.Value;
+
 
 
 		/// <summary>
-		/// Get the resized image used for size estimation.
+		/// Gets a new image after applying the desired modifications to the source image.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A new image</returns>
 		public Image GetImage()
 		{
-			if (!string.IsNullOrEmpty(temp) && File.Exists(temp))
+			previewBox.Image = null;
+			preview.Dispose();
+
+			if (WidthPixels == image.Width && HeightPixels == image.Height)
 			{
-				return Image.FromFile(temp);
+				return image;
 			}
 
-			return null;
+			preview = image.Resize((int)WidthPixels, (int)HeightPixels);
+
+			if (qualBar.Value < 100)
+			{
+				using (var p = preview)
+					preview = p.SetQuality(qualBar.Value);
+			}
+
+			// opacity must be set last
+			if (opacityBox.Value < 100)
+			{
+				using (var p = preview)
+					preview = p.SetOpacity((float)(opacityBox.Value / 100));
+			}
+
+			return preview;
 		}
 
 
-		public void SetOriginalSize(Size size)
+		private void DrawPreview()
 		{
-			origSizeLink.Text = string.Format(Resx.ResizeImagesDialog_origSizeLink_Text, size.Width, size.Height);
-			originalWidth = size.Width;
-			originalHeight = size.Height;
+			logger.StartClock();
+
+			previewBox.Image = null;
+			preview?.Dispose();
+
+			if (WidthPixels <= previewBox.Width && HeightPixels <= previewBox.Height)
+			{
+				preview = image.Resize((int)WidthPixels, (int)HeightPixels);
+			}
+			else
+			{
+				var x = previewBox.Width - WidthPixels;
+				var y = previewBox.Height - HeightPixels;
+				if (x < y)
+				{
+					var height = (int)(HeightPixels * (image.Width / previewBox.Width));
+					preview = image.Resize(previewBox.Width, height);
+				}
+				else
+				{
+					var width = (int)(WidthPixels * (image.Height / preserveBox.Height));
+					preview = image.Resize(width, previewBox.Height);
+				}
+			}
+
+			if (qualBar.Value < 100)
+			{
+				using (var p = preview)
+					preview = p.SetQuality(qualBar.Value);
+			}
+
+			// opacity must be set last
+			if (opacityBox.Value < 100)
+			{
+				using (var p = preview)
+					preview = p.SetOpacity((float)(opacityBox.Value / 100));
+			}
+
+			previewBox.Image = preview;
+
+			if (storageSize == 0 || !preserveBox.Checked)
+			{
+				storageSize = ((byte[])new ImageConverter().ConvertTo(preview, typeof(byte[]))).Length;
+				var size = storageSize.ToBytes(1);
+				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size);
+
+				logger.WriteTime($"estimated {WidthPixels} x {HeightPixels} = {size}");
+			}
 		}
 
 
@@ -172,7 +242,9 @@ namespace River.OneMoreAddIn.Commands
 			absRadio.Checked = true;
 			widthUpDown.Value = viewWidth;
 			heightUpDown.Value = viewHeight;
-			EstimateStorage();
+
+			if (image != null)
+				DrawPreview();
 		}
 
 
@@ -182,7 +254,9 @@ namespace River.OneMoreAddIn.Commands
 			absRadio.Checked = true;
 			widthUpDown.Value = originalWidth;
 			heightUpDown.Value = originalHeight;
-			EstimateStorage();
+
+			if (image != null)
+				DrawPreview();
 		}
 
 
@@ -211,12 +285,20 @@ namespace River.OneMoreAddIn.Commands
 
 		private void PercentValueChanged(object sender, EventArgs e)
 		{
-			suspended = true;
-			widthUpDown.Value = (int)(viewWidth * (pctUpDown.Value / 100));
-			heightUpDown.Value = (int)(viewHeight * (pctUpDown.Value / 100));
-			EstimateStorage();
-			
-			suspended = false;
+			var w = (int)(viewWidth * (pctUpDown.Value / 100));
+			var h = (int)(viewHeight * (pctUpDown.Value / 100));
+
+			if (w > 0 && h > 0)
+			{
+				suspended = true;
+				widthUpDown.Value = w;
+				heightUpDown.Value = h;
+
+				if (image != null)
+					DrawPreview();
+
+				suspended = false;
+			}
 		}
 
 
@@ -244,8 +326,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					suspended = true;
 					heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
-					EstimateStorage();
-					
+
+					if (image != null)
+						DrawPreview();
+
 					suspended = false;
 				}
 			}
@@ -263,8 +347,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					suspended = true;
 					widthUpDown.Value = (int)(originalWidth * (heightUpDown.Value / originalHeight));
-					EstimateStorage();
-					
+
+					if (image != null)
+						DrawPreview();
+
 					suspended = false;
 				}
 			}
@@ -273,7 +359,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void OpacityValueChanged(object sender, EventArgs e)
 		{
-			EstimateStorage();
+			if (image != null)
+				DrawPreview();
 		}
 
 
@@ -285,7 +372,9 @@ namespace River.OneMoreAddIn.Commands
 			suspended = true;
 			widthUpDown.Value = (int)presetUpDown.Value;
 			heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
-			EstimateStorage();
+
+			if (image != null)
+				DrawPreview();
 
 			suspended = false;
 		}
@@ -294,51 +383,11 @@ namespace River.OneMoreAddIn.Commands
 		private void EstimateStorage(object sender, EventArgs e)
 		{
 			qualLabel.Text = string.Format(Resx.ResizeImageDialog_qualLabel_Text, qualBar.Value);
-			EstimateStorage();
-		}
 
+			storageSize = 0;
 
-		private void EstimateStorage()
-		{
 			if (image != null)
-			{
-				logger.StartClock();
-
-				int rewidth;
-				int reheight;
-
-				if (preserveBox.Checked)
-				{
-					rewidth = originalWidth;
-					reheight = originalHeight;
-				}
-				else
-				{
-					rewidth = (int)WidthPixels;
-					reheight = (int)HeightPixels;
-				}
-
-				// resize image without disposing it, use a temp variable 'resized' to dispose
-				using (var resized = image.Resize(rewidth, reheight, Quality))
-				{
-					if (opacityBox.Value < 100)
-					{
-						using (var t = ((Bitmap)image).SetOpacity((int)opacityBox.Value / 100f))
-						{
-							t.Save(temp);
-						}
-					}
-					else
-					{
-						resized.Save(temp);
-					}
-				}
-
-				logger.WriteTime("resized image");
-
-				var size = new FileInfo(temp).Length;
-				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size.ToBytes(1));
-			}
+				DrawPreview();
 		}
 
 
@@ -346,7 +395,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (presetRadio.Checked)
 			{
-				settings.SetImageWidth((int)(presetUpDown.Value));
+				var collection = settings.GetCollection("images");
+				collection.Add("mruWidth", (int)presetUpDown.Value);
+				settings.SetCollection(collection);
 				settings.Save();
 
 				suspended = true;

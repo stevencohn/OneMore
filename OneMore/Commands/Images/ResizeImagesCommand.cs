@@ -147,7 +147,7 @@ namespace River.OneMoreAddIn.Commands
 
 							if (!dialog.PreserveSize)
 							{
-								using (var data = image.Resize(width, height, dialog.Quality))
+								using (var data = image.Resize(width, height, dialog.ImageQuality))
 								{
 									WriteImage(element, data);
 								}

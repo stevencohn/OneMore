@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn
 		/// <param name="height">The new height in pixels</param>
 		/// <param name="quality">The quality level; only applies if it is less than 100</param>
 		/// <returns></returns>
-		public static Image Resize(this Image image, int width, int height, int quality)
+		public static Image Resize(this Image image, int width, int height)
 		{
 			var result = new Bitmap(width, height);
 			result.SetResolution(image.HorizontalResolution, image.VerticalResolution);
@@ -85,6 +85,11 @@ namespace River.OneMoreAddIn
 				}
 			}
 
+			return result;
+		}
+		public static Image Resize(this Image image, int width, int height, int quality)
+		{
+			var result = Resize(image, width, height);
 			return quality < 100 ? result.SetQuality(quality) : result;
 		}
 
@@ -102,6 +107,7 @@ namespace River.OneMoreAddIn
 			{
 				var matrix = new ColorMatrix
 				{
+					// row 3, col 3 represents alpha component
 					Matrix33 = opacity
 				};
 
