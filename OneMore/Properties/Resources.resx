@@ -2030,10 +2030,6 @@ Quick Notes to bottom</value>
     <value>Page Numbering</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
-    <value>%</value>
-    <comment>percent sign</comment>
-  </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>
     <comment>message box</comment>
@@ -3882,5 +3878,11 @@ Deferred</value>
   </data>
   <data name="word_Preview" xml:space="preserve">
     <value>Preview</value>
+  </data>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>%</value>
   </data>
 </root>

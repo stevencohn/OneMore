@@ -4869,15 +4869,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %.
-        /// </summary>
-        internal static string ResizeImagesDialog_pctLabel_Text {
-            get {
-                return ResourceManager.GetString("ResizeImagesDialog_pctLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Percentage.
         /// </summary>
         internal static string ResizeImagesDialog_pctRadio_Text {
@@ -8652,6 +8643,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_OK {
             get {
                 return ResourceManager.GetString("word_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opacity.
+        /// </summary>
+        internal static string word_Opacity {
+            get {
+                return ResourceManager.GetString("word_Opacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to %.
+        /// </summary>
+        internal static string word_PercentSymbol {
+            get {
+                return ResourceManager.GetString("word_PercentSymbol", resourceCulture);
             }
         }
         

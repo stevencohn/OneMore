@@ -665,10 +665,6 @@ OneNote 将自动关闭</value>
     <value>{0} x {1}</value>
     <comment>width x height</comment>
   </data>
-  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
-    <value>%</value>
-    <comment>percent sign</comment>
-  </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>百分比</value>
     <comment>radio</comment>
@@ -3826,5 +3822,11 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="word_Preview" xml:space="preserve">
     <value>预览</value>
+  </data>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>％</value>
   </data>
 </root>

@@ -663,10 +663,6 @@
     <value>{0} × {1}</value>
     <comment>width x height</comment>
   </data>
-  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
-    <value>٪</value>
-    <comment>percent sign</comment>
-  </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>النسبة المئوية</value>
     <comment>radio</comment>
@@ -3834,5 +3830,11 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Preview" xml:space="preserve">
     <value>معاينة</value>
+  </data>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>العتامة</value>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>٪</value>
   </data>
 </root>

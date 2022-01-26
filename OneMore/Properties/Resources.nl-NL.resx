@@ -668,10 +668,6 @@ Percentage</value>
     <value>{0} x {1}</value>
     <comment>width x height</comment>
   </data>
-  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
-    <value>%</value>
-    <comment>percent sign</comment>
-  </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Percentage</value>
     <comment>radio</comment>
@@ -3834,5 +3830,11 @@ Verschoven</value>
   </data>
   <data name="word_Preview" xml:space="preserve">
     <value>Voorbeeld</value>
+  </data>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>Opaciteit</value>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>Vermogend</value>
   </data>
 </root>

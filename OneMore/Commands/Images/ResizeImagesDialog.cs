@@ -116,12 +116,15 @@ namespace River.OneMoreAddIn.Commands
 					"heightLabel",
 					"presetRadio",
 					"presetLabel",
+					"opacityLabel=word_Opacity",
+					"opacityPctLabel=word_PercentSymbol",
 					"preserveBox",
-					"previewBox=word_Preview",
+					"previewGroup=word_Preview",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 
+				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, 0);
 				qualLabel.Text = string.Format(Resx.ResizeImageDialog_qualLabel_Text, qualBar.Value);
 			}
 		}
