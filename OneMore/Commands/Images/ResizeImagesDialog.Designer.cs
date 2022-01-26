@@ -128,7 +128,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.pctUpDown.Location = new System.Drawing.Point(200, 118);
 			this.pctUpDown.Maximum = new decimal(new int[] {
-            2000,
+            6000,
             0,
             0,
             0});
