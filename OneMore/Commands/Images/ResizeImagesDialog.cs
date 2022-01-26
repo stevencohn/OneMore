@@ -153,7 +153,10 @@ namespace River.OneMoreAddIn.Commands
 		public bool MaintainAspect => aspectBox.Checked;
 
 
-		public bool NeedsRewrite => qualBar.Value < 100 || opacityBox.Value < 100;
+		public bool NeedsRewrite => 
+			qualBar.Value < 100 ||
+			opacityBox.Value < 100 ||
+			!preserveBox.Checked;
 
 
 		public decimal Percent => pctRadio.Checked ? pctUpDown.Value : 0;
