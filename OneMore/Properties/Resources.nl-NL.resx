@@ -3832,4 +3832,7 @@ Verschoven</value>
     <value>Opslaggrootte behouden</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>Voorbeeld</value>
+  </data>
 </root>

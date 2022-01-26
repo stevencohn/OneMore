@@ -3828,4 +3828,7 @@ Différé</value>
     <value>Préserver la taille de stockage</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>Aperçu</value>
+  </data>
 </root>

@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private Image preview;
 		private int storageSize;
 		private bool suspended = true;
+		private bool mruWidth = true;
 
 
 		/// <summary>
@@ -51,7 +52,6 @@ namespace River.OneMoreAddIn.Commands
 			RadioClick(presetRadio, null);
 
 			settings = new SettingsProvider();
-			presetUpDown.Value = settings.GetCollection("images").Get("mruWidth", 500);
 		}
 
 
@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 					"presetRadio",
 					"presetLabel",
 					"preserveBox",
-					"previewBox",
+					"previewBox=word_Preview",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -196,18 +196,29 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				var x = previewBox.Width - WidthPixels;
-				var y = previewBox.Height - HeightPixels;
-				if (x < y)
+				var w = previewBox.Width;
+				var h = previewBox.Height;
+				if (WidthPixels > w && HeightPixels > h)
 				{
-					var height = (int)(HeightPixels * (image.Width / previewBox.Width));
-					preview = image.Resize(previewBox.Width, height);
+					if (WidthPixels > HeightPixels)
+					{
+						h = (int)(HeightPixels * (w / WidthPixels));
+					}
+					else
+					{
+						w = (int)(WidthPixels * (h / HeightPixels));
+					}
+				}
+				else if (WidthPixels > w)
+				{
+					h = (int)(HeightPixels * (w / WidthPixels));
 				}
 				else
 				{
-					var width = (int)(WidthPixels * (image.Height / preserveBox.Height));
-					preview = image.Resize(width, previewBox.Height);
+					w = (int)(WidthPixels * (h / HeightPixels));
 				}
+
+				preview = image.Resize(w, h);
 			}
 
 			if (qualBar.Value < 100)
@@ -240,8 +251,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			RadioClick(absRadio, null);
 			absRadio.Checked = true;
+			pctUpDown.Value = 100;
 			widthUpDown.Value = viewWidth;
 			heightUpDown.Value = viewHeight;
+			mruWidth = true;
 
 			if (image != null)
 				DrawPreview();
@@ -252,8 +265,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			RadioClick(absRadio, null);
 			absRadio.Checked = true;
+			pctUpDown.Value = (decimal)originalWidth / viewWidth * 100;
 			widthUpDown.Value = originalWidth;
 			heightUpDown.Value = originalHeight;
+			mruWidth = true;
 
 			if (image != null)
 				DrawPreview();
@@ -268,8 +283,8 @@ namespace River.OneMoreAddIn.Commands
 			aspectBox.Enabled = abs;
 			widthUpDown.Enabled = abs;
 			heightUpDown.Enabled = abs;
-
 			presetUpDown.Enabled = sender == presetRadio;
+			mruWidth = true;
 		}
 
 
@@ -285,6 +300,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void PercentValueChanged(object sender, EventArgs e)
 		{
+			if (suspended)
+				return;
+
 			var w = (int)(viewWidth * (pctUpDown.Value / 100));
 			var h = (int)(viewHeight * (pctUpDown.Value / 100));
 
@@ -293,6 +311,7 @@ namespace River.OneMoreAddIn.Commands
 				suspended = true;
 				widthUpDown.Value = w;
 				heightUpDown.Value = h;
+				mruWidth = true;
 
 				if (image != null)
 					DrawPreview();
@@ -304,63 +323,89 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MaintainAspectCheckedChanged(object sender, EventArgs e)
 		{
-			if (aspectBox.Checked)
+			if (!aspectBox.Checked)
 			{
-				var aspect = widthUpDown.Value < originalWidth 
-					? widthUpDown.Value / originalWidth
-					: originalWidth / widthUpDown.Value;
-
-				heightUpDown.Value = (int)(originalHeight * aspect);
+				return;
 			}
+
+			suspended = true;
+			decimal aspect;
+			if (mruWidth)
+			{
+				aspect = widthUpDown.Value < viewWidth
+					? widthUpDown.Value / viewWidth
+					: viewWidth / widthUpDown.Value;
+
+				heightUpDown.Value = (int)(viewHeight * aspect);
+			}
+			else
+			{
+				aspect = heightUpDown.Value < viewHeight
+					? heightUpDown.Value / viewHeight
+					: viewHeight / heightUpDown.Value;
+
+				widthUpDown.Value = (int)(viewWidth * aspect);
+			}
+
+			pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
+
+			if (image != null)
+				DrawPreview();
+
+			suspended = false;
 		}
 
 
 		private void WidthValueChanged(object sender, EventArgs e)
 		{
-			if (suspended)
-				return;
-
-			if (widthUpDown.Enabled)
+			if (suspended || !widthUpDown.Enabled)
 			{
-				if (aspectBox.Checked)
-				{
-					suspended = true;
-					heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
-
-					if (image != null)
-						DrawPreview();
-
-					suspended = false;
-				}
+				return;
 			}
+
+			suspended = true;
+			if (aspectBox.Checked)
+			{
+				heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
+			}
+
+			pctUpDown.Value = heightUpDown.Value / viewHeight * 100;
+			suspended = false;
+			mruWidth = true;
+
+			if (image != null)
+				DrawPreview();
 		}
 
 
 		private void HeightValueChanged(object sender, EventArgs e)
 		{
-			if (suspended)
-				return;
-
-			if (heightUpDown.Enabled)
+			if (suspended || !heightUpDown.Enabled)
 			{
-				if (aspectBox.Checked)
-				{
-					suspended = true;
-					widthUpDown.Value = (int)(originalWidth * (heightUpDown.Value / originalHeight));
-
-					if (image != null)
-						DrawPreview();
-
-					suspended = false;
-				}
+				return;
 			}
+
+			suspended = true;
+			if (aspectBox.Checked)
+			{
+				widthUpDown.Value = (int)(viewWidth * (heightUpDown.Value / viewHeight));
+			}
+
+			pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
+			suspended = false;
+			mruWidth = false;
+
+			if (image != null)
+				DrawPreview();
 		}
 
 
 		private void OpacityValueChanged(object sender, EventArgs e)
 		{
 			if (image != null)
+			{
 				DrawPreview();
+			}
 		}
 
 
@@ -371,7 +416,9 @@ namespace River.OneMoreAddIn.Commands
 
 			suspended = true;
 			widthUpDown.Value = (int)presetUpDown.Value;
-			heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
+			heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
+			pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
+			mruWidth = true;
 
 			if (image != null)
 				DrawPreview();
@@ -402,7 +449,7 @@ namespace River.OneMoreAddIn.Commands
 
 				suspended = true;
 				widthUpDown.Value = presetUpDown.Value;
-				heightUpDown.Value = (int)(originalHeight * (widthUpDown.Value / originalWidth));
+				heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
 			}
 
 			DialogResult = DialogResult.OK;

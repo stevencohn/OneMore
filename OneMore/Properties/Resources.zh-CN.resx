@@ -3824,4 +3824,7 @@ OneNote 文件 (*.one)</value>
     <value>保留存储大小</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>预览</value>
+  </data>
 </root>

@@ -3832,4 +3832,7 @@ ISO-code then comma then language name</comment>
     <value>الحفاظ على حجم التخزين</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>معاينة</value>
+  </data>
 </root>

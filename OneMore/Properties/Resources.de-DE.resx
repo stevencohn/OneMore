@@ -3819,4 +3819,7 @@ Aufgeschoben</value>
     <value>Speichergröße beibehalten</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>Vorschau</value>
+  </data>
 </root>

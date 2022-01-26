@@ -3880,4 +3880,7 @@ Deferred</value>
     <value>Preserve storage size</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
 </root>

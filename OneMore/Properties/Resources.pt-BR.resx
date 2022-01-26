@@ -3832,4 +3832,7 @@ Diferido</value>
     <value>Preservar o tamanho do armazenamento</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>Visualizar</value>
+  </data>
 </root>
