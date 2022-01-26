@@ -253,7 +253,7 @@ namespace River.OneMoreAddIn.Commands
 				var size = storageSize.ToBytes(1);
 				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size);
 
-				logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size}");
+				//logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size}");
 			}
 		}
 
