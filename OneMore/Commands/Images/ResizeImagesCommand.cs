@@ -93,11 +93,11 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 
-					logger.WriteLine($"resizing from {viewWidth} x {viewHeight} to {dialog.ImageWidth} x {dialog.ImageHeight}");
-
 					size.SetAttributeValue("width", dialog.ImageWidth.ToString(CultureInfo.InvariantCulture));
 					size.SetAttributeValue("height", dialog.ImageHeight.ToString(CultureInfo.InvariantCulture));
 					size.SetAttributeValue("isSetByUser", "true");
+
+					logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {dialog.ImageWidth} x {dialog.ImageHeight}");
 
 					await one.Update(page);
 				}
@@ -176,6 +176,8 @@ namespace River.OneMoreAddIn.Commands
 						size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
 						size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
 						size.SetAttributeValue("isSetByUser", "true");
+
+						logger.WriteLine($"resized from {image.Width} x {image.Height} to {width} x {height}");
 					}
 				}
 

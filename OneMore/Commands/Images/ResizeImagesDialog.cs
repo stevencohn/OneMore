@@ -48,8 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			allLabel.Visible = true;
 			origLabel.Visible = sizeLink.Visible = origSizeLink.Visible = false;
 
-			aspectBox.Checked = false;
-			aspectBox.Enabled = false;
+			heightUpDown.Enabled = false;
 
 			previewGroup.Visible = false;
 			Width -= (previewGroup.Width + Padding.Right);
@@ -306,7 +305,7 @@ namespace River.OneMoreAddIn.Commands
 			var abs = sender == absRadio;
 			aspectBox.Enabled = abs;
 			widthUpDown.Enabled = abs;
-			heightUpDown.Enabled = abs;
+			heightUpDown.Enabled = abs && image != null;
 			presetUpDown.Enabled = sender == presetRadio;
 			mruWidth = true;
 		}
@@ -347,6 +346,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MaintainAspectCheckedChanged(object sender, EventArgs e)
 		{
+			if (image == null)
+			{
+				heightUpDown.Enabled = !aspectBox.Checked;
+				return;
+			}
+
 			if (!aspectBox.Checked)
 			{
 				return;
@@ -373,8 +378,7 @@ namespace River.OneMoreAddIn.Commands
 
 			pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
 
-			if (image != null)
-				DrawPreview();
+			DrawPreview();
 
 			suspended = false;
 		}
@@ -488,7 +492,10 @@ namespace River.OneMoreAddIn.Commands
 
 				suspended = true;
 				widthUpDown.Value = presetUpDown.Value;
-				heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
+
+				heightUpDown.Value = image == null
+					? 0
+					: viewHeight * (widthUpDown.Value / viewWidth);
 			}
 
 			DialogResult = DialogResult.OK;
