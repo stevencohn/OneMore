@@ -36,6 +36,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Initialize();
 
+			FormBorderStyle = FormBorderStyle.FixedDialog;
+			MaximizeBox = false;
+
 			originalWidth = originalHeight = 1;
 
 			// hide controls that do not apply...
@@ -44,6 +47,9 @@ namespace River.OneMoreAddIn.Commands
 			allLabel.Left = sizeLink.Left;
 			allLabel.Visible = true;
 			origLabel.Visible = sizeLink.Visible = origSizeLink.Visible = false;
+
+			aspectBox.Checked = false;
+			aspectBox.Enabled = false;
 
 			previewGroup.Visible = false;
 			Width -= (previewGroup.Width + Padding.Right);
@@ -62,6 +68,8 @@ namespace River.OneMoreAddIn.Commands
 		public ResizeImagesDialog(Image image, int viewWidth, int viewHeight)
 		{
 			Initialize();
+
+			MinimumSize = new Size(Width, Height);
 
 			this.image = image;
 
@@ -128,7 +136,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		public decimal HeightPixels => heightUpDown.Value;
+		public decimal ImageHeight => heightUpDown.Value;
 
 
 		public decimal ImageOpacity => opacityBox.Value;
@@ -137,16 +145,22 @@ namespace River.OneMoreAddIn.Commands
 		public int ImageQuality => qualBar.Value;
 
 
+		public decimal ImageWidth => widthUpDown.Value;
+
+
 		public bool MaintainAspect => aspectBox.Checked;
+
+
+		public bool NeedsRewrite =>
+			(image != null && (ImageWidth != image.Width || ImageHeight != image.Height)) ||
+			qualBar.Value < 100 ||
+			opacityBox.Value < 100;
 
 
 		public decimal Percent => pctRadio.Checked ? pctUpDown.Value : 0;
 
 
 		public bool PreserveSize => preserveBox.Checked;
-
-
-		public decimal WidthPixels => widthUpDown.Value;
 
 
 
@@ -159,12 +173,9 @@ namespace River.OneMoreAddIn.Commands
 			previewBox.Image = null;
 			preview.Dispose();
 
-			if (WidthPixels == image.Width && HeightPixels == image.Height)
-			{
-				return image;
-			}
-
-			preview = image.Resize((int)WidthPixels, (int)HeightPixels);
+			preview = ImageWidth == image.Width && ImageHeight == image.Height
+				? (Image)image.Clone()
+				: image.Resize((int)ImageWidth, (int)ImageHeight);
 
 			if (qualBar.Value < 100)
 			{
@@ -190,32 +201,32 @@ namespace River.OneMoreAddIn.Commands
 			previewBox.Image = null;
 			preview?.Dispose();
 
-			if (WidthPixels <= previewBox.Width && HeightPixels <= previewBox.Height)
+			if (ImageWidth <= previewBox.Width && ImageHeight <= previewBox.Height)
 			{
-				preview = image.Resize((int)WidthPixels, (int)HeightPixels);
+				preview = image.Resize((int)ImageWidth, (int)ImageHeight);
 			}
 			else
 			{
 				var w = previewBox.Width;
 				var h = previewBox.Height;
-				if (WidthPixels > w && HeightPixels > h)
+				if (ImageWidth > w && ImageHeight > h)
 				{
-					if (WidthPixels > HeightPixels)
+					if (ImageWidth > ImageHeight)
 					{
-						h = (int)(HeightPixels * (w / WidthPixels));
+						h = (int)(ImageHeight * (w / ImageWidth));
 					}
 					else
 					{
-						w = (int)(WidthPixels * (h / HeightPixels));
+						w = (int)(ImageWidth * (h / ImageHeight));
 					}
 				}
-				else if (WidthPixels > w)
+				else if (ImageWidth > w)
 				{
-					h = (int)(HeightPixels * (w / WidthPixels));
+					h = (int)(ImageHeight * (w / ImageWidth));
 				}
 				else
 				{
-					w = (int)(WidthPixels * (h / HeightPixels));
+					w = (int)(ImageWidth * (h / ImageHeight));
 				}
 
 				preview = image.Resize(w, h);
@@ -242,7 +253,17 @@ namespace River.OneMoreAddIn.Commands
 				var size = storageSize.ToBytes(1);
 				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size);
 
-				logger.WriteTime($"estimated {WidthPixels} x {HeightPixels} = {size}");
+				logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size}");
+			}
+		}
+
+
+		private void DrawOnResize(object sender, EventArgs e)
+		{
+			base.OnResize(e);
+			if (image != null)
+			{
+				DrawPreview();
 			}
 		}
 
@@ -364,12 +385,17 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			suspended = true;
-			if (aspectBox.Checked)
+
+			if (image != null)
 			{
-				heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
+				if (aspectBox.Checked)
+				{
+					heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
+				}
+
+				pctUpDown.Value = heightUpDown.Value / viewHeight * 100;
 			}
 
-			pctUpDown.Value = heightUpDown.Value / viewHeight * 100;
 			suspended = false;
 			mruWidth = true;
 
@@ -386,12 +412,17 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			suspended = true;
-			if (aspectBox.Checked)
+
+			if (image != null)
 			{
-				widthUpDown.Value = (int)(viewWidth * (heightUpDown.Value / viewHeight));
+				if (aspectBox.Checked)
+				{
+					widthUpDown.Value = (int)(viewWidth * (heightUpDown.Value / viewHeight));
+				}
+
+				pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
 			}
 
-			pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
 			suspended = false;
 			mruWidth = false;
 
@@ -416,8 +447,13 @@ namespace River.OneMoreAddIn.Commands
 
 			suspended = true;
 			widthUpDown.Value = (int)presetUpDown.Value;
-			heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
-			pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
+
+			if (image != null)
+			{
+				heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
+				pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
+			}
+
 			mruWidth = true;
 
 			if (image != null)

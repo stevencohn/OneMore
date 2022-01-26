@@ -310,7 +310,6 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// qualBox
 			// 
-			this.qualBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.qualBox.Controls.Add(this.preserveBox);
 			this.qualBox.Controls.Add(this.qualLabel);
 			this.qualBox.Controls.Add(this.qualBar);
@@ -424,6 +423,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.previewBox.TabIndex = 0;
 			this.previewBox.TabStop = false;
+			this.previewBox.SizeChanged += new System.EventHandler(this.DrawOnResize);
 			// 
 			// ResizeImagesDialog
 			// 
@@ -456,9 +456,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.pctRadio);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ResizeImagesDialog";
 			this.Padding = new System.Windows.Forms.Padding(22, 23, 22, 8);

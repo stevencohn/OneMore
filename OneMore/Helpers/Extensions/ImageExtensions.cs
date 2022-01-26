@@ -87,11 +87,6 @@ namespace River.OneMoreAddIn
 
 			return result;
 		}
-		public static Image Resize(this Image image, int width, int height, int quality)
-		{
-			var result = Resize(image, width, height);
-			return quality < 100 ? result.SetQuality(quality) : result;
-		}
 
 
 		/// <summary>
