@@ -90,6 +90,48 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Render a new image from the given image with the specified brightness and
+		/// contrast adjustments.
+		/// </summary>
+		/// <param name="image">The image to edit</param>
+		/// <param name="brightness">Change in brightness where 0.0 is no change</param>
+		/// <param name="contrast">Change in contrast where 0.0 is no change</param>
+		/// <returns></returns>
+		public static Image SetBrightnessContrast(this Image image, float brightness, float contrast)
+		{
+			var canvas = new Bitmap(image.Width, image.Height);
+
+			var matrix = new ColorMatrix
+			{
+				Matrix00 = contrast,	// scale red
+				Matrix11 = contrast,	// scale green
+				Matrix22 = contrast,	// scale blue
+				Matrix33 = 1.0f,		// no change in alpha
+				Matrix40 = brightness,
+				Matrix41 = brightness,
+				Matrix42 = brightness,
+				Matrix44 = 1.0f
+			};
+
+			using (var attributes = new ImageAttributes())
+			{
+				attributes.SetColorMatrix(matrix);
+				attributes.SetGamma(1.0f, ColorAdjustType.Bitmap); // 1.0 = no change
+
+				using (var g = Graphics.FromImage(canvas))
+				{
+					g.DrawImage(image,
+						new Rectangle(0, 0, image.Width, image.Height),
+						0, 0, image.Width, image.Height,
+						GraphicsUnit.Pixel, attributes);
+				}
+			}
+
+			return canvas;
+		}
+
+
+		/// <summary>
 		/// Renders a new image as a copy of the given image with a desired opacity
 		/// </summary>
 		/// <param name="image">The original image to copy</param>
@@ -97,12 +139,12 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static Image SetOpacity(this Image image, float opacity)
 		{
-			var copy = new Bitmap(image.Width, image.Height);
-			using (var graphics = Graphics.FromImage(copy))
+			var canvas = new Bitmap(image.Width, image.Height);
+			using (var graphics = Graphics.FromImage(canvas))
 			{
 				var matrix = new ColorMatrix
 				{
-					// row 3, col 3 represents alpha component
+					// row 3, col 3 (alpha,alpha) represents alpha component
 					Matrix33 = opacity
 				};
 
@@ -111,21 +153,21 @@ namespace River.OneMoreAddIn
 					atts.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
 
 					graphics.DrawImage(image,
-						new Rectangle(0, 0, copy.Width, copy.Height),
+						new Rectangle(0, 0, canvas.Width, canvas.Height),
 						0, 0, image.Width, image.Height,
 						GraphicsUnit.Pixel, atts);
 				}
 			}
 
-			return copy;
+			return canvas;
 		}
 
 
 		/// <summary>
-		/// Sets the quality level of the given image.
+		/// Renders a new image by adjusting the quality level of the given image.
 		/// </summary>
 		/// <param name="image"></param>
-		/// <param name="quality"></param>
+		/// <param name="quality">The quality level, 1..100</param>
 		/// <returns></returns>
 		/// <remarks>
 		/// It is possible that this will result in a larger storage model than the original
@@ -164,6 +206,47 @@ namespace River.OneMoreAddIn
 		{
 			return Convert.ToBase64String(
 				(byte[])new ImageConverter().ConvertTo(image, typeof(byte[])));
+		}
+
+
+		/// <summary>
+		/// Render a new image by converting the given image to gray scale.
+		/// </summary>
+		/// <param name="image">Colorful image</param>
+		/// <returns></returns>
+		public static Image ToGrayscale(this Image image)
+		{
+			var canvas = new Bitmap(image.Width, image.Height);
+
+			using (var g = Graphics.FromImage(canvas))
+			{
+				var matrix = new ColorMatrix
+				{
+					Matrix00 = 0.30f,
+					Matrix01 = 0.30f,
+					Matrix02 = 0.30f,
+					Matrix10 = 0.59f,
+					Matrix11 = 0.59f,
+					Matrix12 = 0.59f,
+					Matrix20 = 0.11f,
+					Matrix21 = 0.11f,
+					Matrix22 = 0.11f,
+					Matrix33 = 1.00f,
+					Matrix44 = 1.00f
+				};
+
+				using (var attributes = new ImageAttributes())
+				{
+					attributes.SetColorMatrix(matrix);
+
+					g.DrawImage(image,
+						new Rectangle(0, 0, image.Width, image.Height),
+						0, 0, image.Width, image.Height,
+						GraphicsUnit.Pixel, attributes);
+				}
+			}
+
+			return canvas;
 		}
 	}
 }
