@@ -653,11 +653,7 @@ Percentagem</value>
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>Aplicar a</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>Tamanho atual</value>
+    <value>Ver tamanho</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
@@ -665,16 +661,12 @@ Percentagem</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Tamanho original</value>
+    <value>Tamanho do armazenamento</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
-    <value>%</value>
-    <comment>percent sign</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Percentagem</value>
@@ -3827,5 +3819,22 @@ Diferido</value>
   <data name="KeyboardSheet.Text" xml:space="preserve">
     <value>Teclado</value>
     <comment>sheet</comment>
+  </data>
+  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
+    <value>Aplicar a</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Preservar o tamanho do armazenamento</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>Visualizar</value>
+  </data>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>Opacidade</value>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>%</value>
   </data>
 </root>

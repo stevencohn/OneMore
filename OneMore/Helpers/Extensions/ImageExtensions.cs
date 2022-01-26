@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn
 		/// <param name="height">The new height in pixels</param>
 		/// <param name="quality">The quality level; only applies if it is less than 100</param>
 		/// <returns></returns>
-		public static Image Resize(this Image image, int width, int height, int quality)
+		public static Image Resize(this Image image, int width, int height)
 		{
 			var result = new Bitmap(width, height);
 			result.SetResolution(image.HorizontalResolution, image.VerticalResolution);
@@ -85,7 +85,39 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			return quality < 100 ? result.SetQuality(quality) : result;
+			return result;
+		}
+
+
+		/// <summary>
+		/// Renders a new image as a copy of the given image with a desired opacity
+		/// </summary>
+		/// <param name="image">The original image to copy</param>
+		/// <param name="opacity">The desired opacity value as a percentage (0.0 .. 1.0)</param>
+		/// <returns></returns>
+		public static Image SetOpacity(this Image image, float opacity)
+		{
+			var copy = new Bitmap(image.Width, image.Height);
+			using (var graphics = Graphics.FromImage(copy))
+			{
+				var matrix = new ColorMatrix
+				{
+					// row 3, col 3 represents alpha component
+					Matrix33 = opacity
+				};
+
+				using (var atts = new ImageAttributes())
+				{
+					atts.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+					graphics.DrawImage(image,
+						new Rectangle(0, 0, copy.Width, copy.Height),
+						0, 0, image.Width, image.Height,
+						GraphicsUnit.Pixel, atts);
+				}
+			}
+
+			return copy;
 		}
 
 

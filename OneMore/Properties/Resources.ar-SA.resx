@@ -648,11 +648,7 @@
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>تنطبق على</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>الحجم الحالي</value>
+    <value>حجم العرض</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
@@ -660,16 +656,12 @@
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>الحجم الأصلي</value>
+    <value>حجم التخزين</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
     <value>{0} × {1}</value>
     <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
-    <value>٪</value>
-    <comment>percent sign</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>النسبة المئوية</value>
@@ -3827,5 +3819,22 @@ ISO-code then comma then language name</comment>
   <data name="KeyboardSheet.Text" xml:space="preserve">
     <value>لوحة المفاتيح</value>
     <comment>sheet</comment>
+  </data>
+  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
+    <value>تنطبق على</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>الحفاظ على حجم التخزين</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>معاينة</value>
+  </data>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>العتامة</value>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>٪</value>
   </data>
 </root>

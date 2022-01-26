@@ -77,25 +77,29 @@ namespace River.OneMoreAddIn.Commands
 				using (var dialog = new ResizeImagesDialog(image, viewWidth, viewHeight))
 				{
 					var result = dialog.ShowDialog(owner);
-					if (result == DialogResult.OK)
+					if (result != DialogResult.OK)
 					{
-						if (!dialog.PreserveSize)
+						return;
+					}
+
+					if (dialog.NeedsRewrite)
+					{
+						using (var data = dialog.GetImage())
 						{
-							using (var data = dialog.GetImage())
+							if (data != null)
 							{
-								if (data != null)
-								{
-									WriteImage(element, data);
-								}
+								WriteImage(element, data);
 							}
 						}
-
-						size.SetAttributeValue("width", dialog.WidthPixels.ToString(CultureInfo.InvariantCulture));
-						size.SetAttributeValue("height", dialog.HeightPixels.ToString(CultureInfo.InvariantCulture));
-						size.SetAttributeValue("isSetByUser", "true");
-
-						await one.Update(page);
 					}
+
+					size.SetAttributeValue("width", dialog.ImageWidth.ToString(CultureInfo.InvariantCulture));
+					size.SetAttributeValue("height", dialog.ImageHeight.ToString(CultureInfo.InvariantCulture));
+					size.SetAttributeValue("isSetByUser", "true");
+
+					logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {dialog.ImageWidth} x {dialog.ImageHeight}");
+
+					await one.Update(page);
 				}
 			}
 		}
@@ -106,59 +110,78 @@ namespace River.OneMoreAddIn.Commands
 			using (var dialog = new ResizeImagesDialog())
 			{
 				var result = dialog.ShowDialog(owner);
-				if (result == DialogResult.OK)
+				if (result != DialogResult.OK)
 				{
-					foreach (var element in elements)
-					{
-						using (var image = ReadImage(element))
-						{
-							var size = element.Element(ns + "Size");
-
-							var viewWidth = (int)decimal.Parse(
-								size.Attribute("width").Value, CultureInfo.InvariantCulture);
-
-							var viewHeight = (int)decimal.Parse(
-								size.Attribute("height").Value, CultureInfo.InvariantCulture);
-
-							// when pasting an image onto the page, width or height can be zero
-							// OneNote ignores both if either is zero so we'll do the same...
-							if (viewWidth == 0 || viewHeight == 0)
-							{
-								viewWidth = image.Width;
-								viewHeight = image.Height;
-							}
-
-							int width, height;
-							if (dialog.Percent > 0)
-							{
-								width = (int)(viewWidth * (dialog.Percent / 100));
-								height = (int)(viewHeight * (dialog.Percent / 100));
-							}
-							else
-							{
-								width = (int)dialog.WidthPixels;
-
-								height = dialog.MaintainAspect
-									? (int)(viewHeight * (dialog.WidthPixels / viewWidth))
-									: (int)dialog.HeightPixels;
-							}
-
-							if (!dialog.PreserveSize)
-							{
-								using (var data = image.Resize(width, height, dialog.Quality))
-								{
-									WriteImage(element, data);
-								}
-							}
-
-							size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
-							size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
-							size.SetAttributeValue("isSetByUser", "true");
-						}
-					}
-
-					await one.Update(page);
+					return;
 				}
+
+				foreach (var element in elements)
+				{
+					using (var image = ReadImage(element))
+					{
+						var size = element.Element(ns + "Size");
+
+						var viewWidth = (int)decimal.Parse(
+							size.Attribute("width").Value, CultureInfo.InvariantCulture);
+
+						var viewHeight = (int)decimal.Parse(
+							size.Attribute("height").Value, CultureInfo.InvariantCulture);
+
+						// when pasting an image onto the page, width or height can be zero
+						// OneNote ignores both if either is zero so we'll do the same...
+						if (viewWidth == 0 || viewHeight == 0)
+						{
+							viewWidth = image.Width;
+							viewHeight = image.Height;
+						}
+
+						int width, height;
+						if (dialog.Percent > 0)
+						{
+							width = (int)(viewWidth * (dialog.Percent / 100));
+							height = (int)(viewHeight * (dialog.Percent / 100));
+						}
+						else
+						{
+							width = (int)dialog.ImageWidth;
+
+							height = dialog.MaintainAspect
+								? (int)(viewHeight * (dialog.ImageWidth / viewWidth))
+								: (int)dialog.ImageHeight;
+						}
+
+						if (dialog.NeedsRewrite)
+						{
+							Image data = null;
+							try
+							{
+								data = image.Resize(width, height);
+
+								if (dialog.ImageQuality < 100)
+									using (var d = data)
+										data = d.SetQuality(dialog.ImageQuality);
+
+								if (dialog.ImageOpacity < 100)
+									using (var d = data)
+										data = d.SetOpacity((float)dialog.ImageOpacity / 100);
+
+								WriteImage(element, data);
+							}
+							finally
+							{
+								data?.Dispose();
+							}
+						}
+
+						size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
+						size.SetAttributeValue("isSetByUser", "true");
+
+						logger.WriteLine($"resized from {image.Width} x {image.Height} to {width} x {height}");
+					}
+				}
+
+				await one.Update(page);
 			}
 		}
 

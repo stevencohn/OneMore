@@ -352,8 +352,8 @@
     <value>You're good to go!</value>
     <comment>message box title</comment>
   </data>
-  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>Current size</value>
+  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
+    <value>View size</value>
     <comment>label</comment>
   </data>
   <data name="Emoji_Memo" xml:space="preserve">
@@ -2030,10 +2030,6 @@ Quick Notes to bottom</value>
     <value>Page Numbering</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
-    <value>%</value>
-    <comment>percent sign</comment>
-  </data>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>
     <comment>message box</comment>
@@ -2166,7 +2162,7 @@ Quick Notes to bottom</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Original size</value>
+    <value>Storage size</value>
     <comment>label</comment>
   </data>
   <data name="ribUpdateSubpageButton_Screentip" xml:space="preserve">
@@ -2881,7 +2877,7 @@ Symbols: PI, E</value>
     <value>Append to this page</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
+  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
     <value>Apply to</value>
     <comment>label</comment>
   </data>
@@ -3875,5 +3871,18 @@ Deferred</value>
   <data name="KeyboardSheet.Text" xml:space="preserve">
     <value>Keyboard</value>
     <comment>sheet</comment>
+  </data>
+  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Preserve storage size</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>%</value>
   </data>
 </root>

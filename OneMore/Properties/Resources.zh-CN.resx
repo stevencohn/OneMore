@@ -650,11 +650,7 @@ OneNote 将自动关闭</value>
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>适用于</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabelSize.Text" xml:space="preserve">
-    <value>目前的规模</value>
+    <value>查看尺寸</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
@@ -662,16 +658,12 @@ OneNote 将自动关闭</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>原始尺寸</value>
+    <value>存储大小</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_pctLabel.Text" xml:space="preserve">
-    <value>%</value>
-    <comment>percent sign</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>百分比</value>
@@ -3819,5 +3811,22 @@ OneNote 文件 (*.one)</value>
   <data name="KeyboardSheet.Text" xml:space="preserve">
     <value>键盘</value>
     <comment>sheet</comment>
+  </data>
+  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
+    <value>适用于</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>保留存储大小</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>％</value>
   </data>
 </root>

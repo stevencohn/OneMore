@@ -52,23 +52,6 @@ namespace River.OneMoreAddIn.Settings
 
 
 		/// <summary>
-		/// Gets the preset image width for resizing images
-		/// </summary>
-		/// <returns></returns>
-		public int GetImageWidth()
-		{
-			var width = root.Element("images")?.Attribute("width").Value;
-			return width == null ? 500 : int.Parse(width);
-		}
-
-
-		public void SetImageWidth(int width)
-		{
-			root.Element("images").Attribute("width").Value = width.ToString();
-		}
-
-
-		/// <summary>
 		/// Get the named collection. If the named element contains child elements then it is
 		/// presumed to be an XElement, otherwise it is presumed to be a simple key/value entry
 		/// </summary>
