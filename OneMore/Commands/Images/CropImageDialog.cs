@@ -1,7 +1,6 @@
 ﻿//************************************************************************************************
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
-// based on https://www.codeproject.com/articles/27748/marching-ants
 
 #pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
 
@@ -21,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Accepts an image, lets the user create a single crop region,
 	/// and crops the image to that region
 	/// </summary>
+	/// <seealso cref="https://www.codeproject.com/articles/27748/marching-ants"/>
 	internal partial class CropImageDialog : UI.LocalizableForm
 	{
 
@@ -68,10 +68,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Image original;
 		private readonly Region selectionRegion;
 		private readonly GraphicsPath selectionPath;
-		private readonly float dpiX;
-		private readonly float dpiY;
-		private readonly double scalingX;
-		private readonly double scalingY;
+		private readonly MagicScaling scaling;
 
 		// the original image
 		private Rectangle imageBounds;
@@ -126,14 +123,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Image = original = image;
 
-			// set scaling factors
-			(dpiX, dpiY) = UIHelper.GetDpiValues();
-			scalingX = dpiX / image.HorizontalResolution;
-			scalingY = dpiY / image.VerticalResolution;
+			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
 			SizeWindow();
 
-			brightness = GetBrightness(image);
+			brightness = image.GetBrightness();
 
 			sizeStatusLabel.Text = string.Format(
 				Resx.CropImageDialog_imageSize, Image.Width, Image.Height);
@@ -148,13 +142,8 @@ namespace River.OneMoreAddIn.Commands
 				$"IMAG hasRealDpi:{hasRealDpi} hasRealPixelSize:{hasRealPixelSize} | " +
 				$"hRes:{image.HorizontalResolution} vRes:{image.VerticalResolution} | " +
 				$"size:{image.Width}x{image.Height} " +
-				$"physical:{image.PhysicalDimension.Width}x{image.PhysicalDimension.Height}"
-				);
-
-			Logger.Current.WriteLine(
-				$"IMAG bounds:{imageBounds.Width}x{imageBounds.Height} " +
-				$"dpiScaling:({scalingX},{scalingY}) dpi:{dpiX}x{dpiY}"
-				);
+				$"physical:{image.PhysicalDimension.Width}x{image.PhysicalDimension.Height}\n" +
+				$"IMAG bounds:{imageBounds.Width}x{imageBounds.Height}");
 #endif
 		}
 
@@ -184,36 +173,6 @@ namespace River.OneMoreAddIn.Commands
 				Image.Width + border + ImageMargin * 2);        // image + borders + margins
 
 			Width = Math.Min(desired, Screen.FromControl(this).WorkingArea.Width);
-		}
-
-
-		private int GetBrightness(Image image)
-		{
-			if (image is Bitmap bitmap)
-			{
-				try
-				{
-					// the average brightness of the entire image (0=black, 100=white)
-					float brightnessValue = 0;
-
-					for (int i = 0; i < bitmap.Size.Width; i++)
-					{
-						for (int j = 0; j < bitmap.Size.Height; j++)
-						{
-							var color = bitmap.GetPixel(i, j);
-							brightnessValue += color.GetBrightness();
-						}
-					}
-
-					return (int)(brightnessValue / (bitmap.Size.Width * bitmap.Size.Height) * 100);
-				}
-				catch
-				{
-					return 100;
-				}
-			}
-
-			return 100;
 		}
 
 
@@ -320,7 +279,8 @@ namespace River.OneMoreAddIn.Commands
 		private void PaintImage(Graphics g)
 		{
 			// zoom image into viewable area
-			var ratio = MagicRatio();
+			var ratio = scaling.GetRatio(Image, pictureBox.Width, pictureBox.Height, ImageMargin);
+
 			imageBounds = new Rectangle(
 				ImageMargin, ImageMargin,
 				(int)Math.Round(Image.Width / ratio), (int)Math.Round(Image.Height / ratio));
@@ -329,18 +289,6 @@ namespace River.OneMoreAddIn.Commands
 			g.DrawRectangle(Pens.Gray, imageBounds);
 			// draw image
 			g.DrawImage(Image, imageBounds);
-		}
-
-
-		private double MagicRatio()
-		{
-			// return the larger ratio, horizontal or vertical of the image
-			return Math.Max(
-				// min of scaled image width or pictureBox width without margins
-				Image.Width / (Math.Min(Math.Round(Image.Width * scalingX), pictureBox.Width - ImageMargin * 2)),
-				// min of scaled image height or pictureBox height without margins
-				Image.Height / (Math.Min(Math.Round(Image.Height * scalingY), pictureBox.Height - ImageMargin * 2))
-				);
 		}
 
 
@@ -401,7 +349,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void UpdateStatus()
 		{
-			var ratio = MagicRatio();
+			var ratio = scaling.GetRatio(Image, pictureBox.Width, pictureBox.Height, ImageMargin);
+
 			var r = new Rectangle(
 				(int)((selectionBounds.X - ImageMargin) * ratio),
 				(int)((selectionBounds.Y - ImageMargin) * ratio),
@@ -921,7 +870,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// translate absolute selection bounds relative to zoomed image bounds
-			var ratio = MagicRatio();
+			var ratio = scaling.GetRatio(Image, pictureBox.Width, pictureBox.Height, ImageMargin);
+
 			var bounds = new Rectangle(
 				(int)Math.Round((selectionBounds.X - ImageMargin) * ratio),
 				(int)Math.Round((selectionBounds.Y - ImageMargin) * ratio),

@@ -16,6 +16,42 @@ namespace River.OneMoreAddIn
 	{
 
 		/// <summary>
+		/// Gets the average brightness of the entire image where 0 is black and
+		/// 100 is white.
+		/// </summary>
+		/// <param name="image">The image to scan</param>
+		/// <returns>A number between 0 and 100.</returns>
+		public static int GetBrightness(this Image image)
+		{
+			if (image is Bitmap bitmap)
+			{
+				try
+				{
+					// the average brightness of the entire image (0=black, 100=white)
+					float brightnessValue = 0;
+
+					for (int i = 0; i < bitmap.Size.Width; i++)
+					{
+						for (int j = 0; j < bitmap.Size.Height; j++)
+						{
+							var color = bitmap.GetPixel(i, j);
+							brightnessValue += color.GetBrightness();
+						}
+					}
+
+					return (int)(brightnessValue / (bitmap.Size.Width * bitmap.Size.Height) * 100);
+				}
+				catch
+				{
+					return 100;
+				}
+			}
+
+			return 100;
+		}
+
+
+		/// <summary>
 		/// Replaces fromColor with toColor in the given image. This can be used to "colorize"
 		/// an image mask such as Notebooks and Sections in the SearchCommand dialog
 		/// </summary>
