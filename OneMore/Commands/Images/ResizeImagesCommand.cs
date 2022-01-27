@@ -155,16 +155,7 @@ namespace River.OneMoreAddIn.Commands
 							Image data = null;
 							try
 							{
-								data = image.Resize(width, height);
-
-								if (dialog.ImageQuality < 100)
-									using (var d = data)
-										data = d.SetQuality(dialog.ImageQuality);
-
-								if (dialog.ImageOpacity < 100)
-									using (var d = data)
-										data = d.SetOpacity((float)dialog.ImageOpacity / 100);
-
+								data = dialog.Adjust(image.Resize(width, height));
 								WriteImage(element, data);
 							}
 							finally

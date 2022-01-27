@@ -157,10 +157,12 @@ namespace River.OneMoreAddIn.Commands
 		public bool MaintainAspect => aspectBox.Checked;
 
 
-		public bool NeedsRewrite => 
-			qualBar.Value < 100 ||
+		public bool NeedsRewrite =>
+			!preserveBox.Checked ||
 			opacityBox.Value < 100 ||
-			!preserveBox.Checked;
+			brightnessBox.Value != 0 ||
+			contrastBox.Value != 0 ||
+			qualBar.Value < 100;
 
 
 		public decimal Percent => pctRadio.Checked ? pctUpDown.Value : 0;
@@ -183,20 +185,42 @@ namespace River.OneMoreAddIn.Commands
 				? (Image)image.Clone()
 				: image.Resize((int)ImageWidth, (int)ImageHeight);
 
+			return Adjust(preview);
+		}
+
+
+		public Image Adjust(Image image)
+		{
+			var adjusted = image;
+
 			if (qualBar.Value < 100)
 			{
-				using (var p = preview)
-					preview = p.SetQuality(qualBar.Value);
+				using (var p = adjusted)
+					adjusted = p.SetQuality(qualBar.Value);
+			}
+
+			if (brightnessBox.Value != 0 || contrastBox.Value != 0)
+			{
+				using (var p = adjusted)
+					adjusted = p.SetBrightnessContrast(
+						(float)brightnessBox.Value / 100f,
+						(float)contrastBox.Value / 100f);
+			}
+
+			if (grayBox.Checked)
+			{
+				using (var p = adjusted)
+					adjusted = p.ToGrayscale();
 			}
 
 			// opacity must be set last
 			if (opacityBox.Value < 100)
 			{
-				using (var p = preview)
-					preview = p.SetOpacity((float)(opacityBox.Value / 100));
+				using (var p = adjusted)
+					adjusted = p.SetOpacity((float)(opacityBox.Value / 100));
 			}
 
-			return preview;
+			return adjusted;
 		}
 
 
@@ -243,35 +267,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			preview = image.Resize(w, h);
-
-			if (qualBar.Value < 100)
-			{
-				using (var p = preview)
-					preview = p.SetQuality(qualBar.Value);
-			}
-
-			if (brightnessBox.Value != 0 || contrastBox.Value != 0)
-			{
-				using (var p = preview)
-					preview = p.SetBrightnessContrast(
-						(float)brightnessBox.Value / 100f,
-						(float)contrastBox.Value / 100f);
-			}
-
-			if (grayBox.Checked)
-			{
-				using (var p = preview)
-					preview = p.ToGrayscale();
-			}
-
-			// opacity must be set last
-			if (opacityBox.Value < 100)
-			{
-				using (var p = preview)
-					preview = p.SetOpacity((float)(opacityBox.Value / 100));
-			}
-
+			preview = Adjust(image.Resize(w, h));
 			previewBox.Image = preview;
 
 			if (storageSize == 0 || !preserveBox.Checked)
