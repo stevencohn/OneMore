@@ -399,6 +399,7 @@
     <Compile Include="Helpers\ApplicationFactory.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ColorMatrixExtensions.cs" />
     <Compile Include="Helpers\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
     <Compile Include="Helpers\Extensions\ProcessExtensions.cs" />
@@ -878,6 +879,7 @@
     <None Include="Properties\Images\Exit.png" />
     <Content Include="Properties\Images\FolderClose.png" />
     <Content Include="Properties\Images\FolderOpen.png" />
+    <None Include="Properties\Images\Grid40.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
     <Content Include="Properties\Emoji\Pencil.png" />

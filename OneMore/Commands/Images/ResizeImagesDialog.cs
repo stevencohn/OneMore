@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class ResizeImagesDialog : UI.LocalizableForm
 	{
 		private readonly SettingsProvider settings;
+		private readonly float scalingX;
+		private readonly float scalingY;
 		private readonly Image image;
 		private readonly int viewWidth;
 		private readonly int viewHeight;
@@ -89,6 +91,15 @@ namespace River.OneMoreAddIn.Commands
 
 			settings = new SettingsProvider();
 			presetUpDown.Value = settings.GetCollection("images").Get("mruWidth", 500);
+
+			// set scaling factors
+			//var (dpiX, dpiY) = UIHelper.GetDpiValues();
+			//scalingX = (decimal)(dpiX / image.HorizontalResolution);
+			//scalingY = (decimal)(dpiY / image.VerticalResolution);
+
+			(scalingX, scalingY) = UIHelper.GetScalingFactors();
+
+			logger.WriteLine($"scaling {scalingX} x {scalingY}");
 
 			DrawPreview();
 		}
@@ -203,41 +214,62 @@ namespace River.OneMoreAddIn.Commands
 			previewBox.Image = null;
 			preview?.Dispose();
 
-			if (ImageWidth <= previewBox.Width && ImageHeight <= previewBox.Height)
+			var imwidth = ImageWidth * (decimal)scalingX;
+			var imheight = ImageHeight * (decimal)scalingY;
+
+			int w;
+			int h;
+
+			if (imwidth <= previewBox.Width && imheight <= previewBox.Height)
 			{
-				preview = image.Resize((int)ImageWidth, (int)ImageHeight);
+				w = (int)imwidth;
+				h = (int)imheight;
 			}
 			else
 			{
-				var w = previewBox.Width;
-				var h = previewBox.Height;
-				if (ImageWidth > w && ImageHeight > h)
+				w = previewBox.Width;
+				h = previewBox.Height;
+				if (imwidth > w && imheight > h)
 				{
-					if (ImageWidth > ImageHeight)
+					if (imwidth > imheight)
 					{
-						h = (int)(ImageHeight * (w / ImageWidth));
+						h = (int)(imheight * (w / imwidth));
 					}
 					else
 					{
-						w = (int)(ImageWidth * (h / ImageHeight));
+						w = (int)(imwidth * (h / imheight));
 					}
 				}
-				else if (ImageWidth > w)
+				else if (imwidth > w)
 				{
-					h = (int)(ImageHeight * (w / ImageWidth));
+					h = (int)(imheight * (w / imwidth));
 				}
 				else
 				{
-					w = (int)(ImageWidth * (h / ImageHeight));
+					w = (int)(imwidth * (h / imheight));
 				}
-
-				preview = image.Resize(w, h);
 			}
+
+			preview = image.Resize(w, h);
 
 			if (qualBar.Value < 100)
 			{
 				using (var p = preview)
 					preview = p.SetQuality(qualBar.Value);
+			}
+
+			if (brightnessBox.Value != 0 || contrastBox.Value != 0)
+			{
+				using (var p = preview)
+					preview = p.SetBrightnessContrast(
+						(float)brightnessBox.Value / 100f,
+						(float)contrastBox.Value / 100f);
+			}
+
+			if (grayBox.Checked)
+			{
+				using (var p = preview)
+					preview = p.ToGrayscale();
 			}
 
 			// opacity must be set last
@@ -438,15 +470,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void OpacityValueChanged(object sender, EventArgs e)
-		{
-			if (image != null)
-			{
-				DrawPreview();
-			}
-		}
-
-
 		private void PresetValueChanged(object sender, EventArgs e)
 		{
 			if (suspended)
@@ -467,6 +490,45 @@ namespace River.OneMoreAddIn.Commands
 				DrawPreview();
 
 			suspended = false;
+		}
+
+
+		private void SlideValueChanged(object sender, EventArgs e)
+		{
+			if (sender == opacityBox) opacityBar.Value = (int)opacityBox.Value;
+			else if (sender == opacityBar) opacityBox.Value = opacityBar.Value;
+			else if (sender == brightnessBox) brightnessBar.Value = (int)brightnessBox.Value;
+			else if (sender == brightnessBar) brightnessBox.Value = brightnessBar.Value;
+			else if (sender == contrastBox) contrastBar.Value = (int)contrastBox.Value;
+			else if (sender == contrastBar) contrastBox.Value = contrastBar.Value;
+
+			if (image != null)
+			{
+				DrawPreview();
+			}
+		}
+
+
+		private void ResetDoubleClick(object sender, EventArgs e)
+		{
+			if (sender == opacityLabel) opacityBox.Value = 100;
+			else if (sender == brightnessLabel) brightnessBox.Value = 0;
+			else if (sender == contrastLabel) contrastBox.Value = 0;
+
+			if (image != null)
+			{
+				DrawPreview();
+			}
+		}
+
+
+
+		private void GrayscaleCheckChanged(object sender, EventArgs e)
+		{
+			if (image != null)
+			{
+				DrawPreview();
+			}
 		}
 
 

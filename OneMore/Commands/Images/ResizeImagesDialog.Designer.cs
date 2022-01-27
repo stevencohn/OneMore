@@ -60,10 +60,17 @@ namespace River.OneMoreAddIn.Commands
 			this.qualLabel = new System.Windows.Forms.Label();
 			this.qualBar = new System.Windows.Forms.TrackBar();
 			this.opacityBox = new System.Windows.Forms.NumericUpDown();
-			this.opacityPctLabel = new System.Windows.Forms.Label();
 			this.opacityLabel = new System.Windows.Forms.Label();
 			this.previewGroup = new System.Windows.Forms.GroupBox();
 			this.previewBox = new System.Windows.Forms.PictureBox();
+			this.brightnessLabel = new System.Windows.Forms.Label();
+			this.brightnessBox = new System.Windows.Forms.NumericUpDown();
+			this.contrastLabel = new System.Windows.Forms.Label();
+			this.contrastBox = new System.Windows.Forms.NumericUpDown();
+			this.brightnessBar = new System.Windows.Forms.TrackBar();
+			this.contrastBar = new System.Windows.Forms.TrackBar();
+			this.opacityBar = new System.Windows.Forms.TrackBar();
+			this.grayBox = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pctUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightUpDown)).BeginInit();
@@ -73,6 +80,11 @@ namespace River.OneMoreAddIn.Commands
 			((System.ComponentModel.ISupportInitialize)(this.opacityBox)).BeginInit();
 			this.previewGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.brightnessBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.contrastBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.contrastBar)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.opacityBar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cancelButton
@@ -102,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.pctRadio.AutoSize = true;
 			this.pctRadio.Checked = true;
-			this.pctRadio.Location = new System.Drawing.Point(24, 118);
+			this.pctRadio.Location = new System.Drawing.Point(24, 93);
 			this.pctRadio.Name = "pctRadio";
 			this.pctRadio.Size = new System.Drawing.Size(116, 24);
 			this.pctRadio.TabIndex = 2;
@@ -115,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 			// absRadio
 			// 
 			this.absRadio.AutoSize = true;
-			this.absRadio.Location = new System.Drawing.Point(24, 178);
+			this.absRadio.Location = new System.Drawing.Point(24, 143);
 			this.absRadio.Name = "absRadio";
 			this.absRadio.Size = new System.Drawing.Size(97, 24);
 			this.absRadio.TabIndex = 4;
@@ -126,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// pctUpDown
 			// 
-			this.pctUpDown.Location = new System.Drawing.Point(200, 118);
+			this.pctUpDown.Location = new System.Drawing.Point(200, 93);
 			this.pctUpDown.Maximum = new decimal(new int[] {
             6000,
             0,
@@ -150,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 			// pctLabel
 			// 
 			this.pctLabel.AutoSize = true;
-			this.pctLabel.Location = new System.Drawing.Point(300, 122);
+			this.pctLabel.Location = new System.Drawing.Point(300, 97);
 			this.pctLabel.Name = "pctLabel";
 			this.pctLabel.Size = new System.Drawing.Size(23, 20);
 			this.pctLabel.TabIndex = 5;
@@ -162,7 +174,7 @@ namespace River.OneMoreAddIn.Commands
 			this.aspectBox.Checked = true;
 			this.aspectBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.aspectBox.Enabled = false;
-			this.aspectBox.Location = new System.Drawing.Point(200, 178);
+			this.aspectBox.Location = new System.Drawing.Point(199, 208);
 			this.aspectBox.Name = "aspectBox";
 			this.aspectBox.Size = new System.Drawing.Size(182, 24);
 			this.aspectBox.TabIndex = 5;
@@ -173,7 +185,7 @@ namespace River.OneMoreAddIn.Commands
 			// widthUpDown
 			// 
 			this.widthUpDown.Enabled = false;
-			this.widthUpDown.Location = new System.Drawing.Point(200, 211);
+			this.widthUpDown.Location = new System.Drawing.Point(200, 143);
 			this.widthUpDown.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -187,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 			// heightUpDown
 			// 
 			this.heightUpDown.Enabled = false;
-			this.heightUpDown.Location = new System.Drawing.Point(200, 248);
+			this.heightUpDown.Location = new System.Drawing.Point(200, 176);
 			this.heightUpDown.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -201,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 			// widthLabel
 			// 
 			this.widthLabel.AutoSize = true;
-			this.widthLabel.Location = new System.Drawing.Point(351, 214);
+			this.widthLabel.Location = new System.Drawing.Point(351, 146);
 			this.widthLabel.Name = "widthLabel";
 			this.widthLabel.Size = new System.Drawing.Size(50, 20);
 			this.widthLabel.TabIndex = 9;
@@ -210,7 +222,7 @@ namespace River.OneMoreAddIn.Commands
 			// heightLabel
 			// 
 			this.heightLabel.AutoSize = true;
-			this.heightLabel.Location = new System.Drawing.Point(351, 251);
+			this.heightLabel.Location = new System.Drawing.Point(351, 179);
 			this.heightLabel.Name = "heightLabel";
 			this.heightLabel.Size = new System.Drawing.Size(56, 20);
 			this.heightLabel.TabIndex = 10;
@@ -219,7 +231,7 @@ namespace River.OneMoreAddIn.Commands
 			// currentLabel
 			// 
 			this.currentLabel.AutoSize = true;
-			this.currentLabel.Location = new System.Drawing.Point(48, 38);
+			this.currentLabel.Location = new System.Drawing.Point(48, 23);
 			this.currentLabel.Name = "currentLabel";
 			this.currentLabel.Size = new System.Drawing.Size(75, 20);
 			this.currentLabel.TabIndex = 11;
@@ -228,7 +240,7 @@ namespace River.OneMoreAddIn.Commands
 			// presetRadio
 			// 
 			this.presetRadio.AutoSize = true;
-			this.presetRadio.Location = new System.Drawing.Point(24, 294);
+			this.presetRadio.Location = new System.Drawing.Point(24, 258);
 			this.presetRadio.Name = "presetRadio";
 			this.presetRadio.Size = new System.Drawing.Size(80, 24);
 			this.presetRadio.TabIndex = 8;
@@ -240,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 			// presetUpDown
 			// 
 			this.presetUpDown.Enabled = false;
-			this.presetUpDown.Location = new System.Drawing.Point(200, 294);
+			this.presetUpDown.Location = new System.Drawing.Point(200, 258);
 			this.presetUpDown.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -259,7 +271,7 @@ namespace River.OneMoreAddIn.Commands
 			// presetLabel
 			// 
 			this.presetLabel.AutoSize = true;
-			this.presetLabel.Location = new System.Drawing.Point(351, 297);
+			this.presetLabel.Location = new System.Drawing.Point(351, 261);
 			this.presetLabel.Name = "presetLabel";
 			this.presetLabel.Size = new System.Drawing.Size(50, 20);
 			this.presetLabel.TabIndex = 15;
@@ -268,7 +280,7 @@ namespace River.OneMoreAddIn.Commands
 			// origLabel
 			// 
 			this.origLabel.AutoSize = true;
-			this.origLabel.Location = new System.Drawing.Point(48, 58);
+			this.origLabel.Location = new System.Drawing.Point(49, 43);
 			this.origLabel.Name = "origLabel";
 			this.origLabel.Size = new System.Drawing.Size(98, 20);
 			this.origLabel.TabIndex = 16;
@@ -278,7 +290,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.sizeLink.AutoSize = true;
 			this.sizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.sizeLink.Location = new System.Drawing.Point(195, 38);
+			this.sizeLink.Location = new System.Drawing.Point(195, 23);
 			this.sizeLink.Name = "sizeLink";
 			this.sizeLink.Size = new System.Drawing.Size(78, 20);
 			this.sizeLink.TabIndex = 0;
@@ -290,7 +302,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.origSizeLink.AutoSize = true;
 			this.origSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.origSizeLink.Location = new System.Drawing.Point(195, 58);
+			this.origSizeLink.Location = new System.Drawing.Point(195, 43);
 			this.origSizeLink.Name = "origSizeLink";
 			this.origSizeLink.Size = new System.Drawing.Size(78, 20);
 			this.origSizeLink.TabIndex = 1;
@@ -301,7 +313,7 @@ namespace River.OneMoreAddIn.Commands
 			// allLabel
 			// 
 			this.allLabel.AutoSize = true;
-			this.allLabel.Location = new System.Drawing.Point(294, 38);
+			this.allLabel.Location = new System.Drawing.Point(300, 23);
 			this.allLabel.Name = "allLabel";
 			this.allLabel.Size = new System.Drawing.Size(141, 20);
 			this.allLabel.TabIndex = 20;
@@ -313,10 +325,10 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBox.Controls.Add(this.preserveBox);
 			this.qualBox.Controls.Add(this.qualLabel);
 			this.qualBox.Controls.Add(this.qualBar);
-			this.qualBox.Location = new System.Drawing.Point(26, 428);
+			this.qualBox.Location = new System.Drawing.Point(26, 463);
 			this.qualBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
 			this.qualBox.Name = "qualBox";
-			this.qualBox.Size = new System.Drawing.Size(468, 145);
+			this.qualBox.Size = new System.Drawing.Size(468, 109);
 			this.qualBox.TabIndex = 21;
 			this.qualBox.TabStop = false;
 			this.qualBox.Text = "Storage: 0 bytes";
@@ -326,7 +338,7 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox.AutoSize = true;
 			this.preserveBox.Checked = true;
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.preserveBox.Location = new System.Drawing.Point(27, 25);
+			this.preserveBox.Location = new System.Drawing.Point(25, 32);
 			this.preserveBox.Name = "preserveBox";
 			this.preserveBox.Size = new System.Drawing.Size(187, 24);
 			this.preserveBox.TabIndex = 0;
@@ -337,7 +349,7 @@ namespace River.OneMoreAddIn.Commands
 			// qualLabel
 			// 
 			this.qualLabel.AutoSize = true;
-			this.qualLabel.Location = new System.Drawing.Point(22, 109);
+			this.qualLabel.Location = new System.Drawing.Point(316, 33);
 			this.qualLabel.Name = "qualLabel";
 			this.qualLabel.Size = new System.Drawing.Size(99, 20);
 			this.qualLabel.TabIndex = 1;
@@ -349,11 +361,11 @@ namespace River.OneMoreAddIn.Commands
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.qualBar.AutoSize = false;
 			this.qualBar.LargeChange = 10;
-			this.qualBar.Location = new System.Drawing.Point(27, 55);
+			this.qualBar.Location = new System.Drawing.Point(25, 62);
 			this.qualBar.Maximum = 100;
 			this.qualBar.Minimum = 5;
 			this.qualBar.Name = "qualBar";
-			this.qualBar.Size = new System.Drawing.Size(399, 51);
+			this.qualBar.Size = new System.Drawing.Size(399, 31);
 			this.qualBar.SmallChange = 5;
 			this.qualBar.TabIndex = 1;
 			this.qualBar.TickFrequency = 5;
@@ -362,7 +374,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// opacityBox
 			// 
-			this.opacityBox.Location = new System.Drawing.Point(200, 360);
+			this.opacityBox.Location = new System.Drawing.Point(199, 314);
 			this.opacityBox.Minimum = new decimal(new int[] {
             1,
             0,
@@ -376,25 +388,17 @@ namespace River.OneMoreAddIn.Commands
             0,
             0,
             0});
-			this.opacityBox.ValueChanged += new System.EventHandler(this.OpacityValueChanged);
-			// 
-			// opacityPctLabel
-			// 
-			this.opacityPctLabel.AutoSize = true;
-			this.opacityPctLabel.Location = new System.Drawing.Point(300, 363);
-			this.opacityPctLabel.Name = "opacityPctLabel";
-			this.opacityPctLabel.Size = new System.Drawing.Size(23, 20);
-			this.opacityPctLabel.TabIndex = 23;
-			this.opacityPctLabel.Text = "%";
+			this.opacityBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
 			// opacityLabel
 			// 
 			this.opacityLabel.AutoSize = true;
-			this.opacityLabel.Location = new System.Drawing.Point(48, 363);
+			this.opacityLabel.Location = new System.Drawing.Point(47, 317);
 			this.opacityLabel.Name = "opacityLabel";
 			this.opacityLabel.Size = new System.Drawing.Size(62, 20);
 			this.opacityLabel.TabIndex = 24;
 			this.opacityLabel.Text = "Opacity";
+			this.opacityLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
 			// 
 			// previewGroup
 			// 
@@ -414,6 +418,7 @@ namespace River.OneMoreAddIn.Commands
 			// previewBox
 			// 
 			this.previewBox.BackColor = System.Drawing.Color.White;
+			this.previewBox.BackgroundImage = global::River.OneMoreAddIn.Properties.Resources.Grid40;
 			this.previewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.previewBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.previewBox.Location = new System.Drawing.Point(22, 42);
@@ -425,6 +430,106 @@ namespace River.OneMoreAddIn.Commands
 			this.previewBox.TabStop = false;
 			this.previewBox.SizeChanged += new System.EventHandler(this.DrawOnResize);
 			// 
+			// brightnessLabel
+			// 
+			this.brightnessLabel.AutoSize = true;
+			this.brightnessLabel.Location = new System.Drawing.Point(47, 349);
+			this.brightnessLabel.Name = "brightnessLabel";
+			this.brightnessLabel.Size = new System.Drawing.Size(85, 20);
+			this.brightnessLabel.TabIndex = 28;
+			this.brightnessLabel.Text = "Brightness";
+			this.brightnessLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
+			// 
+			// brightnessBox
+			// 
+			this.brightnessBox.Location = new System.Drawing.Point(199, 346);
+			this.brightnessBox.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+			this.brightnessBox.Name = "brightnessBox";
+			this.brightnessBox.Size = new System.Drawing.Size(94, 26);
+			this.brightnessBox.TabIndex = 26;
+			this.brightnessBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
+			// 
+			// contrastLabel
+			// 
+			this.contrastLabel.AutoSize = true;
+			this.contrastLabel.Location = new System.Drawing.Point(47, 381);
+			this.contrastLabel.Name = "contrastLabel";
+			this.contrastLabel.Size = new System.Drawing.Size(70, 20);
+			this.contrastLabel.TabIndex = 31;
+			this.contrastLabel.Text = "Contrast";
+			this.contrastLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
+			// 
+			// contrastBox
+			// 
+			this.contrastBox.Location = new System.Drawing.Point(199, 378);
+			this.contrastBox.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+			this.contrastBox.Name = "contrastBox";
+			this.contrastBox.Size = new System.Drawing.Size(94, 26);
+			this.contrastBox.TabIndex = 29;
+			this.contrastBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
+			// 
+			// brightnessBar
+			// 
+			this.brightnessBar.AutoSize = false;
+			this.brightnessBar.LargeChange = 10;
+			this.brightnessBar.Location = new System.Drawing.Point(304, 349);
+			this.brightnessBar.Maximum = 100;
+			this.brightnessBar.Minimum = -100;
+			this.brightnessBar.Name = "brightnessBar";
+			this.brightnessBar.Size = new System.Drawing.Size(190, 25);
+			this.brightnessBar.TabIndex = 32;
+			this.brightnessBar.TickFrequency = 5;
+			this.brightnessBar.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.brightnessBar.Scroll += new System.EventHandler(this.SlideValueChanged);
+			// 
+			// contrastBar
+			// 
+			this.contrastBar.AutoSize = false;
+			this.contrastBar.LargeChange = 10;
+			this.contrastBar.Location = new System.Drawing.Point(304, 380);
+			this.contrastBar.Maximum = 100;
+			this.contrastBar.Minimum = -100;
+			this.contrastBar.Name = "contrastBar";
+			this.contrastBar.Size = new System.Drawing.Size(190, 25);
+			this.contrastBar.TabIndex = 33;
+			this.contrastBar.TickFrequency = 5;
+			this.contrastBar.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.contrastBar.Scroll += new System.EventHandler(this.SlideValueChanged);
+			// 
+			// opacityBar
+			// 
+			this.opacityBar.AutoSize = false;
+			this.opacityBar.LargeChange = 10;
+			this.opacityBar.Location = new System.Drawing.Point(304, 318);
+			this.opacityBar.Maximum = 100;
+			this.opacityBar.Minimum = 1;
+			this.opacityBar.Name = "opacityBar";
+			this.opacityBar.Size = new System.Drawing.Size(190, 25);
+			this.opacityBar.TabIndex = 34;
+			this.opacityBar.TickFrequency = 5;
+			this.opacityBar.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.opacityBar.Value = 100;
+			this.opacityBar.ValueChanged += new System.EventHandler(this.SlideValueChanged);
+			// 
+			// grayBox
+			// 
+			this.grayBox.AutoSize = true;
+			this.grayBox.Location = new System.Drawing.Point(51, 417);
+			this.grayBox.Name = "grayBox";
+			this.grayBox.Size = new System.Drawing.Size(110, 24);
+			this.grayBox.TabIndex = 35;
+			this.grayBox.Text = "Gray scale";
+			this.grayBox.UseVisualStyleBackColor = true;
+			this.grayBox.CheckedChanged += new System.EventHandler(this.GrayscaleCheckChanged);
+			// 
 			// ResizeImagesDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -432,9 +537,16 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1026, 642);
+			this.Controls.Add(this.grayBox);
+			this.Controls.Add(this.opacityBar);
+			this.Controls.Add(this.contrastBar);
+			this.Controls.Add(this.brightnessBar);
+			this.Controls.Add(this.contrastLabel);
+			this.Controls.Add(this.contrastBox);
+			this.Controls.Add(this.brightnessLabel);
+			this.Controls.Add(this.brightnessBox);
 			this.Controls.Add(this.previewGroup);
 			this.Controls.Add(this.opacityLabel);
-			this.Controls.Add(this.opacityPctLabel);
 			this.Controls.Add(this.opacityBox);
 			this.Controls.Add(this.qualBox);
 			this.Controls.Add(this.allLabel);
@@ -473,6 +585,11 @@ namespace River.OneMoreAddIn.Commands
 			((System.ComponentModel.ISupportInitialize)(this.opacityBox)).EndInit();
 			this.previewGroup.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.brightnessBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.contrastBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.contrastBar)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.opacityBar)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -504,9 +621,16 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.TrackBar qualBar;
 		private System.Windows.Forms.CheckBox preserveBox;
 		private System.Windows.Forms.NumericUpDown opacityBox;
-		private System.Windows.Forms.Label opacityPctLabel;
 		private System.Windows.Forms.Label opacityLabel;
 		private System.Windows.Forms.GroupBox previewGroup;
 		private System.Windows.Forms.PictureBox previewBox;
+		private System.Windows.Forms.Label brightnessLabel;
+		private System.Windows.Forms.NumericUpDown brightnessBox;
+		private System.Windows.Forms.Label contrastLabel;
+		private System.Windows.Forms.NumericUpDown contrastBox;
+		private System.Windows.Forms.TrackBar brightnessBar;
+		private System.Windows.Forms.TrackBar contrastBar;
+		private System.Windows.Forms.TrackBar opacityBar;
+		private System.Windows.Forms.CheckBox grayBox;
 	}
 }

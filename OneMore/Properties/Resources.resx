@@ -121,9 +121,9 @@
     <value>My Custom Snippets</value>
     <comment>ribbon </comment>
   </data>
-  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
-    <value>... Collapse Outlining</value>
-    <comment>context menu option</comment>
+  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
+    <value>Enable to search newer text that has not yet been indexed by OneNote. This may be slower.</value>
+    <comment>tooltip on checkbox</comment>
   </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Manage Saved Plugins</value>
@@ -133,9 +133,9 @@
     <value>(click to change)</value>
     <comment>settings sheet</comment>
   </data>
-  <data name="CropImageDialog_imageSize" xml:space="preserve">
-    <value>Image size: {0} x {1}</value>
-    <comment>status bar text</comment>
+  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
+    <value>... Expand Outlining</value>
+    <comment>context menu option</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveSpacingButton" xml:space="preserve">
     <value>... Remove Paragraph Spacing</value>
@@ -145,13 +145,29 @@
     <value>... Sortable Date</value>
     <comment>context menu option</comment>
   </data>
+  <data name="ContextMenuSheet_ribCompleteReminderButton" xml:space="preserve">
+    <value>... Complete Reminder</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
+    <value>Style Name:</value>
+    <comment>label</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Error running command {0}</value>
     <comment>logged and displayed in messagebox</comment>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="FolderClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\folderclose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ImportDialog_powerGroup.Text" xml:space="preserve">
     <value>Powerpoint Options</value>
     <comment>group box</comment>
+  </data>
+  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
+    <value>Display language (must restart OneNote)</value>
+    <comment>label</comment>
   </data>
   <data name="CropImageDialog_selectButton.Text" xml:space="preserve">
     <value>Select All</value>
@@ -165,9 +181,9 @@
     <value>Check for Updates</value>
     <comment>check online for available updates to add-in</comment>
   </data>
-  <data name="ribArchiveSectionButton_Label" xml:space="preserve">
-    <value>Archive Section</value>
-    <comment>ribbon menu</comment>
+  <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
+    <value>Strikethrough Completed To Do Tags</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="WordCountCommand_Count" xml:space="preserve">
     <value>Total words on page: {0}</value>
@@ -185,25 +201,36 @@
     <value>Move up</value>
     <comment>button</comment>
   </data>
-  <data name="Plugin_NoChanges" xml:space="preserve">
-    <value>Plugin completed successfully but no changes were found</value>
-    <comment>warning message</comment>
-  </data>
-  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
+  <data name="AddFormula_linearMessage" xml:space="preserve">
+    <value>Select one or more cells from the same row or the same column</value>
+    <comment>message box</comment>
   </data>
   <data name="GeneralSheet_introBox.Text" xml:space="preserve">
     <value>Customize the overall behavior of OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
     <value>Page</value>
     <comment>tab</comment>
   </data>
+  <data name="OutlookTaskReport_statuses" xml:space="preserve">
+    <value>Not Started
+In Progress
+Completed
+Waiting
+Deferred</value>
+    <comment>report</comment>
+  </data>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Select two or more lines to join</value>
     <comment>info message</comment>
+  </data>
+  <data name="RemindDialog_tagLabel.Text" xml:space="preserve">
+    <value>Tag</value>
+    <comment>label</comment>
   </data>
   <data name="Emoji_Email" xml:space="preserve">
     <value>Email</value>
@@ -217,6 +244,10 @@
     <value>Create as new child of current page</value>
     <comment>radio</comment>
   </data>
+  <data name="TimerWindow_resetButton.Text" xml:space="preserve">
+    <value>Restart Timer</value>
+    <comment>button tooltip</comment>
+  </data>
   <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
     <value>Themes</value>
     <comment>group</comment>
@@ -224,6 +255,10 @@
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
     <value>Orphans are backup folders of notebooks that are no longer opened in OneNote. If they are no longer used, and you've confirmed that they are obsolete, they can be removed safely.</value>
     <comment>summary text</comment>
+  </data>
+  <data name="Reminder_PastStart" xml:space="preserve">
+    <value>Task is past its start date of {0}, "{1}". Click here to navigate to this task</value>
+    <comment>toast message</comment>
   </data>
   <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
     <value>Insert a code block (F6)</value>
@@ -233,13 +268,17 @@
     <value>OneNote Keyboard Shortcuts</value>
     <comment>favorite</comment>
   </data>
+  <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
+    <value>Sort only the current list</value>
+    <comment>radio</comment>
+  </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Select one or more table cells</value>
     <comment>message</comment>
   </data>
-  <data name="ContextMenuSheet_ribIncreaseFontSizeButton" xml:space="preserve">
-    <value>... Increase Text Size</value>
-    <comment>context menu option</comment>
+  <data name="StartupFailureMessage" xml:space="preserve">
+    <value>OneMore failed to connect to OneNote, see log file for exception details</value>
+    <comment>message box</comment>
   </data>
   <data name="ribReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
@@ -249,21 +288,16 @@
     <value>Manage My Plugins</value>
     <comment>sheet title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="SaveAs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\saveas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SettingsDialog_Text" xml:space="preserve">
-    <value>OneMore Settings</value>
-    <comment>dialog title</comment>
+  <data name="ArchiveCommand_noPages" xml:space="preserve">
+    <value>No pages found</value>
+    <comment>message</comment>
   </data>
   <data name="ImportWebDialog_appendButton.Text" xml:space="preserve">
     <value>Append to current page</value>
     <comment>radio</comment>
-  </data>
-  <data name="OutlineDialog_indentBox.Text" xml:space="preserve">
-    <value>Indent content below headings</value>
-    <comment>checkbox</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numbering</value>
@@ -289,10 +323,6 @@
     <value>&lt;span style='font-style:italic'&gt;No orphaned backup directories discovered&lt;/span&gt;</value>
     <comment>status</comment>
   </data>
-  <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
-    <value>Two spaces between sentences</value>
-    <comment>radio</comment>
-  </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
     <value>Search</value>
     <comment>ribbon menu item</comment>
@@ -313,16 +343,28 @@
     <value>Manage Custom Snippets</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
-    <value>Select all</value>
-    <comment>button</comment>
+  <data name="ribSectionColorButton_Label" xml:space="preserve">
+    <value>Customize Section Color</value>
+    <comment>Context menu</comment>
   </data>
-  <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
-    <value>Trim leading whitespace from selected text</value>
-    <comment>ribbon item tootp</comment>
+  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
+    <value>Ribbon Bar</value>
+    <comment>treenode</comment>
   </data>
   <data name="Strikethrough" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\strikethrough.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
+    <value>Reminder</value>
+    <comment>column</comment>
+  </data>
+  <data name="ribLowercaseButton_Screentip" xml:space="preserve">
+    <value>Convert text to lowercase (Ctrl + Shift + U)</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
+    <value>Snooze</value>
+    <comment>button</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>Show XML of hierarchy and current page (Ctrl + Shift + Alt + X)</value>
@@ -352,13 +394,17 @@
     <value>You're good to go!</value>
     <comment>message box title</comment>
   </data>
-  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>View size</value>
-    <comment>label</comment>
+  <data name="NetwordConnectionUnavailable" xml:space="preserve">
+    <value>Network connection is not available</value>
+    <comment>error</comment>
   </data>
-  <data name="Emoji_Memo" xml:space="preserve">
-    <value>Memo</value>
-    <comment>emoji</comment>
+  <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
+    <value>Filter</value>
+    <comment>group box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
+    <value>Reset {0} orphaned task(s)</value>
+    <comment>message box</comment>
   </data>
   <data name="Emoji_Pushpin" xml:space="preserve">
     <value>Pushpin</value>
@@ -376,10 +422,6 @@
     <value>Numbering</value>
     <comment>group box title</comment>
   </data>
-  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
-    <value>Current Theme:</value>
-    <comment>label</comment>
-  </data>
   <data name="SearchEngineDialog_Text" xml:space="preserve">
     <value>Search Engines</value>
     <comment>dialog title</comment>
@@ -396,6 +438,10 @@
     <value>Arguments</value>
     <comment>label</comment>
   </data>
+  <data name="ribSortPageButton_Label" xml:space="preserve">
+    <value>Sort Child Pages</value>
+    <comment>ribbon/context menu</comment>
+  </data>
   <data name="PluginDialog_createRadio.Text" xml:space="preserve">
     <value>Create a new page named</value>
     <comment>radio button</comment>
@@ -404,9 +450,9 @@
     <value>Custom Styles</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ctxLowercaseButton_Label" xml:space="preserve">
-    <value>To lowercase</value>
-    <comment>Context menu</comment>
+  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
+    <value>Uncheck all pages</value>
+    <comment>uncheck all nodes llnk label</comment>
   </data>
   <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -415,9 +461,9 @@
     <value>Remove Pasted Citations</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>This page</value>
-    <comment>radio button</comment>
+  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
+    <value>Keyboard</value>
+    <comment>treenode</comment>
   </data>
   <data name="AboutDialog_NewVersionMessage" xml:space="preserve">
     <value>A new version is available:
@@ -427,6 +473,10 @@
 Do you want to update now?
 OneNote will close automatically</value>
     <comment>message box message showing verison tag and name</comment>
+  </data>
+  <data name="ribFileMenu_Label" xml:space="preserve">
+    <value>File</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
     <value>All notebooks</value>
@@ -448,6 +498,10 @@ OneNote will close automatically</value>
     <value>Cell range must be within one column or within one row</value>
     <comment>error</comment>
   </data>
+  <data name="SortListDialog.Text" xml:space="preserve">
+    <value>Sort Lists</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="Pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -459,13 +513,32 @@ OneNote will close automatically</value>
     <value>Tag Page</value>
     <comment>menu item</comment>
   </data>
+  <data name="OutlookTaskReport_Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>report</comment>
+  </data>
   <data name="OutlineDialog_numberingBox.Text" xml:space="preserve">
     <value>Add Numbering</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ContextMenuSheet_ribDeleteReminderButton" xml:space="preserve">
+    <value>... Delete Reminder</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="UpdateDialog.Text" xml:space="preserve">
+    <value>Check for OneMore Updates</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCollapseContentButton" xml:space="preserve">
+    <value>... Collapse Outlining</value>
+    <comment>context menu option</comment>
+  </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
     <value>{0} Styles</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="word_Refresh" xml:space="preserve">
+    <value>Refresh</value>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
     <value>Refresh icons</value>
@@ -495,17 +568,25 @@ OneNote will close automatically</value>
     <value>All notebooks</value>
     <comment>radio</comment>
   </data>
-  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
-    <value>Choose a custom color</value>
+  <data name="ribCopyDownButton_Label" xml:space="preserve">
+    <value>Copy Down</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseNotesLink.Text" xml:space="preserve">
+    <value>Release notes</value>
     <comment>link</comment>
   </data>
   <data name="ribRemoveAuthorsButton_Screentip" xml:space="preserve">
     <value>Remove information for all authors on this page</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="SplitDialog_filterGroup.Text" xml:space="preserve">
-    <value>Filter</value>
-    <comment>group box</comment>
+  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
+    <value>No orphaned tasks were found</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemovingPageNumber_Message" xml:space="preserve">
+    <value>Removing number from page {0}</value>
+    <comment>progress status dialog</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
     <value>Insert table of headings on this page</value>
@@ -515,9 +596,9 @@ OneNote will close automatically</value>
     <value>Name</value>
     <comment>settings table column header</comment>
   </data>
-  <data name="Emoji_Software" xml:space="preserve">
-    <value>Software</value>
-    <comment>emoji</comment>
+  <data name="ribRemoveSectionNumbersButton_Label" xml:space="preserve">
+    <value>Remove Section Numbers</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="TextToTableDialog_group1.Text" xml:space="preserve">
     <value>Separate text at</value>
@@ -535,6 +616,10 @@ OneNote will close automatically</value>
     <value>More</value>
     <comment>Ribbon main button</comment>
   </data>
+  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
+    <value>Snoozed until {0}</value>
+    <comment>report</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Paste Rich Text</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -542,9 +627,9 @@ OneNote will close automatically</value>
   <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
-    <value>Status:</value>
-    <comment>status label</comment>
+  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
+    <value>Plugins</value>
+    <comment>tree node</comment>
   </data>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>Load Styles</value>
@@ -561,9 +646,6 @@ OneNote will close automatically</value>
   <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
     <value>Space Before:</value>
     <comment>label</comment>
-  </data>
-  <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
     <value>... Yellow Status</value>
@@ -617,6 +699,10 @@ OneNote will close automatically</value>
     <value>Enable Spell Check</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
+  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
+    <value>Active Reminders</value>
+    <comment>report</comment>
+  </data>
   <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
     <value>... Table of Contents</value>
     <comment>context menu option</comment>
@@ -625,9 +711,21 @@ OneNote will close automatically</value>
     <value>Delete snippet "{0}"</value>
     <comment>question</comment>
   </data>
+  <data name="ribPageMenu_Label" xml:space="preserve">
+    <value>Page</value>
+    <comment>ribbon menu</comment>
+  </data>
   <data name="PluginsSheet_okButton.Text" xml:space="preserve">
     <value>OK</value>
     <comment>button</comment>
+  </data>
+  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
+    <value>These are reminders not yet completed or deferred and ordered by due date year, week of year, and priority</value>
+    <comment>report</comment>
+  </data>
+  <data name="ArrangeContainersDialog.Text" xml:space="preserve">
+    <value>Arrange Containers</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -640,6 +738,10 @@ OneNote will close automatically</value>
     <value>... Trim Whitespace</value>
     <comment>context menu option</comment>
   </data>
+  <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
+    <value>Check for new versions of OneMore when OneNote starts</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
     <value>Insert double horizontal line (Shift + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -647,6 +749,10 @@ OneNote will close automatically</value>
   <data name="ribRemoveSectionNumbersButton_Screentip" xml:space="preserve">
     <value>Remove numbers from all sectionsin this notebook</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="Reminder_PastDue" xml:space="preserve">
+    <value>Task is past its due date of {0}, "{1}". Click here to navigate to this task</value>
+    <comment>toast message</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>Show XML</value>
@@ -663,6 +769,10 @@ OneNote will close automatically</value>
   <data name="NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\newstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
+    <value>Click snooze to be reminded in</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedSubpageCommand_SelectIntro" xml:space="preserve">
     <value>Select the page to embed on this page</value>
     <comment>quickdialog intro</comment>
@@ -671,8 +781,16 @@ OneNote will close automatically</value>
     <value>The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote.</value>
     <comment>summary text</comment>
   </data>
+  <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
+    <value>Update version:</value>
+    <comment>label</comment>
+  </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CropImageDialog_printout" xml:space="preserve">
+    <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
+    <comment>message box, question</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>About OneMore</value>
@@ -686,6 +804,10 @@ OneNote will close automatically</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ContextMenuSheet_ribRemindersMenu" xml:space="preserve">
+    <value>Reminders</value>
+    <comment>context menu option</comment>
+  </data>
   <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
     <value>... Disable Spell Check</value>
     <comment>context menu option</comment>
@@ -694,9 +816,9 @@ OneNote will close automatically</value>
     <value>Help</value>
     <comment>help checkbox button</comment>
   </data>
-  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
-    <value>Include section summary</value>
-    <comment>checkbox</comment>
+  <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
+    <value>Remove screen clipping and paste URL citations</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveEmptyButton" xml:space="preserve">
     <value>... Remove Empty Paragraphs and Headings</value>
@@ -721,6 +843,10 @@ OneNote will close automatically</value>
   <data name="Superscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\superscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
+    <value>Started</value>
+    <comment>label</comment>
+  </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>Travel</value>
     <comment>emoji</comment>
@@ -729,6 +855,10 @@ OneNote will close automatically</value>
     <value>Update current page</value>
     <comment>radio button</comment>
   </data>
+  <data name="ContextMenuSheet_ribInsertDoubleLineButton" xml:space="preserve">
+    <value>... Double Horizontal Line</value>
+    <comment>context menu option</comment>
+  </data>
   <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
     <value>Delete</value>
     <comment>toolstrip label</comment>
@@ -736,6 +866,14 @@ OneNote will close automatically</value>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</value>
     <comment>intro label</comment>
+  </data>
+  <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
+    <value>Due date</value>
+    <comment>label</comment>
+  </data>
+  <data name="ribArchiveSectionButton_Label" xml:space="preserve">
+    <value>Archive Section</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     <value>Import as static images</value>
@@ -748,13 +886,17 @@ OneNote will close automatically</value>
     <value>Screen clipping</value>
     <comment>Screen clipping citation</comment>
   </data>
-  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
-    <value>Spacing</value>
-    <comment>group box</comment>
+  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
+    <value>Silence this reminder</value>
+    <comment>checkbox</comment>
   </data>
   <data name="CropImageDialog_bounds" xml:space="preserve">
     <value>Selection top left: {0}, {1}. Bounding rectangle size: {2} x {3}.</value>
     <comment>status bar text</comment>
+  </data>
+  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
+    <value>Status</value>
+    <comment>label</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Match case</value>
@@ -768,9 +910,16 @@ OneNote will close automatically</value>
     <value>Apply Styles to Page</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
+  <data name="ApplyStyle4Command" xml:space="preserve">
+    <value>Apply Style 4</value>
+  </data>
   <data name="SplitDialog_splitByGroup.Text" xml:space="preserve">
     <value>Split by</value>
     <comment>group box</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
+    <value>Import Tasks from Outlook</value>
+    <comment>dialog title</comment>
   </data>
   <data name="CropImageDialog_introText.Text" xml:space="preserve">
     <value>Use the mouse to select an area to crop. Ctrl+D to deselect. Use the slider to rotate the image. Click OK to finish.</value>
@@ -779,6 +928,18 @@ OneNote will close automatically</value>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
     <value>Select a Word, PowerPoint, OneNote, Markdown, or XML file</value>
     <comment>label</comment>
+  </data>
+  <data name="Plugin_NoChanges" xml:space="preserve">
+    <value>Plugin completed successfully but no changes were found</value>
+    <comment>warning message</comment>
+  </data>
+  <data name="SortListDialog_allListsButton.Text" xml:space="preserve">
+    <value>Sort all top-level lists on the page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
+    <value>Select all</value>
+    <comment>button</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
     <value>Convert text to uppercase (Ctrl + Shift + Alt + U)</value>
@@ -804,9 +965,17 @@ OneNote will close automatically</value>
     <value>URL Patterns must contain a string replacement token, such as &amp;q={0}</value>
     <comment>label</comment>
   </data>
-  <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
-    <value>Reorder</value>
-    <comment>button</comment>
+  <data name="RemindDialog_statusBox.Text" xml:space="preserve">
+    <value>Not started
+In progress
+Completed
+Waiting on someone else
+Deferred</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="LinkReferencesCommand_noref" xml:space="preserve">
+    <value>No references found. Consider enabling the option to include unindexed pages</value>
+    <comment>message</comment>
   </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>To UPPERCASE</value>
@@ -819,6 +988,10 @@ OneNote will close automatically</value>
   <data name="ribInsertCellsButton_Label" xml:space="preserve">
     <value>Insert Table Cells</value>
     <comment>ribbon item</comment>
+  </data>
+  <data name="TimerWindow_closeButton.Text" xml:space="preserve">
+    <value>Close Timer</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="SplitTableCommand_FirstRow" xml:space="preserve">
     <value>Choose a row after the first row before splitting</value>
@@ -836,9 +1009,16 @@ OneNote will close automatically</value>
     <value>All files (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.md;*.one;*.xml|Word files (*.docx)|*.docx|Powerpoint files (*.pptx)|*.pptx|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template files (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
+  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
+    <value>Include a synopsis of each page</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
     <value>Delete Formula</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
+    <value>Remove tags not associated with reminders</value>
   </data>
   <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
     <value>Delete:</value>
@@ -852,6 +1032,10 @@ OneNote will close automatically</value>
     <value>Replay Last Command</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
+  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
+    <value>... Save Collapsed Outline</value>
+    <comment>context menu option</comment>
+  </data>
   <data name="RibbonBarSheet_formulaGroup.Text" xml:space="preserve">
     <value>Formula Commands</value>
     <comment>settings dialog, ribbon bar options</comment>
@@ -863,10 +1047,6 @@ OneNote will close automatically</value>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>No Spell Check</value>
     <comment>Context menu</comment>
-  </data>
-  <data name="ribInvertSelectionButton_Label" xml:space="preserve">
-    <value>Invert Selection</value>
-    <comment>ribbon button</comment>
   </data>
   <data name="ReorderDialog_label.Text" xml:space="preserve">
     <value>Reorder how styles appear in the gallery. Also changes the order of headings in a TOC</value>
@@ -891,9 +1071,13 @@ OneNote will close automatically</value>
     <value>Themes</value>
     <comment>SKIP</comment>
   </data>
-  <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
-    <value>Faded:</value>
-    <comment>radio</comment>
+  <data name="Emoji_Software" xml:space="preserve">
+    <value>Software</value>
+    <comment>emoji</comment>
+  </data>
+  <data name="ctxLowercaseButton_Label" xml:space="preserve">
+    <value>To lowercase</value>
+    <comment>Context menu</comment>
   </data>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Recalculate all formula in the current table (Shift + F5)</value>
@@ -915,21 +1099,36 @@ OneNote will close automatically</value>
     <value>Tmeout</value>
     <comment>label</comment>
   </data>
-  <data name="ribToggleDttmButton_Label" xml:space="preserve">
-    <value>Show/Hide Page Date and Time Stamps</value>
-    <comment>Ribbon OneMore menu item</comment>
+  <data name="DiagnosticsDialog_Text" xml:space="preserve">
+    <value>OneMore Diagnostics</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="word_Started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="UpdateDialog_upIntroLabel.Text" xml:space="preserve">
+    <value>OneMore update available</value>
+    <comment>panel title</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
     <value>Fill Across</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
-    <value>Absolute</value>
-    <comment>radio button</comment>
+  <data name="ArrangeContainersDialog_columnsLabel.Text" xml:space="preserve">
+    <value>Columns</value>
+    <comment>label</comment>
+  </data>
+  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
+    <value>... Proofing Language</value>
+    <comment>context menu option</comment>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
     <value>Sort</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
+    <value>Inactive Reminders</value>
+    <comment>report</comment>
   </data>
   <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
     <value>Undefined function "{0}"</value>
@@ -942,9 +1141,13 @@ OneNote will close automatically</value>
   <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>Invalid operand</value>
-    <comment>error</comment>
+  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
+    <value>Preserve storage size</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
+    <value>Command</value>
+    <comment>gridview column</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
     <value>Insert calendar</value>
@@ -958,6 +1161,13 @@ OneNote will close automatically</value>
     <value>Formula</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SaveSnippet_NeedSelection" xml:space="preserve">
+    <value>Select content to save as a new snippet</value>
+    <comment>error message</comment>
+  </data>
+  <data name="word_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="ExpandoCommand_Saved" xml:space="preserve">
     <value>Outline state has been saved for this page</value>
     <comment>message box</comment>
@@ -970,17 +1180,21 @@ OneNote will close automatically</value>
     <value>Add or update number of all pages in this section</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
-    <value>The current section</value>
-    <comment>radio</comment>
-  </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
     <value>Select one or more table cells</value>
     <comment>warning message</comment>
   </data>
-  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
-    <value>Word</value>
+  <data name="UpdateDialog_upDescriptionLabel.Text" xml:space="preserve">
+    <value>Description:</value>
     <comment>label</comment>
+  </data>
+  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
+    <value>Sort Notebooks</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
+    <value>Absolute</value>
+    <comment>radio button</comment>
   </data>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Use regular expressions</value>
@@ -1002,17 +1216,24 @@ OneNote will close automatically</value>
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
+    <value>Include unindexed pages in query</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SettingsDialog_searchNode.Text" xml:space="preserve">
     <value>Search Engines</value>
     <comment>treenode</comment>
   </data>
-  <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Convert text to lowercase (Ctrl + Shift + U)</value>
-    <comment>Ribbon OneMore menu item</comment>
+  <data name="LinesSheet_Title" xml:space="preserve">
+    <value>Horizontal Line Options</value>
+    <comment>settings sheet</comment>
   </data>
   <data name="GetImagesCommand_Cite" xml:space="preserve">
     <value>Would you like to annotate the image with its URL?</value>
     <comment>message box</comment>
+  </data>
+  <data name="FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\fontcolor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
     <value>Embed content of another page into the current page</value>
@@ -1046,13 +1267,20 @@ OneNote will close automatically</value>
     <value>Line color:</value>
     <comment>settings sheet</comment>
   </data>
+  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
+    <value>These are reminders that have been completed or deferred and ordered by status, completion date, and priority</value>
+    <comment>report</comment>
+  </data>
   <data name="Plugin_Running" xml:space="preserve">
     <value>Running {0} {1} \"{2}\"</value>
     <comment>running message</comment>
   </data>
-  <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
-    <value>Strikethrough Completed To Do Tags</value>
-    <comment>Ribbon OneMore menu item</comment>
+  <data name="Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
+    <value>Automatically adjust grid to most common font size</value>
+    <comment>radio</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
     <value>Remove Paragraph Spacing</value>
@@ -1066,17 +1294,24 @@ OneNote will close automatically</value>
     <value>Include headings</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ribWordCountButton_Label" xml:space="preserve">
-    <value>Word Count</value>
-    <comment>Ribbon OneMore menu extras</comment>
+  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
+    <value>Sort Sections in Notebook</value>
+    <comment>ribbon/context menu</comment>
+  </data>
+  <data name="ribProofingMenu_Label" xml:space="preserve">
+    <value>Proofing Language</value>
+    <comment>ribbon menu</comment>
+  </data>
+  <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
+    <value>Strikethrough</value>
+    <comment>button</comment>
   </data>
   <data name="SettingsDialog_generalNode.Text" xml:space="preserve">
     <value>General Options</value>
     <comment>tree node</comment>
   </data>
-  <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>Saved {0} pages to {1}</value>
-    <comment>save many message</comment>
+  <data name="word_Silenced" xml:space="preserve">
+    <value>Silenced</value>
   </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
     <value>One or more changes require OneNote to be restarted. Do you want to restart OneNote now?</value>
@@ -1110,13 +1345,19 @@ OneNote will close automatically</value>
     <value>Wrong number of function parameters</value>
     <comment>error</comment>
   </data>
-  <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
-    <value>Space After:</value>
-    <comment>label</comment>
+  <data name="DiagnosticsCommand" xml:space="preserve">
+    <value>Dump Diagnostics to Log</value>
+  </data>
+  <data name="FitGridToTextDialog_Text" xml:space="preserve">
+    <value>Fit Grid to Text</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ribTrimButton_Screentip" xml:space="preserve">
     <value>Trim trailing whitespace from selected text</value>
     <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="ApplyStyle9Command" xml:space="preserve">
+    <value>Apply Style 9</value>
   </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Table of Contents</value>
@@ -1134,6 +1375,10 @@ OneNote will close automatically</value>
     <value>Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible.</value>
     <comment>label</comment>
   </data>
+  <data name="ribLowercaseButton_Label" xml:space="preserve">
+    <value>To lowercase</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
   <data name="ExportDialog_Text" xml:space="preserve">
     <value>Export Pages</value>
     <comment>dialog title</comment>
@@ -1141,9 +1386,9 @@ OneNote will close automatically</value>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ribPluginsMenu_Label" xml:space="preserve">
-    <value>My Saved Plugins</value>
-    <comment>favorites menu</comment>
+  <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
+    <value>Priority</value>
+    <comment>label</comment>
   </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
     <value>Delete {0}?</value>
@@ -1161,6 +1406,10 @@ OneNote will close automatically</value>
     <value>Export</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
+    <value>Cloud not load snippet from "{0}"</value>
+    <comment>error message</comment>
+  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>Could not create bi-directional link. {0}</value>
     <comment>message box</comment>
@@ -1169,9 +1418,17 @@ OneNote will close automatically</value>
     <value>Apply style theme to this page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
+    <value>Options</value>
+    <comment>group box</comment>
+  </data>
   <data name="MapDialog_sectionRadio.Text" xml:space="preserve">
     <value>The current section</value>
     <comment>radio</comment>
+  </data>
+  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
+    <value>Completed</value>
+    <comment>label</comment>
   </data>
   <data name="ClearLog_Title" xml:space="preserve">
     <value>Confirm</value>
@@ -1195,13 +1452,27 @@ Percentage</value>
     <value>Add Footnote</value>
     <comment>context menu option</comment>
   </data>
-  <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
-    <value>Apply colors</value>
-    <comment>checkbox</comment>
+  <data name="ClearLogCommand" xml:space="preserve">
+    <value>Clear Log File</value>
   </data>
   <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
     <value>... Enable Spell Check</value>
     <comment>context menu option</comment>
+  </data>
+  <data name="SortListCommand_BadContext" xml:space="preserve">
+    <value>Move the text cursor to an item of a list</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemindDialog.Text" xml:space="preserve">
+    <value>Reminder</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ApplyStyle6Command" xml:space="preserve">
+    <value>Apply Style 6</value>
+  </data>
+  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
+    <value>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</value>
+    <comment>label</comment>
   </data>
   <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
     <value>Zip all pages including attachments</value>
@@ -1219,9 +1490,9 @@ Percentage</value>
     <value>Search and Move/Copy</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_italicButton.Text" xml:space="preserve">
-    <value>Italic</value>
-    <comment>button</comment>
+  <data name="ribNumberPagesButton_Label" xml:space="preserve">
+    <value>Number Pages</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ctxReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
@@ -1239,33 +1510,45 @@ Percentage</value>
     <value>Clean</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="RemindCommand_noContext" xml:space="preserve">
+    <value>Cursor must be positioned on a paragraph</value>
+    <comment>warning message</comment>
+  </data>
   <data name="InsertCellsDialog_shiftDownRadio.Text" xml:space="preserve">
     <value>Shift cells down</value>
     <comment>radio</comment>
+  </data>
+  <data name="ribInsertCalendarButton_Label" xml:space="preserve">
+    <value>Calendar</value>
+    <comment>ribbon button</comment>
   </data>
   <data name="TextToTableDialog_columnsLabel.Text" xml:space="preserve">
     <value>Number of columns:</value>
     <comment>label</comment>
   </data>
-  <data name="SplitDialog.Text" xml:space="preserve">
-    <value>Split Page</value>
-    <comment>dialog title</comment>
+  <data name="ContextMenuSheet_ribHighlightButton" xml:space="preserve">
+    <value>... Rotating Highlighter</value>
+    <comment>context menu option</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Search and Copy/Move</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ArchiveCommand_noPages" xml:space="preserve">
-    <value>No pages found</value>
-    <comment>message</comment>
+  <data name="ArrangeContainersDialog_flowButton.Text" xml:space="preserve">
+    <value>Arrange in columns and then rows, fit to page width</value>
+    <comment>radio</comment>
+  </data>
+  <data name="WordCountCommand_Selected" xml:space="preserve">
+    <value>Total words selected: {0}</value>
+    <comment>message box</comment>
   </data>
   <data name="CropImageDialog_noSelection" xml:space="preserve">
     <value>No selection</value>
     <comment>status bar text</comment>
   </data>
-  <data name="RemoveSpacingDialog_betweenBox.Text" xml:space="preserve">
-    <value>Remove spacing between lines</value>
-    <comment>checkbox</comment>
+  <data name="EmbedSubpageCommand_Select" xml:space="preserve">
+    <value>Select Page</value>
+    <comment>quickdialog title</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
     <value>Anchor cannot be found. Page or text has changed.</value>
@@ -1290,21 +1573,17 @@ Percentage</value>
     <value>{0} (column {1})</value>
     <comment>exception message</comment>
   </data>
-  <data name="InsertCalendarDialog.Text" xml:space="preserve">
-    <value>Insert Calendar</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     <value>Link References to this Page</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Add page with table of pages in this section</value>
-    <comment>radio</comment>
-  </data>
   <data name="InsertCalendarDialog_smallRadio.Text" xml:space="preserve">
     <value>Small</value>
     <comment>radio</comment>
+  </data>
+  <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
+    <value>Start date</value>
+    <comment>label</comment>
   </data>
   <data name="SortDialog_modifiedButton.Text" xml:space="preserve">
     <value>Date Modified</value>
@@ -1369,21 +1648,44 @@ In this section</value>
     <value>OK</value>
     <comment>ok button</comment>
   </data>
-  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Disable spell check for entire page (F4)</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  <data name="ribRemindButton_Label" xml:space="preserve">
+    <value>Add or Update Reminders</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ApplyStyle1Command" xml:space="preserve">
+    <value>Apply Style 1</value>
   </data>
   <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
     <value>Refresh Footnotes</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>Uncheck all pages</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>SKIP</comment>
+  </data>
+  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
+    <value>Do not snooze
+5 minutes
+10 minutes
+15 minutes
+30 minutes
+1 hour
+2 hours
+4 hours
+1 day
+2 days
+3 days
+1 week
+2 weeks</value>
+    <comment>combox box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribLowercaseButton" xml:space="preserve">
+    <value>... To lowercase</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
+    <value>Import Tasks from Outlook</value>
+    <comment>ribbon Reminders item</comment>
   </data>
   <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1391,10 +1693,6 @@ In this section</value>
   <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
     <value>Storage</value>
     <comment>group box</comment>
-  </data>
-  <data name="ShowXmlDialog_pagesHierButton.Text" xml:space="preserve">
-    <value>Pages</value>
-    <comment>hier button</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">
     <value>... Remove Author Information</value>
@@ -1404,13 +1702,24 @@ In this section</value>
     <value>Insert the current date (Ctrl + Shift + D)</value>
     <comment>ribbon</comment>
   </data>
-  <data name="TextToTableDialog_rowsLabel.Text" xml:space="preserve">
-    <value>Number of rows:</value>
-    <comment>label</comment>
+  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
+    <value>Add link to each heading to jump to top of page</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
     <value>Replay last command (Alt + Shift + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
+  </data>
+  <data name="OutlookTaskReport_Week" xml:space="preserve">
+    <value>Week {0}</value>
+    <comment>report</comment>
+  </data>
+  <data name="ribRedStatusButton_Label" xml:space="preserve">
+    <value>Red Status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="word_OK" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="ribTitlecaseButton_Screentip" xml:space="preserve">
     <value>Convert text to title case</value>
@@ -1419,9 +1728,9 @@ In this section</value>
     <value>Family</value>
     <comment>emoji</comment>
   </data>
-  <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
-    <value>Cloud not load snippet from "{0}"</value>
-    <comment>error message</comment>
+  <data name="Plugin_Title" xml:space="preserve">
+    <value>Plugin</value>
+    <comment>Open File Dialog title</comment>
   </data>
   <data name="EmbedSubpageCommand_NoEmbedded" xml:space="preserve">
     <value>No embedded content found</value>
@@ -1430,10 +1739,6 @@ In this section</value>
   <data name="ribBlueStatusButton_Label" xml:space="preserve">
     <value>Blue Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="FormulaDialog_status_OK" xml:space="preserve">
-    <value>OK</value>
-    <comment>label</comment>
   </data>
   <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
     <value>Remove Paragraph Spacing</value>
@@ -1451,6 +1756,10 @@ In this section</value>
     <value>Insert Cells</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ClearLog_Message" xml:space="preserve">
+    <value>Clear the log file now?</value>
+    <comment>message box message</comment>
+  </data>
   <data name="AddTitleIconDialog.Text" xml:space="preserve">
     <value>TItle Icons</value>
     <comment>dialog title</comment>
@@ -1459,17 +1768,29 @@ In this section</value>
     <value>To Title Case</value>
     <comment>rib button</comment>
   </data>
+  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
+    <value>Customize grid size</value>
+    <comment>radio</comment>
+  </data>
   <data name="TextToTableDialog.Text" xml:space="preserve">
     <value>Convert Text to Table</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="OutlookTaskReport_Importance" xml:space="preserve">
+    <value>Importance</value>
+    <comment>report</comment>
   </data>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>General Options</value>
     <comment>settings sheet</comment>
   </data>
-  <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
-    <value>Pages in</value>
+  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
+    <value>Options</value>
     <comment>group box</comment>
+  </data>
+  <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
+    <value>Space After:</value>
+    <comment>label</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
     <value>Style Type:</value>
@@ -1483,13 +1804,13 @@ In this section</value>
     <value>Bold</value>
     <comment>button</comment>
   </data>
-  <data name="Emoji_Passwords" xml:space="preserve">
-    <value>Passwords</value>
-    <comment>emoji</comment>
+  <data name="MapDialog_groupBox.Text" xml:space="preserve">
+    <value>Pages in</value>
+    <comment>group box</comment>
   </data>
-  <data name="ContextMenuSheet_ribJoinParagraphButton" xml:space="preserve">
-    <value>... Join Paragraph</value>
-    <comment>context menu option</comment>
+  <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
+    <value>Installed version:</value>
+    <comment>label</comment>
   </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Show date and time</value>
@@ -1511,9 +1832,9 @@ In this section</value>
     <value>Name:</value>
     <comment>label</comment>
   </data>
-  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
-    <value>... Red Status</value>
-    <comment>context menu option</comment>
+  <data name="SplitDialog.Text" xml:space="preserve">
+    <value>Split Page</value>
+    <comment>dialog title</comment>
   </data>
   <data name="LabelSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\labelsearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1530,9 +1851,9 @@ In this section</value>
     <value>... Warning Block</value>
     <comment>context menu option</comment>
   </data>
-  <data name="EmbedSubpageCommand_Select" xml:space="preserve">
-    <value>Select Page</value>
-    <comment>quickdialog title</comment>
+  <data name="ReminderReport_Title" xml:space="preserve">
+    <value>Reminder Summary Report</value>
+    <comment>report</comment>
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>First day of week</value>
@@ -1542,12 +1863,16 @@ In this section</value>
     <value>Closing parenthesis without matching open parenthesis</value>
     <comment>error</comment>
   </data>
+  <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
+    <value>Status:</value>
+    <comment>status label</comment>
+  </data>
   <data name="Cyclist" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\cyclist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Plugin_Title" xml:space="preserve">
-    <value>Plugin</value>
-    <comment>Open File Dialog title</comment>
+  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
+    <value>Invalid operand</value>
+    <comment>error</comment>
   </data>
   <data name="SplitDialog_byLinksLabel.Text" xml:space="preserve">
     <value>Move content to each linked page</value>
@@ -1557,9 +1882,6 @@ In this section</value>
     <value>Remove spacing after paragraphs</value>
     <comment>checkbox</comment>
   </data>
-  <data name="Subscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\subscript.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>Settings</value>
     <comment>ribbon button</comment>
@@ -1568,13 +1890,21 @@ In this section</value>
     <value>Create a new page</value>
     <comment>radio</comment>
   </data>
+  <data name="Reminder_ToastTitle" xml:space="preserve">
+    <value>OneMore Reminder</value>
+    <comment>toast header</comment>
+  </data>
+  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
+    <value>Sort Pages in Section</value>
+    <comment>ribbon/context menu</comment>
+  </data>
   <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
     <value>Snippets</value>
     <comment>tree node</comment>
   </data>
-  <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
-    <value>Create as new page</value>
-    <comment>radio</comment>
+  <data name="OutlookTaskReport_Percent" xml:space="preserve">
+    <value>% Complete</value>
+    <comment>report</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
     <value>Right-align top of page link</value>
@@ -1583,6 +1913,14 @@ In this section</value>
   <data name="ribRecalculateFormulaButton_Label" xml:space="preserve">
     <value>Recalculate Formula</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="SortListDialog_typeBox.Text" xml:space="preserve">
+    <value>Both bullet and numbered lists</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
+    <value>Clear</value>
+    <comment>toolstrip button</comment>
   </data>
   <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
     <value>Current Section</value>
@@ -1653,6 +1991,10 @@ In this section</value>
   <data name="Hammer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\hammer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
+    <value>Start Date</value>
+    <comment>report</comment>
+  </data>
   <data name="Emoji_Automobile" xml:space="preserve">
     <value>Automobile</value>
     <comment>emoji</comment>
@@ -1660,6 +2002,9 @@ In this section</value>
   <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
     <value>Refresh footnote reference numbers sequentially</value>
     <comment>ribbon button</comment>
+  </data>
+  <data name="ApplyStyle2Command" xml:space="preserve">
+    <value>Apply Style 2</value>
   </data>
   <data name="PluginDialog_badName" xml:space="preserve">
     <value>Invalid or duplicate name</value>
@@ -1669,13 +2014,35 @@ In this section</value>
     <value>Delete {0}?</value>
     <comment>delete confirmation message</comment>
   </data>
+  <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
+    <value>Release notes</value>
+    <comment>link</comment>
+  </data>
   <data name="OutlineDialog_indentTagBox.Text" xml:space="preserve">
     <value>Indent only below tagged headings/paragraphs</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ribDeleteReminderButton_Label" xml:space="preserve">
+    <value>Delete Reminder</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ApplyStyle3Command" xml:space="preserve">
+    <value>Apply Style 3</value>
+  </data>
+  <data name="ApplyStyle5Command" xml:space="preserve">
+    <value>Apply Style 5</value>
+  </data>
   <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
     <value>... Restore Collapsed Outline</value>
     <comment>context menu option</comment>
+  </data>
+  <data name="BreakingDialog_groupBox.Text" xml:space="preserve">
+    <value>Spacing</value>
+    <comment>group box</comment>
+  </data>
+  <data name="DeleteReminderCommand_deleteTag" xml:space="preserve">
+    <value>About to delete reminder. Would you also like to delete the tag associated with this reminder?</value>
+    <comment>message box</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>Include reference to keyboard shortcuts page</value>
@@ -1689,6 +2056,17 @@ In this section</value>
     <value>Select on or more icons to add to page title</value>
     <comment>instructions</comment>
   </data>
+  <data name="ApplyStyle7Command" xml:space="preserve">
+    <value>Apply Style 7</value>
+  </data>
+  <data name="StyleDialog_reorderButton.Text" xml:space="preserve">
+    <value>Reorder</value>
+    <comment>button</comment>
+  </data>
+  <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Disable spell check for entire page (F4)</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
   <data name="SplitTableCommand_NoSelection" xml:space="preserve">
     <value>Select a table cell to indicate the first row to split</value>
     <comment>error message</comment>
@@ -1697,13 +2075,17 @@ In this section</value>
     <value>Circle</value>
     <comment>emoji</comment>
   </data>
+  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
+    <value>Last updated:</value>
+    <comment>label</comment>
+  </data>
   <data name="SaveAs_Error" xml:space="preserve">
     <value>Error saving page as {0}</value>
     <comment>Save as dialog error message</comment>
   </data>
-  <data name="ContextMenuSheet_ribUppercaseButton" xml:space="preserve">
-    <value>... To UPPERCASE</value>
-    <comment>context menu option</comment>
+  <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
+    <value>Apply colors</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SplitDialog_byHeading1Label.Text" xml:space="preserve">
     <value>Link headings to new pages and move content to each page</value>
@@ -1713,9 +2095,23 @@ In this section</value>
     <value>Cannot link a phrase to itself</value>
     <comment>message box</comment>
   </data>
+  <data name="FitGridToTextCommand_noText" xml:space="preserve">
+    <value>Page contains no regular paragraph text</value>
+    <comment>message</comment>
+  </data>
+  <data name="ribRemoveInkButton_Label" xml:space="preserve">
+    <value>Remove Ink</value>
+    <comment>ribbon item</comment>
+  </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Move down</value>
     <comment>button</comment>
+  </data>
+  <data name="OutlookTaskReport_importances" xml:space="preserve">
+    <value>Low
+Medium
+High</value>
+    <comment>report</comment>
   </data>
   <data name="ribExpandContentButton_Label" xml:space="preserve">
     <value>Expand Outlining</value>
@@ -1741,8 +2137,20 @@ In this section</value>
     <value>Update Embedded Pages</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribStartTimerButton_Label" xml:space="preserve">
+    <value>Start Timer</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
+    <value>This page</value>
+    <comment>radio button</comment>
+  </data>
   <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ContextMenuSheet_ribRemindButton" xml:space="preserve">
+    <value>... Add or Update Reminders</value>
+    <comment>context menu option</comment>
   </data>
   <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
     <value>Name</value>
@@ -1756,16 +2164,40 @@ In this section</value>
     <value>Manage Favorites</value>
     <comment>settings</comment>
   </data>
+  <data name="ribSortPagesButton_Label" xml:space="preserve">
+    <value>Sort Pages in Section</value>
+    <comment>ribbon/context menu</comment>
+  </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
     <value>Add page with table of sections in this notebook</value>
     <comment>radio</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
+    <value>Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote</value>
+    <comment>text box</comment>
   </data>
   <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
     <value>... Calendar</value>
     <comment>context menu option</comment>
   </data>
+  <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
+    <value>Highlight Formula</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribJoinParagraphButton" xml:space="preserve">
+    <value>... Join Paragraph</value>
+    <comment>context menu option</comment>
+  </data>
   <data name="Pushpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\pushpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyboardSheet.Text" xml:space="preserve">
+    <value>Keyboard</value>
+    <comment>sheet</comment>
+  </data>
+  <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
+    <value>Reset all</value>
+    <comment>toolstrip button</comment>
   </data>
   <data name="InsertCellsDialog_numLabel.Text" xml:space="preserve">
     <value>Number of cells to insert:</value>
@@ -1795,6 +2227,10 @@ In this section</value>
     <value>Edit Plugin</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ribReportRemindersButton_Label" xml:space="preserve">
+    <value>Reminder Summary Report</value>
+    <comment>ribbon item</comment>
+  </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
     <value>No formulas found on this page</value>
     <comment>highlight command message</comment>
@@ -1808,9 +2244,17 @@ Try again later</value>
     <value>Width</value>
     <comment>label</comment>
   </data>
+  <data name="ReminderReport_WeekOfYear" xml:space="preserve">
+    <value>Week {0}</value>
+    <comment>report citation</comment>
+  </data>
   <data name="sepTools_Label" xml:space="preserve">
     <value>Tools</value>
     <comment>Ribbon OneMore menu separator</comment>
+  </data>
+  <data name="ribSaveSnippetButton_Label" xml:space="preserve">
+    <value>Save Custom Snippet</value>
+    <comment>ribbon button</comment>
   </data>
   <data name="ribCreateStyleButton_Label" xml:space="preserve">
     <value>Create Style from Selection</value>
@@ -1824,9 +2268,6 @@ Try again later</value>
     <value>Customize the default style for horiztonal line snippets</value>
     <comment>settings sheet</comment>
   </data>
-  <data name="Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
     <value>URL Patterns must contain a string replacement token, such as &amp;q={0}</value>
     <comment>intro label</comment>
@@ -1839,17 +2280,19 @@ Try again later</value>
     <value>Toggle</value>
     <comment>group box</comment>
   </data>
+  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
+    <value>Diagnostics written to</value>
+    <comment>label</comment>
+  </data>
   <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
     <value>All pages in this section</value>
     <comment>radio button</comment>
   </data>
-  <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
-    <value>Refresh Page References</value>
-    <comment>dialog title</comment>
+  <data name="Journal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\journal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
-    <value>Add link to each heading to jump to top of page</value>
-    <comment>checkbox</comment>
+  <data name="Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
     <value>Command</value>
@@ -1858,6 +2301,10 @@ Try again later</value>
   <data name="ExportDialog_folderLabel.Text" xml:space="preserve">
     <value>Folder:</value>
     <comment>label</comment>
+  </data>
+  <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
+    <value>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes.</value>
+    <comment>intro</comment>
   </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Convert Text to Table</value>
@@ -1875,13 +2322,17 @@ Try again later</value>
     <value>Find Tagged Pages</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ContextMenuSheet_ribLowercaseButton" xml:space="preserve">
-    <value>... To lowercase</value>
-    <comment>context menu option</comment>
+  <data name="InsertCalendarDialog.Text" xml:space="preserve">
+    <value>Insert Calendar</value>
+    <comment>dialog title</comment>
   </data>
   <data name="PluginDialog_nameTip" xml:space="preserve">
     <value>The keyword $name will be replaced automatically with the page name when running this plugin</value>
     <comment>tooltip</comment>
+  </data>
+  <data name="ribRemindersMenu_Label" xml:space="preserve">
+    <value>Reminders</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="ImportDialog_Text" xml:space="preserve">
     <value>Import</value>
@@ -1895,9 +2346,9 @@ Try again later</value>
     <value>Source page contains no content</value>
     <comment>message box</comment>
   </data>
-  <data name="ribJoinParagraphButton_Label" xml:space="preserve">
-    <value>Join Paragraph</value>
-    <comment>ribbon button</comment>
+  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
+    <value>Apply to</value>
+    <comment>label</comment>
   </data>
   <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
     <value>Unexpected character encountered '{0}'</value>
@@ -1926,6 +2377,14 @@ Notebooks</value>
     <value>Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details.</value>
     <comment>message box</comment>
   </data>
+  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
+    <value>% Complete</value>
+    <comment>label</comment>
+  </data>
+  <data name="ContextMenuSheet_ribUppercaseButton" xml:space="preserve">
+    <value>... To UPPERCASE</value>
+    <comment>context menu option</comment>
+  </data>
   <data name="OutlineDialog_removeTagsBox.Text" xml:space="preserve">
     <value>Remove tags</value>
     <comment>checkbox</comment>
@@ -1934,21 +2393,21 @@ Notebooks</value>
     <value>Zip File (*.zip)|*.zip</value>
     <comment>archive dialog</comment>
   </data>
+  <data name="ReminderReport_LastUpdated" xml:space="preserve">
+    <value>Last updated</value>
+    <comment>text</comment>
+  </data>
   <data name="ribBoxButton_Screentip" xml:space="preserve">
     <value>Insert a single-cell table, optionally wrapping selected text</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ShowXmlDialog_pageLinkLabel.Text" xml:space="preserve">
-    <value>Link:</value>
-    <comment>label</comment>
+  <data name="ShowXmlDialog_pagesHierButton.Text" xml:space="preserve">
+    <value>Pages</value>
+    <comment>hier button</comment>
   </data>
-  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
-    <value>Backup path not found or backup are not enabled in OneNote options. Cannot continue.</value>
-    <comment>error message</comment>
-  </data>
-  <data name="ContextMenuSheet_ribRemoveCitationsButton" xml:space="preserve">
-    <value>... Remove Pasted Citations</value>
-    <comment>context menu option</comment>
+  <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
+    <value>Update</value>
+    <comment>button</comment>
   </data>
   <data name="InsertCodeBlockCommand_Code" xml:space="preserve">
     <value>Your code here...</value>
@@ -1990,6 +2449,10 @@ Quick Notes to bottom</value>
     <value>Move</value>
     <comment>button</comment>
   </data>
+  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
+    <value>Format</value>
+    <comment>label</comment>
+  </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
     <value>Notebooks can be stored locally or remotely on OneDrive. Remote notebooks can only be analyzed by their local backups as configured in the OneNote Options. This summary shows the total disk usage in either the data location for local notebooks or the backup location for remote notebooks including all backup copies and the per-notebook recycle bins.</value>
     <comment>summary text</comment>
@@ -2022,25 +2485,12 @@ Quick Notes to bottom</value>
     <value>Search and Replace</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
-    <value>Font:</value>
+  <data name="ApplyStyle8Command" xml:space="preserve">
+    <value>Apply Style 8</value>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
+    <value>Current Theme:</value>
     <comment>label</comment>
-  </data>
-  <data name="NumberPagesDialog.Text" xml:space="preserve">
-    <value>Page Numbering</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="StartupFailureMessage" xml:space="preserve">
-    <value>OneMore failed to connect to OneNote, see log file for exception details</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
-    <value>Remove Page Numbers</value>
-    <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribNumberPagesButton_Label" xml:space="preserve">
-    <value>Number Pages</value>
-    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Label" xml:space="preserve">
     <value>Decrease Font Size</value>
@@ -2073,9 +2523,16 @@ Quick Notes to bottom</value>
     <value>Operand expected</value>
     <comment>error</comment>
   </data>
-  <data name="ribBreakingButton_Label" xml:space="preserve">
-    <value>Change Sentence Spacing</value>
-    <comment>clean menu item</comment>
+  <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
+    <value>Pages in</value>
+    <comment>group box</comment>
+  </data>
+  <data name="Task" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\task.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StyleDialog_italicButton.Text" xml:space="preserve">
+    <value>Italic</value>
+    <comment>button</comment>
   </data>
   <data name="MapDialog_Text" xml:space="preserve">
     <value>Create Page Map</value>
@@ -2088,6 +2545,14 @@ Quick Notes to bottom</value>
   <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
     <value>Current Notebook</value>
     <comment>hier button</comment>
+  </data>
+  <data name="OutlookTaskReport_Title" xml:space="preserve">
+    <value>Outlook Tasks</value>
+    <comment>report</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
+    <value>... Red Status</value>
+    <comment>context menu option</comment>
   </data>
   <data name="SplitDialog_taggedBox.Text" xml:space="preserve">
     <value>Apply only to tagged headings and links</value>
@@ -2117,9 +2582,17 @@ Quick Notes to bottom</value>
     <value>{0} pages archive to {1}</value>
     <comment>message</comment>
   </data>
+  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+    <value>Remove Empty Paragraphs and Headings</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="Emoji_CrossMark" xml:space="preserve">
     <value>Cross Mark</value>
     <comment>emoji</comment>
+  </data>
+  <data name="SortListDialog_introLabel.Text" xml:space="preserve">
+    <value>Default is to sort the current list or only top level bullet lists</value>
+    <comment>intro label</comment>
   </data>
   <data name="ribFootnoteButton_Screentip" xml:space="preserve">
     <value>Add footnote (Ctrl + Alt + F)</value>
@@ -2153,6 +2626,14 @@ Quick Notes to bottom</value>
     <value>Maintain aspect ratio</value>
     <comment>checkbox</comment>
   </data>
+  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
+    <value>Recommended size for {0}pt font is {1}</value>
+    <comment>text box</comment>
+  </data>
+  <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
+    <value>Page width</value>
+    <comment>label</comment>
+  </data>
   <data name="Pronunciate_NoWord" xml:space="preserve">
     <value>Could not find word {0}</value>
     <comment>error message box</comment>
@@ -2169,8 +2650,9 @@ Quick Notes to bottom</value>
     <value>Update all embedded content on this page</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="OutlookTaskReport_Task" xml:space="preserve">
+    <value>Task</value>
+    <comment>report</comment>
   </data>
   <data name="HighlightsSheet_deepRadio.Text" xml:space="preserve">
     <value>Deep:</value>
@@ -2184,6 +2666,10 @@ Quick Notes to bottom</value>
     <value>Storage Analysis Report Options</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ReminderReport_noReminders" xml:space="preserve">
+    <value>No reminders to report</value>
+    <comment>message box</comment>
+  </data>
   <data name="SplitDialog_byHeading1Box.Text" xml:space="preserve">
     <value>Heading 1</value>
     <comment>checkbox</comment>
@@ -2193,6 +2679,10 @@ Quick Notes to bottom</value>
 In this notebook
 In this section</value>
     <comment>drop down</comment>
+  </data>
+  <data name="UpdateDialog_currentLabel.Text" xml:space="preserve">
+    <value>OneMore is up to date</value>
+    <comment>panel title</comment>
   </data>
   <data name="ImportDialog_powerSectionButton.Text" xml:space="preserve">
     <value>Create a new section with a page for each slide</value>
@@ -2217,25 +2707,28 @@ In this section</value>
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
-  <data name="ribRemoveCitationsButton_Screentip" xml:space="preserve">
-    <value>Remove screen clipping and paste URL citations</value>
-    <comment>Ribbon OneMore menu item</comment>
+  <data name="Passwords" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
+  <data name="SearchQF_Title" xml:space="preserve">
+    <value>Select Location</value>
+    <comment>QuickFiling title</comment>
   </data>
-  <data name="MapDialog_groupBox.Text" xml:space="preserve">
-    <value>Pages in</value>
-    <comment>group box</comment>
+  <data name="ribPluginsMenu_Label" xml:space="preserve">
+    <value>My Saved Plugins</value>
+    <comment>favorites menu</comment>
+  </data>
+  <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>the version of the add-in</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Import</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
-    <value>Strikethrough</value>
-    <comment>button</comment>
+  <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
+    <value>Font:</value>
+    <comment>label</comment>
   </data>
   <data name="TextToTableDialog_headerBox.Text" xml:space="preserve">
     <value>First row is a header</value>
@@ -2244,6 +2737,10 @@ In this section</value>
   <data name="HighlightsSheet_introBox.Text" xml:space="preserve">
     <value>The highlighter command will cycle through the colors of the chosen theme. Colors shown here are for light background pages. Dark background pages use automatic highlight colors</value>
     <comment>textbox</comment>
+  </data>
+  <data name="UpdateDialog_upCurrentVersionLabel.Text" xml:space="preserve">
+    <value>Current version:</value>
+    <comment>label</comment>
   </data>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>Link References</value>
@@ -2261,8 +2758,9 @@ In this section</value>
     <value>All sections in the current notebook</value>
     <comment>radio</comment>
   </data>
-  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
+    <value>Release date:</value>
+    <comment>label</comment>
   </data>
   <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
     <value>Undefined symbol "{0}"</value>
@@ -2272,12 +2770,20 @@ In this section</value>
     <value>One space between sentences</value>
     <comment>radio</comment>
   </data>
+  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
+    <value>Notebooks</value>
+    <comment>hier button</comment>
+  </data>
   <data name="Emoji_Pencil" xml:space="preserve">
     <value>Pencil</value>
     <comment>emoji</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Finish Bidirectional Link</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribSplitButton_Label" xml:space="preserve">
+    <value>Split Page</value>
     <comment>ribbon item</comment>
   </data>
   <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -2315,6 +2821,9 @@ In this section</value>
     <value>Year</value>
     <comment>label</comment>
   </data>
+  <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ribDeleteFormulaButton_Screentip" xml:space="preserve">
     <value>Delete formula from selected table cell(s)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
@@ -2322,6 +2831,10 @@ In this section</value>
   <data name="PasteCellsCommand_SelectCell" xml:space="preserve">
     <value>Select a table cell where pasted cells should start overlaying</value>
     <comment>message box</comment>
+  </data>
+  <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
+    <value>Trim leading whitespace from selected text</value>
+    <comment>ribbon item tootp</comment>
   </data>
   <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
     <value>Zip all pages including attachments</value>
@@ -2331,6 +2844,10 @@ In this section</value>
     <value>Numeric</value>
     <comment>radio button</comment>
   </data>
+  <data name="StyleDialog_underlineButton.Text" xml:space="preserve">
+    <value>Underline</value>
+    <comment>button</comment>
+  </data>
   <data name="StyleDialog_superButton.Text" xml:space="preserve">
     <value>Superscript</value>
     <comment>button</comment>
@@ -2338,9 +2855,8 @@ In this section</value>
   <data name="Shazam" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Shazam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SettingsDialog_ribbonNode.Text" xml:space="preserve">
-    <value>Ribbon Bar</value>
-    <comment>treenode</comment>
+  <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="StyleDialog_defaultBlackToolStripMenuItem.Text" xml:space="preserve">
     <value>Default (Black)</value>
@@ -2389,6 +2905,10 @@ In this section</value>
     <value>Index</value>
     <comment>index button</comment>
   </data>
+  <data name="RemindCommand_Reuse" xml:space="preserve">
+    <value>Click Yes to update this existing report, No to create a new report, or Cancel</value>
+    <comment>message box</comment>
+  </data>
   <data name="Emoji_Architecture" xml:space="preserve">
     <value>Architecture</value>
     <comment>emoji</comment>
@@ -2396,6 +2916,10 @@ In this section</value>
   <data name="InsertCalendarDialog_clickLabel.Text" xml:space="preserve">
     <value>click to change</value>
     <comment>label</comment>
+  </data>
+  <data name="TimerWindow_copyButton.Text" xml:space="preserve">
+    <value>Copy Current Time</value>
+    <comment>button tooltip</comment>
   </data>
   <data name="ShowXmlDialog_sectionsHierButton.Text" xml:space="preserve">
     <value>Sections</value>
@@ -2417,8 +2941,11 @@ In this section</value>
     <value>OK (Save)</value>
     <comment>button</comment>
   </data>
-  <data name="Emoji_Sports" xml:space="preserve">
-    <value>Sports</value>
+  <data name="word_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Emoji_Memo" xml:space="preserve">
+    <value>Memo</value>
     <comment>emoji</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
@@ -2433,6 +2960,12 @@ In this section</value>
     <value>Insert QR Code</value>
     <comment>ribbon button</comment>
   </data>
+  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
+    <value>Low
+Medium
+High</value>
+    <comment>combobox</comment>
+  </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
     <value>Resize</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -2445,9 +2978,13 @@ In this section</value>
     <value>Select All Images</value>
     <comment>ribbon menu edit item</comment>
   </data>
-  <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
-    <value>Plugins</value>
-    <comment>tree node</comment>
+  <data name="TextToTableDialog_rowsLabel.Text" xml:space="preserve">
+    <value>Number of rows:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
+    <value>The required Office product is not installed</value>
+    <comment>label</comment>
   </data>
   <data name="SortDialog_createdButton.Text" xml:space="preserve">
     <value>Date Created</value>
@@ -2460,6 +2997,10 @@ In this section</value>
   <data name="AnalyzeDialog_sectionDetailsBox.Text" xml:space="preserve">
     <value>Include page details for current section</value>
     <comment>radio</comment>
+  </data>
+  <data name="ribSnippetsMenu_Label" xml:space="preserve">
+    <value>Snippets</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="AnalyzeCommand_NoCache" xml:space="preserve">
     <value>&lt;span style='font-style:italic'&gt;Cache not found; location likely changed in OneNote options&lt;/span&gt;</value>
@@ -2477,9 +3018,15 @@ In this section</value>
     <value>Remove Spacing</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SaveSnippet_NeedSelection" xml:space="preserve">
-    <value>Select content to save as a new snippet</value>
-    <comment>error message</comment>
+  <data name="word_Due" xml:space="preserve">
+    <value>Due</value>
+  </data>
+  <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
+    <value>Two spaces between sentences</value>
+    <comment>radio</comment>
+  </data>
+  <data name="word_Preview" xml:space="preserve">
+    <value>Preview</value>
   </data>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Word Options</value>
@@ -2511,28 +3058,38 @@ In this section</value>
     <value>Select a word or phrase from one paragraph</value>
     <comment>message box</comment>
   </data>
+  <data name="word_Planned" xml:space="preserve">
+    <value>Planned</value>
+  </data>
   <data name="StyleDialog_transparentToolStripMenuItem.Text" xml:space="preserve">
     <value>Transparent</value>
     <comment>menu item</comment>
   </data>
-  <data name="ribRemoveSectionNumbersButton_Label" xml:space="preserve">
-    <value>Remove Section Numbers</value>
-    <comment>Ribbon OneMore menu item</comment>
+  <data name="RemoveSpacingDialog_betweenBox.Text" xml:space="preserve">
+    <value>Remove spacing between lines</value>
+    <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
     <value>Update Page</value>
     <comment>ok button</comment>
   </data>
-  <data name="FontColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\fontcolor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="ImportWebDialog_Text" xml:space="preserve">
     <value>Import Web Page</value>
     <comment>dialog title</comment>
   </data>
+  <data name="FolderOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\folderopen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
     <value>New Style</value>
     <comment>button</comment>
+  </data>
+  <data name="Emoji_Passwords" xml:space="preserve">
+    <value>Passwords</value>
+    <comment>emoji</comment>
   </data>
   <data name="ribExpandButton_Label" xml:space="preserve">
     <value>Expand/Collapse</value>
@@ -2542,6 +3099,14 @@ In this section</value>
     <value>All notebooks</value>
     <comment>radio</comment>
   </data>
+  <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
+    <value>Key Sequence</value>
+    <comment>gridview column</comment>
+  </data>
+  <data name="SettingsDialog_Text" xml:space="preserve">
+    <value>OneMore Settings</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="DoubleLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\doubleline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -2549,23 +3114,20 @@ In this section</value>
     <value>Scope:</value>
     <comment>label</comment>
   </data>
-  <data name="ribRedStatusButton_Label" xml:space="preserve">
-    <value>Red Status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="word_Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="Emoji_Sports" xml:space="preserve">
+    <value>Sports</value>
+    <comment>emoji</comment>
   </data>
   <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
     <value>Name</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>Entered formula should apply to the first selected cell. This formula will be incremented automatically for additional selected cells.
-
-Functions: abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
-
-Operators: + - / * ^
-Cell reference: A1, A2, ... ZZZ999
-Cell range: A1:A22
-Symbols: PI, E</value>
+  <data name="ribPluginButton_Label" xml:space="preserve">
+    <value>Run Plugin</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2586,10 +3148,6 @@ Symbols: PI, E</value>
     <value>Location</value>
     <comment>settings table column header</comment>
   </data>
-  <data name="ContextMenuSheet_ribExpandContentButton" xml:space="preserve">
-    <value>... Expand Outlining</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="BreakingDialog_Text" xml:space="preserve">
     <value>Change Sentence Spacing</value>
     <comment>dialog title</comment>
@@ -2606,13 +3164,21 @@ Symbols: PI, E</value>
     <value>New Custom Style</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SortDialog.Text" xml:space="preserve">
+    <value>Sort</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ArrangeContainersDialog_verticalButton.Text" xml:space="preserve">
+    <value>Arrange all containers vertically, top to bottom</value>
+    <comment>radio</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>No references found to this page</value>
     <comment>message</comment>
   </data>
-  <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
-    <value>Archive Notebook</value>
-    <comment>ribbon menu</comment>
+  <data name="SaveAsMany_Success" xml:space="preserve">
+    <value>Saved {0} pages to {1}</value>
+    <comment>save many message</comment>
   </data>
   <data name="RibbonBarSheet_introBox.Text" xml:space="preserve">
     <value>Choose which commands to include in the ribbon bar and whether to display icons or icons and lables. Restart OneNote to see changes.</value>
@@ -2634,13 +3200,13 @@ Symbols: PI, E</value>
     <value>all images on page</value>
     <comment>info label</comment>
   </data>
-  <data name="ribSplitButton_Label" xml:space="preserve">
-    <value>Split Page</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>Height</value>
     <comment>label</comment>
+  </data>
+  <data name="ribArrangeContainersButton_Label" xml:space="preserve">
+    <value>Arrange Containers</value>
+    <comment>ribbon button</comment>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Format:</value>
@@ -2650,9 +3216,9 @@ Symbols: PI, E</value>
     <value>Bright:</value>
     <comment>radio</comment>
   </data>
-  <data name="ribCopyDownButton_Label" xml:space="preserve">
-    <value>Copy Down</value>
-    <comment>ribbon</comment>
+  <data name="Plugin_NoUpdate" xml:space="preserve">
+    <value>Error updating page. See log file</value>
+    <comment>error message</comment>
   </data>
   <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
     <value>... Green Status</value>
@@ -2673,10 +3239,6 @@ Symbols: PI, E</value>
   <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Horizontal Line Options</value>
-    <comment>settings sheet</comment>
-  </data>
   <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
     <value>Refresh</value>
     <comment>button</comment>
@@ -2689,9 +3251,8 @@ Symbols: PI, E</value>
     <value>Export {0} Pages</value>
     <comment>group box title</comment>
   </data>
-  <data name="ribSnippetsMenu_Label" xml:space="preserve">
-    <value>Snippets</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  <data name="word_Completed" xml:space="preserve">
+    <value>Completed</value>
   </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
     <value>Plugin did not complete successfully. See log file.</value>
@@ -2701,13 +3262,17 @@ Symbols: PI, E</value>
     <value>Table size</value>
     <comment>group</comment>
   </data>
-  <data name="ContextMenuSheet_ribInsertDoubleLineButton" xml:space="preserve">
-    <value>... Double Horizontal Line</value>
-    <comment>context menu option</comment>
+  <data name="ribJoinParagraphButton_Label" xml:space="preserve">
+    <value>Join Paragraph</value>
+    <comment>ribbon button</comment>
   </data>
   <data name="ribCodeBlockButton_Label" xml:space="preserve">
     <value>Code block</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="CropImageDialog_imageSize" xml:space="preserve">
+    <value>Image size: {0} x {1}</value>
+    <comment>status bar text</comment>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Create Page Map</value>
@@ -2732,6 +3297,13 @@ Symbols: PI, E</value>
   <data name="Software" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Software.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
+    <value>Generate task list</value>
+    <comment>radio</comment>
+  </data>
+  <data name="word_PercentSymbol" xml:space="preserve">
+    <value>%</value>
+  </data>
   <data name="ImportWebCommand_BadUrl" xml:space="preserve">
     <value>Web page not found or returned empty content</value>
     <comment>error message</comment>
@@ -2747,12 +3319,24 @@ Symbols: PI, E</value>
     <value>Outline Formatting</value>
     <comment>dialog title</comment>
   </data>
+  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
+    <value>Name</value>
+    <comment>snippets sheet column</comment>
+  </data>
+  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
+    <value>Remove Tags</value>
+    <comment>ribbon item</comment>
+  </data>
   <data name="CustomStylesFilename" xml:space="preserve">
     <value>CustomStyles.xml</value>
     <comment>SKIP, filename</comment>
   </data>
   <data name="UpArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
+    <value>Reset</value>
+    <comment>toolstrip button</comment>
   </data>
   <data name="SearchDialog_moveButton.Text" xml:space="preserve">
     <value>Move</value>
@@ -2762,13 +3346,13 @@ Symbols: PI, E</value>
     <value>URL Pattern</value>
     <comment>url col</comment>
   </data>
-  <data name="ContextMenuSheet_ribHighlightButton" xml:space="preserve">
-    <value>... Rotating Highlighter</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="AddCaptionCommand_Captioned" xml:space="preserve">
     <value>Image already has a caption</value>
     <comment>info message</comment>
+  </data>
+  <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
+    <value>Add/edit formula in selected table cells (F5)</value>
+    <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>Select one image to crop</value>
@@ -2781,12 +3365,25 @@ Symbols: PI, E</value>
     <value>(new)</value>
     <comment>combobox item</comment>
   </data>
+  <data name="ribMergeButton_Label" xml:space="preserve">
+    <value>Merge Pages</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="RemindCommand_noReminder" xml:space="preserve">
+    <value>There is no reminder on this paragraph</value>
+    <comment>message box</comment>
+  </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
   </data>
-  <data name="Smiley" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ribBreakingButton_Label" xml:space="preserve">
+    <value>Change Sentence Spacing</value>
+    <comment>clean menu item</comment>
+  </data>
+  <data name="ExportDialog_underBox.Text" xml:space="preserve">
+    <value>Replace spaces in the file name with underscores</value>
+    <comment>checkbox</comment>
   </data>
   <data name="AboutDialog_LatestMessage" xml:space="preserve">
     <value>You have the latest version</value>
@@ -2796,9 +3393,21 @@ Symbols: PI, E</value>
     <value>Horizontal Line</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="AddFormula_linearMessage" xml:space="preserve">
-    <value>Select one or more cells from the same row or the same column</value>
-    <comment>message box</comment>
+  <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="ribRemovePageNumbersButton_Label" xml:space="preserve">
+    <value>Remove Page Numbers</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Size</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
+    <value>Generate task detail table</value>
+    <comment>radio</comment>
   </data>
   <data name="SearchAndReplaceDialog_whatLabel.Text" xml:space="preserve">
     <value>Find what:</value>
@@ -2808,13 +3417,17 @@ Symbols: PI, E</value>
     <value>Table of Contents - Notebook {0}</value>
     <comment>page name</comment>
   </data>
-  <data name="InsertCalendarDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format</value>
+  <data name="ShowXmlDialog_pageLinkLabel.Text" xml:space="preserve">
+    <value>Link:</value>
     <comment>label</comment>
   </data>
-  <data name="Plugin_NoUpdate" xml:space="preserve">
-    <value>Error updating page. See log file</value>
-    <comment>error message</comment>
+  <data name="NumberPagesDialog.Text" xml:space="preserve">
+    <value>Page Numbering</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ContextMenuSheet_ribIncreaseFontSizeButton" xml:space="preserve">
+    <value>... Increase Text Size</value>
+    <comment>context menu option</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
     <value>Add Formula</value>
@@ -2827,9 +3440,13 @@ Symbols: PI, E</value>
   <data name="Family" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Family.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
-    <value>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes.</value>
-    <comment>intro</comment>
+  <data name="RemindCommand_nameFormat" xml:space="preserve">
+    <value>Reminder: task due {0}</value>
+    <comment>tagdef name tooltip</comment>
+  </data>
+  <data name="OutlineDialog_indentBox.Text" xml:space="preserve">
+    <value>Indent content below headings</value>
+    <comment>checkbox</comment>
   </data>
   <data name="TextToTableDialog_commasRadio.Text" xml:space="preserve">
     <value>Commas</value>
@@ -2839,13 +3456,17 @@ Symbols: PI, E</value>
     <value>Bullet</value>
     <comment>emoji</comment>
   </data>
-  <data name="Error_BodyContext" xml:space="preserve">
-    <value>Text focus must be in the body of the page</value>
-    <comment>error message box</comment>
+  <data name="ribSortListButton_Label" xml:space="preserve">
+    <value>Sort List</value>
+    <comment>ribbon item</comment>
   </data>
   <data name="AnalyzeCommand_QuickNotes" xml:space="preserve">
     <value>Quick Notes</value>
     <comment>SKIP notebook name</comment>
+  </data>
+  <data name="ribCompleteReminderButton_Label" xml:space="preserve">
+    <value>Complete Reminder</value>
+    <comment>ribbon button</comment>
   </data>
   <data name="Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2857,12 +3478,24 @@ Symbols: PI, E</value>
     <value>Clear Background Color</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
+    <value>... Word Count</value>
+    <comment>context menu option</comment>
+  </data>
   <data name="ribExportButton_Screentip" xml:space="preserve">
     <value>Export page(s) as HTML, PDF, Word or XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
     <value>Address</value>
+    <comment>label</comment>
+  </data>
+  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
+    <value>Enable grid lines before using this command</value>
+    <comment>message</comment>
+  </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>Last updated:</value>
     <comment>label</comment>
   </data>
   <data name="PluginDialog_okButton.Text" xml:space="preserve">
@@ -2877,8 +3510,8 @@ Symbols: PI, E</value>
     <value>Append to this page</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
-    <value>Apply to</value>
+  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
+    <value>View size</value>
     <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
@@ -2889,9 +3522,9 @@ Symbols: PI, E</value>
     <value>Reorder Custom Styles</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
-    <value>Highlight Formula</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+  <data name="ChangePageColorDialog_colorLink.Text" xml:space="preserve">
+    <value>Choose a custom color</value>
+    <comment>link</comment>
   </data>
   <data name="ExportDialog_groupBox_OneText" xml:space="preserve">
     <value>Export 1 Page</value>
@@ -2900,21 +3533,28 @@ Symbols: PI, E</value>
   <data name="Circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="word_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
   <data name="ribTrimLeadingButton_Label" xml:space="preserve">
     <value>Trim Leading Whitespace</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>Add/edit formula in selected table cells (F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+  <data name="Error_BodyContext" xml:space="preserve">
+    <value>Text focus must be in the body of the page</value>
+    <comment>error message box</comment>
   </data>
-  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
-    <value>Notebooks</value>
-    <comment>hier button</comment>
+  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
+    <value>Note that OneNote does not bind completely to task that are not in the Outlook Tasks folder. Tasks from sub-folders are shown in red to indicate that their status flags will not update automatically after importing.</value>
+    <comment>rich text box</comment>
   </data>
-  <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
-    <value>... Save Collapsed Outline</value>
-    <comment>context menu option</comment>
+  <data name="ImportWebDialog_newPageButton.Text" xml:space="preserve">
+    <value>Create as new page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="FormulaDialog_status_OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>label</comment>
   </data>
   <data name="Emoji_Financial" xml:space="preserve">
     <value>Financial</value>
@@ -2956,13 +3596,13 @@ Symbols: PI, E</value>
     <value>Disable Spell Check</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
-  <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>Version {0}</value>
-    <comment>the version of the add-in</comment>
+  <data name="ribWordCountButton_Label" xml:space="preserve">
+    <value>Word Count</value>
+    <comment>Ribbon OneMore menu extras</comment>
   </data>
-  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>snippets sheet column</comment>
+  <data name="ribToggleDttmButton_Label" xml:space="preserve">
+    <value>Show/Hide Page Date and Time Stamps</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>Images</value>
@@ -2976,8 +3616,13 @@ Symbols: PI, E</value>
     <value>Name contains invalid characters</value>
     <comment>error message</comment>
   </data>
-  <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ribInsertTimerButton_Label" xml:space="preserve">
+    <value>Insert Timer</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
+    <value>Add page with table of pages in this section</value>
+    <comment>radio</comment>
   </data>
   <data name="NoSpellCheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\nospellcheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -3001,29 +3646,41 @@ Symbols: PI, E</value>
   <data name="DownArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
+    <value>Tag:</value>
+    <comment>label</comment>
+  </data>
   <data name="FormulaDialog_status_Empty" xml:space="preserve">
     <value>&lt;empty&gt;</value>
     <comment>label</comment>
   </data>
-  <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>Style Name:</value>
-    <comment>label</comment>
+  <data name="RefreshPageLinksDialog_sectionRadio.Text" xml:space="preserve">
+    <value>The current section</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ribInvertSelectionButton_Label" xml:space="preserve">
+    <value>Invert Selection</value>
+    <comment>ribbon button</comment>
   </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
     <comment>SKIP</comment>
   </data>
-  <data name="SearchQF_Title" xml:space="preserve">
-    <value>Select Location</value>
-    <comment>QuickFiling title</comment>
+  <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
+    <value>Refresh Page References</value>
+    <comment>dialog title</comment>
   </data>
-  <data name="ribPluginButton_Label" xml:space="preserve">
-    <value>Run Plugin</value>
-    <comment>Ribbon OneMore menu item</comment>
+  <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
+    <value>Archive Notebook</value>
+    <comment>ribbon menu</comment>
   </data>
   <data name="StyleDialog_loadButton.Text" xml:space="preserve">
     <value>Open...</value>
     <comment>menu item</comment>
+  </data>
+  <data name="SortListDialog_deepBox.Text" xml:space="preserve">
+    <value>Include sub-lists</value>
+    <comment>checkbox</comment>
   </data>
   <data name="Emoji_Summary" xml:space="preserve">
     <value>Summary</value>
@@ -3045,13 +3702,15 @@ Symbols: PI, E</value>
     <value>Manage Favorites</value>
     <comment>favorites menu command</comment>
   </data>
-  <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
-    <value>Tag:</value>
-    <comment>label</comment>
-  </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Remove Empty Paragraphs and Headings</value>
-    <comment>Context menu</comment>
+  <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
+    <value>Entered formula should apply to the first selected cell. This formula will be incremented automatically for additional selected cells.
+
+Functions: abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
+
+Operators: + - / * ^
+Cell reference: A1, A2, ... ZZZ999
+Cell range: A1:A22
+Symbols: PI, E</value>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>HTML File (*.htm)
@@ -3069,6 +3728,14 @@ OneNote File (*.one)</value>
   <data name="ribAddFavoriteSectionButton_Label" xml:space="preserve">
     <value>Add to Favorites</value>
     <comment>ribbon</comment>
+  </data>
+  <data name="ribFitGridButton_Label" xml:space="preserve">
+    <value>Fit Grid to Text</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
+    <value>Due/Completed</value>
+    <comment>report</comment>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
     <value>Table of Contents</value>
@@ -3090,9 +3757,9 @@ OneNote File (*.one)</value>
     <value>... Text Box</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ribSaveSnippetButton_Label" xml:space="preserve">
-    <value>Save Custom Snippet</value>
-    <comment>ribbon button</comment>
+  <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
+    <value>Faded:</value>
+    <comment>radio</comment>
   </data>
   <data name="ribEditMenu_Label" xml:space="preserve">
     <value>Edit</value>
@@ -3106,9 +3773,9 @@ OneNote File (*.one)</value>
     <value>Update OneMore</value>
     <comment>message box title</comment>
   </data>
-  <data name="ribMergeButton_Label" xml:space="preserve">
-    <value>Merge Pages</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+  <data name="AnalyzeCommand_NoBackups" xml:space="preserve">
+    <value>Backup path not found or backup are not enabled in OneNote options. Cannot continue.</value>
+    <comment>error message</comment>
   </data>
   <data name="PronunciateDialog_languages" xml:space="preserve">
     <value>en,English
@@ -3139,9 +3806,9 @@ ISO-code then comma then language name</comment>
     <value>Outline Formatting</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="RemovingPageNumber_Message" xml:space="preserve">
-    <value>Removing number from page {0}</value>
-    <comment>progress status dialog</comment>
+  <data name="ContextMenuSheet_ribRemoveCitationsButton" xml:space="preserve">
+    <value>... Remove Pasted Citations</value>
+    <comment>context menu option</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>Page Color</value>
@@ -3159,6 +3826,10 @@ ISO-code then comma then language name</comment>
     <value>Color and theme may not have enough contrast</value>
     <comment>label</comment>
   </data>
+  <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
+    <value>Subject</value>
+    <comment>label</comment>
+  </data>
   <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
     <value>Operator expected</value>
     <comment>error</comment>
@@ -3167,13 +3838,17 @@ ISO-code then comma then language name</comment>
     <value>{0}. See log file for details</value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
-  <data name="StyleDialog_underlineButton.Text" xml:space="preserve">
-    <value>Underline</value>
-    <comment>button</comment>
+  <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
+    <value>Include section summary</value>
+    <comment>checkbox</comment>
   </data>
-  <data name="ribLowercaseButton_Label" xml:space="preserve">
-    <value>To lowercase</value>
-    <comment>Ribbon OneMore menu item</comment>
+  <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
+    <value>{0} x {1}</value>
+    <comment>width x height</comment>
+  </data>
+  <data name="SectionColor_Title" xml:space="preserve">
+    <value>Section Color</value>
+    <comment>dialog title</comment>
   </data>
   <data name="Emoji_Watch" xml:space="preserve">
     <value>Watch</value>
@@ -3183,9 +3858,9 @@ ISO-code then comma then language name</comment>
     <value>{0}% quality</value>
     <comment>label</comment>
   </data>
-  <data name="SortDialog.Text" xml:space="preserve">
-    <value>Sort</value>
-    <comment>dialog title</comment>
+  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
+    <value>Word</value>
+    <comment>label</comment>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Invalid XML detected. Check log file for details</value>
@@ -3203,10 +3878,6 @@ ISO-code then comma then language name</comment>
     <value>Table of Contents</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ClearLog_Message" xml:space="preserve">
-    <value>Clear the log file now?</value>
-    <comment>message box message</comment>
-  </data>
   <data name="Star" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -3214,675 +3885,7 @@ ISO-code then comma then language name</comment>
     <value>Alpha-numeric</value>
     <comment>radio button</comment>
   </data>
-  <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ribInsertTimerButton_Label" xml:space="preserve">
-    <value>Insert Timer</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribStartTimerButton_Label" xml:space="preserve">
-    <value>Start Timer</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="TimerWindow_closeButton.Text" xml:space="preserve">
-    <value>Close Timer</value>
-    <comment>button tooltip</comment>
-  </data>
-  <data name="TimerWindow_copyButton.Text" xml:space="preserve">
-    <value>Copy Current Time</value>
-    <comment>button tooltip</comment>
-  </data>
-  <data name="TimerWindow_resetButton.Text" xml:space="preserve">
-    <value>Restart Timer</value>
-    <comment>button tooltip</comment>
-  </data>
-  <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
-    <value>Check for new versions of OneMore when OneNote starts</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="UpdateDialog.Text" xml:space="preserve">
-    <value>Check for OneMore Updates</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="UpdateDialog_currentLabel.Text" xml:space="preserve">
-    <value>OneMore is up to date</value>
-    <comment>panel title</comment>
-  </data>
-  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>Last updated:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>Release date:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
-    <value>Release notes</value>
-    <comment>link</comment>
-  </data>
-  <data name="UpdateDialog_upCurrentVersionLabel.Text" xml:space="preserve">
-    <value>Current version:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_upDescriptionLabel.Text" xml:space="preserve">
-    <value>Description:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_upIntroLabel.Text" xml:space="preserve">
-    <value>OneMore update available</value>
-    <comment>panel title</comment>
-  </data>
-  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
-    <value>Last updated:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
-    <value>Update</value>
-    <comment>button</comment>
-  </data>
-  <data name="UpdateDialog_upReleaseNotesLink.Text" xml:space="preserve">
-    <value>Release notes</value>
-    <comment>link</comment>
-  </data>
-  <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
-    <value>Update version:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
-    <value>Installed version:</value>
-    <comment>label</comment>
-  </data>
-  <data name="ribSectionColorButton_Label" xml:space="preserve">
-    <value>Customize Section Color</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="SectionColor_Title" xml:space="preserve">
-    <value>Section Color</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ContextMenuSheet_ribWordCountButton" xml:space="preserve">
-    <value>... Word Count</value>
-    <comment>context menu option</comment>
-  </data>
-  <data name="SortListDialog.Text" xml:space="preserve">
-    <value>Sort Lists</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SortListDialog_allListsButton.Text" xml:space="preserve">
-    <value>Sort all top-level lists on the page</value>
-    <comment>radio</comment>
-  </data>
-  <data name="SortListDialog_deepBox.Text" xml:space="preserve">
-    <value>Include sub-lists</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SortListDialog_introLabel.Text" xml:space="preserve">
-    <value>Default is to sort the current list or only top level bullet lists</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
-    <value>Options</value>
-    <comment>group box</comment>
-  </data>
-  <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
-    <value>Sort only the current list</value>
-    <comment>radio</comment>
-  </data>
-  <data name="SortListDialog_typeBox.Text" xml:space="preserve">
-    <value>Both bullet and numbered lists</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SortListCommand_BadContext" xml:space="preserve">
-    <value>Move the text cursor to an item of a list</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ribSortListButton_Label" xml:space="preserve">
-    <value>Sort List</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPageMenu_Label" xml:space="preserve">
-    <value>Page</value>
-    <comment>ribbon menu</comment>
-  </data>
-  <data name="ribProofingMenu_Label" xml:space="preserve">
-    <value>Proofing Language</value>
-    <comment>ribbon menu</comment>
-  </data>
-  <data name="ContextMenuSheet_ribProofingMenu" xml:space="preserve">
-    <value>... Proofing Language</value>
-    <comment>context menu option</comment>
-  </data>
-  <data name="RemindCommand_nameFormat" xml:space="preserve">
-    <value>Reminder: task due {0}</value>
-    <comment>tagdef name tooltip</comment>
-  </data>
-  <data name="RemindCommand_noContext" xml:space="preserve">
-    <value>Cursor must be positioned on a paragraph</value>
-    <comment>warning message</comment>
-  </data>
-  <data name="RemindDialog.Text" xml:space="preserve">
-    <value>Reminder</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
-    <value>Completed</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
-    <value>Due date</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_percentLabel.Text" xml:space="preserve">
-    <value>% Complete</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_priorityBox.Text" xml:space="preserve">
-    <value>Low
-Medium
-High</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
-    <value>Priority</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
-    <value>Start date</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
-    <value>Started</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_statusBox.Text" xml:space="preserve">
-    <value>Not started
-In progress
-Completed
-Waiting on someone else
-Deferred</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
-    <value>Status</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
-    <value>Subject</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_tagLabel.Text" xml:space="preserve">
-    <value>Tag</value>
-    <comment>label</comment>
-  </data>
-  <data name="ContextMenuSheet_ribCompleteReminderButton" xml:space="preserve">
-    <value>... Complete Reminder</value>
-    <comment>context menu option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribDeleteReminderButton" xml:space="preserve">
-    <value>... Delete Reminder</value>
-    <comment>context menu option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribRemindButton" xml:space="preserve">
-    <value>... Add or Update Reminders</value>
-    <comment>context menu option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribRemindersMenu" xml:space="preserve">
-    <value>Reminders</value>
-    <comment>context menu option</comment>
-  </data>
-  <data name="ribCompleteReminderButton_Label" xml:space="preserve">
-    <value>Complete Reminder</value>
-    <comment>ribbon button</comment>
-  </data>
-  <data name="ribDeleteReminderButton_Label" xml:space="preserve">
-    <value>Delete Reminder</value>
-    <comment>ribbon button</comment>
-  </data>
-  <data name="ribRemindButton_Label" xml:space="preserve">
-    <value>Add or Update Reminders</value>
-    <comment>ribbon button</comment>
-  </data>
-  <data name="ribRemindersMenu_Label" xml:space="preserve">
-    <value>Reminders</value>
-    <comment>ribbon menu</comment>
-  </data>
-  <data name="DeleteReminderCommand_deleteTag" xml:space="preserve">
-    <value>About to delete reminder. Would you also like to delete the tag associated with this reminder?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemindCommand_noReminder" xml:space="preserve">
-    <value>There is no reminder on this paragraph</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ribReportRemindersButton_Label" xml:space="preserve">
-    <value>Reminder Summary Report</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ReminderReport_ActiveReminders" xml:space="preserve">
-    <value>Active Reminders</value>
-    <comment>report</comment>
-  </data>
-  <data name="ReminderReport_ActiveSummary" xml:space="preserve">
-    <value>These are reminders not yet completed or deferred and ordered by due date year, week of year, and priority</value>
-    <comment>report</comment>
-  </data>
-  <data name="ReminderReport_InactiveReminders" xml:space="preserve">
-    <value>Inactive Reminders</value>
-    <comment>report</comment>
-  </data>
-  <data name="ReminderReport_InactiveSummary" xml:space="preserve">
-    <value>These are reminders that have been completed or deferred and ordered by status, completion date, and priority</value>
-    <comment>report</comment>
-  </data>
-  <data name="ReminderReport_noReminders" xml:space="preserve">
-    <value>No reminders to report</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ReminderReport_ReminderColumn" xml:space="preserve">
-    <value>Reminder</value>
-    <comment>column</comment>
-  </data>
-  <data name="ReminderReport_Title" xml:space="preserve">
-    <value>Reminder Summary Report</value>
-    <comment>report</comment>
-  </data>
-  <data name="ReminderReport_LastUpdated" xml:space="preserve">
-    <value>Last updated</value>
-    <comment>text</comment>
-  </data>
-  <data name="word_Actual" xml:space="preserve">
-    <value>Actual</value>
-  </data>
-  <data name="word_Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="word_Completed" xml:space="preserve">
-    <value>Completed</value>
-  </data>
-  <data name="word_Due" xml:space="preserve">
-    <value>Due</value>
-  </data>
-  <data name="word_OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="word_Planned" xml:space="preserve">
-    <value>Planned</value>
-  </data>
-  <data name="word_Start" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="word_Started" xml:space="preserve">
-    <value>Started</value>
-  </data>
-  <data name="word_Refresh" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="RemindDialog_silentBox.Text" xml:space="preserve">
-    <value>Silence this reminder</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="Reminder_PastDue" xml:space="preserve">
-    <value>Task is past its due date of {0}, "{1}". Click here to navigate to this task</value>
-    <comment>toast message</comment>
-  </data>
-  <data name="Reminder_PastStart" xml:space="preserve">
-    <value>Task is past its start date of {0}, "{1}". Click here to navigate to this task</value>
-    <comment>toast message</comment>
-  </data>
-  <data name="Reminder_ToastTitle" xml:space="preserve">
-    <value>OneMore Reminder</value>
-    <comment>toast header</comment>
-  </data>
-  <data name="word_Silenced" xml:space="preserve">
-    <value>Silenced</value>
-  </data>
-  <data name="ribArrangeContainersButton_Label" xml:space="preserve">
-    <value>Arrange Containers</value>
-    <comment>ribbon button</comment>
-  </data>
-  <data name="ArrangeContainersDialog.Text" xml:space="preserve">
-    <value>Arrange Containers</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ArrangeContainersDialog_columnsLabel.Text" xml:space="preserve">
-    <value>Columns</value>
-    <comment>label</comment>
-  </data>
-  <data name="ArrangeContainersDialog_flowButton.Text" xml:space="preserve">
-    <value>Arrange in columns and then rows, fit to page width</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ArrangeContainersDialog_verticalButton.Text" xml:space="preserve">
-    <value>Arrange all containers vertically, top to bottom</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ArrangeContainersDialog_widthLabel.Text" xml:space="preserve">
-    <value>Page width</value>
-    <comment>label</comment>
-  </data>
-  <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
-    <value>Snoozed until {0}</value>
-    <comment>report</comment>
-  </data>
-  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
-    <value>Options</value>
-    <comment>group box</comment>
-  </data>
-  <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
-    <value>Do not snooze
-5 minutes
-10 minutes
-15 minutes
-30 minutes
-1 hour
-2 hours
-4 hours
-1 day
-2 days
-3 days
-1 week
-2 weeks</value>
-    <comment>combox box</comment>
-  </data>
-  <data name="RemindDialog_snoozeButton.Text" xml:space="preserve">
-    <value>Snooze</value>
-    <comment>button</comment>
-  </data>
-  <data name="RemindDialog_snoozeLabel.Text" xml:space="preserve">
-    <value>Click snooze to be reminded in</value>
-    <comment>label</comment>
-  </data>
-  <data name="WordCountCommand_Selected" xml:space="preserve">
-    <value>Total words selected: {0}</value>
-    <comment>message box</comment>
-  </data>
-  <data name="NetwordConnectionUnavailable" xml:space="preserve">
-    <value>Network connection is not available</value>
-    <comment>error</comment>
-  </data>
-  <data name="ReminderReport_WeekOfYear" xml:space="preserve">
-    <value>Week {0}</value>
-    <comment>report citation</comment>
-  </data>
-  <data name="RemindCommand_Reuse" xml:space="preserve">
-    <value>Click Yes to update this existing report, No to create a new report, or Cancel</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ribRemoveInkButton_Label" xml:space="preserve">
-    <value>Remove Ink</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribRemoveTagsButton_Label" xml:space="preserve">
-    <value>Remove Tags</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
-    <value>Remove tags not associated with reminders</value>
-  </data>
-  <data name="DiagnosticsDialog_introLabel.Text" xml:space="preserve">
-    <value>Diagnostics written to</value>
-    <comment>label</comment>
-  </data>
-  <data name="DiagnosticsDialog_Text" xml:space="preserve">
-    <value>OneMore Diagnostics</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FitGridToTextDialog_autoButton.Text" xml:space="preserve">
-    <value>Automatically adjust grid to most common font size</value>
-    <comment>radio</comment>
-  </data>
-  <data name="FitGridToTextDialog_customButton.Text" xml:space="preserve">
-    <value>Customize grid size</value>
-    <comment>radio</comment>
-  </data>
-  <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
-    <value>Recommended size for {0}pt font is {1}</value>
-    <comment>text box</comment>
-  </data>
-  <data name="FitGridToTextDialog_sizeLabel.Text" xml:space="preserve">
-    <value>Size</value>
-    <comment>label</comment>
-  </data>
-  <data name="FitGridToTextDialog_Text" xml:space="preserve">
-    <value>Fit Grid to Text</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FitGridToTextCommand_noGrid" xml:space="preserve">
-    <value>Enable grid lines before using this command</value>
-    <comment>message</comment>
-  </data>
-  <data name="FitGridToTextCommand_noText" xml:space="preserve">
-    <value>Page contains no regular paragraph text</value>
-    <comment>message</comment>
-  </data>
-  <data name="ribFitGridButton_Label" xml:space="preserve">
-    <value>Fit Grid to Text</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
-    <value>The required Office product is not installed</value>
-    <comment>label</comment>
-  </data>
-  <data name="FolderClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\folderclose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FolderOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\folderopen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Task" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\task.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MapDialog_synopsisBox.Text" xml:space="preserve">
-    <value>Include a synopsis of each page</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
-    <value>Import Tasks from Outlook</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
-    <value>Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote</value>
-    <comment>text box</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
-    <value>Note that OneNote does not bind completely to task that are not in the Outlook Tasks folder. Tasks from sub-folders are shown in red to indicate that their status flags will not update automatically after importing.</value>
-    <comment>rich text box</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
-    <value>Generate task list</value>
-    <comment>radio</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
-    <value>Generate task detail table</value>
-    <comment>radio</comment>
-  </data>
-  <data name="OutlookTaskReport_DateDue" xml:space="preserve">
-    <value>Due/Completed</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
-    <value>Start Date</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Importance" xml:space="preserve">
-    <value>Importance</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_importances" xml:space="preserve">
-    <value>Low
-Medium
-High</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Percent" xml:space="preserve">
-    <value>% Complete</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Status" xml:space="preserve">
-    <value>Status</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_statuses" xml:space="preserve">
-    <value>Not Started
-In Progress
-Completed
-Waiting
-Deferred</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Task" xml:space="preserve">
-    <value>Task</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Week" xml:space="preserve">
-    <value>Week {0}</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Title" xml:space="preserve">
-    <value>Outlook Tasks</value>
-    <comment>report</comment>
-  </data>
-  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
-    <value>Include unindexed pages in query</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
-    <value>Enable to search newer text that has not yet been indexed by OneNote. This may be slower.</value>
-    <comment>tooltip on checkbox</comment>
-  </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>No references found. Consider enabling the option to include unindexed pages</value>
-    <comment>message</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_noorphans" xml:space="preserve">
-    <value>No orphaned tasks were found</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_reset" xml:space="preserve">
-    <value>Reset {0} orphaned task(s)</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Replace spaces in the file name with underscores</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ribFileMenu_Label" xml:space="preserve">
-    <value>File</value>
-    <comment>ribbon menu</comment>
-  </data>
-  <data name="ribInsertCalendarButton_Label" xml:space="preserve">
-    <value>Calendar</value>
-    <comment>ribbon button</comment>
-  </data>
-  <data name="GeneralSheet_langLabel.Text" xml:space="preserve">
-    <value>Display language (must restart OneNote)</value>
-    <comment>label</comment>
-  </data>
-  <data name="CropImageDialog_printout" xml:space="preserve">
-    <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
-    <comment>message box, question</comment>
-  </data>
-  <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
-    <value>Import Tasks from Outlook</value>
-    <comment>ribbon Reminders item</comment>
-  </data>
-  <data name="ribSortNotebooksButton_Label" xml:space="preserve">
-    <value>Sort Notebooks</value>
-    <comment>ribbon/context menu</comment>
-  </data>
-  <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
-    <value>Sort Sections in Notebook</value>
-    <comment>ribbon/context menu</comment>
-  </data>
-  <data name="ribSortPageButton_Label" xml:space="preserve">
-    <value>Sort Child Pages</value>
-    <comment>ribbon/context menu</comment>
-  </data>
-  <data name="ribSortPagesButton_Label" xml:space="preserve">
-    <value>Sort Pages in Section</value>
-    <comment>ribbon/context menu</comment>
-  </data>
-  <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
-    <value>Sort Pages in Section</value>
-    <comment>ribbon/context menu</comment>
-  </data>
-  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Command</value>
-    <comment>gridview column</comment>
-  </data>
-  <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
-    <value>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</value>
-    <comment>label</comment>
-  </data>
-  <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
-    <value>Key Sequence</value>
-    <comment>gridview column</comment>
-  </data>
-  <data name="ClearLogCommand" xml:space="preserve">
-    <value>Clear Log File</value>
-  </data>
-  <data name="DiagnosticsCommand" xml:space="preserve">
-    <value>Dump Diagnostics to Log</value>
-  </data>
-  <data name="ApplyStyle1Command" xml:space="preserve">
-    <value>Apply Style 1</value>
-  </data>
-  <data name="ApplyStyle2Command" xml:space="preserve">
-    <value>Apply Style 2</value>
-  </data>
-  <data name="ApplyStyle3Command" xml:space="preserve">
-    <value>Apply Style 3</value>
-  </data>
-  <data name="ApplyStyle4Command" xml:space="preserve">
-    <value>Apply Style 4</value>
-  </data>
-  <data name="ApplyStyle5Command" xml:space="preserve">
-    <value>Apply Style 5</value>
-  </data>
-  <data name="ApplyStyle6Command" xml:space="preserve">
-    <value>Apply Style 6</value>
-  </data>
-  <data name="ApplyStyle7Command" xml:space="preserve">
-    <value>Apply Style 7</value>
-  </data>
-  <data name="ApplyStyle8Command" xml:space="preserve">
-    <value>Apply Style 8</value>
-  </data>
-  <data name="ApplyStyle9Command" xml:space="preserve">
-    <value>Apply Style 9</value>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>Clear</value>
-    <comment>toolstrip button</comment>
-  </data>
-  <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
-    <value>Reset all</value>
-    <comment>toolstrip button</comment>
-  </data>
-  <data name="KeyboardSheet_resetButton.Text" xml:space="preserve">
-    <value>Reset</value>
-    <comment>toolstrip button</comment>
-  </data>
-  <data name="SettingsDialog_keyboardNode.Text" xml:space="preserve">
-    <value>Keyboard</value>
-    <comment>treenode</comment>
-  </data>
-  <data name="KeyboardSheet.Text" xml:space="preserve">
-    <value>Keyboard</value>
-    <comment>sheet</comment>
-  </data>
-  <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
-    <value>Preserve storage size</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="word_Preview" xml:space="preserve">
-    <value>Preview</value>
-  </data>
-  <data name="word_Opacity" xml:space="preserve">
-    <value>Opacity</value>
-  </data>
-  <data name="word_PercentSymbol" xml:space="preserve">
-    <value>%</value>
+  <data name="Grid40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Grid40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
