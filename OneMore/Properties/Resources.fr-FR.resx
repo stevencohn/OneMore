@@ -3837,4 +3837,8 @@ Différé</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>Niveaux de gris</value>
   </data>
+  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+    <value>Aucune image n'a été trouvée sur cette page</value>
+    <comment>message box</comment>
+  </data>
 </root>

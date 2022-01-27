@@ -3833,4 +3833,8 @@ OneNote 文件 (*.one)</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>灰度</value>
   </data>
+  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+    <value>此页面上没有发现图像</value>
+    <comment>message box</comment>
+  </data>
 </root>

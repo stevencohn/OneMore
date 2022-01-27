@@ -4861,6 +4861,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No images were found on this page.
+        /// </summary>
+        internal static string ResizeImagesDialog_noImages {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_noImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Storage size.
         /// </summary>
         internal static string ResizeImagesDialog_origLabel_Text {

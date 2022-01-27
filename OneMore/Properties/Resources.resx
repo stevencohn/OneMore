@@ -3892,4 +3892,8 @@ ISO-code then comma then language name</comment>
   <data name="word_Width" xml:space="preserve">
     <value>Width</value>
   </data>
+  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+    <value>No images were found on this page</value>
+    <comment>message box</comment>
+  </data>
 </root>

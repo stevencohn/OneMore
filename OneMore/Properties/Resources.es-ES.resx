@@ -3841,4 +3841,8 @@ Diferido</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>escala de grises</value>
   </data>
+  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+    <value>No se encontraron imágenes en esta página.</value>
+    <comment>message box</comment>
+  </data>
 </root>

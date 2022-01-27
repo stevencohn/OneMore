@@ -3841,4 +3841,8 @@ ISO-code then comma then language name</comment>
   <data name="word_Grayscale" xml:space="preserve">
     <value>رمادي</value>
   </data>
+  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+    <value>لم يتم العثور على صور في هذه الصفحة</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -3828,4 +3828,8 @@ Aufgeschoben</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>Graustufen</value>
   </data>
+  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+    <value>Auf dieser Seite wurden keine Bilder gefunden</value>
+    <comment>message box</comment>
+  </data>
 </root>

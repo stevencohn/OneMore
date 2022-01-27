@@ -3841,4 +3841,8 @@ Verschoven</value>
   <data name="word_Grayscale" xml:space="preserve">
     <value>grijswaarden</value>
   </data>
+  <data name="ResizeImagesDialog_noImages" xml:space="preserve">
+    <value>Er zijn geen afbeeldingen gevonden op deze pagina</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class ResizeImagesCommand : Command
@@ -41,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 					elements = page.Root.Elements(ns + "Outline").Descendants(ns + "Image");
 				}
 
-				if (elements != null)
+				if (elements != null && elements.Any())
 				{
 					if (elements.Count() == 1)
 					{
@@ -53,6 +54,10 @@ namespace River.OneMoreAddIn.Commands
 						// select many iamges, or all if none selected
 						await ResizeMany(elements);
 					}
+				}
+				else
+				{
+					UIHelper.ShowMessage(Resx.ResizeImagesDialog_noImages);
 				}
 			}
 		}
