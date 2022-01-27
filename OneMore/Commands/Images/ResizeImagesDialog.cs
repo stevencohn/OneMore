@@ -92,14 +92,7 @@ namespace River.OneMoreAddIn.Commands
 			settings = new SettingsProvider();
 			presetUpDown.Value = settings.GetCollection("images").Get("mruWidth", 500);
 
-			// set scaling factors
-			//var (dpiX, dpiY) = UIHelper.GetDpiValues();
-			//scalingX = (decimal)(dpiX / image.HorizontalResolution);
-			//scalingY = (decimal)(dpiY / image.VerticalResolution);
-
 			(scalingX, scalingY) = UIHelper.GetScalingFactors();
-
-			logger.WriteLine($"scaling {scalingX} x {scalingY}");
 
 			DrawPreview();
 		}
