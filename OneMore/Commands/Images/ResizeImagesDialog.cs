@@ -17,11 +17,10 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class ResizeImagesDialog : UI.LocalizableForm
 	{
 		private readonly SettingsProvider settings;
-		private readonly float scalingX;
-		private readonly float scalingY;
 		private readonly Image image;
 		private readonly int viewWidth;
 		private readonly int viewHeight;
+		private readonly MagicScaling scaling;
 		private int originalWidth;
 		private int originalHeight;
 		private Image preview;
@@ -59,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			RadioClick(presetRadio, null);
 
 			settings = new SettingsProvider();
+			scaling = null;
 		}
 
 
@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 			settings = new SettingsProvider();
 			presetUpDown.Value = settings.GetCollection("images").Get("mruWidth", 500);
 
-			(scalingX, scalingY) = UIHelper.GetScalingFactors();
+			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
 			DrawPreview();
 		}
@@ -233,39 +233,40 @@ namespace River.OneMoreAddIn.Commands
 			previewBox.Image = null;
 			preview?.Dispose();
 
-			var imwidth = ImageWidth * (decimal)scalingX;
-			var imheight = ImageHeight * (decimal)scalingY;
+			//var ratio = scaling.GetRatio(image, previewBox.Width, previewBox.Height, 0);
+			var width = Math.Round(ImageWidth * (decimal)scaling.FactorX); //(decimal)ratio);
+			var height = Math.Round(ImageHeight * (decimal)scaling.FactorY); // (decimal)ratio);
 
 			int w;
 			int h;
 
-			if (imwidth <= previewBox.Width && imheight <= previewBox.Height)
+			if (width <= previewBox.Width && height <= previewBox.Height)
 			{
-				w = (int)imwidth;
-				h = (int)imheight;
+				w = (int)width;
+				h = (int)height;
 			}
 			else
 			{
 				w = previewBox.Width;
 				h = previewBox.Height;
-				if (imwidth > w && imheight > h)
+				if (width > w && height > h)
 				{
-					if (imwidth > imheight)
+					if (width > height)
 					{
-						h = (int)(imheight * (w / imwidth));
+						h = (int)(height * (w / width));
 					}
 					else
 					{
-						w = (int)(imwidth * (h / imheight));
+						w = (int)(width * (h / height));
 					}
 				}
-				else if (imwidth > w)
+				else if (width > w)
 				{
-					h = (int)(imheight * (w / imwidth));
+					h = (int)(height * (w / width));
 				}
 				else
 				{
-					w = (int)(imwidth * (h / imheight));
+					w = (int)(width * (h / height));
 				}
 			}
 
