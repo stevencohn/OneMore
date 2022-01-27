@@ -10,9 +10,6 @@ namespace River.OneMoreAddIn
 
 	internal class MagicScaling
 	{
-		private readonly float scalingX;
-		private readonly float scalingY;
-
 
 		/// <summary>
 		/// Initialize a new instance from the given resolutions which are typically
@@ -24,20 +21,26 @@ namespace River.OneMoreAddIn
 		{
 			// set scaling factors
 			var (dpiX, dpiY) = UIHelper.GetDpiValues();
-			scalingX = dpiX / horizontalResolution;
-			scalingY = dpiY / verticalResolution;
+			ScalingX = dpiX / horizontalResolution;
+			ScalingY = dpiY / verticalResolution;
 
-			//var (sx, sy) = UIHelper.GetScalingFactors();
+			(FactorX, FactorY) = UIHelper.GetScalingFactors();
 
 			//Logger.Current.WriteLine(
 			//	$"dpiX={dpiX} dpiY={dpiY} scalingX={scalingX} scalingY={scalingY} sx={sx} sy={sy}");
 		}
 
 
-		public float ScalingX => scalingX;
+		public float FactorX { get; private set; }
 
 
-		public float ScalingY => scalingY;
+		public float FactorY { get; private set; }
+
+
+		public float ScalingX { get; private set; }
+
+
+		public float ScalingY { get; private set; }
 
 
 		/// <summary>
@@ -53,9 +56,9 @@ namespace River.OneMoreAddIn
 			// return the larger ratio, horizontal or vertical of the image
 			return Math.Max(
 				// min of scaled image width or pictureBox width without margins
-				image.Width / (Math.Min(Math.Round(image.Width * scalingX), boundingWidth - margin * 2)),
+				image.Width / (Math.Min(Math.Round(image.Width * ScalingX), boundingWidth - margin * 2)),
 				// min of scaled image height or pictureBox height without margins
-				image.Height / (Math.Min(Math.Round(image.Height * scalingY), boundingHeight - margin * 2))
+				image.Height / (Math.Min(Math.Round(image.Height * ScalingY), boundingHeight - margin * 2))
 				);
 		}
 	}
