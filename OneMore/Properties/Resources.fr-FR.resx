@@ -668,10 +668,6 @@ Pourcentage</value>
     <value>Pourcentage</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_presetLabel.Text" xml:space="preserve">
-    <value>Largeur</value>
-    <comment>label</comment>
-  </data>
   <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
     <value>Préréglage</value>
     <comment>radio</comment>
@@ -679,10 +675,6 @@ Pourcentage</value>
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_widthLabel.Text" xml:space="preserve">
-    <value>Largeur</value>
-    <comment>label</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Cas de correspondance</value>
@@ -3832,5 +3824,17 @@ Différé</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
+  </data>
+  <data name="word_Brightness" xml:space="preserve">
+    <value>Luminosité</value>
+  </data>
+  <data name="word_Contrast" xml:space="preserve">
+    <value>Contraste</value>
+  </data>
+  <data name="word_Width" xml:space="preserve">
+    <value>Largeur</value>
+  </data>
+  <data name="word_Grayscale" xml:space="preserve">
+    <value>Niveaux de gris</value>
   </data>
 </root>

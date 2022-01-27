@@ -4897,15 +4897,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Width.
-        /// </summary>
-        internal static string ResizeImagesDialog_presetLabel_Text {
-            get {
-                return ResourceManager.GetString("ResizeImagesDialog_presetLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Preset.
         /// </summary>
         internal static string ResizeImagesDialog_presetRadio_Text {
@@ -4929,15 +4920,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ResizeImagesDialog_Text {
             get {
                 return ResourceManager.GetString("ResizeImagesDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Width.
-        /// </summary>
-        internal static string ResizeImagesDialog_widthLabel_Text {
-            get {
-                return ResourceManager.GetString("ResizeImagesDialog_widthLabel.Text", resourceCulture);
             }
         }
         
@@ -8621,6 +8603,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brightness.
+        /// </summary>
+        internal static string word_Brightness {
+            get {
+                return ResourceManager.GetString("word_Brightness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string word_Cancel {
@@ -8639,11 +8630,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contrast.
+        /// </summary>
+        internal static string word_Contrast {
+            get {
+                return ResourceManager.GetString("word_Contrast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due.
         /// </summary>
         internal static string word_Due {
             get {
                 return ResourceManager.GetString("word_Due", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grayscale.
+        /// </summary>
+        internal static string word_Grayscale {
+            get {
+                return ResourceManager.GetString("word_Grayscale", resourceCulture);
             }
         }
         
@@ -8725,6 +8734,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Started {
             get {
                 return ResourceManager.GetString("word_Started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        internal static string word_Width {
+            get {
+                return ResourceManager.GetString("word_Width", resourceCulture);
             }
         }
         

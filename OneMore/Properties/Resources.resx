@@ -1239,10 +1239,6 @@ Deferred</value>
     <value>Embed content of another page into the current page</value>
     <comment>ribbon item screentip</comment>
   </data>
-  <data name="ResizeImagesDialog_widthLabel.Text" xml:space="preserve">
-    <value>Width</value>
-    <comment>label</comment>
-  </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>Embed Page</value>
     <comment>ribbon item</comment>
@@ -2239,10 +2235,6 @@ High</value>
     <value>Could not fetch definition of word {0}
 Try again later</value>
     <comment>error message box</comment>
-  </data>
-  <data name="ResizeImagesDialog_presetLabel.Text" xml:space="preserve">
-    <value>Width</value>
-    <comment>label</comment>
   </data>
   <data name="ReminderReport_WeekOfYear" xml:space="preserve">
     <value>Week {0}</value>
@@ -3887,5 +3879,17 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Grid40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\Grid40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="word_Brightness" xml:space="preserve">
+    <value>Brightness</value>
+  </data>
+  <data name="word_Contrast" xml:space="preserve">
+    <value>Contrast</value>
+  </data>
+  <data name="word_Grayscale" xml:space="preserve">
+    <value>Grayscale</value>
+  </data>
+  <data name="word_Width" xml:space="preserve">
+    <value>Width</value>
   </data>
 </root>

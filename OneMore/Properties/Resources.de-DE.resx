@@ -662,10 +662,6 @@
     <value>Prozentsatz</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_presetLabel.Text" xml:space="preserve">
-    <value>Breite</value>
-    <comment>label</comment>
-  </data>
   <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
     <value>Voreinstellung</value>
     <comment>radio</comment>
@@ -673,10 +669,6 @@
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} x {1}</value>
     <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_widthLabel.Text" xml:space="preserve">
-    <value>Breite</value>
-    <comment>label</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Match Case</value>
@@ -3823,5 +3815,17 @@ Aufgeschoben</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
+  </data>
+  <data name="word_Brightness" xml:space="preserve">
+    <value>Helligkeit</value>
+  </data>
+  <data name="word_Contrast" xml:space="preserve">
+    <value>Kontrast</value>
+  </data>
+  <data name="word_Width" xml:space="preserve">
+    <value>Breite</value>
+  </data>
+  <data name="word_Grayscale" xml:space="preserve">
+    <value>Graustufen</value>
   </data>
 </root>

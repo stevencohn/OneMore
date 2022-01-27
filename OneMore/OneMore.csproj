@@ -925,6 +925,7 @@
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
     <Content Include="Properties\Images\Task.png" />
+    <Content Include="Properties\Resources-zh-CN-hints.xml" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />
     <Content Include="Properties\Images\Underline.png" />

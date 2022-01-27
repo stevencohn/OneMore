@@ -667,10 +667,6 @@
     <value>النسبة المئوية</value>
     <comment>radio</comment>
   </data>
-  <data name="ResizeImagesDialog_presetLabel.Text" xml:space="preserve">
-    <value>عرض</value>
-    <comment>label</comment>
-  </data>
   <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
     <value>المعد مسبقا</value>
     <comment>radio</comment>
@@ -678,10 +674,6 @@
   <data name="ResizeImagesDialog_sizeLink.Text" xml:space="preserve">
     <value>{0} × {1}</value>
     <comment>width x height</comment>
-  </data>
-  <data name="ResizeImagesDialog_widthLabel.Text" xml:space="preserve">
-    <value>عرض</value>
-    <comment>label</comment>
   </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>حالة مباراة</value>
@@ -3836,5 +3828,17 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>٪</value>
+  </data>
+  <data name="word_Brightness" xml:space="preserve">
+    <value>سطوع</value>
+  </data>
+  <data name="word_Contrast" xml:space="preserve">
+    <value>مقابلة</value>
+  </data>
+  <data name="word_Width" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="word_Grayscale" xml:space="preserve">
+    <value>رمادي</value>
   </data>
 </root>

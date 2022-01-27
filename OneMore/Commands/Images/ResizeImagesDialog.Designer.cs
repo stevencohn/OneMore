@@ -524,9 +524,9 @@ namespace River.OneMoreAddIn.Commands
 			this.grayBox.AutoSize = true;
 			this.grayBox.Location = new System.Drawing.Point(51, 417);
 			this.grayBox.Name = "grayBox";
-			this.grayBox.Size = new System.Drawing.Size(110, 24);
+			this.grayBox.Size = new System.Drawing.Size(106, 24);
 			this.grayBox.TabIndex = 35;
-			this.grayBox.Text = "Gray scale";
+			this.grayBox.Text = "Grayscale";
 			this.grayBox.UseVisualStyleBackColor = true;
 			this.grayBox.CheckedChanged += new System.EventHandler(this.GrayscaleCheckChanged);
 			// 
