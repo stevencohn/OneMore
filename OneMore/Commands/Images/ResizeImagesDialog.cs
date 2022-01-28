@@ -49,7 +49,9 @@ namespace River.OneMoreAddIn.Commands
 			allLabel.Visible = true;
 			origLabel.Visible = sizeLink.Visible = origSizeLink.Visible = false;
 
-			heightUpDown.Enabled = false;
+			lockButton.Checked = true;
+			lockButton.Enabled = false;
+			heightBox.Enabled = false;
 
 			previewGroup.Visible = false;
 			Width -= (previewGroup.Width + Padding.Right);
@@ -86,11 +88,11 @@ namespace River.OneMoreAddIn.Commands
 			origSizeLink.Text = string.Format(
 				Resx.ResizeImagesDialog_sizeLink_Text, originalWidth, originalHeight);
 
-			widthUpDown.Value = viewWidth;
-			heightUpDown.Value = viewHeight;
+			widthBox.Value = viewWidth;
+			heightBox.Value = viewHeight;
 
 			settings = new SettingsProvider();
-			presetUpDown.Value = settings.GetCollection("images").Get("mruWidth", 500);
+			presetBox.Value = settings.GetCollection("images").Get("mruWidth", 500);
 
 			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
@@ -101,6 +103,8 @@ namespace River.OneMoreAddIn.Commands
 		private void Initialize()
 		{
 			InitializeComponent();
+
+			styleBox.SelectedIndex = 0;
 
 			if (NeedsLocalizing())
 			{
@@ -128,9 +132,6 @@ namespace River.OneMoreAddIn.Commands
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
-
-				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, 0);
-				qualLabel.Text = string.Format(Resx.ResizeImageDialog_qualLabel_Text, qualBar.Value);
 			}
 		}
 
@@ -144,7 +145,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		public decimal ImageHeight => heightUpDown.Value;
+		public decimal ImageHeight => heightBox.Value;
 
 
 		public decimal ImageOpacity => opacityBox.Value;
@@ -153,10 +154,10 @@ namespace River.OneMoreAddIn.Commands
 		public int ImageQuality => qualBar.Value;
 
 
-		public decimal ImageWidth => widthUpDown.Value;
+		public decimal ImageWidth => widthBox.Value;
 
 
-		public bool MaintainAspect => aspectBox.Checked;
+		public bool MaintainAspect => lockButton.Checked;
 
 
 		public bool NeedsRewrite =>
@@ -167,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 			qualBar.Value < 100;
 
 
-		public decimal Percent => pctRadio.Checked ? pctUpDown.Value : 0;
+		public decimal Percent => pctRadio.Checked ? percentBox.Value : 0;
 
 
 		public bool PreserveSize => preserveBox.Checked;
@@ -209,10 +210,20 @@ namespace River.OneMoreAddIn.Commands
 						(float)contrastBox.Value / 100f);
 			}
 
-			if (grayBox.Checked)
+			if (styleBox.SelectedIndex == 1)
 			{
 				using (var p = adjusted)
 					adjusted = p.ToGrayscale();
+			}
+			else if (styleBox.SelectedIndex == 2)
+			{
+				using (var p = adjusted)
+					adjusted = p.ToSepia();
+			}
+			else if (styleBox.SelectedIndex == 3)
+			{
+				using (var p = adjusted)
+					adjusted = p.ToPolaroid();
 			}
 
 			// opacity must be set last
@@ -300,9 +311,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			RadioClick(absRadio, null);
 			absRadio.Checked = true;
-			pctUpDown.Value = 100;
-			widthUpDown.Value = viewWidth;
-			heightUpDown.Value = viewHeight;
+			percentBox.Value = 100;
+			widthBox.Value = viewWidth;
+			heightBox.Value = viewHeight;
 			mruWidth = true;
 
 			if (image != null)
@@ -314,9 +325,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			RadioClick(absRadio, null);
 			absRadio.Checked = true;
-			pctUpDown.Value = (decimal)originalWidth / viewWidth * 100;
-			widthUpDown.Value = originalWidth;
-			heightUpDown.Value = originalHeight;
+			percentBox.Value = (decimal)originalWidth / viewWidth * 100;
+			widthBox.Value = originalWidth;
+			heightBox.Value = originalHeight;
 			mruWidth = true;
 
 			if (image != null)
@@ -326,13 +337,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RadioClick(object sender, EventArgs e)
 		{
-			pctUpDown.Enabled = sender == pctRadio;
+			percentBox.Enabled = sender == pctRadio;
 
 			var abs = sender == absRadio;
-			aspectBox.Enabled = abs;
-			widthUpDown.Enabled = abs;
-			heightUpDown.Enabled = abs && image != null;
-			presetUpDown.Enabled = sender == presetRadio;
+			lockButton.Enabled = abs;
+			widthBox.Enabled = abs;
+			heightBox.Enabled = abs && image != null;
+			presetBox.Enabled = sender == presetRadio;
 			mruWidth = true;
 		}
 
@@ -352,14 +363,14 @@ namespace River.OneMoreAddIn.Commands
 			if (suspended)
 				return;
 
-			var w = (int)(viewWidth * (pctUpDown.Value / 100));
-			var h = (int)(viewHeight * (pctUpDown.Value / 100));
+			var w = (int)(viewWidth * (percentBox.Value / 100));
+			var h = (int)(viewHeight * (percentBox.Value / 100));
 
 			if (w > 0 && h > 0)
 			{
 				suspended = true;
-				widthUpDown.Value = w;
-				heightUpDown.Value = h;
+				widthBox.Value = w;
+				heightBox.Value = h;
 				mruWidth = true;
 
 				if (image != null)
@@ -370,15 +381,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void MaintainAspectCheckedChanged(object sender, EventArgs e)
+		private void LockAspectCheckedChanged(object sender, EventArgs e)
 		{
+			lockButton.Image = lockButton.Checked ? Resx.Locked : Resx.Unlocked;
+
 			if (image == null)
 			{
-				heightUpDown.Enabled = !aspectBox.Checked;
+				heightBox.Enabled = !lockButton.Checked;
 				return;
 			}
 
-			if (!aspectBox.Checked)
+			if (!lockButton.Checked)
 			{
 				return;
 			}
@@ -387,22 +400,22 @@ namespace River.OneMoreAddIn.Commands
 			decimal aspect;
 			if (mruWidth)
 			{
-				aspect = widthUpDown.Value < viewWidth
-					? widthUpDown.Value / viewWidth
-					: viewWidth / widthUpDown.Value;
+				aspect = widthBox.Value < viewWidth
+					? widthBox.Value / viewWidth
+					: viewWidth / widthBox.Value;
 
-				heightUpDown.Value = (int)(viewHeight * aspect);
+				heightBox.Value = (int)(viewHeight * aspect);
 			}
 			else
 			{
-				aspect = heightUpDown.Value < viewHeight
-					? heightUpDown.Value / viewHeight
-					: viewHeight / heightUpDown.Value;
+				aspect = heightBox.Value < viewHeight
+					? heightBox.Value / viewHeight
+					: viewHeight / heightBox.Value;
 
-				widthUpDown.Value = (int)(viewWidth * aspect);
+				widthBox.Value = (int)(viewWidth * aspect);
 			}
 
-			pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
+			percentBox.Value = widthBox.Value / viewWidth * 100;
 
 			DrawPreview();
 
@@ -412,7 +425,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void WidthValueChanged(object sender, EventArgs e)
 		{
-			if (suspended || !widthUpDown.Enabled)
+			if (suspended || !widthBox.Enabled)
 			{
 				return;
 			}
@@ -421,12 +434,12 @@ namespace River.OneMoreAddIn.Commands
 
 			if (image != null)
 			{
-				if (aspectBox.Checked)
+				if (lockButton.Checked)
 				{
-					heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
+					heightBox.Value = (int)(viewHeight * (widthBox.Value / viewWidth));
 				}
 
-				pctUpDown.Value = heightUpDown.Value / viewHeight * 100;
+				percentBox.Value = heightBox.Value / viewHeight * 100;
 			}
 
 			suspended = false;
@@ -439,7 +452,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void HeightValueChanged(object sender, EventArgs e)
 		{
-			if (suspended || !heightUpDown.Enabled)
+			if (suspended || !heightBox.Enabled)
 			{
 				return;
 			}
@@ -448,12 +461,12 @@ namespace River.OneMoreAddIn.Commands
 
 			if (image != null)
 			{
-				if (aspectBox.Checked)
+				if (lockButton.Checked)
 				{
-					widthUpDown.Value = (int)(viewWidth * (heightUpDown.Value / viewHeight));
+					widthBox.Value = (int)(viewWidth * (heightBox.Value / viewHeight));
 				}
 
-				pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
+				percentBox.Value = widthBox.Value / viewWidth * 100;
 			}
 
 			suspended = false;
@@ -470,12 +483,12 @@ namespace River.OneMoreAddIn.Commands
 				return;
 
 			suspended = true;
-			widthUpDown.Value = (int)presetUpDown.Value;
+			widthBox.Value = (int)presetBox.Value;
 
 			if (image != null)
 			{
-				heightUpDown.Value = (int)(viewHeight * (widthUpDown.Value / viewWidth));
-				pctUpDown.Value = widthUpDown.Value / viewWidth * 100;
+				heightBox.Value = (int)(viewHeight * (widthBox.Value / viewWidth));
+				percentBox.Value = widthBox.Value / viewWidth * 100;
 			}
 
 			mruWidth = true;
@@ -508,6 +521,7 @@ namespace River.OneMoreAddIn.Commands
 			if (sender == opacityLabel) opacityBox.Value = 100;
 			else if (sender == brightnessLabel) brightnessBox.Value = 0;
 			else if (sender == contrastLabel) contrastBox.Value = 0;
+			else if (sender == qualLabel) qualBox.Value = 100;
 
 			if (image != null)
 			{
@@ -517,7 +531,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 
-		private void GrayscaleCheckChanged(object sender, EventArgs e)
+		private void StylizeSelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (image != null)
 			{
@@ -528,7 +542,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private void EstimateStorage(object sender, EventArgs e)
 		{
-			qualLabel.Text = string.Format(Resx.ResizeImageDialog_qualLabel_Text, qualBar.Value);
+			if (sender == qualBar)
+				qualBox.Value = qualBar.Value;
+			else
+				qualBar.Value = (int)qualBox.Value;
 
 			storageSize = 0;
 
@@ -542,16 +559,16 @@ namespace River.OneMoreAddIn.Commands
 			if (presetRadio.Checked)
 			{
 				var collection = settings.GetCollection("images");
-				collection.Add("mruWidth", (int)presetUpDown.Value);
+				collection.Add("mruWidth", (int)presetBox.Value);
 				settings.SetCollection(collection);
 				settings.Save();
 
 				suspended = true;
-				widthUpDown.Value = presetUpDown.Value;
+				widthBox.Value = presetBox.Value;
 
-				heightUpDown.Value = image == null
+				heightBox.Value = image == null
 					? 0
-					: viewHeight * (widthUpDown.Value / viewWidth);
+					: viewHeight * (widthBox.Value / viewWidth);
 			}
 
 			DialogResult = DialogResult.OK;
