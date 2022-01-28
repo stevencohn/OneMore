@@ -228,10 +228,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DrawPreview()
 		{
-			logger.StartClock();
-
 			previewBox.Image = null;
 			preview?.Dispose();
+
+			// NOTE: OneNote's zoom factor skews viewable images, e.g. on a HDPI display at
+			// 150% scaling, an image displayed at 80% zoom is equivalent to the raw painting
+			// of an image at 100% of its size...
 
 			//var ratio = scaling.GetRatio(image, previewBox.Width, previewBox.Height, 0);
 			var width = Math.Round(ImageWidth * (decimal)scaling.FactorX); //(decimal)ratio);
@@ -284,9 +286,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void DrawOnResize(object sender, EventArgs e)
+		private void DrawOnSizeChanged(object sender, EventArgs e)
 		{
-			base.OnResize(e);
+			base.OnSizeChanged(e);
 			if (image != null)
 			{
 				DrawPreview();
@@ -294,7 +296,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ResetToCurrentSize(object sender, LinkLabelLinkClickedEventArgs e)
+		private void ViewSizeClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			RadioClick(absRadio, null);
 			absRadio.Checked = true;
@@ -308,7 +310,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ResetToOriginalSize(object sender, LinkLabelLinkClickedEventArgs e)
+		private void OriginalSizeClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			RadioClick(absRadio, null);
 			absRadio.Checked = true;
