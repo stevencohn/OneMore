@@ -407,6 +407,7 @@
     <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
+    <Compile Include="Helpers\MagicScaling.cs" />
     <Compile Include="Helpers\Office\Models\OutlookEnums.cs" />
     <Compile Include="Helpers\Office\Models\OutlookTaskFolders.cs" />
     <Compile Include="Helpers\Office\Models\OutlookTasks.cs" />

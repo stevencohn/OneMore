@@ -296,7 +296,7 @@ namespace River.OneMoreAddIn.Commands
 			this.sizeLink.TabIndex = 0;
 			this.sizeLink.TabStop = true;
 			this.sizeLink.Text = "100 x 100";
-			this.sizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetToCurrentSize);
+			this.sizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ViewSizeClicked);
 			// 
 			// origSizeLink
 			// 
@@ -308,7 +308,7 @@ namespace River.OneMoreAddIn.Commands
 			this.origSizeLink.TabIndex = 1;
 			this.origSizeLink.TabStop = true;
 			this.origSizeLink.Text = "100 x 100";
-			this.origSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetToOriginalSize);
+			this.origSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OriginalSizeClicked);
 			// 
 			// allLabel
 			// 
@@ -428,7 +428,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.previewBox.TabIndex = 0;
 			this.previewBox.TabStop = false;
-			this.previewBox.SizeChanged += new System.EventHandler(this.DrawOnResize);
+			this.previewBox.SizeChanged += new System.EventHandler(this.DrawOnSizeChanged);
 			// 
 			// brightnessLabel
 			// 
