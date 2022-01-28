@@ -16,11 +16,11 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ResizeImagesDialog : UI.LocalizableForm
 	{
-		private readonly SettingsProvider settings;
 		private readonly Image image;
 		private readonly int viewWidth;
 		private readonly int viewHeight;
-		private readonly MagicScaling scaling;
+		private SettingsProvider settings;
+		private MagicScaling scaling;
 		private int originalWidth;
 		private int originalHeight;
 		private Image preview;
@@ -44,12 +44,13 @@ namespace River.OneMoreAddIn.Commands
 
 			// hide controls that do not apply...
 
-			viewSizeLabel.Text = Resx.ResizeImagesDialog_appliesTo;
-			allLabel.Left = viewSizeLink.Left;
+			imageSizeLabel.Text = Resx.ResizeImagesDialog_appliesTo;
+			allLabel.Location = imageSizeLink.Location;
 			allLabel.Visible = true;
 
-			imageSizeLabel.Visible = viewSizeLink.Visible
-				= imageSizeLink.Visible = storageLabel.Visible = storedSizeLabel.Visible = false;
+			viewSizeLabel.Visible = viewSizeLink.Visible
+				= imageSizeLink.Visible
+				= storageLabel.Visible = storedSizeLabel.Visible = false;
 
 			lockButton.Checked = true;
 			lockButton.Enabled = false;
@@ -61,7 +62,6 @@ namespace River.OneMoreAddIn.Commands
 			presetRadio.Checked = true;
 			RadioClick(presetRadio, null);
 
-			settings = new SettingsProvider();
 			scaling = null;
 		}
 
@@ -92,9 +92,6 @@ namespace River.OneMoreAddIn.Commands
 
 			widthBox.Value = viewWidth;
 			heightBox.Value = viewHeight;
-
-			settings = new SettingsProvider();
-			presetBox.Value = settings.GetCollection("images").Get("mruWidth", 500);
 
 			scaling = new MagicScaling(image.HorizontalResolution, image.VerticalResolution);
 
@@ -136,6 +133,15 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			settings = new SettingsProvider();
+			presetBox.Value = settings.GetCollection("images").Get("mruWidth", 500);
+
+			//lockButton.AutoSize = false;
+			//lockButton.Size = new Size(28, 28);
+
+			var (fx, fy) = UIHelper.GetScalingFactors();
+			logger.WriteLine($"fx {fx} fy {fy}");
+
 			styleBox.SelectedIndex = 0;
 		}
 
@@ -169,6 +175,7 @@ namespace River.OneMoreAddIn.Commands
 			opacityBox.Value < 100 ||
 			brightnessBox.Value != 0 ||
 			contrastBox.Value != 0 ||
+			styleBox.SelectedIndex != 0 ||
 			qualBar.Value < 100;
 
 
@@ -387,11 +394,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private void LockAspectCheckedChanged(object sender, EventArgs e)
 		{
-			lockButton.Image = lockButton.Checked ? Resx.Locked : Resx.Unlocked;
+			lockButton.BackgroundImage = lockButton.Checked ? Resx.Locked : Resx.Unlocked;
 
 			if (image == null)
 			{
 				heightBox.Enabled = !lockButton.Checked;
+				if (!heightBox.Enabled)
+				{
+					heightBox.Value = 0;
+				}
 				return;
 			}
 

@@ -554,14 +554,15 @@ namespace River.OneMoreAddIn.Commands
 			// lockButton
 			// 
 			this.lockButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.lockButton.AutoSize = true;
+			this.lockButton.AutoSize = false;
 			this.lockButton.Checked = true;
 			this.lockButton.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.lockButton.Enabled = false;
-			this.lockButton.Image = ((System.Drawing.Image)(resources.GetObject("lockButton.Image")));
+			this.lockButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lockButton.Image")));
+			this.lockButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.lockButton.Location = new System.Drawing.Point(415, 177);
 			this.lockButton.Name = "lockButton";
-			this.lockButton.Size = new System.Drawing.Size(31, 31);
+			this.lockButton.Size = new System.Drawing.Size(33, 33);
 			this.lockButton.TabIndex = 45;
 			this.lockButton.UseVisualStyleBackColor = true;
 			this.lockButton.CheckedChanged += new System.EventHandler(this.LockAspectCheckedChanged);
