@@ -289,7 +289,7 @@ namespace River.OneMoreAddIn
 		{
 			return Apply(image, new ColorMatrix
 			{
-				Matrix00 = 0.438f,
+				Matrix00 = 1.438f,
 				Matrix01 = -0.062f,
 				Matrix02 = -0.062f,
 				Matrix10 = -0.122f,
@@ -298,9 +298,9 @@ namespace River.OneMoreAddIn
 				Matrix20 = -0.016f,
 				Matrix21 = -0.016f,
 				Matrix22 = 1.483f,
-				Matrix40 = -0.030f,
-				Matrix41 = 0.050f,
-				Matrix42 = -0.020f,
+				Matrix40 = -0.03f,
+				Matrix41 = 0.05f,
+				Matrix42 = -0.02f,
 				Matrix44 = 1.0f
 			});
 		}

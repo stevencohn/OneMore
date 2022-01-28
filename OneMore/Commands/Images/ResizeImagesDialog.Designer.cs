@@ -314,7 +314,7 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox.AutoSize = true;
 			this.preserveBox.Checked = true;
 			this.preserveBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.preserveBox.Location = new System.Drawing.Point(53, 529);
+			this.preserveBox.Location = new System.Drawing.Point(53, 548);
 			this.preserveBox.Name = "preserveBox";
 			this.preserveBox.Size = new System.Drawing.Size(187, 24);
 			this.preserveBox.TabIndex = 0;
@@ -330,7 +330,7 @@ namespace River.OneMoreAddIn.Commands
 			this.qualLabel.Size = new System.Drawing.Size(57, 20);
 			this.qualLabel.TabIndex = 1;
 			this.qualLabel.Text = "Quality";
-			this.qualLabel.DockChanged += new System.EventHandler(this.ResetDoubleClick);
+			this.qualLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
 			// 
 			// qualBar
 			// 
