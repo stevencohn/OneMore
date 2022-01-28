@@ -338,7 +338,7 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBar.LargeChange = 10;
 			this.qualBar.Location = new System.Drawing.Point(304, 495);
 			this.qualBar.Maximum = 100;
-			this.qualBar.Minimum = 5;
+			this.qualBar.Minimum = 0;
 			this.qualBar.Name = "qualBar";
 			this.qualBar.Size = new System.Drawing.Size(190, 25);
 			this.qualBar.SmallChange = 5;
