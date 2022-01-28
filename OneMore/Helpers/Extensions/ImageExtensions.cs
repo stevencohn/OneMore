@@ -136,38 +136,10 @@ namespace River.OneMoreAddIn
 		/// <seealso cref="https://docs.rainmeter.net/tips/colormatrix-guide/"/>
 		public static Image SetBrightnessContrast(this Image image, float brightness, float contrast)
 		{
-			ColorMatrix matrix = null;
-			
-			if (brightness != 0 && contrast != 0)
+			ColorMatrix bmat = null;
+			if (brightness != 0)
 			{
-				contrast += 1f;
-				var t = (1.0f - contrast) / 2.0f;
-				matrix = new ColorMatrix
-				{
-					Matrix00 = contrast,    // scale red
-					Matrix11 = contrast,    // scale green
-					Matrix22 = contrast,    // scale blue
-					Matrix33 = 1f,          // no change in alpha
-					Matrix40 = t,           // transformation
-					Matrix41 = t,           // transformation
-					Matrix42 = t,           // transformation
-					Matrix44 = 1f
-				}.Multiply(new ColorMatrix
-				{
-					Matrix00 = 1f,
-					Matrix11 = 1f,
-					Matrix22 = 1f,
-					Matrix33 = 1f,
-					Matrix40 = brightness,
-					Matrix41 = brightness,
-					Matrix42 = brightness,
-					Matrix43 = 1f,
-					Matrix44 = 1f
-				});
-			}
-			else if (brightness != 0)
-			{
-				matrix = new ColorMatrix
+				bmat = new ColorMatrix
 				{
 					Matrix00 = 1f,
 					Matrix11 = 1f,
@@ -179,11 +151,13 @@ namespace River.OneMoreAddIn
 					Matrix44 = 1f
 				};
 			}
-			else if (contrast != 0)
+
+			ColorMatrix cmat = null;
+			if (contrast != 0)
 			{
 				contrast += 1f;
 				var t = (1.0f - contrast) / 2.0f;
-				matrix = new ColorMatrix
+				cmat = new ColorMatrix
 				{
 					Matrix00 = contrast,    // scale red
 					Matrix11 = contrast,    // scale green
@@ -195,7 +169,10 @@ namespace River.OneMoreAddIn
 					Matrix44 = 1f
 				};
 			}
-			
+
+			var matrix = bmat != null && cmat != null
+				? bmat.Multiply(cmat)
+				: bmat ?? cmat;
 
 			if (matrix == null)
 			{
