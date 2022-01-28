@@ -642,7 +642,7 @@ OneNote 将自动关闭</value>
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>页面上的所有图像</value>
+    <value>此页面上的所有图像</value>
     <comment>info label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">

@@ -4799,7 +4799,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to all images on page.
+        ///   Looks up a localized string similar to all images on this page.
         /// </summary>
         internal static string ResizeImagesDialog_allLabel_Text {
             get {

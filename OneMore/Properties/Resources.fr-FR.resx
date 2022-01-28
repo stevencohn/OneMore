@@ -641,7 +641,7 @@ Pourcentage</value>
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>toutes les images sur la page</value>
+    <value>toutes les images sur cette page</value>
     <comment>info label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">

@@ -304,9 +304,9 @@ namespace River.OneMoreAddIn.Commands
 			this.allLabel.AutoSize = true;
 			this.allLabel.Location = new System.Drawing.Point(300, 23);
 			this.allLabel.Name = "allLabel";
-			this.allLabel.Size = new System.Drawing.Size(141, 20);
+			this.allLabel.Size = new System.Drawing.Size(170, 20);
 			this.allLabel.TabIndex = 20;
-			this.allLabel.Text = "all images on page";
+			this.allLabel.Text = "all images on this page";
 			this.allLabel.Visible = false;
 			// 
 			// preserveBox
@@ -338,7 +338,6 @@ namespace River.OneMoreAddIn.Commands
 			this.qualBar.LargeChange = 10;
 			this.qualBar.Location = new System.Drawing.Point(304, 495);
 			this.qualBar.Maximum = 100;
-			this.qualBar.Minimum = 0;
 			this.qualBar.Name = "qualBar";
 			this.qualBar.Size = new System.Drawing.Size(190, 25);
 			this.qualBar.SmallChange = 5;
@@ -512,7 +511,6 @@ namespace River.OneMoreAddIn.Commands
 			this.storedSizeLabel.Size = new System.Drawing.Size(60, 20);
 			this.storedSizeLabel.TabIndex = 38;
 			this.storedSizeLabel.Text = "0 bytes";
-			this.storedSizeLabel.Visible = true;
 			// 
 			// qualBox
 			// 
@@ -554,12 +552,11 @@ namespace River.OneMoreAddIn.Commands
 			// lockButton
 			// 
 			this.lockButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.lockButton.AutoSize = false;
+			this.lockButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lockButton.BackgroundImage")));
+			this.lockButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.lockButton.Checked = true;
 			this.lockButton.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.lockButton.Enabled = false;
-			this.lockButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lockButton.Image")));
-			this.lockButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.lockButton.Location = new System.Drawing.Point(415, 177);
 			this.lockButton.Name = "lockButton";
 			this.lockButton.Size = new System.Drawing.Size(33, 33);

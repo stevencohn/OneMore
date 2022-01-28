@@ -635,7 +635,7 @@
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>alle Bilder auf Seite</value>
+    <value>alle Bilder auf dieser Seite</value>
     <comment>info label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">

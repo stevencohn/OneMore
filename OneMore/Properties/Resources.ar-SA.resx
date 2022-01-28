@@ -640,7 +640,7 @@
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>كل الصور في الصفحة</value>
+    <value>جميع الصور في هذه الصفحة</value>
     <comment>info label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">

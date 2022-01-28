@@ -3168,7 +3168,7 @@ High</value>
     <comment>checkbox</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>all images on page</value>
+    <value>all images on this page</value>
     <comment>info label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
