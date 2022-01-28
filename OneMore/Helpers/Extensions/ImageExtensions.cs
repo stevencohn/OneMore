@@ -285,6 +285,11 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Render a new image by converting the given image to Polaroid style.
+		/// </summary>
+		/// <param name="image">Colorful image</param>
+		/// <returns></returns>
 		public static Image ToPolaroid(this Image image)
 		{
 			return Apply(image, new ColorMatrix
@@ -306,6 +311,11 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Render a new image by converting the given image to sepia.
+		/// </summary>
+		/// <param name="image">Colorful image</param>
+		/// <returns></returns>
 		public static Image ToSepia(this Image image)
 		{
 			return Apply(image, new ColorMatrix
