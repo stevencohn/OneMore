@@ -46,16 +46,16 @@ namespace River.OneMoreAddIn.Commands
 			this.heightBox = new System.Windows.Forms.NumericUpDown();
 			this.widthLabel = new System.Windows.Forms.Label();
 			this.heightLabel = new System.Windows.Forms.Label();
-			this.currentLabel = new System.Windows.Forms.Label();
+			this.viewSizeLabel = new System.Windows.Forms.Label();
 			this.presetRadio = new System.Windows.Forms.RadioButton();
 			this.presetBox = new System.Windows.Forms.NumericUpDown();
 			this.presetLabel = new System.Windows.Forms.Label();
-			this.origLabel = new System.Windows.Forms.Label();
-			this.sizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.origSizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.imageSizeLabel = new System.Windows.Forms.Label();
+			this.viewSizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.imageSizeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.allLabel = new System.Windows.Forms.Label();
 			this.preserveBox = new System.Windows.Forms.CheckBox();
-			this.qualLabel = new System.Windows.Forms.Label();
+			this.qualityLabel = new System.Windows.Forms.Label();
 			this.qualBar = new System.Windows.Forms.TrackBar();
 			this.opacityBox = new System.Windows.Forms.NumericUpDown();
 			this.opacityLabel = new System.Windows.Forms.Label();
@@ -68,8 +68,8 @@ namespace River.OneMoreAddIn.Commands
 			this.brightnessBar = new System.Windows.Forms.TrackBar();
 			this.contrastBar = new System.Windows.Forms.TrackBar();
 			this.opacityBar = new System.Windows.Forms.TrackBar();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
+			this.storageLabel = new System.Windows.Forms.Label();
+			this.storedSizeLabel = new System.Windows.Forms.Label();
 			this.qualBox = new System.Windows.Forms.NumericUpDown();
 			this.styleBox = new System.Windows.Forms.ComboBox();
 			this.styleLabel = new System.Windows.Forms.Label();
@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(898, 585);
+			this.cancelButton.Location = new System.Drawing.Point(900, 594);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 11;
@@ -105,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.Location = new System.Drawing.Point(794, 585);
+			this.okButton.Location = new System.Drawing.Point(794, 594);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 10;
@@ -217,14 +217,14 @@ namespace River.OneMoreAddIn.Commands
 			this.heightLabel.TabIndex = 10;
 			this.heightLabel.Text = "Height";
 			// 
-			// currentLabel
+			// viewSizeLabel
 			// 
-			this.currentLabel.AutoSize = true;
-			this.currentLabel.Location = new System.Drawing.Point(48, 23);
-			this.currentLabel.Name = "currentLabel";
-			this.currentLabel.Size = new System.Drawing.Size(75, 20);
-			this.currentLabel.TabIndex = 11;
-			this.currentLabel.Text = "View size";
+			this.viewSizeLabel.AutoSize = true;
+			this.viewSizeLabel.Location = new System.Drawing.Point(48, 23);
+			this.viewSizeLabel.Name = "viewSizeLabel";
+			this.viewSizeLabel.Size = new System.Drawing.Size(75, 20);
+			this.viewSizeLabel.TabIndex = 11;
+			this.viewSizeLabel.Text = "View size";
 			// 
 			// presetRadio
 			// 
@@ -266,38 +266,38 @@ namespace River.OneMoreAddIn.Commands
 			this.presetLabel.TabIndex = 15;
 			this.presetLabel.Text = "Width";
 			// 
-			// origLabel
+			// imageSizeLabel
 			// 
-			this.origLabel.AutoSize = true;
-			this.origLabel.Location = new System.Drawing.Point(49, 43);
-			this.origLabel.Name = "origLabel";
-			this.origLabel.Size = new System.Drawing.Size(86, 20);
-			this.origLabel.TabIndex = 16;
-			this.origLabel.Text = "Image size";
+			this.imageSizeLabel.AutoSize = true;
+			this.imageSizeLabel.Location = new System.Drawing.Point(49, 43);
+			this.imageSizeLabel.Name = "imageSizeLabel";
+			this.imageSizeLabel.Size = new System.Drawing.Size(86, 20);
+			this.imageSizeLabel.TabIndex = 16;
+			this.imageSizeLabel.Text = "Image size";
 			// 
-			// sizeLink
+			// viewSizeLink
 			// 
-			this.sizeLink.AutoSize = true;
-			this.sizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.sizeLink.Location = new System.Drawing.Point(195, 23);
-			this.sizeLink.Name = "sizeLink";
-			this.sizeLink.Size = new System.Drawing.Size(78, 20);
-			this.sizeLink.TabIndex = 0;
-			this.sizeLink.TabStop = true;
-			this.sizeLink.Text = "100 x 100";
-			this.sizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ViewSizeClicked);
+			this.viewSizeLink.AutoSize = true;
+			this.viewSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.viewSizeLink.Location = new System.Drawing.Point(195, 23);
+			this.viewSizeLink.Name = "viewSizeLink";
+			this.viewSizeLink.Size = new System.Drawing.Size(78, 20);
+			this.viewSizeLink.TabIndex = 0;
+			this.viewSizeLink.TabStop = true;
+			this.viewSizeLink.Text = "100 x 100";
+			this.viewSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ViewSizeClicked);
 			// 
-			// origSizeLink
+			// imageSizeLink
 			// 
-			this.origSizeLink.AutoSize = true;
-			this.origSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.origSizeLink.Location = new System.Drawing.Point(195, 43);
-			this.origSizeLink.Name = "origSizeLink";
-			this.origSizeLink.Size = new System.Drawing.Size(78, 20);
-			this.origSizeLink.TabIndex = 1;
-			this.origSizeLink.TabStop = true;
-			this.origSizeLink.Text = "100 x 100";
-			this.origSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OriginalSizeClicked);
+			this.imageSizeLink.AutoSize = true;
+			this.imageSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.imageSizeLink.Location = new System.Drawing.Point(195, 43);
+			this.imageSizeLink.Name = "imageSizeLink";
+			this.imageSizeLink.Size = new System.Drawing.Size(78, 20);
+			this.imageSizeLink.TabIndex = 1;
+			this.imageSizeLink.TabStop = true;
+			this.imageSizeLink.Text = "100 x 100";
+			this.imageSizeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OriginalSizeClicked);
 			// 
 			// allLabel
 			// 
@@ -322,15 +322,15 @@ namespace River.OneMoreAddIn.Commands
 			this.preserveBox.UseVisualStyleBackColor = true;
 			this.preserveBox.CheckedChanged += new System.EventHandler(this.EstimateStorage);
 			// 
-			// qualLabel
+			// qualityLabel
 			// 
-			this.qualLabel.AutoSize = true;
-			this.qualLabel.Location = new System.Drawing.Point(48, 495);
-			this.qualLabel.Name = "qualLabel";
-			this.qualLabel.Size = new System.Drawing.Size(57, 20);
-			this.qualLabel.TabIndex = 1;
-			this.qualLabel.Text = "Quality";
-			this.qualLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
+			this.qualityLabel.AutoSize = true;
+			this.qualityLabel.Location = new System.Drawing.Point(48, 495);
+			this.qualityLabel.Name = "qualityLabel";
+			this.qualityLabel.Size = new System.Drawing.Size(57, 20);
+			this.qualityLabel.TabIndex = 1;
+			this.qualityLabel.Text = "Quality";
+			this.qualityLabel.DoubleClick += new System.EventHandler(this.ResetDoubleClick);
 			// 
 			// qualBar
 			// 
@@ -495,24 +495,24 @@ namespace River.OneMoreAddIn.Commands
 			this.opacityBar.Value = 100;
 			this.opacityBar.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
-			// label1
+			// storageLabel
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(49, 63);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(66, 20);
-			this.label1.TabIndex = 37;
-			this.label1.Text = "Storage";
+			this.storageLabel.AutoSize = true;
+			this.storageLabel.Location = new System.Drawing.Point(49, 63);
+			this.storageLabel.Name = "storageLabel";
+			this.storageLabel.Size = new System.Drawing.Size(66, 20);
+			this.storageLabel.TabIndex = 37;
+			this.storageLabel.Text = "Storage";
 			// 
-			// label2
+			// storedSizeLabel
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(196, 63);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(60, 20);
-			this.label2.TabIndex = 38;
-			this.label2.Text = "0 bytes";
-			this.label2.Visible = false;
+			this.storedSizeLabel.AutoSize = true;
+			this.storedSizeLabel.Location = new System.Drawing.Point(196, 63);
+			this.storedSizeLabel.Name = "storedSizeLabel";
+			this.storedSizeLabel.Size = new System.Drawing.Size(60, 20);
+			this.storedSizeLabel.TabIndex = 38;
+			this.storedSizeLabel.Text = "0 bytes";
+			this.storedSizeLabel.Visible = true;
 			// 
 			// qualBox
 			// 
@@ -572,16 +572,16 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(1026, 642);
+			this.ClientSize = new System.Drawing.Size(1026, 643);
 			this.Controls.Add(this.lockButton);
 			this.Controls.Add(this.styleLabel);
 			this.Controls.Add(this.styleBox);
 			this.Controls.Add(this.qualBox);
 			this.Controls.Add(this.qualBar);
-			this.Controls.Add(this.qualLabel);
+			this.Controls.Add(this.qualityLabel);
 			this.Controls.Add(this.preserveBox);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.storedSizeLabel);
+			this.Controls.Add(this.storageLabel);
 			this.Controls.Add(this.opacityBar);
 			this.Controls.Add(this.contrastBar);
 			this.Controls.Add(this.brightnessBar);
@@ -593,13 +593,13 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.opacityLabel);
 			this.Controls.Add(this.opacityBox);
 			this.Controls.Add(this.allLabel);
-			this.Controls.Add(this.origSizeLink);
-			this.Controls.Add(this.sizeLink);
-			this.Controls.Add(this.origLabel);
+			this.Controls.Add(this.imageSizeLink);
+			this.Controls.Add(this.viewSizeLink);
+			this.Controls.Add(this.imageSizeLabel);
 			this.Controls.Add(this.presetLabel);
 			this.Controls.Add(this.presetBox);
 			this.Controls.Add(this.presetRadio);
-			this.Controls.Add(this.currentLabel);
+			this.Controls.Add(this.viewSizeLabel);
 			this.Controls.Add(this.heightLabel);
 			this.Controls.Add(this.widthLabel);
 			this.Controls.Add(this.heightBox);
@@ -648,15 +648,15 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.NumericUpDown heightBox;
 		private System.Windows.Forms.Label widthLabel;
 		private System.Windows.Forms.Label heightLabel;
-		private System.Windows.Forms.Label currentLabel;
+		private System.Windows.Forms.Label viewSizeLabel;
 		private System.Windows.Forms.RadioButton presetRadio;
 		private System.Windows.Forms.NumericUpDown presetBox;
 		private System.Windows.Forms.Label presetLabel;
-		private System.Windows.Forms.Label origLabel;
-		private UI.MoreLinkLabel sizeLink;
-		private UI.MoreLinkLabel origSizeLink;
+		private System.Windows.Forms.Label imageSizeLabel;
+		private UI.MoreLinkLabel viewSizeLink;
+		private UI.MoreLinkLabel imageSizeLink;
 		private System.Windows.Forms.Label allLabel;
-		private System.Windows.Forms.Label qualLabel;
+		private System.Windows.Forms.Label qualityLabel;
 		private System.Windows.Forms.TrackBar qualBar;
 		private System.Windows.Forms.CheckBox preserveBox;
 		private System.Windows.Forms.NumericUpDown opacityBox;
@@ -670,8 +670,8 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.TrackBar brightnessBar;
 		private System.Windows.Forms.TrackBar contrastBar;
 		private System.Windows.Forms.TrackBar opacityBar;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label storageLabel;
+		private System.Windows.Forms.Label storedSizeLabel;
 		private System.Windows.Forms.NumericUpDown qualBox;
 		private System.Windows.Forms.ComboBox styleBox;
 		private System.Windows.Forms.Label styleLabel;

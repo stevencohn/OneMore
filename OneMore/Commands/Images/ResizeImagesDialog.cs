@@ -44,10 +44,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// hide controls that do not apply...
 
-			currentLabel.Text = Resx.ResizeImagesDialog_applyToLabel;
-			allLabel.Left = sizeLink.Left;
+			viewSizeLabel.Text = Resx.ResizeImagesDialog_appliesTo;
+			allLabel.Left = viewSizeLink.Left;
 			allLabel.Visible = true;
-			origLabel.Visible = sizeLink.Visible = origSizeLink.Visible = false;
+
+			imageSizeLabel.Visible = viewSizeLink.Visible
+				= imageSizeLink.Visible = storageLabel.Visible = storedSizeLabel.Visible = false;
 
 			lockButton.Checked = true;
 			lockButton.Enabled = false;
@@ -79,13 +81,13 @@ namespace River.OneMoreAddIn.Commands
 			this.viewWidth = viewWidth;
 			this.viewHeight = viewHeight;
 
-			sizeLink.Text = string.Format(
+			viewSizeLink.Text = string.Format(
 				Resx.ResizeImagesDialog_sizeLink_Text, this.viewWidth, this.viewHeight);
 
 			originalWidth = image.Width;
 			originalHeight = image.Height;
 
-			origSizeLink.Text = string.Format(
+			imageSizeLink.Text = string.Format(
 				Resx.ResizeImagesDialog_sizeLink_Text, originalWidth, originalHeight);
 
 			widthBox.Value = viewWidth;
@@ -104,21 +106,19 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			styleBox.SelectedIndex = 0;
-
 			if (NeedsLocalizing())
 			{
 				Text = Resx.ResizeImagesDialog_Text;
 
 				Localize(new string[]
 				{
-					"currentLabel",
-					"origLabel",
+					"viewSizeLabel",
+					"imageSizeLabel",
+					"storageLabel=word_Storage",
 					"allLabel",
 					"pctRadio",
 					"pctLabel=word_PercentSymbol",
 					"absRadio",
-					"aspectBox",
 					"widthLabel=word_Width",
 					"heightLabel",
 					"presetRadio",
@@ -126,13 +126,17 @@ namespace River.OneMoreAddIn.Commands
 					"opacityLabel=word_Opacity",
 					"brightnessLabel=word_Brightness",
 					"contrastLabel=word_Contrast",
-					"grayBox=word_Grayscale",
+					"styleLabel=word_Stylize",
+					"styleBox",
+					"qualityLabel=word_Quality",
 					"preserveBox",
 					"previewGroup=word_Preview",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			styleBox.SelectedIndex = 0;
 		}
 
 
@@ -290,7 +294,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				storageSize = ((byte[])new ImageConverter().ConvertTo(preview, typeof(byte[]))).Length;
 				var size = storageSize.ToBytes(1);
-				qualBox.Text = string.Format(Resx.ResizeImageDialog_qualBox_Size, size);
+				storedSizeLabel.Text = size;
 
 				//logger.WriteTime($"estimated {ImageWidth} x {ImageHeight} = {size}");
 			}
@@ -521,7 +525,7 @@ namespace River.OneMoreAddIn.Commands
 			if (sender == opacityLabel) opacityBox.Value = 100;
 			else if (sender == brightnessLabel) brightnessBox.Value = 0;
 			else if (sender == contrastLabel) contrastBox.Value = 0;
-			else if (sender == qualLabel) qualBox.Value = 100;
+			else if (sender == qualityLabel) qualBox.Value = 100;
 
 			if (image != null)
 			{

@@ -153,7 +153,7 @@
     <value>... Complete Reminder</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
+  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
     <value>View size</value>
     <comment>label</comment>
   </data>
@@ -1468,10 +1468,6 @@ Percentage</value>
     <value>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
-    <value>Apply to</value>
-    <comment>label</comment>
-  </data>
   <data name="SortDialog_sortLabel.Text" xml:space="preserve">
     <value>Sort by:</value>
     <comment>label</comment>
@@ -1690,10 +1686,6 @@ In this section</value>
   </data>
   <data name="Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
-    <value>Storage</value>
-    <comment>group box</comment>
   </data>
   <data name="ContextMenuSheet_ribRemoveAuthorsButton" xml:space="preserve">
     <value>... Remove Author Information</value>
@@ -2616,10 +2608,6 @@ Quick Notes to bottom</value>
     <value>Clear the log file</value>
     <comment>hyperlink to clear the log file</comment>
   </data>
-  <data name="ResizeImagesDialog_aspectBox.Text" xml:space="preserve">
-    <value>Maintain aspect ratio</value>
-    <comment>checkbox</comment>
-  </data>
   <data name="FitGridToTextDialog_recommendation" xml:space="preserve">
     <value>Recommended size for {0}pt font is {1}</value>
     <comment>text box</comment>
@@ -2636,8 +2624,8 @@ Quick Notes to bottom</value>
     <value>Invalid</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Storage size</value>
+  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>Image size</value>
     <comment>label</comment>
   </data>
   <data name="ribUpdateSubpageButton_Screentip" xml:space="preserve">
@@ -3292,10 +3280,6 @@ High</value>
     <value>Web page not found or returned empty content</value>
     <comment>error message</comment>
   </data>
-  <data name="ResizeImageDialog_qualBox_Size" xml:space="preserve">
-    <value>Storage: {0}</value>
-    <comment>group box</comment>
-  </data>
   <data name="Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -3498,7 +3482,7 @@ High</value>
     <value>Emoji\Passwords.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>Resize Image</value>
+    <value>Resize and Adjust Image</value>
     <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
@@ -3598,10 +3582,6 @@ High</value>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
     <value>OneNote Storage Analysis</value>
     <comment>page title</comment>
-  </data>
-  <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>Insert Timer</value>
@@ -3865,8 +3845,8 @@ ISO-code then comma then language name</comment>
     <value>Watch</value>
     <comment>emoji</comment>
   </data>
-  <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
-    <value>{0}% quality</value>
+  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
+    <value>Quality</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
@@ -3901,5 +3881,25 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Unlocked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\unlocked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="word_Quality" xml:space="preserve">
+    <value>Quality</value>
+  </data>
+  <data name="word_Stylize" xml:space="preserve">
+    <value>Stylize</value>
+  </data>
+  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
+    <value>Applies to</value>
+    <comment>label override</comment>
+  </data>
+  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Original
+Gray scale
+Sepia
+Polaroid</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Storage" xml:space="preserve">
+    <value>Storage</value>
   </data>
 </root>
