@@ -250,6 +250,37 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Renders a new image as a copy of the given image with a desired saturation
+		/// </summary>
+		/// <param name="image">The original image to copy</param>
+		/// <param name="saturation">The desired saturation value (-1.0 .. 1.0)</param>
+		/// <returns></returns>
+		public static Image SetSaturation(this Image image, float saturation)
+		{
+			var s = 1f - (saturation * -1f); // shift -(flip -1..1 to 1..-1)
+
+			var sr = (1.0f - s) * 0.3086f;
+			var sg = (1.0f - s) * 0.6094f;
+			var sb = (1.0f - s) * 0.0820f;
+
+			return Apply(image, new ColorMatrix
+			{
+				Matrix00 = sr + s,
+				Matrix01 = sr,
+				Matrix02 = sr,
+				Matrix10 = sg,
+				Matrix11 = sg + s,
+				Matrix12 = sg,
+				Matrix20 = sb,
+				Matrix21 = sb,
+				Matrix22 = sb + s,
+				Matrix33 = 1.0f,
+				Matrix44 = 1.0f
+			});
+		}
+
+
+		/// <summary>
 		/// Serializes the given image as a base64 string.
 		/// </summary>
 		/// <param name="image"></param>

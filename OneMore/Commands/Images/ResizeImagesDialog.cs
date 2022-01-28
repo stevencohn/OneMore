@@ -123,6 +123,7 @@ namespace River.OneMoreAddIn.Commands
 					"opacityLabel=word_Opacity",
 					"brightnessLabel=word_Brightness",
 					"contrastLabel=word_Contrast",
+					"saturationLabel=word_Saturation",
 					"styleLabel=word_Stylize",
 					"styleBox",
 					"qualityLabel=word_Quality",
@@ -158,16 +159,10 @@ namespace River.OneMoreAddIn.Commands
 		public decimal ImageHeight => heightBox.Value;
 
 
-		public decimal ImageOpacity => opacityBox.Value;
-
-
-		public int ImageQuality => qualBar.Value;
-
-
 		public decimal ImageWidth => widthBox.Value;
 
 
-		public bool MaintainAspect => lockButton.Checked;
+		public bool LockAspect => lockButton.Checked;
 
 
 		public bool NeedsRewrite =>
@@ -175,14 +170,12 @@ namespace River.OneMoreAddIn.Commands
 			opacityBox.Value < 100 ||
 			brightnessBox.Value != 0 ||
 			contrastBox.Value != 0 ||
+			saturationBox.Value != 0 ||
 			styleBox.SelectedIndex != 0 ||
 			qualBar.Value < 100;
 
 
 		public decimal Percent => pctRadio.Checked ? percentBox.Value : 0;
-
-
-		public bool PreserveSize => preserveBox.Checked;
 
 
 
@@ -219,6 +212,12 @@ namespace River.OneMoreAddIn.Commands
 					adjusted = p.SetBrightnessContrast(
 						(float)brightnessBox.Value / 100f,
 						(float)contrastBox.Value / 100f);
+			}
+
+			if (saturationBox.Value != 0)
+			{
+				using (var p = adjusted)
+					adjusted = p.SetSaturation((float)saturationBox.Value / 100f);
 			}
 
 			if (styleBox.SelectedIndex == 1)
@@ -523,6 +522,8 @@ namespace River.OneMoreAddIn.Commands
 			else if (sender == brightnessBar) brightnessBox.Value = brightnessBar.Value;
 			else if (sender == contrastBox) contrastBar.Value = (int)contrastBox.Value;
 			else if (sender == contrastBar) contrastBox.Value = contrastBar.Value;
+			else if (sender == saturationBox) saturationBar.Value = (int)saturationBox.Value;
+			else if (sender == saturationBar) saturationBox.Value = saturationBar.Value;
 
 			if (image != null)
 			{
@@ -536,6 +537,7 @@ namespace River.OneMoreAddIn.Commands
 			if (sender == opacityLabel) opacityBox.Value = 100;
 			else if (sender == brightnessLabel) brightnessBox.Value = 0;
 			else if (sender == contrastLabel) contrastBox.Value = 0;
+			else if (sender == saturationLabel) saturationBox.Value = 0;
 			else if (sender == qualityLabel) qualBox.Value = 100;
 
 			if (image != null)

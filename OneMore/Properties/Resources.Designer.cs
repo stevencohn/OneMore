@@ -8103,6 +8103,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string sw {
+            get {
+                return ResourceManager.GetString("sw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check all pages.
         /// </summary>
         internal static string TaggedDialog_checkAllLabel_Text {
@@ -8721,6 +8730,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Refresh {
             get {
                 return ResourceManager.GetString("word_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saturation.
+        /// </summary>
+        internal static string word_Saturation {
+            get {
+                return ResourceManager.GetString("word_Saturation", resourceCulture);
             }
         }
         

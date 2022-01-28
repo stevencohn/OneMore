@@ -3832,4 +3832,10 @@ Polaroid</value>
   <data name="word_Storage" xml:space="preserve">
     <value>Lager</value>
   </data>
+  <data name="sw" xml:space="preserve">
+    <value />
+  </data>
+  <data name="word_Saturation" xml:space="preserve">
+    <value>Sättigung</value>
+  </data>
 </root>

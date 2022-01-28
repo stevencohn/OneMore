@@ -3837,4 +3837,10 @@ OneNote 文件 (*.one)</value>
   <data name="word_Storage" xml:space="preserve">
     <value>贮存</value>
   </data>
+  <data name="sw" xml:space="preserve">
+    <value />
+  </data>
+  <data name="word_Saturation" xml:space="preserve">
+    <value>饱和</value>
+  </data>
 </root>

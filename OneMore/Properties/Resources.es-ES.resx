@@ -3845,4 +3845,10 @@ polaroid</value>
   <data name="word_Storage" xml:space="preserve">
     <value>Almacenamiento</value>
   </data>
+  <data name="sw" xml:space="preserve">
+    <value />
+  </data>
+  <data name="word_Saturation" xml:space="preserve">
+    <value>Saturación</value>
+  </data>
 </root>

@@ -3845,4 +3845,10 @@ ISO-code then comma then language name</comment>
   <data name="word_Storage" xml:space="preserve">
     <value>تخزين</value>
   </data>
+  <data name="sw" xml:space="preserve">
+    <value />
+  </data>
+  <data name="word_Saturation" xml:space="preserve">
+    <value>التشبع</value>
+  </data>
 </root>
