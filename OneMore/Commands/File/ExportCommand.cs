@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else if (format == OneNote.ExportFormat.XML)
 					{
-						archivist.ExportXML(page.Root, filename);
+						archivist.ExportXML(page.Root, filename, withAttachments);
 					}
 					else if (format == OneNote.ExportFormat.Markdown)
 					{
@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						archivist.Export(page.PageId, filename, format);
+						archivist.Export(page.PageId, filename, format, withAttachments);
 					}
 				}
 			}

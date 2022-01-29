@@ -67,8 +67,10 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="pageId">The ID of the single page to export</param>
 		/// <param name="filename">The output file to create/overwrite</param>
 		/// <param name="format">The OneNote ExportFormat</param>
+		/// <param name="withAttachments">True if copy and relink attachments</param>
 		/// <returns>True if the export was successful</returns>
-		public bool Export(string pageId, string filename, OneNote.ExportFormat format)
+		public bool Export(string pageId, string filename,
+			OneNote.ExportFormat format, bool withAttachments = false)
 		{
 			logger.WriteLine($"publishing page to {filename}");
 
@@ -79,7 +81,23 @@ namespace River.OneMoreAddIn.Commands
 					File.Delete(filename);
 				}
 
-				return one.Export(pageId, filename, format);
+				PathFactory.EnsurePathExists(Path.GetDirectoryName(filename));
+
+				if (one.Export(pageId, filename, format))
+				{
+					if (withAttachments && format == OneNote.ExportFormat.Word)
+					{
+						using (var word = new Helpers.Office.Word())
+						{
+							var page = one.GetPage(pageId);
+							word.LinkupAttachments(filename, page.Root);
+						}
+					}
+
+					return true;
+				}
+
+				return false;
 			}
 			catch (Exception exc)
 			{
@@ -331,6 +349,8 @@ namespace River.OneMoreAddIn.Commands
 					File.Delete(filename);
 				}
 
+				PathFactory.EnsurePathExists(Path.GetDirectoryName(filename));
+
 				var writer = new MarkdownWriter(page, withAttachments);
 				writer.Save(filename);
 			}
@@ -349,14 +369,23 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="root">The root content of the page</param>
 		/// <param name="filename">The full path of the file to create/overwrite</param>
-		public void ExportXML(XElement root, string filename)
+		public void ExportXML(XElement root, string filename, bool withAttachments)
 		{
 			try
 			{
+				var path = Path.GetDirectoryName(filename);
+					
+				if (withAttachments)
+				{
+					CopyXmlAttachments(root, path);
+				}
+
 				if (File.Exists(filename))
 				{
 					File.Delete(filename);
 				}
+
+				PathFactory.EnsurePathExists(path);
 
 				root.Save(filename);
 			}
@@ -365,6 +394,61 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine("error publishig page as XML", exc);
 				UIHelper.ShowError(string.Format(Resx.SaveAs_Error, "XML") + "\n\n" + exc.Message);
 			}
+		}
+
+
+		// copies attachments from the OneNote cache folder into the export folder and
+		// updates the XML to reference the copies
+		private void CopyXmlAttachments(XElement root, string path)
+		{
+			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
+			var insertedFiles = root.Descendants(ns + "InsertedFile");
+
+			// <one:InsertedFile
+			//   pathCache="C:\Users\steve\AppData\Local\Microsoft\OneNote\16.0\cache\000007LE.bin"
+			//   pathSource="C:\Users\steve\OneDrive\Desktop\Steven Cohn 091621 3942 Leaf Blaster .pdf"
+			//   preferredName="Steven Cohn 091621 3942 Leaf Blaster .pdf" />
+
+			insertedFiles.ForEach(element =>
+			{
+				// get and validate source
+				var source = element.Attribute("pathSource")?.Value;
+				var name = element.Attribute("preferredName")?.Value;
+
+				if (string.IsNullOrEmpty(source) || !File.Exists(source))
+				{
+					source = element.Attribute("pathCache")?.Value;
+					if (!string.IsNullOrEmpty(source) && !File.Exists(source))
+					{
+						// broken link
+						name = string.IsNullOrEmpty(name)
+							? $"{Path.GetFileName(source)} (missing attachment)"
+							: $"{name} (missing attachment)";
+
+						element.SetAttributeValue("preferredName", name);
+						source = null;
+					}
+				}
+
+				// preferredName is used as the output file name
+				if (!string.IsNullOrEmpty(name))
+				{
+					var target = Path.Combine(path, name);
+
+					try
+					{
+						// copy cached/source file to md output directory
+						File.Copy(source, target, true);
+					}
+					catch
+					{
+						// error copying, drop marker
+						return;
+					}
+
+					element.SetAttributeValue("pathSource", target);
+				}
+			});
 		}
 	}
 }
