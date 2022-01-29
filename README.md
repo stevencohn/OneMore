@@ -21,7 +21,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![Calendar](../../wiki/images/Calendar.png)
 
 <a name="features"></a>
-## Features (143)
+## Features (144)
 
 [Clean commands](../../wiki/Clean-Commands) (11)
 
@@ -76,9 +76,10 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Quick access to user-defined plugins
 * Add a link to a special page containing all OneNote and OneMore keyboard shortcuts
 
-[Image commands](../../wiki/Image-Commands) (4)
+[Image commands](../../wiki/Image-Commands) (5)
 
 * Add caption to a selected images
+* Apply a variety of adjustment to an image including brightness, contrast, opacity, saturation, and stylizations like grayscale, sepia, and Polaroid
 * Precisely crop a selected image
 * Resize a selected image or all images on the page
 * Rotate an image to any angle
