@@ -179,24 +179,7 @@ namespace River.OneMoreAddIn
 				return image;
 			}
 
-			var canvas = new Bitmap(image.Width, image.Height);
-
-			using (var attributes = new ImageAttributes())
-			{
-				attributes.ClearColorMatrix();
-				attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-				//attributes.SetGamma(1.0f, ColorAdjustType.Bitmap); // 1.0 = no change
-
-				using (var g = Graphics.FromImage(canvas))
-				{
-					g.DrawImage(image,
-						new Rectangle(0, 0, image.Width, image.Height),
-						0, 0, image.Width, image.Height,
-						GraphicsUnit.Pixel, attributes);
-				}
-			}
-
-			return canvas;
+			return Apply(image, matrix);
 		}
 
 
@@ -267,6 +250,37 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Renders a new image as a copy of the given image with a desired saturation
+		/// </summary>
+		/// <param name="image">The original image to copy</param>
+		/// <param name="saturation">The desired saturation value (-1.0 .. 1.0)</param>
+		/// <returns></returns>
+		public static Image SetSaturation(this Image image, float saturation)
+		{
+			var s = 1f - (saturation * -1f); // shift -(flip -1..1 to 1..-1)
+
+			var sr = (1.0f - s) * 0.3086f;
+			var sg = (1.0f - s) * 0.6094f;
+			var sb = (1.0f - s) * 0.0820f;
+
+			return Apply(image, new ColorMatrix
+			{
+				Matrix00 = sr + s,
+				Matrix01 = sr,
+				Matrix02 = sr,
+				Matrix10 = sg,
+				Matrix11 = sg + s,
+				Matrix12 = sg,
+				Matrix20 = sb,
+				Matrix21 = sb,
+				Matrix22 = sb + s,
+				Matrix33 = 1.0f,
+				Matrix44 = 1.0f
+			});
+		}
+
+
+		/// <summary>
 		/// Serializes the given image as a base64 string.
 		/// </summary>
 		/// <param name="image"></param>
@@ -285,28 +299,82 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static Image ToGrayscale(this Image image)
 		{
+			return Apply(image, new ColorMatrix
+			{
+				Matrix00 = 0.30f,
+				Matrix01 = 0.30f,
+				Matrix02 = 0.30f,
+				Matrix10 = 0.59f,
+				Matrix11 = 0.59f,
+				Matrix12 = 0.59f,
+				Matrix20 = 0.11f,
+				Matrix21 = 0.11f,
+				Matrix22 = 0.11f,
+				Matrix33 = 1.00f,
+				Matrix44 = 1.00f
+			});
+		}
+
+
+		/// <summary>
+		/// Render a new image by converting the given image to Polaroid style.
+		/// </summary>
+		/// <param name="image">Colorful image</param>
+		/// <returns></returns>
+		public static Image ToPolaroid(this Image image)
+		{
+			return Apply(image, new ColorMatrix
+			{
+				Matrix00 = 1.438f,
+				Matrix01 = -0.062f,
+				Matrix02 = -0.062f,
+				Matrix10 = -0.122f,
+				Matrix11 = 1.378f,
+				Matrix12 = -0.122f,
+				Matrix20 = -0.016f,
+				Matrix21 = -0.016f,
+				Matrix22 = 1.483f,
+				Matrix40 = -0.03f,
+				Matrix41 = 0.05f,
+				Matrix42 = -0.02f,
+				Matrix44 = 1.0f
+			});
+		}
+
+
+		/// <summary>
+		/// Render a new image by converting the given image to sepia.
+		/// </summary>
+		/// <param name="image">Colorful image</param>
+		/// <returns></returns>
+		public static Image ToSepia(this Image image)
+		{
+			return Apply(image, new ColorMatrix
+			{
+				Matrix00 = 0.393f,
+				Matrix01 = 0.394f,
+				Matrix02 = 0.272f,
+				Matrix10 = 0.769f,
+				Matrix11 = 0.686f,
+				Matrix12 = 0.534f,
+				Matrix20 = 0.189f,
+				Matrix21 = 0.168f,
+				Matrix22 = 0.131f
+			});
+		}
+
+
+		private static Image Apply(Image image, ColorMatrix matrix)
+		{
 			var canvas = new Bitmap(image.Width, image.Height);
 
 			using (var g = Graphics.FromImage(canvas))
 			{
-				var matrix = new ColorMatrix
-				{
-					Matrix00 = 0.30f,
-					Matrix01 = 0.30f,
-					Matrix02 = 0.30f,
-					Matrix10 = 0.59f,
-					Matrix11 = 0.59f,
-					Matrix12 = 0.59f,
-					Matrix20 = 0.11f,
-					Matrix21 = 0.11f,
-					Matrix22 = 0.11f,
-					Matrix33 = 1.00f,
-					Matrix44 = 1.00f
-				};
-
 				using (var attributes = new ImageAttributes())
 				{
+					attributes.ClearColorMatrix();
 					attributes.SetColorMatrix(matrix);
+					//attributes.SetGamma(1.0f, ColorAdjustType.Bitmap); // 1.0 = no change
 
 					g.DrawImage(image,
 						new Rectangle(0, 0, image.Width, image.Height),

@@ -633,7 +633,7 @@ Pourcentage</value>
     <comment>instructions</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>Redimensionner l'image</value>
+    <value>Redimensionner et ajuster l'image</value>
     <comment>dialog title</comment>
   </data>
   <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
@@ -641,28 +641,12 @@ Pourcentage</value>
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>toutes les images sur la page</value>
+    <value>toutes les images sur cette page</value>
     <comment>info label</comment>
-  </data>
-  <data name="ResizeImagesDialog_aspectBox.Text" xml:space="preserve">
-    <value>Conserver le rapport hauteur / largeur</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>Afficher la taille</value>
-    <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>la taille</value>
     <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Taille de stockage</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Pourcentage</value>
@@ -2435,18 +2419,6 @@ ISO-code then comma then language name</comment>
     <value>(Nouveau)</value>
     <comment>combobox item</comment>
   </data>
-  <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
-    <value>Espace de rangement</value>
-    <comment>group box</comment>
-  </data>
-  <data name="ResizeImageDialog_qualBox_Size" xml:space="preserve">
-    <value>Stockage: {0}</value>
-    <comment>group box</comment>
-  </data>
-  <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
-    <value>{0}% de qualité</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
     <value>Plugins</value>
     <comment>label</comment>
@@ -3808,10 +3780,6 @@ Différé</value>
     <value>Clavier</value>
     <comment>sheet</comment>
   </data>
-  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
-    <value>Postuler à</value>
-    <comment>label</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Préserver la taille de stockage</value>
     <comment>checkbox</comment>
@@ -3840,5 +3808,43 @@ Différé</value>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
     <value>Aucune image n'a été trouvée sur cette page</value>
     <comment>message box</comment>
+  </data>
+  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>Ta taille de vue</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>Taille de l'image</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
+    <value>Qualité</value>
+    <comment>label</comment>
+  </data>
+  <data name="word_Quality" xml:space="preserve">
+    <value>Qualité</value>
+  </data>
+  <data name="word_Stylize" xml:space="preserve">
+    <value>Styliser</value>
+  </data>
+  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
+    <value>S'applique à</value>
+    <comment>label override</comment>
+  </data>
+  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Original
+Échelle de gris
+Sépia
+Polaroïd</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Storage" xml:space="preserve">
+    <value>Stockage</value>
+  </data>
+  <data name="sw" xml:space="preserve">
+    <value />
+  </data>
+  <data name="word_Saturation" xml:space="preserve">
+    <value>Saturation</value>
   </data>
 </root>

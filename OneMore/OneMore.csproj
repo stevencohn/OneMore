@@ -905,6 +905,7 @@
     <Content Include="Properties\Images\HighlightFaded.png" />
     <Content Include="Properties\Images\HighlightNormal.png" />
     <Content Include="Properties\Images\Italic.png" />
+    <None Include="Properties\Images\Locked.png" />
     <Content Include="Properties\Images\Logo.ico" />
     <Content Include="Properties\Images\NewStyle.png" />
     <Content Include="Properties\Images\NotebookMask.png" />
@@ -926,6 +927,7 @@
     <Content Include="Properties\Images\Subscript.png" />
     <Content Include="Properties\Images\Superscript.png" />
     <Content Include="Properties\Images\Task.png" />
+    <Content Include="Properties\Images\Unlocked.png" />
     <Content Include="Properties\Resources-zh-CN-hints.xml" />
     <Content Include="UI\TagMap.png" />
     <Content Include="Properties\Images\TextHighlightColorPicker.png" />

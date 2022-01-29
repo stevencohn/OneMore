@@ -632,7 +632,7 @@
     <comment>instructions</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>تغيير حجم الصورة</value>
+    <value>تغيير حجم وتعديل الصورة</value>
     <comment>dialog title</comment>
   </data>
   <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
@@ -640,28 +640,12 @@
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>كل الصور في الصفحة</value>
+    <value>جميع الصور في هذه الصفحة</value>
     <comment>info label</comment>
-  </data>
-  <data name="ResizeImagesDialog_aspectBox.Text" xml:space="preserve">
-    <value>الحفاظ على نسبة العرض إلى الارتفاع</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>حجم العرض</value>
-    <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>ارتفاع</value>
     <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>حجم التخزين</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
-    <value>{0} × {1}</value>
-    <comment>width x height</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>النسبة المئوية</value>
@@ -2434,18 +2418,6 @@ ISO-code then comma then language name</comment>
     <value>(جديد)</value>
     <comment>combobox item</comment>
   </data>
-  <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
-    <value>تخزين</value>
-    <comment>group box</comment>
-  </data>
-  <data name="ResizeImageDialog_qualBox_Size" xml:space="preserve">
-    <value>التخزين: {0}</value>
-    <comment>group box</comment>
-  </data>
-  <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
-    <value>{0}٪ جودة</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
     <value>الإضافات</value>
     <comment>label</comment>
@@ -3812,10 +3784,6 @@ ISO-code then comma then language name</comment>
     <value>لوحة المفاتيح</value>
     <comment>sheet</comment>
   </data>
-  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
-    <value>تنطبق على</value>
-    <comment>label</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>الحفاظ على حجم التخزين</value>
     <comment>checkbox</comment>
@@ -3844,5 +3812,43 @@ ISO-code then comma then language name</comment>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
     <value>لم يتم العثور على صور في هذه الصفحة</value>
     <comment>message box</comment>
+  </data>
+  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>عرض الحجم</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>حجم الصورة</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
+    <value>جودة</value>
+    <comment>label</comment>
+  </data>
+  <data name="word_Quality" xml:space="preserve">
+    <value>جودة</value>
+  </data>
+  <data name="word_Stylize" xml:space="preserve">
+    <value>أسلب</value>
+  </data>
+  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
+    <value>ينطبق على</value>
+    <comment>label override</comment>
+  </data>
+  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>إبداعي
+مقياس رمادي
+بني داكن
+بولارويد</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Storage" xml:space="preserve">
+    <value>تخزين</value>
+  </data>
+  <data name="sw" xml:space="preserve">
+    <value />
+  </data>
+  <data name="word_Saturation" xml:space="preserve">
+    <value>التشبع</value>
   </data>
 </root>

@@ -637,7 +637,7 @@ Percentage</value>
     <comment>instructions</comment>
   </data>
   <data name="ResizeImagesDialog.Text" xml:space="preserve">
-    <value>Formaat afbeelding wijzigen</value>
+    <value>De grootte van het formaat wijzigen en aanpassen</value>
     <comment>dialog title</comment>
   </data>
   <data name="ResizeImagesDialog_absRadio.Text" xml:space="preserve">
@@ -645,28 +645,12 @@ Percentage</value>
     <comment>radio button</comment>
   </data>
   <data name="ResizeImagesDialog_allLabel.Text" xml:space="preserve">
-    <value>alle afbeeldingen op pagina</value>
+    <value>alle afbeeldingen op deze pagina</value>
     <comment>info label</comment>
-  </data>
-  <data name="ResizeImagesDialog_aspectBox.Text" xml:space="preserve">
-    <value>Behoud de aspectverhouding</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ResizeImagesDialog_currentLabel.Text" xml:space="preserve">
-    <value>Bekijk grootte</value>
-    <comment>label</comment>
   </data>
   <data name="ResizeImagesDialog_heightLabel.Text" xml:space="preserve">
     <value>Hoogte</value>
     <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_origLabel.Text" xml:space="preserve">
-    <value>Opslaggrootte:</value>
-    <comment>label</comment>
-  </data>
-  <data name="ResizeImagesDialog_origSizeLink.Text" xml:space="preserve">
-    <value>{0} x {1}</value>
-    <comment>width x height</comment>
   </data>
   <data name="ResizeImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Percentage</value>
@@ -2439,18 +2423,6 @@ ISO-code then comma then language name</comment>
     <value>(nieuw)</value>
     <comment>combobox item</comment>
   </data>
-  <data name="ResizeImageDialog_qualBox.Text" xml:space="preserve">
-    <value>Opslag</value>
-    <comment>group box</comment>
-  </data>
-  <data name="ResizeImageDialog_qualBox_Size" xml:space="preserve">
-    <value>Opslag: {0}</value>
-    <comment>group box</comment>
-  </data>
-  <data name="ResizeImageDialog_qualLabel.Text" xml:space="preserve">
-    <value>{0}% kwaliteit</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginDialog_pluginsLabel.Text" xml:space="preserve">
     <value>Plug-ins</value>
     <comment>label</comment>
@@ -3812,10 +3784,6 @@ Verschoven</value>
     <value>Toetsenbord</value>
     <comment>sheet</comment>
   </data>
-  <data name="ResizeImagesDialog_applyToLabel" xml:space="preserve">
-    <value>Van toepassing op</value>
-    <comment>label</comment>
-  </data>
   <data name="ResizeImagesDialog_preserveBox.Text" xml:space="preserve">
     <value>Opslaggrootte behouden</value>
     <comment>checkbox</comment>
@@ -3844,5 +3812,43 @@ Verschoven</value>
   <data name="ResizeImagesDialog_noImages" xml:space="preserve">
     <value>Er zijn geen afbeeldingen gevonden op deze pagina</value>
     <comment>message box</comment>
+  </data>
+  <data name="ResizeImagesDialog_viewSizeLabel.Text" xml:space="preserve">
+    <value>Bekijk maat</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_imageSizeLabel.Text" xml:space="preserve">
+    <value>Afbeeldingsgrootte</value>
+    <comment>label</comment>
+  </data>
+  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
+    <value>Kwaliteit</value>
+    <comment>label</comment>
+  </data>
+  <data name="word_Quality" xml:space="preserve">
+    <value>Kwaliteit</value>
+  </data>
+  <data name="word_Stylize" xml:space="preserve">
+    <value>Stileren</value>
+  </data>
+  <data name="ResizeImagesDialog_appliesTo" xml:space="preserve">
+    <value>Geldt voor</value>
+    <comment>label override</comment>
+  </data>
+  <data name="ResizeImagesDialog_styleBox.Text" xml:space="preserve">
+    <value>Origineel
+Grijze schaal
+Sepia
+Polaroid</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="word_Storage" xml:space="preserve">
+    <value>Opslag</value>
+  </data>
+  <data name="sw" xml:space="preserve">
+    <value />
+  </data>
+  <data name="word_Saturation" xml:space="preserve">
+    <value>Verzadiging</value>
   </data>
 </root>

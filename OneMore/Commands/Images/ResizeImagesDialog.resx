@@ -118,6 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lockButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAATFJREFUSEvVlbEOREAURX2LD1BTioqOjlKr8wmikyhQSHSUvoDWh73NlRmx68na
+        odmbnGTMe+/ejM0O7RdZlkWmaZJ4fFZRFFFd19R13QrWYRg+F5Zl2Wb+SZqm94NwAphVVUV4VWJbs217
+        3UPN9/17QUVRrEau6x6MYI4aTiq21AQTIB4P+la/pP8N0XWd4jimsiypbVuapmkFa459HTOYhYew4zUM
+        Ay3Lcgt4CLujHMdhh1Q4vRWeDIGXsH3XlRBcJ03TsLU9yiH4UdEDkiRheyRKIfM8bwESrk+CurB917dB
+        z/O2gCAI2B6Jcgj+dDIEa65HohzS9/0WgjXXI/mfkHEc2R6JcgjA9wVwtT23Qq5yGoL7hhtQwTAMPgTK
+        85wd+gV4CLtz4UQ4rgr87atpL8GZNabfSwJrAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAUAEBAAAAEAIABoBAAAVgAAACAgAAABACAAqBAAAL4EAAAwMAAAAQAgAKglAABmFQAAQEAAAAEA

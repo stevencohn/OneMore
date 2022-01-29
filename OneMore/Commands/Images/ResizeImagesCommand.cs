@@ -150,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 						{
 							width = (int)dialog.ImageWidth;
 
-							height = dialog.MaintainAspect
+							height = dialog.LockAspect
 								? (int)(viewHeight * (dialog.ImageWidth / viewWidth))
 								: (int)dialog.ImageHeight;
 						}
