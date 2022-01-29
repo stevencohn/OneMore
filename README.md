@@ -275,7 +275,7 @@ Microsoft has been pushing people to use the OneNote app and OneNote online, whi
    - Download OfficeSetup.exe [from here](https://support.microsoft.com/en-us/office/install-or-reinstall-onenote-for-windows-c08068d8-b517-4464-9ff2-132cb9c45c08)
    - If run standalone, it will install 32-bit OneNote
    - If run after installing Office, it will install 32 or 64 bit based on the bitness of Office
-1. Or use the standalone OneNote installer (does not require Office or can be installed ontop of Office)
+1. Download the standalone OneNote installer (does not require Office or can be installed ontop of Office)
    - The standalone OneNote 64-bit installer is [here](http://www.onenote.com/download/win32/x64/en-US)
    - The standalone OneNote 32-bit installer is [here](http://www.onenote.com/download/win32/x86/en-US)
 
