@@ -99,6 +99,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			attachmentsBox.Enabled =
 				formatBox.SelectedIndex == 0 ||     // HTML
+				formatBox.SelectedIndex == 2 ||     // Word
 				formatBox.SelectedIndex == 3 ||     // XML
 				formatBox.SelectedIndex == 4;		// Markdown
 		}

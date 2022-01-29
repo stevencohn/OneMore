@@ -67,8 +67,10 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="pageId">The ID of the single page to export</param>
 		/// <param name="filename">The output file to create/overwrite</param>
 		/// <param name="format">The OneNote ExportFormat</param>
+		/// <param name="withAttachments">True if copy and relink attachments</param>
 		/// <returns>True if the export was successful</returns>
-		public bool Export(string pageId, string filename, OneNote.ExportFormat format)
+		public bool Export(string pageId, string filename,
+			OneNote.ExportFormat format, bool withAttachments = false)
 		{
 			logger.WriteLine($"publishing page to {filename}");
 
@@ -81,7 +83,21 @@ namespace River.OneMoreAddIn.Commands
 
 				PathFactory.EnsurePathExists(Path.GetDirectoryName(filename));
 
-				return one.Export(pageId, filename, format);
+				if (one.Export(pageId, filename, format))
+				{
+					if (withAttachments && format == OneNote.ExportFormat.Word)
+					{
+						using (var word = new Helpers.Office.Word())
+						{
+							var page = one.GetPage(pageId);
+							word.LinkupAttachments(filename, page.Root);
+						}
+					}
+
+					return true;
+				}
+
+				return false;
 			}
 			catch (Exception exc)
 			{
