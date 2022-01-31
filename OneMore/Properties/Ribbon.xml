@@ -872,6 +872,39 @@
         id="omSectionContextMenuSeparator"
         insertBeforeMso="SectionRenameOneNote"/>
     </contextMenu>
+    <contextMenu idMso="ContextMenuSectionArea">
+      <button
+        id="ct2ArchiveNotebookButton"
+        imageMso="SaveAttachments"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ArchiveCmd"
+        tag="notebook"
+        insertBeforeMso="SectionInsert"/>
+      <button
+        id="ct2NumberSectionsButton"
+        imageMso="LineNumbersMenu"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="NumberSectionsCmd"
+        insertBeforeMso="SectionInsert"/>
+      <button
+        id="ct2RemoveSectionNumbersButton"
+        imageMso="HeaderFooterRemoveHeaderWord"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="RemoveSectionNumbersCmd"
+        insertBeforeMso="SectionInsert"/>
+      <button
+        id="ct2SortNotebookSectionsButton"
+        imageMso="SortUp"
+        getLabel="GetRibbonLabel"
+        onAction="SortSectionsCmd"
+        insertBeforeMso="SectionInsert"/>
+      <menuSeparator
+        id="omSectionAreaContextMenuSeparator"
+        insertBeforeMso="SectionInsert"/>
+    </contextMenu>
     <contextMenu idMso="ContextMenuSectionGroup">
       <button
         id="ctxCopyFolderButton"
