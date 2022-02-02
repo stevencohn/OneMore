@@ -2934,7 +2934,7 @@ High</value>
     <comment>combobox</comment>
   </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>Resize</value>
+    <value>Resize and Adjust</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">

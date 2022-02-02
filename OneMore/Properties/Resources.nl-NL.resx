@@ -500,7 +500,7 @@
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>Formaat wijzigen</value>
+    <value>Formaat wijzigen en aanpassen</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">

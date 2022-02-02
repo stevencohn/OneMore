@@ -6292,7 +6292,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resize.
+        ///   Looks up a localized string similar to Resize and Adjust.
         /// </summary>
         internal static string ribResizeImagesButton_Label {
             get {

@@ -499,7 +499,7 @@
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
-    <value>تغيير الحجم</value>
+    <value>تغيير حجم وتعديل</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
