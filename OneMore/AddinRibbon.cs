@@ -249,7 +249,7 @@ namespace River.OneMoreAddIn
 				new XAttribute("image", "NoSpellCheck"),
 				new XAttribute("getLabel", "GetRibbonLabel"),
 				new XAttribute("getScreentip", "GetRibbonScreentip"),
-				new XAttribute("onAction", "NoSpellCheckCmd")
+				new XAttribute("onAction", "DisableSpellCheckCmd")
 				);
 
 			if (!showLabel)
