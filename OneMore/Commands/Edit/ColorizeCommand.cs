@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -46,21 +47,22 @@ namespace River.OneMoreAddIn.Commands
 					if (cdata.Value.Contains("<br>"))
 					{
 						// special handling to expand soft line breaks (Shift + Enter) into
-						// hard breaks, splitting the line into multiple ines...
+						// hard breaks, splitting the line into multiple ines.
+						// presume that br is always followed by newline...
 
-						var text = cdata.Value;
-						var lines = text.Split(new string[] { "<br>" }, StringSplitOptions.None);
+						var text = cdata.GetWrapper().Value;
+						text = Regex.Replace(text, @"\r\n", "\n");
+
+						var lines = text.Split(new string[] { "\n" }, StringSplitOptions.None);
 
 						// update current cdata with first line
-						cdata.Value = colorizer.ColorizeOne(
-							new XCData(lines[0]).GetWrapper().Value);
+						cdata.Value = colorizer.ColorizeOne(lines[0]);
 
 						// collect subsequent lines from soft-breaks
 						var elements = new List<XElement>();
 						for (int i = 1; i < lines.Length; i++)
 						{
-							var colorized = colorizer.ColorizeOne(
-								new XCData(lines[i]).GetWrapper().Value);
+							var colorized = colorizer.ColorizeOne(lines[i]);
 
 							elements.Add(new XElement(ns + "OE",
 								run.Parent.Attributes(),
