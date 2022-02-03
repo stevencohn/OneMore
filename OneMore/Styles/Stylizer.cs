@@ -28,9 +28,9 @@ namespace River.OneMoreAddIn.Styles
 	{
 		public enum Clearing
 		{
-			None,		// don't remove color styling
-			All,		// remove all color styling
-			Gray		// only gray color styling
+			None,       // don't remove color styling
+			All,        // remove all color styling
+			Gray        // only gray color styling
 		}
 
 		private readonly Style style;
@@ -194,50 +194,50 @@ namespace River.OneMoreAddIn.Styles
 				}
 			}
 
-			// CData
+			// CData...
 
-			var data = element.Nodes()
-				.Where(n => n.NodeType == XmlNodeType.CDATA && ((XCData)n).Value.Contains("span"))
-				.Cast<XCData>();
+			var data = element.Nodes().OfType<XCData>()
+				.Where(c => c.Value.Contains("span"));
 
-			if (data?.Any() == true)
+			if (data == null || !data.Any())
 			{
+				return;
+			}
+
+			foreach (var cdata in data)
+			{
+				var wrapper = cdata.GetWrapper();
 				var builder = new StringBuilder();
 
-				foreach (var cdata in data)
+				foreach (var node in wrapper.Nodes())
 				{
-					var wrapper = cdata.GetWrapper();
-
-					foreach (var node in wrapper.Nodes())
+					if (node.NodeType == XmlNodeType.Element)
 					{
-						if (node.NodeType == XmlNodeType.Element)
+						if (node is XElement e && e.Name.LocalName == "span")
 						{
-							var e = node as XElement;
-							if (e.Name.LocalName == "span")
-							{
-								// presume spans within cdata are flat and only contain text
+							// presume spans within cdata are flat and only contain text
 
-								if (clearing == Clearing.All)
-								{
-									// discard all styling
-									builder.Append(e.Value);
-								}
-								else
-								{
-									// TODO: edit e.Value
-									builder.Append(e.Value);
-								}
+							if (clearing == Clearing.All)
+							{
+								// discard all styling
+								builder.Append(e.Value);
 							}
-						}
-						if (node.NodeType == XmlNodeType.Text)
-						{
-							// handle text, whitespace, significant-whitespace, et al?
-							builder.Append(((XText)node).Value);
+							else
+							{
+								// TODO: edit e.Value
+								builder.Append(e.Value);
+							}
 						}
 					}
 
-					// TODO: replace cdata.value here?
+					if (node.NodeType == XmlNodeType.Text)
+					{
+						// handle text, whitespace, significant-whitespace, et al?
+						builder.Append(((XText)node).Value);
+					}
 				}
+
+				cdata.Value = builder.ToString();
 			}
 		}
 
