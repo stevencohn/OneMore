@@ -160,8 +160,9 @@ namespace River.OneMoreAddIn.Styles
 		/// </summary>
 		/// <param name="element">An OE or T node</param>
 		/// <param name="clearing">Exactly which color stylings to remove</param>
-		public void Clear(XElement element, Clearing clearing)
+		public bool Clear(XElement element, Clearing clearing)
 		{
+			var cleared = false;
 			var attr = element.Attribute("style");
 			if (attr != null)
 			{
@@ -169,6 +170,7 @@ namespace River.OneMoreAddIn.Styles
 				{
 					// discard all styling
 					attr.Remove();
+					cleared = true;
 				}
 				else if (clearing == Clearing.Gray)
 				{
@@ -190,7 +192,7 @@ namespace River.OneMoreAddIn.Styles
 			{
 				foreach (var child in element.Elements())
 				{
-					Clear(child, clearing);
+					cleared |= Clear(child, clearing);
 				}
 			}
 
@@ -201,44 +203,20 @@ namespace River.OneMoreAddIn.Styles
 
 			if (data == null || !data.Any())
 			{
-				return;
+				return cleared;
 			}
 
 			foreach (var cdata in data)
 			{
 				var wrapper = cdata.GetWrapper();
-				var builder = new StringBuilder();
-
-				foreach (var node in wrapper.Nodes())
+				if (Clear(wrapper, clearing))
 				{
-					if (node.NodeType == XmlNodeType.Element)
-					{
-						if (node is XElement e && e.Name.LocalName == "span")
-						{
-							// presume spans within cdata are flat and only contain text
-
-							if (clearing == Clearing.All)
-							{
-								// discard all styling
-								builder.Append(e.Value);
-							}
-							else
-							{
-								// TODO: edit e.Value
-								builder.Append(e.Value);
-							}
-						}
-					}
-
-					if (node.NodeType == XmlNodeType.Text)
-					{
-						// handle text, whitespace, significant-whitespace, et al?
-						builder.Append(((XText)node).Value);
-					}
+					cdata.Value = wrapper.ToString(SaveOptions.DisableFormatting);
+					cleared = true;
 				}
-
-				cdata.Value = builder.ToString();
 			}
+
+			return cleared;
 		}
 
 
