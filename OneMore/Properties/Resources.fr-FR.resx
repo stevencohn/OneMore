@@ -3858,4 +3858,8 @@ Polaroïd</value>
     <value>Nom du style</value>
     <comment>label</comment>
   </data>
+  <data name="AddStyleDialog_errorLabel.Text" xml:space="preserve">
+    <value>Le nom existe. Choisissez un nom différent.</value>
+    <comment>label</comment>
+  </data>
 </root>

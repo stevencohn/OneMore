@@ -3854,4 +3854,8 @@ OneNote 文件 (*.one)</value>
     <value>样式名称</value>
     <comment>label</comment>
   </data>
+  <data name="AddStyleDialog_errorLabel.Text" xml:space="preserve">
+    <value>名称存在。选择不同的名称。</value>
+    <comment>label</comment>
+  </data>
 </root>

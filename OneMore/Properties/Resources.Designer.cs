@@ -223,6 +223,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name exists. Choose a different name..
+        /// </summary>
+        internal static string AddStyleDialog_errorLabel_Text {
+            get {
+                return ResourceManager.GetString("AddStyleDialog_errorLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Style Name.
         /// </summary>
         internal static string AddStyleDialog_nameLabel_Text {

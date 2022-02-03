@@ -3862,4 +3862,8 @@ polaroid</value>
     <value>Nombre de estilo</value>
     <comment>label</comment>
   </data>
+  <data name="AddStyleDialog_errorLabel.Text" xml:space="preserve">
+    <value>El nombre existe. Elija un nombre diferente.</value>
+    <comment>label</comment>
+  </data>
 </root>

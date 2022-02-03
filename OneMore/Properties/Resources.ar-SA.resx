@@ -3862,4 +3862,8 @@ ISO-code then comma then language name</comment>
     <value>اسم النمط</value>
     <comment>label</comment>
   </data>
+  <data name="AddStyleDialog_errorLabel.Text" xml:space="preserve">
+    <value>الاسم موجود. اختر اسمًا مختلفًا.</value>
+    <comment>label</comment>
+  </data>
 </root>
