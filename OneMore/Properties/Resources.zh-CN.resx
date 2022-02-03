@@ -3843,4 +3843,19 @@ OneNote 文件 (*.one)</value>
   <data name="word_Saturation" xml:space="preserve">
     <value>饱和</value>
   </data>
+  <data name="word_Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="AddStyleDialog.Text" xml:space="preserve">
+    <value>新风格</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddStyleDialog_nameLabel.Text" xml:space="preserve">
+    <value>样式名称</value>
+    <comment>label</comment>
+  </data>
+  <data name="AddStyleDialog_errorLabel.Text" xml:space="preserve">
+    <value>名称存在。选择不同的名称。</value>
+    <comment>label</comment>
+  </data>
 </root>

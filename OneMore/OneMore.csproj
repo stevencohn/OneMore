@@ -265,6 +265,12 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
+    <Compile Include="Commands\Styles\AddStyleDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Styles\AddStyleDialog.Designer.cs">
+      <DependentUpon>AddStyleDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
     <Compile Include="Commands\Tables\FillerModels\AlphaNumericFiller.cs" />
     <Compile Include="Commands\Tables\FillerModels\DateFiller.cs" />
@@ -985,6 +991,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\KeyboardSheet.resx">
       <DependentUpon>KeyboardSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Styles\AddStyleDialog.resx">
+      <DependentUpon>AddStyleDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tables\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>

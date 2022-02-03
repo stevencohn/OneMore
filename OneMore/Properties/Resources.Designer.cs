@@ -223,6 +223,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name exists. Choose a different name..
+        /// </summary>
+        internal static string AddStyleDialog_errorLabel_Text {
+            get {
+                return ResourceManager.GetString("AddStyleDialog_errorLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style Name.
+        /// </summary>
+        internal static string AddStyleDialog_nameLabel_Text {
+            get {
+                return ResourceManager.GetString("AddStyleDialog_nameLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Style.
+        /// </summary>
+        internal static string AddStyleDialog_Text {
+            get {
+                return ResourceManager.GetString("AddStyleDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select on or more icons to add to page title.
         /// </summary>
         internal static string AddTitleIconDialog_introLabel_Text {
@@ -8667,6 +8694,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Grayscale {
             get {
                 return ResourceManager.GetString("word_Grayscale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string word_Name {
+            get {
+                return ResourceManager.GetString("word_Name", resourceCulture);
             }
         }
         
