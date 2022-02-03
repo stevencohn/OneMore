@@ -3851,4 +3851,15 @@ Polaroid</value>
   <data name="word_Saturation" xml:space="preserve">
     <value>Verzadiging</value>
   </data>
+  <data name="word_Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="AddStyleDialog.Text" xml:space="preserve">
+    <value>Nieuwe stijl</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddStyleDialog_nameLabel.Text" xml:space="preserve">
+    <value>Stijl naam</value>
+    <comment>label</comment>
+  </data>
 </root>

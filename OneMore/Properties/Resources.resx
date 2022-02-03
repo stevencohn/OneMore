@@ -3908,4 +3908,15 @@ Polaroid</value>
   <data name="word_Saturation" xml:space="preserve">
     <value>Saturation</value>
   </data>
+  <data name="word_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AddStyleDialog.Text" xml:space="preserve">
+    <value>New Style</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AddStyleDialog_nameLabel.Text" xml:space="preserve">
+    <value>Style Name</value>
+    <comment>label</comment>
+  </data>
 </root>

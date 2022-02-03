@@ -614,15 +614,29 @@ namespace River.OneMoreAddIn.Commands
 		private void AddStyle(object sender, EventArgs e)
 		{
 			var index = 0;
+			var names = new List<string>();
 			foreach (GraphicStyle style in namesBox.Items)
 			{
+				names.Add(style.Name);
 				if (index <= style.Index)
 					index = style.Index + 1;
 			}
 
+			var name = "Style-" + new Random().Next(1000, 9999).ToString();
+
+			using (var dialog = new AddStyleDialog(names, name))
+			{
+				if (dialog.ShowDialog(this) != DialogResult.OK)
+				{
+					return;
+				}
+
+				name = dialog.StyleName;
+			}
+
 			namesBox.Items.Add(new GraphicStyle(new Style
 			{
-				Name = "Style-" + new Random().Next(1000, 9999).ToString(),
+				Name = name,
 				Index = index
 			},
 			false));
