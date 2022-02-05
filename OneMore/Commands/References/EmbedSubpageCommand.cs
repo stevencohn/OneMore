@@ -146,7 +146,10 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var outRoot = source.Root.Elements(source.Namespace + "Outline").FirstOrDefault();
+			var outRoot = source.Root.Elements(source.Namespace + "Outline")
+				.FirstOrDefault(e => !e.Elements(ns + "Meta")
+					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
+
 			if (outRoot == null)
 			{
 				UIHelper.ShowInfo(one.Window, Resx.EmbedSubpageCommand_NoContent);
