@@ -24,9 +24,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var one = new OneNote(out var page, out var ns))
 			{
-				var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+				var pageColor = page.GetPageColor(out var automatic, out var black);
+				var dark = black || pageColor.GetBrightness() < 0.5;
+				var theme = dark ? "dark" : "light";
+				//logger.WriteLine($"theme: {theme} (color:{pageColor} automatic:{automatic} black:{black})");
 
-				var colorizer = new Colorizer(args[0] as string, dark ? "dark" : "light");
+				var colorizer = new Colorizer(
+					args[0] as string,
+					theme,
+					automatic || (black && theme == "dark"));
 
 				var runs = page.Root.Descendants(ns + "T")
 					.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));

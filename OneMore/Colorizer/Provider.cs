@@ -68,8 +68,9 @@ namespace River.OneMoreAddIn.Colorizer
 		/// Loads a syntax coloring theme from the given file path
 		/// </summary>
 		/// <param name="path"></param>
+		/// <param name="autoOverride"></param>
 		/// <returns></returns>
-		public static ITheme LoadTheme(string path)
+		public static ITheme LoadTheme(string path, bool autoOverride)
 		{
 			var json = File.ReadAllText(path);
 			var serializer = new JavaScriptSerializer();
@@ -78,7 +79,7 @@ namespace River.OneMoreAddIn.Colorizer
 			try
 			{
 				theme = serializer.Deserialize<Theme>(json);
-				theme.TranslateColorNames();
+				theme.TranslateColorNames(autoOverride);
 			}
 			catch (Exception exc)
 			{
