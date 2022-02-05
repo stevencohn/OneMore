@@ -1,7 +1,7 @@
 {
   "colors": {
     "Black": "#FFFFFF",
-    "Blue": "#0000FF",
+    "Blue": "#569CD6",
     "DarkCyan": "#008B8B",
     "DarkOliveGreen": "#556B2F",
     "DullRed": "#A31515",
@@ -18,7 +18,8 @@
     "Teal": "#008080",
     "White": "#000000",
     "Yellow": "#FFFF00",
-    "DarkPlainText": "#DADADA",
+    "AutoPlainText": "#202020",
+    "DarkPlainText": "#F0F0F0",
     "DarkXmlDelimeter": "#808080",
     "DarkXmlName": "#E6E6E6",
     "DarkXmlAttribute": "#92CAF4",
