@@ -28,7 +28,11 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <param name="languageName">
 		/// The language name; should match the name of the language definition file
 		/// </param>
-		/// <param name="themeName"></param>
+		/// <param name="themeName">Must be "light" or "dark"</param>
+		/// <param name="autoOverride">
+		/// True to use AutoThing color overrides in theme file; this is need in dark mode
+		/// when the page color is auto to change the plain text color
+		/// </param>
 		public Colorizer(string languageName, string themeName, bool autoOverride)
 		{
 			this.autoOverride = autoOverride;
