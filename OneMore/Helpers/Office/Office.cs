@@ -152,7 +152,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 		/// <summary>
 		/// Determines if the user has opted for light canvas mode while using either
-		/// the Black Office theme or the system default theme
+		/// the Black Office theme or the system default theme. Note that the "Switch Background"
+		/// button is only visible when using Black or System default Office themes
 		/// </summary>
 		/// <returns></returns>
 		private static bool DarkModeLightsOn()
