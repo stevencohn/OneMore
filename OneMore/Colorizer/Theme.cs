@@ -100,8 +100,16 @@ namespace River.OneMoreAddIn.Colorizer
 		}
 
 
-		public void TranslateColorNames()
+		public void TranslateColorNames(bool autoOverride)
 		{
+			if (autoOverride)
+			{
+				if (Colors.ContainsKey("DarkPlainText") && Colors.ContainsKey("AutoPlainText"))
+				{
+					Colors["DarkPlainText"] = Colors["AutoPlainText"];
+				}
+			}
+
 			foreach (var style in Styles)
 			{
 				// standardize on lowercase names because users are stupid

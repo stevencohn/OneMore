@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Colorizer
 	{
 		private readonly Parser parser;
 		private readonly ITheme theme;
+		private readonly bool autoOverride;
 
 
 		/// <summary>
@@ -27,8 +28,11 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <param name="languageName">
 		/// The language name; should match the name of the language definition file
 		/// </param>
-		public Colorizer(string languageName, string themeName = "light")
+		/// <param name="themeName"></param>
+		public Colorizer(string languageName, string themeName, bool autoOverride)
 		{
+			this.autoOverride = autoOverride;
+
 			var root = GetColorizerDirectory();
 			var path = Path.Combine(root, $@"Languages\{languageName}.json");
 
@@ -39,7 +43,8 @@ namespace River.OneMoreAddIn.Colorizer
 
 			parser = new Parser(Compiler.Compile(Provider.LoadLanguage(path)));
 
-			theme = Provider.LoadTheme(Path.Combine(root, $@"Themes\{themeName}-theme.json"));
+			theme = Provider.LoadTheme(
+				Path.Combine(root, $@"Themes\{themeName}-theme.json"), autoOverride);
 		}
 
 

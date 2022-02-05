@@ -102,39 +102,82 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 
 		/// <summary>
-		/// Determines if Office is set to Black color theme.
+		/// Determines if Office is set to Black color theme but the light canvas is not enabled
+		/// using the "Switch background" button
 		/// </summary>
 		/// <returns>True if Black theme is set; otherwise false</returns>
 		public static bool IsBlackThemeEnabled()
 		{
 			var version = GetOfficeVersion();
 
+			int? theme = 0;
+
 			using (var key = Registry.CurrentUser.OpenSubKey(
 				$@"Software\Microsoft\Office\{version.Major}.{version.Minor}\Common"))
 			{
+				/* Office Themes
+				 * -------------
+				 * Colorful   0
+				 * Dark Gray  3
+				 * Black      4
+				 * White      5
+				 * System     6
+				 */
+
 				if (key != null)
 				{
-					var theme = key.GetValue("UI Theme") as Int32?;
+					theme = key.GetValue("UI Theme") as Int32?;
 					if (theme == null)
 					{
 						theme = key.GetValue("Theme") as Int32?;
 					}
+				}
 
-					if (theme != null)
-					{
-						/*
-						Colorful   0
-						Dark Gray  3
-						Black      4
-						White      5
-						*/
-
-						return theme == 4;
-					}
+				if (theme == 4 && !DarkModeLightsOn())
+				{
+					return true;
 				}
 			}
 
+			// if office theme is 6 then use the system default...
+
+			if (theme == 6 && SystemDefaultDarkMode() && !DarkModeLightsOn())
+			{
+				return true;
+			}
+
 			return false;
+		}
+
+
+		/// <summary>
+		/// Determines if the user has opted for light canvas mode while using either
+		/// the Black Office theme or the system default theme
+		/// </summary>
+		/// <returns></returns>
+		private static bool DarkModeLightsOn()
+		{
+			using (var key = Registry.CurrentUser.OpenSubKey(
+				@"Software\Microsoft\Office\16.0\OneNote\General"))
+			{
+				var enabled = key.GetValue("DarkModeCanvasLightsOn") as Int32?;
+				return enabled == 1;
+			}
+		}
+
+
+		/// <summary>
+		/// Determines if Windows is set to dark mode
+		/// </summary>
+		/// <returns></returns>
+		private static bool SystemDefaultDarkMode()
+		{
+			using (var key = Registry.CurrentUser.OpenSubKey(
+				@"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize"))
+			{
+				var light = key.GetValue("AppsUseLightTheme") as Int32?;
+				return light == 0;
+			}
 		}
 	}
 }

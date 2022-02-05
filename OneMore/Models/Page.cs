@@ -917,13 +917,26 @@ namespace River.OneMoreAddIn.Models
 		/// <returns></returns>
 		public Color GetPageColor(out bool automatic, out bool black)
 		{
+			/*
+			 * .----------------------------------------------.
+			 * |      Input     |         Output              |
+			 * | Office   Page  | black    color    automatic |
+			 * | -------+-------+--------+--------+-----------|
+			 * | light  | auto  | false  | White  | true      |
+			 * | light  | color | false  | Black  | false     |
+			 * | black  | color | true   | White  | false     |
+			 * | black  | auto  | true   | Black  | true      |
+			 * '----------------------------------------------'
+			 *   office may be 'black' if using "system default" when windows is in dark mode
+			 */
+
 			black = Office.IsBlackThemeEnabled();
 
 			var color = Root.Element(Namespace + "PageSettings").Attribute("color")?.Value;
 			if (string.IsNullOrEmpty(color) || color == "automatic")
 			{
 				automatic = true;
-				return Color.White;
+				return black ? Color.Black : Color.White;
 			}
 
 			automatic = false;
