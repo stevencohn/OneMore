@@ -3051,7 +3051,7 @@ High</value>
     <value>images\folderopen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
-    <value>New Style</value>
+    <value>New</value>
     <comment>button</comment>
   </data>
   <data name="Emoji_Passwords" xml:space="preserve">
@@ -3911,16 +3911,24 @@ Polaroid</value>
   <data name="word_Name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="AddStyleDialog.Text" xml:space="preserve">
+  <data name="NameStyleDialog_NewStyle" xml:space="preserve">
     <value>New Style</value>
     <comment>dialog title</comment>
   </data>
-  <data name="AddStyleDialog_nameLabel.Text" xml:space="preserve">
+  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
     <value>Style Name</value>
     <comment>label</comment>
   </data>
-  <data name="AddStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Name exists. Choose a different name.</value>
     <comment>label</comment>
+  </data>
+  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+    <value>Rename Style</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
+    <value>Rename</value>
+    <comment>toolstrip button</comment>
   </data>
 </root>

@@ -1801,7 +1801,7 @@ Symboles: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
-    <value>Nouveau style</value>
+    <value>Nouvelle</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
@@ -3850,16 +3850,24 @@ Polaroïd</value>
   <data name="word_Name" xml:space="preserve">
     <value>Nom</value>
   </data>
-  <data name="AddStyleDialog.Text" xml:space="preserve">
+  <data name="NameStyleDialog_NewStyle" xml:space="preserve">
     <value>Nouveau style</value>
     <comment>dialog title</comment>
   </data>
-  <data name="AddStyleDialog_nameLabel.Text" xml:space="preserve">
+  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
     <value>Nom du style</value>
     <comment>label</comment>
   </data>
-  <data name="AddStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Le nom existe. Choisissez un nom différent.</value>
     <comment>label</comment>
+  </data>
+  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+    <value>Renommer Style</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
+    <value>Renommer</value>
+    <comment>toolstrip button</comment>
   </data>
 </root>

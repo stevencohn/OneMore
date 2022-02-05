@@ -265,11 +265,11 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
-    <Compile Include="Commands\Styles\AddStyleDialog.cs">
+    <Compile Include="Commands\Styles\NameStyleDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Styles\AddStyleDialog.Designer.cs">
-      <DependentUpon>AddStyleDialog.cs</DependentUpon>
+    <Compile Include="Commands\Styles\NameStyleDialog.Designer.cs">
+      <DependentUpon>NameStyleDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Styles\LoadStylesCommand.cs" />
     <Compile Include="Commands\Tables\FillerModels\AlphaNumericFiller.cs" />
@@ -920,6 +920,7 @@
     <Content Include="Properties\Images\Page.png" />
     <Content Include="Properties\Images\Refresh.png" />
     <Content Include="Properties\Images\Rename.png" />
+    <Content Include="Properties\Images\RenameStyle.png" />
     <Content Include="Properties\Images\Reorder.png" />
     <None Include="Properties\Images\Restart.png" />
     <Content Include="Properties\Images\Run.png" />
@@ -992,8 +993,8 @@
     <EmbeddedResource Include="Commands\Settings\KeyboardSheet.resx">
       <DependentUpon>KeyboardSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Styles\AddStyleDialog.resx">
-      <DependentUpon>AddStyleDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Styles\NameStyleDialog.resx">
+      <DependentUpon>NameStyleDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tables\InsertCellsDialog.resx">
       <DependentUpon>InsertCellsDialog.cs</DependentUpon>

@@ -67,6 +67,8 @@
 			this.newStyleButton = new System.Windows.Forms.ToolStripButton();
 			this.reorderButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
+			this.renameButton = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
@@ -457,8 +459,10 @@
 			this.mainTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenu,
             this.newStyleButton,
-            this.reorderButton,
-            this.deleteButton});
+            this.renameButton,
+            this.deleteButton,
+            this.toolStripSeparator1,
+            this.reorderButton});
 			this.mainTools.Location = new System.Drawing.Point(4, 5);
 			this.mainTools.Name = "mainTools";
 			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
@@ -474,7 +478,7 @@
 			this.FileMenu.Image = ((System.Drawing.Image)(resources.GetObject("FileMenu.Image")));
 			this.FileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
-			this.FileMenu.Size = new System.Drawing.Size(56, 29);
+			this.FileMenu.Size = new System.Drawing.Size(56, 33);
 			this.FileMenu.Text = "File";
 			// 
 			// loadButton
@@ -498,8 +502,8 @@
 			this.newStyleButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
 			this.newStyleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newStyleButton.Name = "newStyleButton";
-			this.newStyleButton.Size = new System.Drawing.Size(117, 29);
-			this.newStyleButton.Text = "New Style";
+			this.newStyleButton.Size = new System.Drawing.Size(75, 33);
+			this.newStyleButton.Text = "New";
 			this.newStyleButton.Click += new System.EventHandler(this.AddStyle);
 			// 
 			// reorderButton
@@ -507,7 +511,7 @@
 			this.reorderButton.Image = ((System.Drawing.Image)(resources.GetObject("reorderButton.Image")));
 			this.reorderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.reorderButton.Name = "reorderButton";
-			this.reorderButton.Size = new System.Drawing.Size(102, 29);
+			this.reorderButton.Size = new System.Drawing.Size(102, 33);
 			this.reorderButton.Text = "Reorder";
 			this.reorderButton.Click += new System.EventHandler(this.ReorderStyles);
 			// 
@@ -517,9 +521,23 @@
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(90, 31);
+			this.deleteButton.Size = new System.Drawing.Size(90, 35);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteStyle);
+			// 
+			// renameButton
+			// 
+			this.renameButton.Image = ((System.Drawing.Image)(resources.GetObject("renameButton.Image")));
+			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(103, 29);
+			this.renameButton.Text = "Rename";
+			this.renameButton.Click += new System.EventHandler(this.RenameStyle);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 34);
 			// 
 			// StyleDialog
 			// 
@@ -593,5 +611,7 @@
 		private System.Windows.Forms.ToolStripButton newStyleButton;
 		private System.Windows.Forms.Label spacingLabel;
 		private System.Windows.Forms.NumericUpDown spacingSpinner;
+		private System.Windows.Forms.ToolStripButton renameButton;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 	}
 }

@@ -96,10 +96,11 @@ namespace River.OneMoreAddIn.Commands
 					// menu
 					"FileMenu",
 					"loadButton",
-					"newStyleButton",
 					"saveButton",
-					"reorderButton",
+					"newStyleButton",
+					"renameButton",
 					"deleteButton",
+					"reorderButton",
 					// toolstrip
 					"boldButton",
 					"italicButton",
@@ -624,7 +625,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var name = "Style-" + new Random().Next(1000, 9999).ToString();
 
-			using (var dialog = new AddStyleDialog(names, name))
+			using (var dialog = new NameStyleDialog(names, name))
 			{
 				if (dialog.ShowDialog(this) != DialogResult.OK)
 				{
@@ -643,9 +644,121 @@ namespace River.OneMoreAddIn.Commands
 
 			saveButton.Enabled = true;
 			reorderButton.Enabled = true;
+			renameButton.Enabled = true;
 			deleteButton.Enabled = true;
 
 			namesBox.SelectedIndex = namesBox.Items.Count - 1;
+		}
+
+
+		private void RenameStyle(object sender, EventArgs e)
+		{
+			var index = 0;
+			var names = new List<string>();
+			foreach (GraphicStyle styleItem in namesBox.Items)
+			{
+				if (index != namesBox.SelectedIndex)
+				{
+					names.Add(styleItem.Name);
+				}
+
+				index++;
+			}
+
+			if (!names.Any())
+			{
+				return;
+			}
+
+			var style = (GraphicStyle)namesBox.Items[namesBox.SelectedIndex];
+			var name = style.Name;
+
+			using (var dialog = new NameStyleDialog(names, name) { Rename = true })
+			{
+				if (dialog.ShowDialog(this) != DialogResult.OK)
+				{
+					return;
+				}
+
+				name = dialog.StyleName;
+			}
+
+			style.Name = name;
+			index = namesBox.SelectedIndex;
+			namesBox.Items.RemoveAt(index);
+			namesBox.Items.Insert(index, style);
+			namesBox.SelectedIndex = index;
+		}
+
+
+
+		private void DeleteStyle(object sender, EventArgs e)
+		{
+			var result = MessageBox.Show(this, "Delete this custom style?", "Confirm",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+			if (result == DialogResult.Yes)
+			{
+				int index = namesBox.SelectedIndex;
+
+				var style = namesBox.Items[index] as GraphicStyle;
+				style.Name = string.Empty;
+
+				namesBox.Items.RemoveAt(index);
+
+				if (namesBox.Items.Count > 0)
+				{
+					if (index > namesBox.Items.Count - 1)
+					{
+						namesBox.SelectedIndex = namesBox.Items.Count - 1;
+					}
+					else
+					{
+						namesBox.SelectedIndex = index;
+					}
+				}
+			}
+
+			if (namesBox.Items.Count == 0)
+			{
+				saveButton.Enabled = false;
+				reorderButton.Enabled = false;
+				renameButton.Enabled = false;
+				deleteButton.Enabled = false;
+			}
+		}
+
+
+		private void ReorderStyles(object sender, EventArgs e)
+		{
+			using (var dialog = new ReorderDialog(namesBox.Items))
+			{
+				var result = dialog.ShowDialog(this);
+				if (result == DialogResult.OK)
+				{
+					string name = null;
+					if (namesBox.SelectedItem != null)
+					{
+						name = ((GraphicStyle)namesBox.SelectedItem).Name;
+					}
+
+					var items = dialog.GetItems();
+					namesBox.Items.Clear();
+					namesBox.Items.AddRange(items);
+
+					var selected = namesBox.Items.Cast<GraphicStyle>()
+						.FirstOrDefault(s => s.Name.Equals(name));
+
+					if (selected != null)
+					{
+						namesBox.SelectedItem = selected;
+					}
+					else
+					{
+						namesBox.SelectedIndex = 0;
+					}
+				}
+			}
 		}
 
 
@@ -689,75 +802,6 @@ namespace River.OneMoreAddIn.Commands
 							MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
 				}
-			}
-		}
-
-
-		private void ReorderStyles(object sender, EventArgs e)
-		{
-			using (var dialog = new ReorderDialog(namesBox.Items))
-			{
-				var result = dialog.ShowDialog(this);
-				if (result == DialogResult.OK)
-				{
-					string name = null;
-					if (namesBox.SelectedItem != null)
-					{
-						name = ((GraphicStyle)namesBox.SelectedItem).Name;
-					}
-
-					var items = dialog.GetItems();
-					namesBox.Items.Clear();
-					namesBox.Items.AddRange(items);
-
-					var selected = namesBox.Items.Cast<GraphicStyle>()
-						.FirstOrDefault(s => s.Name.Equals(name));
-
-					if (selected != null)
-					{
-						namesBox.SelectedItem = selected;
-					}
-					else
-					{
-						namesBox.SelectedIndex = 0;
-					}
-				}
-			}
-		}
-
-
-		private void DeleteStyle(object sender, EventArgs e)
-		{
-			var result = MessageBox.Show(this, "Delete this custom style?", "Confirm",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-
-			if (result == DialogResult.Yes)
-			{
-				int index = namesBox.SelectedIndex;
-
-				var style = namesBox.Items[index] as GraphicStyle;
-				style.Name = string.Empty;
-
-				namesBox.Items.RemoveAt(index);
-
-				if (namesBox.Items.Count > 0)
-				{
-					if (index > namesBox.Items.Count - 1)
-					{
-						namesBox.SelectedIndex = namesBox.Items.Count - 1;
-					}
-					else
-					{
-						namesBox.SelectedIndex = index;
-					}
-				}
-			}
-
-			if (namesBox.Items.Count == 0)
-			{
-				saveButton.Enabled = false;
-				reorderButton.Enabled = false;
-				deleteButton.Enabled = false;
 			}
 		}
 

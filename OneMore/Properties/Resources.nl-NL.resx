@@ -1805,7 +1805,7 @@ Symbolen: PI, E</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
-    <value>Nieuwe stijl</value>
+    <value>Nieuw</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_NewText" xml:space="preserve">
@@ -3854,16 +3854,24 @@ Polaroid</value>
   <data name="word_Name" xml:space="preserve">
     <value>Naam</value>
   </data>
-  <data name="AddStyleDialog.Text" xml:space="preserve">
+  <data name="NameStyleDialog_NewStyle" xml:space="preserve">
     <value>Nieuwe stijl</value>
     <comment>dialog title</comment>
   </data>
-  <data name="AddStyleDialog_nameLabel.Text" xml:space="preserve">
+  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
     <value>Stijl naam</value>
     <comment>label</comment>
   </data>
-  <data name="AddStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
     <value>Naam bestaat. Kies een andere naam.</value>
     <comment>label</comment>
+  </data>
+  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+    <value>Hernoemstijl</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="StyleDialog_renameButton.Text" xml:space="preserve">
+    <value>Hernoemen</value>
+    <comment>toolstrip button</comment>
   </data>
 </root>

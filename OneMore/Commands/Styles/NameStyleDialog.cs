@@ -10,18 +10,18 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class AddStyleDialog : UI.LocalizableForm
+	internal partial class NameStyleDialog : UI.LocalizableForm
 	{
 		private IEnumerable<string> names;
 
 
-		public AddStyleDialog()
+		public NameStyleDialog()
 		{
 			InitializeComponent();
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.AddStyleDialog_Text;
+				Text = Resx.NameStyleDialog_NewStyle;
 
 				Localize(new string[]
 				{
@@ -34,11 +34,24 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public AddStyleDialog(IEnumerable<string> names, string name)
+		public NameStyleDialog(IEnumerable<string> names, string name)
 			: this()
 		{
 			this.names = names;
 			nameBox.Text = name;
+		}
+
+
+		public bool Rename
+		{
+			private get => true;
+
+			set
+			{
+				Text = value 
+					? Resx.NameStyleDialog_RenameStyle
+					: Resx.NameStyleDialog_NewStyle;
+			}
 		}
 
 
