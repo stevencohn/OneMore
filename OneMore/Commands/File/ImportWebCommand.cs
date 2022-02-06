@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private string address = null;
 		private bool importImages = false;
+		private bool experimental = false;
 		private ImportWebTarget target;
 
 
@@ -51,6 +52,7 @@ namespace River.OneMoreAddIn.Commands
 				address = dialog.Address;
 				target = dialog.Target;
 				importImages = dialog.ImportImages;
+				experimental = dialog.Experimental;
 			}
 
 			if (importImages)
@@ -266,96 +268,99 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> DownloadWebContent(Uri uri)
 		{
-#if true
-			string content = null;
-
-			// WebView2 needs to run in an STA thread
-			await SingleThreaded.Invoke(() =>
+			if (experimental)
 			{
-				// WebView2 needs a message pump so host in its own invisible worker dialog
-				using (var form = new UI.WebViewWorkerDialog(
-					startup:
-					new UI.WebViewWorker(async (webview) =>
-					{
-						logger.WriteLine($"starting up webview with {uri}");
-						webview.Source = uri;
-						await Task.Yield();
-						return true;
-					}),
-					work:
-					new UI.WebViewWorker(async (webview) =>
-					{
-						logger.WriteLine("getting webview content");
+				string content = null;
 
-						content = await webview
-							.ExecuteScriptAsync(@"var range = document.createRange();
+				// WebView2 needs to run in an STA thread
+				await SingleThreaded.Invoke(() =>
+				{
+					// WebView2 needs a message pump so host in its own invisible worker dialog
+					using (var form = new UI.WebViewWorkerDialog(
+							startup:
+							new UI.WebViewWorker(async (webview) =>
+							{
+								logger.WriteLine($"starting up webview with {uri}");
+								webview.Source = uri;
+								await Task.Yield();
+								return true;
+							}),
+							work:
+							new UI.WebViewWorker(async (webview) =>
+							{
+								logger.WriteLine("getting webview content");
+
+								content = await webview
+									.ExecuteScriptAsync(@"var range = document.createRange();
 range.selectNodeContents(document.body);
 var selection = window.getSelection();
 selection.removeAllRanges();
 selection.addRange(range);
 document.execCommand('copy');");
 
-						//logger.WriteLine($"JS response=[{content}]");
+							//logger.WriteLine($"JS response=[{content}]");
 
-						//// unescape all escape chars in string and remove outer quotes
-						//content = Regex.Unescape(content);
-						//content = content.Substring(1, content.Length - 2);
+							//// unescape all escape chars in string and remove outer quotes
+							//content = Regex.Unescape(content);
+							//content = content.Substring(1, content.Length - 2);
 
-						if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
-						{
-							content = Win.Clipboard.GetText(Win.TextDataFormat.Html);
-							var index = content.IndexOf("<html");
-							if (index > 0)
-							{
-								content = content.Substring(index);
-							}
-						}
-						else
-						{
-							content = null;
-						}
+							if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
+								{
+									content = Win.Clipboard.GetText(Win.TextDataFormat.Html);
+									var index = content.IndexOf("<html");
+									if (index > 0)
+									{
+										content = content.Substring(index);
+									}
+								}
+								else
+								{
+									content = null;
+								}
 
-						//logger.WriteLine($"content=[{content}]");
+							//logger.WriteLine($"content=[{content}]");
 
-						await Task.Yield();
-						return true;
-					})))
-				{
-					form.ShowDialog();
-				}
-			});
-
-			return content;
-#else
-			try
-			{
-				using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
-				{
-					var client = HttpClientFactory.Create();
-					using (var response = await client.GetAsync(uri, source.Token))
+							await Task.Yield();
+								return true;
+							})))
 					{
-						if (response.IsSuccessStatusCode)
+						form.ShowDialog();
+					}
+				});
+
+				return content;
+			}
+			else
+			{
+				try
+				{
+					using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
+					{
+						var client = HttpClientFactory.Create();
+						using (var response = await client.GetAsync(uri, source.Token))
 						{
-							return await response.Content.ReadAsStringAsync();
+							if (response.IsSuccessStatusCode)
+							{
+								return await response.Content.ReadAsStringAsync();
+							}
 						}
 					}
 				}
-			}
-			catch (TaskCanceledException exc)
-			{
-				logger.WriteLine("timeout fetching web page", exc);
-			}
-			catch (Exception exc)
-			{
-				// for some reason, anything more than this will crash OneMore
-				// seems that the exception is not fully instantiated at this point
-				// so rethrow and let caller display aggregated message
-				logger.WriteLine(exc.Message);
-				throw;
-			}
+				catch (TaskCanceledException exc)
+				{
+					logger.WriteLine("timeout fetching web page", exc);
+				}
+				catch (Exception exc)
+				{
+					// for some reason, anything more than this will crash OneMore
+					// seems that the exception is not fully instantiated at this point
+					// so rethrow and let caller display aggregated message
+					logger.WriteLine(exc.Message);
+					throw;
+				}
 
-			return null;
-#endif
+				return null;
+			}
 		}
 
 
