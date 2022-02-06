@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.Storage;
 	using Windows.Storage.Streams;
 	using Hap = HtmlAgilityPack;
+	using Win = System.Windows;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -265,6 +266,67 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> DownloadWebContent(Uri uri)
 		{
+#if true
+			string content = null;
+
+			// WebView2 needs to run in an STA thread
+			await SingleThreaded.Invoke(() =>
+			{
+				// WebView2 needs a message pump so host in its own invisible worker dialog
+				using (var form = new UI.WebViewWorkerDialog(
+					startup:
+					new UI.WebViewWorker(async (webview) =>
+					{
+						logger.WriteLine($"starting up webview with {uri}");
+						webview.Source = uri;
+						await Task.Yield();
+						return true;
+					}),
+					work:
+					new UI.WebViewWorker(async (webview) =>
+					{
+						logger.WriteLine("getting webview content");
+
+						content = await webview
+							.ExecuteScriptAsync(@"var range = document.createRange();
+range.selectNodeContents(document.body);
+var selection = window.getSelection();
+selection.removeAllRanges();
+selection.addRange(range);
+document.execCommand('copy');");
+
+						//logger.WriteLine($"JS response=[{content}]");
+
+						//// unescape all escape chars in string and remove outer quotes
+						//content = Regex.Unescape(content);
+						//content = content.Substring(1, content.Length - 2);
+
+						if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
+						{
+							content = Win.Clipboard.GetText(Win.TextDataFormat.Html);
+							var index = content.IndexOf("<html");
+							if (index > 0)
+							{
+								content = content.Substring(index);
+							}
+						}
+						else
+						{
+							content = null;
+						}
+
+						//logger.WriteLine($"content=[{content}]");
+
+						await Task.Yield();
+						return true;
+					})))
+				{
+					form.ShowDialog();
+				}
+			});
+
+			return content;
+#else
 			try
 			{
 				using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
@@ -293,6 +355,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return null;
+#endif
 		}
 
 
