@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
 	using System.IO;
@@ -17,13 +18,13 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.Storage;
 	using Windows.Storage.Streams;
 	using Hap = HtmlAgilityPack;
-	using Win = System.Windows;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Win = System.Windows;
 
 
 	internal class ImportWebCommand : Command
 	{
-		private class WebPageInfo
+		private sealed class WebPageInfo
 		{
 			public string Content;
 			public string Title;
@@ -33,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool importImages = false;
 		private bool experimental = false;
 		private ImportWebTarget target;
+		private ProgressDialog progress;
 
 
 		public ImportWebCommand()
@@ -63,12 +65,28 @@ namespace River.OneMoreAddIn.Commands
 
 			if (importImages)
 			{
-				var progress = new UI.ProgressDialog(ImportImages);
+				progress = new ProgressDialog(ImportImages);
 				await progress.RunModeless();
 				return;
 			}
 
-			await ImportHtml(address, target);
+			using (var source = new CancellationTokenSource())
+			{
+				using (progress = new ProgressDialog(source))
+				{
+					progress.SetMaximum(5);
+					progress.SetMessage($"Importing {address}...");
+
+					progress.StartTimer();
+					var result = progress.ShowDialog(owner);
+					if (result == DialogResult.Cancel)
+					{
+						return;
+					}
+
+					await ImportHtml(address, target);
+				}
+			}
 		}
 
 
@@ -78,7 +96,7 @@ namespace River.OneMoreAddIn.Commands
 		// https://blogs.u2u.be/lander/post/2018/01/23/Creating-a-PDF-Viewer-in-WPF-using-Windows-10-APIs
 		// https://docs.microsoft.com/en-us/uwp/api/windows.data.pdf.pdfdocument.getpage?view=winrt-20348
 
-		private async Task ImportImages(UI.ProgressDialog progress, CancellationToken token)
+		private async Task ImportImages(ProgressDialog progress, CancellationToken token)
 		{
 			logger.Start();
 			logger.StartClock();
@@ -92,15 +110,15 @@ namespace River.OneMoreAddIn.Commands
 			await SingleThreaded.Invoke(() =>
 			{
 				// WebView2 needs a message pump so host in its own invisible worker dialog
-				using (var form = new UI.WebViewWorkerDialog(
-					new UI.WebViewWorker(async (webview) =>
+				using (var form = new WebViewWorkerDialog(
+					new WebViewWorker(async (webview) =>
 					{
 						webview.Source = new Uri(address);
 						progress.Increment();
 						await Task.Yield();
 						return true;
 					}),
-					new UI.WebViewWorker(async (webview) =>
+					new WebViewWorker(async (webview) =>
 					{
 						progress.Increment();
 						await Task.Delay(2000);
@@ -299,9 +317,9 @@ document.getElementsByTagName('title')[0].innerText;";
 			await SingleThreaded.Invoke(() =>
 			{
 				// WebView2 needs a message pump so host in its own invisible worker dialog
-				using (var form = new UI.WebViewWorkerDialog(
+				using (var form = new WebViewWorkerDialog(
 					startup:
-					new UI.WebViewWorker(async (webview) =>
+					new WebViewWorker(async (webview) =>
 					{
 						logger.WriteLine($"starting up webview with {uri}");
 						webview.Source = uri;
@@ -309,7 +327,7 @@ document.getElementsByTagName('title')[0].innerText;";
 						return true;
 					}),
 					work:
-					new UI.WebViewWorker(async (webview) =>
+					new WebViewWorker(async (webview) =>
 					{
 						logger.WriteLine("getting webview content");
 						await Task.Delay(200);
