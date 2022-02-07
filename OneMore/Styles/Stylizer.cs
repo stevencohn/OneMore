@@ -185,6 +185,8 @@ namespace River.OneMoreAddIn.Styles
 						// no explicit colors so discard everything else
 						attr.Remove();
 					}
+
+					cleared = true;
 				}
 			}
 

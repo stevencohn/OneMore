@@ -91,57 +91,43 @@ namespace River.OneMoreAddIn.Commands
 			var quickStyles = page.Root.Elements(ns + "QuickStyleDef");
 			if (quickStyles?.Any() == true)
 			{
-				var foundP = false;
-
 				foreach (var quick in quickStyles)
 				{
 					var name = quick.Attribute("name").Value;
 
-					// only affect the first QuickStyleDef[@name='p']
-					if (!foundP || name != "p")
+					// NOTE previously, affected only the first occurance of the "p" quick style
+					// and ignore all additional "p" occurances defined, QuickStyleDef[@name='p']
+					// I don't remember why but pulled out that logic Feb 7 2022
+
+					if (FindStyle(styles, name) is Style style)
 					{
-						var style = FindStyle(styles, name);
-						if (style != null)
-						{
-							//logger.WriteLine(
-							//	$"~ name:{quick.Attribute("name").Value} style:{style.Name}");
+						//logger.WriteLine(
+						//	$"~ name:{quick.Attribute("name").Value} style:{style.Name}");
 
-							// could use QuickStyleDef class here but this is faster
-							// than replacing the element...
+						// could use QuickStyleDef class here but this is faster
+						// than replacing the element...
 
-							quick.Attribute("font").Value = style.FontFamily;
+						quick.Attribute("font").Value = style.FontFamily;
 
-							quick.Attribute("spaceBefore").Value = style.SpaceBefore;
-							quick.Attribute("spaceAfter").Value = style.SpaceAfter;
-							// must also apply to paragraphs otherwise OneNote applies x10 values!
-							SetSpacing(quick.Attribute("index").Value, style.SpaceBefore, style.SpaceAfter);
+						quick.Attribute("spaceBefore").Value = style.SpaceBefore;
+						quick.Attribute("spaceAfter").Value = style.SpaceAfter;
+						// must also apply to paragraphs otherwise OneNote applies x10 values!
+						SetSpacing(quick.Attribute("index").Value, style.SpaceBefore, style.SpaceAfter);
 
-							quick.Attribute("fontColor").Value = style.Color;
-							quick.Attribute("highlightColor").Value = style.Highlight;
+						quick.Attribute("fontColor").Value = style.Color;
+						quick.Attribute("highlightColor").Value = style.Highlight;
 
-							quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
-							quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
-							quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
+						quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
+						quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
+						quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
 
-							if (name == "p")
-							{
-								if (!foundP)
-								{
-									quick.Attribute("fontSize").Value = style.FontSize;
-									foundP = true;
-								}
-							}
-							else
-							{
-								quick.Attribute("fontSize").Value = style.FontSize;
-							}
+						quick.Attribute("fontSize").Value = style.FontSize;
 
-							applied = true;
-						}
-
-						var index = quick.Attribute("index").Value;
-						ClearInlineStyles(index, name == "p");
+						applied = true;
 					}
+
+					var index = quick.Attribute("index").Value;
+					ClearInlineStyles(index, name == "p");
 				}
 			}
 
