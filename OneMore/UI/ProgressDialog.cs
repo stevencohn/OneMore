@@ -22,13 +22,14 @@ namespace River.OneMoreAddIn.UI
 	/// maximum increment value, incrementing it during its own processing, and then closing the
 	/// dialog when it's work is complete.
 	/// 
-	/// It can also run with a timer; call the constructor with a CancellationTokenSource and
-	/// optionally call StartTimer. A cancel button is also displayed. The dialog closes when a
-	/// cancellation is pending and returns DialogResult.OK. It also closes when the cancel button
-	/// is pressed and returns DialogResult.Cancel. If the timer reaches Maximum seconds then the
-	/// dialog is closed and returns DialogResult.Abort.
+	/// It can also run with a timer; call the constructor with a max seconds timeout value, set
+	/// the initial message, and call ShowTimedDialog along with a callback. A cancel button is
+	/// displayed. The dialog closes when the callback completes and returns DialogResult.Cancel.
+	/// It also closes when the cancel button is pressed and returns DialogResult.Cancel. If the
+	/// timer reaches Maximum seconds then the dialog is closed and returns DialogResult.Abort.
 	/// 
 	/// The third mode accepts an execution action that is run in the background by the dialog.
+	/// The consumer is responsible for increment the progress and updating the status message.
 	/// A cancel button is displayed that, when pressed, sets the cancelltion token and returns
 	/// DialogResult.Cancel. If the execute action completes without cancellation OK is returned.
 	/// </remarks>
