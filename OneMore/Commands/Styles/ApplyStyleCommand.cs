@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml;
-    using System.Xml.Linq;
+	using System.Xml.Linq;
 
 
 	internal class ApplyStyleCommand : Command
@@ -171,7 +171,7 @@ namespace River.OneMoreAddIn.Commands
 
 							//logger.WriteLine("parent:" + (selection.Parent as XElement).ToString(SaveOptions.None));
 						}
-					} 
+					}
 
 					if (empty)
 					{
@@ -193,52 +193,92 @@ namespace River.OneMoreAddIn.Commands
 		private bool StylizeParagraphs()
 		{
 			// find all paragraphs - OE elements - that have selections
-			var elements = page.Root.Descendants()
-				.Where(p => p.NodeType == XmlNodeType.Element
-					&& p.Name.LocalName == "T"
-					&& p.Attributes("selected").Any(a => a.Value.Equals("all")))
+			// TODO: filter out MetaNames.TaggingBank?
+			var elements = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
 				.Select(p => p.Parent);
 
-			if (elements?.Any() == true)
+			if (elements?.Any() != true)
 			{
-				var css = style.ToCss();
-
-				var applied = new Style(style)
-				{
-					ApplyColors = true
-				};
-
-				foreach (var element in elements)
-				{
-					// clear any existing style on or within the paragraph
-					stylizer.Clear(element, style.ApplyColors ? Stylizer.Clearing.All : Stylizer.Clearing.None);
-
-					// style may still exist if apply colors if false and there are colors
-					var attr = element.Attribute("style");
-					if (attr == null)
-					{
-						// blast style onto paragraph, let OneNote normalize across
-						// children if it wants
-						attr = new XAttribute("style", css);
-						element.Add(attr);
-					}
-					else
-					{
-						applied.MergeColors(new Style(attr.Value));
-						attr.Value = applied.ToCss();
-					}
-
-					ApplySpacing(element, "spaceBefore", style.SpaceBefore);
-					ApplySpacing(element, "spaceAfter", style.SpaceAfter);
-					ApplySpacing(element, "spaceBetween", style.Spacing);
-
-					ApplyToList(element, style);
-				}
-
-				return true;
+				return false;
 			}
 
-			return false;
+			var css = style.ToCss();
+
+			var applied = new Style(style)
+			{
+				ApplyColors = true
+			};
+
+			foreach (var element in elements)
+			{
+				// clear any existing style on or within the paragraph
+				stylizer.Clear(element, style.ApplyColors ? Stylizer.Clearing.All : Stylizer.Clearing.None);
+
+				SetQuickStyle(page, element, style);
+
+				// style may still exist if apply colors if false and there are colors
+				var attr = element.Attribute("style");
+				if (attr == null)
+				{
+					// blast style onto paragraph, let OneNote normalize across
+					// children if it wants
+					attr = new XAttribute("style", css);
+					element.Add(attr);
+				}
+				else
+				{
+					applied.MergeColors(new Style(attr.Value));
+					attr.Value = applied.ToCss();
+				}
+
+				ApplySpacing(element, "spaceBefore", style.SpaceBefore);
+				ApplySpacing(element, "spaceAfter", style.SpaceAfter);
+				ApplySpacing(element, "spaceBetween", style.Spacing);
+
+				ApplyToList(element, style);
+			}
+
+			return true;
+		}
+
+
+		private void SetQuickStyle(Page page, XElement element, Style style)
+		{
+			if (style.StyleType == StyleType.Heading)
+			{
+				// force override quick style to correct heading index...
+
+				var quick = page.GetQuickStyle((StandardStyles)style.Index);
+				var attr = element.Attribute("quickStyleIndex");
+				if (attr == null)
+				{
+					element.Add(new XAttribute("quickStyleIndex", quick.Index));
+				}
+				else
+				{
+					attr.Value = quick.Index.ToString();
+				}
+			}
+			else
+			{
+				// force to normal quickstyle only if currently heading...
+				// do not override quote, cite, etc with normal.
+
+				var attr = element.Attribute("quickStyleIndex");
+				if (attr != null)
+				{
+					if (int.TryParse(attr.Value, out var index))
+					{
+						var quick = page.GetQuickStyle((StandardStyles)(index - 1));
+						if (quick.StyleType == StyleType.Heading)
+						{
+							quick = page.GetQuickStyle(StandardStyles.Normal);
+							attr.Value = quick.Index.ToString();
+						}
+					}
+				}
+			}
 		}
 
 
