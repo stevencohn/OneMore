@@ -3874,4 +3874,11 @@ ISO-code then comma then language name</comment>
     <value>إعادة تسمية</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="Error_NoAttachments" xml:space="preserve">
+    <value>لم يتم العثور على المرفقات في الصفحة</value>
+  </data>
+  <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
+    <value>مرفقات التسمية التوضيحية</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

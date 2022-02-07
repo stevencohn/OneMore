@@ -3874,4 +3874,11 @@ Polaroid.</value>
     <value>Renomear</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="Error_NoAttachments" xml:space="preserve">
+    <value>Nenhum anexos encontrados na página</value>
+  </data>
+  <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
+    <value>Anexos de legenda</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

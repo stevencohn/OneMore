@@ -3874,4 +3874,11 @@ polaroid</value>
     <value>Rebautizar</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="Error_NoAttachments" xml:space="preserve">
+    <value>No se encontraron archivos adjuntos en la página</value>
+  </data>
+  <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
+    <value>Adjuntos de título</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

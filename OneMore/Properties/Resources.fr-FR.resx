@@ -3870,4 +3870,11 @@ Polaroïd</value>
     <value>Renommer</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="Error_NoAttachments" xml:space="preserve">
+    <value>Aucun attachement trouvé à la page</value>
+  </data>
+  <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
+    <value>Attaches de légende</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

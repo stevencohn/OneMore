@@ -3874,4 +3874,11 @@ Polaroid</value>
     <value>Hernoemen</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="Error_NoAttachments" xml:space="preserve">
+    <value>Geen bijlagen gevonden op pagina</value>
+  </data>
+  <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
+    <value>Bijschriftbijlagen</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

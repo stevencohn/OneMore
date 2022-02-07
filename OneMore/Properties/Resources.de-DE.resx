@@ -3861,4 +3861,11 @@ Polaroid</value>
     <value>Umbenennen</value>
     <comment>toolstrip button</comment>
   </data>
+  <data name="Error_NoAttachments" xml:space="preserve">
+    <value>Keine Anhänge auf der Seite gefunden</value>
+  </data>
+  <data name="ribCaptionAttachmentsButton_Label" xml:space="preserve">
+    <value>Beschriftungsanhänge</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
