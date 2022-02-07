@@ -292,6 +292,11 @@
                 getLabel="GetRibbonLabel"
                 onAction="AddTitleIconCmd"/>
               <button
+                id="ribCaptionAttachmentsButton"
+                imageMso="CaptionInsert"
+                getLabel="GetRibbonLabel"
+                onAction="CaptionAttachmentsCmd"/>
+              <button
                 id="ribCollapseContentButton"
                 imageMso="CollapseAll"
                 getLabel="GetRibbonLabel"

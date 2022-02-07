@@ -2032,6 +2032,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No attachments found on page.
+        /// </summary>
+        internal static string Error_NoAttachments {
+            get {
+                return ResourceManager.GetString("Error_NoAttachments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an image before invoking this command.
         /// </summary>
         internal static string Error_SelectImage {
@@ -5190,6 +5199,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCalendarButton_Label {
             get {
                 return ResourceManager.GetString("ribCalendarButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caption Attachments.
+        /// </summary>
+        internal static string ribCaptionAttachmentsButton_Label {
+            get {
+                return ResourceManager.GetString("ribCaptionAttachmentsButton_Label", resourceCulture);
             }
         }
         
