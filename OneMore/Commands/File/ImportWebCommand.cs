@@ -23,6 +23,12 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ImportWebCommand : Command
 	{
+		private class WebPageInfo
+		{
+			public string Content;
+			public string Title;
+		}
+
 		private string address = null;
 		private bool importImages = false;
 		private bool experimental = false;
@@ -200,11 +206,11 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"importing web page {baseUri.AbsoluteUri}");
 			logger.StartClock();
 
-			string content;
+			WebPageInfo info;
 
 			try
 			{
-				content = await DownloadWebContent(baseUri);
+				info = await DownloadWebContent(baseUri);
 			}
 			catch (Exception exc)
 			{
@@ -212,14 +218,14 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (string.IsNullOrEmpty(content))
+			if (string.IsNullOrEmpty(info.Content))
 			{
 				Giveup(Resx.ImportWebCommand_BadUrl);
 				logger.WriteLine("web page returned empty content");
 				return;
 			}
 
-			var doc = ReplaceImagesWithAnchors(content, baseUri);
+			var doc = ReplaceImagesWithAnchors(info.Content, baseUri);
 			if (doc == null)
 			{
 				Giveup(Resx.ImportWebCommand_BadUrl);
@@ -266,12 +272,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<string> DownloadWebContent(Uri uri)
+		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
 		{
+			var info = new WebPageInfo();
+
 			if (experimental)
 			{
-				string content = null;
-
 				// WebView2 needs to run in an STA thread
 				await SingleThreaded.Invoke(() =>
 				{
@@ -289,38 +295,44 @@ namespace River.OneMoreAddIn.Commands
 							new UI.WebViewWorker(async (webview) =>
 							{
 								logger.WriteLine("getting webview content");
+								await Task.Delay(200);
 
-								content = await webview
+								info.Title = await webview
 									.ExecuteScriptAsync(@"var range = document.createRange();
 range.selectNodeContents(document.body);
 var selection = window.getSelection();
 selection.removeAllRanges();
 selection.addRange(range);
-document.execCommand('copy');");
+document.execCommand('copy');
+document.getElementsByTagName('title')[0].innerText;");
 
-							//logger.WriteLine($"JS response=[{content}]");
+								await Task.Delay(100);
 
-							//// unescape all escape chars in string and remove outer quotes
-							//content = Regex.Unescape(content);
-							//content = content.Substring(1, content.Length - 2);
+								//logger.WriteLine($"JS response=[{content}]");
 
-							if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
+								//// unescape all escape chars in string and remove outer quotes
+								//content = Regex.Unescape(content);
+								//content = content.Substring(1, content.Length - 2);
+
+								if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
 								{
-									content = Win.Clipboard.GetText(Win.TextDataFormat.Html);
-									var index = content.IndexOf("<html");
+									info.Content = Win.Clipboard.GetText(Win.TextDataFormat.Html);
+									var index = info.Content.IndexOf(
+										"<html", StringComparison.InvariantCultureIgnoreCase);
+
 									if (index > 0)
 									{
-										content = content.Substring(index);
+										info.Content = info.Content.Substring(index);
 									}
 								}
 								else
 								{
-									content = null;
+									info.Content = null;
 								}
 
-							//logger.WriteLine($"content=[{content}]");
+								//logger.WriteLine($"content=[{content}]");
 
-							await Task.Yield();
+								await Task.Yield();
 								return true;
 							})))
 					{
@@ -328,7 +340,13 @@ document.execCommand('copy');");
 					}
 				});
 
-				return content;
+				if (info.Title != null && info.Title.Length > 1 &&
+					info.Title[0] == '"' && info.Title[info.Title.Length - 1] == '"')
+				{
+					info.Title = info.Title.Substring(1, info.Title.Length - 2);
+				}
+
+				return info;
 			}
 			else
 			{
@@ -359,6 +377,7 @@ document.execCommand('copy');");
 					throw;
 				}
 
+				title = null;
 				return null;
 			}
 		}
