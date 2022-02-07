@@ -32,7 +32,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private string address = null;
 		private bool importImages = false;
-		private bool experimental = false;
 		private ImportWebTarget target;
 		private ProgressDialog progress;
 
@@ -60,37 +59,29 @@ namespace River.OneMoreAddIn.Commands
 				address = dialog.Address;
 				target = dialog.Target;
 				importImages = dialog.ImportImages;
-				experimental = dialog.Experimental;
 			}
 
 			if (importImages)
 			{
-				progress = new ProgressDialog(ImportImages);
-				await progress.RunModeless();
-				return;
+				await ImportAsImages();
 			}
-
-			using (var source = new CancellationTokenSource())
+			else
 			{
-				using (progress = new ProgressDialog(source))
-				{
-					progress.SetMaximum(5);
-					progress.SetMessage($"Importing {address}...");
-
-					progress.StartTimer();
-					var result = progress.ShowDialog(owner);
-					if (result == DialogResult.Cancel)
-					{
-						return;
-					}
-
-					await ImportHtml(address, target);
-				}
+				ImportAsContent();
 			}
 		}
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+		#region ImportAsImages
+
+		private async Task ImportAsImages()
+		{
+			progress = new ProgressDialog(ImportImages);
+			await progress.RunModeless();
+		}
+
 
 		// https://github.com/LanderVe/WPF_PDFDocument/blob/master/WPF_PDFDocument/WPF_PDFDocument.csproj
 		// https://blogs.u2u.be/lander/post/2018/01/23/Creating-a-PDF-Viewer-in-WPF-using-Windows-10-APIs
@@ -214,10 +205,21 @@ namespace River.OneMoreAddIn.Commands
 			logger.End();
 		}
 
+		#endregion ImportAsImages
+
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		private async Task ImportHtml(string address, ImportWebTarget target)
+		private void ImportAsContent()
+		{
+			using (progress = new ProgressDialog(8))
+			{
+				progress.SetMessage($"Importing {address}...");
+				progress.ShowTimedDialog(owner, ImportHtml);
+			}
+		}
+
+		private async Task<bool> ImportHtml(ProgressDialog progress, CancellationToken token)
 		{
 			var baseUri = new Uri(address);
 
@@ -228,28 +230,35 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				info = experimental
-					? await DownloadWebContent_Experimental(baseUri)
-					: await DownloadWebContent(baseUri);
+				info = await DownloadWebContent(baseUri);
 			}
 			catch (Exception exc)
 			{
 				Giveup(exc.Messages());
-				return;
+				return false;
 			}
 
 			if (string.IsNullOrEmpty(info.Content))
 			{
 				Giveup(Resx.ImportWebCommand_BadUrl);
 				logger.WriteLine("web page returned empty content");
-				return;
+				return false;
 			}
 
 			var doc = ReplaceImagesWithAnchors(info.Content, baseUri);
 			if (doc == null)
 			{
 				Giveup(Resx.ImportWebCommand_BadUrl);
-				return;
+				progress.DialogResult = DialogResult.Abort;
+				progress.Close();
+				return false;
+			}
+
+			if (token.IsCancellationRequested)
+			{
+				progress.DialogResult = DialogResult.Cancel;
+				progress.Close();
+				return false;
 			}
 
 			// Attempted to inline the css using the PreMailer nuget
@@ -264,12 +273,26 @@ namespace River.OneMoreAddIn.Commands
 				if (target == ImportWebTarget.Append)
 				{
 					page = one.GetPage();
+
+					if (token.IsCancellationRequested)
+					{
+						progress.DialogResult = DialogResult.Cancel;
+						progress.Close();
+						return false;
+					}
 				}
 				else
 				{
 					if (string.IsNullOrEmpty(info.Title))
 					{
 						info.Title = doc.DocumentNode.SelectSingleNode("//title")?.InnerText;
+					}
+
+					if (token.IsCancellationRequested)
+					{
+						progress.DialogResult = DialogResult.Cancel;
+						progress.Close();
+						return false;
 					}
 
 					page = await CreatePage(one,
@@ -288,6 +311,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.WriteTime("import web completed");
+			return true;
 		}
 
 
@@ -297,10 +321,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<WebPageInfo> DownloadWebContent_Experimental(Uri uri)
+		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
 		{
-			// copy the HTML of the entire web page to the clipboard
-			// and return the text of the page <title>
+			// This JavaScript copies the HTML of the entire web page to the clipboard
+			// and returns the text of the page <title>
 			const string javascript =
 @"var range = document.createRange();
 range.selectNodeContents(document.body);
@@ -321,7 +345,7 @@ document.getElementsByTagName('title')[0].innerText;";
 					startup:
 					new WebViewWorker(async (webview) =>
 					{
-						logger.WriteLine($"starting up webview with {uri}");
+						//logger.WriteLine($"starting up webview with {uri}");
 						webview.Source = uri;
 						await Task.Yield();
 						return true;
@@ -329,7 +353,7 @@ document.getElementsByTagName('title')[0].innerText;";
 					work:
 					new WebViewWorker(async (webview) =>
 					{
-						logger.WriteLine("getting webview content");
+						//logger.WriteLine("getting webview content");
 						await Task.Delay(200);
 
 						title = await webview
@@ -337,7 +361,7 @@ document.getElementsByTagName('title')[0].innerText;";
 
 						await Task.Delay(100);
 
-						logger.WriteLine($"title=[{content}]");
+						//logger.WriteLine($"title=[{title}]");
 
 						//// unescape all escape chars in string and remove outer quotes
 						//content = Regex.Unescape(content);
@@ -375,46 +399,13 @@ document.getElementsByTagName('title')[0].innerText;";
 				title = title.Substring(1, title.Length - 2);
 			}
 
+			logger.WriteLine($"retrieved {content.Length} bytes from {title} ({uri.AbsoluteUri})");
+
 			return new WebPageInfo
 			{
 				Content = content,
 				Title = title
 			};
-		}
-
-
-		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
-		{
-			var info = new WebPageInfo();
-
-			try
-			{
-				using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
-				{
-					var client = HttpClientFactory.Create();
-					using (var response = await client.GetAsync(uri, source.Token))
-					{
-						if (response.IsSuccessStatusCode)
-						{
-							info.Content = await response.Content.ReadAsStringAsync();
-						}
-					}
-				}
-			}
-			catch (TaskCanceledException exc)
-			{
-				logger.WriteLine("timeout fetching web page", exc);
-			}
-			catch (Exception exc)
-			{
-				// for some reason, anything more than this will crash OneMore
-				// seems that the exception is not fully instantiated at this point
-				// so rethrow and let caller display aggregated message
-				logger.WriteLine(exc.Message);
-				throw;
-			}
-
-			return info;
 		}
 
 
@@ -481,7 +472,10 @@ document.getElementsByTagName('title')[0].innerText;";
 					// second update to page
 					await one.Update(page);
 					logger.WriteLine("pass 2 updated page with hydrated images");
+					return;
 				}
+
+				logger.WriteLine("pass 2 no images found");
 			}
 			catch (Exception exc)
 			{

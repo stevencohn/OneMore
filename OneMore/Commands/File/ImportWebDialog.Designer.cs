@@ -38,7 +38,6 @@ namespace River.OneMoreAddIn.Commands
 			this.newPageButton = new System.Windows.Forms.RadioButton();
 			this.newChildButton = new System.Windows.Forms.RadioButton();
 			this.imagesBox = new System.Windows.Forms.CheckBox();
-			this.experimentButton = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// addressLabel
@@ -64,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(434, 255);
+			this.okButton.Location = new System.Drawing.Point(434, 210);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 9;
@@ -75,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(540, 255);
+			this.cancelButton.Location = new System.Drawing.Point(540, 210);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;
@@ -123,17 +122,6 @@ namespace River.OneMoreAddIn.Commands
 			this.imagesBox.TabIndex = 13;
 			this.imagesBox.Text = "Import as static images";
 			this.imagesBox.UseVisualStyleBackColor = true;
-			this.imagesBox.CheckedChanged += new System.EventHandler(this.SetAvailableOptions);
-			// 
-			// experimentButton
-			// 
-			this.experimentButton.AutoSize = true;
-			this.experimentButton.Location = new System.Drawing.Point(92, 229);
-			this.experimentButton.Name = "experimentButton";
-			this.experimentButton.Size = new System.Drawing.Size(206, 24);
-			this.experimentButton.TabIndex = 14;
-			this.experimentButton.Text = "Use experimental import";
-			this.experimentButton.UseVisualStyleBackColor = true;
 			// 
 			// ImportWebDialog
 			// 
@@ -141,8 +129,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(658, 311);
-			this.Controls.Add(this.experimentButton);
+			this.ClientSize = new System.Drawing.Size(658, 266);
 			this.Controls.Add(this.imagesBox);
 			this.Controls.Add(this.newChildButton);
 			this.Controls.Add(this.newPageButton);
@@ -176,6 +163,5 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.RadioButton newPageButton;
 		private System.Windows.Forms.RadioButton newChildButton;
 		private System.Windows.Forms.CheckBox imagesBox;
-		private System.Windows.Forms.CheckBox experimentButton;
 	}
 }

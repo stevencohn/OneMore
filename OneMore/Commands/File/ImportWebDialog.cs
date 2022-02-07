@@ -54,9 +54,6 @@ namespace River.OneMoreAddIn.Commands
 		public string Address => addressBox.Text;
 
 
-		public bool Experimental => experimentButton.Checked;
-
-
 		public bool ImportImages => imagesBox.Checked;
 
 
@@ -90,11 +87,6 @@ namespace River.OneMoreAddIn.Commands
 		private void addressBox_TextChanged(object sender, EventArgs e)
 		{
 			okButton.Enabled = Uri.IsWellFormedUriString(addressBox.Text.Trim(), UriKind.Absolute);
-		}
-
-		private void SetAvailableOptions(object sender, EventArgs e)
-		{
-			experimentButton.Enabled = !imagesBox.Checked;
 		}
 	}
 }

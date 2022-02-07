@@ -44,7 +44,8 @@ namespace River.OneMoreAddIn.UI
 
 		/// <summary>
 		/// Initializes a new dialog with message area and a pgoress bar; no cancellation is
-		/// allowed.
+		/// allowed. The consumer is responsible for setting the maximum, incrementing, and
+		/// setting messages as events occur.
 		/// </summary>
 		public ProgressDialog()
 		{
@@ -55,12 +56,31 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Initializes a new dialog with message area, progress bar, and cacel button
+		/// that is used as a time-boxed controller and intended to be combined with the
+		/// ShowTimedDialog method. The given action is responsible for changing the message.
+		/// No need to invoke SetMaximum as this will be done by ShowTimedDialog.
+		/// </summary>
+		/// <param name="maxSeconds">
+		/// The maximum allotted seconds before the dialog times out and DialogResult.Cancel
+		/// is returned
+		/// </param>
+		public ProgressDialog(int maxSeconds)
+		{
+			Initialize(CancelHeight);
+			source = new CancellationTokenSource();
+			SetMaximum(maxSeconds);
+		}
+
+
+		/// <summary>
 		/// Initializes a new dialog with message area, progress bar, and a cancel button.
 		/// </summary>
 		/// <param name="source">
 		/// A cancellation source that indicates the active work should abort. Cancellation
 		/// could be requested by clicking the Cancel button or be activated by a timer.
 		/// </param>
+		[Obsolete("Use the (int) override instead")]
 		public ProgressDialog(CancellationTokenSource source)
 		{
 			Initialize(CancelHeight);
@@ -104,6 +124,57 @@ namespace River.OneMoreAddIn.UI
 					"cancelButton"
 				});
 			}
+		}
+
+
+		/// <summary>
+		/// Shows the progress dialog with a timed progression and a callback action to
+		/// invoke on a secondary thread.
+		/// </summary>
+		/// <param name="owner">The owner window used to center this dialog</param>
+		/// <param name="action">The callback method to invoke</param>
+		/// <returns></returns>
+		public DialogResult ShowTimedDialog(
+			IWin32Window owner, Func<ProgressDialog, CancellationToken, Task<bool>> action)
+		{
+			timer.Tick += Tick;
+			StartTimer();
+
+			try
+			{
+				// process should run in an STA thread otherwise it will conflict with
+				// the OneNote MTA thread environment
+				var thread = new Thread(async () =>
+				{
+					var ok = await action(this, source.Token);
+
+					DialogResult = source.IsCancellationRequested 
+						? DialogResult.Abort
+						: ok ? DialogResult.OK : DialogResult.Cancel;
+
+					timer.Stop();
+					Close();
+				});
+
+				thread.SetApartmentState(ApartmentState.STA);
+				thread.IsBackground = true;
+				thread.Start();
+
+				var result = ShowDialog(owner);
+
+				if (result == DialogResult.Cancel)
+				{
+					logger.WriteLine("clicked cancel");
+					thread.Abort();
+					return result;
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error importing", exc);
+			}
+
+			return DialogResult.OK;
 		}
 
 
