@@ -210,7 +210,9 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				info = await DownloadWebContent(baseUri);
+				info = experimental
+					? await DownloadWebContent_Experimental(baseUri)
+					: await DownloadWebContent(baseUri);
 			}
 			catch (Exception exc)
 			{
@@ -247,9 +249,14 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
+					if (string.IsNullOrEmpty(info.Title))
+					{
+						info.Title = doc.DocumentNode.SelectSingleNode("//title")?.InnerText;
+					}
+
 					page = await CreatePage(one,
 						target == ImportWebTarget.ChildPage ? one.GetPage() : null,
-						doc.DocumentNode.SelectSingleNode("//title")?.InnerText ?? address
+						info.Title ?? address
 						);
 				}
 
@@ -272,114 +279,124 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
+		private async Task<WebPageInfo> DownloadWebContent_Experimental(Uri uri)
 		{
-			var info = new WebPageInfo();
-
-			if (experimental)
-			{
-				// WebView2 needs to run in an STA thread
-				await SingleThreaded.Invoke(() =>
-				{
-					// WebView2 needs a message pump so host in its own invisible worker dialog
-					using (var form = new UI.WebViewWorkerDialog(
-							startup:
-							new UI.WebViewWorker(async (webview) =>
-							{
-								logger.WriteLine($"starting up webview with {uri}");
-								webview.Source = uri;
-								await Task.Yield();
-								return true;
-							}),
-							work:
-							new UI.WebViewWorker(async (webview) =>
-							{
-								logger.WriteLine("getting webview content");
-								await Task.Delay(200);
-
-								info.Title = await webview
-									.ExecuteScriptAsync(@"var range = document.createRange();
+			// copy the HTML of the entire web page to the clipboard
+			// and return the text of the page <title>
+			const string javascript =
+@"var range = document.createRange();
 range.selectNodeContents(document.body);
 var selection = window.getSelection();
 selection.removeAllRanges();
 selection.addRange(range);
 document.execCommand('copy');
-document.getElementsByTagName('title')[0].innerText;");
+document.getElementsByTagName('title')[0].innerText;";
 
-								await Task.Delay(100);
+			string content = null;
+			string title = null;
 
-								//logger.WriteLine($"JS response=[{content}]");
-
-								//// unescape all escape chars in string and remove outer quotes
-								//content = Regex.Unescape(content);
-								//content = content.Substring(1, content.Length - 2);
-
-								if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
-								{
-									info.Content = Win.Clipboard.GetText(Win.TextDataFormat.Html);
-									var index = info.Content.IndexOf(
-										"<html", StringComparison.InvariantCultureIgnoreCase);
-
-									if (index > 0)
-									{
-										info.Content = info.Content.Substring(index);
-									}
-								}
-								else
-								{
-									info.Content = null;
-								}
-
-								//logger.WriteLine($"content=[{content}]");
-
-								await Task.Yield();
-								return true;
-							})))
-					{
-						form.ShowDialog();
-					}
-				});
-
-				if (info.Title != null && info.Title.Length > 1 &&
-					info.Title[0] == '"' && info.Title[info.Title.Length - 1] == '"')
-				{
-					info.Title = info.Title.Substring(1, info.Title.Length - 2);
-				}
-
-				return info;
-			}
-			else
+			// WebView2 needs to run in an STA thread
+			await SingleThreaded.Invoke(() =>
 			{
-				try
-				{
-					using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
+				// WebView2 needs a message pump so host in its own invisible worker dialog
+				using (var form = new UI.WebViewWorkerDialog(
+					startup:
+					new UI.WebViewWorker(async (webview) =>
 					{
-						var client = HttpClientFactory.Create();
-						using (var response = await client.GetAsync(uri, source.Token))
+						logger.WriteLine($"starting up webview with {uri}");
+						webview.Source = uri;
+						await Task.Yield();
+						return true;
+					}),
+					work:
+					new UI.WebViewWorker(async (webview) =>
+					{
+						logger.WriteLine("getting webview content");
+						await Task.Delay(200);
+
+						title = await webview
+							.ExecuteScriptAsync(javascript);
+
+						await Task.Delay(100);
+
+						logger.WriteLine($"title=[{content}]");
+
+						//// unescape all escape chars in string and remove outer quotes
+						//content = Regex.Unescape(content);
+						//content = content.Substring(1, content.Length - 2);
+
+						if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
 						{
-							if (response.IsSuccessStatusCode)
+							content = Win.Clipboard.GetText(Win.TextDataFormat.Html);
+							var index = content.IndexOf(
+								"<html", StringComparison.InvariantCultureIgnoreCase);
+
+							if (index > 0)
 							{
-								return await response.Content.ReadAsStringAsync();
+								content = content.Substring(index);
 							}
+						}
+						else
+						{
+							content = null;
+						}
+
+						//logger.WriteLine($"content=[{content}]");
+
+						await Task.Yield();
+						return true;
+					})))
+				{
+					form.ShowDialog();
+				}
+			});
+
+			if (title != null && title.Length > 1 &&
+				title[0] == '"' && title[title.Length - 1] == '"')
+			{
+				title = title.Substring(1, title.Length - 2);
+			}
+
+			return new WebPageInfo
+			{
+				Content = content,
+				Title = title
+			};
+		}
+
+
+		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
+		{
+			var info = new WebPageInfo();
+
+			try
+			{
+				using (var source = new CancellationTokenSource(TimeSpan.FromSeconds(10)))
+				{
+					var client = HttpClientFactory.Create();
+					using (var response = await client.GetAsync(uri, source.Token))
+					{
+						if (response.IsSuccessStatusCode)
+						{
+							info.Content = await response.Content.ReadAsStringAsync();
 						}
 					}
 				}
-				catch (TaskCanceledException exc)
-				{
-					logger.WriteLine("timeout fetching web page", exc);
-				}
-				catch (Exception exc)
-				{
-					// for some reason, anything more than this will crash OneMore
-					// seems that the exception is not fully instantiated at this point
-					// so rethrow and let caller display aggregated message
-					logger.WriteLine(exc.Message);
-					throw;
-				}
-
-				title = null;
-				return null;
 			}
+			catch (TaskCanceledException exc)
+			{
+				logger.WriteLine("timeout fetching web page", exc);
+			}
+			catch (Exception exc)
+			{
+				// for some reason, anything more than this will crash OneMore
+				// seems that the exception is not fully instantiated at this point
+				// so rethrow and let caller display aggregated message
+				logger.WriteLine(exc.Message);
+				throw;
+			}
+
+			return info;
 		}
 
 
