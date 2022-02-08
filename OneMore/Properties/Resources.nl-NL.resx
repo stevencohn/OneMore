@@ -3881,4 +3881,8 @@ Polaroid</value>
     <value>Bijschriftbijlagen</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+    <value>Inclusief tekstvoorbeeld van elke pagina</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

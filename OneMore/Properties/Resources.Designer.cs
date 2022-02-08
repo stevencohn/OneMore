@@ -3144,6 +3144,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include text preview of each page.
+        /// </summary>
+        internal static string InsertTocDialog_previewBox_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_previewBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right-align top of page link.
         /// </summary>
         internal static string InsertTocDialog_rightAlignBox_Text {

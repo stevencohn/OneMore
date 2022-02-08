@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
 		private OneNote one;
+		private int citeIndex;
 
 
 		public InsertTocCommand()
@@ -50,6 +51,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			OneNote.Scope scope;
+			bool withPreviews;
 			bool withPages;
 
 			using (var dialog = new InsertTocDialog())
@@ -62,6 +64,7 @@ namespace River.OneMoreAddIn.Commands
 				scope = dialog.Scope;
 				jumplinks = dialog.TopLinks;
 				alignlinks = dialog.RightAlignTopLinks;
+				withPreviews = dialog.PreviewPages;
 				withPages = dialog.SectionPages;
 			}
 
@@ -76,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 							break;
 
 						case OneNote.Scope.Pages:
-							await InsertPagesTable();
+							await InsertPagesTable(withPreviews);
 							break;
 
 						case OneNote.Scope.Sections:
@@ -303,7 +306,7 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		#region InsertPagesTables
-		private async Task InsertPagesTable()
+		private async Task InsertPagesTable(bool withPreviews)
 		{
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
@@ -312,31 +315,17 @@ namespace River.OneMoreAddIn.Commands
 
 			var page = one.GetPage(pageId);
 			var ns = page.Namespace;
+			PageNamespace.Set(ns);
 
 			page.Title = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
+			citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			var container = new XElement(ns + "OEChildren");
 
 			var elements = section.Elements(ns + "Page");
-			foreach (var element in elements)
-			{
-				var text = new StringBuilder();
-				var level = int.Parse(element.Attribute("pageLevel").Value);
-				while (level > 1)
-				{
-					text.Append("\t");
-					level--;
-				}
+			var index = 0;
 
-				var link = one.GetHyperlink(element.Attribute("ID").Value, string.Empty);
-
-				var name = element.Attribute("name").Value;
-				text.Append($"<a href=\"{link}\">{name}</a>");
-
-				container.Add(new XElement(ns + "OE",
-					new XElement(ns + "T", new XCData(text.ToString())
-					)));
-			}
+			BuildSectionToc(container, elements.ToArray(), ref index, 1, withPreviews);
 
 			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
@@ -355,6 +344,61 @@ namespace River.OneMoreAddIn.Commands
 			one.UpdateHierarchy(section);
 
 			await one.NavigateTo(pageId);
+		}
+
+
+		private void BuildSectionToc(
+			XElement container, XElement[] elements, ref int index, int level, bool withPreviews)
+		{
+			while (index < elements.Length)
+			{
+				var element = elements[index];
+				var pageID = element.Attribute("ID").Value;
+				var ns = element.GetNamespaceOfPrefix(OneNote.Prefix);
+
+				var pageLevel = int.Parse(element.Attribute("pageLevel").Value);
+				if (pageLevel > level)
+				{
+					var children = new XElement(ns + "OEChildren");
+					BuildSectionToc(children, elements, ref index, pageLevel, withPreviews);
+					container.Elements().Last().Add(children);
+				}
+				else if (pageLevel == level)
+				{
+					var link = one.GetHyperlink(pageID, string.Empty);
+					var name = element.Attribute("name").Value;
+
+					container.Add(new Paragraph($"<a href=\"{link}\">{name}</a>"));
+
+					if (withPreviews)
+					{
+						AppendPreview(container, pageID);
+					}
+				}
+				else
+				{
+					break;
+				}
+
+				index++;
+			}
+		}
+
+
+		private void AppendPreview(XElement container, string pageID)
+		{
+			var page = one.GetPage(pageID, OneNote.PageDetail.Basic);
+			var ns = page.Namespace;
+
+			var ce = page.Root.Elements(ns + "Outline")
+				.FirstOrDefault(e => !e.Elements(ns + "Meta")
+					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
+
+			var preview = ce == null ? string.Empty : ce.TextValue();
+			if (preview.Length > 100) { preview = preview.Substring(0, 100) + "..."; }
+
+			container.Add(new Paragraph(preview).SetQuickStyle(citeIndex));
+			container.Add(new Paragraph(string.Empty));
 		}
 		#endregion InsertPagesTables
 

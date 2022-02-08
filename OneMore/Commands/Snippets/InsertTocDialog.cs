@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 					"topBox",
 					"rightAlignBox",
 					"sectionRadio",
+					"previewBox",
 					"notebookRadio",
 					"pagesBox",
 					"okButton=word_OK",
@@ -48,12 +49,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool TopLinks => topBox.Enabled && topBox.Checked;
+		public bool PreviewPages => previewBox.Checked;
+
 
 		public bool RightAlignTopLinks => rightAlignBox.Enabled && rightAlignBox.Checked;
 
 
 		public bool SectionPages => pagesBox.Enabled && pagesBox.Checked;
+
+
+		public bool TopLinks => topBox.Enabled && topBox.Checked;
 
 
 		private void ToggleRightAlignOption(object sender, EventArgs e)
@@ -68,17 +73,20 @@ namespace River.OneMoreAddIn.Commands
 			{
 				topBox.Enabled = true;
 				rightAlignBox.Enabled = true;
+				previewBox.Enabled = false;
 				pagesBox.Enabled = false;
 			}
 			else if (sender == sectionRadio)
 			{
 				topBox.Enabled = pagesBox.Enabled = false;
 				rightAlignBox.Enabled = false;
+				previewBox.Enabled = true;
 			}
 			else
 			{
 				topBox.Enabled = false;
 				rightAlignBox.Enabled = false;
+				previewBox.Enabled = false;
 				pagesBox.Enabled = true;
 			}
 		}

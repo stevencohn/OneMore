@@ -3938,4 +3938,8 @@ Polaroid</value>
     <value>Caption Attachments</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+    <value>Include text preview of each page</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

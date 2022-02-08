@@ -3881,4 +3881,8 @@ Polaroid.</value>
     <value>Anexos de legenda</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+    <value>Inclua pré-visualização de texto de cada página</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
