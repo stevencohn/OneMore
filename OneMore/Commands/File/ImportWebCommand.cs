@@ -288,6 +288,10 @@ namespace River.OneMoreAddIn.Commands
 						info.Title = doc.DocumentNode.SelectSingleNode("//title")?.InnerText;
 					}
 
+					var title = string.IsNullOrEmpty(info.Title)
+						? $"<a href=\"{address}\">{address}</a>"
+						: $"<a href=\"{address}\">{info.Title}</a>";
+
 					if (token.IsCancellationRequested)
 					{
 						progress.DialogResult = DialogResult.Cancel;
@@ -297,7 +301,7 @@ namespace River.OneMoreAddIn.Commands
 
 					page = await CreatePage(one,
 						target == ImportWebTarget.ChildPage ? one.GetPage() : null,
-						info.Title ?? address
+						title
 						);
 				}
 
