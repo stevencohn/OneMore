@@ -38,13 +38,14 @@
 			this.pagesBox = new System.Windows.Forms.CheckBox();
 			this.rightAlignBox = new System.Windows.Forms.CheckBox();
 			this.previewBox = new System.Windows.Forms.CheckBox();
+			this.preview2Box = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(245, 302);
+			this.okButton.Location = new System.Drawing.Point(245, 330);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
@@ -55,7 +56,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(371, 302);
+			this.cancelButton.Location = new System.Drawing.Point(371, 330);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -118,6 +119,7 @@
 			this.pagesBox.TabIndex = 6;
 			this.pagesBox.Text = "Include pages in each section";
 			this.pagesBox.UseVisualStyleBackColor = true;
+			this.pagesBox.CheckedChanged += new System.EventHandler(this.PagesBoxCheckedChanged);
 			// 
 			// rightAlignBox
 			// 
@@ -141,13 +143,25 @@
 			this.previewBox.Text = "Include text preview of each page";
 			this.previewBox.UseVisualStyleBackColor = true;
 			// 
+			// preview2Box
+			// 
+			this.preview2Box.AutoSize = true;
+			this.preview2Box.Enabled = false;
+			this.preview2Box.Location = new System.Drawing.Point(46, 272);
+			this.preview2Box.Name = "preview2Box";
+			this.preview2Box.Size = new System.Drawing.Size(271, 24);
+			this.preview2Box.TabIndex = 9;
+			this.preview2Box.Text = "Include text preview of each page";
+			this.preview2Box.UseVisualStyleBackColor = true;
+			// 
 			// InsertTocDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(503, 352);
+			this.ClientSize = new System.Drawing.Size(503, 380);
+			this.Controls.Add(this.preview2Box);
 			this.Controls.Add(this.previewBox);
 			this.Controls.Add(this.rightAlignBox);
 			this.Controls.Add(this.pagesBox);
@@ -181,5 +195,6 @@
 		private System.Windows.Forms.CheckBox pagesBox;
 		private System.Windows.Forms.CheckBox rightAlignBox;
 		private System.Windows.Forms.CheckBox previewBox;
+		private System.Windows.Forms.CheckBox preview2Box;
 	}
 }

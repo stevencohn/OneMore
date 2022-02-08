@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 					"previewBox",
 					"notebookRadio",
 					"pagesBox",
+					"preview2Box=InsertTocDialog_previewBox.Text",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -49,7 +50,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool PreviewPages => previewBox.Checked;
+		public bool PreviewPages =>
+			(sectionRadio.Checked && previewBox.Checked) ||
+			(notebookRadio.Checked && preview2Box.Checked);
 
 
 		public bool RightAlignTopLinks => rightAlignBox.Enabled && rightAlignBox.Checked;
@@ -67,6 +70,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void PagesBoxCheckedChanged(object sender, EventArgs e)
+		{
+			preview2Box.Enabled = pagesBox.Checked;
+		}
+
+
 		private void ChangedRadio(object sender, EventArgs e)
 		{
 			if (sender == pageRadio)
@@ -75,12 +84,14 @@ namespace River.OneMoreAddIn.Commands
 				rightAlignBox.Enabled = true;
 				previewBox.Enabled = false;
 				pagesBox.Enabled = false;
+				preview2Box.Enabled = false;
 			}
 			else if (sender == sectionRadio)
 			{
 				topBox.Enabled = pagesBox.Enabled = false;
 				rightAlignBox.Enabled = false;
 				previewBox.Enabled = true;
+				preview2Box.Enabled = false;
 			}
 			else
 			{
@@ -88,6 +99,7 @@ namespace River.OneMoreAddIn.Commands
 				rightAlignBox.Enabled = false;
 				previewBox.Enabled = false;
 				pagesBox.Enabled = true;
+				preview2Box.Enabled = pagesBox.Checked;
 			}
 		}
 	}

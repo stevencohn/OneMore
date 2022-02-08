@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -21,11 +22,13 @@ namespace River.OneMoreAddIn.Commands
 		// TODO: deprecated
 		private const string TocOptionsMeta = "omTocOptions";
 
+		private const string LongDash = "\u2015";
+
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
 		private const string Indent8 = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
 		private OneNote one;
-		private int citeIndex;
+		private Style cite;
 
 
 		public InsertTocCommand()
@@ -83,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 							break;
 
 						case OneNote.Scope.Sections:
-							await InsertSectionsTable(withPages);
+							await InsertSectionsTable(withPages, withPreviews);
 							break;
 					}
 				}
@@ -318,7 +321,7 @@ namespace River.OneMoreAddIn.Commands
 			PageNamespace.Set(ns);
 
 			page.Title = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
-			citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
+			cite = page.GetQuickStyle(StandardStyles.Citation);
 
 			var container = new XElement(ns + "OEChildren");
 
@@ -350,6 +353,13 @@ namespace River.OneMoreAddIn.Commands
 		private void BuildSectionToc(
 			XElement container, XElement[] elements, ref int index, int level, bool withPreviews)
 		{
+			string css = null;
+			if (withPreviews)
+			{
+				cite.IsItalic = true;
+				css = cite.ToCss();
+			}
+
 			while (index < elements.Length)
 			{
 				var element = elements[index];
@@ -368,12 +378,11 @@ namespace River.OneMoreAddIn.Commands
 					var link = one.GetHyperlink(pageID, string.Empty);
 					var name = element.Attribute("name").Value;
 
-					container.Add(new Paragraph($"<a href=\"{link}\">{name}</a>"));
+					var text = withPreviews
+						? $"<a href=\"{link}\">{name}</a> {GetPagePreview(pageID, css)}"
+						: $"<a href=\"{link}\">{name}</a>";
 
-					if (withPreviews)
-					{
-						AppendPreview(container, pageID);
-					}
+					container.Add(new Paragraph(text));
 				}
 				else
 				{
@@ -385,20 +394,29 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void AppendPreview(XElement container, string pageID)
+		private string GetPagePreview(string pageID, string css)
 		{
 			var page = one.GetPage(pageID, OneNote.PageDetail.Basic);
 			var ns = page.Namespace;
 
-			var ce = page.Root.Elements(ns + "Outline")
+			var outline = page.Root.Elements(ns + "Outline")
 				.FirstOrDefault(e => !e.Elements(ns + "Meta")
 					.Any(m => m.Attribute("name").Value == MetaNames.TaggingBank));
 
-			var preview = ce == null ? string.Empty : ce.TextValue();
-			if (preview.Length > 100) { preview = preview.Substring(0, 100) + "..."; }
+			if (outline == null)
+			{
+				return string.Empty;
+			}
 
-			container.Add(new Paragraph(preview).SetQuickStyle(citeIndex));
-			container.Add(new Paragraph(string.Empty));
+			logger.WriteLine($"page {page.Title}");
+
+			// sanitize the content, extracting only raw text and aggregating lines
+			var preview = outline.Descendants(ns + "T").Nodes().OfType<XCData>()
+				.Select(c => c.GetWrapper().Value).Aggregate((a, b) => $"{a} {b}");
+
+			if (preview.Length > 80) { preview = preview.Substring(0, 80) + "..."; }
+
+			return $"<span style=\"{css}\">{LongDash} {preview}</span>";
 		}
 		#endregion InsertPagesTables
 
@@ -406,7 +424,7 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		#region InsertSectionsTable
-		private async Task InsertSectionsTable(bool includePages)
+		private async Task InsertSectionsTable(bool includePages, bool withPreviews)
 		{
 			var section = one.GetSection();
 			var sectionId = section.Attribute("ID").Value;
@@ -415,18 +433,21 @@ namespace River.OneMoreAddIn.Commands
 
 			var page = one.GetPage(pageId);
 			var ns = page.Namespace;
+			PageNamespace.Set(ns);
 
 			var scope = includePages ? OneNote.Scope.Pages : OneNote.Scope.Sections;
 			var notebook = await one.GetNotebook(scope);
 
 			page.Title = string.Format(Resx.InsertTocCommand_TOCNotebook, notebook.Attribute("name").Value);
+			cite = page.GetQuickStyle(StandardStyles.Citation);
 
 			var container = new XElement(ns + "OEChildren");
 
-			BuildSectionTable(one, ns, container, notebook.Elements(), includePages, 1);
+			BuildSectionTable(one, ns, container, notebook.Elements(), includePages, withPreviews, 1);
 
 			var title = page.Root.Elements(ns + "Title").FirstOrDefault();
 			title.AddAfterSelf(new XElement(ns + "Outline", container));
+
 			await one.Update(page);
 
 			// move TOC page to top of section...
@@ -447,7 +468,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void BuildSectionTable(
 			OneNote one, XNamespace ns, XElement container,
-			IEnumerable<XElement> elements, bool includePages, int level)
+			IEnumerable<XElement> elements, bool includePages, bool withPreviews, int level)
 		{
 			foreach (var element in elements)
 			{
@@ -467,7 +488,7 @@ namespace River.OneMoreAddIn.Commands
 						));
 
 					BuildSectionTable(
-						one, ns, indent, element.Elements(), includePages, level + 1);
+						one, ns, indent, element.Elements(), includePages, withPreviews, level + 1);
 
 					container.Add(
 						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))),
@@ -485,26 +506,9 @@ namespace River.OneMoreAddIn.Commands
 					if (includePages && pages.Any())
 					{
 						var indent = new XElement(ns + "OEChildren");
+						var index = 0;
 
-						foreach (var page in pages)
-						{
-							var text = new StringBuilder();
-							var plevel = int.Parse(page.Attribute("pageLevel").Value);
-							while (plevel > 0)
-							{
-								text.Append("\t");
-								plevel--;
-							}
-
-							var plink = one.GetHyperlink(page.Attribute("ID").Value, string.Empty);
-
-							var pname = page.Attribute("name").Value;
-							text.Append($"<a href=\"{plink}\">{pname}</a>");
-
-							indent.Add(new XElement(ns + "OE",
-								new XElement(ns + "T", new XCData(text.ToString())
-								)));
-						}
+						BuildSectionToc(indent, pages.ToArray(), ref index, 1, withPreviews);
 
 						container.Add(new XElement(ns + "OE",
 							new XElement(ns + "T", new XCData($"<a href=\"{link}\">{name}</a>")),
@@ -523,18 +527,3 @@ namespace River.OneMoreAddIn.Commands
 		#endregion InsertSectionsTable
 	}
 }
-/*
-<one:Notebook xmlns:one="http://schemas.microsoft.com/office/onenote/2013/onenote" name="Waters" nickname="Waters" ID="{CC6FC6F1-BD14-4FD6-A934-6A31BF8836E1}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Waters/" lastModifiedTime="2020-10-10T16:26:52.000Z" color="#8AB6E2" isCurrentlyViewed="true">
-  <one:Section name="Notes" ID="{19D2987D-72BD-0D29-17FD-7D30C15F1FE2}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Waters/Notes.one" lastModifiedTime="2020-09-25T13:06:16.000Z" color="#FFD869">
-    <one:Page ID="{19D2987D-72BD-0D29-17FD-7D30C15F1FE2}{1}{E188573882613585322981946966423193255375821}" name="Peer Impact Awards" dateTime="2008-04-04T15:54:03.000Z" lastModifiedTime="2016-06-07T15:13:41.000Z" pageLevel="1" />
-  </one:Section>
-  <one:SectionGroup name="OneNote_RecycleBin" ID="{4B379CD2-6D99-4149-BA1B-68B83028AF8C}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Waters/OneNote_RecycleBin/" lastModifiedTime="2020-04-18T14:56:02.000Z" isRecycleBin="true">
-    <one:Section name="Deleted Pages" ID="{09209055-01BA-09A1-3B28-20B02B70E41B}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Waters/OneNote_RecycleBin/OneNote_DeletedPages.one" lastModifiedTime="2020-04-18T14:56:02.000Z" color="#E1E1E1" isInRecycleBin="true" isDeletedPages="true" />
-  </one:SectionGroup>
-  <one:SectionGroup name="g1" ID="{FB629CB1-E0D1-409A-92E8-752E72348537}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Waters/g1/" lastModifiedTime="2020-10-10T16:26:52.000Z">
-    <one:Section name="foo" ID="{59D86390-9B9F-4673-A607-F77FA24FA5F0}{1}{B0}" path="https://d.docs.live.net/6925d0374517d4b4/Documents/Waters/g1/foo.one" lastModifiedTime="2020-10-10T16:26:52.000Z" color="#F5F96F">
-      <one:Page ID="{59D86390-9B9F-4673-A607-F77FA24FA5F0}{1}{E19531428620227426150320144405193344912910641}" name="Titled" dateTime="2020-10-10T16:26:41.000Z" lastModifiedTime="2020-10-10T16:26:48.000Z" pageLevel="1" />
-    </one:Section>
-  </one:SectionGroup>
-</one:Notebook>
-*/
