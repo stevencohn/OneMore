@@ -299,32 +299,35 @@ namespace River.OneMoreAddIn.Commands
 
 			var ns = page.Namespace;
 
-			foreach (var root in headings.Select(h => h.Root))
+			foreach (var heading in headings)
 			{
-				if (alignlinks)
+				if (!heading.HasTopLink)
 				{
-					var table = new Table(ns);
-					table.AddColumn(400, true);
-					table.AddColumn(100, true);
-					var row = table.AddRow();
-					row.Cells.ElementAt(0).SetContent(root);
+					if (alignlinks)
+					{
+						var table = new Table(ns);
+						table.AddColumn(400, true);
+						table.AddColumn(100, true);
+						var row = table.AddRow();
+						row.Cells.ElementAt(0).SetContent(heading.Root);
 
-					row.Cells.ElementAt(1).SetContent(
-						new Paragraph(titleLinkText).SetAlignment("right"));
+						row.Cells.ElementAt(1).SetContent(
+							new Paragraph(titleLinkText).SetAlignment("right"));
 
-					// heading.Root is the OE
-					root.ReplaceNodes(table.Root);
-				}
-				else
-				{
-					var run = root.Elements(ns + "T").Last();
+						// heading.Root is the OE
+						heading.Root.ReplaceNodes(table.Root);
+					}
+					else
+					{
+						var run = heading.Root.Elements(ns + "T").Last();
 
-					run.AddAfterSelf(
-						new XElement(ns + "T", new XCData(" ")),
-						new XElement(ns + "T", new XCData(
-							$"<span style=\"font-size:9pt;\">[{titleLinkText}]</span>"
-							))
-						);
+						run.AddAfterSelf(
+							new XElement(ns + "T", new XCData(" ")),
+							new XElement(ns + "T", new XCData(
+								$"<span style=\"font-size:9pt;\">[{titleLinkText}]</span>"
+								))
+							);
+					}
 				}
 			}
 		}
