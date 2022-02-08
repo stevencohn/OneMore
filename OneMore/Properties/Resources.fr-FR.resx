@@ -3877,4 +3877,8 @@ Polaroïd</value>
     <value>Attaches de légende</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+    <value>Inclure l'aperçu du texte de chaque page</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -3868,4 +3868,8 @@ Polaroid</value>
     <value>Beschriftungsanhänge</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+    <value>Fügen Sie die Textvorschau der jeder Seite ein</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

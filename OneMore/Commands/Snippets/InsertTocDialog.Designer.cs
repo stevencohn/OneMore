@@ -37,13 +37,15 @@
 			this.notebookRadio = new System.Windows.Forms.RadioButton();
 			this.pagesBox = new System.Windows.Forms.CheckBox();
 			this.rightAlignBox = new System.Windows.Forms.CheckBox();
+			this.previewBox = new System.Windows.Forms.CheckBox();
+			this.preview2Box = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(245, 279);
+			this.okButton.Location = new System.Drawing.Point(245, 330);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.TabIndex = 0;
@@ -54,7 +56,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(371, 279);
+			this.cancelButton.Location = new System.Drawing.Point(371, 330);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.TabIndex = 1;
@@ -99,7 +101,7 @@
 			// notebookRadio
 			// 
 			this.notebookRadio.AutoSize = true;
-			this.notebookRadio.Location = new System.Drawing.Point(18, 183);
+			this.notebookRadio.Location = new System.Drawing.Point(18, 212);
 			this.notebookRadio.Name = "notebookRadio";
 			this.notebookRadio.Size = new System.Drawing.Size(371, 24);
 			this.notebookRadio.TabIndex = 5;
@@ -111,12 +113,13 @@
 			// 
 			this.pagesBox.AutoSize = true;
 			this.pagesBox.Enabled = false;
-			this.pagesBox.Location = new System.Drawing.Point(46, 213);
+			this.pagesBox.Location = new System.Drawing.Point(46, 242);
 			this.pagesBox.Name = "pagesBox";
 			this.pagesBox.Size = new System.Drawing.Size(245, 24);
 			this.pagesBox.TabIndex = 6;
 			this.pagesBox.Text = "Include pages in each section";
 			this.pagesBox.UseVisualStyleBackColor = true;
+			this.pagesBox.CheckedChanged += new System.EventHandler(this.PagesBoxCheckedChanged);
 			// 
 			// rightAlignBox
 			// 
@@ -129,13 +132,37 @@
 			this.rightAlignBox.Text = "Right-align top of page link";
 			this.rightAlignBox.UseVisualStyleBackColor = true;
 			// 
+			// previewBox
+			// 
+			this.previewBox.AutoSize = true;
+			this.previewBox.Enabled = false;
+			this.previewBox.Location = new System.Drawing.Point(46, 163);
+			this.previewBox.Name = "previewBox";
+			this.previewBox.Size = new System.Drawing.Size(271, 24);
+			this.previewBox.TabIndex = 8;
+			this.previewBox.Text = "Include text preview of each page";
+			this.previewBox.UseVisualStyleBackColor = true;
+			// 
+			// preview2Box
+			// 
+			this.preview2Box.AutoSize = true;
+			this.preview2Box.Enabled = false;
+			this.preview2Box.Location = new System.Drawing.Point(46, 272);
+			this.preview2Box.Name = "preview2Box";
+			this.preview2Box.Size = new System.Drawing.Size(271, 24);
+			this.preview2Box.TabIndex = 9;
+			this.preview2Box.Text = "Include text preview of each page";
+			this.preview2Box.UseVisualStyleBackColor = true;
+			// 
 			// InsertTocDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(503, 329);
+			this.ClientSize = new System.Drawing.Size(503, 380);
+			this.Controls.Add(this.preview2Box);
+			this.Controls.Add(this.previewBox);
 			this.Controls.Add(this.rightAlignBox);
 			this.Controls.Add(this.pagesBox);
 			this.Controls.Add(this.notebookRadio);
@@ -167,5 +194,7 @@
 		private System.Windows.Forms.RadioButton notebookRadio;
 		private System.Windows.Forms.CheckBox pagesBox;
 		private System.Windows.Forms.CheckBox rightAlignBox;
+		private System.Windows.Forms.CheckBox previewBox;
+		private System.Windows.Forms.CheckBox preview2Box;
 	}
 }

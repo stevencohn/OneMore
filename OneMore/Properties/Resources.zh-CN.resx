@@ -3873,4 +3873,8 @@ OneNote 文件 (*.one)</value>
     <value>标题附件</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+    <value>包括每个页面的文本预览</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

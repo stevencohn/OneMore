@@ -3881,4 +3881,8 @@ polaroid</value>
     <value>Adjuntos de título</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+    <value>Incluir la vista previa de texto de cada página.</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

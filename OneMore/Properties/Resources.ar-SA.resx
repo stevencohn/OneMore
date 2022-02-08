@@ -3881,4 +3881,8 @@ ISO-code then comma then language name</comment>
     <value>مرفقات التسمية التوضيحية</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+    <value>قم بتضمين معاينة النص لكل صفحة</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
