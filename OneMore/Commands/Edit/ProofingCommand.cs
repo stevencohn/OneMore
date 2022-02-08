@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				var partial = false;
-				if (page.GetTextCursor() == null)
+				if (page.GetTextCursor() == null && page.SelectionScope == SelectionScope.Region)
 				{
 					// update only selected text...
 
