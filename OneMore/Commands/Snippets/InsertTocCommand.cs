@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -192,10 +191,6 @@ namespace River.OneMoreAddIn.Commands
 
 			// build new TOC...
 
-			var titleLink = one.GetHyperlink(page.PageId, title.Attribute("objectID").Value);
-			var titleLinkText = $"<a href=\"{titleLink}\"><span " +
-				$"style='font-style:italic'>{Resx.InsertTocCommand_Top}</span></a>";
-
 			var dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
 			var textColor = dark ? "#FFFFFF" : "#000000";
 
@@ -205,86 +200,77 @@ namespace River.OneMoreAddIn.Commands
 
 			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.InsertTocCommand_Refresh}</span></a>";
 
-			var toc = new List<XElement>
-			{
-				// "Table of Contents" line
-				new Paragraph(
-					$"<span style='font-weight:bold'>{Resx.InsertTocCommand_TOC}</span> " +
-					$"<span style='{RefreshStyle}'>[{refresh}]</span>"
-					)
-					.SetStyle($"font-size:16.0pt;color:{textColor}")
-			};
+			// "Table of Contents" line
+			var toc = new Paragraph(
+				$"<span style='font-weight:bold'>{Resx.InsertTocCommand_TOC}</span> " +
+				$"<span style='{RefreshStyle}'>[{refresh}]</span>"
+				)
+				.SetStyle($"font-size:16.0pt;color:{textColor}");
 
 			// use the minimum intent level
 			var minlevel = headings.Min(e => e.Level);
 
-			foreach (var heading in headings)
-			{
-				var text = new StringBuilder();
-				var count = minlevel;
-				while (count < heading.Level)
-				{
-					text.Append(Indent8);
-					count++;
-				}
+			var container = new XElement(ns + "OEChildren");
+			var index = 0;
 
-				if (!string.IsNullOrEmpty(heading.Link))
+			BuildHeadings(container, headings, ref index, minlevel, dark);
+
+			var table = new Table(ns, 3, 1) { BordersVisible = false };
+			table[0][0].SetContent(toc);
+			table[1][0].SetContent(container);
+			table[2][0].SetContent(string.Empty);
+
+			// insert the TOC at the top of the page
+			top.AddFirst(new XElement(ns + "OE",
+				new Meta(TocMeta, string.Empty),
+				table.Root)
+				);
+
+			// add top-of-page link to each header...
+
+			if (jumplinks)
+			{
+				BuildJumpLinks(page, title, headings, alignlinks);
+			}
+
+			await one.Update(page);
+		}
+
+
+		private void BuildHeadings(
+			XElement container, List<Heading> headings, ref int index, int level, bool dark)
+		{
+			while (index < headings.Count)
+			{
+				var heading = headings[index];
+
+				if (heading.Level > level)
 				{
-					var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
-					var clean = RemoveHyperlinks(heading.Text);
-					text.Append($"<a href=\"{heading.Link}\"{linkColor}>{clean}</a>");
+					var children = new XElement(PageNamespace.Value + "OEChildren");
+					BuildHeadings(children, headings, ref index, heading.Level, dark);
+					container.Elements().Last().Add(children);
+					index--;
+				}
+				else if (heading.Level == level)
+				{
+					var text = heading.Text;
+					if (!string.IsNullOrEmpty(heading.Link))
+					{
+						var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
+						var clean = RemoveHyperlinks(heading.Text);
+						text = $"<a href=\"{heading.Link}\"{linkColor}>{clean}</a>";
+					}
+
+					var textColor = dark ? "#FFFFFF" : "#000000";
+					container.Add(new Paragraph(text).SetStyle($"color:{textColor}"));
 				}
 				else
 				{
-					text.Append(heading.Text);
+					break;
 				}
 
-				//text.Append($"(count:{count}=level:{heading.Level})");
-
-				toc.Add(new Paragraph(text.ToString()).SetStyle($"color:{textColor}"));
-
-				if (jumplinks && !heading.HasTopLink)
-				{
-					if (alignlinks)
-					{
-						var table = new Table(ns);
-						table.AddColumn(400, true);
-						table.AddColumn(100, true);
-						var row = table.AddRow();
-						row.Cells.ElementAt(0).SetContent(heading.Root);
-
-						row.Cells.ElementAt(1).SetContent(
-							new Paragraph(titleLinkText).SetAlignment("right"));
-
-						// heading.Root is the OE
-						heading.Root.ReplaceNodes(table.Root);
-					}
-					else
-					{
-						var run = heading.Root.Elements(ns + "T").Last();
-
-						run.AddAfterSelf(
-							new XElement(ns + "T", new XCData(" ")),
-							new XElement(ns + "T", new XCData(
-								$"<span style=\"font-size:9pt;\">[{titleLinkText}]</span>"
-								))
-							);
-					}
-				}
+				index++;
 			}
-
-			// empty line after the TOC
-			toc.Add(new Paragraph(string.Empty));
-
-			var container = new Table(ns, 1, 1) { BordersVisible = false };
-			container[0][0].SetContent(new XElement(ns + "OEChildren", toc));
-
-			top.AddFirst(new XElement(ns + "OE",
-				new Meta(TocMeta, String.Empty),
-				container.Root)
-				);
-
-			await one.Update(page);
 		}
 
 
@@ -294,7 +280,6 @@ namespace River.OneMoreAddIn.Commands
 
 			// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
 			var wrapper = new XCData(text).GetWrapper();
-
 			var links = wrapper.Elements("a").ToList();
 			foreach (var link in links)
 			{
@@ -302,6 +287,46 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return wrapper.ToString(SaveOptions.DisableFormatting);
+		}
+
+
+		private void BuildJumpLinks(
+			Page page, XElement title, List<Heading> headings, bool alignlinks)
+		{
+			var titleLink = one.GetHyperlink(page.PageId, title.Attribute("objectID").Value);
+			var titleLinkText = $"<a href=\"{titleLink}\"><span " +
+				$"style='font-style:italic'>{Resx.InsertTocCommand_Top}</span></a>";
+
+			var ns = page.Namespace;
+
+			foreach (var root in headings.Select(h => h.Root))
+			{
+				if (alignlinks)
+				{
+					var table = new Table(ns);
+					table.AddColumn(400, true);
+					table.AddColumn(100, true);
+					var row = table.AddRow();
+					row.Cells.ElementAt(0).SetContent(root);
+
+					row.Cells.ElementAt(1).SetContent(
+						new Paragraph(titleLinkText).SetAlignment("right"));
+
+					// heading.Root is the OE
+					root.ReplaceNodes(table.Root);
+				}
+				else
+				{
+					var run = root.Elements(ns + "T").Last();
+
+					run.AddAfterSelf(
+						new XElement(ns + "T", new XCData(" ")),
+						new XElement(ns + "T", new XCData(
+							$"<span style=\"font-size:9pt;\">[{titleLinkText}]</span>"
+							))
+						);
+				}
+			}
 		}
 		#endregion InsertHeadingsTable
 
@@ -364,12 +389,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var element = elements[index];
 				var pageID = element.Attribute("ID").Value;
-				var ns = element.GetNamespaceOfPrefix(OneNote.Prefix);
 
 				var pageLevel = int.Parse(element.Attribute("pageLevel").Value);
 				if (pageLevel > level)
 				{
-					var children = new XElement(ns + "OEChildren");
+					var children = new XElement(PageNamespace.Value + "OEChildren");
 					BuildSectionToc(children, elements, ref index, pageLevel, withPreviews);
 					container.Elements().Last().Add(children);
 				}
