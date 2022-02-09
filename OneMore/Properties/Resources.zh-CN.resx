@@ -2018,12 +2018,8 @@ ISO-code then comma then language name</comment>
     <value>OneMore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
-    <value>当前笔记本</value>
-    <comment>hier button</comment>
-  </data>
   <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>当前部分</value>
+    <value>有页面的部分</value>
     <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
@@ -2037,10 +2033,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_hierTab.Text" xml:space="preserve">
     <value>层次结构</value>
     <comment>tab</comment>
-  </data>
-  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
-    <value>笔记本电脑</value>
-    <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
     <value>更新页面</value>
@@ -2065,10 +2057,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
     <value>页</value>
     <comment>tab</comment>
-  </data>
-  <data name="ShowXmlDialog_sectionsHierButton.Text" xml:space="preserve">
-    <value>栏目</value>
-    <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>全选</value>
@@ -2788,22 +2776,6 @@ ISO-code then comma then language name</comment>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>加载样式</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
-    <value>将样式主题应用到此页面</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
-    <value>当前主题：</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
-    <value>加载样式主题</value>
-    <comment>hyperlink</comment>
-  </data>
-  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
-    <value>或者，加载预定义的样式主题之一或自定义您自己的主题，以便所有内容都有足够的对比度可见。</value>
-    <comment>label</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
     <value>{0} 样式</value>
@@ -3811,5 +3783,41 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>移动</value>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel.Text" xml:space="preserve">
+    <value>（可选），加载其中一个预定义的样式主题或自定义自己的主题，因此所有内容都有足够的对比度可见。</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox.Text" xml:space="preserve">
+    <value>将样式主题应用于此页面</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel.Text" xml:space="preserve">
+    <value>当前主题：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink.Text" xml:space="preserve">
+    <value>加载样式主题</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_customLink.Text" xml:space="preserve">
+    <value>选择了定制颜色</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="ShowXmlDialog_notebooksButton.Text" xml:space="preserve">
+    <value>笔记本</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_sectionButton.Text" xml:space="preserve">
+    <value>有页面的笔记本</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_notebookButton.Text" xml:space="preserve">
+    <value>有部分的笔记本</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
+    <value>手动对象</value>
+    <comment>label</comment>
   </data>
 </root>

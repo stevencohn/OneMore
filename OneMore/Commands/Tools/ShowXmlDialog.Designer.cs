@@ -195,9 +195,9 @@
 			this.notebookButton.AutoSize = true;
 			this.notebookButton.Location = new System.Drawing.Point(113, 11);
 			this.notebookButton.Name = "notebookButton";
-			this.notebookButton.Size = new System.Drawing.Size(159, 30);
+			this.notebookButton.Size = new System.Drawing.Size(186, 30);
 			this.notebookButton.TabIndex = 3;
-			this.notebookButton.Text = "Notebook+Sections";
+			this.notebookButton.Text = "Notebook with Sections";
 			this.notebookButton.UseVisualStyleBackColor = true;
 			this.notebookButton.CheckedChanged += new System.EventHandler(this.GetNotebook);
 			// 
@@ -206,11 +206,11 @@
 			this.sectionButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.sectionButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.sectionButton.AutoSize = true;
-			this.sectionButton.Location = new System.Drawing.Point(278, 11);
+			this.sectionButton.Location = new System.Drawing.Point(305, 11);
 			this.sectionButton.Name = "sectionButton";
-			this.sectionButton.Size = new System.Drawing.Size(142, 30);
+			this.sectionButton.Size = new System.Drawing.Size(169, 30);
 			this.sectionButton.TabIndex = 4;
-			this.sectionButton.Text = "Notebook+Pages";
+			this.sectionButton.Text = "Notebook with Pages";
 			this.sectionButton.UseVisualStyleBackColor = true;
 			this.sectionButton.CheckedChanged += new System.EventHandler(this.GetSection);
 			// 
@@ -218,18 +218,18 @@
 			// 
 			this.currSectionButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.currSectionButton.AutoSize = true;
-			this.currSectionButton.Location = new System.Drawing.Point(426, 11);
+			this.currSectionButton.Location = new System.Drawing.Point(480, 11);
 			this.currSectionButton.Name = "currSectionButton";
-			this.currSectionButton.Size = new System.Drawing.Size(127, 30);
+			this.currSectionButton.Size = new System.Drawing.Size(154, 30);
 			this.currSectionButton.TabIndex = 5;
-			this.currSectionButton.Text = "Section+Pages";
+			this.currSectionButton.Text = "Section with Pages";
 			this.currSectionButton.UseVisualStyleBackColor = true;
 			this.currSectionButton.CheckedChanged += new System.EventHandler(this.ShowCurrentSection);
 			// 
 			// manualLabel
 			// 
 			this.manualLabel.AutoSize = true;
-			this.manualLabel.Location = new System.Drawing.Point(656, 16);
+			this.manualLabel.Location = new System.Drawing.Point(737, 16);
 			this.manualLabel.Margin = new System.Windows.Forms.Padding(100, 8, 3, 0);
 			this.manualLabel.Name = "manualLabel";
 			this.manualLabel.Size = new System.Drawing.Size(132, 20);
@@ -238,7 +238,7 @@
 			// 
 			// manualIdBox
 			// 
-			this.manualIdBox.Location = new System.Drawing.Point(794, 14);
+			this.manualIdBox.Location = new System.Drawing.Point(875, 14);
 			this.manualIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.manualIdBox.Name = "manualIdBox";
 			this.manualIdBox.Size = new System.Drawing.Size(300, 26);
@@ -253,7 +253,7 @@
             "GetNotebook",
             "GetSection",
             "GetPage"});
-			this.manualFxBox.Location = new System.Drawing.Point(1100, 13);
+			this.manualFxBox.Location = new System.Drawing.Point(1181, 13);
 			this.manualFxBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
 			this.manualFxBox.Name = "manualFxBox";
 			this.manualFxBox.Size = new System.Drawing.Size(150, 28);
@@ -264,7 +264,7 @@
 			// 
 			this.manulRunButton.Enabled = false;
 			this.manulRunButton.Image = ((System.Drawing.Image)(resources.GetObject("manulRunButton.Image")));
-			this.manulRunButton.Location = new System.Drawing.Point(1256, 11);
+			this.manulRunButton.Location = new System.Drawing.Point(1337, 11);
 			this.manulRunButton.Name = "manulRunButton";
 			this.manulRunButton.Size = new System.Drawing.Size(47, 32);
 			this.manulRunButton.TabIndex = 9;

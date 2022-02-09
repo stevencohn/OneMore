@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Settings
 			// clickLabel
 			// 
 			this.clickLabel.AutoSize = true;
-			this.clickLabel.Location = new System.Drawing.Point(231, 26);
+			this.clickLabel.Location = new System.Drawing.Point(267, 26);
 			this.clickLabel.Name = "clickLabel";
 			this.clickLabel.Size = new System.Drawing.Size(124, 20);
 			this.clickLabel.TabIndex = 4;
@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// lengthBox
 			// 
-			this.lengthBox.Location = new System.Drawing.Point(93, 75);
+			this.lengthBox.Location = new System.Drawing.Point(129, 75);
 			this.lengthBox.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Settings
 			this.colorBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.colorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.colorBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.colorBox.Location = new System.Drawing.Point(93, 26);
+			this.colorBox.Location = new System.Drawing.Point(129, 26);
 			this.colorBox.Name = "colorBox";
 			this.colorBox.Size = new System.Drawing.Size(132, 20);
 			this.colorBox.TabIndex = 1;

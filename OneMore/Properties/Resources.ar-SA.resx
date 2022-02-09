@@ -2022,12 +2022,8 @@ ISO-code then comma then language name</comment>
     <value>OneMore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
-    <value>دفتر الملاحظات الحالي</value>
-    <comment>hier button</comment>
-  </data>
   <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>القسم الحالي</value>
+    <value>القسم مع الصفحات</value>
     <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
@@ -2041,10 +2037,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_hierTab.Text" xml:space="preserve">
     <value>التسلسل الهرمي</value>
     <comment>tab</comment>
-  </data>
-  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
-    <value>دفاتر الملاحظات</value>
-    <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
     <value>تحديث الصفحة</value>
@@ -2069,10 +2061,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
     <value>الصفحة</value>
     <comment>tab</comment>
-  </data>
-  <data name="ShowXmlDialog_sectionsHierButton.Text" xml:space="preserve">
-    <value>الأقسام</value>
-    <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>اختر الكل</value>
@@ -2792,22 +2780,6 @@ ISO-code then comma then language name</comment>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>أنماط التحميل</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
-    <value>تطبيق موضوع النمط على هذه الصفحة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
-    <value>الموضوع الحالي:</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
-    <value>تحميل موضوع النمط</value>
-    <comment>hyperlink</comment>
-  </data>
-  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
-    <value>اختياريًا ، قم بتحميل أحد سمات النمط المحددة مسبقًا أو قم بتخصيص المظهر الخاص بك بحيث يحتوي كل المحتوى على تباين كافٍ ليكون مرئيًا.</value>
-    <comment>label</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
     <value>{0} الأنماط</value>
@@ -3819,5 +3791,41 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>نقل</value>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel.Text" xml:space="preserve">
+    <value>اختياريا، قم بتحميل أحد مواضيع النمط المحددة مسبقا أو تخصيص سمة خاصة بك بحيث يكون كل المحتوى يتناقض بما يكفي مرئيا.</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox.Text" xml:space="preserve">
+    <value>تطبيق سمة النمط في هذه الصفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel.Text" xml:space="preserve">
+    <value>الموضوع الحالي:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink.Text" xml:space="preserve">
+    <value>تحميل موضوع نمط</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_customLink.Text" xml:space="preserve">
+    <value>اختار لون مخصص</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="ShowXmlDialog_notebooksButton.Text" xml:space="preserve">
+    <value>دفاتر الملاحظات</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_sectionButton.Text" xml:space="preserve">
+    <value>دفتر الملاحظات مع الصفحات</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_notebookButton.Text" xml:space="preserve">
+    <value>دفتر الملاحظات مع الأقسام</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
+    <value>دليل ensessId</value>
+    <comment>label</comment>
   </data>
 </root>

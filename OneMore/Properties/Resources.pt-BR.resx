@@ -2027,12 +2027,8 @@ ISO-code then comma then language name</comment>
     <value>OneMore XML</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ShowXmlDialog_currNotebookButton.Text" xml:space="preserve">
-    <value>Notebook Atual</value>
-    <comment>hier button</comment>
-  </data>
   <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>Seção Atual</value>
+    <value>Seção com páginas</value>
     <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_hideBox.Text" xml:space="preserve">
@@ -2046,10 +2042,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_hierTab.Text" xml:space="preserve">
     <value>Hierarquia</value>
     <comment>tab</comment>
-  </data>
-  <data name="ShowXmlDialog_notebooksHierButton.Text" xml:space="preserve">
-    <value>Notebooks</value>
-    <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_okButton.Text" xml:space="preserve">
     <value>Página de atualização</value>
@@ -2074,10 +2066,6 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_pageTab.Text" xml:space="preserve">
     <value>Página</value>
     <comment>tab</comment>
-  </data>
-  <data name="ShowXmlDialog_sectionsHierButton.Text" xml:space="preserve">
-    <value>Seções</value>
-    <comment>hier button</comment>
   </data>
   <data name="ShowXmlDialog_selectButton.Text" xml:space="preserve">
     <value>Selecionar tudo</value>
@@ -2797,22 +2785,6 @@ ISO-code then comma then language name</comment>
   <data name="ribLoadStylesButton_Label" xml:space="preserve">
     <value>Estilos de carga</value>
     <comment>ribbon item</comment>
-  </data>
-  <data name="ChangePageColorDialog_applyBox" xml:space="preserve">
-    <value>Aplicar tema de estilo a esta página</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="ChangePageColorDialog_currentLabel" xml:space="preserve">
-    <value>Tema atual:</value>
-    <comment>label</comment>
-  </data>
-  <data name="ChangePageColorDialog_loadLink" xml:space="preserve">
-    <value>Carregar um tema de estilo</value>
-    <comment>hyperlink</comment>
-  </data>
-  <data name="ChangePageColorDialog_themeIntroLabel" xml:space="preserve">
-    <value>Opcionalmente, carregue um dos temas de estilo predefinidos ou personalize seu próprio tema para que todo o conteúdo tenha contraste suficiente para ser visível.</value>
-    <comment>label</comment>
   </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
     <value>{0} Estilos</value>
@@ -3819,5 +3791,41 @@ Polaroid.</value>
   </data>
   <data name="word_Move" xml:space="preserve">
     <value>Jogada</value>
+  </data>
+  <data name="ChangePageColorDialog_themeIntroLabel.Text" xml:space="preserve">
+    <value>Opcionalmente, carregue um dos temas de estilo predefinidos ou personalize seu próprio tema para que todo o conteúdo tenha contraste suficiente para ser visível.</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_applyBox.Text" xml:space="preserve">
+    <value>Aplicar o tema estilo para esta página</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ChangePageColorDialog_currentLabel.Text" xml:space="preserve">
+    <value>Tema atual:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ChangePageColorDialog_loadLink.Text" xml:space="preserve">
+    <value>Carregar um tema de estilo</value>
+    <comment>hyperlink</comment>
+  </data>
+  <data name="ChangePageColorDialog_customLink.Text" xml:space="preserve">
+    <value>Escolheu uma cor personalizada</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="ShowXmlDialog_notebooksButton.Text" xml:space="preserve">
+    <value>Notebooks.</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_sectionButton.Text" xml:space="preserve">
+    <value>Notebook com páginas</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_notebookButton.Text" xml:space="preserve">
+    <value>Notebook com seções</value>
+    <comment>hier button</comment>
+  </data>
+  <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
+    <value>ObjectID Manual</value>
+    <comment>label</comment>
   </data>
 </root>

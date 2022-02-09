@@ -140,8 +140,8 @@ namespace River.OneMoreAddIn.Commands
 			//lockButton.AutoSize = false;
 			//lockButton.Size = new Size(28, 28);
 
-			var (fx, fy) = UIHelper.GetScalingFactors();
-			logger.WriteLine($"fx {fx} fy {fy}");
+			//var (fx, fy) = UIHelper.GetScalingFactors();
+			//logger.WriteLine($"fx {fx} fy {fy}");
 
 			styleBox.SelectedIndex = 0;
 		}

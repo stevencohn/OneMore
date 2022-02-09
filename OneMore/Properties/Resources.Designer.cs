@@ -825,9 +825,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Apply style theme to this page.
         /// </summary>
-        internal static string ChangePageColorDialog_applyBox {
+        internal static string ChangePageColorDialog_applyBox_Text {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_applyBox", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_applyBox.Text", resourceCulture);
             }
         }
         
@@ -852,9 +852,18 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Current Theme:.
         /// </summary>
-        internal static string ChangePageColorDialog_currentLabel {
+        internal static string ChangePageColorDialog_currentLabel_Text {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_currentLabel", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_currentLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chose a custom color.
+        /// </summary>
+        internal static string ChangePageColorDialog_customLink_Text {
+            get {
+                return ResourceManager.GetString("ChangePageColorDialog_customLink.Text", resourceCulture);
             }
         }
         
@@ -870,9 +879,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Load a style theme.
         /// </summary>
-        internal static string ChangePageColorDialog_loadLink {
+        internal static string ChangePageColorDialog_loadLink_Text {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_loadLink", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_loadLink.Text", resourceCulture);
             }
         }
         
@@ -888,9 +897,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Optionally, load one of the predefined style themes or customize your own theme so all content has enough contrast to be visible..
         /// </summary>
-        internal static string ChangePageColorDialog_themeIntroLabel {
+        internal static string ChangePageColorDialog_themeIntroLabel_Text {
             get {
-                return ResourceManager.GetString("ChangePageColorDialog_themeIntroLabel", resourceCulture);
+                return ResourceManager.GetString("ChangePageColorDialog_themeIntroLabel.Text", resourceCulture);
             }
         }
         
@@ -7171,16 +7180,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Notebook.
-        /// </summary>
-        internal static string ShowXmlDialog_currNotebookButton_Text {
-            get {
-                return ResourceManager.GetString("ShowXmlDialog_currNotebookButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current Section.
+        ///   Looks up a localized string similar to Section with Pages.
         /// </summary>
         internal static string ShowXmlDialog_currSectionButton_Text {
             get {
@@ -7216,11 +7216,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manual ObjectID.
+        /// </summary>
+        internal static string ShowXmlDialog_manualLabel_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_manualLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notebook with Sections.
+        /// </summary>
+        internal static string ShowXmlDialog_notebookButton_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_notebookButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notebooks.
         /// </summary>
-        internal static string ShowXmlDialog_notebooksHierButton_Text {
+        internal static string ShowXmlDialog_notebooksButton_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_notebooksHierButton.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_notebooksButton.Text", resourceCulture);
             }
         }
         
@@ -7279,11 +7297,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sections.
+        ///   Looks up a localized string similar to Notebook with Pages.
         /// </summary>
-        internal static string ShowXmlDialog_sectionsHierButton_Text {
+        internal static string ShowXmlDialog_sectionButton_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_sectionsHierButton.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_sectionButton.Text", resourceCulture);
             }
         }
         

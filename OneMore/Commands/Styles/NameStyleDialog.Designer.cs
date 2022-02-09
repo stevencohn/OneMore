@@ -104,7 +104,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "AddStyleDialog";
+			this.Name = "NameStyleDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 0, 0);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "New Style";
