@@ -20,6 +20,9 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ### The new Calendar app (BETA)
 ![Calendar](../../wiki/images/Calendar.png)
 
+## Languages
+OneMore is translated to Arabic, Chinese Simplified, Dutch, English, French, German, Portuguese, and Spanish. Please let me know if you'd like it translated to another language.
+
 <a name="features"></a>
 ## Features (144)
 
