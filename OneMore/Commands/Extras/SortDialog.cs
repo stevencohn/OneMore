@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"scopeLabel",
 					"sortLabel",
-					"nameButton",
+					"nameButton=word_Name",
 					"createdButton",
 					"modifiedButton",
 					"directionLabel",

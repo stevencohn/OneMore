@@ -690,10 +690,6 @@
     <value>Datum geändert</value>
     <comment>radio</comment>
   </data>
-  <data name="SortDialog_nameButton.Text" xml:space="preserve">
-    <value>Name</value>
-    <comment>radio</comment>
-  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Pin Notizen nach oben und\n</value>
     <comment>checkbox</comment>
@@ -1160,10 +1156,6 @@ Notizbücher</value>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
-    <value>Löschen</value>
-    <comment>delete button</comment>
-  </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Löschen:</value>
     <comment>delete label</comment>
@@ -1179,10 +1171,6 @@ Notizbücher</value>
   <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
     <value>Symbol</value>
     <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>name col</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
     <value>Symbole aktualisieren</value>
@@ -1484,10 +1472,6 @@ Notizbücher</value>
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchDialog_copyButton.Text" xml:space="preserve">
-    <value>Kopieren</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchDialog_findLabel.Text" xml:space="preserve">
     <value>Finden:</value>
     <comment>label</comment>
@@ -1495,10 +1479,6 @@ Notizbücher</value>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Geben Sie ein oder mehrere Schlüsselwörter, \"zitierte Phrasen\", ein und verwenden Sie UND und ODER in Großbuchstaben</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_moveButton.Text" xml:space="preserve">
-    <value>Bewegung</value>
-    <comment>button</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>Suchen und Verschieben / Kopieren</value>
@@ -1751,10 +1731,6 @@ Notizbücher</value>
     <value>Standard (Schwarz)</value>
     <comment>menu item</comment>
   </data>
-  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
-    <value>Löschen</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>Datei</value>
     <comment>menu item</comment>
@@ -1841,10 +1817,6 @@ Absatz - ganzer Absatz
     <value>Hell:</value>
     <comment>radio</comment>
   </data>
-  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
-    <value>Löschen</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
     <value>Löschen:</value>
     <comment>label</comment>
@@ -1903,17 +1875,9 @@ In diesem Abschnitt</value>
     <value>Alles löschen</value>
     <comment>clear tags link label</comment>
   </data>
-  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
-    <value>Kopieren</value>
-    <comment>button</comment>
-  </data>
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>Index</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
-    <value>Bewegung</value>
-    <comment>button</comment>
   </data>
   <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
     <value>In allen Notizbüchern
@@ -2178,10 +2142,6 @@ ISO-code then comma then language name</comment>
     <value>Ort</value>
     <comment>settings table column header</comment>
   </data>
-  <data name="FavoritesSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>settings table column header</comment>
-  </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Favoriten verwalten</value>
     <comment>settings</comment>
@@ -2354,29 +2314,13 @@ ISO-code then comma then language name</comment>
     <value>Meine Plugins verwalten</value>
     <comment>sheet title</comment>
   </data>
-  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Befehl</value>
-    <comment>plugins sheet columns</comment>
-  </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Plugin "{0}" löschen</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>plugins sheet column</comment>
-  </data>
-  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>snippets sheet column</comment>
-  </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>Plugins</value>
     <comment>tree node</comment>
-  </data>
-  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Löschen</value>
-    <comment>toolstrip label</comment>
   </data>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>Verwalte meine Plugins</value>
@@ -2393,10 +2337,6 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_editText" xml:space="preserve">
     <value>Plugin bearbeiten</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
-    <value>Name</value>
-    <comment>label</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Satzabstand ändern</value>
@@ -2889,10 +2829,6 @@ ISO-code then comma then language name</comment>
     <value>Seitenthema ändern</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Befehl</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>HTML-Datei (*.htm)
 PDF-Datei (*.pdf)
@@ -3269,10 +3205,6 @@ Hoch</value>
   </data>
   <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
     <value>Startdatum</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
-    <value>Gestartet</value>
     <comment>label</comment>
   </data>
   <data name="RemindDialog_statusBox.Text" xml:space="preserve">
@@ -3678,10 +3610,6 @@ Aufgeschoben</value>
     <value>Seiten im Abschnitt sortieren</value>
     <comment>ribbon/context menu</comment>
   </data>
-  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Befehl</value>
-    <comment>gridview column</comment>
-  </data>
   <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
     <value>Verwalten Sie meine benutzerdefinierten Tastenkombinationen. Wählen Sie einen Befehl aus und drücken Sie eine Tastenfolge.</value>
     <comment>label</comment>
@@ -3780,10 +3708,6 @@ Aufgeschoben</value>
     <value>Bildgröße</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
-    <value>Qualität</value>
-    <comment>label</comment>
-  </data>
   <data name="word_Quality" xml:space="preserve">
     <value>Qualität</value>
   </data>
@@ -3803,9 +3727,6 @@ Polaroid</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Lager</value>
-  </data>
-  <data name="sw" xml:space="preserve">
-    <value />
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>Sättigung</value>
@@ -3873,5 +3794,17 @@ Polaroid</value>
   </data>
   <data name="word_Suggestions" xml:space="preserve">
     <value>Anregungen</value>
+  </data>
+  <data name="word_Command" xml:space="preserve">
+    <value>Befehl</value>
+  </data>
+  <data name="word_Copy" xml:space="preserve">
+    <value>Kopieren</value>
+  </data>
+  <data name="word_Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="word_Move" xml:space="preserve">
+    <value>Umzug</value>
   </data>
 </root>

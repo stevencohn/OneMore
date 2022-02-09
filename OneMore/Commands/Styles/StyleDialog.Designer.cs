@@ -65,10 +65,10 @@
 			this.loadButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.newStyleButton = new System.Windows.Forms.ToolStripButton();
-			this.reorderButton = new System.Windows.Forms.ToolStripButton();
-			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			this.renameButton = new System.Windows.Forms.ToolStripButton();
+			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.reorderButton = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.spaceBeforeSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.spaceAfterSpinner)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
@@ -80,6 +80,7 @@
 			// 
 			// sizeBox
 			// 
+			this.sizeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.sizeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sizeBox.FormattingEnabled = true;
 			this.sizeBox.Items.AddRange(new object[] {
@@ -98,7 +99,7 @@
             "22",
             "24",
             "26"});
-			this.sizeBox.Location = new System.Drawing.Point(483, 105);
+			this.sizeBox.Location = new System.Drawing.Point(537, 105);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(104, 33);
 			this.sizeBox.TabIndex = 4;
@@ -106,7 +107,6 @@
 			// 
 			// beforeLabel
 			// 
-			this.beforeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.beforeLabel.AutoSize = true;
 			this.beforeLabel.Location = new System.Drawing.Point(18, 228);
 			this.beforeLabel.Name = "beforeLabel";
@@ -116,7 +116,6 @@
 			// 
 			// afterLabel
 			// 
-			this.afterLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.afterLabel.AutoSize = true;
 			this.afterLabel.Location = new System.Drawing.Point(18, 265);
 			this.afterLabel.Name = "afterLabel";
@@ -135,10 +134,12 @@
 			// 
 			// nameBox
 			// 
+			this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.nameBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.nameBox.Location = new System.Drawing.Point(146, 23);
+			this.nameBox.Location = new System.Drawing.Point(169, 23);
 			this.nameBox.Name = "nameBox";
-			this.nameBox.Size = new System.Drawing.Size(444, 31);
+			this.nameBox.Size = new System.Drawing.Size(475, 31);
 			this.nameBox.TabIndex = 1;
 			this.nameBox.TextChanged += new System.EventHandler(this.ChangeStyleName);
 			// 
@@ -153,9 +154,8 @@
 			// 
 			// spaceBeforeSpinner
 			// 
-			this.spaceBeforeSpinner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.spaceBeforeSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceBeforeSpinner.Location = new System.Drawing.Point(146, 222);
+			this.spaceBeforeSpinner.Location = new System.Drawing.Point(169, 222);
 			this.spaceBeforeSpinner.Name = "spaceBeforeSpinner";
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceBeforeSpinner.TabIndex = 7;
@@ -163,9 +163,8 @@
 			// 
 			// spaceAfterSpinner
 			// 
-			this.spaceAfterSpinner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.spaceAfterSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceAfterSpinner.Location = new System.Drawing.Point(146, 258);
+			this.spaceAfterSpinner.Location = new System.Drawing.Point(169, 258);
 			this.spaceAfterSpinner.Name = "spaceAfterSpinner";
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceAfterSpinner.TabIndex = 8;
@@ -173,12 +172,13 @@
 			// 
 			// previewBox
 			// 
-			this.previewBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.previewBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.previewBox.BackColor = System.Drawing.Color.White;
 			this.previewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.previewBox.Location = new System.Drawing.Point(278, 222);
+			this.previewBox.Location = new System.Drawing.Point(296, 222);
 			this.previewBox.Name = "previewBox";
-			this.previewBox.Size = new System.Drawing.Size(310, 107);
+			this.previewBox.Size = new System.Drawing.Size(346, 107);
 			this.previewBox.TabIndex = 18;
 			this.previewBox.TabStop = false;
 			this.previewBox.Paint += new System.Windows.Forms.PaintEventHandler(this.RepaintSample);
@@ -187,7 +187,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(472, 368);
+			this.cancelButton.Location = new System.Drawing.Point(526, 368);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
 			this.cancelButton.TabIndex = 10;
@@ -198,7 +198,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(314, 368);
+			this.okButton.Location = new System.Drawing.Point(368, 368);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(154, 38);
 			this.okButton.TabIndex = 9;
@@ -245,12 +245,11 @@
 			this.panel1.Location = new System.Drawing.Point(8, 40);
 			this.panel1.Name = "panel1";
 			this.panel1.Padding = new System.Windows.Forms.Padding(15, 20, 15, 9);
-			this.panel1.Size = new System.Drawing.Size(606, 418);
+			this.panel1.Size = new System.Drawing.Size(660, 418);
 			this.panel1.TabIndex = 25;
 			// 
 			// spacingLabel
 			// 
-			this.spacingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.spacingLabel.AutoSize = true;
 			this.spacingLabel.Location = new System.Drawing.Point(18, 301);
 			this.spacingLabel.Name = "spacingLabel";
@@ -260,9 +259,8 @@
 			// 
 			// spacingSpinner
 			// 
-			this.spacingSpinner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.spacingSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spacingSpinner.Location = new System.Drawing.Point(146, 295);
+			this.spacingSpinner.Location = new System.Drawing.Point(169, 295);
 			this.spacingSpinner.Name = "spacingSpinner";
 			this.spacingSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spacingSpinner.TabIndex = 28;
@@ -279,6 +277,8 @@
 			// 
 			// styleTypeBox
 			// 
+			this.styleTypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.styleTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.styleTypeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.styleTypeBox.FormattingEnabled = true;
@@ -286,9 +286,9 @@
             "Character - words in paragraph",
             "Paragraph - entire paragraph",
             "Heading - include in TOC"});
-			this.styleTypeBox.Location = new System.Drawing.Point(146, 62);
+			this.styleTypeBox.Location = new System.Drawing.Point(169, 62);
 			this.styleTypeBox.Name = "styleTypeBox";
-			this.styleTypeBox.Size = new System.Drawing.Size(444, 33);
+			this.styleTypeBox.Size = new System.Drawing.Size(475, 33);
 			this.styleTypeBox.TabIndex = 2;
 			this.styleTypeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleType);
 			// 
@@ -297,7 +297,7 @@
 			this.applyColorsBox.AutoSize = true;
 			this.applyColorsBox.Checked = true;
 			this.applyColorsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.applyColorsBox.Location = new System.Drawing.Point(468, 158);
+			this.applyColorsBox.Location = new System.Drawing.Point(499, 158);
 			this.applyColorsBox.Name = "applyColorsBox";
 			this.applyColorsBox.Size = new System.Drawing.Size(120, 24);
 			this.applyColorsBox.TabIndex = 6;
@@ -307,14 +307,16 @@
 			// 
 			// familyBox
 			// 
+			this.familyBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.familyBox.DropDownHeight = 400;
 			this.familyBox.DropDownWidth = 350;
 			this.familyBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.familyBox.FormattingEnabled = true;
 			this.familyBox.IntegralHeight = false;
-			this.familyBox.Location = new System.Drawing.Point(146, 105);
+			this.familyBox.Location = new System.Drawing.Point(169, 105);
 			this.familyBox.Name = "familyBox";
-			this.familyBox.Size = new System.Drawing.Size(324, 32);
+			this.familyBox.Size = new System.Drawing.Size(355, 32);
 			this.familyBox.TabIndex = 3;
 			this.familyBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontFamily);
 			// 
@@ -333,7 +335,7 @@
             this.subButton,
             this.backColorButton,
             this.colorButton});
-			this.toolStrip.Location = new System.Drawing.Point(146, 149);
+			this.toolStrip.Location = new System.Drawing.Point(169, 149);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
 			this.toolStrip.Size = new System.Drawing.Size(304, 33);
@@ -466,7 +468,7 @@
 			this.mainTools.Location = new System.Drawing.Point(4, 5);
 			this.mainTools.Name = "mainTools";
 			this.mainTools.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-			this.mainTools.Size = new System.Drawing.Size(617, 34);
+			this.mainTools.Size = new System.Drawing.Size(671, 34);
 			this.mainTools.TabIndex = 0;
 			// 
 			// FileMenu
@@ -478,7 +480,7 @@
 			this.FileMenu.Image = ((System.Drawing.Image)(resources.GetObject("FileMenu.Image")));
 			this.FileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.FileMenu.Name = "FileMenu";
-			this.FileMenu.Size = new System.Drawing.Size(56, 33);
+			this.FileMenu.Size = new System.Drawing.Size(56, 29);
 			this.FileMenu.Text = "File";
 			// 
 			// loadButton
@@ -502,28 +504,9 @@
 			this.newStyleButton.Image = global::River.OneMoreAddIn.Properties.Resources.NewStyle;
 			this.newStyleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.newStyleButton.Name = "newStyleButton";
-			this.newStyleButton.Size = new System.Drawing.Size(75, 33);
+			this.newStyleButton.Size = new System.Drawing.Size(75, 29);
 			this.newStyleButton.Text = "New";
 			this.newStyleButton.Click += new System.EventHandler(this.AddStyle);
-			// 
-			// reorderButton
-			// 
-			this.reorderButton.Image = ((System.Drawing.Image)(resources.GetObject("reorderButton.Image")));
-			this.reorderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.reorderButton.Name = "reorderButton";
-			this.reorderButton.Size = new System.Drawing.Size(102, 33);
-			this.reorderButton.Text = "Reorder";
-			this.reorderButton.Click += new System.EventHandler(this.ReorderStyles);
-			// 
-			// deleteButton
-			// 
-			this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
-			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.deleteButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
-			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(90, 35);
-			this.deleteButton.Text = "Delete";
-			this.deleteButton.Click += new System.EventHandler(this.DeleteStyle);
 			// 
 			// renameButton
 			// 
@@ -534,10 +517,29 @@
 			this.renameButton.Text = "Rename";
 			this.renameButton.Click += new System.EventHandler(this.RenameStyle);
 			// 
+			// deleteButton
+			// 
+			this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
+			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.deleteButton.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
+			this.deleteButton.Name = "deleteButton";
+			this.deleteButton.Size = new System.Drawing.Size(90, 31);
+			this.deleteButton.Text = "Delete";
+			this.deleteButton.Click += new System.EventHandler(this.DeleteStyle);
+			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 34);
+			// 
+			// reorderButton
+			// 
+			this.reorderButton.Image = ((System.Drawing.Image)(resources.GetObject("reorderButton.Image")));
+			this.reorderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.reorderButton.Name = "reorderButton";
+			this.reorderButton.Size = new System.Drawing.Size(102, 29);
+			this.reorderButton.Text = "Reorder";
+			this.reorderButton.Click += new System.EventHandler(this.ReorderStyles);
 			// 
 			// StyleDialog
 			// 
@@ -545,7 +547,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(621, 466);
+			this.ClientSize = new System.Drawing.Size(675, 466);
 			this.Controls.Add(this.mainTools);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

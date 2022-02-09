@@ -700,10 +700,6 @@ Percentagem</value>
     <value>Data modificada</value>
     <comment>radio</comment>
   </data>
-  <data name="SortDialog_nameButton.Text" xml:space="preserve">
-    <value>Nome</value>
-    <comment>radio</comment>
-  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Fixar notas no topo e
 Notas rápidas para baixo</value>
@@ -1176,10 +1172,6 @@ Tente mais tarde</value>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
-    <value>Excluir</value>
-    <comment>delete button</comment>
-  </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Excluir:</value>
     <comment>delete label</comment>
@@ -1199,10 +1191,6 @@ Tente mais tarde</value>
   <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
     <value>Os padrões de URL devem conter um token de substituição de string, como &amp;amp; q = {0}</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
-    <value>Nome</value>
-    <comment>name col</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
     <value>Ícones de atualização</value>
@@ -1513,10 +1501,6 @@ Símbolos: PI, E</value>
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchDialog_copyButton.Text" xml:space="preserve">
-    <value>cópia de</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchDialog_findLabel.Text" xml:space="preserve">
     <value>Encontrar:</value>
     <comment>label</comment>
@@ -1524,10 +1508,6 @@ Símbolos: PI, E</value>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Insira uma ou mais palavras-chave, "frases entre aspas", e use E e OU maiúsculas</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_moveButton.Text" xml:space="preserve">
-    <value>Mover</value>
-    <comment>button</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>Pesquisar e mover/copiar</value>
@@ -1764,10 +1744,6 @@ Símbolos: PI, E</value>
     <value>Padrão (preto)</value>
     <comment>menu item</comment>
   </data>
-  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
-    <value>Excluir</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>Arquivo</value>
     <comment>menu item</comment>
@@ -1854,10 +1830,6 @@ Título - incluir no TOC</value>
     <value>Brilhante:</value>
     <comment>radio</comment>
   </data>
-  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
-    <value>Excluir</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
     <value>Excluir:</value>
     <comment>label</comment>
@@ -1916,17 +1888,9 @@ Nesta secção</value>
     <value>Limpar tudo</value>
     <comment>clear tags link label</comment>
   </data>
-  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
-    <value>cópia de</value>
-    <comment>button</comment>
-  </data>
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>Índice</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
-    <value>Mover</value>
-    <comment>button</comment>
   </data>
   <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
     <value>Em todos os notebooks
@@ -2191,10 +2155,6 @@ ISO-code then comma then language name</comment>
     <value>Localização</value>
     <comment>settings table column header</comment>
   </data>
-  <data name="FavoritesSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Nome</value>
-    <comment>settings table column header</comment>
-  </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Gerenciar favoritos</value>
     <comment>settings</comment>
@@ -2367,29 +2327,13 @@ ISO-code then comma then language name</comment>
     <value>Gerenciar meus plugins</value>
     <comment>sheet title</comment>
   </data>
-  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Comando</value>
-    <comment>plugins sheet columns</comment>
-  </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Excluir plugin "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Nome</value>
-    <comment>plugins sheet column</comment>
-  </data>
-  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Nome</value>
-    <comment>snippets sheet column</comment>
-  </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>Plugins</value>
     <comment>tree node</comment>
-  </data>
-  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Excluir</value>
-    <comment>toolstrip label</comment>
   </data>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>Gerenciar meus plugins</value>
@@ -2406,10 +2350,6 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_editText" xml:space="preserve">
     <value>Editar Plugin</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
-    <value>Nome</value>
-    <comment>label</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Alterar o espaçamento das frases</value>
@@ -2902,10 +2842,6 @@ ISO-code then comma then language name</comment>
     <value>Alterar o tema da página</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Comando</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>Arquivo HTML (* .htm)
 Arquivo PDF (* .pdf)
@@ -3282,10 +3218,6 @@ Alto</value>
   </data>
   <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
     <value>Data de início</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
-    <value>Iniciado</value>
     <comment>label</comment>
   </data>
   <data name="RemindDialog_statusBox.Text" xml:space="preserve">
@@ -3691,10 +3623,6 @@ Diferido</value>
     <value>Classificar páginas na seção</value>
     <comment>ribbon/context menu</comment>
   </data>
-  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Comando</value>
-    <comment>gridview column</comment>
-  </data>
   <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
     <value>Gerencie meus atalhos de teclado personalizados. Selecione um comando e pressione uma sequência de teclas.</value>
     <comment>label</comment>
@@ -3793,10 +3721,6 @@ Diferido</value>
     <value>Tamanho da imagem</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
-    <value>Qualidade</value>
-    <comment>label</comment>
-  </data>
   <data name="word_Quality" xml:space="preserve">
     <value>Qualidade</value>
   </data>
@@ -3816,9 +3740,6 @@ Polaroid.</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Armazenar</value>
-  </data>
-  <data name="sw" xml:space="preserve">
-    <value />
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>Saturação</value>
@@ -3886,5 +3807,17 @@ Polaroid.</value>
   </data>
   <data name="word_Suggestions" xml:space="preserve">
     <value>Sugestões</value>
+  </data>
+  <data name="word_Command" xml:space="preserve">
+    <value>Comando</value>
+  </data>
+  <data name="word_Copy" xml:space="preserve">
+    <value>cópia de</value>
+  </data>
+  <data name="word_Delete" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="word_Move" xml:space="preserve">
+    <value>Jogada</value>
   </data>
 </root>

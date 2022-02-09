@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Settings
 					"deleteButton"
 				});
 
-				nameColumn.HeaderText = Resx.SnippetsSheet_nameColumn_HeaderText;
+				nameColumn.HeaderText = Resx.word_Name;
 			}
 
 			toolStrip.Rescale();

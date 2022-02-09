@@ -40,12 +40,11 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introLabel",
-					"deleteLabel",
-					"deleteButton"
+					"deleteLabel=word_Delete"
 				});
 
-				nameColumn.HeaderText = Resx.PluginsSheet_nameColumn_HeaderText;
-				cmdColumn.HeaderText = Resx.PluginsSheet_cmdColumn_HeaderText;
+				nameColumn.HeaderText = Resx.word_Name;
+				cmdColumn.HeaderText = Resx.word_Command;
 			}
 
 			toolStrip.Rescale();

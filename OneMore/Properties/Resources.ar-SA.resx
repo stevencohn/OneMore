@@ -695,10 +695,6 @@
     <value>التاريخ عدل</value>
     <comment>radio</comment>
   </data>
-  <data name="SortDialog_nameButton.Text" xml:space="preserve">
-    <value>اسم</value>
-    <comment>radio</comment>
-  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>تثبيت الملاحظات في الأعلى و
 ملاحظات سريعة في الأسفل</value>
@@ -1171,10 +1167,6 @@
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
-    <value>حذف</value>
-    <comment>delete button</comment>
-  </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>حذف:</value>
     <comment>delete label</comment>
@@ -1194,10 +1186,6 @@
   <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
     <value>يجب أن تحتوي أنماط عناوين URL على رمز مميز لاستبدال السلسلة ، مثل &amp;q={0}</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
-    <value>اسم</value>
-    <comment>name col</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
     <value>تحديث الرموز</value>
@@ -1508,10 +1496,6 @@
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchDialog_copyButton.Text" xml:space="preserve">
-    <value>نسخ</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchDialog_findLabel.Text" xml:space="preserve">
     <value>تجد:</value>
     <comment>label</comment>
@@ -1519,10 +1503,6 @@
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>أدخل كلمة رئيسية واحدة أو أكثر ، "عبارات مقتبسة" ، واستخدم الحرفين "و" و "أو"</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_moveButton.Text" xml:space="preserve">
-    <value>نقل</value>
-    <comment>button</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>بحث ونقل / نسخ</value>
@@ -1759,10 +1739,6 @@
     <value>افتراضي (أسود)</value>
     <comment>menu item</comment>
   </data>
-  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
-    <value>حذف</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>ملف</value>
     <comment>menu item</comment>
@@ -1849,10 +1825,6 @@
     <value>مشرق:</value>
     <comment>radio</comment>
   </data>
-  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
-    <value>حذف</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
     <value>حذف:</value>
     <comment>label</comment>
@@ -1911,17 +1883,9 @@
     <value>امسح الكل</value>
     <comment>clear tags link label</comment>
   </data>
-  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
-    <value>نسخ</value>
-    <comment>button</comment>
-  </data>
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>فهرس</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
-    <value>نقل</value>
-    <comment>button</comment>
   </data>
   <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
     <value>في جميع أجهزة الكمبيوتر المحمولة
@@ -2186,10 +2150,6 @@ ISO-code then comma then language name</comment>
     <value>موقعك</value>
     <comment>settings table column header</comment>
   </data>
-  <data name="FavoritesSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>اسم</value>
-    <comment>settings table column header</comment>
-  </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>إدارة المفضلة</value>
     <comment>settings</comment>
@@ -2362,29 +2322,13 @@ ISO-code then comma then language name</comment>
     <value>إدارة ملحقاتي</value>
     <comment>sheet title</comment>
   </data>
-  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>أمر</value>
-    <comment>plugins sheet columns</comment>
-  </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>حذف المكون الإضافي "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>اسم</value>
-    <comment>plugins sheet column</comment>
-  </data>
-  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>اسم</value>
-    <comment>snippets sheet column</comment>
-  </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>الإضافات</value>
     <comment>tree node</comment>
-  </data>
-  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
-    <value>حذف</value>
-    <comment>toolstrip label</comment>
   </data>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>إدارة ملحقاتي</value>
@@ -2401,10 +2345,6 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_editText" xml:space="preserve">
     <value>تحرير البرنامج المساعد</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
-    <value>اسم</value>
-    <comment>label</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>تغيير تباعد الجمل</value>
@@ -2901,10 +2841,6 @@ ISO-code then comma then language name</comment>
     <value>تغيير سمة الصفحة</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>أمر</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>ملف HTML (* .htm)
 ملف PDF (* .pdf)
@@ -3282,10 +3218,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
     <value>تاريخ البدء</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
-    <value>بدأت</value>
     <comment>label</comment>
   </data>
   <data name="RemindDialog_statusBox.Text" xml:space="preserve">
@@ -3691,10 +3623,6 @@ ISO-code then comma then language name</comment>
     <value>فرز الصفحات في المقطع</value>
     <comment>ribbon/context menu</comment>
   </data>
-  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>يأمر</value>
-    <comment>gridview column</comment>
-  </data>
   <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
     <value>إدارة اختصارات لوحة المفاتيح المخصصة الخاصة بي. حدد أمرًا واضغط على تسلسل المفاتيح.</value>
     <comment>label</comment>
@@ -3793,10 +3721,6 @@ ISO-code then comma then language name</comment>
     <value>حجم الصورة</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
-    <value>جودة</value>
-    <comment>label</comment>
-  </data>
   <data name="word_Quality" xml:space="preserve">
     <value>جودة</value>
   </data>
@@ -3816,9 +3740,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>تخزين</value>
-  </data>
-  <data name="sw" xml:space="preserve">
-    <value />
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>التشبع</value>
@@ -3886,5 +3807,17 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Suggestions" xml:space="preserve">
     <value>اقتراحات</value>
+  </data>
+  <data name="word_Command" xml:space="preserve">
+    <value>يأمر</value>
+  </data>
+  <data name="word_Copy" xml:space="preserve">
+    <value>ينسخ</value>
+  </data>
+  <data name="word_Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="word_Move" xml:space="preserve">
+    <value>نقل</value>
   </data>
 </root>

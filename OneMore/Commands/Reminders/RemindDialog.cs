@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"subjectLabel",
 					"startDateLabel",
-					"startedLabel",
+					"startedLabel=word_Started",
 					"dueDateLabel",
 					"completedLabel=word_Completed",
 					"statusLabel",

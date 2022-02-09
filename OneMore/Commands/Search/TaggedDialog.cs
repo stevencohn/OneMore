@@ -45,8 +45,8 @@ namespace River.OneMoreAddIn.Commands
 					"checkAllLabel",
 					"clearAllLabel",
 					"indexButton",
-					"moveButton",
-					"copyButton",
+					"moveButton=word_Move",
+					"copyButton=word_Copy",
 					"cancelButton=word_Cancel"
 				});
 

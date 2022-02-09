@@ -303,10 +303,6 @@ Deferred</value>
     <value>OneMore</value>
     <comment>dialog title</comment>
   </data>
-  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
-    <value>Delete</value>
-    <comment>button</comment>
-  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>Directory does not exist</value>
     <comment>message</comment>
@@ -559,10 +555,6 @@ OneNote will close automatically</value>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
     <value>Insert table of headings on this page</value>
     <comment>radio</comment>
-  </data>
-  <data name="FavoritesSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>settings table column header</comment>
   </data>
   <data name="Emoji_Software" xml:space="preserve">
     <value>Software</value>
@@ -825,10 +817,6 @@ OneNote will close automatically</value>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
-    <value>Started</value>
-    <comment>label</comment>
-  </data>
   <data name="Emoji_Travel" xml:space="preserve">
     <value>Travel</value>
     <comment>emoji</comment>
@@ -840,10 +828,6 @@ OneNote will close automatically</value>
   <data name="ContextMenuSheet_ribInsertDoubleLineButton" xml:space="preserve">
     <value>... Double Horizontal Line</value>
     <comment>context menu option</comment>
-  </data>
-  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Delete</value>
-    <comment>toolstrip label</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</value>
@@ -1004,10 +988,6 @@ Deferred</value>
     <value>Delete:</value>
     <comment>label</comment>
   </data>
-  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>plugins sheet column</comment>
-  </data>
   <data name="ribReplayButton_Label" xml:space="preserve">
     <value>Replay Last Command</value>
     <comment>Ribbon OneMore menu item, trim</comment>
@@ -1116,10 +1096,6 @@ Deferred</value>
   </data>
   <data name="Envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\envelope.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Command</value>
-    <comment>gridview column</comment>
   </data>
   <data name="InsertCalendarDialog_indentBox.Text" xml:space="preserve">
     <value>Insert calendar</value>
@@ -1594,10 +1570,6 @@ Percentage</value>
     <value>Paragraphs</value>
     <comment>radio</comment>
   </data>
-  <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
-    <value>Delete</value>
-    <comment>delete button</comment>
-  </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
     <value>Context Menu Options</value>
     <comment>sheet</comment>
@@ -1613,10 +1585,6 @@ Heading - include in TOC</value>
 In this notebook
 In this section</value>
     <comment>drop down</comment>
-  </data>
-  <data name="SortDialog_nameButton.Text" xml:space="preserve">
-    <value>Name</value>
-    <comment>radio</comment>
   </data>
   <data name="ribGrayStatusButton_Label" xml:space="preserve">
     <value>Gray Status</value>
@@ -1810,10 +1778,6 @@ In this section</value>
   </data>
   <data name="LabelSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\labelsearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SearchDialog_copyButton.Text" xml:space="preserve">
-    <value>Copy</value>
-    <comment>button</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Numbering page {0}</value>
@@ -2104,10 +2068,6 @@ High</value>
     <value>... Add or Update Reminders</value>
     <comment>context menu option</comment>
   </data>
-  <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>name col</comment>
-  </data>
   <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
     <value>Move down</value>
     <comment>down buttom</comment>
@@ -2252,10 +2212,6 @@ Try again later</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
-  </data>
-  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Command</value>
-    <comment>plugins sheet columns</comment>
   </data>
   <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
     <value>(click to change)</value>
@@ -2416,10 +2372,6 @@ Notebooks</value>
 Quick Notes to bottom</value>
     <comment>checkbox</comment>
   </data>
-  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
-    <value>Move</value>
-    <comment>button</comment>
-  </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
     <value>Notebooks can be stored locally or remotely on OneDrive. Remote notebooks can only be analyzed by their local backups as configured in the OneNote Options. This summary shows the total disk usage in either the data location for local notebooks or the backup location for remote notebooks including all backup copies and the per-notebook recycle bins.</value>
     <comment>summary text</comment>
@@ -2474,10 +2426,6 @@ Quick Notes to bottom</value>
   <data name="SortDialog_desButton.Text" xml:space="preserve">
     <value>Descending</value>
     <comment>radio</comment>
-  </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Command</value>
-    <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
     <value>... Gray Status</value>
@@ -2744,10 +2692,6 @@ In this section</value>
   <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
-    <value>Copy</value>
-    <comment>button</comment>
-  </data>
   <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
     <value>Closing parenthesis expected</value>
     <comment>error</comment>
@@ -2759,10 +2703,6 @@ In this section</value>
   <data name="StyleDialog_saveButton.Text" xml:space="preserve">
     <value>Save as...</value>
     <comment>menu item</comment>
-  </data>
-  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
-    <value>Delete</value>
-    <comment>button</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
     <value>Choose file to import</value>
@@ -2883,10 +2823,6 @@ In this section</value>
   <data name="StyleDialog_okButton.Text" xml:space="preserve">
     <value>OK (Save)</value>
     <comment>button</comment>
-  </data>
-  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
-    <value>Name</value>
-    <comment>label</comment>
   </data>
   <data name="word_Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -3286,10 +3222,6 @@ High</value>
     <value>Reset</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="SearchDialog_moveButton.Text" xml:space="preserve">
-    <value>Move</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
     <value>URL Pattern</value>
     <comment>url col</comment>
@@ -3550,10 +3482,6 @@ High</value>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
     <value>Version {0}</value>
     <comment>the version of the add-in</comment>
-  </data>
-  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Name</value>
-    <comment>snippets sheet column</comment>
   </data>
   <data name="Emoji_Images" xml:space="preserve">
     <value>Images</value>
@@ -3817,10 +3745,6 @@ ISO-code then comma then language name</comment>
     <value>Watch</value>
     <comment>emoji</comment>
   </data>
-  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
-    <value>Quality</value>
-    <comment>label</comment>
-  </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Sort</value>
     <comment>dialog title</comment>
@@ -3873,9 +3797,6 @@ Polaroid</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Storage</value>
-  </data>
-  <data name="sw" xml:space="preserve">
-    <value />
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>Saturation</value>
@@ -3943,5 +3864,17 @@ Polaroid</value>
   </data>
   <data name="word_Suggestions" xml:space="preserve">
     <value>Suggestions</value>
+  </data>
+  <data name="word_Command" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="word_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="word_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="word_Move" xml:space="preserve">
+    <value>Move</value>
   </data>
 </root>

@@ -30,8 +30,8 @@ namespace River.OneMoreAddIn.Commands.Search
 				{
 					"introLabel",
 					"findLabel",
-					"moveButton",
-					"copyButton",
+					"moveButton=word_Move",
+					"copyButton=word_Copy",
 					"cancelButton=word_Cancel"
 				});
 

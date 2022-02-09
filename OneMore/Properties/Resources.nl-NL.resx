@@ -700,10 +700,6 @@ Percentage</value>
     <value>Datum gewijzigd</value>
     <comment>radio</comment>
   </data>
-  <data name="SortDialog_nameButton.Text" xml:space="preserve">
-    <value>Naam</value>
-    <comment>radio</comment>
-  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Pin Notes naar boven en
 Snelle notities onderaan</value>
@@ -1176,10 +1172,6 @@ Probeer het later nog eens</value>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
-    <value>Verwijderen</value>
-    <comment>delete button</comment>
-  </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Verwijderen:</value>
     <comment>delete label</comment>
@@ -1199,10 +1191,6 @@ Probeer het later nog eens</value>
   <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
     <value>URL-patronen moeten een tekenreeksvervangingstoken bevatten, zoals &amp;q={0}</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
-    <value>Naam</value>
-    <comment>name col</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
     <value>Vernieuw pictogrammen</value>
@@ -1513,10 +1501,6 @@ Symbolen: PI, E</value>
   <data name="SectionMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\sectionmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchDialog_copyButton.Text" xml:space="preserve">
-    <value>Kopiëren</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchDialog_findLabel.Text" xml:space="preserve">
     <value>Vind:</value>
     <comment>label</comment>
@@ -1524,10 +1508,6 @@ Symbolen: PI, E</value>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Voer een of meer trefwoorden in, "zinnen tussen aanhalingstekens", en gebruik hoofdletters EN en OF</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_moveButton.Text" xml:space="preserve">
-    <value>Actie</value>
-    <comment>button</comment>
   </data>
   <data name="SearchDialog_Title" xml:space="preserve">
     <value>Zoeken en verplaatsen / kopiëren</value>
@@ -1764,10 +1744,6 @@ Symbolen: PI, E</value>
     <value>Standaard (zwart)</value>
     <comment>menu item</comment>
   </data>
-  <data name="StyleDialog_deleteButton.Text" xml:space="preserve">
-    <value>Verwijderen</value>
-    <comment>button</comment>
-  </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>het dossier</value>
     <comment>menu item</comment>
@@ -1854,10 +1830,6 @@ Kop - opnemen in inhoudsopgave</value>
     <value>Helder:</value>
     <comment>radio</comment>
   </data>
-  <data name="SearchEngineSheet_deleteButton.Text" xml:space="preserve">
-    <value>Verwijderen</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
     <value>Verwijderen:</value>
     <comment>label</comment>
@@ -1916,17 +1888,9 @@ In deze sectie</value>
     <value>Wis alles</value>
     <comment>clear tags link label</comment>
   </data>
-  <data name="TaggedDialog_copyButton.Text" xml:space="preserve">
-    <value>Kopiëren</value>
-    <comment>button</comment>
-  </data>
   <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
     <value>Inhoudsopgave</value>
     <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_moveButton.Text" xml:space="preserve">
-    <value>Actie</value>
-    <comment>button</comment>
   </data>
   <data name="TaggedDialog_scopeBox.Items" xml:space="preserve">
     <value>In alle notitieboekjes
@@ -2191,10 +2155,6 @@ ISO-code then comma then language name</comment>
     <value>Plaats</value>
     <comment>settings table column header</comment>
   </data>
-  <data name="FavoritesSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Naam</value>
-    <comment>settings table column header</comment>
-  </data>
   <data name="FavoritesSheet_Text" xml:space="preserve">
     <value>Beheer favorieten</value>
     <comment>settings</comment>
@@ -2367,29 +2327,13 @@ ISO-code then comma then language name</comment>
     <value>Beheer mijn plug-ins</value>
     <comment>sheet title</comment>
   </data>
-  <data name="PluginsSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Opdracht</value>
-    <comment>plugins sheet columns</comment>
-  </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
     <value>Verwijder plug-in "{0}"</value>
     <comment>question</comment>
   </data>
-  <data name="PluginsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Naam</value>
-    <comment>plugins sheet column</comment>
-  </data>
-  <data name="SnippetsSheet_nameColumn.HeaderText" xml:space="preserve">
-    <value>Naam</value>
-    <comment>snippets sheet column</comment>
-  </data>
   <data name="SettingsDialog_pluginsNode.Text" xml:space="preserve">
     <value>Plug-ins</value>
     <comment>tree node</comment>
-  </data>
-  <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
-    <value>Verwijderen</value>
-    <comment>toolstrip label</comment>
   </data>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>Beheer mijn plug-ins</value>
@@ -2406,10 +2350,6 @@ ISO-code then comma then language name</comment>
   <data name="PluginDialog_editText" xml:space="preserve">
     <value>Bewerk plug-in</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PluginDialog_nameLabel.Text" xml:space="preserve">
-    <value>Naam</value>
-    <comment>label</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Wijzig de regelafstand</value>
@@ -2902,10 +2842,6 @@ ISO-code then comma then language name</comment>
     <value>Paginathema wijzigen</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PluginDialog_cmdLabel.Text" xml:space="preserve">
-    <value>Opdracht</value>
-    <comment>label</comment>
-  </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
     <value>HTML-bestand (*.htm)
 PDF-bestand (*.pdf)
@@ -3282,10 +3218,6 @@ Hoog</value>
   </data>
   <data name="RemindDialog_startDateLabel.Text" xml:space="preserve">
     <value>Startdatum</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemindDialog_startedLabel.Text" xml:space="preserve">
-    <value>Begonnen</value>
     <comment>label</comment>
   </data>
   <data name="RemindDialog_statusBox.Text" xml:space="preserve">
@@ -3691,10 +3623,6 @@ Verschoven</value>
     <value>Sorteer pagina's in sectie</value>
     <comment>ribbon/context menu</comment>
   </data>
-  <data name="KeyboardSheet_cmdColumn.HeaderText" xml:space="preserve">
-    <value>Opdracht</value>
-    <comment>gridview column</comment>
-  </data>
   <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
     <value>Beheer mijn aangepaste sneltoetsen. Selecteer een opdracht en druk op een toetsenreeks.</value>
     <comment>label</comment>
@@ -3793,10 +3721,6 @@ Verschoven</value>
     <value>Afbeeldingsgrootte</value>
     <comment>label</comment>
   </data>
-  <data name="ResizeImagesDialog_qualityLabel.Text" xml:space="preserve">
-    <value>Kwaliteit</value>
-    <comment>label</comment>
-  </data>
   <data name="word_Quality" xml:space="preserve">
     <value>Kwaliteit</value>
   </data>
@@ -3816,9 +3740,6 @@ Polaroid</value>
   </data>
   <data name="word_Storage" xml:space="preserve">
     <value>Opslag</value>
-  </data>
-  <data name="sw" xml:space="preserve">
-    <value />
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>Verzadiging</value>
@@ -3886,5 +3807,17 @@ Polaroid</value>
   </data>
   <data name="word_Suggestions" xml:space="preserve">
     <value>Suggesties</value>
+  </data>
+  <data name="word_Command" xml:space="preserve">
+    <value>Opdracht</value>
+  </data>
+  <data name="word_Copy" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="word_Delete" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="word_Move" xml:space="preserve">
+    <value>Beweging</value>
   </data>
 </root>

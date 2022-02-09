@@ -47,11 +47,11 @@ namespace River.OneMoreAddIn.Settings
 					"downButton",
 					"refreshButton",
 					"deleteLabel",
-					"deleteButton"
+					"deleteButton=word_Delete"
 				});
 
 				iconColumn.HeaderText = Resx.SearchEngineDialog_iconColumn_HeaderText;
-				nameColumn.HeaderText = Resx.SearchEngineDialog_nameColumn_HeaderText;
+				nameColumn.HeaderText = Resx.word_Name;
 				urlColumn.HeaderText = Resx.SearchEngineDialog_urlColumn_HeaderText;
 			}
 

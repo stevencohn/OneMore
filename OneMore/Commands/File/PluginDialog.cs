@@ -41,8 +41,8 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"pluginsLabel",
-					"nameLabel",
-					"cmdLabel",
+					"nameLabel=word_Name",
+					"cmdLabel=word_Command",
 					"argsLabel",
 					"timeoutLabel",
 					"updateRadio",

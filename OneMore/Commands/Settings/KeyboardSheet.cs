@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Settings
 					"resetAllButton"
 				});
 
-				cmdColumn.HeaderText = Resx.KeyboardSheet_cmdColumn_HeaderText;
+				cmdColumn.HeaderText = Resx.word_Command;
 				keyColumn.HeaderText = Resx.KeyboardSheet_keyColumn_HeaderText;
 			}
 

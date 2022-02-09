@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Settings
 					"deleteButton"
 				});
 
-				nameColumn.HeaderText = Resx.FavoritesSheet_nameColumn_HeaderText;
+				nameColumn.HeaderText = Resx.word_Name;
 				locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
 			}
 
