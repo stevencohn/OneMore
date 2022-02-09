@@ -280,7 +280,7 @@ namespace River.OneMoreAddIn.Commands
 			var row = table[0];
 			row.SetShading(HeaderShading);
 			row[0].SetContent(new Paragraph(Resx.ReminderReport_ReminderColumn).SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(Resx.RemindDialog_statusLabel_Text).SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph(Resx.word_Status).SetStyle(HeaderCss));
 			row[2].SetContent(new Paragraph(Resx.RemindDialog_startDateLabel_Text).SetStyle(HeaderCss));
 			row[3].SetContent(new Paragraph(Resx.RemindDialog_dueDateLabel_Text).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
@@ -375,7 +375,7 @@ namespace River.OneMoreAddIn.Commands
 			var row = table[0];
 			row.SetShading(HeaderShading);
 			row[0].SetContent(new Paragraph(Resx.ReminderReport_ReminderColumn).SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(Resx.RemindDialog_statusLabel_Text).SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph(Resx.word_Status).SetStyle(HeaderCss));
 			row[2].SetContent(new Paragraph(Resx.word_Planned).SetStyle(HeaderCss));
 			row[3].SetContent(new Paragraph(Resx.word_Actual).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));

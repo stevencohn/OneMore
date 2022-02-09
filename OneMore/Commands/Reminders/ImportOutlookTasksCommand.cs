@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 			var row = table[0];
 			row.SetShading(HeaderShading);
 			row[0].SetContent(new Paragraph(Resx.OutlookTaskReport_Task).SetStyle(HeaderCss));
-			row[1].SetContent(new Paragraph(Resx.OutlookTaskReport_Status).SetStyle(HeaderCss));
+			row[1].SetContent(new Paragraph(Resx.word_Status).SetStyle(HeaderCss));
 			row[2].SetContent(new Paragraph(Resx.OutlookTaskReport_DateStarted).SetStyle(HeaderCss));
 			row[3].SetContent(new Paragraph(Resx.OutlookTaskReport_DateDue).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.OutlookTaskReport_Importance).SetStyle(HeaderCss));

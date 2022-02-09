@@ -473,10 +473,6 @@ OneNote will close automatically</value>
     <value>Tag Page</value>
     <comment>menu item</comment>
   </data>
-  <data name="OutlookTaskReport_Status" xml:space="preserve">
-    <value>Status</value>
-    <comment>report</comment>
-  </data>
   <data name="Reminder_PastDue" xml:space="preserve">
     <value>Task is past its due date of {0}, "{1}". Click here to navigate to this task</value>
     <comment>toast message</comment>
@@ -1159,10 +1155,6 @@ Deferred</value>
   <data name="CustomColorsFilesname" xml:space="preserve">
     <value>CustomColors.xml</value>
     <comment>SKIP, filename</comment>
-  </data>
-  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
-    <value>Status</value>
-    <comment>label</comment>
   </data>
   <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
     <value>Include unindexed pages in query</value>
@@ -3855,5 +3847,8 @@ Polaroid</value>
   </data>
   <data name="word_Options" xml:space="preserve">
     <value>Options</value>
+  </data>
+  <data name="word_Status" xml:space="preserve">
+    <value>Status</value>
   </data>
 </root>

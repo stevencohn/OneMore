@@ -3805,15 +3805,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status.
-        /// </summary>
-        internal static string OutlookTaskReport_Status {
-            get {
-                return ResourceManager.GetString("OutlookTaskReport_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Not Started
         ///In Progress
         ///Completed
@@ -4425,15 +4416,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RemindDialog_statusBox_Text {
             get {
                 return ResourceManager.GetString("RemindDialog_statusBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Status.
-        /// </summary>
-        internal static string RemindDialog_statusLabel_Text {
-            get {
-                return ResourceManager.GetString("RemindDialog_statusLabel.Text", resourceCulture);
             }
         }
         
@@ -8658,6 +8640,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Started {
             get {
                 return ResourceManager.GetString("word_Started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string word_Status {
+            get {
+                return ResourceManager.GetString("word_Status", resourceCulture);
             }
         }
         

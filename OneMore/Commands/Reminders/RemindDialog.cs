@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 					"startedLabel=word_Started",
 					"dueDateLabel",
 					"completedLabel=word_Completed",
-					"statusLabel",
+					"statusLabel=word_Status",
 					"statusBox",
 					"priorityLabel",
 					"priorityBox",
