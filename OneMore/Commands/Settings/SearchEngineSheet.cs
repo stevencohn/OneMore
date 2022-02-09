@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Settings
 					"introLabel",
 					"upButton",
 					"downButton",
-					"refreshButton",
+					"refreshButton=word_Refresh",
 					"deleteLabel",
 					"deleteButton=word_Delete"
 				});

@@ -1096,10 +1096,6 @@
     <value>إلى الحالة العليا</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ProgressDialog.Text" xml:space="preserve">
-    <value>مرة اخرى</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>إزالة الاقتباسات التي تم لصقها</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -1837,10 +1833,6 @@
     <value>يجب أن تحتوي أنماط عناوين URL على رمز مميز لاستبدال السلسلة ، مثل &amp;q={0}</value>
     <comment>label</comment>
   </data>
-  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
-    <value>تحديث</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>تحرك</value>
     <comment>button</comment>
@@ -2144,10 +2136,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
     <value>المفضلة</value>
-    <comment>settings</comment>
-  </data>
-  <data name="FavoritesSheet_optionsBox.Text" xml:space="preserve">
-    <value>خيارات</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -3006,21 +2994,9 @@ ISO-code then comma then language name</comment>
     <value>لا توجد عناوين في هذه الصفحة</value>
     <comment>message</comment>
   </data>
-  <data name="InsertTocCommand_Refresh" xml:space="preserve">
-    <value>ينعش</value>
-    <comment>refresh link</comment>
-  </data>
-  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
-    <value>ينعش</value>
-    <comment>link</comment>
-  </data>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>المراجع المرتبطة</value>
     <comment>title text</comment>
-  </data>
-  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
-    <value>ينعش</value>
-    <comment>refresh link</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>أدخل الموقت</value>
@@ -3125,10 +3101,6 @@ ISO-code then comma then language name</comment>
   <data name="SortListDialog_introLabel.Text" xml:space="preserve">
     <value>الافتراضي هو فرز القائمة الحالية أو قوائم المستوى الأعلى فقط</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
-    <value>خيارات</value>
-    <comment>group box</comment>
   </data>
   <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
     <value>فرز القائمة الحالية فقط</value>
@@ -3361,10 +3333,6 @@ ISO-code then comma then language name</comment>
   <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
     <value>غفوة حتى {0}</value>
     <comment>report</comment>
-  </data>
-  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
-    <value>خيارات</value>
-    <comment>group box</comment>
   </data>
   <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
     <value>لا تغف
@@ -3827,5 +3795,8 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
     <value>دليل ensessId</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Options" xml:space="preserve">
+    <value>خيارات</value>
   </data>
 </root>

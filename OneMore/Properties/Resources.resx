@@ -299,10 +299,6 @@ Deferred</value>
     <value>Find:</value>
     <comment>label</comment>
   </data>
-  <data name="ProgressDialog.Text" xml:space="preserve">
-    <value>OneMore</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>Directory does not exist</value>
     <comment>message</comment>
@@ -365,10 +361,6 @@ Deferred</value>
   <data name="ribDateStampButton_Label" xml:space="preserve">
     <value>Date stamp pages in section</value>
     <comment>ribbon</comment>
-  </data>
-  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
-    <value>Refresh</value>
-    <comment>link</comment>
   </data>
   <data name="StyleDialog_FileMenu.Text" xml:space="preserve">
     <value>File</value>
@@ -1379,10 +1371,6 @@ Symbols: PI, E</value>
     <value>Apply style theme to this page</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
-    <value>Options</value>
-    <comment>group box</comment>
-  </data>
   <data name="OutlineDialog_numberingBox.Text" xml:space="preserve">
     <value>Add Numbering</value>
     <comment>checkbox</comment>
@@ -1688,10 +1676,6 @@ In this section</value>
     <value>Preset</value>
     <comment>radio</comment>
   </data>
-  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
-    <value>Refresh</value>
-    <comment>refresh link</comment>
-  </data>
   <data name="InsertCellsDialog.Text" xml:space="preserve">
     <value>Insert Cells</value>
     <comment>dialog title</comment>
@@ -1723,10 +1707,6 @@ In this section</value>
   <data name="GeneralSheet_Title" xml:space="preserve">
     <value>General Options</value>
     <comment>settings sheet</comment>
-  </data>
-  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
-    <value>Options</value>
-    <comment>group box</comment>
   </data>
   <data name="RefreshPageLinksDialog_groupBox.Text" xml:space="preserve">
     <value>Pages in</value>
@@ -2040,10 +2020,6 @@ High</value>
   <data name="RemoveCitations_FromUrl" xml:space="preserve">
     <value>From &amp;lt;&lt;a\shref=.+?&lt;/a&gt;&amp;gt;</value>
     <comment>From &lt;URL&gt; pattern match</comment>
-  </data>
-  <data name="FavoritesSheet_optionsBox.Text" xml:space="preserve">
-    <value>Options</value>
-    <comment>settings</comment>
   </data>
   <data name="BiLinkCommand_Marked" xml:space="preserve">
     <value>Marked "{0}" as the anchor. Now select the target text and finish the bi-directional link</value>
@@ -3126,14 +3102,6 @@ High</value>
   <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
-    <value>Refresh</value>
-    <comment>button</comment>
-  </data>
-  <data name="InsertTocCommand_Refresh" xml:space="preserve">
-    <value>Refresh</value>
-    <comment>refresh link</comment>
-  </data>
   <data name="ExportDialog_groupBox.Text" xml:space="preserve">
     <value>Export {0} Pages</value>
     <comment>group box title</comment>
@@ -3884,5 +3852,8 @@ Polaroid</value>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
     <value>Manual ObjectID</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Options" xml:space="preserve">
+    <value>Options</value>
   </data>
 </root>

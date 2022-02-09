@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introLabel",
-					"optionsBox",
+					"optionsBox=word_Options",
 					"shortcutsBox",
 					"sortButton",
 					"upButton",

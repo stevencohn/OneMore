@@ -198,7 +198,7 @@ namespace River.OneMoreAddIn.Commands
 			if (jumplinks) cmd = $"{cmd}/links";
 			if (alignlinks) cmd = $"{cmd}/align";
 
-			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.InsertTocCommand_Refresh}</span></a>";
+			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.word_Refresh}</span></a>";
 
 			// "Table of Contents" line
 			var toc = new Paragraph(

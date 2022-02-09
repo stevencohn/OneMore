@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn
 			// build the divider line
 			line = line.Substring(0, 42) +
 				$"<span stlye='{RefreshStyle}'>[</span><a href=\"onemore://RefreshFootnotesCommand/\">" +
-				$"<span style='{RefreshStyle}'>{Resx.AddFootnoteCommand_Refresh}</span></a>" +
+				$"<span style='{RefreshStyle}'>{Resx.word_Refresh}</span></a>" +
 				$"<span style='{RefreshStyle}'>]</span>";
 
 			var color = dark ? "#595959" : "#999696";

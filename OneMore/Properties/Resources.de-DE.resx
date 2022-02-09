@@ -1089,10 +1089,6 @@ Notizbücher</value>
     <value>Zum Großbuchstaben</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ProgressDialog.Text" xml:space="preserve">
-    <value>Einer noch</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Entfernen Sie eingefügte Zitate</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -1829,10 +1825,6 @@ Absatz - ganzer Absatz
     <value>URL-Muster müssen ein Zeichenfolgenersetzungstoken enthalten, z. B. &amp;q={0}</value>
     <comment>label</comment>
   </data>
-  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
-    <value>Aktualisierung</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>Bewegen Sie sich nach oben</value>
     <comment>button</comment>
@@ -2136,10 +2128,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
     <value>Favoriten</value>
-    <comment>settings</comment>
-  </data>
-  <data name="FavoritesSheet_optionsBox.Text" xml:space="preserve">
-    <value>Optionen</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -2993,21 +2981,9 @@ OneNote-Datei (*.one)</value>
     <value>Es gibt keine Überschriften auf dieser Seite</value>
     <comment>message</comment>
   </data>
-  <data name="InsertTocCommand_Refresh" xml:space="preserve">
-    <value>Aktualisierung</value>
-    <comment>refresh link</comment>
-  </data>
-  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
-    <value>Aktualisierung</value>
-    <comment>link</comment>
-  </data>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>Verknüpfte Referenzen</value>
     <comment>title text</comment>
-  </data>
-  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
-    <value>Aktualisierung</value>
-    <comment>refresh link</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>Timer einfügen</value>
@@ -3112,10 +3088,6 @@ OneNote-Datei (*.one)</value>
   <data name="SortListDialog_introLabel.Text" xml:space="preserve">
     <value>Standardmäßig wird die aktuelle Liste oder nur Aufzählungslisten der obersten Ebene sortiert</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
-    <value>Optionen</value>
-    <comment>group box</comment>
   </data>
   <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
     <value>Nur die aktuelle Liste sortieren</value>
@@ -3348,10 +3320,6 @@ Aufgeschoben</value>
   <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
     <value>Schlummert bis {0}</value>
     <comment>report</comment>
-  </data>
-  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
-    <value>Optionen</value>
-    <comment>group box</comment>
   </data>
   <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
     <value>Nicht dösen
@@ -3814,5 +3782,8 @@ Polaroid</value>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
     <value>Manuelle objectid</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Options" xml:space="preserve">
+    <value>Optionen</value>
   </data>
 </root>

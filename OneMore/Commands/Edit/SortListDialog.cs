@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introLabel",
-					"optionsBox",
+					"optionsBox=word_Options",
 					"thisListButton",
 					"allListsButton",
 					"deepBox",

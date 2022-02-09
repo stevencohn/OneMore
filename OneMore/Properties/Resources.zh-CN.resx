@@ -1102,10 +1102,6 @@ OneNote 将自动关闭</value>
     <value>大写</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ProgressDialog.Text" xml:space="preserve">
-    <value>OneMore</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>删除粘贴的引文</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -1833,10 +1829,6 @@ OneNote 将自动关闭</value>
     <value>网址格式必须包含字符串替换令牌，例如＆q={0}</value>
     <comment>label</comment>
   </data>
-  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
-    <value>刷新</value>
-    <comment>button</comment>
-  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>提升</value>
     <comment>button</comment>
@@ -2140,10 +2132,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SettingsDialog_favoritesNode.Text" xml:space="preserve">
     <value>收藏夹</value>
-    <comment>settings</comment>
-  </data>
-  <data name="FavoritesSheet_optionsBox.Text" xml:space="preserve">
-    <value>选件</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
@@ -2998,21 +2986,9 @@ OneNote 文件 (*.one)</value>
     <value>此页面上没有标题</value>
     <comment>message</comment>
   </data>
-  <data name="InsertTocCommand_Refresh" xml:space="preserve">
-    <value>刷新</value>
-    <comment>refresh link</comment>
-  </data>
-  <data name="EmbedSubpageCommand_Refresh" xml:space="preserve">
-    <value>刷新</value>
-    <comment>link</comment>
-  </data>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>链接参考</value>
     <comment>title text</comment>
-  </data>
-  <data name="AddFootnoteCommand_Refresh" xml:space="preserve">
-    <value>刷新</value>
-    <comment>refresh link</comment>
   </data>
   <data name="ribInsertTimerButton_Label" xml:space="preserve">
     <value>插入定时器</value>
@@ -3117,10 +3093,6 @@ OneNote 文件 (*.one)</value>
   <data name="SortListDialog_introLabel.Text" xml:space="preserve">
     <value>默认是对当前列表进行排序或仅对顶级项目符号列表进行排序</value>
     <comment>intro label</comment>
-  </data>
-  <data name="SortListDialog_optionsBox.Text" xml:space="preserve">
-    <value>选项</value>
-    <comment>group box</comment>
   </data>
   <data name="SortListDialog_thisListButton.Text" xml:space="preserve">
     <value>仅对当前列表排序</value>
@@ -3353,10 +3325,6 @@ OneNote 文件 (*.one)</value>
   <data name="ReminderReport_SnoozedUntil" xml:space="preserve">
     <value>延后至 {0}</value>
     <comment>report</comment>
-  </data>
-  <data name="RemindDialog_optionsBox.Text" xml:space="preserve">
-    <value>选项</value>
-    <comment>group box</comment>
   </data>
   <data name="RemindDialog_snoozeBox.Items" xml:space="preserve">
     <value>不要打盹
@@ -3819,5 +3787,8 @@ OneNote 文件 (*.one)</value>
   <data name="ShowXmlDialog_manualLabel.Text" xml:space="preserve">
     <value>手动对象</value>
     <comment>label</comment>
+  </data>
+  <data name="word_Options" xml:space="preserve">
+    <value>选项</value>
   </data>
 </root>

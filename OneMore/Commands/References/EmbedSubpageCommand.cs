@@ -190,7 +190,7 @@ namespace River.OneMoreAddIn.Commands
 			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
 			var text = $"<a href=\"{link}\">Embedded from {source.Title}</a> | <a " +
-				$"href=\"onemore://EmbedSubpageProxy/true/{source.PageId}/{linkId}\">{Resx.EmbedSubpageCommand_Refresh}</a>";
+				$"href=\"onemore://EmbedSubpageProxy/true/{source.PageId}/{linkId}\">{Resx.word_Refresh}</a>";
 
 			var header = new Paragraph(text)
 				.SetQuickStyle(citationIndex)
