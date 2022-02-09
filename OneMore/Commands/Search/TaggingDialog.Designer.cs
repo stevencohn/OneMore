@@ -217,6 +217,8 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// suggestionPanel
 			// 
+			this.suggestionPanel.AutoSize = true;
+			this.suggestionPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.suggestionPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.suggestionPanel.Controls.Add(this.suggestionsFlow);
 			this.suggestionPanel.Controls.Add(this.suggestionsLabel);
@@ -231,6 +233,8 @@ namespace River.OneMoreAddIn.Commands
 			// suggestionsFlow
 			// 
 			this.suggestionsFlow.AutoScroll = true;
+			this.suggestionsFlow.AutoSize = true;
+			this.suggestionsFlow.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.suggestionsFlow.Controls.Add(this.recentGroup);
 			this.suggestionsFlow.Controls.Add(this.commonGroup);
 			this.suggestionsFlow.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -328,6 +332,7 @@ namespace River.OneMoreAddIn.Commands
 			this.controlPanel.PerformLayout();
 			this.splitter.Panel1.ResumeLayout(false);
 			this.splitter.Panel2.ResumeLayout(false);
+			this.splitter.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitter)).EndInit();
 			this.splitter.ResumeLayout(false);
 			this.clearPanel.ResumeLayout(false);
