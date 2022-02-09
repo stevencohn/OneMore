@@ -619,10 +619,6 @@
     <value>&amp;lt;فارغ&amp;gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_OK" xml:space="preserve">
-    <value>حسنا</value>
-    <comment>label</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>إعادة ترتيب الأنماط المخصصة</value>
     <comment>dialog title</comment>
@@ -1108,10 +1104,6 @@
     <value>مرة اخرى</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
-    <value>إلغاء</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>إزالة الاقتباسات التي تم لصقها</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -1179,10 +1171,6 @@
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
-    <value>إلغاء</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
     <value>حذف</value>
     <comment>delete button</comment>
@@ -1210,10 +1198,6 @@
   <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
     <value>اسم</value>
     <comment>name col</comment>
-  </data>
-  <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
-    <value>حسنا</value>
-    <comment>ok button</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
     <value>تحديث الرموز</value>
@@ -2398,10 +2382,6 @@ ISO-code then comma then language name</comment>
     <value>الإضافات</value>
     <comment>tree node</comment>
   </data>
-  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
-    <value>إلغاء</value>
-    <comment>button</comment>
-  </data>
   <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
     <value>حذف</value>
     <comment>toolstrip label</comment>
@@ -2409,10 +2389,6 @@ ISO-code then comma then language name</comment>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>إدارة ملحقاتي</value>
     <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
-    <value>حسنا</value>
-    <comment>button</comment>
   </data>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>(جديد)</value>
@@ -3285,10 +3261,6 @@ ISO-code then comma then language name</comment>
   <data name="RemindDialog.Text" xml:space="preserve">
     <value>تذكير</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
-    <value>مكتمل</value>
-    <comment>label</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>تاريخ الاستحقاق</value>

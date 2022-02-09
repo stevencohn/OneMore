@@ -2476,15 +2476,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string FormulaDialog_status_OK {
-            get {
-                return ResourceManager.GetString("FormulaDialog_status_OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Status:.
         /// </summary>
         internal static string FormulaDialog_statusLabel_Text {
@@ -4144,15 +4135,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string PluginsSheet_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("PluginsSheet_cancelButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Command.
         /// </summary>
         internal static string PluginsSheet_cmdColumn_HeaderText {
@@ -4198,15 +4180,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string PluginsSheet_okButton_Text {
-            get {
-                return ResourceManager.GetString("PluginsSheet_okButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Manage My Plugins.
         /// </summary>
         internal static string PluginsSheet_Text {
@@ -4221,15 +4194,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ProgramName {
             get {
                 return ResourceManager.GetString("ProgramName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string ProgressDialog_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("ProgressDialog_cancelButton.Text", resourceCulture);
             }
         }
         
@@ -4452,15 +4416,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RemindCommand_Reuse {
             get {
                 return ResourceManager.GetString("RemindCommand_Reuse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Completed.
-        /// </summary>
-        internal static string RemindDialog_completedLabel_Text {
-            get {
-                return ResourceManager.GetString("RemindDialog_completedLabel.Text", resourceCulture);
             }
         }
         
@@ -6979,15 +6934,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string SearchEngineDialog_cancelButton_Text {
-            get {
-                return ResourceManager.GetString("SearchEngineDialog_cancelButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string SearchEngineDialog_deleteButton_Text {
@@ -7047,15 +6993,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchEngineDialog_nameColumn_HeaderText {
             get {
                 return ResourceManager.GetString("SearchEngineDialog_nameColumn.HeaderText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string SearchEngineDialog_okButton_Text {
-            get {
-                return ResourceManager.GetString("SearchEngineDialog_okButton.Text", resourceCulture);
             }
         }
         

@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					calculator.Execute(formula);
 					validStatusLabel.ForeColor = SystemColors.WindowText;
-					validStatusLabel.Text = Resx.FormulaDialog_status_OK;
+					validStatusLabel.Text = Resx.word_OK;
 					okButton.Enabled = true;
 				}
 				catch

@@ -122,7 +122,7 @@ namespace River.OneMoreAddIn.UI
 
 				Localize(new string[]
 				{
-					"cancelButton"
+					"cancelButton=word_Cancel"
 				});
 			}
 		}

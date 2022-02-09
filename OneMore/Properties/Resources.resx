@@ -414,10 +414,6 @@ Deferred</value>
     <value>Current version:</value>
     <comment>label</comment>
   </data>
-  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
-    <comment>button</comment>
-  </data>
   <data name="PluginDialog_argsLabel.Text" xml:space="preserve">
     <value>Arguments</value>
     <comment>label</comment>
@@ -694,10 +690,6 @@ OneNote will close automatically</value>
     <value>Page</value>
     <comment>ribbon menu</comment>
   </data>
-  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>button</comment>
-  </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
     <value>These are reminders not yet completed or deferred and ordered by due date year, week of year, and priority</value>
     <comment>report</comment>
@@ -705,10 +697,6 @@ OneNote will close automatically</value>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
     <value>Arrange Containers</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
-    <comment>cancel button</comment>
   </data>
   <data name="Camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1644,10 +1632,6 @@ In this section</value>
   <data name="InsertCodeBlockCommand_Text" xml:space="preserve">
     <value>Your content here...</value>
     <comment>text</comment>
-  </data>
-  <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
-    <comment>ok button</comment>
   </data>
   <data name="ribRemindButton_Label" xml:space="preserve">
     <value>Add or Update Reminders</value>
@@ -2818,10 +2802,6 @@ In this section</value>
     <value>Ribbon Bar</value>
     <comment>treenode</comment>
   </data>
-  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
-    <value>Completed</value>
-    <comment>label</comment>
-  </data>
   <data name="InsertTocCommand_NoHeadings" xml:space="preserve">
     <value>There are no headings on this page</value>
     <comment>message</comment>
@@ -3590,10 +3570,6 @@ High</value>
   <data name="Bullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>emoji\bullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FormulaDialog_status_OK" xml:space="preserve">
-    <value>OK</value>
-    <comment>label</comment>
-  </data>
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
     <comment>SKIP</comment>
@@ -3724,10 +3700,6 @@ OneNote File (*.one)</value>
   <data name="OutlineDialog_cleanBox.Text" xml:space="preserve">
     <value>Remove/cleanup existing numbering</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
-    <comment>cancel button</comment>
   </data>
   <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
     <value>... Text Box</value>

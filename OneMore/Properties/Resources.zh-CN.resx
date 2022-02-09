@@ -1110,10 +1110,6 @@ OneNote 将自动关闭</value>
     <value>OneMore</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>删除粘贴的引文</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -1181,10 +1177,6 @@ OneNote 将自动关闭</value>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
     <value>删除</value>
     <comment>delete button</comment>
@@ -1212,10 +1204,6 @@ OneNote 将自动关闭</value>
   <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
     <value>名称</value>
     <comment>name col</comment>
-  </data>
-  <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>ok button</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
     <value>刷新图标</value>
@@ -1365,10 +1353,6 @@ OneNote 将自动关闭</value>
   </data>
   <data name="FormulaDialog_status_Invalid" xml:space="preserve">
     <value>无效</value>
-    <comment>label</comment>
-  </data>
-  <data name="FormulaDialog_status_OK" xml:space="preserve">
-    <value>好</value>
     <comment>label</comment>
   </data>
   <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
@@ -2394,10 +2378,6 @@ ISO-code then comma then language name</comment>
     <value>插件</value>
     <comment>tree node</comment>
   </data>
-  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
-    <value>取消</value>
-    <comment>button</comment>
-  </data>
   <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
     <value>删除</value>
     <comment>toolstrip label</comment>
@@ -2405,10 +2385,6 @@ ISO-code then comma then language name</comment>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>管理我的插件</value>
     <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
-    <value>好</value>
-    <comment>button</comment>
   </data>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>（新）</value>
@@ -3277,10 +3253,6 @@ OneNote 文件 (*.one)</value>
   <data name="RemindDialog.Text" xml:space="preserve">
     <value>提醒</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
-    <value>完全的</value>
-    <comment>label</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>到期日</value>

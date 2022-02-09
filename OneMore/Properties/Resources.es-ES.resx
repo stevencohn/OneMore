@@ -623,10 +623,6 @@ Porcentaje</value>
     <value>&amp;lt;vacío&amp;gt;</value>
     <comment>label</comment>
   </data>
-  <data name="FormulaDialog_status_OK" xml:space="preserve">
-    <value>Okay</value>
-    <comment>label</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Reordenar estilos personalizados</value>
     <comment>dialog title</comment>
@@ -1112,10 +1108,6 @@ Vuelve a intentarlo más tarde</value>
     <value>Uno mas</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="ribRemoveCitationsButton_Label" xml:space="preserve">
     <value>Eliminar citas pegadas</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -1183,10 +1175,6 @@ Vuelve a intentarlo más tarde</value>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchEngineDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>cancel button</comment>
-  </data>
   <data name="SearchEngineDialog_deleteButton.Text" xml:space="preserve">
     <value>Eliminar</value>
     <comment>delete button</comment>
@@ -1214,10 +1202,6 @@ Vuelve a intentarlo más tarde</value>
   <data name="SearchEngineDialog_nameColumn.HeaderText" xml:space="preserve">
     <value>Nombre</value>
     <comment>name col</comment>
-  </data>
-  <data name="SearchEngineDialog_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>ok button</comment>
   </data>
   <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
     <value>Actualizar iconos</value>
@@ -2402,10 +2386,6 @@ ISO-code then comma then language name</comment>
     <value>Complementos</value>
     <comment>tree node</comment>
   </data>
-  <data name="PluginsSheet_cancelButton.Text" xml:space="preserve">
-    <value>Cancelar</value>
-    <comment>button</comment>
-  </data>
   <data name="PluginsSheet_deleteLabel.Text" xml:space="preserve">
     <value>Eliminar</value>
     <comment>toolstrip label</comment>
@@ -2413,10 +2393,6 @@ ISO-code then comma then language name</comment>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>Administrar mis complementos</value>
     <comment>label</comment>
-  </data>
-  <data name="PluginsSheet_okButton.Text" xml:space="preserve">
-    <value>Okay</value>
-    <comment>button</comment>
   </data>
   <data name="PluginDialog_newItem" xml:space="preserve">
     <value>(nuevo)</value>
@@ -3285,10 +3261,6 @@ Archivo de OneNote (* .one)</value>
   <data name="RemindDialog.Text" xml:space="preserve">
     <value>Recordatorio</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="RemindDialog_completedLabel.Text" xml:space="preserve">
-    <value>Terminado</value>
-    <comment>label</comment>
   </data>
   <data name="RemindDialog_dueDateLabel.Text" xml:space="preserve">
     <value>Fecha de vencimiento</value>
