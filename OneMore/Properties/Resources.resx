@@ -255,7 +255,7 @@ Deferred</value>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>To lowercase</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
   <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
     <value>OneNote Keyboard Shortcuts</value>
@@ -271,7 +271,7 @@ Deferred</value>
   </data>
   <data name="ribReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
-    <comment>Ribbon OneMore menu item, search and replace</comment>
+    <comment>Ribbon OneMore menu item, search and replace NODUP</comment>
   </data>
   <data name="Ribbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ribbon.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -293,7 +293,7 @@ Deferred</value>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numbering</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
   <data name="SearchDialog_findLabel.Text" xml:space="preserve">
     <value>Find:</value>
@@ -416,7 +416,7 @@ Deferred</value>
   </data>
   <data name="ctxLowercaseButton_Label" xml:space="preserve">
     <value>To lowercase</value>
-    <comment>Context menu</comment>
+    <comment>Context menu NODUP</comment>
   </data>
   <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -436,7 +436,7 @@ OneNote will close automatically</value>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">
     <value>File</value>
-    <comment>ribbon menu</comment>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="LinkDialog_notebooksRadio.Text" xml:space="preserve">
     <value>All notebooks</value>
@@ -448,11 +448,11 @@ OneNote will close automatically</value>
   </data>
   <data name="ribImportWebButton_Label" xml:space="preserve">
     <value>Import Web Page</value>
-    <comment>ribbon</comment>
+    <comment>ribbon NODUP</comment>
   </data>
   <data name="ribCalendarButton_Label" xml:space="preserve">
     <value>Calendar</value>
-    <comment>Ribbon OneMore-Calendar command</comment>
+    <comment>Ribbon OneMore-Calendar command NODUP</comment>
   </data>
   <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
     <value>Cell range must be within one column or within one row</value>
@@ -577,7 +577,7 @@ OneNote will close automatically</value>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Paste Rich Text</value>
-    <comment>Ribbon OneMore menu item, paste rich text</comment>
+    <comment>Ribbon OneMore menu item, paste rich text NODUP</comment>
   </data>
   <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -672,7 +672,7 @@ OneNote will close automatically</value>
   </data>
   <data name="ribPageMenu_Label" xml:space="preserve">
     <value>Page</value>
-    <comment>ribbon menu</comment>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="ReminderReport_ActiveSummary" xml:space="preserve">
     <value>These are reminders not yet completed or deferred and ordered by due date year, week of year, and priority</value>
@@ -935,7 +935,7 @@ Deferred</value>
   </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>To UPPERCASE</value>
-    <comment>Context menu</comment>
+    <comment>Context menu NODUP</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">
     <value>Toggle strikethough of text marked with complete or incomplete To Do tags</value>
@@ -1072,7 +1072,7 @@ Deferred</value>
   </data>
   <data name="ribSortButton_Label" xml:space="preserve">
     <value>Sort</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
   <data name="ReminderReport_InactiveReminders" xml:space="preserve">
     <value>Inactive Reminders</value>
@@ -1212,7 +1212,7 @@ Symbols: PI, E</value>
   </data>
   <data name="ribRefreshPageLinksButton_Label" xml:space="preserve">
     <value>Refresh Page References</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon item NODUP</comment>
   </data>
   <data name="LinkDialog_sectionRadio.Text" xml:space="preserve">
     <value>The current section</value>
@@ -1235,7 +1235,7 @@ Symbols: PI, E</value>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
     <value>Remove Paragraph Spacing</value>
-    <comment>Context menu</comment>
+    <comment>Context menu NODUP</comment>
   </data>
   <data name="SaveSnippetDialog_duplicateName" xml:space="preserve">
     <value>Name is already in use</value>
@@ -1389,7 +1389,7 @@ Symbols: PI, E</value>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favorites</value>
-    <comment>Ribbon main favorites button</comment>
+    <comment>Ribbon main favorites button NODUP</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
     <value>Number
@@ -1505,7 +1505,7 @@ Percentage</value>
   </data>
   <data name="ribInsertCalendarButton_Label" xml:space="preserve">
     <value>Calendar</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon button NODUP</comment>
   </data>
   <data name="InsertCalendarDialog.Text" xml:space="preserve">
     <value>Insert Calendar</value>
@@ -1670,7 +1670,7 @@ In this section</value>
   </data>
   <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
     <value>Remove Paragraph Spacing</value>
-    <comment>Ribbon OneMore menu item, Clean...</comment>
+    <comment>Ribbon OneMore menu item, Clean... NODUP</comment>
   </data>
   <data name="ResizeImagesDialog_presetRadio.Text" xml:space="preserve">
     <value>Preset</value>
@@ -1811,7 +1811,7 @@ In this section</value>
   </data>
   <data name="ribSortSectionPagesButton_Label" xml:space="preserve">
     <value>Sort Pages in Section</value>
-    <comment>ribbon/context menu</comment>
+    <comment>ribbon/context menu NODUP</comment>
   </data>
   <data name="SettingsDialog_snippetshNode_Text" xml:space="preserve">
     <value>Snippets</value>
@@ -1895,7 +1895,7 @@ In this section</value>
   </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Run Plugin</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
   <data name="Travel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Travel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1953,7 +1953,7 @@ In this section</value>
   </data>
   <data name="ribSortPagesButton_Label" xml:space="preserve">
     <value>Sort Pages in Section</value>
-    <comment>ribbon/context menu</comment>
+    <comment>ribbon/context menu NODUP</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
     <value>Sortable Date</value>
@@ -2120,7 +2120,7 @@ High</value>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
     <value>Reminder Summary Report</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon item NODUP</comment>
   </data>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Cannot copy a folder into itself or one of its children</value>
@@ -2137,7 +2137,7 @@ Try again later</value>
   </data>
   <data name="ctxReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
-    <comment>Context menu</comment>
+    <comment>Context menu NODUP</comment>
   </data>
   <data name="ReminderReport_WeekOfYear" xml:space="preserve">
     <value>Week {0}</value>
@@ -2202,7 +2202,7 @@ Try again later</value>
   </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Convert Text to Table</value>
-    <comment>Ribbon OneMore menu item, extras</comment>
+    <comment>Ribbon OneMore menu item, extras NODUP</comment>
   </data>
   <data name="ribSpellCheckButton_Screentip" xml:space="preserve">
     <value>Enable spell check for entire page</value>
@@ -2230,7 +2230,7 @@ Try again later</value>
   </data>
   <data name="ribRemindersMenu_Label" xml:space="preserve">
     <value>Reminders</value>
-    <comment>ribbon menu</comment>
+    <comment>ribbon menu NODUP</comment>
   </data>
   <data name="Emoji_Hammer" xml:space="preserve">
     <value>Hammer</value>
@@ -2250,7 +2250,7 @@ Try again later</value>
   </data>
   <data name="ribTaggedButton_Label" xml:space="preserve">
     <value>Find Tagged Pages</value>
-    <comment>menu item</comment>
+    <comment>menu item NODUP</comment>
   </data>
   <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
     <value>Unexpected character encountered '{0}'</value>
@@ -2333,7 +2333,7 @@ Notebooks</value>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
-    <comment>Ribbon OneMore menu item, Images...</comment>
+    <comment>Ribbon OneMore menu item, Images... NODUP</comment>
   </data>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>Linked References</value>
@@ -2421,14 +2421,14 @@ Quick Notes to bottom</value>
   </data>
   <data name="ribMapButton_Label" xml:space="preserve">
     <value>Create Page Map</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon button NODUP</comment>
   </data>
   <data name="Task" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\task.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Change Sentence Spacing</value>
-    <comment>clean menu item</comment>
+    <comment>clean menu item NODUP</comment>
   </data>
   <data name="MapDialog_Text" xml:space="preserve">
     <value>Create Page Map</value>
@@ -2451,7 +2451,7 @@ Quick Notes to bottom</value>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Custom Styles</value>
-    <comment>Ribbon main custom styles button</comment>
+    <comment>Ribbon main custom styles button NODUP</comment>
   </data>
   <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
     <value>Operand contains multiple decimal points</value>
@@ -2502,7 +2502,7 @@ Quick Notes to bottom</value>
   </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>OneMore</value>
-    <comment>Ribbon Group</comment>
+    <comment>Ribbon Group NODUP</comment>
   </data>
   <data name="Emoji_Cycling" xml:space="preserve">
     <value>Cycling</value>
@@ -2607,7 +2607,7 @@ In this section</value>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Import</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon item NODUP</comment>
   </data>
   <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
     <value>Strikethrough</value>
@@ -2663,7 +2663,7 @@ In this section</value>
   </data>
   <data name="ribSplitButton_Label" xml:space="preserve">
     <value>Split Page</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon item NODUP</comment>
   </data>
   <data name="Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2701,7 +2701,7 @@ In this section</value>
   </data>
   <data name="ribArchiveNotebookButton_Screentip" xml:space="preserve">
     <value>Zip all pages including attachments</value>
-    <comment>tip</comment>
+    <comment>tip NODUP</comment>
   </data>
   <data name="NumberPagesDialog_numRadio.Text" xml:space="preserve">
     <value>Numeric</value>
@@ -2728,7 +2728,7 @@ In this section</value>
   </data>
   <data name="ribPageColorButton_Label" xml:space="preserve">
     <value>Change Page Theme</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+    <comment>Ribbon Custom Styles menu item, set page background color NODUP</comment>
   </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>Selected text cannot exceed {0} characters</value>
@@ -2748,7 +2748,7 @@ In this section</value>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
     <value>To UPPERCASE</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
     <value>High cells with formula in current table</value>
@@ -2859,7 +2859,7 @@ High</value>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Snippets</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
+    <comment>Ribbon OneMore menu item, Snippets... NODUP</comment>
   </data>
   <data name="AnalyzeCommand_NoCache" xml:space="preserve">
     <value>&lt;span style='font-style:italic'&gt;Cache not found; location likely changed in OneNote options&lt;/span&gt;</value>
@@ -2871,7 +2871,7 @@ High</value>
   </data>
   <data name="ribCropImageButton_Label" xml:space="preserve">
     <value>Crop and Rotate</value>
-    <comment>Ribbon OneMore menu item, Images...</comment>
+    <comment>Ribbon OneMore menu item, Images... NODUP</comment>
   </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Remove Spacing</value>
@@ -2994,7 +2994,7 @@ High</value>
   </data>
   <data name="ribPluginButton_Label" xml:space="preserve">
     <value>Run Plugin</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
   <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -3069,7 +3069,7 @@ High</value>
   </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Arrange Containers</value>
-    <comment>ribbon button</comment>
+    <comment>ribbon button NODUP</comment>
   </data>
   <data name="ExportDialog_formatLabel.Text" xml:space="preserve">
     <value>Format:</value>
@@ -3150,7 +3150,7 @@ High</value>
   </data>
   <data name="ribFootnoteButton_Label" xml:space="preserve">
     <value>Add Footnote</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>Ribbon OneMore menu item, Extras... NODUP</comment>
   </data>
   <data name="ImportWebDialog_imagesBox.Text" xml:space="preserve">
     <value>Import as static images</value>
@@ -3499,7 +3499,7 @@ High</value>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Import Tasks from Outlook</value>
-    <comment>ribbon Reminders item</comment>
+    <comment>ribbon Reminders item NODUP</comment>
   </data>
   <data name="ribInvertSelectionButton_Label" xml:space="preserve">
     <value>Invert Selection</value>
@@ -3579,7 +3579,7 @@ OneNote File (*.one)</value>
   </data>
   <data name="ribFitGridButton_Label" xml:space="preserve">
     <value>Fit Grid to Text</value>
-    <comment>ribbon item</comment>
+    <comment>ribbon item NODUP</comment>
   </data>
   <data name="OutlookTaskReport_DateDue" xml:space="preserve">
     <value>Due/Completed</value>
@@ -3587,7 +3587,7 @@ OneNote File (*.one)</value>
   </data>
   <data name="ribTocButton_Label" xml:space="preserve">
     <value>Table of Contents</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <comment>Ribbon OneMore menu item, Extras... NODUP</comment>
   </data>
   <data name="HighlightsSheet_Title" xml:space="preserve">
     <value>Rotating Highlighter Options</value>
@@ -3607,7 +3607,7 @@ OneNote File (*.one)</value>
   </data>
   <data name="ribArchiveSectionButton_Screentip" xml:space="preserve">
     <value>Zip all pages including attachments</value>
-    <comment>tip</comment>
+    <comment>tip NODUP</comment>
   </data>
   <data name="Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
