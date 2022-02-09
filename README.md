@@ -21,7 +21,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 ![Calendar](../../wiki/images/Calendar.png)
 
 ## Languages
-OneMore is translated to Arabic, Chinese Simplified, Dutch, English, French, German, Portuguese, and Spanish. Please let me know if you'd like it translated to another language. I use my [ResxTranslator](https://github.com/stevencohn/ResxTranslator) program to automate the translations but can also override inaccuracies with specific words and phrases. If think a translation is not correct, also please let me know.
+OneMore is translated to Arabic, Chinese Simplified, Dutch, English, French, German, Portuguese, and Spanish. Please let me know if you'd like it translated to another language. I use my [ResxTranslator](https://github.com/stevencohn/ResxTranslator) program to automate the translations but can also override inaccuracies of specific words and phrases. If you think a translation is not correct, also please let me know.
 
 <a name="features"></a>
 ## Features (144)
