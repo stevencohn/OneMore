@@ -3172,10 +3172,6 @@ ISO-code then comma then language name</comment>
 مؤجل</value>
     <comment>combobox</comment>
   </data>
-  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
-    <value>حالة</value>
-    <comment>label</comment>
-  </data>
   <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
     <value>موضوعات</value>
     <comment>label</comment>
@@ -3465,10 +3461,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="OutlookTaskReport_Percent" xml:space="preserve">
     <value>٪ إكمال</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Status" xml:space="preserve">
-    <value>حالة</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
@@ -3798,5 +3790,8 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Options" xml:space="preserve">
     <value>خيارات</value>
+  </data>
+  <data name="word_Status" xml:space="preserve">
+    <value>حالة</value>
   </data>
 </root>

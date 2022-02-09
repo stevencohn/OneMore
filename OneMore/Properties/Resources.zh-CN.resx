@@ -3164,10 +3164,6 @@ OneNote 文件 (*.one)</value>
 延期</value>
     <comment>combobox</comment>
   </data>
-  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
-    <value>地位</value>
-    <comment>label</comment>
-  </data>
   <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
     <value>主题</value>
     <comment>label</comment>
@@ -3457,10 +3453,6 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="OutlookTaskReport_Percent" xml:space="preserve">
     <value>％ 完全的</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Status" xml:space="preserve">
-    <value>地位</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
@@ -3790,5 +3782,8 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="word_Options" xml:space="preserve">
     <value>选项</value>
+  </data>
+  <data name="word_Status" xml:space="preserve">
+    <value>地位</value>
   </data>
 </root>

@@ -3159,10 +3159,6 @@ Auf jemand anderen warten
 Aufgeschoben</value>
     <comment>combobox</comment>
   </data>
-  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
-    <value>Status</value>
-    <comment>label</comment>
-  </data>
   <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
     <value>Gegenstand</value>
     <comment>label</comment>
@@ -3452,10 +3448,6 @@ Hoch</value>
   </data>
   <data name="OutlookTaskReport_Percent" xml:space="preserve">
     <value>% Vollständig</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Status" xml:space="preserve">
-    <value>Status</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
@@ -3785,5 +3777,8 @@ Polaroid</value>
   </data>
   <data name="word_Options" xml:space="preserve">
     <value>Optionen</value>
+  </data>
+  <data name="word_Status" xml:space="preserve">
+    <value>Status</value>
   </data>
 </root>

@@ -3172,10 +3172,6 @@ Esperando a alguien más
 Diferido</value>
     <comment>combobox</comment>
   </data>
-  <data name="RemindDialog_statusLabel.Text" xml:space="preserve">
-    <value>Estado</value>
-    <comment>label</comment>
-  </data>
   <data name="RemindDialog_subjectLabel.Text" xml:space="preserve">
     <value>Tema</value>
     <comment>label</comment>
@@ -3465,10 +3461,6 @@ Alto</value>
   </data>
   <data name="OutlookTaskReport_Percent" xml:space="preserve">
     <value>% Completo</value>
-    <comment>report</comment>
-  </data>
-  <data name="OutlookTaskReport_Status" xml:space="preserve">
-    <value>Estado</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_statuses" xml:space="preserve">
@@ -3798,5 +3790,8 @@ polaroid</value>
   </data>
   <data name="word_Options" xml:space="preserve">
     <value>Opciones</value>
+  </data>
+  <data name="word_Status" xml:space="preserve">
+    <value>Estado</value>
   </data>
 </root>
