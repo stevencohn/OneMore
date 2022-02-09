@@ -288,7 +288,7 @@ namespace River.OneMoreAddIn.Commands
 			if (synopses) cmd = $"{cmd}/synopsis";
 			if (unindexed) cmd = $"{cmd}/unindexed";
 
-			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.InsertTocCommand_Refresh}</span></a>";
+			var refresh = $"<a href=\"{cmd}\"><span style='{RefreshStyle}'>{Resx.word_Refresh}</span></a>";
 
 			var block = new Paragraph(
 				new Meta(LinkRefsMeta, scope.ToString()),

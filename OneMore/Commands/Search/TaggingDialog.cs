@@ -454,19 +454,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		//private void RestrictSplitterMoving(object sender, SplitterCancelEventArgs e)
-		//{
-		//	if (splitter.SplitterDistance < 100)
-		//	{
-		//		splitter.SplitterDistance = 100;
-		//	}
-		//	else if (splitter.SplitterDistance > splitter.Height / 2)
-		//	{
-		//		splitter.SplitterDistance = splitter.Height / 2;
-		//	}
-		//}
-
-
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		public List<string> Tags
