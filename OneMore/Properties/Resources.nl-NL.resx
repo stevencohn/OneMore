@@ -3885,4 +3885,34 @@ Polaroid</value>
     <value>Inclusief tekstvoorbeeld van elke pagina</value>
     <comment>checkbox</comment>
   </data>
+  <data name="TaggingDialog.Text" xml:space="preserve">
+    <value>Pagina-tags</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
+    <value>Verwijder alles</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
+    <value>Gemeenschappelijke woorden op deze pagina</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
+    <value>Scheid tags met komma's</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
+    <value>Laatst gebruikt</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
+    <value>Pagina-tags</value>
+    <comment>header label</comment>
+  </data>
+  <data name="word_Add" xml:space="preserve">
+    <value>Toevoegen</value>
+  </data>
+  <data name="word_Suggestions" xml:space="preserve">
+    <value>Suggesties</value>
+  </data>
 </root>

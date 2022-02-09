@@ -3885,4 +3885,34 @@ ISO-code then comma then language name</comment>
     <value>قم بتضمين معاينة النص لكل صفحة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="TaggingDialog.Text" xml:space="preserve">
+    <value>علامات الصفحة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
+    <value>حذف الكل</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
+    <value>كلمات مشتركة في هذه الصفحة</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
+    <value>أفصل التعليقات بفواصل</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
+    <value>مستخدم حديثا</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
+    <value>علامات الصفحة</value>
+    <comment>header label</comment>
+  </data>
+  <data name="word_Add" xml:space="preserve">
+    <value>يضيف</value>
+  </data>
+  <data name="word_Suggestions" xml:space="preserve">
+    <value>اقتراحات</value>
+  </data>
 </root>

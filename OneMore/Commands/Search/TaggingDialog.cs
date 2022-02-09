@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Web;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class TaggingDialog : UI.LocalizableForm
@@ -380,19 +381,93 @@ namespace River.OneMoreAddIn.Commands
 			InitializeComponent();
 
 			VerticalOffset = 5;
-
 			tagBox.PressedEnter += AcceptInput;
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.TaggingDialog_Text;
+
+				Localize(new string[]
+				{
+					"tagLabel",
+					"introLabel",
+					"addButton=word_Add",
+					"clearLabel",
+					"suggestionsLabel=word_Suggestions",
+					"recentGroup",
+					"commonGroup",
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
+				});
+			}
 		}
 
-		protected override async void OnShown(EventArgs e)
+
+		private async void DialogLoad(object sender, EventArgs e)
 		{
-			base.OnShown(e);
-
-			// called in OnShown to prevent async constructor
 			await FetchRecentTags();
-			FetchPageWords();
+			FetchCommonWords();
+			SuggestionsResize(sender, e);
 		}
 
+
+		private void SuggestionsResize(object sender, EventArgs e)
+		{
+			var width = suggestionsFlow.Width -
+				suggestionsFlow.Padding.Left - suggestionsFlow.Padding.Right -
+				suggestionPanel.Padding.Left - suggestionPanel.Padding.Right -
+				suggestionPanel.Margin.Left - suggestionPanel.Margin.Right -
+				SystemInformation.VerticalScrollBarWidth;
+
+			recentGroup.Width = width;
+			var size = new Size(width, CalculateFlowHeight(recentFlow));
+			recentGroup.Size = size;
+			recentGroup.MaximumSize = size;
+			recentGroup.MinimumSize = size;
+
+			commonGroup.Width = width;
+			size = new Size(width, CalculateFlowHeight(commonFlow));
+			commonGroup.Size = size;
+			commonGroup.MaximumSize = size;
+			commonGroup.MinimumSize = size;
+		}
+
+
+		private int CalculateFlowHeight(FlowLayoutPanel layout)
+		{
+			var width = 0;
+			var height = 80;
+			foreach (var control in layout.Controls)
+			{
+				var tag = (Control)control;
+				var buffer = tag.Margin.Left + tag.Margin.Right + layout.Padding.Left + layout.Padding.Right;
+
+				width += tag.Width + buffer;
+				if (width > layout.Width)
+				{
+					height += tag.Height + tag.Margin.Top + tag.Margin.Bottom;
+					width = 0;
+				}
+			}
+
+			return height;
+		}
+
+
+		//private void RestrictSplitterMoving(object sender, SplitterCancelEventArgs e)
+		//{
+		//	if (splitter.SplitterDistance < 100)
+		//	{
+		//		splitter.SplitterDistance = 100;
+		//	}
+		//	else if (splitter.SplitterDistance > splitter.Height / 2)
+		//	{
+		//		splitter.SplitterDistance = splitter.Height / 2;
+		//	}
+		//}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		public List<string> Tags
 		{
@@ -426,7 +501,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void FetchPageWords()
+		private void FetchCommonWords()
 		{
 			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic))
 			{
@@ -495,7 +570,7 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var word in words)
 				{
-					wordsFlow.Controls.Add(MakeLabel(word.Word, $"{word.Word} ({word.Count})"));
+					commonFlow.Controls.Add(MakeLabel(word.Word, $"{word.Word} ({word.Count})"));
 				}
 			}
 		}
@@ -549,6 +624,7 @@ namespace River.OneMoreAddIn.Commands
 				tagBox.Text = string.Empty;
 			}
 		}
+
 
 		private void AddTag(string text)
 		{

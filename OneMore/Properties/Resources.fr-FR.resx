@@ -3881,4 +3881,34 @@ Polaroïd</value>
     <value>Inclure l'aperçu du texte de chaque page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="TaggingDialog.Text" xml:space="preserve">
+    <value>Tags de page</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
+    <value>Enlever tout</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
+    <value>Mots communs sur cette page</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
+    <value>Séparez les tags avec des virgules</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
+    <value>Utilisé récemment</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
+    <value>Tags de page</value>
+    <comment>header label</comment>
+  </data>
+  <data name="word_Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="word_Suggestions" xml:space="preserve">
+    <value>Suggestions</value>
+  </data>
 </root>
