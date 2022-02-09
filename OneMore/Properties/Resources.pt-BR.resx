@@ -3885,4 +3885,34 @@ Polaroid.</value>
     <value>Inclua pré-visualização de texto de cada página</value>
     <comment>checkbox</comment>
   </data>
+  <data name="TaggingDialog.Text" xml:space="preserve">
+    <value>Tags da página.</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
+    <value>Deletar tudo</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
+    <value>Palavras comuns nesta página</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
+    <value>Separe tags com virgulas</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
+    <value>Usado recentemente</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
+    <value>Tags da página.</value>
+    <comment>header label</comment>
+  </data>
+  <data name="word_Add" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+  <data name="word_Suggestions" xml:space="preserve">
+    <value>Sugestões</value>
+  </data>
 </root>

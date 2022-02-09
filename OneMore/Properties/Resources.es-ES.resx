@@ -3885,4 +3885,34 @@ polaroid</value>
     <value>Incluir la vista previa de texto de cada página.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="TaggingDialog.Text" xml:space="preserve">
+    <value>Etiquetas de la página</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
+    <value>Eliminar todo</value>
+    <comment>linklabel</comment>
+  </data>
+  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
+    <value>Palabras comunes en esta página</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
+    <value>Separa las etiquetas con comas</value>
+    <comment>intro label</comment>
+  </data>
+  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
+    <value>Recientemente usado</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="TaggingDialog_tagLabel.Text" xml:space="preserve">
+    <value>Etiquetas de la página</value>
+    <comment>header label</comment>
+  </data>
+  <data name="word_Add" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="word_Suggestions" xml:space="preserve">
+    <value>Sugerencias</value>
+  </data>
 </root>
