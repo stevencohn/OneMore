@@ -5,9 +5,10 @@
 namespace OneMoreSetupActions
 {
 	using Microsoft.Win32;
+	using System;
 	using System.IO;
 	using System.Security.AccessControl;
-
+	using System.Security.Principal;
 
 	internal static class RegistryHelper
 	{
@@ -58,6 +59,70 @@ namespace OneMoreSetupActions
 					}
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logger"></param>
+		/// <param name="note"></param>
+		/// <returns></returns>
+		public static string GetUserSid(Logger logger, string note)
+		{
+			var domain = Environment.GetEnvironmentVariable("USERDOMAIN");
+			var username = Environment.GetEnvironmentVariable("USERNAME");
+
+			var userdom = domain != null
+				? $@"{domain.ToUpper()}\{username.ToLower()}"
+				: username.ToLower();
+
+			logger.WriteLine($"translating user {userdom} to SID");
+
+			var tries = 0;
+			while (tries <= 2)
+			{
+				try
+				{
+					var account = new NTAccount(userdom);
+					var sid = ((SecurityIdentifier)account.Translate(typeof(SecurityIdentifier))).ToString();
+					logger.WriteLine($"{note} for user {userdom} ({sid})");
+					return sid;
+				}
+				catch (Exception exc)
+				{
+					tries++;
+					logger.WriteLine(exc);
+					logger.WriteLine($"error translating, retrying {tries} of 2");
+					System.Threading.Thread.Sleep(200 * tries);
+				}
+			}
+
+			logger.WriteLine("fallback to search username in HKEY_USERS");
+
+			foreach (var sid in Registry.Users.GetSubKeyNames())
+			{
+				var key = Registry.Users.OpenSubKey($@"{sid}\Volatile Environment");
+				if (key != null)
+				{
+					var vname = key.GetValue("USERNAME") as string;
+					if (!string.IsNullOrEmpty(vname))
+					{
+						var vdomain = key.GetValue("USERDOMAIN") as string;
+
+						var candidate = !string.IsNullOrEmpty(vdomain)
+							? $@"{vdomain.ToUpper()}\{vname.ToLower()}"
+							: vname.ToLower();
+
+						if (candidate == userdom)
+						{
+							return sid;
+						}
+					}
+				}
+			}
+
+			return null;
 		}
 	}
 }

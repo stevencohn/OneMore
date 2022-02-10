@@ -7,12 +7,16 @@ namespace OneMoreSetupActions
 	using System.Diagnostics;
 	using System.Linq;
 
-	internal class ShutdownOneNoteDeployment : Deployment
+
+	/// <summary>
+	/// Prep step in the installer to force shutdown of OneNote.
+	/// </summary>
+	internal class ShutdownOneNoteAction : CustomAction
 	{
 		private const string OneNoteName = "ONENOTE";
 
 
-		public ShutdownOneNoteDeployment(Logger logger, Stepper stepper)
+		public ShutdownOneNoteAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
 		}
@@ -21,7 +25,7 @@ namespace OneMoreSetupActions
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine("ShutdownOneNoteDeployment.Install ---");
+			logger.WriteLine("ShutdownOneNoteAction.Install ---");
 			return StopProcess();
 		}
 
@@ -29,7 +33,7 @@ namespace OneMoreSetupActions
 		public override int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine("ShutdownOneNoteDeployment.Uninstall ---");
+			logger.WriteLine("ShutdownOneNoteAction.Uninstall ---");
 
 			var status = FAILURE;
 			var tries = 0;

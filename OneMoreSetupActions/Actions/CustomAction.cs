@@ -5,8 +5,9 @@
 namespace OneMoreSetupActions
 {
 
-	internal abstract class Deployment
+	internal abstract class CustomAction
 	{
+		// these are CMD exit codes
 		public const int SUCCESS = 0;
 		public const int FAILURE = 1;
 
@@ -14,7 +15,7 @@ namespace OneMoreSetupActions
 		protected readonly Stepper stepper;
 
 
-		protected Deployment(Logger logger, Stepper stepper)
+		protected CustomAction(Logger logger, Stepper stepper)
 		{
 			this.logger = logger;
 			this.stepper = stepper;

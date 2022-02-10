@@ -6,13 +6,16 @@ namespace OneMoreSetupActions
 {
 	using Microsoft.Win32;
 	using System;
-	using System.Security.Principal;
 
 
-	internal class TrustedProtocolDeployment : Deployment
+	/// <summary>
+	/// Along with the ProtocolHandlerAction this tells Windows to trust the onemore://
+	/// protocol as safe.
+	/// </summary>
+	internal class TrustedProtocolAction : CustomAction
 	{
 
-		public TrustedProtocolDeployment(Logger logger, Stepper stepper)
+		public TrustedProtocolAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
 		}
@@ -23,7 +26,7 @@ namespace OneMoreSetupActions
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine("TrustedProtocolDeployment.Install ---");
+			logger.WriteLine("TrustedProtocolAction.Install ---");
 
 			// Declares the onemore: protocol as trusted so OneNote doesn't show a security dialog
 
@@ -32,7 +35,7 @@ namespace OneMoreSetupActions
 			Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:]
 			*/
 
-			var sid = GetUserSid("registering trusted protocol");
+			var sid = RegistryHelper.GetUserSid(logger, "registering trusted protocol");
 
 			var version = GetVersion("Excel", 16);
 			var policiesPath = @"Software\Policies";
@@ -99,64 +102,6 @@ namespace OneMoreSetupActions
 		}
 
 
-		private string GetUserSid(string note)
-		{
-			var domain = Environment.GetEnvironmentVariable("USERDOMAIN");
-			var username = Environment.GetEnvironmentVariable("USERNAME");
-
-			var userdom = domain != null
-				? $@"{domain.ToUpper()}\{username.ToLower()}"
-				: username.ToLower();
-
-			logger.WriteLine($"translating user {userdom} to SID");
-
-			var tries = 0;
-			while (tries <= 2)
-			{
-				try
-				{
-					var account = new NTAccount(userdom);
-					var sid = ((SecurityIdentifier)account.Translate(typeof(SecurityIdentifier))).ToString();
-					logger.WriteLine($"{note} for user {userdom} ({sid})");
-					return sid;
-				}
-				catch (Exception exc)
-				{
-					tries++;
-					logger.WriteLine(exc);
-					logger.WriteLine($"error translating, retrying {tries} of 2");
-					System.Threading.Thread.Sleep(200 * tries);
-				}
-			}
-
-			logger.WriteLine("fallback to search username in HKEY_USERS");
-
-			foreach (var sid in Registry.Users.GetSubKeyNames())
-			{
-				var key = Registry.Users.OpenSubKey($@"{sid}\Volatile Environment");
-				if (key != null)
-				{
-					var vname = key.GetValue("USERNAME") as string;
-					if (!string.IsNullOrEmpty(vname))
-					{
-						var vdomain = key.GetValue("USERDOMAIN") as string;
-
-						var candidate = !string.IsNullOrEmpty(vdomain)
-							? $@"{vdomain.ToUpper()}\{vname.ToLower()}"
-							: vname.ToLower();
-
-						if (candidate == userdom)
-						{
-							return sid;
-						}
-					}
-				}
-			}
-
-			return null;
-		}
-
-
 		private Version GetVersion(string name, int latest)
 		{
 			using (var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false))
@@ -183,9 +128,9 @@ namespace OneMoreSetupActions
 		public override int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine("TrustedProtocolDeployment.Uninstall ---");
+			logger.WriteLine("TrustedProtocolAction.Uninstall ---");
 
-			var sid = GetUserSid("unregistering trusted protocol");
+			var sid = RegistryHelper.GetUserSid(logger, "unregistering trusted protocol");
 			using (var hive = Registry.Users.OpenSubKey(sid))
 			{
 				var version = GetVersion("Excel", 16);
