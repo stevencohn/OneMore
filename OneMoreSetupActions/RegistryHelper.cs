@@ -63,7 +63,9 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
-		/// 
+		/// Returns the SID of the currently logged in user that is running the installer, 
+		/// which may differ from the current user context because the installer may be
+		/// impersonating an elevated user on behalf of the logged in user.
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="note"></param>
