@@ -11,7 +11,10 @@ namespace OneMoreSetupActions
 
 
 	/// <summary>
-	/// Deploys Registry settings to all known users on the current system.
+	/// Deploys Registry settings to all known users on the current system. It does this by
+	/// first testing if the user is logged in by looking in the active Registry profiles and
+	/// updating the hive through there, or if the user is not logged in then updating their
+	/// ntuser.dat file by loading it temporarily, modifying, and unloading it.
 	/// </summary>
 	internal class DeployKeysAction : CustomAction
 	{

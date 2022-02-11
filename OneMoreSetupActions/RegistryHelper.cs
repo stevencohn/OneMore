@@ -139,6 +139,12 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sid">The SID of the user whose hive to load</param>
+		/// <param name="path">The absolute path of the ntuser.dat to load</param>
+		/// <returns>True if the load succeeds</returns>
 		public static bool LoadUserHive(string sid, string path)
 		{
 			if (File.Exists(path))
@@ -158,6 +164,11 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Unload the ntuser.dat user hive that was loaded by LoadUserHive
+		/// </summary>
+		/// <param name="sid">The SID of the user whose hive to unload</param>
+		/// <returns>True if the unload succeeds</returns>
 		public static bool UnloadUserHive(string sid)
 		{
 			var result = RegUnLoadKey(HKEY_USERS, sid);
