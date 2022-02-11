@@ -21,6 +21,34 @@ namespace OneMoreSetupActions
 		}
 
 
+		public void GetPolicyPaths(out string policiesPath, out string policyPath)
+		{
+			var version = GetVersion("Excel", 16);
+			policiesPath = @"Software\Policies";
+			policyPath = $@"Microsoft\Office\{version}\Common\Security\Trusted Protocols\All Applications\onemore:";
+		}
+
+		private Version GetVersion(string name, int latest)
+		{
+			using (var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false))
+			{
+				if (key != null)
+				{
+					// get default value string
+					var value = (string)key.GetValue(string.Empty);
+					// extract version number
+					var version = new Version(value.Substring(value.LastIndexOf('.') + 1) + ".0");
+					logger.WriteLine($"found Office version {latest}");
+					return version;
+				}
+			}
+
+			// presume latest
+			logger.WriteLine($"defaulting Office version to {latest}");
+			return new Version(latest, 0);
+		}
+
+
 		//========================================================================================
 
 		public override int Install()
@@ -37,9 +65,7 @@ namespace OneMoreSetupActions
 
 			var sid = RegistryHelper.GetUserSid(logger, "registering trusted protocol");
 
-			var version = GetVersion("Excel", 16);
-			var policiesPath = @"Software\Policies";
-			var policyPath = $@"Microsoft\Office\{version}\Common\Security\Trusted Protocols\All Applications\onemore:";
+			GetPolicyPaths(out var policiesPath, out var policyPath);
 			var path = $@"{policiesPath}\{policyPath}";
 
 			logger.WriteLine($@"step {stepper.Step()}: opening HKCU:\{path}");
@@ -99,27 +125,6 @@ namespace OneMoreSetupActions
 
 				return verified;
 			}
-		}
-
-
-		private Version GetVersion(string name, int latest)
-		{
-			using (var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false))
-			{
-				if (key != null)
-				{
-					// get default value string
-					var value = (string)key.GetValue(string.Empty);
-					// extract version number
-					var version = new Version(value.Substring(value.LastIndexOf('.') + 1) + ".0");
-					logger.WriteLine($"found Office version {latest}");
-					return version;
-				}
-			}
-
-			// presume latest
-			logger.WriteLine($"defaulting Office version to {latest}");
-			return new Version(latest, 0);
 		}
 
 

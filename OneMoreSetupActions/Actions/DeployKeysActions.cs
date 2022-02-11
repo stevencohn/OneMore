@@ -11,9 +11,9 @@ namespace OneMoreSetupActions
 
 
 	/// <summary>
-	/// Distribute Registry settings to all known users on the current system.
+	/// Deploys Registry settings to all known users on the current system.
 	/// </summary>
-	internal class DistributeSettingsAction : CustomAction
+	internal class DeployKeysAction : CustomAction
 	{
 		private sealed class Profile
 		{
@@ -21,7 +21,25 @@ namespace OneMoreSetupActions
 			public string ProfilePath;
 		}
 
-		public DistributeSettingsAction(Logger logger, Stepper stepper)
+		/*
+		[HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}]
+		"DllSurrogate"=""
+
+		[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn]
+		"LoadBehavior"=dword:00000003
+		"Description"="Extension for OneNote"
+		"FriendlyName"="OneMoreAddIn"
+
+		[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll]
+		"Path"="C:\\Program Files (x86)\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
+		*/
+
+		private const string AppID = @"SOFTWARE\Classes\AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}";
+		private const string AddIn = @"SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn";
+		private const string OPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll";
+
+
+		public DeployKeysAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
 		}

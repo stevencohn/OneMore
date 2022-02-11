@@ -7,6 +7,7 @@ namespace OneMoreSetupActions
 	using Microsoft.Win32;
 	using System;
 	using System.IO;
+	using System.Runtime.InteropServices;
 	using System.Security.AccessControl;
 	using System.Security.Principal;
 
@@ -19,6 +20,16 @@ namespace OneMoreSetupActions
 			RegistryRights.ReadKey |
 			RegistryRights.SetValue |
 			RegistryRights.WriteKey;
+
+
+		public const uint HKEY_USERS = 0x80000003;
+
+		[DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		public static extern int RegLoadKey(uint hKey, string lpSubKey, string lpFile);
+
+		[DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		public static extern int RegUnLoadKey(uint hKey, string lpSubKey);
+
 
 
 		/// <summary>
@@ -125,6 +136,32 @@ namespace OneMoreSetupActions
 			}
 
 			return null;
+		}
+
+
+		public static bool LoadUserHive(string sid, string path)
+		{
+			if (File.Exists(path))
+			{
+				try
+				{
+					var result = RegLoadKey(HKEY_USERS, sid, path);
+					return result == 0;
+				}
+				catch
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+
+		public static bool UnloadUserHive(string sid)
+		{
+			var result = RegUnLoadKey(HKEY_USERS, sid);
+			return result == 0;
 		}
 	}
 }
