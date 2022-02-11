@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 20221 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 namespace OneMoreSetupActions
@@ -31,7 +31,7 @@ namespace OneMoreSetupActions
 		public DeployKeysAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
-			new TrustedProtocolAction(logger, null)
+			new TrustedProtocolAction(logger, stepper)
 				.GetPolicyPaths(out var policiesPath, out var policyPath);
 
 			templates = new string[]
@@ -53,7 +53,7 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("DeployKeysAction.Install ---");
 
-			var sid = RegistryHelper.GetUserSid("deploying Registry keys");
+			var sid = RegistryHelper.GetUserSid($"step {stepper.Step()}: deploying Registry keys");
 			var profiles = GetProfiles(sid);
 
 			foreach (var profile in profiles)
@@ -173,7 +173,7 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("DeployKeysAction.Uninstall ---");
 
-			var sid = RegistryHelper.GetUserSid("withdrawing Registry keys");
+			var sid = RegistryHelper.GetUserSid($"step {stepper.Step()}: withdrawing Registry keys");
 			var profiles = GetProfiles(sid);
 
 			foreach (var profile in profiles)

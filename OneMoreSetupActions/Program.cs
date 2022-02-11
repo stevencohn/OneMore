@@ -59,6 +59,10 @@ namespace OneMoreSetupActions
 					status = new ProtocolHandlerAction(logger, stepper).Install();
 					break;
 
+				case "--install-deploykeys":
+					status = new DeployKeysAction(logger, stepper).Install();
+					break;
+
 				case "--install-edge":
 					status = new EdgeWebViewAction(logger, stepper).Install();
 					break;
@@ -77,6 +81,10 @@ namespace OneMoreSetupActions
 
 				case "--uninstall-edge":
 					status = new EdgeWebViewAction(logger, stepper).Uninstall();
+					break;
+
+				case "--uninstall-deploykeys":
+					status = new DeployKeysAction(logger, stepper).Uninstall();
 					break;
 
 				case "--uninstall-registry":
@@ -123,6 +131,7 @@ namespace OneMoreSetupActions
 				if (new ShutdownOneNoteAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new ProtocolHandlerAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS &&
+					new DeployKeysAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new EdgeWebViewAction(logger, stepper).Install() == CustomAction.SUCCESS)
 				{
 					logger.WriteLine("completed successfully");
@@ -155,9 +164,10 @@ namespace OneMoreSetupActions
 				var ok0 = new ShutdownOneNoteAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok1 = new ProtocolHandlerAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok2 = new TrustedProtocolAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
-				var ok3 = new RegistryAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
+				var ok3 = new DeployKeysAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
+				var ok4 = new RegistryAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 
-				if (ok0 && ok1 && ok2 && ok3)
+				if (ok0 && ok1 && ok2 && ok3 && ok4)
 				{
 					logger.WriteLine("completed successfully");
 				}
