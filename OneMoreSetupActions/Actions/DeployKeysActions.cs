@@ -7,6 +7,7 @@ namespace OneMoreSetupActions
 	using Microsoft.Win32;
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
 
 
@@ -24,27 +25,24 @@ namespace OneMoreSetupActions
 			public string ProfilePath;
 		}
 
-		/*
-		[HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}]
-		"DllSurrogate"=""
-
-		[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn]
-		"LoadBehavior"=dword:00000003
-		"Description"="Extension for OneNote"
-		"FriendlyName"="OneMoreAddIn"
-
-		[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll]
-		"Path"="C:\\Program Files (x86)\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
-		*/
-
-		private const string AppID = @"SOFTWARE\Classes\AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}";
-		private const string AddIn = @"SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn";
-		private const string OPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll";
+		private readonly string[] templates;
 
 
 		public DeployKeysAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
+			new TrustedProtocolAction(logger, null)
+				.GetPolicyPaths(out var policiesPath, out var policyPath);
+
+			templates = new string[]
+			{
+				// first three are created by Setup.vdproj
+				$@"SOFTWARE\Classes\AppID\{RegistryHelper.OneNoteID}",
+				@"SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn",
+				@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll",
+				// created by TrustedProcolAction
+				$"{policiesPath}{policyPath}"
+			};
 		}
 
 
@@ -53,14 +51,36 @@ namespace OneMoreSetupActions
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine("DistributeSettingsAction.Install ---");
+			logger.WriteLine("DeployKeysAction.Install ---");
 
-			var sid = RegistryHelper.GetUserSid(logger, "mapping sid");
+			var sid = RegistryHelper.GetUserSid("deploying Registry keys");
 			var profiles = GetProfiles(sid);
 
-			if (!profiles.Any())
+			foreach (var profile in profiles)
 			{
-				return SUCCESS;
+				bool transient;
+				using (var hive = LoadUserProfileKey(profile.Sid, profile.ProfilePath, out transient))
+				{
+					if (hive != null)
+					{
+						foreach (var template in templates)
+						{
+							Copy(template, hive);
+						}
+					}
+					else
+					{
+						logger.WriteLine($"user hive not loaded, skipping {sid}");
+					}
+				}
+
+				if (transient)
+				{
+					if (!RegistryHelper.UnloadUserHive(profile.Sid))
+					{
+						logger.WriteLine($"continuing after unsuccessful user hive unload {sid}");
+					}
+				}
 			}
 
 			return SUCCESS;
@@ -100,15 +120,110 @@ namespace OneMoreSetupActions
 		}
 
 
+		private RegistryKey LoadUserProfileKey(string sid, string path, out bool transient)
+		{
+			transient = false;
+			RegistryKey hive = null;
+
+			try
+			{
+				hive = Registry.Users.OpenSubKey(sid);
+				if (hive == null)
+				{
+					logger.WriteLine($"loading user hive from {path} ({sid})");
+					if (RegistryHelper.LoadUserHive(sid, path))
+					{
+						hive = Registry.Users.OpenSubKey(sid);
+						transient = hive != null;
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error loading user hive from {path} ({sid})");
+				logger.WriteLine(exc);
+			}
+
+			return hive;
+		}
+
+
+		private void Copy(string keypath, RegistryKey hive)
+		{
+			using (var key = Registry.CurrentUser.OpenSubKey(keypath))
+			{
+				if (key != null)
+				{
+					logger.WriteLine($"copying template user key {keypath}");
+					key.CopyTo(hive);
+				}
+				else
+				{
+					logger.WriteLine($"template key not found {keypath}");
+				}
+			}
+		}
+
+
 
 		//========================================================================================
 
 		public override int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine("DistributeSettingsAction.Uninstall ---");
+			logger.WriteLine("DeployKeysAction.Uninstall ---");
+
+			var sid = RegistryHelper.GetUserSid("withdrawing Registry keys");
+			var profiles = GetProfiles(sid);
+
+			foreach (var profile in profiles)
+			{
+				bool transient;
+				using (var hive = LoadUserProfileKey(profile.Sid, profile.ProfilePath, out transient))
+				{
+					if (hive != null)
+					{
+						foreach (var template in templates)
+						{
+							Withdraw(template, hive);
+						}
+					}
+					else
+					{
+						logger.WriteLine($"user hive not loaded, skipping {sid}");
+					}
+				}
+
+				if (transient)
+				{
+					if (!RegistryHelper.UnloadUserHive(profile.Sid))
+					{
+						logger.WriteLine($"continuing after unsuccessful user hive unload {sid}");
+					}
+				}
+			}
 
 			return SUCCESS;
+		}
+
+
+		private void Withdraw(string keypath, RegistryKey hive)
+		{
+			var path = Path.GetDirectoryName(keypath);
+			var name = Path.GetFileName(keypath);
+
+			using (var key = hive.OpenSubKey(path))
+			{
+				if (key != null)
+				{
+					logger.WriteLine($"withdrawing {keypath}");
+					key.DeleteSubKey(name, false);
+				}
+				else
+				{
+					logger.WriteLine($"path already withdrawn {path}");
+				}
+			}
 		}
 	}
 }

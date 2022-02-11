@@ -13,8 +13,6 @@ namespace OneMoreSetupActions
 	/// </summary>
 	internal class RegistryAction : CustomAction
 	{
-		private const string OneNoteID = "{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}";
-
 
 		public RegistryAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
@@ -55,14 +53,14 @@ namespace OneMoreSetupActions
 		private int RegisterWow()
 		{
 			logger.WriteLine("cloning CLSID");
-			using (var source = Registry.ClassesRoot.OpenSubKey($@"CLSID\{OneNoteID}", true))
+			using (var source = Registry.ClassesRoot.OpenSubKey($@"CLSID\{RegistryHelper.OneNoteID}"))
 			{
 				if (source != null)
 				{
 					using (var target = Registry.ClassesRoot.OpenSubKey(@"WOW6432Node\CLSID", true))
 					{
 						logger.WriteLine($"copying from {source.Name} to {target.Name}");
-						source.CopyTo(target, logger);
+						source.CopyTo(target);
 					}
 				}
 			}
@@ -94,8 +92,8 @@ namespace OneMoreSetupActions
 			{
 				if (key != null)
 				{
-					key.DeleteSubKeyTree(OneNoteID, false);
-					key.DeleteSubKey(OneNoteID, false);
+					key.DeleteSubKeyTree(RegistryHelper.OneNoteID, false);
+					key.DeleteSubKey(RegistryHelper.OneNoteID, false);
 				}
 				else
 				{

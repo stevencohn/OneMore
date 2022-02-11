@@ -63,7 +63,7 @@ namespace OneMoreSetupActions
 			Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:]
 			*/
 
-			var sid = RegistryHelper.GetUserSid(logger, "registering trusted protocol");
+			var sid = RegistryHelper.GetUserSid("registering trusted protocol");
 
 			GetPolicyPaths(out var policiesPath, out var policyPath);
 			var path = $@"{policiesPath}\{policyPath}";
@@ -74,6 +74,8 @@ namespace OneMoreSetupActions
 			// context as the System account (S-1-5-18) so we need to impersonate the current
 			// user by referencing their hive from HKEY_USERS\sid\...
 			// HKEY_CURRENT_USER will point to the System account's hive and we don't want that!
+			// HKEY_USERS will only contain the SID keys of logged in users; these are transient
+			// keys that are dynamically loaded and unloaded as users log in and log out.
 
 			using (var hive = Registry.Users.OpenSubKey(sid))
 			{
@@ -135,7 +137,7 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("TrustedProtocolAction.Uninstall ---");
 
-			var sid = RegistryHelper.GetUserSid(logger, "unregistering trusted protocol");
+			var sid = RegistryHelper.GetUserSid("unregistering trusted protocol");
 			using (var hive = Registry.Users.OpenSubKey(sid))
 			{
 				var version = GetVersion("Excel", 16);

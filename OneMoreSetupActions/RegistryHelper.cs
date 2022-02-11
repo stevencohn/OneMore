@@ -13,6 +13,8 @@ namespace OneMoreSetupActions
 
 	internal static class RegistryHelper
 	{
+		public const string OneNoteID = "{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}";
+
 		public static readonly RegistryRights Rights =
 			RegistryRights.CreateSubKey |
 			RegistryRights.EnumerateSubKeys |
@@ -22,6 +24,7 @@ namespace OneMoreSetupActions
 			RegistryRights.WriteKey;
 
 
+		#region Interop
 		public const uint HKEY_USERS = 0x80000003;
 
 		[DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -29,6 +32,19 @@ namespace OneMoreSetupActions
 
 		[DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
 		public static extern int RegUnLoadKey(uint hKey, string lpSubKey);
+		#endregion Interop
+
+		private static Logger logger;
+
+
+		/// <summary>
+		/// Sets the logger; only called from CustomAction base class
+		/// </summary>
+		/// <param name="logger"></param>
+		public static void SetLogger(Logger logger)
+		{
+			RegistryHelper.logger = logger;
+		}
 
 
 
@@ -40,21 +56,21 @@ namespace OneMoreSetupActions
 		/// The new parent key into which source is copied; this must be writable
 		/// </param>
 		/// <returns>The newly created Registry key</returns>
-		public static RegistryKey CopyTo(this RegistryKey source, RegistryKey target, Logger logger)
+		public static RegistryKey CopyTo(this RegistryKey source, RegistryKey target)
 		{
 			var clone = target.CreateSubKey(Path.GetFileName(source.Name), true);
-			logger.WriteLine($"created clone {clone.Name}");
+			logger?.WriteLine($"created clone {clone.Name}");
 
-			CopyTree(source, clone, logger);
+			CopyTree(source, clone);
 			return clone;
 		}
 
-		private static void CopyTree(RegistryKey source, RegistryKey target, Logger logger)
+		private static void CopyTree(RegistryKey source, RegistryKey target)
 		{
 			// copy all source.properties
 			foreach (var name in source.GetValueNames())
 			{
-				logger.WriteLine($"clone property {name} = {source.GetValue(name)} ({source.GetValueKind(name)})");
+				logger?.WriteLine($"clone property {name} = {source.GetValue(name)} ({source.GetValueKind(name)})");
 				target.SetValue(name, source.GetValue(name), source.GetValueKind(name));
 			}
 
@@ -65,8 +81,8 @@ namespace OneMoreSetupActions
 				{
 					using (var trgkey = target.CreateSubKey(name, true))
 					{
-						logger.WriteLine($"created subkey {trgkey.Name}");
-						CopyTree(srckey, trgkey, logger);
+						logger?.WriteLine($"created subkey {trgkey.Name}");
+						CopyTree(srckey, trgkey);
 					}
 				}
 			}
@@ -81,7 +97,7 @@ namespace OneMoreSetupActions
 		/// <param name="logger"></param>
 		/// <param name="note"></param>
 		/// <returns></returns>
-		public static string GetUserSid(Logger logger, string note)
+		public static string GetUserSid(string note)
 		{
 			var domain = Environment.GetEnvironmentVariable("USERDOMAIN");
 			var username = Environment.GetEnvironmentVariable("USERNAME");
@@ -90,7 +106,7 @@ namespace OneMoreSetupActions
 				? $@"{domain.ToUpper()}\{username.ToLower()}"
 				: username.ToLower();
 
-			logger.WriteLine($"translating user {userdom} to SID");
+			logger?.WriteLine($"translating user {userdom} to SID");
 
 			var tries = 0;
 			while (tries <= 2)
@@ -99,19 +115,19 @@ namespace OneMoreSetupActions
 				{
 					var account = new NTAccount(userdom);
 					var sid = ((SecurityIdentifier)account.Translate(typeof(SecurityIdentifier))).ToString();
-					logger.WriteLine($"{note} for user {userdom} ({sid})");
+					logger?.WriteLine($"{note} for user {userdom} ({sid})");
 					return sid;
 				}
 				catch (Exception exc)
 				{
 					tries++;
-					logger.WriteLine(exc);
-					logger.WriteLine($"error translating, retrying {tries} of 2");
+					logger?.WriteLine($"error translating, retrying {tries} of 2");
+					logger?.WriteLine(exc);
 					System.Threading.Thread.Sleep(200 * tries);
 				}
 			}
 
-			logger.WriteLine("fallback to search username in HKEY_USERS");
+			logger?.WriteLine("fallback to search username in HKEY_USERS");
 
 			foreach (var sid in Registry.Users.GetSubKeyNames())
 			{
@@ -152,10 +168,13 @@ namespace OneMoreSetupActions
 				try
 				{
 					var result = RegLoadKey(HKEY_USERS, sid, path);
+					logger?.WriteLine($"loaded registry hive from {path} ({sid})");
 					return result == 0;
 				}
-				catch
+				catch (Exception exc)
 				{
+					logger?.WriteLine($"error loading registry hive from {path} ({sid})");
+					logger?.WriteLine(exc);
 					return false;
 				}
 			}
@@ -171,8 +190,18 @@ namespace OneMoreSetupActions
 		/// <returns>True if the unload succeeds</returns>
 		public static bool UnloadUserHive(string sid)
 		{
-			var result = RegUnLoadKey(HKEY_USERS, sid);
-			return result == 0;
+			try
+			{
+				var result = RegUnLoadKey(HKEY_USERS, sid);
+				logger?.WriteLine($"unloaded registry hive for {sid}");
+				return result == 0;
+			}
+			catch (Exception exc)
+			{
+				logger?.WriteLine($"error unloading registry hive for {sid}");
+				logger?.WriteLine(exc);
+				return false;
+			}
 		}
 	}
 }

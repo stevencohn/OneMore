@@ -19,6 +19,8 @@ namespace OneMoreSetupActions
 		{
 			this.logger = logger;
 			this.stepper = stepper;
+
+			RegistryHelper.SetLogger(logger);
 		}
 
 
