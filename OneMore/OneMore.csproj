@@ -1077,6 +1077,7 @@
     <EmbeddedResource Include="Commands\Tools\UpdateDialog.resx">
       <DependentUpon>UpdateDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.pl-PL.resx" />
     <EmbeddedResource Include="UI\MoreLinkLabel.resx">
       <DependentUpon>MoreLinkLabel.cs</DependentUpon>
     </EmbeddedResource>
