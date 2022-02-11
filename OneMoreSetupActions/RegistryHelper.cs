@@ -163,12 +163,13 @@ namespace OneMoreSetupActions
 		/// <returns>True if the load succeeds</returns>
 		public static bool LoadUserHive(string sid, string path)
 		{
+			path = Path.Combine(path, "ntuser.dat");
 			if (File.Exists(path))
 			{
 				try
 				{
 					var result = RegLoadKey(HKEY_USERS, sid, path);
-					logger?.WriteLine($"loaded registry hive from {path} ({sid})");
+					logger?.WriteLine($"loaded registry hive from {path} ({sid}) result=[{result}]");
 					return result == 0;
 				}
 				catch (Exception exc)
@@ -193,7 +194,7 @@ namespace OneMoreSetupActions
 			try
 			{
 				var result = RegUnLoadKey(HKEY_USERS, sid);
-				logger?.WriteLine($"unloaded registry hive for {sid}");
+				logger?.WriteLine($"unloaded registry hive for {sid} result=[{result}]");
 				return result == 0;
 			}
 			catch (Exception exc)

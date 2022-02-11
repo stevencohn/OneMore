@@ -70,7 +70,7 @@ namespace OneMoreSetupActions
 					}
 					else
 					{
-						logger.WriteLine($"user hive not loaded, skipping {sid}");
+						logger.WriteLine($"user hive not loaded, skipping {profile.Sid}");
 					}
 				}
 
@@ -78,7 +78,7 @@ namespace OneMoreSetupActions
 				{
 					if (!RegistryHelper.UnloadUserHive(profile.Sid))
 					{
-						logger.WriteLine($"continuing after unsuccessful user hive unload {sid}");
+						logger.WriteLine($"continuing after unsuccessful user hive unload {profile.Sid}");
 					}
 				}
 			}
@@ -155,7 +155,7 @@ namespace OneMoreSetupActions
 				if (key != null)
 				{
 					logger.WriteLine($"copying template user key {keypath}");
-					key.CopyTo(hive);
+					////key.CopyTo(hive);
 				}
 				else
 				{
@@ -190,7 +190,7 @@ namespace OneMoreSetupActions
 					}
 					else
 					{
-						logger.WriteLine($"user hive not loaded, skipping {sid}");
+						logger.WriteLine($"user hive not loaded, skipping {profile.Sid}");
 					}
 				}
 
@@ -198,7 +198,7 @@ namespace OneMoreSetupActions
 				{
 					if (!RegistryHelper.UnloadUserHive(profile.Sid))
 					{
-						logger.WriteLine($"continuing after unsuccessful user hive unload {sid}");
+						logger.WriteLine($"continuing after unsuccessful user hive unload {profile.Sid}");
 					}
 				}
 			}
@@ -217,7 +217,7 @@ namespace OneMoreSetupActions
 				if (key != null)
 				{
 					logger.WriteLine($"withdrawing {keypath}");
-					key.DeleteSubKey(name, false);
+					////key.DeleteSubKey(name, false);
 				}
 				else
 				{
