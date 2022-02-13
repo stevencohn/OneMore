@@ -32,10 +32,17 @@ namespace OneMoreSetupActions
 				RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.Rights))
 			{
 				var version = (string)key.GetValue("Version");
-				var commas = version.Replace('.', ',');
+				if (!string.IsNullOrEmpty(version))
+				{
+					var commas = version.Replace('.', ',');
 
-				logger.WriteLine($"replacing '{version}' with '{commas}'");
-				key.SetValue("Version", commas);
+					logger.WriteLine($"replacing '{version}' with '{commas}'");
+					key.SetValue("Version", commas);
+				}
+				else
+				{
+					logger.WriteLine("active setup version not found");
+				}
 			}
 
 			return SUCCESS;
