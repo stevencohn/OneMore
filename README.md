@@ -272,10 +272,10 @@ The OneMore installer requires admin rights to complete configuration and update
 If you have the user name and password of an account with admin rights, you can run the OneMore installer
 from your current account using this command entered from a console window:
 
-   `runas /user:&lt;username&gt; "msiexec.exe /i &lt;path-to-installer&gt;"`
+    runas /user:<username> "msiexec.exe /i <path-to-installer>"
 
-   where &lt;username&gt; is the user name of an account with admin rights and
-   &lt;path-to-installer&gt; is the full path to the OneMore installer .msi file
+    where &lt;username&gt; is the user name of an account with admin rights and
+    &lt;path-to-installer&gt; is the full path to the OneMore installer .msi file
 
 You wil be prompted for the password of the admin user. The installation will continue.
 
