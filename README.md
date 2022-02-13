@@ -301,7 +301,7 @@ the _Unblock_ checkbox.
 
 ## How to Install OneNote
 
-Microsoft has been pushing people to use the OneNote app and OneNote online, which suck in my opinion, and have removed OneNote from the Office 2019 installer. But you can still install it after installing Office or even install it standalone!
+OneNote can be installed after installing Office or even installed standalone without Office at all.
 
 1. Optionally install Office - do not run the Setup.exe; instead, run Office\Setup64.exe
    - Download OfficeSetup.exe [from here](https://support.microsoft.com/en-us/office/install-or-reinstall-onenote-for-windows-c08068d8-b517-4464-9ff2-132cb9c45c08)
@@ -310,6 +310,10 @@ Microsoft has been pushing people to use the OneNote app and OneNote online, whi
 1. Download the standalone OneNote installer (does not require Office or can be installed ontop of Office)
    - The standalone OneNote 64-bit installer is [here](http://www.onenote.com/download/win32/x64/en-US)
    - The standalone OneNote 32-bit installer is [here](http://www.onenote.com/download/win32/x86/en-US)
+
+Note that Microsoft has changed its OneNote strategy. Instead of promoting the OneNote for Windows 10 app,
+which sucks in my opinion, they are now working on combining the best features from that app into a new
+desktop edition, hopefully to be released in 2022.
 
 ---
 
