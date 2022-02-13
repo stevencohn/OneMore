@@ -258,8 +258,11 @@ Tested recently with:
 
 1. Close OneNote if it is currently running (See below if you need to install OneNote)
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
-3. Right-click the downloaded installer msi and choose Properties, then tick the Unblock box and click OK
-4. Run the installer
+   - Use the x86 installer only if you are running on a 32-bit Windows machine; it has nothing to do
+     with the bitness of Office itself.
+   - Use the x64 installer when running on a 64-bit Windows machine for either 32-bit or 64-bit Office.
+4. Right-click the downloaded installer msi and choose Properties, then tick the Unblock box and click OK
+5. Run the installer
    - If you're currently logged in as a user with admin rights and this is the account with which you will 
      use OneMore then you will be able to start OneNote immediately.
    - Other users on the system will experience a slight delay the first time they log in after OneMore
