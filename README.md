@@ -2,6 +2,11 @@
 
 A OneNote add-in with powerful yet simple and effective features.
 
+## 💾 How do I Install OneMore?
+There are [full instructions here](#install). 
+
+## 💁 Everything You Wanted to Know...
+
 See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
 
 * Integrated with the OneNote ribbon, [context menus](../../wiki#extended-context-menus), and [keyboard shortcuts](../../wiki#keys) for easy access
@@ -247,16 +252,34 @@ Tested recently with:
 * [MarkdownDeep](https://github.com/toptensoftware/markdowndeep) - DLL in external folder
    * Transforms markdown to HTML when importing md files
 
-
+<a name="install"></a>
 ### How to Install OneMore
 
 1. Close OneNote if it is currently running (See below if you need to install OneNote)
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
 3. Right-click the downloaded installer msi and choose Properties, then tick the Unblock box and click OK
 4. Run the installer
-   - If OneNote is installed for _all users_ then you must install OneMore for _all users_ as well
+   - If you're currently logged in as a user with admin rights and this is the account with which you will 
+     use OneMore then you will be able to start OneNote immediately.
+   - Other users on the system will experience a slight delay the first time they log in after OneMore
+     is installed while settings are applied to their accounts. This only occurs once.
+   - If you're currently logged in as a user without admin rights, you can install OneMore if you have
+     the user name and password of an account with admin rights. See below for further instructions.
 5. Run OneNote and enjoy
 
+#### Install from a normal user account
+The OneMore installer requires admin rights to complete configuration and update the Windows Registry.
+If you have the user name and password of an account with admin rights, you can run the OneMore installer
+from your current account using this command entered from a console window:
+
+   `runas /user:&lt;username&gt; "msiexec.exe /i &lt;path-to-installer&gt;"`
+
+   where &lt;username&gt; is the user name of an account with admin rights and
+   &lt;path-to-installer&gt; is the full path to the OneMore installer .msi file
+
+You wil be prompted for the password of the admin user. The installation will continue.
+
+_You must sign out and then sign in again before you will see OneMore in the OneNote ribbon._
 
 ### How to Upgrade OneMore
 
