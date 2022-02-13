@@ -54,7 +54,7 @@
     <Compile Include="Actions\DeployKeysActions.cs" />
     <Compile Include="Actions\CustomAction.cs" />
     <Compile Include="Actions\EdgeWebViewAction.cs" />
-    <Compile Include="Actions\RegistryAction.cs" />
+    <Compile Include="Actions\RegistryWowAction.cs" />
     <Compile Include="Actions\ShutdownOneNoteAction.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />

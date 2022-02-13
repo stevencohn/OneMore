@@ -67,8 +67,8 @@ namespace OneMoreSetupActions
 					status = new ProtocolHandlerAction(logger, stepper).Install();
 					break;
 
-				case "--install-registry":
-					status = new RegistryAction(logger, stepper).Install();
+				case "--install-registrywow":
+					status = new RegistryWowAction(logger, stepper).Install();
 					break;
 
 				case "--install-shutdown":
@@ -83,8 +83,8 @@ namespace OneMoreSetupActions
 					status = new EdgeWebViewAction(logger, stepper).Uninstall();
 					break;
 
-				case "--uninstall-registry":
-					status = new RegistryAction(logger, stepper).Uninstall();
+				case "--uninstall-registrywow":
+					status = new RegistryWowAction(logger, stepper).Uninstall();
 					break;
 
 				case "--uninstall-shutdown":
@@ -159,7 +159,7 @@ namespace OneMoreSetupActions
 				var ok0 = new ShutdownOneNoteAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok1 = new ProtocolHandlerAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok2 = new TrustedProtocolAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
-				var ok3 = new RegistryAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
+				var ok3 = new RegistryWowAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 
 				if (ok0 && ok1 && ok2 && ok3)
 				{

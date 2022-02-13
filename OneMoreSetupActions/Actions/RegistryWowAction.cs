@@ -11,10 +11,10 @@ namespace OneMoreSetupActions
 	/// <summary>
 	/// Clones the OneMore CLSID branch to support both 32bit and 64bit installs of OneNote
 	/// </summary>
-	internal class RegistryAction : CustomAction
+	internal class RegistryWowAction : CustomAction
 	{
 
-		public RegistryAction(Logger logger, Stepper stepper)
+		public RegistryWowAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
 		}
@@ -25,7 +25,7 @@ namespace OneMoreSetupActions
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine($"RegistryAction.Install --- x64:{Environment.Is64BitProcess}");
+			logger.WriteLine($"RegistryWowAction.Install --- x64:{Environment.Is64BitProcess}");
 
 			if (CloningRequired())
 			{
@@ -74,7 +74,7 @@ namespace OneMoreSetupActions
 		public override int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine($"RegistryAction.Uninstall --- x64:{Environment.Is64BitProcess}");
+			logger.WriteLine($"RegistryWowAction.Uninstall --- x64:{Environment.Is64BitProcess}");
 
 			if (CloningRequired())
 			{
