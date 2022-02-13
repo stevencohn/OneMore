@@ -29,7 +29,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, German, Polish, Portuguese, and Spanish*. Please let me know if you'd like it translated to another language. I use my [ResxTranslator](https://github.com/stevencohn/ResxTranslator) program to automate the translations but can also override inaccuracies of specific words and phrases. If you think a translation is not correct, again please let me know.
 
 <a name="features"></a>
-## Features (144)
+## Features (145)
 
 [Clean commands](../../wiki/Clean-Commands) (11)
 
@@ -100,8 +100,9 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
 * Remove numbering from sections
 * Remove numbering from pages
 
-[Page Commands](../../wiki/Page-Commands) (10)
+[Page Commands](../../wiki/Page-Commands) (11)
 * Arrange containers vertically or in columns
+* Add caption to selected file attachments on the page
 * Add special icon to the page title, also appears in page hierarchy
 * Expand or Collapse indented outlines, save and restore outlining
 * Fit background grid spacing to most common text size
