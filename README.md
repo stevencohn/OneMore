@@ -253,7 +253,7 @@ Tested recently with:
    * Transforms markdown to HTML when importing md files
 
 <a name="install"></a>
-### How to Install OneMore
+## How to Install OneMore
 
 1. Close OneNote if it is currently running (See below if you need to install OneNote)
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
@@ -295,7 +295,7 @@ the new installer will simply overwrite the old files and _upgrade_ OneMore. Not
 download the installer, you will need to unblock it by opening its Properties dialog and clicking
 the _Unblock_ checkbox.
 
-### How to Install OneNote
+## How to Install OneNote
 
 Microsoft has been pushing people to use the OneNote app and OneNote online, which suck in my opinion, and have removed OneNote from the Office 2019 installer. But you can still install it after installing Office or even install it standalone!
 
@@ -309,7 +309,7 @@ Microsoft has been pushing people to use the OneNote app and OneNote online, whi
 
 ---
 
-### Developing OneMore
+## Developing OneMore
 
 See the [Developer Notes](../../wiki/~-Developer-Notes) page in the Wiki where I keep a list of 
 technical references and information regarding developing and debugging this OneNote add-in.
