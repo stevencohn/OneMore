@@ -27,6 +27,18 @@ namespace OneMoreSetupActions
 
 		private readonly string[] templates;
 
+		/*
+		[HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}]
+		"DllSurrogate"=""
+
+		[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn]
+		"LoadBehavior"=dword:00000003
+		"Description"="Extension for OneNote"
+		"FriendlyName"="OneMoreAddIn"
+
+		[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll]
+		"Path"="C:\\Program Files (x86)\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
+		*/
 
 		public DeployKeysAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
@@ -53,8 +65,8 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("DeployKeysAction.Install ---");
 
-			var sid = RegistryHelper.GetUserSid($"step {stepper.Step()}: deploying Registry keys");
-			var profiles = GetProfiles(sid);
+			//var sid = RegistryHelper.GetUserSid($"step {stepper.Step()}: deploying Registry keys");
+			var profiles = GetProfiles(null);
 
 			foreach (var profile in profiles)
 			{
@@ -99,7 +111,8 @@ namespace OneMoreSetupActions
 			}
 
 			var names = key.GetSubKeyNames()
-				.Where(n => n.StartsWith("S-1-5-21-") && n != excludeSid);
+				.Where(n => n.StartsWith("S-1-5-21-") &&
+				((excludeSid == null) || n != excludeSid));
 
 			foreach (var name in names)
 			{
@@ -116,6 +129,7 @@ namespace OneMoreSetupActions
 				}
 			}
 
+			logger.WriteLine($"found {profiles.Count} user profiles");
 			return profiles;
 		}
 

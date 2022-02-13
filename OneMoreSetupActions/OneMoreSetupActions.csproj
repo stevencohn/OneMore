@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\ActiveSetupAction.cs" />
     <Compile Include="Actions\DeployKeysActions.cs" />
     <Compile Include="Actions\CustomAction.cs" />
     <Compile Include="Actions\EdgeWebViewAction.cs" />
