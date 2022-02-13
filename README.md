@@ -279,7 +279,9 @@ where &lt;username&gt; is the user name of an account with admin rights and
 
 You wil be prompted for the password of the admin user. The installation will continue.
 
-_You must sign out and then sign in again before you will see OneMore in the OneNote ribbon._
+```diff
+- You must sign out and then sign in again before you will see OneMore in the OneNote ribbon.
+```
 
 ### How to Upgrade OneMore
 
