@@ -10,12 +10,16 @@ namespace OneMoreSetupActions
 	using System.Reflection;
 
 
-	internal class ProtocolHandlerDeployment : Deployment
+	/// <summary>
+	/// Registers or unregisters a Windows shell handler for the onemore:// protocol that
+	/// is used to send signals via names pipes to the OneMore addin.
+	/// </summary>
+	internal class ProtocolHandlerAction : CustomAction
 	{
 		private const string ProtocolHandler = "OneMoreProtocolHandler.exe";
 
 
-		public ProtocolHandlerDeployment(Logger logger, Stepper stepper)
+		public ProtocolHandlerAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
 		}
@@ -24,7 +28,7 @@ namespace OneMoreSetupActions
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine("ProtocolHandlerDeployment.Install ---");
+			logger.WriteLine("ProtocolHandlerAction.Install ---");
 
 			/*
 			[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\onemore]
@@ -144,7 +148,7 @@ namespace OneMoreSetupActions
 		public override int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine("ProtocolHandlerDeployment.Uninstall ---");
+			logger.WriteLine("ProtocolHandlerAction.Uninstall ---");
 
 			// protocol handler...
 			using (var hive = RegistryKey.OpenBaseKey(

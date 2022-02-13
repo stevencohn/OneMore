@@ -55,41 +55,45 @@ namespace OneMoreSetupActions
 
 				// direct calls for testing...
 
-				case "--install-handler":
-					status = new ProtocolHandlerDeployment(logger, stepper).Install();
+				case "--install-activesetup":
+					status = new ActiveSetupAction(logger, stepper).Install();
 					break;
 
 				case "--install-edge":
-					status = new EdgeWebViewDeployment(logger, stepper).Install();
+					status = new EdgeWebViewAction(logger, stepper).Install();
 					break;
 
-				case "--install-registry":
-					status = new RegistryDeployment(logger, stepper).Install();
+				case "--install-handler":
+					status = new ProtocolHandlerAction(logger, stepper).Install();
+					break;
+
+				case "--install-registrywow":
+					status = new RegistryWowAction(logger, stepper).Install();
 					break;
 
 				case "--install-shutdown":
-					status = new ShutdownOneNoteDeployment(logger, stepper).Install();
+					status = new ShutdownOneNoteAction(logger, stepper).Install();
 					break;
 
 				case "--install-trusted":
-					status = new TrustedProtocolDeployment(logger, stepper).Install();
+					status = new TrustedProtocolAction(logger, stepper).Install();
 					break;
 
 				case "--uninstall-edge":
-					status = new EdgeWebViewDeployment(logger, stepper).Uninstall();
+					status = new EdgeWebViewAction(logger, stepper).Uninstall();
 					break;
 
-				case "--uninstall-registry":
-					status = new RegistryDeployment(logger, stepper).Uninstall();
+				case "--uninstall-registrywow":
+					status = new RegistryWowAction(logger, stepper).Uninstall();
 					break;
 
 				case "--uninstall-shutdown":
-					status = new ShutdownOneNoteDeployment(logger, stepper).Uninstall();
+					status = new ShutdownOneNoteAction(logger, stepper).Uninstall();
 					break;
 
 				default:
 					logger.WriteLine($"unrecognized command: {args[0]}");
-					status = Deployment.FAILURE;
+					status = CustomAction.FAILURE;
 					break;
 			}
 
@@ -120,24 +124,24 @@ namespace OneMoreSetupActions
 
 			try
 			{
-				if (new ShutdownOneNoteDeployment(logger, stepper).Install() == Deployment.SUCCESS &&
-					new ProtocolHandlerDeployment(logger, stepper).Install() == Deployment.SUCCESS &&
-					new TrustedProtocolDeployment(logger, stepper).Install() == Deployment.SUCCESS &&
-					new EdgeWebViewDeployment(logger, stepper).Install() == Deployment.SUCCESS)
+				if (new ShutdownOneNoteAction(logger, stepper).Install() == CustomAction.SUCCESS &&
+					new ProtocolHandlerAction(logger, stepper).Install() == CustomAction.SUCCESS &&
+					new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS &&
+					new EdgeWebViewAction(logger, stepper).Install() == CustomAction.SUCCESS)
 				{
 					logger.WriteLine("completed successfully");
-					return Deployment.SUCCESS;
+					return CustomAction.SUCCESS;
 				}
 
 				logger.WriteLine("completed suspiciously");
-				return Deployment.SUCCESS;
+				return CustomAction.SUCCESS;
 				//return FAILURE;
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine("error registering");
 				logger.WriteLine(exc);
-				return Deployment.FAILURE;
+				return CustomAction.FAILURE;
 			}
 		}
 
@@ -152,10 +156,10 @@ namespace OneMoreSetupActions
 				// unregister is more lenient than register... if any of these
 				// actions don't succeed, we can still complete with SUCCESS
 
-				var ok0 = new ShutdownOneNoteDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
-				var ok1 = new ProtocolHandlerDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
-				var ok2 = new TrustedProtocolDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
-				var ok3 = new RegistryDeployment(logger, stepper).Uninstall() == Deployment.SUCCESS;
+				var ok0 = new ShutdownOneNoteAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
+				var ok1 = new ProtocolHandlerAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
+				var ok2 = new TrustedProtocolAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
+				var ok3 = new RegistryWowAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 
 				if (ok0 && ok1 && ok2 && ok3)
 				{
@@ -166,13 +170,13 @@ namespace OneMoreSetupActions
 					logger.WriteLine("completed with warnings");
 				}
 
-				return Deployment.SUCCESS;
+				return CustomAction.SUCCESS;
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine("error unregistering");
 				logger.WriteLine(exc);
-				return Deployment.FAILURE;
+				return CustomAction.FAILURE;
 			}
 		}
 	}

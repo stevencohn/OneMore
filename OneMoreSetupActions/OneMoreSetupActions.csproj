@@ -50,17 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Deployments\Deployment.cs" />
-    <Compile Include="Deployments\EdgeWebViewDeployment.cs" />
-    <Compile Include="Deployments\RegistryDeployment.cs" />
-    <Compile Include="Deployments\ShutdownOneNoteDeployment.cs" />
+    <Compile Include="Actions\ActiveSetupAction.cs" />
+    <Compile Include="Actions\CustomAction.cs" />
+    <Compile Include="Actions\EdgeWebViewAction.cs" />
+    <Compile Include="Actions\RegistryWowAction.cs" />
+    <Compile Include="Actions\ShutdownOneNoteAction.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Deployments\ProtocolHandlerDeployment.cs" />
+    <Compile Include="Actions\ProtocolHandlerAction.cs" />
     <Compile Include="RegistryHelper.cs" />
     <Compile Include="Stepper.cs" />
-    <Compile Include="Deployments\TrustedProtocolDeployment.cs" />
+    <Compile Include="Actions\TrustedProtocolAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

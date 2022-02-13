@@ -15,14 +15,19 @@ namespace OneMoreSetupActions
 	using System.Text.RegularExpressions;
 	using System.Threading;
 
-	internal class EdgeWebViewDeployment : Deployment
+
+	/// <summary>
+	/// Install or uninstall the Edge WebView2 control, primarily for Windows 10. Edge is
+	/// the default browser in Windows 11 and includes WebView2 which cannot be uninstalled.
+	/// </summary>
+	internal class EdgeWebViewAction : CustomAction
 	{
 		private const string DownloadUrl = "https://go.microsoft.com/fwlink/p/?LinkId=2124703";
 		private const string ClientKey = @"SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients";
 		private const string RuntimeId = "{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}";
 
 
-		public EdgeWebViewDeployment(Logger logger, Stepper stepper)
+		public EdgeWebViewAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
 		}
@@ -31,7 +36,7 @@ namespace OneMoreSetupActions
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine("EdgeWebViewDeployment.Install ---");
+			logger.WriteLine("EdgeWebViewAction.Install ---");
 
 			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
 			if (key != null)
@@ -113,7 +118,7 @@ namespace OneMoreSetupActions
 		public override int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine("EdgeWebViewDeployment.Uninstall ---");
+			logger.WriteLine("EdgeWebViewAction.Uninstall ---");
 
 			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
 			if (key != null)

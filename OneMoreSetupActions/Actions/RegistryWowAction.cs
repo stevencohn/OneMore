@@ -8,12 +8,13 @@ namespace OneMoreSetupActions
 	using System;
 
 
-	internal class RegistryDeployment : Deployment
+	/// <summary>
+	/// Clones the OneMore CLSID branch to support both 32bit and 64bit installs of OneNote
+	/// </summary>
+	internal class RegistryWowAction : CustomAction
 	{
-		private const string OneNoteID = "{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}";
 
-
-		public RegistryDeployment(Logger logger, Stepper stepper)
+		public RegistryWowAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
 		{
 		}
@@ -24,7 +25,7 @@ namespace OneMoreSetupActions
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine($"RegistryDeployment.Install --- x64:{Environment.Is64BitProcess}");
+			logger.WriteLine($"RegistryWowAction.Install --- x64:{Environment.Is64BitProcess}");
 
 			if (CloningRequired())
 			{
@@ -52,14 +53,14 @@ namespace OneMoreSetupActions
 		private int RegisterWow()
 		{
 			logger.WriteLine("cloning CLSID");
-			using (var source = Registry.ClassesRoot.OpenSubKey($@"CLSID\{OneNoteID}", true))
+			using (var source = Registry.ClassesRoot.OpenSubKey($@"CLSID\{RegistryHelper.OneNoteID}"))
 			{
 				if (source != null)
 				{
 					using (var target = Registry.ClassesRoot.OpenSubKey(@"WOW6432Node\CLSID", true))
 					{
 						logger.WriteLine($"copying from {source.Name} to {target.Name}");
-						source.CopyTo(target, logger);
+						source.CopyTo(target);
 					}
 				}
 			}
@@ -73,7 +74,7 @@ namespace OneMoreSetupActions
 		public override int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine($"RegistryDeployment.Uninstall --- x64:{Environment.Is64BitProcess}");
+			logger.WriteLine($"RegistryWowAction.Uninstall --- x64:{Environment.Is64BitProcess}");
 
 			if (CloningRequired())
 			{
@@ -91,8 +92,8 @@ namespace OneMoreSetupActions
 			{
 				if (key != null)
 				{
-					key.DeleteSubKeyTree(OneNoteID, false);
-					key.DeleteSubKey(OneNoteID, false);
+					key.DeleteSubKeyTree(RegistryHelper.OneNoteID, false);
+					key.DeleteSubKey(RegistryHelper.OneNoteID, false);
 				}
 				else
 				{
