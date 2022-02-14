@@ -245,7 +245,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			var doc = ReplaceImagesWithAnchors(info.Content, baseUri);
+			var doc = ReplaceImagesWithAnchors(info.Content, baseUri, out var hasImages);
 			if (doc == null)
 			{
 				Giveup(Resx.ImportWebCommand_BadUrl);
@@ -254,6 +254,14 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
+			if (token.IsCancellationRequested)
+			{
+				progress.DialogResult = DialogResult.Cancel;
+				progress.Close();
+				return false;
+			}
+
+			var hasAnchors = EncodeLocalAnchors(doc, baseUri);
 			if (token.IsCancellationRequested)
 			{
 				progress.DialogResult = DialogResult.Cancel;
@@ -311,7 +319,10 @@ namespace River.OneMoreAddIn.Commands
 				await one.Update(page);
 				logger.WriteLine("pass 1 updated page with injected HTML");
 
-				await HydrateImages(page, one);
+				if (hasImages || hasAnchors)
+				{
+					await PatchPage(page, one, hasImages, hasAnchors);
+				}
 			}
 
 			logger.WriteTime("import web completed");
@@ -360,16 +371,10 @@ document.getElementsByTagName('title')[0].innerText;";
 						//logger.WriteLine("getting webview content");
 						await Task.Delay(200);
 
-						title = await webview
-							.ExecuteScriptAsync(javascript);
-
-						await Task.Delay(100);
-
+						title = await webview.ExecuteScriptAsync(javascript);
 						//logger.WriteLine($"title=[{title}]");
 
-						//// unescape all escape chars in string and remove outer quotes
-						//content = Regex.Unescape(content);
-						//content = content.Substring(1, content.Length - 2);
+						await Task.Delay(100);
 
 						if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
 						{
@@ -413,7 +418,8 @@ document.getElementsByTagName('title')[0].innerText;";
 		}
 
 
-		private Hap.HtmlDocument ReplaceImagesWithAnchors(string content, Uri baseUri)
+		private Hap.HtmlDocument ReplaceImagesWithAnchors(
+			string content, Uri baseUri, out bool replaced)
 		{
 			// use HtmlAgilityPack to normalize and clean up the HTML...
 
@@ -427,6 +433,7 @@ document.getElementsByTagName('title')[0].innerText;";
 			if (body == null)
 			{
 				logger.WriteLine("no <body> found in content");
+				replaced = false;
 				return null;
 			}
 
@@ -436,6 +443,7 @@ document.getElementsByTagName('title')[0].innerText;";
 
 			if (images.Count == 0)
 			{
+				replaced = false;
 				return doc;
 			}
 
@@ -452,17 +460,93 @@ document.getElementsByTagName('title')[0].innerText;";
 				}
 			}
 
+			replaced = true;
 			return doc;
 		}
 
 
-		private async Task HydrateImages(Page page, OneNote one)
+		private bool EncodeLocalAnchors(Hap.HtmlDocument doc, Uri baseUri)
+		{
+			var body = doc.DocumentNode.SelectSingleNode("//body");
+			if (body == null)
+			{
+				return false;
+			}
+
+			// find all hyperlink that references anchors on this page
+			var links = body.Descendants("a")
+				.Where(e => !string.IsNullOrEmpty(e.GetAttributeValue("href", string.Empty)))
+				.Select(e => new
+				{
+					Link = e,
+					Uri = new Uri(baseUri, e.GetAttributeValue("href", string.Empty))
+				})
+				.Where(a => !string.IsNullOrEmpty(a.Uri.Fragment) && a.Uri.SamePage(baseUri));
+
+			var count = 0;
+			foreach (var link in links)
+			{
+				// find the referenced anchor
+				var match = Regex.Match(link.Uri.Fragment, @"#(\w+)=?");
+				if (match.Success)
+				{
+					var name = match.Groups[1].Value;
+					var anchor = body.Descendants("a")
+						.FirstOrDefault(e => e.GetAttributeValue("name", string.Empty) == name);
+
+					if (anchor != null)
+					{
+						var host = $"onemore-link{count}.{baseUri.Host}";
+
+						// replace the link with a temporary holding element
+						link.Link.SetAttributeValue("href",
+							(new UriBuilder(link.Uri) { Host = host }).Uri.AbsoluteUri);
+
+						// set a temporary href so anchor won't be removed by OneNote
+						anchor.Attributes.Remove("name");
+						anchor.SetAttributeValue("href",
+							(new UriBuilder(baseUri) { Host = host }).Uri.AbsoluteUri);
+					}
+
+					count++;
+				}
+			}
+
+			return count > 0;
+		}
+
+
+		private async Task PatchPage(Page page, OneNote one, bool hasImages, bool hasAnchors)
 		{
 			try
 			{
-				// fetch page again with hydrated html
+				// fetch page again with temp links
 				page = one.GetPage(page.PageId, OneNote.PageDetail.All);
 
+				if (hasImages)
+				{
+					HydrateImages(page);
+				}
+
+				if (hasAnchors)
+				{
+					HydrateAnchors(page);
+				}
+
+				// second update to page
+				await one.Update(page);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error hydrating images", exc);
+			}
+		}
+
+
+		private void HydrateImages(Page page)
+		{
+			try
+			{
 				// transform anchors to downloaded images...
 
 				var regex = new Regex(
@@ -473,8 +557,6 @@ document.getElementsByTagName('title')[0].innerText;";
 				var cmd = new GetImagesCommand(regex);
 				if (cmd.GetImages(page))
 				{
-					// second update to page
-					await one.Update(page);
 					logger.WriteLine("pass 2 updated page with hydrated images");
 					return;
 				}
@@ -485,6 +567,10 @@ document.getElementsByTagName('title')[0].innerText;";
 			{
 				logger.WriteLine("error hydrating images", exc);
 			}
+		}
+
+		private void HydrateAnchors(Page page)
+		{
 		}
 
 

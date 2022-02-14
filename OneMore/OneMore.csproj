@@ -412,6 +412,7 @@
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
     <Compile Include="Helpers\Extensions\ProcessExtensions.cs" />
     <Compile Include="Commands\CommandAttribute.cs" />
+    <Compile Include="Helpers\Extensions\UriExtensions.cs" />
     <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
