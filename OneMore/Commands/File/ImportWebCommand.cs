@@ -205,6 +205,48 @@ namespace River.OneMoreAddIn.Commands
 			logger.End();
 		}
 
+		private async Task<Page> CreatePage(OneNote one, Page parent, string title)
+		{
+			var section = one.GetSection();
+			var sectionId = section.Attribute("ID").Value;
+
+			one.CreatePage(sectionId, out var pageId);
+			var page = one.GetPage(pageId);
+
+			if (parent != null)
+			{
+				// get current section again after new page is created
+				section = one.GetSection();
+
+				var parentElement = section.Elements(parent.Namespace + "Page")
+					.FirstOrDefault(e => e.Attribute("ID").Value == parent.PageId);
+
+				var childElement = section.Elements(parent.Namespace + "Page")
+					.FirstOrDefault(e => e.Attribute("ID").Value == pageId);
+
+				if (childElement != parentElement.NextNode)
+				{
+					// move new page immediately after its original in the section
+					childElement.Remove();
+					parentElement.AddAfterSelf(childElement);
+				}
+
+				parentElement.GetAttributeValue("pageLevel", out var level, 1);
+				var pageLevel = (level + 1).ToString();
+
+				// must set level on the hierarchy entry and on the page itself
+				childElement.SetAttributeValue("pageLevel", pageLevel);
+				page.Root.SetAttributeValue("pageLevel", pageLevel);
+
+				one.UpdateHierarchy(section);
+			}
+
+			await one.NavigateTo(pageId);
+
+			page.Title = title;
+			return page;
+		}
+
 		#endregion ImportAsImages
 
 
@@ -496,16 +538,26 @@ document.getElementsByTagName('title')[0].innerText;";
 
 					if (anchor != null)
 					{
-						var host = $"onemore-link{count}.{baseUri.Host}";
-
 						// replace the link with a temporary holding element
 						link.Link.SetAttributeValue("href",
-							(new UriBuilder(link.Uri) { Host = host }).Uri.AbsoluteUri);
+							(new UriBuilder(link.Uri)
+							{ 
+								Host = $"onemore-link{count}.{baseUri.Host}"
+							}).Uri.AbsoluteUri);
 
 						// set a temporary href so anchor won't be removed by OneNote
 						anchor.Attributes.Remove("name");
 						anchor.SetAttributeValue("href",
-							(new UriBuilder(baseUri) { Host = host }).Uri.AbsoluteUri);
+							(new UriBuilder(baseUri)
+							{
+								Host = $"onemore-anchor{count}.{baseUri.Host}"
+							}).Uri.AbsoluteUri);
+
+						if (string.IsNullOrEmpty(anchor.InnerText))
+						{
+							// something so OneNote doesn't trash it
+							anchor.InnerHtml = "-";
+						}
 					}
 
 					count++;
@@ -520,34 +572,41 @@ document.getElementsByTagName('title')[0].innerText;";
 		{
 			try
 			{
+				logger.WriteLine("pass 2 patching images and anchors");
+
 				// fetch page again with temp links
 				page = one.GetPage(page.PageId, OneNote.PageDetail.All);
 
+				var updated = false;
 				if (hasImages)
 				{
-					HydrateImages(page);
+					updated |= PatchImages(page);
 				}
 
 				if (hasAnchors)
 				{
-					HydrateAnchors(page);
+					updated |= PatchAnchors(page, one);
 				}
 
-				// second update to page
-				await one.Update(page);
+				if (updated)
+				{
+					// second update to page
+					await one.Update(page);
+				}
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error hydrating images", exc);
+				logger.WriteLine("error patching page", exc);
 			}
 		}
 
 
-		private void HydrateImages(Page page)
+		private bool PatchImages(Page page)
 		{
 			try
 			{
 				// transform anchors to downloaded images...
+				logger.WriteLine("patching images");
 
 				var regex = new Regex(
 					@"<a\s+href=""[^:]+://(onemore\.)[^:]+://(onemore\.)",
@@ -557,63 +616,80 @@ document.getElementsByTagName('title')[0].innerText;";
 				var cmd = new GetImagesCommand(regex);
 				if (cmd.GetImages(page))
 				{
-					logger.WriteLine("pass 2 updated page with hydrated images");
-					return;
+					return true;
 				}
-
-				logger.WriteLine("pass 2 no images found");
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error hydrating images", exc);
+				logger.WriteLine("error patching images", exc);
 			}
+
+			logger.WriteLine("no images found");
+			return false;
 		}
 
-		private void HydrateAnchors(Page page)
+
+		private bool PatchAnchors(Page page, OneNote one)
 		{
-		}
-
-
-		private async Task<Page> CreatePage(OneNote one, Page parent, string title)
-		{
-			var section = one.GetSection();
-			var sectionId = section.Attribute("ID").Value;
-
-			one.CreatePage(sectionId, out var pageId);
-			var page = one.GetPage(pageId);
-
-			if (parent != null)
+			try
 			{
-				// get current section again after new page is created
-				section = one.GetSection();
+				// rewrite anchors to on-page self-references
+				logger.WriteLine("patching anchors");
 
-				var parentElement = section.Elements(parent.Namespace + "Page")
-					.FirstOrDefault(e => e.Attribute("ID").Value == parent.PageId);
+				var updated = false;
+				var regex = new Regex(@"<a\s+href=""[^:]+://onemore-link([\d]+)\.");
 
-				var childElement = section.Elements(parent.Namespace + "Page")
-					.FirstOrDefault(e => e.Attribute("ID").Value == pageId);
+				var list = page.Root.DescendantNodes().OfType<XCData>()
+					.Select(e => new
+					{
+						Data = e,
+						Match = regex.Match(e.Value)
+					})
+					.Where(r => r.Match.Success)
+					.ToList();
 
-				if (childElement != parentElement.NextNode)
+				foreach (var item in list)
 				{
-					// move new page immediately after its original in the section
-					childElement.Remove();
-					parentElement.AddAfterSelf(childElement);
+					var key = item.Match.Groups[1].Value;
+					var anchor = page.Root.DescendantNodes().OfType<XCData>()
+						.Where(c => Regex.IsMatch(c.Value, $@"<a\s+href=""[^:]+://onemore-anchor({key})\."))
+						.Select(e => e.Parent)
+						.FirstOrDefault();
+
+					if (anchor != null)
+					{
+						var objectId = anchor.Parent.NodesAfterSelf().OfType<XElement>()
+							.Where(e => e.Name.LocalName == "OE")
+							.Select(e => e.Attribute("objectID").Value)
+							.FirstOrDefault();
+
+						if (!string.IsNullOrEmpty(objectId))
+						{
+							var hyperlink = one.GetHyperlink(page.PageId, objectId);
+							var wrapper = item.Data.GetWrapper();
+
+							// a cdata may contain more than one <a>
+							wrapper.Descendants("a")
+								.FirstOrDefault(a => a.Attribute("href").Value.Contains($"://onemore-link{key}."))
+								.SetAttributeValue("href", hyperlink);
+
+							item.Data.Value = wrapper.GetInnerXml();
+
+							anchor.Parent.Remove();
+							updated = true;
+						}
+					}
 				}
 
-				parentElement.GetAttributeValue("pageLevel", out var level, 1);
-				var pageLevel = (level + 1).ToString();
-
-				// must set level on the hierarchy entry and on the page itself
-				childElement.SetAttributeValue("pageLevel", pageLevel);
-				page.Root.SetAttributeValue("pageLevel", pageLevel);
-
-				one.UpdateHierarchy(section);
+				return updated;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error patching anchors", exc);
 			}
 
-			await one.NavigateTo(pageId);
-
-			page.Title = title;
-			return page;
+			logger.WriteLine("no anchors found");
+			return false;
 		}
 	}
 }
