@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		#region ImportAsImages
 
@@ -250,7 +250,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion ImportAsImages
 
 
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		private void ImportAsContent()
 		{
@@ -377,6 +377,8 @@ namespace River.OneMoreAddIn.Commands
 			UIHelper.ShowInfo($"Cannot load web page.\n\n{msg}");
 		}
 
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
 		{
