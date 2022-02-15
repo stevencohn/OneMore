@@ -381,14 +381,15 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		/// <summary>
-		/// Specialized entry point for CrawlWebPageCommand. Similar to ImportHtml but without
-		/// its own UI feedback and only creates subpages
+		/// Specialized entry point for CrawlWebPageCommand. Similar to ImportHtml but optimized
+		/// to create subpages in quiet mode.
 		/// </summary>
 		/// <param name="one"></param>
 		/// <param name="parent"></param>
 		/// <param name="uri"></param>
 		/// <returns></returns>
-		public async Task<Page> ImportSubpage(OneNote one, Page parent, Uri uri)
+		public async Task<Page> ImportSubpage(
+			OneNote one, Page parent, Uri uri, CancellationToken token)
 		{
 			logger.WriteLine($"importing subpage {uri.AbsoluteUri}");
 
@@ -403,39 +404,23 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
-			if (string.IsNullOrEmpty(info.Content))
+			if (string.IsNullOrEmpty(info.Content) || token.IsCancellationRequested)
 			{
 				logger.WriteLine("web page returned empty content");
 				return null;
 			}
 
 			var doc = ReplaceImagesWithAnchors(info.Content, uri, out var hasImages);
-			if (doc == null)
+			if (doc == null || token.IsCancellationRequested)
 			{
-				//progress.DialogResult = DialogResult.Abort;
-				//progress.Close();
 				return null;
 			}
 
-			//if (token.IsCancellationRequested)
-			//{
-			//	progress.DialogResult = DialogResult.Cancel;
-			//	progress.Close();
-			//	return null;
-			//}
-
 			var hasAnchors = EncodeLocalAnchors(doc, uri);
-			//if (token.IsCancellationRequested)
-			//{
-			//	progress.DialogResult = DialogResult.Cancel;
-			//	progress.Close();
-			//	return null;
-			//}
-
-			// Attempted to inline the css using the PreMailer nuget
-			// but OneNote strips it all off anyway so, oh well
-			//content = PreMailer.MoveCssInline(baseUri, doc.DocumentNode.OuterHtml,
-			//	stripIdAndClassAttributes: true, removeComments: true).Html;
+			if (token.IsCancellationRequested)
+			{
+				return null;
+			}
 
 			if (string.IsNullOrEmpty(info.Title))
 			{
@@ -446,12 +431,10 @@ namespace River.OneMoreAddIn.Commands
 				? $"<a href=\"{uri.AbsoluteUri}\">{uri.AbsoluteUri}</a>"
 				: $"<a href=\"{uri.AbsoluteUri}\">{info.Title}</a>";
 
-			//if (token.IsCancellationRequested)
-			//{
-			//	progress.DialogResult = DialogResult.Cancel;
-			//	progress.Close();
-			//	return null;
-			//}
+			if (token.IsCancellationRequested)
+			{
+				return null;
+			}
 
 			var page = await CreatePage(one, parent, title);
 

@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -18,7 +19,9 @@ namespace River.OneMoreAddIn.Commands
 	{
 
 		private OneNote one;
+		private Page parentPage;
 		private ImportWebCommand importer;
+		private List<CrawlHyperlink> selections;
 
 
 		public CrawlWebPageCommand()
@@ -28,32 +31,33 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic))
+			using (one = new OneNote(out parentPage, out var ns, OneNote.PageDetail.Basic))
 			{
-				var links = GetHyperlinks(page);
-				if (!links.Any())
+				var candidates = GetHyperlinks(parentPage);
+				if (!candidates.Any())
 				{
 					return;
 				}
 
-				List<CrawlHyperlink> hyperlinks = null;
-				using (var dialog = new CrawlWebPageDialog(links))
+				using (var dialog = new CrawlWebPageDialog(candidates))
 				{
 					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
 						return;
 					}
 
-					hyperlinks = dialog.GetSelectedHyperlinks();
+					selections = dialog.GetSelectedHyperlinks();
 				}
+
+				// reverse so we create subpages in correct order
+				selections.Reverse();
 
 				importer = new ImportWebCommand();
 				importer.SetLogger(logger);
 
-				if (await DownloadSelectedSubpages(page, hyperlinks))
-				{
-					await one.Update(page);
-				}
+				var progress = new UI.ProgressDialog(DownloadSelectedSubpages);
+				progress.SetMaximum(selections.Count);
+				await progress.RunModeless();
 			}
 		}
 
@@ -100,32 +104,40 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> DownloadSelectedSubpages(Page parent, List<CrawlHyperlink> links)
+		private async Task DownloadSelectedSubpages(
+			UI.ProgressDialog progress, CancellationToken token)
 		{
 			var updated = false;
-			foreach (var link in links)
-			{
-				logger.WriteLine($"fetching {link.Address}");
 
-				var page = await importer.ImportSubpage(one, parent, new Uri(link.Address));
+			foreach (var selection in selections)
+			{
+				progress.SetMessage(selection.Address);
+				logger.WriteLine($"fetching {selection.Address}");
+
+				var page = await importer.ImportSubpage(one, parentPage, new Uri(selection.Address), token);
 
 				if (page != null)
 				{
-					var wrapper = link.CData.GetWrapper();
+					var wrapper = selection.CData.GetWrapper();
 
 					wrapper.Elements("a")
 						.FirstOrDefault(e =>
-							e.Attribute("href").Value == link.Address &&
-							e.Value == link.Text)?
+							e.Attribute("href").Value == selection.Address &&
+							e.Value == selection.Text)?
 						.SetAttributeValue("href", one.GetHyperlink(page.PageId, string.Empty));
 
-					link.CData.Value = wrapper.GetInnerXml();
+					selection.CData.Value = wrapper.GetInnerXml();
 					updated = true;
 				}
+
+				progress.Increment();
 			}
 
-			return updated;
+			if (updated)
+			{
+				await one.Update(parentPage);
+				await one.NavigateTo(parentPage.PageId);
+			}
 		}
 	}
 }
-

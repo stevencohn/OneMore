@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Initializes a new dialog with message area and a pgoress bar; no cancellation is
+		/// Initializes a new dialog with message area and a progress bar; no cancellation is
 		/// allowed. The consumer is responsible for setting the maximum, incrementing, and
 		/// setting messages as events occur.
 		/// </summary>
