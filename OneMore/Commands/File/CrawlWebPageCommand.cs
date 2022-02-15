@@ -84,8 +84,10 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var anchor in anchors)
 				{
-					// entries are unique
-					if (!links.Any(e => e.Address == anchor.Address && e.Text == anchor.Text))
+					var entry = links.FirstOrDefault(e =>
+						e.Address == anchor.Address && e.Text == anchor.Text);
+
+					if (entry == null)
 					{
 						//logger.WriteLine($"found {anchor.Address} ({anchor.Text})");
 
@@ -96,6 +98,10 @@ namespace River.OneMoreAddIn.Commands
 							Text = anchor.Text,
 							Order = links.Count + 1
 						});
+					}
+					else
+					{
+						entry.RefCount++;
 					}
 				}
 			}
@@ -114,19 +120,32 @@ namespace River.OneMoreAddIn.Commands
 				progress.SetMessage(selection.Address);
 				//logger.WriteLine($"fetching {selection.Address}");
 
-				var page = await importer.ImportSubpage(one, parentPage, new Uri(selection.Address), token);
+				var page = await importer
+					.ImportSubpage(one, parentPage, new Uri(selection.Address), token);
 
 				if (page != null)
 				{
-					var wrapper = selection.CData.GetWrapper();
+					var pageUri = one.GetHyperlink(page.PageId, string.Empty);
 
-					wrapper.Elements("a")
-						.FirstOrDefault(e =>
-							e.Attribute("href").Value == selection.Address &&
-							e.Value == selection.Text)?
-						.SetAttributeValue("href", one.GetHyperlink(page.PageId, string.Empty));
+					// redirect primary reference on parent page to our new subpage
+					PatchCData(selection.CData, selection.Address, selection.Text, pageUri);
 
-					selection.CData.Value = wrapper.GetInnerXml();
+					// redirect duplicate references on parent page
+					if (selection.RefCount > 1)
+					{
+						var ns = parentPage.Namespace;
+						var regex = new Regex($@"<a\s+href=""{Regex.Escape(selection.Address)}""");
+
+						var cdatas = parentPage.Root.Elements(ns + "Outline")
+							.DescendantNodes().OfType<XCData>()
+							.Where(d => d != selection.CData && regex.IsMatch(d.Value));
+
+						foreach (var cdata in cdatas)
+						{
+							PatchCData(cdata, selection.Address, selection.Text, pageUri);
+						}
+					}
+
 					updated = true;
 				}
 
@@ -138,6 +157,19 @@ namespace River.OneMoreAddIn.Commands
 				await one.Update(parentPage);
 				await one.NavigateTo(parentPage.PageId);
 			}
+		}
+
+
+		private void PatchCData(XCData cdata, string address, string text, string pageUri)
+		{
+			var wrapper = cdata.GetWrapper();
+			wrapper.Elements("a")
+				.FirstOrDefault(e =>
+					e.Attribute("href").Value == address &&
+					e.Value == text)?
+				.SetAttributeValue("href", pageUri);
+
+			cdata.Value = wrapper.GetInnerXml();
 		}
 	}
 }

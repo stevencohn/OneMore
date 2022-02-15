@@ -15,6 +15,10 @@ namespace River.OneMoreAddIn.Commands
 		[Browsable(false)]
 		public XCData CData { get; set; }
 
+		[Browsable(false)]
+		public int RefCount { get; set; } = 1;
+
+
 		public bool Selected { get; set; }
 
 		public string Address { get; set; }
