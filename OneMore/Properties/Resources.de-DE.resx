@@ -3785,4 +3785,12 @@ Polaroid</value>
     <value>Web-Subseiten importieren</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog.Text" xml:space="preserve">
+    <value>Web-Subseiten importieren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
+    <value>Wählen Sie Links, um als Unterseiten zu importieren. Diese werden von dieser Seite wieder hergestellt.</value>
+    <comment>label</comment>
+  </data>
 </root>

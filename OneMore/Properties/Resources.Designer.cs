@@ -1428,6 +1428,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select links to import as sub-pages. These will be relinked to from this page..
+        /// </summary>
+        internal static string CrawlWebPageDialog_introBox_Text {
+            get {
+                return ResourceManager.GetString("CrawlWebPageDialog_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Web Sub-pages.
+        /// </summary>
+        internal static string CrawlWebPageDialog_Text {
+            get {
+                return ResourceManager.GetString("CrawlWebPageDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one image to crop.
         /// </summary>
         internal static string CropImage_oneImage {

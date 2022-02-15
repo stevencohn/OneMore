@@ -3798,4 +3798,12 @@ ISO-code then comma then language name</comment>
     <value>استيراد صفحات الويب الفرعية</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog.Text" xml:space="preserve">
+    <value>استيراد صفحات الويب الفرعية</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
+    <value>حدد روابط لاستيراد كصفحات فرعية. سيتم إقلاع هذه من هذه الصفحة.</value>
+    <comment>label</comment>
+  </data>
 </root>

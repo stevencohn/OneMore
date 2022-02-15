@@ -3855,4 +3855,12 @@ Polaroid</value>
     <value>Import Web Sub-pages</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog.Text" xml:space="preserve">
+    <value>Import Web Sub-pages</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
+    <value>Select links to import as sub-pages. These will be relinked to from this page.</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -9,6 +9,8 @@ namespace River.OneMoreAddIn.Commands
 	using System.ComponentModel;
 	using System.Linq;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
+
 
 	internal partial class CrawlWebPageDialog : UI.LocalizableForm
 	{
@@ -101,6 +103,18 @@ namespace River.OneMoreAddIn.Commands
 		public CrawlWebPageDialog()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Text = Resx.CrawlWebPageDialog_Text;
+
+				Localize(new string[]
+				{
+					"introBox",
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
+				});
+			}
 		}
 
 
