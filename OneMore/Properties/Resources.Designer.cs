@@ -1441,7 +1441,7 @@ namespace River.OneMoreAddIn.Properties {
         /// </summary>
         internal static string CrawlWebPageDialog_Text {
             get {
-                return ResourceManager.GetString("CrawlWebPageDialog.Text", resourceCulture);
+                return ResourceManager.GetString("CrawlWebPageDialog_Text", resourceCulture);
             }
         }
         

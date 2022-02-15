@@ -3855,7 +3855,7 @@ Polaroid</value>
     <value>Import Web Sub-pages</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CrawlWebPageDialog.Text" xml:space="preserve">
+  <data name="CrawlWebPageDialog_Text" xml:space="preserve">
     <value>Import Web Sub-pages</value>
     <comment>dialog title</comment>
   </data>

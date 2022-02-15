@@ -3851,12 +3851,12 @@ Polaroid</value>
     <value>Importuj podpartycje stron internetowych</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CrawlWebPageDialog.Text" xml:space="preserve">
-    <value>Importuj podpartycje stron internetowych</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
     <value>Wybierz linki do importu jako podstrony. Zostaną one wyłączone z tej strony.</value>
     <comment>label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_Text" xml:space="preserve">
+    <value>Importuj podpartycje stron internetowych</value>
+    <comment>dialog title</comment>
   </data>
 </root>
