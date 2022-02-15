@@ -3786,4 +3786,8 @@ OneNote 文件 (*.one)</value>
   <data name="word_Status" xml:space="preserve">
     <value>地位</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>导入Web子页面</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

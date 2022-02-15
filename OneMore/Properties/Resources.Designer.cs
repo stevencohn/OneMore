@@ -5140,6 +5140,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Web Sub-pages.
+        /// </summary>
+        internal static string ribCrawlWebPageButton_Label {
+            get {
+                return ResourceManager.GetString("ribCrawlWebPageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Style from Selection.
         /// </summary>
         internal static string ribCreateStyleButton_Label {

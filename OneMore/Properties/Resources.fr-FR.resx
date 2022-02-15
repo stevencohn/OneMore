@@ -3790,4 +3790,8 @@ Polaroïd</value>
   <data name="word_Status" xml:space="preserve">
     <value>Statut</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>Importer des sous-pages Web</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

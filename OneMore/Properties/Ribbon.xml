@@ -221,7 +221,7 @@
               <button
                 id="ribCrawWebPageButton"
                 imageMso="FileNewWebPage"
-                label="Import Web Sub-Pages"
+                getLabel="GetRibbonLabel"
                 onAction="CrawlWebPageCmd"/>
               <button
                 id="ribExportButton"

@@ -3794,4 +3794,8 @@ Polaroid</value>
   <data name="word_Status" xml:space="preserve">
     <value>Toestand</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>Importeer web-subpagina's</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

@@ -3847,4 +3847,8 @@ Polaroid</value>
   <data name="word_Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>Importuj podpartycje stron internetowych</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
