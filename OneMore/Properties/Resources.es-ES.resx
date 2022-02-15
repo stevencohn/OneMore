@@ -3794,4 +3794,16 @@ polaroid</value>
   <data name="word_Status" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>Importar subpáginas web</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
+    <value>Seleccione enlaces a la importación como subpáginas. Estos se volverán a pasar de esta página.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_Text" xml:space="preserve">
+    <value>Importar subpáginas web</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

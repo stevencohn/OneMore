@@ -3790,4 +3790,16 @@ Polaroïd</value>
   <data name="word_Status" xml:space="preserve">
     <value>Statut</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>Importer des sous-pages Web</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
+    <value>Sélectionnez Liens pour importer en tant que sous-pages. Celles-ci seront reliées à partir de cette page.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_Text" xml:space="preserve">
+    <value>Importer des sous-pages Web</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

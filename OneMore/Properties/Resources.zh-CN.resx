@@ -3786,4 +3786,16 @@ OneNote 文件 (*.one)</value>
   <data name="word_Status" xml:space="preserve">
     <value>地位</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>导入Web子页面</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
+    <value>选择导入作为子页面的链接。这些将从此页面重新连接。</value>
+    <comment>label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_Text" xml:space="preserve">
+    <value>导入Web子页面</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

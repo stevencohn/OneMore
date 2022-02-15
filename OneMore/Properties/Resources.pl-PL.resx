@@ -3847,4 +3847,16 @@ Polaroid</value>
   <data name="word_Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>Importuj podpartycje stron internetowych</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
+    <value>Wybierz linki do importu jako podstrony. Zostaną one wyłączone z tej strony.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_Text" xml:space="preserve">
+    <value>Importuj podpartycje stron internetowych</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

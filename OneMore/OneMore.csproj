@@ -159,6 +159,14 @@
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
+    <Compile Include="Commands\File\CrawlHyperlink.cs" />
+    <Compile Include="Commands\File\CrawlWebPageCommand.cs" />
+    <Compile Include="Commands\File\CrawlWebPageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\File\CrawlWebPageDialog.Designer.cs">
+      <DependentUpon>CrawlWebPageDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\File\EvernoteReader.cs" />
     <Compile Include="Commands\Page\ArrangeContainersCommand.cs" />
     <Compile Include="Commands\File\MarkdownWriter.cs" />
@@ -412,6 +420,7 @@
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
     <Compile Include="Helpers\Extensions\ProcessExtensions.cs" />
     <Compile Include="Commands\CommandAttribute.cs" />
+    <Compile Include="Helpers\Extensions\UriExtensions.cs" />
     <Compile Include="Helpers\HttpClientFactory.cs" />
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
@@ -568,6 +577,7 @@
       <DependentUpon>PluginDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\RichTextBoxExtensions.cs" />
+    <Compile Include="UI\SortableBindingList.cs" />
     <Compile Include="UI\TagPickerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -962,6 +972,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Extras\TimerWindow.resx">
       <DependentUpon>TimerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\File\CrawlWebPageDialog.resx">
+      <DependentUpon>CrawlWebPageDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ImportWebDialog.resx">
       <DependentUpon>ImportWebDialog.cs</DependentUpon>

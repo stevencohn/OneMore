@@ -3794,4 +3794,16 @@ ISO-code then comma then language name</comment>
   <data name="word_Status" xml:space="preserve">
     <value>حالة</value>
   </data>
+  <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
+    <value>استيراد صفحات الويب الفرعية</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
+    <value>حدد روابط لاستيراد كصفحات فرعية. سيتم إقلاع هذه من هذه الصفحة.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_Text" xml:space="preserve">
+    <value>استيراد صفحات الويب الفرعية</value>
+    <comment>dialog title</comment>
+  </data>
 </root>
