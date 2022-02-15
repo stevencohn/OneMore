@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	internal sealed class CrawlHyperlink
 	{
 
+		// prevent this property from appearing in DataGridView
 		[Browsable(false)]
 		public XCData CData { get; set; }
 

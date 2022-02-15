@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -17,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 
 		private OneNote one;
+		private ImportWebCommand importer;
 
 
 		public CrawlWebPageCommand()
@@ -45,7 +47,10 @@ namespace River.OneMoreAddIn.Commands
 					hyperlinks = dialog.GetSelectedHyperlinks();
 				}
 
-				if (await GetSelectedSubpages(page, hyperlinks))
+				importer = new ImportWebCommand();
+				importer.SetLogger(logger);
+
+				if (await DownloadSelectedSubpages(page, hyperlinks))
 				{
 					await one.Update(page);
 				}
@@ -64,24 +69,27 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var wrapper = cdata.GetWrapper();
 				var anchors = wrapper.Elements("a")
-					.Where(e =>
-						e.Attribute("href") != null &&
-						e.Attribute("href").Value.StartsWith("http"));
+					.Where(e => e.Attribute("href") != null)
+					.Select(e => new
+					{
+						Address = e.Attribute("href").Value,
+						Text = e.Value
+					})
+					.Where(a => a.Address.StartsWith("http") &&
+						Uri.IsWellFormedUriString(a.Address, UriKind.Absolute));
 
 				foreach (var anchor in anchors)
 				{
-					logger.WriteLine($"a {anchor.Attribute("href").Value} ({anchor.Value})");
-
-					var address = anchor.Attribute("href").Value;
-					var text = anchor.Value;
-
-					if (!links.Any(e => e.Address == address && e.Text == text))
+					// entries are unique
+					if (!links.Any(e => e.Address == anchor.Address && e.Text == anchor.Text))
 					{
+						logger.WriteLine($"found {anchor.Address} ({anchor.Text})");
+
 						links.Add(new CrawlHyperlink
 						{
 							CData = cdata,
-							Address = address,
-							Text = text,
+							Address = anchor.Address,
+							Text = anchor.Text,
 							Order = links.Count + 1
 						});
 					}
@@ -92,10 +100,31 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> GetSelectedSubpages(Page page, List<CrawlHyperlink> links)
+		private async Task<bool> DownloadSelectedSubpages(Page parent, List<CrawlHyperlink> links)
 		{
-			await Task.Yield();
-			return false;
+			var updated = false;
+			foreach (var link in links)
+			{
+				logger.WriteLine($"fetching {link.Address}");
+
+				var page = await importer.ImportSubpage(one, parent, new Uri(link.Address));
+
+				if (page != null)
+				{
+					var wrapper = link.CData.GetWrapper();
+
+					wrapper.Elements("a")
+						.FirstOrDefault(e =>
+							e.Attribute("href").Value == link.Address &&
+							e.Value == link.Text)?
+						.SetAttributeValue("href", one.GetHyperlink(page.PageId, string.Empty));
+
+					link.CData.Value = wrapper.GetInnerXml();
+					updated = true;
+				}
+			}
+
+			return updated;
 		}
 	}
 }

@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		#region ImportAsImages
 
@@ -250,7 +250,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion ImportAsImages
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		private void ImportAsContent()
 		{
@@ -378,6 +378,99 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		/// <summary>
+		/// Specialized entry point for CrawlWebPageCommand. Similar to ImportHtml but without
+		/// its own UI feedback and only creates subpages
+		/// </summary>
+		/// <param name="one"></param>
+		/// <param name="parent"></param>
+		/// <param name="uri"></param>
+		/// <returns></returns>
+		public async Task<Page> ImportSubpage(OneNote one, Page parent, Uri uri)
+		{
+			logger.WriteLine($"importing subpage {uri.AbsoluteUri}");
+
+			WebPageInfo info;
+			try
+			{
+				info = await DownloadWebContent(uri);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error downloading web content", exc);
+				return null;
+			}
+
+			if (string.IsNullOrEmpty(info.Content))
+			{
+				logger.WriteLine("web page returned empty content");
+				return null;
+			}
+
+			var doc = ReplaceImagesWithAnchors(info.Content, uri, out var hasImages);
+			if (doc == null)
+			{
+				//progress.DialogResult = DialogResult.Abort;
+				//progress.Close();
+				return null;
+			}
+
+			//if (token.IsCancellationRequested)
+			//{
+			//	progress.DialogResult = DialogResult.Cancel;
+			//	progress.Close();
+			//	return null;
+			//}
+
+			var hasAnchors = EncodeLocalAnchors(doc, uri);
+			//if (token.IsCancellationRequested)
+			//{
+			//	progress.DialogResult = DialogResult.Cancel;
+			//	progress.Close();
+			//	return null;
+			//}
+
+			// Attempted to inline the css using the PreMailer nuget
+			// but OneNote strips it all off anyway so, oh well
+			//content = PreMailer.MoveCssInline(baseUri, doc.DocumentNode.OuterHtml,
+			//	stripIdAndClassAttributes: true, removeComments: true).Html;
+
+			if (string.IsNullOrEmpty(info.Title))
+			{
+				info.Title = doc.DocumentNode.SelectSingleNode("//title")?.InnerText;
+			}
+
+			var title = string.IsNullOrEmpty(info.Title)
+				? $"<a href=\"{uri.AbsoluteUri}\">{uri.AbsoluteUri}</a>"
+				: $"<a href=\"{uri.AbsoluteUri}\">{info.Title}</a>";
+
+			//if (token.IsCancellationRequested)
+			//{
+			//	progress.DialogResult = DialogResult.Cancel;
+			//	progress.Close();
+			//	return null;
+			//}
+
+			var page = await CreatePage(one, parent, title);
+
+			// add html to page and let OneNote rehydrate as it sees fit
+			page.AddHtmlContent(doc.DocumentNode.OuterHtml);
+
+			await one.Update(page);
+			logger.WriteLine("pass 1 updated page with injected HTML");
+
+			if (hasImages || hasAnchors)
+			{
+				await PatchPage(page, one, hasImages, hasAnchors);
+			}
+
+			logger.WriteTime("import web completed");
+			return page;
+		}
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
@@ -452,7 +545,8 @@ document.getElementsByTagName('title')[0].innerText;";
 				title = title.Substring(1, title.Length - 2);
 			}
 
-			logger.WriteLine($"retrieved {content.Length} bytes from {title} ({uri.AbsoluteUri})");
+			var bycount = content == null ? 0 : content.Length;
+			logger.WriteLine($"retrieved {bycount} bytes from {title} ({uri.AbsoluteUri})");
 
 			return new WebPageInfo
 			{
@@ -543,7 +637,7 @@ document.getElementsByTagName('title')[0].innerText;";
 						// replace the link with a temporary holding element
 						link.Link.SetAttributeValue("href",
 							(new UriBuilder(link.Uri)
-							{ 
+							{
 								Host = $"onemore-link{count}.{baseUri.Host}"
 							}).Uri.AbsoluteUri);
 
