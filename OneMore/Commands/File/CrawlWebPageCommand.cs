@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn.Commands
 					// entries are unique
 					if (!links.Any(e => e.Address == anchor.Address && e.Text == anchor.Text))
 					{
-						logger.WriteLine($"found {anchor.Address} ({anchor.Text})");
+						//logger.WriteLine($"found {anchor.Address} ({anchor.Text})");
 
 						links.Add(new CrawlHyperlink
 						{
@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var selection in selections)
 			{
 				progress.SetMessage(selection.Address);
-				logger.WriteLine($"fetching {selection.Address}");
+				//logger.WriteLine($"fetching {selection.Address}");
 
 				var page = await importer.ImportSubpage(one, parentPage, new Uri(selection.Address), token);
 

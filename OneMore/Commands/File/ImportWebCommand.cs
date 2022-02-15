@@ -442,14 +442,14 @@ namespace River.OneMoreAddIn.Commands
 			page.AddHtmlContent(doc.DocumentNode.OuterHtml);
 
 			await one.Update(page);
-			logger.WriteLine("pass 1 updated page with injected HTML");
+			logger.WriteLine("pass 1 updated subpage with injected HTML");
 
 			if (hasImages || hasAnchors)
 			{
 				await PatchPage(page, one, hasImages, hasAnchors);
 			}
 
-			logger.WriteTime("import web completed");
+			logger.WriteTime("import subpage completed");
 			return page;
 		}
 
