@@ -219,7 +219,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="ImportWebCmd"/>
               <button
-                id="ribCrawWebPageButton"
+                id="ribCrawlWebPageButton"
                 imageMso="FileNewWebPage"
                 getLabel="GetRibbonLabel"
                 onAction="CrawlWebPageCmd"/>
