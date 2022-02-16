@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				cdatas = runs.DescendantNodes().OfType<XCData>()
-				.Where(c => Regex.IsMatch(c.Value, $@"<a\s+href=""http[s]?://"));
+					.Where(c => Regex.IsMatch(c.Value, $@"<a\s+href=""http[s]?://"));
 			}
 
 			foreach (var cdata in cdatas)
