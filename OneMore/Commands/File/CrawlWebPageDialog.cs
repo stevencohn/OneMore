@@ -58,5 +58,22 @@ namespace River.OneMoreAddIn.Commands
 				okButton.Enabled = data.Any(d => d.Selected);
 			}
 		}
+
+		private void GridResize(object sender, EventArgs e)
+		{
+			var width = 0;
+			foreach (DataGridViewColumn column in gridView.Columns)
+			{
+				width += column.Width;
+			}
+
+			var adjusted = gridView.Width - SystemInformation.VerticalScrollBarWidth;
+			if (width != adjusted)
+			{
+				var diff = (adjusted - width) / 2;
+				gridView.Columns[1].Width += diff;
+				gridView.Columns[2].Width += diff;
+			}
+		}
 	}
 }

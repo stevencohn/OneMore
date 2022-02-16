@@ -113,6 +113,7 @@
 			this.gridView.Size = new System.Drawing.Size(1153, 389);
 			this.gridView.TabIndex = 16;
 			this.gridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.DirtyStateChanged);
+			this.gridView.Resize += new System.EventHandler(this.GridResize);
 			// 
 			// selectedColumn
 			// 
