@@ -25,9 +25,14 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine(new string('-', 80));
 
 			var processes = Process.GetProcessesByName("ONENOTE");
-			var module = processes.Length > 0 ? processes[0].MainModule.FileName : "unknown";
+			var moduledesc = "unknown";
+			if (processes.Length > 0)
+			{
+				var module = processes[0].MainModule;
+				moduledesc = $"{module.FileName} ({module.FileVersionInfo.ProductVersion})";
+			}
 
-			logger.WriteLine($"ONENOTE...: {module}");
+			logger.WriteLine($"ONENOTE...: {moduledesc}");
 			logger.WriteLine($"Addin path: {Assembly.GetExecutingAssembly().Location}");
 			logger.WriteLine($"Data path.: {PathFactory.GetAppDataPath()}");
 			logger.WriteLine($"Log path..: {logger.LogPath}");
