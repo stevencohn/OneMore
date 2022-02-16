@@ -89,9 +89,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private string FormatDate(string value)
 		{
-			if (value == null)
+			if (string.IsNullOrEmpty(value))
 			{
-				logger.WriteLine("InstallDate is null");
 				return "unknown";
 			}
 
