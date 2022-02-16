@@ -3806,4 +3806,8 @@ ISO-code then comma then language name</comment>
     <value>استيراد صفحات الويب الفرعية</value>
     <comment>dialog title</comment>
   </data>
+  <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
+    <value>لا ارتباطات تشعبية موجودة في النطاق</value>
+    <comment>message box</comment>
+  </data>
 </root>

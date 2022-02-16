@@ -3806,4 +3806,8 @@ polaroid</value>
     <value>Importar subpáginas web</value>
     <comment>dialog title</comment>
   </data>
+  <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
+    <value>No se han encontrado hipervínculos en el rango.</value>
+    <comment>message box</comment>
+  </data>
 </root>

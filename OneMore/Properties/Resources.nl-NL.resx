@@ -3806,4 +3806,8 @@ Polaroid</value>
     <value>Importeer web-subpagina's</value>
     <comment>dialog title</comment>
   </data>
+  <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
+    <value>Geen hyperlinks gevonden in het bereik</value>
+    <comment>message box</comment>
+  </data>
 </root>

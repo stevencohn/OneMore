@@ -3793,4 +3793,8 @@ Polaroid</value>
     <value>Web-Subseiten importieren</value>
     <comment>dialog title</comment>
   </data>
+  <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
+    <value>Keine Hyperlinks in Reichweite gefunden</value>
+    <comment>message box</comment>
+  </data>
 </root>

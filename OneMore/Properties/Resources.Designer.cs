@@ -1428,6 +1428,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No hyperlinks found in range.
+        /// </summary>
+        internal static string CrawlWebCommand_NoHyperlinks {
+            get {
+                return ResourceManager.GetString("CrawlWebCommand_NoHyperlinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select links to import as sub-pages. These will be relinked to from this page..
         /// </summary>
         internal static string CrawlWebPageDialog_introBox_Text {

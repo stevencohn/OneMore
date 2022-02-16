@@ -109,7 +109,8 @@ namespace River.OneMoreAddIn.Commands
 
 			var found = false;
 			wrapper.Descendants("span")
-				.Where(e => e.Attribute("style").Value.Contains("background"))
+				.Where(e => e.Attribute("style") != null &&
+					e.Attribute("style").Value.Contains("background"))
 				.Select(e => e.Attribute("style"))
 				.ForEach(a =>
 				{

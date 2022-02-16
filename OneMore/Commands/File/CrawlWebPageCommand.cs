@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class CrawlWebPageCommand : Command
@@ -31,11 +32,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (one = new OneNote(out parentPage, out var ns, OneNote.PageDetail.Basic))
+			using (one = new OneNote(out parentPage, out var ns, OneNote.PageDetail.Selection))
 			{
 				var candidates = GetHyperlinks(parentPage);
 				if (!candidates.Any())
 				{
+					UIHelper.ShowMessage(Resx.CrawlWebCommand_NoHyperlinks);
 					return;
 				}
 
@@ -66,8 +68,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var links = new List<CrawlHyperlink>();
 
-			var cdatas = page.Root.DescendantNodes().OfType<XCData>()
+			var runs = page.GetSelectedElements(all: true);
+
+			IEnumerable<XCData> cdatas;
+			// special case when cursor is on a hyperlink and no selection region
+			if (runs.Any() && page.SelectionScope == SelectionScope.Empty)
+			{
+				cdatas = page.Root.DescendantNodes().OfType<XCData>()
+					.Where(c => Regex.IsMatch(c.Value, $@"<a\s+href=""http[s]?://"));
+			}
+			else
+			{
+				cdatas = runs.DescendantNodes().OfType<XCData>()
 				.Where(c => Regex.IsMatch(c.Value, $@"<a\s+href=""http[s]?://"));
+			}
 
 			foreach (var cdata in cdatas)
 			{

@@ -3802,4 +3802,8 @@ Polaroïd</value>
     <value>Importer des sous-pages Web</value>
     <comment>dialog title</comment>
   </data>
+  <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
+    <value>Aucun lien hypertexte trouvé dans la plage</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -3863,4 +3863,8 @@ Polaroid</value>
     <value>Select links to import as sub-pages. These will be relinked to from this page.</value>
     <comment>label</comment>
   </data>
+  <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
+    <value>No hyperlinks found in range</value>
+    <comment>message box</comment>
+  </data>
 </root>
