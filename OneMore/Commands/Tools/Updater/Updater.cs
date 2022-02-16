@@ -57,22 +57,22 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 						{
 							using (var key = root.OpenSubKey(subName))
 							{
-								if (key != null)
+								if (key?.GetValue("DisplayName") is string name &&
+									name == "OneMoreAddIn")
 								{
-									var name = key.GetValue("DisplayName") as string;
-									if (name == "OneMoreAddIn")
+									if (key.GetValue("UninstallString") is string cmd &&
+										!string.IsNullOrEmpty(cmd))
 									{
-										var cmd = key.GetValue("UninstallString") as string;
-										if (!string.IsNullOrEmpty(cmd))
-										{
-											productCode = cmd.Substring(cmd.IndexOf('{'));
-										}
-
-										InstalledDate = key.GetValue("InstallDate") as string;
-
-										// found the OneMore key so our job is done here
-										break;
+										productCode = cmd.Substring(cmd.IndexOf('{'));
 									}
+
+									if (key.GetValue("InstallDate") is string indate)
+									{
+										InstalledDate = indate;
+									}
+
+									// found the OneMore key so our job is done here
+									break;
 								}
 							}
 						}
@@ -93,7 +93,9 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		{
 			var client = HttpClientFactory.Create();
 			if (!client.DefaultRequestHeaders.Contains("User-Agent"))
+			{
 				client.DefaultRequestHeaders.Add("User-Agent", "OneMore");
+			}
 
 			try
 			{

@@ -89,26 +89,33 @@ namespace River.OneMoreAddIn.Commands
 
 		private string FormatDate(string value)
 		{
-			if (value == null)
+			try
 			{
-				logger.WriteLine("InstallDate is null");
-				return "unknown";
-			}
+				if (string.IsNullOrEmpty(value))
+				{
+					return "unknown";
+				}
 
-			if (value.Length == 8)
-			{
-				if (DateTime.TryParseExact(value, new string[] { "yyyyMMdd" },
-					CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+				if (value.Length == 8)
 				{
-					return date.ToShortDateString();
+					if (DateTime.TryParseExact(value, new string[] { "yyyyMMdd" },
+						CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+					{
+						return date.ToShortDateString();
+					}
+				}
+				else
+				{
+					if (DateTime.TryParse(value, out var date))
+					{
+						return date.ToShortDateString();
+					}
 				}
 			}
-			else
+			catch (Exception exc)
 			{
-				if (DateTime.TryParse(value, out var date))
-				{
-					return date.ToShortDateString();
-				}
+				logger.WriteLine($"error formatting date {value}", exc);
+				value = "unknown";
 			}
 
 			return value;
