@@ -5167,7 +5167,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import Web Sub-pages.
+        ///   Looks up a localized string similar to Import Hyperlinks.
         /// </summary>
         internal static string ribCrawlWebPageButton_Label {
             get {

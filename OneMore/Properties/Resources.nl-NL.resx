@@ -3795,7 +3795,7 @@ Polaroid</value>
     <value>Toestand</value>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
-    <value>Importeer web-subpagina's</value>
+    <value>Hyperlinks importeren</value>
     <comment>ribbon item</comment>
   </data>
   <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">

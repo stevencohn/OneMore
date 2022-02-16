@@ -3852,7 +3852,7 @@ Polaroid</value>
     <value>Status</value>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
-    <value>Import Web Sub-pages</value>
+    <value>Import Hyperlinks</value>
     <comment>ribbon item</comment>
   </data>
   <data name="CrawlWebPageDialog_Text" xml:space="preserve">

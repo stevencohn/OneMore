@@ -3787,7 +3787,7 @@ OneNote 文件 (*.one)</value>
     <value>地位</value>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
-    <value>导入Web子页面</value>
+    <value>导入超链接</value>
     <comment>ribbon item</comment>
   </data>
   <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">

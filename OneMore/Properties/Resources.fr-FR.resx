@@ -3791,7 +3791,7 @@ Polaroïd</value>
     <value>Statut</value>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
-    <value>Importer des sous-pages Web</value>
+    <value>Hyperliens d'importation</value>
     <comment>ribbon item</comment>
   </data>
   <data name="CrawlWebPageDialog_introBox.Text" xml:space="preserve">
