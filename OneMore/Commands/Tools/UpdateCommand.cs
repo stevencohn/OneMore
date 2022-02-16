@@ -37,7 +37,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!await updater.FetchLatestRelease())
 			{
-				// todo: display error if 'report'?
+				if (args.Length > 0 && args[0] is bool report && report)
+				{
+					UIHelper.ShowInfo("Error fetching latest release; please see logs");
+				}
+
 				return;
 			}
 
