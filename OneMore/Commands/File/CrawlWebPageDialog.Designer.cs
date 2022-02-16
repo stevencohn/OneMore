@@ -47,7 +47,7 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(684, 17);
+			this.okButton.Location = new System.Drawing.Point(934, 17);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 11;
@@ -58,7 +58,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(790, 17);
+			this.cancelButton.Location = new System.Drawing.Point(1040, 17);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 10;
@@ -72,7 +72,7 @@
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.Location = new System.Drawing.Point(20, 471);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(893, 58);
+			this.buttonPanel.Size = new System.Drawing.Size(1143, 58);
 			this.buttonPanel.TabIndex = 13;
 			// 
 			// introBox
@@ -83,7 +83,7 @@
 			this.introBox.Multiline = true;
 			this.introBox.Name = "introBox";
 			this.introBox.ReadOnly = true;
-			this.introBox.Size = new System.Drawing.Size(893, 62);
+			this.introBox.Size = new System.Drawing.Size(1143, 62);
 			this.introBox.TabIndex = 15;
 			this.introBox.Text = "Select links to import as sub-pages. These will be relinked to from this page.";
 			// 
@@ -110,7 +110,7 @@
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(893, 389);
+			this.gridView.Size = new System.Drawing.Size(1143, 389);
 			this.gridView.TabIndex = 16;
 			this.gridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.DirtyStateChanged);
 			// 
@@ -161,7 +161,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(928, 544);
+			this.ClientSize = new System.Drawing.Size(1178, 544);
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
