@@ -926,9 +926,11 @@
     <None Include="Properties\Images\Locked.png" />
     <Content Include="Properties\Images\Logo.ico" />
     <Content Include="Properties\Images\NewStyle.png" />
+    <Content Include="Properties\Images\Notebook.png" />
     <Content Include="Properties\Images\NotebookMask.png" />
     <Content Include="Properties\Images\Open.png" />
     <Content Include="Properties\Images\Page.png" />
+    <Content Include="Properties\Images\Pages.png" />
     <Content Include="Properties\Images\Refresh.png" />
     <Content Include="Properties\Images\Rename.png" />
     <Content Include="Properties\Images\RenameStyle.png" />
@@ -938,6 +940,7 @@
     <Content Include="Properties\Images\SaveAs.png" />
     <Content Include="Properties\Images\Search.png" />
     <Content Include="Properties\Images\SearchTag.png" />
+    <Content Include="Properties\Images\Section.png" />
     <Content Include="Properties\Images\SectionGroup.png" />
     <Content Include="Properties\Images\SectionMask.png" />
     <Content Include="Properties\Images\SelectAll.png" />
