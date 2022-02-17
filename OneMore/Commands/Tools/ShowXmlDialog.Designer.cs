@@ -35,20 +35,21 @@
 			this.pageBox = new System.Windows.Forms.RichTextBox();
 			this.sectionTab = new System.Windows.Forms.TabPage();
 			this.sectionBox = new System.Windows.Forms.RichTextBox();
-			this.notebookTab = new System.Windows.Forms.TabPage();
+			this.notebooksTab = new System.Windows.Forms.TabPage();
 			this.notebookBox = new System.Windows.Forms.RichTextBox();
-			this.nbSectionTab = new System.Windows.Forms.TabPage();
+			this.nbSectionsTab = new System.Windows.Forms.TabPage();
 			this.nbSectionBox = new System.Windows.Forms.RichTextBox();
 			this.nbPagesTab = new System.Windows.Forms.TabPage();
 			this.nbPagesBox = new System.Windows.Forms.RichTextBox();
 			this.manualTab = new System.Windows.Forms.TabPage();
-			this.panel2 = new System.Windows.Forms.Panel();
 			this.manualBox = new System.Windows.Forms.RichTextBox();
 			this.tabIcons = new System.Windows.Forms.ImageList(this.components);
-			this.objectLabel = new System.Windows.Forms.Label();
-			this.objectIdBox = new System.Windows.Forms.TextBox();
-			this.functionBox = new System.Windows.Forms.ComboBox();
+			this.manualPanel = new System.Windows.Forms.Panel();
+			this.hidePidBox = new System.Windows.Forms.CheckBox();
 			this.queryButton = new System.Windows.Forms.Button();
+			this.functionBox = new System.Windows.Forms.ComboBox();
+			this.objectIdBox = new System.Windows.Forms.TextBox();
+			this.manualLabel = new System.Windows.Forms.Label();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
@@ -63,8 +64,6 @@
 			this.hideBox = new System.Windows.Forms.CheckBox();
 			this.scopeBox = new System.Windows.Forms.ListBox();
 			this.pageInfoLabel = new System.Windows.Forms.Label();
-			this.manualPanel = new System.Windows.Forms.Panel();
-			this.hidePidBox = new System.Windows.Forms.CheckBox();
 			this.selectButton = new System.Windows.Forms.Button();
 			this.topPanel = new System.Windows.Forms.Panel();
 			this.wrapBox = new System.Windows.Forms.CheckBox();
@@ -74,14 +73,13 @@
 			this.tabs.SuspendLayout();
 			this.pageTab.SuspendLayout();
 			this.sectionTab.SuspendLayout();
-			this.notebookTab.SuspendLayout();
-			this.nbSectionTab.SuspendLayout();
+			this.notebooksTab.SuspendLayout();
+			this.nbSectionsTab.SuspendLayout();
 			this.nbPagesTab.SuspendLayout();
 			this.manualTab.SuspendLayout();
-			this.panel2.SuspendLayout();
+			this.manualPanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
 			this.pagePanel.SuspendLayout();
-			this.manualPanel.SuspendLayout();
 			this.topPanel.SuspendLayout();
 			this.masterPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -90,8 +88,8 @@
 			// 
 			this.tabs.Controls.Add(this.pageTab);
 			this.tabs.Controls.Add(this.sectionTab);
-			this.tabs.Controls.Add(this.notebookTab);
-			this.tabs.Controls.Add(this.nbSectionTab);
+			this.tabs.Controls.Add(this.notebooksTab);
+			this.tabs.Controls.Add(this.nbSectionsTab);
 			this.tabs.Controls.Add(this.nbPagesTab);
 			this.tabs.Controls.Add(this.manualTab);
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -158,18 +156,18 @@
 			this.sectionBox.Text = "";
 			this.sectionBox.WordWrap = false;
 			// 
-			// notebookTab
+			// notebooksTab
 			// 
-			this.notebookTab.Controls.Add(this.notebookBox);
-			this.notebookTab.ImageIndex = 2;
-			this.notebookTab.Location = new System.Drawing.Point(4, 29);
-			this.notebookTab.Margin = new System.Windows.Forms.Padding(2);
-			this.notebookTab.Name = "notebookTab";
-			this.notebookTab.Padding = new System.Windows.Forms.Padding(2);
-			this.notebookTab.Size = new System.Drawing.Size(1454, 820);
-			this.notebookTab.TabIndex = 3;
-			this.notebookTab.Text = "Notebook";
-			this.notebookTab.UseVisualStyleBackColor = true;
+			this.notebooksTab.Controls.Add(this.notebookBox);
+			this.notebooksTab.ImageIndex = 2;
+			this.notebooksTab.Location = new System.Drawing.Point(4, 29);
+			this.notebooksTab.Margin = new System.Windows.Forms.Padding(2);
+			this.notebooksTab.Name = "notebooksTab";
+			this.notebooksTab.Padding = new System.Windows.Forms.Padding(2);
+			this.notebooksTab.Size = new System.Drawing.Size(1454, 820);
+			this.notebooksTab.TabIndex = 3;
+			this.notebooksTab.Text = "Notebooks";
+			this.notebooksTab.UseVisualStyleBackColor = true;
 			// 
 			// notebookBox
 			// 
@@ -184,18 +182,18 @@
 			this.notebookBox.Text = "";
 			this.notebookBox.WordWrap = false;
 			// 
-			// nbSectionTab
+			// nbSectionsTab
 			// 
-			this.nbSectionTab.Controls.Add(this.nbSectionBox);
-			this.nbSectionTab.ImageIndex = 3;
-			this.nbSectionTab.Location = new System.Drawing.Point(4, 29);
-			this.nbSectionTab.Margin = new System.Windows.Forms.Padding(2);
-			this.nbSectionTab.Name = "nbSectionTab";
-			this.nbSectionTab.Padding = new System.Windows.Forms.Padding(2);
-			this.nbSectionTab.Size = new System.Drawing.Size(1454, 820);
-			this.nbSectionTab.TabIndex = 4;
-			this.nbSectionTab.Text = "Notebook with Sections";
-			this.nbSectionTab.UseVisualStyleBackColor = true;
+			this.nbSectionsTab.Controls.Add(this.nbSectionBox);
+			this.nbSectionsTab.ImageIndex = 3;
+			this.nbSectionsTab.Location = new System.Drawing.Point(4, 29);
+			this.nbSectionsTab.Margin = new System.Windows.Forms.Padding(2);
+			this.nbSectionsTab.Name = "nbSectionsTab";
+			this.nbSectionsTab.Padding = new System.Windows.Forms.Padding(2);
+			this.nbSectionsTab.Size = new System.Drawing.Size(1454, 820);
+			this.nbSectionsTab.TabIndex = 4;
+			this.nbSectionsTab.Text = "Notebook with Sections";
+			this.nbSectionsTab.UseVisualStyleBackColor = true;
 			// 
 			// nbSectionBox
 			// 
@@ -238,7 +236,7 @@
 			// 
 			// manualTab
 			// 
-			this.manualTab.Controls.Add(this.panel2);
+			this.manualTab.Controls.Add(this.manualBox);
 			this.manualTab.ImageIndex = 5;
 			this.manualTab.Location = new System.Drawing.Point(4, 29);
 			this.manualTab.Margin = new System.Windows.Forms.Padding(2);
@@ -249,21 +247,12 @@
 			this.manualTab.Text = "Manual lookup";
 			this.manualTab.UseVisualStyleBackColor = true;
 			// 
-			// panel2
-			// 
-			this.panel2.Controls.Add(this.manualBox);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(2, 2);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1450, 816);
-			this.panel2.TabIndex = 6;
-			// 
 			// manualBox
 			// 
 			this.manualBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.manualBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.manualBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.manualBox.Location = new System.Drawing.Point(0, 0);
+			this.manualBox.Location = new System.Drawing.Point(2, 2);
 			this.manualBox.Margin = new System.Windows.Forms.Padding(2);
 			this.manualBox.Name = "manualBox";
 			this.manualBox.Size = new System.Drawing.Size(1450, 816);
@@ -283,25 +272,42 @@
 			this.tabIcons.Images.SetKeyName(4, "Pages.png");
 			this.tabIcons.Images.SetKeyName(5, "Search.png");
 			// 
-			// objectLabel
+			// manualPanel
 			// 
-			this.objectLabel.AutoSize = true;
-			this.objectLabel.Location = new System.Drawing.Point(8, 20);
-			this.objectLabel.Margin = new System.Windows.Forms.Padding(100, 8, 3, 0);
-			this.objectLabel.Name = "objectLabel";
-			this.objectLabel.Size = new System.Drawing.Size(128, 20);
-			this.objectLabel.TabIndex = 6;
-			this.objectLabel.Text = "Manual ObjectID";
+			this.manualPanel.Controls.Add(this.hidePidBox);
+			this.manualPanel.Controls.Add(this.queryButton);
+			this.manualPanel.Controls.Add(this.functionBox);
+			this.manualPanel.Controls.Add(this.objectIdBox);
+			this.manualPanel.Controls.Add(this.manualLabel);
+			this.manualPanel.Location = new System.Drawing.Point(1208, 0);
+			this.manualPanel.Name = "manualPanel";
+			this.manualPanel.Size = new System.Drawing.Size(928, 90);
+			this.manualPanel.TabIndex = 2;
+			this.manualPanel.Visible = false;
 			// 
-			// objectIdBox
+			// hidePidBox
 			// 
-			this.objectIdBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.objectIdBox.Location = new System.Drawing.Point(140, 18);
-			this.objectIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-			this.objectIdBox.Name = "objectIdBox";
-			this.objectIdBox.Size = new System.Drawing.Size(509, 29);
-			this.objectIdBox.TabIndex = 7;
-			this.objectIdBox.TextChanged += new System.EventHandler(this.ManualInputChanged);
+			this.hidePidBox.AutoSize = true;
+			this.hidePidBox.Checked = true;
+			this.hidePidBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.hidePidBox.Location = new System.Drawing.Point(13, 61);
+			this.hidePidBox.Name = "hidePidBox";
+			this.hidePidBox.Size = new System.Drawing.Size(99, 24);
+			this.hidePidBox.TabIndex = 10;
+			this.hidePidBox.Text = "Hide PID";
+			this.hidePidBox.UseVisualStyleBackColor = true;
+			this.hidePidBox.CheckedChanged += new System.EventHandler(this.HidePidCheckedChanged);
+			// 
+			// queryButton
+			// 
+			this.queryButton.Enabled = false;
+			this.queryButton.Image = ((System.Drawing.Image)(resources.GetObject("queryButton.Image")));
+			this.queryButton.Location = new System.Drawing.Point(862, 11);
+			this.queryButton.Name = "queryButton";
+			this.queryButton.Size = new System.Drawing.Size(47, 32);
+			this.queryButton.TabIndex = 9;
+			this.queryButton.UseVisualStyleBackColor = true;
+			this.queryButton.Click += new System.EventHandler(this.RunManual);
 			// 
 			// functionBox
 			// 
@@ -312,23 +318,32 @@
             "GetNotebook",
             "GetSection",
             "GetPage"});
-			this.functionBox.Location = new System.Drawing.Point(655, 18);
+			this.functionBox.Location = new System.Drawing.Point(655, 13);
 			this.functionBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
 			this.functionBox.Name = "functionBox";
 			this.functionBox.Size = new System.Drawing.Size(201, 30);
 			this.functionBox.TabIndex = 8;
 			this.functionBox.SelectedIndexChanged += new System.EventHandler(this.ManualInputChanged);
 			// 
-			// queryButton
+			// objectIdBox
 			// 
-			this.queryButton.Enabled = false;
-			this.queryButton.Image = ((System.Drawing.Image)(resources.GetObject("queryButton.Image")));
-			this.queryButton.Location = new System.Drawing.Point(862, 16);
-			this.queryButton.Name = "queryButton";
-			this.queryButton.Size = new System.Drawing.Size(47, 32);
-			this.queryButton.TabIndex = 9;
-			this.queryButton.UseVisualStyleBackColor = true;
-			this.queryButton.Click += new System.EventHandler(this.RunManual);
+			this.objectIdBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.objectIdBox.Location = new System.Drawing.Point(140, 13);
+			this.objectIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+			this.objectIdBox.Name = "objectIdBox";
+			this.objectIdBox.Size = new System.Drawing.Size(509, 29);
+			this.objectIdBox.TabIndex = 7;
+			this.objectIdBox.TextChanged += new System.EventHandler(this.ManualInputChanged);
+			// 
+			// manualLabel
+			// 
+			this.manualLabel.AutoSize = true;
+			this.manualLabel.Location = new System.Drawing.Point(8, 15);
+			this.manualLabel.Margin = new System.Windows.Forms.Padding(100, 8, 3, 0);
+			this.manualLabel.Name = "manualLabel";
+			this.manualLabel.Size = new System.Drawing.Size(128, 20);
+			this.manualLabel.TabIndex = 6;
+			this.manualLabel.Text = "Manual ObjectID";
 			// 
 			// cancelButton
 			// 
@@ -487,32 +502,6 @@
 			this.pageInfoLabel.TabIndex = 0;
 			this.pageInfoLabel.Text = "PageInfo:";
 			// 
-			// manualPanel
-			// 
-			this.manualPanel.Controls.Add(this.hidePidBox);
-			this.manualPanel.Controls.Add(this.queryButton);
-			this.manualPanel.Controls.Add(this.functionBox);
-			this.manualPanel.Controls.Add(this.objectIdBox);
-			this.manualPanel.Controls.Add(this.objectLabel);
-			this.manualPanel.Location = new System.Drawing.Point(1217, 3);
-			this.manualPanel.Name = "manualPanel";
-			this.manualPanel.Size = new System.Drawing.Size(928, 90);
-			this.manualPanel.TabIndex = 2;
-			this.manualPanel.Visible = false;
-			// 
-			// hidePidBox
-			// 
-			this.hidePidBox.AutoSize = true;
-			this.hidePidBox.Checked = true;
-			this.hidePidBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.hidePidBox.Location = new System.Drawing.Point(13, 61);
-			this.hidePidBox.Name = "hidePidBox";
-			this.hidePidBox.Size = new System.Drawing.Size(99, 24);
-			this.hidePidBox.TabIndex = 10;
-			this.hidePidBox.Text = "Hide PID";
-			this.hidePidBox.UseVisualStyleBackColor = true;
-			this.hidePidBox.CheckedChanged += new System.EventHandler(this.HidePidCheckedChanged);
-			// 
 			// selectButton
 			// 
 			this.selectButton.Image = ((System.Drawing.Image)(resources.GetObject("selectButton.Image")));
@@ -605,17 +594,16 @@
 			this.tabs.ResumeLayout(false);
 			this.pageTab.ResumeLayout(false);
 			this.sectionTab.ResumeLayout(false);
-			this.notebookTab.ResumeLayout(false);
-			this.nbSectionTab.ResumeLayout(false);
+			this.notebooksTab.ResumeLayout(false);
+			this.nbSectionsTab.ResumeLayout(false);
 			this.nbPagesTab.ResumeLayout(false);
 			this.manualTab.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
+			this.manualPanel.ResumeLayout(false);
+			this.manualPanel.PerformLayout();
 			this.buttonPanel.ResumeLayout(false);
 			this.buttonPanel.PerformLayout();
 			this.pagePanel.ResumeLayout(false);
 			this.pagePanel.PerformLayout();
-			this.manualPanel.ResumeLayout(false);
-			this.manualPanel.PerformLayout();
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
 			this.masterPanel.ResumeLayout(false);
@@ -636,7 +624,6 @@
 		private System.Windows.Forms.Panel masterPanel;
 		private System.Windows.Forms.TextBox findBox;
 		private System.Windows.Forms.Button findButton;
-		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Button selectButton;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label pageInfoLabel;
@@ -651,13 +638,13 @@
 		private System.Windows.Forms.Label pageLinkLabel;
 		private System.Windows.Forms.Label pagePathLabel;
 		private System.Windows.Forms.ListBox scopeBox;
-		private System.Windows.Forms.Label objectLabel;
+		private System.Windows.Forms.Label manualLabel;
 		private System.Windows.Forms.TextBox objectIdBox;
 		private System.Windows.Forms.ComboBox functionBox;
 		private System.Windows.Forms.Button queryButton;
 		private System.Windows.Forms.TabPage sectionTab;
-		private System.Windows.Forms.TabPage notebookTab;
-		private System.Windows.Forms.TabPage nbSectionTab;
+		private System.Windows.Forms.TabPage notebooksTab;
+		private System.Windows.Forms.TabPage nbSectionsTab;
 		private System.Windows.Forms.TabPage nbPagesTab;
 		private System.Windows.Forms.RichTextBox sectionBox;
 		private System.Windows.Forms.RichTextBox notebookBox;

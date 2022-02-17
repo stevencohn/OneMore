@@ -7135,15 +7135,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Section with Pages.
-        /// </summary>
-        internal static string ShowXmlDialog_currSectionButton_Text {
-            get {
-                return ResourceManager.GetString("ShowXmlDialog_currSectionButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Hide edited-by attributes (uncheck to edit page).
         /// </summary>
         internal static string ShowXmlDialog_hideBox_Text {
@@ -7162,11 +7153,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hierarchy.
+        ///   Looks up a localized string similar to Hide PID.
         /// </summary>
-        internal static string ShowXmlDialog_hierTab_Text {
+        internal static string ShowXmlDialog_hidePidBox_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_hierTab.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_hidePidBox.Text", resourceCulture);
             }
         }
         
@@ -7180,20 +7171,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manual lookup.
+        /// </summary>
+        internal static string ShowXmlDialog_manualTab_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_manualTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notebook with Pages.
+        /// </summary>
+        internal static string ShowXmlDialog_nbPagesTab_Text {
+            get {
+                return ResourceManager.GetString("ShowXmlDialog_nbPagesTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notebook with Sections.
         /// </summary>
-        internal static string ShowXmlDialog_notebookButton_Text {
+        internal static string ShowXmlDialog_nbSectionsTab_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_notebookButton.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_nbSectionsTab.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Notebooks.
         /// </summary>
-        internal static string ShowXmlDialog_notebooksButton_Text {
+        internal static string ShowXmlDialog_notebooksTab_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_notebooksButton.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_notebooksTab.Text", resourceCulture);
             }
         }
         
@@ -7234,15 +7243,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pages.
-        /// </summary>
-        internal static string ShowXmlDialog_pagesHierButton_Text {
-            get {
-                return ResourceManager.GetString("ShowXmlDialog_pagesHierButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         internal static string ShowXmlDialog_pageTab_Text {
@@ -7252,11 +7252,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notebook with Pages.
+        ///   Looks up a localized string similar to Section.
         /// </summary>
-        internal static string ShowXmlDialog_sectionButton_Text {
+        internal static string ShowXmlDialog_sectionTab_Text {
             get {
-                return ResourceManager.GetString("ShowXmlDialog_sectionButton.Text", resourceCulture);
+                return ResourceManager.GetString("ShowXmlDialog_sectionTab.Text", resourceCulture);
             }
         }
         

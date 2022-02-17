@@ -71,6 +71,13 @@ namespace River.OneMoreAddIn
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
 				$"v{AssemblyInfo.Version}, OneNote {Office.GetOneNoteVersion()}, " +
 				$"Office {Office.GetOfficeVersion()}");
+
+			var hostproc = Process.GetProcessesByName("ONENOTE");
+			if (hostproc.Length > 0)
+			{
+				var module = hostproc[0].MainModule;
+				logger.WriteLine($"{module.FileName} ({module.FileVersionInfo.ProductVersion})");
+			}
 		}
 
 
@@ -150,13 +157,6 @@ namespace River.OneMoreAddIn
 					factory = new CommandFactory(logger, ribbon, trash,
 						// looks complicated but necessary for this to work
 						new Win32WindowHandle(new IntPtr((long)one.WindowHandle)));
-				}
-
-				var mainproc = Process.GetProcessesByName("ONENOTE");
-				if (mainproc.Length > 0)
-				{
-					var module = mainproc[0].MainModule;
-					logger.WriteLine($"{module.FileName} ({module.FileVersionInfo.ProductVersion})");
 				}
 
 				// command listener for Refresh links

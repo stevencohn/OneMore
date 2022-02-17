@@ -45,14 +45,21 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"wrapBox",
 					"selectButton",
+					// pagePanel
+					"pageInfoLabel",
 					"hideBox",
 					"hideLFBox",
+					// manualPanel
+					"manualLabel",
+					"hidePidBox",
+					// tabs
 					"pageTab",
-					//"hierTab",
-					"notebooksButton",
-					"notebookButton",
-					"sectionButton",
-					"currSectionButton",
+					"sectionTab",
+					"notebooksTab",
+					"nbSectionsTab",
+					"nbPagesTab",
+					"manualTab",
+					// bottom info/buttons
 					"pageNameLabel",
 					"pagePathLabel",
 					"pageLinkLabel",
@@ -136,7 +143,6 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		#region Search Wrap Select
 		private void FindTextChanged(object sender, EventArgs e)
 		{
 			if (findBox.Text.Length == 0)
@@ -215,12 +221,8 @@ namespace River.OneMoreAddIn.Commands
 			box.Focus();
 		}
 
-		#endregion Search Wrap Select
-
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-		#region Page control
 
 		private void ScopeSelectedValueChanged(object sender, EventArgs e)
 		{
@@ -368,8 +370,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		#endregion Page control
-
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -391,6 +391,7 @@ namespace River.OneMoreAddIn.Commands
 				okButton.Visible = true;
 				pagePanel.Visible = true;
 				manualPanel.Visible = false;
+				wrapBox.Checked = pageBox.WordWrap;
 			}
 			else
 			{
@@ -417,6 +418,8 @@ namespace River.OneMoreAddIn.Commands
 						break;
 				}
 
+				wrapBox.Checked = ((RichTextBox)tabs.SelectedTab.Controls[0]).WordWrap;
+
 				okButton.Visible = false;
 				pagePanel.Visible = false;
 				manualPanel.Visible = true;
@@ -424,7 +427,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ShowHierarchy(RichTextBox box, string comment, Func<OneNote, Task<XElement>> action)
+		private async Task ShowHierarchy(
+			RichTextBox box, string comment, Func<OneNote, Task<XElement>> action)
 		{
 			if (box.TextLength == 0)
 			{
@@ -434,6 +438,11 @@ namespace River.OneMoreAddIn.Commands
 
 					if (root != null)
 					{
+						if (hidePidBox.Checked)
+						{
+							Sanitize(root);
+						}
+
 						box.Clear();
 						box.WordWrap = wrapBox.Checked;
 						box.SelectionColor = Color.Black;
@@ -453,9 +462,29 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void Sanitize(XElement root)
+		{
+			var paths = root.DescendantsAndSelf()
+				.Where(e => e.Attribute("path") != null)
+				.Select(e => e.Attribute("path"));
+
+			if (paths.Any())
+			{
+				var regex = new Regex(@"(http[s]?://.+live\.net/)([0-9a-f]+)(/.+)");
+				foreach (var path in paths)
+				{
+					path.Value = regex.Replace(path.Value, "$1xxxxx$3");
+				}
+			}
+		}
+
+
 		private void HidePidCheckedChanged(object sender, EventArgs e)
 		{
+			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
+			box.Clear();
 
+			TabsSelectedIndexChanged(sender, e);
 		}
 
 
