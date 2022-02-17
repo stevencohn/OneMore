@@ -17,8 +17,6 @@ namespace River.OneMoreAddIn.Commands
 			if (disposing && (components != null))
 			{
 				components.Dispose();
-
-				one.Dispose();
 			}
 			base.Dispose(disposing);
 		}
@@ -39,12 +37,13 @@ namespace River.OneMoreAddIn.Commands
 			this.introLabel = new System.Windows.Forms.Label();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.searchPanel = new System.Windows.Forms.Panel();
-			this.clearLabel = new UI.MoreLinkLabel();
+			this.opBox = new System.Windows.Forms.ComboBox();
+			this.clearLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.tagsFlow = new System.Windows.Forms.FlowLayoutPanel();
 			this.resultTree = new River.OneMoreAddIn.UI.HierarchyView();
 			this.resultPanel = new System.Windows.Forms.Panel();
-			this.clearAllLabel = new UI.MoreLinkLabel();
-			this.checkAllLabel = new UI.MoreLinkLabel();
+			this.clearAllLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.checkAllLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.indexButton = new System.Windows.Forms.Button();
 			this.copyButton = new System.Windows.Forms.Button();
 			this.moveButton = new System.Windows.Forms.Button();
@@ -62,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchButton.Enabled = false;
 			this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
-			this.searchButton.Location = new System.Drawing.Point(508, 52);
+			this.searchButton.Location = new System.Drawing.Point(795, 49);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.Size = new System.Drawing.Size(60, 32);
 			this.searchButton.TabIndex = 1;
@@ -73,9 +72,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.filterBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.filterBox.Location = new System.Drawing.Point(80, 52);
 			this.filterBox.Name = "filterBox";
-			this.filterBox.Size = new System.Drawing.Size(424, 26);
+			this.filterBox.Size = new System.Drawing.Size(422, 28);
 			this.filterBox.TabIndex = 0;
 			this.filterBox.TextChanged += new System.EventHandler(this.ChangedFilter);
 			// 
@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
             "In all notebooks",
             "In this notebook",
             "In this section"});
-			this.scopeBox.Location = new System.Drawing.Point(574, 52);
+			this.scopeBox.Location = new System.Drawing.Point(608, 52);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(180, 28);
 			this.scopeBox.TabIndex = 2;
@@ -118,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(647, 327);
+			this.cancelButton.Location = new System.Drawing.Point(747, 327);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -130,6 +130,7 @@ namespace River.OneMoreAddIn.Commands
 			// searchPanel
 			// 
 			this.searchPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.searchPanel.Controls.Add(this.opBox);
 			this.searchPanel.Controls.Add(this.clearLabel);
 			this.searchPanel.Controls.Add(this.tagsFlow);
 			this.searchPanel.Controls.Add(this.introLabel);
@@ -142,16 +143,30 @@ namespace River.OneMoreAddIn.Commands
 			this.searchPanel.MinimumSize = new System.Drawing.Size(700, 200);
 			this.searchPanel.Name = "searchPanel";
 			this.searchPanel.Padding = new System.Windows.Forms.Padding(20, 20, 20, 9);
-			this.searchPanel.Size = new System.Drawing.Size(778, 260);
+			this.searchPanel.Size = new System.Drawing.Size(878, 259);
 			this.searchPanel.TabIndex = 13;
+			// 
+			// opBox
+			// 
+			this.opBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.opBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.opBox.FormattingEnabled = true;
+			this.opBox.Items.AddRange(new object[] {
+            "All",
+            "Any"});
+			this.opBox.Location = new System.Drawing.Point(508, 54);
+			this.opBox.Name = "opBox";
+			this.opBox.Size = new System.Drawing.Size(94, 28);
+			this.opBox.TabIndex = 13;
 			// 
 			// clearLabel
 			// 
 			this.clearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.clearLabel.AutoSize = true;
+			this.clearLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearLabel.Enabled = false;
 			this.clearLabel.LinkColor = System.Drawing.Color.DodgerBlue;
-			this.clearLabel.Location = new System.Drawing.Point(690, 229);
+			this.clearLabel.Location = new System.Drawing.Point(790, 228);
 			this.clearLabel.Name = "clearLabel";
 			this.clearLabel.Size = new System.Drawing.Size(65, 20);
 			this.clearLabel.TabIndex = 3;
@@ -168,7 +183,7 @@ namespace River.OneMoreAddIn.Commands
 			this.tagsFlow.Location = new System.Drawing.Point(22, 94);
 			this.tagsFlow.Margin = new System.Windows.Forms.Padding(3, 9, 3, 3);
 			this.tagsFlow.Name = "tagsFlow";
-			this.tagsFlow.Size = new System.Drawing.Size(732, 132);
+			this.tagsFlow.Size = new System.Drawing.Size(832, 131);
 			this.tagsFlow.TabIndex = 12;
 			// 
 			// resultTree
@@ -184,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 			this.resultTree.Name = "resultTree";
 			this.resultTree.ShowLines = false;
 			this.resultTree.ShowRootLines = false;
-			this.resultTree.Size = new System.Drawing.Size(741, 272);
+			this.resultTree.Size = new System.Drawing.Size(841, 272);
 			this.resultTree.Suspend = false;
 			this.resultTree.TabIndex = 15;
 			this.resultTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeAfterCheck);
@@ -203,16 +218,17 @@ namespace River.OneMoreAddIn.Commands
 			this.resultPanel.Location = new System.Drawing.Point(0, 0);
 			this.resultPanel.Name = "resultPanel";
 			this.resultPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.resultPanel.Size = new System.Drawing.Size(778, 380);
+			this.resultPanel.Size = new System.Drawing.Size(878, 380);
 			this.resultPanel.TabIndex = 16;
 			// 
 			// clearAllLabel
 			// 
 			this.clearAllLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.clearAllLabel.AutoSize = true;
+			this.clearAllLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearAllLabel.Enabled = false;
 			this.clearAllLabel.LinkColor = System.Drawing.Color.DodgerBlue;
-			this.clearAllLabel.Location = new System.Drawing.Point(615, 10);
+			this.clearAllLabel.Location = new System.Drawing.Point(715, 10);
 			this.clearAllLabel.Name = "clearAllLabel";
 			this.clearAllLabel.Size = new System.Drawing.Size(139, 20);
 			this.clearAllLabel.TabIndex = 1;
@@ -224,9 +240,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.checkAllLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkAllLabel.AutoSize = true;
+			this.checkAllLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkAllLabel.Enabled = false;
 			this.checkAllLabel.LinkColor = System.Drawing.Color.DodgerBlue;
-			this.checkAllLabel.Location = new System.Drawing.Point(478, 10);
+			this.checkAllLabel.Location = new System.Drawing.Point(578, 10);
 			this.checkAllLabel.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
 			this.checkAllLabel.Name = "checkAllLabel";
 			this.checkAllLabel.Size = new System.Drawing.Size(121, 20);
@@ -240,7 +257,7 @@ namespace River.OneMoreAddIn.Commands
 			this.indexButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.indexButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.indexButton.Enabled = false;
-			this.indexButton.Location = new System.Drawing.Point(269, 326);
+			this.indexButton.Location = new System.Drawing.Point(369, 326);
 			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.indexButton.Name = "indexButton";
 			this.indexButton.Size = new System.Drawing.Size(112, 35);
@@ -254,7 +271,7 @@ namespace River.OneMoreAddIn.Commands
 			this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.copyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.copyButton.Enabled = false;
-			this.copyButton.Location = new System.Drawing.Point(395, 326);
+			this.copyButton.Location = new System.Drawing.Point(495, 326);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.copyButton.Name = "copyButton";
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
@@ -268,7 +285,7 @@ namespace River.OneMoreAddIn.Commands
 			this.moveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.moveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.moveButton.Enabled = false;
-			this.moveButton.Location = new System.Drawing.Point(521, 327);
+			this.moveButton.Location = new System.Drawing.Point(621, 327);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 10, 9);
 			this.moveButton.Name = "moveButton";
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
@@ -295,8 +312,8 @@ namespace River.OneMoreAddIn.Commands
 			this.splitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
 			this.splitContainer.Panel2.Controls.Add(this.resultPanel);
 			this.splitContainer.Panel2MinSize = 200;
-			this.splitContainer.Size = new System.Drawing.Size(778, 645);
-			this.splitContainer.SplitterDistance = 260;
+			this.splitContainer.Size = new System.Drawing.Size(878, 644);
+			this.splitContainer.SplitterDistance = 259;
 			this.splitContainer.SplitterWidth = 5;
 			this.splitContainer.TabIndex = 17;
 			// 
@@ -305,7 +322,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(778, 645);
+			this.ClientSize = new System.Drawing.Size(878, 644);
 			this.Controls.Add(this.splitContainer);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -313,7 +330,6 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimumSize = new System.Drawing.Size(727, 491);
 			this.Name = "TaggedDialog";
 			this.Text = "Find Tagged Pages";
-			this.TopMost = true;
 			this.searchPanel.ResumeLayout(false);
 			this.searchPanel.PerformLayout();
 			this.resultPanel.ResumeLayout(false);
@@ -345,5 +361,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Button indexButton;
 		private System.Windows.Forms.Button copyButton;
 		private System.Windows.Forms.Button moveButton;
+		private System.Windows.Forms.ComboBox opBox;
 	}
 }

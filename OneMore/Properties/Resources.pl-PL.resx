@@ -312,7 +312,7 @@ Odroczony</value>
     <comment>radio</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>Szukaj</value>
+    <value>Szczegóły i tag.</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="Pronunciate_FullWord" xml:space="preserve">
@@ -3862,5 +3862,10 @@ Polaroid</value>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>Notebooki</value>
     <comment>tab EDIT</comment>
+  </data>
+  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
+    <value>Wszystkie
+Każdy</value>
+    <comment>listbox</comment>
   </data>
 </root>

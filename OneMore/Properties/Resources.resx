@@ -312,7 +312,7 @@ Deferred</value>
     <comment>radio</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>Search</value>
+    <value>Seach and Tag</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="Pronunciate_FullWord" xml:space="preserve">
@@ -3866,5 +3866,10 @@ Polaroid</value>
   <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
     <value>Hide PID</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
+    <value>All
+Any</value>
+    <comment>listbox</comment>
   </data>
 </root>

@@ -25,7 +25,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 		private readonly string separator;
-		private readonly OneNote one;
 		private bool editing = false;
 
 
@@ -50,18 +49,25 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 
+				opBox.Items.Clear();
+				opBox.Items.AddRange(Resx.TaggedDialog_opBox_Items.Split(new char[] { '\n' }));
+
 				scopeBox.Items.Clear();
 				scopeBox.Items.AddRange(Resx.TaggedDialog_scopeBox_Items.Split(new char[] { '\n' }));
 			}
 
 			filterBox.PressedEnter += Search;
+			opBox.SelectedIndex = 0;
 			scopeBox.SelectedIndex = 0;
 
 			separator = AddIn.Culture.TextInfo.ListSeparator;
 			SelectedPages = new List<string>();
+		}
 
-			// disposed in Designer.cs/Dispose()
-			one = new OneNote();
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			filterBox.Focus();
 		}
 
 
@@ -214,9 +220,13 @@ namespace River.OneMoreAddIn.Commands
 			if (node.Hyperlinked && e.Node.Bounds.Contains(e.Location))
 			{
 				var pageId = node.Root.Attribute("ID").Value;
-				if (!pageId.Equals(one.CurrentPageId))
+
+				using (var one = new OneNote())
 				{
-					await one.NavigateTo(pageId);
+					if (!pageId.Equals(one.CurrentPageId))
+					{
+						await one.NavigateTo(pageId);
+					}
 				}
 			}
 		}
@@ -243,15 +253,21 @@ namespace River.OneMoreAddIn.Commands
 			var includedTags = filters.Where(f => f[0] != '-').ToList();
 			var excludedTags = filters.Where(f => f[0] == '-').Select(f => f.Substring(1)).ToList();
 
+			XElement results;
+			XNamespace ns;
 			var scopeId = string.Empty;
-			switch (scopeBox.SelectedIndex)
-			{
-				case 1: scopeId = one.CurrentNotebookId; break;
-				case 2: scopeId = one.CurrentSectionId; break;
-			}
 
-			var results = await one.SearchMeta(scopeId, MetaNames.TaggingLabels);
-			var ns = one.GetNamespace(results);
+			using (var one = new OneNote())
+			{
+				switch (scopeBox.SelectedIndex)
+				{
+					case 1: scopeId = one.CurrentNotebookId; break;
+					case 2: scopeId = one.CurrentSectionId; break;
+				}
+
+				results = await one.SearchMeta(scopeId, MetaNames.TaggingLabels);
+				ns = one.GetNamespace(results);
+			}
 
 			// remove recyclebin nodes
 			results.Descendants()
@@ -290,16 +306,26 @@ namespace River.OneMoreAddIn.Commands
 
 					if (tags.Count > 0)
 					{
-						if ((excludedTags.Count > 0 && tags.Any(t => excludedTags.Contains(t))) ||
-							(includedTags.Count > 0 && !tags.Any(t => includedTags.Contains(t))))
+						if (excludedTags.Count > 0 && tags.Any(t => excludedTags.Contains(t)))
 						{
 							dead.Add(meta.Parent);
+						}
+						else if (includedTags.Count > 0)
+						{
+							var exclude = opBox.SelectedIndex == 0 // All
+								? !includedTags.All(t => tags.Contains(t))
+								: !includedTags.Any(t => tags.Contains(t));
+
+							if (exclude)
+							{
+								dead.Add(meta.Parent);
+							}
 						}
 					}
 				}
 			}
 
-			// remove unmatched pages
+			// remove unmatched pages from results XElement
 			dead.ForEach(d => d.Remove());
 
 			// remove empty leaf nodes
@@ -318,7 +344,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (results.HasElements)
 			{
-				resultTree.Populate(results, one.GetNamespace(results));
+				resultTree.Populate(results, ns);
 
 				checkAllLabel.Enabled = true;
 				clearAllLabel.Enabled = true;

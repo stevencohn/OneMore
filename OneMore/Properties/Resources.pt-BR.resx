@@ -1899,7 +1899,7 @@ Nesta secção</value>
     <comment>dialog title</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>Pesquisa</value>
+    <value>Seque e tag</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="ribTaggedButton_Label" xml:space="preserve">
@@ -3809,5 +3809,10 @@ Polaroid.</value>
   <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
     <value>Notebooks.</value>
     <comment>tab EDIT</comment>
+  </data>
+  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
+    <value>Tudo
+Qualquer</value>
+    <comment>listbox</comment>
   </data>
 </root>
