@@ -12,7 +12,7 @@
     "Navy": "#000080",
     "OliveDrab": "#6B8E23",
     "OrangeRed": "#FF4500",
-    "PowderBlue": "#B0E0E6",
+    "CornflowerBlue": "#6495ED",
     "Purple": "#800080",
     "Red": "#FF0000",
     "Teal": "#008080",
@@ -133,14 +133,14 @@
     },
     {
       "name": "Number",
-      "foreground": "PowderBlue"
+      "foreground": "DarkCyan"
     },
     {
       "name": "Operator"
     },
     {
       "name": "PowerShellAttribute",
-      "foreground": "PowderBlue"
+      "foreground": "CornflowerBlue"
     },
     {
       "name": "PowerShellOperator",
@@ -160,11 +160,15 @@
     },
     {
       "name": "PsuedoKeyword",
-      "foreground": "Navy"
+      "foreground": "CornflowerBlue"
     },
     {
       "name": "PreprocessorKeyword",
       "foreground": "Blue"
+    },
+    {
+      "name": "PreprocessorParameter",
+      "foreground": "Magenta"
     },
     {
       "name": "SpecialCharacter"

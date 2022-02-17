@@ -796,6 +796,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Colorizer\Languages\cpp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\csharp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -834,6 +837,9 @@
     </Content>
     <Content Include="Commands\Search\x.png" />
     <Content Include="Properties\Emoji\Architecture.png" />
+    <None Include="Colorizer\Languages\cpp.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Colorizer\Languages\csharp.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

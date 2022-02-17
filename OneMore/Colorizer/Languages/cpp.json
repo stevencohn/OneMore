@@ -1,0 +1,71 @@
+{
+  "name": "C++",
+  "aliases": [
+    "cpp"
+  ],
+  "rules": [
+    {
+      "pattern": "(/\\*[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*\\*/)",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(//.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "^\\s*(\\#(?:define|elif|else|endif|error|if|ifdef|ifndef|include|line|pragma|undef))\\s+(\\<[^\\s]+\\>)?",
+      "captures": [
+        "PreprocessorKeyword",
+        "PreprocessorParameter"
+      ]
+    },
+    {
+      "pattern": "\\b(alignas|alignof|and|and_eq|asm|auto|bitand|bitor|bool|break|case|catch|char|char8_t|char16_t|char32_t|class|compl|concept|c|const|const_cast|consteval|c|constexpr|constinit|continue|co_await|c|co_return|c|co_yield|c|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|false|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|not|not_eq|nullptr|operator|or|or_eq|private|protected|public|register|reinterpret_cast|requires|c|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throwtrue|typedef|typeid|typename|union|unsigned|using|declaration|using|directive|virtual|void|volatile|wchar_t|while|xor|xor_eq)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b(__[a-zA-Z][a-zA-Z0-9]*?)\\b",
+      "captures": [
+        "PsuedoKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}
