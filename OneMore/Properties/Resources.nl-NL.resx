@@ -3500,7 +3500,7 @@ Verschoven</value>
     <comment>message box</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Vervang spaties in de bestandsnaam door onderstrepingstekens</value>
+    <value>Vervang speciale tekens in de bestandsnaam met underscores</value>
     <comment>checkbox</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">

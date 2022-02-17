@@ -3496,7 +3496,7 @@ Différé</value>
     <comment>message box</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Remplacer les espaces dans le nom du fichier par des traits de soulignement</value>
+    <value>Remplacez les caractères spéciaux dans le nom du fichier avec des traits de soulignement</value>
     <comment>checkbox</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">

@@ -3492,7 +3492,7 @@ OneNote 文件 (*.one)</value>
     <comment>message box</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>用下划线替换文件名中的空格</value>
+    <value>用下划线替换文件名中的特殊字符</value>
     <comment>checkbox</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">

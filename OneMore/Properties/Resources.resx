@@ -3214,7 +3214,7 @@ High</value>
     <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Replace spaces in the file name with underscores</value>
+    <value>Replace special characters in the file name with underscores</value>
     <comment>checkbox</comment>
   </data>
   <data name="AboutDialog_LatestMessage" xml:space="preserve">
