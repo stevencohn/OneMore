@@ -419,6 +419,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				wrapBox.Checked = ((RichTextBox)tabs.SelectedTab.Controls[0]).WordWrap;
+				hidePidBox.Checked = tabs.SelectedTab.Tag == null || (bool)tabs.SelectedTab.Tag;
 
 				okButton.Visible = false;
 				pagePanel.Visible = false;
@@ -483,6 +484,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
 			box.Clear();
+
+			tabs.TabPages[tabs.SelectedIndex].Tag = hidePidBox.Checked;
 
 			TabsSelectedIndexChanged(sender, e);
 		}
