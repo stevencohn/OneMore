@@ -180,6 +180,10 @@
       "foreground": "DarkKeyword"
     },
     {
+      "name": "PreprocessorParameter",
+      "foreground": "Magenta"
+    },
+    {
       "name": "SpecialCharacter"
     },
     {
