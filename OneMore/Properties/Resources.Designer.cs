@@ -6265,7 +6265,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to Seach and Tag.
         /// </summary>
         internal static string ribSearchMenu_Label {
             get {
@@ -7964,6 +7964,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TaggedDialog_introLabel_Text {
             get {
                 return ResourceManager.GetString("TaggedDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All
+        ///Any.
+        /// </summary>
+        internal static string TaggedDialog_opBox_Items {
+            get {
+                return ResourceManager.GetString("TaggedDialog_opBox.Items", resourceCulture);
             }
         }
         

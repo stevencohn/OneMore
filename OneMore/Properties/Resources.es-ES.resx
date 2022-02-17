@@ -1898,7 +1898,7 @@ En esta sección</value>
     <comment>dialog title</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>Buscar</value>
+    <value>Señel y etiqueta</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="ribTaggedButton_Label" xml:space="preserve">
@@ -3809,5 +3809,10 @@ polaroid</value>
   <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
     <value>Ocultar pid</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
+    <value>Todo
+Ningún</value>
+    <comment>listbox</comment>
   </data>
 </root>
