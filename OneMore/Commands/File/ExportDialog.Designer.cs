@@ -34,11 +34,11 @@
 			this.formatLabel = new System.Windows.Forms.Label();
 			this.formatBox = new System.Windows.Forms.ComboBox();
 			this.groupBox = new System.Windows.Forms.GroupBox();
+			this.underBox = new System.Windows.Forms.CheckBox();
 			this.attachmentsBox = new System.Windows.Forms.CheckBox();
 			this.browseButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
-			this.underBox = new System.Windows.Forms.CheckBox();
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -102,10 +102,20 @@
 			this.groupBox.Location = new System.Drawing.Point(18, 18);
 			this.groupBox.Name = "groupBox";
 			this.groupBox.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-			this.groupBox.Size = new System.Drawing.Size(592, 197);
+			this.groupBox.Size = new System.Drawing.Size(634, 197);
 			this.groupBox.TabIndex = 5;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "Export 2 Pages";
+			// 
+			// underBox
+			// 
+			this.underBox.AutoSize = true;
+			this.underBox.Location = new System.Drawing.Point(82, 152);
+			this.underBox.Name = "underBox";
+			this.underBox.Size = new System.Drawing.Size(457, 24);
+			this.underBox.TabIndex = 6;
+			this.underBox.Text = "Replace special characters in the filename with underscores";
+			this.underBox.UseVisualStyleBackColor = true;
 			// 
 			// attachmentsBox
 			// 
@@ -133,7 +143,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(512, 231);
+			this.cancelButton.Location = new System.Drawing.Point(554, 231);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 6;
@@ -145,22 +155,12 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(405, 231);
+			this.okButton.Location = new System.Drawing.Point(447, 231);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 7;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
-			// 
-			// underBox
-			// 
-			this.underBox.AutoSize = true;
-			this.underBox.Location = new System.Drawing.Point(82, 152);
-			this.underBox.Name = "underBox";
-			this.underBox.Size = new System.Drawing.Size(380, 24);
-			this.underBox.TabIndex = 6;
-			this.underBox.Text = "Replace spaces in the filename with underscores";
-			this.underBox.UseVisualStyleBackColor = true;
 			// 
 			// ExportDialog
 			// 
@@ -168,7 +168,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(628, 288);
+			this.ClientSize = new System.Drawing.Size(670, 288);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.groupBox);
@@ -177,7 +177,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "ExportDialog";
-			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+			this.Padding = new System.Windows.Forms.Padding(15);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Export Pages";

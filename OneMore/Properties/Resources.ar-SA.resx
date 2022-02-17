@@ -3500,7 +3500,7 @@ ISO-code then comma then language name</comment>
     <comment>message box</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>استبدل المسافات في اسم الملف بالشرطات السفلية</value>
+    <value>استبدال الأحرف الخاصة في اسم الملف مع الشرطة السفلية</value>
     <comment>checkbox</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">

@@ -3500,7 +3500,7 @@ Diferido</value>
     <comment>message box</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Reemplazar espacios en el nombre del archivo con guiones bajos</value>
+    <value>Reemplace los caracteres especiales en el nombre del archivo con los subrosicos</value>
     <comment>checkbox</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">

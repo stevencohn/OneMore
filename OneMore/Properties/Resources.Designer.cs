@@ -2155,7 +2155,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace spaces in the file name with underscores.
+        ///   Looks up a localized string similar to Replace special characters in the file name with underscores.
         /// </summary>
         internal static string ExportDialog_underBox_Text {
             get {

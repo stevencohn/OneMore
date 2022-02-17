@@ -3194,7 +3194,7 @@ Wysoki</value>
     <value>emoji\smiley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Zastąp spacje w nazwie pliku za pomocą podkreśleń</value>
+    <value>Wymień znaki specjalne w nazwie pliku za pomocą podkreśleń</value>
     <comment>checkbox</comment>
   </data>
   <data name="AboutDialog_LatestMessage" xml:space="preserve">

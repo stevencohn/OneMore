@@ -3487,7 +3487,7 @@ Aufgeschoben</value>
     <comment>message box</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Ersetzen Sie Leerzeichen im Dateinamen durch Unterstriche</value>
+    <value>Ersetzen Sie Sonderzeichen in dem Dateinamen mit Unterstrichen</value>
     <comment>checkbox</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">

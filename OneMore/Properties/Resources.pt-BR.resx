@@ -3500,7 +3500,7 @@ Diferido</value>
     <comment>message box</comment>
   </data>
   <data name="ExportDialog_underBox.Text" xml:space="preserve">
-    <value>Substitua os espaços no nome do arquivo por sublinhados</value>
+    <value>Substitua caracteres especiais no nome do arquivo com sublinhados</value>
     <comment>checkbox</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">
