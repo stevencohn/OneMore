@@ -11,11 +11,6 @@
 		{
 			if (disposing)
 			{
-				if (one != null)
-				{
-					one.Dispose();
-				}
-
 				if (components != null)
 				{
 					components.Dispose();
@@ -33,22 +28,28 @@
 		/// </summary>
 		private void InitializeComponent ()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowXmlDialog));
 			this.tabs = new System.Windows.Forms.TabControl();
 			this.pageTab = new System.Windows.Forms.TabPage();
 			this.pageBox = new System.Windows.Forms.RichTextBox();
-			this.hierTab = new System.Windows.Forms.TabPage();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.hierBox = new System.Windows.Forms.RichTextBox();
-			this.hierButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.notebooksButton = new System.Windows.Forms.RadioButton();
-			this.notebookButton = new System.Windows.Forms.RadioButton();
-			this.sectionButton = new System.Windows.Forms.RadioButton();
-			this.currSectionButton = new System.Windows.Forms.RadioButton();
+			this.sectionTab = new System.Windows.Forms.TabPage();
+			this.sectionBox = new System.Windows.Forms.RichTextBox();
+			this.notebooksTab = new System.Windows.Forms.TabPage();
+			this.notebookBox = new System.Windows.Forms.RichTextBox();
+			this.nbSectionsTab = new System.Windows.Forms.TabPage();
+			this.nbSectionBox = new System.Windows.Forms.RichTextBox();
+			this.nbPagesTab = new System.Windows.Forms.TabPage();
+			this.nbPagesBox = new System.Windows.Forms.RichTextBox();
+			this.manualTab = new System.Windows.Forms.TabPage();
+			this.manualBox = new System.Windows.Forms.RichTextBox();
+			this.tabIcons = new System.Windows.Forms.ImageList(this.components);
+			this.manualPanel = new System.Windows.Forms.Panel();
+			this.hidePidBox = new System.Windows.Forms.CheckBox();
+			this.queryButton = new System.Windows.Forms.Button();
+			this.functionBox = new System.Windows.Forms.ComboBox();
+			this.objectIdBox = new System.Windows.Forms.TextBox();
 			this.manualLabel = new System.Windows.Forms.Label();
-			this.manualIdBox = new System.Windows.Forms.TextBox();
-			this.manualFxBox = new System.Windows.Forms.ComboBox();
-			this.manulRunButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.okButton = new System.Windows.Forms.Button();
@@ -58,10 +59,10 @@
 			this.pageLinkLabel = new System.Windows.Forms.Label();
 			this.pagePathLabel = new System.Windows.Forms.Label();
 			this.pageNameLabel = new System.Windows.Forms.Label();
-			this.pageInfoPanel = new System.Windows.Forms.Panel();
+			this.pagePanel = new System.Windows.Forms.Panel();
 			this.hideLFBox = new System.Windows.Forms.CheckBox();
 			this.hideBox = new System.Windows.Forms.CheckBox();
-			this.pageInfoBox = new System.Windows.Forms.ListBox();
+			this.scopeBox = new System.Windows.Forms.ListBox();
 			this.pageInfoLabel = new System.Windows.Forms.Label();
 			this.selectButton = new System.Windows.Forms.Button();
 			this.topPanel = new System.Windows.Forms.Panel();
@@ -71,11 +72,14 @@
 			this.masterPanel = new System.Windows.Forms.Panel();
 			this.tabs.SuspendLayout();
 			this.pageTab.SuspendLayout();
-			this.hierTab.SuspendLayout();
-			this.panel2.SuspendLayout();
-			this.hierButtonsPanel.SuspendLayout();
+			this.sectionTab.SuspendLayout();
+			this.notebooksTab.SuspendLayout();
+			this.nbSectionsTab.SuspendLayout();
+			this.nbPagesTab.SuspendLayout();
+			this.manualTab.SuspendLayout();
+			this.manualPanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
-			this.pageInfoPanel.SuspendLayout();
+			this.pagePanel.SuspendLayout();
 			this.topPanel.SuspendLayout();
 			this.masterPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -83,27 +87,34 @@
 			// tabs
 			// 
 			this.tabs.Controls.Add(this.pageTab);
-			this.tabs.Controls.Add(this.hierTab);
+			this.tabs.Controls.Add(this.sectionTab);
+			this.tabs.Controls.Add(this.notebooksTab);
+			this.tabs.Controls.Add(this.nbSectionsTab);
+			this.tabs.Controls.Add(this.nbPagesTab);
+			this.tabs.Controls.Add(this.manualTab);
 			this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabs.Location = new System.Drawing.Point(0, 128);
+			this.tabs.ImageList = this.tabIcons;
+			this.tabs.Location = new System.Drawing.Point(0, 107);
 			this.tabs.Margin = new System.Windows.Forms.Padding(2);
 			this.tabs.Name = "tabs";
 			this.tabs.SelectedIndex = 0;
-			this.tabs.Size = new System.Drawing.Size(1462, 832);
+			this.tabs.Size = new System.Drawing.Size(1462, 853);
 			this.tabs.TabIndex = 0;
-			this.tabs.SelectedIndexChanged += new System.EventHandler(this.ChangeSelectedTab);
+			this.tabs.SelectedIndexChanged += new System.EventHandler(this.TabsSelectedIndexChanged);
+			this.tabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabsSelecting);
 			// 
 			// pageTab
 			// 
+			this.pageTab.BackColor = System.Drawing.Color.Transparent;
 			this.pageTab.Controls.Add(this.pageBox);
+			this.pageTab.ImageIndex = 0;
 			this.pageTab.Location = new System.Drawing.Point(4, 29);
 			this.pageTab.Margin = new System.Windows.Forms.Padding(2);
 			this.pageTab.Name = "pageTab";
 			this.pageTab.Padding = new System.Windows.Forms.Padding(2);
-			this.pageTab.Size = new System.Drawing.Size(1454, 799);
+			this.pageTab.Size = new System.Drawing.Size(1454, 820);
 			this.pageTab.TabIndex = 0;
 			this.pageTab.Text = "Page";
-			this.pageTab.UseVisualStyleBackColor = true;
 			// 
 			// pageBox
 			// 
@@ -113,163 +124,226 @@
 			this.pageBox.Location = new System.Drawing.Point(2, 2);
 			this.pageBox.Margin = new System.Windows.Forms.Padding(2);
 			this.pageBox.Name = "pageBox";
-			this.pageBox.Size = new System.Drawing.Size(1450, 795);
+			this.pageBox.Size = new System.Drawing.Size(1450, 816);
 			this.pageBox.TabIndex = 7;
 			this.pageBox.Text = "";
 			this.pageBox.WordWrap = false;
 			this.pageBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.XmlBoxKeyUp);
 			// 
-			// hierTab
+			// sectionTab
 			// 
-			this.hierTab.Controls.Add(this.panel2);
-			this.hierTab.Location = new System.Drawing.Point(4, 29);
-			this.hierTab.Margin = new System.Windows.Forms.Padding(2);
-			this.hierTab.Name = "hierTab";
-			this.hierTab.Padding = new System.Windows.Forms.Padding(2);
-			this.hierTab.Size = new System.Drawing.Size(1454, 799);
-			this.hierTab.TabIndex = 1;
-			this.hierTab.Text = "Hierarchy";
-			this.hierTab.UseVisualStyleBackColor = true;
+			this.sectionTab.Controls.Add(this.sectionBox);
+			this.sectionTab.ImageIndex = 1;
+			this.sectionTab.Location = new System.Drawing.Point(4, 29);
+			this.sectionTab.Margin = new System.Windows.Forms.Padding(2);
+			this.sectionTab.Name = "sectionTab";
+			this.sectionTab.Padding = new System.Windows.Forms.Padding(2);
+			this.sectionTab.Size = new System.Drawing.Size(1454, 820);
+			this.sectionTab.TabIndex = 2;
+			this.sectionTab.Text = "Section";
+			this.sectionTab.UseVisualStyleBackColor = true;
 			// 
-			// panel2
+			// sectionBox
 			// 
-			this.panel2.Controls.Add(this.hierBox);
-			this.panel2.Controls.Add(this.hierButtonsPanel);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(2, 2);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1450, 795);
-			this.panel2.TabIndex = 6;
+			this.sectionBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.sectionBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.sectionBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.sectionBox.Location = new System.Drawing.Point(2, 2);
+			this.sectionBox.Margin = new System.Windows.Forms.Padding(2);
+			this.sectionBox.Name = "sectionBox";
+			this.sectionBox.Size = new System.Drawing.Size(1450, 816);
+			this.sectionBox.TabIndex = 1;
+			this.sectionBox.Text = "";
+			this.sectionBox.WordWrap = false;
 			// 
-			// hierBox
+			// notebooksTab
 			// 
-			this.hierBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.hierBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.hierBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.hierBox.Location = new System.Drawing.Point(0, 58);
-			this.hierBox.Margin = new System.Windows.Forms.Padding(2);
-			this.hierBox.Name = "hierBox";
-			this.hierBox.Size = new System.Drawing.Size(1450, 737);
-			this.hierBox.TabIndex = 0;
-			this.hierBox.Text = "";
-			this.hierBox.WordWrap = false;
-			this.hierBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.XmlBoxKeyUp);
+			this.notebooksTab.Controls.Add(this.notebookBox);
+			this.notebooksTab.ImageIndex = 2;
+			this.notebooksTab.Location = new System.Drawing.Point(4, 29);
+			this.notebooksTab.Margin = new System.Windows.Forms.Padding(2);
+			this.notebooksTab.Name = "notebooksTab";
+			this.notebooksTab.Padding = new System.Windows.Forms.Padding(2);
+			this.notebooksTab.Size = new System.Drawing.Size(1454, 820);
+			this.notebooksTab.TabIndex = 3;
+			this.notebooksTab.Text = "Notebooks";
+			this.notebooksTab.UseVisualStyleBackColor = true;
 			// 
-			// hierButtonsPanel
+			// notebookBox
 			// 
-			this.hierButtonsPanel.BackColor = System.Drawing.SystemColors.Info;
-			this.hierButtonsPanel.Controls.Add(this.notebooksButton);
-			this.hierButtonsPanel.Controls.Add(this.notebookButton);
-			this.hierButtonsPanel.Controls.Add(this.sectionButton);
-			this.hierButtonsPanel.Controls.Add(this.currSectionButton);
-			this.hierButtonsPanel.Controls.Add(this.manualLabel);
-			this.hierButtonsPanel.Controls.Add(this.manualIdBox);
-			this.hierButtonsPanel.Controls.Add(this.manualFxBox);
-			this.hierButtonsPanel.Controls.Add(this.manulRunButton);
-			this.hierButtonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.hierButtonsPanel.Location = new System.Drawing.Point(0, 0);
-			this.hierButtonsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.hierButtonsPanel.Name = "hierButtonsPanel";
-			this.hierButtonsPanel.Padding = new System.Windows.Forms.Padding(8);
-			this.hierButtonsPanel.Size = new System.Drawing.Size(1450, 58);
-			this.hierButtonsPanel.TabIndex = 1;
+			this.notebookBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.notebookBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.notebookBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.notebookBox.Location = new System.Drawing.Point(2, 2);
+			this.notebookBox.Margin = new System.Windows.Forms.Padding(2);
+			this.notebookBox.Name = "notebookBox";
+			this.notebookBox.Size = new System.Drawing.Size(1450, 816);
+			this.notebookBox.TabIndex = 1;
+			this.notebookBox.Text = "";
+			this.notebookBox.WordWrap = false;
 			// 
-			// notebooksButton
+			// nbSectionsTab
 			// 
-			this.notebooksButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.notebooksButton.AutoSize = true;
-			this.notebooksButton.Checked = true;
-			this.notebooksButton.Location = new System.Drawing.Point(11, 11);
-			this.notebooksButton.Name = "notebooksButton";
-			this.notebooksButton.Size = new System.Drawing.Size(96, 30);
-			this.notebooksButton.TabIndex = 2;
-			this.notebooksButton.TabStop = true;
-			this.notebooksButton.Text = "Notebooks";
-			this.notebooksButton.UseVisualStyleBackColor = true;
-			this.notebooksButton.CheckedChanged += new System.EventHandler(this.GetNotebooks);
+			this.nbSectionsTab.Controls.Add(this.nbSectionBox);
+			this.nbSectionsTab.ImageIndex = 3;
+			this.nbSectionsTab.Location = new System.Drawing.Point(4, 29);
+			this.nbSectionsTab.Margin = new System.Windows.Forms.Padding(2);
+			this.nbSectionsTab.Name = "nbSectionsTab";
+			this.nbSectionsTab.Padding = new System.Windows.Forms.Padding(2);
+			this.nbSectionsTab.Size = new System.Drawing.Size(1454, 820);
+			this.nbSectionsTab.TabIndex = 4;
+			this.nbSectionsTab.Text = "Notebook with Sections";
+			this.nbSectionsTab.UseVisualStyleBackColor = true;
 			// 
-			// notebookButton
+			// nbSectionBox
 			// 
-			this.notebookButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.notebookButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.notebookButton.AutoSize = true;
-			this.notebookButton.Location = new System.Drawing.Point(113, 11);
-			this.notebookButton.Name = "notebookButton";
-			this.notebookButton.Size = new System.Drawing.Size(186, 30);
-			this.notebookButton.TabIndex = 3;
-			this.notebookButton.Text = "Notebook with Sections";
-			this.notebookButton.UseVisualStyleBackColor = true;
-			this.notebookButton.CheckedChanged += new System.EventHandler(this.GetNotebook);
+			this.nbSectionBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.nbSectionBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.nbSectionBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.nbSectionBox.Location = new System.Drawing.Point(2, 2);
+			this.nbSectionBox.Margin = new System.Windows.Forms.Padding(2);
+			this.nbSectionBox.Name = "nbSectionBox";
+			this.nbSectionBox.Size = new System.Drawing.Size(1450, 816);
+			this.nbSectionBox.TabIndex = 1;
+			this.nbSectionBox.Text = "";
+			this.nbSectionBox.WordWrap = false;
 			// 
-			// sectionButton
+			// nbPagesTab
 			// 
-			this.sectionButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.sectionButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.sectionButton.AutoSize = true;
-			this.sectionButton.Location = new System.Drawing.Point(305, 11);
-			this.sectionButton.Name = "sectionButton";
-			this.sectionButton.Size = new System.Drawing.Size(169, 30);
-			this.sectionButton.TabIndex = 4;
-			this.sectionButton.Text = "Notebook with Pages";
-			this.sectionButton.UseVisualStyleBackColor = true;
-			this.sectionButton.CheckedChanged += new System.EventHandler(this.GetSection);
+			this.nbPagesTab.Controls.Add(this.nbPagesBox);
+			this.nbPagesTab.ImageIndex = 4;
+			this.nbPagesTab.Location = new System.Drawing.Point(4, 29);
+			this.nbPagesTab.Margin = new System.Windows.Forms.Padding(2);
+			this.nbPagesTab.Name = "nbPagesTab";
+			this.nbPagesTab.Padding = new System.Windows.Forms.Padding(2);
+			this.nbPagesTab.Size = new System.Drawing.Size(1454, 820);
+			this.nbPagesTab.TabIndex = 5;
+			this.nbPagesTab.Text = "Notebook with Pages";
+			this.nbPagesTab.UseVisualStyleBackColor = true;
 			// 
-			// currSectionButton
+			// nbPagesBox
 			// 
-			this.currSectionButton.Appearance = System.Windows.Forms.Appearance.Button;
-			this.currSectionButton.AutoSize = true;
-			this.currSectionButton.Location = new System.Drawing.Point(480, 11);
-			this.currSectionButton.Name = "currSectionButton";
-			this.currSectionButton.Size = new System.Drawing.Size(154, 30);
-			this.currSectionButton.TabIndex = 5;
-			this.currSectionButton.Text = "Section with Pages";
-			this.currSectionButton.UseVisualStyleBackColor = true;
-			this.currSectionButton.CheckedChanged += new System.EventHandler(this.ShowCurrentSection);
+			this.nbPagesBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.nbPagesBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.nbPagesBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.nbPagesBox.Location = new System.Drawing.Point(2, 2);
+			this.nbPagesBox.Margin = new System.Windows.Forms.Padding(2);
+			this.nbPagesBox.Name = "nbPagesBox";
+			this.nbPagesBox.Size = new System.Drawing.Size(1450, 816);
+			this.nbPagesBox.TabIndex = 1;
+			this.nbPagesBox.Text = "";
+			this.nbPagesBox.WordWrap = false;
+			// 
+			// manualTab
+			// 
+			this.manualTab.Controls.Add(this.manualBox);
+			this.manualTab.ImageIndex = 5;
+			this.manualTab.Location = new System.Drawing.Point(4, 29);
+			this.manualTab.Margin = new System.Windows.Forms.Padding(2);
+			this.manualTab.Name = "manualTab";
+			this.manualTab.Padding = new System.Windows.Forms.Padding(2);
+			this.manualTab.Size = new System.Drawing.Size(1454, 820);
+			this.manualTab.TabIndex = 1;
+			this.manualTab.Text = "Manual lookup";
+			this.manualTab.UseVisualStyleBackColor = true;
+			// 
+			// manualBox
+			// 
+			this.manualBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.manualBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.manualBox.Font = new System.Drawing.Font("Lucida Console", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.manualBox.Location = new System.Drawing.Point(2, 2);
+			this.manualBox.Margin = new System.Windows.Forms.Padding(2);
+			this.manualBox.Name = "manualBox";
+			this.manualBox.Size = new System.Drawing.Size(1450, 816);
+			this.manualBox.TabIndex = 0;
+			this.manualBox.Text = "";
+			this.manualBox.WordWrap = false;
+			this.manualBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.XmlBoxKeyUp);
+			// 
+			// tabIcons
+			// 
+			this.tabIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("tabIcons.ImageStream")));
+			this.tabIcons.TransparentColor = System.Drawing.Color.Transparent;
+			this.tabIcons.Images.SetKeyName(0, "Page.png");
+			this.tabIcons.Images.SetKeyName(1, "Section.png");
+			this.tabIcons.Images.SetKeyName(2, "Notebook.png");
+			this.tabIcons.Images.SetKeyName(3, "SectionGroup.png");
+			this.tabIcons.Images.SetKeyName(4, "Pages.png");
+			this.tabIcons.Images.SetKeyName(5, "Search.png");
+			// 
+			// manualPanel
+			// 
+			this.manualPanel.Controls.Add(this.hidePidBox);
+			this.manualPanel.Controls.Add(this.queryButton);
+			this.manualPanel.Controls.Add(this.functionBox);
+			this.manualPanel.Controls.Add(this.objectIdBox);
+			this.manualPanel.Controls.Add(this.manualLabel);
+			this.manualPanel.Location = new System.Drawing.Point(1208, 0);
+			this.manualPanel.Name = "manualPanel";
+			this.manualPanel.Size = new System.Drawing.Size(928, 90);
+			this.manualPanel.TabIndex = 2;
+			this.manualPanel.Visible = false;
+			// 
+			// hidePidBox
+			// 
+			this.hidePidBox.AutoSize = true;
+			this.hidePidBox.Checked = true;
+			this.hidePidBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.hidePidBox.Location = new System.Drawing.Point(13, 61);
+			this.hidePidBox.Name = "hidePidBox";
+			this.hidePidBox.Size = new System.Drawing.Size(99, 24);
+			this.hidePidBox.TabIndex = 10;
+			this.hidePidBox.Text = "Hide PID";
+			this.hidePidBox.UseVisualStyleBackColor = true;
+			this.hidePidBox.CheckedChanged += new System.EventHandler(this.HidePidCheckedChanged);
+			// 
+			// queryButton
+			// 
+			this.queryButton.Enabled = false;
+			this.queryButton.Image = ((System.Drawing.Image)(resources.GetObject("queryButton.Image")));
+			this.queryButton.Location = new System.Drawing.Point(862, 11);
+			this.queryButton.Name = "queryButton";
+			this.queryButton.Size = new System.Drawing.Size(47, 32);
+			this.queryButton.TabIndex = 9;
+			this.queryButton.UseVisualStyleBackColor = true;
+			this.queryButton.Click += new System.EventHandler(this.RunManual);
+			// 
+			// functionBox
+			// 
+			this.functionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.functionBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.functionBox.FormattingEnabled = true;
+			this.functionBox.Items.AddRange(new object[] {
+            "GetNotebook",
+            "GetSection",
+            "GetPage"});
+			this.functionBox.Location = new System.Drawing.Point(655, 13);
+			this.functionBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+			this.functionBox.Name = "functionBox";
+			this.functionBox.Size = new System.Drawing.Size(201, 30);
+			this.functionBox.TabIndex = 8;
+			this.functionBox.SelectedIndexChanged += new System.EventHandler(this.ManualInputChanged);
+			// 
+			// objectIdBox
+			// 
+			this.objectIdBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.objectIdBox.Location = new System.Drawing.Point(140, 13);
+			this.objectIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+			this.objectIdBox.Name = "objectIdBox";
+			this.objectIdBox.Size = new System.Drawing.Size(509, 29);
+			this.objectIdBox.TabIndex = 7;
+			this.objectIdBox.TextChanged += new System.EventHandler(this.ManualInputChanged);
 			// 
 			// manualLabel
 			// 
 			this.manualLabel.AutoSize = true;
-			this.manualLabel.Location = new System.Drawing.Point(737, 16);
+			this.manualLabel.Location = new System.Drawing.Point(8, 15);
 			this.manualLabel.Margin = new System.Windows.Forms.Padding(100, 8, 3, 0);
 			this.manualLabel.Name = "manualLabel";
-			this.manualLabel.Size = new System.Drawing.Size(132, 20);
+			this.manualLabel.Size = new System.Drawing.Size(128, 20);
 			this.manualLabel.TabIndex = 6;
-			this.manualLabel.Text = "Manual ObjectID:";
-			// 
-			// manualIdBox
-			// 
-			this.manualIdBox.Location = new System.Drawing.Point(875, 14);
-			this.manualIdBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-			this.manualIdBox.Name = "manualIdBox";
-			this.manualIdBox.Size = new System.Drawing.Size(300, 26);
-			this.manualIdBox.TabIndex = 7;
-			this.manualIdBox.TextChanged += new System.EventHandler(this.CheckManualInput);
-			// 
-			// manualFxBox
-			// 
-			this.manualFxBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.manualFxBox.FormattingEnabled = true;
-			this.manualFxBox.Items.AddRange(new object[] {
-            "GetNotebook",
-            "GetSection",
-            "GetPage"});
-			this.manualFxBox.Location = new System.Drawing.Point(1181, 13);
-			this.manualFxBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-			this.manualFxBox.Name = "manualFxBox";
-			this.manualFxBox.Size = new System.Drawing.Size(150, 28);
-			this.manualFxBox.TabIndex = 8;
-			this.manualFxBox.SelectedIndexChanged += new System.EventHandler(this.CheckManualInput);
-			// 
-			// manulRunButton
-			// 
-			this.manulRunButton.Enabled = false;
-			this.manulRunButton.Image = ((System.Drawing.Image)(resources.GetObject("manulRunButton.Image")));
-			this.manulRunButton.Location = new System.Drawing.Point(1337, 11);
-			this.manulRunButton.Name = "manulRunButton";
-			this.manulRunButton.Size = new System.Drawing.Size(47, 32);
-			this.manulRunButton.TabIndex = 9;
-			this.manulRunButton.UseVisualStyleBackColor = true;
-			this.manulRunButton.Click += new System.EventHandler(this.RunManual);
+			this.manualLabel.Text = "Manual ObjectID";
 			// 
 			// cancelButton
 			// 
@@ -372,16 +446,16 @@
 			this.pageNameLabel.TabIndex = 0;
 			this.pageNameLabel.Text = "Name:";
 			// 
-			// pageInfoPanel
+			// pagePanel
 			// 
-			this.pageInfoPanel.Controls.Add(this.hideLFBox);
-			this.pageInfoPanel.Controls.Add(this.hideBox);
-			this.pageInfoPanel.Controls.Add(this.pageInfoBox);
-			this.pageInfoPanel.Controls.Add(this.pageInfoLabel);
-			this.pageInfoPanel.Location = new System.Drawing.Point(408, 8);
-			this.pageInfoPanel.Name = "pageInfoPanel";
-			this.pageInfoPanel.Size = new System.Drawing.Size(802, 123);
-			this.pageInfoPanel.TabIndex = 9;
+			this.pagePanel.Controls.Add(this.hideLFBox);
+			this.pagePanel.Controls.Add(this.hideBox);
+			this.pagePanel.Controls.Add(this.scopeBox);
+			this.pagePanel.Controls.Add(this.pageInfoLabel);
+			this.pagePanel.Location = new System.Drawing.Point(408, 8);
+			this.pagePanel.Name = "pagePanel";
+			this.pagePanel.Size = new System.Drawing.Size(802, 90);
+			this.pagePanel.TabIndex = 9;
 			// 
 			// hideLFBox
 			// 
@@ -394,7 +468,7 @@
 			this.hideLFBox.TabIndex = 6;
 			this.hideLFBox.Text = "Remove LF from CDATA";
 			this.hideLFBox.UseVisualStyleBackColor = true;
-			this.hideLFBox.CheckedChanged += new System.EventHandler(this.HideAttributes);
+			this.hideLFBox.CheckedChanged += new System.EventHandler(this.HideCheckedChanged);
 			// 
 			// hideBox
 			// 
@@ -407,17 +481,17 @@
 			this.hideBox.TabIndex = 5;
 			this.hideBox.Text = "Hide edited-by attributes (uncheck to edit page)";
 			this.hideBox.UseVisualStyleBackColor = true;
-			this.hideBox.CheckedChanged += new System.EventHandler(this.HideAttributes);
+			this.hideBox.CheckedChanged += new System.EventHandler(this.HideCheckedChanged);
 			// 
-			// pageInfoBox
+			// scopeBox
 			// 
-			this.pageInfoBox.ItemHeight = 20;
-			this.pageInfoBox.Location = new System.Drawing.Point(94, 11);
-			this.pageInfoBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.pageInfoBox.Name = "pageInfoBox";
-			this.pageInfoBox.Size = new System.Drawing.Size(223, 104);
-			this.pageInfoBox.TabIndex = 4;
-			this.pageInfoBox.SelectedValueChanged += new System.EventHandler(this.ChangeInfoScope);
+			this.scopeBox.ItemHeight = 20;
+			this.scopeBox.Location = new System.Drawing.Point(94, 11);
+			this.scopeBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.scopeBox.Name = "scopeBox";
+			this.scopeBox.Size = new System.Drawing.Size(223, 64);
+			this.scopeBox.TabIndex = 4;
+			this.scopeBox.SelectedValueChanged += new System.EventHandler(this.ScopeSelectedValueChanged);
 			// 
 			// pageInfoLabel
 			// 
@@ -432,17 +506,19 @@
 			// 
 			this.selectButton.Image = ((System.Drawing.Image)(resources.GetObject("selectButton.Image")));
 			this.selectButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.selectButton.Location = new System.Drawing.Point(165, 55);
+			this.selectButton.Location = new System.Drawing.Point(163, 50);
 			this.selectButton.Margin = new System.Windows.Forms.Padding(2);
 			this.selectButton.Name = "selectButton";
+			this.selectButton.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
 			this.selectButton.Size = new System.Drawing.Size(117, 35);
 			this.selectButton.TabIndex = 3;
 			this.selectButton.Text = "Select All";
 			this.selectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.selectButton.Click += new System.EventHandler(this.SelectAll);
+			this.selectButton.Click += new System.EventHandler(this.SelectAllClicked);
 			// 
 			// topPanel
 			// 
+			this.topPanel.Controls.Add(this.manualPanel);
 			this.topPanel.Controls.Add(this.wrapBox);
 			this.topPanel.Controls.Add(this.findBox);
 			this.topPanel.Controls.Add(this.findButton);
@@ -452,13 +528,13 @@
 			this.topPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(8, 8, 0, 0);
-			this.topPanel.Size = new System.Drawing.Size(1462, 128);
+			this.topPanel.Size = new System.Drawing.Size(1462, 107);
 			this.topPanel.TabIndex = 5;
 			// 
 			// wrapBox
 			// 
 			this.wrapBox.AutoSize = true;
-			this.wrapBox.Location = new System.Drawing.Point(27, 62);
+			this.wrapBox.Location = new System.Drawing.Point(27, 56);
 			this.wrapBox.Name = "wrapBox";
 			this.wrapBox.Size = new System.Drawing.Size(103, 24);
 			this.wrapBox.TabIndex = 2;
@@ -473,7 +549,7 @@
 			this.findBox.Name = "findBox";
 			this.findBox.Size = new System.Drawing.Size(270, 28);
 			this.findBox.TabIndex = 0;
-			this.findBox.TextChanged += new System.EventHandler(this.ChangeFindText);
+			this.findBox.TextChanged += new System.EventHandler(this.FindTextChanged);
 			this.findBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FindBoxKeyUP);
 			// 
 			// findButton
@@ -485,7 +561,7 @@
 			this.findButton.Size = new System.Drawing.Size(58, 35);
 			this.findButton.TabIndex = 1;
 			this.findButton.UseVisualStyleBackColor = true;
-			this.findButton.Click += new System.EventHandler(this.ClickFind);
+			this.findButton.Click += new System.EventHandler(this.FindClicked);
 			// 
 			// masterPanel
 			// 
@@ -505,7 +581,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1478, 1044);
-			this.Controls.Add(this.pageInfoPanel);
+			this.Controls.Add(this.pagePanel);
 			this.Controls.Add(this.masterPanel);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(2);
@@ -515,17 +591,19 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "OneMore XML";
-			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.tabs.ResumeLayout(false);
 			this.pageTab.ResumeLayout(false);
-			this.hierTab.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
-			this.hierButtonsPanel.ResumeLayout(false);
-			this.hierButtonsPanel.PerformLayout();
+			this.sectionTab.ResumeLayout(false);
+			this.notebooksTab.ResumeLayout(false);
+			this.nbSectionsTab.ResumeLayout(false);
+			this.nbPagesTab.ResumeLayout(false);
+			this.manualTab.ResumeLayout(false);
+			this.manualPanel.ResumeLayout(false);
+			this.manualPanel.PerformLayout();
 			this.buttonPanel.ResumeLayout(false);
 			this.buttonPanel.PerformLayout();
-			this.pageInfoPanel.ResumeLayout(false);
-			this.pageInfoPanel.PerformLayout();
+			this.pagePanel.ResumeLayout(false);
+			this.pagePanel.PerformLayout();
 			this.topPanel.ResumeLayout(false);
 			this.topPanel.PerformLayout();
 			this.masterPanel.ResumeLayout(false);
@@ -537,24 +615,19 @@
 
 		private System.Windows.Forms.TabControl tabs;
 		private System.Windows.Forms.TabPage pageTab;
-		private System.Windows.Forms.TabPage hierTab;
+		private System.Windows.Forms.TabPage manualTab;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Panel buttonPanel;
 		private System.Windows.Forms.RichTextBox pageBox;
-		private System.Windows.Forms.RichTextBox hierBox;
+		private System.Windows.Forms.RichTextBox manualBox;
 		private System.Windows.Forms.Panel topPanel;
 		private System.Windows.Forms.Panel masterPanel;
 		private System.Windows.Forms.TextBox findBox;
 		private System.Windows.Forms.Button findButton;
-		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.RadioButton sectionButton;
-		private System.Windows.Forms.RadioButton notebooksButton;
-		private System.Windows.Forms.RadioButton notebookButton;
-		private System.Windows.Forms.RadioButton currSectionButton;
 		private System.Windows.Forms.Button selectButton;
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Label pageInfoLabel;
-		private System.Windows.Forms.Panel pageInfoPanel;
+		private System.Windows.Forms.Panel pagePanel;
 		private System.Windows.Forms.CheckBox wrapBox;
 		private System.Windows.Forms.CheckBox hideBox;
 		private System.Windows.Forms.CheckBox hideLFBox;
@@ -564,11 +637,21 @@
 		private System.Windows.Forms.Label pageName;
 		private System.Windows.Forms.Label pageLinkLabel;
 		private System.Windows.Forms.Label pagePathLabel;
-		private System.Windows.Forms.ListBox pageInfoBox;
-		private System.Windows.Forms.FlowLayoutPanel hierButtonsPanel;
+		private System.Windows.Forms.ListBox scopeBox;
 		private System.Windows.Forms.Label manualLabel;
-		private System.Windows.Forms.TextBox manualIdBox;
-		private System.Windows.Forms.ComboBox manualFxBox;
-		private System.Windows.Forms.Button manulRunButton;
+		private System.Windows.Forms.TextBox objectIdBox;
+		private System.Windows.Forms.ComboBox functionBox;
+		private System.Windows.Forms.Button queryButton;
+		private System.Windows.Forms.TabPage sectionTab;
+		private System.Windows.Forms.TabPage notebooksTab;
+		private System.Windows.Forms.TabPage nbSectionsTab;
+		private System.Windows.Forms.TabPage nbPagesTab;
+		private System.Windows.Forms.RichTextBox sectionBox;
+		private System.Windows.Forms.RichTextBox notebookBox;
+		private System.Windows.Forms.RichTextBox nbSectionBox;
+		private System.Windows.Forms.RichTextBox nbPagesBox;
+		private System.Windows.Forms.Panel manualPanel;
+		private System.Windows.Forms.CheckBox hidePidBox;
+		private System.Windows.Forms.ImageList tabIcons;
 	}
 }

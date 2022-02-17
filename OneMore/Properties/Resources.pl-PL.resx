@@ -604,10 +604,6 @@ OneNote zamknie się automatycznie</value>
     <value>Wszystkie sekcje w obecnym notebooku</value>
     <comment>radio</comment>
   </data>
-  <data name="ShowXmlDialog_hierTab.Text" xml:space="preserve">
-    <value>Hierarchia</value>
-    <comment>tab</comment>
-  </data>
   <data name="Emoji_Smiley" xml:space="preserve">
     <value>Smiley.</value>
     <comment>emoji</comment>
@@ -1825,10 +1821,6 @@ Trzy dni
     <value>Jasne</value>
     <comment>toolstrip button</comment>
   </data>
-  <data name="ShowXmlDialog_currSectionButton.Text" xml:space="preserve">
-    <value>Sekcja ze stronami</value>
-    <comment>hier button</comment>
-  </data>
   <data name="ContextMenuSheet_ribEditMenu" xml:space="preserve">
     <value>Edytuj menu.</value>
     <comment>context menu option</comment>
@@ -2291,10 +2283,6 @@ Notebooki</value>
     <value>Włóż stół jednokomórkowy, opcjonalnie owijanie wybranego tekstu</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ShowXmlDialog_pagesHierButton.Text" xml:space="preserve">
-    <value>Strony</value>
-    <comment>hier button</comment>
-  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>Aktualizacja</value>
     <comment>button</comment>
@@ -2425,10 +2413,6 @@ Szybkie nuty na dole</value>
   <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
     <value>Uwzględnij podsumowanie zapasowa notebooka</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ShowXmlDialog_notebooksButton.Text" xml:space="preserve">
-    <value>Notebooki</value>
-    <comment>hier button</comment>
   </data>
   <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
     <value>... Status czerwony</value>
@@ -2763,10 +2747,6 @@ W tej sekcji</value>
   <data name="TimerWindow_copyButton.Text" xml:space="preserve">
     <value>Kopiuj aktualny czas</value>
     <comment>button tooltip</comment>
-  </data>
-  <data name="ShowXmlDialog_sectionButton.Text" xml:space="preserve">
-    <value>Notatnik z stronami</value>
-    <comment>hier button</comment>
   </data>
   <data name="ToggleDttmDialog_hideRadio.Text" xml:space="preserve">
     <value>Ukryj datę i godzinę</value>
@@ -3383,10 +3363,6 @@ Wysoki</value>
     <value>Zauważ, że onenote nie wiąże się całkowicie do zadania, które nie znajdują się w folderze zadań Outlook. Zadania z podfolderów pokazano na czerwono, wskazują, że ich flagi statusu nie będą aktualizować automatycznie po importowaniu.</value>
     <comment>rich text box</comment>
   </data>
-  <data name="ShowXmlDialog_notebookButton.Text" xml:space="preserve">
-    <value>Notatnik z sekcjami</value>
-    <comment>hier button</comment>
-  </data>
   <data name="ContextMenuSheet_ribSaveCollapsedButton" xml:space="preserve">
     <value>... Zapisz zawinięty zarys</value>
     <comment>context menu option</comment>
@@ -3862,5 +3838,29 @@ Polaroid</value>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Nie znaleziono hiperłączy w zasięgu</value>
     <comment>message box</comment>
+  </data>
+  <data name="ShowXmlDialog_sectionTab.Text" xml:space="preserve">
+    <value>Sekcja</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_nbPagesTab.Text" xml:space="preserve">
+    <value>Notatnik z stronami</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_manualTab.Text" xml:space="preserve">
+    <value>Wyszukiwanie ręczne.</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_nbSectionsTab.Text" xml:space="preserve">
+    <value>Notatnik z sekcjami</value>
+    <comment>tab</comment>
+  </data>
+  <data name="ShowXmlDialog_hidePidBox.Text" xml:space="preserve">
+    <value>Ukryj pid.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ShowXmlDialog_notebooksTab.Text" xml:space="preserve">
+    <value>Notebooki</value>
+    <comment>tab EDIT</comment>
   </data>
 </root>

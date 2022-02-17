@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -22,8 +23,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal partial class ShowXmlDialog : UI.LocalizableForm
 	{
-
-		private OneNote one;
 		private int findIndex = -1;
 
 
@@ -46,14 +45,21 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"wrapBox",
 					"selectButton",
+					// pagePanel
+					"pageInfoLabel",
 					"hideBox",
 					"hideLFBox",
+					// manualPanel
+					"manualLabel",
+					"hidePidBox",
+					// tabs
 					"pageTab",
-					"hierTab",
-					"notebooksButton",
-					"notebookButton",
-					"sectionButton",
-					"currSectionButton",
+					"sectionTab",
+					"notebooksTab",
+					"nbSectionsTab",
+					"nbPagesTab",
+					"manualTab",
+					// bottom info/buttons
 					"pageNameLabel",
 					"pagePathLabel",
 					"pageLinkLabel",
@@ -64,34 +70,41 @@ namespace River.OneMoreAddIn.Commands
 
 			Width = Math.Min(2000, (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8));
 			Height = Math.Min(1500, (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8));
+
+			manualPanel.Location = pagePanel.Location;
+			((Control)manualTab).Enabled = false;
 		}
 
 
-		private void MainForm_Load(object sender, EventArgs e)
+		protected override void OnLoad(EventArgs e)
 		{
-			one = new OneNote();
+			base.OnLoad(e);
 
-			// build pageInfoBox with custom order
+			// build scopeBox with custom order
+			var type = typeof(OneNote.PageDetail);
 			var names = new List<string>
 			{
-				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.All),
-				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.Selection),
-				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.Basic),
-				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.BinaryData),
-				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.BinaryDataSelection),
-				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.BinaryDataFileType),
-				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.FileType),
-				Enum.GetName(typeof(OneNote.PageDetail), OneNote.PageDetail.SelectionFileType)
+				Enum.GetName(type, OneNote.PageDetail.All),
+				Enum.GetName(type, OneNote.PageDetail.Selection),
+				Enum.GetName(type, OneNote.PageDetail.Basic),
+				Enum.GetName(type, OneNote.PageDetail.BinaryData),
+				Enum.GetName(type, OneNote.PageDetail.BinaryDataSelection),
+				Enum.GetName(type, OneNote.PageDetail.BinaryDataFileType),
+				Enum.GetName(type, OneNote.PageDetail.FileType),
+				Enum.GetName(type, OneNote.PageDetail.SelectionFileType)
 			};
 
-			pageInfoBox.Items.AddRange(names.ToArray());
-			pageInfoBox.SelectedIndex = names.IndexOf("Selection");
+			scopeBox.Items.AddRange(names.ToArray());
+			scopeBox.SelectedIndex = names.IndexOf("Selection");
 
 			// populate page info...
-			var info = one.GetPageInfo();
-			pageName.Text = info.Name;
-			pagePath.Text = info.Path;
-			pageLink.Text = info.Link;
+			using (var one = new OneNote())
+			{
+				var info = one.GetPageInfo();
+				pageName.Text = info.Name;
+				pagePath.Text = info.Path;
+				pageLink.Text = info.Link;
+			}
 		}
 
 
@@ -103,17 +116,34 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		protected override bool ProcessDialogKey(Keys keyData)
+		{
+			if (keyData == (Keys.F | Keys.Control))
+			{
+				// Find
+				findBox.SelectAll();
+				findBox.Focus();
+				return true;
+			}
+			else if (keyData == Keys.F3)
+			{
+				// Find next
+				FindClicked(null, null);
+			}
+
+			return base.ProcessDialogKey(keyData);
+		}
+
+
 		private void Close(object sender, EventArgs e)
 		{
-			one.Dispose();
 			Close();
 		}
 
 
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// Search, Wrap, Select
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void ChangeFindText(object sender, EventArgs e)
+		private void FindTextChanged(object sender, EventArgs e)
 		{
 			if (findBox.Text.Length == 0)
 			{
@@ -128,9 +158,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ClickFind(object sender, EventArgs e)
+		private void FindClicked(object sender, EventArgs e)
 		{
-			var box = tabs.SelectedIndex == 0 ? pageBox : hierBox;
+			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
 			var index = FindNext(box, findBox.Text);
 
 			if (index > 0)
@@ -161,7 +191,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				ClickFind(sender, e);
+				FindClicked(sender, e);
 				e.Handled = true;
 			}
 		}
@@ -176,75 +206,49 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		protected override bool ProcessDialogKey(Keys keyData)
-		{
-			if (keyData == (Keys.F | Keys.Control))
-			{
-				findBox.SelectAll();
-				findBox.Focus();
-				return true;
-			}
-			else if (keyData == Keys.F3)
-			{
-				ClickFind(null, null);
-			}
-
-			return base.ProcessDialogKey(keyData);
-		}
-
-
 		private void ChangeWrap(object sender, EventArgs e)
 		{
-			if (tabs.SelectedIndex == 0)
-			{
-				pageBox.WordWrap = wrapBox.Checked;
-			}
-			else
-			{
-				hierBox.WordWrap = wrapBox.Checked;
-			}
+			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
+			box.WordWrap = wrapBox.Checked;
+			box.Focus();
 		}
 
 
-		private void SelectAll(object sender, EventArgs e)
+		private void SelectAllClicked(object sender, EventArgs e)
 		{
-			if (tabs.SelectedIndex == 0)
-			{
-				pageBox.SelectAll();
-				pageBox.Focus();
-			}
-			else
-			{
-				hierBox.SelectAll();
-				hierBox.Focus();
-			}
+			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
+			box.SelectAll();
+			box.Focus();
 		}
 
 
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// Page control
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		private void ChangeInfoScope(object sender, EventArgs e)
+		private void ScopeSelectedValueChanged(object sender, EventArgs e)
 		{
-			if (Enum.TryParse<OneNote.PageDetail>(pageInfoBox.Text, out var info))
+			if (Enum.TryParse<OneNote.PageDetail>(scopeBox.Text, out var info))
 			{
-				var page = one.GetPage(info);
-				if (page != null)
+				using (var one = new OneNote())
 				{
-					var xml = page.Root.ToString(SaveOptions.None);
-					pageBox.Text = xml;
+					var page = one.GetPage(info);
+					if (page != null)
+					{
+						var xml = page.Root.ToString(SaveOptions.None);
+						pageBox.WordWrap = wrapBox.Checked;
+						pageBox.Text = xml;
 
-					ApplyHideOptions();
+						ApplyHideOptions();
 
-					logger.WriteLine($"XmlDialog loaded page, scope {info}, {xml.Length} chars");
+						logger.WriteLine($"XmlDialog loaded page, scope {info}, {xml.Length} chars");
+					}
 				}
 			}
 		}
 
 
-		private void HideAttributes(object sender, EventArgs e)
+		private void HideCheckedChanged(object sender, EventArgs e)
 		{
-			ChangeInfoScope(sender, e);
+			ScopeSelectedValueChanged(sender, e);
 			okButton.Enabled = !hideBox.Checked;
 		}
 
@@ -333,150 +337,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// Tabs
-
-		private async void ChangeSelectedTab(object sender, EventArgs e)
-		{
-			if (tabs.SelectedIndex == 0)
-			{
-				pageBox.Select(0, 0);
-				pageBox.Focus();
-				okButton.Visible = true;
-				pageInfoPanel.Visible = true;
-				wrapBox.Checked = pageBox.WordWrap;
-			}
-			else
-			{
-				if (hierBox.TextLength == 0)
-				{
-					ShowHierarchy(await one.GetNotebooks(), "one.GetNotebooks()");
-				}
-
-				pageBox.Select(0, 0);
-				pageBox.Focus();
-				okButton.Visible = false;
-				pageInfoPanel.Visible = false;
-				wrapBox.Checked = hierBox.WordWrap;
-			}
-		}
-
-
-		private async void GetNotebooks(object sender, EventArgs e)
-		{
-			ShowHierarchy(await one.GetNotebooks(), "one.GetNotebooks()");
-		}
-
-
-		private async void GetNotebook(object sender, EventArgs e)
-		{
-			ShowHierarchy(await one.GetNotebook(), "one.GetNotebook()");
-		}
-
-
-		private async void GetSection(object sender, EventArgs e)
-		{
-			ShowHierarchy(await one.GetNotebook(OneNote.Scope.Pages),
-				"one.GetNotebook(OneNote.Scope.Pages)");
-		}
-
-
-		private void ShowCurrentSection(object sender, EventArgs e)
-		{
-			ShowHierarchy(one.GetSection(), "one.GetSection()");
-		}
-
-
-		private void ShowHierarchy(XElement element, string comment)
-		{
-			if (element != null)
-			{
-				hierBox.SelectionColor = Color.Black;
-
-				hierBox.Text = $"<!-- {comment} -->\n{element.ToString(SaveOptions.None)}";
-
-				hierBox.Select(0, comment.Length + 9);
-				hierBox.SelectionColor = Color.Green;
-			}
-			else
-			{
-				hierBox.Text = "no hierarchy";
-			}
-		}
-
-
-		private void CheckManualInput(object sender, EventArgs e)
-		{
-			manulRunButton.Enabled =
-				manualIdBox.Text.Trim().Length > 0 &&
-				manualFxBox.SelectedIndex >= 0;
-		}
-
-
-		private async void RunManual(object sender, EventArgs e)
-		{
-			try
-			{
-				XElement content = null;
-
-				switch (manualFxBox.SelectedIndex)
-				{
-					case 0:
-						content = await one.GetNotebook(manualIdBox.Text, OneNote.Scope.Pages);
-						break;
-
-					case 1:
-						content = one.GetSection(manualIdBox.Text);
-						break;
-
-					case 2:
-						content = one.GetPage(manualIdBox.Text, OneNote.PageDetail.BinaryData).Root;
-						break;
-				}
-
-				if (content == null)
-				{
-					UIHelper.ShowMessage("Cannot find object ID");
-					return;
-				}
-
-				notebooksButton.Checked = false;
-				notebookButton.Checked = false;
-				sectionButton.Checked = false;
-				currSectionButton.Checked = false;
-
-				ShowHierarchy(content,
-					$"{(string)manualFxBox.SelectedItem}(\"{manualIdBox.Text}\")");
-			}
-			catch (Exception exc)
-			{
-				if (exc is COMException cex)
-				{
-					if ((uint)cex.ErrorCode == 0x80042014)
-					{
-						UIHelper.ShowMessage("Invalid ObjectID");
-						return;
-					}
-				}
-
-				notebooksButton.Checked = false;
-				notebookButton.Checked = false;
-				sectionButton.Checked = false;
-				currSectionButton.Checked = false;
-
-				hierBox.SelectionColor = Color.Black;
-				hierBox.Text = exc.FormatDetails();
-				hierBox.SelectAll();
-				hierBox.SelectionColor = Color.Red;
-
-				logger.WriteLine(exc);
-			}
-		}
-
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// Update
-
 		// async event handlers should be be declared 'async void'
 		private async void Update(object sender, EventArgs e)
 		{
@@ -490,7 +350,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					await one.Update(XElement.Parse(pageBox.Text));
+					using (var one = new OneNote())
+					{
+						await one.Update(XElement.Parse(pageBox.Text));
+					}
+
 					Close();
 
 					// doesn't account for binary data, but close enough
@@ -503,6 +367,197 @@ namespace River.OneMoreAddIn.Commands
 
 					logger.WriteLine("error updating page content", exc);
 				}
+			}
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private void TabsSelecting(object sender, TabControlCancelEventArgs e)
+		{
+			if (!((Control)e.TabPage).Enabled)
+			{
+				e.Cancel = true;
+			}
+		}
+
+
+		private async void TabsSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (tabs.SelectedIndex == 0)
+			{
+				pageBox.Select(0, 0);
+				pageBox.Focus();
+				okButton.Visible = true;
+				pagePanel.Visible = true;
+				manualPanel.Visible = false;
+				wrapBox.Checked = pageBox.WordWrap;
+			}
+			else
+			{
+				switch (tabs.SelectedIndex)
+				{
+					case 1: // Section+Pages
+						await ShowHierarchy(sectionBox, "one.GetSection()",
+							async (one) => { await Task.Yield(); return one.GetSection(); });
+						break;
+
+					case 2: // Notebooks
+						await ShowHierarchy(notebookBox, "one.GetNotebooks()",
+							async (one) => { return await one.GetNotebooks(); });
+						break;
+
+					case 3: // Notebook+Sections
+						await ShowHierarchy(nbSectionBox, "one.GetNotebook()",
+							async (one) => { return await one.GetNotebook(); });
+						break;
+
+					case 4: // Notebook+Sections+Pages
+						await ShowHierarchy(nbPagesBox, "one.GetNotebook(OneNote.Scope.Pages)",
+							async (one) => { return await one.GetNotebook(OneNote.Scope.Pages); });
+						break;
+				}
+
+				wrapBox.Checked = ((RichTextBox)tabs.SelectedTab.Controls[0]).WordWrap;
+				hidePidBox.Checked = tabs.SelectedTab.Tag == null || (bool)tabs.SelectedTab.Tag;
+
+				okButton.Visible = false;
+				pagePanel.Visible = false;
+				manualPanel.Visible = true;
+			}
+		}
+
+
+		private async Task ShowHierarchy(
+			RichTextBox box, string comment, Func<OneNote, Task<XElement>> action)
+		{
+			if (box.TextLength == 0)
+			{
+				using (var one = new OneNote())
+				{
+					var root = await action(one);
+
+					if (root != null)
+					{
+						if (hidePidBox.Checked)
+						{
+							Sanitize(root);
+						}
+
+						box.Clear();
+						box.WordWrap = wrapBox.Checked;
+						box.SelectionColor = Color.Black;
+						box.Text = $"<!-- {comment} -->\n{root.ToString(SaveOptions.None)}";
+						box.Select(0, comment.Length + 9);
+						box.SelectionColor = Color.Green;
+					}
+					else
+					{
+						box.Text = "no hierarchy";
+					}
+				}
+			}
+
+			box.Select(0, 0);
+			box.Focus();
+		}
+
+
+		private void Sanitize(XElement root)
+		{
+			var paths = root.DescendantsAndSelf()
+				.Where(e => e.Attribute("path") != null)
+				.Select(e => e.Attribute("path"));
+
+			if (paths.Any())
+			{
+				var regex = new Regex(@"(http[s]?://.+live\.net/)([0-9a-f]+)(/.+)");
+				foreach (var path in paths)
+				{
+					path.Value = regex.Replace(path.Value, "$1xxxxx$3");
+				}
+			}
+		}
+
+
+		private void HidePidCheckedChanged(object sender, EventArgs e)
+		{
+			var box = tabs.TabPages[tabs.SelectedIndex].Controls[0] as RichTextBox;
+			box.Clear();
+
+			tabs.TabPages[tabs.SelectedIndex].Tag = hidePidBox.Checked;
+
+			TabsSelectedIndexChanged(sender, e);
+		}
+
+
+		private void ManualInputChanged(object sender, EventArgs e)
+		{
+			// validate the input...
+
+			queryButton.Enabled =
+				objectIdBox.Text.Trim().Length > 0 &&
+				functionBox.SelectedIndex >= 0;
+		}
+
+
+		private async void RunManual(object sender, EventArgs e)
+		{
+			try
+			{
+				XElement content = null;
+
+				using (var one = new OneNote())
+				{
+					switch (functionBox.SelectedIndex)
+					{
+						case 0:
+							content = await one.GetNotebook(objectIdBox.Text, OneNote.Scope.Pages);
+							break;
+
+						case 1:
+							content = one.GetSection(objectIdBox.Text);
+							break;
+
+						case 2:
+							content = one.GetPage(objectIdBox.Text, OneNote.PageDetail.BinaryData).Root;
+							break;
+					}
+				}
+
+				if (content == null)
+				{
+					UIHelper.ShowMessage("Cannot find object ID");
+					return;
+				}
+
+				((Control)manualTab).Enabled = true;
+				tabs.SelectTab(5);
+
+				manualBox.Clear();
+				manualBox.SelectionColor = Color.Black;
+
+				await ShowHierarchy(manualBox,
+					$"{(string)functionBox.SelectedItem}(\"{objectIdBox.Text}\")",
+					async (one) => { await Task.Yield(); return content; });
+			}
+			catch (Exception exc)
+			{
+				if (exc is COMException cex)
+				{
+					if ((uint)cex.ErrorCode == 0x80042014)
+					{
+						UIHelper.ShowMessage("Invalid ObjectID");
+						return;
+					}
+				}
+
+				manualBox.SelectionColor = Color.Black;
+				manualBox.Text = exc.FormatDetails();
+				manualBox.SelectAll();
+				manualBox.SelectionColor = Color.Red;
+
+				logger.WriteLine(exc);
 			}
 		}
 	}
