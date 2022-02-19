@@ -134,14 +134,14 @@ namespace River.OneMoreAddIn
 			// from shutting down. Instead, use our ApplicationManager only as needed.
 
 			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OnConnection(ConnectionMode:{ConnectMode},{count})");
+			logger.WriteLine($"OnConnection(ConnectionMode:{ConnectMode},custom[{count}])");
 		}
 
 
 		public void OnAddInsUpdate(ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OneAddInsUpdate(custom[]:{count})");
+			logger.WriteLine($"OneAddInsUpdate(custom[{count}])");
 		}
 
 
