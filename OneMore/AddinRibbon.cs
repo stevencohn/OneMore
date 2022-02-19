@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			logger.WriteLine("building language proofing commands");
+			logger.WriteLine("building ribbon language proofing commands");
 
 			try
 			{
@@ -189,7 +189,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error building proofing menu", exc);
+				logger.WriteLine("error building ribbon proofing menu", exc);
 			}
 		}
 
@@ -472,7 +472,7 @@ namespace River.OneMoreAddIn
 		/// <param name="ribbon">The Ribbon</param>
 		public void RibbonLoaded(IRibbonUI ribbon)
 		{
-			logger.WriteLine("RibbonLoaded()");
+			//logger.WriteLine("RibbonLoaded()");
 			this.ribbon = ribbon;
 		}
 

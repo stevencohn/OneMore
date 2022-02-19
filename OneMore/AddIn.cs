@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn
 		public void OnStartupComplete(ref Array custom)
 		{
 			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OnStartupComplete(custom[]:{count})");
+			logger.WriteLine($"OnStartupComplete(custom[{count}])");
 
 			try
 			{

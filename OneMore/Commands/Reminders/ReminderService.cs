@@ -22,6 +22,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Startup()
 		{
+			logger.WriteLine("starting reminder service");
+
 			var thread = new Thread(async () =>
 			{
 				// 'errors' allows repeated consecutive exceptions but limits that to 5 so we
