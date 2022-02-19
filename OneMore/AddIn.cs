@@ -133,8 +133,19 @@ namespace River.OneMoreAddIn
 			// do not grab a reference to Application here as it tends to prevent OneNote
 			// from shutting down. Instead, use our ApplicationManager only as needed.
 
-			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OnConnection(ConnectionMode:{ConnectMode},custom[{count}])");
+			var customs = string.Empty;
+			if (custom != null)
+			{
+				// custom is a base-1 array
+				for (var i = custom.GetLowerBound(0); i <= custom.GetUpperBound(0); i++)
+				{
+					if (customs.Length > 0) customs = $"{customs},";
+					var value = custom.GetValue(i);
+					customs = $"{customs}{value}:{value.GetType().Name}";
+				}
+			}
+
+			logger.WriteLine($"OnConnection(ConnectionMode:{ConnectMode},custom[{customs}])");
 		}
 
 
