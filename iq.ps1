@@ -16,7 +16,7 @@ Begin
         param($kpath)
         if (-not (Test-Path $kpath))
         {
-            write-Host "key not found: $kpath" -ForegroundColor Red
+            write-Host "key not found: $kpath" -Fore Red
             return $false
         }
         return $true
@@ -28,7 +28,7 @@ Begin
         $ok = (Get-ItemProperty $kpath).PSObject.Properties.Name -contains $name
         if (-not $ok)
         {
-            write-Host "property not found: $kpath\$name" -ForegroundColor Red
+            write-Host "property not found: $kpath\$name" -Fore Red
             return $false
         }
         return $true
@@ -46,13 +46,13 @@ Begin
         {
             if (-not ($v -like $value))
             {
-                Write-Host "invalid value: $kpath\$name, '$v' <> '$value'" -ForegroundColor Red
+                Write-Host "invalid value: $kpath\$name, '$v' <> '$value'" -Fore Red
                 return $false
             }
         }
         elseif ($v -ne $value)
         {
-            Write-Host "invalid value: $kpath\$name, '$v' <> '$value'" -ForegroundColor Red
+            Write-Host "invalid value: $kpath\$name, '$v' <> '$value'" -Fore Red
             return $false
         }
         return $true
