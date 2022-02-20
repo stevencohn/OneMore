@@ -1,0 +1,53 @@
+{
+  "name": "Wolfram",
+  "aliases": [
+  ],
+  "rules": [
+    {
+      "pattern": "(\\(\\*[^\\)]\\*\\))",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\u0060)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(\\$(?:[\\d\\w\\-]+(?::[\\d\\w\\-]+)?|\\$|\\?|\\^))",
+      "captures": [
+        "PowerShellVariable"
+      ]
+    },
+    {
+      "pattern": "\\b([A-Z][A-Za-z0-9]+)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "(\\+=|-=|\\*=|/=|%=|=|\\+\\+|--|\\+|-|\\*|/|%)",
+      "captures": [
+        "PowerShellOperator"
+      ]
+    },
+    {
+      "pattern": "(\\[)([^\\]]+)(\\])(::)?",
+      "captures": [
+        "PowerShellOperator",
+        "PowerShellType",
+        "PowerShellOperator",
+        "PowerShellOperator"
+      ]
+    }
+  ]
+}
