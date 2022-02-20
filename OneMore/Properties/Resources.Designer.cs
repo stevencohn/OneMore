@@ -5905,6 +5905,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paste and Keep Text Only.
+        /// </summary>
+        internal static string ribPasteTextButton_Label {
+            get {
+                return ResourceManager.GetString("ribPasteTextButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste and Keep Text Only (Ctrl + Shift + V).
+        /// </summary>
+        internal static string ribPasteTextButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPasteTextButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Run Plugin.
         /// </summary>
         internal static string ribPluginButton_Label {

@@ -159,6 +159,7 @@
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
+    <Compile Include="Commands\Edit\PasteTextCommand.cs" />
     <Compile Include="Commands\File\CrawlHyperlink.cs" />
     <Compile Include="Commands\File\CrawlWebPageCommand.cs" />
     <Compile Include="Commands\File\CrawlWebPageDialog.cs">

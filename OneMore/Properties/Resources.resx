@@ -3872,4 +3872,12 @@ Polaroid</value>
 Any</value>
     <comment>listbox</comment>
   </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Paste and Keep Text Only</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Paste and Keep Text Only (Ctrl + Shift + V)</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

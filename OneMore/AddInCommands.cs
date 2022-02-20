@@ -356,6 +356,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<PasteRtfCommand>();
 
 
+		[Command("ribPasteTextButton_Label", Keys.Control | Keys.Shift | Keys.V)]
+		public async Task PasteTextCmd(IRibbonControl control)
+			=> await factory.Run<PasteTextCommand>();
+
+
 		public async Task PronunciateCmd(IRibbonControl control)
 			=> await factory.Run<PronunciateCommand>();
 

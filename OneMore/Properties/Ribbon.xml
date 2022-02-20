@@ -140,6 +140,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="PasteRtfCmd"/>
               <button
+                id="ribPasteTextButton"
+                imageMso="PasteAlternative"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="PasteTextCmd"/>
+              <button
                 id="ribSpellCheckButton"
                 imageMso="Spelling"
                 getLabel="GetRibbonLabel"

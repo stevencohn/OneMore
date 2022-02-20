@@ -45,6 +45,7 @@ namespace River.OneMoreAddIn
 			RegisterHotKey(s, nameof(InsertTimerCmd), async () => await InsertTimerCmd(null));
 			RegisterHotKey(s, nameof(DisableSpellCheckCmd), async () => await DisableSpellCheckCmd(null));
 			RegisterHotKey(s, nameof(PasteRtfCmd), async () => await PasteRtfCmd(null));
+			RegisterHotKey(s, nameof(PasteTextCmd), async () => await PasteTextCmd(null));
 			RegisterHotKey(s, nameof(RecalculateFormulaCmd), async () => await RecalculateFormulaCmd(null));
 			RegisterHotKey(s, nameof(RemoveFootnoteCmd), async () => await RemoveFootnoteCmd(null));
 			RegisterHotKey(s, nameof(ReplayCmd), async () => await ReplayCmd(null));
