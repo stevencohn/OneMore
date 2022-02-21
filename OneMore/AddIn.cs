@@ -133,33 +133,22 @@ namespace River.OneMoreAddIn
 			// do not grab a reference to Application here as it tends to prevent OneNote
 			// from shutting down. Instead, use our ApplicationManager only as needed.
 
-			var customs = string.Empty;
-			if (custom != null)
-			{
-				// custom is a base-1 array
-				for (var i = custom.GetLowerBound(0); i <= custom.GetUpperBound(0); i++)
-				{
-					if (customs.Length > 0) customs = $"{customs},";
-					var value = custom.GetValue(i);
-					customs = $"{customs}{value}:{value.GetType().Name}";
-				}
-			}
-
-			logger.WriteLine($"OnConnection(ConnectionMode:{ConnectMode},custom[{customs}])");
+			var cude = DescribeCustom(custom);
+			logger.WriteLine($"OnConnection(ConnectionMode:{ConnectMode},custom[{cude}])");
 		}
 
 
 		public void OnAddInsUpdate(ref Array custom)
 		{
-			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OneAddInsUpdate(custom[{count}])");
+			var cude = DescribeCustom(custom);
+			logger.WriteLine($"OneAddInsUpdate(custom[{cude}])");
 		}
 
 
 		public void OnStartupComplete(ref Array custom)
 		{
-			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OnStartupComplete(custom[{count}])");
+			var cude = DescribeCustom(custom);
+			logger.WriteLine($"OnStartupComplete(custom[{cude}])");
 
 			try
 			{
@@ -223,8 +212,8 @@ namespace River.OneMoreAddIn
 
 		public void OnBeginShutdown(ref Array custom)
 		{
-			int count = custom == null ? 0 : custom.Length;
-			logger.Start($"OnBeginShutdown({count})");
+			var cude = DescribeCustom(custom);
+			logger.Start($"OnBeginShutdown(custom[{cude}])");
 
 			try
 			{
@@ -243,8 +232,8 @@ namespace River.OneMoreAddIn
 
 		public void OnDisconnection(ext_DisconnectMode RemoveMode, ref Array custom)
 		{
-			int count = custom == null ? 0 : custom.Length;
-			logger.WriteLine($"OnDisconnection(RemoveMode:{RemoveMode},{count})");
+			var cude = DescribeCustom(custom);
+			logger.WriteLine($"OnDisconnection(RemoveMode:{RemoveMode},custom:[{cude}])");
 
 			try
 			{
@@ -275,6 +264,24 @@ namespace River.OneMoreAddIn
 
 			// this is a hack, modeless dialogs seem to keep OneNote open :-(
 			Environment.Exit(0);
+		}
+
+
+		private string DescribeCustom(Array custom)
+		{
+			var description = string.Empty;
+			if (custom != null)
+			{
+				// custom is a base-1 array
+				for (var i = custom.GetLowerBound(0); i <= custom.GetUpperBound(0); i++)
+				{
+					if (description.Length > 0) description = $"{description},";
+					var value = custom.GetValue(i);
+					description = $"{description}{value}:{value.GetType().Name}";
+				}
+			}
+
+			return description;
 		}
 	}
 }
