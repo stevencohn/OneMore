@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 						caption = Path.GetFileName(file.Attribute("pathSource").Value);
 					}
 
-					var cdata = new XCData(caption);
+					var cdata = new XCData(System.Web.HttpUtility.HtmlEncode(caption));
 
 					var row = table.AddRow();
 					var cell = row.Cells.First();
