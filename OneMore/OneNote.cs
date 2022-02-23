@@ -1087,7 +1087,7 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				onenote.Publish(pageId, path, (PublishFormat)format, string.Empty);
+				onenote.Publish(pageId, path, (PublishFormat)format);
 				return true;
 			}
 			catch (Exception exc)
