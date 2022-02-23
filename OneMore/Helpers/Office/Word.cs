@@ -4,22 +4,23 @@
 
 namespace River.OneMoreAddIn.Helpers.Office
 {
-	using Microsoft.Office.Interop.Word;
 	using System;
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Xml.Linq;
+	using MSWord = Microsoft.Office.Interop.Word;
+
 
 	internal class Word : IDisposable
 	{
-		private Application word;
+		private MSWord.Application word;
 		private bool disposed;
 
 
 		public Word()
 		{
-			word = new Application
+			word = new MSWord.Application
 			{
 				Visible = false
 			};
@@ -53,7 +54,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 			try
 			{
 				target = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-				object format = WdSaveFormat.wdFormatHTML;
+				object format = MSWord.WdSaveFormat.wdFormatHTML;
 
 				// open document
 				word.Documents.Open(ref source);
@@ -105,7 +106,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 				// save as HTML
 				target = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-				object format = WdSaveFormat.wdFormatHTML;
+				object format = MSWord.WdSaveFormat.wdFormatHTML;
 
 				doc.SaveAs2(ref target, ref format);
 				doc.Close();
@@ -158,7 +159,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 			find.Text = @"\<\<*\.*\>\>";
 
 			find.Forward = true;
-			find.Wrap = WdFindWrap.wdFindContinue;
+			find.Wrap = MSWord.WdFindWrap.wdFindContinue;
 			find.Format = false;
 			find.MatchCase = false;
 			find.MatchWholeWord = false;
@@ -213,7 +214,11 @@ namespace River.OneMoreAddIn.Helpers.Office
 						word.Selection.Text = text;
 
 						object range = word.Selection.Range;
-						object uri = new Uri(target).AbsoluteUri;
+
+						// get a well-formed URL but also decode it so avoid encoding problems
+						// with wide unicode characters in the path, Chinese, Hebrew, etc.
+						object uri = System.Web.HttpUtility.UrlDecode(new Uri(target).AbsoluteUri);
+
 						word.Selection.Hyperlinks.Add(range, ref uri);
 
 						updated = true;
