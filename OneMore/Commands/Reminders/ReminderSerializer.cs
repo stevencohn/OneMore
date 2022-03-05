@@ -151,7 +151,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					using (var zipper = new GZipStream(stream, CompressionMode.Decompress))
 					{
-						using (var reader = new StreamReader(zipper))
+						using (var reader = new StreamReader(zipper, Encoding.UTF8))
 						{
 							var json = reader.ReadToEnd();
 							// TODO: read-makes-right version check here...
@@ -195,7 +195,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					using (var zipper = new GZipStream(stream, CompressionMode.Compress))
 					{
-						var bytes = Encoding.Default.GetBytes(json);
+						var bytes = Encoding.UTF8.GetBytes(json);
 						zipper.Write(bytes, 0, bytes.Length);
 					}
 
