@@ -29,7 +29,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, German, Polish, Portuguese, and Spanish*. Please let me know if you'd like it translated to another language. I use my [ResxTranslator](https://github.com/stevencohn/ResxTranslator) program to automate the translations but can also override inaccuracies of specific words and phrases. If you think a translation is not correct, again please let me know.
 
 <a name="features"></a>
-## Features (146)
+## Features (147)
 
 [Clean commands](../../wiki/Clean-Commands) (11)
 
@@ -54,9 +54,10 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
 * Apply an entire theme to a page
 * Change page theme inluding background and styles, optioanally with dark-mode awareness
 
-[File Commands](../../wiki/Tools) (4)
+[File Commands](../../wiki/Tools) (5)
 * Import MSWord, PowerPoint, Markdown and others into the current page or a new page
 * Import a Web page from a specified URL
+* Import hyperlinks on the current page as separate sub-pages
 * Export the current page or selected pages as HTML, PDF, MSWord, Markdown, or as raw OneNote XML
 * Invoke an external custom plugin to process a page
 
