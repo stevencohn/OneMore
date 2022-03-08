@@ -57,6 +57,12 @@ namespace River.OneMoreAddIn.Commands
 						e.Attribute("spaceBetween") != null)
 					.ToList();
 
+				page.GetTextCursor();
+				if (page.SelectionScope != SelectionScope.Empty)
+				{
+					elements = elements.Where(e => e.Attribute("selected") != null).ToList();
+				}
+
 				if (elements.Count == 0)
 				{
 					logger.StopClock();
