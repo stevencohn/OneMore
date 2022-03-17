@@ -107,8 +107,8 @@ namespace River.OneMoreAddIn.Models
 				NormalizeRuns();
 				SelectionScope = SelectionScope.Empty;
 			}
-			else if (Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
-				Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+			else if (Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
+				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
 			{
 				SelectionScope = SelectionScope.Special;
 			}
@@ -288,8 +288,8 @@ namespace River.OneMoreAddIn.Models
 			{
 				SelectionScope = SelectionScope.Empty;
 			}
-			else if (Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
-				Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+			else if (Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
+				Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
 			{
 				SelectionScope = SelectionScope.Special;
 			}

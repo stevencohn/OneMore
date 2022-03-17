@@ -3815,4 +3815,16 @@ Polaroid</value>
 Ieder</value>
     <comment>listbox</comment>
   </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Plakken en blijf alleen tekst</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Plakken en blijf alleen tekst (Ctrl + Shift + V)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>Verplaats de tekstcursor naar een enkele positie op de pagina. Selectie-regio's zijn niet toegestaan.</value>
+    <comment>message box</comment>
+  </data>
 </root>

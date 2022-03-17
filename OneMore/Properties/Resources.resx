@@ -3880,4 +3880,8 @@ Any</value>
     <value>Paste and Keep Text Only (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>Move the text cursor to a single position on the page. Selection regions are not allowed.</value>
+    <comment>message box</comment>
+  </data>
 </root>

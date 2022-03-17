@@ -47,11 +47,14 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!ok)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.Error_BodyContext);
+					UIHelper.ShowInfo(one.Window, Resx.SelectStyleCommand_context);
 					return;
 				}
 
-				var runs = page.Root.Descendants(ns + "T").ToList();
+				var runs = page.Root
+					.Elements(ns + "Outline")
+					.Descendants(ns + "T").ToList();
+
 				foreach (var run in runs)
 				{
 					AnalyzeRun(run, style);
@@ -70,10 +73,19 @@ namespace River.OneMoreAddIn.Commands
 		// merge text cursor so we don't have to treat it as a special case
 		private bool NormalizeTextCursor(Page page, StyleAnalyzer analyzer)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
 			var cursor = page.GetTextCursor();
 			if (cursor == null || page.SelectionScope != SelectionScope.Empty)
 			{
 				return false;
+			}
+
+			if (page.SelectionSpecial)
+			{
+				// positioned over a hyperlink or MathML equation
+				return true;
 			}
 
 			if (cursor.PreviousNode is XElement prev &&

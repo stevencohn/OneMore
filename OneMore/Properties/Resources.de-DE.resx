@@ -3802,4 +3802,16 @@ Polaroid</value>
 Beliebig</value>
     <comment>listbox</comment>
   </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Einfügen und nur Text halten</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Einfügen und den Text nur einfügen (Strg + Shift + V)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>Bewegen Sie den Textcursor in eine einzige Position auf der Seite. Auswahlregionen sind nicht zulässig.</value>
+    <comment>message box</comment>
+  </data>
 </root>

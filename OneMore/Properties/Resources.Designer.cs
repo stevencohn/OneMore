@@ -6999,6 +6999,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move the text cursor to a single position on the page. Selection regions are not allowed..
+        /// </summary>
+        internal static string SelectStyleCommand_context {
+            get {
+                return ResourceManager.GetString("SelectStyleCommand_context", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content.
         /// </summary>
         internal static string sepContent_Label {
