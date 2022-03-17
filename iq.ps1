@@ -62,13 +62,34 @@ Begin
         }
         return $true
     }
+	
+	function GetVersions
+	{
+		$0 = "Registry::HKEY_CLASSES_ROOT\Excel.Application\CurVer"
+		if (-not (HasKey $0)) {
+			write-Host "cannot determine version of Office"
+		} else {
+			$parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
+			$script:offVersion = $parts[$parts.Length - 1] + ".0"
+			Write-Host "OK Office version is $offVersion"
+		}
+
+		$0 = "Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer"
+		if (-not (HasKey $0)) {
+			write-Host "cannot determine version of OneNote"
+		} else {
+			$parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
+			$script:oneVersion = $parts[$parts.Length - 1] + ".0"
+			Write-Host "OK OneNote version is $oneVersion"
+		}
+	}
 
     function CheckAppID
     {
 	    $0 = "Registry::HKEY_CLASSES_ROOT\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
     }
 
     function CheckRoot
@@ -79,15 +100,16 @@ Begin
             $ok = (HasValue $0 '(default)' 'URL:OneMore Protocol Handler') -and $ok
             $ok = (HasValue $0 'URL Protocol' '') -and $ok
         }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
     }
 
     function CheckShell
     {
+		# this also covers the virtual node LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command
 	    $0 = "Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 '(default)' '*\OneMoreProtocolHandler.exe %1 %2 %3 %4 %5') }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
     }
 
     function CheckAddIn
@@ -101,13 +123,13 @@ Begin
 	        $1 = "$0\CurVer"
             $ok = (HasValue $1 '(default)' 'River.OneMoreAddIn.1') -and $ok
         }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
 
 	    $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1"
         $ok = (HasValue $0 '(default)' 'Addin class')
 	    $1 = "$0\CLSID"
         $ok = (HasValue $1 '(default)' $guid) -and $ok
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
     }
 
     function CheckCLSID
@@ -118,7 +140,7 @@ Begin
             $ok = (HasValue $0 '(default)' 'River.OneMoreAddIn.AddIn')
             $ok = (HasValue $0 'AppID' $guid) -and $ok
         }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
 
         $1 = "$0\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}"
         $ver = $null
@@ -196,21 +218,26 @@ Begin
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn"
         $ok = (HasValue $0 'LoadBehavior' '3')
         $ok = (HasValue $0 'Description' 'Extension for OneNote') -and $ok
         $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll"
         $ok = (HasValue $0 'Path' $codeBase -match)
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" }
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+
+        $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\$offVersion\Common\Security\Trusted Protocols\All Applications\onemore:"
+        $ok = (HasKey $0)
+        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
     }
 }
 Process
 {
+	GetVersions
     CheckAppID
     CheckRoot
     CheckShell
