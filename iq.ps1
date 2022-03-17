@@ -41,7 +41,7 @@ Begin
         {
             return $false
         }
-		$script:lastValue = (Get-ItemPropertyValue -Path $kpath -Name $name)
+        $script:lastValue = (Get-ItemPropertyValue -Path $kpath -Name $name)
         if ($value.Contains('*'))
         {
             if (-not ($lastValue -like $value))
@@ -62,31 +62,31 @@ Begin
         }
         return $true
     }
-	
-	function GetVersions
-	{
-		$0 = "Registry::HKEY_CLASSES_ROOT\Excel.Application\CurVer"
-		if (-not (HasKey $0)) {
-			write-Host "cannot determine version of Office"
-		} else {
-			$parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
-			$script:offVersion = $parts[$parts.Length - 1] + ".0"
-			Write-Host "OK Office version is $offVersion"
-		}
+    
+    function GetVersions
+    {
+        $0 = "Registry::HKEY_CLASSES_ROOT\Excel.Application\CurVer"
+        if (-not (HasKey $0)) {
+            write-Host "cannot determine version of Office"
+        } else {
+            $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
+            $script:offVersion = $parts[$parts.Length - 1] + ".0"
+            Write-Host "OK Office version is $offVersion"
+        }
 
-		$0 = "Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer"
-		if (-not (HasKey $0)) {
-			write-Host "cannot determine version of OneNote"
-		} else {
-			$parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
-			$script:oneVersion = $parts[$parts.Length - 1] + ".0"
-			Write-Host "OK OneNote version is $oneVersion"
-		}
-	}
+        $0 = "Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer"
+        if (-not (HasKey $0)) {
+            write-Host "cannot determine version of OneNote"
+        } else {
+            $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
+            $script:oneVersion = $parts[$parts.Length - 1] + ".0"
+            Write-Host "OK OneNote version is $oneVersion"
+        }
+    }
 
     function CheckAppID
     {
-	    $0 = "Registry::HKEY_CLASSES_ROOT\AppID\$guid"
+        $0 = "Registry::HKEY_CLASSES_ROOT\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
@@ -94,7 +94,7 @@ Begin
 
     function CheckRoot
     {
-	    $0 = "Registry::HKEY_CLASSES_ROOT\onemore"
+        $0 = "Registry::HKEY_CLASSES_ROOT\onemore"
         $ok = (HasKey $0)
         if ($ok) {
             $ok = (HasValue $0 '(default)' 'URL:OneMore Protocol Handler') -and $ok
@@ -105,8 +105,8 @@ Begin
 
     function CheckShell
     {
-		# this also covers the virtual node LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command
-	    $0 = "Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command"
+        # this also covers the virtual node LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command
+        $0 = "Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 '(default)' '*\OneMoreProtocolHandler.exe %1 %2 %3 %4 %5') }
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
@@ -114,27 +114,27 @@ Begin
 
     function CheckAddIn
     {
-	    $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn"
+        $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn"
         $ok = (HasKey $0)
         if ($ok) {
             $ok = (HasValue $0 '(default)' 'River.OneMoreAddIn.AddIn') -and $ok
-	        $1 = "$0\CLSID"
+            $1 = "$0\CLSID"
             $ok = (HasValue $1 '(default)' $guid) -and $ok
-	        $1 = "$0\CurVer"
+            $1 = "$0\CurVer"
             $ok = (HasValue $1 '(default)' 'River.OneMoreAddIn.1') -and $ok
         }
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
 
-	    $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1"
+        $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1"
         $ok = (HasValue $0 '(default)' 'Addin class')
-	    $1 = "$0\CLSID"
+        $1 = "$0\CLSID"
         $ok = (HasValue $1 '(default)' $guid) -and $ok
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
     }
 
     function CheckCLSID
     {
-	    $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$guid"
+        $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$guid"
         $ok = (HasKey $0)
         if ($ok) {
             $ok = (HasValue $0 '(default)' 'River.OneMoreAddIn.AddIn')
@@ -237,7 +237,7 @@ Begin
 }
 Process
 {
-	GetVersions
+    GetVersions
     CheckAppID
     CheckRoot
     CheckShell
