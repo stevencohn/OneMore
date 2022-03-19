@@ -410,13 +410,13 @@ namespace River.OneMoreAddIn.Commands
 						: $"<a href=\"{link}\">{name}</a>";
 
 					container.Add(new Paragraph(text));
+
+					index++;
 				}
 				else
 				{
 					break;
 				}
-
-				index++;
 			}
 		}
 
