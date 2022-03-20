@@ -3815,8 +3815,6 @@ ISO-code then comma then language name</comment>
 أي</value>
     <comment>listbox</comment>
   </data>
-<<<<<<< Updated upstream
-=======
   <data name="ribPasteTextButton_Label" xml:space="preserve">
     <value>لصق والحفاظ على النص فقط</value>
     <comment>ribbon item</comment>
@@ -3825,10 +3823,6 @@ ISO-code then comma then language name</comment>
     <value>لصق والحفاظ على النص فقط (CTRL + SHIFT + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="SelectStyleCommand_context" xml:space="preserve">
-    <value>انقل مؤشر النص إلى موقع واحد على الصفحة. غير مسموح مناطق الاختيار.</value>
-    <comment>message box</comment>
-  </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>إزالة جميع الخطوط الفارغة؟
 
@@ -3836,5 +3830,4 @@ ISO-code then comma then language name</comment>
 حدد لا للحفاظ على خط فارغ واحد بين الفقرات</value>
     <comment>message box</comment>
   </data>
->>>>>>> Stashed changes
 </root>

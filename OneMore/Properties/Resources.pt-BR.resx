@@ -3815,8 +3815,6 @@ Polaroid.</value>
 Qualquer</value>
     <comment>listbox</comment>
   </data>
-<<<<<<< Updated upstream
-=======
   <data name="ribPasteTextButton_Label" xml:space="preserve">
     <value>Colar e manter apenas o texto</value>
     <comment>ribbon item</comment>
@@ -3825,10 +3823,6 @@ Qualquer</value>
     <value>Cole e mantenha apenas o texto (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="SelectStyleCommand_context" xml:space="preserve">
-    <value>Mova o cursor de texto para uma única posição na página. Regiões de seleção não são permitidas.</value>
-    <comment>message box</comment>
-  </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>Remova todas as linhas vazias?
 
@@ -3836,5 +3830,4 @@ Selecione Sim para remover todas as linhas vazias entre os parágrafos
 Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <comment>message box</comment>
   </data>
->>>>>>> Stashed changes
 </root>
