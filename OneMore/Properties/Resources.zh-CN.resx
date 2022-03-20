@@ -3807,4 +3807,26 @@ OneNote 文件 (*.one)</value>
 任何</value>
     <comment>listbox</comment>
   </data>
+<<<<<<< Updated upstream
+=======
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>粘贴并保持文字</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>仅粘贴并保持文本（Ctrl + Shift + V）</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>将文本光标移动到页面上的单个位置。不允许选择区域。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemoveEmptyCommand_option" xml:space="preserve">
+    <value>删除所有空行？
+
+选择是以删除段落之间的所有空行
+选择否以在段落之间保留一个空行</value>
+    <comment>message box</comment>
+  </data>
+>>>>>>> Stashed changes
 </root>

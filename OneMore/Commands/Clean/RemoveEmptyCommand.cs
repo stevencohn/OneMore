@@ -10,7 +10,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -19,6 +21,12 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class RemoveEmptyCommand : Command
 	{
+		private Page page;
+		private XNamespace ns;
+		private IEnumerable<XElement> range;
+		private bool all;
+
+
 		public RemoveEmptyCommand()
 		{
 		}
@@ -26,54 +34,62 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic))
+			var result = UIHelper.ShowQuestion(Resx.RemoveEmptyCommand_option, false, true);
+			if (result == DialogResult.Cancel)
 			{
-				logger.StartClock();
+				return;
+			}
 
-				var modified = OutdentEmptyLines(page, ns);
-				modified = CollapseEmptyLines(page, ns) || modified;
-				modified = IndentEmptyLines(page, ns) || modified;
+			all = result == DialogResult.Yes;
 
-				logger.WriteTime("removed empty lines, now saving...");
+			logger.StartClock();
+			using (var one = new OneNote())
+			{
+				page = one.GetPage(OneNote.PageDetail.Selection);
+				ns = page.Namespace;
+			}
 
-				if (modified)
+			range = page.GetSelectedElements();
+			logger.WriteLine($"found {range.Count()} runs, scope={page.SelectionScope}");
+
+			var modified = OutdentEmptyLines();
+			modified = CollapseEmptyLines() || modified;
+			modified = IndentEmptyLines() || modified;
+
+			logger.WriteTime("saving", true);
+
+			if (modified)
+			{
+				using (var one = new OneNote())
 				{
 					await one.Update(page);
+					logger.WriteTime("saved");
 				}
 			}
 		}
 
 
-		/*
-		 * Outdent empty indented lines so we can then easily check if there are consecutive
-		 * empty lines that need to be collapse. An indended paragraph pattern is:
-		 * 
-		 * <OEChildren>
-		 *   <OE>
-		 *     <OEChildren> indented </o>
-		 *   </OE>
-		 * </>
-		 * 
- 		 */
-
-		private bool OutdentEmptyLines(Page page, XNamespace ns)
+		private bool OutdentEmptyLines()
 		{
-			var children = page.Root
-				.Elements(ns + "Outline").Elements(ns + "OEChildren")
-				.Where(e => !e.Parent.Elements(ns + "Meta")
-					.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)))
-				.ToList();
+			/* Outdent empty indented lines so we can then easily check if there are consecutive
+			 * empty lines that need to be collapse. An indended paragraph pattern is:
+			 * 
+			 * <OEChildren>
+			 *   <OE>
+			 *     <OEChildren> indented OE...
+			 */
 
+			var children = range.Descendants(ns + "OEChildren").ToList();
 			if (children.Any())
 			{
-				return OutdentEmptyLines(children.First().Parent, children, ns);
+				return OutdentEmptyLines(children.First().Parent, children);
 			}
 
 			return false;
 		}
 
 
-		private bool OutdentEmptyLines(XElement parent, List<XElement> children, XNamespace ns)
+		private bool OutdentEmptyLines(XElement parent, List<XElement> children)
 		{
 			// recursively find empty indented lines and outdent them
 
@@ -84,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 				var child = children[i];
 				if (child.HasElements)
 				{
-					OutdentEmptyLines(child, child.Elements(ns + "OE").Elements(ns + "OEChildren").ToList(), ns);
+					OutdentEmptyLines(child, child.Elements(ns + "OE").Elements(ns + "OEChildren").ToList());
 
 					if (child.TextValue().Trim() == string.Empty)
 					{
@@ -103,23 +119,23 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		/*
-		 * Find consecutive empty lines that need to be collapsed...
-		 */
-
-		public bool CollapseEmptyLines(Page page, XNamespace ns)
+		public bool CollapseEmptyLines()
 		{
-			var elements =
-				(from e in page.Root.Descendants(ns + "OE")
-				 let t = e.Elements().FirstOrDefault()
-				 where (t?.Name.LocalName == "T") && (t.TextValue().Trim().Length == 0)
-				 select e)
+			// find consecutive empty paragraphs that need to be collapsed...
+
+			var elements = range
+				.Select(e => e.Parent)
+				.Distinct()
+				.Where(e => e.TextValue().Trim().Length == 0)
 				.ToList();
 
 			if (elements?.Any() != true)
 			{
+				//logger.WriteLine("no blank lines found");
 				return false;
 			}
+
+			//logger.WriteLine($"found {elements.Count} collapsable lines");
 
 			var modified = false;
 
@@ -156,56 +172,62 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
-				// is this an empty paragraph preceded by an empty paragraph?
-				if (element.PreviousNode != null &&
-					element.PreviousNode.NodeType == System.Xml.XmlNodeType.Element)
+				if (all)
 				{
-					var prev = element.PreviousNode as XElement;
+					element.Remove();
+					modified = true;
+					continue;
+				}
 
-					if (prev.Name.LocalName == "OE")
+				// is this an empty paragraph preceded by an empty paragraph?
+				if (element.PreviousNode is XElement prev && prev.Name.LocalName == "OE")
+				{
+					// does previous paragraph end with an empty run?
+					var t = prev.Elements().Last();
+					if (t.Name.LocalName == "T" && t.TextValue().Trim().Length == 0)
 					{
-						var t = prev.Elements().Last();
-						if (t.Name.LocalName == "T" && t.TextValue().Trim().Length == 0)
-						{
-							// remove consecutive empty line
-							prev.Remove();
-							modified = true;
-						}
+						// remove consecutive empty line
+						prev.Remove();
+						modified = true;
 					}
 				}
 			}
+
+			// clean up left-over empty OEChildrens
+			page.Root.Descendants(ns + "OEChildren")
+				.Where(e => !e.HasElements)
+				.Remove();
 
 			return modified;
 		}
 
 
-		/*
-		 * Indent outdented empty lines so "section" or related paragraphs can be collapsed
-		 * together under a shared heading. The pattern is as follows, where the empty T is
-		 * left outdented from para2 but should be indented to the same level:
-		 * 
-		 * <OE>
-		 *   <OEChildren>...</>
-		 * </OE>
-		 * <OE>
-		 *   <T> -empty-and-outdented- </T>
-		 *   <OEChildren>
-		 *     para2
-		 *   </OEChildren>
-		 * </OE>
-		 * 
-		 * This needs to be "flattened" to:
-		 * 
-		 * <OE>
-		 *   <OEChildren>...</>
-		 *   <OEChildren><OE><T> -empty- </T></OE></>
-		 *   <OEChildren> para2 </>
-		 * </OE>
-		 */
-
-		public bool IndentEmptyLines(Page page, XNamespace ns)
+		public bool IndentEmptyLines()
 		{
-			var elements = page.Root.Descendants(ns + "OE").Elements(ns + "T")
+			/* Indent outdented empty lines so "section" or related paragraphs can be collapsed
+			 * together under a shared heading. The pattern is as follows, where the empty T is
+			 * left outdented from para2 but should be indented to the same level:
+			 * 
+			 * <OE>
+			 *   <OEChildren>...</>
+			 * </OE>
+			 * <OE>
+			 *   <T> -empty-and-outdented- </T>
+			 *   <OEChildren>
+			 *     para2
+			 *   </OEChildren>
+			 * </OE>
+			 * 
+			 * This needs to be "flattened" to:
+			 * 
+			 * <OE>
+			 *   <OEChildren>...</>
+			 *   <OEChildren><OE><T> -empty- </T></OE></>
+			 *   <OEChildren> para2 </>
+			 * </OE>
+			 */
+
+			var elements = range
 				.Where(e => e.PreviousNode == null && e.TextValue().Trim().Length == 0)
 				.ToList();
 

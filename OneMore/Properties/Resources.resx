@@ -3880,4 +3880,18 @@ Any</value>
     <value>Paste and Keep Text Only (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
+<<<<<<< Updated upstream
+=======
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>Move the text cursor to a single position on the page. Selection regions are not allowed.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemoveEmptyCommand_option" xml:space="preserve">
+    <value>Remove all empty lines?
+
+Select Yes to remove all empty lines between paragraphs
+Select No to keep one empty line between paragraphs</value>
+    <comment>message box</comment>
+  </data>
+>>>>>>> Stashed changes
 </root>

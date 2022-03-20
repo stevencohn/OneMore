@@ -4609,6 +4609,18 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove all empty lines?
+        ///
+        ///Select Yes to remove all empty lines between paragraphs
+        ///Select No to keep one empty line between paragraphs.
+        /// </summary>
+        internal static string RemoveEmptyCommand_option {
+            get {
+                return ResourceManager.GetString("RemoveEmptyCommand_option", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove spacing after paragraphs.
         /// </summary>
         internal static string RemoveSpacingDialog_afterBox_Text {

@@ -3868,4 +3868,26 @@ Polaroid</value>
 Każdy</value>
     <comment>listbox</comment>
   </data>
+<<<<<<< Updated upstream
+=======
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Wklej tylko tekst</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Wklej i trzymaj tylko tekst (Ctrl + Shift + V)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>Przesuń kursor tekstowy na pojedynczą pozycję na stronie. Regiony wyboru nie są dozwolone.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RemoveEmptyCommand_option" xml:space="preserve">
+    <value>Usuń wszystkie puste linie?
+
+Wybierz Tak, aby usunąć wszystkie puste linie między akapitami
+Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
+    <comment>message box</comment>
+  </data>
+>>>>>>> Stashed changes
 </root>
