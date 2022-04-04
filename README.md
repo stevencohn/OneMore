@@ -203,6 +203,10 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
     * Crop and rotate the image
     * Resize the image
 
+### OneMore in the Media
+
+* [How to Increase the Functionality of OneNote With OneMore Add-In](https://www.makeuseof.com/increase-functionally-onenote-with-onemore-add-in/)
+
 ### Why?
 
 I wanted something more than what OneNote provided. I was overwhelmed by _OneNote Gem_,
