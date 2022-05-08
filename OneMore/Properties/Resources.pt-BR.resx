@@ -3815,4 +3815,23 @@ Polaroid.</value>
 Qualquer</value>
     <comment>listbox</comment>
   </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Colar e manter apenas o texto</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Cole e mantenha apenas o texto (Ctrl + Shift + V)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="RemoveEmptyCommand_option" xml:space="preserve">
+    <value>Remova todas as linhas vazias?
+
+Selecione Sim para remover todas as linhas vazias entre os parágrafos
+Selecione Não para manter uma linha vazia entre os parágrafos</value>
+    <comment>message box</comment>
+  </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>Posicione o cursor no corpo da página sem selecionar uma variedade de texto</value>
+    <comment>error message box</comment>
+  </data>
 </root>

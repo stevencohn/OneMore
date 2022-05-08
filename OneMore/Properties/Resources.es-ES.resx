@@ -3815,4 +3815,23 @@ polaroid</value>
 Ningún</value>
     <comment>listbox</comment>
   </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Pegar y mantener el texto solamente</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Pegar y mantener solo texto (CTRL + MAYÚS + V)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="RemoveEmptyCommand_option" xml:space="preserve">
+    <value>Eliminar todas las líneas vacías?
+
+Seleccione Sí para eliminar todas las líneas vacías entre los párrafos
+Seleccione No para mantener una línea vacía entre los párrafos</value>
+    <comment>message box</comment>
+  </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>Coloque el cursor en el cuerpo de la página sin seleccionar un rango de texto</value>
+    <comment>error message box</comment>
+  </data>
 </root>

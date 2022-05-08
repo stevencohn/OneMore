@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!ok)
 				{
-					UIHelper.ShowInfo(one.Window, Resx.Error_BodyContext);
+					UIHelper.ShowInfo(one.Window, Resx.Error_CursorContext);
 					return;
 				}
 

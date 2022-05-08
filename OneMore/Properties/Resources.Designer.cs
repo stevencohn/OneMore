@@ -2050,6 +2050,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Position the cursor in the body of the page without selecting a range of text.
+        /// </summary>
+        internal static string Error_CursorContext {
+            get {
+                return ResourceManager.GetString("Error_CursorContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No attachments found on page.
         /// </summary>
         internal static string Error_NoAttachments {
@@ -4605,6 +4614,18 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RemoveCitations_FromUrl {
             get {
                 return ResourceManager.GetString("RemoveCitations_FromUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all empty lines?
+        ///
+        ///Select Yes to remove all empty lines between paragraphs
+        ///Select No to keep one empty line between paragraphs.
+        /// </summary>
+        internal static string RemoveEmptyCommand_option {
+            get {
+                return ResourceManager.GetString("RemoveEmptyCommand_option", resourceCulture);
             }
         }
         
