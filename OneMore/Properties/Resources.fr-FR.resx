@@ -3826,4 +3826,8 @@ Sélectionnez Oui pour supprimer toutes les lignes vides entre les paragraphes
 Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>Positionnez le curseur dans le corps de la page sans sélectionner une gamme de texte</value>
+    <comment>error message box</comment>
+  </data>
 </root>

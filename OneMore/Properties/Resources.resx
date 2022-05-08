@@ -3887,4 +3887,8 @@ Select Yes to remove all empty lines between paragraphs
 Select No to keep one empty line between paragraphs</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>Position the cursor in the body of the page without selecting a range of text</value>
+    <comment>error message box</comment>
+  </data>
 </root>

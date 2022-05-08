@@ -3830,4 +3830,8 @@ Selecteer Ja om alle lege regels tussen paragrafen te verwijderen
 Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>Plaats de cursor in het lichaam van de pagina zonder een reeks tekst te selecteren</value>
+    <comment>error message box</comment>
+  </data>
 </root>

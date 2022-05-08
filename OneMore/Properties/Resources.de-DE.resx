@@ -3817,4 +3817,8 @@ Wählen Sie Ja, um alle leeren Zeilen zwischen den Absätzen zu entfernen
 Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>Positionieren Sie den Cursor im Körper der Seite, ohne einen Textbereich auszuwählen</value>
+    <comment>error message box</comment>
+  </data>
 </root>

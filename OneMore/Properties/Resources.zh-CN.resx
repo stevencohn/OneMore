@@ -3822,4 +3822,8 @@ OneNote 文件 (*.one)</value>
 选择否以在段落之间保留一个空行</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>将光标放置在页面正文中，而无需选择一系列文本</value>
+    <comment>error message box</comment>
+  </data>
 </root>

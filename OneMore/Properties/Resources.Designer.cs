@@ -2050,6 +2050,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Position the cursor in the body of the page without selecting a range of text.
+        /// </summary>
+        internal static string Error_CursorContext {
+            get {
+                return ResourceManager.GetString("Error_CursorContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No attachments found on page.
         /// </summary>
         internal static string Error_NoAttachments {

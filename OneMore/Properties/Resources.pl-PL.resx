@@ -3883,4 +3883,8 @@ Wybierz Tak, aby usunąć wszystkie puste linie między akapitami
 Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>Ustaw kursor w treści strony bez wyboru zakresu tekstu</value>
+    <comment>error message box</comment>
+  </data>
 </root>

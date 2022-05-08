@@ -3830,4 +3830,8 @@ Seleccione Sí para eliminar todas las líneas vacías entre los párrafos
 Seleccione No para mantener una línea vacía entre los párrafos</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>Coloque el cursor en el cuerpo de la página sin seleccionar un rango de texto</value>
+    <comment>error message box</comment>
+  </data>
 </root>

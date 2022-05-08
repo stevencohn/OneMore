@@ -3830,4 +3830,8 @@ ISO-code then comma then language name</comment>
 حدد لا للحفاظ على خط فارغ واحد بين الفقرات</value>
     <comment>message box</comment>
   </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>ضع المؤشر في جسم الصفحة دون تحديد مجموعة من النص</value>
+    <comment>error message box</comment>
+  </data>
 </root>
