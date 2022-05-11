@@ -5638,6 +5638,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sortable Date with Time.
+        /// </summary>
+        internal static string ribInsertDateTimeButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertDateTimeButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double Horizontal Line.
         /// </summary>
         internal static string ribInsertDoubleLineButton_Label {

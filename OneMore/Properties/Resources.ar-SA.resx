@@ -3834,4 +3834,8 @@ ISO-code then comma then language name</comment>
     <value>ضع المؤشر في جسم الصفحة دون تحديد مجموعة من النص</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>تاريخ فرز مع مرور الوقت</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

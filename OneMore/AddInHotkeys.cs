@@ -40,6 +40,7 @@ namespace River.OneMoreAddIn
 			RegisterHotKey(s, nameof(HighlightCmd), async () => await HighlightCmd(null));
 			RegisterHotKey(s, nameof(InsertCodeBlockCmd), async () => await InsertCodeBlockCmd(null));
 			RegisterHotKey(s, nameof(InsertDateCmd), async () => await InsertDateCmd(null));
+			RegisterHotKey(s, nameof(InsertDateTimeCmd), async () => await InsertDateTimeCmd(null));
 			RegisterHotKey(s, nameof(InsertDoubleHorizontalLineCmd), async () => await InsertDoubleHorizontalLineCmd(null));
 			RegisterHotKey(s, nameof(InsertHorizontalLineCmd), async () => await InsertHorizontalLineCmd(null));
 			RegisterHotKey(s, nameof(InsertTimerCmd), async () => await InsertTimerCmd(null));

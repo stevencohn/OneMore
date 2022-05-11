@@ -3826,4 +3826,8 @@ OneNote 文件 (*.one)</value>
     <value>将光标放置在页面正文中，而无需选择一系列文本</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>与时间分类的日期</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
