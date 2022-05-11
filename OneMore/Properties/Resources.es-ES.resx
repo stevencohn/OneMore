@@ -3834,4 +3834,8 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Coloque el cursor en el cuerpo de la página sin seleccionar un rango de texto</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>Fecha ordenable con la hora</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

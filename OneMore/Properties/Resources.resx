@@ -3891,4 +3891,8 @@ Select No to keep one empty line between paragraphs</value>
     <value>Position the cursor in the body of the page without selecting a range of text</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>Sortable Date with Time</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

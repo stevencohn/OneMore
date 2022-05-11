@@ -3887,4 +3887,8 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Ustaw kursor w treści strony bez wyboru zakresu tekstu</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>Data sortowania z czasem</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

@@ -3830,4 +3830,8 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Positionnez le curseur dans le corps de la page sans sélectionner une gamme de texte</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>Date de tri avec le temps</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

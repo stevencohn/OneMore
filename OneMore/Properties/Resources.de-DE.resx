@@ -3821,4 +3821,8 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Positionieren Sie den Cursor im Körper der Seite, ohne einen Textbereich auszuwählen</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>Sortierbares Datum mit der Uhrzeit</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

@@ -3834,4 +3834,8 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Plaats de cursor in het lichaam van de pagina zonder een reeks tekst te selecteren</value>
     <comment>error message box</comment>
   </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>Sorteerbare datum met de tijd</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
