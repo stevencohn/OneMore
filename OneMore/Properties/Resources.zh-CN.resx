@@ -1704,7 +1704,7 @@ OneNote 将自动关闭</value>
     <comment>ribbon item</comment>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
-    <value>之后的空间：</value>
+    <value>段后空间：</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
@@ -1716,7 +1716,7 @@ OneNote 将自动关闭</value>
     <comment>button tip</comment>
   </data>
   <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
-    <value>前空格：</value>
+    <value>段前空间:</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_boldButton.Text" xml:space="preserve">
@@ -2490,7 +2490,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
-    <value>间距：</value>
+    <value>行距：</value>
     <comment>label</comment>
   </data>
   <data name="ContextMenuSheet_ribJoinParagraphButton" xml:space="preserve">
