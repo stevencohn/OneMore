@@ -16,4 +16,28 @@
       导入
     </preferred>
   </hint>
+  <hint name="StyleDialog_beforeLabel">
+    <source>
+      Space Before:
+    </source>
+    <preferred>
+      段前空间:
+    </preferred>
+  </hint>
+  <hint name="StyleDialog_afterLabel">
+    <source>
+      Space After:
+    </source>
+    <preferred>
+      段后空间:
+    </preferred>
+  </hint>
+  <hint name="StyleDialog_spacingLabel">
+    <source>
+      Spacing:
+    </source>
+    <preferred>
+      行距:
+    </preferred>
+  </hint>
 </hints>
