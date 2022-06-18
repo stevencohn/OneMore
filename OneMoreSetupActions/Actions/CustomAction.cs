@@ -8,8 +8,11 @@ namespace OneMoreSetupActions
 	internal abstract class CustomAction
 	{
 		// these are CMD exit codes
+		// https://docs.microsoft.com/en-us/windows/win32/msi/logging-of-action-return-values?redirectedfrom=MSDN
 		public const int SUCCESS = 0;
-		public const int FAILURE = 1;
+		public const int FAILURE = 1603;
+		public const int USEREXIT = 1602;
+
 
 		protected readonly Logger logger;
 		protected readonly Stepper stepper;

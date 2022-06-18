@@ -39,6 +39,7 @@ namespace OneMoreSetupActions
 			logger = new Logger("OneMoreSetup");
 			stepper = new Stepper();
 
+			CheckBitness();
 			ReportContext();
 
 			int status;
@@ -98,6 +99,20 @@ namespace OneMoreSetupActions
 			}
 
 			Environment.Exit(status);
+		}
+
+
+		static void CheckBitness()
+		{
+			var oarc = Environment.Is64BitOperatingSystem ? "x64" : "x86";
+			var iarc = Environment.Is64BitProcess ? "x64" : "x86";
+			logger.WriteLine($"Installer architecture ({iarc}), OS architecture ({oarc})");
+
+			if (Environment.Is64BitOperatingSystem != Environment.Is64BitProcess)
+			{
+				logger.WriteLine($"Installer architecture ({iarc}) does not match operating system ({oarc})");
+				Environment.Exit(CustomAction.USEREXIT);
+			}
 		}
 
 
