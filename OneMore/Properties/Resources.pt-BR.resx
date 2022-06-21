@@ -3850,4 +3850,28 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Data classificável com hora</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
+    <value>Link copiado para esta página</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
+    <value>Link copiado para este parágrafo</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToPageButton" xml:space="preserve">
+    <value>Copie o link para a página</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToParagraphButton" xml:space="preserve">
+    <value>Copie o link para o parágrafo</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
+    <value>Copie o link para a página</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
+    <value>Copie o link para o parágrafo</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

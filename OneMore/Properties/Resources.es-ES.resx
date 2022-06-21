@@ -3850,4 +3850,28 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Mueva el cursor de texto a una sola posición en la página. No se permiten regiones de selección.</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
+    <value>Enlace copiado a esta página</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
+    <value>Enlace copiado a este párrafo</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToPageButton" xml:space="preserve">
+    <value>Copiar enlace a la página</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToParagraphButton" xml:space="preserve">
+    <value>Copiar enlace al párrafo</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
+    <value>Copiar enlace a la página</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
+    <value>Copiar enlace al párrafo</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

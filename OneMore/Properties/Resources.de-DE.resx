@@ -3837,4 +3837,28 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Bewegen Sie den Textcursor in eine einzige Position auf der Seite. Auswahlregionen sind nicht zulässig.</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
+    <value>Kopierte Link zu dieser Seite</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
+    <value>Kopierte Link zu diesem Absatz</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToPageButton" xml:space="preserve">
+    <value>Link zu Seite kopieren</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToParagraphButton" xml:space="preserve">
+    <value>Link zu Absatz kopieren</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
+    <value>Link zu Seite kopieren</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
+    <value>Link zu Absatz kopieren</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

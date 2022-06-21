@@ -141,6 +141,12 @@ namespace River.OneMoreAddIn
 		public async Task CopyDownCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.CopyDown);
 
+		public async Task CopyLinkToPageCmd(IRibbonControl control)
+			=> await factory.Run<CopyLinkCommand>(false);
+
+		public async Task CopyLinkToParagraphCmd(IRibbonControl control)
+			=> await factory.Run<CopyLinkCommand>(true);
+
 		public async Task CrawlWebPageCmd(IRibbonControl control)
 			=> await factory.Run<CrawlWebPageCommand>();
 
