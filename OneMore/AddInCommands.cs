@@ -255,7 +255,12 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertDateButton_Label", Keys.Control | Keys.Shift | Keys.D)]
 		public async Task InsertDateCmd(IRibbonControl control)
-			=> await factory.Run<InsertDateCommand>();
+			=> await factory.Run<InsertDateCommand>(false);
+
+
+		[Command("ribInsertDateTimeButton_Label", Keys.Control | Keys.Shift | Keys.Alt | Keys.D)]
+		public async Task InsertDateTimeCmd(IRibbonControl control)
+			=> await factory.Run<InsertDateCommand>(true);
 
 
 		[Command("ribInsertDoubleLineButton_Label", Keys.Alt | Keys.Shift| Keys.F12)]

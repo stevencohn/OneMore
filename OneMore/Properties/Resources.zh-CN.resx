@@ -3815,6 +3815,29 @@ OneNote 文件 (*.one)</value>
     <value>仅粘贴并保持文本（Ctrl + Shift + V）</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="RemoveEmptyCommand_option" xml:space="preserve">
+    <value>删除所有空行？
+
+选择是以删除段落之间的所有空行
+选择否以在段落之间保留一个空行</value>
+    <comment>message box</comment>
+  </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>将光标放置在页面正文中，而无需选择一系列文本</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>与时间分类的日期</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>粘贴并保持文字</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>仅粘贴并保持文本（Ctrl + Shift + V）</value>
+    <comment>ribbon item</comment>
+  </data>
   <data name="SelectStyleCommand_context" xml:space="preserve">
     <value>将文本光标移动到页面上的单个位置。不允许选择区域。</value>
     <comment>message box</comment>

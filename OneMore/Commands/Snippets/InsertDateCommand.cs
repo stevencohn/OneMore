@@ -19,12 +19,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var includeTime = (bool)args[0];
+
 			using (var one = new OneNote(out var page, out var ns))
 			{
 				var elements = page.Root.Descendants(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				var text = DateTime.Now.ToString("yyy-MM-dd");
+				var text = DateTime.Now.ToString(includeTime ? "yyy-MM-dd hh:mm tt" : "yyy-MM-dd");
+
 				var content = new XElement(ns + "T", new XCData(text));
 
 				if (elements == null)

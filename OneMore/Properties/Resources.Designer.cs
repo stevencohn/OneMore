@@ -2050,6 +2050,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Position the cursor in the body of the page without selecting a range of text.
+        /// </summary>
+        internal static string Error_CursorContext {
+            get {
+                return ResourceManager.GetString("Error_CursorContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No attachments found on page.
         /// </summary>
         internal static string Error_NoAttachments {
@@ -4609,6 +4618,18 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove all empty lines?
+        ///
+        ///Select Yes to remove all empty lines between paragraphs
+        ///Select No to keep one empty line between paragraphs.
+        /// </summary>
+        internal static string RemoveEmptyCommand_option {
+            get {
+                return ResourceManager.GetString("RemoveEmptyCommand_option", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove spacing after paragraphs.
         /// </summary>
         internal static string RemoveSpacingDialog_afterBox_Text {
@@ -5613,6 +5634,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertDateButton_Screentip {
             get {
                 return ResourceManager.GetString("ribInsertDateButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sortable Date with Time.
+        /// </summary>
+        internal static string ribInsertDateTimeButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertDateTimeButton_Label", resourceCulture);
             }
         }
         

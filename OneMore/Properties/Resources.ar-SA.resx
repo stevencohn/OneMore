@@ -3823,6 +3823,29 @@ ISO-code then comma then language name</comment>
     <value>لصق والحفاظ على النص فقط (CTRL + SHIFT + V)</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="RemoveEmptyCommand_option" xml:space="preserve">
+    <value>إزالة جميع الخطوط الفارغة؟
+
+حدد نعم لإزالة جميع الخطوط الفارغة بين الفقرات
+حدد لا للحفاظ على خط فارغ واحد بين الفقرات</value>
+    <comment>message box</comment>
+  </data>
+  <data name="Error_CursorContext" xml:space="preserve">
+    <value>ضع المؤشر في جسم الصفحة دون تحديد مجموعة من النص</value>
+    <comment>error message box</comment>
+  </data>
+  <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
+    <value>تاريخ فرز مع مرور الوقت</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>لصق والحفاظ على النص فقط</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>لصق والحفاظ على النص فقط (CTRL + SHIFT + V)</value>
+    <comment>ribbon item</comment>
+  </data>
   <data name="SelectStyleCommand_context" xml:space="preserve">
     <value>انقل مؤشر النص إلى موقع واحد على الصفحة. غير مسموح مناطق الاختيار.</value>
     <comment>message box</comment>
