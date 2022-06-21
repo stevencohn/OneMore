@@ -3850,4 +3850,28 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Verplaats de tekstcursor naar een enkele positie op de pagina. Selectie-regio's zijn niet toegestaan.</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
+    <value>Gekopieerd link naar deze pagina</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
+    <value>Gekopieerde link naar deze paragraaf</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToPageButton" xml:space="preserve">
+    <value>Kopieer link naar pagina</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToParagraphButton" xml:space="preserve">
+    <value>Kopieer link naar paragraaf</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
+    <value>Kopieer link naar pagina</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
+    <value>Kopieer link naar paragraaf</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

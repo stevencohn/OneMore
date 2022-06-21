@@ -3850,4 +3850,28 @@ ISO-code then comma then language name</comment>
     <value>انقل مؤشر النص إلى موقع واحد على الصفحة. غير مسموح مناطق الاختيار.</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
+    <value>رابط نسخ لهذه الصفحة</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
+    <value>رابط نسخ لهذه الفقرة</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToPageButton" xml:space="preserve">
+    <value>نسخ الرابط إلى الصفحة</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToParagraphButton" xml:space="preserve">
+    <value>نسخ الرابط إلى الفقرة</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
+    <value>نسخ الرابط إلى الصفحة</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
+    <value>نسخ الرابط إلى الفقرة</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

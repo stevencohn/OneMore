@@ -3846,4 +3846,28 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Déplacez le curseur de texte en une seule position sur la page. Les régions de sélection ne sont pas autorisées.</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
+    <value>Lien copié vers cette page</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
+    <value>Lien copié à ce paragraphe</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToPageButton" xml:space="preserve">
+    <value>Copier le lien vers la page</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyLinkToParagraphButton" xml:space="preserve">
+    <value>Copier le lien vers le paragraphe</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
+    <value>Copier le lien vers la page</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
+    <value>Copier le lien vers le paragraphe</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

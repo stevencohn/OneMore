@@ -1058,6 +1058,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Link to Page.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCopyLinkToPageButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCopyLinkToPageButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Link to Paragraph.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCopyLinkToParagraphButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCopyLinkToParagraphButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Decrease Text Size.
         /// </summary>
         internal static string ContextMenuSheet_ribDecreaseFontSizeButton {
@@ -1424,6 +1442,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CopyFolderCommand_InvalidTarget {
             get {
                 return ResourceManager.GetString("CopyFolderCommand_InvalidTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copied link to this page.
+        /// </summary>
+        internal static string CopyLinkCommand_LinkToPage {
+            get {
+                return ResourceManager.GetString("CopyLinkCommand_LinkToPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copied link to this paragraph.
+        /// </summary>
+        internal static string CopyLinkCommand_LinkToParagraph {
+            get {
+                return ResourceManager.GetString("CopyLinkCommand_LinkToParagraph", resourceCulture);
             }
         }
         
@@ -5184,6 +5220,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCopyFolderButton_Label {
             get {
                 return ResourceManager.GetString("ribCopyFolderButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Link to Page.
+        /// </summary>
+        internal static string ribCopyLinkToPageButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyLinkToPageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Link to Paragraph.
+        /// </summary>
+        internal static string ribCopyLinkToParagraphButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyLinkToParagraphButton_Label", resourceCulture);
             }
         }
         
