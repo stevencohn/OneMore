@@ -237,7 +237,8 @@ namespace River.OneMoreAddIn.Styles
 
 			return
 				//StyleType == style.StyleType &&
-				FontFamily == style.FontFamily &&
+				// font-family value may be inconsistent when pasting HTML
+				FontFamily.ToLower() == style.FontFamily.ToLower() &&
 				FontSize == style.FontSize &&
 				//ApplyColors == style.ApplyColors &&
 				Color == style.Color &&
