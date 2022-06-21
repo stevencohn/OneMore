@@ -3891,4 +3891,16 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Data sortowania z czasem</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Wklej tylko tekst</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Wklej i trzymaj tylko tekst (Ctrl + Shift + V)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>Przesuń kursor tekstowy na pojedynczą pozycję na stronie. Regiony wyboru nie są dozwolone.</value>
+    <comment>message box</comment>
+  </data>
 </root>

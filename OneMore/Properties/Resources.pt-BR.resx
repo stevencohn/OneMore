@@ -3823,6 +3823,18 @@ Qualquer</value>
     <value>Cole e mantenha apenas o texto (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>Mova o cursor de texto para uma única posição na página. Regiões de seleção não são permitidas.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Colar e manter apenas o texto</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Cole e mantenha apenas o texto (Ctrl + Shift + V)</value>
+    <comment>ribbon item</comment>
+  </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>Remova todas as linhas vazias?
 

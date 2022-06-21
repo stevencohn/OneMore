@@ -94,6 +94,13 @@ namespace River.OneMoreAddIn.Models
 		public SelectionScope SelectionScope { get; private set; }
 
 
+		/// <summary>
+		/// Gets an indication that the text cursor is positioned over either a hyperlink
+		/// or a MathML equation, both of which return zero-length selection ranges.
+		/// </summary>
+		public bool SelectionSpecial { get; private set; }
+
+
 
 
 		public string Title
@@ -809,13 +816,14 @@ namespace River.OneMoreAddIn.Models
 					var cdata = cursor.FirstNode as XCData;
 
 					// empty or link or xml-comment because we can't tell the difference between
-					// a zero-selection zero-selection link and a partial or fully selected link.
-					// Note that XML comments are used to wrap mathML equations
+					// a zero-selection link and a partial or fully selected link. Note that XML
+					// comments are used to wrap mathML equations
 					if (cdata.Value.Length == 0 ||
-						Regex.IsMatch(cdata.Value, @"<a href.+?</a>") ||
-						Regex.IsMatch(cdata.Value, @"<!--.+?-->"))
+						Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
+						Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
 					{
 						SelectionScope = SelectionScope.Empty;
+						SelectionSpecial = cdata.Value.Length > 0;
 						return cursor;
 					}
 				}

@@ -3838,4 +3838,16 @@ ISO-code then comma then language name</comment>
     <value>تاريخ فرز مع مرور الوقت</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>لصق والحفاظ على النص فقط</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>لصق والحفاظ على النص فقط (CTRL + SHIFT + V)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>انقل مؤشر النص إلى موقع واحد على الصفحة. غير مسموح مناطق الاختيار.</value>
+    <comment>message box</comment>
+  </data>
 </root>

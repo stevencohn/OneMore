@@ -3834,4 +3834,16 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Date de tri avec le temps</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ribPasteTextButton_Label" xml:space="preserve">
+    <value>Coller et garder le texte seulement</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
+    <value>Coller et garder le texte uniquement (Ctrl + Maj + V)</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="SelectStyleCommand_context" xml:space="preserve">
+    <value>Déplacez le curseur de texte en une seule position sur la page. Les régions de sélection ne sont pas autorisées.</value>
+    <comment>message box</comment>
+  </data>
 </root>
