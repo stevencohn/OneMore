@@ -87,9 +87,6 @@ namespace River.OneMoreAddIn
 					builder.AppendLine("</html>");
 					var html = PasteRtfCommand.AddHtmlPreamble(builder.ToString());
 
-					Logger.Current.WriteLine(html);
-
-
 					// copy hyperlink to clipboard
 					await SingleThreaded.Invoke(() =>
 					{
