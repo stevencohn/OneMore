@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 						using (var word = new Helpers.Office.Word())
 						{
 							var page = one.GetPage(pageId);
-							word.LinkupAttachments(filename, page.Root);
+							word.ResolveAttachmentRefs(filename, page.Root);
 						}
 					}
 
