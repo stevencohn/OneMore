@@ -3923,4 +3923,8 @@ Select No to keep one empty line between paragraphs</value>
     <value>Copy Link to Paragraph</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>Embed attachments</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

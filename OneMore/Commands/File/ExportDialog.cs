@@ -44,6 +44,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public bool Embedded => embeddedBox.Checked;
+
+
 		public string FolderPath => pathBox.Text;
 
 
@@ -101,7 +104,18 @@ namespace River.OneMoreAddIn.Commands
 				formatBox.SelectedIndex == 0 ||     // HTML
 				formatBox.SelectedIndex == 2 ||     // Word
 				formatBox.SelectedIndex == 3 ||     // XML
-				formatBox.SelectedIndex == 4;		// Markdown
+				formatBox.SelectedIndex == 4;       // Markdown
+
+			embeddedBox.Enabled =
+				formatBox.SelectedIndex == 2 &&     // Word
+				attachmentsBox.Checked;
+		}
+
+		private void ChangeIncludeAttachments(object sender, EventArgs e)
+		{
+			embeddedBox.Enabled =
+				formatBox.SelectedIndex == 2 &&     // Word
+				attachmentsBox.Checked;
 		}
 
 

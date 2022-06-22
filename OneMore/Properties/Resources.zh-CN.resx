@@ -3866,4 +3866,8 @@ OneNote 文件 (*.one)</value>
     <value>复制链接到段落</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>嵌入附件</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

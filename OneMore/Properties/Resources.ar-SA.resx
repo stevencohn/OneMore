@@ -3874,4 +3874,8 @@ ISO-code then comma then language name</comment>
     <value>نسخ الرابط إلى الفقرة</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>التضمين المرفقات</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

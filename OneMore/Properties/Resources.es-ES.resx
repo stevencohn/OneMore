@@ -3874,4 +3874,8 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Copiar enlace al párrafo</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>Incrustaciones de accesorios</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

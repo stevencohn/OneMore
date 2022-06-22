@@ -3861,4 +3861,8 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Link zu Absatz kopieren</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>Einbettungsanhänge</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

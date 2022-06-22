@@ -3927,4 +3927,8 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Skopiuj link do akapitu</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>Osadzone załączniki</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

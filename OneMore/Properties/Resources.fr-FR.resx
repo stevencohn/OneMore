@@ -3870,4 +3870,8 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Copier le lien vers le paragraphe</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>Attachements d'intégration</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

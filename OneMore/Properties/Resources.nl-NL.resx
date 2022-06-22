@@ -3874,4 +3874,8 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Kopieer link naar paragraaf</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>Bijlagen insluiten</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
