@@ -3874,4 +3874,8 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Copie o link para o parágrafo</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>Anexos de incorporação</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

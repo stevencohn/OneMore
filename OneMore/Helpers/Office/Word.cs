@@ -139,7 +139,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		}
 
 
-		public void ResolveAttachmentRefs(string docPath, XElement root)
+		public void ResolveAttachmentRefs(string docPath, XElement root, bool embedded)
 		{
 			// This code was first recorded as a Word VM macro by using the Find and Replace UI
 			// and then opening the macro in the VB script editor...
@@ -200,20 +200,26 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 					if (source != null)
 					{
-						var target = Path.Combine(path, text);
+						string target = source;
 
-						try
+						if (!embedded)
 						{
-							// copy cached/source file to md output directory
-							File.Copy(source, target, true);
-						}
-						catch
-						{
-							// error copying
-							continue;
+							// linking to a target file, copied to output directory...
+							target = Path.Combine(path, text);
+
+							try
+							{
+								// copy cached/source file to md output directory
+								File.Copy(source, target, true);
+							}
+							catch
+							{
+								// error copying
+								continue;
+							}
 						}
 
-						RenderAttachment(word.Selection, target, text);
+						RenderAttachment(word.Selection, target, text, embedded);
 
 						updated = true;
 					}
@@ -227,7 +233,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 		}
 
 
-		private void RenderAttachment(MSWord.Selection selection, string target, string text)
+		private void RenderAttachment(
+			MSWord.Selection selection, string target, string text, bool embedded)
 		{
 			var ext = Path.GetExtension(target);
 
@@ -240,7 +247,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 					selection.Text = String.Empty;
 
 					object filename = target;
-					object linkToFile = false;
+					object linkToFile = !embedded;
 					object displayAsIcon = true;
 					object iconIndex = 0;
 					object iconFilename = application;

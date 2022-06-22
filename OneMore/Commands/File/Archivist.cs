@@ -68,9 +68,12 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="filename">The output file to create/overwrite</param>
 		/// <param name="format">The OneNote ExportFormat</param>
 		/// <param name="withAttachments">True if copy and relink attachments</param>
+		/// <param name="embedded">True if attachment should be embedded; false to link</param>
 		/// <returns>True if the export was successful</returns>
 		public bool Export(string pageId, string filename,
-			OneNote.ExportFormat format, bool withAttachments = false)
+			OneNote.ExportFormat format,
+			bool withAttachments = false,
+			bool embedded = false)
 		{
 			logger.WriteLine($"publishing page to {filename}");
 
@@ -90,7 +93,7 @@ namespace River.OneMoreAddIn.Commands
 						using (var word = new Helpers.Office.Word())
 						{
 							var page = one.GetPage(pageId);
-							word.ResolveAttachmentRefs(filename, page.Root);
+							word.ResolveAttachmentRefs(filename, page.Root, embedded);
 						}
 					}
 
