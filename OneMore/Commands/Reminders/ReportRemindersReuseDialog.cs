@@ -16,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.ReportRemindersDialog_Text;
+				Text = Resx.ReportRemindersReuseDialog_Text;
 
 				Localize(new string[]
 				{
