@@ -3874,4 +3874,39 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Attachements d'intégration</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ReportRemindersDialog.Text" xml:space="preserve">
+    <value>SPODE SPORT</value>
+  </data>
+  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
+    <value>Portée</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
+    <value>Générer un rapport pour les rappels dans cette portée</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Toutes les sections du cahier actuel</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Tous les cahiers</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_sectionRadio.Text" xml:space="preserve">
+    <value>La section actuelle</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
+    <value>Créer une nouvelle page de rapport</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_oldRadio.Text" xml:space="preserve">
+    <value>Mettre à jour ce rapport existant</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
+    <value>Ancien ou nouveau</value>
+    <comment>title</comment>
+  </data>
 </root>

@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -33,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string MediumPriorityColor = "#5B9BD5";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 
+		private OneNote.Scope scope;
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
@@ -60,14 +62,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (one = new OneNote())
 			{
-				if (!await CollectReminders())
-				{
-					return;
-				}
-
 				string pageId;
 				if (args.Length > 0 && args[0] is string refreshArg && refreshArg == "refresh")
 				{
+					if (args.Length < 1 || !(args[1] is string scopeArg) ||
+						!Enum.TryParse(scopeArg, out scope))
+					{
+						scope = OneNote.Scope.Notebooks;
+					}
+
+					if (!await CollectReminders(scope))
+					{
+						return;
+					}
+
 					page = one.GetPage();
 					ns = page.Namespace;
 					pageId = page.PageId;
@@ -75,7 +83,22 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					pageId = await FindReport();
+					using (var dialog = new ReportRemindersDialog())
+					{
+						if (dialog.ShowDialog(owner) != DialogResult.OK)
+						{
+							return;
+						}
+
+						scope = dialog.Scope;
+					}
+
+					if (!await CollectReminders(scope))
+					{
+						return;
+					}
+
+					pageId = await FindReport(scope);
 					if (pageId == string.Empty)
 					{
 						return;
@@ -105,7 +128,7 @@ namespace River.OneMoreAddIn.Commands
 				var now = DateTime.Now.ToShortFriendlyString();
 				container.Add(
 					new Paragraph($"{Resx.ReminderReport_LastUpdated} {now} " +
-						$"(<a href=\"onemore://ReportRemindersCommand/refresh\">{Resx.word_Refresh}</a>)"),
+						$"(<a href=\"onemore://ReportRemindersCommand/refresh/{scope}\">{Resx.word_Refresh}</a>)"),
 					new Paragraph(string.Empty)
 					);
 
@@ -135,9 +158,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> CollectReminders()
+		private async Task<bool> CollectReminders(OneNote.Scope scope)
 		{
-			var hierarchy = await one.SearchMeta(string.Empty, MetaNames.Reminder);
+			var nodeID = string.Empty;
+			if (scope == OneNote.Scope.Sections)
+				nodeID = one.CurrentNotebookId;
+			else if (scope == OneNote.Scope.Pages)
+				nodeID = one.CurrentSectionId;
+
+			var hierarchy = await one.SearchMeta(nodeID, MetaNames.Reminder);
 			if (hierarchy == null)
 			{
 				UIHelper.ShowInfo(one.Window, "Could not create report at this time. Restart OneNote");
@@ -197,9 +226,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<string> FindReport()
+		private async Task<string> FindReport(OneNote.Scope scope)
 		{
-			var hierarchy = await one.SearchMeta(string.Empty, MetaNames.ReminderReport);
+			var nodeID = string.Empty;
+			if (scope == OneNote.Scope.Sections)
+				nodeID = one.CurrentNotebookId;
+			else if (scope == OneNote.Scope.Pages)
+				nodeID = one.CurrentSectionId;
+
+			var hierarchy = await one.SearchMeta(nodeID, MetaNames.ReminderReport);
 			if (hierarchy == null)
 			{
 				return null;
@@ -223,17 +258,27 @@ namespace River.OneMoreAddIn.Commands
 			// absurd but NavigateTo needs time to settle down
 			await Task.Delay(100);
 
-			var answer = UIHelper.ShowQuestion(Resx.RemindCommand_Reuse, true, true);
-			if (answer == System.Windows.Forms.DialogResult.Yes)
+			DialogResult answer;
+			using (var dialog = new ReportRemindersReuseDialog())
+			{
+				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+				{
+					// kind of hacky but...
+					return String.Empty;
+				}
+
+				answer = dialog.Option;
+			}
+
+			// OK = reuse, Yes = create
+			if (answer == DialogResult.OK)
 			{
 				return pageId;
 			}
 
 			await one.NavigateTo(current.PageId, string.Empty);
 			await Task.Delay(100);
-
-			// kind of hacky but ok...
-			return answer == System.Windows.Forms.DialogResult.Cancel ? String.Empty : null;
+			return null;
 		}
 
 

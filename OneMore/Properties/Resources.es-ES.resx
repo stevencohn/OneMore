@@ -3878,4 +3878,39 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Incrustaciones de accesorios</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ReportRemindersDialog.Text" xml:space="preserve">
+    <value>Alcance de informes</value>
+  </data>
+  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
+    <value>Alcance</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
+    <value>Genere un informe para recordatorios en este alcance</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Todas las secciones en el cuaderno actual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Todos los cuadernos</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_sectionRadio.Text" xml:space="preserve">
+    <value>La sección actual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
+    <value>Crear una nueva página de informe</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_oldRadio.Text" xml:space="preserve">
+    <value>Actualizar este informe existente</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
+    <value>Viejo o nuevo</value>
+    <comment>title</comment>
+  </data>
 </root>

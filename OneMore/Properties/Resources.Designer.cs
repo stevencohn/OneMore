@@ -4757,6 +4757,87 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scope.
+        /// </summary>
+        internal static string ReportRemindersDialog_groupBox_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersDialog_groupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate report for reminders in this scope.
+        /// </summary>
+        internal static string ReportRemindersDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All sections in the current notebook.
+        /// </summary>
+        internal static string ReportRemindersDialog_notebookRadio_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersDialog_notebookRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All notebooks.
+        /// </summary>
+        internal static string ReportRemindersDialog_notebooksRadio_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersDialog_notebooksRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current section.
+        /// </summary>
+        internal static string ReportRemindersDialog_sectionRadio_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersDialog_sectionRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Scope.
+        /// </summary>
+        internal static string ReportRemindersDialog_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new report page.
+        /// </summary>
+        internal static string ReportRemindersReuseDialog_newRadio_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersReuseDialog_newRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update this existing report.
+        /// </summary>
+        internal static string ReportRemindersReuseDialog_oldRadio_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersReuseDialog_oldRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old or New.
+        /// </summary>
+        internal static string ReportRemindersReuseDialog_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersReuseDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Absolute.
         /// </summary>
         internal static string ResizeImagesDialog_absRadio_Text {

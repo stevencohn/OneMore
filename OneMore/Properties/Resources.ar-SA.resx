@@ -3878,4 +3878,39 @@ ISO-code then comma then language name</comment>
     <value>التضمين المرفقات</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ReportRemindersDialog.Text" xml:space="preserve">
+    <value>نطاق التقرير</value>
+  </data>
+  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
+    <value>نِطَاق</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
+    <value>توليد تقرير للتذكير في هذا النطاق</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebookRadio.Text" xml:space="preserve">
+    <value>جميع الأقسام في دفتر الملاحظات الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>جميع دفاتر الملاحظات</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_sectionRadio.Text" xml:space="preserve">
+    <value>القسم الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
+    <value>إنشاء صفحة تقرير جديدة</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_oldRadio.Text" xml:space="preserve">
+    <value>قم بتحديث هذا التقرير الحالي</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
+    <value>قديم أو جديد</value>
+    <comment>title</comment>
+  </data>
 </root>

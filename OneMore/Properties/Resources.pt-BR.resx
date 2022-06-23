@@ -3878,4 +3878,39 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Anexos de incorporação</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ReportRemindersDialog.Text" xml:space="preserve">
+    <value>Escopo de relatório</value>
+  </data>
+  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
+    <value>Alcance</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
+    <value>Gerar relatório para lembretes neste escopo</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebookRadio.Text" xml:space="preserve">
+    <value>Todas as seções no caderno atual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>Todos os cadernos</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_sectionRadio.Text" xml:space="preserve">
+    <value>A seção atual</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
+    <value>Crie uma nova página de relatório</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_oldRadio.Text" xml:space="preserve">
+    <value>Atualize este relatório existente</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
+    <value>Velho ou novo</value>
+    <comment>title</comment>
+  </data>
 </root>
