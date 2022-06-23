@@ -253,6 +253,18 @@
     </Compile>
     <Compile Include="Commands\Reminders\ReminderSerializer.cs" />
     <Compile Include="Commands\Reminders\ReportRemindersCommand.cs" />
+    <Compile Include="Commands\Reminders\ReportRemindersDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Reminders\ReportRemindersDialog.Designer.cs">
+      <DependentUpon>ReportRemindersDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Reminders\ReportRemindersReuseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Reminders\ReportRemindersReuseDialog.Designer.cs">
+      <DependentUpon>ReportRemindersReuseDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\KeyboardGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1020,6 +1032,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Reminders\RemindDialog.resx">
       <DependentUpon>RemindDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Reminders\ReportRemindersDialog.resx">
+      <DependentUpon>ReportRemindersDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Reminders\ReportRemindersReuseDialog.resx">
+      <DependentUpon>ReportRemindersReuseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
       <DependentUpon>LinesSheet.cs</DependentUpon>

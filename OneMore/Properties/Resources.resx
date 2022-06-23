@@ -3923,4 +3923,43 @@ Select No to keep one empty line between paragraphs</value>
     <value>Copy Link to Paragraph</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
+    <value>Embed attachments</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ReportRemindersDialog.Text" xml:space="preserve">
+    <value>Report Scope</value>
+  </data>
+  <data name="ReportRemindersDialog_groupBox.Text" xml:space="preserve">
+    <value>Scope</value>
+    <comment>groupbox</comment>
+  </data>
+  <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
+    <value>Generate report for reminders in this scope</value>
+    <comment>label</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebookRadio.Text" xml:space="preserve">
+    <value>All sections in the current notebook</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_notebooksRadio.Text" xml:space="preserve">
+    <value>All notebooks</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersDialog_sectionRadio.Text" xml:space="preserve">
+    <value>The current section</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_newRadio.Text" xml:space="preserve">
+    <value>Create a new report page</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_oldRadio.Text" xml:space="preserve">
+    <value>Update this existing report</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
+    <value>Old or New</value>
+    <comment>title</comment>
+  </data>
 </root>

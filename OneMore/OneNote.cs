@@ -1240,7 +1240,7 @@ namespace River.OneMoreAddIn
 
 			// ignore recycle bins
 			var ns = hierarchy.GetNamespaceOfPrefix(Prefix);
-			hierarchy.Elements(ns + "Notebook").Elements(ns + "SectionGroup")
+			hierarchy.Descendants(ns + "SectionGroup")
 				.Where(e => e.Attribute("isRecycleBin") != null)
 				.ToList()
 				.ForEach(e => e.Remove());
