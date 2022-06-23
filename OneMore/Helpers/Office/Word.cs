@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 			}
 			catch (Exception exc)
 			{
-				Logger.Current.WriteLine(exc);
+				Logger.Current.WriteLine("error converting to html", exc);
 			}
 			finally
 			{
@@ -209,11 +209,18 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 							try
 							{
+								if (File.Exists(target))
+								{
+									// attempt to remove to avoid any permissions issues
+									File.Delete(target);
+								}
+
 								// copy cached/source file to md output directory
 								File.Copy(source, target, true);
 							}
-							catch
+							catch (Exception exc)
 							{
+								Logger.Current.WriteLine($"error copying to {target}", exc);
 								// error copying
 								continue;
 							}
