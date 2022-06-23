@@ -4,10 +4,12 @@
 
 namespace River.OneMoreAddIn.Helpers.Office
 {
+	using Microsoft.Win32;
 	using System;
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
+	using System.Text;
 	using System.Xml.Linq;
 	using MSWord = Microsoft.Office.Interop.Word;
 
@@ -137,7 +139,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		}
 
 
-		public void LinkupAttachments(string docPath, XElement root)
+		public void ResolveAttachmentRefs(string docPath, XElement root, bool embedded)
 		{
 			// This code was first recorded as a Word VM macro by using the Find and Replace UI
 			// and then opening the macro in the VB script editor...
@@ -198,28 +200,26 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 					if (source != null)
 					{
-						var target = Path.Combine(path, text);
+						string target = source;
 
-						try
+						if (!embedded)
 						{
-							// copy cached/source file to md output directory
-							File.Copy(source, target, true);
+							// linking to a target file, copied to output directory...
+							target = Path.Combine(path, text);
+
+							try
+							{
+								// copy cached/source file to md output directory
+								File.Copy(source, target, true);
+							}
+							catch
+							{
+								// error copying
+								continue;
+							}
 						}
-						catch
-						{
-							// error copying
-							continue;
-						}
 
-						word.Selection.Text = text;
-
-						object range = word.Selection.Range;
-
-						// get a well-formed URL but also decode it so avoid encoding problems
-						// with wide unicode characters in the path, Chinese, Hebrew, etc.
-						object uri = System.Web.HttpUtility.UrlDecode(new Uri(target).AbsoluteUri);
-
-						word.Selection.Hyperlinks.Add(range, ref uri);
+						RenderAttachment(word.Selection, target, text, embedded);
 
 						updated = true;
 					}
@@ -230,6 +230,94 @@ namespace River.OneMoreAddIn.Helpers.Office
 			{
 				doc.Save();
 			}
+		}
+
+
+		private void RenderAttachment(
+			MSWord.Selection selection, string target, string text, bool embedded)
+		{
+			var ext = Path.GetExtension(target);
+
+			var application = GetApplication(ext);
+			if (!string.IsNullOrEmpty(application))
+			{
+				object progID = GetProgID(ext);
+				if (!string.IsNullOrEmpty(progID as string))
+				{
+					selection.Text = String.Empty;
+
+					object filename = target;
+					object linkToFile = !embedded;
+					object displayAsIcon = true;
+					object iconIndex = 0;
+					object iconFilename = application;
+					object iconLabel = Path.GetFileName(target);
+
+					selection.InlineShapes.AddOLEObject(
+						progID,
+						ref filename,
+						ref linkToFile,
+						ref displayAsIcon,
+						ref iconFilename,
+						ref iconIndex,
+						ref iconLabel
+						);
+
+					return;
+				}
+			}
+
+			// get a well-formed URL but also decode it so avoid encoding problems
+			// with wide unicode characters in the path, Chinese, Hebrew, etc.
+
+			selection.Text = text;
+
+			object range = word.Selection.Range;
+			object uri = System.Web.HttpUtility.UrlDecode(new Uri(target).AbsoluteUri);
+			word.Selection.Hyperlinks.Add(range, ref uri);
+		}
+
+
+		private string GetApplication(string ext)
+		{
+			string application = null;
+
+			// fetch length of output buffer
+			uint length = 0;
+			uint ret = Native.AssocQueryString(
+				Native.AssocF.None, Native.AssocStr.Executable, ext, null, null, ref length);
+
+			if (ret == 1) // expect S_FALSE
+			{
+				// fill buffer with executable path
+				var buffer = new StringBuilder((int)length); // long enough for zero-term
+				ret = Native.AssocQueryString(
+					Native.AssocF.None, Native.AssocStr.Executable, ext, null, buffer, ref length);
+
+				if (ret == 0) // expect S_OK
+				{
+					application = buffer.ToString();
+				}
+			}
+
+			return application;
+		}
+
+
+		private string GetProgID(string ext)
+		{
+			string progID = null;
+
+			using (var key = Registry.CurrentUser.OpenSubKey(
+				$@"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\{ext}\UserChoice"))
+			{
+				if (key != null)
+				{
+					progID = key.GetValue("ProgID") as string;
+				}
+			}
+
+			return progID;
 		}
 	}
 }

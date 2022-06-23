@@ -2141,6 +2141,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embed attachments.
+        /// </summary>
+        internal static string ExportDialog_embeddedBox_Text {
+            get {
+                return ResourceManager.GetString("ExportDialog_embeddedBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder:.
         /// </summary>
         internal static string ExportDialog_folderLabel_Text {

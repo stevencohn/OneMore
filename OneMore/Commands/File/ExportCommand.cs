@@ -58,6 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			OneNote.ExportFormat format;
 			string path;
 			bool withAttachments;
+			bool embedded;
 			bool useUnderscores;
 
 			// dialog...
@@ -72,6 +73,7 @@ namespace River.OneMoreAddIn.Commands
 				path = dialog.FolderPath;
 				format = dialog.Format;
 				withAttachments = dialog.WithAttachments;
+				embedded = dialog.Embedded;
 				useUnderscores = dialog.UseUnderscores;
 			}
 
@@ -131,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						archivist.Export(page.PageId, filename, format, withAttachments);
+						archivist.Export(page.PageId, filename, format, withAttachments, embedded);
 					}
 				}
 			}
