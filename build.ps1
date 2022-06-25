@@ -15,7 +15,8 @@ run once on the machine to configure Registry settings:
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
     [int] $configbits = 64,
-    [switch] $both
+    [switch] $both,
+    [switch] $prep
     )
 
 Begin
@@ -58,7 +59,23 @@ Begin
             return $false
         }
 
+        write-host "devenv=$devenv"
+        $script:ideroot = Split-Path -Parent $devenv
+
+        write-host "ideroot=$ideroot"
         return $true
+    }
+
+    function DisableOutOfProcBuild
+    {
+        Push-Location "$ideroot\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild"
+        if (Test-Path .\DisableOutOfProcBuild.exe) {
+            .\DisableOutOfProcBuild.exe
+        } else {
+            $dir = (Get-Location).Path
+            Write-Host "could not find $dir\DisableOutOfProcBuild.exe"
+        }
+        Pop-Location
     }
 
     function PreserveVdproj
@@ -151,27 +168,34 @@ Begin
 }
 Process
 {
-    Push-Location OneMoreSetup
-    $script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
-    
-    if (FindVisualStudio)
+    if (-not (FindVisualStudio))
     {
-        PreserveVdproj
-
-        if ($configbits -eq 86 -or $both)
-        {
-            Configure 86
-            Build 86
-        }
-
-        if ($configBits -eq 64 -or $both)
-        {
-            Configure 64
-            Build 64
-        }
-
-        RestoreVdproj
+        return
+    }
+    
+    if ($prep)
+    {
+        DisableOutOfProcBuild
+        return
     }
 
+    Push-Location OneMoreSetup
+    $script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
+
+    PreserveVdproj
+
+    if ($configbits -eq 86 -or $both)
+    {
+        Configure 86
+        Build 86
+    }
+
+    if ($configBits -eq 64 -or $both)
+    {
+        Configure 64
+        Build 64
+    }
+
+    RestoreVdproj
     Pop-Location
 }
