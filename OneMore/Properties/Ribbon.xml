@@ -105,6 +105,11 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemoveTagsCmd"/>
               <button
+                id="ribRestoreAutosizeButton"
+                imageMso="SizeToControlWidth"
+                getLabel="GetRibbonLabel"
+                onAction="RestoreAutosizeCmd"/>
+              <button
                 id="ribToggleDttmButton"
                 imageMso="MessageHeaderToggle"
                 getLabel="GetRibbonLabel"

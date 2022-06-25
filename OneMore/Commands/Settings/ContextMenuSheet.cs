@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribRemoveCitationsButton",		// ... Remove Pasted Citations
 			"ribRemoveEmptyButton",			// ... Remove Empty Paragraphs and Headings
 			"ribRemoveSpacingButton",		// ... Remove Paragraph Spacing
+			"ribRestoreAutosizeButton",		// ... Restore Auto-size Container Widths
 			"ribTrimButton",				// ... Trim Whitespace
 			"ribEditMenu",					// Edit Menu
 			"ribColorizeMenu",				// ... Colorize

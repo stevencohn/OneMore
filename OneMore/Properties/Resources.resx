@@ -3962,4 +3962,12 @@ Select No to keep one empty line between paragraphs</value>
     <value>Old or New</value>
     <comment>title</comment>
   </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>... Restore Auto-size Container Widths</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>Restore Auto-size Container Widths</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

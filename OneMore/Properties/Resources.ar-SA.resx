@@ -3913,4 +3913,12 @@ ISO-code then comma then language name</comment>
     <value>قديم أو جديد</value>
     <comment>title</comment>
   </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>... استعادة عرض الحاوية بحجم السيارات</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>استعادة عرض الحاوية بحجم السيارات</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

@@ -435,6 +435,9 @@ namespace River.OneMoreAddIn
 		public async Task ResizeImagesCmd(IRibbonControl control)
 			=> await factory.Run<ResizeImagesCommand>();
 
+		public async Task RestoreAutosizeCmd(IRibbonControl control)
+			=> await factory.Run<RestoreAutosizeCommand>();
+
 		public async Task RestoreCollapsedCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Restore);
 

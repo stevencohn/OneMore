@@ -3913,4 +3913,12 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Oud of nieuw</value>
     <comment>title</comment>
   </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>... Herstel automatische containerbreedtes van de automatische grootte</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>Herstel automatische grootte containerbreedtes</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
