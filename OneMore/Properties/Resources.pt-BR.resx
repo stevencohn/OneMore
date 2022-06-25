@@ -3913,4 +3913,12 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Velho ou novo</value>
     <comment>title</comment>
   </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>... restaurar larguras de contêiner de tamanho automático</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>Restaurar larguras de contêiner de tamanho automático</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

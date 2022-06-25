@@ -3909,4 +3909,12 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Ancien ou nouveau</value>
     <comment>title</comment>
   </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>... restaurer les largeurs de conteneurs de taille automatique</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>Restaurer les largeurs de conteneurs de taille automatique</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

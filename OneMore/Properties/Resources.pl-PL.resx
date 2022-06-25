@@ -3966,4 +3966,12 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Stare lub nowe</value>
     <comment>title</comment>
   </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>... Przywróć szerokości pojemników z automatyczną wielkości</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>Przywróć szerokości pojemników z automatyczną wielkości</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

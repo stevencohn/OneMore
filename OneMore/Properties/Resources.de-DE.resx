@@ -3900,4 +3900,12 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Alt oder neu</value>
     <comment>title</comment>
   </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>... automatische Behälterbreiten wiederherstellen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>Stellen Sie die Containerbreiten der automatischen Größe wieder her</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>

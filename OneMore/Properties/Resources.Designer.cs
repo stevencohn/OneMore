@@ -1319,6 +1319,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Restore Auto-size Container Widths.
+        /// </summary>
+        internal static string ContextMenuSheet_ribRestoreAutosizeButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribRestoreAutosizeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ... Restore Collapsed Outline.
         /// </summary>
         internal static string ContextMenuSheet_ribRestoreCollapsedButton {
@@ -6399,6 +6408,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribResizeImagesButton_Label {
             get {
                 return ResourceManager.GetString("ribResizeImagesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore Auto-size Container Widths.
+        /// </summary>
+        internal static string ribRestoreAutosizeButton_Label {
+            get {
+                return ResourceManager.GetString("ribRestoreAutosizeButton_Label", resourceCulture);
             }
         }
         

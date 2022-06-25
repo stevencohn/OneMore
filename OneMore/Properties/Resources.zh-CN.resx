@@ -3905,4 +3905,12 @@ OneNote 文件 (*.one)</value>
     <value>旧的或新的</value>
     <comment>title</comment>
   </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>...还原自动大小的容器宽度</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>还原自动大小的容器宽度</value>
+    <comment>ribbon item</comment>
+  </data>
 </root>
