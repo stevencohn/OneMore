@@ -160,6 +160,13 @@ namespace River.OneMoreAddIn.Commands
 								json,
 								new JsonSerializerSettings { DateFormatString = JDateFormat });
 
+							// convert kind from Unspecified to Utc
+							content.Completed = DateTime.SpecifyKind(content.Completed, DateTimeKind.Utc);
+							content.Due = DateTime.SpecifyKind(content.Due, DateTimeKind.Utc);
+							content.SnoozeTime = DateTime.SpecifyKind(content.SnoozeTime, DateTimeKind.Utc);
+							content.Start = DateTime.SpecifyKind(content.Start, DateTimeKind.Utc);
+							content.Started = DateTime.SpecifyKind(content.Started, DateTimeKind.Utc);
+
 							return content;
 						}
 					}
