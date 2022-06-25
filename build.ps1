@@ -155,6 +155,9 @@ Begin
             Remove-Item .\Debug\*.* -Force -Confirm:$false
         }
 
+        $cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|x$bitness"" /project Setup /projectconfig Debug"
+        write-Host $cmd -ForegroundColor DarkGray
+
         # build
         . $devenv .\OneMoreSetup.vdproj /build "Debug|x$bitness" /project Setup /projectconfig Debug
 
