@@ -59,10 +59,7 @@ Begin
             return $false
         }
 
-        write-host "devenv=$devenv"
         $script:ideroot = Split-Path -Parent $devenv
-
-        write-host "ideroot=$ideroot"
         return $true
     }
 
