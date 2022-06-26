@@ -29,7 +29,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, German, Polish, Portuguese, and Spanish*. Please let me know if you'd like it translated to another language. I use my [ResxTranslator](https://github.com/stevencohn/ResxTranslator) program to automate the translations but can also override inaccuracies of specific words and phrases. If you think a translation is not correct, again please let me know.
 
 <a name="features"></a>
-## Features (147)
+## Features (150)
 
 [Clean commands](../../wiki/Clean-Commands) (11)
 
@@ -41,6 +41,7 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
 * Remove ink annotations from the current page
 * Remove spacing between paragraphs and headings
 * Remove tags from the current page, those not associated with reminders
+* Restore Container Size Auto Widths
 * Show/Hide the page date and time stamps under the title on page or all pages in section
 * Trim leading whitespace from selected text
 * Trim trailing whitespace from selected text
@@ -105,6 +106,8 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
 * Arrange containers vertically or in columns
 * Add caption to selected file attachments on the page
 * Add special icon to the page title, also appears in page hierarchy
+* Copy formatted hyperlink to page
+* Copy formatted hyperlink to paragraph
 * Expand or Collapse indented outlines, save and restore outlining
 * Fit background grid spacing to most common text size
 * Merge pages, preserving formatting and position of outlines
