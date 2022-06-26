@@ -65,14 +65,18 @@ Begin
 
     function DisableOutOfProcBuild
     {
-        Push-Location "$ideroot\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild"
-        if (Test-Path .\DisableOutOfProcBuild.exe) {
-            .\DisableOutOfProcBuild.exe
-        } else {
-            $dir = (Get-Location).Path
-            Write-Host "could not find $dir\DisableOutOfProcBuild.exe"
+        $0 = Join-Path $ideroot 'CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild'
+        if (Test-Path $0)
+        {
+            Push-Location $0
+            if (Test-Path .\DisableOutOfProcBuild.exe) {
+                .\DisableOutOfProcBuild.exe
+            }
+            Pop-Location
+            Write-Host '... disabled out-of-proc builds; reboot is recommended'
+            return
         }
-        Pop-Location
+        Write-Host "*** could not find $0\DisableOutOfProcBuild.exe" -ForegroundColor Yellow
     }
 
     function PreserveVdproj
