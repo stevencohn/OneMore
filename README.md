@@ -31,7 +31,7 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
 <a name="features"></a>
 ## Features (150)
 
-[Clean commands](../../wiki/Clean-Commands) (11)
+[Clean commands](../../wiki/Clean-Commands) (12)
 
 * Change spacing between sentences to one or two spaces
 * Clear background color and reset text color of selected text
@@ -102,7 +102,7 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
 * Remove numbering from sections
 * Remove numbering from pages
 
-[Page Commands](../../wiki/Page-Commands) (11)
+[Page Commands](../../wiki/Page-Commands) (13)
 * Arrange containers vertically or in columns
 * Add caption to selected file attachments on the page
 * Add special icon to the page title, also appears in page hierarchy
