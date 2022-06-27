@@ -2,13 +2,15 @@
 .SYNOPSIS
 Build both x86 and x64 msi
 
-.NOTES
-In order for devenv.com to successfully build a vdproj project, the following commands must be 
-run once on the machine to configure Registry settings:
+.PARAMETER ConfigBits
+Specifies the bitness of the build: 64 or 86, default is 64
 
-    cd 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild';
-    .\DisableOutOfProcBuild.exe;
+.PARAMETER Both
+Build both x86 and x64 kits.
 
+.PARAMETER Prep
+Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
+or reinstalling Visual Studio. It is required to build installer kits from the command line.
 #>
 
 # CmdletBinding adds -Verbose functionality, SupportsShouldProcess adds -WhatIf
