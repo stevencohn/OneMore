@@ -29,7 +29,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, German, Polish, Portuguese, and Spanish*. Please let me know if you'd like it translated to another language. I use my [ResxTranslator](https://github.com/stevencohn/ResxTranslator) program to automate the translations but can also override inaccuracies of specific words and phrases. If you think a translation is not correct, again please let me know.
 
 <a name="features"></a>
-## Features (150)
+## Features (151)
 
 [Clean commands](../../wiki/Clean-Commands) (12)
 
@@ -140,13 +140,14 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
 * Add arbitrary tags to a page (Alt + T)
 * Search arbitrary page tags to index, copy, or move selected pages (Ctrl + Alt + T)
 
-[Snippets commands](../../wiki/Snippets-Commands) (16)
+[Snippets commands](../../wiki/Snippets-Commands) (17)
 
 * Insert single (Shift + Alt + F11) or double (Shift + Alt + F12) horizontal line
 * Insert breadcrumb at top of page
 * Insert Table of Contents of headers, pages, or sections
 * Insert small or large monthly calendar for a specific month
 * Insert sortable date, similar to 2020-12-23 (Ctrl + Shift + D)
+* Insert sortable date/time (Ctrl + Shift + Alt + D)
 * Insert a text box, a single-cell table, and optionally wrap selecting content
 * Insert Code box similar to Confluence Code macro, optionally wrap selected content (F6)
 * Insert Info/Warn boxes similar to Confluence Info and Warn macros
