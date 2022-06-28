@@ -2,9 +2,6 @@
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
-#define Hx
-#define Zx
-
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
@@ -23,40 +20,6 @@ namespace River.OneMoreAddIn.Commands
 	using WindowsInput.Native;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
-
-	/*
-	using River.OneMoreAddIn.Helpers.Office;
-	using River.OneMoreAddIn.Models;
-	using System.Linq;
-	using System.Xml.Linq;
-
-			if (Office.IsWordInstalled())
-			{
-				using (var word = new Word())
-				{
-					//var html = word.ConvertFileToHtml(@"C:\users\steven\downloads\foo.docx");
-					var html = word.ConvertClipboardToHtml();
-
-					logger.WriteLine(html);
-
-					logger.WriteLine("Adding HTML blcok");
-					using (var manager = new ApplicationManager())
-					{
-						var page = new Page(manager.CurrentPage(PageInfo.piBasic));
-						var ns = page.Namespace;
-
-						var outline = page.Root.Elements(ns + "Outline").Elements(ns + "OEChildren").FirstOrDefault();
-
-						outline.Add(new XElement(ns + "HTMLBlock",
-							new XElement(ns + "Data", new XCData(html))
-							));
-
-						manager.UpdatePageContent(page.Root);
-						return;
-					}
-				}
-			}
-	*/
 
 	internal class PasteRtfCommand : Command
 	{
@@ -88,30 +51,9 @@ namespace River.OneMoreAddIn.Commands
 
 			// transform RTF and Xaml data on clipboard to HTML
 
-			var html = PrepareClipboard();
+			_ = PrepareClipboard();
 			//logger.WriteLine(html);
-#if H
-			if (html != null)
-			{
-				// TODO: find and replace selected region
 
-				logger.WriteLine("Adding HTML blcok");
-				using (var manager = new ApplicationManager())
-				{
-					var page = new OM.Page(manager.CurrentPage(PageInfo.piBasic));
-					var ns = page.Namespace;
-
-					var outline = page.Root.Elements(ns + "Outline").Elements(ns + "OEChildren").FirstOrDefault();
-
-					outline.Add(new XElement(ns + "HTMLBlock",
-						new XElement(ns + "Data", new XCData(html))
-						));
-
-					manager.UpdatePageContent(page.Root);
-					return;
-				}
-			}
-#endif
 			// paste what's remaining from clipboard, letting OneNote do the
 			// heavy lifting of converting the HTML into one:xml schema
 
@@ -140,16 +82,16 @@ namespace River.OneMoreAddIn.Commands
 				if (Clipboard.ContainsText(TextDataFormat.Html))
 				{
 					var text = Clipboard.GetText(TextDataFormat.Html);
-					html = text.Substring(text.IndexOf("<html>"));
+					html = TranslateWhitespace(text.Substring(text.IndexOf("<html>")));
+
+					RebuildClipboard(AddHtmlPreamble(html));
 				}
 				else if (Clipboard.ContainsText(TextDataFormat.Rtf))
 				{
 					html = ConvertXamlToHtml(
 						ConvertRtfToXaml(Clipboard.GetText(TextDataFormat.Rtf)));
 
-					var text = AddHtmlPreamble(html);
-
-					RebuildClipboard(text);
+					RebuildClipboard(AddHtmlPreamble(html));
 					//logger.WriteLine("PasteRtf Rtf -> Html");
 				}
 				else if (Clipboard.ContainsText(TextDataFormat.Xaml))
@@ -157,9 +99,7 @@ namespace River.OneMoreAddIn.Commands
 					html = ConvertXamlToHtml(
 							Clipboard.GetText(TextDataFormat.Xaml));
 
-					var text = AddHtmlPreamble(html);
-
-					RebuildClipboard(text);
+					RebuildClipboard(AddHtmlPreamble(html));
 					//logger.WriteLine("PasteRtf Xaml -> Html");
 				}
 				else
@@ -172,6 +112,33 @@ namespace River.OneMoreAddIn.Commands
 			thread.SetApartmentState(ApartmentState.STA);
 			thread.Start();
 			thread.Join();
+
+			return html;
+		}
+
+
+		private string TranslateWhitespace(string html)
+		{
+			html = html.Replace("&#32;", " ");
+
+			/*
+			 * This is a theory but as of yet untested...
+			 * It strips whitespace occurring in between two SPAN elements and appends it
+			 * to the first SPAN element. But so far, seems unnecessary.
+			 *
+			var matches = Regex.Matches(html, @"</span>([ ]+)<span");
+			if (matches.Count > 0)
+			{
+				var builder = new StringBuilder(html);
+				for (int i = matches.Count - 1; i >= 0; i--)
+				{
+					builder.Remove(matches[i].Groups[1].Captures[0].Index, matches[i].Groups[1].Captures[0].Length);
+					builder.Insert(matches[i].Groups[0].Index, matches[i].Groups[1].Captures[0].Value);
+				}
+
+				html = builder.ToString();
+			}
+			*/
 
 			return html;
 		}
@@ -404,15 +371,8 @@ namespace River.OneMoreAddIn.Commands
 				return text;
 
 			var builder = new StringBuilder();
-
 			int i = 0;
-#if Z
-			while ((i < text.Length) && text[i] == '\t')
-			{
-				builder.Append(Zpace);
-				i++;
-			}
-#endif
+
 			zindents = zindents || i > 0;
 
 			while ((i < text.Length) && (text[i] == ' ' || text[i] == '\t'))
