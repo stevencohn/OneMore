@@ -4,12 +4,10 @@
 
 namespace River.OneMoreAddIn.Helpers.Office
 {
-	using Microsoft.Win32;
 	using System;
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
-	using System.Text;
 	using System.Xml.Linq;
 	using MSWord = Microsoft.Office.Interop.Word;
 
@@ -245,33 +243,29 @@ namespace River.OneMoreAddIn.Helpers.Office
 		{
 			var ext = Path.GetExtension(target);
 
-			var application = GetApplication(ext);
-			if (!string.IsNullOrEmpty(application))
+			var association = RegistryHelper.GetAssociation(ext);
+			if (association != null)
 			{
-				object progID = GetProgID(ext);
-				if (!string.IsNullOrEmpty(progID as string))
-				{
-					selection.Text = String.Empty;
+				selection.Text = String.Empty;
 
-					object filename = target;
-					object linkToFile = !embedded;
-					object displayAsIcon = true;
-					object iconIndex = 0;
-					object iconFilename = application;
-					object iconLabel = Path.GetFileName(target);
+				object filename = target;
+				object linkToFile = !embedded;
+				object displayAsIcon = true;
+				object iconIndex = association.IconIndex;
+				object iconFilename = association.IconFilename;
+				object iconLabel = Path.GetFileName(target);
 
-					selection.InlineShapes.AddOLEObject(
-						progID,
-						ref filename,
-						ref linkToFile,
-						ref displayAsIcon,
-						ref iconFilename,
-						ref iconIndex,
-						ref iconLabel
-						);
+				selection.InlineShapes.AddOLEObject(
+					association.ProgID,
+					ref filename,
+					ref linkToFile,
+					ref displayAsIcon,
+					ref iconFilename,
+					ref iconIndex,
+					ref iconLabel
+					);
 
-					return;
-				}
+				return;
 			}
 
 			// get a well-formed URL but also decode it so avoid encoding problems
@@ -282,49 +276,6 @@ namespace River.OneMoreAddIn.Helpers.Office
 			object range = word.Selection.Range;
 			object uri = System.Web.HttpUtility.UrlDecode(new Uri(target).AbsoluteUri);
 			word.Selection.Hyperlinks.Add(range, ref uri);
-		}
-
-
-		private string GetApplication(string ext)
-		{
-			string application = null;
-
-			// fetch length of output buffer
-			uint length = 0;
-			uint ret = Native.AssocQueryString(
-				Native.AssocF.None, Native.AssocStr.Executable, ext, null, null, ref length);
-
-			if (ret == 1) // expect S_FALSE
-			{
-				// fill buffer with executable path
-				var buffer = new StringBuilder((int)length); // long enough for zero-term
-				ret = Native.AssocQueryString(
-					Native.AssocF.None, Native.AssocStr.Executable, ext, null, buffer, ref length);
-
-				if (ret == 0) // expect S_OK
-				{
-					application = buffer.ToString();
-				}
-			}
-
-			return application;
-		}
-
-
-		private string GetProgID(string ext)
-		{
-			string progID = null;
-
-			using (var key = Registry.CurrentUser.OpenSubKey(
-				$@"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\{ext}\UserChoice"))
-			{
-				if (key != null)
-				{
-					progID = key.GetValue("ProgID") as string;
-				}
-			}
-
-			return progID;
 		}
 	}
 }
