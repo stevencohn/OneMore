@@ -444,6 +444,7 @@
     <Compile Include="Helpers\Office\Models\OutlookTaskFolders.cs" />
     <Compile Include="Helpers\Office\Models\OutlookTasks.cs" />
     <Compile Include="Helpers\Office\Outlook.cs" />
+    <Compile Include="Helpers\RegistryHelper.cs" />
     <Compile Include="Helpers\SingleThreaded.cs" />
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="Commands\Tools\Updater\IUpdateReport.cs" />
