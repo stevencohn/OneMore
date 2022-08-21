@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>A string in which all regular expression control chars are escaped</returns>
 		public static string EscapeEscapes(string plain)
 		{
-			var codes = new char[] { '\\', '.', '*', '|', '?', '(', '[', '$', '^' };
+			var codes = new char[] { '\\', '.', '*', '|', '?', '(', '[', '$', '^', '+' };
 
 			var builder = new StringBuilder();
 			for (var i = 0; i < plain.Length; i++)
