@@ -248,6 +248,11 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var children = new XElement(PageNamespace.Value + "OEChildren");
 					BuildHeadings(children, headings, ref index, heading.Level, dark);
+					if (!container.Elements().Any())
+					{
+						container.Add(new Paragraph());
+					}
+
 					container.Elements().Last().Add(children);
 					index--;
 				}
