@@ -428,6 +428,7 @@
       <DependentUpon>UpdateDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ApplicationFactory.cs" />
+    <Compile Include="Helpers\ClipboardProvider.cs" />
     <Compile Include="Helpers\ErrorCodes.cs" />
     <Compile Include="Helpers\Extensions\ByteExtensions.cs" />
     <Compile Include="Helpers\Extensions\ColorMatrixExtensions.cs" />

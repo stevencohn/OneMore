@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 	using WindowsInput;
 	using WindowsInput.Native;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-	using Win = System.Windows;
 
 
 	internal class InsertSnippetCommand : Command
@@ -40,10 +39,10 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await SingleThreaded.Invoke(() =>
-			{
-				Win.Clipboard.SetText(snippet, Win.TextDataFormat.Html);
-			});
+			var clippy = new ClipboardProvider();
+			await clippy.StashState();
+
+			await clippy.SetHtml(snippet);
 
 			// both SetText and SendWait are very unpredictable so wait a little
 			await Task.Delay(200);
@@ -51,6 +50,10 @@ namespace River.OneMoreAddIn.Commands
 			//SendKeys.SendWait("^(v)");
 			new InputSimulator().Keyboard
 				.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+
+			await Task.Delay(200);
+
+			await clippy.RestoreState();
 		}
 	}
 }
