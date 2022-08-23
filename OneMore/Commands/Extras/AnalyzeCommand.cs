@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
@@ -23,7 +24,9 @@ namespace River.OneMoreAddIn.Commands
 		private const string Header2Shading = "#F2F2F2";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
 		private const string LineCss = "font-family:'Courier New';font-size:10.0pt";
-		private const string Cloud = "<span style='font-family:\"Segoe UI Emoji\"'>\u2601</span>";
+		private const string CloudSym = "<span style='font-family:\"Segoe UI Emoji\"'>\u2601</span>";
+		private const string FloppySym = "<span style='font-family:\"Segoe UI Emoji\"'>&#128427</span>";
+		private const string OfflineSym = "<span style='font-family:\"Symbol\"'>\u00C6</span>";
 		private const string RecycleBin = "OneNote_RecycleBin";
 
 		private bool showNotebookSummary;
@@ -42,6 +45,13 @@ namespace River.OneMoreAddIn.Commands
 		private int heading2Index;
 
 		private UI.ProgressDialog progress;
+
+		private sealed class Book
+		{
+			public bool Online;
+			public string Name;
+			public string Path;
+		}
 
 
 		public AnalyzeCommand()
@@ -80,6 +90,7 @@ namespace River.OneMoreAddIn.Commands
 				var page = one.GetPage(pageId);
 				page.Title = Resx.AnalyzeCommand_Title;
 				page.SetMeta(MetaNames.AnalysisReport, "true");
+				page.Root.SetAttributeValue("lang", "yo");
 
 				ns = page.Namespace;
 				PageNamespace.Set(ns);
@@ -100,7 +111,6 @@ namespace River.OneMoreAddIn.Commands
 					if (showNotebookSummary)
 					{
 						ReportNotebooks(container, notebooks);
-						ReportOrphans(container, notebooks);
 						ReportCache(container);
 						prev = true;
 					}
@@ -168,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 				BordersVisible = true
 			};
 
-			table.SetColumnWidth(0, 120);
+			table.SetColumnWidth(0, 200);
 			table.SetColumnWidth(1, 70);
 			table.SetColumnWidth(2, 70);
 			table.SetColumnWidth(3, 70);
@@ -182,14 +192,45 @@ namespace River.OneMoreAddIn.Commands
 
 			long total = 0;
 
+			var books = new SortedDictionary<string, Book>();
 			foreach (var notebook in notebooks.Elements(ns + "Notebook"))
+			{
+				var name = notebook.Attribute("name").Value;
+				books.Add(name, new Book
+				{
+					Online = true,
+					Name = name,
+					Path = notebook.Attribute("path").Value
+				});
+			}
+
+			var orphans = Directory.GetDirectories(backupPath)
+				.Select(d => new Book
+				{
+					Online = false,
+					Name = Path.GetFileNameWithoutExtension(d),
+					Path = d
+				})
+				.Where(b =>
+					b.Name != Resx.AnalyzeCommand_OpenSections &&
+					b.Name != Resx.AnalyzeCommand_QuickNotes &&
+					!books.ContainsKey(b.Name));
+
+			orphans.ForEach(b => books.Add(b.Name, b));
+
+			foreach (var book in books.Values)
 			{
 				row = table.AddRow();
 
-				var name = notebook.Attribute("name").Value;
-				var remote = notebook.Attribute("path").Value.Contains("https://");
+				var name = book.Name;
+				var remote = book.Path.Contains("https://") ||
+					!Directory.Exists(Path.Combine(defaultPath, name));
 
-				row[0].SetContent(remote ? $"{name} {Cloud}" : name);
+				row[0].SetContent(
+					book.Online
+					? $"{name} {(remote ? CloudSym : FloppySym)}"
+					: $"<span style=\"font-style:italic;color:#747474\">{name}</span> {OfflineSym}"
+					);
 
 				var path = Path.Combine(remote ? backupPath : defaultPath, name);
 				if (Directory.Exists(path))
@@ -207,6 +248,11 @@ namespace River.OneMoreAddIn.Commands
 						row[2].SetContent(new Paragraph(relength.ToBytes(1)).SetAlignment("right"));
 						row[3].SetContent(new Paragraph(size.ToBytes(1)).SetAlignment("right"));
 					}
+					else
+					{
+						row[1].SetContent(new Paragraph(size.ToBytes(1)).SetAlignment("right"));
+						row[3].SetContent(new Paragraph(size.ToBytes(1)).SetAlignment("right"));
+					}
 
 					total += size;
 				}
@@ -222,60 +268,6 @@ namespace River.OneMoreAddIn.Commands
 				new Paragraph(table.Root),
 				new Paragraph(string.Empty)
 				);
-		}
-
-
-		private void ReportOrphans(XElement container, XElement notebooks)
-		{
-			// orphaned backup folders...
-
-			progress.SetMessage("Orphans...");
-			progress.Increment();
-
-			var knowns = notebooks.Elements(ns + "Notebook")
-				.Select(e => e.Attribute("name").Value)
-				.ToList();
-
-			knowns.Add(Resx.AnalyzeCommand_OpenSections);
-			knowns.Add(Resx.AnalyzeCommand_QuickNotes);
-
-			var orphans = Directory.GetDirectories(backupPath)
-				.Select(d => Path.GetFileNameWithoutExtension(d))
-				.Except(knowns);
-
-			container.Add(
-				new Paragraph("Orphans").SetQuickStyle(heading2Index),
-				new Paragraph(Resx.AnalyzeCommand_OrphanSummary)
-				);
-
-			if (!orphans.Any())
-			{
-				container.Add(
-					new Paragraph(string.Empty),
-					new Paragraph(Resx.AnalyzeCommand_NoOrphans),
-					new Paragraph(string.Empty)
-					);
-
-				return;
-			}
-
-			var list = new ContentList(ns);
-
-			container.Add(
-				new Paragraph(ns,
-					new XElement(ns + "T", new XCData(string.Empty)),
-					list)
-				);
-
-			foreach (var orphan in orphans)
-			{
-				var dir = new DirectoryInfo(Path.Combine(backupPath, orphan));
-				var size = dir.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(f => f.Length);
-
-				list.Add(new Bullet($"{orphan} ({size.ToBytes(1)})"));
-			}
-
-			container.Add(new Paragraph(string.Empty));
 		}
 
 
@@ -682,7 +674,7 @@ namespace River.OneMoreAddIn.Commands
 
 						// callback is a required argument but is never used
 						var callback = new Image.GetThumbnailImageAbort(() => { return false; });
-						using (var thumbnail = 
+						using (var thumbnail =
 							raw.GetThumbnailImage(
 								(int)(raw.Width * zoom),
 								(int)(raw.Height * zoom),
