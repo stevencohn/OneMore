@@ -46,6 +46,14 @@ namespace River.OneMoreAddIn
 			Markdown = 1001
 		}
 
+		public enum NodeType
+		{
+			Notebook = HierarchyElement.heNotebooks,
+			SectionGroup = HierarchyElement.heSectionGroups,
+			Section = HierarchyElement.heSections,
+			Page = HierarchyElement.hePages
+		}
+
 		public enum PageDetail
 		{
 			All = PageInfo.piAll,
@@ -78,6 +86,13 @@ namespace River.OneMoreAddIn
 			public string Link;
 		}
 
+		public class HierarchyNode
+		{
+			public string Id;
+			public NodeType NodeType;
+			public string Name;
+			public string Link;
+		}
 
 		public class HyperlinkInfo
 		{
@@ -528,6 +543,31 @@ namespace River.OneMoreAddIn
 			onenote.GetSpecialLocation(SpecialLocation.slDefaultNotebookFolder, out var defaultFolder);
 			onenote.GetSpecialLocation(SpecialLocation.slUnfiledNotesSection, out var unfiledFolder);
 			return (backupFolder, defaultFolder, unfiledFolder);
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="nodeId"></param>
+		/// <returns></returns>
+		public HierarchyNode GetHierarchyNode(string nodeId)
+		{
+			onenote.GetHierarchy(nodeId, HierarchyScope.hsSelf, out var xml, XMLSchema.xs2013);
+			var x = XElement.Parse(xml);
+
+			if (Enum.TryParse(x.Name.LocalName, out NodeType type))
+			{
+				return new HierarchyNode
+				{
+					Id = nodeId,
+					NodeType = type,
+					Name = x.Attribute("name").Value,
+					Link = GetHyperlink(nodeId, string.Empty)
+				};
+			}
+
+			return null;
 		}
 
 

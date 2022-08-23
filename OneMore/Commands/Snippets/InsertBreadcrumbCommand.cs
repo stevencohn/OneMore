@@ -6,8 +6,10 @@ namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
 	using System.Linq;
+	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+
 
 	internal class InsertBreadcrumbCommand : Command
 	{
@@ -27,12 +29,20 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var info = one.GetPageInfo();
 
-				// strip page name from path and replace separators with arrows
-				var path = info.Path
-					.Substring(1, info.Path.Length - info.Name.Length - 2)
-					.Replace("/", $" {RightArrow} ");
+				// build hierarchy crumbs...
 
-				path = $"<span style='font-style:italic'>{path}</span>";
+				var crumbs = new StringBuilder();
+				var id = one.GetParent(info.PageId);
+				while (!string.IsNullOrEmpty(id))
+				{
+					var node = one.GetHierarchyNode(id);
+					crumbs.Insert(0, $"<a href={node.Link}>{node.Name}</a> {RightArrow} ");
+					id = one.GetParent(id);
+				}
+
+				crumbs.Append(info.Name);
+
+				var path = $"<span style='font-style:italic'>{crumbs}</span>";
 
 				// <one:Meta name="omBreadcrumb" content="1" />
 				var paragraph = page.Root
@@ -40,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					.Elements(ns + "OEChildren")
 					.Elements(ns + "OE")
 					.Elements(ns + "Meta")
-					.Where(e => 
+					.Where(e =>
 						e.Attributes().Any(a => a.Value.Equals(BreadcrumbMetaName)))
 					.Select(e => e.Parent)
 					.FirstOrDefault();
