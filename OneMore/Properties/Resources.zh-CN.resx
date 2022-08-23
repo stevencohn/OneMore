@@ -1890,7 +1890,7 @@ OneNote 将自动关闭</value>
     <comment>dialog title</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>seach和标签</value>
+    <value>搜索和标签</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="ribTaggedButton_Label" xml:space="preserve">

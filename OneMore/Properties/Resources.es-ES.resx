@@ -1898,7 +1898,7 @@ En esta sección</value>
     <comment>dialog title</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>Señel y etiqueta</value>
+    <value>Buscar y etiqueta</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="ribTaggedButton_Label" xml:space="preserve">
@@ -3912,5 +3912,13 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>Viejo o nuevo</value>
     <comment>title</comment>
+  </data>
+  <data name="ContextMenuSheet_ribRestoreAutosizeButton" xml:space="preserve">
+    <value>... Restaurar anchos de contenedores de tamaño automático</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
+    <value>Restaurar anchos de contenedor de tamaño automático</value>
+    <comment>ribbon item</comment>
   </data>
 </root>

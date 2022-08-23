@@ -312,7 +312,7 @@ Deferred</value>
     <comment>radio</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>Seach and Tag</value>
+    <value>Search and Tag</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="Pronunciate_FullWord" xml:space="preserve">
