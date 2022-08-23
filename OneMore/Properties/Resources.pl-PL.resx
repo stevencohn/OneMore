@@ -312,7 +312,7 @@ Odroczony</value>
     <comment>radio</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>Szczegóły i tag.</value>
+    <value>Wyszukaj i tag</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="Pronunciate_FullWord" xml:space="preserve">

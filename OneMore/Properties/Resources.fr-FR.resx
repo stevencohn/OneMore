@@ -1895,7 +1895,7 @@ Dans cette section</value>
     <comment>dialog title</comment>
   </data>
   <data name="ribSearchMenu_Label" xml:space="preserve">
-    <value>Sauti et tag</value>
+    <value>Recherche et balise</value>
     <comment>ribbon menu item</comment>
   </data>
   <data name="ribTaggedButton_Label" xml:space="preserve">

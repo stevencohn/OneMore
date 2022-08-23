@@ -6475,7 +6475,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seach and Tag.
+        ///   Looks up a localized string similar to Search and Tag.
         /// </summary>
         internal static string ribSearchMenu_Label {
             get {
