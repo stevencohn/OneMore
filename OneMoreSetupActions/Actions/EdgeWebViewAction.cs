@@ -22,7 +22,13 @@ namespace OneMoreSetupActions
 	/// </summary>
 	internal class EdgeWebViewAction : CustomAction
 	{
+		// WebView2 distribution:
+		// > https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution
+
+		// this is the Evergreen Bootstrapper download link from this download page:
+		// > https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
 		private const string DownloadUrl = "https://go.microsoft.com/fwlink/p/?LinkId=2124703";
+
 		private const string ClientKey = @"SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients";
 		private const string RuntimeId = "{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}";
 
