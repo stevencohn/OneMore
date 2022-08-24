@@ -113,24 +113,18 @@ Begin
             {
                 # "OutputFilename" = "8:Debug\\OneMore_v_Setupx86.msi"
                 $line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
-                if ($bitness -eq 64)
-                {
+                if ($bitness -eq 64) {
                     $line.Replace('x86', 'x64') | Out-File $vdproj -Append
-                }
-                else
-                {
+                } else {
                     $line.Replace('x64', 'x86') | Out-File $vdproj -Append
                 }
             }
             elseif ($_ -match '"DefaultLocation" = "')
             {
                 # "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
-                if ($bitness -eq 64)
-                {
+                if ($bitness -eq 64) {
                     $_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder') | Out-File $vdproj -Append
-                }
-                else
-                {
+                } else {
                     $_.Replace('ProgramFiles64Folder', 'ProgramFilesFolder') | Out-File $vdproj -Append
                 }
             }
@@ -142,6 +136,14 @@ Begin
                     '"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
                 } else {
                     '"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
+                }
+            }
+            elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
+            {
+                if ($bitness -eq 64) {
+                    $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
+                } else {
+                    $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
                 }
             }
             else
