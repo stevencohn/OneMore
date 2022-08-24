@@ -330,3 +330,25 @@ desktop edition, hopefully to be released in 2022.
 
 See the [Developer Notes](../../wiki/~-Developer-Notes) page in the Wiki where I keep a list of 
 technical references and information regarding developing and debugging this OneNote add-in.
+
+## Details test
+
+<details>
+<summary>click here</summary>
+this is details
+</details>
+
+## Inline test
+
+#+HTML: <details> <summary> Click me</summary> and this part should be collapsed </details>
+
+## Begin/End test
+
+#+begin_html
+  <details>
+    <summary>
+    Click me
+    </summary>
+    And this stuff will be collapsed.
+  </details>
+#+end_html

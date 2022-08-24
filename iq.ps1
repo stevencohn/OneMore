@@ -4,9 +4,7 @@ Installation qualification
 #>
 
 [CmdletBinding()]
-param (
-    [switch] $Registry = $true
-)
+param ()
 
 Begin
 {
