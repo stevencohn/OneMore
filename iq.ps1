@@ -69,7 +69,8 @@ Begin
         Write-Host "`nVersions..."
         $0 = "Registry::HKEY_CLASSES_ROOT\Excel.Application\CurVer"
         if (-not (HasKey $0)) {
-            write-Host "cannot determine version of Office"
+            write-Host "cannot determine version of Office, assuming 16.0" -Fore Yellow
+            $script:offversion = '16.0'
         } else {
             $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
             $script:offVersion = $parts[$parts.Length - 1] + ".0"
