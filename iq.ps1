@@ -10,6 +10,8 @@ param (
 Begin
 {
     $script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
+    $script:webview2client = '{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
+    $script:modern = ($env:PROCESSOR_ARCHITECTURE -match '64')
 
     function HasKey
     {
@@ -36,7 +38,7 @@ Begin
 
     function HasValue
     {
-        param($kpath, $name, $value, [switch] $match)
+        param($kpath, $name, $value, [switch] $match, [switch] $equals)
         if (-not (HasProperty $kpath $name))
         {
             return $false
@@ -50,21 +52,21 @@ Begin
                 return $false
             }
         }
-        elseif ($lastValue -ne $value)
-        {
-            if ($match) {
-                Write-Host "mismatch $kpath\$name, '$lastValue' <> '$value'" -Fore Yellow
+        else {
+            if ($match) { if ($lastvalue -notmatch $value) {
+                Write-Host "bad value: $kpath\$name, '$lastValue' !~ '$value'" -Fore Yellow
+                return $false
+            }}
+            elseif ($lastvalue -ne $value) {
+                Write-Host "bad value: $kpath\$name, '$lastValue' <> '$value'" -Fore Red
             }
-            else {
-                Write-Host "invalid value: $kpath\$name, '$lastValue' <> '$value'" -Fore Red
-            }
-            return $false
         }
         return $true
     }
     
     function GetVersions
     {
+        Write-Host "`nVersions..."
         $0 = "Registry::HKEY_CLASSES_ROOT\Excel.Application\CurVer"
         if (-not (HasKey $0)) {
             write-Host "cannot determine version of Office"
@@ -86,6 +88,7 @@ Begin
 
     function CheckAppID
     {
+        Write-Host "`nAppID..."
         $0 = "Registry::HKEY_CLASSES_ROOT\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
@@ -94,6 +97,7 @@ Begin
 
     function CheckRoot
     {
+        Write-Host "`nRoot..."
         $0 = "Registry::HKEY_CLASSES_ROOT\onemore"
         $ok = (HasKey $0)
         if ($ok) {
@@ -105,6 +109,7 @@ Begin
 
     function CheckShell
     {
+        Write-Host "`nShell..."
         # this also covers the virtual node LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command
         $0 = "Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command"
         $ok = (HasKey $0)
@@ -114,6 +119,7 @@ Begin
 
     function CheckAddIn
     {
+        Write-Host "`nAddIn..."
         $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn"
         $ok = (HasKey $0)
         if ($ok) {
@@ -134,6 +140,7 @@ Begin
 
     function CheckCLSID
     {
+        Write-Host "`nCLSID..."
         $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$guid"
         $ok = (HasKey $0)
         if ($ok) {
@@ -181,10 +188,10 @@ Begin
         if ($ver)
         {
             $1 = "$0\InprocServer32\$ver"
-            $ok = (HasValue $1 'Assembly' $assembly -match)
-            $ok = (HasValue $1 'CodeBase' $codeBase -match) -and $ok
-            $ok = (HasValue $1 'RuntimeVersion' $runtimeVersion -match) -and $ok
-            $ok = (HasValue $1 'Class' $class -match) -and $ok
+            $ok = (HasValue $1 'Assembly' $assembly)
+            $ok = (HasValue $1 'CodeBase' $codeBase) -and $ok
+            $ok = (HasValue $1 'RuntimeVersion' $runtimeVersion) -and $ok
+            $ok = (HasValue $1 'Class' $class) -and $ok
             if ($ok) { Write-Host "OK $1" } else { Write-Host "BAD $1" }
         }
         else
@@ -215,6 +222,7 @@ Begin
 
     function CheckUser
     {
+        Write-Host "`nUser..."
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
@@ -227,12 +235,58 @@ Begin
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll"
-        $ok = (HasValue $0 'Path' $codeBase -match)
+        $ok = (HasValue $0 'Path' $codeBase)
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\$offVersion\Common\Security\Trusted Protocols\All Applications\onemore:"
         $ok = (HasKey $0)
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+    }
+
+    function CheckWebView2
+    {
+        Write-Host "`nWebView2..."
+
+        # either of these keys need to be defined, per
+        # > https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution
+
+        if ($modern) {
+            $0 = "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\$webview2client"
+        } else {
+            $0 = "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\EdgeUpdate\Clients\$webview2client"
+        }
+
+        $ok = (checkWebView2Entry $0)
+        if (-not $ok) {
+            $0 = "Registry::HKEY_CURRENT_USER\Software\Microsoft\EdgeUpdate\Clients\$webview2client"
+            $ok = (checkWebView2Entry $0)
+        }
+
+        if (-not $ok) { Write-Host 'BAD WebView2 not installed' -Fore Yellow }
+    }
+
+    function checkWebView2Entry
+    {
+        param($path)
+        $ok = (HasKey $path)
+        if ($ok) {
+            $ok = (HasValue $path 'pv' '[^0\.0\.0\.0]' -match)
+            if ($ok) {
+                $location = (Get-ItemPropertyValue -Path $path -Name 'location')
+                $ok = (Test-Path $location)
+                if ($ok) {
+                    Write-Host "OK $path"
+                    Write-Host "OK location: $location"
+                } else {
+                    Write-Host "BAD $path" -Fore Yellow
+                    Write-Host "... location not found $location" -Fore Yellow
+                }
+            } else {
+                Write-Host "BAD $path" -Fore Yellow
+                Write-Host "... has version 0.0.0.0; checking CURRENT_USER" -Fore Yellow
+            }
+        }
+        return $ok
     }
 }
 Process
@@ -244,4 +298,5 @@ Process
     CheckAddIn
     CheckCLSID
     CheckUser
+    CheckWebView2
 }
