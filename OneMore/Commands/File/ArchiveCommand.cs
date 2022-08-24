@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using System;
 	using System.IO;
 	using System.IO.Compression;
 	using System.Linq;
@@ -104,14 +103,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			try
-			{
-				Directory.Delete(tempdir, true);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"cannot delete {tempdir}", exc);
-			}
+			Directory.Delete(tempdir, true);
 
 			progress.Close();
 			UIHelper.ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
@@ -215,8 +207,6 @@ namespace River.OneMoreAddIn.Commands
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
-			logger.WriteLine($"archiving '{filename}' with path '{path}'");
-
 			archivist.ExportHTML(page, ref filename, path, bookScope);
 
 			await ArchiveAssets(Path.GetDirectoryName(filename), path);
@@ -237,10 +227,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (FileInfo file in info.GetFiles())
 			{
-				logger.WriteLine($"asset {file.Name} @ {file.FullName}");
-
-				using (var reader = new FileStream(
-					file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read))
+				using (var reader = new FileStream(file.FullName, FileMode.Open))
 				{
 					var name = path == null
 						? file.Name
@@ -270,26 +257,12 @@ namespace River.OneMoreAddIn.Commands
 			var temp = new DirectoryInfo(tempdir);
 			foreach (FileInfo file in temp.GetFiles())
 			{
-				try
-				{
-					file.Delete();
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"cannot delete {file.FullName}", exc);
-				}
+				file.Delete();
 			}
 
 			foreach (DirectoryInfo dir in temp.GetDirectories())
 			{
-				try
-				{
-					dir.Delete(true);
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"cannot delete {dir.FullName}", exc);
-				}
+				dir.Delete(true);
 			}
 		}
 	}
