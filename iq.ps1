@@ -14,6 +14,26 @@ Begin
     $script:webview2client = '{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
     $script:modern = ($env:PROCESSOR_ARCHITECTURE -match '64')
 
+    function WriteTitle
+    {
+        param($text)
+        Write-Host "`n$text..." -Fore DarkCyan
+    }
+
+    function WriteOK
+    {
+        param($text)
+        Write-Host 'OK ' -Fore Green -NoNewLine
+        Write-Host $text
+    }
+
+    function WriteBad
+    {
+        param($text)
+        Write-Host 'BAD ' -Fore Red -NoNewLine
+        Write-Host $text -Fore Yellow
+    }
+
     function HasKey
     {
         param($kpath)
@@ -67,7 +87,7 @@ Begin
     
     function GetVersions
     {
-        Write-Host "`nVersions..."
+        WriteTitle "Versions"
         $0 = "Registry::HKEY_CLASSES_ROOT\Excel.Application\CurVer"
         if (-not (HasKey $0)) {
             write-Host "cannot determine version of Office, assuming 16.0" -Fore Yellow
@@ -75,7 +95,7 @@ Begin
         } else {
             $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
             $script:offVersion = $parts[$parts.Length - 1] + ".0"
-            Write-Host "OK Office version is $offVersion"
+            WriteOK "Office version is $offVersion"
         }
 
         $0 = "Registry::HKEY_CLASSES_ROOT\OneNote.Application\CurVer"
@@ -84,45 +104,45 @@ Begin
         } else {
             $parts = (Get-ItemPropertyValue -Path $0 -Name '(default)').Split('.')
             $script:oneVersion = $parts[$parts.Length - 1] + ".0"
-            Write-Host "OK OneNote version is $oneVersion"
+            WriteOK "OneNote version is $oneVersion"
         }
     }
 
     function CheckAppID
     {
-        Write-Host "`nAppID..."
+        WriteTitle "AppID"
         $0 = "Registry::HKEY_CLASSES_ROOT\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK $0 } else { WriteBad $0 }
     }
 
     function CheckRoot
     {
-        Write-Host "`nRoot..."
+        WriteTitle "Root"
         $0 = "Registry::HKEY_CLASSES_ROOT\onemore"
         $ok = (HasKey $0)
         if ($ok) {
             $ok = (HasValue $0 '(default)' 'URL:OneMore Protocol Handler') -and $ok
             $ok = (HasValue $0 'URL Protocol' '') -and $ok
         }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK $0 } else { WriteBad $0 }
     }
 
     function CheckShell
     {
-        Write-Host "`nShell..."
+        WriteTitle "Shell"
         # this also covers the virtual node LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command
         $0 = "Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 '(default)' '\\OneMoreProtocolHandler.exe"? %1 %2 %3 %4 %5' -match) }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK "$0" } else { WriteBad $0 }
         Write-Verbose $lastvalue
     }
 
     function CheckAddIn
     {
-        Write-Host "`nAddIn..."
+        WriteTitle "AddIn"
         $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn"
         $ok = (HasKey $0)
         if ($ok) {
@@ -132,25 +152,25 @@ Begin
             $1 = "$0\CurVer"
             $ok = (HasValue $1 '(default)' 'River.OneMoreAddIn.1') -and $ok
         }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK "$0" } else { WriteBad $0 }
 
         $0 = "Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1"
         $ok = (HasValue $0 '(default)' 'Addin class')
         $1 = "$0\CLSID"
         $ok = (HasValue $1 '(default)' $guid) -and $ok
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK "$0" } else { WriteBad $0 }
     }
 
     function CheckCLSID
     {
-        Write-Host "`nCLSID..."
+        WriteTitle "CLSID"
         $0 = "Registry::HKEY_CLASSES_ROOT\CLSID\$guid"
         $ok = (HasKey $0)
         if ($ok) {
             $ok = (HasValue $0 '(default)' 'River.OneMoreAddIn.AddIn')
             $ok = (HasValue $0 'AppID' $guid) -and $ok
         }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK $0 } else { WriteBad $0 }
 
         $1 = "$0\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}"
         $ver = $null
@@ -186,7 +206,7 @@ Begin
                 }
             }
         }
-        if ($ok) { Write-Host "OK $1" } else { Write-Host "BAD $1" }
+        if ($ok) { WriteOK $1 } else { WriteBad $1 }
 
         if ($ver)
         {
@@ -195,7 +215,7 @@ Begin
             $ok = (HasValue $1 'CodeBase' $codeBase) -and $ok
             $ok = (HasValue $1 'RuntimeVersion' $runtimeVersion) -and $ok
             $ok = (HasValue $1 'Class' $class) -and $ok
-            if ($ok) { Write-Host "OK $1" } else { Write-Host "BAD $1" }
+            if ($ok) { WriteOK $1 } else { WriteBad $1 }
         }
         else
         {
@@ -210,51 +230,51 @@ Begin
         $1 = "$0\ProgID"
         $ok = (HasKey $1)
         if ($ok) { $ok = (HasValue $1 '(default)' 'River.OneMoreAddIn') }
-        if ($ok) { Write-Host "OK $1" } else { Write-Host "BAD $1" }
+        if ($ok) { WriteOK $1 } else { WriteBad $1 }
 
         $1 = "$0\Programmable"
         $ok = (HasKey $1)
         if ($ok) { $ok = (HasValue $1 '(default)' '') }
-        if ($ok) { Write-Host "OK $1" } else { Write-Host "BAD $1" }
+        if ($ok) { WriteOK $1 } else { WriteBad $1 }
 
         $1 = "$0\TypeLib"
         $ok = (HasKey $1)
         if ($ok) { $ok = (HasValue $1 '(default)' $guid) }
-        if ($ok) { Write-Host "OK $1" } else { Write-Host "BAD $1" }
+        if ($ok) { WriteOK $1 } else { WriteBad $1 }
 
         $1 = "$0\VersionIndependentProgID"
         $ok = (HasKey $1)
         if ($ok) { $ok = (HasValue $1 '(default)' 'River.OneMoreAddIn') }
-        if ($ok) { Write-Host "OK $1" } else { Write-Host "BAD $1" }
+        if ($ok) { WriteOK $1 } else { WriteBad $1 }
     }
 
     function CheckUser
     {
-        Write-Host "`nUser..."
+        WriteTitle "User"
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\$guid"
         $ok = (HasKey $0)
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK $0 } else { WriteBad $0 }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn"
         $ok = (HasValue $0 'LoadBehavior' '3')
         $ok = (HasValue $0 'Description' 'Extension for OneNote') -and $ok
         $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK $0 } else { WriteBad $0 }
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll"
         $ok = (HasValue $0 'Path' $codeBase)
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK $0 } else { WriteBad $0 }
         Write-Verbose $lastvalue
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\$offVersion\Common\Security\Trusted Protocols\All Applications\onemore:"
         $ok = (HasKey $0)
-        if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        if ($ok) { WriteOK $0 } else { WriteBad $0 }
     }
 
     function CheckWebView2
     {
-        Write-Host "`nWebView2..."
+        WriteTitle "WebView2"
 
         # either of these keys need to be defined, per
         # > https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution
@@ -272,7 +292,7 @@ Begin
             $ok = (checkWebView2Entry $0)
         }
 
-        if (-not $ok) { Write-Host 'BAD WebView2 not installed' -Fore Yellow }
+        if (-not $ok) { WriteBad 'WebView2 not installed' }
     }
 
     function checkWebView2Entry
@@ -285,16 +305,16 @@ Begin
                 $location = (Get-ItemPropertyValue -Path $path -Name 'location')
                 $ok = (Test-Path $location)
                 if ($ok) {
-                    Write-Host "OK $path"
-                    Write-Host "OK location: $location"
+                    WriteOK $path
+                    WriteOK "location: $location"
                 } else {
-                    Write-Host "BAD $path" -Fore Yellow
+                    WriteBad $path
                     Write-Host "... location not found $location" -Fore Yellow
                 }
                 Write-Verbose "version = $lastvalue"
                 Write-Verbose "location = $location"
             } else {
-                Write-Host "BAD $path" -Fore Yellow
+                WriteBad $path
                 Write-Host "... has version 0.0.0.0" -Fore Yellow
             }
         }
