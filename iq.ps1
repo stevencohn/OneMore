@@ -113,7 +113,7 @@ Begin
         # this also covers the virtual node LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command
         $0 = "Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command"
         $ok = (HasKey $0)
-        if ($ok) { $ok = (HasValue $0 '(default)' '*\OneMoreProtocolHandler.exe %1 %2 %3 %4 %5') }
+        if ($ok) { $ok = (HasValue $0 '(default)' '*\OneMoreProtocolHandler.exe" %1 %2 %3 %4 %5') }
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
     }
 
