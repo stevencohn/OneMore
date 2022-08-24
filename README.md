@@ -31,9 +31,6 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
 <a name="features"></a>
 ## Features (151)
 
-<details>
-<summary><i>Click here to expand a list of all features</i></summary>
-
 [Clean commands](../../wiki/Clean-Commands) (12)
 
 * Change spacing between sentences to one or two spaces
@@ -209,7 +206,6 @@ OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, 
     * Add a centered caption to the image
     * Crop and rotate the image
     * Resize the image
-</details>
 
 ### OneMore in the Media
 
