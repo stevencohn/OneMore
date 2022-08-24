@@ -3,6 +3,7 @@
 Installation qualification
 #>
 
+[CmdletBinding()]
 param (
     [switch] $Registry = $true
 )
@@ -114,8 +115,9 @@ Begin
         # this also covers the virtual node LOCAL_MACHINE\SOFTWARE\Classes\onemore\shell\open\command
         $0 = "Registry::HKEY_CLASSES_ROOT\onemore\shell\open\command"
         $ok = (HasKey $0)
-        if ($ok) { $ok = (HasValue $0 '(default)' '*\OneMoreProtocolHandler.exe" %1 %2 %3 %4 %5') }
+        if ($ok) { $ok = (HasValue $0 '(default)' '\\OneMoreProtocolHandler.exe"? %1 %2 %3 %4 %5' -match) }
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        Write-Verbose $lastvalue
     }
 
     function CheckAddIn
@@ -200,6 +202,11 @@ Begin
             Write-Host "skipping $0\InprocServer32\<version>" -Fore Yellow
         }
 
+        Write-Verbose "Assembly = $assembly"
+        Write-Verbose "CodeBase = $codeBase"
+        Write-Verbose "RuntimeVersion = runtimeVersion"
+        Write-Verbose "Class = $class"
+
         $1 = "$0\ProgID"
         $ok = (HasKey $1)
         if ($ok) { $ok = (HasValue $1 '(default)' 'River.OneMoreAddIn') }
@@ -238,6 +245,7 @@ Begin
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll"
         $ok = (HasValue $0 'Path' $codeBase)
         if ($ok) { Write-Host "OK $0" } else { Write-Host "BAD $0" -Fore Yellow }
+        Write-Verbose $lastvalue
 
         $0 = "Registry::HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\$offVersion\Common\Security\Trusted Protocols\All Applications\onemore:"
         $ok = (HasKey $0)
@@ -259,6 +267,7 @@ Begin
 
         $ok = (checkWebView2Entry $0)
         if (-not $ok) {
+            Write-Host '... checking CURRENT_USER' -Fore Yellow
             $0 = "Registry::HKEY_CURRENT_USER\Software\Microsoft\EdgeUpdate\Clients\$webview2client"
             $ok = (checkWebView2Entry $0)
         }
@@ -282,9 +291,11 @@ Begin
                     Write-Host "BAD $path" -Fore Yellow
                     Write-Host "... location not found $location" -Fore Yellow
                 }
+                Write-Verbose "version = $lastvalue"
+                Write-Verbose "location = $location"
             } else {
                 Write-Host "BAD $path" -Fore Yellow
-                Write-Host "... has version 0.0.0.0; checking CURRENT_USER" -Fore Yellow
+                Write-Host "... has version 0.0.0.0" -Fore Yellow
             }
         }
         return $ok
@@ -292,6 +303,9 @@ Begin
 }
 Process
 {
+    $vcolor = $Host.PrivateData.VerboseForegroundColor
+    $Host.PrivateData.VerboseForegroundColor = 'DarkGray'
+
     GetVersions
     CheckAppID
     CheckRoot
@@ -300,4 +314,6 @@ Process
     CheckCLSID
     CheckUser
     CheckWebView2
+
+    $Host.PrivateData.VerboseForegroundColor = $vcolor
 }
