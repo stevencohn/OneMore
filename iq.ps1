@@ -304,7 +304,7 @@ Begin
                 $ok = (Test-Path $location)
                 if ($ok) {
                     WriteOK $path
-                    WriteOK "location: $location"
+                    WriteOK "location = $location"
                 } else {
                     WriteBad $path
                     Write-Host "... location not found $location" -Fore Yellow

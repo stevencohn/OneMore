@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.IO;
 	using System.IO.Compression;
 	using System.Linq;
@@ -103,7 +104,14 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			Directory.Delete(tempdir, true);
+			try
+			{
+				Directory.Delete(tempdir, true);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"cannot delete {tempdir}", exc);
+			}
 
 			progress.Close();
 			UIHelper.ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
@@ -161,6 +169,8 @@ namespace River.OneMoreAddIn.Commands
 					progress.Increment();
 
 					await ArchivePage(element, page, path);
+
+					CleanupTemp();
 				}
 				else
 				{
@@ -183,8 +193,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ArchivePage(XElement element, Page page, string path)
 		{
-			CleanupTemp();
-
 			var name = PathFactory.CleanFileName(page.Title).Trim();
 			if (string.IsNullOrEmpty(name))
 			{
@@ -207,6 +215,8 @@ namespace River.OneMoreAddIn.Commands
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
+			filename = PathFactory.FitMaxPath(filename);
+
 			archivist.ExportHTML(page, ref filename, path, bookScope);
 
 			await ArchiveAssets(Path.GetDirectoryName(filename), path);
@@ -227,7 +237,8 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (FileInfo file in info.GetFiles())
 			{
-				using (var reader = new FileStream(file.FullName, FileMode.Open))
+				using (var reader = new FileStream(
+					file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read))
 				{
 					var name = path == null
 						? file.Name
@@ -257,12 +268,26 @@ namespace River.OneMoreAddIn.Commands
 			var temp = new DirectoryInfo(tempdir);
 			foreach (FileInfo file in temp.GetFiles())
 			{
-				file.Delete();
+				try
+				{
+					file.Delete();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"cannot delete {file.FullName}", exc);
+				}
 			}
 
 			foreach (DirectoryInfo dir in temp.GetDirectories())
 			{
-				dir.Delete(true);
+				try
+				{
+					dir.Delete(true);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"cannot delete {dir.FullName}", exc);
+				}
 			}
 		}
 	}
