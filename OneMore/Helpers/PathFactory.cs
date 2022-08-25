@@ -17,7 +17,9 @@ namespace River.OneMoreAddIn
 	/// </remarks>
 	internal static class PathFactory
 	{
+		// MAX_PATH in Windows should be 260 but OneNote.Export further restricts it to 239
 		public const int MAX_PATH = 239;
+
 		private const string LongKey = @"SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled";
 
 		private static char[] invalidFileChars;
