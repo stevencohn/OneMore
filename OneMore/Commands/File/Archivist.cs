@@ -130,6 +130,12 @@ namespace River.OneMoreAddIn.Commands
 			var path = Path.Combine(Path.GetDirectoryName(filename), name);		// "c:\folder\name"
 			filename = Path.Combine(path, fame);								// "c:\folder\name\name.htm"
 
+			if (filename.Length > PathFactory.MAX_PATH)
+			{
+				filename = PathFactory.FitMaxPath(filename);
+				path = Path.GetDirectoryName(filename);
+			}
+
 			if (PathFactory.EnsurePathExists(path))
 			{
 				if (Export(page.PageId, filename, OneNote.ExportFormat.HTML))
