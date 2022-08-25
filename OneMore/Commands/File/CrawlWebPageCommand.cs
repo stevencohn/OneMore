@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private Page parentPage;
 		private ImportWebCommand importer;
 		private List<CrawlHyperlink> selections;
+		private bool useTextTitles;
 
 
 		public CrawlWebPageCommand()
@@ -49,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					selections = dialog.GetSelectedHyperlinks();
+					useTextTitles = dialog.UseTextTitles;
 				}
 
 				// reverse so we create subpages in correct order
@@ -134,8 +136,10 @@ namespace River.OneMoreAddIn.Commands
 				progress.SetMessage(selection.Address);
 				//logger.WriteLine($"fetching {selection.Address}");
 
-				var page = await importer
-					.ImportSubpage(one, parentPage, new Uri(selection.Address), token);
+				var page = await importer.ImportSubpage(
+					one, parentPage, new Uri(selection.Address),
+					useTextTitles ? selection.Text : null,
+					token);
 
 				if (page != null)
 				{

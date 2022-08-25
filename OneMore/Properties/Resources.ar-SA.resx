@@ -3921,4 +3921,16 @@ ISO-code then comma then language name</comment>
     <value>استعادة عرض الحاوية بحجم السيارات</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog_selectLabel.Text" xml:space="preserve">
+    <value>اختر الكل</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_unselectLabel.Text" xml:space="preserve">
+    <value>لا تختر شيء</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
+    <value>استخدم عناوين النص</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

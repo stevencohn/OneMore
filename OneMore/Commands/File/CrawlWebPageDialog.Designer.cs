@@ -32,12 +32,15 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.unselectLabel = new System.Windows.Forms.LinkLabel();
+			this.selectLabel = new System.Windows.Forms.LinkLabel();
 			this.introBox = new System.Windows.Forms.TextBox();
 			this.gridView = new River.OneMoreAddIn.Settings.KeyboardGridView();
 			this.selectedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.addressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.textColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.orderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.useTextBox = new System.Windows.Forms.CheckBox();
 			this.buttonPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.SuspendLayout();
@@ -47,7 +50,7 @@
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.Enabled = false;
-			this.okButton.Location = new System.Drawing.Point(944, 17);
+			this.okButton.Location = new System.Drawing.Point(944, 49);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 11;
@@ -58,7 +61,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(1050, 17);
+			this.cancelButton.Location = new System.Drawing.Point(1050, 49);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 10;
@@ -67,13 +70,38 @@
 			// 
 			// buttonPanel
 			// 
+			this.buttonPanel.Controls.Add(this.useTextBox);
+			this.buttonPanel.Controls.Add(this.unselectLabel);
+			this.buttonPanel.Controls.Add(this.selectLabel);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonPanel.Location = new System.Drawing.Point(20, 471);
+			this.buttonPanel.Location = new System.Drawing.Point(20, 439);
 			this.buttonPanel.Name = "buttonPanel";
-			this.buttonPanel.Size = new System.Drawing.Size(1153, 58);
+			this.buttonPanel.Size = new System.Drawing.Size(1153, 90);
 			this.buttonPanel.TabIndex = 13;
+			// 
+			// unselectLabel
+			// 
+			this.unselectLabel.AutoSize = true;
+			this.unselectLabel.Location = new System.Drawing.Point(32, 55);
+			this.unselectLabel.Name = "unselectLabel";
+			this.unselectLabel.Size = new System.Drawing.Size(94, 20);
+			this.unselectLabel.TabIndex = 13;
+			this.unselectLabel.TabStop = true;
+			this.unselectLabel.Text = "Select none";
+			this.unselectLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectNoneItems);
+			// 
+			// selectLabel
+			// 
+			this.selectLabel.AutoSize = true;
+			this.selectLabel.Location = new System.Drawing.Point(32, 20);
+			this.selectLabel.Name = "selectLabel";
+			this.selectLabel.Size = new System.Drawing.Size(73, 20);
+			this.selectLabel.TabIndex = 12;
+			this.selectLabel.TabStop = true;
+			this.selectLabel.Text = "Select all";
+			this.selectLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectAllItems);
 			// 
 			// introBox
 			// 
@@ -110,7 +138,7 @@
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(1153, 389);
+			this.gridView.Size = new System.Drawing.Size(1153, 357);
 			this.gridView.TabIndex = 16;
 			this.gridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.DirtyStateChanged);
 			this.gridView.Resize += new System.EventHandler(this.GridResize);
@@ -155,6 +183,18 @@
 			this.orderColumn.ReadOnly = true;
 			this.orderColumn.Width = 90;
 			// 
+			// useTextBox
+			// 
+			this.useTextBox.AutoSize = true;
+			this.useTextBox.Checked = true;
+			this.useTextBox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.useTextBox.Location = new System.Drawing.Point(944, 16);
+			this.useTextBox.Name = "useTextBox";
+			this.useTextBox.Size = new System.Drawing.Size(139, 24);
+			this.useTextBox.TabIndex = 14;
+			this.useTextBox.Text = "Use Text Titles";
+			this.useTextBox.UseVisualStyleBackColor = true;
+			// 
 			// CrawlWebPageDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -174,6 +214,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Import Web Sub-pages";
 			this.buttonPanel.ResumeLayout(false);
+			this.buttonPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -191,5 +232,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn addressColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn textColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn orderColumn;
+		private System.Windows.Forms.LinkLabel unselectLabel;
+		private System.Windows.Forms.LinkLabel selectLabel;
+		private System.Windows.Forms.CheckBox useTextBox;
 	}
 }

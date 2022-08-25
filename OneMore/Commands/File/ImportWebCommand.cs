@@ -389,7 +389,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="uri"></param>
 		/// <returns></returns>
 		public async Task<Page> ImportSubpage(
-			OneNote one, Page parent, Uri uri, CancellationToken token)
+			OneNote one, Page parent, Uri uri, string linkText, CancellationToken token)
 		{
 			logger.WriteLine($"importing subpage {uri.AbsoluteUri}");
 
@@ -422,14 +422,22 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
-			if (string.IsNullOrEmpty(info.Title))
+			string title;
+			if (linkText != null)
 			{
-				info.Title = doc.DocumentNode.SelectSingleNode("//title")?.InnerText;
+				title = linkText;
 			}
+			else
+			{
+				if (string.IsNullOrEmpty(info.Title))
+				{
+					info.Title = doc.DocumentNode.SelectSingleNode("//title")?.InnerText;
+				}
 
-			var title = string.IsNullOrEmpty(info.Title)
-				? $"<a href=\"{uri.AbsoluteUri}\">{uri.AbsoluteUri}</a>"
-				: $"<a href=\"{uri.AbsoluteUri}\">{info.Title}</a>";
+				title = string.IsNullOrEmpty(info.Title)
+					? $"<a href=\"{uri.AbsoluteUri}\">{uri.AbsoluteUri}</a>"
+					: $"<a href=\"{uri.AbsoluteUri}\">{info.Title}</a>";
+			}
 
 			if (token.IsCancellationRequested)
 			{

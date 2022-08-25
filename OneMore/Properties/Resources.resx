@@ -3970,4 +3970,16 @@ Select No to keep one empty line between paragraphs</value>
     <value>Restore Auto-size Container Widths</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog_selectLabel.Text" xml:space="preserve">
+    <value>Select all</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_unselectLabel.Text" xml:space="preserve">
+    <value>Select none</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
+    <value>Use Text Titles</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

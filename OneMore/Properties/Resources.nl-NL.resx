@@ -3921,4 +3921,16 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Herstel automatische grootte containerbreedtes</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog_selectLabel.Text" xml:space="preserve">
+    <value>Selecteer alles</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_unselectLabel.Text" xml:space="preserve">
+    <value>Selecteer geen</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
+    <value>Gebruik teksttitels</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
