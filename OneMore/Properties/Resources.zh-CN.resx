@@ -3913,4 +3913,16 @@ OneNote 文件 (*.one)</value>
     <value>还原自动大小的容器宽度</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog_selectLabel.Text" xml:space="preserve">
+    <value>全选</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_unselectLabel.Text" xml:space="preserve">
+    <value>选择无</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
+    <value>使用文本标题</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

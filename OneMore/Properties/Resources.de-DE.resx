@@ -3908,4 +3908,16 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Stellen Sie die Containerbreiten der automatischen Größe wieder her</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog_selectLabel.Text" xml:space="preserve">
+    <value>Wählen Sie Alle</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_unselectLabel.Text" xml:space="preserve">
+    <value>Nichts ausgewählt</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
+    <value>Verwenden Sie Texttitel</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

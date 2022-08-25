@@ -3917,4 +3917,16 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Restaurer les largeurs de conteneurs de taille automatique</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog_selectLabel.Text" xml:space="preserve">
+    <value>Tout sélectionner</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_unselectLabel.Text" xml:space="preserve">
+    <value>Ne rien sélectionner</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
+    <value>Utiliser des titres de texte</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -1491,11 +1491,38 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string CrawlWebPageDialog_selectLabel_Text {
+            get {
+                return ResourceManager.GetString("CrawlWebPageDialog_selectLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Web Sub-pages.
         /// </summary>
         internal static string CrawlWebPageDialog_Text {
             get {
                 return ResourceManager.GetString("CrawlWebPageDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select none.
+        /// </summary>
+        internal static string CrawlWebPageDialog_unselectLabel_Text {
+            get {
+                return ResourceManager.GetString("CrawlWebPageDialog_unselectLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Text Titles.
+        /// </summary>
+        internal static string CrawlWebPageDialog_useTextBox_Text {
+            get {
+                return ResourceManager.GetString("CrawlWebPageDialog_useTextBox.Text", resourceCulture);
             }
         }
         

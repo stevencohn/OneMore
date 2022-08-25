@@ -3974,4 +3974,16 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Przywróć szerokości pojemników z automatyczną wielkości</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog_selectLabel.Text" xml:space="preserve">
+    <value>Zaznacz wszystko</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_unselectLabel.Text" xml:space="preserve">
+    <value>Wybierz brak</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
+    <value>Użyj tytułów tekstowych</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

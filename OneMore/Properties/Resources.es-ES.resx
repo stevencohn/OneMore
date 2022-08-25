@@ -3921,4 +3921,16 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Restaurar anchos de contenedor de tamaño automático</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CrawlWebPageDialog_selectLabel.Text" xml:space="preserve">
+    <value>Seleccionar todo</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_unselectLabel.Text" xml:space="preserve">
+    <value>Seleccionar ninguno</value>
+    <comment>link label</comment>
+  </data>
+  <data name="CrawlWebPageDialog_useTextBox.Text" xml:space="preserve">
+    <value>Use títulos de texto</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

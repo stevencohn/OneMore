@@ -26,6 +26,9 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introBox",
+					"selectLabel",
+					"unselectLabel",
+					"useTextBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -38,6 +41,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			gridView.DataSource = new SortableBindingList<CrawlHyperlink>(links);
 		}
+
+
+		public bool UseTextTitles => useTextBox.Checked;
 
 
 		public List<CrawlHyperlink> GetSelectedHyperlinks()
@@ -74,6 +80,25 @@ namespace River.OneMoreAddIn.Commands
 				gridView.Columns[1].Width += diff;
 				gridView.Columns[2].Width += diff;
 			}
+		}
+
+		private void SelectAllItems(object sender, LinkLabelLinkClickedEventArgs ea)
+		{
+			var data = (SortableBindingList<CrawlHyperlink>)gridView.DataSource;
+			data.Where(e => !e.Selected).ForEach(e => e.Selected = true);
+
+			gridView.Invalidate();
+			okButton.Enabled = data.Any(d => d.Selected);
+		}
+
+
+		private void SelectNoneItems(object sender, LinkLabelLinkClickedEventArgs ea)
+		{
+			var data = (SortableBindingList<CrawlHyperlink>)gridView.DataSource;
+			data.Where(e => e.Selected).ForEach(e => e.Selected = false);
+
+			gridView.Invalidate();
+			okButton.Enabled = data.Any(d => d.Selected);
 		}
 	}
 }
