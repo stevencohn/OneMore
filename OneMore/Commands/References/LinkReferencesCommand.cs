@@ -187,14 +187,19 @@ namespace River.OneMoreAddIn.Commands
 
 					var refpage = one.GetPage(referal.Attribute("ID").Value, OneNote.PageDetail.Basic);
 
-					logger.WriteLine($"searching for '{whatText}' on {refpage.Title}");
+					logger.WriteLine($"searching for '{whatText}' on '{refpage.Title}'");
 
 					var count = editor.SearchAndReplace(refpage);
 					if (count > 0)
 					{
 						await one.Update(refpage);
 						referal.SetAttributeValue(LinkedAttr, "true");
-						referal.SetAttributeValue(SynopsisAttr, GetSynopsis(refpage));
+
+						if (synopses)
+						{
+							referal.SetAttributeValue(SynopsisAttr, GetSynopsis(refpage));
+						}
+
 						updates++;
 					}
 					else
@@ -303,7 +308,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var link = one.GetHyperlink(referal.Attribute("ID").Value, string.Empty);
 				var name = referal.Attribute(NameAttr) ?? referal.Attribute("name");
-				var synopsis = referal.Attribute(SynopsisAttr).Value ?? string.Empty;
 
 				children.Add(
 					new Paragraph(
@@ -313,6 +317,8 @@ namespace River.OneMoreAddIn.Commands
 
 				if (synopses)
 				{
+					var synopsis = referal.Attribute(SynopsisAttr).Value ?? string.Empty;
+
 					children.Add(
 						new Paragraph(synopsis).SetQuickStyle(citeStyle.Index),
 						new Paragraph(string.Empty)
