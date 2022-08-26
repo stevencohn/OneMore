@@ -146,6 +146,15 @@ Begin
                     $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
                 }
             }
+            elseif (($_ -match '"Name" = "8:OneMoreSetupActions --install ') -or `
+                    ($_ -match '"Arguments" = "8:--install '))
+            {
+                if ($bitness -eq 64) {
+                    $_.Replace('x86', 'x64') | Out-File $vdproj -Append
+                } else {
+                    $_.Replace('x64', 'x86') | Out-File $vdproj -Append
+                }
+            }
             else
             {
                 $_ | Out-File $vdproj -Append
