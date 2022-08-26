@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
 
@@ -115,8 +116,16 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				return false;
 			}
 
+			// allow semantic version e.g. "v1.2.3" or suffixed e.g. "v1.2.3-beta"
+			var plainver = release.tag_name;
+			var match = Regex.Match(plainver, @"\d+\.\d+\.\d+");
+			if (match.Success && match.Captures[0].Value.Length > plainver.Length)
+			{
+				plainver = match.Captures[0].Value;
+			}
+
 			var currentVersion = new Version(InstalledVersion);
-			var releaseVersion = new Version(release.tag_name);
+			var releaseVersion = new Version(plainver);
 			IsUpToDate = currentVersion >= releaseVersion;
 
 			return true;
