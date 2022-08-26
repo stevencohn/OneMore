@@ -8,6 +8,7 @@ namespace OneMoreSetupActions
 {
 	using System;
 	using System.Diagnostics;
+	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Security.Principal;
 
@@ -39,7 +40,11 @@ namespace OneMoreSetupActions
 			logger = new Logger("OneMoreSetup");
 			stepper = new Stepper();
 
-			CheckBitness();
+			if (args.Any(a => a == "--x64" || a == "--x86"))
+			{
+				CheckBitness(args.Any(a => a == "--x64"));
+			}
+
 			ReportContext();
 
 			int status;
@@ -102,15 +107,17 @@ namespace OneMoreSetupActions
 		}
 
 
-		static void CheckBitness()
+		static void CheckBitness(bool x64)
 		{
 			var oarc = Environment.Is64BitOperatingSystem ? "x64" : "x86";
 			var iarc = Environment.Is64BitProcess ? "x64" : "x86";
-			logger.WriteLine($"Installer architecture ({iarc}), OS architecture ({oarc})");
+			var rarc = x64 ? "x64" : "x86";
+			logger.WriteLine($"Installer architecture ({iarc}), OS architecture ({oarc}), requesting ({rarc})");
 
-			if (Environment.Is64BitOperatingSystem != Environment.Is64BitProcess)
+			if (Environment.Is64BitOperatingSystem != Environment.Is64BitProcess ||
+				Environment.Is64BitOperatingSystem != x64)
 			{
-				logger.WriteLine($"Installer architecture ({iarc}) does not match operating system ({oarc})");
+				logger.WriteLine($"Installer architecture ({iarc}) does not match OS ({oarc}) or request ({rarc})");
 				Environment.Exit(CustomAction.USEREXIT);
 			}
 		}
