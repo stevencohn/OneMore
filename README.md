@@ -23,6 +23,7 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 | Some of the OneMore menus | The OneMore Calendar |
 |---|---|
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
+_Click an image to enlarge_
 
 
 <a name="features"></a>
