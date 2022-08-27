@@ -207,7 +207,7 @@ _Click an image to enlarge_
 
 ---
 <a name="install"></a>
-## How to Install OneMore
+## 💾 How to Install OneMore
 
 1. Close OneNote if it is currently running (See below if you need to install OneNote)
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
