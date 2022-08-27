@@ -252,7 +252,7 @@ the new installer will simply overwrite the old files and _upgrade_ OneMore. Not
 download the installer, you will need to unblock it by opening its Properties dialog and clicking
 the _Unblock_ checkbox.
 
-## How to Install OneNote
+### How to Install OneNote
 
 OneNote can be installed after installing Office or even installed standalone without Office at all.
 
