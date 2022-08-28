@@ -236,9 +236,8 @@ where &lt;username&gt; is the user name of an account with admin rights and
 
 You wil be prompted for the password of the admin user. The installation will continue.
 
-```diff
-- You must sign out and then sign in again before you will see OneMore in the OneNote ribbon.
-```
+You must sign out and then sign in again before you will see OneMore in the OneNote ribbon.
+
 
 ### How to Upgrade OneMore
 
@@ -257,7 +256,7 @@ the _Unblock_ checkbox.
 OneNote can be installed after installing Office or even installed standalone without Office at all.
 
 1. Optionally install Office - do not run the Setup.exe; instead, run Office\Setup64.exe
-   - Download OfficeSetup.exe [from here](https://support.microsoft.com/en-us/office/install-or-reinstall-onenote-for-windows-c08068d8-b517-4464-9ff2-132cb9c45c08)
+   - Download the OneNote installer, OfficeSetup.exe [from here](https://support.microsoft.com/en-us/office/install-or-reinstall-onenote-for-windows-c08068d8-b517-4464-9ff2-132cb9c45c08)
    - If run standalone, it will install 32-bit OneNote
    - If run after installing Office, it will install 32 or 64 bit based on the bitness of Office
 1. Download the standalone OneNote installer (does not require Office or can be installed ontop of Office)
