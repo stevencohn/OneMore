@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<BreakingCommand>();
 
 
-		[Command("CalendarCommand", Keys.None)]
+		[Command("ribCalendarButton_Label", Keys.None)]
 		public async Task CalendarCmd(IRibbonControl control)
 			=> await factory.Run<CalendarCommand>();
 
