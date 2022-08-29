@@ -105,8 +105,11 @@ namespace River.OneMoreAddIn
 		public async Task BreakingCmd(IRibbonControl control)
 			=> await factory.Run<BreakingCommand>();
 
+
+		[Command("CalendarCommand", Keys.None)]
 		public async Task CalendarCmd(IRibbonControl control)
 			=> await factory.Run<CalendarCommand>();
+
 
 		public async Task CaptionAttachmentsCmd(IRibbonControl control)
 			=> await factory.Run<CaptionAttachmentsCommand>();
@@ -141,9 +144,13 @@ namespace River.OneMoreAddIn
 		public async Task CopyDownCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.CopyDown);
 
+
+		[Command("ribCopyLinkToPageButton_Label", Keys.None)]
 		public async Task CopyLinkToPageCmd(IRibbonControl control)
 			=> await factory.Run<CopyLinkCommand>(false);
 
+
+		[Command("ribCopyLinkToParagraphButton_Label", Keys.None)]
 		public async Task CopyLinkToParagraphCmd(IRibbonControl control)
 			=> await factory.Run<CopyLinkCommand>(true);
 
@@ -232,8 +239,6 @@ namespace River.OneMoreAddIn
 		public async Task HighlightFormulaCmd(IRibbonControl control)
 			=> await factory.Run<HighlightFormulaCommand>();
 
-		public async Task InsertBoxCmd(IRibbonControl control)
-			=> await factory.Run<InsertCodeBlockCommand>(false);
 
 		public async Task ImportCmd(IRibbonControl control)
 			=> await factory.Run<ImportCommand>();
@@ -243,6 +248,12 @@ namespace River.OneMoreAddIn
 
 		public async Task InsertBlueStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
+
+
+		[Command("ribBoxButton_Label", Keys.None)]
+		public async Task InsertBoxCmd(IRibbonControl control)
+			=> await factory.Run<InsertCodeBlockCommand>(false);
+
 
 		public async Task InsertBreadcrumbCmd(IRibbonControl control)
 			=> await factory.Run<InsertBreadcrumbCommand>(StatusColor.Blue);
