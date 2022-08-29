@@ -380,13 +380,11 @@
                 id="ribCopyLinkToPageButton"
                 imageMso="EditLinks"
                 getLabel="GetRibbonLabel"
-                getEnabled="GetBodyContext"
                 onAction="CopyLinkToPageCmd"/>
               <button
                 id="ribCopyLinkToParagraphButton"
                 imageMso="TextBoxPreviousLinked"
                 getLabel="GetRibbonLabel"
-                getEnabled="GetBodyContext"
                 onAction="CopyLinkToParagraphCmd"/>
               <button
                 id="ribStartBiLinkButton"

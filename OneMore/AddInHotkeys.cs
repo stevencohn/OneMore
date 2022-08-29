@@ -33,11 +33,15 @@ namespace River.OneMoreAddIn
 			RegisterHotKey(s, nameof(ApplyStyle7Cmd), async () => await ApplyStyle7Cmd(null));
 			RegisterHotKey(s, nameof(ApplyStyle8Cmd), async () => await ApplyStyle8Cmd(null));
 			RegisterHotKey(s, nameof(ApplyStyle9Cmd), async () => await ApplyStyle9Cmd(null));
+			RegisterHotKey(s, nameof(CalendarCmd), async () => await CalendarCmd(null));
 			RegisterHotKey(s, nameof(ClearLogCmd), async () => await ClearLogCmd(null));
+			RegisterHotKey(s, nameof(CopyLinkToPageCmd), async () => await CopyLinkToPageCmd(null));
+			RegisterHotKey(s, nameof(CopyLinkToParagraphCmd), async () => await CopyLinkToParagraphCmd(null));
 			RegisterHotKey(s, nameof(DecreaseFontSizeCmd), async () => await DecreaseFontSizeCmd(null));
 			RegisterHotKey(s, nameof(DiagnosticsCmd), async () => await DiagnosticsCmd(null));
 			RegisterHotKey(s, nameof(FillDownCmd), async () => await FillDownCmd(null));
 			RegisterHotKey(s, nameof(HighlightCmd), async () => await HighlightCmd(null));
+			RegisterHotKey(s, nameof(InsertBoxCmd), async () => await InsertBoxCmd(null));
 			RegisterHotKey(s, nameof(InsertCodeBlockCmd), async () => await InsertCodeBlockCmd(null));
 			RegisterHotKey(s, nameof(InsertDateCmd), async () => await InsertDateCmd(null));
 			RegisterHotKey(s, nameof(InsertDateTimeCmd), async () => await InsertDateTimeCmd(null));
