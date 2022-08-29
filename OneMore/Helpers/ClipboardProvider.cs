@@ -55,15 +55,13 @@ namespace River.OneMoreAddIn
 				{
 					stashedImage = Win.Clipboard.GetImage();
 				}
-				else
+
+				// collect each text format
+				foreach (Win.TextDataFormat format in Enum.GetValues(typeof(Win.TextDataFormat)))
 				{
-					// collect each text format
-					foreach (Win.TextDataFormat format in Enum.GetValues(typeof(Win.TextDataFormat)))
+					if (Win.Clipboard.ContainsText(format))
 					{
-						if (Win.Clipboard.ContainsText(format))
-						{
-							stash.Add(format, Win.Clipboard.GetText(format));
-						}
+						stash.Add(format, Win.Clipboard.GetText(format));
 					}
 				}
 
@@ -76,19 +74,27 @@ namespace River.OneMoreAddIn
 		{
 			await SingleThreaded.Invoke(() =>
 			{
+				// multiple formats must be collated into a single data object
+				var data = new Win.DataObject();
+				var something = false;
+
 				if (stashedImage != null)
 				{
-					Win.Clipboard.SetImage(stashedImage);
+					data.SetImage(stashedImage);
+					something = true;
 				}
-				else if (stash.Count > 0)
+
+				if (stash.Count > 0)
 				{
-					// multiple texxt formats must be collated into a data object
-					var data = new Win.DataObject();
 					foreach (var key in stash.Keys)
 					{
 						data.SetData(ConvertToDataFormats(key), stash[key]);
+						something = true;
 					}
+				}
 
+				if (something)
+				{
 					Win.Clipboard.SetDataObject(data, true);
 				}
 			});
