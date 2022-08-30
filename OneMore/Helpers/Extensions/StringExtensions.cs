@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -51,6 +52,34 @@ namespace River.OneMoreAddIn
 		public static bool EqualsICIC(this string s, string value)
 		{
 			return s.Equals(value, StringComparison.InvariantCultureIgnoreCase);
+		}
+
+
+		/// <summary>
+		/// Escapes only a select few special character in a URL. Needed for the
+		/// Copy Link to Page command so the pasted link can be clicked and properly 
+		/// navigate back to the source page.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		public static string SafeUrlEncode(this string s)
+		{
+			// all normally escaped chars --> " $&`:<>[]{}\"+#%@/;=?\\^|~',"
+
+			var builder = new StringBuilder();
+			for (var i = 0; i < s.Length; i++)
+			{
+				if (s[i] == ' ' || s[i] == '"' || s[i] == '\'')
+				{
+					builder.Append($"%{((int)s[i]):X2}");
+				}
+				else
+				{
+					builder.Append(s[i]);
+				}
+			}
+
+			return builder.ToString();
 		}
 
 
