@@ -1835,7 +1835,9 @@ Título - incluir no TOC</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>Os padrões de URL devem conter um token de substituição de string, como &amp;amp; q = {0}</value>
+    <value>Os padrões de URL devem conter um token de substituição de string, como &amp;q={0}
+
+Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com o botão direito.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">

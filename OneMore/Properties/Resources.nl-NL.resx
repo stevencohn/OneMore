@@ -1835,7 +1835,9 @@ Kop - opnemen in inhoudsopgave</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>URL-patronen moeten een tekenreeksvervangingstoken bevatten, zoals &amp;q={0}</value>
+    <value>URL-patronen moeten een tekenreeksvervangingstoken bevatten, zoals &amp;q={0}
+
+Zoekmachines verschijnen in het contextmenu van de pagina, klik met de rechtermuisknop.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
