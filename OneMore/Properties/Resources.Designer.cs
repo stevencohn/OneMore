@@ -7144,7 +7144,9 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to URL Patterns must contain a string replacement token, such as &amp;q={0}.
+        ///   Looks up a localized string similar to URL Patterns must contain a string replacement token, such as &amp;q={0}
+        ///
+        ///Search engines will appear in the page context menu, right-click..
         /// </summary>
         internal static string SearchEngineSheet_introLabel_Text {
             get {

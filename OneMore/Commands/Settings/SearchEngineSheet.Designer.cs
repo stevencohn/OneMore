@@ -55,13 +55,13 @@
             this.nameColumn,
             this.urlColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridView.Location = new System.Drawing.Point(10, 102);
+			this.gridView.Location = new System.Drawing.Point(10, 123);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
-			this.gridView.Size = new System.Drawing.Size(780, 389);
+			this.gridView.Size = new System.Drawing.Size(780, 368);
 			this.gridView.TabIndex = 2;
 			this.gridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellEndEdit);
 			this.gridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.gridView_DataBindingComplete);
@@ -96,7 +96,7 @@
 			this.introPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introPanel.Location = new System.Drawing.Point(10, 9);
 			this.introPanel.Name = "introPanel";
-			this.introPanel.Size = new System.Drawing.Size(780, 55);
+			this.introPanel.Size = new System.Drawing.Size(780, 81);
 			this.introPanel.TabIndex = 3;
 			// 
 			// introLabel
@@ -104,9 +104,10 @@
 			this.introLabel.AutoSize = true;
 			this.introLabel.Location = new System.Drawing.Point(3, 0);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(497, 20);
+			this.introLabel.Size = new System.Drawing.Size(497, 60);
 			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "URL Patterns must contain a string replacement token, such as &q={0}";
+			this.introLabel.Text = "URL Patterns must contain a string replacement token, such as &q={0}\r\n\r\nSearch en" +
+    "gines will appear in the page context menu, right-click.";
 			// 
 			// toolStrip
 			// 
@@ -118,10 +119,10 @@
             this.toolStripSeparator1,
             this.deleteLabel,
             this.deleteButton});
-			this.toolStrip.Location = new System.Drawing.Point(10, 64);
+			this.toolStrip.Location = new System.Drawing.Point(10, 90);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(780, 38);
+			this.toolStrip.Size = new System.Drawing.Size(780, 33);
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
 			// 
@@ -131,7 +132,7 @@
 			this.upButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
 			this.upButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.upButton.Name = "upButton";
-			this.upButton.Size = new System.Drawing.Size(34, 33);
+			this.upButton.Size = new System.Drawing.Size(34, 28);
 			this.upButton.Text = "Move up";
 			this.upButton.Click += new System.EventHandler(this.upButton_Click);
 			// 
@@ -141,7 +142,7 @@
 			this.downButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
 			this.downButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.downButton.Name = "downButton";
-			this.downButton.Size = new System.Drawing.Size(34, 33);
+			this.downButton.Size = new System.Drawing.Size(34, 28);
 			this.downButton.Text = "Move down";
 			this.downButton.Click += new System.EventHandler(this.downButton_Click);
 			// 
@@ -151,19 +152,19 @@
 			this.refreshButton.Image = global::River.OneMoreAddIn.Properties.Resources.Refresh;
 			this.refreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.refreshButton.Name = "refreshButton";
-			this.refreshButton.Size = new System.Drawing.Size(34, 33);
+			this.refreshButton.Size = new System.Drawing.Size(34, 28);
 			this.refreshButton.Text = "Refresh";
 			this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
 			// 
 			// deleteLabel
 			// 
 			this.deleteLabel.Name = "deleteLabel";
-			this.deleteLabel.Size = new System.Drawing.Size(66, 33);
+			this.deleteLabel.Size = new System.Drawing.Size(66, 28);
 			this.deleteLabel.Text = "Delete:";
 			// 
 			// deleteButton
@@ -172,7 +173,7 @@
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(34, 33);
+			this.deleteButton.Size = new System.Drawing.Size(34, 28);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
 			// 

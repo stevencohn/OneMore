@@ -908,7 +908,9 @@ OneNote zamknie się automatycznie</value>
     <comment>warning message</comment>
   </data>
   <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>Wzory URL muszą zawierać token zastępczy łańcucha, takie jak i q = {0}</value>
+    <value>Wzorce adresów URL muszą zawierać token zastępujący ciąg, taki jak &amp;q={0}
+
+Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskiem myszy.</value>
     <comment>label</comment>
   </data>
   <data name="RemindDialog_statusBox.Text" xml:space="preserve">

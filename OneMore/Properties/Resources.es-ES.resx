@@ -1834,7 +1834,9 @@ Encabezado - incluir en TOC</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>Los patrones de URL deben contener un token de reemplazo de cadena, como &amp;q={0}</value>
+    <value>Los patrones de URL deben contener un token de reemplazo de cadena, como &amp;q={0}
+
+Los motores de búsqueda aparecerán en el menú contextual de la página, haga clic con el botón derecho.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">

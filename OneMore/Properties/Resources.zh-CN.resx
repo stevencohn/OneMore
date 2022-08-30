@@ -1826,7 +1826,9 @@ OneNote 将自动关闭</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>网址格式必须包含字符串替换令牌，例如＆q={0}</value>
+    <value>URL 模式必须包含字符串替换标记，例如 &amp;q={0}
+
+搜索引擎将出现在页面上下文菜单中，单击鼠标右键。</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">

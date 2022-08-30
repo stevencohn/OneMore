@@ -1831,7 +1831,9 @@ Titre - inclure dans la table des matières</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>Les modèles d'URL doivent contenir un jeton de remplacement de chaîne, tel que &amp;q={0}</value>
+    <value>Les modèles d'URL doivent contenir un jeton de remplacement de chaîne, tel que &amp;q={0}
+
+Les moteurs de recherche apparaîtront dans le menu contextuel de la page, faites un clic droit.</value>
     <comment>label</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">

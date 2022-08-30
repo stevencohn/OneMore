@@ -914,7 +914,9 @@ OneNote will close automatically</value>
     <comment>warning message</comment>
   </data>
   <data name="SearchEngineSheet_introLabel.Text" xml:space="preserve">
-    <value>URL Patterns must contain a string replacement token, such as &amp;q={0}</value>
+    <value>URL Patterns must contain a string replacement token, such as &amp;q={0}
+
+Search engines will appear in the page context menu, right-click.</value>
     <comment>label</comment>
   </data>
   <data name="RemindDialog_statusBox.Text" xml:space="preserve">
