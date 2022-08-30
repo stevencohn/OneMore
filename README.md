@@ -224,7 +224,7 @@ _Click an image to enlarge_
      the user name and password of an account with admin rights. See below for further instructions.
 5. Run OneNote and enjoy
 
-### Install from a normal user account
+### How to Install From a Normal User Account
 The OneMore installer requires admin rights to complete configuration and update the Windows Registry.
 If you have the user name and password of an account with admin rights, you can run the OneMore installer
 from your current account using this command entered from a console window:
