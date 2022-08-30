@@ -3986,4 +3986,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Użyj tytułów tekstowych</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_No" xml:space="preserve">
+    <value>Nie</value>
+  </data>
+  <data name="word_Yes" xml:space="preserve">
+    <value>TAk</value>
+  </data>
 </root>

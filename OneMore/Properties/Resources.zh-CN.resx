@@ -3925,4 +3925,10 @@ OneNote 文件 (*.one)</value>
     <value>使用文本标题</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_No" xml:space="preserve">
+    <value>不</value>
+  </data>
+  <data name="word_Yes" xml:space="preserve">
+    <value>是的</value>
+  </data>
 </root>

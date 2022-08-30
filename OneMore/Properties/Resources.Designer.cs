@@ -8828,6 +8828,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string word_No {
+            get {
+                return ResourceManager.GetString("word_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string word_OK {
@@ -8977,6 +8986,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Width {
             get {
                 return ResourceManager.GetString("word_Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string word_Yes {
+            get {
+                return ResourceManager.GetString("word_Yes", resourceCulture);
             }
         }
         

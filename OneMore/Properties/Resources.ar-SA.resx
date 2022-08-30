@@ -3933,4 +3933,10 @@ ISO-code then comma then language name</comment>
     <value>استخدم عناوين النص</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_No" xml:space="preserve">
+    <value>رقم</value>
+  </data>
+  <data name="word_Yes" xml:space="preserve">
+    <value>نعم</value>
+  </data>
 </root>

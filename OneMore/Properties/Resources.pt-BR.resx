@@ -3933,4 +3933,10 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Use títulos de texto</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_No" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="word_Yes" xml:space="preserve">
+    <value>Sim</value>
+  </data>
 </root>

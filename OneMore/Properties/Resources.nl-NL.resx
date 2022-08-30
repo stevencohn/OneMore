@@ -3933,4 +3933,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Gebruik teksttitels</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_No" xml:space="preserve">
+    <value>Nee</value>
+  </data>
+  <data name="word_Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
 </root>

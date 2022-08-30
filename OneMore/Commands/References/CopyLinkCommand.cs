@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -93,7 +94,7 @@ namespace River.OneMoreAddIn
 						Win.Clipboard.SetText(html, Win.TextDataFormat.Html);
 					});
 
-					UIHelper.ShowInfo(specific
+					MoreMessageBox.Show(owner, specific
 						? Resx.CopyLinkCommand_LinkToParagraph
 						: Resx.CopyLinkCommand_LinkToPage);
 				}

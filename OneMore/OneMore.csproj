@@ -563,6 +563,12 @@
     <Compile Include="Commands\Edit\PronunciateDialog.Designer.cs">
       <DependentUpon>PronunciateDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\MoreMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MoreMessageBox.Designer.cs">
+      <DependentUpon>MoreMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MorePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1139,6 +1145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MoreLinkLabel.resx">
       <DependentUpon>MoreLinkLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MoreMessageBox.resx">
+      <DependentUpon>MoreMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
