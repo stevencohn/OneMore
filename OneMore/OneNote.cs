@@ -584,7 +584,7 @@ namespace River.OneMoreAddIn
 			try
 			{
 				onenote.GetHyperlinkToObject(pageId, objectId, out var hyperlink);
-				return hyperlink;
+				return hyperlink.SafeUrlEncode();
 			}
 			catch (Exception exc)
 			{
