@@ -3984,4 +3984,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>Use Text Titles</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="word_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
 </root>

@@ -3931,4 +3931,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Utiliser des titres de texte</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="word_Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
 </root>

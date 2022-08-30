@@ -3922,4 +3922,10 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Verwenden Sie Texttitel</value>
     <comment>checkbox</comment>
   </data>
+  <data name="word_No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="word_Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
 </root>
