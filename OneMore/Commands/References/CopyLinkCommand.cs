@@ -71,12 +71,24 @@ namespace River.OneMoreAddIn
 
 				if (!string.IsNullOrEmpty(hyperlink))
 				{
-					var info = one.GetPageInfo();
-					var path = info.Path.Substring(1).Replace("/", $" {RightArrow} ");
-					if (specific && !string.IsNullOrEmpty(text))
+					// build from hierarchy to avoid splitting on '/' where there is a slash
+					// in any part of the name
+
+					var crumbs = new StringBuilder();
+					var id = one.GetParent(page.PageId);
+					while (!string.IsNullOrEmpty(id))
 					{
-						path = $"{path} {RightArrow} <i>{text}</i>";
+						var node = one.GetHierarchyNode(id);
+
+						// following line could be used to hyperlink each part like a breadcrumb
+						//crumbs.Insert(0, $"<a href={node.Link}>{node.Name}</a> {RightArrow} ");
+
+						crumbs.Insert(0, $"{node.Name} {RightArrow} ");
+						id = one.GetParent(id);
 					}
+
+					crumbs.Append(page.Title);
+					var path = specific ? $"{crumbs} {RightArrow} <i>{text}</i>" : crumbs.ToString();
 
 					var builder = new StringBuilder();
 					builder.AppendLine("<html>");
