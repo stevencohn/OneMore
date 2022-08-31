@@ -3941,4 +3941,8 @@ ISO-code then comma then language name</comment>
   <data name="word_Yes" xml:space="preserve">
     <value>نعم</value>
   </data>
+  <data name="TimerWindow.Text" xml:space="preserve">
+    <value>مؤقت OneNote</value>
+    <comment>window title</comment>
+  </data>
 </root>

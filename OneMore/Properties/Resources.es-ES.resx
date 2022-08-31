@@ -3941,4 +3941,8 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   <data name="word_Yes" xml:space="preserve">
     <value>Sí</value>
   </data>
+  <data name="TimerWindow.Text" xml:space="preserve">
+    <value>Temporizador de OneNote</value>
+    <comment>window title</comment>
+  </data>
 </root>

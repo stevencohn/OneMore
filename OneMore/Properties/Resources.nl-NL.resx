@@ -3941,4 +3941,8 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="word_Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="TimerWindow.Text" xml:space="preserve">
+    <value>OneNote-timer</value>
+    <comment>window title</comment>
+  </data>
 </root>
