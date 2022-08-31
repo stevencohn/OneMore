@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Name = "TimerWindow";
 			this.Opacity = 0.85D;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-			this.Text = "CountdownWindow";
+			this.Text = "OneNote Timer";
 			this.Load += new System.EventHandler(this.TimerWindow_Load);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StartWindowDrag);
 			this.Move += new System.EventHandler(this.MoveWindow);

@@ -28,6 +28,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
+				Text = Resx.TimerWindow_Text;
+
 				Localize(new string[]
 				{
 					"copyButton",

@@ -3990,4 +3990,8 @@ Select No to keep one empty line between paragraphs</value>
   <data name="word_Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="TimerWindow.Text" xml:space="preserve">
+    <value>OneNote Timer</value>
+    <comment>window title</comment>
+  </data>
 </root>

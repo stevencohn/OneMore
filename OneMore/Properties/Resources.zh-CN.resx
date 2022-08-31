@@ -3933,4 +3933,8 @@ OneNote 文件 (*.one)</value>
   <data name="word_Yes" xml:space="preserve">
     <value>是的</value>
   </data>
+  <data name="TimerWindow.Text" xml:space="preserve">
+    <value>OneNote 计时器</value>
+    <comment>window title</comment>
+  </data>
 </root>

@@ -8483,6 +8483,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneNote Timer.
+        /// </summary>
+        internal static string TimerWindow_Text {
+            get {
+                return ResourceManager.GetString("TimerWindow.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide date and time.
         /// </summary>
         internal static string ToggleDttmDialog_hideRadio_Text {

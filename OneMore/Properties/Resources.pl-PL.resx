@@ -3994,4 +3994,8 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   <data name="word_Yes" xml:space="preserve">
     <value>TAk</value>
   </data>
+  <data name="TimerWindow.Text" xml:space="preserve">
+    <value>Zegar OneNote</value>
+    <comment>window title</comment>
+  </data>
 </root>

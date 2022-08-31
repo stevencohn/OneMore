@@ -3937,4 +3937,8 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="word_Yes" xml:space="preserve">
     <value>Oui</value>
   </data>
+  <data name="TimerWindow.Text" xml:space="preserve">
+    <value>Minuteur OneNote</value>
+    <comment>window title</comment>
+  </data>
 </root>
