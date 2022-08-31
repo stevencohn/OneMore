@@ -270,9 +270,11 @@ desktop edition, hopefully to be released in 2022.
 ## Languages
 OneMore is translated to *Arabic, Chinese (Simplified), Dutch, English, French, German, Polish, Portuguese, and Spanish*. Please let me know if you'd like it translated to another language. I use my [ResxTranslator](https://github.com/stevencohn/ResxTranslator) program to automate the translations but can also override inaccuracies of specific words and phrases. If you think a translation is not correct, again please let me know.
 
-### OneMore in the Media
+### OneMore in the Media and Online
 
-* [How to Increase the Functionality of OneNote With OneMore Add-In](https://www.makeuseof.com/increase-functionally-onenote-with-onemore-add-in/)
+* [makeuseof.com - How to Increase the Functionality of OneNote With OneMore Add-In](https://www.makeuseof.com/increase-functionally-onenote-with-onemore-add-in/)
+* [MSN Technology - Every Programmer Who Uses OneNote Needs This Add-On ASAP](https://www.msn.com/en-us/news/technology/every-programmer-who-uses-onenote-needs-this-add-on-asap/ar-AAZL7dk)
+* [Microsoft OneNote Forum](https://answers.microsoft.com/en-us/msoffice/forum/all/onemore-add-in-for-onenote/4290f427-aec4-4365-920b-6523ca98f221)
 
 ### Why?
 
