@@ -3945,4 +3945,8 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Temporizador do OneNote</value>
     <comment>window title</comment>
   </data>
+  <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
+    <value>Por favor, apoie o desenvolvimento futuro do OneMore</value>
+    <comment>label</comment>
+  </data>
 </root>

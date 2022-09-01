@@ -3932,4 +3932,8 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>OneNote-Timer</value>
     <comment>window title</comment>
   </data>
+  <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
+    <value>Bitte unterstützen Sie die zukünftige Entwicklung von OneMore</value>
+    <comment>label</comment>
+  </data>
 </root>

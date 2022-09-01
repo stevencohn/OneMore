@@ -142,6 +142,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please support future development of OneMore.
+        /// </summary>
+        internal static string AboutDialog_pleaseLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_pleaseLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore Add-in.
         /// </summary>
         internal static string AboutDialog_Text {
@@ -7844,6 +7853,26 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SplitTableDialog_fixedColsBox_Text {
             get {
                 return ResourceManager.GetString("SplitTableDialog_fixedColsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sponsor {
+            get {
+                object obj = ResourceManager.GetObject("Sponsor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SponsorOver {
+            get {
+                object obj = ResourceManager.GetObject("SponsorOver", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -3945,4 +3945,8 @@ ISO-code then comma then language name</comment>
     <value>مؤقت OneNote</value>
     <comment>window title</comment>
   </data>
+  <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
+    <value>الرجاء دعم التطوير المستقبلي لـ OneMore</value>
+    <comment>label</comment>
+  </data>
 </root>

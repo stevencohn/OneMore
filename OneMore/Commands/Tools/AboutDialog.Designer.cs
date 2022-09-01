@@ -33,10 +33,12 @@
 			this.versionLabel = new System.Windows.Forms.Label();
 			this.copyLabel = new System.Windows.Forms.Label();
 			this.okButton = new System.Windows.Forms.Button();
-			this.logLabel = new UI.MoreLinkLabel();
-			this.clearLogLabel = new UI.MoreLinkLabel();
-			this.homeLink = new UI.MoreLinkLabel();
-			this.updateLink = new UI.MoreLinkLabel();
+			this.logLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.clearLogLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.homeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.updateLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.pleaseLabel = new System.Windows.Forms.Label();
+			this.sponsorButton = new River.OneMoreAddIn.UI.MoreButton();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -86,10 +88,10 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(471, 238);
+			this.okButton.Location = new System.Drawing.Point(573, 341);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(104, 42);
-			this.okButton.TabIndex = 4;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
@@ -98,13 +100,14 @@
 			// 
 			this.logLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.logLabel.AutoSize = true;
+			this.logLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.logLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.logLabel.Location = new System.Drawing.Point(14, 238);
+			this.logLabel.Location = new System.Drawing.Point(14, 341);
 			this.logLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.logLabel.MaximumSize = new System.Drawing.Size(420, 0);
 			this.logLabel.Name = "logLabel";
 			this.logLabel.Size = new System.Drawing.Size(65, 20);
-			this.logLabel.TabIndex = 5;
+			this.logLabel.TabIndex = 4;
 			this.logLabel.TabStop = true;
 			this.logLabel.Text = "tempfile";
 			this.logLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLog);
@@ -113,11 +116,12 @@
 			// 
 			this.clearLogLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.clearLogLabel.AutoSize = true;
+			this.clearLogLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearLogLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.clearLogLabel.Location = new System.Drawing.Point(12, 265);
+			this.clearLogLabel.Location = new System.Drawing.Point(12, 368);
 			this.clearLogLabel.Name = "clearLogLabel";
 			this.clearLogLabel.Size = new System.Drawing.Size(122, 20);
-			this.clearLogLabel.TabIndex = 6;
+			this.clearLogLabel.TabIndex = 5;
 			this.clearLogLabel.TabStop = true;
 			this.clearLogLabel.Text = "Clear the log file";
 			this.clearLogLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClearLog);
@@ -125,12 +129,13 @@
 			// homeLink
 			// 
 			this.homeLink.AutoSize = true;
+			this.homeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.homeLink.LinkColor = System.Drawing.SystemColors.Highlight;
 			this.homeLink.Location = new System.Drawing.Point(156, 119);
 			this.homeLink.Name = "homeLink";
 			this.homeLink.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
 			this.homeLink.Size = new System.Drawing.Size(291, 35);
-			this.homeLink.TabIndex = 7;
+			this.homeLink.TabIndex = 1;
 			this.homeLink.TabStop = true;
 			this.homeLink.Text = "https://github.com/stevencohn/OneMore";
 			this.homeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoHome);
@@ -138,15 +143,44 @@
 			// updateLink
 			// 
 			this.updateLink.AutoSize = true;
+			this.updateLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.updateLink.LinkColor = System.Drawing.SystemColors.Highlight;
 			this.updateLink.Location = new System.Drawing.Point(156, 154);
 			this.updateLink.Name = "updateLink";
 			this.updateLink.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
 			this.updateLink.Size = new System.Drawing.Size(142, 35);
-			this.updateLink.TabIndex = 11;
+			this.updateLink.TabIndex = 2;
 			this.updateLink.TabStop = true;
 			this.updateLink.Text = "Check for Updates";
 			this.updateLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CheckForUpdates);
+			// 
+			// pleaseLabel
+			// 
+			this.pleaseLabel.AutoSize = true;
+			this.pleaseLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pleaseLabel.Location = new System.Drawing.Point(156, 215);
+			this.pleaseLabel.Name = "pleaseLabel";
+			this.pleaseLabel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+			this.pleaseLabel.Size = new System.Drawing.Size(424, 33);
+			this.pleaseLabel.TabIndex = 12;
+			this.pleaseLabel.Text = "Please support future development of OneMore";
+			// 
+			// sponsorButton
+			// 
+			this.sponsorButton.AutoSize = true;
+			this.sponsorButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.sponsorButton.FlatAppearance.BorderSize = 0;
+			this.sponsorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.sponsorButton.Image = global::River.OneMoreAddIn.Properties.Resources.Sponsor;
+			this.sponsorButton.Location = new System.Drawing.Point(160, 251);
+			this.sponsorButton.Name = "sponsorButton";
+			this.sponsorButton.Size = new System.Drawing.Size(149, 53);
+			this.sponsorButton.TabIndex = 3;
+			this.sponsorButton.Tag = "https://github.com/sponsors/stevencohn";
+			this.sponsorButton.UseVisualStyleBackColor = true;
+			this.sponsorButton.Click += new System.EventHandler(this.GotoSponsorship);
+			this.sponsorButton.MouseEnter += new System.EventHandler(this.EnterSponsor);
+			this.sponsorButton.MouseLeave += new System.EventHandler(this.LeaveSponsor);
 			// 
 			// AboutDialog
 			// 
@@ -155,7 +189,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(588, 294);
+			this.ClientSize = new System.Drawing.Size(690, 397);
+			this.Controls.Add(this.sponsorButton);
+			this.Controls.Add(this.pleaseLabel);
 			this.Controls.Add(this.updateLink);
 			this.Controls.Add(this.homeLink);
 			this.Controls.Add(this.clearLogLabel);
@@ -190,5 +226,7 @@
 		private UI.MoreLinkLabel clearLogLabel;
 		private UI.MoreLinkLabel homeLink;
 		private UI.MoreLinkLabel updateLink;
+		private System.Windows.Forms.Label pleaseLabel;
+		private UI.MoreButton sponsorButton;
 	}
 }

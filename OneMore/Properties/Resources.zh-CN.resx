@@ -3937,4 +3937,8 @@ OneNote 文件 (*.one)</value>
     <value>OneNote 计时器</value>
     <comment>window title</comment>
   </data>
+  <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
+    <value>请支持OneMore的未来发展</value>
+    <comment>label</comment>
+  </data>
 </root>

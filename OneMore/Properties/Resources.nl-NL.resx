@@ -3945,4 +3945,8 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>OneNote-timer</value>
     <comment>window title</comment>
   </data>
+  <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
+    <value>Steun de toekomstige ontwikkeling van OneMore</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		public AboutDialog()
 		{
 			InitializeComponent();
+			sponsorButton.SetHandCursor();
 
 			Logger.SetDesignMode(DesignMode);
 		}
@@ -63,6 +64,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void GotoSponsorship(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start((string)sponsorButton.Tag);
+		}
+
+
 		// async event handlers should be be declared 'async void'
 		private async void CheckForUpdates(object sender, LinkLabelLinkClickedEventArgs e)
 		{
@@ -86,6 +93,16 @@ namespace River.OneMoreAddIn.Commands
 			var cmd = new ClearLogCommand();
 			cmd.SetLogger(Logger.Current);
 			await cmd.Execute();
+		}
+
+		private void EnterSponsor(object sender, EventArgs e)
+		{
+			sponsorButton.Image = Resx.SponsorOver;
+		}
+
+		private void LeaveSponsor(object sender, EventArgs e)
+		{
+			sponsorButton.Image = Resx.Sponsor;
 		}
 	}
 }
