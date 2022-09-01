@@ -88,7 +88,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(573, 341);
+			this.okButton.Location = new System.Drawing.Point(591, 341);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(104, 42);
 			this.okButton.TabIndex = 0;
@@ -161,7 +161,7 @@
 			this.pleaseLabel.Location = new System.Drawing.Point(156, 215);
 			this.pleaseLabel.Name = "pleaseLabel";
 			this.pleaseLabel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-			this.pleaseLabel.Size = new System.Drawing.Size(424, 33);
+			this.pleaseLabel.Size = new System.Drawing.Size(393, 33);
 			this.pleaseLabel.TabIndex = 12;
 			this.pleaseLabel.Text = "Please support future development of OneMore";
 			// 
@@ -189,7 +189,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(690, 397);
+			this.ClientSize = new System.Drawing.Size(708, 397);
 			this.Controls.Add(this.sponsorButton);
 			this.Controls.Add(this.pleaseLabel);
 			this.Controls.Add(this.updateLink);

@@ -178,6 +178,8 @@
     <Content Include="Assets\Logo.ico" />
     <Content Include="Assets\month-32.png" />
     <Content Include="Assets\settings-32.png" />
+    <Content Include="Assets\Sponsor.png" />
+    <Content Include="Assets\SponsorOver.png" />
     <Content Include="Assets\today-32.png" />
     <Content Include="Logo.ico" />
   </ItemGroup>

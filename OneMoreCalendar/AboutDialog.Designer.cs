@@ -29,24 +29,16 @@
 		private void InitializeComponent ()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutDialog));
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.titleLabel = new System.Windows.Forms.Label();
 			this.versionLabel = new System.Windows.Forms.Label();
 			this.copyLabel = new System.Windows.Forms.Label();
 			this.okButton = new OneMoreCalendar.MoreButton();
+			this.pleaseLabel = new System.Windows.Forms.Label();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.sponsorButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.homeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(124, 125);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
 			// 
 			// titleLabel
 			// 
@@ -84,7 +76,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(451, 208);
+			this.okButton.Location = new System.Drawing.Point(612, 352);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(91, 38);
@@ -92,6 +84,44 @@
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			this.okButton.Click += new System.EventHandler(this.OK);
+			// 
+			// pleaseLabel
+			// 
+			this.pleaseLabel.AutoSize = true;
+			this.pleaseLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pleaseLabel.Location = new System.Drawing.Point(156, 178);
+			this.pleaseLabel.Name = "pleaseLabel";
+			this.pleaseLabel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+			this.pleaseLabel.Size = new System.Drawing.Size(393, 33);
+			this.pleaseLabel.TabIndex = 14;
+			this.pleaseLabel.Text = "Please support future development of OneMore";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(124, 125);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
+			// 
+			// sponsorButton
+			// 
+			this.sponsorButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.sponsorButton.FlatAppearance.BorderSize = 0;
+			this.sponsorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.sponsorButton.Image = ((System.Drawing.Image)(resources.GetObject("sponsorButton.Image")));
+			this.sponsorButton.Location = new System.Drawing.Point(160, 214);
+			this.sponsorButton.Name = "sponsorButton";
+			this.sponsorButton.Size = new System.Drawing.Size(149, 53);
+			this.sponsorButton.TabIndex = 13;
+			this.sponsorButton.Tag = "https://github.com/sponsors/stevencohn";
+			this.sponsorButton.Text = " ";
+			this.sponsorButton.UseVisualStyleBackColor = true;
+			this.sponsorButton.Click += new System.EventHandler(this.GotoSponsorship);
+			this.sponsorButton.MouseEnter += new System.EventHandler(this.EnterSponsor);
+			this.sponsorButton.MouseLeave += new System.EventHandler(this.LeaveSponsor);
 			// 
 			// homeLink
 			// 
@@ -116,7 +146,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(555, 260);
+			this.ClientSize = new System.Drawing.Size(716, 404);
+			this.Controls.Add(this.sponsorButton);
+			this.Controls.Add(this.pleaseLabel);
 			this.Controls.Add(this.homeLink);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.copyLabel);
@@ -145,5 +177,7 @@
 		private System.Windows.Forms.Label copyLabel;
 		private MoreButton okButton;
 		private River.OneMoreAddIn.UI.MoreLinkLabel homeLink;
+		private River.OneMoreAddIn.UI.MoreButton sponsorButton;
+		private System.Windows.Forms.Label pleaseLabel;
 	}
 }

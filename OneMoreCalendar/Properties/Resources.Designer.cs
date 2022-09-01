@@ -93,6 +93,26 @@ namespace OneMoreCalendar.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Sponsor {
+            get {
+                object obj = ResourceManager.GetObject("Sponsor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SponsorOver {
+            get {
+                object obj = ResourceManager.GetObject("SponsorOver", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap today_32 {
             get {
                 object obj = ResourceManager.GetObject("today_32", resourceCulture);
