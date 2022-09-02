@@ -4,63 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System.Linq;
-	using System.Text.RegularExpressions;
-	using System.Threading.Tasks;
-	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
-
-
-	internal class WordCountCommand : Command
-	{
-
-		public WordCountCommand()
-		{
-		}
-
-
-		public override async Task Execute(params object[] args)
-		{
-			using (var one = new OneNote(out var page, out _, OneNote.PageDetail.Selection))
-			{
-				var runs = page.GetSelectedElements(true);
-				var count = 0;
-
-				foreach (var run in runs)
-				{
-					var cdatas = run.DescendantNodes().OfType<XCData>();
-					foreach (var cdata in cdatas)
-					{
-						var text = cdata.GetWrapper().Value.Trim();
-						if (text.Length > 0)
-						{
-							count += Regex.Matches(text, @"[\w]+").Count;
-						}
-					}
-				}
-
-				if (page.SelectionScope == SelectionScope.Empty)
-				{
-					UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Count, count));
-				}
-				else
-				{
-					UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Selected, count));
-				}
-			}
-
-			await Task.Yield();
-		}
-	}
-}
-
-/*
-//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
-//************************************************************************************************
-
-namespace River.OneMoreAddIn.Commands
-{
 	using GTranslate.Translators;
 	using System;
 	using System.Linq;
@@ -97,15 +40,14 @@ namespace River.OneMoreAddIn.Commands
 						var text = cdata.GetWrapper().Value.Trim();
 						if (text.Length > 0)
 						{
-							// any chars from Chinese, Japanese, or Korean?
-							// get transliterated text that can be used to estimate words
+							// if Chinese, Japanese, or Korean then get transliterated text
+							// that can be used to estimate words
 							if (regex.IsMatch(text))
 							{
-								logger.WriteLine("might be CJK");
 								text = await Transliterate(text);
 							}
 
-							logger.WriteLine($"counting '{text}'");
+							//logger.WriteLine($"counting '{text}'");
 
 							count += Regex.Matches(text, @"[\w]+").Count;
 						}
@@ -142,8 +84,6 @@ namespace River.OneMoreAddIn.Commands
 						text = (await translator.TransliterateAsync(
 							text, "en", language.ISO6391)).Transliteration;
 
-						logger.WriteLine($"transliteration '{text}'");
-
 						return text;
 					}
 				}
@@ -153,9 +93,9 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				text = await(await SingleThreaded.Invoke(func));
+				text = await await SingleThreaded.Invoke(func);
 			}
-			catch (System.Exception exc)
+			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
 			}
@@ -164,4 +104,3 @@ namespace River.OneMoreAddIn.Commands
 		}
 	}
 }
-*/
