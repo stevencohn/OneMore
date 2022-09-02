@@ -327,6 +327,8 @@ Tested recently with:
 
 #### Dependencies
 
+* [Chinese](https://www.nuget.org/packages/Chinese) - nuget, MIT license
+   * Used by Word Count command for Chinese text
 * [HtmlAgilityPack](https://www.nuget.org/packages/HtmlAgilityPack) - nuget, MIT license
    * Normalizes HTML and non-conformant XML to well-formed XML that can be consumed by XElement.Parse
 * [InputSimulator](https://github.com/michaelnoonan/inputsimulator) - nuget, MIT license

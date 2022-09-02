@@ -4,8 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using GTranslate.Translators;
-	using System;
+	using Chinese;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -40,16 +39,18 @@ namespace River.OneMoreAddIn.Commands
 						var text = cdata.GetWrapper().Value.Trim();
 						if (text.Length > 0)
 						{
+							//logger.WriteLine($"counting '{text}'");
+
 							// if Chinese, Japanese, or Korean then get transliterated text
 							// that can be used to estimate words
 							if (regex.IsMatch(text))
 							{
-								text = await Transliterate(text);
+								count += ChineseTokenizer.SplitWords(text).Count();
 							}
-
-							//logger.WriteLine($"counting '{text}'");
-
-							count += Regex.Matches(text, @"[\w]+").Count;
+							else
+							{
+								count += Regex.Matches(text, @"[\w]+").Count;
+							}
 						}
 					}
 				}
@@ -65,42 +66,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await Task.Yield();
-		}
-
-
-		private async Task<string> Transliterate(string text)
-		{
-			try
-			{
-				// this nonsense is all rather absurd but it works...
-
-				text = await await SingleThreaded.Invoke(async () =>
-				{
-					using (var translator = new AggregateTranslator())
-					{
-						// verify language
-						var language = await translator.DetectLanguageAsync(text);
-						logger.WriteLine($"detected language '{language.ISO6391}'");
-						if (language.ISO6391 == "zh-CN" ||
-							language.ISO6391 == "jp-JP" ||
-							language.ISO6391 == "ko-KR")
-						{
-							text = (await translator.TransliterateAsync(
-								text, "en", language.ISO6391)).Transliteration;
-
-							return text;
-						}
-					}
-
-					return null;
-				});
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine(exc);
-			}
-
-			return text;
 		}
 	}
 }
