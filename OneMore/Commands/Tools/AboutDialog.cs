@@ -94,15 +94,5 @@ namespace River.OneMoreAddIn.Commands
 			cmd.SetLogger(Logger.Current);
 			await cmd.Execute();
 		}
-
-		private void EnterSponsor(object sender, EventArgs e)
-		{
-			sponsorButton.Image = Resx.SponsorOver;
-		}
-
-		private void LeaveSponsor(object sender, EventArgs e)
-		{
-			sponsorButton.Image = Resx.Sponsor;
-		}
 	}
 }

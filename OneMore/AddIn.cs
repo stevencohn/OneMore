@@ -78,6 +78,20 @@ namespace River.OneMoreAddIn
 				var module = hostproc[0].MainModule;
 				logger.WriteLine($"{module.FileName} ({module.FileVersionInfo.ProductVersion})");
 			}
+
+			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+		}
+
+		private System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+		{
+			logger.WriteLine($"AssemblyResolve of '{args.Name}' from '{args.RequestingAssembly.FullName}'");
+			return null;
+		}
+
+		private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			logger.WriteLine("Unhandled appdomain exception", (Exception)e.ExceptionObject);
 		}
 
 

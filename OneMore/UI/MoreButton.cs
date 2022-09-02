@@ -5,6 +5,9 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.ComponentModel;
+	using System.Drawing;
+	using System.Management.Instrumentation;
 	using System.Windows.Forms;
 
 
@@ -14,12 +17,69 @@ namespace River.OneMoreAddIn.UI
 	internal class MoreButton : Button
 	{
 		private IntPtr hcursor;
+		private Image image;
+		private Image imageOver;
 
 
 		public MoreButton()
 			: base()
 		{
 			hcursor = IntPtr.Zero;
+		}
+
+
+		[Description("Specifies the image to show when the mouse is over the button")]
+		public Image ImageOver
+		{
+			get;
+			set;
+		}
+
+
+		protected override void OnClientSizeChanged(EventArgs e)
+		{
+			base.OnClientSizeChanged(e);
+
+			if (Image == null && ImageOver == null)
+			{
+				return;
+			}
+
+			var size = new Size(
+				ClientSize.Width - Padding.Left - Padding.Right - 5,
+				ClientSize.Height - Padding.Top - Padding.Bottom - 5);
+
+			if (Image != null)
+			{
+				Image = image = new Bitmap(Image, size);
+			}
+
+			if (ImageOver != null)
+			{
+				imageOver = new Bitmap(ImageOver, size);
+			}
+		}
+
+
+		protected override void OnMouseEnter(EventArgs e)
+		{
+			if (imageOver != null)
+			{
+				Image = imageOver;
+			}
+
+			base.OnMouseEnter(e);
+		}
+
+
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			if (image != null)
+			{
+				Image = image;
+			}
+
+			base.OnMouseLeave(e);
 		}
 
 

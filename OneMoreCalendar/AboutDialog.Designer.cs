@@ -112,6 +112,7 @@
 			this.sponsorButton.FlatAppearance.BorderSize = 0;
 			this.sponsorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.sponsorButton.Image = ((System.Drawing.Image)(resources.GetObject("sponsorButton.Image")));
+			this.sponsorButton.ImageOver = global::OneMoreCalendar.Properties.Resources.SponsorOver;
 			this.sponsorButton.Location = new System.Drawing.Point(160, 214);
 			this.sponsorButton.Name = "sponsorButton";
 			this.sponsorButton.Size = new System.Drawing.Size(149, 53);
@@ -120,8 +121,6 @@
 			this.sponsorButton.Text = " ";
 			this.sponsorButton.UseVisualStyleBackColor = true;
 			this.sponsorButton.Click += new System.EventHandler(this.GotoSponsorship);
-			this.sponsorButton.MouseEnter += new System.EventHandler(this.EnterSponsor);
-			this.sponsorButton.MouseLeave += new System.EventHandler(this.LeaveSponsor);
 			// 
 			// homeLink
 			// 

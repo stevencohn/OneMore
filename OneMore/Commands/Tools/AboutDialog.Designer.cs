@@ -102,6 +102,7 @@
 			this.logLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.logLabel.AutoSize = true;
 			this.logLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.logLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.logLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
 			this.logLabel.Location = new System.Drawing.Point(14, 341);
 			this.logLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -119,6 +120,7 @@
 			this.clearLogLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.clearLogLabel.AutoSize = true;
 			this.clearLogLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.clearLogLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.clearLogLabel.LinkColor = System.Drawing.SystemColors.ControlDark;
 			this.clearLogLabel.Location = new System.Drawing.Point(12, 368);
 			this.clearLogLabel.Name = "clearLogLabel";
@@ -133,6 +135,7 @@
 			this.homeLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.homeLink.AutoSize = true;
 			this.homeLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.homeLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.homeLink.LinkColor = System.Drawing.SystemColors.Highlight;
 			this.homeLink.Location = new System.Drawing.Point(156, 119);
 			this.homeLink.Name = "homeLink";
@@ -148,6 +151,7 @@
 			this.updateLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.updateLink.AutoSize = true;
 			this.updateLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.updateLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.updateLink.LinkColor = System.Drawing.SystemColors.Highlight;
 			this.updateLink.Location = new System.Drawing.Point(156, 154);
 			this.updateLink.Name = "updateLink";
@@ -171,11 +175,11 @@
 			// 
 			// sponsorButton
 			// 
-			this.sponsorButton.AutoSize = true;
 			this.sponsorButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sponsorButton.FlatAppearance.BorderSize = 0;
 			this.sponsorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.sponsorButton.Image = global::River.OneMoreAddIn.Properties.Resources.Sponsor;
+			this.sponsorButton.ImageOver = global::River.OneMoreAddIn.Properties.Resources.SponsorOver;
 			this.sponsorButton.Location = new System.Drawing.Point(160, 251);
 			this.sponsorButton.Name = "sponsorButton";
 			this.sponsorButton.Size = new System.Drawing.Size(149, 53);
@@ -183,8 +187,6 @@
 			this.sponsorButton.Tag = "https://github.com/sponsors/stevencohn";
 			this.sponsorButton.UseVisualStyleBackColor = true;
 			this.sponsorButton.Click += new System.EventHandler(this.GotoSponsorship);
-			this.sponsorButton.MouseEnter += new System.EventHandler(this.EnterSponsor);
-			this.sponsorButton.MouseLeave += new System.EventHandler(this.LeaveSponsor);
 			// 
 			// AboutDialog
 			// 
