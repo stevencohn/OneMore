@@ -128,7 +128,8 @@
 			this.homeLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.homeLink.AutoSize = true;
 			this.homeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.homeLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.homeLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.homeLink.LinkColor = System.Drawing.Color.DarkGray;
 			this.homeLink.Location = new System.Drawing.Point(156, 119);
 			this.homeLink.Name = "homeLink";
 			this.homeLink.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
@@ -136,7 +137,7 @@
 			this.homeLink.TabIndex = 7;
 			this.homeLink.TabStop = true;
 			this.homeLink.Text = "https://github.com/stevencohn/OneMore";
-			this.homeLink.VisitedLinkColor = System.Drawing.SystemColors.ControlDark;
+			this.homeLink.VisitedLinkColor = System.Drawing.Color.DarkGray;
 			this.homeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GoHome);
 			// 
 			// AboutDialog

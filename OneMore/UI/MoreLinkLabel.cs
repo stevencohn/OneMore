@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.ComponentModel;
+	using System.Drawing;
 	using System.Windows.Forms;
 
 
@@ -14,12 +16,43 @@ namespace River.OneMoreAddIn.UI
 	internal class MoreLinkLabel : LinkLabel
 	{
 		private readonly IntPtr hcursor;
+		private Color fore;
 
 
 		public MoreLinkLabel()
 		{
 			Cursor = Cursors.Hand;
 			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
+			fore = Color.Empty;
+		}
+
+
+		[Description("Determines the color of the hyperlink when mouse is over it")]
+		public Color HoverColor
+		{
+			get;
+			set;
+		} = Color.MediumOrchid;
+
+
+
+		protected override void OnMouseEnter(EventArgs e)
+		{
+			base.OnMouseEnter(e);
+
+			if (fore == Color.Empty)
+			{
+				fore = LinkColor;
+			}
+
+			LinkColor = VisitedLinkColor = HoverColor;
+		}
+
+
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			base.OnMouseLeave(e);
+			LinkColor = VisitedLinkColor = fore;
 		}
 
 

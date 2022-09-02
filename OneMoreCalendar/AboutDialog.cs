@@ -11,8 +11,8 @@ namespace OneMoreCalendar
 
 	internal partial class AboutDialog : Form
 	{
-		private Image image;
-		private Image imageOver;
+		private readonly Image image;
+		private readonly Image imageOver;
 
 
 		public AboutDialog()

@@ -98,6 +98,7 @@
 			// 
 			// logLabel
 			// 
+			this.logLabel.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.logLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.logLabel.AutoSize = true;
 			this.logLabel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -114,6 +115,7 @@
 			// 
 			// clearLogLabel
 			// 
+			this.clearLogLabel.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.clearLogLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.clearLogLabel.AutoSize = true;
 			this.clearLogLabel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -128,6 +130,7 @@
 			// 
 			// homeLink
 			// 
+			this.homeLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.homeLink.AutoSize = true;
 			this.homeLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.homeLink.LinkColor = System.Drawing.SystemColors.Highlight;
@@ -142,6 +145,7 @@
 			// 
 			// updateLink
 			// 
+			this.updateLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.updateLink.AutoSize = true;
 			this.updateLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.updateLink.LinkColor = System.Drawing.SystemColors.Highlight;
