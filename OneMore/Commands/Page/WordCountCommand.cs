@@ -41,10 +41,9 @@ namespace River.OneMoreAddIn.Commands
 						{
 							//logger.WriteLine($"counting '{text}'");
 
-							// if Chinese, Japanese, or Korean then get transliterated text
-							// that can be used to estimate words
 							if (regex.IsMatch(text))
 							{
+								// works well for Chinese but is questionable for JP and KO
 								count += ChineseTokenizer.SplitWords(text).Count();
 							}
 							else
@@ -67,5 +66,45 @@ namespace River.OneMoreAddIn.Commands
 
 			await Task.Yield();
 		}
+
+
+		/*
+		 * test using GTranslate48 nuget...
+		 * 
+		private async Task<string> Transliterate(string text)
+		{
+			try
+			{
+				// this nonsense is all rather absurd but it works...
+
+				text = await await SingleThreaded.Invoke(async () =>
+				{
+					using (var translator = new AggregateTranslator())
+					{
+						// verify language
+						var language = await translator.DetectLanguageAsync(text);
+						logger.WriteLine($"detected language '{language.ISO6391}'");
+						if (language.ISO6391 == "zh-CN" ||
+							language.ISO6391 == "jp-JP" ||
+							language.ISO6391 == "ko-KR")
+						{
+							text = (await translator.TransliterateAsync(
+								text, "en", language.ISO6391)).Transliteration;
+
+							return text;
+						}
+					}
+
+					return null;
+				});
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
+			}
+
+			return text;
+		}
+		*/
 	}
 }
