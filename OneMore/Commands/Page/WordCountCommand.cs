@@ -4,65 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System.Linq;
-	using System.Text.RegularExpressions;
-	using System.Threading.Tasks;
-	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
-
-
-	internal class WordCountCommand : Command
-	{
-
-		public WordCountCommand()
-		{
-		}
-
-
-		public override async Task Execute(params object[] args)
-		{
-			using (var one = new OneNote(out var page, out _, OneNote.PageDetail.Selection))
-			{
-				var runs = page.GetSelectedElements(true);
-				var count = 0;
-
-				foreach (var run in runs)
-				{
-					var cdatas = run.DescendantNodes().OfType<XCData>();
-					foreach (var cdata in cdatas)
-					{
-						var text = cdata.GetWrapper().Value.Trim();
-						if (text.Length > 0)
-						{
-							count += Regex.Matches(text, @"[\w]+").Count;
-						}
-					}
-				}
-
-				if (page.SelectionScope == SelectionScope.Empty)
-				{
-					UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Count, count));
-				}
-				else
-				{
-					UIHelper.ShowMessage(string.Format(Resx.WordCountCommand_Selected, count));
-				}
-			}
-
-			await Task.Yield();
-		}
-	}
-}
-
-/*
-//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
-//************************************************************************************************
-
-namespace River.OneMoreAddIn.Commands
-{
-	using GTranslate.Translators;
-	using System;
+	using Chinese;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -97,17 +39,17 @@ namespace River.OneMoreAddIn.Commands
 						var text = cdata.GetWrapper().Value.Trim();
 						if (text.Length > 0)
 						{
-							// any chars from Chinese, Japanese, or Korean?
-							// get transliterated text that can be used to estimate words
+							//logger.WriteLine($"counting '{text}'");
+
 							if (regex.IsMatch(text))
 							{
-								logger.WriteLine("might be CJK");
-								text = await Transliterate(text);
+								// works well for Chinese but is questionable for JP and KO
+								count += ChineseTokenizer.SplitWords(text).Count();
 							}
-
-							logger.WriteLine($"counting '{text}'");
-
-							count += Regex.Matches(text, @"[\w]+").Count;
+							else
+							{
+								count += Regex.Matches(text, @"[\w]+").Count;
+							}
 						}
 					}
 				}
@@ -126,42 +68,43 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/*
+		 * test using GTranslate48 nuget...
+		 * 
 		private async Task<string> Transliterate(string text)
 		{
-			Func<Task<string>> func = async () =>
-			{
-				using (var translator = new AggregateTranslator())
-				{
-					// verify language
-					var language = await translator.DetectLanguageAsync(text);
-					logger.WriteLine($"detected language '{language.ISO6391}'");
-					if (language.ISO6391 == "zh-CN" ||
-						language.ISO6391 == "jp-JP" ||
-						language.ISO6391 == "ko-KR")
-					{
-						text = (await translator.TransliterateAsync(
-							text, "en", language.ISO6391)).Transliteration;
-
-						logger.WriteLine($"transliteration '{text}'");
-
-						return text;
-					}
-				}
-
-				return null;
-			};
-
 			try
 			{
-				text = await(await SingleThreaded.Invoke(func));
+				// this nonsense is all rather absurd but it works...
+
+				text = await await SingleThreaded.Invoke(async () =>
+				{
+					using (var translator = new AggregateTranslator())
+					{
+						// verify language
+						var language = await translator.DetectLanguageAsync(text);
+						logger.WriteLine($"detected language '{language.ISO6391}'");
+						if (language.ISO6391 == "zh-CN" ||
+							language.ISO6391 == "jp-JP" ||
+							language.ISO6391 == "ko-KR")
+						{
+							text = (await translator.TransliterateAsync(
+								text, "en", language.ISO6391)).Transliteration;
+
+							return text;
+						}
+					}
+
+					return null;
+				});
 			}
-			catch (System.Exception exc)
+			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
 			}
 
 			return text;
 		}
+		*/
 	}
 }
-*/
