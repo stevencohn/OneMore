@@ -70,30 +70,30 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> Transliterate(string text)
 		{
-			Func<Task<string>> func = async () =>
-			{
-				using (var translator = new AggregateTranslator())
-				{
-					// verify language
-					var language = await translator.DetectLanguageAsync(text);
-					logger.WriteLine($"detected language '{language.ISO6391}'");
-					if (language.ISO6391 == "zh-CN" ||
-						language.ISO6391 == "jp-JP" ||
-						language.ISO6391 == "ko-KR")
-					{
-						text = (await translator.TransliterateAsync(
-							text, "en", language.ISO6391)).Transliteration;
-
-						return text;
-					}
-				}
-
-				return null;
-			};
-
 			try
 			{
-				text = await await SingleThreaded.Invoke(func);
+				// this nonsense is all rather absurd but it works...
+
+				text = await await SingleThreaded.Invoke(async () =>
+				{
+					using (var translator = new AggregateTranslator())
+					{
+						// verify language
+						var language = await translator.DetectLanguageAsync(text);
+						logger.WriteLine($"detected language '{language.ISO6391}'");
+						if (language.ISO6391 == "zh-CN" ||
+							language.ISO6391 == "jp-JP" ||
+							language.ISO6391 == "ko-KR")
+						{
+							text = (await translator.TransliterateAsync(
+								text, "en", language.ISO6391)).Transliteration;
+
+							return text;
+						}
+					}
+
+					return null;
+				});
 			}
 			catch (Exception exc)
 			{
