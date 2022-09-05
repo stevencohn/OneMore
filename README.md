@@ -1,4 +1,4 @@
-﻿# ![logo](../../wiki/images/Logo.jpg "logo") OneMore - a OneNote Add-in
+﻿# ![logo](../../wiki/images/Logo.png "logo") OneMore - a OneNote Add-in
 
 A OneNote add-in with powerful yet simple and effective features. See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
 
