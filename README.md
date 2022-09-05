@@ -10,19 +10,18 @@ A OneNote add-in with powerful yet simple and effective features. See the [**pro
 * Save and reuse [custom snippets](../../wiki/Custom-Styles-and-Favorites#Favorites) of content anywhere on any page
 * Add [formulas](../../wiki/Table-Commands) to table cell using Excel-like expressions
 
-## 💾 How do I Install OneMore?
+## How do I Install OneMore?
 There are [full instructions here](#install). 
 
-## 💁 Everything You Wanted to Know...
+## Screenshots
 
 | Some of the OneMore menus | The OneMore Calendar |
 |---|---|
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
 _Click an image to enlarge_
 
+## 💁 Features (151)
 *Want more from OneMore? OneMore has more...*
-
-## Features (151)
 
 [Clean commands](../../wiki/Clean-Commands) (12)
 
@@ -291,7 +290,7 @@ Please consider a sponsorship or one-time donation, click here:
    [![Sponsor](../../wiki/images/Sponsor.png)](https://github.com/sponsors/stevencohn)
 
 ---
-## Developing OneMore
+## 🤖 Developing OneMore
 
 Are you programmer? Whether you're a professional or just curious, please feel free to explore
 the source code and have a play. See the [Developer Notes](../../wiki/~-Developer-Notes) page
