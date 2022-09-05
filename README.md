@@ -13,12 +13,12 @@ A OneNote add-in with powerful yet simple and effective features. See the [**pro
 ## 💾 How do I Install OneMore?
 There are [full instructions here](#install). 
 
+## 💁 Everything You Wanted to Know...
+
 | Some of the OneMore menus | The OneMore Calendar |
 |---|---|
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
 _Click an image to enlarge_
-
-## 💁 Everything You Wanted to Know...
 
 *Want more from OneMore? OneMore has more...*
 
