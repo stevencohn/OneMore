@@ -1,13 +1,6 @@
 ﻿# ![logo](../../wiki/images/Logo.jpg "logo") OneMore - a OneNote Add-in
 
-A OneNote add-in with powerful yet simple and effective features.
-
-## 💾 How do I Install OneMore?
-There are [full instructions here](#install). 
-
-## 💁 Everything You Wanted to Know...
-
-See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
+A OneNote add-in with powerful yet simple and effective features. See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some pleasant reading material...
 
 * Integrated with the OneNote ribbon, [context menus](../../wiki#extended-context-menus), and [keyboard shortcuts](../../wiki#keys) for easy access
 * [Customize the Text context menu](../../wiki/Settings) to add OneMore commands or a a custom search engine
@@ -17,6 +10,10 @@ See the [**project wiki**](../../wiki) for full details. Meanwhile, here's some 
 * Save and reuse [custom snippets](../../wiki/Custom-Styles-and-Favorites#Favorites) of content anywhere on any page
 * Add [formulas](../../wiki/Table-Commands) to table cell using Excel-like expressions
 
+## 💾 How do I Install OneMore?
+There are [full instructions here](#install). 
+
+## 💁 Everything You Wanted to Know...
 
 *Want more from OneMore? OneMore has more...* [Click here to see a list of all features](#features)
 
