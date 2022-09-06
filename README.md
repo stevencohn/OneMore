@@ -202,6 +202,8 @@ _Click an image to enlarge_
 ---
 <a name="install"></a>
 ## 💾 How to Install OneMore as an Administrator
+The OneMore installer requires admin rights to complete configuration and update the Windows Registry.
+If your account has admin rights then follow these steps:
 
 1. Close OneNote if it is currently running (See below if you need to install OneNote)
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
@@ -219,7 +221,6 @@ _Click an image to enlarge_
 5. Run OneNote and enjoy
 
 ### How to Install OneMore as a Normal User
-The OneMore installer requires admin rights to complete configuration and update the Windows Registry.
 If you have the user name and password of an account with admin rights, you can run the OneMore installer
 from your current account using this command entered from a console window:
 
