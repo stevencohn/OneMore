@@ -25,8 +25,19 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// Constructor
 		/// </summary>
 		/// <param name="message">Message that describes this exception</param>
+		public FormulaException(string message)
+			: base(message)
+		{
+		}
+
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="message">Message that describes this exception</param>
 		/// <param name="position">Position within expression where exception occurred</param>
-		public FormulaException(string message, int position) : base(message)
+		public FormulaException(string message, int position)
+			: base(message)
 		{
 			Column = position;
 		}
@@ -36,6 +47,12 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// Zero-based position in expression where exception occurred
 		/// </summary>
 		public int Column { get; set; }
+
+
+		/// <summary>
+		/// Specifies the error message with the column suffix
+		/// </summary>
+		public string PlainMessage => base.Message;
 
 
 		/// <summary>
