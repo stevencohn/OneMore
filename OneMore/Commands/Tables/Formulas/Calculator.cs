@@ -386,7 +386,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// Parse function parameter list
 			int start = parser.Position;
 			int depth = 1;
-			bool key = false;
 
 			while (!parser.EndOfText)
 			{
@@ -401,7 +400,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					var cell2 = ParseSymbolToken(parser);
 					start = parser.Position;
 					parameters.Add(EvaluateCellReferences(cell1, cell2, p1, p2).ToArray());
-					key = true;
 				}
 				else if (next == ',')
 				{
@@ -412,16 +410,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 						// evaluate the string prior to the comma
 						parameters.Add(EvaluateParameter(parser, start));
 						start = parser.Position + 1;
-					}
-					key = true;
-				}
-				else //if (next == '>' || next == '<' || next == '!')
-				{
-					//parameters.Add(ParseSymbolToken(parser));
-					if (key)
-					{
-						//start = parser.Position;
-						key = false;
 					}
 				}
 
