@@ -122,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (Regex.Match(e.Name, @"^([a-zA-Z]{1,3})(\d{1,3})$").Success)
 			{
-				e.Result = 1.0;
+				e.SetResult(1.0);
 				e.Status = SymbolStatus.OK;
 			}
 			else

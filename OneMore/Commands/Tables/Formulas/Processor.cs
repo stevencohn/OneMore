@@ -63,15 +63,23 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
 					.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
 
-				if (double.TryParse(text, out var value))
+				if (double.TryParse(text, out var dvalue))
 				{
-					maxdec = Math.Max(value.ToString().Length - ((int)value).ToString().Length - 1, maxdec);
+					maxdec = Math.Max(dvalue.ToString().Length - ((int)dvalue).ToString().Length - 1, maxdec);
 
-					e.Result = value;
+					e.SetResult(dvalue);
+					e.Status = SymbolStatus.OK;
+				}
+				else if (bool.TryParse(text, out var bvalue))
+				{
+					e.SetResult(bvalue);
 					e.Status = SymbolStatus.OK;
 				}
 				else
-					e.Status = SymbolStatus.None;
+				{
+					e.SetResult(text);
+					e.Status = SymbolStatus.OK;
+				}
 			}
 			else
 			{

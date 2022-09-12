@@ -15,7 +15,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	{
 		Boolean,
 		Double,
-		String
+		String,
+		Unknown
 	}
 
 
@@ -39,6 +40,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		public CountIfOperator Operator { get; private set; }
 		public object Value { get; private set; }
 		public double DoubleValue { get => (double)Value; }
+
 		public FormulaValue(bool value)
 		{
 			Value = value;
@@ -66,14 +68,16 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			{
 				switch (template.Type)
 				{
+					case FormulaValueType.Double:
+						return ((double)Value).CompareTo(template.DoubleValue);
+
 					case FormulaValueType.Boolean:
 						return ((bool)Value).CompareTo((bool)template.Value);
 
-					case FormulaValueType.String:
-						return ((string)Value).CompareTo((string)template.Value);
-
 					default:
-						return ((double)Value).CompareTo(template.DoubleValue);
+						var v1 = Value.ToString().ToLowerInvariant();
+						var v2 = template.Value.ToString().ToLowerInvariant();
+						return v1.CompareTo(v2);
 				}
 			}
 

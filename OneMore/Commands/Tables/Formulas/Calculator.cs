@@ -399,7 +399,12 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					var p2 = parser.Position;
 					var cell2 = ParseSymbolToken(parser);
 					start = parser.Position;
-					parameters.Add(EvaluateCellReferences(cell1, cell2, p1, p2).ToArray());
+
+					var values = EvaluateCellReferences(cell1, cell2, p1, p2).ToArray();
+					for (int i = 0; i < values.Length; i++)
+					{
+						parameters.Add(values[i]);
+					}
 				}
 				else if (next == ',')
 				{
@@ -449,7 +454,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
-		private List<double> EvaluateCellReferences(string cell1, string cell2, int p1, int p2)
+		private FormulaValues EvaluateCellReferences(string cell1, string cell2, int p1, int p2)
 		{
 			var pattern = @"^([a-zA-Z]{1,3})(\d{1,3})$";
 
@@ -467,17 +472,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			var col2 = match.Groups[1].Value;
 			var row2 = match.Groups[2].Value;
 
-			var values = new List<double>();
+			var values = new FormulaValues();
 			if (col1 == col2)
 			{
 				// iterate rows in column
 				for (var row = int.Parse(row1); row <= int.Parse(row2); row++)
 				{
-					var value = EvaluateSymbol($"{col1}{row}", p1);
-					if (value.Type == FormulaValueType.Double)
-					{
-						values.Add(value.DoubleValue);
-					}
+					values.Add(EvaluateSymbol($"{col1}{row}", p1));
 				}
 			}
 			else if (row1 == row2)
@@ -486,14 +487,12 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				for (var col = CellLettersToIndex(col1); col <= CellLettersToIndex(col2); col++)
 				{
 					var v = EvaluateSymbol($"{CellIndexToLetters(col)}{row1}", p1);
-					if (v.Type == FormulaValueType.Double)
-					{
-						values.Add(v.DoubleValue);
-					}
-					else
+					if (v.Type == FormulaValueType.Unknown)
 					{
 						throw new FormulaException($"invalid parameter at cell {CellIndexToLetters(col)}{row1}");
 					}
+
+					values.Add(v);
 				}
 			}
 			else
@@ -577,22 +576,22 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				return new FormulaValue(Math.E);
 			}
 
-			double result = default;
-
 			// ask consumer to resolve symbol reference
 			if (ProcessSymbol != null)
 			{
-				var args = new SymbolEventArgs
-				{
-					Name = name,
-					Result = result,
-					Status = SymbolStatus.OK
-				};
+				var args = new SymbolEventArgs(name);
 
 				ProcessSymbol(this, args);
 				if (args.Status == SymbolStatus.OK)
 				{
-					return new FormulaValue(args.Result);
+					if (args.Type == FormulaValueType.Double)
+						return new FormulaValue(args.DoubleResult);
+
+					if (args.Type == FormulaValueType.Boolean)
+						return new FormulaValue((bool)args.Result);
+
+					if (args.Type == FormulaValueType.String)
+						return new FormulaValue((string)args.Result);
 				}
 			}
 

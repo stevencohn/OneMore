@@ -8,7 +8,6 @@
 namespace River.OneMoreAddIn.Commands.Tables.Formulas
 {
 	using System;
-	using System.Collections.Generic;
 
 
 	/// <summary>
