@@ -304,6 +304,7 @@
     <Compile Include="Commands\Tables\FillerModels\IFiller.cs" />
     <Compile Include="Commands\Tables\FillerModels\NumberFiller.cs" />
     <Compile Include="Commands\Tables\FillCellsCommand.cs" />
+    <Compile Include="Commands\Tables\Formulas\FormulaValues.cs" />
     <Compile Include="Commands\Tables\InsertCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsDialog.cs">
       <SubType>Form</SubType>

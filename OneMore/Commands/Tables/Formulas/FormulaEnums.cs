@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	{
 		OK,
 		UndefinedFunction,
-		WrongParameterCount,
+		WrongParameterCount
 	}
 
 
@@ -39,6 +39,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	{
 		OK,
 		None,
-		UndefinedSymbol,
+		UndefinedSymbol
 	}
 }

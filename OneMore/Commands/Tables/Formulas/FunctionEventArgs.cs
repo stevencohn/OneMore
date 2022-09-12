@@ -8,7 +8,6 @@
 namespace River.OneMoreAddIn.Commands.Tables.Formulas
 {
 	using System;
-	using System.Collections.Generic;
 
 
 	/// <summary>
@@ -18,7 +17,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	{
 		public string Name { get; set; }
 
-		public List<double> Parameters { get; set; }
+		public FormulaValues Parameters { get; set; }
 
 		public double Result { get; set; }
 

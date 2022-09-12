@@ -7,13 +7,14 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
-
+	using System.Linq;
 
 	internal class Processor
 	{
 		private readonly ILogger logger;
 		private readonly Table table;
 		private int maxdec;
+		private List<TagDef> tags;
 
 
 		public Processor(Table table)
@@ -57,26 +58,74 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		private void ResolveCellReference(object sender, SymbolEventArgs e)
 		{
 			var cell = table.GetCell(e.Name.ToUpper());
-			if (cell != null)
-			{
-				var text = cell.GetText()
-					.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
-					.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
-
-				if (double.TryParse(text, out var value))
-				{
-					maxdec = Math.Max(value.ToString().Length - ((int)value).ToString().Length - 1, maxdec);
-
-					e.Result = value;
-					e.Status = SymbolStatus.OK;
-				}
-				else
-					e.Status = SymbolStatus.None;
-			}
-			else
+			if (cell == null)
 			{
 				e.Status = SymbolStatus.UndefinedSymbol;
+				return;
 			}
+
+			var text = cell.GetText().Trim()
+				.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
+				.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
+
+			// common case is double
+			if (double.TryParse(text, out var dvalue))
+			{
+				maxdec = Math.Max(dvalue.ToString().Length - ((int)dvalue).ToString().Length - 1, maxdec);
+
+				e.SetResult(dvalue);
+				return;
+			}
+
+			// has a todo checkbox? If so then the comparison is limited to the checkbox
+			// and WILL NOT fall thru to a string comparison!
+			var tagx = cell.Root.Descendants().FirstOrDefault(d => d.Name.LocalName == "Tag");
+			if (tagx != null)
+			{
+				var index = tagx.Attribute("index").Value;
+				if (index != null)
+				{
+					if (tags == null)
+					{
+						tags = DiscoverTags();
+					}
+
+					var tag = tags.FirstOrDefault(t => t.Index == index);
+					if (tag != null)
+					{
+						if (tag.IsToDo())
+						{
+							e.SetResult(tagx.Attribute("completed").Value == "true");
+							return;
+						}
+					}
+				}
+			}
+
+			// can text be interpereted as a boolean?
+			if (bool.TryParse(text, out var bvalue))
+			{
+				e.SetResult(bvalue);
+				return;
+			}
+
+			// treat it as a string
+			e.SetResult(text);
+		}
+
+
+		private List<TagDef> DiscoverTags()
+		{
+			var pageElement = table.Root.Ancestors().FirstOrDefault(e => e.Name.LocalName == "Page");
+			if (pageElement == null)
+			{
+				return new List<TagDef>();
+			}
+
+			var page = new Page(pageElement);
+			var map = page.GetTagDefMap();
+			var list = map.Where(m => m.TagDef.IsToDo()).Select(m => m.TagDef).ToList();
+			return list;
 		}
 
 

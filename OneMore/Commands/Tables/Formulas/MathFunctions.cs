@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System.Linq;
 
 
-	internal delegate double MathFunc(params double[] args);
+	internal delegate double MathFunc(FormulaValues args);
 
 
 	internal class MathFunction
@@ -31,39 +31,41 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	internal static class MathFunctions
 	{
 		private static readonly List<MathFunction> functions = new List<MathFunction>();
+		private static readonly FormulaValueType D = FormulaValueType.Double;
 
 		static MathFunctions()
 		{
-			functions.Add(new MathFunction("abs", (double[] p) => Math.Abs(p[0])));
-			functions.Add(new MathFunction("acos", (double[] p) => Math.Acos(p[0])));
-			functions.Add(new MathFunction("asin", (double[] p) => Math.Asin(p[0])));
-			functions.Add(new MathFunction("atan", (double[] p) => Math.Atan(p[0])));
-			functions.Add(new MathFunction("atan2", (double[] p) => Math.Atan2(p[0], p[1])));
-			functions.Add(new MathFunction("average", (double[] p) => Average(p)));
-			functions.Add(new MathFunction("ceiling", (double[] p) => Math.Ceiling(p[0])));
-			functions.Add(new MathFunction("cos", (double[] p) => Math.Cos(p[0])));
-			functions.Add(new MathFunction("cosh", (double[] p) => Math.Cosh(p[0])));
-			functions.Add(new MathFunction("exp", (double[] p) => Math.Exp(p[0])));
-			functions.Add(new MathFunction("floor", (double[] p) => Math.Floor(p[0])));
-			functions.Add(new MathFunction("log", (double[] p) => Math.Log(p[0])));
-			functions.Add(new MathFunction("log10", (double[] p) => Math.Log10(p[0])));
-			functions.Add(new MathFunction("max", (double[] p) => Max(p)));
-			functions.Add(new MathFunction("median", (double[] p) => Median(p)));
-			functions.Add(new MathFunction("min", (double[] p) => Min(p)));
-			functions.Add(new MathFunction("mode", (double[] p) => Mode(p)));
-			functions.Add(new MathFunction("pow", (double[] p) => Math.Pow(p[0], p[1])));
-			functions.Add(new MathFunction("range", (double[] p) => Range(p)));
-			functions.Add(new MathFunction("round", (double[] p) => Math.Round(p[0])));
-			functions.Add(new MathFunction("sign", (double[] p) => Math.Sign(p[0])));
-			functions.Add(new MathFunction("sin", (double[] p) => Math.Sin(p[0])));
-			functions.Add(new MathFunction("sinh", (double[] p) => Math.Sinh(p[0])));
-			functions.Add(new MathFunction("sqrt", (double[] p) => Math.Sqrt(p[0])));
-			functions.Add(new MathFunction("stdev", (double[] p) => StandardDeviation(p)));
-			functions.Add(new MathFunction("sum", (double[] p) => Sum(p)));
-			functions.Add(new MathFunction("tan", (double[] p) => Math.Tan(p[0])));
-			functions.Add(new MathFunction("tanh", (double[] p) => Math.Tanh(p[0])));
-			functions.Add(new MathFunction("trunc", (double[] p) => Math.Truncate(p[0])));
-			functions.Add(new MathFunction("variance", (double[] p) => Variance(p)));
+			functions.Add(new MathFunction("abs", (p) => Math.Abs(p.Match(D)[0])));
+			functions.Add(new MathFunction("acos", (p) => Math.Acos(p.Match(D)[0])));
+			functions.Add(new MathFunction("asin", (p) => Math.Asin(p.Match(D)[0])));
+			functions.Add(new MathFunction("atan", (p) => Math.Atan(p.Match(D)[0])));
+			functions.Add(new MathFunction("atan2", (p) => Math.Atan2(p.Match(D, D)[0], p[1])));
+			functions.Add(new MathFunction("average", (p) => Average(p.Match(D, D).ToDoubleArray())));
+			functions.Add(new MathFunction("ceiling", (p) => Math.Ceiling(p.Match(D, D)[0])));
+			functions.Add(new MathFunction("cos", (p) => Math.Cos(p.Match(D)[0])));
+			functions.Add(new MathFunction("cosh", (p) => Math.Cosh(p.Match(D)[0])));
+			functions.Add(new MathFunction("countif", (p) => CountIf(p)));
+			functions.Add(new MathFunction("exp", (p) => Math.Exp(p.Match(D)[0])));
+			functions.Add(new MathFunction("floor", (p) => Math.Floor(p.Match(D)[0])));
+			functions.Add(new MathFunction("log", (p) => Math.Log(p.Match(D)[0])));
+			functions.Add(new MathFunction("log10", (p) => Math.Log10(p.Match(D)[0])));
+			functions.Add(new MathFunction("max", (p) => Max(p.Match(D).ToDoubleArray())));
+			functions.Add(new MathFunction("median", (p) => Median(p.Match(D).ToDoubleArray())));
+			functions.Add(new MathFunction("min", (p) => Min(p.Match(D).ToDoubleArray())));
+			functions.Add(new MathFunction("mode", (p) => Mode(p.Match(D).ToDoubleArray())));
+			functions.Add(new MathFunction("pow", (p) => Math.Pow(p.Match(D, D)[0], p[1])));
+			functions.Add(new MathFunction("range", (p) => Range(p.Match(D).ToDoubleArray())));
+			functions.Add(new MathFunction("round", (p) => Math.Round(p.Match(D)[0])));
+			functions.Add(new MathFunction("sign", (p) => Math.Sign(p.Match(D)[0])));
+			functions.Add(new MathFunction("sin", (p) => Math.Sin(p.Match(D)[0])));
+			functions.Add(new MathFunction("sinh", (p) => Math.Sinh(p.Match(D)[0])));
+			functions.Add(new MathFunction("sqrt", (p) => Math.Sqrt(p.Match(D)[0])));
+			functions.Add(new MathFunction("stdev", (p) => StandardDeviation(p.Match(D).ToDoubleArray())));
+			functions.Add(new MathFunction("sum", (p) => Sum(p.Match(D).ToDoubleArray())));
+			functions.Add(new MathFunction("tan", (p) => Math.Tan(p.Match(D)[0])));
+			functions.Add(new MathFunction("tanh", (p) => Math.Tanh(p.Match(D)[0])));
+			functions.Add(new MathFunction("trunc", (p) => Math.Truncate(p.Match(D)[0])));
+			functions.Add(new MathFunction("variance", (p) => Variance(p.Match(D).ToDoubleArray())));
 		}
 
 
@@ -81,6 +83,49 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				return 0.0;
 
 			return p.AsEnumerable().Average();
+		}
+
+
+		private static double CountIf(FormulaValues p)
+		{
+			if (p.Count < 2)
+				throw new FormulaException($"countif requires at least two parameters");
+
+			var array = p.ToArray();
+			var values = array.Take(p.Count - 1).ToArray();
+			var test = array[array.Length - 1];
+
+			var oper = test.ToString()[0];
+			var result = 0;
+			string s;
+			if (oper == '<' || oper == '>' || oper == '!')
+			{
+				s = test.ToString().Substring(1);
+				if (oper == '>') result = 1;
+				else if (oper == '<') result = -1;
+			}
+			else
+			{
+				s = test.ToString();
+			}
+
+			FormulaValue expected;
+			if (double.TryParse(s, out var d))
+			{
+				expected = new FormulaValue(d);
+			}
+			else if (bool.TryParse(s, out bool b))
+			{
+				expected = new FormulaValue(b);
+			}
+			else
+			{
+				expected = new FormulaValue(s);
+			}
+
+			return oper == '!'
+				? values.Count(v => v.CompareTo(expected) != 0)
+				: values.Count(v => v.CompareTo(expected) == result);
 		}
 
 

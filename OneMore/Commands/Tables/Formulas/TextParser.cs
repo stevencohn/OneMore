@@ -91,6 +91,19 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			return NullChar;
 		}
 
+
+		/// <summary>
+		/// Returns the character at the specified index within the text string.
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		public char PeekAt(int index)
+		{
+			if (index >= 0 && index < Text.Length)
+				return Text[index];
+			return NullChar;
+		}
+
 		/// <summary>
 		/// Extracts a substring from the specified position to the end of the text
 		/// </summary>
