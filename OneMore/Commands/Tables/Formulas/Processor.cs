@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				return;
 			}
 
-			var text = cell.GetText()
+			var text = cell.GetText().Trim()
 				.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
 				.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
 
@@ -77,7 +77,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				return;
 			}
 
-			// has a todo checkbox?
+			// has a todo checkbox? If so then the comparison is limited to the checkbox
+			// and WILL NOT fall thru to a string comparison!
 			var tagx = cell.Root.Descendants().FirstOrDefault(d => d.Name.LocalName == "Tag");
 			if (tagx != null)
 			{
