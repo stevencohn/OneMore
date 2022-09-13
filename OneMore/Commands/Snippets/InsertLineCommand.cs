@@ -42,8 +42,8 @@ namespace River.OneMoreAddIn.Commands
 				var settings = new SettingsProvider().GetCollection("LinesSheet");
 				if (settings != null)
 				{
-					color = settings.Get<Color>("color").ToRGBHtml();
-					length = (int)settings.Get<decimal>("length");
+					color = settings.Get<Color>("color", ColorTranslator.FromHtml(color)).ToRGBHtml();
+					length = (int)settings.Get<decimal>("length", length);
 				}
 
 				var current =
