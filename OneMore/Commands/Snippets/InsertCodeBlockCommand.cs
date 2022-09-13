@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
@@ -26,6 +27,8 @@ namespace River.OneMoreAddIn.Commands
 		private const string TitleColorDark = "#F2F2F2";
 		private const string TextColor = "#000000";
 		private const string TextColorDark = "#FFFFFF";
+
+		private const float DefaultWidth = 600f;
 
 		private bool dark;
 		private string shading;
@@ -60,8 +63,11 @@ namespace River.OneMoreAddIn.Commands
 					BordersVisible = true
 				};
 
+				// remember selection cursor
 				var cursor = page.GetTextCursor();
-				table.AddColumn(addTitle ? 600f : (cursor == null ? 600f : 1f), true);
+
+				// determine if cursor is inside a table or outline with a user set width
+				table.AddColumn(CalculateWidth(cursor), true);
 
 				TableRow row;
 				TableCell cell;
@@ -140,6 +146,39 @@ namespace River.OneMoreAddIn.Commands
 				titleColor = TitleColor;
 				textColor = TextColor;
 			}
+		}
+
+
+		private float CalculateWidth(XElement cursor)
+		{
+			// if insertion point is within a table cell then assume the width of that cell
+
+			var cell = cursor.Ancestors(ns + "Cell").FirstOrDefault();
+			if (cell != null)
+			{
+				var index = cell.ElementsBeforeSelf(ns + "Cell").Count().ToString();
+				var column = cell.Ancestors(ns + "Table")
+					.Elements(ns + "Columns").Elements(ns + "Column")
+					.FirstOrDefault(e => e.Attribute("index")?.Value == index);
+
+				if (column != null)
+				{
+					return (float)Math.Floor(double.Parse(column.Attribute("width").Value));
+				}
+			}
+
+			// if insertion point is within an Outline with a width set by the users
+			// then assume the width of the Outline
+
+			var size = cursor.Ancestors(ns + "Outline").Elements(ns + "Size")
+				.FirstOrDefault(e => e.Attribute("isSetByUser")?.Value == "true");
+
+			if (size != null)
+			{
+				return (float)Math.Floor(double.Parse(size.Attribute("width").Value));
+			}
+
+			return DefaultWidth;
 		}
 
 
