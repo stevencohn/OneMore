@@ -1197,14 +1197,13 @@ namespace River.OneMoreAddIn.Models
 					);
 
 				// add into schema sequence...
-				string[] meta_before = { "XPSFile", "QuickStyleDef", "TagDef" };
-				XElement after = null;
-				foreach (var element_name in meta_before)
+				var after = Root.Elements(Namespace + "XPSFile").LastOrDefault();
+				if (after == null)
 				{
-					after = Root.Elements(Namespace + element_name).LastOrDefault();
-					if (after != null)
+					after = Root.Elements(Namespace + "QuickStyleDef").LastOrDefault();
+					if (after == null)
 					{
-						break;
+						after = Root.Elements(Namespace + "TagDef").LastOrDefault();
 					}
 				}
 
