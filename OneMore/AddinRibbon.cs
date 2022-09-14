@@ -444,19 +444,13 @@ namespace River.OneMoreAddIn
 
 			var favorites = new FavoritesProvider(ribbon).LoadFavoritesMenu();
 
-			var sep = favorites.Elements()
-				.FirstOrDefault(e => e.Attribute("id").Value == "omFavoritesSeparator");
-
-			if (sep != null)
-			{
-				var plugins = new PluginsProvider().MakePluginsMenu(ns);
-				if (plugins != null)
-				{
-					sep.AddAfterSelf(plugins);
-				}
-			}
-
 			return favorites.ToString(SaveOptions.DisableFormatting);
+		}
+
+
+		public string GetMyPluginsContent(IRibbonControl control)
+		{
+			return new PluginsProvider().MakePluginsMenu(ns).ToString(SaveOptions.DisableFormatting);
 		}
 
 

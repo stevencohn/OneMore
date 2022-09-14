@@ -353,6 +353,11 @@
                 imageMso="ComAddInsDialog"
                 getLabel="GetRibbonLabel"
                 onAction="RunPluginCmd"/>
+              <dynamicMenu
+                id="ribPluginsMenu"
+                getLabel="GetRibbonLabel"
+                imageMso="AddInsMenu"
+                getContent="GetMyPluginsContent" />
             </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill" showImage="true">
               <button

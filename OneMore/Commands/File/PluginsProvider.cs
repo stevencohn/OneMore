@@ -203,9 +203,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var menu = new XElement(ns + "menu",
-				new XAttribute("id", "ribPluginsMenu"),
-				new XAttribute("getLabel", "GetRibbonLabel"),
-				new XAttribute("imageMso", "AddInsMenu"),
 				new XElement(ns + "button",
 					new XAttribute("id", ManagePluginsButtonId),
 					new XAttribute("getLabel", "GetRibbonLabel"),
