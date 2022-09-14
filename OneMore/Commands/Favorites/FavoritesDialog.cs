@@ -27,8 +27,19 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			InitializeComponent();
 
-			nameColumn.HeaderText = Resx.word_Name;
-			locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
+			if (NeedsLocalizing())
+			{
+				Text = Resx.word_Favorites;
+
+				Localize(new string[]
+				{
+					"goButton=word_Go",
+					"cancelButton=word_Cancel"
+				});
+
+				nameColumn.HeaderText = Resx.word_Name;
+				locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
+			}
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";

@@ -8841,6 +8841,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Favorites.
+        /// </summary>
+        internal static string word_Favorites {
+            get {
+                return ResourceManager.GetString("word_Favorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go.
+        /// </summary>
+        internal static string word_Go {
+            get {
+                return ResourceManager.GetString("word_Go", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grayscale.
         /// </summary>
         internal static string word_Grayscale {

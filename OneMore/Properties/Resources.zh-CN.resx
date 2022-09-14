@@ -3941,4 +3941,10 @@ OneNote 文件 (*.one)</value>
     <value>请支持OneMore的未来发展</value>
     <comment>label</comment>
   </data>
+  <data name="word_Favorites" xml:space="preserve">
+    <value>收藏夹</value>
+  </data>
+  <data name="word_Go" xml:space="preserve">
+    <value>去</value>
+  </data>
 </root>

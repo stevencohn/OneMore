@@ -4002,4 +4002,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Prosimy o wsparcie przyszłego rozwoju OneMore</value>
     <comment>label</comment>
   </data>
+  <data name="word_Favorites" xml:space="preserve">
+    <value>Ulubione</value>
+  </data>
+  <data name="word_Go" xml:space="preserve">
+    <value>Iść</value>
+  </data>
 </root>
