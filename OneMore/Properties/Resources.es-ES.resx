@@ -3955,4 +3955,7 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   <data name="word_Go" xml:space="preserve">
     <value>Vamos</value>
   </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Elige Favorito</value>
+  </data>
 </root>

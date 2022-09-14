@@ -3951,4 +3951,7 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="word_Go" xml:space="preserve">
     <value>Aller</value>
   </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Choisissez favori</value>
+  </data>
 </root>

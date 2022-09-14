@@ -4010,4 +4010,7 @@ Select No to keep one empty line between paragraphs</value>
   <data name="word_Go" xml:space="preserve">
     <value>Go</value>
   </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Choose Favorite</value>
+  </data>
 </root>

@@ -468,6 +468,8 @@ namespace River.OneMoreAddIn
 		public async Task SaveSnippetCmd(IRibbonControl control)
 			=> await factory.Run<SaveSnippetCommand>();
 
+
+		[Command("ribSearchButton_Label", Keys.None)]
 		public async Task SearchCmd(IRibbonControl control)
 			=> await factory.Run<SearchCommand>();
 

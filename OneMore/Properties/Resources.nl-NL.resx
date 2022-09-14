@@ -3955,4 +3955,7 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="word_Go" xml:space="preserve">
     <value>Gaan</value>
   </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Kies Favoriet</value>
+  </data>
 </root>

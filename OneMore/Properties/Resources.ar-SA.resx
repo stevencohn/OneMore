@@ -3955,4 +3955,7 @@ ISO-code then comma then language name</comment>
   <data name="word_Go" xml:space="preserve">
     <value>يذهب</value>
   </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>اختر المفضلة</value>
+  </data>
 </root>

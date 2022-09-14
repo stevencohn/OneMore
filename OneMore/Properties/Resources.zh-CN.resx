@@ -3947,4 +3947,7 @@ OneNote 文件 (*.one)</value>
   <data name="word_Go" xml:space="preserve">
     <value>去</value>
   </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>选择收藏夹</value>
+  </data>
 </root>

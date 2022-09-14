@@ -3942,4 +3942,7 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   <data name="word_Go" xml:space="preserve">
     <value>gehen</value>
   </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Wählen Sie Favorit</value>
+  </data>
 </root>

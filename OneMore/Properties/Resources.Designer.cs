@@ -904,6 +904,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose Favorite.
+        /// </summary>
+        internal static string ChooseFavoriteCommand {
+            get {
+                return ResourceManager.GetString("ChooseFavoriteCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Circle {
