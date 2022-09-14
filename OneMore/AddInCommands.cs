@@ -117,6 +117,10 @@ namespace River.OneMoreAddIn
 		public async Task ChangePageColorCmd(IRibbonControl control)
 			=> await factory.Run<ChangePageColorCommand>();
 
+		[Command("ChooseFavoriteCommand", Keys.Alt | Keys.F)]
+		public async Task ChooseFavoriteCmd(IRibbonControl control)
+			=> await factory.Run<GotoFavoriteCommand>(null);
+
 		public async Task ClearBackgroundCmd(IRibbonControl control)
 			=> await factory.Run<ClearBackgroundCommand>();
 
@@ -464,8 +468,6 @@ namespace River.OneMoreAddIn
 		public async Task SaveSnippetCmd(IRibbonControl control)
 			=> await factory.Run<SaveSnippetCommand>();
 
-
-		[Command("ribSearchButton_Label", Keys.Alt | Keys.F)]
 		public async Task SearchCmd(IRibbonControl control)
 			=> await factory.Run<SearchCommand>();
 

@@ -4,8 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Commands.Favorites;
 	using System;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
+
 
 	internal class GotoFavoriteCommand : Command
 	{
@@ -16,18 +19,31 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var pageTag = (string)args[0];
+			var uri = args == null || args.Length == 0 ? null : (string)args[0];
+
+			if (uri == null)
+			{
+				using (var dialog = new FavoritesDialog())
+				{
+					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+					{
+						return;
+					}
+
+					uri = dialog.Uri;
+				}
+			}
 
 			try
 			{
 				using (var one = new OneNote())
 				{
-					await one.NavigateTo(pageTag);
+					await one.NavigateTo(uri);
 				}
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"error navigating to {pageTag}", exc);
+				logger.WriteLine($"error navigating to {uri}", exc);
 			}
 		}
 	}

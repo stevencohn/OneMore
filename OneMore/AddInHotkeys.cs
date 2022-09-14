@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn
 			RegisterHotKey(s, nameof(ApplyStyle9Cmd), async () => await ApplyStyle9Cmd(null));
 			RegisterHotKey(s, nameof(CalendarCmd), async () => await CalendarCmd(null));
 			RegisterHotKey(s, nameof(ClearLogCmd), async () => await ClearLogCmd(null));
+			RegisterHotKey(s, nameof(ChooseFavoriteCmd), async () => await ChooseFavoriteCmd(null));
 			RegisterHotKey(s, nameof(CopyLinkToPageCmd), async () => await CopyLinkToPageCmd(null));
 			RegisterHotKey(s, nameof(CopyLinkToParagraphCmd), async () => await CopyLinkToParagraphCmd(null));
 			RegisterHotKey(s, nameof(DecreaseFontSizeCmd), async () => await DecreaseFontSizeCmd(null));
@@ -55,7 +56,6 @@ namespace River.OneMoreAddIn
 			RegisterHotKey(s, nameof(RemoveFootnoteCmd), async () => await RemoveFootnoteCmd(null));
 			RegisterHotKey(s, nameof(ReplayCmd), async () => await ReplayCmd(null));
 			RegisterHotKey(s, nameof(RemindCmd), async () => await RemindCmd(null));
-			RegisterHotKey(s, nameof(SearchCmd), async () => await SearchCmd(null));
 			RegisterHotKey(s, nameof(SearchAndReplaceCmd), async () => await SearchAndReplaceCmd(null));
 			RegisterHotKey(s, nameof(ShowXmlCmd), async () => await ShowXmlCmd(null));
 			RegisterHotKey(s, nameof(StartTimerCmd), async () => await StartTimerCmd(null));
