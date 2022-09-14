@@ -430,7 +430,7 @@ namespace River.OneMoreAddIn
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		/// <summary>
-		/// Populates the Favorites menu
+		/// Populates the Favorites dynamic menu
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns></returns>
@@ -449,17 +449,26 @@ namespace River.OneMoreAddIn
 
 			if (sep != null)
 			{
-				var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
-				sep.AddAfterSelf(snippets);
-
 				var plugins = new PluginsProvider().MakePluginsMenu(ns);
 				if (plugins != null)
 				{
-					snippets.AddAfterSelf(plugins);
+					sep.AddAfterSelf(plugins);
 				}
 			}
 
 			return favorites.ToString(SaveOptions.DisableFormatting);
+		}
+
+
+		/// <summary>
+		/// Populates the Snippets dynamic menu
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public string GetMySnippetsContent(IRibbonControl control)
+		{
+			var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
+			return snippets.ToString(SaveOptions.DisableFormatting);
 		}
 
 
