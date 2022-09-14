@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using MarkdownDeep;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
 	using System.IO;
@@ -22,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class ImportCommand : Command
 	{
 		private const int MaxWait = 15;
-		private UI.ProgressDialog progressDialog;
+		private UI.ProgressDialog progress;
 
 
 		public ImportCommand()
@@ -77,12 +78,9 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			var completed = RunBackgroundTask(filepath, async () =>
+			var completed = RunBackgroundTask(filepath, async (token) =>
 			{
-				await WordImporter(filepath, append);
-
-				progressDialog.DialogResult = DialogResult.OK;
-				progressDialog.Close();
+				await WordImporter(filepath, append, token);
 			});
 
 			if (completed)
@@ -96,12 +94,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task WordImporter(string filepath, bool append)
+		private async Task WordImporter(string filepath, bool append, CancellationToken token)
 		{
 			using (var word = new Word())
 			{
 				var html = word.ConvertFileToHtml(filepath);
 
+				if (token.IsCancellationRequested)
+				{
+					logger.WriteLine("WordImporter cancelled");
+					return;
+				}
 
 				if (append)
 				{
@@ -140,12 +143,9 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
-			var completed = RunBackgroundTask(filepath, async () =>
+			var completed = RunBackgroundTask(filepath, async (token) =>
 			{
-				await PowerPointImporter(filepath, append, split);
-
-				progressDialog.DialogResult = DialogResult.OK;
-				progressDialog.Close();
+				await PowerPointImporter(filepath, append, split, token);
 			});
 
 			if (completed)
@@ -159,7 +159,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task PowerPointImporter(string filepath, bool append, bool split)
+		private async Task PowerPointImporter(
+			string filepath, bool append, bool split, CancellationToken token)
 		{
 			string outpath;
 			using (var powerpoint = new PowerPoint())
@@ -169,7 +170,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (outpath == null)
 			{
-				logger.WriteLine($"failed to create output path");
+				logger.WriteLine($"failed to create output path {filepath}");
+				return;
+			}
+
+			if (token.IsCancellationRequested)
+			{
+				logger.WriteLine("PowerPointImporter cancelled");
 				return;
 			}
 
@@ -271,46 +278,29 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Our trusty little worker
 
-		private bool RunBackgroundTask(string path, Action action)
+		private bool RunBackgroundTask(string path, Action<CancellationToken> action)
 		{
-			using (var source = new CancellationTokenSource())
+			using (progress = new ProgressDialog(MaxWait))
 			{
-				using (progressDialog = new UI.ProgressDialog(source))
-				{
-					progressDialog.SetMaximum(MaxWait);
-					progressDialog.SetMessage($"Importing {path}...");
+				progress.SetMessage($"Importing {path}...");
 
-					try
+				return progress.ShowTimedDialog(Owner, 
+					async (ProgressDialog pd, CancellationToken ct) => 
 					{
-						// process should run in an STA thread otherwise it will conflict with
-						// the OneNote MTA thread environment
-						var thread = new Thread(() =>
+						try
 						{
-							action();
-						});
-
-						thread.SetApartmentState(ApartmentState.STA);
-						thread.IsBackground = true;
-						thread.Start();
-
-						progressDialog.StartTimer();
-						var result = progressDialog.ShowDialog(owner);
-
-						if (result == DialogResult.Cancel)
+							action(ct);
+						}
+						catch (Exception exc)
 						{
-							logger.WriteLine("clicked cancel");
-							thread.Abort();
+							logger.WriteLine("error importing", exc);
 							return false;
 						}
+						await Task.Yield();
+						return !ct.IsCancellationRequested && pd.DialogResult == DialogResult.OK;
 					}
-					catch (Exception exc)
-					{
-						logger.WriteLine("error importing", exc);
-					}
-				}
+					) == DialogResult.OK;
 			}
-
-			return true;
 		}
 
 

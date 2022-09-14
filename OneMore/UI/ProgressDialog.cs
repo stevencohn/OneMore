@@ -76,23 +76,6 @@ namespace River.OneMoreAddIn.UI
 
 		/// <summary>
 		/// Initializes a new dialog with message area, progress bar, and a cancel button.
-		/// </summary>
-		/// <param name="source">
-		/// A cancellation source that indicates the active work should abort. Cancellation
-		/// could be requested by clicking the Cancel button or be activated by a timer.
-		/// </param>
-		[Obsolete("Use the (int) override instead")]
-		public ProgressDialog(CancellationTokenSource source)
-		{
-			Initialize(CancelHeight);
-
-			this.source = source;
-			timer.Tick += Tick;
-		}
-
-
-		/// <summary>
-		/// Initializes a new dialog with message area, progress bar, and a cancel button.
 		/// Dialog should be started using RunModeless
 		/// </summary>
 		/// <param name="action">
@@ -141,13 +124,17 @@ namespace River.OneMoreAddIn.UI
 			timer.Tick += Tick;
 			StartTimer();
 
+			DialogResult result = DialogResult.Cancel;
+
 			try
 			{
 				// process should run in an STA thread otherwise it will conflict with
 				// the OneNote MTA thread environment
 				var thread = new Thread(async () =>
 				{
+					logger.WriteLine("running action...");
 					var ok = await action(this, source.Token);
+					logger.WriteLine($"completed action ({ok})");
 
 					DialogResult = source.IsCancellationRequested 
 						? DialogResult.Abort
@@ -161,11 +148,12 @@ namespace River.OneMoreAddIn.UI
 				thread.IsBackground = true;
 				thread.Start();
 
-				var result = ShowDialog(owner);
+				result = ShowDialog(owner);
 
 				if (result == DialogResult.Cancel)
 				{
 					logger.WriteLine("clicked cancel");
+					source.Cancel();
 					thread.Abort();
 					return result;
 				}
@@ -175,7 +163,7 @@ namespace River.OneMoreAddIn.UI
 				logger.WriteLine("error importing", exc);
 			}
 
-			return DialogResult.OK;
+			return result;
 		}
 
 
