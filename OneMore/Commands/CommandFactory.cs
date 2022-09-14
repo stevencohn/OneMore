@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn
 		private void RecordLastAction(Command command, params object[] args)
 		{
 			// ignore commands that pass the ribbon as an argument
-			if (args.Any(a => a != null && a.GetType().Name.Contains("ComObject")))
+			if (args == null || args.Any(a => a != null && a.GetType().Name.Contains("ComObject")))
 			{
 				return;
 			}

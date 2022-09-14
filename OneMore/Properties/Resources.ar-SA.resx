@@ -3949,4 +3949,13 @@ ISO-code then comma then language name</comment>
     <value>الرجاء دعم التطوير المستقبلي لـ OneMore</value>
     <comment>label</comment>
   </data>
+  <data name="word_Favorites" xml:space="preserve">
+    <value>المفضلة</value>
+  </data>
+  <data name="word_Go" xml:space="preserve">
+    <value>يذهب</value>
+  </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>اختر المفضلة</value>
+  </data>
 </root>

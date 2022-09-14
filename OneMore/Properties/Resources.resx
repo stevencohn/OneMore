@@ -4004,4 +4004,13 @@ Select No to keep one empty line between paragraphs</value>
     <value>Please support future development of OneMore</value>
     <comment>label</comment>
   </data>
+  <data name="word_Favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="word_Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Choose Favorite</value>
+  </data>
 </root>

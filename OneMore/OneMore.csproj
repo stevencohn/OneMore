@@ -161,6 +161,12 @@
     <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
     <Compile Include="Commands\Edit\PasteTextCommand.cs" />
+    <Compile Include="Commands\Favorites\FavoritesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Favorites\FavoritesDialog.Designer.cs">
+      <DependentUpon>FavoritesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\File\CrawlHyperlink.cs" />
     <Compile Include="Commands\File\CrawlWebPageCommand.cs" />
     <Compile Include="Commands\File\CrawlWebPageDialog.cs">
@@ -1022,6 +1028,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Extras\TimerWindow.resx">
       <DependentUpon>TimerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Favorites\FavoritesDialog.resx">
+      <DependentUpon>FavoritesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\CrawlWebPageDialog.resx">
       <DependentUpon>CrawlWebPageDialog.cs</DependentUpon>

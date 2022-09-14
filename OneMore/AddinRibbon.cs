@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn
 			try
 			{
 				var anchor = root.Descendants(ns + "menu")
-					.FirstOrDefault(e => e.Attribute("id").Value == "ribColorizeMenu");
+					.FirstOrDefault(e => e.Attribute("id").Value == "ribEditMenu");
 
 				if (anchor == null)
 				{
@@ -185,7 +185,7 @@ namespace River.OneMoreAddIn
 						));
 				}
 
-				anchor.AddAfterSelf(item);
+				anchor.AddFirst(item);
 			}
 			catch (Exception exc)
 			{
@@ -430,7 +430,7 @@ namespace River.OneMoreAddIn
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		/// <summary>
-		/// Populates the Favorites menu
+		/// Populates the Favorites dynamic menu
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns></returns>
@@ -444,22 +444,25 @@ namespace River.OneMoreAddIn
 
 			var favorites = new FavoritesProvider(ribbon).LoadFavoritesMenu();
 
-			var sep = favorites.Elements()
-				.FirstOrDefault(e => e.Attribute("id").Value == "omFavoritesSeparator");
-
-			if (sep != null)
-			{
-				var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
-				sep.AddAfterSelf(snippets);
-
-				var plugins = new PluginsProvider().MakePluginsMenu(ns);
-				if (plugins != null)
-				{
-					snippets.AddAfterSelf(plugins);
-				}
-			}
-
 			return favorites.ToString(SaveOptions.DisableFormatting);
+		}
+
+
+		public string GetMyPluginsContent(IRibbonControl control)
+		{
+			return new PluginsProvider().MakePluginsMenu(ns).ToString(SaveOptions.DisableFormatting);
+		}
+
+
+		/// <summary>
+		/// Populates the Snippets dynamic menu
+		/// </summary>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public string GetMySnippetsContent(IRibbonControl control)
+		{
+			var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
+			return snippets.ToString(SaveOptions.DisableFormatting);
 		}
 
 

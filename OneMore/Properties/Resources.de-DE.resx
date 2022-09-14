@@ -3936,4 +3936,13 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Bitte unterstützen Sie die zukünftige Entwicklung von OneMore</value>
     <comment>label</comment>
   </data>
+  <data name="word_Favorites" xml:space="preserve">
+    <value>Favoriten</value>
+  </data>
+  <data name="word_Go" xml:space="preserve">
+    <value>gehen</value>
+  </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Wählen Sie Favorit</value>
+  </data>
 </root>

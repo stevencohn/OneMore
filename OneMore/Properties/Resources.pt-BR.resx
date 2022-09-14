@@ -3949,4 +3949,13 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Por favor, apoie o desenvolvimento futuro do OneMore</value>
     <comment>label</comment>
   </data>
+  <data name="word_Favorites" xml:space="preserve">
+    <value>Favoritos</value>
+  </data>
+  <data name="word_Go" xml:space="preserve">
+    <value>Vai</value>
+  </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Escolha favorito</value>
+  </data>
 </root>

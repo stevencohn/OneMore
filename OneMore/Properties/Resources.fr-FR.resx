@@ -3945,4 +3945,13 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Veuillez soutenir le développement futur de OneMore</value>
     <comment>label</comment>
   </data>
+  <data name="word_Favorites" xml:space="preserve">
+    <value>Favoris</value>
+  </data>
+  <data name="word_Go" xml:space="preserve">
+    <value>Aller</value>
+  </data>
+  <data name="ChooseFavoriteCommand" xml:space="preserve">
+    <value>Choisissez favori</value>
+  </data>
 </root>
