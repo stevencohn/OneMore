@@ -141,13 +141,17 @@ namespace River.OneMoreAddIn.UI
 			timer.Tick += Tick;
 			StartTimer();
 
+			DialogResult result = DialogResult.Cancel;
+
 			try
 			{
 				// process should run in an STA thread otherwise it will conflict with
 				// the OneNote MTA thread environment
 				var thread = new Thread(async () =>
 				{
+					logger.WriteLine("running action...");
 					var ok = await action(this, source.Token);
+					logger.WriteLine($"completed action ({ok})");
 
 					DialogResult = source.IsCancellationRequested 
 						? DialogResult.Abort
@@ -161,11 +165,12 @@ namespace River.OneMoreAddIn.UI
 				thread.IsBackground = true;
 				thread.Start();
 
-				var result = ShowDialog(owner);
+				result = ShowDialog(owner);
 
 				if (result == DialogResult.Cancel)
 				{
 					logger.WriteLine("clicked cancel");
+					source.Cancel();
 					thread.Abort();
 					return result;
 				}
@@ -175,7 +180,7 @@ namespace River.OneMoreAddIn.UI
 				logger.WriteLine("error importing", exc);
 			}
 
-			return DialogResult.OK;
+			return result;
 		}
 
 

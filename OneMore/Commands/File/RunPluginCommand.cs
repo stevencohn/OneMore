@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Diagnostics;
 	using System.IO;
@@ -22,8 +23,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private Plugin plugin;
 
-		private UI.ProgressDialog progressDialog = null;
-		private CancellationTokenSource source = null;
+		private UI.ProgressDialog progress = null;
 
 
 		public RunPluginCommand()
@@ -158,68 +158,33 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool Execute(string workPath)
 		{
-			using (source = new CancellationTokenSource())
+			var timeout = plugin.Timeout == 0 ? Plugin.MaxTimeout : plugin.Timeout;
+			DialogResult result;
+
+			using (progress = new ProgressDialog(timeout))
 			{
-				using (progressDialog = new UI.ProgressDialog(source))
-				{
-					var timeout = plugin.Timeout == 0 ? Plugin.MaxTimeout : plugin.Timeout;
+				progress.Tag = workPath;
+				progress.SetMessage(string.Format(
+					Resx.Plugin_Running, plugin.Command, plugin.Arguments, workPath));
 
-					progressDialog.SetMaximum(timeout);
-					progressDialog.SetMessage(string.Format(
-						Resx.Plugin_Running, plugin.Command, plugin.Arguments, workPath));
-
-					Process process = null;
-
-					try
-					{
-						// process should run in an STA thread otherwise it will conflict with
-						// the OneNote MTA thread environment
-						var thread = new Thread(() =>
-						{
-							process = StartPlugin(workPath);
-						});
-
-						thread.SetApartmentState(ApartmentState.STA);
-						thread.IsBackground = true;
-						thread.Start();
-
-						progressDialog.StartTimer();
-						var result = progressDialog.ShowDialog(owner);
-
-						if (result == DialogResult.Cancel)
-						{
-							logger.WriteLine("clicked cancel");
-							process.Kill();
-							return false;
-						}
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine("error running Execute(string)", exc);
-					}
-					finally
-					{
-						if (process != null)
-						{
-							process.Dispose();
-							process = null;
-						}
-					}
-				}
+				result = progress.ShowTimedDialog(owner, ExecuteWorker);
 			}
 
-			return true;
+			return result == DialogResult.OK;
 		}
 
 
-		private Process StartPlugin(string path)
+		private async Task<bool> ExecuteWorker(ProgressDialog progress, CancellationToken token)
 		{
-			logger.WriteLine($"running {plugin.Command} {plugin.Arguments} \"{path}\"");
+			var path = (string)progress.Tag;
 
 			Process process = null;
+			var ok = true;
 
 			try
 			{
+				logger.WriteLine($"running {plugin.Command} {plugin.Arguments} \"{path}\"");
+
 				process = new Process
 				{
 					StartInfo = new ProcessStartInfo
@@ -245,26 +210,32 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.WriteLine($"plugin process started PID:{process.Id}");
 				logger.StartClock();
+
+				await process.WaitForExitAsync(token);
+				ok = !token.IsCancellationRequested;
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error running RunPlugin(string)", exc);
-
+				logger.WriteLine("error running Execute(string)", exc);
+				ok = false;
+			}
+			finally
+			{
 				if (process != null)
 				{
 					process.Dispose();
-					process = null;
 				}
 			}
 
-			return process;
+			return ok;
 		}
+
 
 		private void Process_Exited(object sender, EventArgs e)
 		{
 			logger.WriteTime("plugin process exited");
-			progressDialog.DialogResult = DialogResult.OK;
-			progressDialog.Close();
+			progress.DialogResult = DialogResult.OK;
+			progress.Close();
 		}
 
 
