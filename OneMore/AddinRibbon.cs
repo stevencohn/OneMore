@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn
 			try
 			{
 				var anchor = root.Descendants(ns + "menu")
-					.FirstOrDefault(e => e.Attribute("id").Value == "ribColorizeMenu");
+					.FirstOrDefault(e => e.Attribute("id").Value == "ribEditMenu");
 
 				if (anchor == null)
 				{
@@ -185,7 +185,7 @@ namespace River.OneMoreAddIn
 						));
 				}
 
-				anchor.AddAfterSelf(item);
+				anchor.AddFirst(item);
 			}
 			catch (Exception exc)
 			{

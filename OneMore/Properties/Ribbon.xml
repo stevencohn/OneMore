@@ -234,11 +234,13 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="TrimLeadingCmd"/>
             </menu>
+
+            <menu
+              id="ribColorizeMenu"
+              imageMso="SmartArtChangeColorsGallery"
+              getLabel="GetRibbonLabel" showImage="true"/>
+
             <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true">
-              <menu
-                id="ribColorizeMenu"
-                imageMso="SmartArtChangeColorsGallery"
-                getLabel="GetRibbonLabel"/>
               <button
                 id="ribHighlightButton"
                 imageMso="AppointmentColorDialog"
