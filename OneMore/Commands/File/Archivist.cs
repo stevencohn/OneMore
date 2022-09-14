@@ -293,7 +293,7 @@ namespace River.OneMoreAddIn.Commands
 
 				// match <<escaped-name>>
 
-				var escape = name.Replace(@"\", @"\\").Replace(".", @"\.");
+				var escape = name.Replace(@"\", @"\\").Replace(".", @"\.").Replace("&", "&amp;");
 				var matches = Regex.Matches(text, $@">(&lt;&lt;{escape}&gt;&gt;)</");
 				if (matches.Count == 0)
 				{
