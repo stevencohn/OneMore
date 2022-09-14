@@ -6160,7 +6160,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Saved Plugins.
+        ///   Looks up a localized string similar to Plugins.
         /// </summary>
         internal static string ribPluginsMenu_Label {
             get {

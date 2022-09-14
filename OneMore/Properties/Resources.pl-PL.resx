@@ -2576,7 +2576,7 @@ W tej sekcji</value>
     <comment>message box</comment>
   </data>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
-    <value>Moje zapisane wtyczki</value>
+    <value>Wtyczki</value>
     <comment>favorites menu</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">

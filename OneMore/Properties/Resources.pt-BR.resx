@@ -2286,7 +2286,7 @@ ISO-code then comma then language name</comment>
     <comment>favorites button</comment>
   </data>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
-    <value>Meus Plugins Salvos</value>
+    <value>Plug-ins</value>
     <comment>favorites menu</comment>
   </data>
   <data name="PluginsSheet.Text" xml:space="preserve">

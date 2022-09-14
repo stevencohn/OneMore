@@ -2592,7 +2592,7 @@ In this section</value>
     <comment>message box</comment>
   </data>
   <data name="ribPluginsMenu_Label" xml:space="preserve">
-    <value>My Saved Plugins</value>
+    <value>Plugins</value>
     <comment>favorites menu</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">

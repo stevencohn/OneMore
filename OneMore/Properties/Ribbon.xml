@@ -348,11 +348,6 @@
                 imageMso="FileNewWebPage"
                 getLabel="GetRibbonLabel"
                 onAction="CrawlWebPageCmd"/>
-              <button
-                id="ribPluginButton"
-                imageMso="ComAddInsDialog"
-                getLabel="GetRibbonLabel"
-                onAction="RunPluginCmd"/>
               <dynamicMenu
                 id="ribPluginsMenu"
                 getLabel="GetRibbonLabel"
