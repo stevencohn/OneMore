@@ -328,6 +328,12 @@
             </menu>
             <menu id="ribFileMenu" getLabel="GetRibbonLabel" imageMso="FileOpen" showImage="true">
               <button
+                id="ribExportButton"
+                imageMso="FileSave"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="ExportCmd"/>
+              <button
                 id="ribImportButton"
                 imageMso="FileOpen"
                 getLabel="GetRibbonLabel"
@@ -342,12 +348,6 @@
                 imageMso="FileNewWebPage"
                 getLabel="GetRibbonLabel"
                 onAction="CrawlWebPageCmd"/>
-              <button
-                id="ribExportButton"
-                imageMso="FileSave"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="ExportCmd"/>
               <button
                 id="ribPluginButton"
                 imageMso="ComAddInsDialog"
