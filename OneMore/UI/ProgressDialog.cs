@@ -76,23 +76,6 @@ namespace River.OneMoreAddIn.UI
 
 		/// <summary>
 		/// Initializes a new dialog with message area, progress bar, and a cancel button.
-		/// </summary>
-		/// <param name="source">
-		/// A cancellation source that indicates the active work should abort. Cancellation
-		/// could be requested by clicking the Cancel button or be activated by a timer.
-		/// </param>
-		[Obsolete("Use the (int) override instead")]
-		public ProgressDialog(CancellationTokenSource source)
-		{
-			Initialize(CancelHeight);
-
-			this.source = source;
-			timer.Tick += Tick;
-		}
-
-
-		/// <summary>
-		/// Initializes a new dialog with message area, progress bar, and a cancel button.
 		/// Dialog should be started using RunModeless
 		/// </summary>
 		/// <param name="action">
