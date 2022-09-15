@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine($"ONENOTE...: {moduledesc}");
 			logger.WriteLine($"Addin path: {Assembly.GetExecutingAssembly().Location}");
-			logger.WriteLine($"Data path.: {PathFactory.GetAppDataPath()}");
+			logger.WriteLine($"Data path.: {PathHelper.GetAppDataPath()}");
 			logger.WriteLine($"Log path..: {logger.LogPath}");
 			logger.WriteLine();
 

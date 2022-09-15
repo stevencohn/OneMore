@@ -700,7 +700,7 @@
     <Compile Include="Helpers\Office\Office.cs" />
     <Compile Include="Helpers\Office\PowerPoint.cs" />
     <Compile Include="Helpers\Office\Word.cs" />
-    <Compile Include="Helpers\PathFactory.cs" />
+    <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Models\QuickStyleMapping.cs" />
     <Compile Include="Commands\Settings\ContextMenuSheet.cs">
       <SubType>UserControl</SubType>

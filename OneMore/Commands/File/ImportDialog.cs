@@ -7,7 +7,9 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.ComponentModel;
 	using System.IO;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -64,7 +66,17 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			pathBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+			var settings = new SettingsProvider();
+			var defaultPath = settings.GetCollection("Import")?["path"];
+			if (string.IsNullOrWhiteSpace(defaultPath))
+			{
+				pathBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			}
+			else
+			{
+				pathBox.Text = defaultPath;
+			}
 		}
 
 
@@ -88,6 +100,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
+				var wild = pathBox.Text.Contains("*");
 				var ext = Path.GetExtension(pathBox.Text);
 
 				switch (ext)
@@ -99,6 +112,12 @@ namespace River.OneMoreAddIn.Commands
 						notInstalledLabel.Visible = !wordInstalled;
 						okButton.Enabled = wordInstalled;
 						Format = Formats.Word;
+						wordAppendButton.Enabled = !wild;
+						if (wild)
+						{
+							wordAppendButton.Checked = false;
+							wordCreateButton.Checked = true;
+						}
 						break;
 
 					case ".md":
@@ -116,13 +135,19 @@ namespace River.OneMoreAddIn.Commands
 						notInstalledLabel.Visible = !powerPointInstalled;
 						okButton.Enabled = powerPointInstalled;
 						Format = Formats.PowerPoint;
+						powerAppendButton.Enabled = !wild;
+						if (wild)
+						{
+							powerAppendButton.Checked = false;
+							powerCreateButton.Checked = true;
+						}
 						break;
 
 					case ".xml":
 						wordGroup.Visible = false;
 						powerGroup.Visible = false;
 						notInstalledLabel.Visible = false;
-						okButton.Enabled = true;
+						okButton.Enabled = !wild;
 						Format = Formats.Xml;
 						break;
 
@@ -130,7 +155,7 @@ namespace River.OneMoreAddIn.Commands
 						wordGroup.Visible = false;
 						powerGroup.Visible = false;
 						notInstalledLabel.Visible = false;
-						okButton.Enabled = true;
+						okButton.Enabled = !wild;
 						Format = Formats.OneNote;
 						break;
 
@@ -185,6 +210,31 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Logger.Current.WriteLine("error running OpenFileDialog", exc);
 			}
+		}
+
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			if (DialogResult == DialogResult.OK)
+			{
+				var path = pathBox.Text;
+				if (PathHelper.HasWildFileName(path))
+				{
+					// strip off the filename so only the dir is stored
+					path = Path.GetDirectoryName(path);
+				}
+
+				// save only paths that exist
+				if (Directory.Exists(path))
+				{
+					var settings = new SettingsProvider();
+					var collection = settings.GetCollection("Import");
+					collection.Add("path", path);
+					settings.SetCollection(collection);
+					settings.Save();
+				}
+			}
+
+			base.OnClosing(e);
 		}
 	}
 }

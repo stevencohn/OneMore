@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			// use this temp folder as a sandbox for each page
 			var t = Path.GetRandomFileName();
 			tempdir = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(t));
-			PathFactory.EnsurePathExists(tempdir);
+			PathHelper.EnsurePathExists(tempdir);
 			logger.WriteLine($"building archive {zipPath}");
 
 			progress.SetMaximum(totalCount);
@@ -193,7 +193,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ArchivePage(XElement element, Page page, string path)
 		{
-			var name = PathFactory.CleanFileName(page.Title).Trim();
+			var name = PathHelper.CleanFileName(page.Title).Trim();
 			if (string.IsNullOrEmpty(name))
 			{
 				name = $"Unnamed__{pageCount}";
@@ -203,7 +203,7 @@ namespace River.OneMoreAddIn.Commands
 				// ensure the page name is unique within the section
 				var n = element.Parent.Elements()
 					.Count(e => e.Attribute("name")?.Value ==
-						PathFactory.CleanFileName(page.Title).Trim());
+						PathHelper.CleanFileName(page.Title).Trim());
 
 				if (n > 1)
 				{
@@ -215,7 +215,7 @@ namespace River.OneMoreAddIn.Commands
 				? Path.Combine(tempdir, $"{name}.htm")
 				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
 
-			filename = PathFactory.FitMaxPath(filename);
+			filename = PathHelper.FitMaxPath(filename);
 
 			archivist.ExportHTML(page, ref filename, path, bookScope);
 

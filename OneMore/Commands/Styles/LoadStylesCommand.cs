@@ -35,8 +35,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public Theme LoadTheme()
 		{
-			var path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder);
-			PathFactory.EnsurePathExists(path);
+			var path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
+			PathHelper.EnsurePathExists(path);
 
 			using (var dialog = new OpenFileDialog())
 			{

@@ -78,13 +78,13 @@ namespace River.OneMoreAddIn.Styles
 		{
 			// appdata\Roaming\OneMore\Themes\key.xml
 			var root = LoadFromFile(Path.Combine(
-				PathFactory.GetAppDataPath(), Resx.ThemesFolder, $"{key}.xml"));
+				PathHelper.GetAppDataPath(), Resx.ThemesFolder, $"{key}.xml"));
 
 			if (root == null)
 			{
 				// appdata\Roaming\OneMore\CustomStyles.xml -- backwards compatibility
 				root = LoadFromFile(Path.Combine(
-					PathFactory.GetAppDataPath(), Resx.CustomStylesFilename));
+					PathHelper.GetAppDataPath(), Resx.CustomStylesFilename));
 			}
 
 			if (root == null)
@@ -160,7 +160,7 @@ namespace River.OneMoreAddIn.Styles
 			string name;
 			if (string.IsNullOrEmpty(path))
 			{
-				path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder, theme.Key);
+				path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder, theme.Key);
 				key = theme.Key;
 				name = theme.Name;
 			}
@@ -174,7 +174,7 @@ namespace River.OneMoreAddIn.Styles
 				path = $"{path}.xml";
 			}
 
-			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
+			PathHelper.EnsurePathExists(Path.GetDirectoryName(path));
 
 			// create a new instance to handle the save-as workflow
 			var root = new XElement("Theme",

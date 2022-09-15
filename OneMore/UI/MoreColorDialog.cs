@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.UI
 
 		private void LoadCustomColors()
 		{
-			var path = Path.Combine(PathFactory.GetAppDataPath(), Properties.Resources.CustomColorsFilesname);
+			var path = Path.Combine(PathHelper.GetAppDataPath(), Properties.Resources.CustomColorsFilesname);
 			if (File.Exists(path))
 			{
 				var doc = XElement.Load(path, LoadOptions.None);
@@ -115,8 +115,8 @@ namespace River.OneMoreAddIn.UI
 					}
 				}
 
-				var path = PathFactory.GetAppDataPath();
-				if (PathFactory.EnsurePathExists(path))
+				var path = PathHelper.GetAppDataPath();
+				if (PathHelper.EnsurePathExists(path))
 				{
 					path = Path.Combine(path, Properties.Resources.CustomColorsFilesname);
 					doc.Save(path, SaveOptions.None);

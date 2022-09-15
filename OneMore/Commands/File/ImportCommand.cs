@@ -18,11 +18,11 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 	using WindowsInput;
 	using WindowsInput.Native;
-	using Win = System.Windows;
+
 
 	internal class ImportCommand : Command
 	{
-		private const int MaxWait = 15;
+		private const int MaxTimeout = 15;
 		private UI.ProgressDialog progress;
 
 
@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (var dialog = new ImportDialog())
 			{
+
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
 					return;
@@ -66,6 +67,41 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Presents the ProgressDialog and invokes the given action. The work can be cancelled
+		/// by the user or when a specified timeout expires.
+		/// </summary>
+		/// <param name="timeout">The time is seconds before the work is cancelled</param>
+		/// <param name="path">The file path to action</param>
+		/// <param name="action">The action to execute</param>
+		/// <returns></returns>
+		private bool RunWithProgress(int timeout, string path, Func<CancellationToken, Task<bool>> action)
+		{
+			using (progress = new ProgressDialog(timeout))
+			{
+				progress.SetMessage($"Importing {path}...");
+
+				var result = progress.ShowTimedDialog(Owner,
+					async (ProgressDialog progDialog, CancellationToken token) =>
+					{
+						try
+						{
+							await action(token);
+						}
+						catch (Exception exc)
+						{
+							logger.WriteLine("error importing", exc);
+							return false;
+						}
+						await Task.Yield();
+						return !token.IsCancellationRequested;
+					});
+
+				return result == DialogResult.OK;
+			}
+		}
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Word...
 
@@ -76,26 +112,51 @@ namespace River.OneMoreAddIn.Commands
 				UIHelper.ShowMessage("Word is not installed");
 			}
 
+			string[] files;
+			int timeout = MaxTimeout;
+
+			if (PathHelper.HasWildFileName(filepath))
+			{
+				files = Directory.GetFiles(Path.GetDirectoryName(filepath), Path.GetFileName(filepath));
+				timeout = 10 + (files.Length * 4);
+			}
+			else
+			{
+				files = new string[] { filepath };
+			}
+
 			logger.StartClock();
 
-			var completed = RunBackgroundTask(filepath, async (token) =>
+			var completed = RunWithProgress(timeout, filepath, async (token) =>
 			{
-				await WordImporter(filepath, append, token);
+				foreach (var file in files)
+				{
+					if (token.IsCancellationRequested)
+					{
+						break;
+					}
+
+					await ImportWordFile(file, append, token);
+				}
+
+				return !token.IsCancellationRequested;
 			});
 
 			if (completed)
 			{
-				logger.WriteTime("word file imported");
+				logger.WriteTime("word file(s) imported");
 			}
 			else
 			{
-				logger.StopClock();
+				logger.WriteTime("word file(s) cancelled");
 			}
 		}
 
 
-		private async Task WordImporter(string filepath, bool append, CancellationToken token)
+		private async Task ImportWordFile(string filepath, bool append, CancellationToken token)
 		{
+			progress.SetMessage($"Importing {filepath}...");
+
 			using (var word = new Word())
 			{
 				var html = word.ConvertFileToHtml(filepath);
@@ -141,27 +202,52 @@ namespace River.OneMoreAddIn.Commands
 				UIHelper.ShowMessage("PowerPoint is not installed");
 			}
 
+			string[] files;
+			int timeout = MaxTimeout;
+
+			if (PathHelper.HasWildFileName(filepath))
+			{
+				files = Directory.GetFiles(Path.GetDirectoryName(filepath), Path.GetFileName(filepath));
+				timeout = 10 + (files.Length * 4);
+			}
+			else
+			{
+				files = new string[] { filepath };
+			}
+
 			logger.StartClock();
 
-			var completed = RunBackgroundTask(filepath, async (token) =>
+			var completed = RunWithProgress(timeout, filepath, async (token) =>
 			{
-				await PowerPointImporter(filepath, append, split, token);
+				foreach (var file in files)
+				{
+					if (token.IsCancellationRequested)
+					{
+						break;
+					}
+
+					await ImportPowerPointFile(filepath, append, split, token);
+				}
+
+				return !token.IsCancellationRequested;
 			});
 
 			if (completed)
 			{
-				logger.WriteTime("powerpoint file imported");
+				logger.WriteTime("powerpoint file(s) imported");
 			}
 			else
 			{
-				logger.StopClock();
+				logger.WriteTime("powerpoint file(s) cancelled");
 			}
 		}
 
 
-		private async Task PowerPointImporter(
+		private async Task ImportPowerPointFile(
 			string filepath, bool append, bool split, CancellationToken token)
 		{
+			progress.SetMessage($"Importing {filepath}...");
+
 			string outpath;
 			using (var powerpoint = new PowerPoint())
 			{
@@ -198,7 +284,7 @@ namespace River.OneMoreAddIn.Commands
 						page.Title = $"Slide {i}";
 						var container = page.EnsureContentContainer();
 
-						LoadImage(container, ns, file);
+						EmbedImage(container, ns, file);
 
 						await one.Update(page);
 
@@ -230,7 +316,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						using (var image = Image.FromFile(file))
 						{
-							LoadImage(container, page.Namespace, file);
+							EmbedImage(container, page.Namespace, file);
 						}
 					}
 
@@ -254,7 +340,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void LoadImage(XElement container, XNamespace ns, string filepath)
+		private void EmbedImage(XElement container, XNamespace ns, string filepath)
 		{
 			using (var image = Image.FromFile(filepath))
 			{
@@ -276,41 +362,54 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-		// Our trusty little worker
-
-		private bool RunBackgroundTask(string path, Action<CancellationToken> action)
-		{
-			using (progress = new ProgressDialog(MaxWait))
-			{
-				progress.SetMessage($"Importing {path}...");
-
-				return progress.ShowTimedDialog(Owner, 
-					async (ProgressDialog pd, CancellationToken ct) => 
-					{
-						try
-						{
-							action(ct);
-						}
-						catch (Exception exc)
-						{
-							logger.WriteLine("error importing", exc);
-							return false;
-						}
-						await Task.Yield();
-						return !ct.IsCancellationRequested && pd.DialogResult == DialogResult.OK;
-					}
-					) == DialogResult.OK;
-			}
-		}
-
-
-		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Markdown...
 
 		private async Task ImportMarkdown(string filepath)
 		{
+			if (!PathHelper.HasWildFileName(filepath))
+			{
+				await ImportMarkdownFile(filepath, default);
+				logger.WriteTime("markdown file imported");
+				return;
+			}
+
+			var files = Directory.GetFiles(Path.GetDirectoryName(filepath), Path.GetFileName(filepath));
+			var timeout = 10 + (files.Length * 3);
+
+			logger.StartClock();
+
+			var completed = RunWithProgress(timeout, filepath, async (token) =>
+			{
+				foreach (var file in files)
+				{
+					if (token.IsCancellationRequested)
+					{
+						break;
+					}
+
+					await ImportMarkdownFile(file, token);
+				}
+
+				return !token.IsCancellationRequested;
+			});
+
+			if (completed)
+			{
+				logger.WriteTime("markdown file(s) imported");
+			}
+			else
+			{
+				logger.WriteTime("markdown file(s) import cancelled");
+			}
+		}
+
+
+		private async Task ImportMarkdownFile(string filepath, CancellationToken token)
+		{
 			try
 			{
+				progress.SetMessage($"Importing {filepath}...");
+				logger.WriteLine($"importing markdown {filepath}");
 				var text = File.ReadAllText(filepath);
 				var deep = new Markdown
 				{
@@ -318,6 +417,12 @@ namespace River.OneMoreAddIn.Commands
 					ExtraMode = true,
 					UrlBaseLocation = Path.GetDirectoryName(filepath)
 				};
+
+				if (token != default && token.IsCancellationRequested)
+				{
+					logger.WriteLine("import markdown cancelled");
+					return;
+				}
 
 				var body = deep.Transform(text);
 				if (!string.IsNullOrEmpty(body))
@@ -332,18 +437,34 @@ namespace River.OneMoreAddIn.Commands
 					builder.AppendLine("</html>");
 					var html = PasteRtfCommand.AddHtmlPreamble(builder.ToString());
 
-					// paste HTML
-					await SingleThreaded.Invoke(() =>
+					if (token != default && token.IsCancellationRequested)
 					{
-						Win.Clipboard.SetText(html, Win.TextDataFormat.Html);
-					});
+						logger.WriteLine("import markdown cancelled");
+						return;
+					}
+
+					var clippy = new ClipboardProvider();
+					await clippy.StashState();
+					await clippy.SetHtml(html);
 
 					// both SetText and SendWait are very unpredictable so wait a little
 					await Task.Delay(200);
 
-					//SendKeys.SendWait("^(v)");
-					new InputSimulator().Keyboard
-						.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+					using (var one = new OneNote())
+					{
+						one.CreatePage(one.CurrentSectionId, out var pageId);
+						var page = one.GetPage(pageId, OneNote.PageDetail.All);
+						page.Title = Path.GetFileNameWithoutExtension(filepath);
+						await one.Update(page);
+						await one.NavigateTo(pageId);
+
+						//SendKeys.SendWait("^(v)");
+						new InputSimulator().Keyboard
+							.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+					}
+
+					await Task.Delay(200);
+					await clippy.RestoreState();
 				}
 			}
 			catch (Exception exc)

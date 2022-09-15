@@ -26,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public PluginsProvider() : base()
 		{
-			store = Path.Combine(PathFactory.GetAppDataPath(), DirectoryName);
+			store = Path.Combine(PathHelper.GetAppDataPath(), DirectoryName);
 		}
 
 
@@ -172,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				PathFactory.EnsurePathExists(store);
+				PathHelper.EnsurePathExists(store);
 
 				using (var writer = new StreamWriter(path, false))
 				{
