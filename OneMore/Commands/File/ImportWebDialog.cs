@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-	using Win = System.Windows;
 
 
 	internal enum ImportWebTarget
@@ -68,18 +67,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async void ImportWebDialog_Load(object sender, System.EventArgs e)
+		private async void ImportWebDialog_Load(object sender, EventArgs e)
 		{
-			var clipboard = await SingleThreaded.Invoke(() =>
+			var text = await new ClipboardProvider().GetText();
+			if (Uri.IsWellFormedUriString(text, UriKind.Absolute))
 			{
-				return Win.Clipboard.ContainsText(Win.TextDataFormat.Text)
-					? Win.Clipboard.GetText(Win.TextDataFormat.Text)
-					: null;
-			});
-
-			if (Uri.IsWellFormedUriString(clipboard, UriKind.Absolute))
-			{
-				addressBox.Text = clipboard;
+				addressBox.Text = text;
 			}
 		}
 

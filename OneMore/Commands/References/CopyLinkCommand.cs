@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
-	using Win = System.Windows;
 
 
 	/// <summary>
@@ -101,10 +100,7 @@ namespace River.OneMoreAddIn
 					var html = PasteRtfCommand.AddHtmlPreamble(builder.ToString());
 
 					// copy hyperlink to clipboard
-					await SingleThreaded.Invoke(() =>
-					{
-						Win.Clipboard.SetText(html, Win.TextDataFormat.Html);
-					});
+					await new ClipboardProvider().SetHtml(html);
 
 					MoreMessageBox.Show(owner, specific
 						? Resx.CopyLinkCommand_LinkToParagraph

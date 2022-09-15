@@ -27,6 +27,28 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public async Task<string> GetHtml()
+		{
+			return await SingleThreaded.Invoke(() =>
+			{
+				return Win.Clipboard.ContainsText(Win.TextDataFormat.Html)
+					? Win.Clipboard.GetText(Win.TextDataFormat.Html)
+					: null;
+			});
+		}
+
+
+		public async Task<string> GetText()
+		{
+			return await SingleThreaded.Invoke(() =>
+			{
+				return Win.Clipboard.ContainsText(Win.TextDataFormat.Text)
+					? Win.Clipboard.GetText(Win.TextDataFormat.Text)
+					: null;
+			});
+		}
+
+
 		public async Task SetHtml(string text)
 		{
 			await SingleThreaded.Invoke(() =>

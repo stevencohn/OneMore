@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Win = System.Windows;
 
 
 	/// <summary>
@@ -28,14 +27,7 @@ namespace River.OneMoreAddIn.Commands
 				var elements = page.Root.Descendants(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all");
 
-				var text = await SingleThreaded.Invoke(() =>
-				{
-					if (Win.Clipboard.ContainsText(Win.TextDataFormat.Text))
-						return Win.Clipboard.GetText(Win.TextDataFormat.Text);
-					else
-						return null;
-				});
-
+				var text = await new ClipboardProvider().GetText();
 				if (string.IsNullOrEmpty(text))
 				{
 					return;

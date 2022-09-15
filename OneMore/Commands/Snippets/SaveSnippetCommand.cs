@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using WindowsInput;
 	using WindowsInput.Native;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-	using Win = System.Windows;
 
 
 	internal class SaveSnippetCommand : Command
@@ -42,15 +41,8 @@ namespace River.OneMoreAddIn.Commands
 				await Task.Delay(200);
 			}
 
-			var html = await SingleThreaded.Invoke(() =>
-			{
-				if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
-					return Win.Clipboard.GetText(Win.TextDataFormat.Html);
-				else
-					return null;
-			});
-
-			if (html == null || html.Length == 0)
+			var html = await new ClipboardProvider().GetHtml();
+			if (string.IsNullOrWhiteSpace(html))
 			{
 				return;
 			}

@@ -13,7 +13,6 @@ namespace River.OneMoreAddIn.Commands
 	using WindowsInput.Native;
 	using Hap = HtmlAgilityPack;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-	using Win = System.Windows;
 
 
 	/// <summary>
@@ -135,14 +134,8 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<Page> GetSourcePage()
 		{
 			// the Clipboard will contain HTML of the copied cells wrapped in a <table>
-			var content = await SingleThreaded.Invoke(() =>
-			{
-				return Win.Clipboard.ContainsText(Win.TextDataFormat.Html)
-					? Win.Clipboard.GetText(Win.TextDataFormat.Html)
-					: null;
-			});
-
-			if (string.IsNullOrEmpty(content))
+			var content = await new ClipboardProvider().GetHtml();
+			if (string.IsNullOrWhiteSpace(content))
 			{
 				return null;
 			}

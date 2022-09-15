@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Globalization;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-	using Win = System.Windows;
 
 
 	internal partial class TimerWindow : LocalizableForm
@@ -120,15 +119,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void CopyTime(object sender, EventArgs e)
+		private async void CopyTime(object sender, EventArgs e)
 		{
 			var stamp = TimeSpan.FromSeconds(++Seconds).ToString("c");
-
-			SingleThreaded.Invoke(() =>
-			{
-				Win.Clipboard.SetText(stamp, Win.TextDataFormat.Text);
-			});
-
+			await new ClipboardProvider().SetText(stamp);
 		}
 
 
