@@ -19,7 +19,6 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.Storage.Streams;
 	using Hap = HtmlAgilityPack;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
-	using Win = System.Windows;
 
 
 	internal class ImportWebCommand : Command
@@ -466,16 +465,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<WebPageInfo> DownloadWebContent(Uri uri)
 		{
-			// This JavaScript copies the HTML of the entire web page to the clipboard
-			// and returns the text of the page <title>
-			const string javascript =
-@"var range = document.createRange();
-range.selectNodeContents(document.body);
-var selection = window.getSelection();
-selection.removeAllRanges();
-selection.addRange(range);
-document.execCommand('copy');
-document.getElementsByTagName('title')[0].innerText;";
+			const string GetTitleJS = "document.getElementsByTagName('title')[0].innerText;";
+			const string GetContentJS = "document.documentElement.outerHTML;";
 
 			string content = null;
 			string title = null;
@@ -496,30 +487,10 @@ document.getElementsByTagName('title')[0].innerText;";
 					work:
 					new WebViewWorker(async (webview) =>
 					{
-						//logger.WriteLine("getting webview content");
-						await Task.Delay(200);
-
-						title = await webview.ExecuteScriptAsync(javascript);
+						title = await webview.ExecuteScriptAsync(GetTitleJS);
 						//logger.WriteLine($"title=[{title}]");
 
-						await Task.Delay(100);
-
-						if (Win.Clipboard.ContainsText(Win.TextDataFormat.Html))
-						{
-							content = Win.Clipboard.GetText(Win.TextDataFormat.Html);
-							var index = content.IndexOf(
-								"<html", StringComparison.InvariantCultureIgnoreCase);
-
-							if (index > 0)
-							{
-								content = content.Substring(index);
-							}
-						}
-						else
-						{
-							content = null;
-						}
-
+						content = await webview.ExecuteScriptAsync(GetContentJS);
 						//logger.WriteLine($"content=[{content}]");
 
 						await Task.Yield();
@@ -530,10 +501,18 @@ document.getElementsByTagName('title')[0].innerText;";
 				}
 			});
 
-			if (title != null && title.Length > 1 &&
+			if (!string.IsNullOrWhiteSpace(title) &&
 				title[0] == '"' && title[title.Length - 1] == '"')
 			{
+				// remove double quotes
 				title = title.Substring(1, title.Length - 2);
+			}
+
+			if (!string.IsNullOrWhiteSpace(content))
+			{
+				// unescape and remove double quotes
+				content = Regex.Unescape(content);
+				content = content.Substring(1, content.Length - 2);
 			}
 
 			var bycount = content == null ? 0 : content.Length;
