@@ -16,10 +16,17 @@ namespace River.OneMoreAddIn
 	internal static class SingleThreaded
 	{
 
+		/// <summary>
+		/// Invoke the given Func on an STA thread or on the current thread if it is STA.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <returns></returns>
 		public static Task<T> Invoke<T>(Func<T> func)
 		{
 			var source = new TaskCompletionSource<T>();
-			var thread = new Thread(() =>
+
+			if (Thread.CurrentThread.GetApartmentState() == ApartmentState.STA)
 			{
 				try
 				{
@@ -29,17 +36,38 @@ namespace River.OneMoreAddIn
 				{
 					source.SetException(e);
 				}
-			});
-			thread.SetApartmentState(ApartmentState.STA);
-			thread.Start();
+			}
+			else
+			{
+				var thread = new Thread(() =>
+				{
+					try
+					{
+						source.SetResult(func());
+					}
+					catch (Exception e)
+					{
+						source.SetException(e);
+					}
+				});
+				thread.SetApartmentState(ApartmentState.STA);
+				thread.Start();
+			}
+
 			return source.Task;
 		}
 
 
+		/// <summary>
+		/// Invoke the given Action on an STA thread or on the current thread if it is STA.
+		/// </summary>
+		/// <param name="action"></param>
+		/// <returns></returns>
 		public static Task Invoke(Action action)
 		{
 			var source = new TaskCompletionSource<object>();
-			var thread = new Thread(() =>
+
+			if (Thread.CurrentThread.GetApartmentState() == ApartmentState.STA)
 			{
 				try
 				{
@@ -50,9 +78,25 @@ namespace River.OneMoreAddIn
 				{
 					source.SetException(e);
 				}
-			});
-			thread.SetApartmentState(ApartmentState.STA);
-			thread.Start();
+			}
+			else
+			{
+				var thread = new Thread(() =>
+				{
+					try
+					{
+						action();
+						source.SetResult(null);
+					}
+					catch (Exception e)
+					{
+						source.SetException(e);
+					}
+				});
+				thread.SetApartmentState(ApartmentState.STA);
+				thread.Start();
+			}
+
 			return source.Task;
 		}
 	}

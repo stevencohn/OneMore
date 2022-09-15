@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.UI
 			try
 			{
 				var env = await CoreWebView2Environment.CreateAsync(null,
-					Path.Combine(PathFactory.GetAppDataPath(), Resx.ProgramName));
+					Path.Combine(PathHelper.GetAppDataPath(), Resx.ProgramName));
 
 				await webView.EnsureCoreWebView2Async(env);
 				await startup(webView);

@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 					var page = one.GetPage(pageID, OneNote.PageDetail.BinaryData);
 
 					var title = useUnderscores
-						? PathFactory.CleanFileName(page.Title).Replace(' ', '_')
+						? PathHelper.CleanFileName(page.Title).Replace(' ', '_')
 						: page.Title;
 
 					var filename = Path.Combine(path, title + ext);

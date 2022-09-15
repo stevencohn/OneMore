@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn
 		public FavoritesProvider(IRibbonUI ribbon)
 		{
 			logger = Logger.Current;
-			path = Path.Combine(PathFactory.GetAppDataPath(), Resx.FavoritesFilename);
+			path = Path.Combine(PathHelper.GetAppDataPath(), Resx.FavoritesFilename);
 			this.ribbon = ribbon;
 		}
 
@@ -248,7 +248,7 @@ namespace River.OneMoreAddIn
 		{
 			try
 			{
-				PathFactory.EnsurePathExists(PathFactory.GetAppDataPath());
+				PathHelper.EnsurePathExists(PathHelper.GetAppDataPath());
 				root.Save(path, SaveOptions.None);
 
 				if (ribbon != null)

@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn
 	/// <remarks>
 	/// The Path class is static so does not allow extension methods, sadly.
 	/// </remarks>
-	internal static class PathFactory
+	internal static class PathHelper
 	{
 		// MAX_PATH in Windows should be 260 but OneNote.Export further restricts it to 239
 		public const int MAX_PATH = 239;
@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn
 		/// Gets a path to the OneMore data folder
 		/// </summary>
 		/// <returns></returns>
-		public static string GetAppDataPath ()
+		public static string GetAppDataPath()
 		{
 			return Path.Combine(
 				Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
@@ -135,8 +135,8 @@ namespace River.OneMoreAddIn
 		private static string GetLongDirectoryName(string path)
 		{
 			var sep = path.Length - 1;
-			while (sep > 0 && 
-				path[sep] != Path.DirectorySeparatorChar && 
+			while (sep > 0 &&
+				path[sep] != Path.DirectorySeparatorChar &&
 				path[sep] != Path.AltDirectorySeparatorChar)
 			{
 				sep--;
@@ -221,7 +221,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="path"></param>
 		/// <returns></returns>
-		public static bool EnsurePathExists (string path)
+		public static bool EnsurePathExists(string path)
 		{
 			if (!Directory.Exists(path))
 			{
@@ -237,6 +237,36 @@ namespace River.OneMoreAddIn
 			}
 
 			return true;
+		}
+
+
+		/// <summary>
+		/// Checks if the given path has a filename containing a wildcard character "*"
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public static bool HasWildFileName(string path)
+		{
+			if (Path.HasExtension(path))
+			{
+				var slash = path.LastIndexOfAny(new char[]
+				{
+					Path.DirectorySeparatorChar,
+					Path.AltDirectorySeparatorChar,
+					Path.VolumeSeparatorChar
+				});
+
+				if (slash >= 0)
+				{
+					var wild = path.IndexOf('*', slash);
+					if (wild > 0)
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
 		}
 	}
 }

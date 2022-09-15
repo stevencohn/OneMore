@@ -773,7 +773,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 				dialog.AutoUpgradeEnabled = true; // simpler UI, faster
 
-				var path = Path.Combine(PathFactory.GetAppDataPath(), Resx.ThemesFolder);
+				var path = Path.Combine(PathHelper.GetAppDataPath(), Resx.ThemesFolder);
 				if (Directory.Exists(path))
 				{
 					dialog.InitialDirectory = path;
@@ -815,7 +815,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Title = "Save Style Theme";
 				dialog.ShowHelp = true; // stupid, but this is needed to avoid hang
 
-				var path = PathFactory.GetAppDataPath();
+				var path = PathHelper.GetAppDataPath();
 				if (Directory.Exists(path))
 				{
 					dialog.InitialDirectory = path;

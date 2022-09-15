@@ -29,7 +29,7 @@ namespace OneMoreCalendar
 		public SettingsProvider()
 		{
 			path = Path.Combine(
-				PathFactory.GetAppDataPath(), "OneMoreCalendar.xml");
+				PathHelper.GetAppDataPath(), "OneMoreCalendar.xml");
 
 			if (File.Exists(path))
 			{
@@ -174,7 +174,7 @@ namespace OneMoreCalendar
 
 		public void Save()
 		{
-			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
+			PathHelper.EnsurePathExists(Path.GetDirectoryName(path));
 			root.Save(path, SaveOptions.None);
 		}
 	}

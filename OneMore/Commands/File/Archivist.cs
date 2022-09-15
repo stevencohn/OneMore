@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Commands
 					File.Delete(filename);
 				}
 
-				PathFactory.EnsurePathExists(Path.GetDirectoryName(filename));
+				PathHelper.EnsurePathExists(Path.GetDirectoryName(filename));
 
 				if (one.Export(pageId, filename, format))
 				{
@@ -126,17 +126,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// expand C:\folder\name.htm --> C:\folder\name\name.htm
 			var name = Path.GetFileNameWithoutExtension(filename);				// "name"
-			var fame = PathFactory.CleanFileName(Path.GetFileName(filename));	// "name.htm"
+			var fame = PathHelper.CleanFileName(Path.GetFileName(filename));	// "name.htm"
 			var path = Path.Combine(Path.GetDirectoryName(filename), name);		// "c:\folder\name"
 			filename = Path.Combine(path, fame);								// "c:\folder\name\name.htm"
 
-			if (filename.Length > PathFactory.MAX_PATH)
+			if (filename.Length > PathHelper.MAX_PATH)
 			{
-				filename = PathFactory.FitMaxPath(filename);
+				filename = PathHelper.FitMaxPath(filename);
 				path = Path.GetDirectoryName(filename);
 			}
 
-			if (PathFactory.EnsurePathExists(path))
+			if (PathHelper.EnsurePathExists(path))
 			{
 				if (Export(page.PageId, filename, OneNote.ExportFormat.HTML))
 				{
@@ -200,7 +200,7 @@ namespace River.OneMoreAddIn.Commands
 							name = name.ToXmlWrapper().Value;
 						}
 
-						name = HttpUtility.UrlDecode(PathFactory.CleanFileName(name));
+						name = HttpUtility.UrlDecode(PathHelper.CleanFileName(name));
 						var item = map[id];
 
 						//logger.WriteLine();
@@ -358,7 +358,7 @@ namespace River.OneMoreAddIn.Commands
 					File.Delete(filename);
 				}
 
-				PathFactory.EnsurePathExists(Path.GetDirectoryName(filename));
+				PathHelper.EnsurePathExists(Path.GetDirectoryName(filename));
 
 				var writer = new MarkdownWriter(page, withAttachments);
 				writer.Save(filename);
@@ -394,7 +394,7 @@ namespace River.OneMoreAddIn.Commands
 					File.Delete(filename);
 				}
 
-				PathFactory.EnsurePathExists(path);
+				PathHelper.EnsurePathExists(path);
 
 				root.Save(filename);
 			}

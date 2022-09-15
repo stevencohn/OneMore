@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Settings
 		public SettingsProvider()
 		{
 			path = Path.Combine(
-				PathFactory.GetAppDataPath(), Properties.Resources.SettingsFilename);
+				PathHelper.GetAppDataPath(), Properties.Resources.SettingsFilename);
 
 			if (File.Exists(path))
 			{
@@ -126,7 +126,7 @@ namespace River.OneMoreAddIn.Settings
 
 		public void Save()
 		{
-			PathFactory.EnsurePathExists(Path.GetDirectoryName(path));
+			PathHelper.EnsurePathExists(Path.GetDirectoryName(path));
 			root.Save(path, SaveOptions.None);
 		}
 	}

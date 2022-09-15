@@ -110,7 +110,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"AssemblyResolve exception", exc);
+				logger.WriteLine($"AssemblyResolve exception {exc.Message} for {path}");
 				return null;
 			}
 		}
