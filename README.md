@@ -293,10 +293,10 @@ Please consider a sponsorship or one-time donation, click here:
 ---
 ## 🤖 Developing OneMore
 
-Are you programmer? Whether you're a professional or just curious, please feel free to explore
-the source code and have a play. See the [Developer Notes](../../wiki/~-Developer-Notes) page
-in the Wiki where I keep a list of technical references and information regarding developing
-and debugging this OneNote add-in.
+Are you programmer? Please feel free to explore the source code and have a play.
+See the [Developer Notes](../../wiki/~-Developer-Notes) page in the Wiki where I keep a list of
+technical references and information regarding developing and debugging this OneNote add-in.
+And mind [the license](https://github.com/stevencohn/OneMore/blob/main/LICENSE).
 
 ### Minimum Prerequisites for Development
 
