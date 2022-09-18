@@ -664,7 +664,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				using (var raw = Image.FromStream(stream))
 				{
-					XElement img;
+					XElement img = null;
 					if (raw.Width > thumbnailSize || raw.Height > thumbnailSize)
 					{
 						// maintain aspect ratio of image thumbnails
@@ -672,15 +672,25 @@ namespace River.OneMoreAddIn.Commands
 							? ((float)thumbnailSize) / raw.Width
 							: ((float)thumbnailSize) / raw.Height;
 
-						// callback is a required argument but is never used
-						var callback = new Image.GetThumbnailImageAbort(() => { return false; });
-						using (var thumbnail =
-							raw.GetThumbnailImage(
-								(int)(raw.Width * zoom),
-								(int)(raw.Height * zoom),
-								callback, IntPtr.Zero))
+						try
 						{
-							img = MakeImage(thumbnail);
+							// callback is a required argument but is never used
+							var callback = new Image.GetThumbnailImageAbort(() => { return false; });
+							using (var thumbnail =
+								raw.GetThumbnailImage(
+									(int)(raw.Width * zoom),
+									(int)(raw.Height * zoom),
+									callback, IntPtr.Zero))
+							{
+								img = MakeImage(thumbnail);
+							}
+						}
+						catch (Exception exc)
+						{
+							image.GetAttributeValue("format", out var format, "?");
+							var msg = $"{format} caused {exc.Message}";
+							logger.WriteLine(msg, exc);
+							row[0].SetContent(msg);
 						}
 					}
 					else
@@ -688,17 +698,20 @@ namespace River.OneMoreAddIn.Commands
 						img = MakeImage(raw);
 					}
 
-					if (printout)
+					if (img != null)
 					{
-						var print = new Table(ns, 1, 2);
-						print[0][0].SetContent("Printout:");
-						print[0][1].SetContent(img);
-						row[0].SetContent(print);
+						if (printout)
+						{
+							var print = new Table(ns, 1, 2);
+							print[0][0].SetContent("Printout:");
+							print[0][1].SetContent(img);
+							row[0].SetContent(print);
 
-					}
-					else
-					{
-						row[0].SetContent(img);
+						}
+						else
+						{
+							row[0].SetContent(img);
+						}
 					}
 				}
 			}
