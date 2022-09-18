@@ -161,6 +161,9 @@ namespace River.OneMoreAddIn
 		public async Task CrawlWebPageCmd(IRibbonControl control)
 			=> await factory.Run<CrawlWebPageCommand>();
 
+		public async Task CreatePagesCmd(IRibbonControl control)
+			=> await factory.Run<CreatePagesCommand>();
+
 		public async Task CropImageCmd(IRibbonControl control)
 			=> await factory.Run<CropImageCommand>();
 

@@ -84,6 +84,9 @@
     <Reference Include="MarkdownDeep">
       <HintPath>External\MarkdownDeep.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.OneNote, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
@@ -185,6 +188,7 @@
       <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Page\CaptionAttachmentsCommand.cs" />
+    <Compile Include="Commands\Page\CreatePagesCommand.cs" />
     <Compile Include="Commands\Page\ExpandoCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
@@ -448,6 +452,7 @@
     <Compile Include="Helpers\ImageDetector.cs" />
     <Compile Include="Helpers\Loggable.cs" />
     <Compile Include="Helpers\MagicScaling.cs" />
+    <Compile Include="Helpers\Office\Excel.cs" />
     <Compile Include="Helpers\Office\Models\OutlookEnums.cs" />
     <Compile Include="Helpers\Office\Models\OutlookTaskFolders.cs" />
     <Compile Include="Helpers\Office\Models\OutlookTasks.cs" />
