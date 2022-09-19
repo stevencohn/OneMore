@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.IO;
 	using System.IO.Compression;
@@ -80,7 +81,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					UIHelper.ShowMessage("Could not download or import template, see log file for details");
+					MoreMessageBox.ShowErrorWithLogLink(owner,
+						"Could not download or import template, see log file for details");
 				}
 			}
 		}

@@ -52,7 +52,7 @@
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(20);
-			this.topPanel.Size = new System.Drawing.Size(678, 125);
+			this.topPanel.Size = new System.Drawing.Size(678, 157);
 			this.topPanel.TabIndex = 0;
 			// 
 			// logLink
@@ -62,7 +62,7 @@
 			this.logLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.logLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.logLink.LinkColor = System.Drawing.Color.DarkOrchid;
-			this.logLink.Location = new System.Drawing.Point(90, 85);
+			this.logLink.Location = new System.Drawing.Point(90, 117);
 			this.logLink.Name = "logLink";
 			this.logLink.Size = new System.Drawing.Size(246, 20);
 			this.logLink.TabIndex = 2;
@@ -73,8 +73,8 @@
 			// 
 			// textBox
 			// 
-			this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.textBox.Cursor = System.Windows.Forms.Cursors.Default;
@@ -82,8 +82,8 @@
 			this.textBox.Location = new System.Drawing.Point(94, 23);
 			this.textBox.Name = "textBox";
 			this.textBox.ReadOnly = true;
-			this.textBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-			this.textBox.Size = new System.Drawing.Size(539, 46);
+			this.textBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+			this.textBox.Size = new System.Drawing.Size(539, 91);
 			this.textBox.TabIndex = 1;
 			this.textBox.TabStop = false;
 			this.textBox.Text = "This is the message";
@@ -127,7 +127,7 @@
 			this.panel1.Controls.Add(this.cancelButton);
 			this.panel1.Controls.Add(this.okButton);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 125);
+			this.panel1.Location = new System.Drawing.Point(0, 157);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(678, 61);
 			this.panel1.TabIndex = 3;
@@ -136,7 +136,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(678, 186);
+			this.ClientSize = new System.Drawing.Size(678, 218);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.panel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

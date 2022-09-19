@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Tools.Updater;
+	using River.OneMoreAddIn.UI;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -39,7 +40,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (args.Length > 0 && args[0] is bool report && report)
 				{
-					UIHelper.ShowInfo("Error fetching latest release; please see logs");
+					MoreMessageBox.ShowErrorWithLogLink(owner,
+						"Error fetching latest release; please see logs");
 				}
 
 				return;

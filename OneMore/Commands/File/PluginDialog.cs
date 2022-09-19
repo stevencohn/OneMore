@@ -7,6 +7,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -379,7 +380,9 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error saving plugin", exc);
-				UIHelper.ShowMessage("Plugin could not be saved; see log for details"); // translate
+
+				MoreMessageBox.ShowErrorWithLogLink(
+					Owner, "Plugin could not be saved; see log for details"); // translate
 			}
 		}
 
