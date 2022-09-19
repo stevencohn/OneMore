@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.UI
 
 	internal partial class MoreMessageBox : LocalizableForm
 	{
+
 		public MoreMessageBox()
 		{
 			InitializeComponent();
@@ -19,6 +20,12 @@ namespace River.OneMoreAddIn.UI
 			{
 				Text = Resx.ProgramName;
 			}
+		}
+
+
+		private void ShowLogLink()
+		{
+			logLink.Visible = true;
 		}
 
 
@@ -84,6 +91,20 @@ namespace River.OneMoreAddIn.UI
 			}
 		}
 
+
+		public static DialogResult ShowErrorWithLogLink(IWin32Window owner, string text)
+		{
+			using (var box = new MoreMessageBox())
+			{
+				box.SetMessage(text);
+				box.ShowLogLink();
+				box.SetIcon(MessageBoxIcon.Error);
+				box.SetButtons(MessageBoxButtons.OK);
+				return box.ShowDialog(owner);
+			}
+		}
+
+
 		private void DoKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Escape)
@@ -102,6 +123,11 @@ namespace River.OneMoreAddIn.UI
 				textBox.SelectionStart = textBox.TextLength;
 				okButton.Focus();
 			}
+		}
+
+		private void OpenLog(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start(logger.LogPath);
 		}
 	}
 }
