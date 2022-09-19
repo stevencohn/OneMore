@@ -470,7 +470,8 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-				UIHelper.ShowMessage("Could not import. See log file for details");
+				MoreMessageBox.ShowErrorWithLogLink(
+					owner, "Could not import. See log file for details");
 			}
 		}
 
@@ -507,7 +508,8 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-				UIHelper.ShowMessage("Could not import. See log file for details");
+				MoreMessageBox.ShowErrorWithLogLink(
+					owner, "Could not import. See log file for details");
 			}
 		}
 
@@ -532,7 +534,8 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-				UIHelper.ShowMessage("Could not import. See log file for details");
+				MoreMessageBox.ShowErrorWithLogLink(
+					owner, "Could not import. See log file for details");
 			}
 		}
 	}
