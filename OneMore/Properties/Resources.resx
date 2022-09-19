@@ -4013,4 +4013,16 @@ Select No to keep one empty line between paragraphs</value>
   <data name="ChooseFavoriteCommand" xml:space="preserve">
     <value>Choose Favorite</value>
   </data>
+  <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
+    <value>Would you like to create {0} pages?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_Done" xml:space="preserve">
+    <value>Created pages. OneNote will update momentarily</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
+    <value>A name list was not found on the page</value>
+    <comment>message box</comment>
+  </data>
 </root>

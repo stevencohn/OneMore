@@ -3958,4 +3958,16 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   <data name="ChooseFavoriteCommand" xml:space="preserve">
     <value>Elige Favorito</value>
   </data>
+  <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
+    <value>¿Le gustaría crear {0} páginas?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_Done" xml:space="preserve">
+    <value>Páginas creadas. OneNote se actualizará momentáneamente</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
+    <value>No se encontró una lista de nombres en la página.</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -3945,4 +3945,16 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   <data name="ChooseFavoriteCommand" xml:space="preserve">
     <value>Wählen Sie Favorit</value>
   </data>
+  <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
+    <value>Möchten Sie {0} Seiten erstellen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_Done" xml:space="preserve">
+    <value>Erstellte Seiten. OneNote wird in Kürze aktualisiert</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
+    <value>Eine Namensliste wurde auf der Seite nicht gefunden</value>
+    <comment>message box</comment>
+  </data>
 </root>

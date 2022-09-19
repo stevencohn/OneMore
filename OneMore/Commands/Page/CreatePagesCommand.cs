@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal class CreatePagesCommand : Command
@@ -34,18 +35,19 @@ namespace River.OneMoreAddIn.Commands
 				var cursor = GetContextCursor(out var onlySelected);
 				if (cursor == null)
 				{
-					logger.WriteLine("no context");
+					UIHelper.ShowError(Resx.Error_BodyContext);
 					return;
 				}
 
 				ReadNamesFromContext(cursor, onlySelected);
 				if (!names.Any())
 				{
-					UIHelper.ShowMessage("No names found");
+					UIHelper.ShowError(Resx.CreatePagesCommand_NoNamesFound);
 					return;
 				}
 
-				if (UIHelper.ShowQuestion($"Create {names.Count} pages?") != DialogResult.Yes)
+				var msg = string.Format(Resx.CreatePagesCommand_CreatePages, names.Count);
+				if (UIHelper.ShowQuestion(msg) != DialogResult.Yes)
 				{
 					return;
 				}
@@ -65,8 +67,17 @@ namespace River.OneMoreAddIn.Commands
 							if (!token.IsCancellationRequested)
 							{
 								self.SetMessage(name);
-								await one.CreatePage(sectionId, name);
+
+								//await one.CreatePage(sectionId, name);
+								one.CreatePage(sectionId, out var pageId);
+								var newpage = one.GetPage(pageId);
+								newpage.Title = name;
+								await one.Update(newpage);								
+								
 								self.Increment();
+
+								// purposely slowing it down so UI can catch up, yuck
+								await Task.Delay(100);
 							}
 						}
 					}
@@ -79,10 +90,7 @@ namespace River.OneMoreAddIn.Commands
 					logger.End();
 				});
 
-				await progress.RunModeless((o, e) =>
-				{
-					UIHelper.ShowInfo("Created pages. OneNote will update momentarily");
-				});
+				await progress.RunModeless();
 			}
 		}
 

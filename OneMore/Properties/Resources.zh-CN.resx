@@ -3950,4 +3950,16 @@ OneNote 文件 (*.one)</value>
   <data name="ChooseFavoriteCommand" xml:space="preserve">
     <value>选择收藏夹</value>
   </data>
+  <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
+    <value>您想创建 {0} 个页面吗？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_Done" xml:space="preserve">
+    <value>创建的页面。 OneNote 将立即更新</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
+    <value>未在页面上找到姓名列表</value>
+    <comment>message box</comment>
+  </data>
 </root>

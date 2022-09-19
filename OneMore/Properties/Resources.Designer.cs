@@ -1545,6 +1545,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Would you like to create {0} pages?.
+        /// </summary>
+        internal static string CreatePagesCommand_CreatePages {
+            get {
+                return ResourceManager.GetString("CreatePagesCommand_CreatePages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created pages. OneNote will update momentarily.
+        /// </summary>
+        internal static string CreatePagesCommand_Done {
+            get {
+                return ResourceManager.GetString("CreatePagesCommand_Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A name list was not found on the page.
+        /// </summary>
+        internal static string CreatePagesCommand_NoNamesFound {
+            get {
+                return ResourceManager.GetString("CreatePagesCommand_NoNamesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one image to crop.
         /// </summary>
         internal static string CropImage_oneImage {

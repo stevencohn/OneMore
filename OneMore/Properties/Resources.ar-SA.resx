@@ -3958,4 +3958,16 @@ ISO-code then comma then language name</comment>
   <data name="ChooseFavoriteCommand" xml:space="preserve">
     <value>اختر المفضلة</value>
   </data>
+  <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
+    <value>هل ترغب في إنشاء صفحات {0}؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_Done" xml:space="preserve">
+    <value>الصفحات التي تم إنشاؤها. سيتم تحديث OneNote للحظات</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
+    <value>لم يتم العثور على قائمة الأسماء على الصفحة</value>
+    <comment>message box</comment>
+  </data>
 </root>
