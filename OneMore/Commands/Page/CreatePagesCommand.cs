@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -43,46 +44,31 @@ namespace River.OneMoreAddIn.Commands
 					onlySelected = page.SelectionScope == SelectionScope.Region;
 				}
 
-				if (cursor.ElementsBeforeSelf(ns + "List").Any())
+				if (ContextIsList(cursor))
 				{
 					ReadList(cursor.Parent.Parent, onlySelected);
 				}
-
-				/*
-				var tables = page.Root.Descendants(ns + "Table");
-				tables.ForEach(t =>
+				else if (ContextIsTable(cursor))
 				{
-					logger.WriteLine("table");
-					t.Elements(ns + "Row").ForEach(r =>
-					{
-						var cell = r.Elements(ns + "Cell").FirstOrDefault();
-						if (cell != null)
-						{
-							logger.WriteLine($"cell: {cell.TextValue()}");
-							names.Add(cell.TextValue());
-						}
-					});
-				});
-
-				page.Root.Descendants(ns + "Image")
-					.Where(e => e.Elements(ns + "OCRData").Elements(ns + "OCRText").Any())
-					.ForEach(i =>
-					{
-						logger.WriteLine("image");
-						i.Elements(ns + "OCRData").Elements(ns + "OCRText").ForEach(t =>
-						{
-							t.TextValue().Split('\n')
-							.ForEach(s =>
-							{
-								logger.WriteLine($"ocr: {s}");
-								names.Add(s);
-							});
-						});
-					});
-				*/
+					ReadTable(cursor.Parent.Parent.Parent, onlySelected);
+				}
+				else if (ContextIsExcelFile(cursor, out var source))
+				{
+					ReadExcel(source);
+				}
+				else if (ContextIsImage(cursor, out var image))
+				{
+					ReadImage(image);
+				}
 			}
 
 			await Task.Yield();
+		}
+
+
+		private bool ContextIsList(XElement cursor)
+		{
+			return cursor.ElementsBeforeSelf(ns + "List").Any();
 		}
 
 
@@ -98,6 +84,82 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine($"item: {o.TextValue()}");
 				names.Add(o.TextValue());
 			});
+		}
+
+
+		private bool ContextIsTable(XElement cursor)
+		{
+			return cursor.Parent?.Parent?.Parent?.Name.LocalName == "Cell";
+		}
+
+
+		private void ReadTable(XElement cell, bool onlySelected)
+		{
+			logger.WriteLine("table");
+			var table = cell.FirstAncestor(ns + "Table");
+			var index = cell.ElementsBeforeSelf(ns + "Cell").Count();
+
+			table.Elements(ns + "Row").ForEach(r =>
+			{
+				var cll = r.Elements(ns + "Cell").ElementAt(index);
+				if (cll != null && 
+					(!onlySelected || 
+					(onlySelected && cll.Attribute("selected") != null)))
+				{
+					logger.WriteLine($"cell: {cll.TextValue()}");
+					names.Add(cll.TextValue());
+				}
+			});
+		}
+
+
+		private bool ContextIsExcelFile(XElement cursor, out string source)
+		{
+			source = (
+				from e in page.Root.Descendants(ns + "InsertedFile")
+				where e.Attribute("selected")?.Value == "all"
+				let s = e.Attribute("pathSource").Value
+				let x = System.IO.Path.GetExtension(s)
+				where x == ".xlsx" || x == ".xls"
+				select s
+				).FirstOrDefault();
+
+			return source != null;
+		}
+
+
+		private void ReadExcel(string source)
+		{
+			logger.WriteLine("excel");
+			using (var excel = new Excel())
+			{
+				var list = excel.ExtractSimpleList(source);
+				list.ForEach(l => logger.WriteLine($"item: {l}"));
+				names.AddRange(list);
+			}
+		}
+
+
+		private bool ContextIsImage(XElement cursor, out XElement image)
+		{
+			image = null;
+			return true;
+		}
+
+
+		private void ReadImage(XElement image)
+		{
+			logger.WriteLine("image");
+			image.Elements(ns + "OCRData")
+				.Elements(ns + "OCRText")
+				.ForEach(t =>
+				{
+					t.TextValue().Split('\n').ForEach(s =>
+					{
+						logger.WriteLine($"ocr: {s}");
+						names.Add(s);
+					});
+				});
 		}
 	}
 }
