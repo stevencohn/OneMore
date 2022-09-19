@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -362,7 +363,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				catch (Exception exc)
 				{
-					UIHelper.ShowError(
+					MoreMessageBox.ShowErrorWithLogLink(Owner,
 						$"Error updating page content: {exc.Message}\n\nSee log for details");
 
 					logger.WriteLine("error updating page content", exc);
