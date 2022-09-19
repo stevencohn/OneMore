@@ -46,17 +46,17 @@ namespace River.OneMoreAddIn.Commands
 
 				if (ContextIsList(cursor))
 				{
-					ReadList(cursor.Parent.Parent, onlySelected);
+					ReadList(cursor, onlySelected);
 				}
 				else if (ContextIsTable(cursor))
 				{
-					ReadTable(cursor.Parent.Parent.Parent, onlySelected);
+					ReadTable(cursor, onlySelected);
 				}
-				else if (ContextIsExcelFile(cursor, out var source))
+				else if (ContextIsExcelFile(out var source))
 				{
 					ReadExcel(source);
 				}
-				else if (ContextIsImage(cursor, out var image))
+				else if (ContextIsImage(out var image))
 				{
 					ReadImage(image);
 				}
@@ -72,9 +72,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReadList(XElement container, bool onlySelected)
+		private void ReadList(XElement cursor, bool onlySelected)
 		{
 			logger.WriteLine("list");
+			var container = cursor.Parent.Parent;
 			var elements = onlySelected
 				? container.Elements(ns + "OE").Where(e => e.Attribute("selected") != null)
 				: container.Elements(ns + "OE");
@@ -93,27 +94,28 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReadTable(XElement cell, bool onlySelected)
+		private void ReadTable(XElement cursor, bool onlySelected)
 		{
 			logger.WriteLine("table");
-			var table = cell.FirstAncestor(ns + "Table");
-			var index = cell.ElementsBeforeSelf(ns + "Cell").Count();
+			var anchor = cursor.Parent.Parent.Parent;
+			var table = anchor.FirstAncestor(ns + "Table");
+			var index = anchor.ElementsBeforeSelf(ns + "Cell").Count();
 
 			table.Elements(ns + "Row").ForEach(r =>
 			{
-				var cll = r.Elements(ns + "Cell").ElementAt(index);
-				if (cll != null && 
+				var cell = r.Elements(ns + "Cell").ElementAt(index);
+				if (cell != null && 
 					(!onlySelected || 
-					(onlySelected && cll.Attribute("selected") != null)))
+					(onlySelected && cell.Attribute("selected") != null)))
 				{
-					logger.WriteLine($"cell: {cll.TextValue()}");
-					names.Add(cll.TextValue());
+					logger.WriteLine($"cell: {cell.TextValue()}");
+					names.Add(cell.TextValue());
 				}
 			});
 		}
 
 
-		private bool ContextIsExcelFile(XElement cursor, out string source)
+		private bool ContextIsExcelFile(out string source)
 		{
 			source = (
 				from e in page.Root.Descendants(ns + "InsertedFile")
@@ -140,10 +142,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool ContextIsImage(XElement cursor, out XElement image)
+		private bool ContextIsImage(out XElement image)
 		{
-			image = null;
-			return true;
+			image = page.Root.Descendants(ns + "Image")
+				.FirstOrDefault(e =>
+					e.Attribute("selected")?.Value == "all" &&
+					e.Elements(ns + "OCRData").Elements(ns + "OCRText").Any());
+
+			return image != null;
 		}
 
 
