@@ -12,17 +12,10 @@ namespace River.OneMoreAddIn.UI
 
 	internal partial class MoreMessageBox : LocalizableForm
 	{
-		private readonly IntPtr hcursor;
-		private Color fore;
-
 
 		public MoreMessageBox()
 		{
 			InitializeComponent();
-
-			Cursor = Cursors.Hand;
-			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-			fore = Color.Empty;
 
 			if (NeedsLocalizing())
 			{
