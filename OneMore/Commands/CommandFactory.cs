@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -91,7 +92,8 @@ namespace River.OneMoreAddIn
 				logger.WriteLine(exc);
 				logger.WriteLine();
 
-				UIHelper.ShowError(string.Format(Resx.Command_ErrorMsg, msg));
+				MoreMessageBox.ShowErrorWithLogLink(
+					owner, string.Format(Resx.Command_ErrorMsg, msg));
 			}
 		}
 
