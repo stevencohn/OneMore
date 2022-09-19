@@ -470,6 +470,28 @@ namespace River.OneMoreAddIn
 		}
 
 
+
+		/// <summary>
+		/// Create a new page with the given title in the specified section.
+		/// </summary>
+		/// <param name="sectionId">The ID of the section</param>
+		/// <param name="title">The title to apply to the page</param>
+		/// <returns>The ID of the newly created page</returns>
+		public async Task<string> CreatePage(string sectionId, string title)
+		{
+			string pageId = null;
+			await InvokeWithRetry(() =>
+			{
+				onenote.CreateNewPage(sectionId, out pageId);
+			});
+
+			var page = GetPage(pageId);
+			page.Title = title;
+			await Update(page);
+			return pageId;
+		}
+
+
 		/// <summary>
 		/// Create a new section in the current notebook immediately after the open section
 		/// </summary>

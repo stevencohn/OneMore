@@ -9,11 +9,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
 	internal class CreatePagesCommand : Command
 	{
+		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 		private readonly List<string> names;
@@ -27,42 +29,100 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using (var one = new OneNote(out page, out ns, OneNote.PageDetail.Selection))
+			using (one = new OneNote(out page, out ns, OneNote.PageDetail.Selection))
 			{
-				var onlySelected = false;
-
-				var cursor = page.GetTextCursor();
+				var cursor = GetContextCursor(out var onlySelected);
 				if (cursor == null)
 				{
-					cursor = page.GetSelectedElements().FirstOrDefault();
-					if (cursor == null)
+					logger.WriteLine("no context");
+					return;
+				}
+
+				ReadNamesFromContext(cursor, onlySelected);
+				if (!names.Any())
+				{
+					UIHelper.ShowMessage("No names found");
+					return;
+				}
+
+				if (UIHelper.ShowQuestion($"Create {names.Count} pages?") != DialogResult.Yes)
+				{
+					return;
+				}
+
+				var progress = new UI.ProgressDialog(async (self, token) =>
+				{
+					logger.Start();
+					logger.StartClock();
+
+					var sectionId = one.CurrentSectionId;
+					self.SetMaximum(names.Count);
+
+					try
 					{
-						logger.WriteLine("no context");
-						return;
+						foreach (var name in names)
+						{
+							if (!token.IsCancellationRequested)
+							{
+								self.SetMessage(name);
+								await one.CreatePage(sectionId, name);
+								self.Increment();
+							}
+						}
+					}
+					finally
+					{
+						self.Close();
 					}
 
-					onlySelected = page.SelectionScope == SelectionScope.Region;
-				}
+					logger.WriteTime("create pages complete");
+					logger.End();
+				});
 
-				if (ContextIsList(cursor))
+				await progress.RunModeless((o, e) =>
 				{
-					ReadList(cursor, onlySelected);
-				}
-				else if (ContextIsTable(cursor))
+					UIHelper.ShowInfo("Created pages. OneNote will update momentarily");
+				});
+			}
+		}
+
+
+		private XElement GetContextCursor(out bool onlySelected)
+		{
+			onlySelected = false;
+
+			var cursor = page.GetTextCursor();
+			if (cursor == null)
+			{
+				cursor = page.GetSelectedElements().FirstOrDefault();
+				if (cursor != null)
 				{
-					ReadTable(cursor, onlySelected);
-				}
-				else if (ContextIsExcelFile(out var source))
-				{
-					ReadExcel(source);
-				}
-				else if (ContextIsImage(out var image))
-				{
-					ReadImage(image);
+					onlySelected = page.SelectionScope == SelectionScope.Region;
 				}
 			}
 
-			await Task.Yield();
+			return cursor;
+		}
+
+
+		private void ReadNamesFromContext(XElement cursor, bool onlySelected)
+		{
+			if (ContextIsList(cursor))
+			{
+				ReadList(cursor, onlySelected);
+			}
+			else if (ContextIsTable(cursor))
+			{
+				ReadTable(cursor, onlySelected);
+			}
+			else if (ContextIsExcelFile(out var source))
+			{
+				ReadExcel(source);
+			}
+			else if (ContextIsImage(out var image))
+			{
+				ReadImage(image);
+			}
 		}
 
 
