@@ -3958,4 +3958,16 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="ChooseFavoriteCommand" xml:space="preserve">
     <value>Kies Favoriet</value>
   </data>
+  <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
+    <value>Wilt u {0} pagina's maken?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_Done" xml:space="preserve">
+    <value>Gemaakte pagina's. OneNote wordt tijdelijk bijgewerkt</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreatePagesCommand_NoNamesFound" xml:space="preserve">
+    <value>Er is geen namenlijst gevonden op de pagina</value>
+    <comment>message box</comment>
+  </data>
 </root>

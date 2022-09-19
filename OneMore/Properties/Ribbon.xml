@@ -421,6 +421,11 @@
                 getLabel="GetRibbonLabel"
                 onAction="CaptionAttachmentsCmd"/>
               <button
+                id="ribCreatePagesButton"
+                imageMso="CreateHandoutsInWord"
+                label="Create Pages from List"
+                onAction="CreatePagesCmd"/>
+              <button
                 id="ribCollapseContentButton"
                 imageMso="CollapseAll"
                 getLabel="GetRibbonLabel"
