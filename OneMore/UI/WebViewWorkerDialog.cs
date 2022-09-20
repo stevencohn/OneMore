@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// Initializes a new dialog with the given startup and worker routines
 		/// </summary>
-		/// <param name="startup">The consumer snipProvider startup operation</param>
+		/// <param name="startup">The consumer provided startup operation</param>
 		/// <param name="work">The consumer provided worker operation</param>
 		public WebViewWorkerDialog(WebViewWorker startup, WebViewWorker work)
 			: this()
