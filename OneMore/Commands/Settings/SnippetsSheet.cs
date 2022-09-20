@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private readonly IRibbonUI ribbon;
 		private readonly BindingList<Snippet> snippets;
-		private readonly SnippetsProvider snipProvider;
+		private readonly SnippetsProvider snipsProvider;
 		private bool updated = false;
 
 
@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Settings
 			gridView.Columns[0].DataPropertyName = "Name";
 
 			this.ribbon = ribbon;
-			snipProvider = new SnippetsProvider();
+			snipsProvider = new SnippetsProvider();
 
 			snippets = new BindingList<Snippet>(LoadSnippets());
 			gridView.DataSource = snippets;
@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private List<Snippet> LoadSnippets()
 		{
-			var paths = snipProvider.GetPaths();
+			var paths = snipsProvider.GetPaths();
 			var list = new List<Snippet>();
 
 			foreach (var path in paths)
@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Settings
 				return;
 
 			snippets.RemoveAt(rowIndex);
-			snipProvider.Delete(snippet.Path);
+			snipsProvider.Delete(snippet.Path);
 			updated = true;
 
 			rowIndex--;
@@ -142,7 +142,7 @@ namespace River.OneMoreAddIn.Settings
 
 				if (dialog.ShowDialog(this) == DialogResult.OK)
 				{
-					var path = snipProvider.Rename(snippet.Path, dialog.SnippetName);
+					var path = snipsProvider.Rename(snippet.Path, dialog.SnippetName);
 					if (!string.IsNullOrEmpty(path))
 					{
 						snippet.Name = dialog.SnippetName;
