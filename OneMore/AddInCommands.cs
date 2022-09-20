@@ -209,7 +209,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ExpandoCommand>(Expando.Expand);
 
 
-		[Command("ribExpandSnippetButton_Label", Keys.F3)]
+		[Command("ribExpandSnippetButton_Label", Keys.Alt | Keys.F3)]
 		public async Task ExpandSnippetCmd(IRibbonControl control)
 			=> await factory.Run<InsertSnippetCommand>(string.Empty);
 
