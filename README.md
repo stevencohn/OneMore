@@ -20,7 +20,7 @@ There are [full instructions here](#install).
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
 _Click an image to enlarge_
 
-## 💁 Features (151)
+## 💁 Features (152)
 *Want more from OneMore? OneMore has more...*
 
 [Clean commands](../../wiki/Clean-Commands) (12)
@@ -94,10 +94,11 @@ _Click an image to enlarge_
 * Remove numbering from sections
 * Remove numbering from pages
 
-[Page Commands](../../wiki/Page-Commands) (13)
+[Page Commands](../../wiki/Page-Commands) (14)
 * Arrange containers vertically or in columns
 * Add caption to selected file attachments on the page
 * Add special icon to the page title, also appears in page hierarchy
+* Create Pages from a list, table, or spreadsheet of names
 * Copy formatted hyperlink to page
 * Copy formatted hyperlink to paragraph
 * Expand or Collapse indented outlines, save and restore outlining
