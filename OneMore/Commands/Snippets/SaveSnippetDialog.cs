@@ -37,7 +37,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string SnippetName => nameBox.Text.Trim();
+		public string SnippetName
+		{
+			get { return nameBox.Text.Trim(); }
+			set { nameBox.Text = value; }
+		}
 
 
 		private void ValidateName(object sender, System.EventArgs e)

@@ -4812,6 +4812,16 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Rename {
+            get {
+                object obj = ResourceManager.GetObject("Rename", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Reorder {
             get {
                 object obj = ResourceManager.GetObject("Reorder", resourceCulture);
@@ -5571,6 +5581,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribExpandContentButton_Label {
             get {
                 return ResourceManager.GetString("ribExpandContentButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand Snippet From Name.
+        /// </summary>
+        internal static string ribExpandSnippetButton_Label {
+            get {
+                return ResourceManager.GetString("ribExpandSnippetButton_Label", resourceCulture);
             }
         }
         
@@ -8999,6 +9018,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Refresh {
             get {
                 return ResourceManager.GetString("word_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        internal static string word_Rename {
+            get {
+                return ResourceManager.GetString("word_Rename", resourceCulture);
             }
         }
         

@@ -4025,4 +4025,14 @@ Select No to keep one empty line between paragraphs</value>
     <value>A name list was not found on the page</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>Expand Snippet From Name</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="Rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
 </root>

@@ -44,8 +44,8 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introLabel",
-					"deleteLabel",
-					"deleteButton"
+					"renameButton=word_Rename",
+					"deleteButton=word_Delete"
 				});
 
 				nameColumn.HeaderText = Resx.word_Name;
@@ -123,6 +123,34 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			return false;
+		}
+
+		private void RenameItem(object sender, EventArgs e)
+		{
+			if (gridView.SelectedCells.Count == 0)
+				return;
+
+			int rowIndex = gridView.SelectedCells[0].RowIndex;
+			if (rowIndex >= snippets.Count)
+				return;
+
+			var snippet = snippets[rowIndex];
+
+			using (var dialog = new SaveSnippetDialog())
+			{
+				dialog.SnippetName = snippet.Name;
+
+				if (dialog.ShowDialog(this) == DialogResult.OK)
+				{
+					var path = snipsProvider.Rename(snippet.Path, dialog.SnippetName);
+					if (!string.IsNullOrEmpty(path))
+					{
+						snippet.Name = dialog.SnippetName;
+						snippet.Path = path;
+						updated = true;
+					}
+				}
+			}
 		}
 	}
 }

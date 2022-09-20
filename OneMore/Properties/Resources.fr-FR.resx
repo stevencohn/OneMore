@@ -3966,4 +3966,11 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Une liste de noms n'a pas été trouvée sur la page</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>Développer l'extrait de nom</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>Renommer</value>
+  </data>
 </root>

@@ -3970,4 +3970,11 @@ ISO-code then comma then language name</comment>
     <value>لم يتم العثور على قائمة الأسماء على الصفحة</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>قم بتوسيع المقتطف من الاسم</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>إعادة تسمية</value>
+  </data>
 </root>

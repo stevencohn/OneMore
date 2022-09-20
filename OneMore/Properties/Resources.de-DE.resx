@@ -3957,4 +3957,11 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Eine Namensliste wurde auf der Seite nicht gefunden</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>Erweitern Sie Snippet From Name</value>
+    <comment>menu item</comment>
+  </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>Umbenennen</value>
+  </data>
 </root>
