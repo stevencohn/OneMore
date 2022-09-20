@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string SaveSnippetButtonId = "ribSaveSnippetButton";
 		private const string ManageSnippetsButtonId = "ribManageSnippetsButton";
+		private const string ExpandSnippetButtonId = "ribExpandSnippetButton";
 
 		private const string DirectoryName = "Snippets";
 		private const string Extension = ".snp";
@@ -114,6 +115,17 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public async Task<string> LoadByName(string name)
+		{
+			return await Load(Path.Combine(store, $"{name}{Extension}"));
+		}
+
+
+		/// <summary>
 		/// Saves a new named snippet
 		/// </summary>
 		/// <param name="snippet"></param>
@@ -155,6 +167,12 @@ namespace River.OneMoreAddIn.Commands
 					new XAttribute("getLabel", "GetRibbonLabel"),
 					new XAttribute("imageMso", "BibliographyManageSources"),
 					new XAttribute("onAction", "ManageSnippetsCmd")
+					),
+				new XElement(ns + "button",
+					new XAttribute("id", ExpandSnippetButtonId),
+					new XAttribute("getLabel", "GetRibbonLabel"),
+					new XAttribute("imageMso", "ReplaceWithAutoText"),
+					new XAttribute("onAction", "ExpandSnippetCmd")
 					),
 				new XElement(ns + "menuSeparator",
 					new XAttribute("id", "ribSnippetsMenuSep")

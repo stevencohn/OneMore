@@ -40,6 +40,7 @@ namespace River.OneMoreAddIn
 			RegisterHotKey(s, nameof(CopyLinkToParagraphCmd), async () => await CopyLinkToParagraphCmd(null));
 			RegisterHotKey(s, nameof(DecreaseFontSizeCmd), async () => await DecreaseFontSizeCmd(null));
 			RegisterHotKey(s, nameof(DiagnosticsCmd), async () => await DiagnosticsCmd(null));
+			RegisterHotKey(s, nameof(ExpandSnippetCmd), async () => await ExpandSnippetCmd(null));
 			RegisterHotKey(s, nameof(FillDownCmd), async () => await FillDownCmd(null));
 			RegisterHotKey(s, nameof(HighlightCmd), async () => await HighlightCmd(null));
 			RegisterHotKey(s, nameof(InsertBoxCmd), async () => await InsertBoxCmd(null));

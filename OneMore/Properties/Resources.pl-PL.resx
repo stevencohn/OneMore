@@ -4023,4 +4023,8 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Na stronie nie znaleziono listy nazwisk</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>Rozwiń fragment z nazwy</value>
+    <comment>menu item</comment>
+  </data>
 </root>

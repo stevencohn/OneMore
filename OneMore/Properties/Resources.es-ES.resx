@@ -3970,4 +3970,8 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>No se encontró una lista de nombres en la página.</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>Expandir fragmento de nombre</value>
+    <comment>menu item</comment>
+  </data>
 </root>

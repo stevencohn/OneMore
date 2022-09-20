@@ -4025,4 +4025,8 @@ Select No to keep one empty line between paragraphs</value>
     <value>A name list was not found on the page</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>Expand Snippet From Name</value>
+    <comment>menu item</comment>
+  </data>
 </root>

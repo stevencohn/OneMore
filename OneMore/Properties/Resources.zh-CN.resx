@@ -3962,4 +3962,8 @@ OneNote 文件 (*.one)</value>
     <value>未在页面上找到姓名列表</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>从名称展开片段</value>
+    <comment>menu item</comment>
+  </data>
 </root>

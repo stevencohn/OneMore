@@ -3970,4 +3970,8 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Er is geen namenlijst gevonden op de pagina</value>
     <comment>message box</comment>
   </data>
+  <data name="ribExpandSnippetButton_Label" xml:space="preserve">
+    <value>Vouw fragment uit naam uit</value>
+    <comment>menu item</comment>
+  </data>
 </root>

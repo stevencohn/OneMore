@@ -5575,6 +5575,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expand Snippet From Name.
+        /// </summary>
+        internal static string ribExpandSnippetButton_Label {
+            get {
+                return ResourceManager.GetString("ribExpandSnippetButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         internal static string ribExportButton_Label {
