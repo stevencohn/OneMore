@@ -3969,4 +3969,10 @@ OneNote 文件 (*.one)</value>
   <data name="word_Rename" xml:space="preserve">
     <value>改名</value>
   </data>
+  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>调整所有图像的大小
+不要缩小较大的图像
+不要放大较小的图像</value>
+    <comment>combobox</comment>
+  </data>
 </root>

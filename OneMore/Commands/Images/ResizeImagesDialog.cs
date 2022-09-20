@@ -44,13 +44,19 @@ namespace River.OneMoreAddIn.Commands
 
 			// hide controls that do not apply...
 
-			imageSizeLabel.Text = Resx.ResizeImagesDialog_appliesTo;
-			allLabel.Location = imageSizeLink.Location;
+			viewSizeLabel.Text = Resx.ResizeImagesDialog_appliesTo;
+			allLabel.Location = viewSizeLink.Location;
 			allLabel.Visible = true;
 
-			viewSizeLabel.Visible = viewSizeLink.Visible
+			storageLabel.Text = Resx.word_Options;
+			limitsBox.Location = storedSizeLabel.Location;
+			limitsBox.SelectedIndex = 0;
+			limitsBox.Visible = true;
+
+			viewSizeLink.Visible
+				= imageSizeLabel.Visible
 				= imageSizeLink.Visible
-				= storageLabel.Visible = storedSizeLabel.Visible = false;
+				= storedSizeLabel.Visible = false;
 
 			lockButton.Checked = true;
 			lockButton.Enabled = false;
@@ -113,6 +119,7 @@ namespace River.OneMoreAddIn.Commands
 					"imageSizeLabel",
 					"storageLabel=word_Storage",
 					"allLabel",
+					"limitsBox",
 					"pctRadio",
 					"pctLabel=word_PercentSymbol",
 					"absRadio",
@@ -160,6 +167,15 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public decimal ImageWidth => widthBox.Value;
+
+
+		public ResizeOption ResizeOption =>
+			// all
+			limitsBox.SelectedIndex == 0 ? ResizeOption.All
+			// do not shrink
+			: limitsBox.SelectedIndex == 1 ? ResizeOption.OnlyEnlarge
+			// do not enlarge
+			: ResizeOption.OnlyShrink;
 
 
 		public bool LockAspect => lockButton.Checked;

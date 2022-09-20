@@ -3977,4 +3977,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Hernoemen</value>
   </data>
+  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Formaat van alle afbeeldingen wijzigen
+Verklein geen grotere afbeeldingen
+Kleinere afbeeldingen niet vergroten</value>
+    <comment>combobox</comment>
+  </data>
 </root>

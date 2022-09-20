@@ -179,6 +179,7 @@
       <DependentUpon>CrawlWebPageDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\EvernoteReader.cs" />
+    <Compile Include="Commands\Images\ResizeOption.cs" />
     <Compile Include="Commands\Page\ArrangeContainersCommand.cs" />
     <Compile Include="Commands\File\MarkdownWriter.cs" />
     <Compile Include="Commands\Page\ArrangeContainersDialog.cs">

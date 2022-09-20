@@ -3973,4 +3973,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Renommer</value>
   </data>
+  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Redimensionner toutes les images
+Ne rétrécissez pas les images plus grandes
+Ne pas agrandir les petites images</value>
+    <comment>combobox</comment>
+  </data>
 </root>

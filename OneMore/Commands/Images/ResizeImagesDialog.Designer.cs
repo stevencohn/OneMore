@@ -77,6 +77,7 @@ namespace River.OneMoreAddIn.Commands
 			this.saturationBar = new System.Windows.Forms.TrackBar();
 			this.saturationLabel = new System.Windows.Forms.Label();
 			this.saturationBox = new System.Windows.Forms.NumericUpDown();
+			this.limitsBox = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.percentBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.widthBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightBox)).BeginInit();
@@ -284,6 +285,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.viewSizeLink.AutoSize = true;
 			this.viewSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.viewSizeLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.viewSizeLink.Location = new System.Drawing.Point(195, 23);
 			this.viewSizeLink.Name = "viewSizeLink";
 			this.viewSizeLink.Size = new System.Drawing.Size(78, 20);
@@ -296,6 +298,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.imageSizeLink.AutoSize = true;
 			this.imageSizeLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.imageSizeLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.imageSizeLink.Location = new System.Drawing.Point(195, 44);
 			this.imageSizeLink.Name = "imageSizeLink";
 			this.imageSizeLink.Size = new System.Drawing.Size(78, 20);
@@ -606,6 +609,20 @@ namespace River.OneMoreAddIn.Commands
 			this.saturationBox.TabIndex = 46;
 			this.saturationBox.ValueChanged += new System.EventHandler(this.SlideValueChanged);
 			// 
+			// limitsBox
+			// 
+			this.limitsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.limitsBox.FormattingEnabled = true;
+			this.limitsBox.Items.AddRange(new object[] {
+            "Resize all images",
+            "Do not shrink larger images",
+            "Do no enlarge smaller images"});
+			this.limitsBox.Location = new System.Drawing.Point(200, 594);
+			this.limitsBox.Name = "limitsBox";
+			this.limitsBox.Size = new System.Drawing.Size(295, 28);
+			this.limitsBox.TabIndex = 49;
+			this.limitsBox.Visible = false;
+			// 
 			// ResizeImagesDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -613,6 +630,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1026, 643);
+			this.Controls.Add(this.limitsBox);
 			this.Controls.Add(this.saturationBar);
 			this.Controls.Add(this.saturationLabel);
 			this.Controls.Add(this.saturationBox);
@@ -724,5 +742,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.TrackBar saturationBar;
 		private System.Windows.Forms.Label saturationLabel;
 		private System.Windows.Forms.NumericUpDown saturationBox;
+		private System.Windows.Forms.ComboBox limitsBox;
 	}
 }

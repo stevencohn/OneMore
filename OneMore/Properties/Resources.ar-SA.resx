@@ -3977,4 +3977,10 @@ ISO-code then comma then language name</comment>
   <data name="word_Rename" xml:space="preserve">
     <value>إعادة تسمية</value>
   </data>
+  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>تغيير حجم كل الصور
+لا تقم بتقليص الصور الكبيرة
+لا تقم بتكبير الصور الأصغر</value>
+    <comment>combobox</comment>
+  </data>
 </root>
