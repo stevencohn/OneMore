@@ -3974,4 +3974,7 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Expandir trecho do nome</value>
     <comment>menu item</comment>
   </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>Renomear</value>
+  </data>
 </root>

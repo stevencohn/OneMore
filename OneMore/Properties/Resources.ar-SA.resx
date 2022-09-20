@@ -3974,4 +3974,7 @@ ISO-code then comma then language name</comment>
     <value>قم بتوسيع المقتطف من الاسم</value>
     <comment>menu item</comment>
   </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>إعادة تسمية</value>
+  </data>
 </root>

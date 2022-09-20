@@ -33,7 +33,7 @@
 			this.introPanel = new System.Windows.Forms.Panel();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.toolStrip = new River.OneMoreAddIn.UI.ScaledToolStrip();
-			this.deleteLabel = new System.Windows.Forms.ToolStripLabel();
+			this.renameButton = new System.Windows.Forms.ToolStripButton();
 			this.deleteButton = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.introPanel.SuspendLayout();
@@ -50,14 +50,14 @@
             this.nameColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.gridView.Location = new System.Drawing.Point(10, 102);
+			this.gridView.Location = new System.Drawing.Point(10, 98);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(780, 389);
+			this.gridView.Size = new System.Drawing.Size(780, 393);
 			this.gridView.TabIndex = 2;
 			// 
 			// nameColumn
@@ -89,29 +89,31 @@
 			// 
 			this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteLabel,
+            this.renameButton,
             this.deleteButton});
 			this.toolStrip.Location = new System.Drawing.Point(10, 64);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(780, 38);
+			this.toolStrip.Size = new System.Drawing.Size(780, 34);
 			this.toolStrip.Stretch = true;
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
 			// 
-			// deleteLabel
+			// renameButton
 			// 
-			this.deleteLabel.Name = "deleteLabel";
-			this.deleteLabel.Size = new System.Drawing.Size(66, 33);
-			this.deleteLabel.Text = "Delete:";
+			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.Rename;
+			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(103, 29);
+			this.renameButton.Text = "Rename";
+			this.renameButton.Click += new System.EventHandler(this.RenameItem);
 			// 
 			// deleteButton
 			// 
-			this.deleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(34, 33);
+			this.deleteButton.Size = new System.Drawing.Size(90, 29);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
 			// 
@@ -143,8 +145,8 @@
 		private System.Windows.Forms.Panel introPanel;
 		private UI.ScaledToolStrip toolStrip;
 		private System.Windows.Forms.ToolStripButton deleteButton;
-		private System.Windows.Forms.ToolStripLabel deleteLabel;
 		private System.Windows.Forms.Label introLabel;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+		private System.Windows.Forms.ToolStripButton renameButton;
 	}
 }

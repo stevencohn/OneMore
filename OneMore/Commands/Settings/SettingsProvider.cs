@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Settings
 
 
 		/// <summary>
-		/// Initialize a new provider.
+		/// Initialize a new snipProvider.
 		/// </summary>
 		public SettingsProvider()
 		{

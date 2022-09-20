@@ -3974,4 +3974,7 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Vouw fragment uit naam uit</value>
     <comment>menu item</comment>
   </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>Hernoemen</value>
+  </data>
 </root>

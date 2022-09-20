@@ -126,6 +126,32 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Rename the snippet with the specified path to the given name
+		/// </summary>
+		/// <param name="path">The existing full path of the snippet file</param>
+		/// <param name="name">The new name of the snippet</param>
+		public string Rename(string path, string name)
+		{
+			if (File.Exists(path))
+			{
+				try
+				{
+					var newpath = Path.Combine(Path.GetDirectoryName(path), $"{name}{Extension}");
+					File.Move(path, newpath);
+
+					return newpath;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error deleting {path}", exc);
+				}
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
 		/// Saves a new named snippet
 		/// </summary>
 		/// <param name="snippet"></param>

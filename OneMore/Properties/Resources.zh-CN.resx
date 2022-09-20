@@ -3966,4 +3966,7 @@ OneNote 文件 (*.one)</value>
     <value>从名称展开片段</value>
     <comment>menu item</comment>
   </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>改名</value>
+  </data>
 </root>

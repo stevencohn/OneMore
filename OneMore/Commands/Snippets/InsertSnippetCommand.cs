@@ -71,13 +71,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (string.IsNullOrWhiteSpace(path))
-			{
-				UIHelper.ShowError("No name");
-				return;
-			}
-
-			if (snippet == null)
+			if (string.IsNullOrWhiteSpace(snippet))
 			{
 				UIHelper.ShowMessage(string.Format(Resx.InsertSnippets_CouldNotLoad, path));
 				return;

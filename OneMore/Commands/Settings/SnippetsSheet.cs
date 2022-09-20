@@ -27,7 +27,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private readonly IRibbonUI ribbon;
 		private readonly BindingList<Snippet> snippets;
-		private readonly SnippetsProvider snipsProvider;
+		private readonly SnippetsProvider snipProvider;
 		private bool updated = false;
 
 
@@ -44,8 +44,8 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introLabel",
-					"deleteLabel",
-					"deleteButton"
+					"renameButton=word_Rename",
+					"deleteButton=word_Delete"
 				});
 
 				nameColumn.HeaderText = Resx.word_Name;
@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Settings
 			gridView.Columns[0].DataPropertyName = "Name";
 
 			this.ribbon = ribbon;
-			snipsProvider = new SnippetsProvider();
+			snipProvider = new SnippetsProvider();
 
 			snippets = new BindingList<Snippet>(LoadSnippets());
 			gridView.DataSource = snippets;
@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private List<Snippet> LoadSnippets()
 		{
-			var paths = snipsProvider.GetPaths();
+			var paths = snipProvider.GetPaths();
 			var list = new List<Snippet>();
 
 			foreach (var path in paths)
@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Settings
 				return;
 
 			snippets.RemoveAt(rowIndex);
-			snipsProvider.Delete(snippet.Path);
+			snipProvider.Delete(snippet.Path);
 			updated = true;
 
 			rowIndex--;
@@ -123,6 +123,34 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			return false;
+		}
+
+		private void RenameItem(object sender, EventArgs e)
+		{
+			if (gridView.SelectedCells.Count == 0)
+				return;
+
+			int rowIndex = gridView.SelectedCells[0].RowIndex;
+			if (rowIndex >= snippets.Count)
+				return;
+
+			var snippet = snippets[rowIndex];
+
+			using (var dialog = new SaveSnippetDialog())
+			{
+				dialog.SnippetName = snippet.Name;
+
+				if (dialog.ShowDialog(this) == DialogResult.OK)
+				{
+					var path = snipProvider.Rename(snippet.Path, dialog.SnippetName);
+					if (!string.IsNullOrEmpty(path))
+					{
+						snippet.Name = dialog.SnippetName;
+						snippet.Path = path;
+						updated = true;
+					}
+				}
+			}
 		}
 	}
 }

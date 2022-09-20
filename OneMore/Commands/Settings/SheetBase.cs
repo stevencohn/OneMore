@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Settings
 		/// <summary>
 		/// Collects the settings for the current sheet. The SettingsDialog calls this when
 		/// the user clicks OK for each sheet and then saves the settings. This method gives
-		/// the sheet the opportunity to add settings to the provider before they are saved.
+		/// the sheet the opportunity to add settings to the snipProvider before they are saved.
 		/// </summary>
 		/// <returns></returns>
 		public virtual bool CollectSettings() { return false; }

@@ -3970,4 +3970,7 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Développer l'extrait de nom</value>
     <comment>menu item</comment>
   </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>Renommer</value>
+  </data>
 </root>

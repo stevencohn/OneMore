@@ -4027,4 +4027,7 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Rozwiń fragment z nazwy</value>
     <comment>menu item</comment>
   </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>Przemianować</value>
+  </data>
 </root>

@@ -3961,4 +3961,7 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Erweitern Sie Snippet From Name</value>
     <comment>menu item</comment>
   </data>
+  <data name="word_Rename" xml:space="preserve">
+    <value>Umbenennen</value>
+  </data>
 </root>
