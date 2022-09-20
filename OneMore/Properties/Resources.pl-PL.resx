@@ -4030,4 +4030,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Przemianować</value>
   </data>
+  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Zmień rozmiar wszystkich obrazów
+Nie zmniejszaj większych obrazów
+Nie powiększaj mniejszych obrazów</value>
+    <comment>combobox</comment>
+  </data>
 </root>

@@ -3964,4 +3964,10 @@ Wählen Sie Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Umbenennen</value>
   </data>
+  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Größe aller Bilder ändern
+Größere Bilder nicht verkleinern
+Vergrößern Sie kleinere Bilder nicht</value>
+    <comment>combobox</comment>
+  </data>
 </root>

@@ -155,25 +155,34 @@ namespace River.OneMoreAddIn.Commands
 								: (int)dialog.ImageHeight;
 						}
 
-						if (dialog.NeedsRewrite)
+						if (dialog.ResizeOption == ResizeOption.All ||
+							(dialog.ResizeOption == ResizeOption.OnlyShrink && viewWidth > width) ||
+							(dialog.ResizeOption == ResizeOption.OnlyEnlarge && viewWidth < width))
 						{
-							Image data = null;
-							try
+							if (dialog.NeedsRewrite)
 							{
-								data = dialog.Adjust(image.Resize(width, height));
-								WriteImage(element, data);
+								Image data = null;
+								try
+								{
+									data = dialog.Adjust(image.Resize(width, height));
+									WriteImage(element, data);
+								}
+								finally
+								{
+									data?.Dispose();
+								}
 							}
-							finally
-							{
-								data?.Dispose();
-							}
+
+							size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
+							size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
+							size.SetAttributeValue("isSetByUser", "true");
+
+							logger.WriteLine($"resized from {viewWidth} x {viewHeight} to {width} x {height}");
 						}
-
-						size.SetAttributeValue("width", width.ToString(CultureInfo.InvariantCulture));
-						size.SetAttributeValue("height", height.ToString(CultureInfo.InvariantCulture));
-						size.SetAttributeValue("isSetByUser", "true");
-
-						logger.WriteLine($"resized from {image.Width} x {image.Height} to {width} x {height}");
+						else
+						{
+							logger.WriteLine($"skipped image with size {viewWidth} x {viewHeight}");
+						}
 					}
 				}
 

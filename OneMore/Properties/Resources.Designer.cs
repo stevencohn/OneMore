@@ -4974,6 +4974,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resize all images
+        ///Do not shrink larger images
+        ///Do no enlarge smaller images.
+        /// </summary>
+        internal static string ResizeImagesDialog_limitsBox_Text {
+            get {
+                return ResourceManager.GetString("ResizeImagesDialog_limitsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No images were found on this page.
         /// </summary>
         internal static string ResizeImagesDialog_noImages {

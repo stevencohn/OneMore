@@ -4035,4 +4035,10 @@ Select No to keep one empty line between paragraphs</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Rename</value>
   </data>
+  <data name="ResizeImagesDialog_limitsBox.Text" xml:space="preserve">
+    <value>Resize all images
+Do not shrink larger images
+Do no enlarge smaller images</value>
+    <comment>combobox</comment>
+  </data>
 </root>
