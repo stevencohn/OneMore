@@ -22,6 +22,10 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
+		/// <summary>
+		/// Note this is invoked as its own CustomAction, not as part of Program
+		/// </summary>
+		/// <returns></returns>
 		public override int Install()
 		{
 			logger.WriteLine();
@@ -147,7 +151,7 @@ namespace OneMoreSetupActions
 
 			if (path == null)
 			{
-				logger.WriteLine("OneNote application path note found; continuing optimistically");
+				logger.WriteLine("OneNote application path not found; continuing optimistically");
 				return true;
 			}
 			else if (path.Contains(@"\Program Files (x86)\"))
