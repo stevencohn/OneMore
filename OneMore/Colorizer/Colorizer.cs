@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Colorizer
 		/// </param>
 		/// <param name="themeName">Must be "light" or "dark"</param>
 		/// <param name="autoOverride">
-		/// True to use AutoThing color overrides in theme file; this is need in dark mode
+		/// True to use color overrides from theme file; this is need in dark mode
 		/// when the page color is auto to change the plain text color
 		/// </param>
 		public Colorizer(string languageName, string themeName, bool autoOverride)
