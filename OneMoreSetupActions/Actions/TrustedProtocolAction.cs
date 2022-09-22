@@ -91,7 +91,7 @@ namespace OneMoreSetupActions
 				try
 				{
 					using (var polKey = hive.OpenSubKey(policiesPath,
-						RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.Rights))
+						RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.WriteRights))
 					{
 						key = polKey.CreateSubKey(policyPath, false);
 						if (key == null)
@@ -138,7 +138,9 @@ namespace OneMoreSetupActions
 			logger.WriteLine("TrustedProtocolAction.Uninstall ---");
 
 			var sid = RegistryHelper.GetUserSid("unregistering trusted protocol");
-			using (var hive = Registry.Users.OpenSubKey(sid))
+			using (var hive = Registry.Users.OpenSubKey(sid,
+				RegistryKeyPermissionCheck.ReadWriteSubTree,
+				RegistryHelper.DeleteRights))
 			{
 				var version = GetVersion("Excel", 16);
 				var path = $@"Software\Policies\Microsoft\Office\{version}\Common\Security\" +

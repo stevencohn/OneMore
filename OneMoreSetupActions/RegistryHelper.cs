@@ -15,7 +15,18 @@ namespace OneMoreSetupActions
 	{
 		public const string OneNoteID = "{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}";
 
-		public static readonly RegistryRights Rights =
+		public static readonly RegistryRights DeleteRights =
+			RegistryRights.EnumerateSubKeys |
+			RegistryRights.Delete |
+			RegistryRights.QueryValues |
+			RegistryRights.ReadKey;
+
+		public static readonly RegistryRights ReadRights =
+			RegistryRights.EnumerateSubKeys |
+			RegistryRights.QueryValues |
+			RegistryRights.ReadKey;
+
+		public static readonly RegistryRights WriteRights =
 			RegistryRights.CreateSubKey |
 			RegistryRights.EnumerateSubKeys |
 			RegistryRights.QueryValues |

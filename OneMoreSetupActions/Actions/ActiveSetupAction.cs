@@ -29,7 +29,7 @@ namespace OneMoreSetupActions
 
 			using (var key = Registry.LocalMachine.OpenSubKey(
 				$@"Software\Microsoft\Active Setup\Installed Components\{RegistryHelper.OneNoteID}",
-				RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.Rights))
+				RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.WriteRights))
 			{
 				var version = (string)key.GetValue("Version");
 				if (!string.IsNullOrEmpty(version))

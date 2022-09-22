@@ -41,7 +41,16 @@ namespace OneMoreSetupActions
 			stepper = new Stepper();
 
 			logger.WriteLine();
-			logger.WriteLine(new string('-', 70));
+			if (args[0] == "--install" || args[0] == "--uninstall")
+			{
+				logger.WriteLine(new string('=', 70));
+				logger.WriteLine($"starting action: {args[0]}");
+			}
+			else
+			{
+				logger.WriteLine(new string('-', 50));
+				logger.WriteLine($"reentry action: {args[0]}");
+			}
 
 			if (args.Any(a => a == "--x64" || a == "--x86"))
 			{
