@@ -42,6 +42,10 @@ namespace OneMoreSetupActions
 					return SUCCESS;
 				}
 			}
+			else
+			{
+				logger.WriteLine("WOW cloning not required");
+			}
 
 			return SUCCESS;
 		}
@@ -56,14 +60,16 @@ namespace OneMoreSetupActions
 		 */
 		private int RegisterWow()
 		{
-			logger.WriteLine("cloning CLSID");
-			using (var source = Registry.ClassesRoot.OpenSubKey($@"CLSID\{RegistryHelper.OneNoteID}"))
+			logger.WriteLine($"step {stepper.Step()}: cloning CLSID");
+			using (var source = Registry.ClassesRoot.OpenSubKey(
+				$@"CLSID\{RegistryHelper.OneNoteID}",
+				RegistryKeyPermissionCheck.ReadSubTree, RegistryHelper.ReadRights))
 			{
 				if (source != null)
 				{
 					using (var target = Registry.ClassesRoot.OpenSubKey(@"WOW6432Node\CLSID", true))
 					{
-						logger.WriteLine($"copying from {source.Name} to {target.Name}");
+						logger.WriteLine($"step {stepper.Step()}: copying from {source.Name} to {target.Name}");
 						source.CopyTo(target);
 					}
 				}
@@ -85,13 +91,14 @@ namespace OneMoreSetupActions
 				return UnregisterWow();
 			}
 
+			logger.WriteLine("WOW cloning not required, no cleanup necessary");
 			return SUCCESS;
 		}
 
 
 		private int UnregisterWow()
 		{
-			logger.WriteLine("deleting CLSID clone");
+			logger.WriteLine($"step {stepper.Step()}: deleting CLSID clone");
 			using (var key = Registry.ClassesRoot.OpenSubKey(@"WOW6432Node\CLSID", true))
 			{
 				if (key != null)
@@ -112,38 +119,77 @@ namespace OneMoreSetupActions
 
 		// Determines if 32-bit OneNote is installed.
 		// When this is true, the guid will exist under ClassesRoot\CLSID however the path
-		// will be blank and instead the the path is under ClassesRoot\Wow6432Node\CLSID\{guid}
+		// will be blank and instead the the path is under ClassesRoot\WOW6432Node\CLSID\{guid}
 		private bool CloningRequired()
 		{
 			string clsid = null;
-			using (var key = Registry.ClassesRoot.OpenSubKey(@"\OneNote.Application\CLSID"))
+
+			/*
+			 * This makes no sense at all but if we don't attempt the 1st chance code then
+			 * the 2nd chance code below doesn't work...
+			 */
+
+			using (var basekey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine,
+				Environment.Is64BitOperatingSystem ? RegistryView.Registry64 : RegistryView.Registry32))
 			{
-				if (key != null)
+				using (var key = basekey.OpenSubKey(@"OneNote.Application\CLSID"))
 				{
-					clsid = (string)key.GetValue(string.Empty); // default value
+					if (key != null)
+					{
+						clsid = key.GetValue(string.Empty) as string; // default value
+						logger.WriteLine($"read CLSID ({clsid})");
+					}
+					else
+					{
+						logger.WriteLine($"1st chance, could not read CLSID or key missing");
+					}
+				}
+			}
+
+			if (clsid == null)
+			{
+				using (var key = Registry.ClassesRoot.OpenSubKey(@"OneNote.Application\CLSID"))
+				{
+					if (key != null)
+					{
+						clsid = (string)key.GetValue(string.Empty); // default value
+						logger.WriteLine($"2nd chance, read CLSID ({clsid})");
+					}
+					else
+					{
+						logger.WriteLine($"2nd chance, could not read CLSID or key missing");
+					}
 				}
 			}
 
 			string path = null;
 			if (!string.IsNullOrEmpty(clsid))
 			{
-				using (var key = Registry.ClassesRoot
-					.OpenSubKey($@"CLSID\{clsid}\Localserver32"))
+				using (var key = Registry.ClassesRoot.OpenSubKey($@"CLSID\{clsid}\LocalServer32"))
 				{
 					if (key != null)
 					{
 						path = (string)key.GetValue(string.Empty); // default value
+						logger.WriteLine($"read path from LocalServer32 ({path})");
+					}
+					else
+					{
+						logger.WriteLine($"could not read LocalServer32 or key missing");
 					}
 				}
 
 				if (path == null)
 				{
-					using (var key = Registry.ClassesRoot
-						.OpenSubKey($@"WOW6432Node\CLSID\{clsid}\Localserver32"))
+					using (var key = Registry.ClassesRoot.OpenSubKey($@"WOW6432Node\CLSID\{clsid}\LocalServer32"))
 					{
 						if (key != null)
 						{
 							path = (string)key.GetValue(string.Empty); // default value
+							logger.WriteLine($@"read path from WOW6432Node\..\LocalServer32 ({path})");
+						}
+						else
+						{
+							logger.WriteLine($@"could not WOW6432Node\..\LocalServer32 or key missing");
 						}
 					}
 				}

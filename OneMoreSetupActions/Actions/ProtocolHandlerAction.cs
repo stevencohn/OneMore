@@ -50,7 +50,7 @@ namespace OneMoreSetupActions
 			var hive = Registry.LocalMachine;
 
 			var parent = hive.OpenSubKey(path,
-				RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.Rights);
+				RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.WriteRights);
 
 			if (parent == null)
 			{
@@ -81,7 +81,7 @@ namespace OneMoreSetupActions
 			logger.WriteLine($@"step {stepper.Step()}: opening HKLM:\{path}\{cmdpath}");
 
 			var key = parent.OpenSubKey(cmdpath,
-				RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.Rights);
+				RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryHelper.WriteRights);
 
 			if (key == null)
 			{
