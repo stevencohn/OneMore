@@ -1,6 +1,6 @@
 ﻿//************************************************************************************************
 // Copyright © 2016 Steven M Cohn.  All rights reserved.
-//************************************************************************************************                
+//************************************************************************************************
 
 #pragma warning disable S3265 // Non-flags enums should not be used in bitwise operations
 #pragma warning disable S3881 // IDisposable should be implemented correctly
