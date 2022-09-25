@@ -6,8 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using WindowsInput;
-	using WindowsInput.Native;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -33,12 +31,7 @@ namespace River.OneMoreAddIn.Commands
 				// focus on the OneNote main window provides a direct path for SendKeys
 				Native.SetForegroundWindow(one.WindowHandle);
 
-				//SendKeys.SendWait("^(c)");
-				new InputSimulator().Keyboard
-					.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_C);
-
-				// SendWait can be very unpredictable so wait a little
-				await Task.Delay(200);
+				await new ClipboardProvider().Copy();
 			}
 
 			var html = await new ClipboardProvider().GetHtml();

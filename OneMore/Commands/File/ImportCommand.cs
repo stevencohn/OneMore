@@ -16,8 +16,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using WindowsInput;
-	using WindowsInput.Native;
 
 
 	internal class ImportCommand : Command
@@ -408,7 +406,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
-				progress.SetMessage($"Importing {filepath}...");
+				if (progress != null)
+				{
+					progress.SetMessage($"Importing {filepath}...");
+				}
+
 				logger.WriteLine($"importing markdown {filepath}");
 				var text = File.ReadAllText(filepath);
 				var deep = new Markdown
@@ -447,9 +449,6 @@ namespace River.OneMoreAddIn.Commands
 					await clippy.StashState();
 					await clippy.SetHtml(html);
 
-					// both SetText and SendWait are very unpredictable so wait a little
-					await Task.Delay(200);
-
 					using (var one = new OneNote())
 					{
 						one.CreatePage(one.CurrentSectionId, out var pageId);
@@ -458,12 +457,9 @@ namespace River.OneMoreAddIn.Commands
 						await one.Update(page);
 						await one.NavigateTo(pageId);
 
-						//SendKeys.SendWait("^(v)");
-						new InputSimulator().Keyboard
-							.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+						await clippy.Paste(true);
 					}
 
-					await Task.Delay(200);
 					await clippy.RestoreState();
 				}
 			}

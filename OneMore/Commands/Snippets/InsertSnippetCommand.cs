@@ -6,8 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using WindowsInput;
-	using WindowsInput.Native;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -79,18 +77,8 @@ namespace River.OneMoreAddIn.Commands
 
 			var clippy = new ClipboardProvider();
 			await clippy.StashState();
-
 			await clippy.SetHtml(snippet);
-
-			// both SetText and SendWait are very unpredictable so wait a little
-			await Task.Delay(200);
-
-			//SendKeys.SendWait("^(v)");
-			new InputSimulator().Keyboard
-				.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
-
-			await Task.Delay(200);
-
+			await clippy.Paste(true);
 			await clippy.RestoreState();
 		}
 	}

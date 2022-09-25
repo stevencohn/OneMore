@@ -9,8 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using WindowsInput;
-	using WindowsInput.Native;
 	using Hap = HtmlAgilityPack;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
@@ -206,11 +204,7 @@ namespace River.OneMoreAddIn.Commands
 			// focus on the OneNote main window provides a direct path for SendKeys
 			Native.SetForegroundWindow(one.WindowHandle);
 
-			new InputSimulator().Keyboard
-				.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
-
-			// yeah this is dumb but have to wait for paste to complete
-			await Task.Delay(200);
+			await new ClipboardProvider().Paste();
 
 			var page = one.GetPage(pageId);
 			one.DeleteHierarchy(pageId);
