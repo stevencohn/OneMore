@@ -1328,13 +1328,15 @@ Probeer het later nog eens</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>De ingevoerde formule moet van toepassing zijn op de eerste geselecteerde cel. 
-Functies: abs, acos, asin, atan, atan2, gemiddelde, plafond, cos, cosh, exp, verdieping, logboek, log10, max, mediaan, min, modus, pow, bereik, rond, teken, sin, sinh, sqrt, 
-Operatoren: + - / * ^
+    <value>De ingevoerde formule moet van toepassing zijn op de eerste geselecteerde cel. Deze formule wordt automatisch verhoogd voor extra geselecteerde cellen.
+
+Functies: abs, acos, asin, atan, atan2, gemiddeld, plafond, cos, cosh, countif, exp, floor, log, log10, max, mediaan, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variantie
+
+Operators: + - / * ^
 Celverwijzing: A1, A2, ... ZZZ999
-Celbereik: A1: A22
+Celbereik: A1:A22
 Symbolen: PI, E</value>
-  </data>
+  <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Geselecteerde cellen:</value>
     <comment>label</comment>

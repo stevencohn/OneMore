@@ -1177,13 +1177,15 @@ Odroczony</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>Wprowadzona formuła powinna mieć zastosowanie do pierwszej wybranej komórki. Formuła ta zostanie automatycznie zwiększana do dodatkowych wybranych komórek.
-Funkcje: ABS, ACO, ASIN, ATAN, ATAN2, średnie, sufit, COS, COSH, EXP, Floor, Log, Log10, Max, Mediana, Min, Mode, Pow, Runda, Round, Sign, Sinh, Sqrt, Stdev, Sum, Tan, Tanh, Trunc, Wariancja
-Operatorzy: + - / * ^
-Odniesienie komórki: A1, A2, ... ZZZ999
-Zakres komórek: A1: A22
-Symbole: Pi, E</value>
-  </data>
+    <value>Wprowadzona formuła powinna dotyczyć pierwszej wybranej komórki. Ta formuła zostanie automatycznie zwiększona dla dodatkowych wybranych komórek.
+
+Funkcje: abs, acos, asin, atan, atan2, średnia, sufit, cos, cosh, countif, exp, floor, log, log10, max, mediana, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, suma, tan, tanh, trunc, wariancja
+
+Operatory: + - / * ^
+Odwołanie do komórki: A1, A2, ... ZZZ999
+Zakres komórek: A1:A22
+Symbole: PI, E</value>
+  <comment></comment></data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>Umieść stronę</value>
     <comment>ribbon item</comment>

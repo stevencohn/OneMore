@@ -1324,13 +1324,13 @@ Des cahiers</value>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
     <value>La formule saisie doit s'appliquer à la première cellule sélectionnée. Cette formule sera incrémentée automatiquement pour les cellules sélectionnées supplémentaires.
 
-Fonctions: abs, acos, asin, atan, atan2, average, plafond, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, somme, tan, tanh, trunc, variance
+Fonctions : abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, somme, bronzer, tanh, tronquer, variance
 
-Opérateurs: + - / * ^
-Référence de cellule: A1, A2, ... ZZZ999
-Plage de cellules: A1: A22
-Symboles: PI, E</value>
-  </data>
+Opérateurs : + - / * ^
+Référence cellule : A1, A2, ... ZZZ999
+Gamme de cellules : A1 : A22
+Symboles : PI, E</value>
+  <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Cellules sélectionnées:</value>
     <comment>label</comment>

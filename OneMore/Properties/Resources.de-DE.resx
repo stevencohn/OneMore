@@ -1308,8 +1308,15 @@ Notizbücher</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>Die eingegebene Formel sollte für die erste ausgewählte Zelle gelten. </value>
-  </data>
+    <value>Die eingegebene Formel sollte für die erste ausgewählte Zelle gelten. Diese Formel wird automatisch für weitere ausgewählte Zellen erhöht.
+
+Funktionen: abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, Varianz
+
+Operatoren: + - / * ^
+Zellreferenz: A1, A2, ... ZZZ999
+Zellbereich: A1:A22
+Symbole: PI, E</value>
+  <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Ausgewählte Zellen:</value>
     <comment>label</comment>

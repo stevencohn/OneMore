@@ -1328,13 +1328,15 @@ Tente mais tarde</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>A fórmula inserida deve ser aplicada à primeira célula selecionada. 
-Funções: abs, acos, asin, atan, atan2, média, teto, cos, cosh, exp, piso, log, log10, máximo, mediano, mínimo, modo, pow, intervalo, redondo, sinal, sin, sinh, sqrt, 
+    <value>A fórmula inserida deve ser aplicada à primeira célula selecionada. Esta fórmula será incrementada automaticamente para células selecionadas adicionais.
+
+Funções: abs, acos, asin, atan, atan2, media, teto, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, soma, tan, tanh, trunc, variância
+
 Operadores: + - / * ^
-Referência de célula: A1, A2, ... ZZZ999
-Intervalo de células: A1: A22
+Referência da célula: A1, A2, ... ZZZ999
+Alcance da célula: A1:A22
 Símbolos: PI, E</value>
-  </data>
+  <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Células selecionadas:</value>
     <comment>label</comment>

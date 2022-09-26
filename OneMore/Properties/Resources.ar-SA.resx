@@ -1323,13 +1323,15 @@
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>يجب أن يتم تطبيق الصيغة التي تم إدخالها على الخلية الأولى المحددة. 
-الوظائف: abs ، acos ، asin ، atan ، atan2 ، المتوسط ​​، السقف ، cos ، cosh ، exp ، floor ، log10 ، max ، median ، min ، mode ، pow ، range ، round ، sign ، sin ، sinh ، sqrt 
+    <value>يجب أن تنطبق الصيغة التي تم إدخالها على الخلية الأولى المحددة. ستتم زيادة هذه الصيغة تلقائيًا للخلايا الإضافية المحددة.
+
+الوظائف: abs ، acos ، asin ، atan ، atan2 ، المتوسط ​​، السقف ، cos ، cosh ، countif ، exp ، floor ، log10 ، max ، median ، min ، mode ، pow ، range ، round ، sign ، sin ، sinh ، sqrt، stdev، sum، tan، tanh، trunc، variance
+
 عوامل التشغيل: + - / * ^
 مرجع الخلية: A1، A2، ... ZZZ999
 نطاق الخلايا: A1: A22
 الرموز: PI، E</value>
-  </data>
+  <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>الخلايا المحددة:</value>
     <comment>label</comment>

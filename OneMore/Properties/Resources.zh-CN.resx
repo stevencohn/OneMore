@@ -1322,15 +1322,15 @@ OneNote 将自动关闭</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>输入的公式应适用于第一个选定的单元格。 对于其他选定的单元格，此公式将自动增加。
+    <value>输入的公式应适用于第一个选定的单元格。对于其他选定的单元格，此公式将自动递增。
 
-功能：abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
+函数：abs、acos、asin、atan、atan2、平均值、上限、cos、cosh、countif、exp、floor、log、log10、max、median、min、mode、pow、range、round、sign、sin、sinh、 sqrt、stdev、sum、tan、tanh、trunc、方差
 
-运营商： + - / * ^
-单元格参考： A1, A2, ... ZZZ999
-单元格范围： A1:A22
-符号： PI, E</value>
-  </data>
+运算符：+ - / * ^
+单元格参考：A1、A2、... ZZZ999
+单元格范围：A1:A22
+符号：PI、E</value>
+  <comment></comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>选定的单元格：</value>
     <comment>label</comment>
