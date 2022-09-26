@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn
 		/// the CommandAttribute attribute
 		/// </summary>
 		/// <returns></returns>
-		private async Task RegisterHotkeysDynamically()
+		private async Task RegisterHotkeys()
 		{
 			// discover all command methods with CommandAttribute...
 

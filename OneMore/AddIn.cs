@@ -199,7 +199,7 @@ namespace River.OneMoreAddIn
 			try
 			{
 				// hotkeys
-				Task.Run(async () => { await RegisterHotkeysDynamically(); });
+				Task.Run(async () => { await RegisterHotkeys(); });
 
 				using (var one = new OneNote())
 				{
