@@ -20,7 +20,7 @@ There are [full instructions here](#install).
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
 _Click an image to enlarge_
 
-## 💁 Features (152)
+## 💁 Features (153)
 *Want more from OneMore? OneMore has more...*
 
 [Clean commands](../../wiki/Clean-Commands) (12)
@@ -133,8 +133,9 @@ _Click an image to enlarge_
 * Add arbitrary tags to a page (Alt + T)
 * Search arbitrary page tags to index, copy, or move selected pages (Ctrl + Alt + T)
 
-[Snippets commands](../../wiki/Snippets-Commands) (17)
+[Snippets commands](../../wiki/Snippets-Commands) (18)
 
+* Expand custom snippet from name (Alt + F3)
 * Insert single (Shift + Alt + F11) or double (Shift + Alt + F12) horizontal line
 * Insert breadcrumb at top of page
 * Insert Table of Contents of headers, pages, or sections
