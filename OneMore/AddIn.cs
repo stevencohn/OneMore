@@ -198,6 +198,9 @@ namespace River.OneMoreAddIn
 
 			try
 			{
+				// hotkeys
+				Task.Run(async () => { await RegisterHotkeysDynamically(); });
+
 				using (var one = new OneNote())
 				{
 					factory = new CommandFactory(logger, ribbon, trash,
@@ -210,9 +213,6 @@ namespace River.OneMoreAddIn
 
 				// reminder task scanner
 				new Commands.ReminderService().Startup();
-
-				// hotkeys
-				RegisterHotkeys();
 
 				// activate enablers and update check
 				Task.Run(async () => { await SetGeneralOptions(); });
