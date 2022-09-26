@@ -133,7 +133,7 @@ _Click an image to enlarge_
 * Add arbitrary tags to a page (Alt + T)
 * Search arbitrary page tags to index, copy, or move selected pages (Ctrl + Alt + T)
 
-[Snippets commands](../../wiki/Snippets-Commands) (17)
+[Snippets commands](../../wiki/Snippets-Commands) (18)
 
 * Expand custom snippet from name (Alt + F3)
 * Insert single (Shift + Alt + F11) or double (Shift + Alt + F12) horizontal line
