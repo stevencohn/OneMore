@@ -15,22 +15,34 @@ namespace River.OneMoreAddIn
     internal class CommandAttribute: Attribute
     {
 
-        public CommandAttribute(string resID, Keys defaultKeys)
+        public CommandAttribute(string resID, Keys defaultKeys, string category)
         {
             ResID = resID;
             DefaultKeys = defaultKeys;
+            Category = category;
         }
 
 
         /// <summary>
-        /// The resource ID specifying the display name of the command
+        /// Gets the name of the category with which the command is associated
         /// </summary>
-        public string ResID { get; private set; }
+        /// <remarks>
+        /// This is not a resource ID but rather the exact name, used for building
+        /// the markdown for the Wiki keyboard reference page
+        /// </remarks>
+        public string Category { get; private set; }
 
 
         /// <summary>
-        /// The default accelerator keys for the command
+        /// Gets the default accelerator keys for the command which can be overriden
+        /// by user settings
         /// </summary>
         public Keys DefaultKeys { get; private set; }
-    }
+
+
+		/// <summary>
+		/// Gets the resource ID specifying the display name of the command
+		/// </summary>
+		public string ResID { get; private set; }
+	}
 }
