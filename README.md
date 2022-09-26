@@ -207,6 +207,10 @@ _Click an image to enlarge_
 The OneMore installer requires admin rights to complete configuration and update the Windows Registry.
 If your account has admin rights then follow these steps:
 
+> Please note that I currently cannot support OneMore with Microsoft Office Insider or Beta builds.
+> I'm very sorry for the inconvenience. If I have an opportunity to access these special channels,
+> I will update this notice.
+
 1. Close OneNote if it is currently running (See below if you need to install OneNote)
 2. Download the [latest installer from here](https://github.com/stevencohn/OneMore/releases/latest)
    - Use the x86 installer only if you are running on a 32-bit Windows machine; it has nothing to do
