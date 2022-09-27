@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Commands.Tables.Formulas
 {
 	using System.Collections.Generic;
-	using System.Linq;
 
 
 	/// <summary>
@@ -186,7 +185,24 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 		public double[] ToDoubleArray()
 		{
-			return values.Select(v => (double)v.Value).ToArray();
+			var list = new List<double>();
+			values.ForEach(v =>
+			{
+				if (v.Value is double d)
+				{
+					list.Add(d);
+				}
+				// empty cells are not included in the array
+				else if (v.Value is string s && !string.IsNullOrWhiteSpace(s))
+				{
+					if (double.TryParse(s, out var ds))
+					{
+						list.Add(ds);
+					}
+				}
+			});
+
+			return list.ToArray();
 		}
 	}
 }
