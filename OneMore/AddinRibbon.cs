@@ -346,8 +346,7 @@ namespace River.OneMoreAddIn
 					id.Value = $"ctx{id.Value.Substring(3)}";
 				}
 
-				var enabled = item.Attribute("getEnabled");
-				if (enabled != null) enabled.Remove();
+				item.Attributes().Where(a => a.Name == "getEnabled" || a.Name == "size").Remove();
 
 				// cleanup all children below the item
 				foreach (var node in item.Descendants()
@@ -359,8 +358,7 @@ namespace River.OneMoreAddIn
 						id.Value = $"ct2{id.Value.Substring(3)}";
 					}
 
-					enabled = node.Attribute("getEnabled");
-					if (enabled != null) enabled.Remove();
+					node.Attributes().Where(a => a.Name == "getEnabled" || a.Name == "size").Remove();
 				}
 
 				item.Add(new XAttribute("insertBeforeMso", "Cut"));
