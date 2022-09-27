@@ -14,7 +14,8 @@
             getItemID="GetStyleGalleryItemId"
             getItemImage="GetStyleGalleryItemImage"
             getItemScreentip="GetStyleGalleryItemScreentip"
-            onAction="ApplyStyleCmd">
+            onAction="ApplyStyleCmd"
+            keytip="ST">
             <button
               id="ribLoadStylesButton"
               getLabel="GetRibbonLabel"
@@ -47,9 +48,11 @@
             getLabel="GetRibbonLabel"
             size="large"
             imageMso="EditLinks"
-            getContent="GetFavoritesContent" />
+            getContent="GetFavoritesContent"
+            keytip="SF"/>
 
-          <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel" imageMso="GroupInsertShapes" showImage="true" size="large">
+          <menu id="ribSnippetsMenu" getLabel="GetRibbonLabel"
+                imageMso="GroupInsertShapes" showImage="true" size="large" keytip="SS">
             <dynamicMenu
               id="ribCustomSnippetsMenu"
               getLabel="GetRibbonLabel"
@@ -155,7 +158,8 @@
               onAction="InsertBlueStatusCmd"/>
           </menu>
 
-          <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" showImage="true" getImage="GetOneMoreRibbonImage">
+          <menu id="ribOneMoreMenu" getLabel="GetRibbonLabel" size="large" showImage="true"
+                getImage="GetOneMoreRibbonImage" keytip="SM">
             <button
               id="ribReplayButton"
               imageMso="MoviePlayAutomatically"
