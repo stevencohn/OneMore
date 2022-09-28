@@ -139,6 +139,11 @@ namespace River.OneMoreAddIn
 		public async Task ColorizeCmd(IRibbonControl control)
 			=> await factory.Run<ColorizeCommand>(control.Tag); // tag=language
 
+
+		[Command("none", Keys.Control | Keys.Shift | Keys.P, "")]
+		public async Task CommandPallettCmd(IRibbonControl control)
+			=> await factory.Run<CommandPallettCommand>();
+
 		public async Task CompleteReminderCmd(IRibbonControl control)
 			=> await factory.Run<CompleteReminderCommand>();
 

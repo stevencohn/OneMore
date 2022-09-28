@@ -4000,4 +4000,8 @@ ISO-code then comma then language name</comment>
     <value>قم بإنشاء صفحات من القائمة</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CommandPallett_Title" xml:space="preserve">
+    <value>One More Command Pallett</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

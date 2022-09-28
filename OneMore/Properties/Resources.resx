@@ -4056,4 +4056,8 @@ Do no enlarge smaller images</value>
     <value>Create Pages from List</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CommandPallett_Title" xml:space="preserve">
+    <value>OneMore Command Pallett</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

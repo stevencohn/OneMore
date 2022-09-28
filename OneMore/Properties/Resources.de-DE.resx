@@ -3992,4 +3992,8 @@ Vergrößern Sie kleinere Bilder nicht</value>
     <value>Seiten aus Liste erstellen</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CommandPallett_Title" xml:space="preserve">
+    <value>OneMore Kommandopalette</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

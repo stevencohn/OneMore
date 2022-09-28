@@ -3994,4 +3994,8 @@ Ne pas agrandir les petites images</value>
     <value>Créer des pages à partir de la liste</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CommandPallett_Title" xml:space="preserve">
+    <value>Palette de commande OneMore</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

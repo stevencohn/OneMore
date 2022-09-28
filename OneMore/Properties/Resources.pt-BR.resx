@@ -4000,4 +4000,8 @@ Não amplie imagens menores</value>
     <value>Criar páginas da lista</value>
     <comment>ribbon item</comment>
   </data>
+  <data name="CommandPallett_Title" xml:space="preserve">
+    <value>Paleta de Comando OneMore</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

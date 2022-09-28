@@ -887,6 +887,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore Command Pallett.
+        /// </summary>
+        internal static string CommandPallett_Title {
+            get {
+                return ResourceManager.GetString("CommandPallett_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes..
         /// </summary>
         internal static string ContextMenuSheet_introBox_Text {
