@@ -54,7 +54,7 @@
 			this.okButton.TabIndex = 1;
 			this.okButton.Text = "Go";
 			this.okButton.UseVisualStyleBackColor = true;
-			this.okButton.Click += new System.EventHandler(this.okButton_Click);
+			this.okButton.Click += new System.EventHandler(this.InvokeCommand);
 			// 
 			// bodyPanel
 			// 

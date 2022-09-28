@@ -13,7 +13,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class CommandPallettDialog : UI.LocalizableForm
 	{
-		private string[] commands;
+		private readonly string[] commands;
 
 
 		public CommandPallettDialog()
@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void okButton_Click(object sender, EventArgs e)
+		private void InvokeCommand(object sender, EventArgs e)
 		{
 			var text = cmdBox.Text.Trim();
 			var index = commands.IndexOf(s => s.Equals(text, StringComparison.InvariantCultureIgnoreCase));
