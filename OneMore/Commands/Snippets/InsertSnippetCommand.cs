@@ -9,6 +9,11 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
+	/// <summary>
+	/// Insert a custom snippet onto the page at the current insert point. 
+	/// This can run as a direct command from the My Custom Snippets menu or can be invoked
+	/// as to expand the name of a custom snippet to its contents using the Alt+F3 shortcut
+	/// </summary>
 	internal class InsertSnippetCommand : Command
 	{
 
@@ -31,6 +36,9 @@ namespace River.OneMoreAddIn.Commands
 					UIHelper.ShowError(Resx.Error_BodyContext);
 					return;
 				}
+
+				// Either invoked via Alt+F3 to expand the selected name to a snippet
+				// or invoked from the My Custom snippets menu...
 
 				if (string.IsNullOrWhiteSpace(path))
 				{

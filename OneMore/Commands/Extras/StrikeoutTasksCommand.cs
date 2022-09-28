@@ -11,9 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
-	internal class StrikeoutCommand : Command
+	internal class StrikeoutTasksCommand : Command
 	{
-		public StrikeoutCommand()
+		public StrikeoutTasksCommand()
 		{
 		}
 

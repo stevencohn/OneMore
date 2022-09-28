@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn.Settings
 		public string[] keys = new string[]
 		{
 			"ribPasteRtfButton",			// Paste Rich Text
-			"ribFootnoteButton",			// Add Footnote
+			"ribAddFootnoteButton",			// Add Footnote
 			"ribCleanMenu",					// Clean Menu
 			"ribBreakingButton",			// ... Change Sentence Spacing
 			"ribRemoveAuthorsButton",		// ... Remove Author Information
@@ -37,8 +37,8 @@ namespace River.OneMoreAddIn.Settings
 			"ribColorizeMenu",				// ... Colorize
 			"ribProofingMenu",				// ... Proofing Language
 			"ribHighlightButton",			// ... Rotating Highlighter
-			"ribNoSpellCheckButton",		// ... No Spell Check
-			"ribSpellCheckButton",			// ... Spell Check
+			"ribDisableSpellCheckButton",	// ... Disable Spell Check
+			"ribEnableSpellCheckButton",	// ... Enable Spell Check
 			"ribUppercaseButton",			// ... To UPPERCASE
 			"ribLowercaseButton",			// ... To lowercase
 			"ribTitlecaseButton",			// ... To Title Case
@@ -56,23 +56,23 @@ namespace River.OneMoreAddIn.Settings
 			"ribRemindButton",				// ... Add or update reminder
 			"ribCompleteReminderButton",	// ... Complete reminder
 			"ribDeleteReminderButton",		// ... Delete reminder
-			"ribReplaceButton",				// Search and Replace
+			"ribSearchAndReplaceButton",	// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
 			"ribInsertSingleLineButton",	// ... Single Line
 			"ribInsertDoubleLineButton",	// ... Double Line
-			"ribTocButton",					// ... Table of Contents
-			"ribCalendarButton",			// ... Calendar
+			"ribInsertTocButton",			// ... Table of Contents
+			"ribInsertCalendarButton",		// ... Calendar
 			"ribInsertDateButton",			// ... Sortable Date
-			"ribBoxButton",					// ... Block
-			"ribCodeBlockButton",			// ... Code Block
-			"ribInfoBlockButton",			// ... Info Block
-			"ribWarnBlockButton",			// ... Warning Block
-			"ribExpandButton",				// ... Expand
-			"ribGrayStatusButton",			// ... Gray Status
-			"ribRedStatusButton",			// ... Red Status
-			"ribYellowStatusButton",		// ... Yellow Status
-			"ribGreenStatusButton",			// ... Green Status
-			"ribBlueStatusButton"			// ... Blue Status
+			"ribInsertBoxButton",			// ... Block
+			"ribInsertCodeBlockButton",		// ... Code Block
+			"ribInsertInfoBlockButton",		// ... Info Block
+			"ribInsertWarnBlockButton",		// ... Warning Block
+			"ribInsertExpandButton",		// ... Expand/Collapse
+			"ribInsertGrayStatusButton",	// ... Gray Status
+			"ribInsertRedStatusButton",		// ... Red Status
+			"ribInsertYellowStatusButton",	// ... Yellow Status
+			"ribInsertGreenStatusButton",	// ... Green Status
+			"ribInsertBlueStatusButton"		// ... Blue Status
 		};
 
 

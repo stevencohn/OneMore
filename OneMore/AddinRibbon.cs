@@ -216,7 +216,7 @@ namespace River.OneMoreAddIn
 				if (editCommands)
 				{
 					var showLabels = !ribbonbar.Get<bool>("editIconsOnly");
-					group.Add(MakeNoSpellCheckButton(showLabels));
+					group.Add(MakeDisableSpellCheckButton(showLabels));
 
 					group.Add(MakeRibbonButton(
 						"barPasteRtfButton", "PasteSpecialDialog", "PasteRtfCmd", showLabels));
@@ -242,10 +242,10 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private XElement MakeNoSpellCheckButton(bool showLabel)
+		private XElement MakeDisableSpellCheckButton(bool showLabel)
 		{
 			var button = new XElement(ns + "button",
-				new XAttribute("id", "barNoSpellCheckButton"),
+				new XAttribute("id", "barDisableSpellCheckButton"),
 				new XAttribute("image", "NoSpellCheck"),
 				new XAttribute("getLabel", "GetRibbonLabel"),
 				new XAttribute("getScreentip", "GetRibbonScreentip"),

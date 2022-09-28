@@ -426,6 +426,13 @@
     </Compile>
     <Compile Include="Commands\Extras\SectionColorCommand.cs" />
     <Compile Include="Commands\Tools\CalendarCommand.cs" />
+    <Compile Include="Commands\Tools\CommandPallettCommand.cs" />
+    <Compile Include="Commands\Tools\CommandPallettDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\CommandPallettDialog.Designer.cs">
+      <DependentUpon>CommandPallettDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tools\DiagnosticsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -519,7 +526,7 @@
     <Compile Include="Commands\Edit\PronunciateCommand.cs" />
     <Compile Include="Commands\File\RunPluginCommand.cs" />
     <Compile Include="Commands\File\ExportCommand.cs" />
-    <Compile Include="Commands\Extras\StrikeoutCommand.cs" />
+    <Compile Include="Commands\Extras\StrikeoutTasksCommand.cs" />
     <Compile Include="Commands\Search\SearchWebCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
@@ -1154,6 +1161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Extras\AnalyzeDialog.resx">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\CommandPallettDialog.resx">
+      <DependentUpon>CommandPallettDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\DiagnosticsDialog.resx">
       <DependentUpon>DiagnosticsDialog.cs</DependentUpon>
