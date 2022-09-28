@@ -148,6 +148,9 @@ namespace River.OneMoreAddIn
 		public async Task CopyDownCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.CopyDown);
 
+		public async Task CopyFolderCmd(IRibbonControl control)
+			=> await factory.Run<CopyFolderCommand>();
+
 
 		[Command("ribCopyLinkToPageButton_Label", Keys.None, "References")]
 		public async Task CopyLinkToPageCmd(IRibbonControl control)
@@ -166,9 +169,6 @@ namespace River.OneMoreAddIn
 
 		public async Task CropImageCmd(IRibbonControl control)
 			=> await factory.Run<CropImageCommand>();
-
-		public async Task CopyFolderCmd(IRibbonControl control)
-			=> await factory.Run<CopyFolderCommand>();
 
 		public async Task DateStampCmd(IRibbonControl control)
 			=> await factory.Run<DateStampCommand>();
@@ -214,6 +214,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertSnippetCommand>(string.Empty);
 
 
+		public async Task ExportCmd(IRibbonControl control)
+			=> await factory.Run<ExportCommand>();
+
 		public async Task FillAcrossCmd(IRibbonControl control)
 			=> await factory.Run<FillCellsCommand>(FillCells.FillAcross);
 
@@ -235,14 +238,6 @@ namespace River.OneMoreAddIn
 		public async Task GotoFavoriteCmd(IRibbonControl control)
 			=> await factory.Run<GotoFavoriteCommand>(control.Tag); //tag=pageid
 
-		public async Task ImportOutlookTasksCmd(IRibbonControl control)
-			=> await factory.Run<ImportOutlookTasksCommand>();
-
-
-		[Command("ribIncreaseFontSizeButton_Label", Keys.Control | Keys.Alt | Keys.Oemplus, "Editing")]
-		public async Task IncreaseFontSizeCmd(IRibbonControl control)
-			=> await factory.Run<AlterSizeCommand>(1);
-
 
 		[Command("ribHighlightButton_Label", Keys.Control | Keys.Shift | Keys.H, "Editing")]
 		public async Task HighlightCmd(IRibbonControl control)
@@ -251,6 +246,15 @@ namespace River.OneMoreAddIn
 
 		public async Task HighlightFormulaCmd(IRibbonControl control)
 			=> await factory.Run<HighlightFormulaCommand>();
+
+
+		public async Task ImportOutlookTasksCmd(IRibbonControl control)
+			=> await factory.Run<ImportOutlookTasksCommand>();
+
+
+		[Command("ribIncreaseFontSizeButton_Label", Keys.Control | Keys.Alt | Keys.Oemplus, "Editing")]
+		public async Task IncreaseFontSizeCmd(IRibbonControl control)
+			=> await factory.Run<AlterSizeCommand>(1);
 
 
 		public async Task ImportCmd(IRibbonControl control)
@@ -307,12 +311,6 @@ namespace River.OneMoreAddIn
 		public async Task InsertGreenStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Green);
 
-
-		[Command("ribInsertSingleLineButton_Label", Keys.Alt | Keys.Shift | Keys.F11, "Snippets")]
-		public async Task InsertSingleLineCmd(IRibbonControl control)
-			=> await factory.Run<InsertLineCommand>('─');
-
-
 		public async Task InsertInfoBlockCmd(IRibbonControl control)
 			=> await factory.Run<InsertInfoBlockCommand>(false);
 
@@ -321,6 +319,12 @@ namespace River.OneMoreAddIn
 
 		public async Task InsertRedStatusCmd(IRibbonControl control)
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Red);
+
+
+		[Command("ribInsertSingleLineButton_Label", Keys.Alt | Keys.Shift | Keys.F11, "Snippets")]
+		public async Task InsertSingleLineCmd(IRibbonControl control)
+			=> await factory.Run<InsertLineCommand>('─');
+
 
 		public async Task InsertSnippetCmd(IRibbonControl control)
 			=> await factory.Run<InsertSnippetCommand>(control.Tag); // tag=filepath
@@ -343,14 +347,14 @@ namespace River.OneMoreAddIn
 		public async Task InvertSelectionCmd(IRibbonControl control)
 			=> await factory.Run<InvertSelectionCommand>();
 
+		public async Task JoinParagraphCmd(IRibbonControl control)
+			=> await factory.Run<JoinParagraphCommand>();
+
 		public async Task LinkReferencesCmd(IRibbonControl control)
 			=> await factory.Run<LinkReferencesCommand>();
 
 		public async Task LoadStylesCmd(IRibbonControl control)
 			=> await factory.Run<LoadStylesCommand>();
-
-		public async Task JoinParagraphCmd(IRibbonControl control)
-			=> await factory.Run<JoinParagraphCommand>();
 
 		public async Task ManageFavoritesCmd(IRibbonControl control)
 			=> await factory.Run<ManageFavoritesCommand>(ribbon);
@@ -468,9 +472,6 @@ namespace River.OneMoreAddIn
 		public async Task RunPluginCmd(IRibbonControl control)
 			=> await factory.Run<RunPluginCommand>(control.Tag); // tag=plugin
 
-		public async Task ExportCmd(IRibbonControl control)
-			=> await factory.Run<ExportCommand>();
-
 		public async Task SaveCollapsedCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Save);
 
@@ -577,12 +578,6 @@ namespace River.OneMoreAddIn
 		public async Task TitlecaseCmd(IRibbonControl control)
 			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Titlecase);
 
-
-		[Command("ribUppercaseButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.U, "Editing")]
-		public async Task UppercaseCmd(IRibbonControl control)
-			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Uppercase);
-
-
 		public async Task TrimCmd(IRibbonControl control)
 			=> await factory.Run<TrimCommand>(false);
 
@@ -591,6 +586,12 @@ namespace River.OneMoreAddIn
 
 		public async Task UpdateSubpageCmd(IRibbonControl control)
 			=> await factory.Run<EmbedSubpageCommand>(true);
+
+
+		[Command("ribUppercaseButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.U, "Editing")]
+		public async Task UppercaseCmd(IRibbonControl control)
+			=> await factory.Run<ToCaseCommand>(ToCaseCommand.Uppercase);
+
 
 		public async Task WordCountCmd(IRibbonControl control)
 			=> await factory.Run<WordCountCommand>();
