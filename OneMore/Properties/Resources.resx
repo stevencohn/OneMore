@@ -976,7 +976,7 @@ Deferred</value>
   </data>
   <data name="SearchEngineSheet_deleteLabel.Text" xml:space="preserve">
     <value>Delete:</value>
-    <comment>label</comment>
+    <comment>label NODUP</comment>
   </data>
   <data name="ribReplayButton_Label" xml:space="preserve">
     <value>Replay Last Command</value>
@@ -1499,7 +1499,7 @@ Percentage</value>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Delete:</value>
-    <comment>delete label</comment>
+    <comment>delete label NODUP</comment>
   </data>
   <data name="ribInsertCalendarButton_Label" xml:space="preserve">
     <value>Calendar</value>
