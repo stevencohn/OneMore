@@ -291,14 +291,6 @@
     <value>تصغير حجم خط الصفحة (Ctrl + Alt + علامة ناقص)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ribFootnoteButton_Screentip" xml:space="preserve">
-    <value>إضافة حاشية سفلية (Ctrl + Alt + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
-    <value>إزالة الحاشية السفلية (Ctrl + Shift + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>تكبير حجم خط الصفحة (Ctrl + Alt + Plus)</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -318,10 +310,6 @@
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
     <value>لصق نص منسق (Ctrl + Alt + V)</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
-  </data>
-  <data name="ribReplaceButton_Screentip" xml:space="preserve">
-    <value>بحث واستبدال (Ctrl + H)</value>
-    <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
     <value>تحويل النص إلى أحرف كبيرة (Ctrl + Shift + Alt + U)</value>
@@ -362,25 +350,9 @@
     <value>تطبيق الأنماط على الصفحة</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
-  <data name="ribBlueStatusButton_Label" xml:space="preserve">
-    <value>الحالة الزرقاء</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribCaptionButton_Label" xml:space="preserve">
-    <value>إضافة تعليق</value>
-    <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
-  </data>
-  <data name="ribCodeBlockButton_Label" xml:space="preserve">
-    <value>كتلة التعليمات البرمجية</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
   <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>تصغير الصفحات</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribCreateStyleButton_Label" xml:space="preserve">
-    <value>إنشاء نمط من التحديد</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>الأنماط المخصصة</value>
@@ -402,10 +374,6 @@
     <value>تحرير الأنماط</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
-  <data name="ribExpandButton_Label" xml:space="preserve">
-    <value>توسيع الانهيار</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>إضافات</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -413,26 +381,6 @@
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>المفضلة</value>
     <comment>Ribbon main favorites button</comment>
-  </data>
-  <data name="ribFlagTitleButton_Label" xml:space="preserve">
-    <value>أضف أيقونة إلى عنوان الصفحة</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteButton_Label" xml:space="preserve">
-    <value>أضف حاشية سفلية</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteRemoveButton_Label" xml:space="preserve">
-    <value>إزالة الحاشية السفلية</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribGrayStatusButton_Label" xml:space="preserve">
-    <value>الحالة الرمادية</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribGreenStatusButton_Label" xml:space="preserve">
-    <value>الحالة الخضراء</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
     <value>تسليط الضوء على الصيغة</value>
@@ -449,10 +397,6 @@
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
     <value>زيادة حجم الخط</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribInfoBlockButton_Label" xml:space="preserve">
-    <value>كتلة المعلومات</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
     <value>خط أفقي مزدوج</value>
@@ -490,14 +434,6 @@
     <value>إعادة حساب كل الصيغ في الجدول الحالي (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribRedStatusButton_Label" xml:space="preserve">
-    <value>الحالة الحمراء</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribReplaceButton_Label" xml:space="preserve">
-    <value>بحث واستبدال</value>
-    <comment>Ribbon OneMore menu item, search and replace</comment>
-  </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
     <value>تغيير حجم وتعديل</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -510,21 +446,9 @@
     <value>فرز</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ribTocButton_Label" xml:space="preserve">
-    <value>جدول المحتويات</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
     <value>إلى الحالة العليا</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribWarnBlockButton_Label" xml:space="preserve">
-    <value>كتلة تحذير</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribYellowStatusButton_Label" xml:space="preserve">
-    <value>الحالة الصفراء</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
     <value>امسح ملف السجل</value>
@@ -1529,10 +1453,6 @@
   <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
-    <value>أضف حاشية سفلية</value>
-    <comment>option</comment>
-  </data>
   <data name="ContextMenuSheet_ribCleanMenu" xml:space="preserve">
     <value>قائمة نظيفة</value>
     <comment>option</comment>
@@ -1636,10 +1556,6 @@
   <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
     <value>ثيمات</value>
     <comment>group</comment>
-  </data>
-  <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
-    <value>أدخل كتلة التعليمات البرمجية (F6)</value>
-    <comment>menu</comment>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>حدد خلية جدول واحدة أو أكثر</value>
@@ -2106,10 +2022,6 @@ ISO-code then comma then language name</comment>
     <value>إنشاء خريطة الصفحة</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
-    <value>البحث والاستبدال</value>
-    <comment>option</comment>
-  </data>
   <data name="ctxReplaceButton_Label" xml:space="preserve">
     <value>البحث والاستبدال</value>
     <comment>Context menu</comment>
@@ -2133,14 +2045,6 @@ ISO-code then comma then language name</comment>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>قم بتضمين إشارة إلى صفحة اختصارات لوحة المفاتيح</value>
     <comment>settings</comment>
-  </data>
-  <data name="Favorites_addButton_Label" xml:space="preserve">
-    <value>أضف الصفحة الحالية</value>
-    <comment>favorites menu command</comment>
-  </data>
-  <data name="Favorites_manageButton_Label" xml:space="preserve">
-    <value>إدارة المفضلة</value>
-    <comment>favorites menu command</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>أدخل رمز الاستجابة السريعة</value>
@@ -2174,10 +2078,6 @@ ISO-code then comma then language name</comment>
     <value>اسم يحتوي على أحرف غير صالحة</value>
     <comment>error message</comment>
   </data>
-  <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
-    <value>اختصارات لوحة مفاتيح OneNote</value>
-    <comment>favorite</comment>
-  </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>مقتطفاتي المخصصة</value>
     <comment>ribbon </comment>
@@ -2202,10 +2102,6 @@ ISO-code then comma then language name</comment>
     <value>إدارة مقتطفاتي المخصصة</value>
     <comment>SnippetsSheet</comment>
   </data>
-  <data name="ribBoxButton_Screentip" xml:space="preserve">
-    <value>قم بإدراج جدول أحادي الخلية ، مع التفاف النص المحدد اختيارياً</value>
-    <comment>ribbon</comment>
-  </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
     <value>أدخل التاريخ الحالي (Ctrl + Shift + D)</value>
     <comment>ribbon</comment>
@@ -2218,38 +2114,6 @@ ISO-code then comma then language name</comment>
     <value>المحتوى الخاص بك هنا ...</value>
     <comment>text</comment>
   </data>
-  <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
-    <value>... الحالة الزرقاء</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
-    <value>... مربع الكتابة</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
-    <value>... التقويم</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
-    <value>... كود بلوك</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
-    <value>... توسيع الانهيار</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
-    <value>... الوضع الرمادي</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
-    <value>... الحالة الخضراء</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
-    <value>... كتلة المعلومات</value>
-    <comment>option</comment>
-  </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
     <value>... تاريخ قابل للفرز</value>
     <comment>option</comment>
@@ -2260,22 +2124,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>... خط أفقي</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
-    <value>... الحالة الحمراء</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
-    <value>... جدول المحتويات</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
-    <value>... كتلة تحذير</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
-    <value>... الحالة الصفراء</value>
     <comment>option</comment>
   </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
@@ -2394,14 +2242,6 @@ ISO-code then comma then language name</comment>
     <value>أدخل التقويم</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
-    <value>تحديث الحواشي السفلية</value>
-    <comment>ribbon button</comment>
-  </data>
-  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
-    <value>قم بتحديث الأرقام المرجعية للحاشية السفلية بالتتابع</value>
-    <comment>ribbon button</comment>
-  </data>
   <data name="ribSplitTableButton_Label" xml:space="preserve">
     <value>انقسام الجدول</value>
     <comment>ribbon button</comment>
@@ -2484,18 +2324,6 @@ ISO-code then comma then language name</comment>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
     <value>محاذاة لليمين أعلى ارتباط الصفحة</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
-    <value>... تمكين التدقيق الإملائي</value>
-    <comment>option</comment>
-  </data>
-  <data name="ribSpellCheckButton_Label" xml:space="preserve">
-    <value>تمكين التدقيق الإملائي</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
-  </data>
-  <data name="ribSpellCheckButton_Screentip" xml:space="preserve">
-    <value>تمكين التدقيق الإملائي للصفحة بأكملها</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>التباعد:</value>
@@ -2773,17 +2601,9 @@ ISO-code then comma then language name</comment>
     <value>حدد سطرين أو أكثر للانضمام</value>
     <comment>info message</comment>
   </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>تعطيل التدقيق الإملائي</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
-  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>تعطيل التدقيق الإملائي للصفحة بأكملها (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
-  </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>تغيير سمة الصفحة</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>الوظيفة الإضافية OneMore</value>
@@ -2810,10 +2630,6 @@ ISO-code then comma then language name</comment>
     <value>جميع الملفات (* .docx؛ *. pptx؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. doc؛ *. pptx؛ * ppt؛ *. md؛ *. one؛ *. xml </value>
     <comment>openfiledialog filter</comment>
   </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>... تعطيل التدقيق الإملائي</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
     <value>يتطلب تغيير واحد أو أكثر إعادة تشغيل OneNote. </value>
     <comment>restart message</comment>
@@ -2833,10 +2649,6 @@ ISO-code then comma then language name</comment>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>حذف المقتطف "{0}"</value>
     <comment>question</comment>
-  </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>مربع الكتابة</value>
-    <comment>ribbon</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
     <value>طي مخطط تفصيلي</value>
@@ -2905,10 +2717,6 @@ ISO-code then comma then language name</comment>
   <data name="RefreshPageLinksCommand_updated" xml:space="preserve">
     <value>تم تحديث {0} من الصفحات</value>
     <comment>message</comment>
-  </data>
-  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
-    <value>مسار التنقل</value>
-    <comment>ribbon snippets menu</comment>
   </data>
   <data name="ribSelectImagesButton_Label" xml:space="preserve">
     <value>حدد كل الصور</value>
@@ -3409,10 +3217,6 @@ ISO-code then comma then language name</comment>
     <value>الصفحة لا تحتوي على نص فقرة عادي</value>
     <comment>message</comment>
   </data>
-  <data name="ribFitGridButton_Label" xml:space="preserve">
-    <value>احتواء الشبكة على النص</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
     <value>لم يتم تثبيت منتج Office المطلوب</value>
     <comment>label</comment>
@@ -3554,39 +3358,6 @@ ISO-code then comma then language name</comment>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
     <value>تسلسل المفتاح</value>
     <comment>gridview column</comment>
-  </data>
-  <data name="ClearLogCommand" xml:space="preserve">
-    <value>مسح ملف السجل</value>
-  </data>
-  <data name="DiagnosticsCommand" xml:space="preserve">
-    <value>تفريغ التشخيصات في السجل</value>
-  </data>
-  <data name="ApplyStyle1Command" xml:space="preserve">
-    <value>تطبيق النمط 1</value>
-  </data>
-  <data name="ApplyStyle2Command" xml:space="preserve">
-    <value>تطبيق النمط 2</value>
-  </data>
-  <data name="ApplyStyle3Command" xml:space="preserve">
-    <value>تطبيق النمط 3</value>
-  </data>
-  <data name="ApplyStyle4Command" xml:space="preserve">
-    <value>تطبيق النمط 4</value>
-  </data>
-  <data name="ApplyStyle5Command" xml:space="preserve">
-    <value>تطبيق النمط 5</value>
-  </data>
-  <data name="ApplyStyle6Command" xml:space="preserve">
-    <value>تطبيق النمط 6</value>
-  </data>
-  <data name="ApplyStyle7Command" xml:space="preserve">
-    <value>تطبيق النمط 7</value>
-  </data>
-  <data name="ApplyStyle8Command" xml:space="preserve">
-    <value>تطبيق النمط 8</value>
-  </data>
-  <data name="ApplyStyle9Command" xml:space="preserve">
-    <value>تطبيق النمط 9</value>
   </data>
   <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
     <value>صافي</value>
@@ -3957,9 +3728,6 @@ ISO-code then comma then language name</comment>
   <data name="word_Go" xml:space="preserve">
     <value>يذهب</value>
   </data>
-  <data name="ChooseFavoriteCommand" xml:space="preserve">
-    <value>اختر المفضلة</value>
-  </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
     <value>هل ترغب في إنشاء صفحات {0}؟</value>
     <comment>message box</comment>
@@ -3984,5 +3752,252 @@ ISO-code then comma then language name</comment>
 لا تقم بتقليص الصور الكبيرة
 لا تقم بتكبير الصور الأصغر</value>
     <comment>combobox</comment>
+  </data>
+  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
+    <value>اختصارات لوحة مفاتيح OneNote</value>
+    <comment>favorite</comment>
+  </data>
+  <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
+    <value>البحث والاستبدال</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ribAddCaptionButton_Label" xml:space="preserve">
+    <value>إضافة تعليق</value>
+    <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">
+    <value>... الحالة الصفراء</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
+    <value>كتلة المعلومات</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
+    <value>تمكين التدقيق الإملائي</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
+    <value>أدخل كتلة التعليمات البرمجية (F6)</value>
+    <comment>menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDisableSpellCheckButton" xml:space="preserve">
+    <value>... تعطيل التدقيق الإملائي</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertGreenStatusButton_Label" xml:space="preserve">
+    <value>الحالة الخضراء</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertBoxButton_Label" xml:space="preserve">
+    <value>مربع الكتابة</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
+    <value>أضف الصفحة الحالية</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="ribDiagnosticsButton_Label" xml:space="preserve">
+    <value>تفريغ التشخيصات في السجل</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle8Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 8</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle9Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 9</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
+    <value>مسار التنقل</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
+    <value>أضف حاشية سفلية</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribEnableSpellCheckButton" xml:space="preserve">
+    <value>... تمكين التدقيق الإملائي</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribApplyStyle6Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 6</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
+    <value>الحالة الرمادية</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribApplyStyle1Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 1</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribRefreshFootnotesButton_Label" xml:space="preserve">
+    <value>تحديث الحواشي السفلية</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
+    <value>الحالة الزرقاء</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+    <value>... كتلة تحذير</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribApplyStyle7Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 7</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribRefreshFootnotesButton_Screentip" xml:space="preserve">
+    <value>قم بتحديث الأرقام المرجعية للحاشية السفلية بالتتابع</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribApplyStyle2Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 2</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 3</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle5Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 5</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
+    <value>بحث واستبدال (Ctrl + H)</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
+    <value>... تقويم</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSearchAndReplaceButton" xml:space="preserve">
+    <value>البحث والاستبدال</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribNewStyleButton_Label" xml:space="preserve">
+    <value>إنشاء نمط من التحديد</value>
+    <comment>Ribbon Custom Styles menu item, create new style</comment>
+  </data>
+  <data name="ribEnableSpellCheckButton_Screentip" xml:space="preserve">
+    <value>تمكين التدقيق الإملائي للصفحة بأكملها</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
+    <value>قم بإدراج جدول أحادي الخلية ، مع التفاف النص المحدد بشكل اختياري</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertGrayStatusButton" xml:space="preserve">
+    <value>... الوضع الرمادي</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
+    <value>... الحالة الحمراء</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribClearLogButton_Label" xml:space="preserve">
+    <value>مسح ملف السجل</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
+    <value>إضافة حاشية سفلية (Ctrl + Alt + F)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertGreenStatusButton" xml:space="preserve">
+    <value>... الحالة الخضراء</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
+    <value>الحالة الصفراء</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribChangePageColorButton_Label" xml:space="preserve">
+    <value>تغيير سمة الصفحة</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertExpandButton" xml:space="preserve">
+    <value>... توسيع الانهيار</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
+    <value>إزالة الحاشية السفلية (Ctrl + Shift + F)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribApplyStyle4Button_Label" xml:space="preserve">
+    <value>تطبيق النمط 4</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertExpandButton_Label" xml:space="preserve">
+    <value>توسيع الانهيار</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertRedStatusButton_Label" xml:space="preserve">
+    <value>الحالة الحمراء</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertBlueStatusButton" xml:space="preserve">
+    <value>... الحالة الزرقاء</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
+    <value>كتلة التعليمات البرمجية</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribAddFootnoteButton_Label" xml:space="preserve">
+    <value>أضف حاشية سفلية</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
+    <value>... جدول المحتويات</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
+    <value>... كود بلوك</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
+    <value>كتلة تحذير</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribDisableSpellCheckButton_Label" xml:space="preserve">
+    <value>تعطيل التدقيق الإملائي</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
+    <value>أضف أيقونة إلى عنوان الصفحة</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribManageFavoritesButton_Label" xml:space="preserve">
+    <value>إدارة المفضلة</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="ribFitGridToTextButton_Label" xml:space="preserve">
+    <value>احتواء الشبكة على النص</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribInsertTocButton_Label" xml:space="preserve">
+    <value>جدول المحتويات</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
+    <value>... مربع الكتابة</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+    <value>... كتلة المعلومات</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
+    <value>إزالة الحاشية السفلية</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
+    <value>اختر المفضلة</value>
+  </data>
+  <data name="ribCreatePagesButton_Label" xml:space="preserve">
+    <value>قم بإنشاء صفحات من القائمة</value>
+    <comment>ribbon item</comment>
   </data>
 </root>

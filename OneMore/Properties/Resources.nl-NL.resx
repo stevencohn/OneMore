@@ -292,14 +292,6 @@
     <value>Lettergrootte van pagina verkleinen (Ctrl + Alt + Min)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ribFootnoteButton_Screentip" xml:space="preserve">
-    <value>Voetnoot toevoegen (Ctrl + Alt + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
-    <value>Voetnoot verwijderen (Ctrl + Shift + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>Vergroot de lettergrootte van de pagina (Ctrl + Alt + Plus)</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -319,10 +311,6 @@
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
     <value>Tekst met opmaak plakken (Ctrl + Alt + V)</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
-  </data>
-  <data name="ribReplaceButton_Screentip" xml:space="preserve">
-    <value>Zoeken en vervangen (Ctrl + H)</value>
-    <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
     <value>Tekst converteren naar hoofdletters (Ctrl + Shift + Alt + U)</value>
@@ -363,25 +351,9 @@
     <value>Pas stijlen toe op pagina</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
-  <data name="ribBlueStatusButton_Label" xml:space="preserve">
-    <value>Blauwe status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribCaptionButton_Label" xml:space="preserve">
-    <value>Bijschrift toevoegen</value>
-    <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
-  </data>
-  <data name="ribCodeBlockButton_Label" xml:space="preserve">
-    <value>Code blok</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
   <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>Pagina's samenvouwen</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribCreateStyleButton_Label" xml:space="preserve">
-    <value>Maak een stijl op basis van selectie</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Aangepaste stijlen</value>
@@ -403,10 +375,6 @@
     <value>Stijlen bewerken</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
-  <data name="ribExpandButton_Label" xml:space="preserve">
-    <value>Uitvouwen/samenvouwen</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>Extra's</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -414,26 +382,6 @@
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favorieten</value>
     <comment>Ribbon main favorites button</comment>
-  </data>
-  <data name="ribFlagTitleButton_Label" xml:space="preserve">
-    <value>Pictogram toevoegen aan paginatitel</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteButton_Label" xml:space="preserve">
-    <value>Voetnoot toevoegen</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteRemoveButton_Label" xml:space="preserve">
-    <value>Voetnoot verwijderen</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribGrayStatusButton_Label" xml:space="preserve">
-    <value>Grijze status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribGreenStatusButton_Label" xml:space="preserve">
-    <value>Groene status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
     <value>Markeer formule</value>
@@ -450,10 +398,6 @@
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
     <value>Vergroot de lettergrootte</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribInfoBlockButton_Label" xml:space="preserve">
-    <value>Info blok</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
     <value>Dubbele horizontale lijn</value>
@@ -491,14 +435,6 @@
     <value>Bereken alle formules in de huidige tabel opnieuw (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribRedStatusButton_Label" xml:space="preserve">
-    <value>Rode status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribReplaceButton_Label" xml:space="preserve">
-    <value>Zoek en vervang</value>
-    <comment>Ribbon OneMore menu item, search and replace</comment>
-  </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
     <value>Formaat wijzigen en aanpassen</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -511,21 +447,9 @@
     <value>Soort</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ribTocButton_Label" xml:space="preserve">
-    <value>Inhoudsopgave</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
     <value>In HOOFDLETTERS</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribWarnBlockButton_Label" xml:space="preserve">
-    <value>Waarschuwingsblok</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribYellowStatusButton_Label" xml:space="preserve">
-    <value>Gele status</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore-invoegtoepassing</value>
@@ -1534,10 +1458,6 @@ Symbolen: PI, E</value>
   <data name="NotebookMask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\notebookmask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
-    <value>Voetnoot toevoegen</value>
-    <comment>option</comment>
-  </data>
   <data name="ContextMenuSheet_ribCleanMenu" xml:space="preserve">
     <value>Schoon menu</value>
     <comment>option</comment>
@@ -1641,10 +1561,6 @@ Symbolen: PI, E</value>
   <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
     <value>Thema's</value>
     <comment>group</comment>
-  </data>
-  <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
-    <value>Voeg een codeblok in (F6)</value>
-    <comment>menu</comment>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>Selecteer een of meer tabelcellen</value>
@@ -2111,10 +2027,6 @@ ISO-code then comma then language name</comment>
     <value>Maak een paginakaart</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
-    <value>Zoek en vervang</value>
-    <comment>option</comment>
-  </data>
   <data name="ctxReplaceButton_Label" xml:space="preserve">
     <value>Zoek en vervang</value>
     <comment>Context menu</comment>
@@ -2138,14 +2050,6 @@ ISO-code then comma then language name</comment>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>Neem een ​​verwijzing op naar de pagina met sneltoetsen</value>
     <comment>settings</comment>
-  </data>
-  <data name="Favorites_addButton_Label" xml:space="preserve">
-    <value>Voeg huidige pagina toe</value>
-    <comment>favorites menu command</comment>
-  </data>
-  <data name="Favorites_manageButton_Label" xml:space="preserve">
-    <value>Beheer favorieten</value>
-    <comment>favorites menu command</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>QR-code invoegen</value>
@@ -2179,10 +2083,6 @@ ISO-code then comma then language name</comment>
     <value>Naam bevat ongeldige tekens</value>
     <comment>error message</comment>
   </data>
-  <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
-    <value>OneNote-sneltoetsen</value>
-    <comment>favorite</comment>
-  </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>Mijn aangepaste fragmenten</value>
     <comment>ribbon </comment>
@@ -2207,10 +2107,6 @@ ISO-code then comma then language name</comment>
     <value>Beheer mijn aangepaste fragmenten</value>
     <comment>SnippetsSheet</comment>
   </data>
-  <data name="ribBoxButton_Screentip" xml:space="preserve">
-    <value>Voeg een tabel met één cel in, eventueel met omloop van geselecteerde tekst</value>
-    <comment>ribbon</comment>
-  </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
     <value>Voeg de huidige datum in (Ctrl + Shift + D)</value>
     <comment>ribbon</comment>
@@ -2223,38 +2119,6 @@ ISO-code then comma then language name</comment>
     <value>Uw inhoud hier ...</value>
     <comment>text</comment>
   </data>
-  <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
-    <value>... Blauwe status</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
-    <value>... Tekstvak</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
-    <value>... Kalender</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
-    <value>... codeblok</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
-    <value>... Expand / Collapse</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
-    <value>... Grijze status</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
-    <value>... Groene status</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
-    <value>... Infoblok</value>
-    <comment>option</comment>
-  </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
     <value>... Sorteerbare datum</value>
     <comment>option</comment>
@@ -2265,22 +2129,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>... Horizontale lijn</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
-    <value>... Rode status</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
-    <value>... Inhoudsopgave</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
-    <value>... Waarschuwingsblok</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
-    <value>... Gele status</value>
     <comment>option</comment>
   </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
@@ -2399,14 +2247,6 @@ ISO-code then comma then language name</comment>
     <value>Kalender invoegen</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
-    <value>Ververs voetnoten</value>
-    <comment>ribbon button</comment>
-  </data>
-  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
-    <value>Ververs de referentienummers van voetnoten opeenvolgend</value>
-    <comment>ribbon button</comment>
-  </data>
   <data name="ribSplitTableButton_Label" xml:space="preserve">
     <value>Tafel splitsen</value>
     <comment>ribbon button</comment>
@@ -2489,18 +2329,6 @@ ISO-code then comma then language name</comment>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
     <value>Link bovenaan de pagina rechts uitlijnen</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
-    <value>... Spellingcontrole inschakelen</value>
-    <comment>option</comment>
-  </data>
-  <data name="ribSpellCheckButton_Label" xml:space="preserve">
-    <value>Spellingcontrole inschakelen</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
-  </data>
-  <data name="ribSpellCheckButton_Screentip" xml:space="preserve">
-    <value>Schakel de spellingcontrole in voor de hele pagina</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>Spatiëring:</value>
@@ -2766,10 +2594,6 @@ ISO-code then comma then language name</comment>
     <value>Laad stijlen</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>Paginathema wijzigen</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
-  </data>
   <data name="StyleDialog_ThemeText" xml:space="preserve">
     <value>{0} Stijlen</value>
     <comment>dialog title</comment>
@@ -2781,10 +2605,6 @@ ISO-code then comma then language name</comment>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Selecteer twee of meer lijnen om mee te doen</value>
     <comment>info message</comment>
-  </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>Spellingcontrole uitschakelen</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>Spellingcontrole voor hele pagina uitschakelen (F4)</value>
@@ -2811,10 +2631,6 @@ OneNote-bestand (*.one)</value>
     <value>Alle bestanden (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.md;*.one;*.xml </value>
     <comment>openfiledialog filter</comment>
   </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>... Spellingcontrole uitschakelen</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
     <value>Voor een of meer wijzigingen moet OneNote opnieuw worden gestart. </value>
     <comment>restart message</comment>
@@ -2834,10 +2650,6 @@ OneNote-bestand (*.one)</value>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Fragment "{0}" verwijderen</value>
     <comment>question</comment>
-  </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>Tekstveld</value>
-    <comment>ribbon</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
     <value>Samenvouwen overzicht</value>
@@ -2905,10 +2717,6 @@ OneNote-bestand (*.one)</value>
   <data name="RefreshPageLinksCommand_updated" xml:space="preserve">
     <value>Bijgewerkt {0} pagina's</value>
     <comment>message</comment>
-  </data>
-  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
-    <value>broodkruimel</value>
-    <comment>ribbon snippets menu</comment>
   </data>
   <data name="ribSelectImagesButton_Label" xml:space="preserve">
     <value>Selecteer alle afbeeldingen</value>
@@ -3409,10 +3217,6 @@ twee uur
     <value>Pagina bevat geen gewone alineatekst</value>
     <comment>message</comment>
   </data>
-  <data name="ribFitGridButton_Label" xml:space="preserve">
-    <value>Raster aanpassen aan tekst</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
     <value>Het vereiste Office-product is niet geïnstalleerd</value>
     <comment>label</comment>
@@ -3554,39 +3358,6 @@ Verschoven</value>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
     <value>Toetsvolgorde</value>
     <comment>gridview column</comment>
-  </data>
-  <data name="ClearLogCommand" xml:space="preserve">
-    <value>Logbestand wissen</value>
-  </data>
-  <data name="DiagnosticsCommand" xml:space="preserve">
-    <value>Diagnostiek dumpen om te loggen</value>
-  </data>
-  <data name="ApplyStyle1Command" xml:space="preserve">
-    <value>Pas stijl 1 toe</value>
-  </data>
-  <data name="ApplyStyle2Command" xml:space="preserve">
-    <value>Pas stijl 2 toe</value>
-  </data>
-  <data name="ApplyStyle3Command" xml:space="preserve">
-    <value>Pas stijl 3 toe</value>
-  </data>
-  <data name="ApplyStyle4Command" xml:space="preserve">
-    <value>Pas stijl 4 toe</value>
-  </data>
-  <data name="ApplyStyle5Command" xml:space="preserve">
-    <value>Pas stijl 5 toe</value>
-  </data>
-  <data name="ApplyStyle6Command" xml:space="preserve">
-    <value>Pas stijl 6 toe</value>
-  </data>
-  <data name="ApplyStyle7Command" xml:space="preserve">
-    <value>Pas stijl 7 toe</value>
-  </data>
-  <data name="ApplyStyle8Command" xml:space="preserve">
-    <value>Pas stijl 8 toe</value>
-  </data>
-  <data name="ApplyStyle9Command" xml:space="preserve">
-    <value>Pas stijl 9 toe</value>
   </data>
   <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
     <value>Duidelijk</value>
@@ -3957,9 +3728,6 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="word_Go" xml:space="preserve">
     <value>Gaan</value>
   </data>
-  <data name="ChooseFavoriteCommand" xml:space="preserve">
-    <value>Kies Favoriet</value>
-  </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
     <value>Wilt u {0} pagina's maken?</value>
     <comment>message box</comment>
@@ -3984,5 +3752,252 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
 Verklein geen grotere afbeeldingen
 Kleinere afbeeldingen niet vergroten</value>
     <comment>combobox</comment>
+  </data>
+  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
+    <value>OneNote-sneltoetsen</value>
+    <comment>favorite</comment>
+  </data>
+  <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
+    <value>Zoeken en vervangen</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ribAddCaptionButton_Label" xml:space="preserve">
+    <value>Bijschrift toevoegen</value>
+    <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">
+    <value>... Gele status</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
+    <value>Infoblok</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
+    <value>Spellingcontrole inschakelen</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
+    <value>Een codeblok invoegen (F6)</value>
+    <comment>menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDisableSpellCheckButton" xml:space="preserve">
+    <value>... Spellingcontrole uitschakelen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertGreenStatusButton_Label" xml:space="preserve">
+    <value>Groene status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertBoxButton_Label" xml:space="preserve">
+    <value>Tekstveld</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
+    <value>Huidige pagina toevoegen</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="ribDiagnosticsButton_Label" xml:space="preserve">
+    <value>Diagnostiek dumpen om te loggen</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle8Button_Label" xml:space="preserve">
+    <value>Pas stijl 8 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle9Button_Label" xml:space="preserve">
+    <value>Pas stijl 9 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
+    <value>broodkruimel</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
+    <value>Voetnoot toevoegen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribEnableSpellCheckButton" xml:space="preserve">
+    <value>... Spellingcontrole inschakelen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribApplyStyle6Button_Label" xml:space="preserve">
+    <value>Pas stijl 6 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
+    <value>Grijze status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribApplyStyle1Button_Label" xml:space="preserve">
+    <value>Pas stijl 1 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribRefreshFootnotesButton_Label" xml:space="preserve">
+    <value>Voetnoten vernieuwen</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
+    <value>Blauwe status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+    <value>... Waarschuwingsblok</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribApplyStyle7Button_Label" xml:space="preserve">
+    <value>Pas stijl 7 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribRefreshFootnotesButton_Screentip" xml:space="preserve">
+    <value>Voetnootreferentienummers opeenvolgend vernieuwen</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribApplyStyle2Button_Label" xml:space="preserve">
+    <value>Pas stijl 2 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
+    <value>Pas stijl 3 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle5Button_Label" xml:space="preserve">
+    <value>Pas stijl 5 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
+    <value>Zoeken en vervangen (Ctrl + H)</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
+    <value>... Kalender</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSearchAndReplaceButton" xml:space="preserve">
+    <value>Zoeken en vervangen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribNewStyleButton_Label" xml:space="preserve">
+    <value>Creëer stijl op basis van selectie</value>
+    <comment>Ribbon Custom Styles menu item, create new style</comment>
+  </data>
+  <data name="ribEnableSpellCheckButton_Screentip" xml:space="preserve">
+    <value>Spellingcontrole voor hele pagina inschakelen</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
+    <value>Een eencellige tabel invoegen, eventueel geselecteerde tekst laten omlopen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertGrayStatusButton" xml:space="preserve">
+    <value>... Grijze status</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
+    <value>... Rode status</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribClearLogButton_Label" xml:space="preserve">
+    <value>Logbestand wissen</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
+    <value>Voetnoot toevoegen (Ctrl + Alt + F)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertGreenStatusButton" xml:space="preserve">
+    <value>... Groene status</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
+    <value>Gele status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribChangePageColorButton_Label" xml:space="preserve">
+    <value>Paginathema wijzigen</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertExpandButton" xml:space="preserve">
+    <value>... Uitvouwen/samenvouwen</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
+    <value>Voetnoot verwijderen (Ctrl + Shift + F)</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribApplyStyle4Button_Label" xml:space="preserve">
+    <value>Pas stijl 4 toe</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertExpandButton_Label" xml:space="preserve">
+    <value>Uitvouwen/samenvouwen</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertRedStatusButton_Label" xml:space="preserve">
+    <value>Rode status</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertBlueStatusButton" xml:space="preserve">
+    <value>... Blauwe status</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
+    <value>Codeblok</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribAddFootnoteButton_Label" xml:space="preserve">
+    <value>Voetnoot toevoegen</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
+    <value>... Inhoudsopgave</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
+    <value>... Codeblok</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
+    <value>Waarschuwingsblok</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribDisableSpellCheckButton_Label" xml:space="preserve">
+    <value>Spellingcontrole uitschakelen</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
+    <value>Pictogram toevoegen aan paginatitel</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribManageFavoritesButton_Label" xml:space="preserve">
+    <value>Favorieten beheren</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="ribFitGridToTextButton_Label" xml:space="preserve">
+    <value>Raster aanpassen aan tekst</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribInsertTocButton_Label" xml:space="preserve">
+    <value>Inhoudsopgave</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
+    <value>... Tekstveld</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+    <value>... Infoblok</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
+    <value>Voetnoot verwijderen</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
+    <value>Kies Favoriet</value>
+  </data>
+  <data name="ribCreatePagesButton_Label" xml:space="preserve">
+    <value>Pagina's maken van lijst</value>
+    <comment>ribbon item</comment>
   </data>
 </root>

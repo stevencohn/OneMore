@@ -291,14 +291,6 @@
     <value>缩小页面字体大小 (Ctrl + Alt + Minus)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ribFootnoteButton_Screentip" xml:space="preserve">
-    <value>添加脚注 (Ctrl + Alt + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
-    <value>删除脚注 (Ctrl + Shift + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>增加字体大小 (Ctrl + Alt + Plus)</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -318,10 +310,6 @@
   <data name="ribPasteRtfButton_Screentip" xml:space="preserve">
     <value>粘贴富文本 (Ctrl + Alt + V)</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
-  </data>
-  <data name="ribReplaceButton_Screentip" xml:space="preserve">
-    <value>搜索和替换 (Ctrl + H)</value>
-    <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
     <value>将文本转换为大写 (Ctrl + Shift + Alt + U)</value>
@@ -362,25 +350,9 @@
     <value>将样式应用于页面</value>
     <comment>Ribbon Custom Styles menu item, apply all custom style to page</comment>
   </data>
-  <data name="ribBlueStatusButton_Label" xml:space="preserve">
-    <value>蓝色状态</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribCaptionButton_Label" xml:space="preserve">
-    <value>添加图片注释</value>
-    <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
-  </data>
-  <data name="ribCodeBlockButton_Label" xml:space="preserve">
-    <value>代码块</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
   <data name="ribCollapsePagesButton_Label" xml:space="preserve">
     <value>收合页面</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribCreateStyleButton_Label" xml:space="preserve">
-    <value>从选择的文本中提取样式</value>
-    <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>样式</value>
@@ -402,10 +374,6 @@
     <value>编辑样式</value>
     <comment>Ribbon Custom Styles menu item, edit custom styles</comment>
   </data>
-  <data name="ribExpandButton_Label" xml:space="preserve">
-    <value>展开/折叠</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>额外</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -413,26 +381,6 @@
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>收藏</value>
     <comment>Ribbon main favorites button</comment>
-  </data>
-  <data name="ribFlagTitleButton_Label" xml:space="preserve">
-    <value>在页面标题中添加图标</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteButton_Label" xml:space="preserve">
-    <value>添加脚注</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribFootnoteRemoveButton_Label" xml:space="preserve">
-    <value>删除脚注</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribGrayStatusButton_Label" xml:space="preserve">
-    <value>灰色状态</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribGreenStatusButton_Label" xml:space="preserve">
-    <value>绿色状态</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Label" xml:space="preserve">
     <value>高亮公式</value>
@@ -449,10 +397,6 @@
   <data name="ribIncreaseFontSizeButton_Label" xml:space="preserve">
     <value>增加字体大小</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribInfoBlockButton_Label" xml:space="preserve">
-    <value>信息块</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Label" xml:space="preserve">
     <value>双水平线</value>
@@ -490,14 +434,6 @@
     <value>重新计算当前表中的所有公式（Shift + F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
-  <data name="ribRedStatusButton_Label" xml:space="preserve">
-    <value>红色状态</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribReplaceButton_Label" xml:space="preserve">
-    <value>搜索和替换</value>
-    <comment>Ribbon OneMore menu item, search and replace</comment>
-  </data>
   <data name="ribResizeImagesButton_Label" xml:space="preserve">
     <value>调整大小和调整</value>
     <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
@@ -510,21 +446,9 @@
     <value>排序</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
-  <data name="ribTocButton_Label" xml:space="preserve">
-    <value>目录</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
     <value>大写</value>
     <comment>Ribbon OneMore menu item</comment>
-  </data>
-  <data name="ribWarnBlockButton_Label" xml:space="preserve">
-    <value>警告块</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
-  </data>
-  <data name="ribYellowStatusButton_Label" xml:space="preserve">
-    <value>黄色状态</value>
-    <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore 外接程序</value>
@@ -1519,10 +1443,6 @@ OneNote 将自动关闭</value>
     <value>在页面上搜索关键字，然后将其复制/移动到另一部分（Alt + F）</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
-    <value>添加脚注</value>
-    <comment>option</comment>
-  </data>
   <data name="ContextMenuSheet_ribCleanMenu" xml:space="preserve">
     <value>清洁菜单</value>
     <comment>option</comment>
@@ -1626,10 +1546,6 @@ OneNote 将自动关闭</value>
   <data name="HighlightsSheet_themeGroup.Text" xml:space="preserve">
     <value>主题</value>
     <comment>group</comment>
-  </data>
-  <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
-    <value>插入代码块（F6）</value>
-    <comment>menu</comment>
   </data>
   <data name="InsertCellsCommand_NoSelection" xml:space="preserve">
     <value>选择一个或多个表格单元格</value>
@@ -2100,10 +2016,6 @@ ISO-code then comma then language name</comment>
     <value>为页面创建链接图谱</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
-    <value>搜索和替换</value>
-    <comment>option</comment>
-  </data>
   <data name="ctxReplaceButton_Label" xml:space="preserve">
     <value>搜索和替换</value>
     <comment>Context menu</comment>
@@ -2127,14 +2039,6 @@ ISO-code then comma then language name</comment>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>包括对键盘快捷键页面的引用</value>
     <comment>settings</comment>
-  </data>
-  <data name="Favorites_addButton_Label" xml:space="preserve">
-    <value>添加当前页面</value>
-    <comment>favorites menu command</comment>
-  </data>
-  <data name="Favorites_manageButton_Label" xml:space="preserve">
-    <value>管理收藏夹</value>
-    <comment>favorites menu command</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>插入二维码</value>
@@ -2168,10 +2072,6 @@ ISO-code then comma then language name</comment>
     <value>名称包含无效字符</value>
     <comment>error message</comment>
   </data>
-  <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
-    <value>OneNote键盘快捷键</value>
-    <comment>favorite</comment>
-  </data>
   <data name="ribCustomSnippetsMenu_Label" xml:space="preserve">
     <value>我的自定义片段</value>
     <comment>ribbon </comment>
@@ -2196,10 +2096,6 @@ ISO-code then comma then language name</comment>
     <value>管理我的自定义片段</value>
     <comment>SnippetsSheet</comment>
   </data>
-  <data name="ribBoxButton_Screentip" xml:space="preserve">
-    <value>插入一个单元格表格，可以选择包装所选文本</value>
-    <comment>ribbon</comment>
-  </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
     <value>插入当前日期（Ctrl + Shift + D）</value>
     <comment>ribbon</comment>
@@ -2212,38 +2108,6 @@ ISO-code then comma then language name</comment>
     <value>您的内容在这里...</value>
     <comment>text</comment>
   </data>
-  <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
-    <value>...蓝色状态</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
-    <value>... 文本框</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
-    <value>...日历</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
-    <value>...代码块</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
-    <value>...展开/折叠</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
-    <value>...灰色状态</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
-    <value>...绿色状态</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
-    <value>...信息块</value>
-    <comment>option</comment>
-  </data>
   <data name="ContextMenuSheet_ribInsertDateButton" xml:space="preserve">
     <value>...可排序日期</value>
     <comment>option</comment>
@@ -2254,22 +2118,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ContextMenuSheet_ribInsertSingleLineButton" xml:space="preserve">
     <value>...水平线</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
-    <value>...红色状态</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
-    <value>... 目录</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
-    <value>...警告块</value>
-    <comment>option</comment>
-  </data>
-  <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
-    <value>...黄色状态</value>
     <comment>option</comment>
   </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
@@ -2388,14 +2236,6 @@ ISO-code then comma then language name</comment>
     <value>插入日历</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
-    <value>刷新脚注</value>
-    <comment>ribbon button</comment>
-  </data>
-  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
-    <value>顺序刷新脚注参考编号</value>
-    <comment>ribbon button</comment>
-  </data>
   <data name="ribSplitTableButton_Label" xml:space="preserve">
     <value>分割表</value>
     <comment>ribbon button</comment>
@@ -2478,18 +2318,6 @@ ISO-code then comma then language name</comment>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
     <value>将页面顶部链接右对齐</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
-    <value>...启用拼写检查</value>
-    <comment>option</comment>
-  </data>
-  <data name="ribSpellCheckButton_Label" xml:space="preserve">
-    <value>启用拼写检查</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
-  </data>
-  <data name="ribSpellCheckButton_Screentip" xml:space="preserve">
-    <value>对整个页面启用拼写检查</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
     <value>行距：</value>
@@ -2767,17 +2595,9 @@ ISO-code then comma then language name</comment>
     <value>选择两条或多条线加入</value>
     <comment>info message</comment>
   </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
-    <value>禁用拼写检查</value>
-    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
-  </data>
   <data name="ribNoSpellCheckButton_Screentip" xml:space="preserve">
     <value>禁用整个页面的拼写检查 (F4)</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
-  </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
-    <value>更改页面主题</value>
-    <comment>Ribbon Custom Styles menu item, set page background color</comment>
   </data>
   <data name="ChangePageColorDialog.Text" xml:space="preserve">
     <value>更改页面主题</value>
@@ -2800,10 +2620,6 @@ OneNote 文件 (*.one)</value>
     <value>所有文件 (*.docx;*.pptx;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.md;*.one;*.xml </value>
     <comment>openfiledialog filter</comment>
   </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
-    <value>... 禁用拼写检查</value>
-    <comment>context menu option</comment>
-  </data>
   <data name="SettingsDialog_Restart" xml:space="preserve">
     <value>一项或多项更改需要重新启动 OneNote。</value>
     <comment>restart message</comment>
@@ -2823,10 +2639,6 @@ OneNote 文件 (*.one)</value>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>删除片段“{0}”</value>
     <comment>question</comment>
-  </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
-    <value>文本框</value>
-    <comment>ribbon</comment>
   </data>
   <data name="ribCollapseContentButton_Label" xml:space="preserve">
     <value>折叠大纲</value>
@@ -2895,10 +2707,6 @@ OneNote 文件 (*.one)</value>
   <data name="RefreshPageLinksCommand_updated" xml:space="preserve">
     <value>更新了 {0} 页</value>
     <comment>message</comment>
-  </data>
-  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
-    <value>面包屑</value>
-    <comment>ribbon snippets menu</comment>
   </data>
   <data name="ribSelectImagesButton_Label" xml:space="preserve">
     <value>选择所有图像</value>
@@ -3399,10 +3207,6 @@ OneNote 文件 (*.one)</value>
     <value>页面不包含常规段落文本</value>
     <comment>message</comment>
   </data>
-  <data name="ribFitGridButton_Label" xml:space="preserve">
-    <value>使网格适合文本</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
     <value>未安装所需的 Office 产品</value>
     <comment>label</comment>
@@ -3544,39 +3348,6 @@ OneNote 文件 (*.one)</value>
   <data name="KeyboardSheet_keyColumn.HeaderText" xml:space="preserve">
     <value>键序列</value>
     <comment>gridview column</comment>
-  </data>
-  <data name="ClearLogCommand" xml:space="preserve">
-    <value>清除日志文件</value>
-  </data>
-  <data name="DiagnosticsCommand" xml:space="preserve">
-    <value>将诊断转储到日志</value>
-  </data>
-  <data name="ApplyStyle1Command" xml:space="preserve">
-    <value>应用样式 1</value>
-  </data>
-  <data name="ApplyStyle2Command" xml:space="preserve">
-    <value>应用样式 2</value>
-  </data>
-  <data name="ApplyStyle3Command" xml:space="preserve">
-    <value>应用样式 3</value>
-  </data>
-  <data name="ApplyStyle4Command" xml:space="preserve">
-    <value>应用样式 4</value>
-  </data>
-  <data name="ApplyStyle5Command" xml:space="preserve">
-    <value>应用样式 5</value>
-  </data>
-  <data name="ApplyStyle6Command" xml:space="preserve">
-    <value>应用样式 6</value>
-  </data>
-  <data name="ApplyStyle7Command" xml:space="preserve">
-    <value>应用样式 7</value>
-  </data>
-  <data name="ApplyStyle8Command" xml:space="preserve">
-    <value>应用样式 8</value>
-  </data>
-  <data name="ApplyStyle9Command" xml:space="preserve">
-    <value>应用样式 9</value>
   </data>
   <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
     <value>清除</value>
@@ -3947,9 +3718,6 @@ OneNote 文件 (*.one)</value>
   <data name="word_Go" xml:space="preserve">
     <value>去</value>
   </data>
-  <data name="ChooseFavoriteCommand" xml:space="preserve">
-    <value>选择收藏夹</value>
-  </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
     <value>您想创建 {0} 个页面吗？</value>
     <comment>message box</comment>
@@ -3974,5 +3742,252 @@ OneNote 文件 (*.one)</value>
 不要缩小较大的图像
 不要放大较小的图像</value>
     <comment>combobox</comment>
+  </data>
+  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
+    <value>OneNote 键盘快捷键</value>
+    <comment>favorite</comment>
+  </data>
+  <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
+    <value>搜索和替换</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ribAddCaptionButton_Label" xml:space="preserve">
+    <value>添加字幕</value>
+    <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">
+    <value>... 黄色状态</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
+    <value>信息块</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
+    <value>启用拼写检查</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
+    <value>插入代码块 (F6)</value>
+    <comment>menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribDisableSpellCheckButton" xml:space="preserve">
+    <value>...禁用拼写检查</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertGreenStatusButton_Label" xml:space="preserve">
+    <value>绿色状态</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertBoxButton_Label" xml:space="preserve">
+    <value>文本框</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
+    <value>添加当前页面</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="ribDiagnosticsButton_Label" xml:space="preserve">
+    <value>将诊断转储到日志</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle8Button_Label" xml:space="preserve">
+    <value>应用样式 8</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle9Button_Label" xml:space="preserve">
+    <value>应用样式 9</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
+    <value>面包屑</value>
+    <comment>ribbon snippets menu</comment>
+  </data>
+  <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
+    <value>添加脚注</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribEnableSpellCheckButton" xml:space="preserve">
+    <value>...启用拼写检查</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribApplyStyle6Button_Label" xml:space="preserve">
+    <value>应用样式 6</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
+    <value>灰色状态</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribApplyStyle1Button_Label" xml:space="preserve">
+    <value>应用样式 1</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribRefreshFootnotesButton_Label" xml:space="preserve">
+    <value>刷新脚注</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
+    <value>蓝色状态</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
+    <value>... 警告块</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribApplyStyle7Button_Label" xml:space="preserve">
+    <value>应用样式 7</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribRefreshFootnotesButton_Screentip" xml:space="preserve">
+    <value>按顺序刷新脚注参考编号</value>
+    <comment>ribbon button</comment>
+  </data>
+  <data name="ribApplyStyle2Button_Label" xml:space="preserve">
+    <value>应用样式 2</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
+    <value>应用样式 3</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribApplyStyle5Button_Label" xml:space="preserve">
+    <value>应用样式 5</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
+    <value>搜索和替换 (Ctrl + H)</value>
+    <comment>Ribbon OneMore menu item, search and replace</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
+    <value>... 日历</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribSearchAndReplaceButton" xml:space="preserve">
+    <value>搜索和替换</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribNewStyleButton_Label" xml:space="preserve">
+    <value>从选择创建样式</value>
+    <comment>Ribbon Custom Styles menu item, create new style</comment>
+  </data>
+  <data name="ribEnableSpellCheckButton_Screentip" xml:space="preserve">
+    <value>为整个页面启用拼写检查</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
+    <value>插入单单元格表格，可选择换行所选文本</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertGrayStatusButton" xml:space="preserve">
+    <value>... 灰色状态</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
+    <value>... 红色状态</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribClearLogButton_Label" xml:space="preserve">
+    <value>清除日志文件</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
+    <value>添加脚注（Ctrl + Alt + F）</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertGreenStatusButton" xml:space="preserve">
+    <value>... 绿色状态</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
+    <value>黄色状态</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribChangePageColorButton_Label" xml:space="preserve">
+    <value>更改页面主题</value>
+    <comment>Ribbon Custom Styles menu item, set page background color</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertExpandButton" xml:space="preserve">
+    <value>... 展开/折叠</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
+    <value>删除脚注（Ctrl + Shift + F）</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribApplyStyle4Button_Label" xml:space="preserve">
+    <value>应用样式 4</value>
+    <comment>not a menu, hotkey only</comment>
+  </data>
+  <data name="ribInsertExpandButton_Label" xml:space="preserve">
+    <value>展开/折叠</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribInsertRedStatusButton_Label" xml:space="preserve">
+    <value>红色状态</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertBlueStatusButton" xml:space="preserve">
+    <value>... 蓝色状态</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
+    <value>代码块</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribAddFootnoteButton_Label" xml:space="preserve">
+    <value>添加脚注</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
+    <value>... 目录</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
+    <value>... 代码块</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
+    <value>警告块</value>
+    <comment>Ribbon OneMore menu item, Snippets...</comment>
+  </data>
+  <data name="ribDisableSpellCheckButton_Label" xml:space="preserve">
+    <value>禁用拼写检查</value>
+    <comment>Ribbon OneMore menu item, no spell check on this page</comment>
+  </data>
+  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
+    <value>将图标添加到页面标题</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribManageFavoritesButton_Label" xml:space="preserve">
+    <value>管理收藏夹</value>
+    <comment>favorites menu command</comment>
+  </data>
+  <data name="ribFitGridToTextButton_Label" xml:space="preserve">
+    <value>使网格适合文本</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ribInsertTocButton_Label" xml:space="preserve">
+    <value>目录</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
+    <value>... 文本框</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
+    <value>...信息块</value>
+    <comment>context menu option</comment>
+  </data>
+  <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
+    <value>删除脚注</value>
+    <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
+    <value>选择收藏夹</value>
+  </data>
+  <data name="ribCreatePagesButton_Label" xml:space="preserve">
+    <value>从列表创建页面</value>
+    <comment>ribbon item</comment>
   </data>
 </root>

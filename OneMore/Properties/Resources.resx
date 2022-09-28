@@ -257,7 +257,7 @@ Deferred</value>
     <value>To lowercase</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
-  <data name="Favorite_OneNoteKeyboardShortcuts" xml:space="preserve">
+  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>OneNote Keyboard Shortcuts</value>
     <comment>favorite</comment>
   </data>
@@ -269,7 +269,7 @@ Deferred</value>
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>
     <comment>message box</comment>
   </data>
-  <data name="ribReplaceButton_Label" xml:space="preserve">
+  <data name="ribSearchAndReplaceButton_Label" xml:space="preserve">
     <value>Search and Replace</value>
     <comment>Ribbon OneMore menu item, search and replace NODUP</comment>
   </data>
@@ -516,7 +516,7 @@ OneNote will close automatically</value>
     <value>Deleted formulas from {0} cell(s)</value>
     <comment>delete command message</comment>
   </data>
-  <data name="ribCaptionButton_Label" xml:space="preserve">
+  <data name="ribAddCaptionButton_Label" xml:space="preserve">
     <value>Add Caption</value>
     <comment>Ribbon OneMore menu item, Add caption to selected image</comment>
   </data>
@@ -598,7 +598,7 @@ OneNote will close automatically</value>
     <value>Space Before:</value>
     <comment>label</comment>
   </data>
-  <data name="ContextMenuSheet_ribYellowStatusButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertYellowStatusButton" xml:space="preserve">
     <value>... Yellow Status</value>
     <comment>context menu option</comment>
   </data>
@@ -634,7 +634,7 @@ OneNote will close automatically</value>
     <value>It's all good</value>
     <comment>message box title</comment>
   </data>
-  <data name="ribInfoBlockButton_Label" xml:space="preserve">
+  <data name="ribInsertInfoBlockButton_Label" xml:space="preserve">
     <value>Info block</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -646,7 +646,7 @@ OneNote will close automatically</value>
     <value>Page (wiki) links</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ribSpellCheckButton_Label" xml:space="preserve">
+  <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Enable Spell Check</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
@@ -743,7 +743,7 @@ OneNote will close automatically</value>
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
     <comment>message box, question</comment>
   </data>
-  <data name="ribCodeBlockButton_Screentip" xml:space="preserve">
+  <data name="ribInsertCodeBlockButton_Screentip" xml:space="preserve">
     <value>Insert a code block (F6)</value>
     <comment>menu</comment>
   </data>
@@ -759,7 +759,7 @@ OneNote will close automatically</value>
     <value>Reminders</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribNoSpellCheckButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribDisableSpellCheckButton" xml:space="preserve">
     <value>... Disable Spell Check</value>
     <comment>context menu option</comment>
   </data>
@@ -783,7 +783,7 @@ OneNote will close automatically</value>
     <value>Enter one or more tags separated by commas. Use the minus operator to exclude individual tags</value>
     <comment>label</comment>
   </data>
-  <data name="ribGreenStatusButton_Label" xml:space="preserve">
+  <data name="ribInsertGreenStatusButton_Label" xml:space="preserve">
     <value>Green Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -1005,7 +1005,7 @@ Deferred</value>
   <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ribBoxButton_Label" xml:space="preserve">
+  <data name="ribInsertBoxButton_Label" xml:space="preserve">
     <value>Text Box</value>
     <comment>ribbon</comment>
   </data>
@@ -1106,7 +1106,7 @@ Deferred</value>
     <value>Outline state has been saved for this page</value>
     <comment>message box</comment>
   </data>
-  <data name="Favorites_addButton_Label" xml:space="preserve">
+  <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Add current page</value>
     <comment>favorites menu command</comment>
   </data>
@@ -1191,7 +1191,6 @@ Operators: + - / * ^
 Cell reference: A1, A2, ... ZZZ999
 Cell range: A1:A22
 Symbols: PI, E</value>
-    <comment></comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>Embed Page</value>
@@ -1294,8 +1293,9 @@ Symbols: PI, E</value>
     <value>Wrong number of function parameters</value>
     <comment>error</comment>
   </data>
-  <data name="DiagnosticsCommand" xml:space="preserve">
+  <data name="ribDiagnosticsButton_Label" xml:space="preserve">
     <value>Dump Diagnostics to Log</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>Fit Grid to Text</value>
@@ -1309,8 +1309,9 @@ Symbols: PI, E</value>
     <value>Table of Contents</value>
     <comment>page name</comment>
   </data>
-  <data name="ApplyStyle8Command" xml:space="preserve">
+  <data name="ribApplyStyle8Button_Label" xml:space="preserve">
     <value>Apply Style 8</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
     <value>Remove empty paragraphs and headers</value>
@@ -1324,8 +1325,9 @@ Symbols: PI, E</value>
     <value>Export Pages</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ApplyStyle9Command" xml:space="preserve">
+  <data name="ribApplyStyle9Button_Label" xml:space="preserve">
     <value>Apply Style 9</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="RemindDialog_priorityLabel.Text" xml:space="preserve">
     <value>Priority</value>
@@ -1342,7 +1344,7 @@ Symbols: PI, E</value>
     <value>Restore Collapsed Outline</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribBreadcrumbButton_Label" xml:space="preserve">
+  <data name="ribInsertBreadcrumbButton_Label" xml:space="preserve">
     <value>Breadcrumb</value>
     <comment>ribbon snippets menu</comment>
   </data>
@@ -1392,11 +1394,11 @@ Currency
 Percentage</value>
     <comment>formats, one per line</comment>
   </data>
-  <data name="ContextMenuSheet_ribFootnoteButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribAddFootnoteButton" xml:space="preserve">
     <value>Add Footnote</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ContextMenuSheet_ribSpellCheckButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribEnableSpellCheckButton" xml:space="preserve">
     <value>... Enable Spell Check</value>
     <comment>context menu option</comment>
   </data>
@@ -1408,8 +1410,9 @@ Percentage</value>
     <value>Reminder</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ApplyStyle6Command" xml:space="preserve">
+  <data name="ribApplyStyle6Button_Label" xml:space="preserve">
     <value>Apply Style 6</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="KeyboardSheet_introLabel.Text" xml:space="preserve">
     <value>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</value>
@@ -1569,7 +1572,7 @@ In this notebook
 In this section</value>
     <comment>drop down</comment>
   </data>
-  <data name="ribGrayStatusButton_Label" xml:space="preserve">
+  <data name="ribInsertGrayStatusButton_Label" xml:space="preserve">
     <value>Gray Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -1588,10 +1591,11 @@ In this section</value>
     <value>Add or Update Reminders</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="ApplyStyle1Command" xml:space="preserve">
+  <data name="ribApplyStyle1Button_Label" xml:space="preserve">
     <value>Apply Style 1</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
-  <data name="ribRefreshFootenotesButton_Label" xml:space="preserve">
+  <data name="ribRefreshFootnotesButton_Label" xml:space="preserve">
     <value>Refresh Footnotes</value>
     <comment>ribbon button</comment>
   </data>
@@ -1659,7 +1663,7 @@ In this section</value>
     <value>No embedded content found</value>
     <comment>message box</comment>
   </data>
-  <data name="ribBlueStatusButton_Label" xml:space="preserve">
+  <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Blue Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -1758,12 +1762,13 @@ In this section</value>
     <value>Numbering page {0}</value>
     <comment>progress status dialog</comment>
   </data>
-  <data name="ContextMenuSheet_ribWarnBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertWarnBlockButton" xml:space="preserve">
     <value>... Warning Block</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ApplyStyle7Command" xml:space="preserve">
+  <data name="ribApplyStyle7Button_Label" xml:space="preserve">
     <value>Apply Style 7</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="InsertCalendarDialog_firstLabel.Text" xml:space="preserve">
     <value>First day of week</value>
@@ -1913,12 +1918,13 @@ In this section</value>
     <value>{0} (column {1})</value>
     <comment>exception message</comment>
   </data>
-  <data name="ribRefreshFootenotesButton_Screentip" xml:space="preserve">
+  <data name="ribRefreshFootnotesButton_Screentip" xml:space="preserve">
     <value>Refresh footnote reference numbers sequentially</value>
     <comment>ribbon button</comment>
   </data>
-  <data name="ApplyStyle2Command" xml:space="preserve">
+  <data name="ribApplyStyle2Button_Label" xml:space="preserve">
     <value>Apply Style 2</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="PluginDialog_badName" xml:space="preserve">
     <value>Invalid or duplicate name</value>
@@ -1932,11 +1938,13 @@ In this section</value>
     <value>Indent only below tagged headings/paragraphs</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ApplyStyle3Command" xml:space="preserve">
+  <data name="ribApplyStyle3Button_Label" xml:space="preserve">
     <value>Apply Style 3</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
-  <data name="ApplyStyle5Command" xml:space="preserve">
+  <data name="ribApplyStyle5Button_Label" xml:space="preserve">
     <value>Apply Style 5</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ContextMenuSheet_ribRestoreCollapsedButton" xml:space="preserve">
     <value>... Restore Collapsed Outline</value>
@@ -2008,7 +2016,7 @@ High</value>
     <value>Expand Outlining</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribReplaceButton_Screentip" xml:space="preserve">
+  <data name="ribSearchAndReplaceButton_Screentip" xml:space="preserve">
     <value>Search and replace (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
@@ -2059,7 +2067,7 @@ High</value>
     <value>Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote</value>
     <comment>text box</comment>
   </data>
-  <data name="ContextMenuSheet_ribCalendarButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertCalendarButton" xml:space="preserve">
     <value>... Calendar</value>
     <comment>context menu option</comment>
   </data>
@@ -2090,7 +2098,7 @@ High</value>
     <value>Number of cells to insert:</value>
     <comment>numeric label</comment>
   </data>
-  <data name="ContextMenuSheet_ribReplaceButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribSearchAndReplaceButton" xml:space="preserve">
     <value>Search and Replace</value>
     <comment>context menu option</comment>
   </data>
@@ -2142,7 +2150,7 @@ Try again later</value>
     <value>Tools</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
-  <data name="ribCreateStyleButton_Label" xml:space="preserve">
+  <data name="ribNewStyleButton_Label" xml:space="preserve">
     <value>Create Style from Selection</value>
     <comment>Ribbon Custom Styles menu item, create new style</comment>
   </data>
@@ -2199,7 +2207,7 @@ Try again later</value>
     <value>Convert Text to Table</value>
     <comment>Ribbon OneMore menu item, extras NODUP</comment>
   </data>
-  <data name="ribSpellCheckButton_Screentip" xml:space="preserve">
+  <data name="ribEnableSpellCheckButton_Screentip" xml:space="preserve">
     <value>Enable spell check for entire page</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
@@ -2294,7 +2302,7 @@ Notebooks</value>
     <value>Last updated</value>
     <comment>text</comment>
   </data>
-  <data name="ribBoxButton_Screentip" xml:space="preserve">
+  <data name="ribInsertBoxButton_Screentip" xml:space="preserve">
     <value>Insert a single-cell table, optionally wrapping selected text</value>
     <comment>ribbon</comment>
   </data>
@@ -2394,7 +2402,7 @@ Quick Notes to bottom</value>
     <value>Descending</value>
     <comment>radio</comment>
   </data>
-  <data name="ContextMenuSheet_ribGrayStatusButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertGrayStatusButton" xml:space="preserve">
     <value>... Gray Status</value>
     <comment>context menu option</comment>
   </data>
@@ -2433,12 +2441,13 @@ Quick Notes to bottom</value>
     <value>Notebook with Pages</value>
     <comment>tab</comment>
   </data>
-  <data name="ContextMenuSheet_ribRedStatusButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertRedStatusButton" xml:space="preserve">
     <value>... Red Status</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ClearLogCommand" xml:space="preserve">
+  <data name="ribClearLogButton_Label" xml:space="preserve">
     <value>Clear Log File</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="ribCustomStylesButton_Label" xml:space="preserve">
     <value>Custom Styles</value>
@@ -2479,7 +2488,7 @@ Quick Notes to bottom</value>
     <value>Default is to sort the current list or only top level bullet lists</value>
     <comment>intro label</comment>
   </data>
-  <data name="ribFootnoteButton_Screentip" xml:space="preserve">
+  <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
     <value>Add footnote (Ctrl + Alt + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
@@ -2547,7 +2556,7 @@ Quick Notes to bottom</value>
     <value>Storage Analysis Report Options</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ContextMenuSheet_ribGreenStatusButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertGreenStatusButton" xml:space="preserve">
     <value>... Green Status</value>
     <comment>context menu option</comment>
   </data>
@@ -2620,7 +2629,7 @@ In this section</value>
     <value>Word</value>
     <comment>label</comment>
   </data>
-  <data name="ribYellowStatusButton_Label" xml:space="preserve">
+  <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
     <value>Yellow Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -2717,7 +2726,7 @@ In this section</value>
     <value>The number of backup copies of each section is configured in the OneNote Options. This summarizes the sections per notebook, showing the size of each section's data file, the number of backup copies, and the total disk space consumed by all copies of each section.</value>
     <comment>summary text</comment>
   </data>
-  <data name="ribPageColorButton_Label" xml:space="preserve">
+  <data name="ribChangePageColorButton_Label" xml:space="preserve">
     <value>Change Page Theme</value>
     <comment>Ribbon Custom Styles menu item, set page background color NODUP</comment>
   </data>
@@ -2775,7 +2784,7 @@ In this section</value>
     <value>Hide date and time</value>
     <comment>radio button</comment>
   </data>
-  <data name="ContextMenuSheet_ribExpandButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertExpandButton" xml:space="preserve">
     <value>... Expand/Collapse</value>
     <comment>context menu option</comment>
   </data>
@@ -2886,12 +2895,13 @@ High</value>
     <value>Pick the location where selected pages should be copied</value>
     <comment>QuickFiling description</comment>
   </data>
-  <data name="ribFootnoteRemoveButton_Screentip" xml:space="preserve">
+  <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>Remove footnote (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
-  <data name="ApplyStyle4Command" xml:space="preserve">
+  <data name="ribApplyStyle4Button_Label" xml:space="preserve">
     <value>Apply Style 4</value>
+    <comment>not a menu, hotkey only</comment>
   </data>
   <data name="Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2941,7 +2951,7 @@ High</value>
     <value>Passwords</value>
     <comment>emoji</comment>
   </data>
-  <data name="ribExpandButton_Label" xml:space="preserve">
+  <data name="ribInsertExpandButton_Label" xml:space="preserve">
     <value>Expand/Collapse</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -2971,7 +2981,7 @@ High</value>
   <data name="word_Opacity" xml:space="preserve">
     <value>Opacity</value>
   </data>
-  <data name="ribRedStatusButton_Label" xml:space="preserve">
+  <data name="ribInsertRedStatusButton_Label" xml:space="preserve">
     <value>Red Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -2990,7 +3000,7 @@ High</value>
   <data name="Sports" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Emoji\Sports.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ContextMenuSheet_ribBlueStatusButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertBlueStatusButton" xml:space="preserve">
     <value>... Blue Status</value>
     <comment>context menu option</comment>
   </data>
@@ -3112,7 +3122,7 @@ High</value>
     <value>Remove Ink</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribCodeBlockButton_Label" xml:space="preserve">
+  <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
     <value>Code block</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -3139,7 +3149,7 @@ High</value>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>OneMore</value>
   </data>
-  <data name="ribFootnoteButton_Label" xml:space="preserve">
+  <data name="ribAddFootnoteButton_Label" xml:space="preserve">
     <value>Add Footnote</value>
     <comment>Ribbon OneMore menu item, Extras... NODUP</comment>
   </data>
@@ -3264,7 +3274,7 @@ High</value>
     <value>Length:</value>
     <comment>settings sheet</comment>
   </data>
-  <data name="ContextMenuSheet_ribTocButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertTocButton" xml:space="preserve">
     <value>... Table of Contents</value>
     <comment>context menu option</comment>
   </data>
@@ -3272,7 +3282,7 @@ High</value>
     <value>Page contains no regular paragraph text</value>
     <comment>message</comment>
   </data>
-  <data name="ContextMenuSheet_ribCodeBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertCodeBlockButton" xml:space="preserve">
     <value>... Code Block</value>
     <comment>context menu option</comment>
   </data>
@@ -3426,7 +3436,7 @@ High</value>
     <value>Text</value>
     <comment>Ribbon OneMore menu separator</comment>
   </data>
-  <data name="ribWarnBlockButton_Label" xml:space="preserve">
+  <data name="ribInsertWarnBlockButton_Label" xml:space="preserve">
     <value>Warning block</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
   </data>
@@ -3434,7 +3444,7 @@ High</value>
     <value>Percentage</value>
     <comment>radio</comment>
   </data>
-  <data name="ribNoSpellCheckButton_Label" xml:space="preserve">
+  <data name="ribDisableSpellCheckButton_Label" xml:space="preserve">
     <value>Disable Spell Check</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
@@ -3527,7 +3537,7 @@ High</value>
     <value>Sort List</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribFlagTitleButton_Label" xml:space="preserve">
+  <data name="ribAddTitleIconButton_Label" xml:space="preserve">
     <value>Add Icon to Page Title</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
@@ -3535,7 +3545,7 @@ High</value>
     <value>Ascending</value>
     <comment>radio</comment>
   </data>
-  <data name="Favorites_manageButton_Label" xml:space="preserve">
+  <data name="ribManageFavoritesButton_Label" xml:space="preserve">
     <value>Manage Favorites</value>
     <comment>favorites menu command</comment>
   </data>
@@ -3568,7 +3578,7 @@ OneNote File (*.one)</value>
     <value>Add to Favorites</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribFitGridButton_Label" xml:space="preserve">
+  <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Fit Grid to Text</value>
     <comment>ribbon item NODUP</comment>
   </data>
@@ -3576,7 +3586,7 @@ OneNote File (*.one)</value>
     <value>Due/Completed</value>
     <comment>report</comment>
   </data>
-  <data name="ribTocButton_Label" xml:space="preserve">
+  <data name="ribInsertTocButton_Label" xml:space="preserve">
     <value>Table of Contents</value>
     <comment>Ribbon OneMore menu item, Extras... NODUP</comment>
   </data>
@@ -3588,7 +3598,7 @@ OneNote File (*.one)</value>
     <value>Remove/cleanup existing numbering</value>
     <comment>checkbox</comment>
   </data>
-  <data name="ContextMenuSheet_ribBoxButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertBoxButton" xml:space="preserve">
     <value>... Text Box</value>
     <comment>context menu option</comment>
   </data>
@@ -3712,11 +3722,11 @@ ISO-code then comma then language name</comment>
     <value>Invalid XML detected. Check log file for details</value>
     <comment>error message</comment>
   </data>
-  <data name="ContextMenuSheet_ribInfoBlockButton" xml:space="preserve">
+  <data name="ContextMenuSheet_ribInsertInfoBlockButton" xml:space="preserve">
     <value>... Info Block</value>
     <comment>context menu option</comment>
   </data>
-  <data name="ribFootnoteRemoveButton_Label" xml:space="preserve">
+  <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>Remove Footnote</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
@@ -4011,7 +4021,7 @@ Select No to keep one empty line between paragraphs</value>
   <data name="word_Go" xml:space="preserve">
     <value>Go</value>
   </data>
-  <data name="ChooseFavoriteCommand" xml:space="preserve">
+  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
     <value>Choose Favorite</value>
   </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
@@ -4041,5 +4051,9 @@ Select No to keep one empty line between paragraphs</value>
 Do not shrink larger images
 Do no enlarge smaller images</value>
     <comment>combobox</comment>
+  </data>
+  <data name="ribCreatePagesButton_Label" xml:space="preserve">
+    <value>Create Pages from List</value>
+    <comment>ribbon item</comment>
   </data>
 </root>

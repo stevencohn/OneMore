@@ -27,7 +27,7 @@
               imageMso="StylesModifyStyle"
               onAction="EditStylesCmd"/>
             <button
-              id="ribCreateStyleButton"
+              id="ribNewStyleButton"
               getLabel="GetRibbonLabel"
               imageMso="StylesPaneNewStyle"
               onAction="NewStyleCmd"/>
@@ -37,7 +37,7 @@
               imageMso="ApplyStylesPane"
               onAction="ApplyStylesCmd"/>
             <button
-              id="ribPageColorButton"
+              id="ribChangePageColorButton"
               getLabel="GetRibbonLabel"
               imageMso="FormatBackground"
               onAction="ChangePageColorCmd"/>
@@ -64,21 +64,21 @@
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
-              onAction="InsertHorizontalLineCmd"/>
+              onAction="InsertSingleLineCmd"/>
             <button
               id="ribInsertDoubleLineButton"
               image="DoubleLine"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
-              onAction="InsertDoubleHorizontalLineCmd"/>
+              onAction="InsertDoubleLineCmd"/>
             <button
-              id="ribTocButton"
+              id="ribInsertTocButton"
               imageMso="WordInsertTableOfContents2"
               getLabel="GetRibbonLabel"
               onAction="InsertTocCmd"/>
             <button
-              id="ribBreadcrumbButton"
+              id="ribInsertBreadcrumbButton"
               imageMso="ShapeRightArrow"
               getLabel="GetRibbonLabel"
               onAction="InsertBreadcrumbCmd"/>
@@ -95,63 +95,63 @@
               getScreentip="GetRibbonScreentip"
               onAction="InsertDateCmd"/>
             <button
-              id="ribBoxButton"
+              id="ribInsertBoxButton"
               imageMso="TextBoxInsert"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertBoxCmd"/>
             <button
-              id="ribCodeBlockButton"
+              id="ribInsertCodeBlockButton"
               imageMso="CodeEdit"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
               getEnabled="GetBodyContext"
               onAction="InsertCodeBlockCmd"/>
             <button
-              id="ribInfoBlockButton"
+              id="ribInsertInfoBlockButton"
               imageMso="Info"
               getLabel="GetRibbonLabel"
               getEnabled="GetBodyContext"
               onAction="InsertInfoBlockCmd"/>
             <button
-              id="ribWarnBlockButton"
+              id="ribInsertWarnBlockButton"
               imageMso="HighImportance"
               getLabel="GetRibbonLabel"
               getEnabled="GetBodyContext"
-              onAction="InsertWarningBlockCmd"/>
+              onAction="InsertWarnBlockCmd"/>
             <button
-              id="ribExpandButton"
+              id="ribInsertExpandButton"
               imageMso="PivotExpandIndicators"
               getLabel="GetRibbonLabel"
               getEnabled="GetBodyContext"
               onAction="InsertExpandCmd"/>
             <button
-              id="ribGrayStatusButton"
+              id="ribInsertGrayStatusButton"
               imageMso="AppointmentColor4"
               getLabel="GetRibbonLabel"
               getEnabled="GetBodyContext"
               onAction="InsertGrayStatusCmd"/>
             <button
-              id="ribRedStatusButton"
+              id="ribInsertRedStatusButton"
               imageMso="AppointmentColor1"
               getLabel="GetRibbonLabel"
               getEnabled="GetBodyContext"
               onAction="InsertRedStatusCmd"/>
             <button
-              id="ribYellowStatusButton"
+              id="ribInsertYellowStatusButton"
               imageMso="AppointmentColor10"
               getLabel="GetRibbonLabel"
               getEnabled="GetBodyContext"
               onAction="InsertYellowStatusCmd"/>
             <button
-              id="ribGreenStatusButton"
+              id="ribInsertGreenStatusButton"
               imageMso="AppointmentColor3"
               getLabel="GetRibbonLabel"
               getEnabled="GetBodyContext"
               onAction="InsertGreenStatusCmd"/>
             <button
-              id="ribBlueStatusButton"
+              id="ribInsertBlueStatusButton"
               imageMso="AppointmentColor2"
               getLabel="GetRibbonLabel"
               getEnabled="GetBodyContext"
@@ -263,13 +263,13 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="PasteTextCmd"/>
               <button
-                id="ribSpellCheckButton"
+                id="ribEnableSpellCheckButton"
                 imageMso="Spelling"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="EnableSpellCheckCmd"/>
               <button
-                id="ribNoSpellCheckButton"
+                id="ribDisableSpellCheckButton"
                 image="NoSpellCheck"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
@@ -279,19 +279,19 @@
                 imageMso="A"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="ToUppercaseCmd"/>
+                onAction="UppercaseCmd"/>
               <button
                 id="ribLowercaseButton"
                 imageMso="ChangeCase"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="ToLowercaseCmd"/>
+                onAction="LowercaseCmd"/>
               <button
                 id="ribTitlecaseButton"
                 imageMso="ChangeCase"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="ToTitlecaseCmd"/>
+                onAction="TitlecaseCmd"/>
               <button
                 id="ribIncreaseFontSizeButton"
                 imageMso="FontSizeIncreaseWord"
@@ -360,7 +360,7 @@
             </menu>
             <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill" showImage="true">
               <button
-                id="ribCaptionButton"
+                id="ribAddCaptionButton"
                 imageMso="CaptionInsert"
                 getLabel="GetRibbonLabel"
                 getEnabled="GetImageSelected"
@@ -415,7 +415,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="ArrangeContainersCmd"/>
               <button
-                id="ribFlagTitleButton"
+                id="ribAddTitleIconButton"
                 imageMso="DataGraphicIconSet"
                 getLabel="GetRibbonLabel"
                 onAction="AddTitleIconCmd"/>
@@ -427,7 +427,7 @@
               <button
                 id="ribCreatePagesButton"
                 imageMso="CreateHandoutsInWord"
-                label="Create Pages from List"
+                getLabel="GetRibbonLabel"
                 onAction="CreatePagesCmd"/>
               <button
                 id="ribCollapseContentButton"
@@ -450,7 +450,7 @@
                 getLabel="GetRibbonLabel"
                 onAction="RestoreCollapsedCmd"/>
               <button
-                id="ribFitGridButton"
+                id="ribFitGridToTextButton"
                 imageMso="SizeToGridOutlook"
                 getLabel="GetRibbonLabel"
                 onAction="FitGridToTextCmd"/>
@@ -473,14 +473,14 @@
             </menu>
             <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert" showImage="true">
                 <button
-                id="ribFootnoteButton"
+                id="ribAddFootnoteButton"
                 imageMso="FootnoteInsert"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 getEnabled="GetBodyContext"
                 onAction="AddFootnoteCmd"/>
               <button
-                id="ribFootnoteRemoveButton"
+                id="ribRemoveFootnoteButton"
                 imageMso="RemoveCitation"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
@@ -592,7 +592,7 @@
                 imageMso="Strikethrough"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="StrikeoutCmd"/>
+                onAction="StrikeoutTasksCmd"/>
             </menu>
             <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true">
               <button

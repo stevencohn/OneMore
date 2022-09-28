@@ -17,7 +17,7 @@ namespace River.OneMoreAddIn
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
-		public static readonly string KbdShortcutsId = "omKeyboardShortcutsButton";
+		public static readonly string KbdShortcutsId = "omShowKeyboardShortcutsButton";
 		public static readonly string GotoFavoriteCmd = "GotoFavoriteCmd";
 
 		private readonly string path;
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn
 		{
 			return new XElement(ns + "button",
 				new XAttribute("id", AddButtonId),
-				new XAttribute("label", Resx.Favorites_addButton_Label),
+				new XAttribute("label", Resx.ribAddFavoritePageButton_Label),
 				new XAttribute("imageMso", "AddToFavorites"),
 				new XAttribute("onAction", "AddFavoritePageCmd")
 				);
@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn
 		{
 			return new XElement(ns + "button",
 				new XAttribute("id", ManageButtonId),
-				new XAttribute("label", Resx.Favorites_manageButton_Label),
+				new XAttribute("label", Resx.ribManageFavoritesButton_Label),
 				new XAttribute("imageMso", "NameManager"),
 				new XAttribute("onAction", "ManageFavoritesCmd")
 				);
@@ -155,7 +155,7 @@ namespace River.OneMoreAddIn
 		{
 			return new XElement(ns + "button",
 				new XAttribute("id", KbdShortcutsId),
-				new XAttribute("label", Resx.Favorite_OneNoteKeyboardShortcuts),
+				new XAttribute("label", Resx.ribShowKeyboardShortcutsButton_Label),
 				new XAttribute("imageMso", "AdpPrimaryKey"),
 				new XAttribute("onAction", "ShowKeyboardShortcutsCmd")
 				);
