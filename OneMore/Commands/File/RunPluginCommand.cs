@@ -288,8 +288,16 @@ namespace River.OneMoreAddIn.Commands
 					// grab only text from parent's title
 					name = name.Replace("$name", XElement.Parse($"<w>{parent.Title}</w>").Value);
 				}
+				var cdata = page.Elements(parent.Namespace + "Title")
+					.Elements(parent.Namespace + "OE")
+					.Elements(parent.Namespace + "T")
+					.DescendantNodes().OfType<XCData>()
+					.FirstOrDefault();
 
-				new Page(page).Title = name;
+				if (cdata != null && cdata.Value.IsNullOrEmpty())
+                {
+					new Page(page).Title = name;
+				}
 			}
 
 			// remove all objectID values and let OneNote generate new IDs
