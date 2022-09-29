@@ -19,7 +19,7 @@
       "captures": [
         "Comment"
       ]
-    }
+    },
     {
       "pattern": "(/\\*[^\\r\\n]*)$",
       "scope": "Comment",
@@ -36,4 +36,3 @@
     }
   ]
 }
-
