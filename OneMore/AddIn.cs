@@ -8,7 +8,7 @@
 #pragma warning disable S3885   // Use Load instead of LoadFrom
 
 namespace River.OneMoreAddIn
-{
+{ 
 	using Extensibility;
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Helpers.Office;
