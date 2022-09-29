@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommandPallettDialog));
 			this.cmdBox = new System.Windows.Forms.TextBox();
 			this.okButton = new System.Windows.Forms.Button();
 			this.bodyPanel = new System.Windows.Forms.Panel();
@@ -36,7 +37,6 @@
 			// 
 			// cmdBox
 			// 
-			this.cmdBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(227)))), ((int)(((byte)(250)))));
 			this.cmdBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmdBox.Location = new System.Drawing.Point(43, 23);
 			this.cmdBox.Name = "cmdBox";
@@ -75,10 +75,10 @@
 			this.ClientSize = new System.Drawing.Size(650, 115);
 			this.Controls.Add(this.bodyPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "CommandPallettDialog";
-			this.ShowIcon = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "OneMore Command Pallett";
