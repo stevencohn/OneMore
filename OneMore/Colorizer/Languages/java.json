@@ -2,6 +2,12 @@
   "name": "Java",
   "rules": [
     {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
       "pattern": "(/\\*[^\\r\\n]*)$",
       "scope": "Comment",
       "captures": [
@@ -11,12 +17,6 @@
     {
       "pattern": "^([^\\r\\n]*\\*/)",
       "scope": "",
-      "captures": [
-        "Comment"
-      ]
-    },
-    {
-      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
       "captures": [
         "Comment"
       ]
