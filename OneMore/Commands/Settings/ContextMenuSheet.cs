@@ -162,5 +162,54 @@ namespace River.OneMoreAddIn.Settings
 
 			return updated;
 		}
+
+
+
+		/// <summary>
+		/// Temporary upgrade to rename resource IDs in the settings file
+		/// Created in v5.1.0. To be removed a few versions after that.
+		/// </summary>
+		/// <param name="provider"></param>
+		public static void UpgradESettings(SettingsProvider provider)
+		{
+			var exchange = new System.Collections.Generic.Dictionary<string, string>
+			{
+				{ "ribFootnoteButton", "ribAddFootnoteButton" },
+				{ "ribNoSpellCheckButton", "ribDisableSpellCheckButton" },
+				{ "ribSpellCheckButton", "ribEnableSpellCheckButton" },
+				{ "ribReplaceButton", "ribSearchAndReplaceButton" },
+				{ "ribTocButton", "ribInsertTocButton" },
+				{ "ribCalendarButton", "ribInsertCalendarButton" },
+				{ "ribBoxButton", "ribInsertBoxButton" },
+				{ "ribCodeBlockButton", "ribInsertCodeBlockButton" },
+				{ "ribInfoBlockButton", "ribInsertInfoBlockButton" },
+				{ "ribInsertInfoBlockButton", "ribInsertWarnBlockButton" },
+				{ "ribExpandButton", "ribInsertExpandButton" },
+				{ "ribGrayStatusButton", "ribInsertGrayStatusButton" },
+				{ "ribRedStatusButton", "ribInsertRedStatusButton" },
+				{ "ribYellowStatusButton", "ribInsertYellowStatusButton" },
+				{ "ribGreenStatusButton", "ribInsertGreenStatusButton" },
+				{ "ribBlueStatusButton", "ribInsertBlueStatusButton" }
+			};
+
+			var collection = provider.GetCollection("ContextMenuSheet");
+			var updated = false;
+
+			exchange.ForEach(item =>
+			{
+				if (collection.Contains(item.Key))
+				{
+					collection.Remove(item.Key);
+					collection.Add(item.Value, true);
+					updated = true;
+				}
+			});
+
+			if (updated)
+			{
+				provider.SetCollection(collection);
+				provider.Save();
+			}
+		}
 	}
 }
