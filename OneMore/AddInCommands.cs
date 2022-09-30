@@ -388,6 +388,13 @@ namespace River.OneMoreAddIn
 		public async Task NumberSectionsCmd(IRibbonControl control)
 			=> await factory.Run<NumberSectionsCommand>();
 
+
+		[Command("ribOpenLogButton_Label", Keys.None, "Tools")]
+		public async Task OpenLogCmd(IRibbonControl control)
+			=> await factory.Run<OpenLogCommand>();
+
+
+
 		public async Task OutlineCmd(IRibbonControl control)
 			=> await factory.Run<OutlineCommand>();
 

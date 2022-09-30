@@ -439,6 +439,7 @@
     <Compile Include="Commands\Tools\DiagnosticsDialog.Designer.cs">
       <DependentUpon>DiagnosticsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\OpenLogCommand.cs" />
     <Compile Include="Commands\Tools\UpdateCommand.cs" />
     <Compile Include="Commands\Tools\UpdateDialog.cs">
       <SubType>Form</SubType>

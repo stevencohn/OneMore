@@ -6199,6 +6199,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Log File.
+        /// </summary>
+        internal static string ribOpenLogButton_Label {
+            get {
+                return ResourceManager.GetString("ribOpenLogButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outline Formatting.
         /// </summary>
         internal static string ribOutlineButton_Label {
