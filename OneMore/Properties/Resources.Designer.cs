@@ -5344,6 +5344,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Command Pallet.
+        /// </summary>
+        internal static string ribCommandPallettButton_Label {
+            get {
+                return ResourceManager.GetString("ribCommandPallettButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complete Reminder.
         /// </summary>
         internal static string ribCompleteReminderButton_Label {

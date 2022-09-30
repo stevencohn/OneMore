@@ -4060,4 +4060,7 @@ Do no enlarge smaller images</value>
     <value>OneMore Command Pallett</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>Open Command Pallet</value>
+  </data>
 </root>

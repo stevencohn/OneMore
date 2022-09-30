@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn
 			=> new FavoritesProvider(ribbon).AddFavorite(true);
 
 
-		[Command("ribFootnoteButton_Label", Keys.Control | Keys.Alt | Keys.F, "References")]
+		[Command("ribAddFootnoteButton_Label", Keys.Control | Keys.Alt | Keys.F, "References")]
 		public async Task AddFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<AddFootnoteCommand>();
 
@@ -140,7 +140,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ColorizeCommand>(control.Tag); // tag=language
 
 
-		[Command("none", Keys.Control | Keys.Shift | Keys.P, "")]
+		[Command("ribCommandPallettButton_Label", Keys.Control | Keys.Shift | Keys.P, "")]
 		public async Task CommandPallettCmd(IRibbonControl control)
 			=> await factory.Run<CommandPallettCommand>();
 
@@ -272,7 +272,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertStatusCommand>(StatusColor.Blue);
 
 
-		[Command("ribBoxButton_Label", Keys.None, "Snippets")]
+		[Command("ribInsertBoxButton_Label", Keys.None, "Snippets")]
 		public async Task InsertBoxCmd(IRibbonControl control)
 			=> await factory.Run<InsertCodeBlockCommand>(false);
 
@@ -287,7 +287,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertCellsCommand>();
 
 
-		[Command("ribCodeBlockButton_Label", Keys.F6, "Snippets")]
+		[Command("ribInsertCodeBlockButton_Label", Keys.F6, "Snippets")]
 		public async Task InsertCodeBlockCmd(IRibbonControl control)
 			=> await factory.Run<InsertCodeBlockCommand>(true);
 
@@ -436,7 +436,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RemoveEmptyCommand>();
 
 
-		[Command("ribFootnoteRemoveButton_Label", Keys.Control | Keys.Shift | Keys.F, "References")]
+		[Command("ribRemoveFootnoteButton_Label", Keys.Control | Keys.Shift | Keys.F, "References")]
 		public async Task RemoveFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<RemoveFootnoteCommand>();
 
@@ -489,7 +489,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SearchCommand>();
 
 
-		[Command("ribReplaceButton_Label", Keys.Control | Keys.H, "Search")]
+		[Command("ribSearchAndReplaceButton_Label", Keys.Control | Keys.H, "Search")]
 		public async Task SearchAndReplaceCmd(IRibbonControl control)
 			=> await factory.Run<SearchAndReplaceCommand>();
 
