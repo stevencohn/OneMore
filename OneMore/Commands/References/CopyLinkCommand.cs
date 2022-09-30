@@ -35,9 +35,6 @@ namespace River.OneMoreAddIn
 
 			using (var one = new OneNote(out var page, out var ns))
 			{
-
-				System.Diagnostics.Debugger.Launch();
-
 				if (specific)
 				{
 					var selected = page.Root.Elements(ns + "Outline")

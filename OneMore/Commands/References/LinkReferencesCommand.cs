@@ -277,6 +277,11 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
+			// page here is a reference to refpage which has already been updated so any
+			// changes to the XML will be discarded... remove descendant Images to avoid
+			// an issue where TextValue() can't parse embedded XML snippets in image OCR
+			body.Descendants(ns + "Image").Remove();
+
 			var synopsis = body.TextValue();
 			return synopsis.Length < 111 ? synopsis : synopsis.Substring(0, 110);
 		}
