@@ -4063,4 +4063,7 @@ Do no enlarge smaller images</value>
   <data name="ribCommandPallettButton_Label" xml:space="preserve">
     <value>Open Command Pallet</value>
   </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>Open Log File</value>
+  </data>
 </root>
