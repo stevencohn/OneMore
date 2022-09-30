@@ -48,6 +48,10 @@ namespace River.OneMoreAddIn.Settings
 					)
 				);
 			}
+			else
+			{
+				ContextMenuSheet.UpgradESettings(this);
+			}
 		}
 
 

@@ -8,7 +8,7 @@
 #pragma warning disable S3885   // Use Load instead of LoadFrom
 
 namespace River.OneMoreAddIn
-{
+{ 
 	using Extensibility;
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Helpers.Office;
@@ -81,6 +81,8 @@ namespace River.OneMoreAddIn
 				logger.WriteLine($"{module.FileName} ({module.FileVersionInfo.ProductVersion})");
 			}
 
+			Self = this;
+
 			AppDomain.CurrentDomain.AssemblyResolve += CustomAssemblyResolve;
 			AppDomain.CurrentDomain.UnhandledException += CatchUnhandledException;
 		}
@@ -132,6 +134,12 @@ namespace River.OneMoreAddIn
 		/// debugging when explicitly setting the culture in the AddIn() constructor
 		/// </summary>
 		public static CultureInfo Culture { get; private set; }
+
+
+		/// <summary>
+		/// Gets the AddIn instance for use in reflection like CommandPallettCommand
+		/// </summary>
+		public static AddIn Self { get; private set; }
 
 
 

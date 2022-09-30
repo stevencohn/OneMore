@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn.Settings
 		public string[] keys = new string[]
 		{
 			"ribPasteRtfButton",			// Paste Rich Text
-			"ribFootnoteButton",			// Add Footnote
+			"ribAddFootnoteButton",			// Add Footnote
 			"ribCleanMenu",					// Clean Menu
 			"ribBreakingButton",			// ... Change Sentence Spacing
 			"ribRemoveAuthorsButton",		// ... Remove Author Information
@@ -37,8 +37,8 @@ namespace River.OneMoreAddIn.Settings
 			"ribColorizeMenu",				// ... Colorize
 			"ribProofingMenu",				// ... Proofing Language
 			"ribHighlightButton",			// ... Rotating Highlighter
-			"ribNoSpellCheckButton",		// ... No Spell Check
-			"ribSpellCheckButton",			// ... Spell Check
+			"ribDisableSpellCheckButton",	// ... Disable Spell Check
+			"ribEnableSpellCheckButton",	// ... Enable Spell Check
 			"ribUppercaseButton",			// ... To UPPERCASE
 			"ribLowercaseButton",			// ... To lowercase
 			"ribTitlecaseButton",			// ... To Title Case
@@ -56,23 +56,23 @@ namespace River.OneMoreAddIn.Settings
 			"ribRemindButton",				// ... Add or update reminder
 			"ribCompleteReminderButton",	// ... Complete reminder
 			"ribDeleteReminderButton",		// ... Delete reminder
-			"ribReplaceButton",				// Search and Replace
+			"ribSearchAndReplaceButton",	// Search and Replace
 			"ribSnippetsMenu",				// Snippets Menu
 			"ribInsertSingleLineButton",	// ... Single Line
 			"ribInsertDoubleLineButton",	// ... Double Line
-			"ribTocButton",					// ... Table of Contents
-			"ribCalendarButton",			// ... Calendar
+			"ribInsertTocButton",			// ... Table of Contents
+			"ribInsertCalendarButton",		// ... Calendar
 			"ribInsertDateButton",			// ... Sortable Date
-			"ribBoxButton",					// ... Block
-			"ribCodeBlockButton",			// ... Code Block
-			"ribInfoBlockButton",			// ... Info Block
-			"ribWarnBlockButton",			// ... Warning Block
-			"ribExpandButton",				// ... Expand
-			"ribGrayStatusButton",			// ... Gray Status
-			"ribRedStatusButton",			// ... Red Status
-			"ribYellowStatusButton",		// ... Yellow Status
-			"ribGreenStatusButton",			// ... Green Status
-			"ribBlueStatusButton"			// ... Blue Status
+			"ribInsertBoxButton",			// ... Block
+			"ribInsertCodeBlockButton",		// ... Code Block
+			"ribInsertInfoBlockButton",		// ... Info Block
+			"ribInsertWarnBlockButton",		// ... Warning Block
+			"ribInsertExpandButton",		// ... Expand/Collapse
+			"ribInsertGrayStatusButton",	// ... Gray Status
+			"ribInsertRedStatusButton",		// ... Red Status
+			"ribInsertYellowStatusButton",	// ... Yellow Status
+			"ribInsertGreenStatusButton",	// ... Green Status
+			"ribInsertBlueStatusButton"		// ... Blue Status
 		};
 
 
@@ -161,6 +161,55 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			return updated;
+		}
+
+
+
+		/// <summary>
+		/// Temporary upgrade to rename resource IDs in the settings file
+		/// Created in v5.1.0. To be removed a few versions after that.
+		/// </summary>
+		/// <param name="provider"></param>
+		public static void UpgradESettings(SettingsProvider provider)
+		{
+			var exchange = new System.Collections.Generic.Dictionary<string, string>
+			{
+				{ "ribFootnoteButton", "ribAddFootnoteButton" },
+				{ "ribNoSpellCheckButton", "ribDisableSpellCheckButton" },
+				{ "ribSpellCheckButton", "ribEnableSpellCheckButton" },
+				{ "ribReplaceButton", "ribSearchAndReplaceButton" },
+				{ "ribTocButton", "ribInsertTocButton" },
+				{ "ribCalendarButton", "ribInsertCalendarButton" },
+				{ "ribBoxButton", "ribInsertBoxButton" },
+				{ "ribCodeBlockButton", "ribInsertCodeBlockButton" },
+				{ "ribInfoBlockButton", "ribInsertInfoBlockButton" },
+				{ "ribInsertInfoBlockButton", "ribInsertWarnBlockButton" },
+				{ "ribExpandButton", "ribInsertExpandButton" },
+				{ "ribGrayStatusButton", "ribInsertGrayStatusButton" },
+				{ "ribRedStatusButton", "ribInsertRedStatusButton" },
+				{ "ribYellowStatusButton", "ribInsertYellowStatusButton" },
+				{ "ribGreenStatusButton", "ribInsertGreenStatusButton" },
+				{ "ribBlueStatusButton", "ribInsertBlueStatusButton" }
+			};
+
+			var collection = provider.GetCollection("ContextMenuSheet");
+			var updated = false;
+
+			exchange.ForEach(item =>
+			{
+				if (collection.Contains(item.Key))
+				{
+					collection.Remove(item.Key);
+					collection.Add(item.Value, true);
+					updated = true;
+				}
+			});
+
+			if (updated)
+			{
+				provider.SetCollection(collection);
+				provider.Save();
+			}
 		}
 	}
 }
