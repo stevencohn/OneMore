@@ -278,32 +278,37 @@ namespace River.OneMoreAddIn.Commands
 
 			// set the page ID to the new page's ID
 			page.Attribute("ID").Value = pageId;
+			var child = new Page(page);
 
-			// set the page name to user-entered name
-			if (!string.IsNullOrEmpty(plugin.PageName.Trim()))
+			var childTitle = child.Title.Trim();
+			var parentTitle = parent.Title.Trim();
+
+			// if plugin has modified the page title then accept that
+			// otherwise apply the name template defined by this plugin...
+			if (childTitle == parentTitle)
 			{
-				var name = plugin.PageName;
-				if (name.Contains("$name"))
+				// set the page name to user-entered name
+				var template = plugin.PageName.Trim();
+
+				if (!string.IsNullOrEmpty(template) && template.Contains("$name"))
 				{
 					// grab only text from parent's title
-					name = name.Replace("$name", XElement.Parse($"<w>{parent.Title}</w>").Value);
+					template = template.Replace("$name", XElement.Parse($"<w>{parentTitle}</w>").Value);
 				}
-				var cdata = page.Elements(parent.Namespace + "Title")
-					.Elements(parent.Namespace + "OE")
-					.Elements(parent.Namespace + "T")
-					.DescendantNodes().OfType<XCData>()
-					.FirstOrDefault();
 
-				if (cdata != null && cdata.Value.IsNullOrEmpty())
-                {
-					new Page(page).Title = name;
-				}
+				// override child title with expanded template
+				logger.WriteLine($"setting page title from name template [{template}]");
+				child.Title = template;
+			}
+			else
+			{
+				logger.WriteLine($"keeping page title set by plugin [{childTitle}]");
 			}
 
 			// remove all objectID values and let OneNote generate new IDs
-			page.Descendants().Attributes("objectID").Remove();
+			child.Root.Descendants().Attributes("objectID").Remove();
 
-			await one.Update(page);
+			await one.Update(child);
 
 			if (plugin.AsChildPage)
 			{

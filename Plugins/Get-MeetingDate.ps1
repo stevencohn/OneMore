@@ -27,7 +27,7 @@ Begin
 
 	function UpdatePageXml ($filePath)
 	{
-		$null = [Reflection.Assembly]::LoadWithPartialName("System.Xml.Linq")
+		$null = [Reflection.Assembly]::LoadWithPartialName('System.Xml.Linq')
 
 		$xml = [Xml.Linq.XElement]::Load($filePath)
 		Write-Host "Loaded $filepath"
@@ -37,21 +37,39 @@ Begin
 		$ns = $xml.GetNamespaceOfPrefix('one')
 		$xml.Descendants($ns + 'Meta') | ? `
 		{
-			$_.Attribute("name").Value -eq 'AppendedText' -and `
-			$_.Attribute("content").Value -match $pattern
+			$_.Attribute('name').Value -eq 'AppendedText' -and `
+			$_.Attribute('content').Value -match $pattern
 		} | % `
 		{
 			# presumes there is exactly one occurence of 'Meeting Date:' on the page!
 
 			$date = $Matches[1]
 			Write-Host "Found match $date"
-
-			$cdata = $xml.Elements($ns + "Title").Elements($ns + "OE").Elements($ns + "T").DescendantNodes() | ? `
+			
+			$cdata = $xml.Elements($ns + 'Title').Elements($ns + 'OE').Elements($ns + 'T').DescendantNodes() | ? `
 			{
 				$_.NodeType -eq [Xml.XmlNodeType]::CDATA
 			}
 
-			$cdata.Value = "$date $($cdata.Value)"
+			# single XCData in title, meaning cursor is not in title
+			if ($cdata.GetType().Name -eq 'XCData')
+			{
+				$cdata.Value = "$date $($cdata.Value)"
+			}
+			else
+			{
+				# handle case where cursor is in title or part of title is selected
+				$text = ''
+				$cdata | % { $text = "$text$($_.Value)" }
+
+				$c = 0
+				$cdata | % { `
+					if ($c -eq 0) { $_.Value = "$date $text" } else { $_.Parent.Remove() }
+					$c = $c + 1
+				}
+			}
+
+			Write-Host "set title to [$text]"
 		}
 		
 		$xml.Save($filePath, [Xml.Linq.SaveOptions]::None)
