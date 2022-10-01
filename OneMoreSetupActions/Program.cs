@@ -44,12 +44,12 @@ namespace OneMoreSetupActions
 			if (args[0] == "--install" || args[0] == "--uninstall")
 			{
 				logger.WriteLine(new string('=', 70));
-				logger.WriteLine($"starting action: {args[0]}");
+				logger.WriteLine($"starting action: {args[0]} .. {DateTime.Now}");
 			}
 			else
 			{
 				logger.WriteLine(new string('-', 50));
-				logger.WriteLine($"reentry action: {args[0]}");
+				logger.WriteLine($"reentry action: {args[0]} .. {DateTime.Now}");
 			}
 
 			if (args.Any(a => a == "--x64" || a == "--x86"))

@@ -188,7 +188,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			var script = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.bat");
 			using (var writer = new StreamWriter(script, false))
 			{
-				writer.WriteLine("taskkill /im ONENOTE.exe");
+				writer.WriteLine("taskkill /im ONENOTE.exe /f /t");
 				//writer.WriteLine($"start /wait msiexec /x{productCode}");
 				writer.WriteLine(msi);
 			}

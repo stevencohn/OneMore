@@ -129,6 +129,12 @@ namespace OneMoreSetupActions
 					logger?.WriteLine($"{note} for user {userdom} ({sid})");
 					return sid;
 				}
+				catch (IdentityNotMappedException)
+				{
+					// might be SYSTEM account which we don't want so break out to fallback
+					tries = int.MaxValue;
+					logger?.WriteLine($"{userdom} identity not mapped, falling back");
+				}
 				catch (Exception exc)
 				{
 					tries++;
@@ -142,9 +148,11 @@ namespace OneMoreSetupActions
 
 			foreach (var sid in Registry.Users.GetSubKeyNames())
 			{
+				// the ephemeral "Volatile Environment" key will only exist for logged-in users
 				var key = Registry.Users.OpenSubKey($@"{sid}\Volatile Environment");
 				if (key != null)
 				{
+					// "system" will not have a USERNAME env var but the logged in user will
 					var vname = key.GetValue("USERNAME") as string;
 					if (!string.IsNullOrEmpty(vname))
 					{
@@ -156,6 +164,7 @@ namespace OneMoreSetupActions
 
 						if (candidate == userdom)
 						{
+							logger?.WriteLine($"fallback found user {candidate} with SID {sid}");
 							return sid;
 						}
 					}
