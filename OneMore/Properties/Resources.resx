@@ -2036,10 +2036,6 @@ High</value>
     <value>Start Timer</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>This page</value>
-    <comment>radio button</comment>
-  </data>
   <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -2176,10 +2172,6 @@ Try again later</value>
   <data name="ToggleDttmDialog_toggleGroup.Text" xml:space="preserve">
     <value>Toggle</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>All pages in this section</value>
-    <comment>radio button</comment>
   </data>
   <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
     <value>Refresh Page References</value>
@@ -3120,7 +3112,7 @@ High</value>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Remove Ink</value>
-    <comment>ribbon item</comment>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribInsertCodeBlockButton_Label" xml:space="preserve">
     <value>Code block</value>
@@ -3174,7 +3166,7 @@ High</value>
   </data>
   <data name="ribRemoveTagsButton_Label" xml:space="preserve">
     <value>Remove Tags</value>
-    <comment>ribbon item</comment>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>Include reference to keyboard shortcuts page</value>
@@ -4065,5 +4057,9 @@ Do no enlarge smaller images</value>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Open Log File</value>
+  </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Remove Duplicate Pages</value>
+    <comment>Ribbon OneMore menu item</comment>
   </data>
 </root>

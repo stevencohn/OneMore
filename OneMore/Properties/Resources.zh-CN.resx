@@ -1880,17 +1880,9 @@ ISO-code then comma then language name</comment>
     <value>隐藏日期和时间</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>这一页</value>
-    <comment>radio button</comment>
-  </data>
   <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
     <value>范围</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>本节中的所有页面</value>
-    <comment>radio button</comment>
   </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>显示日期和时间</value>
@@ -3993,5 +3985,11 @@ OneNote 文件 (*.one)</value>
   <data name="CommandPallett_Title" xml:space="preserve">
     <value>OneMore 命令托盘</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>打开命令托盘</value>
+  </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>打开日志文件</value>
   </data>
 </root>

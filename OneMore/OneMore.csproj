@@ -277,6 +277,7 @@
     <Compile Include="Commands\Reminders\ReportRemindersReuseDialog.Designer.cs">
       <DependentUpon>ReportRemindersReuseDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Clean\RemoveDuplicatesCommand.cs" />
     <Compile Include="Commands\Settings\KeyboardGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -624,6 +625,12 @@
       <DependentUpon>PluginDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\RichTextBoxExtensions.cs" />
+    <Compile Include="UI\ScopeSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ScopeSelector.Designer.cs">
+      <DependentUpon>ScopeSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SortableBindingList.cs" />
     <Compile Include="UI\TagPickerDialog.cs">
       <SubType>Form</SubType>
@@ -832,6 +839,7 @@
     </Compile>
     <Compile Include="Styles\Stylizer.cs" />
     <Compile Include="Styles\XmlStyleBase.cs" />
+    <Compile Include="UI\TranslationHelper.cs" />
     <Compile Include="UI\WebViewWorkerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1204,6 +1212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
       <DependentUpon>StyleDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ScopeSelector.resx">
+      <DependentUpon>ScopeSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TagPickerDialog.resx">
       <DependentUpon>TagPickerDialog.cs</DependentUpon>

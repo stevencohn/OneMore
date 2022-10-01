@@ -1890,17 +1890,9 @@ ISO-code then comma then language name</comment>
     <value>Ocultar fecha y hora</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>Esta página</value>
-    <comment>radio button</comment>
-  </data>
   <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
     <value>Alcance</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Todas las páginas de esta sección</value>
-    <comment>radio button</comment>
   </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Mostrar fecha y hora</value>
@@ -4003,5 +3995,11 @@ No ampliar imágenes más pequeñas</value>
   <data name="CommandPallett_Title" xml:space="preserve">
     <value>Paleta de mando OneMore</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>Paleta de comandos abierta</value>
+  </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>Abrir archivo de registro</value>
   </data>
 </root>

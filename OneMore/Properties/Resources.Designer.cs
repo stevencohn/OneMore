@@ -6415,6 +6415,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Duplicate Pages.
+        /// </summary>
+        internal static string ribRemoveDuplicatesButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveDuplicatesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove empty paragraphs and headers.
         /// </summary>
         internal static string ribRemoveEmptyButton_Label {
@@ -8632,29 +8641,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This page.
-        /// </summary>
-        internal static string ToggleDttmDialog_pageRadio_Text {
-            get {
-                return ResourceManager.GetString("ToggleDttmDialog_pageRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Scope.
         /// </summary>
         internal static string ToggleDttmDialog_scopeGroup_Text {
             get {
                 return ResourceManager.GetString("ToggleDttmDialog_scopeGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All pages in this section.
-        /// </summary>
-        internal static string ToggleDttmDialog_sectionRadio_Text {
-            get {
-                return ResourceManager.GetString("ToggleDttmDialog_sectionRadio.Text", resourceCulture);
             }
         }
         

@@ -1886,17 +1886,9 @@ ISO-code then comma then language name</comment>
     <value>إخفاء التاريخ والوقت</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>هذه الصفحة</value>
-    <comment>radio button</comment>
-  </data>
   <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
     <value>نطاق</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>كل الصفحات في هذا القسم</value>
-    <comment>radio button</comment>
   </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>عرض التاريخ والوقت</value>
@@ -4003,5 +3995,11 @@ ISO-code then comma then language name</comment>
   <data name="CommandPallett_Title" xml:space="preserve">
     <value>One More Command Pallett</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>افتح لوحة الأوامر</value>
+  </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>افتح ملف السجل</value>
   </data>
 </root>

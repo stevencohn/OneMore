@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn
 		/// Gets the thread culture for use in subsequent threads; used primarily for 
 		/// debugging when explicitly setting the culture in the AddIn() constructor
 		/// </summary>
-		public static CultureInfo Culture { get; private set; }
+		public static CultureInfo Culture { get; private set; } = CultureInfo.GetCultureInfo("en");
 
 
 		/// <summary>
