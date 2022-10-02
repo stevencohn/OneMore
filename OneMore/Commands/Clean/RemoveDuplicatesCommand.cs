@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Windows.Devices.Scanners;
 
 
 	/// <summary>
@@ -35,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 		private XNamespace ns;
 		private readonly MD5CryptoServiceProvider cruncher;
 		private readonly List<HashNode> hashes;
+		private UI.ProgressDialog progress;
 
 
 		public RemoveDuplicatesCommand()
@@ -47,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			UI.SelectorScope scope;
-			IEnumerable<string> notebooks;
+			IEnumerable<string> books;
 			RemoveDuplicatesDialog.DepthKind depth;
 
 			using (var dialog = new RemoveDuplicatesDialog())
@@ -59,72 +61,119 @@ namespace River.OneMoreAddIn.Commands
 
 				depth = dialog.Depth;
 				scope = dialog.Scope;
-				notebooks = dialog.SelectedNotebooks;
+				books = dialog.SelectedNotebooks;
 			}
 
-			using (one = new OneNote(out _, out ns))
+			var hierarchy = await Scan(scope, depth, books);
+		}
+
+
+		private async Task<XElement> Scan(
+			UI.SelectorScope scope, 
+			RemoveDuplicatesDialog.DepthKind depth,
+			IEnumerable<string> books)
+		{
+			logger.StartClock();
+			XElement hierarchy;
+			var count = 0;
+
+			using (progress = new UI.ProgressDialog())
 			{
-				var hierarchy = await BuildHierarchy(scope, notebooks);
-
-				hierarchy.Descendants(ns + "Page").ForEach(p =>
+				using (one = new OneNote(out _, out ns))
 				{
-					// get the XML text rather than the Page so we don't end up
-					// converting it back and forth more than once...
-					string xml = depth == RemoveDuplicatesDialog.DepthKind.Deep
-						? one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.BinaryDataFileType)
-						: one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					hierarchy = await BuildHierarchy(scope, books);
 
-					var node = CalculateHash(xml, depth);
-					logger.WriteLine($"text hash [{node.TextHash}] xml hash [{node.XmlHash}]");
+					progress.SetMaximum(hierarchy.Elements().Count());
+					progress.Show(owner);
 
-					var sibling = hashes.FirstOrDefault(n =>
-						n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
-
-					if (sibling != null)
+					hierarchy.Descendants(ns + "Page").ForEach(p =>
 					{
-						logger.WriteLine($"match [{node.Title}] with [{sibling.Title}]");
-						sibling.Siblings.Add(node);
-					}
-					else
-					{
-						logger.WriteLine($"new [{node.Title}]");
-						hashes.Add(node);
-					}
-				});
+						// get the XML text rather than the Page so we don't end up
+						// converting it back and forth more than once...
+						string xml = depth == RemoveDuplicatesDialog.DepthKind.Deep
+							? one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.BinaryDataFileType)
+							: one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.Basic);
 
-				hashes.RemoveAll(n => !n.Siblings.Any());
-				logger.WriteLine($"{hashes.Count} duplicate main pages");
+						var node = CalculateHash(xml, depth);
+						//logger.WriteLine($"text hash [{node.TextHash}] xml hash [{node.XmlHash}]");
+
+						progress.SetMessage($"Scanning {node.Title}...");
+						progress.Increment();
+
+						var sibling = hashes.FirstOrDefault(n =>
+							n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
+
+						if (sibling != null)
+						{
+							node.Path = one.GetPageInfo(node.PageID).Path;
+							if (sibling.Path == null)
+							{
+								sibling.Path = one.GetPageInfo(sibling.PageID).Path;
+							}
+
+							//logger.WriteLine($"match [{node.Title}] with [{sibling.Title}]");
+							sibling.Siblings.Add(node);
+						}
+						else
+						{
+							//logger.WriteLine($"new [{node.Title}]");
+							hashes.Add(node);
+						}
+
+						count++;
+					});
+				}
 			}
 
-			await Task.Yield();
+			hashes.RemoveAll(n => !n.Siblings.Any());
+			logger.WriteTime($"{hashes.Count} duplicate main pages of {count}");
+
+			return hierarchy;
 		}
 
 
 		private async Task<XElement> BuildHierarchy(
-			UI.SelectorScope scope, IEnumerable<string> notebooks)
+			UI.SelectorScope scope, IEnumerable<string> books)
 		{
-			XElement hierarchy;
+			var hierarchy = new XElement("pages");
 
 			switch (scope)
 			{
 				case UI.SelectorScope.Section:
-					hierarchy = one.GetSection();
+					one.GetSection().Descendants(ns + "Page")
+						.ForEach(p => hierarchy.Add(p));
 					break;
 
 				case UI.SelectorScope.Notebook:
-					hierarchy = await one.GetNotebook(OneNote.Scope.Pages);
+					(await one.GetNotebook(OneNote.Scope.Pages)).Descendants(ns + "Page")
+						.ForEach(p => hierarchy.Add(p));
 					break;
 
 				case UI.SelectorScope.Notebooks:
-					hierarchy = await one.GetNotebooks(OneNote.Scope.Pages);
+					(await one.GetNotebooks(OneNote.Scope.Pages)).Descendants(ns + "Page")
+						.ForEach(p => hierarchy.Add(p));
 					break;
 
 				default:
-					hierarchy = one.GetSection();
+					(await BuildSelectedHierarchy(books))
+						.ForEach(p => hierarchy.Add(p));
 					break;
 			}
 
 			return hierarchy;
+		}
+
+
+		private async Task<IEnumerable<XElement>> BuildSelectedHierarchy(IEnumerable<string> books)
+		{
+			var pages = new List<XElement>();
+			foreach (var id in books)
+			{
+				var book = await one.GetNotebook(id, OneNote.Scope.Pages);
+				pages.AddRange(book.Descendants(ns + "Page"));
+			}
+
+			return pages;
 		}
 
 
