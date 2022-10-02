@@ -4062,4 +4062,8 @@ Do no enlarge smaller images</value>
     <value>Remove Duplicate Pages</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Remove Duplicate Pages</value>
+    <comment>dialog title</comment>
+  </data>
 </root>

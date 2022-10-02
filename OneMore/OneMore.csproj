@@ -148,6 +148,12 @@
     <Compile Include="Colorizer\Parser.cs" />
     <Compile Include="Colorizer\Provider.cs" />
     <Compile Include="Colorizer\Theme.cs" />
+    <Compile Include="Commands\Clean\RemoveDuplicatesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Clean\RemoveDuplicatesDialog.Designer.cs">
+      <DependentUpon>RemoveDuplicatesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Clean\RemoveInkCommand.cs" />
     <Compile Include="Commands\Clean\RemoveTagsCommand.cs" />
     <Compile Include="Commands\Clean\RestoreAutosizeCommand.cs" />
@@ -625,6 +631,7 @@
       <DependentUpon>PluginDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\RichTextBoxExtensions.cs" />
+    <Compile Include="UI\SelectorScope.cs" />
     <Compile Include="UI\ScopeSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1044,6 +1051,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">
       <DependentUpon>BreakingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Clean\RemoveDuplicatesDialog.resx">
+      <DependentUpon>RemoveDuplicatesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Edit\SortListDialog.resx">
       <DependentUpon>SortListDialog.cs</DependentUpon>

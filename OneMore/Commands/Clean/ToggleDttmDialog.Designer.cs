@@ -94,7 +94,7 @@
 			this.scopeSelector.Location = new System.Drawing.Point(31, 34);
 			this.scopeSelector.Margin = new System.Windows.Forms.Padding(0);
 			this.scopeSelector.Name = "scopeSelector";
-			this.scopeSelector.Scopes = ((River.OneMoreAddIn.UI.ScopeSelector.ScopeKind)((River.OneMoreAddIn.UI.ScopeSelector.ScopeKind.Page | River.OneMoreAddIn.UI.ScopeSelector.ScopeKind.Section)));
+			this.scopeSelector.Scopes = ((River.OneMoreAddIn.UI.SelectorScope)((River.OneMoreAddIn.UI.SelectorScope.Page | River.OneMoreAddIn.UI.SelectorScope.Section)));
 			this.scopeSelector.Size = new System.Drawing.Size(345, 75);
 			this.scopeSelector.TabIndex = 0;
 			// 

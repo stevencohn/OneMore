@@ -13,15 +13,6 @@ namespace River.OneMoreAddIn.UI
 
 	public partial class ScopeSelector : UserControl
 	{
-		[Flags]
-		public enum ScopeKind
-		{
-			Page = 1,
-			Section = 2,
-			Notebook = 4,
-			Notebooks = 8,
-			SelectedNotebooks = 16
-		}
 
 		private sealed class Book
 		{
@@ -35,25 +26,25 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private ScopeKind scopes;
+		private SelectorScope scopes;
 
 
 		public ScopeSelector()
 		{
 			InitializeComponent();
 
-			Scopes = ScopeKind.Section | ScopeKind.Notebook | ScopeKind.Notebooks;
+			Scopes = SelectorScope.Section | SelectorScope.Notebook | SelectorScope.Notebooks;
 			sectionButton.Checked = true;
 
 			if (TranslationHelper.NeedsLocalizing())
 			{
 				TranslationHelper.Localize(this, new string[]
 				{
-				"pageButton",
-				"sectionButton",
-				"notebookButton",
-				"notebooksButton",
-				"selectedButton"
+					"pageButton",
+					"sectionButton",
+					"notebookButton",
+					"notebooksButton",
+					"selectedButton"
 				});
 			}
 		}
@@ -69,7 +60,7 @@ namespace River.OneMoreAddIn.UI
 		/// Gets the selected scope; if the scope is ScopeKind.SelectedNotebooks then
 		/// also get the selected notebooks from the SelectedNotebooks property.
 		/// </summary>
-		public ScopeKind Scope { get; private set; }
+		public SelectorScope Scope { get; private set; }
 
 
 
@@ -77,16 +68,16 @@ namespace River.OneMoreAddIn.UI
 		/// Sets the scope choice that will be make available to the user.
 		/// </summary>
 		[Description("Available scope choices")]
-		public ScopeKind Scopes
+		public SelectorScope Scopes
 		{
 			get { return scopes; }
 			set
 			{
 				scopes = value;
 				EnableScopeButtons();
-				if (scopes.HasFlag(ScopeKind.SelectedNotebooks))
+				if (scopes.HasFlag(SelectorScope.SelectedNotebooks))
 				{
-					//if (!DesignMode)
+					if (!DesignMode)
 					{
 						Task.Run(async () => await LoadNotebooks());
 					}
@@ -99,39 +90,39 @@ namespace River.OneMoreAddIn.UI
 		{
 			var top = pageButton.Top;
 
-			pageButton.Visible = scopes.HasFlag(ScopeKind.Page);
+			pageButton.Visible = scopes.HasFlag(SelectorScope.Page);
 			if (pageButton.Visible)
 			{
 				pageButton.Top = top;
 				top += pageButton.Height + pageButton.Margin.Top + pageButton.Margin.Bottom;
 			}
 
-			sectionButton.Visible = scopes.HasFlag(ScopeKind.Section);
+			sectionButton.Visible = scopes.HasFlag(SelectorScope.Section);
 			if (sectionButton.Visible)
 			{
 				sectionButton.Top = top;
 				top += sectionButton.Height + sectionButton.Margin.Top + sectionButton.Margin.Bottom;
 			}
 
-			notebookButton.Visible = scopes.HasFlag(ScopeKind.Notebook);
+			notebookButton.Visible = scopes.HasFlag(SelectorScope.Notebook);
 			if (notebookButton.Visible)
 			{
 				notebookButton.Top = top;
 				top += notebookButton.Height + notebookButton.Margin.Top + notebookButton.Margin.Bottom;
 			}
 
-			notebooksButton.Visible = scopes.HasFlag(ScopeKind.Notebooks);
+			notebooksButton.Visible = scopes.HasFlag(SelectorScope.Notebooks);
 			if (notebooksButton.Visible)
 			{
 				notebooksButton.Top = top;
 				top += notebooksButton.Height + notebooksButton.Margin.Top + notebooksButton.Margin.Bottom;
 			}
 
-			selectedButton.Visible = scopes.HasFlag(ScopeKind.SelectedNotebooks);
+			selectedButton.Visible = scopes.HasFlag(SelectorScope.SelectedNotebooks);
 			if (selectedButton.Visible)
 			{
 				selectedButton.Top = top;
-				//top += selectedButton.Height + selectedButton.Margin.Top + selectedButton.Margin.Bottom;
+				top += selectedButton.Height + selectedButton.Margin.Top + selectedButton.Margin.Bottom;
 			}
 
 			choiceBox.Height = choiceBox.Padding.Top + choiceBox.Padding.Bottom + top;
@@ -174,13 +165,13 @@ namespace River.OneMoreAddIn.UI
 
 		private void ScopeChanged(object sender, EventArgs e)
 		{
-			if (pageButton.Checked) Scope = ScopeKind.Page;
-			else if (sectionButton.Checked) Scope = ScopeKind.Section;
-			else if (notebookButton.Checked) Scope = ScopeKind.Notebook;
-			else if (notebooksButton.Checked) Scope = ScopeKind.Notebooks;
-			else Scope = ScopeKind.SelectedNotebooks;
+			if (pageButton.Checked) Scope = SelectorScope.Page;
+			else if (sectionButton.Checked) Scope = SelectorScope.Section;
+			else if (notebookButton.Checked) Scope = SelectorScope.Notebook;
+			else if (notebooksButton.Checked) Scope = SelectorScope.Notebooks;
+			else Scope = SelectorScope.SelectedNotebooks;
 
-			selectionPanel.Visible = (Scope == ScopeKind.SelectedNotebooks);
+			selectionPanel.Visible = selectedButton.Checked;
 			Height = selectionPanel.Visible
 				? choiceBox.Height + selectionPanel.Height
 				: choiceBox.Height;

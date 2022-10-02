@@ -4618,6 +4618,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Duplicate Pages.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove all empty lines?
         ///
         ///Select Yes to remove all empty lines between paragraphs
