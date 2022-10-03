@@ -4002,4 +4002,27 @@ ISO-code then comma then language name</comment>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>افتح ملف السجل</value>
   </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>إزالة الصفحات المكررة</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>إزالة الصفحات المكررة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>بنية XML الأساسية</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>XML العميق مع مقارنة ثنائية (بطيئة)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>عمق المسح</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>نص بسيط (سريع)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>نِطَاق</value>
+  </data>
 </root>

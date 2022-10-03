@@ -4618,6 +4618,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basic XML structure.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_basicRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_basicRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deep XML with binary comparison (slow).
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_deepRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanning Depth.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_depthBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_depthBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simple text (quick).
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_simpleRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_simpleRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Duplicate Pages.
         /// </summary>
         internal static string RemoveDuplicatesDialog_Text {
@@ -9083,6 +9119,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Saturation {
             get {
                 return ResourceManager.GetString("word_Saturation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scope.
+        /// </summary>
+        internal static string Word_Scope {
+            get {
+                return ResourceManager.GetString("Word_Scope", resourceCulture);
             }
         }
         

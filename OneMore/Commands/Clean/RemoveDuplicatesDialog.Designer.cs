@@ -1,4 +1,4 @@
-﻿namespace River.OneMoreAddIn.Commands.Clean
+﻿namespace River.OneMoreAddIn.Commands
 {
 	partial class RemoveDuplicatesDialog
 	{
@@ -34,7 +34,7 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.depthBox = new System.Windows.Forms.GroupBox();
-			this.simpleButton = new System.Windows.Forms.RadioButton();
+			this.deepRadio = new System.Windows.Forms.RadioButton();
 			this.basicRadio = new System.Windows.Forms.RadioButton();
 			this.simpleRadio = new System.Windows.Forms.RadioButton();
 			this.scopeGroupBox.SuspendLayout();
@@ -90,7 +90,7 @@
 			// 
 			// depthBox
 			// 
-			this.depthBox.Controls.Add(this.simpleButton);
+			this.depthBox.Controls.Add(this.deepRadio);
 			this.depthBox.Controls.Add(this.basicRadio);
 			this.depthBox.Controls.Add(this.simpleRadio);
 			this.depthBox.Location = new System.Drawing.Point(12, 12);
@@ -100,15 +100,15 @@
 			this.depthBox.TabStop = false;
 			this.depthBox.Text = "Scanning Depth";
 			// 
-			// simpleButton
+			// deepRadio
 			// 
-			this.simpleButton.AutoSize = true;
-			this.simpleButton.Location = new System.Drawing.Point(20, 85);
-			this.simpleButton.Name = "simpleButton";
-			this.simpleButton.Size = new System.Drawing.Size(319, 24);
-			this.simpleButton.TabIndex = 2;
-			this.simpleButton.Text = "Deep XML with binary comparison (slow)";
-			this.simpleButton.UseVisualStyleBackColor = true;
+			this.deepRadio.AutoSize = true;
+			this.deepRadio.Location = new System.Drawing.Point(20, 85);
+			this.deepRadio.Name = "deepRadio";
+			this.deepRadio.Size = new System.Drawing.Size(319, 24);
+			this.deepRadio.TabIndex = 2;
+			this.deepRadio.Text = "Deep XML with binary comparison (slow)";
+			this.deepRadio.UseVisualStyleBackColor = true;
 			// 
 			// basicRadio
 			// 
@@ -164,7 +164,7 @@
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.GroupBox depthBox;
-		private System.Windows.Forms.RadioButton simpleButton;
+		private System.Windows.Forms.RadioButton deepRadio;
 		private System.Windows.Forms.RadioButton basicRadio;
 		private System.Windows.Forms.RadioButton simpleRadio;
 	}

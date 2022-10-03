@@ -3994,4 +3994,27 @@ Vergrößern Sie kleinere Bilder nicht</value>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Protokolldatei öffnen</value>
   </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Doppelte Seiten entfernen</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Doppelte Seiten entfernen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>Grundlegende XML-Struktur</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>Deep XML mit binärem Vergleich (langsam)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>Scantiefe</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>Einfacher Text (schnell)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>Zielfernrohr</value>
+  </data>
 </root>

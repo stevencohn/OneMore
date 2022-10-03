@@ -3996,4 +3996,27 @@ Ne pas agrandir les petites images</value>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Ouvrir le fichier journal</value>
   </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Supprimer les pages en double</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Supprimer les pages en double</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>Structure XML de base</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>Deep XML avec comparaison binaire (lent)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>Profondeur de numérisation</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>Texte simple (rapide)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>Portée</value>
+  </data>
 </root>

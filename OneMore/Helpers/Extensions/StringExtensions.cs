@@ -103,7 +103,7 @@ namespace River.OneMoreAddIn
 		/// <param name="s"></param>
 		/// <param name="t"></param>
 		/// <returns></returns>
-		public static int SimilarityTo(this string s, string t)
+		public static int DistanceFrom(this string s, string t)
 		{
 			if (String.IsNullOrEmpty(s))
 			{
@@ -120,27 +120,56 @@ namespace River.OneMoreAddIn
 				return s.Length;
 			}
 
-			int n = s.Length;
-			int m = t.Length;
-			int[,] d = new int[n + 1, m + 1];
-
-			// initialize the top and right of the table to 0, 1, 2, ...
-
-			for (int i = 0; i <= n; d[i, 0] = i++) ;
-			for (int j = 1; j <= m; d[0, j] = j++) ;
-
-			for (int i = 1; i <= n; i++)
+			if (s.Equals(t))
 			{
-				for (int j = 1; j <= m; j++)
-				{
-					int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
-					int min1 = d[i - 1, j] + 1;
-					int min2 = d[i, j - 1] + 1;
-					int min3 = d[i - 1, j - 1] + cost;
-					d[i, j] = Math.Min(Math.Min(min1, min2), min3);
-				}
+				return 0;
 			}
-			return d[n, m];
+
+			// vectors
+			int[] v0 = new int[t.Length + 1];
+			int[] v1 = new int[t.Length + 1];
+			int[] vtemp;
+
+			// initialize v0 (the previous row of distances)
+			// this row is A[0][i]: edit distance for an empty s
+			// the distance is just the number of characters to delete from t
+			for (int i = 0; i < v0.Length; i++)
+			{
+				v0[i] = i;
+			}
+
+			for (int i = 0; i < s.Length; i++)
+			{
+				// calculate v1 (current row distances) from the previous row v0
+				// first element of v1 is A[i+1][0]
+				//   edit distance is delete (i+1) chars from s to match empty t
+				v1[0] = i + 1;
+
+				// use formula to fill in the rest of the row
+				for (int j = 0; j < t.Length; j++)
+				{
+					int cost = 1;
+					if (s[i] == t[j])
+					{
+						cost = 0;
+					}
+					v1[j + 1] = Math.Min(
+							v1[j] + 1,              // Cost of insertion
+							Math.Min(
+									v0[j + 1] + 1,  // Cost of remove
+									v0[j] + cost)); // Cost of substitution
+				}
+
+				// copy v1 (current row) to v0 (previous row) for next iteration
+				//System.arraycopy(v1, 0, v0, 0, v0.length);
+
+				// Flip references to current and previous row
+				vtemp = v0;
+				v0 = v1;
+				v1 = vtemp;
+			}
+
+			return v0[t.Length];
 		}
 
 

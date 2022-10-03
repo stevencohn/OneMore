@@ -3992,4 +3992,27 @@ OneNote 文件 (*.one)</value>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>打开日志文件</value>
   </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>删除重复页面</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>删除重复页面</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>基本 XML 结构</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>具有二进制比较的深度 XML（慢）</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>扫描深度</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>简单文本（快速）</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>范围</value>
+  </data>
 </root>

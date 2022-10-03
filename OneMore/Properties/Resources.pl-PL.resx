@@ -4055,4 +4055,27 @@ Nie powiększaj mniejszych obrazów</value>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Otwórz plik dziennika</value>
   </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Usuń zduplikowane strony</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Usuń zduplikowane strony</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>Podstawowa struktura XML</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>Głęboki XML z porównaniem binarnym (wolne)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>Głębokość skanowania</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>Prosty tekst (szybko)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>Zakres</value>
+  </data>
 </root>

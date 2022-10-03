@@ -4,21 +4,21 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Commands.Clean;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Security.Cryptography;
 	using System.Text;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Windows.Devices.Scanners;
 
 
 	/// <summary>
-	/// Scan pages looking for and removing duplicates
+	/// Analyze pages scanning for duplicates and close matches and let user cherrypick
+	/// duplicates to delete.
 	/// </summary>
 	internal class RemoveDuplicatesCommand : Command
 	{
@@ -28,30 +28,34 @@ namespace River.OneMoreAddIn.Commands
 			public string XmlHash;
 			public string TextHash;
 			public string Title;
+			public string Xml;
 			public string Path;
+			public string Link;
+			public int Distance;
 			public List<HashNode> Siblings = new List<HashNode>();
 		}
 
 		private OneNote one;
 		private XNamespace ns;
-		private readonly MD5CryptoServiceProvider cruncher;
+		private readonly MD5CryptoServiceProvider hasher;
 		private readonly List<HashNode> hashes;
 		private UI.ProgressDialog progress;
+
+		private UI.SelectorScope scope;
+		private IEnumerable<string> books;
+		private RemoveDuplicatesDialog.DepthKind depth;
+		private int scanCount;
 
 
 		public RemoveDuplicatesCommand()
 		{
 			hashes = new List<HashNode>();
-			cruncher = new MD5CryptoServiceProvider();
+			hasher = new MD5CryptoServiceProvider();
 		}
 
 
 		public override async Task Execute(params object[] args)
 		{
-			UI.SelectorScope scope;
-			IEnumerable<string> books;
-			RemoveDuplicatesDialog.DepthKind depth;
-
 			using (var dialog = new RemoveDuplicatesDialog())
 			{
 				if (dialog.ShowDialog(Owner) != DialogResult.OK)
@@ -64,81 +68,112 @@ namespace River.OneMoreAddIn.Commands
 				books = dialog.SelectedNotebooks;
 			}
 
-			var hierarchy = Scan(scope, depth, books);
+			// analyze pages, scanning for duplicates and close matches...
+
+			logger.StartClock();
+
+			using (progress = new UI.ProgressDialog())
+			{
+				progress.ShowDialogWithCancel(Owner,
+					async (dialog, token) => await Scan(dialog, token));
+			}
+
+			logger.WriteTime($"{hashes.Count} duplicate main pages of {scanCount}");
+
+			hashes.ForEach(n =>
+			{
+				logger.WriteLine($"{n.Title:-35} {n.TextHash} {n.XmlHash}");
+				n.Siblings.ForEach(s =>
+				{
+					logger.WriteLine($"... {s.Title:-31} {s.TextHash} {s.XmlHash} {s.Distance}");
+				});
+			});
+
+			// let user cherrypick duplicate pages to delete...
+
+			using (var navigator = new RemoveDuplicatesNavigator())
+			{
+				if (navigator.ShowDialog(Owner) != DialogResult.OK)
+				{
+					return;
+				}
+			}
 
 			await Task.Yield();
 		}
 
 
-		private XElement Scan(
-			UI.SelectorScope scope, 
-			RemoveDuplicatesDialog.DepthKind depth,
-			IEnumerable<string> books)
+		private async Task<bool> Scan(UI.ProgressDialog dialog, CancellationToken token)
 		{
-			logger.StartClock();
-			XElement hierarchy = null;
-			var count = 0;
+			var deep = depth == RemoveDuplicatesDialog.DepthKind.Deep;
 
-			using (progress = new UI.ProgressDialog())
+			using (one = new OneNote(out _, out ns))
 			{
-				progress.ShowCancelDialog(Owner, async (dialog, token) =>
+				var hierarchy = await BuildHierarchy(scope, books);
+				dialog.SetMaximum(hierarchy.Elements().Count());
+
+				var pages = hierarchy.Descendants(ns + "Page");
+				foreach (var page in pages)
 				{
-					using (one = new OneNote(out _, out ns))
+					if (token.IsCancellationRequested)
 					{
-						hierarchy = await BuildHierarchy(scope, books);
-						dialog.SetMaximum(hierarchy.Elements().Count());
-
-						hierarchy.Descendants(ns + "Page").ForEach(p =>
-						{
-							if (token.IsCancellationRequested)
-							{
-								return;
-							}
-
-							// get the XML text rather than the Page so we don't end up
-							// converting it back and forth more than once...
-							string xml = depth == RemoveDuplicatesDialog.DepthKind.Deep
-								? one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.BinaryDataFileType)
-								: one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.Basic);
-
-							var node = CalculateHash(xml, depth);
-							//logger.WriteLine($"text hash [{node.TextHash}] xml hash [{node.XmlHash}]");
-
-							dialog.SetMessage($"Scanning {node.Title}...");
-							dialog.Increment();
-
-							var sibling = hashes.FirstOrDefault(n =>
-								n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
-
-							if (sibling != null)
-							{
-								node.Path = one.GetPageInfo(node.PageID).Path;
-								if (sibling.Path == null)
-								{
-									sibling.Path = one.GetPageInfo(sibling.PageID).Path;
-								}
-
-								//logger.WriteLine($"match [{node.Title}] with [{sibling.Title}]");
-								sibling.Siblings.Add(node);
-							}
-							else
-							{
-								//logger.WriteLine($"new [{node.Title}]");
-								hashes.Add(node);
-							}
-
-							count++;
-						});
+						break;
 					}
 
-					return true;
-				});
+					// get the XML text rather than the Page so we don't end up
+					// converting it back and forth more than once...
+					string xml = deep
+						? one.GetPageXml(page.Attribute("ID").Value, OneNote.PageDetail.BinaryDataFileType)
+						: one.GetPageXml(page.Attribute("ID").Value, OneNote.PageDetail.Basic);
+
+					var node = CalculateHash(ref xml, depth);
+					logger.WriteLine($"text hash [{node.TextHash}] xml hash [{node.XmlHash}]");
+
+					dialog.SetMessage($"Scanning {node.Title}...");
+					dialog.Increment();
+
+					var sibling = hashes.FirstOrDefault(n =>
+						n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
+
+					if (sibling != null)
+					{
+						var info = one.GetPageInfo(node.PageID);
+						node.Path = info.Path;
+						node.Link = info.Link;
+						if (sibling.Path == null)
+						{
+							info = one.GetPageInfo(sibling.PageID);
+							sibling.Path = info.Path;
+							sibling.Link = info.Link;
+						}
+
+						if (deep)
+						{
+							node.Distance = xml.DistanceFrom(sibling.Xml);
+						}
+
+						logger.WriteLine($"match [{node.Title}] with [{sibling.Title}]");
+						sibling.Siblings.Add(node);
+					}
+					else
+					{
+						if (deep)
+						{
+							node.Xml = xml;
+						}
+
+						logger.WriteLine($"new [{node.Title}]");
+						hashes.Add(node);
+					}
+
+					scanCount++;
+				}
 			}
 
 			hashes.RemoveAll(n => !n.Siblings.Any());
-			logger.WriteTime($"{hashes.Count} duplicate main pages of {count}");
+			hashes.ForEach(n => n.Xml = null);
 
-			return hierarchy;
+			return true;
 		}
 
 
@@ -170,6 +205,13 @@ namespace River.OneMoreAddIn.Commands
 					break;
 			}
 
+			// remove recyclebin nodes
+			hierarchy.Descendants()
+				.Where(n => n.Name.LocalName == "UnfiledNotes" ||
+							n.Attribute("isRecycleBin") != null ||
+							n.Attribute("isInRecycleBin") != null)
+				.Remove();
+
 			return hierarchy;
 		}
 
@@ -187,7 +229,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private HashNode CalculateHash(string xml, RemoveDuplicatesDialog.DepthKind depth)
+		private HashNode CalculateHash(ref string xml, RemoveDuplicatesDialog.DepthKind depth)
 		{
 			var root = XElement.Parse(xml);
 			var page = new Page(root);
@@ -212,17 +254,23 @@ namespace River.OneMoreAddIn.Commands
 			var node = new HashNode
 			{
 				PageID = pageId,
-				Title = page.Title,
-
-				TextHash = Convert.ToBase64String(
-					cruncher.ComputeHash(Encoding.Default.GetBytes(page.Root.Value)))
+				Title = page.Title
 			};
 
 			if (depth != RemoveDuplicatesDialog.DepthKind.Basic)
 			{
 				node.XmlHash = Convert.ToBase64String(
-					cruncher.ComputeHash(Encoding.Default.GetBytes(xml)));
+					hasher.ComputeHash(Encoding.Default.GetBytes(xml)));
+
+				if (depth == RemoveDuplicatesDialog.DepthKind.Deep)
+				{
+					xml = root.ToString(SaveOptions.DisableFormatting);
+				}
 			}
+
+			var plain = page.Root.TextValue(true);
+			node.TextHash = Convert.ToBase64String(
+				hasher.ComputeHash(Encoding.Default.GetBytes(plain)));
 
 			return node;
 		}

@@ -4002,4 +4002,27 @@ Kleinere afbeeldingen niet vergroten</value>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Logbestand openen</value>
   </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Dubbele pagina's verwijderen</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Dubbele pagina's verwijderen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>Basis XML-structuur</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>Deep XML met binaire vergelijking (langzaam)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>Scandiepte</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>Eenvoudige tekst (snel)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>Domein</value>
+  </data>
 </root>

@@ -284,6 +284,12 @@
       <DependentUpon>ReportRemindersReuseDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Clean\RemoveDuplicatesCommand.cs" />
+    <Compile Include="Commands\Clean\RemoveDuplicatesNavigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Clean\RemoveDuplicatesNavigator.Designer.cs">
+      <DependentUpon>RemoveDuplicatesNavigator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\KeyboardGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1054,6 +1060,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Clean\RemoveDuplicatesDialog.resx">
       <DependentUpon>RemoveDuplicatesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Clean\RemoveDuplicatesNavigator.resx">
+      <DependentUpon>RemoveDuplicatesNavigator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Edit\SortListDialog.resx">
       <DependentUpon>SortListDialog.cs</DependentUpon>

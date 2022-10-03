@@ -118,7 +118,7 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="owner"></param>
 		/// <param name="action"></param>
 		/// <returns></returns>
-		public DialogResult ShowCancelDialog(
+		public DialogResult ShowDialogWithCancel(
 			IWin32Window owner, Func<ProgressDialog, CancellationToken, Task<bool>> action)
 		{
 			cancelButton.Visible = true;
@@ -190,7 +190,7 @@ namespace River.OneMoreAddIn.UI
 			timer.Tick += Tick;
 			StartTimer();
 
-			return ShowCancelDialog(owner, action);
+			return ShowDialogWithCancel(owner, action);
 		}
 
 

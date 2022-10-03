@@ -433,10 +433,27 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// OneMore Extension >> Extract the sanitized text value of the given element
 		/// </summary>
-		/// <param name="element"></param>
+		/// <param name="element">The root element from which to extract text</param>
+		/// <param name="deep">
+		/// If true then also strip all HTML out of CDATA values; default is to keep HTML
+		/// </param>
 		/// <returns></returns>
-		public static string TextValue(this XElement element)
+		public static string TextValue(this XElement element, bool deep = false)
 		{
+			if (deep)
+			{
+				var pattern = new Regex(@"\<[^<]+\>[^<]+\<[^<]+\>", RegexOptions.Compiled);
+				var data = element.DescendantNodes().OfType<XCData>()
+					.Where(d => pattern.IsMatch(d.Value));
+
+				foreach (var cdata in data)
+				{
+					cdata.Value = cdata.GetWrapper().Value;
+				}
+
+				return element.Value;
+			}
+
 			return element.Value.ToXmlWrapper().Value;
 		}
 

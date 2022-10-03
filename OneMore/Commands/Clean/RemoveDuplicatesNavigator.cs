@@ -4,22 +4,22 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.UI;
+	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Data;
+	using System.Drawing;
+	using System.Linq;
+	using System.Text;
+	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class RemoveDuplicatesDialog : UI.LocalizableForm
+
+	internal partial class RemoveDuplicatesNavigator : UI.LocalizableForm
 	{
-		public enum DepthKind
-		{
-			Simple,
-			Basic,
-			Deep
-		}
-
-
-		public RemoveDuplicatesDialog()
+		public RemoveDuplicatesNavigator()
 		{
 			InitializeComponent();
 
@@ -29,27 +29,10 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"depthBox",
-					"simpleRadio",
-					"basicRadio",
-					"deepRadio",
-					"scopeBox=word_Scope",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
 		}
-
-
-		public DepthKind Depth =>
-			basicRadio.Checked
-				? DepthKind.Basic
-				: (simpleRadio.Checked ? DepthKind.Simple : DepthKind.Deep);
-
-
-		public SelectorScope Scope => scopeSelector.Scope;
-
-
-		public IEnumerable<string> SelectedNotebooks => scopeSelector.SelectedNotebooks;
 	}
 }
