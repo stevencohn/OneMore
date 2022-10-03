@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 				var cursor = page.GetTextCursor();
 
 				// determine if cursor is inside a table or outline with a user set width
-				table.AddColumn(CalculateWidth(cursor), true);
+				table.AddColumn(CalculateWidth(cursor, page.Root), true);
 
 				TableRow row;
 				TableCell cell;
@@ -149,8 +149,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private float CalculateWidth(XElement cursor)
+		private float CalculateWidth(XElement cursor, XElement root)
 		{
+			// if selected range
+			if (cursor == null)
+			{
+				cursor = root.Elements(ns + "Outline")
+					.Descendants(ns + "T")
+					.FirstOrDefault(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
+
+				if (cursor == null)
+				{
+					// shouldn't happen
+					return DefaultWidth;
+				}
+			}
+
 			// if insertion point is within a table cell then assume the width of that cell
 
 			var cell = cursor.Ancestors(ns + "Cell").FirstOrDefault();
