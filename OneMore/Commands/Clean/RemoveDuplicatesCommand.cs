@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class RemoveDuplicatesCommand : Command
 	{
-		private sealed class HashNode
+		internal sealed class HashNode
 		{
 			public string PageID;
 			public string XmlHash;
@@ -56,9 +56,12 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			DialogResult result;
+
 			using (var dialog = new RemoveDuplicatesDialog())
 			{
-				if (dialog.ShowDialog(Owner) != DialogResult.OK)
+				result = dialog.ShowDialog(Owner);
+				if (result != DialogResult.OK)
 				{
 					return;
 				}
@@ -74,26 +77,33 @@ namespace River.OneMoreAddIn.Commands
 
 			using (progress = new UI.ProgressDialog())
 			{
-				progress.ShowDialogWithCancel(Owner,
+				result = progress.ShowDialogWithCancel(Owner,
 					async (dialog, token) => await Scan(dialog, token));
+
+				if (result != DialogResult.OK)
+				{
+					return;
+				}
 			}
 
-			logger.WriteTime($"{hashes.Count} duplicate main pages of {scanCount}");
+			logger.WriteTime($"{hashes.Count} pages have one or more duplicates");
+			logger.WriteLine($"scanned a total of {scanCount} pages");
 
-			hashes.ForEach(n =>
-			{
-				logger.WriteLine($"{n.Title:-35} {n.TextHash} {n.XmlHash}");
-				n.Siblings.ForEach(s =>
-				{
-					logger.WriteLine($"... {s.Title:-31} {s.TextHash} {s.XmlHash} {s.Distance}");
-				});
-			});
+			//hashes.ForEach(n =>
+			//{
+			//	logger.WriteLine($"{n.Title:-35} {n.TextHash} {n.XmlHash}");
+			//	n.Siblings.ForEach(s =>
+			//	{
+			//		logger.WriteLine($"... {s.Title:-31} {s.TextHash} {s.XmlHash} {s.Distance}");
+			//	});
+			//});
 
 			// let user cherrypick duplicate pages to delete...
 
-			using (var navigator = new RemoveDuplicatesNavigator())
+			using (var navigator = new RemoveDuplicatesNavigator(hashes))
 			{
-				if (navigator.ShowDialog(Owner) != DialogResult.OK)
+				result = navigator.ShowDialog(Owner);
+				if (result != DialogResult.OK)
 				{
 					return;
 				}
@@ -127,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 						: one.GetPageXml(page.Attribute("ID").Value, OneNote.PageDetail.Basic);
 
 					var node = CalculateHash(ref xml, depth);
-					logger.WriteLine($"text hash [{node.TextHash}] xml hash [{node.XmlHash}]");
+					//logger.WriteLine($"text~ [{node.TextHash}] xml~ [{node.XmlHash}]");
 
 					dialog.SetMessage($"Scanning {node.Title}...");
 					dialog.Increment();
@@ -152,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 							node.Distance = xml.DistanceFrom(sibling.Xml);
 						}
 
-						logger.WriteLine($"match [{node.Title}] with [{sibling.Title}]");
+						//logger.WriteLine($"= [{node.Title}] with [{sibling.Title}]");
 						sibling.Siblings.Add(node);
 					}
 					else
@@ -162,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 							node.Xml = xml;
 						}
 
-						logger.WriteLine($"new [{node.Title}]");
+						//logger.WriteLine($"+ [{node.Title}]");
 						hashes.Add(node);
 					}
 
@@ -173,7 +183,7 @@ namespace River.OneMoreAddIn.Commands
 			hashes.RemoveAll(n => !n.Siblings.Any());
 			hashes.ForEach(n => n.Xml = null);
 
-			return true;
+			return !token.IsCancellationRequested;
 		}
 
 

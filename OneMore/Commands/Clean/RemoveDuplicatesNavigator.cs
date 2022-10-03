@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Data;
 	using System.Drawing;
 	using System.Linq;
+	using System.Net.PeerToPeer.Collaboration;
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -32,6 +33,49 @@ namespace River.OneMoreAddIn.Commands
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
+			}
+		}
+
+
+		public RemoveDuplicatesNavigator(List<RemoveDuplicatesCommand.HashNode> hashes)
+			: this()
+		{
+			foreach (var node in hashes)
+			{
+				var item = new ListViewItem
+				{
+					Text = node.Title,
+					Tag = node
+				};
+
+				view.Items.Add(item);
+
+				foreach (var sibling in node.Siblings)
+				{
+					var sibitem = new ListViewItem
+					{
+						IndentCount = 2,
+						Text = sibling.Title,
+						Tag = sibling
+					};
+
+					sibitem.SubItems.Add(new ListViewItem.ListViewSubItem
+					{
+						Text = sibling.TextHash == node.TextHash ? "=" : "Different"
+					});
+
+					sibitem.SubItems.Add(new ListViewItem.ListViewSubItem
+					{
+						Text = sibling.XmlHash == node.XmlHash ? "=" : "Different"
+					});
+
+					sibitem.SubItems.Add(new ListViewItem.ListViewSubItem
+					{
+						Text = sibling.Distance.ToString()
+					});
+
+					view.Items.Add(sibitem);
+				}
 			}
 		}
 	}

@@ -72,34 +72,39 @@
             this.xmlRatingColumn,
             this.distanceColumn,
             this.trashColumn});
+			this.view.HideSelection = false;
 			this.view.Location = new System.Drawing.Point(12, 35);
 			this.view.MultiSelect = false;
 			this.view.Name = "view";
 			this.view.Size = new System.Drawing.Size(789, 331);
 			this.view.TabIndex = 10;
 			this.view.UseCompatibleStateImageBehavior = false;
+			this.view.View = System.Windows.Forms.View.Details;
 			// 
 			// pageColumn
 			// 
 			this.pageColumn.Text = "Page";
-			this.pageColumn.Width = 200;
+			this.pageColumn.Width = 400;
 			// 
 			// textRatingColumn
 			// 
 			this.textRatingColumn.Text = "Text Rating";
+			this.textRatingColumn.Width = 80;
 			// 
 			// xmlRatingColumn
 			// 
 			this.xmlRatingColumn.Text = "XML Rating";
+			this.xmlRatingColumn.Width = 80;
 			// 
 			// distanceColumn
 			// 
 			this.distanceColumn.Text = "Distance";
+			this.distanceColumn.Width = 80;
 			// 
 			// trashColumn
 			// 
 			this.trashColumn.Text = "";
-			this.trashColumn.Width = 30;
+			this.trashColumn.Width = 40;
 			// 
 			// RemoveDuplicatesNavigator
 			// 
@@ -117,7 +122,6 @@
 			this.Name = "RemoveDuplicatesNavigator";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Remove Duplicate Pages";
-			this.TopMost = true;
 			this.ResumeLayout(false);
 
 		}
