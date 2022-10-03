@@ -64,65 +64,75 @@ namespace River.OneMoreAddIn.Commands
 				books = dialog.SelectedNotebooks;
 			}
 
-			var hierarchy = await Scan(scope, depth, books);
+			var hierarchy = Scan(scope, depth, books);
+
+			await Task.Yield();
 		}
 
 
-		private async Task<XElement> Scan(
+		private XElement Scan(
 			UI.SelectorScope scope, 
 			RemoveDuplicatesDialog.DepthKind depth,
 			IEnumerable<string> books)
 		{
 			logger.StartClock();
-			XElement hierarchy;
+			XElement hierarchy = null;
 			var count = 0;
 
 			using (progress = new UI.ProgressDialog())
 			{
-				using (one = new OneNote(out _, out ns))
+				progress.ShowCancelDialog(Owner, async (dialog, token) =>
 				{
-					hierarchy = await BuildHierarchy(scope, books);
-
-					progress.SetMaximum(hierarchy.Elements().Count());
-					progress.Show(owner);
-
-					hierarchy.Descendants(ns + "Page").ForEach(p =>
+					using (one = new OneNote(out _, out ns))
 					{
-						// get the XML text rather than the Page so we don't end up
-						// converting it back and forth more than once...
-						string xml = depth == RemoveDuplicatesDialog.DepthKind.Deep
-							? one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.BinaryDataFileType)
-							: one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.Basic);
+						hierarchy = await BuildHierarchy(scope, books);
+						dialog.SetMaximum(hierarchy.Elements().Count());
 
-						var node = CalculateHash(xml, depth);
-						//logger.WriteLine($"text hash [{node.TextHash}] xml hash [{node.XmlHash}]");
-
-						progress.SetMessage($"Scanning {node.Title}...");
-						progress.Increment();
-
-						var sibling = hashes.FirstOrDefault(n =>
-							n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
-
-						if (sibling != null)
+						hierarchy.Descendants(ns + "Page").ForEach(p =>
 						{
-							node.Path = one.GetPageInfo(node.PageID).Path;
-							if (sibling.Path == null)
+							if (token.IsCancellationRequested)
 							{
-								sibling.Path = one.GetPageInfo(sibling.PageID).Path;
+								return;
 							}
 
-							//logger.WriteLine($"match [{node.Title}] with [{sibling.Title}]");
-							sibling.Siblings.Add(node);
-						}
-						else
-						{
-							//logger.WriteLine($"new [{node.Title}]");
-							hashes.Add(node);
-						}
+							// get the XML text rather than the Page so we don't end up
+							// converting it back and forth more than once...
+							string xml = depth == RemoveDuplicatesDialog.DepthKind.Deep
+								? one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.BinaryDataFileType)
+								: one.GetPageXml(p.Attribute("ID").Value, OneNote.PageDetail.Basic);
 
-						count++;
-					});
-				}
+							var node = CalculateHash(xml, depth);
+							//logger.WriteLine($"text hash [{node.TextHash}] xml hash [{node.XmlHash}]");
+
+							dialog.SetMessage($"Scanning {node.Title}...");
+							dialog.Increment();
+
+							var sibling = hashes.FirstOrDefault(n =>
+								n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
+
+							if (sibling != null)
+							{
+								node.Path = one.GetPageInfo(node.PageID).Path;
+								if (sibling.Path == null)
+								{
+									sibling.Path = one.GetPageInfo(sibling.PageID).Path;
+								}
+
+								//logger.WriteLine($"match [{node.Title}] with [{sibling.Title}]");
+								sibling.Siblings.Add(node);
+							}
+							else
+							{
+								//logger.WriteLine($"new [{node.Title}]");
+								hashes.Add(node);
+							}
+
+							count++;
+						});
+					}
+
+					return true;
+				});
 			}
 
 			hashes.RemoveAll(n => !n.Siblings.Any());

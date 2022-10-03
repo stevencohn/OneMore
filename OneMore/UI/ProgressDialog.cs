@@ -38,7 +38,8 @@ namespace River.OneMoreAddIn.UI
 		private const int SimpleHeight = 112;
 		private const int CancelHeight = 144;
 
-		private readonly CancellationTokenSource source;
+		private CancellationTokenSource source;
+
 		// Func<p1, p2, Task> is the async equivalent of Action<p1, p2>
 		private readonly Func<ProgressDialog, CancellationToken, Task> execute;
 
@@ -112,17 +113,22 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Shows the progress dialog with a timed progression and a callback action to
-		/// invoke on a secondary thread.
+		/// 
 		/// </summary>
-		/// <param name="owner">The owner window used to center this dialog</param>
-		/// <param name="action">The callback method to invoke</param>
+		/// <param name="owner"></param>
+		/// <param name="action"></param>
 		/// <returns></returns>
-		public DialogResult ShowTimedDialog(
+		public DialogResult ShowCancelDialog(
 			IWin32Window owner, Func<ProgressDialog, CancellationToken, Task<bool>> action)
 		{
-			timer.Tick += Tick;
-			StartTimer();
+			cancelButton.Visible = true;
+			(_, float factorY) = UIHelper.GetScalingFactors();
+			Height = (int)Math.Round(CancelHeight * factorY);
+
+			if (source == null)
+			{
+				source = new CancellationTokenSource();
+			}
 
 			DialogResult result = DialogResult.Cancel;
 
@@ -136,11 +142,15 @@ namespace River.OneMoreAddIn.UI
 					var ok = await action(this, source.Token);
 					logger.WriteLine($"completed action ({ok})");
 
-					DialogResult = source.IsCancellationRequested 
+					DialogResult = source.IsCancellationRequested
 						? DialogResult.Abort
 						: ok ? DialogResult.OK : DialogResult.Cancel;
 
-					timer.Stop();
+					if (timer.Enabled)
+					{
+						timer.Stop();
+					}
+
 					Close();
 				});
 
@@ -164,6 +174,23 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			return result;
+		}
+
+
+		/// <summary>
+		/// Shows the progress dialog with a timed progression and a callback action to
+		/// invoke on a secondary thread.
+		/// </summary>
+		/// <param name="owner">The owner window used to center this dialog</param>
+		/// <param name="action">The callback method to invoke</param>
+		/// <returns></returns>
+		public DialogResult ShowTimedDialog(
+			IWin32Window owner, Func<ProgressDialog, CancellationToken, Task<bool>> action)
+		{
+			timer.Tick += Tick;
+			StartTimer();
+
+			return ShowCancelDialog(owner, action);
 		}
 
 
