@@ -132,9 +132,8 @@ namespace River.OneMoreAddIn.Commands
 
 					// get the XML text rather than the Page so we don't end up
 					// converting it back and forth more than once...
-					string xml = deep
-						? one.GetPageXml(page.Attribute("ID").Value, OneNote.PageDetail.BinaryDataFileType)
-						: one.GetPageXml(page.Attribute("ID").Value, OneNote.PageDetail.Basic);
+					string xml = one.GetPageXml(page.Attribute("ID").Value,
+						deep ? OneNote.PageDetail.BinaryData : OneNote.PageDetail.Basic);
 
 					var node = CalculateHash(ref xml, depth);
 					//logger.WriteLine($"text~ [{node.TextHash}] xml~ [{node.XmlHash}]");
@@ -278,6 +277,8 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			// extract plain text last, otherwise XmlHash will not be correct
+			// because TextValue(true) will change the XML
 			var plain = page.Root.TextValue(true);
 			node.TextHash = Convert.ToBase64String(
 				hasher.ComputeHash(Encoding.Default.GetBytes(plain)));
