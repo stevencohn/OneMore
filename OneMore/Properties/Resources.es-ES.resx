@@ -4029,4 +4029,14 @@ No ampliar imágenes más pequeñas</value>
     <value>Incluir títulos de página al comparar</value>
     <comment>checkbox</comment>
   </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>Definir alias de comando para usar en Command Pallett</value>
+    <comment>intro box</comment>
+  </data>
+  <data name="word_Alias" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
+    <value>Alias ​​de comando</value>
+  </data>
 </root>

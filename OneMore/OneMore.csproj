@@ -293,6 +293,12 @@
     <Compile Include="Commands\Settings\KeyboardGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Commands\Settings\AliasSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\AliasSheet.Designer.cs">
+      <DependentUpon>AliasSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\LinesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1103,6 +1109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Reminders\ReportRemindersReuseDialog.resx">
       <DependentUpon>ReportRemindersReuseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\AliasSheet.resx">
+      <DependentUpon>AliasSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
       <DependentUpon>LinesSheet.cs</DependentUpon>

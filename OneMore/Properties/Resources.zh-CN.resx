@@ -4019,4 +4019,14 @@ OneNote 文件 (*.one)</value>
     <value>比较时包括页面标题</value>
     <comment>checkbox</comment>
   </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>定义在 Command Pallett 中使用的命令别名</value>
+    <comment>intro box</comment>
+  </data>
+  <data name="word_Alias" xml:space="preserve">
+    <value>别名</value>
+  </data>
+  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
+    <value>命令别名</value>
+  </data>
 </root>

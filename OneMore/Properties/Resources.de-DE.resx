@@ -4021,4 +4021,14 @@ Vergrößern Sie kleinere Bilder nicht</value>
     <value>Beziehen Sie beim Vergleich Seitentitel mit ein</value>
     <comment>checkbox</comment>
   </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>Definieren Sie Befehlsaliase zur Verwendung in der Befehlspalette</value>
+    <comment>intro box</comment>
+  </data>
+  <data name="word_Alias" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
+    <value>Befehlsaliase</value>
+  </data>
 </root>

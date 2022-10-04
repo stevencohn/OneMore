@@ -4082,4 +4082,14 @@ Nie powiększaj mniejszych obrazów</value>
     <value>Uwzględnij tytuły stron podczas porównywania</value>
     <comment>checkbox</comment>
   </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>Zdefiniuj aliasy poleceń do użycia w Command Pallett</value>
+    <comment>intro box</comment>
+  </data>
+  <data name="word_Alias" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
+    <value>Aliasy poleceń</value>
+  </data>
 </root>
