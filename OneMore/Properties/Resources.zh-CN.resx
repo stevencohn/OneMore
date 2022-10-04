@@ -4015,4 +4015,8 @@ OneNote 文件 (*.one)</value>
   <data name="Word_Scope" xml:space="preserve">
     <value>范围</value>
   </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>比较时包括页面标题</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

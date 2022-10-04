@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 					"simpleRadio",
 					"basicRadio",
 					"deepRadio",
+					"includeTitlesBox",
 					"scopeBox=word_Scope",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
@@ -45,6 +46,9 @@ namespace River.OneMoreAddIn.Commands
 			basicRadio.Checked
 				? DepthKind.Basic
 				: (simpleRadio.Checked ? DepthKind.Simple : DepthKind.Deep);
+
+
+		public bool IncludeTitles => includeTitlesBox.Checked;
 
 
 		public SelectorScope Scope => scopeSelector.Scope;

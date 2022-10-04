@@ -4068,17 +4068,25 @@ Do no enlarge smaller images</value>
   </data>
   <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
     <value>Basic XML structure</value>
+    <comment>radio</comment>
   </data>
   <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
     <value>Deep XML with binary comparison (slow)</value>
+    <comment>radio</comment>
   </data>
   <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
     <value>Scanning Depth</value>
+    <comment>group</comment>
   </data>
   <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
     <value>Simple text (quick)</value>
+    <comment>radio</comment>
   </data>
   <data name="Word_Scope" xml:space="preserve">
     <value>Scope</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Include page titles when comparing</value>
+    <comment>checkbox</comment>
   </data>
 </root>

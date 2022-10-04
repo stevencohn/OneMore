@@ -4645,6 +4645,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include page titles when comparing.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_includeTitlesBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_includeTitlesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Simple text (quick).
         /// </summary>
         internal static string RemoveDuplicatesDialog_simpleRadio_Text {

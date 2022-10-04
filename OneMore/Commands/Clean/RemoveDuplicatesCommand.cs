@@ -42,6 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.ProgressDialog progress;
 
 		private UI.SelectorScope scope;
+		private bool includeTitles;
 		private IEnumerable<string> books;
 		private RemoveDuplicatesDialog.DepthKind depth;
 		private int scanCount;
@@ -69,6 +70,7 @@ namespace River.OneMoreAddIn.Commands
 				depth = dialog.Depth;
 				scope = dialog.Scope;
 				books = dialog.SelectedNotebooks;
+				includeTitles = dialog.IncludeTitles;
 			}
 
 			// analyze pages, scanning for duplicates and close matches...
@@ -122,20 +124,18 @@ namespace River.OneMoreAddIn.Commands
 				var hierarchy = await BuildHierarchy(scope, books);
 				dialog.SetMaximum(hierarchy.Elements().Count());
 
-				var pages = hierarchy.Descendants(ns + "Page");
-				foreach (var page in pages)
+				var pageRefs = hierarchy.Descendants(ns + "Page");
+				foreach (var pageRef in pageRefs)
 				{
 					if (token.IsCancellationRequested)
 					{
 						break;
 					}
 
-					// get the XML text rather than the Page so we don't end up
-					// converting it back and forth more than once...
-					string xml = one.GetPageXml(page.Attribute("ID").Value,
+					var page = one.GetPage(pageRef.Attribute("ID").Value,
 						deep ? OneNote.PageDetail.BinaryData : OneNote.PageDetail.Basic);
 
-					var node = CalculateHash(ref xml, depth);
+					var node = CalculateHash(page);
 					//logger.WriteLine($"text~ [{node.TextHash}] xml~ [{node.XmlHash}]");
 
 					dialog.SetMessage($"Scanning {node.Title}...");
@@ -158,7 +158,8 @@ namespace River.OneMoreAddIn.Commands
 
 						if (deep)
 						{
-							node.Distance = xml.DistanceFrom(sibling.Xml);
+							node.Distance = node.Xml.DistanceFrom(sibling.Xml);
+							node.Xml = null;
 						}
 
 						//logger.WriteLine($"= [{node.Title}] with [{sibling.Title}]");
@@ -166,11 +167,6 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						if (deep)
-						{
-							node.Xml = xml;
-						}
-
 						//logger.WriteLine($"+ [{node.Title}]");
 						hashes.Add(node);
 					}
@@ -238,14 +234,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private HashNode CalculateHash(ref string xml, RemoveDuplicatesDialog.DepthKind depth)
+		private HashNode CalculateHash(Page page)
 		{
-			var root = XElement.Parse(xml);
-			var page = new Page(root);
-			var pageId = page.PageId;
+			var node = new HashNode
+			{
+				PageID = page.PageId,
+				Title = page.Title
+			};
 
 			// EditedByAttributes and the page ID
-			root.DescendantsAndSelf().Attributes().Where(a =>
+			page.Root.DescendantsAndSelf().Attributes().Where(a =>
 				a.Name.LocalName == "ID"
 				|| a.Name.LocalName == "dateTime"
 				|| a.Name.LocalName == "callbackID"
@@ -260,20 +258,21 @@ namespace River.OneMoreAddIn.Commands
 				|| a.Name.LocalName == "objectID")
 				.Remove();
 
-			var node = new HashNode
+			if (!includeTitles)
 			{
-				PageID = pageId,
-				Title = page.Title
-			};
+				page.Root.Descendants(ns + "Title").Remove();
+			}
 
 			if (depth != RemoveDuplicatesDialog.DepthKind.Basic)
 			{
+				var xml = page.Root.ToString(SaveOptions.DisableFormatting);
+
 				node.XmlHash = Convert.ToBase64String(
 					hasher.ComputeHash(Encoding.Default.GetBytes(xml)));
 
 				if (depth == RemoveDuplicatesDialog.DepthKind.Deep)
 				{
-					xml = root.ToString(SaveOptions.DisableFormatting);
+					node.Xml = xml;
 				}
 			}
 

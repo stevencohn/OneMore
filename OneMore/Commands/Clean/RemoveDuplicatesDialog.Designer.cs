@@ -37,6 +37,7 @@
 			this.deepRadio = new System.Windows.Forms.RadioButton();
 			this.basicRadio = new System.Windows.Forms.RadioButton();
 			this.simpleRadio = new System.Windows.Forms.RadioButton();
+			this.includeTitlesBox = new System.Windows.Forms.CheckBox();
 			this.scopeGroupBox.SuspendLayout();
 			this.depthBox.SuspendLayout();
 			this.SuspendLayout();
@@ -47,10 +48,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.scopeGroupBox.Controls.Add(this.scopeSelector);
-			this.scopeGroupBox.Location = new System.Drawing.Point(12, 151);
+			this.scopeGroupBox.Location = new System.Drawing.Point(12, 194);
+			this.scopeGroupBox.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
 			this.scopeGroupBox.Name = "scopeGroupBox";
 			this.scopeGroupBox.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-			this.scopeGroupBox.Size = new System.Drawing.Size(574, 366);
+			this.scopeGroupBox.Size = new System.Drawing.Size(574, 323);
 			this.scopeGroupBox.TabIndex = 0;
 			this.scopeGroupBox.TabStop = false;
 			this.scopeGroupBox.Text = "Scope";
@@ -63,7 +65,7 @@
 			this.scopeSelector.Scopes = ((River.OneMoreAddIn.UI.SelectorScope)((((River.OneMoreAddIn.UI.SelectorScope.Section | River.OneMoreAddIn.UI.SelectorScope.Notebook) 
             | River.OneMoreAddIn.UI.SelectorScope.Notebooks) 
             | River.OneMoreAddIn.UI.SelectorScope.SelectedNotebooks)));
-			this.scopeSelector.Size = new System.Drawing.Size(551, 341);
+			this.scopeSelector.Size = new System.Drawing.Size(551, 298);
 			this.scopeSelector.TabIndex = 0;
 			// 
 			// okButton
@@ -90,12 +92,13 @@
 			// 
 			// depthBox
 			// 
+			this.depthBox.Controls.Add(this.includeTitlesBox);
 			this.depthBox.Controls.Add(this.deepRadio);
 			this.depthBox.Controls.Add(this.basicRadio);
 			this.depthBox.Controls.Add(this.simpleRadio);
 			this.depthBox.Location = new System.Drawing.Point(12, 12);
 			this.depthBox.Name = "depthBox";
-			this.depthBox.Size = new System.Drawing.Size(592, 133);
+			this.depthBox.Size = new System.Drawing.Size(592, 167);
 			this.depthBox.TabIndex = 8;
 			this.depthBox.TabStop = false;
 			this.depthBox.Text = "Scanning Depth";
@@ -132,6 +135,17 @@
 			this.simpleRadio.Text = "Simple text (quick)";
 			this.simpleRadio.UseVisualStyleBackColor = true;
 			// 
+			// includeTitlesBox
+			// 
+			this.includeTitlesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.includeTitlesBox.AutoSize = true;
+			this.includeTitlesBox.Location = new System.Drawing.Point(20, 131);
+			this.includeTitlesBox.Name = "includeTitlesBox";
+			this.includeTitlesBox.Size = new System.Drawing.Size(284, 24);
+			this.includeTitlesBox.TabIndex = 9;
+			this.includeTitlesBox.Text = "Include page titles when comparing";
+			this.includeTitlesBox.UseVisualStyleBackColor = true;
+			// 
 			// RemoveDuplicatesDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -167,5 +181,6 @@
 		private System.Windows.Forms.RadioButton deepRadio;
 		private System.Windows.Forms.RadioButton basicRadio;
 		private System.Windows.Forms.RadioButton simpleRadio;
+		private System.Windows.Forms.CheckBox includeTitlesBox;
 	}
 }

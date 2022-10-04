@@ -4017,4 +4017,8 @@ Vergrößern Sie kleinere Bilder nicht</value>
   <data name="Word_Scope" xml:space="preserve">
     <value>Zielfernrohr</value>
   </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Beziehen Sie beim Vergleich Seitentitel mit ein</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

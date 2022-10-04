@@ -4025,4 +4025,8 @@ ISO-code then comma then language name</comment>
   <data name="Word_Scope" xml:space="preserve">
     <value>نِطَاق</value>
   </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>تضمين عناوين الصفحات عند المقارنة</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

@@ -4019,4 +4019,8 @@ Ne pas agrandir les petites images</value>
   <data name="Word_Scope" xml:space="preserve">
     <value>Portée</value>
   </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Inclure les titres de page lors de la comparaison</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

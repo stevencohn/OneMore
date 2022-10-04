@@ -4025,4 +4025,8 @@ Não amplie imagens menores</value>
   <data name="Word_Scope" xml:space="preserve">
     <value>Alcance</value>
   </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Incluir títulos de página ao comparar</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

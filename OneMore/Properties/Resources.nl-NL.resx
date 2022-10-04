@@ -4025,4 +4025,8 @@ Kleinere afbeeldingen niet vergroten</value>
   <data name="Word_Scope" xml:space="preserve">
     <value>Domein</value>
   </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Paginatitels opnemen bij het vergelijken</value>
+    <comment>checkbox</comment>
+  </data>
 </root>

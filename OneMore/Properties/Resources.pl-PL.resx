@@ -4078,4 +4078,8 @@ Nie powiększaj mniejszych obrazów</value>
   <data name="Word_Scope" xml:space="preserve">
     <value>Zakres</value>
   </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Uwzględnij tytuły stron podczas porównywania</value>
+    <comment>checkbox</comment>
+  </data>
 </root>
