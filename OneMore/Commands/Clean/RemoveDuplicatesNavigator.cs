@@ -42,8 +42,18 @@ namespace River.OneMoreAddIn.Commands
 		{
 			foreach (var node in hashes)
 			{
+				var group = view.Groups.Cast<ListViewGroup>()
+					.FirstOrDefault(g => g.Name == node.GroupID);
+
+				if (group == null)
+				{
+					group = new ListViewGroup(node.GroupID, node.Title);
+					view.Groups.Add(group);
+				}
+
 				var item = new ListViewItem
 				{
+					Group = group,
 					Text = node.Title,
 					Tag = node
 				};
@@ -54,19 +64,23 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var sibitem = new ListViewItem
 					{
-						IndentCount = 2,
+						Group = group,
 						Text = sibling.Title,
 						Tag = sibling
 					};
 
 					sibitem.SubItems.Add(new ListViewItem.ListViewSubItem
 					{
-						Text = sibling.TextHash == node.TextHash ? "=" : "Different"
+						Text = sibling.TextHash == String.Empty
+							? "-"
+							: (sibling.TextHash == node.TextHash ? "=" : "Different")
 					});
 
 					sibitem.SubItems.Add(new ListViewItem.ListViewSubItem
 					{
-						Text = sibling.XmlHash == node.XmlHash ? "=" : "Different"
+						Text = sibling.XmlHash == String.Empty
+							 ? "-"
+							 : (sibling.XmlHash == node.XmlHash ? "=" : "Different")
 					});
 
 					sibitem.SubItems.Add(new ListViewItem.ListViewSubItem

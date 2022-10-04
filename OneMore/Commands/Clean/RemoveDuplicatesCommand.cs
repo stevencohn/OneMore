@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		internal sealed class HashNode
 		{
+			public string GroupID;
 			public string PageID;
 			public string XmlHash;
 			public string TextHash;
@@ -119,6 +120,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var deep = depth == RemoveDuplicatesDialog.DepthKind.Deep;
 
+			var empty = new HashNode
+			{
+				Title = "Empty Pages"
+			};
+
 			using (one = new OneNote(out _, out ns))
 			{
 				var hierarchy = await BuildHierarchy(scope, books);
@@ -135,11 +141,22 @@ namespace River.OneMoreAddIn.Commands
 					var page = one.GetPage(pageRef.Attribute("ID").Value,
 						deep ? OneNote.PageDetail.BinaryData : OneNote.PageDetail.Basic);
 
+					dialog.SetMessage($"Scanning {page.Title}...");
+					dialog.Increment();
+
 					var node = CalculateHash(page);
 					//logger.WriteLine($"text~ [{node.TextHash}] xml~ [{node.XmlHash}]");
 
-					dialog.SetMessage($"Scanning {node.Title}...");
-					dialog.Increment();
+					if (token.IsCancellationRequested)
+					{
+						break;
+					}
+
+					if (node.TextHash == String.Empty)
+					{
+						empty.Siblings.Add(node);
+						continue;
+					}
 
 					var sibling = hashes.FirstOrDefault(n =>
 						n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
@@ -163,11 +180,13 @@ namespace River.OneMoreAddIn.Commands
 						}
 
 						//logger.WriteLine($"= [{node.Title}] with [{sibling.Title}]");
+						node.GroupID = sibling.GroupID;
 						sibling.Siblings.Add(node);
 					}
 					else
 					{
 						//logger.WriteLine($"+ [{node.Title}]");
+						node.GroupID = node.PageID;
 						hashes.Add(node);
 					}
 
@@ -180,6 +199,11 @@ namespace River.OneMoreAddIn.Commands
 				dialog.SetMessage("Pruning results...");
 				hashes.RemoveAll(n => !n.Siblings.Any());
 				hashes.ForEach(n => n.Xml = null);
+
+				if (empty.Siblings.Any())
+				{
+					hashes.Add(empty);
+				}
 			}
 
 			return !token.IsCancellationRequested;
@@ -282,9 +306,11 @@ namespace River.OneMoreAddIn.Commands
 
 			// extract plain text last, otherwise XmlHash will not be correct
 			// because TextValue(true) will change the XML
-			var plain = page.Root.TextValue(true);
-			node.TextHash = Convert.ToBase64String(
-				hasher.ComputeHash(Encoding.Default.GetBytes(plain)));
+			var plain = page.Root.TextValue(true).Trim();
+
+			node.TextHash = plain.Length == 0
+				? string.Empty
+				: Convert.ToBase64String(hasher.ComputeHash(Encoding.Default.GetBytes(plain)));
 
 			return node;
 		}

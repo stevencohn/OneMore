@@ -43,7 +43,7 @@
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(595, 372);
+			this.okButton.Location = new System.Drawing.Point(860, 444);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(100, 38);
 			this.okButton.TabIndex = 9;
@@ -54,7 +54,7 @@
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(701, 372);
+			this.cancelButton.Location = new System.Drawing.Point(966, 444);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 8;
@@ -76,7 +76,7 @@
 			this.view.Location = new System.Drawing.Point(12, 35);
 			this.view.MultiSelect = false;
 			this.view.Name = "view";
-			this.view.Size = new System.Drawing.Size(789, 331);
+			this.view.Size = new System.Drawing.Size(1054, 403);
 			this.view.TabIndex = 10;
 			this.view.UseCompatibleStateImageBehavior = false;
 			this.view.View = System.Windows.Forms.View.Details;
@@ -112,7 +112,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(813, 422);
+			this.ClientSize = new System.Drawing.Size(1078, 494);
 			this.Controls.Add(this.view);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
