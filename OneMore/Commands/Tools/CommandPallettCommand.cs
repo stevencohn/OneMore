@@ -4,12 +4,14 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Reflection;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-
+	using System.Windows.Input;
+	using System.Xml.Linq;
 
 	internal class CommandPallettCommand : Command
 	{
@@ -84,6 +86,29 @@ namespace River.OneMoreAddIn.Commands
 						Name = name,
 						Method = method
 					};
+				}
+			}
+
+			// load user aliases
+			var settings = new SettingsProvider()
+				.GetCollection(AliasSheet.CollectionName)?
+				.Get<XElement>(AliasSheet.SettingsName);
+
+			if (settings != null)
+			{
+				foreach (var setting in settings.Elements())
+				{
+					var method = methods
+						.FirstOrDefault(m => m.Name == setting.Attribute("methodName").Value);
+
+					if (method != null)
+					{
+						yield return new CommandInfo
+						{
+							Name = setting.Value,
+							Method = method
+						};
+					}
 				}
 			}
 		}

@@ -241,6 +241,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Define command aliases for use in the Command Pallett.
+        /// </summary>
+        internal static string AliasSheet_Text {
+            get {
+                return ResourceManager.GetString("AliasSheet.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote..
         /// </summary>
         internal static string AnalyzeCommand_CacheSummary {
@@ -7430,6 +7439,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Command Aliases.
+        /// </summary>
+        internal static string SettingsDialog_aliasNode_Text {
+            get {
+                return ResourceManager.GetString("SettingsDialog_aliasNode.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Context Menu.
         /// </summary>
         internal static string SettingsDialog_contextNode_Text {
@@ -8912,6 +8930,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Add {
             get {
                 return ResourceManager.GetString("word_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alias.
+        /// </summary>
+        internal static string word_Alias {
+            get {
+                return ResourceManager.GetString("word_Alias", resourceCulture);
             }
         }
         

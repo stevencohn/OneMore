@@ -4029,4 +4029,14 @@ ISO-code then comma then language name</comment>
     <value>تضمين عناوين الصفحات عند المقارنة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>تحديد الأسماء المستعارة للأوامر لاستخدامها في Command Pallett</value>
+    <comment>intro box</comment>
+  </data>
+  <data name="word_Alias" xml:space="preserve">
+    <value>الاسم المستعار</value>
+  </data>
+  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
+    <value>قيادة الأسماء المستعارة</value>
+  </data>
 </root>

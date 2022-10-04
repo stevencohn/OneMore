@@ -4089,4 +4089,14 @@ Do no enlarge smaller images</value>
     <value>Include page titles when comparing</value>
     <comment>checkbox</comment>
   </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>Define command aliases for use in the Command Pallett</value>
+    <comment>intro box</comment>
+  </data>
+  <data name="word_Alias" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
+    <value>Command Aliases</value>
+  </data>
 </root>

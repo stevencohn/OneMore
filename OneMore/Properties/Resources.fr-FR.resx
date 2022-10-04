@@ -4023,4 +4023,14 @@ Ne pas agrandir les petites images</value>
     <value>Inclure les titres de page lors de la comparaison</value>
     <comment>checkbox</comment>
   </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>Définir les alias de commande à utiliser dans la palette de commandes</value>
+    <comment>intro box</comment>
+  </data>
+  <data name="word_Alias" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
+    <value>Alias ​​de commande</value>
+  </data>
 </root>

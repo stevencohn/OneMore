@@ -4029,4 +4029,14 @@ Kleinere afbeeldingen niet vergroten</value>
     <value>Paginatitels opnemen bij het vergelijken</value>
     <comment>checkbox</comment>
   </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>Definieer commando-aliassen voor gebruik in de Command Pallett</value>
+    <comment>intro box</comment>
+  </data>
+  <data name="word_Alias" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
+    <value>Opdrachtaliassen</value>
+  </data>
 </root>
