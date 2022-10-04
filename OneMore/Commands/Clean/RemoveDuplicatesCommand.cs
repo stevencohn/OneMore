@@ -175,8 +175,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			hashes.RemoveAll(n => !n.Siblings.Any());
-			hashes.ForEach(n => n.Xml = null);
+			if (!token.IsCancellationRequested)
+			{
+				dialog.SetMessage("Pruning results...");
+				hashes.RemoveAll(n => !n.Siblings.Any());
+				hashes.ForEach(n => n.Xml = null);
+			}
 
 			return !token.IsCancellationRequested;
 		}
