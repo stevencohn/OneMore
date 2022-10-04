@@ -1910,10 +1910,6 @@ Wysoki</value>
     <value>Start Timer.</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>Ta strona</value>
-    <comment>radio button</comment>
-  </data>
   <data name="Reorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\reorder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -2038,10 +2034,6 @@ Spróbuj ponownie później</value>
   <data name="ToggleDttmDialog_toggleGroup.Text" xml:space="preserve">
     <value>Przełącznik</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Wszystkie strony w tej sekcji</value>
-    <comment>radio button</comment>
   </data>
   <data name="RefreshPageLinksDialog_Text" xml:space="preserve">
     <value>Odśwież referencje</value>
@@ -4056,5 +4048,38 @@ Nie powiększaj mniejszych obrazów</value>
   <data name="CommandPallett_Title" xml:space="preserve">
     <value>OneMore Command Pallett</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>Otwórz paletę poleceń</value>
+  </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>Otwórz plik dziennika</value>
+  </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Usuń zduplikowane strony</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Usuń zduplikowane strony</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>Podstawowa struktura XML</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>Głęboki XML z porównaniem binarnym (wolne)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>Głębokość skanowania</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>Prosty tekst (szybko)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>Zakres</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Uwzględnij tytuły stron podczas porównywania</value>
+    <comment>checkbox</comment>
   </data>
 </root>

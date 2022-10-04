@@ -1886,17 +1886,9 @@ ISO-code then comma then language name</comment>
     <value>إخفاء التاريخ والوقت</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>هذه الصفحة</value>
-    <comment>radio button</comment>
-  </data>
   <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
     <value>نطاق</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>كل الصفحات في هذا القسم</value>
-    <comment>radio button</comment>
   </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>عرض التاريخ والوقت</value>
@@ -4003,5 +3995,38 @@ ISO-code then comma then language name</comment>
   <data name="CommandPallett_Title" xml:space="preserve">
     <value>One More Command Pallett</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>افتح لوحة الأوامر</value>
+  </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>افتح ملف السجل</value>
+  </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>إزالة الصفحات المكررة</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>إزالة الصفحات المكررة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>بنية XML الأساسية</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>XML العميق مع مقارنة ثنائية (بطيئة)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>عمق المسح</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>نص بسيط (سريع)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>نِطَاق</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>تضمين عناوين الصفحات عند المقارنة</value>
+    <comment>checkbox</comment>
   </data>
 </root>

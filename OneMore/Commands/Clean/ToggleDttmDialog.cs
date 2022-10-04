@@ -26,8 +26,6 @@ namespace River.OneMoreAddIn.Commands
 					"hideRadio",
 					"showRadio",
 					"scopeGroup",
-					"pageRadio",
-					"sectionRadio",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -46,6 +44,6 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets a Boolean value indicating if the scope should be constrained to the current
 		/// page. Otherwise, the scope is all pages in the current section
 		/// </summary>
-		public bool PageOnly => pageRadio.Checked;
+		public bool PageOnly => scopeSelector.Scope == UI.SelectorScope.Page;
 	}
 }

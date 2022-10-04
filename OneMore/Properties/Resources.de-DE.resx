@@ -1883,17 +1883,9 @@ ISO-code then comma then language name</comment>
     <value>Datum und Uhrzeit ausblenden</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>Diese Seite</value>
-    <comment>radio button</comment>
-  </data>
   <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
     <value>Umfang</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Alle Seiten in diesem Abschnitt</value>
-    <comment>radio button</comment>
   </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Datum und Uhrzeit anzeigen</value>
@@ -3995,5 +3987,38 @@ Vergrößern Sie kleinere Bilder nicht</value>
   <data name="CommandPallett_Title" xml:space="preserve">
     <value>OneMore Kommandopalette</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>Öffnen Sie die Befehlspalette</value>
+  </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>Protokolldatei öffnen</value>
+  </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Doppelte Seiten entfernen</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Doppelte Seiten entfernen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>Grundlegende XML-Struktur</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>Deep XML mit binärem Vergleich (langsam)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>Scantiefe</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>Einfacher Text (schnell)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>Zielfernrohr</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Beziehen Sie beim Vergleich Seitentitel mit ein</value>
+    <comment>checkbox</comment>
   </data>
 </root>

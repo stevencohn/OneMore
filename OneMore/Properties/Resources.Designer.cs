@@ -4618,6 +4618,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basic XML structure.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_basicRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_basicRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deep XML with binary comparison (slow).
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_deepRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanning Depth.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_depthBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_depthBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include page titles when comparing.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_includeTitlesBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_includeTitlesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simple text (quick).
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_simpleRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_simpleRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Duplicate Pages.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove all empty lines?
         ///
         ///Select Yes to remove all empty lines between paragraphs
@@ -6411,6 +6465,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRemoveCitationsButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRemoveCitationsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Duplicate Pages.
+        /// </summary>
+        internal static string ribRemoveDuplicatesButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveDuplicatesButton_Label", resourceCulture);
             }
         }
         
@@ -8632,29 +8695,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This page.
-        /// </summary>
-        internal static string ToggleDttmDialog_pageRadio_Text {
-            get {
-                return ResourceManager.GetString("ToggleDttmDialog_pageRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Scope.
         /// </summary>
         internal static string ToggleDttmDialog_scopeGroup_Text {
             get {
                 return ResourceManager.GetString("ToggleDttmDialog_scopeGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All pages in this section.
-        /// </summary>
-        internal static string ToggleDttmDialog_sectionRadio_Text {
-            get {
-                return ResourceManager.GetString("ToggleDttmDialog_sectionRadio.Text", resourceCulture);
             }
         }
         
@@ -9083,6 +9128,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Saturation {
             get {
                 return ResourceManager.GetString("word_Saturation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scope.
+        /// </summary>
+        internal static string Word_Scope {
+            get {
+                return ResourceManager.GetString("Word_Scope", resourceCulture);
             }
         }
         

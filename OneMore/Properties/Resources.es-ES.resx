@@ -1890,17 +1890,9 @@ ISO-code then comma then language name</comment>
     <value>Ocultar fecha y hora</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>Esta página</value>
-    <comment>radio button</comment>
-  </data>
   <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
     <value>Alcance</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Todas las páginas de esta sección</value>
-    <comment>radio button</comment>
   </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Mostrar fecha y hora</value>
@@ -4003,5 +3995,38 @@ No ampliar imágenes más pequeñas</value>
   <data name="CommandPallett_Title" xml:space="preserve">
     <value>Paleta de mando OneMore</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>Paleta de comandos abierta</value>
+  </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>Abrir archivo de registro</value>
+  </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Eliminar páginas duplicadas</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Eliminar páginas duplicadas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>Estructura XML básica</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>XML profundo con comparación binaria (lento)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>Profundidad de escaneo</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>Texto simple (rápido)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>Alcance</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Incluir títulos de página al comparar</value>
+    <comment>checkbox</comment>
   </data>
 </root>

@@ -33,8 +33,7 @@
 			this.showRadio = new System.Windows.Forms.RadioButton();
 			this.toggleGroup = new System.Windows.Forms.GroupBox();
 			this.scopeGroup = new System.Windows.Forms.GroupBox();
-			this.sectionRadio = new System.Windows.Forms.RadioButton();
-			this.pageRadio = new System.Windows.Forms.RadioButton();
+			this.scopeSelector = new River.OneMoreAddIn.UI.ScopeSelector();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
 			this.toggleGroup.SuspendLayout();
@@ -81,8 +80,7 @@
 			// 
 			this.scopeGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.scopeGroup.Controls.Add(this.sectionRadio);
-			this.scopeGroup.Controls.Add(this.pageRadio);
+			this.scopeGroup.Controls.Add(this.scopeSelector);
 			this.scopeGroup.Location = new System.Drawing.Point(18, 159);
 			this.scopeGroup.Name = "scopeGroup";
 			this.scopeGroup.Padding = new System.Windows.Forms.Padding(15);
@@ -91,27 +89,14 @@
 			this.scopeGroup.TabStop = false;
 			this.scopeGroup.Text = "Scope";
 			// 
-			// sectionRadio
+			// scopeSelector
 			// 
-			this.sectionRadio.AutoSize = true;
-			this.sectionRadio.Location = new System.Drawing.Point(18, 67);
-			this.sectionRadio.Name = "sectionRadio";
-			this.sectionRadio.Size = new System.Drawing.Size(199, 24);
-			this.sectionRadio.TabIndex = 1;
-			this.sectionRadio.Text = "All pages in this section";
-			this.sectionRadio.UseVisualStyleBackColor = true;
-			// 
-			// pageRadio
-			// 
-			this.pageRadio.AutoSize = true;
-			this.pageRadio.Checked = true;
-			this.pageRadio.Location = new System.Drawing.Point(18, 37);
-			this.pageRadio.Name = "pageRadio";
-			this.pageRadio.Size = new System.Drawing.Size(103, 24);
-			this.pageRadio.TabIndex = 0;
-			this.pageRadio.TabStop = true;
-			this.pageRadio.Text = "This page";
-			this.pageRadio.UseVisualStyleBackColor = true;
+			this.scopeSelector.Location = new System.Drawing.Point(31, 34);
+			this.scopeSelector.Margin = new System.Windows.Forms.Padding(0);
+			this.scopeSelector.Name = "scopeSelector";
+			this.scopeSelector.Scopes = ((River.OneMoreAddIn.UI.SelectorScope)((River.OneMoreAddIn.UI.SelectorScope.Page | River.OneMoreAddIn.UI.SelectorScope.Section)));
+			this.scopeSelector.Size = new System.Drawing.Size(345, 75);
+			this.scopeSelector.TabIndex = 0;
 			// 
 			// cancelButton
 			// 
@@ -135,7 +120,7 @@
 			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
-			// TimestampDialog
+			// ToggleDttmDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -150,7 +135,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "TimestampDialog";
+			this.Name = "ToggleDttmDialog";
 			this.Padding = new System.Windows.Forms.Padding(15);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -158,7 +143,6 @@
 			this.toggleGroup.ResumeLayout(false);
 			this.toggleGroup.PerformLayout();
 			this.scopeGroup.ResumeLayout(false);
-			this.scopeGroup.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -169,9 +153,8 @@
 		private System.Windows.Forms.RadioButton showRadio;
 		private System.Windows.Forms.GroupBox toggleGroup;
 		private System.Windows.Forms.GroupBox scopeGroup;
-		private System.Windows.Forms.RadioButton sectionRadio;
-		private System.Windows.Forms.RadioButton pageRadio;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.Button okButton;
+		private UI.ScopeSelector scopeSelector;
 	}
 }

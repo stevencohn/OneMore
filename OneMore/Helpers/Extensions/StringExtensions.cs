@@ -2,10 +2,11 @@
 // Copyright © 2015 Waters Corporation. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S1116 // Empty statements should be removed
+
 namespace River.OneMoreAddIn
 {
 	using System;
-	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -93,6 +94,82 @@ namespace River.OneMoreAddIn
 		public static bool StartsWithICIC(this string s, string value)
 		{
 			return s.StartsWith(value, StringComparison.InvariantCultureIgnoreCase);
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="t"></param>
+		/// <returns></returns>
+		public static int DistanceFrom(this string s, string t)
+		{
+			if (String.IsNullOrEmpty(s))
+			{
+				if (String.IsNullOrEmpty(t))
+				{
+					return 0;
+				}
+
+				return t.Length;
+			}
+
+			if (string.IsNullOrEmpty(t))
+			{
+				return s.Length;
+			}
+
+			if (s.Equals(t))
+			{
+				return 0;
+			}
+
+			// vectors
+			int[] v0 = new int[t.Length + 1];
+			int[] v1 = new int[t.Length + 1];
+			int[] vtemp;
+
+			// initialize v0 (the previous row of distances)
+			// this row is A[0][i]: edit distance for an empty s
+			// the distance is just the number of characters to delete from t
+			for (int i = 0; i < v0.Length; i++)
+			{
+				v0[i] = i;
+			}
+
+			for (int i = 0; i < s.Length; i++)
+			{
+				// calculate v1 (current row distances) from the previous row v0
+				// first element of v1 is A[i+1][0]
+				//   edit distance is delete (i+1) chars from s to match empty t
+				v1[0] = i + 1;
+
+				// use formula to fill in the rest of the row
+				for (int j = 0; j < t.Length; j++)
+				{
+					int cost = 1;
+					if (s[i] == t[j])
+					{
+						cost = 0;
+					}
+					v1[j + 1] = Math.Min(
+							v1[j] + 1,              // Cost of insertion
+							Math.Min(
+									v0[j + 1] + 1,  // Cost of remove
+									v0[j] + cost)); // Cost of substitution
+				}
+
+				// copy v1 (current row) to v0 (previous row) for next iteration
+				//System.arraycopy(v1, 0, v0, 0, v0.length);
+
+				// Flip references to current and previous row
+				vtemp = v0;
+				v0 = v1;
+				v1 = vtemp;
+			}
+
+			return v0[t.Length];
 		}
 
 

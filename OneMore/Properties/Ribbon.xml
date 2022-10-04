@@ -192,6 +192,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RemoveCitationsCmd"/>
               <button
+                id="ribRemoveDuplicatesButton"
+                imageMso="RemoveDuplicates"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="RemoveDuplicatesCmd"/>
+              <button
                 id="ribRemoveInkButton"
                 imageMso="InkDeleteAllInk"
                 getLabel="GetRibbonLabel"

@@ -1891,17 +1891,9 @@ ISO-code then comma then language name</comment>
     <value>Verberg datum en tijd</value>
     <comment>radio button</comment>
   </data>
-  <data name="ToggleDttmDialog_pageRadio.Text" xml:space="preserve">
-    <value>Deze pagina</value>
-    <comment>radio button</comment>
-  </data>
   <data name="ToggleDttmDialog_scopeGroup.Text" xml:space="preserve">
     <value>Reikwijdte</value>
     <comment>group box</comment>
-  </data>
-  <data name="ToggleDttmDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Alle pagina's in deze sectie</value>
-    <comment>radio button</comment>
   </data>
   <data name="ToggleDttmDialog_showRadio.Text" xml:space="preserve">
     <value>Toon datum en tijd</value>
@@ -4003,5 +3995,38 @@ Kleinere afbeeldingen niet vergroten</value>
   <data name="CommandPallett_Title" xml:space="preserve">
     <value>OneMore Command Pallett</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPallettButton_Label" xml:space="preserve">
+    <value>Opdrachtpallet openen</value>
+  </data>
+  <data name="ribOpenLogButton_Label" xml:space="preserve">
+    <value>Logbestand openen</value>
+  </data>
+  <data name="ribRemoveDuplicatesButton_Label" xml:space="preserve">
+    <value>Dubbele pagina's verwijderen</value>
+    <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog.Text" xml:space="preserve">
+    <value>Dubbele pagina's verwijderen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
+    <value>Basis XML-structuur</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
+    <value>Deep XML met binaire vergelijking (langzaam)</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
+    <value>Scandiepte</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
+    <value>Eenvoudige tekst (snel)</value>
+  </data>
+  <data name="Word_Scope" xml:space="preserve">
+    <value>Domein</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
+    <value>Paginatitels opnemen bij het vergelijken</value>
+    <comment>checkbox</comment>
   </data>
 </root>
