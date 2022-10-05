@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn.Settings
 
 			gridView.Rows[e.RowIndex].Cells[1].ErrorText = string.Empty;
 
-			if (map.Any(m => m.Command != command && m.Alias == alias))
+			if (map.Any(m => m.Command != command && m.Alias.ToLower() == alias))
 			{
 				System.Media.SystemSounds.Beep.Play();
 				e.Cancel = true;
