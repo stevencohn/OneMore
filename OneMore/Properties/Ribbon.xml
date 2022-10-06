@@ -63,7 +63,7 @@
               imageMso="HorizontalLineInsert"
               getLabel="GetRibbonLabel"
               getScreentip="GetRibbonScreentip"
-              getEnabled="GetBodyContext"
+              getEnabled="SetBodyContext"
               onAction="InsertSingleLineCmd"/>
             <button
               id="ribInsertDoubleLineButton"
