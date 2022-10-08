@@ -7174,6 +7174,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All sections in the current notebook.
+        /// </summary>
+        internal static string ScopeSelector_notebookButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_notebookButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All notebooks.
+        /// </summary>
+        internal static string ScopeSelector_notebooksButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_notebooksButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page.
+        /// </summary>
+        internal static string ScopeSelector_pageButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_pageButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current section.
+        /// </summary>
+        internal static string ScopeSelector_sectionButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_sectionButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected notebooks....
+        /// </summary>
+        internal static string ScopeSelector_selectedButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_selectedButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Match case.
         /// </summary>
         internal static string SearchAndReplaceDialog_matchBox_Text {
@@ -9217,9 +9262,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Scope.
         /// </summary>
-        internal static string Word_Scope {
+        internal static string word_Scope {
             get {
-                return ResourceManager.GetString("Word_Scope", resourceCulture);
+                return ResourceManager.GetString("word_Scope", resourceCulture);
             }
         }
         

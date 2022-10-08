@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote one;
 
 		public RemoveDuplicatesNavigator()
+			: base()
 		{
 			InitializeComponent();
 
@@ -35,12 +36,9 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
-
-			one = new OneNote();
 		}
 
 
@@ -114,6 +112,8 @@ namespace River.OneMoreAddIn.Commands
 
 			view.Items[0].Selected = true;
 			view.EndUpdate();
+
+			one = new OneNote();
 		}
 
 
@@ -204,6 +204,14 @@ namespace River.OneMoreAddIn.Commands
 				Height = 22,
 				Width = 22
 			};
+
+			box.Click += new EventHandler((s, e) =>
+			{
+				if (((Control)s).Tag is ListViewItem host)
+				{
+					view.SelectIf(host);
+				}
+			});
 
 			return box;
 		}

@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using River.OneMoreAddIn.Properties;
 	using System;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -18,6 +19,12 @@ namespace River.OneMoreAddIn.UI
 
 		protected ILogger logger = Logger.Current;
 		private bool modeless = false;
+
+
+		public LocalizableForm()
+		{
+			Resources.Culture = AddIn.Culture;
+		}
 
 
 		public int VerticalOffset

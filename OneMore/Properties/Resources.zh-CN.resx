@@ -4004,9 +4004,6 @@ OneNote 文件 (*.one)</value>
   <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
     <value>简单文本（快速）</value>
   </data>
-  <data name="Word_Scope" xml:space="preserve">
-    <value>范围</value>
-  </data>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>比较时包括页面标题</value>
     <comment>checkbox</comment>
@@ -4048,5 +4045,28 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="word_XML" xml:space="preserve">
     <value>XML</value>
+  </data>
+  <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
+    <value>当前笔记本中的所有部分</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScopeSelector_notebooksButton.Text" xml:space="preserve">
+    <value>所有笔记本</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScopeSelector_pageButton.Text" xml:space="preserve">
+    <value>这一页</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScopeSelector_sectionButton.Text" xml:space="preserve">
+    <value>当前部分</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScopeSelector_selectedButton.Text" xml:space="preserve">
+    <value>选定的笔记本...</value>
+    <comment>radio</comment>
+  </data>
+  <data name="word_Scope" xml:space="preserve">
+    <value>范围</value>
   </data>
 </root>

@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 					"basicRadio",
 					"deepRadio",
 					"includeTitlesBox",
-					"scopeBox=word_Scope",
+					"scopeGroupBox=word_Scope",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
