@@ -31,12 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveDuplicatesNavigator));
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
-			this.view = new System.Windows.Forms.ListView();
-			this.pageColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.textRatingColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.xmlRatingColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.distanceColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.trashColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.view = new River.OneMoreAddIn.UI.MoreListView();
 			this.SuspendLayout();
 			// 
 			// okButton
@@ -66,45 +61,13 @@
 			this.view.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.view.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.pageColumn,
-            this.textRatingColumn,
-            this.xmlRatingColumn,
-            this.distanceColumn,
-            this.trashColumn});
 			this.view.HideSelection = false;
 			this.view.Location = new System.Drawing.Point(12, 35);
-			this.view.MultiSelect = false;
+			this.view.MultiSelect = true;
 			this.view.Name = "view";
 			this.view.Size = new System.Drawing.Size(1054, 403);
 			this.view.TabIndex = 10;
 			this.view.UseCompatibleStateImageBehavior = false;
-			this.view.View = System.Windows.Forms.View.Details;
-			// 
-			// pageColumn
-			// 
-			this.pageColumn.Text = "Page";
-			this.pageColumn.Width = 400;
-			// 
-			// textRatingColumn
-			// 
-			this.textRatingColumn.Text = "Text Rating";
-			this.textRatingColumn.Width = 80;
-			// 
-			// xmlRatingColumn
-			// 
-			this.xmlRatingColumn.Text = "XML Rating";
-			this.xmlRatingColumn.Width = 80;
-			// 
-			// distanceColumn
-			// 
-			this.distanceColumn.Text = "Distance";
-			this.distanceColumn.Width = 80;
-			// 
-			// trashColumn
-			// 
-			this.trashColumn.Text = "";
-			this.trashColumn.Width = 40;
 			// 
 			// RemoveDuplicatesNavigator
 			// 
@@ -130,11 +93,6 @@
 
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Button cancelButton;
-		private System.Windows.Forms.ListView view;
-		private System.Windows.Forms.ColumnHeader pageColumn;
-		private System.Windows.Forms.ColumnHeader textRatingColumn;
-		private System.Windows.Forms.ColumnHeader xmlRatingColumn;
-		private System.Windows.Forms.ColumnHeader distanceColumn;
-		private System.Windows.Forms.ColumnHeader trashColumn;
+		private River.OneMoreAddIn.UI.MoreListView view;
 	}
 }
