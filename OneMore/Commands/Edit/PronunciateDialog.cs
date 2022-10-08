@@ -33,8 +33,8 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"wordLabel",
-					"languageLabel",
+					"wordLabel=word_Word",
+					"languageLabel=word_Language",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			languages =
 				(from a in Resx.PronunciateDialog_languages.Split('\n')
-				 let b = a.Split(',')
+				 let b = a.Split(',', '，') // second is a Chinese comma
 				 orderby b[1]
 				 select new LanguageItem
 				 {
