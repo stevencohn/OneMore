@@ -106,13 +106,13 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				logger.WriteLine($"resolving {path}");
+				//logger.WriteLine($"resolving {path}");
 				var asm = System.Reflection.Assembly.LoadFrom(path);
 				return asm;
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"AssemblyResolve exception {exc.Message} for {path}");
+				//logger.WriteLine($"AssemblyResolve exception {exc.Message} for {path}");
 				return null;
 			}
 		}
