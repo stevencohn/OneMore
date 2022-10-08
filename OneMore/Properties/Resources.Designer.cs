@@ -2068,6 +2068,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Equal {
+            get {
+                object obj = ResourceManager.GetObject("Equal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text focus must be in the body of the page.
         /// </summary>
         internal static string Error_BodyContext {
@@ -3581,6 +3591,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap NotebookMask {
             get {
                 object obj = ResourceManager.GetObject("NotebookMask", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NotEqual {
+            get {
+                object obj = ResourceManager.GetObject("NotEqual", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

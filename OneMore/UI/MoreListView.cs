@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
+	/// <summary>
+	/// A ListView in Detail mode that can host a user control in each cell of grid.
+	/// </summary>
 	internal class MoreListView : ListView
 	{
 		#region Private types
@@ -19,13 +22,17 @@ namespace River.OneMoreAddIn.UI
 		{
 			// the hosting item/subitem
 			public IMoreHostItem Host { get; private set; }
+			// column index of this item/subitem
+			public int ColumnIndex { get; private set; }
 			// the hosted user control
 			public Control Control { get; private set; }
-			public HostedControl(IMoreHostItem host, IMoreHostItem item, Control control)
+			public HostedControl(
+				IMoreHostItem host, IMoreHostItem item, Control control, int columnIndex)
 			{
 				Host = host;
 				Control = control;
 				control.Tag = item;
+				ColumnIndex = columnIndex;
 			}
 		}
 
@@ -36,10 +43,12 @@ namespace River.OneMoreAddIn.UI
 		{
 			public IMoreHostItem Item { get; private set; }
 			public Control Control { get; private set; }
-			public RegistrationEventArgs(IMoreHostItem item, Control control)
+			public int ColumnIndex { get; private set; }
+			public RegistrationEventArgs(IMoreHostItem item, Control control, int columnIndex)
 			{
 				Item = item;
 				Control = control;
+				ColumnIndex = columnIndex;
 			}
 		}
 
@@ -135,7 +144,7 @@ namespace River.OneMoreAddIn.UI
 
 			if (control != null)
 			{
-				RegisterHostedControl(item, new RegistrationEventArgs(item, control));
+				RegisterHostedControl(item, new RegistrationEventArgs(item, control, 0));
 			}
 
 			return item;
@@ -143,7 +152,7 @@ namespace River.OneMoreAddIn.UI
 
 		private void RegisterHostedControl(IMoreHostItem subitem, RegistrationEventArgs e)
 		{
-			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control));
+			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex));
 			Controls.Add(e.Control);
 		}
 
@@ -294,16 +303,15 @@ namespace River.OneMoreAddIn.UI
 				foreach (var hosted in hostedControls)
 				{
 					var bounds = hosted.Host.Bounds;
+
+					var header = Columns[hosted.ColumnIndex] as MoreColumnHeader;
+					if (header != null)
+						bounds.Width = header.Width;
+
 					if (bounds.Y > 0 && bounds.Y < ClientRectangle.Height)
 					{
 						hosted.Control.Visible = true;
-						var resize = true;
-						var property = hosted.Control.GetType().GetProperty("AutoSize");
-						if (property != null)
-						{
-							resize = (bool)property.GetValue(hosted.Control);
-						}
-						if (resize)
+						if (header != null && header.AutoSizeItems)
 						{
 							hosted.Control.Bounds = new Rectangle(
 								bounds.X + ControlPadding,
@@ -313,8 +321,22 @@ namespace River.OneMoreAddIn.UI
 						}
 						else
 						{
-							hosted.Control.Location = new Point(
-								bounds.X + ControlPadding, bounds.Y + ControlPadding);
+							var x = bounds.X + ControlPadding;
+							if (hosted.Host.Alignment == ContentAlignment.BottomCenter ||
+								hosted.Host.Alignment == ContentAlignment.MiddleCenter ||
+								hosted.Host.Alignment == ContentAlignment.TopCenter)
+							{
+								x += (bounds.Width - hosted.Control.Width) / 2;
+							}
+							else
+							if (hosted.Host.Alignment == ContentAlignment.BottomRight ||
+								hosted.Host.Alignment == ContentAlignment.MiddleRight ||
+								hosted.Host.Alignment == ContentAlignment.TopRight)
+							{
+								x = bounds.X + bounds.Width - ControlPadding - hosted.Control.Width;
+							}
+
+							hosted.Control.Location = new Point(x, bounds.Y + ControlPadding);
 						}
 					}
 					else
@@ -470,6 +492,11 @@ namespace River.OneMoreAddIn.UI
 		}
 
 		/// <summary>
+		/// Gets or sets whether values in this column are resized according to the column width.
+		/// </summary>
+		public bool AutoSizeItems { get; set; }
+
+		/// <summary>
 		/// Gets or sets whether this column can be sorted by clicking its header.
 		/// </summary>
 		public bool Sortable { get; set; } = true;
@@ -520,6 +547,8 @@ namespace River.OneMoreAddIn.UI
 	/// </summary>
 	internal interface IMoreHostItem
 	{
+		ContentAlignment Alignment { get; }
+
 		Rectangle Bounds { get; }
 
 		Control Control { get; }
@@ -555,17 +584,28 @@ namespace River.OneMoreAddIn.UI
 		}
 
 		/// <summary>
+		/// Adds a new subitem to this item with a given hosted control and no text.
+		/// </summary>
+		/// <param name="control">The control to host in the subitem</param>
+		/// <returns>The new subitem, already added to the item's SubItems collection</returns>
+		public MoreHostedListViewSubItem AddHostedSubItem(Control control)
+		{
+			return AddHostedSubItem(String.Empty, control);
+		}
+
+		/// <summary>
 		/// Adds a new subitem to this item with a given hosted control.
 		/// </summary>
-		/// <param name="text"></param>
-		/// <param name="control"></param>
-		/// <returns></returns>
+		/// <param name="text">Display text of the subitem. Will be ignored if control is given.</param>
+		/// <param name="control">The control to host in the subitem</param>
+		/// <returns>The new subitem, already added to the item's SubItems collection</returns>
 		public MoreHostedListViewSubItem AddHostedSubItem(string text, Control control)
 		{
 			var subitem = new MoreHostedListViewSubItem(this, text, control);
 			if (control != null && Registering != null)
 			{
-				Registering(subitem, new MoreListView.RegistrationEventArgs(this, control));
+				Registering(subitem, 
+					new MoreListView.RegistrationEventArgs(this, control, SubItems.Count));
 			}
 			SubItems.Add(subitem);
 			return subitem;
@@ -575,6 +615,11 @@ namespace River.OneMoreAddIn.UI
 		/// For internal use only.
 		/// </summary>
 		public event MoreListView.RegistrationEventHandler Registering;
+
+		/// <summary>
+		/// Gets or set the alignment of the control in the item.
+		/// </summary>
+		public ContentAlignment Alignment { get; set; }
 
 		/// <summary>
 		/// Gets the control hosted by this item.
@@ -616,6 +661,11 @@ namespace River.OneMoreAddIn.UI
 		{
 			Control = control;
 		}
+
+		/// <summary>
+		/// Gets or set the alignment of the control in the subitem.
+		/// </summary>
+		public ContentAlignment Alignment { get; set; }
 
 		/// <summary>
 		/// Gets the control hosted by this subitem.

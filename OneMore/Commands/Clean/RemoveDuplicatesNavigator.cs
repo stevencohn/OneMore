@@ -8,22 +8,26 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Data;
+	using System.Drawing;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class RemoveDuplicatesNavigator : UI.LocalizableForm
 	{
+		private OneNote one;
+
 		public RemoveDuplicatesNavigator()
 		{
 			InitializeComponent();
 
-			view.Columns.Add(new MoreColumnHeader("Page", 350) { Sortable = false });
-			view.Columns.Add(new MoreColumnHeader("Text", 150) { Sortable = false });
-			view.Columns.Add(new MoreColumnHeader("Xml", 150) { Sortable = false });
-			view.Columns.Add(new MoreColumnHeader("Distance", 150) { Sortable = false });
-			view.Columns.Add(new MoreColumnHeader("Tash", 100) { Sortable = false });
+			view.Columns.Add(new MoreColumnHeader("Page", 450) { AutoSizeItems = true });
+			view.Columns.Add(new MoreColumnHeader("Text", 150));
+			view.Columns.Add(new MoreColumnHeader("Xml", 150));
+			view.Columns.Add(new MoreColumnHeader("Distance", 150));
+			view.Columns.Add(new MoreColumnHeader("Tash", 100));
 
 			if (NeedsLocalizing())
 			{
@@ -35,6 +39,8 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			one = new OneNote();
 		}
 
 
@@ -49,34 +55,58 @@ namespace River.OneMoreAddIn.Commands
 
 				if (group == null)
 				{
-					group = new ListViewGroup(node.GroupID, node.Title);
+					group = new ListViewGroup(node.GroupID,
+						node.PageID == null ? node.Title : $"Pages similar to {node.Title}");
+
 					view.Groups.Add(group);
 				}
 
-				var item = view.AddHostedItem(MakeLinkLabel(node));
-				item.Group = group;
+				// PageID will be null for the Empty Pages node
+				if (node.PageID != null)
+				{
+					var item = view.AddHostedItem(MakeLinkLabel(node));
 
-				item.AddHostedSubItem(String.Empty);
-				item.AddHostedSubItem(String.Empty);
-				item.AddHostedSubItem(String.Empty);
-				item.AddHostedSubItem(item.Text, MakeButton(node)); 
-				
-				
+					item.Tag = node;
+					item.Group = group;
+
+					item.AddHostedSubItem(String.Empty);
+					item.AddHostedSubItem(String.Empty);
+					item.AddHostedSubItem(String.Empty);
+					item.AddHostedSubItem(MakeButton(node));
+				}
+
+				MoreHostedListViewSubItem subitem;
+
 				foreach (var sibling in node.Siblings)
 				{
 					var sibitem = view.AddHostedItem(MakeLinkLabel(sibling));
+					sibitem.Tag = sibling;
 					sibitem.Group = group;
 
-					sibitem.AddHostedSubItem(sibling.TextHash == String.Empty
-						? "-"
-						: (sibling.TextHash == node.TextHash ? "=" : "Different"));
+					if (sibling.TextHash == string.Empty)
+					{
+						subitem = sibitem.AddHostedSubItem("-");
+					}
+					else
+					{
+						subitem = sibitem.AddHostedSubItem(
+							MakePictureBox(sibling.TextHash == node.TextHash));
+					}
+					subitem.Alignment = ContentAlignment.MiddleCenter;
 
-					sibitem.AddHostedSubItem(sibling.XmlHash == String.Empty
-						? "-"
-						: (sibling.XmlHash == node.XmlHash ? "=" : "Different"));
+					if (sibling.XmlHash == string.Empty)
+					{
+						subitem = sibitem.AddHostedSubItem("-");
+					}
+					else
+					{
+						subitem = sibitem.AddHostedSubItem(string.Empty,
+							MakePictureBox(sibling.XmlHash == node.XmlHash));
+					}
+					subitem.Alignment = ContentAlignment.MiddleCenter;
 
 					sibitem.AddHostedSubItem(sibling.Distance.ToString());
-					sibitem.AddHostedSubItem(item.Text, MakeButton(node));
+					sibitem.AddHostedSubItem(MakeButton(node));
 				}
 			}
 
@@ -89,21 +119,29 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var label = new MoreLinkLabel
 			{
-				Text = node.Title,
-				AutoSize = true
+				Text = node.Title
 			};
 
-			label.LinkClicked += new LinkLabelLinkClickedEventHandler((s, e) =>
-			{
-				if (((Control)s).Tag is ListViewItem host)
-				{
-					view.SelectIf(host);
-					var index = view.Items.IndexOf(host);
-					MessageBox.Show($"items[{index}]");
-				}
-			});
+			label.LinkClicked += NavigateToPage;
+			label.Click += NavigateToPage;
 
 			return label;
+		}
+
+
+		private void NavigateToPage(object sender, EventArgs e)
+		{
+			if (((Control)sender).Tag is ListViewItem host)
+			{
+				view.SelectIf(host);
+				if (host.Tag is RemoveDuplicatesCommand.HashNode node)
+				{
+					if (node.PageID != null && !node.PageID.Equals(one.CurrentPageId))
+					{
+						Task.Run(async () => { await one.NavigateTo(node.PageID); });
+					}
+				}
+			}
 		}
 
 
@@ -112,7 +150,6 @@ namespace River.OneMoreAddIn.Commands
 			var button = new Button
 			{
 				Image = Resx.Delete,
-				AutoSize = false,
 				Padding = new Padding(0),
 				Margin = new Padding(0),
 				FlatStyle = FlatStyle.Flat,
@@ -120,17 +157,59 @@ namespace River.OneMoreAddIn.Commands
 				Height = 24
 			};
 
-			button.MouseClick += new MouseEventHandler((s, e) =>
-			{
-				if (((Control)s).Tag is ListViewItem host)
-				{
-					view.SelectIf(host);
-					var index = view.Items.IndexOf(host);
-					MessageBox.Show($"items[{index}]");
-				}
-			});
+			button.MouseClick += DeletePages;
 
 			return button;
+		}
+
+
+		private void DeletePages(object sender, EventArgs e)
+		{
+			if (((Control)sender).Tag is ListViewItem host)
+			{
+				view.SelectIf(host);
+			}
+
+			var msg = view.SelectedItems.Count == 1
+				? "Are you sure you want to delete the selected page?"
+				: $"Are you sure you want to delete the {view.SelectedItems.Count} selected pages?";
+
+			var result = MoreMessageBox.Show(Owner, msg, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			if (result != DialogResult.Yes)
+			{
+				return;
+			}
+
+			while (view.SelectedItems.Count > 0)
+			{
+				var item = view.SelectedItems[0];
+				if (item.Tag is RemoveDuplicatesCommand.HashNode node)
+				{
+					logger.WriteLine($"deleting page '{node.Title}'; moved to recyclebin");
+					one.DeleteHierarchy(node.PageID);
+					view.Items.Remove(item);
+				}
+			}
+		}
+
+
+		private PictureBox MakePictureBox(bool same)
+		{
+			var box = new PictureBox
+			{
+				Image = same ? Resx.Equal : Resx.NotEqual,
+				BackColor = Color.Transparent,
+				Height = 22,
+				Width = 22
+			};
+
+			return box;
+		}
+
+
+		private void CloseDialog(object sender, EventArgs e)
+		{
+			Close();
 		}
 	}
 }

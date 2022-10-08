@@ -992,6 +992,7 @@
     <None Include="Properties\Images\Copy.png" />
     <Content Include="Properties\Images\Edit.png" />
     <Content Include="Properties\Images\Editor.ico" />
+    <Content Include="Properties\Images\Equal.png" />
     <Content Include="Properties\Images\Exclamation.png" />
     <None Include="Properties\Images\Exit.png" />
     <Content Include="Properties\Images\FolderClose.png" />
@@ -1026,6 +1027,7 @@
     <Content Include="Properties\Images\NewStyle.png" />
     <Content Include="Properties\Images\Notebook.png" />
     <Content Include="Properties\Images\NotebookMask.png" />
+    <Content Include="Properties\Images\NotEqual.png" />
     <Content Include="Properties\Images\Open.png" />
     <Content Include="Properties\Images\Page.png" />
     <Content Include="Properties\Images\Pages.png" />

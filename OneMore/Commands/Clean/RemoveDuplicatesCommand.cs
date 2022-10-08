@@ -89,28 +89,16 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			logger.WriteTime($"{hashes.Count} pages have one or more duplicates");
-			logger.WriteLine($"scanned a total of {scanCount} pages");
-
-			//hashes.ForEach(n =>
-			//{
-			//	logger.WriteLine($"{n.Title:-35} {n.TextHash} {n.XmlHash}");
-			//	n.Siblings.ForEach(s =>
-			//	{
-			//		logger.WriteLine($"... {s.Title:-31} {s.TextHash} {s.XmlHash} {s.Distance}");
-			//	});
-			//});
+			logger.WriteTime($"{hashes.Count} pages have one or more duplicates, scanned {scanCount} pages");
 
 			// let user cherrypick duplicate pages to delete...
 
-			using (var navigator = new RemoveDuplicatesNavigator(hashes))
+			var navigator = new RemoveDuplicatesNavigator(hashes);
+			await navigator.RunModeless((sender, e) =>
 			{
-				result = navigator.ShowDialog(Owner);
-				if (result != DialogResult.OK)
-				{
-					return;
-				}
-			}
+				var d = sender as RemoveDuplicatesNavigator;
+				d.Dispose();
+			}, 20);
 
 			await Task.Yield();
 		}
