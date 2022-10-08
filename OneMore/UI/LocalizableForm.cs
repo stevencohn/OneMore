@@ -20,6 +20,12 @@ namespace River.OneMoreAddIn.UI
 		private bool modeless = false;
 
 
+		public LocalizableForm()
+		{
+			Properties.Resources.Culture = AddIn.Culture;
+		}
+
+
 		public int VerticalOffset
 		{
 			private get;

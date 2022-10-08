@@ -4014,9 +4014,6 @@ Kleinere afbeeldingen niet vergroten</value>
   <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
     <value>Eenvoudige tekst (snel)</value>
   </data>
-  <data name="Word_Scope" xml:space="preserve">
-    <value>Domein</value>
-  </data>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>Paginatitels opnemen bij het vergelijken</value>
     <comment>checkbox</comment>
@@ -4036,5 +4033,50 @@ Kleinere afbeeldingen niet vergroten</value>
   </data>
   <data name="word_Word" xml:space="preserve">
     <value>Woord</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
+    <value>Weet u zeker dat u de geselecteerde pagina wilt verwijderen?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
+    <value>Weet u zeker dat u de geselecteerde pagina's {0} wilt verwijderen?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
+    <value>Pagina's vergelijkbaar met {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="word_Distance" xml:space="preserve">
+    <value>Afstand</value>
+  </data>
+  <data name="word_Page" xml:space="preserve">
+    <value>Bladzijde</value>
+  </data>
+  <data name="word_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="word_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
+  <data name="ScopeSelector_notebookButton.Text" xml:space="preserve">
+    <value>Alle secties in het huidige notitieboekje</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScopeSelector_notebooksButton.Text" xml:space="preserve">
+    <value>Alle notitieboekjes</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScopeSelector_pageButton.Text" xml:space="preserve">
+    <value>Deze pagina</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScopeSelector_sectionButton.Text" xml:space="preserve">
+    <value>Het huidige gedeelte</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ScopeSelector_selectedButton.Text" xml:space="preserve">
+    <value>Geselecteerde notebooks ...</value>
+    <comment>radio</comment>
+  </data>
+  <data name="word_Scope" xml:space="preserve">
+    <value>Domein</value>
   </data>
 </root>

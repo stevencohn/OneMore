@@ -40,19 +40,24 @@ namespace River.OneMoreAddIn.UI
 			if (buttons == MessageBoxButtons.OK)
 			{
 				okButton.Text = Resx.word_OK;
+				okButton.DialogResult = DialogResult.OK;
 				cancelButton.Visible = false;
 			}
 			else if (buttons == MessageBoxButtons.OKCancel)
 			{
 				(cancelButton.Left, okButton.Left) = (okButton.Left, cancelButton.Left);
 				okButton.Text = Resx.word_OK;
+				okButton.DialogResult = DialogResult.OK;
 				cancelButton.Text = Resx.word_Cancel;
+				cancelButton.DialogResult = DialogResult.Cancel;
 			}
 			else if (buttons == MessageBoxButtons.YesNo)
 			{
 				(cancelButton.Left, okButton.Left) = (okButton.Left, cancelButton.Left);
 				okButton.Text = Resx.word_Yes;
+				okButton.DialogResult = DialogResult.Yes;
 				cancelButton.Text = Resx.word_No;
+				cancelButton.DialogResult = DialogResult.No;
 			}
 		}
 

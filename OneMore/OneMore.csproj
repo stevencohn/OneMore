@@ -2,6 +2,9 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{D874E185-08FE-48C5-BADE-0FE84060C978}</ProjectGuid>
@@ -606,6 +609,9 @@
     <Compile Include="UI\MoreButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MoreListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -986,6 +992,7 @@
     <None Include="Properties\Images\Copy.png" />
     <Content Include="Properties\Images\Edit.png" />
     <Content Include="Properties\Images\Editor.ico" />
+    <Content Include="Properties\Images\Equal.png" />
     <Content Include="Properties\Images\Exclamation.png" />
     <None Include="Properties\Images\Exit.png" />
     <Content Include="Properties\Images\FolderClose.png" />
@@ -1020,6 +1027,7 @@
     <Content Include="Properties\Images\NewStyle.png" />
     <Content Include="Properties\Images\Notebook.png" />
     <Content Include="Properties\Images\NotebookMask.png" />
+    <Content Include="Properties\Images\NotEqual.png" />
     <Content Include="Properties\Images\Open.png" />
     <Content Include="Properties\Images\Page.png" />
     <Content Include="Properties\Images\Pages.png" />

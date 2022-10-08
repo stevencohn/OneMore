@@ -16,12 +16,21 @@ namespace River.OneMoreAddIn
 		public const int DEVICECAPS_DESKTOPVERTRES = 117;
 		public const int DEVICECAPS_DESKTOPHORZRES = 118;
 
-		public const int WM_NCLBUTTONDOWN = 0xA1;
+		public const UInt32 LVM_FIRST = 0x1000;
+		public const UInt32 LVM_SCROLL = (LVM_FIRST + 20);
+
 		public const int HT_CAPTION = 0x2;
 
 		public const int WM_HOTKEY = 0x312;
+		public const int WM_HSCROLL = 0x114;
+		public const int WM_VSCROLL = 0x115;
+		public const int WM_MOUSEWHEEL = 0x020A;
+		public const int WM_NCLBUTTONDOWN = 0xA1;
+		public const int WM_PAINT = 0x000F;
+		public const int WM_SETCURSOR = 0x0020;
 		public const int WM_SETREDRAW = 11;
 		public const int WM_SYSCOMMAND = 0x112;
+
 		public const int MF_BYPOSITION = 0x400;
 
 		public const uint WINEVENT_OUTOFCONTEXT = 0x0000;
@@ -36,7 +45,6 @@ namespace River.OneMoreAddIn
 		public const int IDC_ARROW = 32512;
 		public const int IDC_HAND = 32649;
 		public const int IDC_SIZENS = 32645;
-		public const int WM_SETCURSOR = 0x0020;
 
 		public const int TVIF_STATE = 0x8;
 		public const int TVIS_STATEIMAGEMASK = 0xF000;
@@ -239,6 +247,10 @@ namespace River.OneMoreAddIn
 
 		[DllImport("user32.dll")]
 		public static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
+
+
+		[DllImport("user32.dll")]
+		public static extern bool SendMessage(IntPtr hWnd, UInt32 m, int wParam, int lParam);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey

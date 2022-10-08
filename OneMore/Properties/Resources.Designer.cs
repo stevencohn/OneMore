@@ -2068,6 +2068,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Equal {
+            get {
+                object obj = ResourceManager.GetObject("Equal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text focus must be in the body of the page.
         /// </summary>
         internal static string Error_BodyContext {
@@ -3586,6 +3596,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NotEqual {
+            get {
+                object obj = ResourceManager.GetObject("NotEqual", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Numbering page {0}.
         /// </summary>
         internal static string NumberingPage_Message {
@@ -4659,6 +4679,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RemoveDuplicatesDialog_Text {
             get {
                 return ResourceManager.GetString("RemoveDuplicatesDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the selected page?.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_confirm1 {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_confirm1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the {0} selected pages?.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_confirmAll {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_confirmAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages similar to {0}.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_pagesSimilarTo {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_pagesSimilarTo", resourceCulture);
             }
         }
         
@@ -7127,6 +7174,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All sections in the current notebook.
+        /// </summary>
+        internal static string ScopeSelector_notebookButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_notebookButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All notebooks.
+        /// </summary>
+        internal static string ScopeSelector_notebooksButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_notebooksButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page.
+        /// </summary>
+        internal static string ScopeSelector_pageButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_pageButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current section.
+        /// </summary>
+        internal static string ScopeSelector_sectionButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_sectionButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected notebooks....
+        /// </summary>
+        internal static string ScopeSelector_selectedButton_Text {
+            get {
+                return ResourceManager.GetString("ScopeSelector_selectedButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Match case.
         /// </summary>
         internal static string SearchAndReplaceDialog_matchBox_Text {
@@ -8988,6 +9080,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        internal static string word_Distance {
+            get {
+                return ResourceManager.GetString("word_Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due.
         /// </summary>
         internal static string word_Due {
@@ -9087,6 +9188,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string word_Page {
+            get {
+                return ResourceManager.GetString("word_Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to %.
         /// </summary>
         internal static string word_PercentSymbol {
@@ -9152,9 +9262,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Scope.
         /// </summary>
-        internal static string Word_Scope {
+        internal static string word_Scope {
             get {
-                return ResourceManager.GetString("Word_Scope", resourceCulture);
+                return ResourceManager.GetString("word_Scope", resourceCulture);
             }
         }
         
@@ -9222,6 +9332,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string word_Text {
+            get {
+                return ResourceManager.GetString("word_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Width.
         /// </summary>
         internal static string word_Width {
@@ -9236,6 +9355,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Word {
             get {
                 return ResourceManager.GetString("word_Word", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML.
+        /// </summary>
+        internal static string word_XML {
+            get {
+                return ResourceManager.GetString("word_XML", resourceCulture);
             }
         }
         
