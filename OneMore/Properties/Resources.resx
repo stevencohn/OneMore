@@ -1146,10 +1146,6 @@ Deferred</value>
     <value>Edit Commands</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
-    <value>Language</value>
-    <comment>label</comment>
-  </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>Fill Down (Ctrl + D)</value>
     <comment>ribbon</comment>
@@ -2616,10 +2612,6 @@ In this section</value>
   <data name="LinkDialog_Text" xml:space="preserve">
     <value>Link References</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
-    <value>Word</value>
-    <comment>label</comment>
   </data>
   <data name="ribInsertYellowStatusButton_Label" xml:space="preserve">
     <value>Yellow Status</value>
@@ -4098,5 +4090,11 @@ Do no enlarge smaller images</value>
   </data>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>Command Aliases</value>
+  </data>
+  <data name="word_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="word_Word" xml:space="preserve">
+    <value>Word</value>
   </data>
 </root>

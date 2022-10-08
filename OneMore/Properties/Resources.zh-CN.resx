@@ -1847,30 +1847,22 @@ OneNote 将自动关闭</value>
     <value>语音学</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
-    <value>语言</value>
-    <comment>label</comment>
-  </data>
   <data name="PronunciateDialog_languages" xml:space="preserve">
-    <value>zh，英语
+    <value>英语,英语
 嗨，印地语
-es，西班牙语
-fr，法语
-ja，日语
-ru，俄语
-德，德国
+es,西班牙语
+法语,法语
+日语,日语
+ru,俄语
+de,德语
 它，意大利语
-朝鲜语
-pt-BR，巴西葡萄牙语
-ar，阿拉伯语
-tr，土耳其文
-zh-CN，中文（简体）</value>
+ko,韩语
+pt-BR,巴西葡萄牙语
+ar,阿拉伯语
+tr，土耳其语
+zh-CN,中文（简体）</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
-  </data>
-  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
-    <value>字</value>
-    <comment>label</comment>
   </data>
   <data name="ToggleDttmDialog.Text" xml:space="preserve">
     <value>显示/隐藏日期和时间</value>
@@ -4028,5 +4020,11 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>命令别名</value>
+  </data>
+  <data name="word_Language" xml:space="preserve">
+    <value>语</value>
+  </data>
+  <data name="word_Word" xml:space="preserve">
+    <value>单词</value>
   </data>
 </root>

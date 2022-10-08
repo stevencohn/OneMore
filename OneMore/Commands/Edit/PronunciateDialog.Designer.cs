@@ -133,7 +133,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "PhoneticsDialog";
+			this.Name = "PronunciateDialog";
 			this.Padding = new System.Windows.Forms.Padding(13, 19, 13, 13);
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
