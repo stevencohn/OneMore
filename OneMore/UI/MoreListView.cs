@@ -499,7 +499,7 @@ namespace River.OneMoreAddIn.UI
 		/// <summary>
 		/// Gets or sets whether this column can be sorted by clicking its header.
 		/// </summary>
-		public bool Sortable { get; set; } = true;
+		public bool Sortable { get; set; } = false;
 
 		/// <summary>
 		/// The current sort state of the column.
