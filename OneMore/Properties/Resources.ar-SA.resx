@@ -4037,4 +4037,26 @@ ISO-code then comma then language name</comment>
   <data name="word_Word" xml:space="preserve">
     <value>كلمة</value>
   </data>
+  <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
+    <value>هل أنت متأكد من أنك تريد حذف الصفحة المحددة؟</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
+    <value>هل أنت متأكد من أنك تريد حذف الصفحات المحددة {0}؟</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
+    <value>صفحات مشابهة لـ {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="word_Distance" xml:space="preserve">
+    <value>مسافه: بعد</value>
+  </data>
+  <data name="word_Page" xml:space="preserve">
+    <value>صفحة</value>
+  </data>
+  <data name="word_Text" xml:space="preserve">
+    <value>نص</value>
+  </data>
+  <data name="word_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
 </root>

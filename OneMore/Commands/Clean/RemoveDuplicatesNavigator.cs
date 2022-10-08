@@ -23,11 +23,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			view.Columns.Add(new MoreColumnHeader("Page", 450) { AutoSizeItems = true });
-			view.Columns.Add(new MoreColumnHeader("Text", 150));
-			view.Columns.Add(new MoreColumnHeader("Xml", 150));
-			view.Columns.Add(new MoreColumnHeader("Distance", 150));
-			view.Columns.Add(new MoreColumnHeader("Tash", 100));
+			view.Columns.Add(new MoreColumnHeader(Resx.word_Page, 450) { AutoSizeItems = true });
+			view.Columns.Add(new MoreColumnHeader(Resx.word_Text, 150));
+			view.Columns.Add(new MoreColumnHeader(Resx.word_XML, 150));
+			view.Columns.Add(new MoreColumnHeader(Resx.word_Distance, 150));
+			view.Columns.Add(new MoreColumnHeader(Resx.word_Delete, 100));
 
 			if (NeedsLocalizing())
 			{
@@ -55,8 +55,10 @@ namespace River.OneMoreAddIn.Commands
 
 				if (group == null)
 				{
-					group = new ListViewGroup(node.GroupID,
-						node.PageID == null ? node.Title : $"Pages similar to {node.Title}");
+					group = new ListViewGroup(node.GroupID, node.PageID == null 
+						? node.Title 
+						: String.Format(Resx.RemoveDuplicatesNavigator_pagesSimilarTo, node.Title)
+						);
 
 					view.Groups.Add(group);
 				}
@@ -171,8 +173,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var msg = view.SelectedItems.Count == 1
-				? "Are you sure you want to delete the selected page?"
-				: $"Are you sure you want to delete the {view.SelectedItems.Count} selected pages?";
+				? Resx.RemoveDuplicatesNavigator_confirm1
+				: String.Format(Resx.RemoveDuplicatesNavigator_confirmAll, view.SelectedItems.Count);
 
 			var result = MoreMessageBox.Show(Owner, msg, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 			if (result != DialogResult.Yes)

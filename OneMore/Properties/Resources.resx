@@ -4103,4 +4103,26 @@ Do no enlarge smaller images</value>
   <data name="NotEqual" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\notequal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
+    <value>Are you sure you want to delete the selected page?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
+    <value>Are you sure you want to delete the {0} selected pages?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
+    <value>Pages similar to {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="word_Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="word_Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="word_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="word_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
 </root>

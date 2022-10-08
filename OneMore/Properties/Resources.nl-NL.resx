@@ -4037,4 +4037,26 @@ Kleinere afbeeldingen niet vergroten</value>
   <data name="word_Word" xml:space="preserve">
     <value>Woord</value>
   </data>
+  <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
+    <value>Weet u zeker dat u de geselecteerde pagina wilt verwijderen?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
+    <value>Weet u zeker dat u de geselecteerde pagina's {0} wilt verwijderen?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
+    <value>Pagina's vergelijkbaar met {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="word_Distance" xml:space="preserve">
+    <value>Afstand</value>
+  </data>
+  <data name="word_Page" xml:space="preserve">
+    <value>Bladzijde</value>
+  </data>
+  <data name="word_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="word_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
 </root>

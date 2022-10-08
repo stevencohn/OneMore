@@ -4683,6 +4683,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the selected page?.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_confirm1 {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_confirm1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the {0} selected pages?.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_confirmAll {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_confirmAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages similar to {0}.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_pagesSimilarTo {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_pagesSimilarTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove all empty lines?
         ///
         ///Select Yes to remove all empty lines between paragraphs
@@ -9008,6 +9035,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        internal static string word_Distance {
+            get {
+                return ResourceManager.GetString("word_Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due.
         /// </summary>
         internal static string word_Due {
@@ -9103,6 +9139,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Options {
             get {
                 return ResourceManager.GetString("word_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string word_Page {
+            get {
+                return ResourceManager.GetString("word_Page", resourceCulture);
             }
         }
         
@@ -9242,6 +9287,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string word_Text {
+            get {
+                return ResourceManager.GetString("word_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Width.
         /// </summary>
         internal static string word_Width {
@@ -9256,6 +9310,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Word {
             get {
                 return ResourceManager.GetString("word_Word", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML.
+        /// </summary>
+        internal static string word_XML {
+            get {
+                return ResourceManager.GetString("word_XML", resourceCulture);
             }
         }
         

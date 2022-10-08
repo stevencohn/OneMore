@@ -4027,4 +4027,26 @@ OneNote 文件 (*.one)</value>
   <data name="word_Word" xml:space="preserve">
     <value>单词</value>
   </data>
+  <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
+    <value>您确定要删除所选页面吗？</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
+    <value>您确定要删除{0}所选页面吗？</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
+    <value>类似于{0}的页面</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="word_Distance" xml:space="preserve">
+    <value>距离</value>
+  </data>
+  <data name="word_Page" xml:space="preserve">
+    <value>页</value>
+  </data>
+  <data name="word_Text" xml:space="preserve">
+    <value>文本</value>
+  </data>
+  <data name="word_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
 </root>

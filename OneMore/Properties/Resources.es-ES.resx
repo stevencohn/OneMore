@@ -4037,4 +4037,26 @@ No ampliar imágenes más pequeñas</value>
   <data name="word_Word" xml:space="preserve">
     <value>Palabra</value>
   </data>
+  <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
+    <value>¿Estás seguro de que quieres eliminar la página seleccionada?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
+    <value>¿Estás seguro de que quieres eliminar las páginas {0} seleccionadas?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
+    <value>Páginas similares a {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="word_Distance" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="word_Page" xml:space="preserve">
+    <value>Página</value>
+  </data>
+  <data name="word_Text" xml:space="preserve">
+    <value>Texto</value>
+  </data>
+  <data name="word_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
 </root>
