@@ -6,7 +6,6 @@
 
 namespace River.OneMoreAddIn.UI
 {
-	using River.OneMoreAddIn.Properties;
 	using System;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -23,7 +22,7 @@ namespace River.OneMoreAddIn.UI
 
 		public LocalizableForm()
 		{
-			Resources.Culture = AddIn.Culture;
+			Properties.Resources.Culture = AddIn.Culture;
 		}
 
 
