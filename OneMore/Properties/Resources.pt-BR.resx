@@ -1858,30 +1858,22 @@ Nesta secção</value>
     <value>Fonética</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
-    <value>Língua</value>
-    <comment>label</comment>
-  </data>
   <data name="PronunciateDialog_languages" xml:space="preserve">
-    <value>en, inglês
-oi hindi
+    <value>pt,inglês
+oi, hindi
 es, espanhol
 fr, francês
-ja, japones
-ru russo
+ja, japonês
+ru, russo
 de, alemão
 isso, italiano
 ko, coreano
-pt-BR, português do Brasil
+pt-BR,português brasileiro
 ar, árabe
 tr, turco
 zh-CN, chinês (simplificado)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
-  </data>
-  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
-    <value>Palavra</value>
-    <comment>label</comment>
   </data>
   <data name="ToggleDttmDialog.Text" xml:space="preserve">
     <value>Mostrar / ocultar data e hora</value>
@@ -4038,5 +4030,11 @@ Não amplie imagens menores</value>
   </data>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>Alias ​​de Comando</value>
+  </data>
+  <data name="word_Language" xml:space="preserve">
+    <value>Linguagem</value>
+  </data>
+  <data name="word_Word" xml:space="preserve">
+    <value>Palavra</value>
   </data>
 </root>

@@ -1858,30 +1858,22 @@ In deze sectie</value>
     <value>Fonetiek</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
-    <value>Taal</value>
-    <comment>label</comment>
-  </data>
   <data name="PronunciateDialog_languages" xml:space="preserve">
-    <value>en, Engels
-hoi, Hindi
-es, Spaans
-fr, Frans
+    <value>nl,Engels
+hallo, Hindi
+es,Spaans
+fr,Frans
 ja, Japans
 ru, Russisch
 de, Duits
-it, Italiaans
-ko, Koreaans
-pt-BR, Braziliaans Portugees
+it, italiaans
+ko,Koreaans
+pt-BR,Braziliaans Portugees
 ar, Arabisch
 tr, Turks
 zh-CN, Chinees (vereenvoudigd)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
-  </data>
-  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
-    <value>Woord</value>
-    <comment>label</comment>
   </data>
   <data name="ToggleDttmDialog.Text" xml:space="preserve">
     <value>Datum en tijd weergeven / verbergen</value>
@@ -4038,5 +4030,11 @@ Kleinere afbeeldingen niet vergroten</value>
   </data>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>Opdrachtaliassen</value>
+  </data>
+  <data name="word_Language" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="word_Word" xml:space="preserve">
+    <value>Woord</value>
   </data>
 </root>

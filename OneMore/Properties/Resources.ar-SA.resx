@@ -1853,12 +1853,8 @@
     <value>علم الصوتيات</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
-    <value>لغة</value>
-    <comment>label</comment>
-  </data>
   <data name="PronunciateDialog_languages" xml:space="preserve">
-    <value>en، English
+    <value>اللغة الإنجليزية
 مرحبا الهندية
 es ، الإسبانية
 الفرنسية ، الفرنسية
@@ -1873,10 +1869,6 @@ tr ، التركية
 zh-CN ، الصينية (المبسطة)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
-  </data>
-  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
-    <value>كلمة</value>
-    <comment>label</comment>
   </data>
   <data name="ToggleDttmDialog.Text" xml:space="preserve">
     <value>إظهار / إخفاء التاريخ والوقت</value>
@@ -4038,5 +4030,11 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>قيادة الأسماء المستعارة</value>
+  </data>
+  <data name="word_Language" xml:space="preserve">
+    <value>لغة</value>
+  </data>
+  <data name="word_Word" xml:space="preserve">
+    <value>كلمة</value>
   </data>
 </root>

@@ -1096,10 +1096,6 @@ Odroczony</value>
     <value>Edytuj polecenia.</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
-  <data name="PronunciateDialog_languageLabel.Text" xml:space="preserve">
-    <value>Język</value>
-    <comment>label</comment>
-  </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>Wypełnij (Ctrl + D)</value>
     <comment>ribbon</comment>
@@ -2447,10 +2443,6 @@ W tej sekcji</value>
     <value>Link References.</value>
     <comment>dialog title</comment>
   </data>
-  <data name="PronunciateDialog_wordLabel.Text" xml:space="preserve">
-    <value>Słowo</value>
-    <comment>label</comment>
-  </data>
   <data name="PluginsSheet_introLabel.Text" xml:space="preserve">
     <value>Zarządzaj moimi wtyczkami</value>
     <comment>label</comment>
@@ -3372,19 +3364,19 @@ Plik OneNote (* .o)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="PronunciateDialog_languages" xml:space="preserve">
-    <value>en, angielski
-Cześć, Hindi.
+    <value>pl, angielski
+cześć, hinduski
 es, hiszpański
-fr, francuski
-Ja, japoński
+fr,francuski
+ja, japoński
 ru, rosyjski
 de, niemiecki
 to, włoski
-KO, Koreańczyk
-pt-br, brazylijski portugalski
-ar, arabski
-TR, Turkish.
-ZH-CN, chiński (uproszczony)</value>
+ko, koreański
+pt-BR, brazylijski portugalski
+ar,arabski
+tr, turecki
+zh-CN, chiński (uproszczony)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
@@ -4091,5 +4083,11 @@ Nie powiększaj mniejszych obrazów</value>
   </data>
   <data name="SettingsDialog_aliasNode.Text" xml:space="preserve">
     <value>Aliasy poleceń</value>
+  </data>
+  <data name="word_Language" xml:space="preserve">
+    <value>Język</value>
+  </data>
+  <data name="word_Word" xml:space="preserve">
+    <value>Słowo</value>
   </data>
 </root>

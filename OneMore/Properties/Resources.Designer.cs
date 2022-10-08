@@ -4181,15 +4181,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language.
-        /// </summary>
-        internal static string PronunciateDialog_languageLabel_Text {
-            get {
-                return ResourceManager.GetString("PronunciateDialog_languageLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to en,English
         ///hi,Hindi
         ///es,Spanish
@@ -4216,15 +4207,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PronunciateDialog_Text {
             get {
                 return ResourceManager.GetString("PronunciateDialog.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Word.
-        /// </summary>
-        internal static string PronunciateDialog_wordLabel_Text {
-            get {
-                return ResourceManager.GetString("PronunciateDialog_wordLabel.Text", resourceCulture);
             }
         }
         
@@ -9042,6 +9024,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string word_Language {
+            get {
+                return ResourceManager.GetString("word_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move.
         /// </summary>
         internal static string word_Move {
@@ -9236,6 +9227,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Width {
             get {
                 return ResourceManager.GetString("word_Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word.
+        /// </summary>
+        internal static string word_Word {
+            get {
+                return ResourceManager.GetString("word_Word", resourceCulture);
             }
         }
         
