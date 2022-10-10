@@ -448,12 +448,12 @@
     </Compile>
     <Compile Include="Commands\Extras\SectionColorCommand.cs" />
     <Compile Include="Commands\Tools\CalendarCommand.cs" />
-    <Compile Include="Commands\Tools\CommandPallettCommand.cs" />
-    <Compile Include="Commands\Tools\CommandPallettDialog.cs">
+    <Compile Include="Commands\Tools\CommandPaletteCommand.cs" />
+    <Compile Include="Commands\Tools\CommandPaletteDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Tools\CommandPallettDialog.Designer.cs">
-      <DependentUpon>CommandPallettDialog.cs</DependentUpon>
+    <Compile Include="Commands\Tools\CommandPaletteDialog.Designer.cs">
+      <DependentUpon>CommandPaletteDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tools\DiagnosticsDialog.cs">
       <SubType>Form</SubType>
@@ -1207,8 +1207,8 @@
     <EmbeddedResource Include="Commands\Extras\AnalyzeDialog.resx">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tools\CommandPallettDialog.resx">
-      <DependentUpon>CommandPallettDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Tools\CommandPaletteDialog.resx">
+      <DependentUpon>CommandPaletteDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\DiagnosticsDialog.resx">
       <DependentUpon>DiagnosticsDialog.cs</DependentUpon>

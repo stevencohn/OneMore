@@ -11,18 +11,18 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
-	internal partial class CommandPallettDialog : UI.LocalizableForm
+	internal partial class CommandPaletteDialog : UI.LocalizableForm
 	{
 		private readonly string[] commands;
 
 
-		public CommandPallettDialog()
+		public CommandPaletteDialog()
 		{
 			InitializeComponent();
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.CommandPallett_Title;
+				Text = Resx.CommandPalette_Title;
 
 				Localize(new string[]
 				{
@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public CommandPallettDialog(string[] commands)
+		public CommandPaletteDialog(string[] commands)
 			: this()
 		{
 			var source = new AutoCompleteStringCollection();

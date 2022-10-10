@@ -3984,13 +3984,6 @@ ISO-code then comma then language name</comment>
     <value>قم بإنشاء صفحات من القائمة</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CommandPallett_Title" xml:space="preserve">
-    <value>One More Command Pallett</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribCommandPallettButton_Label" xml:space="preserve">
-    <value>افتح لوحة الأوامر</value>
-  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>افتح ملف السجل</value>
   </data>
@@ -4017,10 +4010,6 @@ ISO-code then comma then language name</comment>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>تضمين عناوين الصفحات عند المقارنة</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="AliasSheet.Text" xml:space="preserve">
-    <value>تحديد الأسماء المستعارة للأوامر لاستخدامها في Command Pallett</value>
-    <comment>intro box</comment>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>الاسم المستعار</value>
@@ -4078,5 +4067,16 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>نِطَاق</value>
+  </data>
+  <data name="CommandPalette_Title" xml:space="preserve">
+    <value>لوحة قيادة OneMore</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPaletteButton_Label" xml:space="preserve">
+    <value>افتح لوحة الأوامر</value>
+  </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>حدد الأسماء المستعارة للأوامر لاستخدامها في لوحة الأوامر</value>
+    <comment>intro box</comment>
   </data>
 </root>

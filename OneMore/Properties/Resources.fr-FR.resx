@@ -3978,13 +3978,6 @@ Ne pas agrandir les petites images</value>
     <value>Créer des pages à partir de la liste</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CommandPallett_Title" xml:space="preserve">
-    <value>Palette de commande OneMore</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribCommandPallettButton_Label" xml:space="preserve">
-    <value>Ouvrir la palette de commandes</value>
-  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Ouvrir le fichier journal</value>
   </data>
@@ -4072,5 +4065,12 @@ Ne pas agrandir les petites images</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Portée</value>
+  </data>
+  <data name="CommandPalette_Title" xml:space="preserve">
+    <value>Palette de commandes OneMore</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPaletteButton_Label" xml:space="preserve">
+    <value>Ouvrir la palette de commandes</value>
   </data>
 </root>

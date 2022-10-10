@@ -4037,13 +4037,6 @@ Nie powiększaj mniejszych obrazów</value>
     <value>Utwórz strony z listy</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CommandPallett_Title" xml:space="preserve">
-    <value>OneMore Command Pallett</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribCommandPallettButton_Label" xml:space="preserve">
-    <value>Otwórz paletę poleceń</value>
-  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Otwórz plik dziennika</value>
   </data>
@@ -4070,10 +4063,6 @@ Nie powiększaj mniejszych obrazów</value>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>Uwzględnij tytuły stron podczas porównywania</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="AliasSheet.Text" xml:space="preserve">
-    <value>Zdefiniuj aliasy poleceń do użycia w Command Pallett</value>
-    <comment>intro box</comment>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
@@ -4131,5 +4120,16 @@ Nie powiększaj mniejszych obrazów</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Zakres</value>
+  </data>
+  <data name="CommandPalette_Title" xml:space="preserve">
+    <value>Paleta poleceń OneMore</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPaletteButton_Label" xml:space="preserve">
+    <value>Otwórz paletę poleceń</value>
+  </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>Zdefiniuj aliasy poleceń do użycia w palecie poleceń</value>
+    <comment>intro box</comment>
   </data>
 </root>

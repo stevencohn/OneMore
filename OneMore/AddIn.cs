@@ -110,7 +110,7 @@ namespace River.OneMoreAddIn
 				var asm = System.Reflection.Assembly.LoadFrom(path);
 				return asm;
 			}
-			catch (Exception exc)
+			catch (Exception)
 			{
 				//logger.WriteLine($"AssemblyResolve exception {exc.Message} for {path}");
 				return null;
@@ -137,7 +137,7 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets the AddIn instance for use in reflection like CommandPallettCommand
+		/// Gets the AddIn instance for use in reflection like CommandPaletteCommand
 		/// </summary>
 		public static AddIn Self { get; private set; }
 

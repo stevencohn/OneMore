@@ -4040,12 +4040,12 @@ Do no enlarge smaller images</value>
     <value>Create Pages from List</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CommandPallett_Title" xml:space="preserve">
-    <value>OneMore Command Pallett</value>
+  <data name="CommandPalette_Title" xml:space="preserve">
+    <value>OneMore Command Palette</value>
     <comment>dialog title</comment>
   </data>
-  <data name="ribCommandPallettButton_Label" xml:space="preserve">
-    <value>Open Command Pallet</value>
+  <data name="ribCommandPaletteButton_Label" xml:space="preserve">
+    <value>Open Command Palette</value>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Open Log File</value>
@@ -4082,7 +4082,7 @@ Do no enlarge smaller images</value>
     <comment>checkbox</comment>
   </data>
   <data name="AliasSheet.Text" xml:space="preserve">
-    <value>Define command aliases for use in the Command Pallett</value>
+    <value>Define command aliases for use in the Command Palette</value>
     <comment>intro box</comment>
   </data>
   <data name="word_Alias" xml:space="preserve">

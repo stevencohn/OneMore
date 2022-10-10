@@ -1,6 +1,6 @@
 ﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class CommandPallettDialog
+	partial class CommandPaletteDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommandPallettDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommandPaletteDialog));
 			this.cmdBox = new System.Windows.Forms.TextBox();
 			this.okButton = new System.Windows.Forms.Button();
 			this.bodyPanel = new System.Windows.Forms.Panel();
@@ -67,7 +67,7 @@
 			this.bodyPanel.Size = new System.Drawing.Size(650, 115);
 			this.bodyPanel.TabIndex = 3;
 			// 
-			// CommandPallettDialog
+			// CommandPaletteDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -78,10 +78,10 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "CommandPallettDialog";
+			this.Name = "CommandPaletteDialog";
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "OneMore Command Pallett";
+			this.Text = "OneMore Command Palette";
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoKeyDown);
 			this.bodyPanel.ResumeLayout(false);
 			this.bodyPanel.PerformLayout();

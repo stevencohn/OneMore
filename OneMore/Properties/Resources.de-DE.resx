@@ -3976,13 +3976,6 @@ Vergrößern Sie kleinere Bilder nicht</value>
     <value>Seiten aus Liste erstellen</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CommandPallett_Title" xml:space="preserve">
-    <value>OneMore Kommandopalette</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribCommandPallettButton_Label" xml:space="preserve">
-    <value>Öffnen Sie die Befehlspalette</value>
-  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Protokolldatei öffnen</value>
   </data>
@@ -4070,5 +4063,12 @@ Vergrößern Sie kleinere Bilder nicht</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Zielfernrohr</value>
+  </data>
+  <data name="CommandPalette_Title" xml:space="preserve">
+    <value>OneMore-Befehlspalette</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPaletteButton_Label" xml:space="preserve">
+    <value>Öffnen Sie die Befehlspalette</value>
   </data>
 </root>

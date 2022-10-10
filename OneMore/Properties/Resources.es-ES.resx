@@ -3984,13 +3984,6 @@ No ampliar imágenes más pequeñas</value>
     <value>Crear páginas desde la lista</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CommandPallett_Title" xml:space="preserve">
-    <value>Paleta de mando OneMore</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribCommandPallettButton_Label" xml:space="preserve">
-    <value>Paleta de comandos abierta</value>
-  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Abrir archivo de registro</value>
   </data>
@@ -4017,10 +4010,6 @@ No ampliar imágenes más pequeñas</value>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>Incluir títulos de página al comparar</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="AliasSheet.Text" xml:space="preserve">
-    <value>Definir alias de comando para usar en Command Pallett</value>
-    <comment>intro box</comment>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
@@ -4078,5 +4067,16 @@ No ampliar imágenes más pequeñas</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>Alcance</value>
+  </data>
+  <data name="CommandPalette_Title" xml:space="preserve">
+    <value>Paleta de comandos de OneMore</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPaletteButton_Label" xml:space="preserve">
+    <value>Abrir paleta de comandos</value>
+  </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>Definir alias de comando para usar en la Paleta de comandos</value>
+    <comment>intro box</comment>
   </data>
 </root>

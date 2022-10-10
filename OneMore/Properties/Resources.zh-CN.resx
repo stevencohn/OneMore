@@ -3974,13 +3974,6 @@ OneNote 文件 (*.one)</value>
     <value>从列表创建页面</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="CommandPallett_Title" xml:space="preserve">
-    <value>OneMore 命令托盘</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="ribCommandPallettButton_Label" xml:space="preserve">
-    <value>打开命令托盘</value>
-  </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>打开日志文件</value>
   </data>
@@ -4007,10 +4000,6 @@ OneNote 文件 (*.one)</value>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>比较时包括页面标题</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="AliasSheet.Text" xml:space="preserve">
-    <value>定义在 Command Pallett 中使用的命令别名</value>
-    <comment>intro box</comment>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>别名</value>
@@ -4068,5 +4057,16 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="word_Scope" xml:space="preserve">
     <value>范围</value>
+  </data>
+  <data name="CommandPalette_Title" xml:space="preserve">
+    <value>OneMore 命令面板</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ribCommandPaletteButton_Label" xml:space="preserve">
+    <value>打开命令面板</value>
+  </data>
+  <data name="AliasSheet.Text" xml:space="preserve">
+    <value>定义在命令面板中使用的命令别名</value>
+    <comment>intro box</comment>
   </data>
 </root>

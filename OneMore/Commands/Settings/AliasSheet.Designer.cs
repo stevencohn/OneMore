@@ -91,9 +91,9 @@
 			this.introLabel.AutoSize = true;
 			this.introLabel.Location = new System.Drawing.Point(3, 0);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(404, 20);
+			this.introLabel.Size = new System.Drawing.Size(410, 20);
 			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "Define command aliases for use in the Command Pallett";
+			this.introLabel.Text = "Define command aliases for use in the Command Palette";
 			// 
 			// AliasSheet
 			// 

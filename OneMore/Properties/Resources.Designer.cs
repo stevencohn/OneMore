@@ -241,7 +241,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Define command aliases for use in the Command Pallett.
+        ///   Looks up a localized string similar to Define command aliases for use in the Command Palette.
         /// </summary>
         internal static string AliasSheet_Text {
             get {
@@ -896,11 +896,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneMore Command Pallett.
+        ///   Looks up a localized string similar to OneMore Command Palette.
         /// </summary>
-        internal static string CommandPallett_Title {
+        internal static string CommandPalette_Title {
             get {
-                return ResourceManager.GetString("CommandPallett_Title", resourceCulture);
+                return ResourceManager.GetString("CommandPalette_Title", resourceCulture);
             }
         }
         
@@ -5436,11 +5436,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Command Pallet.
+        ///   Looks up a localized string similar to Open Command Palette.
         /// </summary>
-        internal static string ribCommandPallettButton_Label {
+        internal static string ribCommandPaletteButton_Label {
             get {
-                return ResourceManager.GetString("ribCommandPallettButton_Label", resourceCulture);
+                return ResourceManager.GetString("ribCommandPaletteButton_Label", resourceCulture);
             }
         }
         

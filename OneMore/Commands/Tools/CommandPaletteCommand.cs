@@ -10,10 +10,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Reflection;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using System.Windows.Input;
 	using System.Xml.Linq;
 
-	internal class CommandPallettCommand : Command
+	internal class CommandPaletteCommand : Command
 	{
 		private sealed class CommandInfo
 		{
@@ -26,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public CommandPallettCommand()
+		public CommandPaletteCommand()
 		{
 			// prevent replay
 			IsCancelled = true;
@@ -43,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var names = commands.Select(c => c.Name).ToArray();
 
-				using (var dialog = new CommandPallettDialog(names))
+				using (var dialog = new CommandPaletteDialog(names))
 				{
 					return (dialog.ShowDialog(Owner) == DialogResult.OK)
 						? dialog.CommandIndex
