@@ -168,7 +168,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				for (int i = 0; i < types.Length; i++)
 				{
 					// does each value match the required type in sequence
-					if (types[i] != values[i].Type)
+					if (!(values[i].Value is string s && string.IsNullOrWhiteSpace(s)) &&
+						types[i] != values[i].Type)
 					{
 						throw new FormulaException($"parameter {i} is not of type {types[i]}");
 					}
