@@ -106,10 +106,13 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		protected override void OnShown(EventArgs e)
+		protected override void OnLoad(EventArgs e)
 		{
-			// modeless has already set location so don't repeat that here
-			// and only set location if inheritor hasn't declined by setting it to zero
+			base.OnLoad(e);
+
+			// RunModeless has already set location so don't repeat that here and only set
+			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
+			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
 			if (!DesignMode)
 			{
 				if (!modeless && VerticalOffset > 0)
@@ -120,7 +123,10 @@ namespace River.OneMoreAddIn.UI
 					Location = new System.Drawing.Point(x, y < 0 ? 0 : y);
 				}
 			}
+		}
 
+		protected override void OnShown(EventArgs e)
+		{
 			// modeless dialogs would appear behind the OneNote window by default
 			// so this forces the dialog to the foreground
 			UIHelper.SetForegroundWindow(this);
