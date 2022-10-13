@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Settings
 				.Where(a => a.Attr != null)
 				.Select(a => new KeyMap(
 					a.MethodName,
-					Resx.ResourceManager.GetString(a.Attr.ResID),
+					Resx.ResourceManager.GetString(a.Attr.ResID, AddIn.Culture),
 					new Hotkey(a.Attr.DefaultKeys)
 					))
 				.OrderBy(k => k.Description)

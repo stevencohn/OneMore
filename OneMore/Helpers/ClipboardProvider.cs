@@ -228,7 +228,14 @@ namespace River.OneMoreAddIn
 				// prioritize images
 				if (Win.Clipboard.ContainsImage())
 				{
-					stashedImage = Win.Clipboard.GetImage();
+					try
+					{
+						stashedImage = Win.Clipboard.GetImage();
+					}
+					catch
+					{
+						stashedImage = null;
+					}
 				}
 
 				// collect each text format

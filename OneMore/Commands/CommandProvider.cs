@@ -68,10 +68,10 @@ namespace River.OneMoreAddIn
 				var nam = method.Name.Substring(0, method.Name.Length - 3);
 
 				// translate to display name
-				var name = Resources.ResourceManager.GetString($"rib{nam}Button_Label");
+				var name = Resources.ResourceManager.GetString($"rib{nam}Button_Label", AddIn.Culture);
 				if (string.IsNullOrEmpty(name))
 				{
-					name = Resources.ResourceManager.GetString($"om{name}Button_Label");
+					name = Resources.ResourceManager.GetString($"om{name}Button_Label", AddIn.Culture);
 				}
 
 				var keys = Keys.None;

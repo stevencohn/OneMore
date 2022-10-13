@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Settings
 				var control = Controls.Find(key, true).FirstOrDefault();
 				if (control != null)
 				{
-					var text = Resx.ResourceManager.GetString($"{Name}_{key}.Text");
+					var text = Resx.ResourceManager.GetString($"{Name}_{key}.Text", AddIn.Culture);
 					if (text != null)
 					{
 						control.Text = text;
