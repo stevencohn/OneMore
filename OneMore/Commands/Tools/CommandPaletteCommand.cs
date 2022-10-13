@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Properties;
 	using River.OneMoreAddIn.Settings;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -17,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		private sealed class CommandInfo
 		{
 			public string Name { get; set; }
+			public Keys Keys { get; set; }
 			public MethodInfo Method { get; set; }
 			public override string ToString()
 			{
@@ -25,29 +27,42 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private XElement recentActions;
+
+
 		public CommandPaletteCommand()
 		{
 			// prevent replay
 			IsCancelled = true;
+			recentActions = null;
 		}
 
 
 		public override async Task Execute(params object[] args)
 		{
 			var commands = DiscoverCommands().OrderBy(c => c.Name);
-			logger.WriteLine($"discovered {commands.Count()} commands");
+			var recent = LoadMRU(commands).OrderBy(c => c.Name);
+
+			logger.WriteLine($"discovered {commands.Count()} commands, {recent.Count()} mru");
+
+			var names = commands.Select(c => c.Keys == Keys.None
+				? c.Name
+				: $"{c.Name}|{new Hotkey(c.Keys)}")
+				.ToArray();
+
+			var recentNames = recent.Select(c => c.Keys == Keys.None
+				? c.Name
+				: $"{c.Name}|{new Hotkey(c.Keys)}")
+				.ToArray();
 
 			// auto-complete feature of TextBox requires STA thread
 			var index = await SingleThreaded.Invoke(() =>
 			{
-				var names = commands.Select(c => c.Name).ToArray();
+				using var dialog = new CommandPaletteDialog(names, recentNames);
 
-				using (var dialog = new CommandPaletteDialog(names))
-				{
-					return (dialog.ShowDialog(Owner) == DialogResult.OK)
-						? dialog.CommandIndex
-						: -1;
-				}
+				return dialog.ShowDialog(Owner) == DialogResult.OK
+					? dialog.CommandIndex
+					: -1;
 			});
 
 			if (index >= 0 && index < commands.Count())
@@ -62,6 +77,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private IEnumerable<CommandInfo> DiscoverCommands()
 		{
+			var commands = new List<CommandInfo>();
+
 			// heavily relies on naming convention, suffix must be "Cmd"
 			var methods = typeof(AddIn).GetMethods()
 				.Where(m => m.Name.EndsWith("Cmd"));
@@ -72,19 +89,27 @@ namespace River.OneMoreAddIn.Commands
 				var nam = method.Name.Substring(0, method.Name.Length - 3);
 
 				// translate to display name
-				var name = Properties.Resources.ResourceManager.GetString($"rib{nam}Button_Label");
+				var name = Resources.ResourceManager.GetString($"rib{nam}Button_Label");
 				if (string.IsNullOrEmpty(name))
 				{
-					name = Properties.Resources.ResourceManager.GetString($"om{name}Button_Label");
+					name = Resources.ResourceManager.GetString($"om{name}Button_Label");
+				}
+
+				var keys = Keys.None;
+				var att = (CommandAttribute)method.GetCustomAttribute(typeof(CommandAttribute));
+				if (att != null)
+				{
+					keys = att.DefaultKeys;
 				}
 
 				if (!string.IsNullOrWhiteSpace(name))
 				{
-					yield return new CommandInfo
+					commands.Add(new CommandInfo
 					{
 						Name = name,
+						Keys = keys,
 						Method = method
-					};
+					});
 				}
 			}
 
@@ -97,16 +122,43 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var setting in settings.Elements())
 				{
-					var method = methods
-						.FirstOrDefault(m => m.Name == setting.Attribute("methodName").Value);
+					var command = commands
+						.FirstOrDefault(c => c.Method.Name == setting.Attribute("methodName").Value);
 
-					if (method != null)
+					if (command != null)
 					{
-						yield return new CommandInfo
+						commands.Add(new CommandInfo
 						{
 							Name = setting.Value,
-							Method = method
-						};
+							Keys = command.Keys,
+							Method = command.Method
+						});
+					}
+				}
+			}
+
+			return commands;
+		}
+
+
+		private IEnumerable<CommandInfo> LoadMRU(IEnumerable<CommandInfo> commands)
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection(CommandFactory.CollectionName);
+			if (settings.Count > 0)
+			{
+				recentActions = settings.Get<XElement>(CommandFactory.SettingsName);
+				if (recentActions != null && recentActions.HasElements)
+				{
+					foreach (var action in recentActions.Elements())
+					{
+						var command = commands
+							.FirstOrDefault(c => c.Method.Name == action.Attribute("cmd")?.Value);
+
+						if (command != null)
+						{
+							yield return command;
+						}
 					}
 				}
 			}

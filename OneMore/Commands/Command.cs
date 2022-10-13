@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Called by CommandFactory to request any contextual arguments to be used if this
 		/// command is immediately replayed; they will be stored in the setting file in the
-		/// lastAction collection.
+		/// mru collection.
 		/// </summary>
 		/// <returns>
 		/// An XElement describing the replay arguments, customized for this command. There is no

@@ -5,14 +5,16 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using NStandard;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
-
 	internal partial class CommandPaletteDialog : UI.LocalizableForm
 	{
+		private readonly MoreCommandPalette palette;
 		private readonly string[] commands;
 
 
@@ -34,15 +36,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public CommandPaletteDialog(string[] commands)
+		public CommandPaletteDialog(string[] commands, string[] recentNames)
 			: this()
 		{
-			var source = new AutoCompleteStringCollection();
-			source.AddRange(commands);
-
-			cmdBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-			cmdBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-			cmdBox.AutoCompleteCustomSource = source;
+			palette = new MoreCommandPalette();
+			palette.SetCommandPalette(cmdBox, palette);
+			palette.LoadCommands(commands, recentNames);
 
 			this.commands = commands;
 		}
@@ -54,16 +53,17 @@ namespace River.OneMoreAddIn.Commands
 		private void ValidateCommand(object sender, EventArgs e)
 		{
 			var text = cmdBox.Text.Trim();
-			okButton.Enabled = 
-				!string.IsNullOrEmpty(text) &&
-				commands.Any(c => c.Equals(text, StringComparison.InvariantCultureIgnoreCase));
+			var regex = new Regex($"^{text}($|\\|.+$)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+			okButton.Enabled = !string.IsNullOrEmpty(text) && commands.Any(c => regex.IsMatch(c));
 		}
 
 
 		private void InvokeCommand(object sender, EventArgs e)
 		{
 			var text = cmdBox.Text.Trim();
-			var index = commands.IndexOf(s => s.Equals(text, StringComparison.InvariantCultureIgnoreCase));
+			var index = commands.IndexOf(c =>
+				Regex.IsMatch(c, $"^{text}($|\\|.+$)", RegexOptions.IgnoreCase));
+
 			if (index >= 0)
 			{
 				CommandIndex = index;

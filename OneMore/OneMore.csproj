@@ -609,6 +609,9 @@
     <Compile Include="UI\MoreButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MoreCommandPalette.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreListView.cs">
       <SubType>Component</SubType>
     </Compile>
