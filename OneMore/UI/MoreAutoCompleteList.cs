@@ -407,11 +407,8 @@ namespace River.OneMoreAddIn.UI
 					{
 						phrase = text.Substring(0, index);
 
-						var format = phrase.EndsWith(" ")
-							? StringFormat.GenericDefault : StringFormat.GenericTypographic;
-
-						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, format);
-						size = e.Graphics.MeasureString(phrase, Font, new PointF(x, e.Bounds.Y), format);
+						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, StringFormat.GenericDefault);
+						size = e.Graphics.MeasureString(phrase, Font, new PointF(x, e.Bounds.Y), StringFormat.GenericDefault);
 						x += size.Width;
 					}
 
@@ -429,7 +426,7 @@ namespace River.OneMoreAddIn.UI
 					if (index < text.Length)
 					{
 						phrase = text.Substring(index);
-						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, StringFormat.GenericDefault);
+						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, StringFormat.GenericTypographic);
 					}
 
 					drawn = true;
