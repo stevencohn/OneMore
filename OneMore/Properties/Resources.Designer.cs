@@ -905,6 +905,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear recent commands.
+        /// </summary>
+        internal static string CommandPaletteDialog_clearLink_Text {
+            get {
+                return ResourceManager.GetString("CommandPaletteDialog_clearLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type a command and press Enter or click and item from the list.
+        /// </summary>
+        internal static string CommandPaletteDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("CommandPaletteDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes..
         /// </summary>
         internal static string ContextMenuSheet_introBox_Text {

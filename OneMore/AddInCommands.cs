@@ -22,9 +22,13 @@ namespace River.OneMoreAddIn
 		public async Task AddCaptionCmd(IRibbonControl control)
 			=> await factory.Run<AddCaptionCommand>();
 
+
+		[IgnorePalette]
 		public void AddFavoritePageCmd(IRibbonControl control)
 			=> new FavoritesProvider(ribbon).AddFavorite();
 
+
+		[IgnorePalette]
 		public void AddFavoriteSectionCmd(IRibbonControl control)
 			=> new FavoritesProvider(ribbon).AddFavorite(true);
 
@@ -392,7 +396,6 @@ namespace River.OneMoreAddIn
 		[Command("ribOpenLogButton_Label", Keys.None, "Tools")]
 		public async Task OpenLogCmd(IRibbonControl control)
 			=> await factory.Run<OpenLogCommand>();
-
 
 
 		public async Task OutlineCmd(IRibbonControl control)

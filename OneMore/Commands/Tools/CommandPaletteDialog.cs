@@ -7,21 +7,24 @@ namespace River.OneMoreAddIn.Commands
 	using NStandard;
 	using River.OneMoreAddIn.UI;
 	using System;
-	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 	internal partial class CommandPaletteDialog : UI.LocalizableForm
 	{
-		private readonly MoreCommandPalette palette;
-		private readonly string[] commands;
-		private readonly string[] recentNames;
+		private readonly MoreAutoCompleteList palette;
+		private string[] commands;
+		private string[] recentNames;
+		private bool escaping;
 
 
 		public CommandPaletteDialog()
 		{
 			InitializeComponent();
+
+			palette = new MoreAutoCompleteList();
+			palette.SetAutoCompleteList(cmdBox, palette);
 
 			if (NeedsLocalizing())
 			{
@@ -29,7 +32,8 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"okButton=word_Go"
+					"introLabel",
+					"clearLink"
 				});
 			}
 
@@ -37,16 +41,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public CommandPaletteDialog(string[] commands, string[] recentNames)
-			: this()
-		{
-			palette = new MoreCommandPalette();
-			palette.SetCommandPalette(cmdBox, palette);
-			palette.LoadCommands(commands, recentNames);
-
-			this.commands = commands;
-			this.recentNames = recentNames;
-		}
+		public event EventHandler RequestData;
 
 
 		public int Index { get; private set; } = -1;
@@ -55,13 +50,34 @@ namespace River.OneMoreAddIn.Commands
 		public bool Recent { get; private set; }
 
 
+		public void PopulateCommands(string[] commands, string[] recentNames)
+		{
+			palette.LoadCommands(commands, recentNames);
+			this.commands = commands;
+			this.recentNames = recentNames;
+		}
+
+
+		private void ClearRecentCommands(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (MoreMessageBox.Show(this,
+				"Clear the recent commands?",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				new CommandProvider().ClearMRU();
+				RequestData?.Invoke(this, EventArgs.Empty);
+			}
+		}
+
+
 		private void ValidateCommand(object sender, EventArgs e)
 		{
 			var text = cmdBox.Text.Trim();
-			var regex = new Regex($"^{text}($|\\|.+$)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-			okButton.Enabled = 
-				!string.IsNullOrEmpty(text) && 
-				(recentNames.Any(c => regex.IsMatch(c)) || commands.Any(c => regex.IsMatch(c)));
+
+			errorProvider.SetError(cmdBox, 
+				string.IsNullOrWhiteSpace(text) || palette.HasMatches 
+					? String.Empty
+					: "Unrecognize command");
 		}
 
 
@@ -88,10 +104,20 @@ namespace River.OneMoreAddIn.Commands
 
 		private void DoKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Escape)
+			if (e.KeyCode == Keys.Escape && escaping)
 			{
 				DialogResult = DialogResult.Cancel;
 				Close();
+			}
+
+			escaping = false;
+		}
+
+		private void DoPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			if (e.KeyCode == Keys.Escape)
+			{
+				escaping = !palette.Visible;
 			}
 		}
 	}

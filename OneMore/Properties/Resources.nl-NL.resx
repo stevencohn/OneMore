@@ -4079,4 +4079,12 @@ Kleinere afbeeldingen niet vergroten</value>
     <value>Opdrachtaliassen definiëren voor gebruik in het opdrachtenpalet</value>
     <comment>intro box</comment>
   </data>
+  <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
+    <value>Recente opdrachten wissen</value>
+    <comment>link</comment>
+  </data>
+  <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
+    <value>Typ een opdracht en druk op Enter of klik op en item uit de lijst</value>
+    <comment>label</comment>
+  </data>
 </root>

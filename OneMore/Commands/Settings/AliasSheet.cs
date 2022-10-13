@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Settings
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Linq;
+	using System.Reflection;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
@@ -65,7 +66,9 @@ namespace River.OneMoreAddIn.Settings
 
 			// heavily relies on naming convention, suffix must be "Cmd"
 			var methods = typeof(AddIn).GetMethods()
-				.Where(m => m.Name.EndsWith("Cmd"));
+				.Where(m =>
+					m.Name.EndsWith("Cmd") &&
+					m.GetCustomAttribute(typeof(IgnorePaletteAttribute)) == null);
 
 			foreach (var methodName in methods.Select(m => m.Name))
 			{

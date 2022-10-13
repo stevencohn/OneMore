@@ -4073,4 +4073,12 @@ Ne pas agrandir les petites images</value>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>Ouvrir la palette de commandes</value>
   </data>
+  <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
+    <value>Effacer les commandes récentes</value>
+    <comment>link</comment>
+  </data>
+  <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
+    <value>Tapez une commande et appuyez sur Entrée ou cliquez sur un élément de la liste</value>
+    <comment>label</comment>
+  </data>
 </root>

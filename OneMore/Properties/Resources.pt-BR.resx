@@ -4079,4 +4079,12 @@ Não amplie imagens menores</value>
     <value>Definir aliases de comando para uso na Paleta de Comandos</value>
     <comment>intro box</comment>
   </data>
+  <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
+    <value>Limpar comandos recentes</value>
+    <comment>link</comment>
+  </data>
+  <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
+    <value>Digite um comando e pressione Enter ou clique em um item da lista</value>
+    <comment>label</comment>
+  </data>
 </root>

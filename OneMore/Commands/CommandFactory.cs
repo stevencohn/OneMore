@@ -5,14 +5,12 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
-	using OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -21,10 +19,6 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal class CommandFactory
 	{
-		public const string CollectionName = "mru";
-		public const string SettingsName = "commands";
-		public const string SettingName = "command";
-
 		private readonly ILogger logger;
 		private readonly IRibbonUI ribbon;
 		private readonly IWin32Window owner;
@@ -62,7 +56,7 @@ namespace River.OneMoreAddIn
 
 			if (!command.IsCancelled)
 			{
-				RecordLastAction(command, args);
+				new CommandProvider().SaveToMRU(command, args);
 			}
 
 			return command;
@@ -102,90 +96,14 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void RecordLastAction(Command command, params object[] args)
-		{
-			// ignore commands that pass the ribbon as an argument
-			if (args == null || args.Any(a => a != null && a.GetType().Name.Contains("ComObject")))
-			{
-				return;
-			}
-
-			try
-			{
-				var provider = new SettingsProvider();
-				var settings = provider.GetCollection(CollectionName);
-				var commands = settings.Get<XElement>(SettingsName);
-				if (commands == null)
-				{
-					commands = new XElement(SettingsName);
-					settings.Add(SettingsName, commands);
-				}
-
-				// "type" records the :Command inheritor class whereas
-				// "cmd" records the AddInCommands xxxCmd method name
-				var trace = new System.Diagnostics.StackTrace();
-				var runner = trace.GetFrames()
-					.Where(f => f.GetMethod().Name.EndsWith("Cmd"))
-					.Select(f => f.GetMethod().Name)
-					.FirstOrDefault();
-
-				var element = commands.Elements()
-					.FirstOrDefault(e => e.Attribute("cmd").Value == runner);
-
-				if (element != null)
-				{
-					element.Remove();
-					commands.Add(element);
-				}
-				else
-				{
-					var arguments = new XElement("arguments");
-					args.Where(a => a != null).ForEach(a =>
-					{
-						arguments.Add(new XElement("arg",
-							new XAttribute("type", a.GetType().FullName),
-							new XAttribute("value", a.ToString())
-							));
-					});
-
-					var setting = new XElement(SettingName,
-						new XAttribute("type", command.GetType().FullName),
-						new XAttribute("cmd", runner),
-						arguments
-						);
-
-					var replay = command.GetReplayArguments();
-					if (replay != null)
-					{
-						setting.Add(new XElement("context", replay));
-					}
-
-					commands.Add(setting);
-					while (commands.Elements().Count() > 5)
-					{
-						commands.Elements().First().Remove();
-					}
-				}
-
-				provider.SetCollection(settings);
-				provider.Save();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error recording last action", exc);
-			}
-		}
-
-
 		/// <summary>
 		/// Instantiates and executes the most recently executed command.
 		/// </summary>
 		/// <returns>Task</returns>
 		public async Task ReplayLastAction()
 		{
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection(CollectionName);
-			var action = settings.Get<XElement>(SettingsName)?.Elements(SettingName).LastOrDefault();
+			var provider = new CommandProvider();
+			var action = provider.LoadLastAction();
 			if (action == null)
 			{
 				return;
@@ -224,9 +142,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				provider.RemoveCollection(CollectionName);
-				provider.Save();
-
+				provider.ClearMRU();
 				logger.WriteLine("error parsing last action; history cleared", exc);
 			}
 		}

@@ -4069,4 +4069,12 @@ OneNote 文件 (*.one)</value>
     <value>定义在命令面板中使用的命令别名</value>
     <comment>intro box</comment>
   </data>
+  <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
+    <value>清除最近的命令</value>
+    <comment>link</comment>
+  </data>
+  <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
+    <value>键入命令并按 Enter 或单击列表中的项目</value>
+    <comment>label</comment>
+  </data>
 </root>

@@ -4071,4 +4071,12 @@ Vergrößern Sie kleinere Bilder nicht</value>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>Öffnen Sie die Befehlspalette</value>
   </data>
+  <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
+    <value>Letzte Befehle löschen</value>
+    <comment>link</comment>
+  </data>
+  <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
+    <value>Geben Sie einen Befehl ein und drücken Sie die Eingabetaste oder klicken Sie auf ein Element aus der Liste</value>
+    <comment>label</comment>
+  </data>
 </root>
