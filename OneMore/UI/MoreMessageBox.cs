@@ -133,6 +133,7 @@ namespace River.OneMoreAddIn.UI
 		private void OpenLog(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start(logger.LogPath);
+			Close();
 		}
 	}
 }
