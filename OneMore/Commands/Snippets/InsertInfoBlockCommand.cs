@@ -49,81 +49,118 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var warning = (bool)args[0];
 
-			using (var one = new OneNote(out var page, out var ns))
+			using var one = new OneNote(out var page, out var ns);
+			if (!page.ConfirmBodyContext())
 			{
-				if (!page.ConfirmBodyContext())
-				{
-					UIHelper.ShowError(Resx.Error_BodyContext);
-					return;
-				}
-
-				var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
-
-				string title, symbol, titleColor, symbolColor, textColor, shading;
-
-				if (warning)
-				{
-					title = "Warning";
-					symbol = "\u26a0";
-					symbolColor = black ? WarnSymbolBlack : (dark ? WarnSymbolBlack : WarnSymbolColor);
-					shading = black ? WarnShadingBlack : (dark ? WarnShadingDark : WarnShading);
-				}
-				else
-				{
-					title = "Information";
-					symbol = "\U0001F6C8";
-					symbolColor = black ? InfoSymbolBlack : InfoSymbolColor;
-					shading = black ? InfoShadingBlack : (dark ? InfoShadingDark : InfoShading);
-				}
-
-				titleColor = black ? TItleBlack : (dark ? TItleDark : TitleColor);
-				textColor = black ? TextBlack : (dark ? TextDark : TextColor);
-
-				// table...
-
-				var inner = new Table(ns);
-				inner.AddColumn(37f, true);
-				inner.AddColumn(100f);
-
-				var row = inner.AddRow();
-
-				row.Cells.ElementAt(0).SetContent(
-					new XElement(ns + "OE",
-						new XAttribute("alignment", "center"),
-						new XAttribute("style", $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{symbolColor};text-align:center"),
-						new XElement(ns + "T",
-							new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
-					));
-
-				row.Cells.ElementAt(1).SetContent(
-					new XElement(ns + "OEChildren",
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{titleColor}"),
-							new XElement(ns + "T",
-								new XCData($"<span style='font-weight:bold'>{title}</span>"))
-							),
-						new XElement(ns + "OE",
-							new XAttribute("style", $"font-family:'Segoe UI';font-size:11.0pt;color:{textColor}"),
-							new XElement(ns + "T",
-								new XCData("Your content here..."))
-					)));
-
-				var outer = new Table(ns)
-				{
-					BordersVisible = true
-				};
-
-				outer.AddColumn(600f, true);
-				row = outer.AddRow();
-
-				var cell = row.Cells.ElementAt(0);
-
-				cell.ShadingColor = shading;
-				cell.SetContent(inner);
-
-				page.AddNextParagraph(outer.Root);
-				await one.Update(page);
+				UIHelper.ShowError(Resx.Error_BodyContext);
+				return;
 			}
+
+			var dark = page.GetPageColor(out _, out var black).GetBrightness() < 0.5;
+
+			string title, symbol, titleColor, symbolColor, textColor, shading;
+
+			if (warning)
+			{
+				title = "Warning";
+				symbol = "\u26a0"; // !-triangle
+				symbolColor = black ? WarnSymbolBlack : (dark ? WarnSymbolBlack : WarnSymbolColor);
+				shading = black ? WarnShadingBlack : (dark ? WarnShadingDark : WarnShading);
+			}
+			else
+			{
+				title = "Information";
+				symbol = "\U0001F6C8"; // i-circle
+				symbolColor = black ? InfoSymbolBlack : InfoSymbolColor;
+				shading = black ? InfoShadingBlack : (dark ? InfoShadingDark : InfoShading);
+			}
+
+			titleColor = black ? TItleBlack : (dark ? TItleDark : TitleColor);
+			textColor = black ? TextBlack : (dark ? TextDark : TextColor);
+
+			var normalStyle = $"font-family:'Segoe UI';font-size:11.0pt;color:{textColor}";
+			var symbolStyle = $"font-family:'Segoe UI Symbol';font-size:22.0pt;color:{symbolColor};text-align:center";
+
+			// find anchor and optional selected content...
+
+			var cursor = page.GetTextCursor();
+			XElement content;
+			XElement anchor = null;
+			if (cursor != null)
+			{
+				content = new XElement(ns + "OE",
+					new XAttribute("style", normalStyle),
+					new XElement(ns + "T", new XCData("Your content here...")
+					));
+			}
+			else
+			{
+				content = page.ExtractSelectedContent(out anchor);
+				
+				content.Descendants().Attributes()
+					.Where(a => a.Name == "selected")
+					.Remove();
+			}
+
+			// inner table...
+
+			var inner = new Table(ns);
+			inner.AddColumn(37f, true);
+			inner.AddColumn(100f);
+
+			var row = inner.AddRow();
+
+			row.Cells.ElementAt(0).SetContent(
+				new XElement(ns + "OE",
+					new XAttribute("alignment", "center"),
+					new XAttribute("style", symbolStyle),
+					new XElement(ns + "T",
+						new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
+				));
+
+			row.Cells.ElementAt(1).SetContent(
+				new XElement(ns + "OEChildren",
+					new XElement(ns + "OE",
+						new XAttribute("style", normalStyle),
+						new XElement(ns + "T",
+							new XCData($"<span style='font-weight:bold'>{title}</span>"))
+						),
+					content.Name.LocalName == "OEChildren" ? content.Elements() : content
+				));
+
+			// outer table...
+
+			var outer = new Table(ns)
+			{
+				BordersVisible = true
+			};
+
+			outer.AddColumn(600f, true);
+			row = outer.AddRow();
+
+			var cell = row.Cells.ElementAt(0);
+
+			cell.ShadingColor = shading;
+			cell.SetContent(inner);
+
+			// update...
+
+			if (anchor == null)
+			{
+				page.InsertParagraph(outer.Root, true);
+			}
+			else if (anchor.HasElements)
+			{
+				// selected text was a subset of runs under an OE
+				anchor.AddAfterSelf(new XElement(ns + "OE", outer.Root));
+			}
+			else
+			{
+				// selected text was all of an OE
+				anchor.Add(outer.Root);
+			}
+
+			await one.Update(page);
 		}
 	}
 }

@@ -102,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					// selection range found so move it into snippet
-					var content = MoveSelectedIntoContent(page, out var firstParent);
+					var content = page.ExtractSelectedContent(out var firstParent);
 					cell.SetContent(content);
 
 					shading = DetermineShading(content);
@@ -221,55 +221,6 @@ namespace River.OneMoreAddIn.Commands
 				new XElement(ns + "OE", new XElement(ns + "T", new XCData(Resx.InsertCodeBlockCommand_Text))),
 				new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)))
 				);
-		}
-
-
-		private XElement MoveSelectedIntoContent(Page page, out XElement firstParent)
-		{
-			var content = new XElement(ns + "OEChildren");
-			firstParent = null;
-
-			var runs = page.Root.Elements(ns + "Outline")
-				.Descendants(ns + "T")
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"))
-				.ToList();
-
-			if (runs.Count > 0)
-			{
-				// content will eventually be added after the first parent
-				firstParent = runs[0].Parent;
-
-				// if text is in the middle of a soft-break block then need to split the block
-				// into two so the code box can be inserted, maintaining its relative position
-				if (runs[runs.Count - 1].NextNode != null)
-				{
-					var nextNodes = runs[runs.Count - 1].NodesAfterSelf().ToList();
-					nextNodes.Remove();
-
-					firstParent.AddAfterSelf(new XElement(ns + "OE",
-						firstParent.Attributes(),
-						nextNodes
-						));
-				}
-
-				// collect the content
-				foreach (var run in runs)
-				{
-					// new OE for run
-					var oe = new XElement(ns + "OE", run.Parent.Attributes());
-
-					// remove run from current parent
-					run.Remove();
-
-					// add run into new OE parent
-					oe.Add(run);
-
-					// add new OE to content
-					content.Add(oe);
-				}
-			}
-
-			return content;
 		}
 
 
