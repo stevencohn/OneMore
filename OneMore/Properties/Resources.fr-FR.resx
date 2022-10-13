@@ -4081,4 +4081,20 @@ Ne pas agrandir les petites images</value>
     <value>Tapez une commande et appuyez sur Entrée ou cliquez sur un élément de la liste</value>
     <comment>label</comment>
   </data>
+  <data name="AutoComplete_otherCommands" xml:space="preserve">
+    <value>autres commandes</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="AutoComplete_recentlyUsed" xml:space="preserve">
+    <value>utilisé récemment</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="CommandPalette_clear" xml:space="preserve">
+    <value>Effacer l'historique des commandes récentes ?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CommandPalette_unrecognized" xml:space="preserve">
+    <value>commande non reconnue</value>
+    <comment>error</comment>
+  </data>
 </root>

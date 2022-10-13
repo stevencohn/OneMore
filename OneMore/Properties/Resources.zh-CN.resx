@@ -4077,4 +4077,20 @@ OneNote 文件 (*.one)</value>
     <value>键入命令并按 Enter 或单击列表中的项目</value>
     <comment>label</comment>
   </data>
+  <data name="AutoComplete_otherCommands" xml:space="preserve">
+    <value>其他命令</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="AutoComplete_recentlyUsed" xml:space="preserve">
+    <value>最近使用</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="CommandPalette_clear" xml:space="preserve">
+    <value>清除最近的命令历史记录？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CommandPalette_unrecognized" xml:space="preserve">
+    <value>无法识别的命令</value>
+    <comment>error</comment>
+  </data>
 </root>

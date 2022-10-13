@@ -4087,4 +4087,20 @@ ISO-code then comma then language name</comment>
     <value>اكتب أمرًا واضغط على Enter أو انقر فوق عنصر من القائمة</value>
     <comment>label</comment>
   </data>
+  <data name="AutoComplete_otherCommands" xml:space="preserve">
+    <value>أوامر أخرى</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="AutoComplete_recentlyUsed" xml:space="preserve">
+    <value>مستخدم حديثا</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="CommandPalette_clear" xml:space="preserve">
+    <value>هل تريد مسح محفوظات الأوامر الحديثة؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CommandPalette_unrecognized" xml:space="preserve">
+    <value>أمر غير معرف</value>
+    <comment>error</comment>
+  </data>
 </root>

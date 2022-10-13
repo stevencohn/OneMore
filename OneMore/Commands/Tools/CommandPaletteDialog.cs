@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 		private void ClearRecentCommands(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			if (MoreMessageBox.Show(this,
-				"Clear the recent commands?",
+				Resx.CommandPalette_clear,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				new CommandProvider().ClearMRU();
@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 			errorProvider.SetError(cmdBox, 
 				string.IsNullOrWhiteSpace(text) || palette.HasMatches 
 					? String.Empty
-					: "Unrecognize command");
+					: Resx.CommandPalette_unrecognized);
 		}
 
 
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (Index >= 0)
 			{
-				logger.WriteLine($"CommandPaletteDialog.InvokeCommand({text}) index:{Index} recent:{Recent}");
+				//logger.WriteLine($"CommandPaletteDialog.InvokeCommand({text}) index:{Index} recent:{Recent}");
 				DialogResult = DialogResult.OK;
 				Close();
 			}
@@ -108,6 +108,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				DialogResult = DialogResult.Cancel;
 				Close();
+			}
+			else if (e.KeyCode == Keys.Enter)
+			{
+				InvokeCommand(sender, e);
 			}
 
 			escaping = false;

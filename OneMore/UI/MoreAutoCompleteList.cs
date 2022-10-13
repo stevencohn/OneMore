@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.UI
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -443,10 +444,11 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (e.ItemIndex == 0)
 				{
-					var size = e.Graphics.MeasureString("recently used", Font);
+					var annotation = Resx.AutoComplete_recentlyUsed;
+					var size = e.Graphics.MeasureString(annotation, Font);
 					// push key sequence positioning over to the left
 					x -= size.Width;
-					e.Graphics.DrawString("recently used", e.Item.Font, high, x, e.Bounds.Y);
+					e.Graphics.DrawString(annotation, e.Item.Font, high, x, e.Bounds.Y);
 				}
 
 				// index of first common command found after all recent commands
@@ -465,10 +467,11 @@ namespace River.OneMoreAddIn.UI
 				}
 				else if (common == e.ItemIndex)
 				{
-					var size = e.Graphics.MeasureString("other commands", Font);
+					var annotation = Resx.AutoComplete_otherCommands;
+					var size = e.Graphics.MeasureString(annotation, Font);
 					// push key sequence positioning over to the left
 					x -= size.Width;
-					e.Graphics.DrawString("other commands", e.Item.Font, high, x, e.Bounds.Y);
+					e.Graphics.DrawString(annotation, e.Item.Font, high, x, e.Bounds.Y);
 				}
 			}
 

@@ -4153,4 +4153,20 @@ Do no enlarge smaller images</value>
     <value>Type a command and press Enter or click and item from the list</value>
     <comment>label</comment>
   </data>
+  <data name="AutoComplete_otherCommands" xml:space="preserve">
+    <value>other commands</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="AutoComplete_recentlyUsed" xml:space="preserve">
+    <value>recently used</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="CommandPalette_clear" xml:space="preserve">
+    <value>Clear recent command history?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CommandPalette_unrecognized" xml:space="preserve">
+    <value>Unrecognized command</value>
+    <comment>error</comment>
+  </data>
 </root>

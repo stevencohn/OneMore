@@ -4087,4 +4087,20 @@ No ampliar imágenes más pequeñas</value>
     <value>Escriba un comando y presione Entrar o haga clic en un elemento de la lista</value>
     <comment>label</comment>
   </data>
+  <data name="AutoComplete_otherCommands" xml:space="preserve">
+    <value>otros comandos</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="AutoComplete_recentlyUsed" xml:space="preserve">
+    <value>recientemente usado</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="CommandPalette_clear" xml:space="preserve">
+    <value>¿Borrar el historial de comandos reciente?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CommandPalette_unrecognized" xml:space="preserve">
+    <value>Comando no reconocido</value>
+    <comment>error</comment>
+  </data>
 </root>
