@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly MoreCommandPalette palette;
 		private readonly string[] commands;
+		private readonly string[] recentNames;
 
 
 		public CommandPaletteDialog()
@@ -44,29 +45,41 @@ namespace River.OneMoreAddIn.Commands
 			palette.LoadCommands(commands, recentNames);
 
 			this.commands = commands;
+			this.recentNames = recentNames;
 		}
 
 
-		public int CommandIndex { get; private set; } = -1;
+		public int Index { get; private set; } = -1;
+
+
+		public bool Recent { get; private set; }
 
 
 		private void ValidateCommand(object sender, EventArgs e)
 		{
 			var text = cmdBox.Text.Trim();
 			var regex = new Regex($"^{text}($|\\|.+$)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-			okButton.Enabled = !string.IsNullOrEmpty(text) && commands.Any(c => regex.IsMatch(c));
+			okButton.Enabled = 
+				!string.IsNullOrEmpty(text) && 
+				(recentNames.Any(c => regex.IsMatch(c)) || commands.Any(c => regex.IsMatch(c)));
 		}
 
 
 		private void InvokeCommand(object sender, EventArgs e)
 		{
 			var text = cmdBox.Text.Trim();
-			var index = commands.IndexOf(c =>
-				Regex.IsMatch(c, $"^{text}($|\\|.+$)", RegexOptions.IgnoreCase));
+			var regex = new Regex($"^{text}($|\\|.+$)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-			if (index >= 0)
+			Index = commands.IndexOf(c => regex.IsMatch(c));
+			if (Index < 0)
 			{
-				CommandIndex = index;
+				Index = recentNames.IndexOf(c => regex.IsMatch(c));
+				Recent = Index >= 0;
+			}
+
+			if (Index >= 0)
+			{
+				logger.WriteLine($"CommandPaletteDialog.InvokeCommand({text}) index:{Index} recent:{Recent}");
 				DialogResult = DialogResult.OK;
 				Close();
 			}

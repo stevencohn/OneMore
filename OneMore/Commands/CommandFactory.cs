@@ -121,20 +121,6 @@ namespace River.OneMoreAddIn
 					settings.Add(SettingsName, commands);
 				}
 
-				var arguments = new XElement("arguments");
-				args.Where(a => a != null).ForEach(a =>
-				{
-					arguments.Add(new XElement("arg",
-						new XAttribute("type", a.GetType().FullName),
-						new XAttribute("value", a.ToString())
-						));
-				});
-
-				var setting = new XElement(SettingName,
-					new XAttribute("type", command.GetType().FullName),
-					arguments
-					);
-
 				// "type" records the :Command inheritor class whereas
 				// "cmd" records the AddInCommands xxxCmd method name
 				var trace = new System.Diagnostics.StackTrace();
@@ -143,23 +129,42 @@ namespace River.OneMoreAddIn
 					.Select(f => f.GetMethod().Name)
 					.FirstOrDefault();
 
-				if (runner != null)
+				var element = commands.Elements()
+					.FirstOrDefault(e => e.Attribute("cmd").Value == runner);
+
+				if (element != null)
 				{
-					setting.Add(new XAttribute("cmd", runner));
+					element.Remove();
+					commands.Add(element);
 				}
-
-				var replay = command.GetReplayArguments();
-				if (replay != null)
+				else
 				{
-					setting.Add(new XElement("context", replay));
-				}
+					var arguments = new XElement("arguments");
+					args.Where(a => a != null).ForEach(a =>
+					{
+						arguments.Add(new XElement("arg",
+							new XAttribute("type", a.GetType().FullName),
+							new XAttribute("value", a.ToString())
+							));
+					});
 
-				provider.SetCollection(settings);
+					var setting = new XElement(SettingName,
+						new XAttribute("type", command.GetType().FullName),
+						new XAttribute("cmd", runner),
+						arguments
+						);
 
-				commands.Add(setting);
-				while (commands.Elements().Count() > 5)
-				{
-					commands.Elements().First().Remove();
+					var replay = command.GetReplayArguments();
+					if (replay != null)
+					{
+						setting.Add(new XElement("context", replay));
+					}
+
+					commands.Add(setting);
+					while (commands.Elements().Count() > 5)
+					{
+						commands.Elements().First().Remove();
+					}
 				}
 
 				provider.SetCollection(settings);

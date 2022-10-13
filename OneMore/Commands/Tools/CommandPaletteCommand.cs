@@ -27,23 +27,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private XElement recentActions;
-
-
 		public CommandPaletteCommand()
 		{
 			// prevent replay
 			IsCancelled = true;
-			recentActions = null;
 		}
 
 
 		public override async Task Execute(params object[] args)
 		{
-			var commands = DiscoverCommands().OrderBy(c => c.Name);
+			var commands = DiscoverCommands().OrderBy(c => c.Name).ToList();
 			var recent = LoadMRU(commands).OrderBy(c => c.Name);
 
-			logger.WriteLine($"discovered {commands.Count()} commands, {recent.Count()} mru");
+			logger.WriteLine($"discovered {commands.Count} commands, {recent.Count()} mru");
 
 			var names = commands.Select(c => c.Keys == Keys.None
 				? c.Name
@@ -56,26 +52,28 @@ namespace River.OneMoreAddIn.Commands
 				.ToArray();
 
 			// auto-complete feature of TextBox requires STA thread
-			var index = await SingleThreaded.Invoke(() =>
+			(bool recentName, int index) = await SingleThreaded.Invoke(() =>
 			{
 				using var dialog = new CommandPaletteDialog(names, recentNames);
 
 				return dialog.ShowDialog(Owner) == DialogResult.OK
-					? dialog.CommandIndex
-					: -1;
+					? (dialog.Recent, dialog.Index)
+					: (false, -1);
 			});
 
-			if (index >= 0 && index < commands.Count())
+			if (index >= 0)
 			{
-				var command = commands.ElementAt(index);
-				logger.WriteLine($"invoking command[{index}] '{command.Method.Name}'");
+				var command = recentName
+					? recent.ElementAt(index)
+					: commands.ElementAt(index);
 
+				logger.WriteLine($"invoking command[{recentName},{index}] '{command.Method.Name}'");
 				await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
 			}
 		}
 
 
-		private IEnumerable<CommandInfo> DiscoverCommands()
+		private List<CommandInfo> DiscoverCommands()
 		{
 			var commands = new List<CommandInfo>();
 
@@ -141,13 +139,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private IEnumerable<CommandInfo> LoadMRU(IEnumerable<CommandInfo> commands)
+		private List<CommandInfo> LoadMRU(List<CommandInfo> commands)
 		{
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection(CommandFactory.CollectionName);
+			var mru = new List<CommandInfo>();
+
+			var settings = new SettingsProvider().GetCollection(CommandFactory.CollectionName);
 			if (settings.Count > 0)
 			{
-				recentActions = settings.Get<XElement>(CommandFactory.SettingsName);
+				var recentActions = settings.Get<XElement>(CommandFactory.SettingsName);
 				if (recentActions != null && recentActions.HasElements)
 				{
 					foreach (var action in recentActions.Elements())
@@ -157,11 +156,14 @@ namespace River.OneMoreAddIn.Commands
 
 						if (command != null)
 						{
-							yield return command;
+							commands.Remove(command);
+							mru.Add(command);
 						}
 					}
 				}
 			}
+
+			return mru;
 		}
 	}
 }

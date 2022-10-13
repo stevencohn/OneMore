@@ -31,7 +31,6 @@ namespace River.OneMoreAddIn.UI
 		private sealed class Cmd
 		{
 			public string Name;                 // provided name of command, including optional keys
-			public int Index;                   // reference index within ListView
 			public bool Recent;                 // true if this is a recently used command
 		}
 
@@ -139,13 +138,11 @@ namespace River.OneMoreAddIn.UI
 			Items.Clear();
 			commands.Clear();
 			matches.Clear();
-			var index = 0;
 			foreach (var name in names)
 			{
-				var cmd = new Cmd { Name = name, Index = index };
+				var cmd = new Cmd { Name = name };
 				Items.Add(name);
 				commands.Add(cmd);
-				index++;
 			}
 
 			if (recentNames?.Any() == true)
@@ -153,24 +150,12 @@ namespace River.OneMoreAddIn.UI
 				// inject recent names at top of list
 				foreach (var name in recentNames.Reverse())
 				{
-					var cmd = commands.FirstOrDefault(c => c.Name == name);
-					if (cmd != null)
+					Items.Insert(0, name);
+					commands.Insert(0, new Cmd
 					{
-						commands.Insert(0, new Cmd
-						{
-							Name = cmd.Name,
-							Recent = true
-						});
-
-						commands.Remove(cmd);
-					}
-				}
-
-				// rewrite index for all entries
-				index = 0;
-				foreach (var command in commands)
-				{
-					command.Index = index++;
+						Name = name,
+						Recent = true
+					});
 				}
 			}
 
@@ -338,6 +323,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnMouseClick(e);
 			var info = HitTest(e.Location);
+
 			if (info?.Item is ListViewItem item)
 			{
 				var text = item.Text;
