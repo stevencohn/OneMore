@@ -14,6 +14,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public GotoFavoriteCommand()
 		{
+			// do not write to MRU
+			IsCancelled = true;
 		}
 
 
