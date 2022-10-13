@@ -72,7 +72,6 @@
 			this.clearLink.AutoSize = true;
 			this.clearLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.clearLink.LinkColor = System.Drawing.Color.DarkOrchid;
 			this.clearLink.Location = new System.Drawing.Point(463, 54);
 			this.clearLink.Name = "clearLink";
 			this.clearLink.Size = new System.Drawing.Size(177, 20);

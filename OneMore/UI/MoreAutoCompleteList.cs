@@ -77,6 +77,12 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets a value indicating whether the hosted popup is visible
+		/// </summary>
+		public bool IsVisible => popup?.Visible == true;
+
+
+		/// <summary>
 		/// Gets the TextBox control to which this auto-complete list is bound.
 		/// </summary>
 		public TextBox Owner { get; private set; }

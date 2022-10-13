@@ -117,11 +117,12 @@ namespace River.OneMoreAddIn.Commands
 			escaping = false;
 		}
 
+
 		private void DoPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
 			if (e.KeyCode == Keys.Escape)
 			{
-				escaping = !palette.Visible;
+				escaping = !palette.IsVisible;
 			}
 		}
 	}
