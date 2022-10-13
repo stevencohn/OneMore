@@ -328,8 +328,8 @@ namespace River.OneMoreAddIn.UI
 							{
 								x += (bounds.Width - hosted.Control.Width) / 2;
 							}
-							else
-							if (hosted.Host.Alignment == ContentAlignment.BottomRight ||
+							else if (
+								hosted.Host.Alignment == ContentAlignment.BottomRight ||
 								hosted.Host.Alignment == ContentAlignment.MiddleRight ||
 								hosted.Host.Alignment == ContentAlignment.TopRight)
 							{
