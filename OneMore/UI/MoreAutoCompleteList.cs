@@ -198,11 +198,8 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up ||
-				e.KeyCode == Keys.PageDown || e.KeyCode == Keys.PageUp)
+			if (e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.ControlKey)
 			{
-				SelectItem(e.KeyCode);
-				Owner.Focus();
 				e.Handled = true;
 				return;
 			}
@@ -230,6 +227,14 @@ namespace River.OneMoreAddIn.UI
 				Height = (itemHeight + 1) * 15;
 
 				popup.Show(Owner, new Point(0, Owner.Height));
+			}
+
+			if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up ||
+				e.KeyCode == Keys.PageDown || e.KeyCode == Keys.PageUp)
+			{
+				SelectItem(e.KeyCode);
+				Owner.Focus();
+				e.Handled = true;
 			}
 
 			void SelectItem(Keys keycode)
