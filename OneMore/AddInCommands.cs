@@ -22,9 +22,13 @@ namespace River.OneMoreAddIn
 		public async Task AddCaptionCmd(IRibbonControl control)
 			=> await factory.Run<AddCaptionCommand>();
 
+
+		[IgnorePalette]
 		public void AddFavoritePageCmd(IRibbonControl control)
 			=> new FavoritesProvider(ribbon).AddFavorite();
 
+
+		[IgnorePalette]
 		public void AddFavoriteSectionCmd(IRibbonControl control)
 			=> new FavoritesProvider(ribbon).AddFavorite(true);
 
@@ -46,47 +50,47 @@ namespace River.OneMoreAddIn
 
 
 		[Command("ribApplyStyle1Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D1, "Styles")]
-		public async Task ApplyStyle1Cmd(IRibbonControl control)
+		public async Task ApplyStyle0Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(0);
 
 
 		[Command("ribApplyStyle2Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D2, "Styles")]
-		public async Task ApplyStyle2Cmd(IRibbonControl control)
+		public async Task ApplyStyle1Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(1);
 
 
 		[Command("ribApplyStyle3Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D3, "Styles")]
-		public async Task ApplyStyle3Cmd(IRibbonControl control)
+		public async Task ApplyStyle2Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(2);
 
 
 		[Command("ribApplyStyle4Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D4, "Styles")]
-		public async Task ApplyStyle4Cmd(IRibbonControl control)
+		public async Task ApplyStyle3Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(3);
 
 
 		[Command("ribApplyStyle5Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D5, "Styles")]
-		public async Task ApplyStyle5Cmd(IRibbonControl control)
+		public async Task ApplyStyle4Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(4);
 
 
 		[Command("ribApplyStyle6Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D6, "Styles")]
-		public async Task ApplyStyle6Cmd(IRibbonControl control)
+		public async Task ApplyStyle5Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(5);
 
 
 		[Command("ribApplyStyle7Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D7, "Styles")]
-		public async Task ApplyStyle7Cmd(IRibbonControl control)
+		public async Task ApplyStyle6Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(6);
 
 
 		[Command("ribApplyStyle8Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D8, "Styles")]
-		public async Task ApplyStyle8Cmd(IRibbonControl control)
+		public async Task ApplyStyle7Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(7);
 
 
 		[Command("ribApplyStyle9Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D9, "Styles")]
-		public async Task ApplyStyle9Cmd(IRibbonControl control)
+		public async Task ApplyStyle8Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(8);
 
 
@@ -392,7 +396,6 @@ namespace River.OneMoreAddIn
 		[Command("ribOpenLogButton_Label", Keys.None, "Tools")]
 		public async Task OpenLogCmd(IRibbonControl control)
 			=> await factory.Run<OpenLogCommand>();
-
 
 
 		public async Task OutlineCmd(IRibbonControl control)

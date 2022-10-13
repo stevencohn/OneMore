@@ -4132,4 +4132,28 @@ Nie powiększaj mniejszych obrazów</value>
     <value>Zdefiniuj aliasy poleceń do użycia w palecie poleceń</value>
     <comment>intro box</comment>
   </data>
+  <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
+    <value>Wyczyść ostatnie polecenia</value>
+    <comment>link</comment>
+  </data>
+  <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
+    <value>Wpisz polecenie i naciśnij Enter lub kliknij i wybierz pozycję z listy</value>
+    <comment>label</comment>
+  </data>
+  <data name="AutoComplete_otherCommands" xml:space="preserve">
+    <value>inne polecenia</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="AutoComplete_recentlyUsed" xml:space="preserve">
+    <value>ostatnio używane</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="CommandPalette_clear" xml:space="preserve">
+    <value>Wyczyścić historię ostatnich poleceń?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CommandPalette_unrecognized" xml:space="preserve">
+    <value>polecenie nierozpoznane</value>
+    <comment>error</comment>
+  </data>
 </root>

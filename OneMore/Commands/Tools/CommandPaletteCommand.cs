@@ -4,25 +4,17 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Settings;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Reflection;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
+
 
 	internal class CommandPaletteCommand : Command
 	{
-		private sealed class CommandInfo
-		{
-			public string Name { get; set; }
-			public MethodInfo Method { get; set; }
-			public override string ToString()
-			{
-				return Name;
-			}
-		}
+		private List<CommandInfo> commands;
+		private List<CommandInfo> recent;
 
 
 		public CommandPaletteCommand()
@@ -34,82 +26,42 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var commands = DiscoverCommands().OrderBy(c => c.Name);
-			logger.WriteLine($"discovered {commands.Count()} commands");
+			using var dialog = new CommandPaletteDialog();
+			dialog.RequestData += PopulateCommands;
+			PopulateCommands(dialog, EventArgs.Empty);
 
-			// auto-complete feature of TextBox requires STA thread
-			var index = await SingleThreaded.Invoke(() =>
+			if (dialog.ShowDialog(Owner) == DialogResult.OK &&
+				dialog.Index >= 0)
 			{
-				var names = commands.Select(c => c.Name).ToArray();
+				var command = dialog.Recent
+					? recent.ElementAt(dialog.Index)
+					: commands.ElementAt(dialog.Index);
 
-				using (var dialog = new CommandPaletteDialog(names))
-				{
-					return (dialog.ShowDialog(Owner) == DialogResult.OK)
-						? dialog.CommandIndex
-						: -1;
-				}
-			});
-
-			if (index >= 0 && index < commands.Count())
-			{
-				var command = commands.ElementAt(index);
-				logger.WriteLine($"invoking command[{index}] '{command.Method.Name}'");
-
+				//logger.WriteLine($"invoking command[{dialog.Index},{dialog.Recent}] '{command.Method.Name}'");
 				await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
 			}
 		}
 
-
-		private IEnumerable<CommandInfo> DiscoverCommands()
+		private void PopulateCommands(object sender, EventArgs e)
 		{
-			// heavily relies on naming convention, suffix must be "Cmd"
-			var methods = typeof(AddIn).GetMethods()
-				.Where(m => m.Name.EndsWith("Cmd"));
+			var dialog = sender as CommandPaletteDialog;
 
-			foreach (var method in methods)
-			{
-				// remove "Cmd" suffix from method name
-				var nam = method.Name.Substring(0, method.Name.Length - 3);
+			var provider = new CommandProvider();
+			commands = provider.LoadPaletteCommands().OrderBy(c => c.Name).ToList();
+			recent = provider.LoadMRU(commands).OrderBy(c => c.Name).ToList();
+			logger.WriteLine($"discovered {commands.Count} commands, {recent.Count} mru");
 
-				// translate to display name
-				var name = Properties.Resources.ResourceManager.GetString($"rib{nam}Button_Label");
-				if (string.IsNullOrEmpty(name))
-				{
-					name = Properties.Resources.ResourceManager.GetString($"om{name}Button_Label");
-				}
+			var names = commands.Select(c => c.Keys == Keys.None
+				? c.Name
+				: $"{c.Name}|{new Hotkey(c.Keys)}")
+				.ToArray();
 
-				if (!string.IsNullOrWhiteSpace(name))
-				{
-					yield return new CommandInfo
-					{
-						Name = name,
-						Method = method
-					};
-				}
-			}
+			var recentNames = recent.Select(c => c.Keys == Keys.None
+				? c.Name
+				: $"{c.Name}|{new Hotkey(c.Keys)}")
+				.ToArray();
 
-			// load user aliases
-			var settings = new SettingsProvider()
-				.GetCollection(AliasSheet.CollectionName)?
-				.Get<XElement>(AliasSheet.SettingsName);
-
-			if (settings != null)
-			{
-				foreach (var setting in settings.Elements())
-				{
-					var method = methods
-						.FirstOrDefault(m => m.Name == setting.Attribute("methodName").Value);
-
-					if (method != null)
-					{
-						yield return new CommandInfo
-						{
-							Name = setting.Value,
-							Method = method
-						};
-					}
-				}
-			}
+			dialog.PopulateCommands(names, recentNames);
 		}
 	}
 }

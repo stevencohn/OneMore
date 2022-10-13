@@ -4079,4 +4079,28 @@ Não amplie imagens menores</value>
     <value>Definir aliases de comando para uso na Paleta de Comandos</value>
     <comment>intro box</comment>
   </data>
+  <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
+    <value>Limpar comandos recentes</value>
+    <comment>link</comment>
+  </data>
+  <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
+    <value>Digite um comando e pressione Enter ou clique em um item da lista</value>
+    <comment>label</comment>
+  </data>
+  <data name="AutoComplete_otherCommands" xml:space="preserve">
+    <value>outros comandos</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="AutoComplete_recentlyUsed" xml:space="preserve">
+    <value>usado recentemente</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="CommandPalette_clear" xml:space="preserve">
+    <value>Limpar histórico de comandos recente?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CommandPalette_unrecognized" xml:space="preserve">
+    <value>Comando não reconhecido</value>
+    <comment>error</comment>
+  </data>
 </root>

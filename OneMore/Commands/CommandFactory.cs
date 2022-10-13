@@ -5,14 +5,12 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
-	using OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
@@ -58,7 +56,7 @@ namespace River.OneMoreAddIn
 
 			if (!command.IsCancelled)
 			{
-				RecordLastAction(command, args);
+				new CommandProvider().SaveToMRU(command, args);
 			}
 
 			return command;
@@ -98,113 +96,54 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void RecordLastAction(Command command, params object[] args)
-		{
-			// ignore commands that pass the ribbon as an argument
-			if (args == null || args.Any(a => a != null && a.GetType().Name.Contains("ComObject")))
-			{
-				return;
-			}
-
-			try
-			{
-				// SettingsProvider will only return an XElement if it has child elements so
-				// wrap the argument list in an <arguments> element, which itself may be empty
-				var arguments = new XElement("arguments");
-
-				foreach (var arg in args)
-				{
-					if (arg != null)
-					{
-						arguments.Add(new XElement("arg",
-							new XAttribute("type", arg.GetType().FullName),
-							new XAttribute("value", arg.ToString())
-							));
-					}
-				}
-
-				var setting = new XElement("command",
-					new XAttribute("type", command.GetType().FullName),
-					arguments
-					);
-
-				var provider = new SettingsProvider();
-				var settings = provider.GetCollection("lastAction");
-				settings.Clear();
-
-				// setting name should equate to the XML root element name here
-				// the XML is not wrapped with an extra parent, so no worries
-				settings.Add("command", setting);
-
-				var replay = command.GetReplayArguments();
-				if (replay != null)
-				{
-					settings.Add("context", new XElement("context", replay));
-				}
-
-				provider.SetCollection(settings);
-				provider.Save();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error recording last action", exc);
-			}
-		}
-
-
 		/// <summary>
 		/// Instantiates and executes the most recently executed command.
 		/// </summary>
 		/// <returns>Task</returns>
 		public async Task ReplayLastAction()
 		{
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("lastAction");
-			var action = settings.Get<XElement>("command");
-			if (action != null)
+			var provider = new CommandProvider();
+			var action = provider.LoadLastAction();
+			if (action == null)
 			{
-				try
-				{
-					var command = (Command)Activator.CreateInstance(
-						Type.GetType(action.Attribute("type").Value)
-						);
-
-					var args = new List<object>();
-					foreach (var arg in action.Element("arguments").Elements("arg"))
-					{
-						var type = Type.GetType(arg.Attribute("type").Value);
-						if (type.IsEnum)
-						{
-							args.Add(Enum.Parse(type, arg.Attribute("value").Value));
-						}
-						else
-						{
-							args.Add(Convert.ChangeType(
-								arg.Attribute("value").Value,
-								Type.GetType(arg.Attribute("type").Value)
-								));
-						}
-					}
-
-					var context = settings.Get<XElement>("context");
-					if (context != null && context.HasElements)
-					{
-						args.Add(context.Elements().First());
-					}
-
-					await Run("Replaying", command, args.ToArray());
-				}
-				catch (Exception exc)
-				{
-					provider.RemoveCollection("lastAction");
-					provider.Save();
-
-					logger.WriteLine("error parsing last action; history cleared", exc);
-				}
+				return;
 			}
-			else
+
+			try
 			{
-				await Task.Yield();
+				var command = (Command)Activator.CreateInstance(
+					Type.GetType(action.Attribute("type").Value)
+					);
+
+				var args = new List<object>();
+				foreach (var arg in action.Element("arguments").Elements("arg"))
+				{
+					var type = Type.GetType(arg.Attribute("type").Value);
+					if (type.IsEnum)
+					{
+						args.Add(Enum.Parse(type, arg.Attribute("value").Value));
+					}
+					else
+					{
+						args.Add(Convert.ChangeType(
+							arg.Attribute("value").Value,
+							Type.GetType(arg.Attribute("type").Value)
+							));
+					}
+				}
+
+				var context = action.Elements("context").FirstOrDefault();
+				if (context != null && context.HasElements)
+				{
+					args.Add(context.Elements().First());
+				}
+
+				await Run("Replaying", command, args.ToArray());
+			}
+			catch (Exception exc)
+			{
+				provider.ClearMRU();
+				logger.WriteLine("error parsing last action; history cleared", exc);
 			}
 		}
 

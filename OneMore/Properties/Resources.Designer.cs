@@ -503,6 +503,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to other commands.
+        /// </summary>
+        internal static string AutoComplete_otherCommands {
+            get {
+                return ResourceManager.GetString("AutoComplete_otherCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to recently used.
+        /// </summary>
+        internal static string AutoComplete_recentlyUsed {
+            get {
+                return ResourceManager.GetString("AutoComplete_recentlyUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Automobile {
@@ -896,11 +914,47 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear recent command history?.
+        /// </summary>
+        internal static string CommandPalette_clear {
+            get {
+                return ResourceManager.GetString("CommandPalette_clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore Command Palette.
         /// </summary>
         internal static string CommandPalette_Title {
             get {
                 return ResourceManager.GetString("CommandPalette_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unrecognized command.
+        /// </summary>
+        internal static string CommandPalette_unrecognized {
+            get {
+                return ResourceManager.GetString("CommandPalette_unrecognized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear recent commands.
+        /// </summary>
+        internal static string CommandPaletteDialog_clearLink_Text {
+            get {
+                return ResourceManager.GetString("CommandPaletteDialog_clearLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type a command and press Enter or click and item from the list.
+        /// </summary>
+        internal static string CommandPaletteDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("CommandPaletteDialog_introLabel.Text", resourceCulture);
             }
         }
         

@@ -4079,4 +4079,28 @@ Kleinere afbeeldingen niet vergroten</value>
     <value>Opdrachtaliassen definiëren voor gebruik in het opdrachtenpalet</value>
     <comment>intro box</comment>
   </data>
+  <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
+    <value>Recente opdrachten wissen</value>
+    <comment>link</comment>
+  </data>
+  <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
+    <value>Typ een opdracht en druk op Enter of klik op en item uit de lijst</value>
+    <comment>label</comment>
+  </data>
+  <data name="AutoComplete_otherCommands" xml:space="preserve">
+    <value>andere commando's</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="AutoComplete_recentlyUsed" xml:space="preserve">
+    <value>laatst gebruikt</value>
+    <comment>listview annotation</comment>
+  </data>
+  <data name="CommandPalette_clear" xml:space="preserve">
+    <value>Recente opdrachtgeschiedenis wissen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CommandPalette_unrecognized" xml:space="preserve">
+    <value>onherkenbaar commando</value>
+    <comment>error</comment>
+  </data>
 </root>
