@@ -157,6 +157,27 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
+			// look for calling Cmd method in stack trace
+			var trace = new System.Diagnostics.StackTrace();
+			var runner = trace.GetFrames()
+				.Where(f => f.GetMethod().Name.EndsWith("Cmd"))
+				.Select(f => f.GetMethod().Name)
+				.FirstOrDefault();
+
+			// if not found in stack trace then must be from an async thread so derive the name
+			// from the Command name and check that it exists
+			if (runner == null)
+			{
+				runner = command.GetType().Name.Replace("Command", "Cmd");
+				if (typeof(AddIn).GetMethod(runner) == null)
+				{
+					Logger.Current.WriteLine($"SaveToMRU skipping {runner}");
+					return;
+				}
+
+				Logger.Current.WriteLine($"SaveToMRU using derived name {runner}");
+			}
+
 			try
 			{
 				var provider = new SettingsProvider();
@@ -167,14 +188,6 @@ namespace River.OneMoreAddIn
 					commands = new XElement(SettingsName);
 					settings.Add(SettingsName, commands);
 				}
-
-				// "type" records the :Command inheritor class whereas
-				// "cmd" records the AddInCommands xxxCmd method name
-				var trace = new System.Diagnostics.StackTrace();
-				var runner = trace.GetFrames()
-					.Where(f => f.GetMethod().Name.EndsWith("Cmd"))
-					.Select(f => f.GetMethod().Name)
-					.FirstOrDefault();
 
 				var element = commands.Elements()
 					.FirstOrDefault(e => e.Attribute("cmd").Value == runner);
@@ -195,6 +208,8 @@ namespace River.OneMoreAddIn
 							));
 					});
 
+					// "type" records the :Command inheritor class whereas
+					// "cmd" records the AddInCommands xxxCmd method name
 					var setting = new XElement(SettingName,
 						new XAttribute("type", command.GetType().FullName),
 						new XAttribute("cmd", runner),
