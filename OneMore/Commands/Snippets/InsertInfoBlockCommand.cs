@@ -86,7 +86,11 @@ namespace River.OneMoreAddIn.Commands
 			var cursor = page.GetTextCursor();
 			XElement content;
 			XElement anchor = null;
-			if (cursor != null)
+
+			if (// cursor is not null if selection range is empty
+				cursor != null &&
+				// selection range is a single line containing a hyperlink
+				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
 			{
 				content = new XElement(ns + "OE",
 					new XAttribute("style", normalStyle),
@@ -147,7 +151,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (anchor == null)
 			{
-				page.InsertParagraph(outer.Root, true);
+				page.AddNextParagraph(outer.Root);
+				//page.InsertParagraph(outer.Root, true);
 			}
 			else if (anchor.HasElements)
 			{

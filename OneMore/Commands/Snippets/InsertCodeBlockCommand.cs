@@ -93,7 +93,11 @@ namespace River.OneMoreAddIn.Commands
 				row = table.AddRow();
 				cell = row.Cells.First();
 
-				if (cursor != null)
+
+				if (// cursor is not null if selection range is empty
+					cursor != null &&
+					// selection range is a single line containing a hyperlink
+					!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
 				{
 					// empty text cursor found, add default content
 					cell.SetContent(MakeDefaultContent(addTitle));
