@@ -23,7 +23,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
-			palette = new MoreAutoCompleteList();
+			palette = new MoreAutoCompleteList
+			{
+				VisibleByDefault = true
+			};
+
 			palette.SetAutoCompleteList(cmdBox, palette);
 
 			if (NeedsLocalizing())
@@ -55,6 +59,8 @@ namespace River.OneMoreAddIn.Commands
 			palette.LoadCommands(commands, recentNames);
 			this.commands = commands;
 			this.recentNames = recentNames;
+
+			clearLink.Enabled = recentNames?.Length > 0;
 		}
 
 

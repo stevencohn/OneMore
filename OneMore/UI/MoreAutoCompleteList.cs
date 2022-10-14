@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.UI
 		/// Gets or sets whether the list is shown immediately along with its
 		/// TextBox. The default is to only show the list on the first keypress.
 		/// </summary>
-		public bool ShowByDefault { get; set; }
+		public bool VisibleByDefault { get; set; }
 
 
 		bool IExtenderProvider.CanExtend(object extendee)
@@ -135,6 +135,11 @@ namespace River.OneMoreAddIn.UI
 				box.PreviewKeyDown += DoPreviewKeyDown;
 				box.TextChanged += DoTextChanged;
 				boxtext = box.Text.Trim();
+
+				if (VisibleByDefault)
+				{
+					box.GotFocus += ShowSelf;
+				}
 			}
 			else
 			{
@@ -180,6 +185,41 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		private void ShowSelf(object sender, EventArgs e)
+		{
+			if (sender is TextBox box && !box.Visible)
+			{
+				popup?.Close();
+				return;
+			}
+
+			if (popup == null)
+			{
+				popup = new ToolStripDropDown
+				{
+					Margin = Padding.Empty,
+					Padding = Padding.Empty,
+					AutoClose = false
+				};
+				popup.Items.Add(new ToolStripControlHost(this)
+				{
+					Margin = Padding.Empty,
+					Padding = Padding.Empty
+				});
+
+				Owner.FindForm().Move += HidePopup;
+			}
+
+			if (!popup.Visible)
+			{
+				var itemHeight = GetItemRect(0).Height;
+				Height = (itemHeight + 1) * 15;
+
+				popup.Show(Owner, new Point(0, Owner.Height));
+			}
+		}
+
+
 		private void DoPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
 			// must catch Enter key in preview event so it's not superseded
@@ -210,30 +250,7 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			if (popup == null)
-			{
-				popup = new ToolStripDropDown
-				{
-					Margin = Padding.Empty,
-					Padding = Padding.Empty,
-					AutoClose = false
-				};
-				popup.Items.Add(new ToolStripControlHost(this)
-				{
-					Margin = Padding.Empty,
-					Padding = Padding.Empty
-				});
-
-				Owner.FindForm().Move += HidePopup;
-			}
-
-			if (!popup.Visible)
-			{
-				var itemHeight = GetItemRect(0).Height;
-				Height = (itemHeight + 1) * 15;
-
-				popup.Show(Owner, new Point(0, Owner.Height));
-			}
+			ShowSelf(null, EventArgs.Empty);
 
 			if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up ||
 				e.KeyCode == Keys.PageDown || e.KeyCode == Keys.PageUp)

@@ -46,7 +46,7 @@
 			this.cmdBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.cmdBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cmdBox.Location = new System.Drawing.Point(27, 23);
+			this.cmdBox.Location = new System.Drawing.Point(27, 46);
 			this.cmdBox.Name = "cmdBox";
 			this.cmdBox.Size = new System.Drawing.Size(613, 28);
 			this.cmdBox.TabIndex = 0;
@@ -72,12 +72,14 @@
 			this.clearLink.AutoSize = true;
 			this.clearLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.clearLink.HoverColor = System.Drawing.Color.MediumOrchid;
-			this.clearLink.Location = new System.Drawing.Point(463, 54);
+			this.clearLink.Location = new System.Drawing.Point(463, 20);
+			this.clearLink.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
 			this.clearLink.Name = "clearLink";
 			this.clearLink.Size = new System.Drawing.Size(177, 20);
 			this.clearLink.TabIndex = 2;
 			this.clearLink.TabStop = true;
 			this.clearLink.Text = "Clear recent commands";
+			this.clearLink.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			this.clearLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClearRecentCommands);
 			// 
 			// introPanel
