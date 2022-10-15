@@ -37,6 +37,8 @@ namespace River.OneMoreAddIn.Commands
 				var content = page.ExtractSelectedContent(out var firstParent);
 				await writer.Copy(content);
 			}
+
+			MoreBubbleWindow.Show(owner, "Copied markdown");
 		}
 	}
 }

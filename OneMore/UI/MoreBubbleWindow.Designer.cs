@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// timer
 			// 
-			this.timer.Interval = 1000;
+			this.timer.Interval = 20;
 			this.timer.Tick += new System.EventHandler(this.Tick);
 			// 
 			// iconBox
@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			this.iconBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.iconBox.Location = new System.Drawing.Point(23, 23);
 			this.iconBox.Name = "iconBox";
-			this.iconBox.Size = new System.Drawing.Size(64, 64);
+			this.iconBox.Size = new System.Drawing.Size(48, 48);
 			this.iconBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.iconBox.TabIndex = 1;
 			this.iconBox.TabStop = false;
@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 			this.textBox.Name = "textBox";
 			this.textBox.ReadOnly = true;
 			this.textBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-			this.textBox.Size = new System.Drawing.Size(588, 91);
+			this.textBox.Size = new System.Drawing.Size(510, 71);
 			this.textBox.TabIndex = 2;
 			this.textBox.TabStop = false;
 			this.textBox.Text = "This is the message";
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(566, 125);
+			this.okButton.Location = new System.Drawing.Point(488, 105);
 			this.okButton.Name = "okButton";
 			this.okButton.Size = new System.Drawing.Size(115, 36);
 			this.okButton.TabIndex = 3;
@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Thistle;
 			this.CancelButton = this.okButton;
-			this.ClientSize = new System.Drawing.Size(704, 184);
+			this.ClientSize = new System.Drawing.Size(626, 164);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.textBox);
 			this.Controls.Add(this.iconBox);
@@ -99,13 +99,9 @@ namespace River.OneMoreAddIn.Commands
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "MoreBubbleWindow";
-			this.Opacity = 0.85D;
 			this.Padding = new System.Windows.Forms.Padding(20);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-			this.Text = "OneNote Timer";
-			this.Load += new System.EventHandler(this.DoLoad);
-			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StartWindowDrag);
-			this.Move += new System.EventHandler(this.MoveWindow);
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "OneNote";
 			((System.ComponentModel.ISupportInitialize)(this.iconBox)).EndInit();
 			this.ResumeLayout(false);
 

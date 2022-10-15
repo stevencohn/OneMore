@@ -107,7 +107,7 @@ namespace River.OneMoreAddIn
 					// copy hyperlink to clipboard
 					await new ClipboardProvider().SetHtml(html);
 
-					MoreMessageBox.Show(owner, specific
+					MoreBubbleWindow.Show(owner, specific
 						? Resx.CopyLinkCommand_LinkToParagraph
 						: Resx.CopyLinkCommand_LinkToPage);
 				}

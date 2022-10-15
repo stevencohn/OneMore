@@ -8,18 +8,15 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
-	using System.Globalization;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	internal partial class MoreBubbleWindow : LocalizableForm
 	{
-
-		private readonly float scalingX;
-		private readonly float scalingY;
-		private int maxLeft;
-		private int maxTop;
+		private const int SolidTime = 500;
+		private const int FadeoutTime = 750;
+		private float fadeIncrement;
+		private int time;
 
 
 		public MoreBubbleWindow()
@@ -36,74 +33,73 @@ namespace River.OneMoreAddIn.Commands
 
 			// create mask with rounded corners to overlay form
 			Region = Region.FromHrgn(Native.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-			TopMost = true;
-			TopLevel = true;
 
-			(scalingX, scalingY) = UIHelper.GetScalingFactors();
+			// increments to get to 100%
+			fadeIncrement = 1 / (FadeoutTime / (float)timer.Interval);
+			time = 0;
 		}
 
 
-		public int Seconds { get; private set; }
-
-
-		private void DoLoad(object sender, EventArgs e)
+		public void SetMessage(string text)
 		{
-			// deal with primary/secondary displays in either duplicate or extended mode...
-			Rectangle area;
-			using (var one = new OneNote())
-			{
-				//for (int i = 0; i < Screen.AllScreens.Length; i++)
-				//{
-				//	var s = Screen.AllScreens[i];
-				//	logger.WriteLine($"Screen[{i}] ({s.DeviceName}), primary={s.Primary}, size={s.Bounds}");
-				//}
-
-				var screen = Screen.FromHandle(one.WindowHandle);
-				//logger.WriteLine($"using screen ({screen.DeviceName}), primary={screen.Primary}, size={screen.Bounds}");
-				Location = screen.WorkingArea.Location;
-				area = screen.WorkingArea;
-			}
-
-			// must add to area.X here to handle extended mode in which the coord of the secondary
-			// display is an extension of the first, so X would be greater than zero
-			Left = (int)(area.X + (area.Width - Width - (10 * scalingX)));
-			Top = (int)((SystemInformation.CaptionHeight + 5) * scalingY);
-
-			maxLeft = Left;
-			maxTop = area.Height - Height - 50;
-
-			if (CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
-			{
-				Left = (int)(10 * scalingX);
-			}
-
-			Seconds = 0;
-			timer.Enabled = true;
-			timer.Start();
+			textBox.Text = text;
 		}
 
 
-		private void MoveWindow(object sender, EventArgs e)
+		public static DialogResult Show(IWin32Window owner, string text)
 		{
-			if (maxLeft > 0)
-			{
-				if (Left < 10) Left = 10;
-				if (Left > maxLeft) Left = maxLeft;
-				if (Top < 10) Top = 10;
-				if (Top > maxTop) Top = maxTop;
-			}
+			using var box = new MoreBubbleWindow();
+			box.SetMessage(text);
+			return box.ShowDialog(owner);
 		}
 
 
 		private void Tick(object sender, EventArgs e)
 		{
-			var span = TimeSpan.FromSeconds(++Seconds);
-			TopMost = true;
+			time += timer.Interval;
+			if (time < SolidTime)
+			{
+				return;
+			}
+
+			if (Opacity > fadeIncrement)
+			{
+				Opacity -= fadeIncrement;
+				fadeIncrement += 0.001F;
+				return;
+			}
+
+			CloseWindow(sender, e);
 		}
 
 
-		private void StartWindowDrag(object sender, MouseEventArgs e)
+		protected override void OnLoad(EventArgs e)
 		{
+			base.OnLoad(e);
+			timer.Start();
+		}
+
+
+		protected override void OnMouseEnter(EventArgs e)
+		{
+			base.OnMouseEnter(e);
+			timer.Stop();
+			Opacity = 100;
+		}
+
+
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			base.OnMouseLeave(e);
+			time = 0;
+			timer.Start();
+		}
+
+
+		protected override void OnMouseMove(MouseEventArgs e)
+		{
+			base.OnMouseMove(e);
+
 			if (e.Button == MouseButtons.Left)
 			{
 				Native.ReleaseCapture();
@@ -112,12 +108,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// unfortunately this doesn't work for ShowDialog; it only applies to Show
+		protected override bool ShowWithoutActivation => true;
+
+
 		private void CloseWindow(object sender, EventArgs e)
 		{
 			timer.Stop();
-			timer.Enabled = false;
 			timer.Dispose();
 			Close();
+
+			// attempt to reactive OneNote window and text caret...
+			// doesn't fully activate but at least sets focus
+			using var one = new OneNote();
+			Native.SetForegroundWindow(one.WindowHandle);
 		}
 	}
 }
