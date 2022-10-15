@@ -4095,4 +4095,16 @@ Vergrößern Sie kleinere Bilder nicht</value>
     <value>Unbekannter Befehl</value>
     <comment>error</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
+    <value>Als Markdown kopieren</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyAsMarkdownButton" xml:space="preserve">
+    <value>... Als Markdown kopieren</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
+    <value>Abschlag kopiert</value>
+    <comment>message box</comment>
+  </data>
 </root>

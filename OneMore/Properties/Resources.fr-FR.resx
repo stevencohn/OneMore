@@ -4097,4 +4097,16 @@ Ne pas agrandir les petites images</value>
     <value>commande non reconnue</value>
     <comment>error</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
+    <value>Copier comme Markdown</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyAsMarkdownButton" xml:space="preserve">
+    <value>... Copier comme Markdown</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
+    <value>Markdown copié</value>
+    <comment>message box</comment>
+  </data>
 </root>

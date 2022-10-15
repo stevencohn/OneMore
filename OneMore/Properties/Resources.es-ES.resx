@@ -4103,4 +4103,16 @@ No ampliar imágenes más pequeñas</value>
     <value>Comando no reconocido</value>
     <comment>error</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
+    <value>Copiar como Markdown</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyAsMarkdownButton" xml:space="preserve">
+    <value>... Copiar como descuento</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
+    <value>descuento copiado</value>
+    <comment>message box</comment>
+  </data>
 </root>

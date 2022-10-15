@@ -4093,4 +4093,16 @@ OneNote 文件 (*.one)</value>
     <value>无法识别的命令</value>
     <comment>error</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
+    <value>复制为 Markdown</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyAsMarkdownButton" xml:space="preserve">
+    <value>... 复制为 Markdown</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
+    <value>复制降价</value>
+    <comment>message box</comment>
+  </data>
 </root>

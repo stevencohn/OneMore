@@ -257,6 +257,12 @@
                 getLabel="GetRibbonLabel"
                 onAction="HighlightCmd"/>
               <button
+                id="ribCopyAsMarkdownButton"
+                imageMso="WatermarkGallery"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="CopyAsMarkdownCmd"/>
+              <button
                 id="ribPasteRtfButton"
                 imageMso="PasteSpecialDialog"
                 getLabel="GetRibbonLabel"
