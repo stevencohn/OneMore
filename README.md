@@ -20,14 +20,15 @@ There are [full instructions here](#install).
 | ![screenshot](../../wiki/images/Screenshot.png) | ![Calendar](../../wiki/images/Calendar.png) |
 _Click an image to enlarge_
 
-## 💁 Features (153)
+## 💁 Features (157)
 *Want more from OneMore? OneMore has more...*
 
-[Clean commands](../../wiki/Clean-Commands) (12)
+[Clean commands](../../wiki/Clean-Commands) (13)
 
 * Change spacing between sentences to one or two spaces
 * Clear background color and reset text color of selected text
 * Remove author/citation information from paragraphs
+* Remove duplicate and empty pages
 * Remove pasted screen clipping and URL citation lines from page
 * Remove empty headers and "extra" empty lines between paragraphs
 * Remove ink annotations from the current page
@@ -57,6 +58,7 @@ _Click an image to enlarge_
 
 [Edit Commands](../../wiki/Edit-Commands) (16)
 * Colorize selected text as a chosen programming language - _syntax highlighting_
+* Copy page or selected content as markdown that can then be pastde into another application
 * Set proofing language of selected text to one of the installed Office proofing languages
 * Highlight selected text using a rotating array of colors (Ctrl + Shift + H)
 * Paste Rich Text (preserve colors when pasting code from Visual Studio)<sup>1</sup> (Ctrl + Alt + V)
@@ -107,9 +109,10 @@ _Click an image to enlarge_
 * Split current page into multiple pages
 * Report number of words on the page or in the selected region
 
-[Reference Commands](../../wiki/Reference-Commands) (13)
+[Reference Commands](../../wiki/Reference-Commands) (15)
 * Insert a new footnote (endnote) at the current location (Ctrl + Alt + F)
 * Remove a footnote from either the label or from the footer description (Ctrl + Shift + F)
+* Copy link to page or link to paragraph; will paste as a breadcrumb
 * Create bidirectional links between pages or paragraphs on a page
 * Embed the contents of one page into the current pages
 * Insert QR code representation of selected text
