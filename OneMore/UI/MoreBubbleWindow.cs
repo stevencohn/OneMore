@@ -98,8 +98,6 @@ namespace River.OneMoreAddIn.Commands
 		private void Tick(object sender, EventArgs e)
 		{
 			var span = TimeSpan.FromSeconds(++Seconds);
-			timeLabel.Text = span.ToString("c");
-			timeLabel.Update();
 			TopMost = true;
 		}
 
