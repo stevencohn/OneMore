@@ -1446,6 +1446,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copied markdown.
+        /// </summary>
+        internal static string CopyAsMarkdownCommand_copied {
+            get {
+                return ResourceManager.GetString("CopyAsMarkdownCommand_copied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot copy a folder into itself or one of its children.
         /// </summary>
         internal static string CopyFolderCommand_InvalidTarget {

@@ -4177,4 +4177,8 @@ Do no enlarge smaller images</value>
     <value>... Copy as Markdown</value>
     <comment>context menu sheet</comment>
   </data>
+  <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
+    <value>Copied markdown</value>
+    <comment>message box</comment>
+  </data>
 </root>

@@ -4,7 +4,8 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using System.Threading.Tasks;
+	using System.Threading.Tasks; 
+	using Resx = River.OneMoreAddIn.Properties.Resources;
 
 
 	/// <summary>
@@ -38,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 				await writer.Copy(content);
 			}
 
-			MoreBubbleWindow.Show(owner, "Copied markdown");
+			MoreBubbleWindow.Show(owner, Resx.CopyAsMarkdownCommand_copied);
 		}
 	}
 }

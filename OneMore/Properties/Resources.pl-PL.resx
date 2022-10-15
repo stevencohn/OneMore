@@ -4156,4 +4156,16 @@ Nie powiększaj mniejszych obrazów</value>
     <value>polecenie nierozpoznane</value>
     <comment>error</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
+    <value>Kopiuj jako Markdown</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyAsMarkdownButton" xml:space="preserve">
+    <value>... Skopiuj jako Markdown</value>
+    <comment>context menu sheet</comment>
+  </data>
+  <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
+    <value>Skopiowane przeceny</value>
+    <comment>message box</comment>
+  </data>
 </root>
