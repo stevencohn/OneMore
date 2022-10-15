@@ -173,6 +173,7 @@
     <Compile Include="Commands\Clean\RemoveSpacingCommand.cs" />
     <Compile Include="Commands\Clean\BreakingCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeCommand.cs" />
+    <Compile Include="Commands\Edit\CopyAsMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\PasteTextCommand.cs" />
     <Compile Include="Commands\Favorites\FavoritesDialog.cs">
       <SubType>Form</SubType>
@@ -868,6 +869,12 @@
     </Compile>
     <Compile Include="Styles\Stylizer.cs" />
     <Compile Include="Styles\XmlStyleBase.cs" />
+    <Compile Include="UI\MoreBubbleWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MoreBubbleWindow.Designer.cs">
+      <DependentUpon>MoreBubbleWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\TranslationHelper.cs" />
     <Compile Include="UI\WebViewWorkerDialog.cs">
       <SubType>Form</SubType>
@@ -1315,6 +1322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\SheetBase.resx">
       <DependentUpon>SheetBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MoreBubbleWindow.resx">
+      <DependentUpon>MoreBubbleWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\WebViewWorkerDialog.resx">
       <DependentUpon>WebViewWorkerDialog.cs</DependentUpon>

@@ -93,7 +93,6 @@ namespace River.OneMoreAddIn.Commands
 				row = table.AddRow();
 				cell = row.Cells.First();
 
-
 				if (// cursor is not null if selection range is empty
 					cursor != null &&
 					// selection range is a single line containing a hyperlink

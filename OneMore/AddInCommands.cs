@@ -170,6 +170,12 @@ namespace River.OneMoreAddIn
 		public async Task CopyLinkToParagraphCmd(IRibbonControl control)
 			=> await factory.Run<CopyLinkCommand>(true);
 
+
+		[Command("ribCopyAsMarkdownButton_Label", Keys.None, "Editing")]
+		public async Task CopyAsMarkdownCmd(IRibbonControl control)
+			=> await factory.Run<CopyAsMarkdownCommand>(true);
+
+
 		public async Task CrawlWebPageCmd(IRibbonControl control)
 			=> await factory.Run<CrawlWebPageCommand>();
 

@@ -4169,4 +4169,12 @@ Do no enlarge smaller images</value>
     <value>Unrecognized command</value>
     <comment>error</comment>
   </data>
+  <data name="ribCopyAsMarkdownButton_Label" xml:space="preserve">
+    <value>Copy as Markdown</value>
+    <comment>ribbon item</comment>
+  </data>
+  <data name="ContextMenuSheet_ribCopyAsMarkdownButton" xml:space="preserve">
+    <value>... Copy as Markdown</value>
+    <comment>context menu sheet</comment>
+  </data>
 </root>

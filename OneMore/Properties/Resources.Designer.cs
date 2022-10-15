@@ -1022,6 +1022,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... Copy as Markdown.
+        /// </summary>
+        internal static string ContextMenuSheet_ribCopyAsMarkdownButton {
+            get {
+                return ResourceManager.GetString("ContextMenuSheet_ribCopyAsMarkdownButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy Link to Page.
         /// </summary>
         internal static string ContextMenuSheet_ribCopyLinkToPageButton {
@@ -5513,6 +5522,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCopyAcrossButton_Label {
             get {
                 return ResourceManager.GetString("ribCopyAcrossButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy as Markdown.
+        /// </summary>
+        internal static string ribCopyAsMarkdownButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyAsMarkdownButton_Label", resourceCulture);
             }
         }
         

@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Settings
 			"ribTrimButton",				// ... Trim Whitespace
 			"ribEditMenu",					// Edit Menu
 			"ribColorizeMenu",				// ... Colorize
+			"ribCopyAsMarkdownButton",		// ... Copy as Markdown
 			"ribProofingMenu",				// ... Proofing Language
 			"ribHighlightButton",			// ... Rotating Highlighter
 			"ribDisableSpellCheckButton",	// ... Disable Spell Check
