@@ -880,7 +880,7 @@
     </contextMenu>
     <contextMenu idMso="ContextMenuPicture">
       <button
-        id="ctxCaptionButton"
+        id="ctxAddCaptionButton"
         imageMso="CaptionInsert"
         getLabel="GetRibbonLabel"
         onAction="AddCaptionCmd"
