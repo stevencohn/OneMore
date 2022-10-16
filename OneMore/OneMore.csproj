@@ -629,6 +629,9 @@
     <Compile Include="UI\MoreLinkLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MoreRichLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
