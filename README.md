@@ -309,10 +309,10 @@ And mind [the license](https://github.com/stevencohn/OneMore/blob/main/LICENSE).
 
 ### Minimum Prerequisites for Development
 
-* Developed for Windows 10
-* Microsoft Visual Studio 2019<sup>1</sup> including Office primary interop assemblies
+* Windows 10
+* Microsoft Visual Studio 2022<sup>1</sup> including Office primary interop assemblies
 * Microsoft [Windows 10 SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk/)<sup>2</sup>
-* Microsoft [Visual Studio 2019 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects)
+* Microsoft [Visual Studio 2022 Installer Projects extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects)
 * .NET Framework 4.8
 * Microsoft OneNote 2016 32-bit or 64-bit
 
@@ -324,10 +324,10 @@ where **version** is the version of the SDK you have installed, e.g. 19041. If y
 a different version then you must replace the **Windows** reference in OneMoreAddin.csproj_
 
 Tested recently with:
-* Windows 11 Pro 21H2 22000.918
-* Windows 11 SDK 10.0.22000.832
-* Visual Studio 2022 17.3.2
-* OneNote® 2021 MSO (Version 2207 Build 16.0.15427.20182) 64-bit 
+* Windows 11 Pro 21H2 22000.1098
+* Windows 11 SDK 10.0.22000.0
+* Visual Studio 2022 17.3.6
+* OneNote® 2021 MSO (Version 2209 Build 16.0.15629.20200) 64-bit 
 
 #### Dependencies
 
