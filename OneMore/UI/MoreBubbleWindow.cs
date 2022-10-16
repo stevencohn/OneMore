@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public void SetMessage(string text)
 		{
-			textBox.Text = text;
+			messageBox.Text = text;
 		}
 
 
@@ -51,6 +51,13 @@ namespace River.OneMoreAddIn.Commands
 			using var box = new MoreBubbleWindow();
 			box.SetMessage(text);
 			return box.ShowDialog(owner);
+		}
+
+
+		private void PauseTimer(object sender, EventArgs e)
+		{
+			timer.Stop();
+			Opacity = 100;
 		}
 
 
@@ -70,6 +77,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			CloseWindow(sender, e);
+		}
+
+
+		private void Unclick(object sender, EventArgs e)
+		{
+			okButton.Focus();
 		}
 
 
@@ -117,11 +130,6 @@ namespace River.OneMoreAddIn.Commands
 			timer.Stop();
 			timer.Dispose();
 			Close();
-
-			// attempt to reactive OneNote window and text caret...
-			// doesn't fully activate but at least sets focus
-			using var one = new OneNote();
-			Native.SetForegroundWindow(one.WindowHandle);
 		}
 	}
 }
