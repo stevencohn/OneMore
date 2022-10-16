@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// customization only for English
 				warningBox.Clear();
-				warningBox.AppendText("Note that OneNote does not bind completely to task that " +
+				warningBox.AppendText("Note that OneNote does not bind completely to tasks that " +
 					"are not in the Outlook Tasks folder. Tasks from sub-folders are shown ");
 				warningBox.AppendFormattedText("in red", Color.Firebrick);
 				warningBox.AppendFormattedText(" to indicate that their status flags will not update " +

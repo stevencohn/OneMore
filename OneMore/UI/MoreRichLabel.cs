@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System.ComponentModel;
+	using System.Drawing;
 	using System.Windows.Forms;
 
 
@@ -26,6 +27,23 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		[DefaultValue(false)]
 		public bool Selectable { get; set; } = false;
+
+
+		public void AppendFormattedText(string text, Color textColour)
+		{
+			var start = TextLength;
+			AppendText(text);
+			Select(start, TextLength - start);
+			SelectionColor = textColour;
+
+			//SelectionAlignment = alignment;
+			//SelectionFont = new Font(
+			//	 box.SelectionFont.FontFamily,
+			//	 box.SelectionFont.Size,
+			//	 (isBold ? FontStyle.Bold : FontStyle.Regular));
+
+			SelectionLength = 0;
+		}
 
 
 		protected override void WndProc(ref Message m)

@@ -33,7 +33,7 @@
 			this.okButton = new System.Windows.Forms.Button();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.introBox = new System.Windows.Forms.TextBox();
-			this.warningBox = new System.Windows.Forms.RichTextBox();
+			this.warningBox = new River.OneMoreAddIn.UI.MoreRichLabel();
 			this.resetLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.tree = new Aga.Controls.Tree.TreeViewAdv();
@@ -41,8 +41,8 @@
 			this.tableButton = new System.Windows.Forms.RadioButton();
 			this.listButton = new System.Windows.Forms.RadioButton();
 			this.optionsPanel = new System.Windows.Forms.Panel();
-			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.resetInfoLabel = new System.Windows.Forms.Label();
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
 			this.buttonPanel.SuspendLayout();
 			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -100,6 +100,7 @@
 			this.resetLabel.AutoSize = true;
 			this.resetLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.resetLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.resetLabel.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.resetLabel.LinkColor = System.Drawing.Color.DimGray;
 			this.resetLabel.Location = new System.Drawing.Point(30, 15);
 			this.resetLabel.Name = "resetLabel";
@@ -232,7 +233,7 @@
 		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.Button cancelButton;
 		private System.Windows.Forms.TextBox introBox;
-		private System.Windows.Forms.RichTextBox warningBox;
+		private River.OneMoreAddIn.UI.MoreRichLabel warningBox;
 		private System.Windows.Forms.Panel optionsPanel;
 		private System.Windows.Forms.Panel buttonPanel;
 		private System.Windows.Forms.ImageList imageList;
